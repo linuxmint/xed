@@ -20,4 +20,4 @@ which mate-autogen.sh || {
     exit 1
 }
 
-REQUIRED_AUTOMAKE_VERSION=1.9 MATE_DATADIR="$mate_datadir" USE_COMMON_DOC_BUILD=yes . mate-autogen.sh
+REQUIRED_AUTOMAKE_VERSION=1.9 REQUIRED_MACROS=python.m4 MATE_DATADIR="$mate_datadir" USE_COMMON_DOC_BUILD=yes . mate-autogen.sh
