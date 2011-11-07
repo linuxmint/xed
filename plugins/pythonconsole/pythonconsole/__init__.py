@@ -21,11 +21,11 @@
 # Parts from "Interactive Python-GTK Console" (stolen from epiphany's console.py)
 #     Copyright (C), 1998 James Henstridge <james@daa.com.au>
 #     Copyright (C), 2005 Adam Hooper <adamh@densi.com>
-# Bits from gedit Python Console Plugin
+# Bits from pluma Python Console Plugin
 #     Copyrignt (C), 2005 Raphaël Slinckx
 
 import gtk
-import gedit
+import pluma
 
 from console import PythonConsole
 from config import PythonConsoleConfigDialog
@@ -33,14 +33,14 @@ from config import PythonConsoleConfig
 
 PYTHON_ICON = 'mate-mime-text-x-python'
 
-class PythonConsolePlugin(gedit.Plugin):
+class PythonConsolePlugin(pluma.Plugin):
     def __init__(self):
-        gedit.Plugin.__init__(self)
+        pluma.Plugin.__init__(self)
         self.dlg = None
 
     def activate(self, window):
         console = PythonConsole(namespace = {'__builtins__' : __builtins__,
-                                             'gedit' : gedit,
+                                             'pluma' : pluma,
                                              'window' : window})
         console.eval('print "You can access the main window through ' \
                      '\'window\' :\\n%s" % window', False)
@@ -63,14 +63,14 @@ def create_configure_dialog(self):
         self.dlg = PythonConsoleConfigDialog(self.get_data_dir())
 
     dialog = self.dlg.dialog()
-    window = gedit.app_get_default().get_active_window()
+    window = pluma.app_get_default().get_active_window()
     if window:
         dialog.set_transient_for(window)
 
     return dialog
 
 # Here we dynamically insert create_configure_dialog based on if configuration
-# is enabled. This has to be done like this because gedit checks if a plugin
+# is enabled. This has to be done like this because pluma checks if a plugin
 # is configurable solely on the fact that it has this member defined or not
 if PythonConsoleConfig.enabled():
     PythonConsolePlugin.create_configure_dialog = create_configure_dialog

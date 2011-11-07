@@ -32,7 +32,7 @@
       </row>
     </data>
   </object>
-  <object class="GeditDocument" id="source_buffer">
+  <object class="PlumaDocument" id="source_buffer">
     <property name="highlight-matching-brackets">True</property>
   </object>
   <object class="GtkDialog" id="dialog_snippets">
@@ -331,7 +331,7 @@
                         <property name="shadow_type">GTK_SHADOW_IN</property>
                         <property name="window_placement">GTK_CORNER_TOP_LEFT</property>
                         <child>
-                          <object class="GeditView" id="source_view_snippet">
+                          <object class="PlumaView" id="source_view_snippet">
                             <property name="buffer">source_buffer</property>
                             <property name="visible">True</property>
                             <property name="auto-indent">True</property>

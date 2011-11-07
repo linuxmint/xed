@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-#    Gedit External Tools plugin
+#    Pluma External Tools plugin
 #    Copyright (C) 2005-2006  Steve Frécinaux <steve@istique.net>
 #    Copyright (C) 2010  Per Arneng <per.arneng@anyplanet.com>
 #
@@ -19,7 +19,7 @@
 
 __all__ = ('OutputPanel', 'UniqueById')
 
-import gtk, gedit
+import gtk, pluma
 import pango
 import gobject
 import os
@@ -217,7 +217,7 @@ class OutputPanel(UniqueById):
         gfile = self.file_lookup.lookup(link.path)
 
         if gfile:
-            gedit.commands.load_uri(self.window, gfile.get_uri(), None, 
+            pluma.commands.load_uri(self.window, gfile.get_uri(), None, 
                                     link.line_nr)
             gobject.idle_add(self.idle_grab_focus)
 

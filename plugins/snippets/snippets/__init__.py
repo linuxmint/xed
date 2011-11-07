@@ -1,4 +1,4 @@
-#    Gedit snippets plugin
+#    Pluma snippets plugin
 #    Copyright (C) 2005-2006  Jesse van den Kieboom <jesse@icecrew.nl>
 #
 #    This program is free software; you can redistribute it and/or modify
@@ -21,7 +21,7 @@ import shutil
 
 import gtk
 from gtk import gdk    
-import gedit
+import pluma
 import platform
 
 from WindowHelper import WindowHelper
@@ -29,9 +29,9 @@ from Library import Library
 from Manager import Manager
 from Snippet import Snippet
 
-class SnippetsPlugin(gedit.Plugin):
+class SnippetsPlugin(pluma.Plugin):
         def __init__(self):
-                gedit.Plugin.__init__(self)
+                pluma.Plugin.__init__(self)
 
                 self.dlg = None
                 
@@ -39,13 +39,13 @@ class SnippetsPlugin(gedit.Plugin):
                 library.set_accelerator_callback(self.accelerator_activated)
 
                 if platform.platform() == 'Windows':
-                        snippetsdir = os.path.expanduser('~/gedit/snippets')
+                        snippetsdir = os.path.expanduser('~/pluma/snippets')
                 else:
                         userdir = os.getenv('MATE22_USER_DIR')
                         if userdir:
-                                snippetsdir = os.path.join(userdir, 'gedit/snippets')
+                                snippetsdir = os.path.join(userdir, 'pluma/snippets')
                         else:
-                                snippetsdir = os.path.expanduser('~/.mate2/gedit/snippets')
+                                snippetsdir = os.path.expanduser('~/.mate2/pluma/snippets')
 
                 library.set_dirs(snippetsdir, self.system_dirs())
 
@@ -59,7 +59,7 @@ class SnippetsPlugin(gedit.Plugin):
 		        dirs = []
 		        
 		        for d in datadirs.split(os.pathsep):
-		                d = os.path.join(d, 'gedit-2', 'plugins', 'snippets')
+		                d = os.path.join(d, 'pluma-2', 'plugins', 'snippets')
 		                
 		                if os.path.isdir(d):
 		                        dirs.append(d)
@@ -85,7 +85,7 @@ class SnippetsPlugin(gedit.Plugin):
                 else:
                         self.dlg.run()
                 
-                window = gedit.app_get_default().get_active_window()
+                window = pluma.app_get_default().get_active_window()
                 
                 if window:
                         self.dlg.dlg.set_transient_for(window)

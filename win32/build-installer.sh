@@ -2,17 +2,17 @@
 echo "You need to execute this on a Windows machine within msys (http://www.mingw.org)"
 echo "You also need InnoSetup (http://www.innosetup.org) with iscc in your PATH"
 echo "You need to have python, pygobject, pycairo and pygtk installed into C:\\Python26"
-echo "Make sure gedit and all its dependencies have been installed correctly to /local"
+echo "Make sure pluma and all its dependencies have been installed correctly to /local"
 echo "You can specify the paths by yourself:"
-echo "./build-installer.sh VERSION GTK_PREFIX GEDIT_PREFIX GTKSOURCEVIEW_PREFIX PYTHON_PREFIX MISC_PREFIX ASPELL_PREFIX WINDOWS_PREFIX"
+echo "./build-installer.sh VERSION GTK_PREFIX PLUMA_PREFIX GTKSOURCEVIEW_PREFIX PYTHON_PREFIX MISC_PREFIX ASPELL_PREFIX WINDOWS_PREFIX"
 
-# we assume glib, gtk etc were installed in the root while gedit and gtksourceview
+# we assume glib, gtk etc were installed in the root while pluma and gtksourceview
 # in /local
 #FIXME we need to figure out a way for autodetecting this
 if test "$#" = 7; then
   _gtk_prefix="$2"
   _gtksourceview_prefix="$3"
-  _gedit_prefix="$4"
+  _pluma_prefix="$4"
   _python_prefix="$5"
   _misc_prefix="$6"
   _aspell_prefix="$7"
@@ -20,7 +20,7 @@ if test "$#" = 7; then
 else
   _gtk_prefix="/c/gtk"
   _gtksourceview_prefix="/usr/local"
-  _gedit_prefix="/usr/local"
+  _pluma_prefix="/usr/local"
   _python_prefix="/c/Python26"
   _misc_prefix="/usr"
   _aspell_prefix="/c/Aspell"
@@ -30,7 +30,7 @@ fi
 if test "$1" = '--help'; then
   echo "VERSION: The version of the installer"
   echo "GTK_PREFIX: The path for gtk, by default /c/gtk"
-  echo "GEDIT_PREFIX: The path for gedit, by default /usr/local"
+  echo "PLUMA_PREFIX: The path for pluma, by default /usr/local"
   echo "GTKSOURCEVIEW_PREFIX: The path for gtksourceview, by default /usr/local"
   echo "PYTHON_PREFIX: The path for python, by default /c/Python25"
   echo "MISC_PREFIX: The path for the rest of dependencies: i.e: enchant: by default /usr"
@@ -52,10 +52,10 @@ fi
 mkdir -p installer || exit
 
 echo "Copying the docs..."
-mkdir -p installer/gedit/share/doc || exit
-cp ../COPYING installer/gedit/share/doc || exit
-cp ../AUTHORS installer/gedit/share/doc || exit
-cp ../README installer/gedit/share/doc || exit
+mkdir -p installer/pluma/share/doc || exit
+cp ../COPYING installer/pluma/share/doc || exit
+cp ../AUTHORS installer/pluma/share/doc || exit
+cp ../README installer/pluma/share/doc || exit
 
 echo "Copying gtk DLL files..."
 
@@ -97,44 +97,44 @@ echo "Stripping DLL files..."
 strip installer/gtk/bin/*.dll || exit
 strip installer/gtk/bin/*.exe || exit
 
-#Copy zlib1 after stripping, as we strip this library it makes crash gedit
+#Copy zlib1 after stripping, as we strip this library it makes crash pluma
 cp "${_gtk_prefix}/bin/zlib1.dll" installer/gtk/bin || exit
 
-#-------------------------------- gedit ------------------------------------
+#-------------------------------- pluma ------------------------------------
 echo "Copying misc DLL files..."
-mkdir -p installer/gedit/bin
+mkdir -p installer/pluma/bin
 
-cp "${_misc_prefix}/bin/libgettextpo-0.dll" installer/gedit/bin || exit
+cp "${_misc_prefix}/bin/libgettextpo-0.dll" installer/pluma/bin || exit
 
-cp "${_misc_prefix}/bin/libMateCORBA-2-0.dll" installer/gedit/bin || exit
-cp "${_misc_prefix}/bin/libMateCORBACosNaming-2-0.dll" installer/gedit/bin || exit
-cp "${_misc_prefix}/bin/libMateCORBA-imodule-2-0.dll" installer/gedit/bin || exit
+cp "${_misc_prefix}/bin/libMateCORBA-2-0.dll" installer/pluma/bin || exit
+cp "${_misc_prefix}/bin/libMateCORBACosNaming-2-0.dll" installer/pluma/bin || exit
+cp "${_misc_prefix}/bin/libMateCORBA-imodule-2-0.dll" installer/pluma/bin || exit
 
-cp "${_misc_prefix}/bin/libmateconf-2-4.dll" installer/gedit/bin || exit
+cp "${_misc_prefix}/bin/libmateconf-2-4.dll" installer/pluma/bin || exit
 
-cp "${_misc_prefix}/bin/libenchant.dll" installer/gedit/bin || exit
-cp "${_misc_prefix}/bin/libsoup-2.4-1.dll" installer/gedit/bin || exit
+cp "${_misc_prefix}/bin/libenchant.dll" installer/pluma/bin || exit
+cp "${_misc_prefix}/bin/libsoup-2.4-1.dll" installer/pluma/bin || exit
 
-cp "${_gtksourceview_prefix}/bin/libgtksourceview-2.0-0.dll" installer/gedit/bin || exit
+cp "${_gtksourceview_prefix}/bin/libgtksourceview-2.0-0.dll" installer/pluma/bin || exit
 
 echo "Stripping DLL files..."
-strip installer/gedit/bin/*.dll || exit
+strip installer/pluma/bin/*.dll || exit
 
 
 # stripping libxml2.dll renders it unusable (although not changing it in size).
 # We therefore copy it after having stripped the rest. Same with the other DLLs
 # here. Perhaps those were built with MSVC.
-cp "${_misc_prefix}/bin/libxml2-2.dll" installer/gedit/bin || exit
-cp "${_misc_prefix}/bin/intl.dll" installer/gedit/bin || exit
-cp "${_misc_prefix}/bin/iconv.dll" installer/gedit/bin || exit
+cp "${_misc_prefix}/bin/libxml2-2.dll" installer/pluma/bin || exit
+cp "${_misc_prefix}/bin/intl.dll" installer/pluma/bin || exit
+cp "${_misc_prefix}/bin/iconv.dll" installer/pluma/bin || exit
 
 
 echo "Copying Python..."
 
 # TODO: Find out Windows directory somehow, we should use WINDIR substuting c:\?
-cp ${_windows_prefix}/python26.dll installer/gedit/bin || exit
+cp ${_windows_prefix}/python26.dll installer/pluma/bin || exit
 
-# We through all python modules into python/. gedit sets PYTHONPATH accordingly.
+# We through all python modules into python/. pluma sets PYTHONPATH accordingly.
 mkdir -p installer/python || exit
 
 # Copy the dlls needed to run python
@@ -183,17 +183,17 @@ mkdir -p installer/gtk/etc/gtk-2.0 || exit
 echo "gtk-theme-name = \"MS-Windows\"" > installer/gtk/etc/gtk-2.0/gtkrc || exit
 
 # Enchant
-mkdir -p installer/gedit/lib/enchant || exit
-cp "${_misc_prefix}/lib/enchant/"* installer/gedit/lib/enchant || exit
-strip installer/gedit/lib/enchant/*.dll || exit
-mkdir -p installer/gedit/share/enchant || exit
-cp "${_misc_prefix}/share/enchant/"* installer/gedit/share/enchant || exit
+mkdir -p installer/pluma/lib/enchant || exit
+cp "${_misc_prefix}/lib/enchant/"* installer/pluma/lib/enchant || exit
+strip installer/pluma/lib/enchant/*.dll || exit
+mkdir -p installer/pluma/share/enchant || exit
+cp "${_misc_prefix}/share/enchant/"* installer/pluma/share/enchant || exit
 
 # Iso codes
-mkdir -p installer/gedit/share/iso-codes || exit
-cp "${_misc_prefix}/share/iso-codes/"* installer/gedit/share/iso-codes || exit
-mkdir -p installer/gedit/share/xml/iso-codes || exit
-cp "${_misc_prefix}/share/xml/iso-codes/"* installer/gedit/share/xml/iso-codes || exit
+mkdir -p installer/pluma/share/iso-codes || exit
+cp "${_misc_prefix}/share/iso-codes/"* installer/pluma/share/iso-codes || exit
+mkdir -p installer/pluma/share/xml/iso-codes || exit
+cp "${_misc_prefix}/share/xml/iso-codes/"* installer/pluma/share/xml/iso-codes || exit
 
 echo "Copying locales..."
 
@@ -201,60 +201,60 @@ echo "Copying locales..."
 # from lib/locale in lib/locale:
 mkdir -p installer/locale/share/ || exit
 cp "${_gtk_prefix}/share/locale" installer/locale/share/ -R || exit
-cp "${_gedit_prefix}/share/locale" installer/locale/share/ -R || exit
+cp "${_pluma_prefix}/share/locale" installer/locale/share/ -R || exit
 cp "${_misc_prefix}/share/locale" installer/locale/share/ -R || exit
 
-find installer/locale/share/locale/ -type f | grep -v atk10.mo | grep -v gtk20.mo | grep -v MateConf2.mo | grep -v glib20.mo | grep -v gedit.mo | grep -v gtk20.mo | grep -v gtk20-properties.mo | grep -v gtksourceview-2.0.mo | grep -v iso_*.mo | xargs rm
+find installer/locale/share/locale/ -type f | grep -v atk10.mo | grep -v gtk20.mo | grep -v MateConf2.mo | grep -v glib20.mo | grep -v pluma.mo | grep -v gtk20.mo | grep -v gtk20-properties.mo | grep -v gtksourceview-2.0.mo | grep -v iso_*.mo | xargs rm
 find installer/locale/share/locale -type d | xargs rmdir -p --ignore-fail-on-non-empty
 
 echo "Copying executable..."
-cp "${_gedit_prefix}/bin/gedit.exe" installer/gedit/bin || exit
-strip installer/gedit/bin/gedit.exe || exit
+cp "${_pluma_prefix}/bin/pluma.exe" installer/pluma/bin || exit
+strip installer/pluma/bin/pluma.exe || exit
 
 
 echo "Copying shared data (ui files, icons, etc.)..."
 
-mkdir -p installer/gedit/share/gtksourceview-2.0 || exit
-cp -R "${_gtksourceview_prefix}/share/gtksourceview-2.0/language-specs" installer/gedit/share/gtksourceview-2.0 || exit
-cp -R "${_gtksourceview_prefix}/share/gtksourceview-2.0/styles" installer/gedit/share/gtksourceview-2.0 || exit
+mkdir -p installer/pluma/share/gtksourceview-2.0 || exit
+cp -R "${_gtksourceview_prefix}/share/gtksourceview-2.0/language-specs" installer/pluma/share/gtksourceview-2.0 || exit
+cp -R "${_gtksourceview_prefix}/share/gtksourceview-2.0/styles" installer/pluma/share/gtksourceview-2.0 || exit
 
 #GtkBuilder files and xml files
-mkdir -p installer/gedit/share/gedit-2/ui || exit
-cp "${_gedit_prefix}/share/gedit-2/ui/"* installer/gedit/share/gedit-2/ui || exit
+mkdir -p installer/pluma/share/pluma-2/ui || exit
+cp "${_pluma_prefix}/share/pluma-2/ui/"* installer/pluma/share/pluma-2/ui || exit
 
 #Icons & logo
-mkdir -p installer/gedit/share/gedit-2/icons || exit
-cp "${_gedit_prefix}/share/gedit-2/icons/gedit-plugin.png" installer/gedit/share/gedit-2/icons || exit
-mkdir -p installer/gedit/share/gedit-2/logo || exit
-cp "${_gedit_prefix}/share/gedit-2/logo/gedit-logo.png" installer/gedit/share/gedit-2/logo || exit
+mkdir -p installer/pluma/share/pluma-2/icons || exit
+cp "${_pluma_prefix}/share/pluma-2/icons/pluma-plugin.png" installer/pluma/share/pluma-2/icons || exit
+mkdir -p installer/pluma/share/pluma-2/logo || exit
+cp "${_pluma_prefix}/share/pluma-2/logo/pluma-logo.png" installer/pluma/share/pluma-2/logo || exit
 
 #Plugins
-mkdir -p installer/gedit/share/gedit-2/plugins || exit
-cp -R "${_gedit_prefix}/share/gedit-2/plugins/"* installer/gedit/share/gedit-2/plugins || exit
-mkdir -p installer/gedit/lib/gedit-2/plugins || exit
-cp -R "${_gedit_prefix}/lib/gedit-2/plugins/"* installer/gedit/lib/gedit-2/plugins || exit
-mkdir -p installer/gedit/lib/gedit-2/plugin-loaders || exit
-cp -R "${_gedit_prefix}/lib/gedit-2/plugin-loaders/"* installer/gedit/lib/gedit-2/plugin-loaders || exit
+mkdir -p installer/pluma/share/pluma-2/plugins || exit
+cp -R "${_pluma_prefix}/share/pluma-2/plugins/"* installer/pluma/share/pluma-2/plugins || exit
+mkdir -p installer/pluma/lib/pluma-2/plugins || exit
+cp -R "${_pluma_prefix}/lib/pluma-2/plugins/"* installer/pluma/lib/pluma-2/plugins || exit
+mkdir -p installer/pluma/lib/pluma-2/plugin-loaders || exit
+cp -R "${_pluma_prefix}/lib/pluma-2/plugin-loaders/"* installer/pluma/lib/pluma-2/plugin-loaders || exit
 
 #MateConf
-mkdir -p installer/gedit/etc/mateconf/schemas || exit
-cp "${_gedit_prefix}/etc/mateconf/schemas/"* installer/gedit/etc/mateconf/schemas || exit
-cp -R "${_misc_prefix}/etc/mateconf/"* installer/gedit/etc/mateconf/ || exit
-mkdir -p installer/gedit/lib/MateConf/2
-cp "${_misc_prefix}/lib/MateConf/2/"* installer/gedit/lib/MateConf/2 || exit
-strip installer/gedit/lib/MateConf/2/*.dll || exit
-mkdir -p installer/gedit/libexec || exit
-cp "${_misc_prefix}/libexec/mateconfd-2.exe" installer/gedit/libexec || exit
+mkdir -p installer/pluma/etc/mateconf/schemas || exit
+cp "${_pluma_prefix}/etc/mateconf/schemas/"* installer/pluma/etc/mateconf/schemas || exit
+cp -R "${_misc_prefix}/etc/mateconf/"* installer/pluma/etc/mateconf/ || exit
+mkdir -p installer/pluma/lib/MateConf/2
+cp "${_misc_prefix}/lib/MateConf/2/"* installer/pluma/lib/MateConf/2 || exit
+strip installer/pluma/lib/MateConf/2/*.dll || exit
+mkdir -p installer/pluma/libexec || exit
+cp "${_misc_prefix}/libexec/mateconfd-2.exe" installer/pluma/libexec || exit
 
 #Aspell
-mkdir -p installer/gedit/data || exit
-cp "${_aspell_prefix}/data/"* installer/gedit/data || exit
-cp "${_aspell_prefix}/bin/aspell-15.dll" installer/gedit/bin/libaspell-15.dll || exit
+mkdir -p installer/pluma/data || exit
+cp "${_aspell_prefix}/data/"* installer/pluma/data || exit
+cp "${_aspell_prefix}/bin/aspell-15.dll" installer/pluma/bin/libaspell-15.dll || exit
 
 echo "Creating installer..."
 
-perl -pe "s/INSTALLERREVISION/$revision/" gedit.iss > installer/gedit.iss || exit
+perl -pe "s/INSTALLERREVISION/$revision/" pluma.iss > installer/pluma.iss || exit
 #cp installer || exit
-iscc installer/gedit.iss || exit
+iscc installer/pluma.iss || exit
 
 echo "Done"

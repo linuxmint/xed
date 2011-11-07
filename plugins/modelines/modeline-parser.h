@@ -1,6 +1,6 @@
 /*
  * modelie-parser.h
- * Emacs, Kate and Vim-style modelines support for gedit.
+ * Emacs, Kate and Vim-style modelines support for pluma.
  * 
  * Copyright (C) 2005-2007 - Steve Frécinaux <code@istique.net>
  *

@@ -1,23 +1,23 @@
 desktopdir 	 = $(datadir)/applications
-desktop_in_files = gedit.desktop.in
+desktop_in_files = pluma.desktop.in
 desktop_DATA 	 = $(desktop_in_files:.desktop.in=.desktop)
 @INTLTOOL_DESKTOP_RULE@
 
 schemasdir	 = $(MATECONF_SCHEMA_FILE_DIR)
-schemas_in_files = gedit.schemas.in
+schemas_in_files = pluma.schemas.in
 schemas_DATA 	 = $(schemas_in_files:.schemas.in=.schemas)
 @INTLTOOL_SCHEMAS_RULE@
 
-man_MANS = gedit.1
+man_MANS = pluma.1
 
 pkgconfigdir = $(libdir)/pkgconfig
-pkgconfig_DATA = gedit-@GEDIT_API_VERSION@.pc
+pkgconfig_DATA = pluma-@PLUMA_API_VERSION@.pc
 
-gedit-@GEDIT_API_VERSION@.pc: gedit.pc
-	cp gedit.pc gedit-@GEDIT_API_VERSION@.pc
+pluma-@PLUMA_API_VERSION@.pc: pluma.pc
+	cp pluma.pc pluma-@PLUMA_API_VERSION@.pc
 
-bugreportdir = $(libexecdir)/gedit-2
-bugreport_SCRIPTS = gedit-bugreport.sh
+bugreportdir = $(libexecdir)/pluma-2
+bugreport_SCRIPTS = pluma-bugreport.sh
 
 if MATECONF_SCHEMAS_INSTALL
 install-data-local:
@@ -33,10 +33,10 @@ endif
 EXTRA_DIST = 				\
 	$(desktop_in_files)		\
 	$(schemas_in_files)		\
-	gedit.schemas.in.in		\
+	pluma.schemas.in.in		\
 	$(man_MANS)			\
-	gedit.pc.in			\
-	gedit-bugreport.sh.in
+	pluma.pc.in			\
+	pluma-bugreport.sh.in
 
 CLEANFILES =	 			\
 	$(desktop_DATA)			\

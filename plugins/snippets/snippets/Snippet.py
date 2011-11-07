@@ -1,4 +1,4 @@
-#    Gedit snippets plugin
+#    Pluma snippets plugin
 #    Copyright (C) 2005-2006  Jesse van den Kieboom <jesse@icecrew.nl>
 #
 #    This program is free software; you can redistribute it and/or modify

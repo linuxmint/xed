@@ -17,11 +17,11 @@
 #  Foundation, Inc., 59 Temple Place, Suite 330,
 #  Boston, MA 02111-1307, USA.
 
-import gedit
+import pluma
 import gtk
 from popup import Popup
 import os
-import gedit.commands
+import pluma.commands
 import gio
 import glib
 from virtualdirs import RecentDocumentsDirectory
@@ -64,7 +64,7 @@ class WindowHelper:
 
         def _install_menu(self):
                 manager = self._window.get_ui_manager()
-                self._action_group = gtk.ActionGroup("GeditQuickOpenPluginActions")
+                self._action_group = gtk.ActionGroup("PlumaQuickOpenPluginActions")
                 self._action_group.add_actions([
                         ("QuickOpen", gtk.STOCK_OPEN, _("Quick open"),
                          '<Ctrl><Alt>O', _("Quickly open documents"),
@@ -88,7 +88,7 @@ class WindowHelper:
                         paths.append(gfile.get_parent())
 
                 # File browser root directory
-                if gedit.version[0] > 2 or (gedit.version[0] == 2 and (gedit.version[1] > 26 or (gedit.version[1] == 26 and gedit.version[2] >= 2))):
+                if pluma.version[0] > 2 or (pluma.version[0] == 2 and (pluma.version[1] > 26 or (pluma.version[1] == 26 and pluma.version[2] >= 2))):
                         bus = self._window.get_message_bus()
 
                         try:
@@ -192,7 +192,7 @@ class WindowHelper:
                 self._popup = None
 
         def on_activated(self, gfile):
-                gedit.commands.load_uri(self._window, gfile.get_uri(), None, -1)
+                pluma.commands.load_uri(self._window, gfile.get_uri(), None, -1)
                 return True
 
 # ex:ts=8:et:

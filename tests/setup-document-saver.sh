@@ -3,10 +3,10 @@
 # This script is used to setup some special directory structures, permissions
 # for the saver test
 
-UNOWNED_DIRECTORY="/tmp/gedit-document-saver-unowned"
-UNOWNED_FILE="/tmp/gedit-document-saver-unowned/gedit-document-saver-test.txt"
+UNOWNED_DIRECTORY="/tmp/pluma-document-saver-unowned"
+UNOWNED_FILE="/tmp/pluma-document-saver-unowned/pluma-document-saver-test.txt"
 
-UNOWNED_GROUP="/tmp/gedit-document-saver-unowned-group.txt"
+UNOWNED_GROUP="/tmp/pluma-document-saver-unowned-group.txt"
 
 if [ -f "$UNOWNED_FILE" ]; then
 	sudo rm "$UNOWNED_FILE"

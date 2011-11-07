@@ -1,24 +1,25 @@
 General Information
 ===================
 
-This is version 2.30.4 of gedit. gedit is a small and lightweight UTF-8 text
-editor for the MATE environment.
+This is version 2011.11.7 of pluma. pluma is a small and lightweight UTF-8 text
+editor for the MATE environment. Based on gedit, the text editor for the GNOME2
+environment.
 
-gedit is part of MATE and uses the latest GTK+ and MATE libraries.
-Complete MATE integration is featured, with support for Drag and Drop (DnD) 
+pluma is part of MATE and uses the latest GTK+ and MATE libraries.
+Complete MATE integration is featured, with support for Drag and Drop (DnD)
 from Caja (the MATE file manager), the use of the MATE help system,
 the MATE Virtual File System and the MATE print framework.
 
-gedit uses a Multiple Document Interface (MDI), which lets you edit more than 
+pluma uses a Multiple Document Interface (MDI), which lets you edit more than
 one document at the same time.
 
-gedit supports most standard editing features, plus several not found in your 
+pluma supports most standard editing features, plus several not found in your
 average text editor (plugins being the most notable of these).
 
-gedit plugins may also be written in the python scripting language: to enable
+pluma plugins may also be written in the python scripting language: to enable
 python support you need the pygtk and mate-python-desktop bindings.
 
-Although new features are always under development, currently gedit has:
+Although new features are always under development, currently pluma has:
 
     * Complete support for UTF-8 text
     * Syntax highlighting
@@ -30,7 +31,7 @@ Although new features are always under development, currently gedit has:
     * Configurable Plugin system, with optional python support
 
 
-Some of the plugins, packaged and installed with gedit include, among others:
+Some of the plugins, packaged and installed with pluma include, among others:
 
     * Word count
     * Spell checker
@@ -45,38 +46,38 @@ Some of the plugins, packaged and installed with gedit include, among others:
 Other external plugins are also available.
 
 
-gedit is released under the GNU General Public License (GPL) version 2, see
+pluma is released under the GNU General Public License (GPL) version 2, see
 the file 'COPYING' for more information.
 
 
 The official web site is:
 
-    http://www.gedit.org
+    http://matsusoft.com.ar/projects/mate/
 
-You can download the latest gedit tarball from:
+You can download the latest pluma tarball from:
 
-    http://download.mate.org/sources/gedit/
+    https://sourceforge.net/projects/matede/files/
 
-Information about gedit mailing lists can be found at
+Information about pluma mailing lists can be found at
 
-    http://mail.mate.org/mailman/listinfo/gedit-list
+    http://matsusoft.com.ar/projects/mate/
 
 
 Installation
 ============
 
-gedit requires GTK+-2.16.x, GtkSourceView 2.4.x and MateConf libraries.
+pluma requires GTK+-2.16.x, GtkSourceView 2.4.x and MateConf libraries.
 PyGobject 2.12.x, PyGtk 2.12.x and PyGtkSourceView 2.4.x are required to
 enable python plugins support.
 
 Simple install procedure:
 
-  % gzip -cd gedit-2.30.4.tar.gz | tar xvf - 	# unpack the sources
-  % cd gedit-2.30.4				# change to the toplevel directory
+  % gzip -cd pluma-2.30.4.tar.gz | tar xvf - 	# unpack the sources
+  % cd pluma-2.30.4				# change to the toplevel directory
   % ./configure					# run the `configure' script
-  % make					# build gedit
+  % make					# build pluma
   [ Become root if necessary ]
-  % make install				# install gedit
+  % make install				# install pluma
 
 See the file 'INSTALL' for more detailed information.
 
@@ -85,7 +86,7 @@ How to report bugs
 ==================
 
 Bugs should be reported to the MATE bug tracking system.
-(http://bugzilla.mate.org, product gedit). You will need to create an
+(http://bugzilla.gnome.org, product pluma). You will need to create an
 account for yourself.
 
 You can also report bugs using the MATE program bug-buddy.
@@ -101,7 +102,7 @@ In the bug report please include:
 
   And anything else you think is relevant.
 
-* How to reproduce the bug. 
+* How to reproduce the bug.
 
 * If the bug was a crash, the exact text that was printed out when the
   crash occurred.
@@ -117,7 +118,7 @@ See the file 'BUGS' for the list of known bugs.
 Patches
 =======
 
-Patches should also be submitted to bugzilla.mate.org. If the patch
+Patches should also be submitted to bugzilla.gnome.org. If the patch
 fixes an existing bug, add the patch as an attachment to that bug
 report.
 
@@ -126,10 +127,10 @@ the patch to that bug report.
 
 Patches should be in unified diff form. (The -u option to GNU diff.)
 
-If you are interested in helping us to develop gedit, please see the 
-file 'AUTHOR' for contact information and/or send a message to the gedit
+If you are interested in helping us to develop pluma, please see the
+file 'AUTHOR' for contact information and/or send a message to the pluma
 mailing list. See also the file 'HACKING' for more detailed information.
 
 
-  The gedit team.
+  The pluma team.
 

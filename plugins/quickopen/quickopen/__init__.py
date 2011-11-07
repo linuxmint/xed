@@ -17,12 +17,12 @@
 #  Foundation, Inc., 59 Temple Place, Suite 330,
 #  Boston, MA 02111-1307, USA.
 
-import gedit
+import pluma
 from windowhelper import WindowHelper
 
-class QuickOpenPlugin(gedit.Plugin):
+class QuickOpenPlugin(pluma.Plugin):
         def __init__(self):
-                gedit.Plugin.__init__(self)
+                pluma.Plugin.__init__(self)
 
                 self._popup_size = (450, 300)
                 self._helpers = {}

@@ -26,7 +26,7 @@ snippets_DATA = \
 	xml.xml \
 	xslt.xml
 
-snippetsdir = $(GEDIT_PLUGINS_DATA_DIR)/snippets
+snippetsdir = $(PLUMA_PLUGINS_DATA_DIR)/snippets
 
 EXTRA_DIST = $(snippets_DATA)
 

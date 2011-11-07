@@ -1,5 +1,5 @@
 # -*- coding: UTF-8 -*-
-#    Gedit External Tools plugin
+#    Pluma External Tools plugin
 #    Copyright (C) 2005-2006  Steve Frécinaux <steve@istique.net>
 #
 #    This program is free software; you can redistribute it and/or modify
@@ -19,7 +19,7 @@
 __all__ = ('ExternalToolsPlugin', 'ExternalToolsWindowHelper',
            'Manager', 'OutputPanel', 'Capture', 'UniqueById')
 
-import gedit
+import pluma
 import gtk
 from manager import Manager
 from library import ToolLibrary
@@ -166,7 +166,7 @@ class ExternalToolsWindowHelper(object):
         manager = window.get_ui_manager()
 
         self._action_group = gtk.ActionGroup('ExternalToolsPluginActions')
-        self._action_group.set_translation_domain('gedit')
+        self._action_group.set_translation_domain('pluma')
         self._action_group.add_actions([('ExternalToolManager',
                                          None,
                                          _('Manage _External Tools...'),
@@ -229,7 +229,7 @@ class ExternalToolsWindowHelper(object):
     def update_manager(self, tool):
         self._plugin.update_manager(tool)
 
-class ExternalToolsPlugin(gedit.Plugin):
+class ExternalToolsPlugin(pluma.Plugin):
     WINDOW_DATA_KEY = "ExternalToolsPluginWindowData"
 
     def __init__(self):
@@ -263,7 +263,7 @@ class ExternalToolsPlugin(gedit.Plugin):
 
             self._manager.dialog.connect('destroy', self.on_manager_destroy)
 
-        window = gedit.app_get_default().get_active_window()
+        window = pluma.app_get_default().get_active_window()
         self._manager.run(window)
 
         return self._manager.dialog

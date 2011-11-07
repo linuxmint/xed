@@ -1,4 +1,4 @@
-#    Gedit snippets plugin
+#    Pluma snippets plugin
 #    Copyright (C) 2005-2006  Jesse van den Kieboom <jesse@icecrew.nl>
 #
 #    This program is free software; you can redistribute it and/or modify
@@ -62,7 +62,7 @@ def insert_with_indent(view, piter, text, indentfirst = True, context = None):
         text = spaces_instead_of_tabs(view, text)
         lines = text.split('\n')
 
-        view.get_buffer().set_data('GeditSnippetsPluginContext', context)
+        view.get_buffer().set_data('PlumaSnippetsPluginContext', context)
 
         if len(lines) == 1:
                 view.get_buffer().insert(piter, text)
@@ -79,10 +79,10 @@ def insert_with_indent(view, piter, text, indentfirst = True, context = None):
                 
                 view.get_buffer().insert(piter, text[:-1])
 
-        view.get_buffer().set_data('GeditSnippetsPluginContext', None)
+        view.get_buffer().set_data('PlumaSnippetsPluginContext', None)
 
 def get_buffer_context(buf):
-        return buf.get_data('GeditSnippetsPluginContext')
+        return buf.get_data('PlumaSnippetsPluginContext')
 
 def snippets_debug(*s):
         return

@@ -1,4 +1,4 @@
-#    Gedit snippets plugin
+#    Pluma snippets plugin
 #    Copyright (C) 2005-2006  Jesse van den Kieboom <jesse@icecrew.nl>
 #
 #    This program is free software; you can redistribute it and/or modify
@@ -24,7 +24,7 @@ import gtk
 from gtk import gdk
 import gtksourceview2 as gsv
 import pango
-import gedit
+import pluma
 import gio
 
 from Snippet import Snippet
@@ -95,7 +95,7 @@ class Manager:
                         self.tree_view.expand_row(path, False)
 
         def build_model(self, force_reload = False):
-                window = gedit.app_get_default().get_active_window()
+                window = pluma.app_get_default().get_active_window()
                 
                 if window:
                         view = window.get_active_view()
@@ -116,7 +116,7 @@ class Manager:
                         self.model = gtk.TreeStore(str, str, object)
                         self.model.set_sort_column_id(self.SORT_COLUMN, gtk.SORT_ASCENDING)
                         manager = get_language_manager()
-                        langs = gedit.language_manager_list_languages_sorted(manager, True)
+                        langs = pluma.language_manager_list_languages_sorted(manager, True)
                         
                         piter = self.model.append(None, (_('Global'), '', None))
                         # Add dummy node
@@ -618,7 +618,7 @@ class Manager:
         
         def on_dialog_snippets_response(self, dlg, resp):                                
                 if resp == gtk.RESPONSE_HELP:
-                        gedit.help_display(self.dlg, 'gedit', 'gedit-snippets-plugin')
+                        pluma.help_display(self.dlg, 'pluma', 'pluma-snippets-plugin')
                         return
 
                 self.dlg.destroy()
@@ -765,7 +765,7 @@ class Manager:
                 success = True
                 
                 for filename in filenames:
-                        if not gedit.utils.uri_has_file_scheme(filename):
+                        if not pluma.utils.uri_has_file_scheme(filename):
                                 continue
 
                         # Remove file://

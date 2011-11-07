@@ -1,4 +1,4 @@
-#    Gedit snippets plugin
+#    Pluma snippets plugin
 #    Copyright (C) 2005-2006  Jesse van den Kieboom <jesse@icecrew.nl>
 #
 #    This program is free software; you can redistribute it and/or modify
@@ -21,7 +21,7 @@ import re
 import gtk
 from gtk import gdk
 import gio
-import gedit
+import pluma
 import gtksourceview2 as gsv
 import gobject
 
@@ -433,7 +433,7 @@ class Document:
         def env_get_documents_uri(self, buf):
                 toplevel = self.view.get_toplevel()
                 
-                if isinstance(toplevel, gedit.Window):
+                if isinstance(toplevel, pluma.Window):
                         documents_uri = [doc.get_location().get_uri()
                                          for doc in toplevel.get_documents()
                                          if doc.get_location() is not None]
@@ -445,14 +445,14 @@ class Document:
         def env_get_documents_path(self, buf):
                 toplevel = self.view.get_toplevel()
                 
-                if isinstance(toplevel, gedit.Window):
+                if isinstance(toplevel, pluma.Window):
                         documents_location = [doc.get_location()
                                               for doc in toplevel.get_documents()
                                               if doc.get_location() is not None]
 
                         documents_path = [location.get_path()
                                           for location in documents_location
-                                          if gedit.utils.uri_has_file_scheme(location.get_uri())]
+                                          if pluma.utils.uri_has_file_scheme(location.get_uri())]
                 else:
                         documents_path = []
                 
@@ -461,25 +461,25 @@ class Document:
         def update_environment(self):
                 buf = self.view.get_buffer()
                 
-                variables = {'GEDIT_SELECTED_TEXT': self.env_get_selected_text, 
-                             'GEDIT_CURRENT_WORD': self.env_get_current_word, 
-                             'GEDIT_CURRENT_LINE': self.env_get_current_line,
-                             'GEDIT_CURRENT_LINE_NUMBER': self.env_get_current_line_number,
-                             'GEDIT_CURRENT_DOCUMENT_URI': self.env_get_document_uri, 
-                             'GEDIT_CURRENT_DOCUMENT_NAME': self.env_get_document_name,
-                             'GEDIT_CURRENT_DOCUMENT_SCHEME': self.env_get_document_scheme,
-                             'GEDIT_CURRENT_DOCUMENT_PATH': self.env_get_document_path,
-                             'GEDIT_CURRENT_DOCUMENT_DIR': self.env_get_document_dir,
-                             'GEDIT_CURRENT_DOCUMENT_TYPE': self.env_get_document_type,
-                             'GEDIT_DOCUMENTS_URI': self.env_get_documents_uri,
-                             'GEDIT_DOCUMENTS_PATH': self.env_get_documents_path,
+                variables = {'PLUMA_SELECTED_TEXT': self.env_get_selected_text, 
+                             'PLUMA_CURRENT_WORD': self.env_get_current_word, 
+                             'PLUMA_CURRENT_LINE': self.env_get_current_line,
+                             'PLUMA_CURRENT_LINE_NUMBER': self.env_get_current_line_number,
+                             'PLUMA_CURRENT_DOCUMENT_URI': self.env_get_document_uri, 
+                             'PLUMA_CURRENT_DOCUMENT_NAME': self.env_get_document_name,
+                             'PLUMA_CURRENT_DOCUMENT_SCHEME': self.env_get_document_scheme,
+                             'PLUMA_CURRENT_DOCUMENT_PATH': self.env_get_document_path,
+                             'PLUMA_CURRENT_DOCUMENT_DIR': self.env_get_document_dir,
+                             'PLUMA_CURRENT_DOCUMENT_TYPE': self.env_get_document_type,
+                             'PLUMA_DOCUMENTS_URI': self.env_get_documents_uri,
+                             'PLUMA_DOCUMENTS_PATH': self.env_get_documents_path,
                              }
                 
                 for var in variables:
                         os.environ[var] = variables[var](buf)
         
         def uses_current_word(self, snippet):
-                matches = re.findall('(\\\\*)\\$GEDIT_CURRENT_WORD', snippet['text'])
+                matches = re.findall('(\\\\*)\\$PLUMA_CURRENT_WORD', snippet['text'])
                 
                 for match in matches:
                         if len(match) % 2 == 0:
@@ -488,7 +488,7 @@ class Document:
                 return False
         
         def uses_current_line(self, snippet):
-                matches = re.findall('(\\\\*)\\$GEDIT_CURRENT_LINE', snippet['text'])
+                matches = re.findall('(\\\\*)\\$PLUMA_CURRENT_LINE', snippet['text'])
                 
                 for match in matches:
                         if len(match) % 2 == 0:
@@ -865,19 +865,19 @@ class Document:
                 dirname = ''
                 ruri = ''
 
-                if gedit.utils.uri_has_file_scheme(uri):
+                if pluma.utils.uri_has_file_scheme(uri):
                         pathname = gfile.get_path()
                         dirname = gfile.get_parent().get_path()
 
                 name = os.path.basename(uri)
                 scheme = gfile.get_uri_scheme()
 
-                os.environ['GEDIT_DROP_DOCUMENT_URI'] = uri
-                os.environ['GEDIT_DROP_DOCUMENT_NAME'] = name
-                os.environ['GEDIT_DROP_DOCUMENT_SCHEME'] = scheme
-                os.environ['GEDIT_DROP_DOCUMENT_PATH'] = pathname
-                os.environ['GEDIT_DROP_DOCUMENT_DIR'] = dirname
-                os.environ['GEDIT_DROP_DOCUMENT_TYPE'] = mime
+                os.environ['PLUMA_DROP_DOCUMENT_URI'] = uri
+                os.environ['PLUMA_DROP_DOCUMENT_NAME'] = name
+                os.environ['PLUMA_DROP_DOCUMENT_SCHEME'] = scheme
+                os.environ['PLUMA_DROP_DOCUMENT_PATH'] = pathname
+                os.environ['PLUMA_DROP_DOCUMENT_DIR'] = dirname
+                os.environ['PLUMA_DROP_DOCUMENT_TYPE'] = mime
 
                 buf = self.view.get_buffer()
                 location = buf.get_location()
@@ -886,7 +886,7 @@ class Document:
 
                 relpath = self.relative_path(ruri, uri, mime)
 
-                os.environ['GEDIT_DROP_DOCUMENT_RELATIVE_PATH'] = relpath
+                os.environ['PLUMA_DROP_DOCUMENT_RELATIVE_PATH'] = relpath
 
                 mark = buf.get_mark('gtk_drag_target')
                 

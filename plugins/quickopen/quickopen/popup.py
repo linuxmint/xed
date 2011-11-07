@@ -25,7 +25,7 @@ import gio
 import pango
 import glib
 import fnmatch
-import gedit
+import pluma
 import xml.sax.saxutils
 from virtualdirs import VirtualDirectory
 
@@ -418,7 +418,7 @@ class Popup(gtk.Dialog):
                 uri = self._entry.get_text()
                 gfile = None
 
-                if gedit.utils.uri_is_valid(uri):
+                if pluma.utils.uri_is_valid(uri):
                         gfile = gio.File(uri)
                 elif os.path.isabs(uri):
                         f = gio.File(uri)

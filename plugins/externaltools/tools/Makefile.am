@@ -1,6 +1,6 @@
 # Python snippets plugin
 
-plugindir = $(GEDIT_PLUGINS_LIBS_DIR)/externaltools
+plugindir = $(PLUMA_PLUGINS_LIBS_DIR)/externaltools
 plugin_PYTHON =		\
 	__init__.py	\
 	capture.py	\
@@ -11,7 +11,7 @@ plugin_PYTHON =		\
 	filelookup.py	\
 	linkparsing.py
 
-uidir = $(GEDIT_PLUGINS_DATA_DIR)/externaltools/ui
+uidir = $(PLUMA_PLUGINS_DATA_DIR)/externaltools/ui
 ui_DATA = tools.ui \
 	outputpanel.ui
 

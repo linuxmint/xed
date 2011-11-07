@@ -1,7 +1,7 @@
 # Tag list plugin
-plugindir = $(GEDIT_PLUGINS_LIBS_DIR)
+plugindir = $(PLUMA_PLUGINS_LIBS_DIR)
 
-taglistdir = $(GEDIT_PLUGINS_DATA_DIR)/taglist
+taglistdir = $(PLUMA_PLUGINS_DATA_DIR)/taglist
 
 taglist_in_files = \
 	HTML.tags.xml.in	\
@@ -13,26 +13,26 @@ taglist_DATA = $(taglist_in_files:.tags.xml.in=.tags.gz)
 
 INCLUDES = 							\
 	-I$(top_srcdir) 					\
-	$(GEDIT_CFLAGS) 					\
+	$(PLUMA_CFLAGS) 					\
 	$(WARN_CFLAGS)						\
 	$(DISABLE_DEPRECATED_CFLAGS)	
 
 plugin_LTLIBRARIES = libtaglist.la
 
 libtaglist_la_SOURCES = \
-	gedit-taglist-plugin-parser.c	\
-	gedit-taglist-plugin-parser.h	\
-	gedit-taglist-plugin-panel.c	\
-	gedit-taglist-plugin-panel.h	\
-	gedit-taglist-plugin.c		\
-	gedit-taglist-plugin.h
+	pluma-taglist-plugin-parser.c	\
+	pluma-taglist-plugin-parser.h	\
+	pluma-taglist-plugin-panel.c	\
+	pluma-taglist-plugin-panel.h	\
+	pluma-taglist-plugin.c		\
+	pluma-taglist-plugin.h
 
 libtaglist_la_LDFLAGS = $(PLUGIN_LIBTOOL_FLAGS)
-libtaglist_la_LIBADD  = $(GEDIT_LIBS)
+libtaglist_la_LIBADD  = $(PLUMA_LIBS)
 
-plugin_in_files = taglist.gedit-plugin.desktop.in
+plugin_in_files = taglist.pluma-plugin.desktop.in
 
-%.gedit-plugin: %.gedit-plugin.desktop.in $(INTLTOOL_MERGE) $(wildcard $(top_srcdir)/po/*po)
+%.pluma-plugin: %.pluma-plugin.desktop.in $(INTLTOOL_MERGE) $(wildcard $(top_srcdir)/po/*po)
 	$(INTLTOOL_MERGE) $(top_srcdir)/po $< $@ -d -u -c $(top_builddir)/po/.intltool-merge-cache
 
 GZIP_ENV = -9
@@ -41,7 +41,7 @@ GZIP_ENV = -9
 	LC_ALL=C $(INTLTOOL_MERGE) $(top_srcdir)/po $< $(@:.gz=) -x -u -c $(top_builddir)/po/.intltool-merge-cache
 	GZIP=$(GZIP_ENV) gzip -f $(@:.gz=)
 
-plugin_DATA = $(plugin_in_files:.gedit-plugin.desktop.in=.gedit-plugin)
+plugin_DATA = $(plugin_in_files:.pluma-plugin.desktop.in=.pluma-plugin)
 
 EXTRA_DIST = \
 	$(taglist_in_files) $(taglist_DATA)	\

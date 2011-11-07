@@ -1,6 +1,6 @@
 # Quick Open Plugin
 
-plugindir = $(GEDIT_PLUGINS_LIBS_DIR)/quickopen
+plugindir = $(PLUMA_PLUGINS_LIBS_DIR)/quickopen
 plugin_PYTHON =		\
 	__init__.py	\
 	popup.py	\

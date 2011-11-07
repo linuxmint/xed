@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-#    Gedit External Tools plugin
+#    Pluma External Tools plugin
 #    Copyright (C) 2005-2006  Steve Frécinaux <steve@istique.net>
 #
 #    This program is free software; you can redistribute it and/or modify
@@ -20,7 +20,7 @@ import os
 import gtk
 from gtk import gdk
 import gio
-import gedit
+import pluma
 #import gtksourceview
 from outputpanel import OutputPanel
 from capture import *
@@ -53,7 +53,7 @@ def run_external_tool(window, node):
 
     capture = Capture(node.command, cwd)
     capture.env = os.environ.copy()
-    capture.set_env(GEDIT_CWD = cwd)
+    capture.set_env(PLUMA_CWD = cwd)
 
     view = window.get_active_view()
     if view is not None:
@@ -63,7 +63,7 @@ def run_external_tool(window, node):
         
         # Current line number
         piter = document.get_iter_at_mark(document.get_insert())
-        capture.set_env(GEDIT_CURRENT_LINE_NUMBER=str(piter.get_line() + 1))
+        capture.set_env(PLUMA_CURRENT_LINE_NUMBER=str(piter.get_line() + 1))
         
         # Current line text
         piter.set_line_offset(0)
@@ -72,42 +72,42 @@ def run_external_tool(window, node):
         if not end.ends_line():
             end.forward_to_line_end()
         
-        capture.set_env(GEDIT_CURRENT_LINE=piter.get_text(end))
+        capture.set_env(PLUMA_CURRENT_LINE=piter.get_text(end))
         
         # Selected text (only if input is not selection)
         if node.input != 'selection' and node.input != 'selection-document':
             bounds = document.get_selection_bounds()
             
             if bounds:
-                capture.set_env(GEDIT_SELECTED_TEXT=bounds[0].get_text(bounds[1]))
+                capture.set_env(PLUMA_SELECTED_TEXT=bounds[0].get_text(bounds[1]))
         
         bounds = current_word(document)
-        capture.set_env(GEDIT_CURRENT_WORD=bounds[0].get_text(bounds[1]))
+        capture.set_env(PLUMA_CURRENT_WORD=bounds[0].get_text(bounds[1]))
         
-        capture.set_env(GEDIT_CURRENT_DOCUMENT_TYPE=document.get_mime_type())
+        capture.set_env(PLUMA_CURRENT_DOCUMENT_TYPE=document.get_mime_type())
         
         if uri is not None:
             gfile = gio.File(uri)
             scheme = gfile.get_uri_scheme()
             name = os.path.basename(uri)
-            capture.set_env(GEDIT_CURRENT_DOCUMENT_URI    = uri,
-                            GEDIT_CURRENT_DOCUMENT_NAME   = name,
-                            GEDIT_CURRENT_DOCUMENT_SCHEME = scheme)
-            if gedit.utils.uri_has_file_scheme(uri):
+            capture.set_env(PLUMA_CURRENT_DOCUMENT_URI    = uri,
+                            PLUMA_CURRENT_DOCUMENT_NAME   = name,
+                            PLUMA_CURRENT_DOCUMENT_SCHEME = scheme)
+            if pluma.utils.uri_has_file_scheme(uri):
                 path = gfile.get_path()
                 cwd = os.path.dirname(path)
                 capture.set_cwd(cwd)
-                capture.set_env(GEDIT_CURRENT_DOCUMENT_PATH = path,
-                                GEDIT_CURRENT_DOCUMENT_DIR  = cwd)
+                capture.set_env(PLUMA_CURRENT_DOCUMENT_PATH = path,
+                                PLUMA_CURRENT_DOCUMENT_DIR  = cwd)
 
         documents_uri = [doc.get_uri()
                                  for doc in window.get_documents()
                                  if doc.get_uri() is not None]
         documents_path = [gio.File(uri).get_path()
                                  for uri in documents_uri
-                                 if gedit.utils.uri_has_file_scheme(uri)]
-        capture.set_env(GEDIT_DOCUMENTS_URI  = ' '.join(documents_uri),
-                        GEDIT_DOCUMENTS_PATH = ' '.join(documents_path))
+                                 if pluma.utils.uri_has_file_scheme(uri)]
+        capture.set_env(PLUMA_DOCUMENTS_URI  = ' '.join(documents_uri),
+                        PLUMA_DOCUMENTS_PATH = ' '.join(documents_path))
 
     flags = capture.CAPTURE_BOTH
     
@@ -224,7 +224,7 @@ class MultipleDocumentsSaver:
 
         for doc in docs:
             signals[doc] = doc.connect('saving', self.on_document_saving)
-            gedit.commands.save_document(window, doc)
+            pluma.commands.save_document(window, doc)
             doc.disconnect(signals[doc])
     
     def on_document_saving(self, doc, size, total_size):
@@ -277,7 +277,7 @@ def capture_end_execute_panel(capture, exit_code, panel, view, output_type):
         end.forward_chars(300)
 
         mtype = gio.content_type_guess(data=doc.get_text(start, end))
-        lmanager = gedit.get_language_manager()
+        lmanager = pluma.get_language_manager()
         
         language = lmanager.guess_language(doc.get_uri(), mtype)
         

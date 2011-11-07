@@ -1,26 +1,26 @@
 /*
  * document-loader.c
- * This file is part of gedit
+ * This file is part of pluma
  *
  * Copyright (C) 2010 - Jesse van den Kieboom
  *
- * gedit is free software; you can redistribute it and/or modify
+ * pluma is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
  * (at your option) any later version.
  *
- * gedit is distributed in the hope that it will be useful,
+ * pluma is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with gedit; if not, write to the Free Software
+ * along with pluma; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin St, Fifth Floor, 
  * Boston, MA  02110-1301  USA
  */
 
-#include "gedit-gio-document-loader.h"
+#include "pluma-gio-document-loader.h"
 #include <gio/gio.h>
 #include <gtk/gtk.h>
 #include <glib.h>
@@ -40,7 +40,7 @@ create_document (const gchar *filename,
                  const gchar *contents)
 {
 	GError *error = NULL;
-	GeditDocument *document;
+	PlumaDocument *document;
 	gchar *uri;
 
 	if (!g_file_set_contents (filename, contents, -1, &error))
@@ -66,7 +66,7 @@ delete_document (GFile *location)
 }
 
 static void
-on_document_loaded (GeditDocument  *document,
+on_document_loaded (PlumaDocument  *document,
                     GError         *error,
                     LoaderTestData *data)
 {
@@ -88,7 +88,7 @@ on_document_loaded (GeditDocument  *document,
 
 	if (data->newline_type != -1)
 	{
-		g_assert_cmpint (gedit_document_get_newline_type (document),
+		g_assert_cmpint (pluma_document_get_newline_type (document),
 		                 ==,
 		                 data->newline_type);
 	}
@@ -104,11 +104,11 @@ test_loader (const gchar *filename,
 {
 	GFile *file;
 	gchar *uri;
-	GeditDocument *document;
+	PlumaDocument *document;
 
 	file = create_document (filename, contents);
 
-	document = gedit_document_new ();
+	document = pluma_document_new ();
 
 	LoaderTestData *data = g_slice_new (LoaderTestData);
 	data->in_buffer = in_buffer;
@@ -124,7 +124,7 @@ test_loader (const gchar *filename,
 
 	uri = g_file_get_uri (file);
 
-	gedit_document_load (document, uri, gedit_encoding_get_utf8 (), 0, FALSE);
+	pluma_document_load (document, uri, pluma_encoding_get_utf8 (), 0, FALSE);
 
 	g_free (uri);
 
@@ -203,17 +203,17 @@ test_end_new_line_detection ()
 	test_loader ("document-loader.txt",
 	             "hello world\n",
 	             NULL,
-	             GEDIT_DOCUMENT_NEWLINE_TYPE_LF);
+	             PLUMA_DOCUMENT_NEWLINE_TYPE_LF);
 
 	test_loader ("document-loader.txt",
 	             "hello world\r\n",
 	             NULL,
-	             GEDIT_DOCUMENT_NEWLINE_TYPE_CR_LF);
+	             PLUMA_DOCUMENT_NEWLINE_TYPE_CR_LF);
 
 	test_loader ("document-loader.txt",
 	             "hello world\r",
 	             NULL,
-	             GEDIT_DOCUMENT_NEWLINE_TYPE_CR);
+	             PLUMA_DOCUMENT_NEWLINE_TYPE_CR);
 }
 
 static void
@@ -222,17 +222,17 @@ test_begin_new_line_detection ()
 	test_loader ("document-loader.txt",
 	             "\nhello world",
 	             NULL,
-	             GEDIT_DOCUMENT_NEWLINE_TYPE_LF);
+	             PLUMA_DOCUMENT_NEWLINE_TYPE_LF);
 
 	test_loader ("document-loader.txt",
 	             "\r\nhello world",
 	             NULL,
-	             GEDIT_DOCUMENT_NEWLINE_TYPE_CR_LF);
+	             PLUMA_DOCUMENT_NEWLINE_TYPE_CR_LF);
 
 	test_loader ("document-loader.txt",
 	             "\rhello world",
 	             NULL,
-	             GEDIT_DOCUMENT_NEWLINE_TYPE_CR);
+	             PLUMA_DOCUMENT_NEWLINE_TYPE_CR);
 }
 
 int main (int   argc,
@@ -241,7 +241,7 @@ int main (int   argc,
 	g_type_init ();
 	g_test_init (&argc, &argv, NULL);
 
-	gedit_prefs_manager_app_init ();
+	pluma_prefs_manager_app_init ();
 
 	g_test_add_func ("/document-loader/end-line-stripping", test_end_line_stripping);
 	g_test_add_func ("/document-loader/end-new-line-detection", test_end_new_line_detection);

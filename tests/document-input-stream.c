@@ -1,27 +1,27 @@
 /*
  * document-input-stream.c
- * This file is part of gedit
+ * This file is part of pluma
  *
  * Copyright (C) 2010 - Ignacio Casal Quinteiro
  *
- * gedit is free software; you can redistribute it and/or modify
+ * pluma is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
  * (at your option) any later version.
  *
- * gedit is distributed in the hope that it will be useful,
+ * pluma is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with gedit; if not, write to the Free Software
+ * along with pluma; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin St, Fifth Floor, 
  * Boston, MA  02110-1301  USA
  */
 
 
-#include "gedit-document-input-stream.h"
+#include "pluma-document-input-stream.h"
 #include <gio/gio.h>
 #include <gtk/gtk.h>
 #include <glib.h>
@@ -30,7 +30,7 @@
 static void
 test_consecutive_read (const gchar *inbuf,
 		       const gchar *outbuf,
-		       GeditDocumentNewlineType type,
+		       PlumaDocumentNewlineType type,
 		       gsize read_chunk_len)
 {
 	GtkTextBuffer *buf;
@@ -45,7 +45,7 @@ test_consecutive_read (const gchar *inbuf,
 	gtk_text_buffer_set_text (buf, inbuf, -1);
 
 	b = g_malloc (200);
-	in = gedit_document_input_stream_new (buf, type);
+	in = pluma_document_input_stream_new (buf, type);
 
 	outlen = strlen (outbuf);
 	n = 0;
@@ -78,63 +78,63 @@ static void
 test_empty ()
 {
 	/* empty file should not have a trailing newline */
-	test_consecutive_read ("", "", GEDIT_DOCUMENT_NEWLINE_TYPE_CR_LF, 10);
+	test_consecutive_read ("", "", PLUMA_DOCUMENT_NEWLINE_TYPE_CR_LF, 10);
 }
 
 static void
 test_consecutive_cut_char ()
 {
 	/* first \n is read then fo and then is added \r but not \n */
-	test_consecutive_read ("\nfo\nbar\n\nblah\n", "\r\nfo\r\nbar\r\n\r\nblah\r\n\r\n", GEDIT_DOCUMENT_NEWLINE_TYPE_CR_LF, 8);
-	test_consecutive_read ("\nfo\nbar\n\nblah", "\r\nfo\r\nbar\r\n\r\nblah\r\n", GEDIT_DOCUMENT_NEWLINE_TYPE_CR_LF, 8);
+	test_consecutive_read ("\nfo\nbar\n\nblah\n", "\r\nfo\r\nbar\r\n\r\nblah\r\n\r\n", PLUMA_DOCUMENT_NEWLINE_TYPE_CR_LF, 8);
+	test_consecutive_read ("\nfo\nbar\n\nblah", "\r\nfo\r\nbar\r\n\r\nblah\r\n", PLUMA_DOCUMENT_NEWLINE_TYPE_CR_LF, 8);
 }
 
 static void
 test_consecutive_big_read ()
 {
-	test_consecutive_read ("\nfo\nbar\n\nblah\n", "\rfo\rbar\r\rblah\r\r", GEDIT_DOCUMENT_NEWLINE_TYPE_CR, 200);
-	test_consecutive_read ("\nfo\nbar\n\nblah", "\rfo\rbar\r\rblah\r", GEDIT_DOCUMENT_NEWLINE_TYPE_CR, 200);
+	test_consecutive_read ("\nfo\nbar\n\nblah\n", "\rfo\rbar\r\rblah\r\r", PLUMA_DOCUMENT_NEWLINE_TYPE_CR, 200);
+	test_consecutive_read ("\nfo\nbar\n\nblah", "\rfo\rbar\r\rblah\r", PLUMA_DOCUMENT_NEWLINE_TYPE_CR, 200);
 
-	test_consecutive_read ("\rfo\rbar\r\rblah\r", "\nfo\nbar\n\nblah\n\n", GEDIT_DOCUMENT_NEWLINE_TYPE_LF, 200);
-	test_consecutive_read ("\rfo\rbar\r\rblah", "\nfo\nbar\n\nblah\n", GEDIT_DOCUMENT_NEWLINE_TYPE_LF, 200);
+	test_consecutive_read ("\rfo\rbar\r\rblah\r", "\nfo\nbar\n\nblah\n\n", PLUMA_DOCUMENT_NEWLINE_TYPE_LF, 200);
+	test_consecutive_read ("\rfo\rbar\r\rblah", "\nfo\nbar\n\nblah\n", PLUMA_DOCUMENT_NEWLINE_TYPE_LF, 200);
 
-	test_consecutive_read ("\r\nfo\r\nbar\r\n\r\nblah\r\n", "\nfo\nbar\n\nblah\n\n", GEDIT_DOCUMENT_NEWLINE_TYPE_LF, 200);
-	test_consecutive_read ("\r\nfo\r\nbar\r\n\r\nblah", "\nfo\nbar\n\nblah\n", GEDIT_DOCUMENT_NEWLINE_TYPE_LF, 200);
+	test_consecutive_read ("\r\nfo\r\nbar\r\n\r\nblah\r\n", "\nfo\nbar\n\nblah\n\n", PLUMA_DOCUMENT_NEWLINE_TYPE_LF, 200);
+	test_consecutive_read ("\r\nfo\r\nbar\r\n\r\nblah", "\nfo\nbar\n\nblah\n", PLUMA_DOCUMENT_NEWLINE_TYPE_LF, 200);
 
-	test_consecutive_read ("\nfo\nbar\n\nblah\n", "\r\nfo\r\nbar\r\n\r\nblah\r\n\r\n", GEDIT_DOCUMENT_NEWLINE_TYPE_CR_LF, 200);
-	test_consecutive_read ("\nfo\nbar\n\nblah", "\r\nfo\r\nbar\r\n\r\nblah\r\n", GEDIT_DOCUMENT_NEWLINE_TYPE_CR_LF, 200);
+	test_consecutive_read ("\nfo\nbar\n\nblah\n", "\r\nfo\r\nbar\r\n\r\nblah\r\n\r\n", PLUMA_DOCUMENT_NEWLINE_TYPE_CR_LF, 200);
+	test_consecutive_read ("\nfo\nbar\n\nblah", "\r\nfo\r\nbar\r\n\r\nblah\r\n", PLUMA_DOCUMENT_NEWLINE_TYPE_CR_LF, 200);
 }
 
 static void
 test_consecutive_middle_read ()
 {
-	test_consecutive_read ("\nfo\nbar\n\nblah\n", "\rfo\rbar\r\rblah\r\r", GEDIT_DOCUMENT_NEWLINE_TYPE_CR, 6);
-	test_consecutive_read ("\nfo\nbar\n\nblah", "\rfo\rbar\r\rblah\r", GEDIT_DOCUMENT_NEWLINE_TYPE_CR, 6);
+	test_consecutive_read ("\nfo\nbar\n\nblah\n", "\rfo\rbar\r\rblah\r\r", PLUMA_DOCUMENT_NEWLINE_TYPE_CR, 6);
+	test_consecutive_read ("\nfo\nbar\n\nblah", "\rfo\rbar\r\rblah\r", PLUMA_DOCUMENT_NEWLINE_TYPE_CR, 6);
 
-	test_consecutive_read ("\rfo\rbar\r\rblah\r", "\nfo\nbar\n\nblah\n\n", GEDIT_DOCUMENT_NEWLINE_TYPE_LF, 6);
-	test_consecutive_read ("\rfo\rbar\r\rblah", "\nfo\nbar\n\nblah\n", GEDIT_DOCUMENT_NEWLINE_TYPE_LF, 6);
+	test_consecutive_read ("\rfo\rbar\r\rblah\r", "\nfo\nbar\n\nblah\n\n", PLUMA_DOCUMENT_NEWLINE_TYPE_LF, 6);
+	test_consecutive_read ("\rfo\rbar\r\rblah", "\nfo\nbar\n\nblah\n", PLUMA_DOCUMENT_NEWLINE_TYPE_LF, 6);
 
-	test_consecutive_read ("\r\nfo\r\nbar\r\n\r\nblah\r\n", "\nfo\nbar\n\nblah\n\n", GEDIT_DOCUMENT_NEWLINE_TYPE_LF, 6);
-	test_consecutive_read ("\r\nfo\r\nbar\r\n\r\nblah", "\nfo\nbar\n\nblah\n", GEDIT_DOCUMENT_NEWLINE_TYPE_LF, 6);
+	test_consecutive_read ("\r\nfo\r\nbar\r\n\r\nblah\r\n", "\nfo\nbar\n\nblah\n\n", PLUMA_DOCUMENT_NEWLINE_TYPE_LF, 6);
+	test_consecutive_read ("\r\nfo\r\nbar\r\n\r\nblah", "\nfo\nbar\n\nblah\n", PLUMA_DOCUMENT_NEWLINE_TYPE_LF, 6);
 
-	test_consecutive_read ("\nfo\nbar\n\nblah\n", "\r\nfo\r\nbar\r\n\r\nblah\r\n\r\n", GEDIT_DOCUMENT_NEWLINE_TYPE_CR_LF, 6);
-	test_consecutive_read ("\nfo\nbar\n\nblah", "\r\nfo\r\nbar\r\n\r\nblah\r\n", GEDIT_DOCUMENT_NEWLINE_TYPE_CR_LF, 6);
+	test_consecutive_read ("\nfo\nbar\n\nblah\n", "\r\nfo\r\nbar\r\n\r\nblah\r\n\r\n", PLUMA_DOCUMENT_NEWLINE_TYPE_CR_LF, 6);
+	test_consecutive_read ("\nfo\nbar\n\nblah", "\r\nfo\r\nbar\r\n\r\nblah\r\n", PLUMA_DOCUMENT_NEWLINE_TYPE_CR_LF, 6);
 }
 
 static void
 test_consecutive_multibyte_cut ()
 {
-	test_consecutive_read ("hello\nhello\xe6\x96\x87\nworld\n", "hello\rhello\xe6\x96\x87\rworld\r\r", GEDIT_DOCUMENT_NEWLINE_TYPE_CR, 6);
-	test_consecutive_read ("hello\rhello\xe6\x96\x87\rworld\r", "hello\rhello\xe6\x96\x87\rworld\r\r", GEDIT_DOCUMENT_NEWLINE_TYPE_CR, 6);
-	test_consecutive_read ("hello\nhello\xe6\x96\x87\nworld\n", "hello\nhello\xe6\x96\x87\nworld\n\n", GEDIT_DOCUMENT_NEWLINE_TYPE_LF, 6);
+	test_consecutive_read ("hello\nhello\xe6\x96\x87\nworld\n", "hello\rhello\xe6\x96\x87\rworld\r\r", PLUMA_DOCUMENT_NEWLINE_TYPE_CR, 6);
+	test_consecutive_read ("hello\rhello\xe6\x96\x87\rworld\r", "hello\rhello\xe6\x96\x87\rworld\r\r", PLUMA_DOCUMENT_NEWLINE_TYPE_CR, 6);
+	test_consecutive_read ("hello\nhello\xe6\x96\x87\nworld\n", "hello\nhello\xe6\x96\x87\nworld\n\n", PLUMA_DOCUMENT_NEWLINE_TYPE_LF, 6);
 }
 
 static void
 test_consecutive_multibyte_big_read ()
 {
-	test_consecutive_read ("hello\nhello\xe6\x96\x87\nworld\n", "hello\rhello\xe6\x96\x87\rworld\r\r", GEDIT_DOCUMENT_NEWLINE_TYPE_CR, 200);
-	test_consecutive_read ("hello\rhello\xe6\x96\x87\rworld\r", "hello\rhello\xe6\x96\x87\rworld\r\r", GEDIT_DOCUMENT_NEWLINE_TYPE_CR, 200);
-	test_consecutive_read ("hello\nhello\xe6\x96\x87\nworld\n", "hello\nhello\xe6\x96\x87\nworld\n\n", GEDIT_DOCUMENT_NEWLINE_TYPE_LF, 200);
+	test_consecutive_read ("hello\nhello\xe6\x96\x87\nworld\n", "hello\rhello\xe6\x96\x87\rworld\r\r", PLUMA_DOCUMENT_NEWLINE_TYPE_CR, 200);
+	test_consecutive_read ("hello\rhello\xe6\x96\x87\rworld\r", "hello\rhello\xe6\x96\x87\rworld\r\r", PLUMA_DOCUMENT_NEWLINE_TYPE_CR, 200);
+	test_consecutive_read ("hello\nhello\xe6\x96\x87\nworld\n", "hello\nhello\xe6\x96\x87\nworld\n\n", PLUMA_DOCUMENT_NEWLINE_TYPE_LF, 200);
 }
 
 int main (int   argc,

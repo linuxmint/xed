@@ -1,7 +1,7 @@
 ## Process this file with automake to produce Makefile.in
 ACLOCAL_AMFLAGS = -I m4
 
-SUBDIRS = gedit pixmaps po data plugin-loaders plugins docs tests win32 osx
+SUBDIRS = pluma pixmaps po data plugin-loaders plugins docs tests win32 osx
 
 if !OS_OSX
 SUBDIRS += help
@@ -16,7 +16,7 @@ EXTRA_DIST = 			\
 	ChangeLog-20090418	\
 	HACKING			\
 	MAINTAINERS		\
-	gedit.doap		\
+	pluma.doap		\
 	xmldocs.make 		\
 	omf.make		\
 	mate-doc-utils.make    \
@@ -36,6 +36,10 @@ MAINTAINERCLEANFILES = 		\
 	config.h.in		\
 	config.sub		\
 	depcomp			\
+	intltool-extract.in 	\
+	intltool-merge.in 		\
+	intltool-update.in \
+	configure \
 	gtk-doc.make		\
 	install-sh		\
 	ltmain.sh		\
@@ -56,7 +60,7 @@ MAINTAINERCLEANFILES = 		\
 
 DISTCHECK_CONFIGURE_FLAGS = --disable-scrollkeeper --enable-gtk-doc
 
-CHANGELOG_START = GEDIT_2_26_1
+CHANGELOG_START = PLUMA_2_26_1
 
 dist-hook:
 	@if test -d "$(srcdir)/.git"; \

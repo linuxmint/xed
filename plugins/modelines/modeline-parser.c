@@ -1,6 +1,6 @@
 /*
  * modeline-parser.c
- * Emacs, Kate and Vim-style modelines support for gedit.
+ * Emacs, Kate and Vim-style modelines support for pluma.
  *
  * Copyright (C) 2005-2007 - Steve Frécinaux <code@istique.net>
  *
@@ -22,9 +22,9 @@
 #include <string.h>
 #include <stdlib.h>
 #include <stdio.h>
-#include <gedit/gedit-language-manager.h>
-#include <gedit/gedit-prefs-manager.h>
-#include <gedit/gedit-debug.h>
+#include <pluma/pluma-language-manager.h>
+#include <pluma/pluma-prefs-manager.h>
+#include <pluma/pluma-debug.h>
 #include "modeline-parser.h"
 
 #define MODELINES_LANGUAGE_MAPPINGS_FILE "language-mappings"
@@ -32,7 +32,7 @@
 /* base dir to lookup configuration files */
 static gchar *modelines_data_dir;
 
-/* Mappings: language name -> Gedit language ID */
+/* Mappings: language name -> Pluma language ID */
 static GHashTable *vim_languages;
 static GHashTable *emacs_languages;
 static GHashTable *kate_languages;
@@ -112,7 +112,7 @@ load_language_mappings_group (GKeyFile *key_file, const gchar *group)
 
 	keys = g_key_file_get_keys (key_file, group, &length, NULL);
 
-	gedit_debug_message (DEBUG_PLUGINS,
+	pluma_debug_message (DEBUG_PLUGINS,
 			     "%" G_GSIZE_FORMAT " mappings in group %s",
 			     length, group);
 
@@ -143,7 +143,7 @@ load_language_mappings (void)
 
 	if (g_key_file_load_from_file (mappings, fname, 0, &error))
 	{
-		gedit_debug_message (DEBUG_PLUGINS,
+		pluma_debug_message (DEBUG_PLUGINS,
 				     "Loaded language mappings from %s",
 				     fname);
 
@@ -153,7 +153,7 @@ load_language_mappings (void)
 	}
 	else
 	{
-		gedit_debug_message (DEBUG_PLUGINS,
+		pluma_debug_message (DEBUG_PLUGINS,
 				     "Failed to loaded language mappings from %s: %s",
 				     fname, error->message);
 
@@ -395,7 +395,7 @@ parse_emacs_modeline (gchar           *s,
 			s++;
 		}
 
-		gedit_debug_message (DEBUG_PLUGINS,
+		pluma_debug_message (DEBUG_PLUGINS,
 				     "Emacs modeline bit: %s = %s",
 				     key->str, value->str);
 
@@ -493,7 +493,7 @@ parse_kate_modeline (gchar           *s,
 			s++;
 		}
 
-		gedit_debug_message (DEBUG_PLUGINS,
+		pluma_debug_message (DEBUG_PLUGINS,
 				     "Kate modeline bit: %s = %s",
 				     key->str, value->str);
 
@@ -582,21 +582,21 @@ parse_modeline (gchar           *s,
 		     strncmp (s, "vi:", 3) == 0 ||
 		     strncmp (s, "vim:", 4) == 0))
 		{
-			gedit_debug_message (DEBUG_PLUGINS, "Vim modeline on line %d", line_number);
+			pluma_debug_message (DEBUG_PLUGINS, "Vim modeline on line %d", line_number);
 
 		    	while (*s != ':') s++;
 		    	s = parse_vim_modeline (s + 1, options);
 		}
 		else if (line_number <= 2 && strncmp (s, "-*-", 3) == 0)
 		{
-			gedit_debug_message (DEBUG_PLUGINS, "Emacs modeline on line %d", line_number);
+			pluma_debug_message (DEBUG_PLUGINS, "Emacs modeline on line %d", line_number);
 
 			s = parse_emacs_modeline (s + 3, options);
 		}
 		else if ((line_number <= 10 || line_number > line_count - 10) &&
 			 strncmp (s, "kate:", 5) == 0)
 		{
-			gedit_debug_message (DEBUG_PLUGINS, "Kate modeline on line %d", line_number);
+			pluma_debug_message (DEBUG_PLUGINS, "Kate modeline on line %d", line_number);
 
 			s = parse_kate_modeline (s + 5, options);
 		}
@@ -744,7 +744,7 @@ modeline_parser_apply_modeline (GtkSourceView *view)
 		GtkSourceLanguageManager *manager;
 		GtkSourceLanguage *language;
 
-		manager = gedit_get_language_manager ();
+		manager = pluma_get_language_manager ();
 		language = gtk_source_language_manager_get_language
 				(manager, options.language_id);
 
@@ -769,7 +769,7 @@ modeline_parser_apply_modeline (GtkSourceView *view)
 	{
 		gtk_source_view_set_insert_spaces_instead_of_tabs
 							(view,
-							 gedit_prefs_manager_get_insert_spaces ());
+							 pluma_prefs_manager_get_insert_spaces ());
 	}
 	
 	if (has_option (&options, MODELINE_SET_TAB_WIDTH))
@@ -779,7 +779,7 @@ modeline_parser_apply_modeline (GtkSourceView *view)
 	else if (check_previous (view, previous, MODELINE_SET_TAB_WIDTH))
 	{
 		gtk_source_view_set_tab_width (view, 
-		                               gedit_prefs_manager_get_tabs_size ());
+		                               pluma_prefs_manager_get_tabs_size ());
 	}
 	
 	if (has_option (&options, MODELINE_SET_INDENT_WIDTH))
@@ -798,7 +798,7 @@ modeline_parser_apply_modeline (GtkSourceView *view)
 	else if (check_previous (view, previous, MODELINE_SET_WRAP_MODE))
 	{
 		gtk_text_view_set_wrap_mode (GTK_TEXT_VIEW (view), 
-		                             gedit_prefs_manager_get_wrap_mode ());
+		                             pluma_prefs_manager_get_wrap_mode ());
 	}
 	
 	if (has_option (&options, MODELINE_SET_RIGHT_MARGIN_POSITION))
@@ -808,7 +808,7 @@ modeline_parser_apply_modeline (GtkSourceView *view)
 	else if (check_previous (view, previous, MODELINE_SET_RIGHT_MARGIN_POSITION))
 	{
 		gtk_source_view_set_right_margin_position (view, 
-		                                           gedit_prefs_manager_get_right_margin_position ());
+		                                           pluma_prefs_manager_get_right_margin_position ());
 	}
 	
 	if (has_option (&options, MODELINE_SET_SHOW_RIGHT_MARGIN))
@@ -818,7 +818,7 @@ modeline_parser_apply_modeline (GtkSourceView *view)
 	else if (check_previous (view, previous, MODELINE_SET_SHOW_RIGHT_MARGIN))
 	{
 		gtk_source_view_set_show_right_margin (view, 
-		                                       gedit_prefs_manager_get_display_right_margin ());
+		                                       pluma_prefs_manager_get_display_right_margin ());
 	}
 	
 	if (previous)

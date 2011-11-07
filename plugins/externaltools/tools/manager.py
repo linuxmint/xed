@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-#    Gedit External Tools plugin
+#    Pluma External Tools plugin
 #    Copyright (C) 2005-2006  Steve Frécinaux <steve@istique.net>
 #
 #    This program is free software; you can redistribute it and/or modify
@@ -18,7 +18,7 @@
 
 __all__ = ('Manager', )
 
-import gedit
+import pluma
 import gtk
 import gtksourceview2 as gsv
 import os.path
@@ -114,7 +114,7 @@ class LanguagesPopup(gtk.Window):
     
     def init_languages(self, languages):
         manager = gsv.LanguageManager()
-        langs = gedit.language_manager_list_languages_sorted(manager, True)
+        langs = pluma.language_manager_list_languages_sorted(manager, True)
         
         self.model.append([_('All languages'), None, not languages])
         self.model.append(['-', None, False])
@@ -548,7 +548,7 @@ class Manager:
 
         self.script_hash = self.compute_hash(script)
         contenttype = gio.content_type_guess(data=script)
-        lmanager = gedit.get_language_manager()
+        lmanager = pluma.get_language_manager()
         language = lmanager.guess_language(content_type=contenttype)
 
         if language is not None:
@@ -818,7 +818,7 @@ class Manager:
 
     def on_tool_manager_dialog_response(self, dialog, response):
         if response == gtk.RESPONSE_HELP:
-            gedit.help_display(self.dialog, 'gedit', 'gedit-external-tools-plugin')
+            pluma.help_display(self.dialog, 'pluma', 'pluma-external-tools-plugin')
             return
 
         self.on_tool_manager_dialog_focus_out(dialog, None)
@@ -830,7 +830,7 @@ class Manager:
     def on_tool_manager_dialog_focus_out(self, dialog, event):
         self.save_current_tool()
 
-        for window in gedit.app_get_default().get_windows():
+        for window in pluma.app_get_default().get_windows():
             helper = window.get_data("ExternalToolsPluginWindowData")
             helper.menu.update()
    

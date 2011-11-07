@@ -8,8 +8,8 @@ PKG_NAME=mate-text-editor
 
 (test -f $srcdir/configure.ac \
   && test -f $srcdir/autogen.sh \
-  && test -d $srcdir/gedit \
-  && test -f $srcdir/gedit/gedit.c) || {
+  && test -d $srcdir/pluma \
+  && test -f $srcdir/pluma/pluma.c) || {
     echo -n "**Error**: Directory "\`$srcdir\'" does not look like the"
     echo " top-level $PKG_NAME directory"
     exit 1

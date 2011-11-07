@@ -1,7 +1,7 @@
-INCLUDES = -g -I$(top_srcdir) -I$(top_srcdir)/gedit $(GEDIT_DEBUG_FLAGS) $(GEDIT_CFLAGS)
+INCLUDES = -g -I$(top_srcdir) -I$(top_srcdir)/pluma $(PLUMA_DEBUG_FLAGS) $(PLUMA_CFLAGS)
 
 noinst_PROGRAMS = $(TEST_PROGS)
-progs_ldadd     = $(top_builddir)/gedit/libgedit.la
+progs_ldadd     = $(top_builddir)/pluma/libpluma.la
 
 TEST_PROGS			= smart-converter
 smart_converter_SOURCES		= smart-converter.c

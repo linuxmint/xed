@@ -1,12 +1,12 @@
-icondir = $(datadir)/gedit-2/icons
-icon_DATA = gedit-plugin.png
+icondir = $(datadir)/pluma-2/icons
+icon_DATA = pluma-plugin.png
 
-logodir = $(datadir)/gedit-2/logo
-logo_DATA = gedit-logo.png
+logodir = $(datadir)/pluma-2/logo
+logo_DATA = pluma-logo.png
 
 EXTRA_DIST = \
 	$(icon_DATA) \
 	$(logo_DATA) \
-	gedit.ico
+	pluma.ico
 
 -include $(top_srcdir)/git.mk

@@ -2,23 +2,23 @@ dnl Process this file with autoconf to produce a configure script.
 
 AC_PREREQ(2.63.2)
 
-m4_define(gedit_major_version, 2011)
-m4_define(gedit_minor_version, 11)
-m4_define(gedit_micro_version, 7)
-m4_define(gedit_version, gedit_major_version.gedit_minor_version.gedit_micro_version)
+m4_define(pluma_major_version, 2011)
+m4_define(pluma_minor_version, 11)
+m4_define(pluma_micro_version, 7)
+m4_define(pluma_version, pluma_major_version.pluma_minor_version.pluma_micro_version)
 
-AC_INIT([gedit],[gedit_version],[http://bugzilla.mate.org/enter_bug.cgi?product=gedit],[gedit],[http://projects.mate.org/gedit/])
+AC_INIT([pluma],[pluma_version],[http://bugzilla.gnome.org/enter_bug.cgi?product=pluma],[pluma],[http://projects.gnome.org/pluma/])
 
 AC_CONFIG_HEADERS(config.h)
-AC_CONFIG_SRCDIR(gedit/gedit.c)
+AC_CONFIG_SRCDIR(pluma/pluma.c)
 AC_CONFIG_MACRO_DIR([m4])
 
-AC_DEFINE(GEDIT_MAJOR_VERSION, gedit_major_version, [Gedit major version])
-AC_SUBST(GEDIT_MAJOR_VERSION, gedit_major_version)
-AC_DEFINE(GEDIT_MINOR_VERSION, gedit_minor_version, [Gedit minor version])
-AC_SUBST(GEDIT_MINOR_VERSION, gedit_minor_version)
-AC_DEFINE(GEDIT_MICRO_VERSION, gedit_micro_version, [Gedit micro version])
-AC_SUBST(GEDIT_MICRO_VERSION, gedit_micro_version)
+AC_DEFINE(PLUMA_MAJOR_VERSION, pluma_major_version, [Pluma major version])
+AC_SUBST(PLUMA_MAJOR_VERSION, pluma_major_version)
+AC_DEFINE(PLUMA_MINOR_VERSION, pluma_minor_version, [Pluma minor version])
+AC_SUBST(PLUMA_MINOR_VERSION, pluma_minor_version)
+AC_DEFINE(PLUMA_MICRO_VERSION, pluma_micro_version, [Pluma micro version])
+AC_SUBST(PLUMA_MICRO_VERSION, pluma_micro_version)
 
 AM_INIT_AUTOMAKE([1.10 dist-bzip2 no-dist-gzip -Wno-portability])
 AM_MAINTAINER_MODE
@@ -37,8 +37,8 @@ AC_PROG_OBJC
 LT_PREREQ([2.2.6])
 LT_INIT(disable-static)
 
-GEDIT_API_VERSION=2.20
-AC_SUBST(GEDIT_API_VERSION)
+PLUMA_API_VERSION=2.20
+AC_SUBST(PLUMA_API_VERSION)
 
 AC_PATH_PROG(MATECONFTOOL, mateconftool-2)
 
@@ -50,12 +50,12 @@ AC_CHECK_LIB(m, floor)
 dnl make sure we keep ACLOCAL_FLAGS around for maintainer builds to work
 AC_SUBST(ACLOCAL_AMFLAGS, "$ACLOCAL_FLAGS -I m4")
 
-dnl active plugins for gedit.schemas
+dnl active plugins for pluma.schemas
 ACTIVE_PLUGINS="docinfo,modelines,filebrowser,spell,time"
 AC_SUBST(ACTIVE_PLUGINS)
 
-dnl toolbar style for gedit schemas
-TOOLBAR_STYLE="GEDIT_TOOLBAR_SYSTEM"
+dnl toolbar style for pluma schemas
+TOOLBAR_STYLE="PLUMA_TOOLBAR_SYSTEM"
 AC_SUBST(TOOLBAR_STYLE)
 
 dnl check for win32 platform
@@ -63,7 +63,7 @@ AC_MSG_CHECKING([for Win32 platform])
 case "$host" in
   *-*-mingw*|*-*-cygwin*)
     platform_win32=yes
-    TOOLBAR_STYLE="GEDIT_TOOLBAR_ICONS"
+    TOOLBAR_STYLE="PLUMA_TOOLBAR_ICONS"
     ;;
   *)
     platform_win32=no
@@ -135,7 +135,7 @@ dnl ===============================================================
 # This macro expands DIR and assigns it to RET.
 # If DIR is NONE, then it's replaced by DEFAULT.
 # Based on AC_DEFINE_DIR
-AC_DEFUN([GEDIT_FULLPATH], [
+AC_DEFUN([PLUMA_FULLPATH], [
   test "x$prefix" = xNONE && prefix="$ac_default_prefix"
   test "x$exec_prefix" = xNONE && exec_prefix='${prefix}'
   ac_expand=[$]$1
@@ -145,8 +145,8 @@ AC_DEFUN([GEDIT_FULLPATH], [
 ])
 
 dnl FULL_LIBEXECDIR is used for X-MATE-Bugzilla-ExtraInfoScript expansion
-dnl in data/gedit.desktop.in.in
-GEDIT_FULLPATH(libexecdir, NONE, FULL_LIBEXECDIR)
+dnl in data/pluma.desktop.in.in
+PLUMA_FULLPATH(libexecdir, NONE, FULL_LIBEXECDIR)
 AC_SUBST(FULL_LIBEXECDIR)
 
 dnl ================================================================
@@ -154,7 +154,7 @@ dnl Gettext stuff.
 dnl ================================================================
 
 IT_PROG_INTLTOOL([0.40.0])
-AC_SUBST([GETTEXT_PACKAGE], [gedit])
+AC_SUBST([GETTEXT_PACKAGE], [pluma])
 AM_GNU_GETTEXT_VERSION([0.17])
 AM_GLIB_GNU_GETTEXT
 AC_DEFINE([GETTEXT_PACKAGE],[PACKAGE_TARNAME], [Define to the gettext package name.])
@@ -267,7 +267,7 @@ dnl ================================================================
 dnl Start of pkg-config checks
 dnl ================================================================
 
-PKG_CHECK_MODULES(GEDIT, [
+PKG_CHECK_MODULES(PLUMA, [
 	libxml-2.0 >= 2.5.0
 	glib-2.0 >= 2.22.0
 	gthread-2.0 >= 2.13.0
@@ -287,13 +287,13 @@ else
 	X11_LIBS=
 fi
 
-GEDIT_CFLAGS="$GEDIT_CFLAGS $X11_CFLAGS"
-GEDIT_LIBS="$GEDIT_LIBS $X11_LIBS"
+PLUMA_CFLAGS="$PLUMA_CFLAGS $X11_CFLAGS"
+PLUMA_LIBS="$PLUMA_LIBS $X11_LIBS"
 
-AC_SUBST(GEDIT_CFLAGS)
-AC_SUBST(GEDIT_LIBS)
+AC_SUBST(PLUMA_CFLAGS)
+AC_SUBST(PLUMA_LIBS)
 
-dnl FIXME: Remove this when removing gedit-message-area
+dnl FIXME: Remove this when removing pluma-message-area
 
 if $PKG_CONFIG --atleast-version 2.17.1 gtk+-2.0; then
        gtkatleast=
@@ -303,7 +303,7 @@ fi
 
 AM_CONDITIONAL(BUILD_MESSAGE_AREA, test "$gtkatleast" = "no")
 
-dnl FIXME: Remove this when removing gedit-spinner
+dnl FIXME: Remove this when removing pluma-spinner
 
 if $PKG_CONFIG --atleast-version 2.19.0 gtk+-2.0; then
        gtkatleast=
@@ -313,7 +313,7 @@ fi
 
 AM_CONDITIONAL(BUILD_SPINNER, test "$gtkatleast" = "no")
 if test "$gtkatleast" = "no"; then
-	AC_DEFINE([BUILD_SPINNER],[1],[Whether to use GeditSpinner instead of GtkSpinner])
+	AC_DEFINE([BUILD_SPINNER],[1],[Whether to use PlumaSpinner instead of GtkSpinner])
 fi
 
 if test "$os_osx" = "no" &&
@@ -484,44 +484,44 @@ fi
 # on win32 plugins must be able to resolve all symbols at link time
 # so we create a lib
 if test "$platform_win32" = yes; then
-	GEDIT_IMPLIB="-lgedit-$GEDIT_API_VERSION"
-	PLUGIN_LIBTOOL_FLAGS="-module -avoid-version -no-undefined -Wl,\$(top_builddir)/gedit/libgedit-\$(GEDIT_API_VERSION).a"
-	LOADER_LIBTOOL_FLAGS="-module -avoid-version -no-undefined -Wl,\$(top_builddir)/gedit/libgedit-\$(GEDIT_API_VERSION).a"
+	PLUMA_IMPLIB="-lpluma-$PLUMA_API_VERSION"
+	PLUGIN_LIBTOOL_FLAGS="-module -avoid-version -no-undefined -Wl,\$(top_builddir)/pluma/libpluma-\$(PLUMA_API_VERSION).a"
+	LOADER_LIBTOOL_FLAGS="-module -avoid-version -no-undefined -Wl,\$(top_builddir)/pluma/libpluma-\$(PLUMA_API_VERSION).a"
 	if test "$os_win32" = yes; then
 		PLUGIN_LIBTOOL_FLAGS="${PLUGIN_LIBTOOL_FLAGS} -mwindows"
 		LOADER_LIBTOOL_FLAGS="${LOADER_LIBTOOL_FLAGS} -mwindows"
 	fi
 else
-	GEDIT_IMPLIB=""
+	PLUMA_IMPLIB=""
 	PLUGIN_LIBTOOL_FLAGS="-module -avoid-version"
 	LOADER_LIBTOOL_FLAGS="-module -avoid-version"
 fi
-AC_SUBST(GEDIT_IMPLIB)
+AC_SUBST(PLUMA_IMPLIB)
 AC_SUBST(PLUGIN_LIBTOOL_FLAGS)
 AC_SUBST(LOADER_LIBTOOL_FLAGS)
 
-GEDIT_PLUGINS_DATA_DIR="$datadir/gedit-2/plugins"
-AC_SUBST(GEDIT_PLUGINS_DATA_DIR)
+PLUMA_PLUGINS_DATA_DIR="$datadir/pluma-2/plugins"
+AC_SUBST(PLUMA_PLUGINS_DATA_DIR)
 
-GEDIT_PLUGINS_LIBS_DIR="$libdir/gedit-2/plugins"
-AC_SUBST(GEDIT_PLUGINS_LIBS_DIR)
+PLUMA_PLUGINS_LIBS_DIR="$libdir/pluma-2/plugins"
+AC_SUBST(PLUMA_PLUGINS_LIBS_DIR)
 
 MATE_DOC_INIT([0.9.0],,
   [AC_MSG_WARN([[mate-doc-utils not found: documentation will not be built.]])])
 
 AC_CONFIG_FILES([
 Makefile
-data/gedit.desktop.in
-data/gedit-bugreport.sh
-data/gedit.pc
-data/gedit.schemas.in
+data/pluma.desktop.in
+data/pluma-bugreport.sh
+data/pluma.pc
+data/pluma.schemas.in
 data/Makefile
 docs/Makefile
 docs/reference/Makefile
-gedit/dialogs/Makefile
-gedit/smclient/Makefile
-gedit/osx/Makefile
-gedit/Makefile
+pluma/dialogs/Makefile
+pluma/smclient/Makefile
+pluma/osx/Makefile
+pluma/Makefile
 help/Makefile
 pixmaps/Makefile
 plugin-loaders/Makefile
@@ -552,7 +552,7 @@ plugins/taglist/Makefile
 plugins/time/Makefile
 po/Makefile.in
 tests/Makefile
-win32/gedit.iss
+win32/pluma.iss
 win32/Makefile
 osx/Info.plist
 osx/Makefile])
@@ -570,29 +570,29 @@ Configuration:
 	Gvfs metadata enabled:	$enable_gvfs_metadata
 "
 
-if expr ${GEDIT_MINOR_VERSION} % 2 > /dev/null; then
-	stable_version=`expr ${GEDIT_MINOR_VERSION} - 1`
+if expr ${PLUMA_MINOR_VERSION} % 2 > /dev/null; then
+	stable_version=`expr ${PLUMA_MINOR_VERSION} - 1`
 
 cat << EOF
  *** IMPORTANT ***
 
-This is an unstable version of gedit.
+This is an unstable version of pluma.
 It is for test purposes only.
 
 Please, DO NOT use it in a production environment.
 It will probably crash and you will lose your data.
 
-If you are looking for a stable release of gedit, either download
+If you are looking for a stable release of pluma, either download
 it from:
 
-  http://ftp.mate.org/pub/mate/sources/gedit/2.${stable_version}/
+  http://ftp.gnome.org/pub/mate/sources/pluma/2.${stable_version}/
 
-Or checkout the mate-${stable_version} branch of the gedit module from:
+Or checkout the mate-${stable_version} branch of the pluma module from:
 
-  git://git.mate.org/gedit
+  git://git.gnome.org/pluma
 
 Thanks,
-The gedit team
+The pluma team
 
  *** END OF WARNING ***
 EOF

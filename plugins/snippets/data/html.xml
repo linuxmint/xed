@@ -54,14 +54,14 @@ $0]]></text>
     <description>Date</description>
   </snippet>
   <snippet id="ref">
-    <text><![CDATA[<a href="${1:http://somesite.com/}">${2:$GEDIT_SELECTED_TEXT}</a>
+    <text><![CDATA[<a href="${1:http://somesite.com/}">${2:$PLUMA_SELECTED_TEXT}</a>
 ]]></text>
     <accelerator><![CDATA[<Shift><Alt>l]]></accelerator>
     <description>Wrap Selection as Link</description>
     <tag>ref</tag>
   </snippet>
   <snippet id="open/close">
-    <text><![CDATA[<${1:p}>$GEDIT_SELECTED_TEXT</${1}>]]></text>
+    <text><![CDATA[<${1:p}>$PLUMA_SELECTED_TEXT</${1}>]]></text>
     <accelerator><![CDATA[<Shift><Alt>w]]></accelerator>
     <description>Wrap Selection in Open/Close Tag</description>
   </snippet>
@@ -96,7 +96,7 @@ $0]]></text>
   </snippet>
   <snippet id="div">
     <text><![CDATA[<div ${1}>
-	${0:$GEDIT_SELECTED_TEXT}
+	${0:$PLUMA_SELECTED_TEXT}
 </div>]]></text>
     <description>Div</description>
     <tag>div</tag>
@@ -117,7 +117,7 @@ $0]]></text>
     <tag>form</tag>
   </snippet>
   <snippet id="h">
-    <text><![CDATA[<h${1:1} id="${2}">${3:$GEDIT_SELECTED_TEXT}</h${1}>
+    <text><![CDATA[<h${1:1} id="${2}">${3:$PLUMA_SELECTED_TEXT}</h${1}>
 $0]]></text>
     <description>Heading</description>
     <tag>h</tag>

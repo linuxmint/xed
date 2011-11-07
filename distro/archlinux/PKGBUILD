@@ -9,12 +9,12 @@ license=('GPL')
 depends=('mate-conf' 'gtk2' 'gtksourceview2' 'libxml2' 'pygtksourceview2')
 makedepends=('pkgconfig' 'mate-doc-utils' 'intltool')
 options=('!emptydirs' '!libtool')
-conflicts=('gedit')
+conflicts=('pluma')
 url="http://matsusoft.com.ar/projects"
 groups=('mate-extras')
 install=mate-text-editor.install
 source=(http://sourceforge.net/projects/matede/files/${pkgver}/${pkgname}.tar.gz/download)
-sha256sums=('181779b25161a030f6ed25bce1af160d1d82bbbda43f26ab2329219e3e2539ec')
+sha256sums=('24d479745aa4eee503bf12d7cfe4ea60a58ff23f708a2b0c3b1f0862a69b6423')
 
 build() {
 	cd "${srcdir}/${pkgname}"

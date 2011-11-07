@@ -1,31 +1,31 @@
 # time plugin
-plugindir = $(GEDIT_PLUGINS_LIBS_DIR)
+plugindir = $(PLUMA_PLUGINS_LIBS_DIR)
 
 INCLUDES = \
 	-I$(top_srcdir) 				\
-	$(GEDIT_CFLAGS) 				\
+	$(PLUMA_CFLAGS) 				\
 	$(WARN_CFLAGS)					\
 	$(DISABLE_DEPRECATED_CFLAGS)			
 
 plugin_LTLIBRARIES = libtime.la
 
 libtime_la_SOURCES = \
-	gedit-time-plugin.h	\
-	gedit-time-plugin.c
+	pluma-time-plugin.h	\
+	pluma-time-plugin.c
 
 libtime_la_LDFLAGS = $(PLUGIN_LIBTOOL_FLAGS)
-libtime_la_LIBADD  = $(GEDIT_LIBS)
+libtime_la_LIBADD  = $(PLUMA_LIBS)
 
-uidir = $(GEDIT_PLUGINS_DATA_DIR)/time
+uidir = $(PLUMA_PLUGINS_DATA_DIR)/time
 ui_DATA = \
-	gedit-time-dialog.ui				\
-	gedit-time-setup-dialog.ui
+	pluma-time-dialog.ui				\
+	pluma-time-setup-dialog.ui
 
-plugin_in_files = time.gedit-plugin.desktop.in
+plugin_in_files = time.pluma-plugin.desktop.in
 
-%.gedit-plugin: %.gedit-plugin.desktop.in $(INTLTOOL_MERGE) $(wildcard $(top_srcdir)/po/*po) ; $(INTLTOOL_MERGE) $(top_srcdir)/po $< $@ -d -u -c $(top_builddir)/po/.intltool-merge-cache
+%.pluma-plugin: %.pluma-plugin.desktop.in $(INTLTOOL_MERGE) $(wildcard $(top_srcdir)/po/*po) ; $(INTLTOOL_MERGE) $(top_srcdir)/po $< $@ -d -u -c $(top_builddir)/po/.intltool-merge-cache
 
-plugin_DATA = $(plugin_in_files:.gedit-plugin.desktop.in=.gedit-plugin)
+plugin_DATA = $(plugin_in_files:.pluma-plugin.desktop.in=.pluma-plugin)
 
 EXTRA_DIST = $(ui_DATA) $(plugin_in_files)
 

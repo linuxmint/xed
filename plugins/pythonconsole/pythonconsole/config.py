@@ -21,7 +21,7 @@
 # Parts from "Interactive Python-GTK Console" (stolen from epiphany's console.py)
 #     Copyright (C), 1998 James Henstridge <james@daa.com.au>
 #     Copyright (C), 2005 Adam Hooper <adamh@densi.com>
-# Bits from gedit Python Console Plugin
+# Bits from pluma Python Console Plugin
 #     Copyrignt (C), 2005 Raphaël Slinckx
 
 import os
@@ -29,7 +29,7 @@ import gtk
 
 __all__ = ('PythonConsoleConfig', 'PythonConsoleConfigDialog')
 
-MATECONF_KEY_BASE = '/apps/gedit-2/plugins/pythonconsole'
+MATECONF_KEY_BASE = '/apps/pluma-2/plugins/pythonconsole'
 MATECONF_KEY_COMMAND_COLOR = MATECONF_KEY_BASE + '/command-color'
 MATECONF_KEY_ERROR_COLOR = MATECONF_KEY_BASE + '/error-color'
 

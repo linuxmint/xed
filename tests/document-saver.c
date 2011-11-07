@@ -1,45 +1,45 @@
 /*
  * document-saver.c
- * This file is part of gedit
+ * This file is part of pluma
  *
  * Copyright (C) 2010 - Jesse van den Kieboom
  *
- * gedit is free software; you can redistribute it and/or modify
+ * pluma is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
  * (at your option) any later version.
  *
- * gedit is distributed in the hope that it will be useful,
+ * pluma is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with gedit; if not, write to the Free Software
+ * along with pluma; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin St, Fifth Floor, 
  * Boston, MA  02110-1301  USA
  */
 
-#include "gedit-gio-document-loader.h"
+#include "pluma-gio-document-loader.h"
 #include <gio/gio.h>
 #include <gtk/gtk.h>
 #include <glib.h>
 #include <string.h>
 #include <sys/stat.h>
 
-#define DEFAULT_LOCAL_URI "/tmp/gedit-document-saver-test.txt"
-#define DEFAULT_REMOTE_URI "sftp://localhost/tmp/gedit-document-saver-test.txt"
+#define DEFAULT_LOCAL_URI "/tmp/pluma-document-saver-test.txt"
+#define DEFAULT_REMOTE_URI "sftp://localhost/tmp/pluma-document-saver-test.txt"
 #define DEFAULT_CONTENT "hello world!"
 #define DEFAULT_CONTENT_RESULT "hello world!\n"
 
-#define UNOWNED_LOCAL_DIRECTORY "/tmp/gedit-document-saver-unowned"
-#define UNOWNED_LOCAL_URI "/tmp/gedit-document-saver-unowned/gedit-document-saver-test.txt"
+#define UNOWNED_LOCAL_DIRECTORY "/tmp/pluma-document-saver-unowned"
+#define UNOWNED_LOCAL_URI "/tmp/pluma-document-saver-unowned/pluma-document-saver-test.txt"
 
-#define UNOWNED_REMOTE_DIRECTORY "sftp://localhost/tmp/gedit-document-saver-unowned"
-#define UNOWNED_REMOTE_URI "sftp://localhost/tmp/gedit-document-saver-unowned/gedit-document-saver-test.txt"
+#define UNOWNED_REMOTE_DIRECTORY "sftp://localhost/tmp/pluma-document-saver-unowned"
+#define UNOWNED_REMOTE_URI "sftp://localhost/tmp/pluma-document-saver-unowned/pluma-document-saver-test.txt"
 
-#define UNOWNED_GROUP_LOCAL_URI "/tmp/gedit-document-saver-unowned-group.txt"
-#define UNOWNED_GROUP_REMOTE_URI "sftp://localhost/tmp/gedit-document-saver-unowned-group.txt"
+#define UNOWNED_GROUP_LOCAL_URI "/tmp/pluma-document-saver-unowned-group.txt"
+#define UNOWNED_GROUP_REMOTE_URI "sftp://localhost/tmp/pluma-document-saver-unowned-group.txt"
 
 static gboolean test_completed;
 static gboolean mount_completed;
@@ -76,17 +76,17 @@ saver_test_data_free (SaverTestData *data)
 	g_slice_free (SaverTestData, data);
 }
 
-static GeditDocument *
+static PlumaDocument *
 create_document (const gchar *contents)
 {
-	GeditDocument *document = gedit_document_new ();
+	PlumaDocument *document = pluma_document_new ();
 
 	gtk_text_buffer_set_text (GTK_TEXT_BUFFER (document), contents, -1);
 	return document;
 }
 
 static void
-complete_test_error (GeditDocument *document,
+complete_test_error (PlumaDocument *document,
                      GError        *error,
                      SaverTestData *data)
 {
@@ -119,7 +119,7 @@ read_file (const gchar *uri)
 }
 
 static void
-complete_test (GeditDocument *document,
+complete_test (PlumaDocument *document,
                GError        *error,
                SaverTestData *data)
 {
@@ -189,18 +189,18 @@ ensure_mounted (GFile *file)
 static void
 test_saver (const gchar              *filename_or_uri,
             const gchar              *contents,
-            GeditDocumentNewlineType  newline_type,
-            GeditDocumentSaveFlags    save_flags,
+            PlumaDocumentNewlineType  newline_type,
+            PlumaDocumentSaveFlags    save_flags,
             GCallback                 saved_callback,
             SaverTestData            *data)
 {
 	GFile *file;
 	gchar *uri;
-	GeditDocument *document;
+	PlumaDocument *document;
 	gboolean existed;
 
 	document = create_document (contents);
-	gedit_document_set_newline_type (document, newline_type);
+	pluma_document_set_newline_type (document, newline_type);
 
 	g_signal_connect (document, "saved", G_CALLBACK (complete_test_error), data);
 
@@ -219,7 +219,7 @@ test_saver (const gchar              *filename_or_uri,
 
 	ensure_mounted (file);
 
-	gedit_document_save_as (document, uri, gedit_encoding_get_utf8 (), save_flags);
+	pluma_document_save_as (document, uri, pluma_encoding_get_utf8 (), save_flags);
 
 	while (!test_completed)
 	{
@@ -239,45 +239,45 @@ test_saver (const gchar              *filename_or_uri,
 
 typedef struct
 {
-	GeditDocumentNewlineType type;
+	PlumaDocumentNewlineType type;
 	const gchar *text;
 	const gchar *result;
 } NewLineTestData;
 
 static NewLineTestData newline_test_data[] = {
-	{GEDIT_DOCUMENT_NEWLINE_TYPE_LF, "\nhello\nworld", "\nhello\nworld\n"},
-	{GEDIT_DOCUMENT_NEWLINE_TYPE_LF, "\nhello\nworld\n", "\nhello\nworld\n\n"},
-	{GEDIT_DOCUMENT_NEWLINE_TYPE_LF, "\nhello\nworld\n\n", "\nhello\nworld\n\n\n"},
-	{GEDIT_DOCUMENT_NEWLINE_TYPE_LF, "\r\nhello\r\nworld", "\nhello\nworld\n"},
-	{GEDIT_DOCUMENT_NEWLINE_TYPE_LF, "\r\nhello\r\nworld\r\n", "\nhello\nworld\n\n"},
-	{GEDIT_DOCUMENT_NEWLINE_TYPE_LF, "\rhello\rworld", "\nhello\nworld\n"},
-	{GEDIT_DOCUMENT_NEWLINE_TYPE_LF, "\rhello\rworld\r", "\nhello\nworld\n\n"},
-	{GEDIT_DOCUMENT_NEWLINE_TYPE_LF, "\nhello\r\nworld", "\nhello\nworld\n"},
-	{GEDIT_DOCUMENT_NEWLINE_TYPE_LF, "\nhello\r\nworld\r", "\nhello\nworld\n\n"},
+	{PLUMA_DOCUMENT_NEWLINE_TYPE_LF, "\nhello\nworld", "\nhello\nworld\n"},
+	{PLUMA_DOCUMENT_NEWLINE_TYPE_LF, "\nhello\nworld\n", "\nhello\nworld\n\n"},
+	{PLUMA_DOCUMENT_NEWLINE_TYPE_LF, "\nhello\nworld\n\n", "\nhello\nworld\n\n\n"},
+	{PLUMA_DOCUMENT_NEWLINE_TYPE_LF, "\r\nhello\r\nworld", "\nhello\nworld\n"},
+	{PLUMA_DOCUMENT_NEWLINE_TYPE_LF, "\r\nhello\r\nworld\r\n", "\nhello\nworld\n\n"},
+	{PLUMA_DOCUMENT_NEWLINE_TYPE_LF, "\rhello\rworld", "\nhello\nworld\n"},
+	{PLUMA_DOCUMENT_NEWLINE_TYPE_LF, "\rhello\rworld\r", "\nhello\nworld\n\n"},
+	{PLUMA_DOCUMENT_NEWLINE_TYPE_LF, "\nhello\r\nworld", "\nhello\nworld\n"},
+	{PLUMA_DOCUMENT_NEWLINE_TYPE_LF, "\nhello\r\nworld\r", "\nhello\nworld\n\n"},
 
-	{GEDIT_DOCUMENT_NEWLINE_TYPE_CR_LF, "\nhello\nworld", "\r\nhello\r\nworld\r\n"},
-	{GEDIT_DOCUMENT_NEWLINE_TYPE_CR_LF, "\nhello\nworld\n", "\r\nhello\r\nworld\r\n\r\n"},
-	{GEDIT_DOCUMENT_NEWLINE_TYPE_CR_LF, "\nhello\nworld\n\n", "\r\nhello\r\nworld\r\n\r\n\r\n"},
-	{GEDIT_DOCUMENT_NEWLINE_TYPE_CR_LF, "\r\nhello\r\nworld", "\r\nhello\r\nworld\r\n"},
-	{GEDIT_DOCUMENT_NEWLINE_TYPE_CR_LF, "\r\nhello\r\nworld\r\n", "\r\nhello\r\nworld\r\n\r\n"},
-	{GEDIT_DOCUMENT_NEWLINE_TYPE_CR_LF, "\rhello\rworld", "\r\nhello\r\nworld\r\n"},
-	{GEDIT_DOCUMENT_NEWLINE_TYPE_CR_LF, "\rhello\rworld\r", "\r\nhello\r\nworld\r\n\r\n"},
-	{GEDIT_DOCUMENT_NEWLINE_TYPE_CR_LF, "\nhello\r\nworld", "\r\nhello\r\nworld\r\n"},
-	{GEDIT_DOCUMENT_NEWLINE_TYPE_CR_LF, "\nhello\r\nworld\r", "\r\nhello\r\nworld\r\n\r\n"},
+	{PLUMA_DOCUMENT_NEWLINE_TYPE_CR_LF, "\nhello\nworld", "\r\nhello\r\nworld\r\n"},
+	{PLUMA_DOCUMENT_NEWLINE_TYPE_CR_LF, "\nhello\nworld\n", "\r\nhello\r\nworld\r\n\r\n"},
+	{PLUMA_DOCUMENT_NEWLINE_TYPE_CR_LF, "\nhello\nworld\n\n", "\r\nhello\r\nworld\r\n\r\n\r\n"},
+	{PLUMA_DOCUMENT_NEWLINE_TYPE_CR_LF, "\r\nhello\r\nworld", "\r\nhello\r\nworld\r\n"},
+	{PLUMA_DOCUMENT_NEWLINE_TYPE_CR_LF, "\r\nhello\r\nworld\r\n", "\r\nhello\r\nworld\r\n\r\n"},
+	{PLUMA_DOCUMENT_NEWLINE_TYPE_CR_LF, "\rhello\rworld", "\r\nhello\r\nworld\r\n"},
+	{PLUMA_DOCUMENT_NEWLINE_TYPE_CR_LF, "\rhello\rworld\r", "\r\nhello\r\nworld\r\n\r\n"},
+	{PLUMA_DOCUMENT_NEWLINE_TYPE_CR_LF, "\nhello\r\nworld", "\r\nhello\r\nworld\r\n"},
+	{PLUMA_DOCUMENT_NEWLINE_TYPE_CR_LF, "\nhello\r\nworld\r", "\r\nhello\r\nworld\r\n\r\n"},
 
-	{GEDIT_DOCUMENT_NEWLINE_TYPE_CR, "\nhello\nworld", "\rhello\rworld\r"},
-	{GEDIT_DOCUMENT_NEWLINE_TYPE_CR, "\nhello\nworld\n", "\rhello\rworld\r\r"},
-	{GEDIT_DOCUMENT_NEWLINE_TYPE_CR, "\nhello\nworld\n\n", "\rhello\rworld\r\r\r"},
-	{GEDIT_DOCUMENT_NEWLINE_TYPE_CR, "\r\nhello\r\nworld", "\rhello\rworld\r"},
-	{GEDIT_DOCUMENT_NEWLINE_TYPE_CR, "\r\nhello\r\nworld\r\n", "\rhello\rworld\r\r"},
-	{GEDIT_DOCUMENT_NEWLINE_TYPE_CR, "\rhello\rworld", "\rhello\rworld\r"},
-	{GEDIT_DOCUMENT_NEWLINE_TYPE_CR, "\rhello\rworld\r", "\rhello\rworld\r\r"},
-	{GEDIT_DOCUMENT_NEWLINE_TYPE_CR, "\nhello\r\nworld", "\rhello\rworld\r"},
-	{GEDIT_DOCUMENT_NEWLINE_TYPE_CR, "\nhello\r\nworld\r", "\rhello\rworld\r\r"}
+	{PLUMA_DOCUMENT_NEWLINE_TYPE_CR, "\nhello\nworld", "\rhello\rworld\r"},
+	{PLUMA_DOCUMENT_NEWLINE_TYPE_CR, "\nhello\nworld\n", "\rhello\rworld\r\r"},
+	{PLUMA_DOCUMENT_NEWLINE_TYPE_CR, "\nhello\nworld\n\n", "\rhello\rworld\r\r\r"},
+	{PLUMA_DOCUMENT_NEWLINE_TYPE_CR, "\r\nhello\r\nworld", "\rhello\rworld\r"},
+	{PLUMA_DOCUMENT_NEWLINE_TYPE_CR, "\r\nhello\r\nworld\r\n", "\rhello\rworld\r\r"},
+	{PLUMA_DOCUMENT_NEWLINE_TYPE_CR, "\rhello\rworld", "\rhello\rworld\r"},
+	{PLUMA_DOCUMENT_NEWLINE_TYPE_CR, "\rhello\rworld\r", "\rhello\rworld\r\r"},
+	{PLUMA_DOCUMENT_NEWLINE_TYPE_CR, "\nhello\r\nworld", "\rhello\rworld\r"},
+	{PLUMA_DOCUMENT_NEWLINE_TYPE_CR, "\nhello\r\nworld\r", "\rhello\rworld\r\r"}
 };
 
 static void
-test_new_line (const gchar *filename, GeditDocumentSaveFlags save_flags)
+test_new_line (const gchar *filename, PlumaDocumentSaveFlags save_flags)
 {
 	gint i;
 	gint num = sizeof (newline_test_data) / sizeof (NewLineTestData);
@@ -306,21 +306,21 @@ test_local ()
 {
 	test_saver (DEFAULT_LOCAL_URI,
 	            "hello world",
-	            GEDIT_DOCUMENT_NEWLINE_TYPE_LF,
+	            PLUMA_DOCUMENT_NEWLINE_TYPE_LF,
 	            0,
 	            NULL,
 	            saver_test_data_new (DEFAULT_LOCAL_URI, "hello world\n", NULL));
 
 	test_saver (DEFAULT_LOCAL_URI,
 	            "hello world\r\n",
-	            GEDIT_DOCUMENT_NEWLINE_TYPE_LF,
+	            PLUMA_DOCUMENT_NEWLINE_TYPE_LF,
 	            0,
 	            NULL,
 	            saver_test_data_new (DEFAULT_LOCAL_URI, "hello world\n\n", NULL));
 
 	test_saver (DEFAULT_LOCAL_URI,
 	            "hello world\n",
-	            GEDIT_DOCUMENT_NEWLINE_TYPE_LF,
+	            PLUMA_DOCUMENT_NEWLINE_TYPE_LF,
 	            0,
 	            NULL,
 	            saver_test_data_new (DEFAULT_LOCAL_URI, "hello world\n\n", NULL));
@@ -337,21 +337,21 @@ test_remote ()
 {
 	test_saver (DEFAULT_REMOTE_URI,
 	            "hello world",
-	            GEDIT_DOCUMENT_NEWLINE_TYPE_LF,
+	            PLUMA_DOCUMENT_NEWLINE_TYPE_LF,
 	            0,
 	            NULL,
 	            saver_test_data_new (DEFAULT_REMOTE_URI, "hello world\n", NULL));
 
 	test_saver (DEFAULT_REMOTE_URI,
 	            "hello world\r\n",
-	            GEDIT_DOCUMENT_NEWLINE_TYPE_LF,
+	            PLUMA_DOCUMENT_NEWLINE_TYPE_LF,
 	            0,
 	            NULL,
 	            saver_test_data_new (DEFAULT_REMOTE_URI, "hello world\n\n", NULL));
 
 	test_saver (DEFAULT_REMOTE_URI,
 	            "hello world\n",
-	            GEDIT_DOCUMENT_NEWLINE_TYPE_LF,
+	            PLUMA_DOCUMENT_NEWLINE_TYPE_LF,
 	            0,
 	            NULL,
 	            saver_test_data_new (DEFAULT_REMOTE_URI, "hello world\n\n", NULL));
@@ -381,12 +381,12 @@ check_permissions (GFile *file,
 }
 
 static void
-check_permissions_saved (GeditDocument *document,
+check_permissions_saved (PlumaDocument *document,
                          GError        *error,
                          SaverTestData *data)
 {
 	guint permissions = (guint)GPOINTER_TO_INT (data->data);
-	GFile *file = gedit_document_get_location (document);
+	GFile *file = pluma_document_get_location (document);
 
 	check_permissions (file, permissions);
 
@@ -434,7 +434,7 @@ test_permissions (const gchar *uri,
 
 	test_saver (uri,
 	            DEFAULT_CONTENT,
-	            GEDIT_DOCUMENT_NEWLINE_TYPE_LF,
+	            PLUMA_DOCUMENT_NEWLINE_TYPE_LF,
 	            0,
 	            G_CALLBACK (check_permissions_saved),
 	            saver_test_data_new (uri,
@@ -460,7 +460,7 @@ test_local_unowned_directory ()
 {
 	test_saver (UNOWNED_LOCAL_URI,
 	            DEFAULT_CONTENT,
-	            GEDIT_DOCUMENT_NEWLINE_TYPE_LF,
+	            PLUMA_DOCUMENT_NEWLINE_TYPE_LF,
 	            0,
 	            NULL,
 	            saver_test_data_new (UNOWNED_LOCAL_URI,
@@ -473,7 +473,7 @@ test_remote_unowned_directory ()
 {
 	test_saver (UNOWNED_REMOTE_URI,
 	            DEFAULT_CONTENT,
-	            GEDIT_DOCUMENT_NEWLINE_TYPE_LF,
+	            PLUMA_DOCUMENT_NEWLINE_TYPE_LF,
 	            0,
 	            NULL,
 	            saver_test_data_new (UNOWNED_REMOTE_URI,
@@ -492,7 +492,7 @@ test_remote_permissions ()
 }
 
 static void
-test_unowned_group_permissions (GeditDocument *document,
+test_unowned_group_permissions (PlumaDocument *document,
                                 GError        *error,
                                 SaverTestData *data)
 {
@@ -526,7 +526,7 @@ test_unowned_group (const gchar *uri)
 {
 	test_saver (uri,
 	            DEFAULT_CONTENT,
-	            GEDIT_DOCUMENT_NEWLINE_TYPE_LF,
+	            PLUMA_DOCUMENT_NEWLINE_TYPE_LF,
 	            0,
 	            G_CALLBACK (test_unowned_group_permissions),
 	            saver_test_data_new (uri,
@@ -690,7 +690,7 @@ int main (int   argc,
 	g_type_init ();
 	g_test_init (&argc, &argv, NULL);
 
-	gedit_prefs_manager_app_init ();
+	pluma_prefs_manager_app_init ();
 
 	g_printf ("\n***\n");
 	have_unowned = check_unowned_directory ();

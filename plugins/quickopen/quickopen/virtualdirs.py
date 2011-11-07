@@ -65,7 +65,7 @@ class RecentDocumentsDirectory(VirtualDirectory):
                 added = 0
 
                 for item in items:
-                        if item.has_group('gedit'):
+                        if item.has_group('pluma'):
                                 self.append(gio.File(item.get_uri()))
                                 added += 1
 
