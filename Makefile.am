@@ -40,6 +40,7 @@ MAINTAINERCLEANFILES = 		\
 	intltool-merge.in 		\
 	intltool-update.in \
 	configure \
+	INSTALL \
 	gtk-doc.make		\
 	install-sh		\
 	ltmain.sh		\
