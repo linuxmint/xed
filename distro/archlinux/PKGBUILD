@@ -20,7 +20,7 @@ build() {
 	cd "${srcdir}/${pkgname}"
 	intltoolize --force --copy --automake || die "intltoolize failed"
 
-	PYTHON=/usr/bin/python2 ./configure --prefix=/usr --sysconfdir=/etc \
+	PYTHON=/usr/bin/python2 ./autogen.sh --prefix=/usr --sysconfdir=/etc \
 		--localstatedir=/var --libexecdir=/usr/lib/ \
 		--disable-scrollkeeper --enable-python || return 1
 	make || return 1
