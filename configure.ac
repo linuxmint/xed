@@ -2,9 +2,9 @@ dnl Process this file with autoconf to produce a configure script.
 
 AC_PREREQ(2.63.2)
 
-m4_define(gedit_major_version,  2011)
-m4_define(gedit_minor_version, 10)
-m4_define(gedit_micro_version,  26)
+m4_define(gedit_major_version, 2011)
+m4_define(gedit_minor_version, 11)
+m4_define(gedit_micro_version, 7)
 m4_define(gedit_version, gedit_major_version.gedit_minor_version.gedit_micro_version)
 
 AC_INIT([gedit],[gedit_version],[http://bugzilla.mate.org/enter_bug.cgi?product=gedit],[gedit],[http://projects.mate.org/gedit/])
