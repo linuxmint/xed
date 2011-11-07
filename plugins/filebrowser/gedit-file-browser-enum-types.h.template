@@ -1,0 +1,29 @@
+/*** BEGIN file-header ***/
+#ifndef __GEDIT_FILE_BROWSER_ENUM_TYPES_H__
+#define __GEDIT_FILE_BROWSER_ENUM_TYPES_H__
+
+#include <glib-object.h>
+
+G_BEGIN_DECLS
+
+/*** END file-header ***/
+
+/*** BEGIN file-production ***/
+/* Enumerations from "@filename@" */
+
+/*** END file-production ***/
+
+/*** BEGIN enumeration-production ***/
+#define GEDIT_TYPE_@ENUMSHORT@	(@enum_name@_get_type())
+GType @enum_name@_get_type	(void) G_GNUC_CONST;
+
+/*** END enumeration-production ***/
+
+/*** BEGIN file-tail ***/
+void gedit_file_browser_enum_and_flag_register_type (GTypeModule * module);
+
+G_END_DECLS
+
+#endif /* __GEDIT_FILE_BROWSER_ENUM_TYPES_H__ */
+/*** END file-tail ***/
+

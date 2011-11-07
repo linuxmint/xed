@@ -1,0 +1,45 @@
+/*** BEGIN file-header ***/
+#include "gedit-file-browser-enum-types.h"
+
+/*** END file-header ***/
+
+/*** BEGIN file-production ***/
+/* enumerations from "@filename@" */
+#include "@filename@"
+
+/*** END file-production ***/
+
+/*** BEGIN value-header ***/
+static GType @enum_name@_type = 0;
+
+static GType
+register_@enum_name@ (GTypeModule *module)
+{
+	static const G@Type@Value values[] = {
+/*** END value-header ***/
+
+/*** BEGIN value-production ***/
+		{ @VALUENAME@,
+		  "@VALUENAME@",
+		  "@valuenick@" },
+/*** END value-production ***/
+
+/*** BEGIN value-tail ***/
+		{ 0, NULL, NULL }
+	};
+
+	@enum_name@_type =
+		g_type_module_register_@type@ (module,
+		                               "@EnumName@",
+		                               values);
+
+	return @enum_name@_type;
+}
+
+GType
+@enum_name@_get_type (void)
+{
+	return @enum_name@_type;
+}
+
+/*** END value-tail ***/

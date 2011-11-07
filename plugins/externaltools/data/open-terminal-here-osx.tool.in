@@ -1,0 +1,16 @@
+#!/usr/bin/osascript
+
+set the_path to system attribute "GEDIT_CURRENT_DOCUMENT_DIR"
+set cmd to "cd " & quoted form of the_path
+
+tell application "System Events" to set terminalIsRunning to exists application process "Terminal"
+
+tell application "Terminal"
+	activate
+	
+	if terminalIsRunning is true then
+		do script with command cmd
+	else
+		do script with command cmd in window 1
+	end if
+end tell

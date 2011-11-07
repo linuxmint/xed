@@ -1,0 +1,164 @@
+<?xml version='1.0' encoding='utf-8'?>
+<snippets language="fortran">
+  <snippet id="c">
+    <text><![CDATA[character(len=${1:10}) :: $0]]></text>
+    <tag>c</tag>
+    <description>character</description>
+  </snippet>
+  <snippet id="cl">
+    <text><![CDATA[close(${1:unit}, status='${2:keep}')]]></text>
+    <tag>cl</tag>
+    <description>close</description>
+  </snippet>
+  <snippet id="do">
+    <text><![CDATA[do ${1:i}=$2, $3, ${4:1}
+	${0:source}
+end do]]></text>
+    <tag>do</tag>
+    <description>do ... end do</description>
+  </snippet>
+  <snippet id="func">
+    <text><![CDATA[function ${1:name}( ${2:parameter} )
+	${3:integer/real ::} $1
+	${4:integer/real ::} $2
+	
+	${0:source}
+	
+	$1 = 	!result
+end function]]></text>
+    <tag>func</tag>
+    <description>function</description>
+  </snippet>
+  <snippet id="ifel">
+    <text><![CDATA[if( $1 ) then
+	${2:source}
+else
+	${0:source}
+end if]]></text>
+    <tag>ifel</tag>
+    <description>if ... else ... end if</description>
+  </snippet>
+  <snippet id="if">
+    <text><![CDATA[if( $1 ) then
+	${0:source}
+end if]]></text>
+    <tag>if</tag>
+    <description>if ... end if</description>
+  </snippet>
+  <snippet id="i">
+    <text><![CDATA[integer(kind=${1:4}) :: $0]]></text>
+    <tag>i</tag>
+    <description>integer</description>
+  </snippet>
+  <snippet id="ida">
+    <text><![CDATA[integer(kind=${1:4}), dimension(${2::}), allocatable :: $0]]></text>
+    <tag>ida</tag>
+    <description>integerdimalloc</description>
+  </snippet>
+  <snippet id="id">
+    <text><![CDATA[integer(kind=${1:4}), dimension(${2::}) :: $0]]></text>
+    <tag>id</tag>
+    <description>integerdim</description>
+  </snippet>
+  <snippet id="l">
+    <text><![CDATA[logical(kind=${1:1}) :: $0]]></text>
+    <tag>l</tag>
+    <description>logical</description>
+  </snippet>
+  <snippet id="mod">
+    <text><![CDATA[module ${1:name}
+	implicit none
+	${2:integer/real ::} $3
+	
+	${4:contains}
+	
+	${0:source}
+end module]]></text>
+    <tag>mod</tag>
+    <description>module</description>
+  </snippet>
+  <snippet id="op">
+    <text><![CDATA[open(${1:unit}, file='${2:name}', status='${3:new}')]]></text>
+    <tag>op</tag>
+    <description>open</description>
+  </snippet>
+  <snippet id="prog">
+    <text><![CDATA[program ${1:name}
+	implicit none
+	
+	${0:source}
+end program]]></text>
+    <tag>prog</tag>
+    <description>program</description>
+  </snippet>
+  <snippet id="re">
+    <text><![CDATA[read(unit=${1:*},fmt=${2:*}) $0]]></text>
+    <tag>re</tag>
+    <description>read</description>
+  </snippet>
+  <snippet id="r">
+    <text><![CDATA[real(kind=${1:8}) :: $0]]></text>
+    <tag>r</tag>
+    <description>real</description>
+  </snippet>
+  <snippet id="rda">
+    <text><![CDATA[real(kind=${1:8}), dimension(${2::}), allocatable :: $0]]></text>
+    <tag>rda</tag>
+    <description>realdimalloc</description>
+  </snippet>
+  <snippet id="rd">
+    <text><![CDATA[real(kind=${1:8}), dimension(${2::}) :: $0]]></text>
+    <tag>rd</tag>
+    <description>realdim</description>
+  </snippet>
+  <snippet id="rec">
+    <text><![CDATA[recursive function ${1:name}( ${2:parameter} ) result( ${3:res} )
+	${4:integer/real ::} $3
+	${5:integer/real ::} $2
+	
+	${0:source}
+	
+	$3 = 	!result
+end function]]></text>
+    <tag>rec</tag>
+    <description>recursivfunc</description>
+  </snippet>
+  <snippet id="sel">
+    <text><![CDATA[select case( $1 )
+	case( $2 )
+		${3:source}
+	case default
+		${0:source}
+end select]]></text>
+    <tag>sel</tag>
+    <description>select</description>
+  </snippet>
+  <snippet id="sub">
+    <text><![CDATA[subroutine ${1:name}( ${2:parameter} )
+	${3:integer/real ::} $2
+	
+	${0:source}
+end subroutine]]></text>
+    <tag>sub</tag>
+    <description>subroutine</description>
+  </snippet>
+  <snippet id="t">
+    <text><![CDATA[type :: ${1:name}
+	${2:integer/real ::} $0
+end type $1]]></text>
+    <tag>t</tag>
+    <description>type</description>
+  </snippet>
+  <snippet id="dow">
+    <text><![CDATA[do while( ${1} )
+	${0:source}
+end do]]></text>
+    <tag>dow</tag>
+    <description>while</description>
+  </snippet>
+  <snippet id="wr">
+    <text><![CDATA[write(unit=${1:*},fmt=${2:*}) "$3", $0]]></text>
+    <tag>wr</tag>
+    <description>write</description>
+  </snippet>
+</snippets>

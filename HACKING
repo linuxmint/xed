@@ -1,0 +1,65 @@
+guidelines for gedit
+====================
+
+gedit source code is maintained using the git version control system
+and is available at the following location:
+
+    git://git.mate.org/gedit
+
+Or if you have an account on MATE servers:
+
+    ssh://USERNAME@git.mate.org/git/gedit
+
+A Web Interface is available at:
+
+    http://git.mate.org/cgit/gedit
+
+Please don't commit directly to the git repository unless
+you have been given the green light to commit freely to gedit. 
+When in doubt assume you haven't ;-).
+
+Please attach patches in bugzilla (http://bugzilla.mate.org).
+If the patch fixes a bug that is not reported yet in bugzilla or is
+an enhancement, create a new bugreport.
+
+If you are a translator feel free to mark strings for translation,
+fix typos in the code, etc.
+
+Please send patches for build & configure fixes too.  I really appreciate
+your help, I just want to review these fixes before applying.
+
+If you are a "build sheriff", feel free to commit fixes for build and 
+configure (please, send me an e-mail with the patch you have applied).
+
+When committing to the gedit git repository make sure to include a
+meaningful commit message. Changes without a sufficient commit message
+will be reverted. Commit messages should have the following format:
+
+=== begin example commit ===
+Short explanation of the commit
+
+Longer explanation explaining exactly what's changed, whether any
+external or private interfaces changed, what bugs were fixed (with bug
+tracker reference if applicable) and so forth. Be concise but not too brief.
+=== end example commit ===
+
+  - Always add a brief description of the commit to the _first_ line of
+    the commit and terminate by two newlines (it will work without the
+    second newline, but that is not nice for the interfaces).
+
+  - First line (the brief description) must only be one sentence and
+    should start with a capital letter unless it starts with a lowercase
+    symbol or identifier. Don't use a trailing period either. Don't exceed
+    72 characters.
+
+  - The main description (the body) is normal prose and should use normal
+    punctuation and capital letters where appropriate. Normally, for patches
+    sent to a mailing list it's copied from there.
+
+  - When committing code on behalf of others use the --author option, e.g.
+    git commit -a --author "Joe Coder <joe@coder.org>" and --signoff.
+
+
+Thanks,
+
+  The gedit team.

@@ -1,0 +1,5276 @@
+# Chinese (Hong Kong) translation of gedit.
+# Copyright (C) 2000-07 Free Software Foundation, Inc.
+# Jing-Jong Shyue <shyue@sonoma.com.tw>, 2000.
+# Abel Cheung <abel@oaka.org>, 2001-2003.
+# Anthony Tang <tkyanthony@yahoo.com.hk>, 2004.
+# Woodman Tuen <wmtuen@gmail.com>, 2005-2007.
+# Chao-Hsiung Liao <j_h_liau@yahoo.com.tw>, 2008
+#
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: gedit 2.29.7\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2010-02-27 20:34+0800\n"
+"PO-Revision-Date: 2010-02-27 20:37+0800\n"
+"Last-Translator: Chao-Hsiung Liao <j_h_liau@yahoo.com.tw>\n"
+"Language-Team: Chinese (Hong Kong) <community@linuxhall.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: ../data/gedit.desktop.in.in.h:1
+msgid "Edit text files"
+msgstr "編輯文字檔"
+
+#: ../data/gedit.desktop.in.in.h:2 ../gedit/gedit-print-job.c:759
+msgid "Text Editor"
+msgstr "文字編輯器"
+
+#: ../data/gedit.desktop.in.in.h:3
+msgid "gedit"
+msgstr "gedit"
+
+#: ../data/gedit.desktop.in.in.h:4
+msgid "gedit Text Editor"
+msgstr "gedit 文字編輯器"
+
+#: ../data/gedit.schemas.in.in.h:1
+msgid ""
+"A custom font that will be used for the editing area. This will only take "
+"effect if the \"Use Default Font\" option is turned off."
+msgstr "在編輯區域中使用的自選字型。本選項只有在關閉「使用預設字型」選項後才會生效。"
+
+#: ../data/gedit.schemas.in.in.h:2
+msgid "Active plugins"
+msgstr "啟用外掛程式"
+
+#: ../data/gedit.schemas.in.in.h:3
+msgid "Automatic indent"
+msgstr "自動縮排"
+
+#: ../data/gedit.schemas.in.in.h:4
+msgid "Automatically Detected Encodings"
+msgstr "自動偵測編碼"
+
+#: ../data/gedit.schemas.in.in.h:5
+msgid "Autosave"
+msgstr "自動儲存"
+
+#: ../data/gedit.schemas.in.in.h:6
+msgid "Autosave Interval"
+msgstr "自動儲存周期"
+
+# zh_HK: msgstr "打印時使用的內文字型"
+#: ../data/gedit.schemas.in.in.h:7
+msgid "Body Font for Printing"
+msgstr "打印時使用的內文字型"
+
+#: ../data/gedit.schemas.in.in.h:8
+msgid "Bottom Panel is Visible"
+msgstr "顯示底部面板"
+
+#: ../data/gedit.schemas.in.in.h:9
+msgid "Create Backup Copies"
+msgstr "製作備份"
+
+#: ../data/gedit.schemas.in.in.h:10
+msgid "Display Line Numbers"
+msgstr "顯示行號"
+
+#: ../data/gedit.schemas.in.in.h:11
+msgid "Display Right Margin"
+msgstr "顯示右邊邊界"
+
+#: ../data/gedit.schemas.in.in.h:12
+msgid "Editor Font"
+msgstr "編輯器字型"
+
+#: ../data/gedit.schemas.in.in.h:13
+msgid "Enable Search Highlighting"
+msgstr "啟用搜尋標示功能"
+
+#: ../data/gedit.schemas.in.in.h:14
+msgid "Enable Syntax Highlighting"
+msgstr "啟用語法色彩標示"
+
+#: ../data/gedit.schemas.in.in.h:15
+msgid "Encodings shown in menu"
+msgstr "選單中顯示的編碼"
+
+# zh_HK: msgstr "打印時使用的頁首字型"
+#: ../data/gedit.schemas.in.in.h:16
+msgid "Header Font for Printing"
+msgstr "打印時使用的頁首字型"
+
+#: ../data/gedit.schemas.in.in.h:17
+msgid "Highlight Current Line"
+msgstr "標示目前的行"
+
+#: ../data/gedit.schemas.in.in.h:18
+msgid "Highlight Matching Bracket"
+msgstr "標示對稱的括號"
+
+# zh_HK: msgstr "如果數值是 0，當打印文件時不會打印行號。否則，gedit 會每隔指定的行數打印行號。"
+#: ../data/gedit.schemas.in.in.h:19
+msgid ""
+"If this value is 0, then no line numbers will be inserted when printing a "
+"document. Otherwise, gedit will print line numbers every such number of "
+"lines."
+msgstr "如果數值是 0，當打印文件時不會打印行號。否則，gedit 會每隔指定的行數打印行號。"
+
+#: ../data/gedit.schemas.in.in.h:20
+msgid "Insert spaces"
+msgstr "插入空格"
+
+# zh_HK: msgstr "打印行號時使用的字型"
+#: ../data/gedit.schemas.in.in.h:21
+msgid "Line Number Font for Printing"
+msgstr "打印行號時使用的字型"
+
+#: ../data/gedit.schemas.in.in.h:22
+msgid "Line Wrapping Mode"
+msgstr "換行模式"
+
+#: ../data/gedit.schemas.in.in.h:23
+msgid ""
+"List of VFS schemes gedit supports in write mode. The 'file' scheme is "
+"writable by default."
+msgstr "gedit 支援寫入模式的 VFS scheme 清單。預設 ‘file’ scheme 是可寫入的。"
+
+#: ../data/gedit.schemas.in.in.h:24
+msgid ""
+"List of active plugins. It contains the \"Location\" of the active plugins. "
+"See the .gedit-plugin file for obtaining the \"Location\" of a given plugin."
+msgstr "可用的外掛程式的清單。這包括可用的外掛程式的「位置」。參閱 .gedit-plugin 檔來取得特定的外掛程式的「位置」。"
+
+#: ../data/gedit.schemas.in.in.h:25
+msgid ""
+"List of encodings shown in the Character Encoding menu in open/save file "
+"selector. Only recognized encodings are used."
+msgstr "在開啟/儲存檔案對話方塊中的「字符編碼」選單，會顯示這裏列出的編碼。只會使用能辨識的編碼。"
+
+#: ../data/gedit.schemas.in.in.h:26
+msgid "Maximum Number of Undo Actions"
+msgstr "復原動作次數上限"
+
+#: ../data/gedit.schemas.in.in.h:27
+msgid "Maximum Recent Files"
+msgstr "最近開啟檔案數目的上限"
+
+#: ../data/gedit.schemas.in.in.h:28
+msgid ""
+"Maximum number of actions that gedit will be able to undo or redo. Use \"-1"
+"\" for unlimited number of actions."
+msgstr "gedit 中復原或取消復原次數的上限。設為“-1”則為無限次。"
+
+#: ../data/gedit.schemas.in.in.h:29
+msgid ""
+"Maximum number of actions that gedit will be able to undo or redo. Use \"-1"
+"\" for unlimited number of actions. Deprecated since 2.12.0"
+msgstr "gedit 中復原或取消復原的次數上限。設為“-1”則為無限次。自 2.12.0 起已不建議再使用"
+
+# (Abel) Usually Chinese fonts need to be larger in order to be readable
+#. Translators: This is the Editor Font.
+#. This is a Pango font
+#: ../data/gedit.schemas.in.in.h:32
+msgid "Monospace 12"
+msgstr "Monospace 14"
+
+#. Translators: This is the Body font for printing.
+#. This is a Pango font.
+#: ../data/gedit.schemas.in.in.h:35
+msgid "Monospace 9"
+msgstr "Monospace 12"
+
+#: ../data/gedit.schemas.in.in.h:36
+msgid ""
+"Number of minutes after which gedit will automatically save modified files. "
+"This will only take effect if the \"Autosave\" option is turned on."
+msgstr "gedit 會在幾分鐘後自動儲存修改過的檔案。本選項只有在「自動儲存」選項開啟後才會生效。"
+
+# zh_HK: msgstr "打印頁首"
+#: ../data/gedit.schemas.in.in.h:37
+msgid "Print Header"
+msgstr "打印頁首"
+
+# zh_HK: msgstr "打印行號"
+#: ../data/gedit.schemas.in.in.h:38
+msgid "Print Line Numbers"
+msgstr "打印行號"
+
+# zh_HK: msgstr "打印時顯示語法色彩"
+#: ../data/gedit.schemas.in.in.h:39
+msgid "Print Syntax Highlighting"
+msgstr "打印時顯示語法色彩"
+
+# zh_HK: msgstr "打印換行模式"
+#: ../data/gedit.schemas.in.in.h:40
+msgid "Printing Line Wrapping Mode"
+msgstr "打印換行模式"
+
+#: ../data/gedit.schemas.in.in.h:41
+msgid "Restore Previous Cursor Position"
+msgstr "回復先前的游標位置"
+
+#: ../data/gedit.schemas.in.in.h:42
+msgid "Right Margin Position"
+msgstr "右邊邊界位置"
+
+# (Abel) Usually Chinese fonts need to be larger in order to be readable
+#. Translators: This is the Header font for printing.
+#. This is a Pango font.
+#: ../data/gedit.schemas.in.in.h:45
+msgid "Sans 11"
+msgstr "Sans 14"
+
+#. Translators: This is the Line Number font for printing.
+#. This is a Pango font.
+#: ../data/gedit.schemas.in.in.h:48
+msgid "Sans 8"
+msgstr "Sans 10"
+
+#: ../data/gedit.schemas.in.in.h:49
+msgid "Side Pane is Visible"
+msgstr "顯示側面窗格"
+
+#: ../data/gedit.schemas.in.in.h:50
+msgid "Smart Home End"
+msgstr "智慧式 Home End"
+
+#: ../data/gedit.schemas.in.in.h:51
+msgid ""
+"Sorted list of encodings used by gedit for automatically detecting the "
+"encoding of a file. \"CURRENT\" represents the current locale encoding. Only "
+"recognized encodings are used."
+msgstr "這裏是一系列已排序的編碼，gedit 會根據這個清單自動偵測檔案的字符編碼。「CURRENT」表示使用目前地區設定的編碼。只會使用能識別的編碼。"
+
+#: ../data/gedit.schemas.in.in.h:52
+msgid ""
+"Specifies how the cursor moves when the HOME and END keys are pressed. Use "
+"\"DISABLED\" to always move at the start/end of the line, \"AFTER\" to move "
+"to the start/end of the line the first time the keys are pressed and to the "
+"start/end of the text ignoring whitespaces the second time the keys are "
+"pressed, \"BEFORE\" to move to the start/end of the text before moving to "
+"the start/end of the line and \"ALWAYS\" to always move to the start/end of "
+"the text instead of the start/end of the line."
+msgstr "指定按下 HOME 與 END 鍵時游標要如何移動。使用「停用」游標會移至行的開始/結束處。使用「之後」游標會在第一次按下按鍵時移至行的開始/結束處，第二次按下按鍵時移至行的開始/結束處且略過空白字符。使用「之前」游標會在移至行的開始/結束前先移到文字的開始/結束處。使用「永遠」游標會以移至文字的開始/結束處代替移至行的開始/結束處。"
+
+# zh_HK: msgstr "指定打印時如何換行。使用“GTK_WRAP_NONE”代表不會換行，“GTK_WRAP_WORD”代表在字詞間換行，及“GTK_WRAP_CHAR”代表在個別字符間換行。請注意，設定值是會分辨大小寫的，所以請確保設定值和上面所列出的完全一致。"
+#: ../data/gedit.schemas.in.in.h:53
+msgid ""
+"Specifies how to wrap long lines for printing. Use \"GTK_WRAP_NONE\" for no "
+"wrapping, \"GTK_WRAP_WORD\" for wrapping at word boundaries, and "
+"\"GTK_WRAP_CHAR\" for wrapping at individual character boundaries. Note that "
+"the values are case-sensitive, so make sure they appear exactly as mentioned "
+"here."
+msgstr "指定打印時如何換行。使用“GTK_WRAP_NONE”代表不會換行，“GTK_WRAP_WORD”代表在字詞間換行，及“GTK_WRAP_CHAR”代表在個別字符間換行。請注意，設定值是會分辨大小寫的，所以請確保設定值和上面所列出的完全一致。"
+
+#: ../data/gedit.schemas.in.in.h:54
+msgid ""
+"Specifies how to wrap long lines in the editing area. Use \"GTK_WRAP_NONE\" "
+"for no wrapping, \"GTK_WRAP_WORD\" for wrapping at word boundaries, and "
+"\"GTK_WRAP_CHAR\" for wrapping at individual character boundaries. Note that "
+"the values are case-sensitive, so make sure they appear exactly as mentioned "
+"here."
+msgstr "指定編輯區域如何換行。使用“GTK_WRAP_NONE”代表不會換行，“GTK_WRAP_WORD”代表在字詞間換行，及“GTK_WRAP_CHAR”代表在個別字符間換行。請注意，設定值是會分辨大小寫的，所以請確保設定值和上面所列出的完全一致。"
+
+# zh_HK: msgstr "指定打印文件時文件內容所用的字型。"
+#: ../data/gedit.schemas.in.in.h:55
+msgid ""
+"Specifies the font to use for a document's body when printing documents."
+msgstr "指定打印文件時文件內容所用的字型。"
+
+# zh_HK: msgstr "指定打印時行號所用的字型。本選項只有在「打印行號」選項的值不是零的時候生效。"
+#: ../data/gedit.schemas.in.in.h:56
+msgid ""
+"Specifies the font to use for line numbers when printing. This will only "
+"take effect if the \"Print Line Numbers\" option is non-zero."
+msgstr "指定打印時行號所用的字型。本選項只有在「打印行號」選項的值不是零的時候生效。"
+
+# zh_HK: msgstr "指定打印文件時頁首所用的字型。本選項只有在「打印頁首」選項的值開啟的時候生效。"
+#: ../data/gedit.schemas.in.in.h:57
+msgid ""
+"Specifies the font to use for page headers when printing a document. This "
+"will only take effect if the \"Print Header\" option is turned on."
+msgstr "指定打印文件時頁首所用的字型。本選項只有在「打印頁首」選項的值開啟的時候生效。"
+
+#: ../data/gedit.schemas.in.in.h:58
+msgid ""
+"Specifies the maximum number of recently opened files that will be displayed "
+"in the \"Recent Files\" submenu."
+msgstr "指定在「最近使用的檔案」副選單中，可以顯示多少個最近開啟的檔案。"
+
+#: ../data/gedit.schemas.in.in.h:59
+msgid ""
+"Specifies the number of spaces that should be displayed instead of Tab "
+"characters."
+msgstr "指定顯示 Tab 字符時會以多少個空格代替。"
+
+#: ../data/gedit.schemas.in.in.h:60
+msgid "Specifies the position of the right margin."
+msgstr "指定右邊邊界位置。"
+
+#: ../data/gedit.schemas.in.in.h:61
+msgid "Status Bar is Visible"
+msgstr "顯示狀態列"
+
+#: ../data/gedit.schemas.in.in.h:62
+msgid "Style Scheme"
+msgstr "樣式架構"
+
+#: ../data/gedit.schemas.in.in.h:63
+msgid ""
+"Style for the toolbar buttons. Possible values are \"GEDIT_TOOLBAR_SYSTEM\" "
+"to use the system's default style, \"GEDIT_TOOLBAR_ICONS\" to display icons "
+"only, \"GEDIT_TOOLBAR_ICONS_AND_TEXT\" to display both icons and text, and "
+"\"GEDIT_TOOLBAR_ICONS_BOTH_HORIZ\" to display prioritized text beside icons. "
+"Note that the values are case-sensitive, so make sure they appear exactly as "
+"mentioned here."
+msgstr ""
+"工具列按鈕的樣式。可接受的值為：\n"
+"“GEDIT_TOOLBAR_SYSTEM”表示使用系統預設的樣式，\n"
+"“GEDIT_TOOLBAR_ICONS”表示只顯示圖示，\n"
+"“GEDIT_TOOLBAR_ICONS_AND_TEXT”表示同時顯示圖示及文字，及\n"
+"“GEDIT_TOOLBAR_ICONS_BOTH_HORIZ”表示一部份的圖示旁邊會加上文字。\n"
+"請注意，設定值是會分辨大小寫的，所以請確保設定值和上面所列出的完全一致。"
+
+#: ../data/gedit.schemas.in.in.h:64
+msgid "Tab Size"
+msgstr "Tab 字符闊度"
+
+#: ../data/gedit.schemas.in.in.h:65
+msgid "The ID of a GtkSourceView Style Scheme used to color the text."
+msgstr "用於文字顏色的 GtkSourceView 樣式架構 ID。"
+
+#: ../data/gedit.schemas.in.in.h:66
+msgid "Toolbar Buttons Style"
+msgstr "工具列按鈕樣式"
+
+#: ../data/gedit.schemas.in.in.h:67
+msgid "Toolbar is Visible"
+msgstr "顯示工具列"
+
+#: ../data/gedit.schemas.in.in.h:68
+msgid "Undo Actions Limit (DEPRECATED)"
+msgstr "復原次數限制（不建議再使用）"
+
+#: ../data/gedit.schemas.in.in.h:69
+msgid "Use Default Font"
+msgstr "使用預設字型"
+
+#: ../data/gedit.schemas.in.in.h:70
+msgid ""
+"Whether gedit should automatically save modified files after a time "
+"interval. You can set the time interval with the \"Autosave Interval\" "
+"option."
+msgstr "gedit 是否應每隔某段時間自動儲存修改過的檔案。你可以在「自動儲存相隔時間」選項中指定時間。"
+
+#: ../data/gedit.schemas.in.in.h:71
+msgid ""
+"Whether gedit should create backup copies for the files it saves. You can "
+"set the backup file extension with the \"Backup Copy Extension\" option."
+msgstr "gedit 應否在儲存檔案時製作備份。你可以在「備份檔延伸檔名」中指定備份檔的延伸檔名。"
+
+#: ../data/gedit.schemas.in.in.h:72
+msgid "Whether gedit should display line numbers in the editing area."
+msgstr "gedit 應否在編輯區域中顯示行號。"
+
+#: ../data/gedit.schemas.in.in.h:73
+msgid "Whether gedit should display the right margin in the editing area."
+msgstr "gedit 應否在編輯區域中顯示右邊邊界。"
+
+#: ../data/gedit.schemas.in.in.h:74
+msgid "Whether gedit should enable automatic indentation."
+msgstr "gedit 是否應啟用自動縮排的功能。"
+
+#: ../data/gedit.schemas.in.in.h:75
+msgid "Whether gedit should enable syntax highlighting."
+msgstr "gedit 應否啟用語法色彩顯示的功能。"
+
+#: ../data/gedit.schemas.in.in.h:76
+msgid ""
+"Whether gedit should highlight all the occurrences of the searched text."
+msgstr "gedit 應否在搜尋後替匹配的字串加上標示。"
+
+#: ../data/gedit.schemas.in.in.h:77
+msgid "Whether gedit should highlight the bracket matching the selected one."
+msgstr "gedit 是否應以色彩顯示與目前選取的成對的弧號。"
+
+#: ../data/gedit.schemas.in.in.h:78
+msgid "Whether gedit should highlight the current line."
+msgstr "gedit 應否在當前的行上啟用色彩顯示功能。"
+
+# zh_HK: msgstr "gedit 應否在打印文件時加上頁首。"
+#: ../data/gedit.schemas.in.in.h:79
+msgid "Whether gedit should include a document header when printing documents."
+msgstr "gedit 應否在打印文件時加上頁首。"
+
+#: ../data/gedit.schemas.in.in.h:80
+msgid "Whether gedit should insert spaces instead of tabs."
+msgstr "gedit 應否使用空格來代替 Tab 字符。"
+
+# zh_HK: msgstr "gedit 應否在打印文件時加上語法色彩處理。"
+#: ../data/gedit.schemas.in.in.h:81
+msgid "Whether gedit should print syntax highlighting when printing documents."
+msgstr "gedit 應否在打印文件時加上語法色彩處理。"
+
+#: ../data/gedit.schemas.in.in.h:82
+msgid ""
+"Whether gedit should restore the previous cursor position when a file is "
+"loaded."
+msgstr "gedit 載入檔案後應否回到先前的游標位置。"
+
+#: ../data/gedit.schemas.in.in.h:83
+msgid ""
+"Whether the bottom panel at the bottom of editing windows should be visible."
+msgstr "編輯視窗是否顯示底部面板。"
+
+#: ../data/gedit.schemas.in.in.h:84
+msgid "Whether the side pane at the left of editing windows should be visible."
+msgstr "編輯視窗左側是否應顯示側面窗格。"
+
+#: ../data/gedit.schemas.in.in.h:85
+msgid ""
+"Whether the status bar at the bottom of editing windows should be visible."
+msgstr "編輯視窗的底部應否顯示狀態列。"
+
+#: ../data/gedit.schemas.in.in.h:86
+msgid "Whether the toolbar should be visible in editing windows."
+msgstr "編輯視窗應否顯示工具列。"
+
+#: ../data/gedit.schemas.in.in.h:87
+msgid ""
+"Whether to use the system's default fixed width font for editing text "
+"instead of a font specific to gedit. If this option is turned off, then the "
+"font named in the \"Editor Font\" option will be used instead of the system "
+"font."
+msgstr "gedit 是否使用系統預設的固定闊度字型作為編輯文字使用，而不用 gedit 指定的字型。如果關閉本選項，則會使用「編輯器字型」選項中的字型，而不用系統字型。"
+
+#: ../data/gedit.schemas.in.in.h:88
+msgid "Writable VFS schemes"
+msgstr "可寫入 VFS schemes"
+
+# (Abel) older traditional Chinese systems mostly use Big5; but try to cope
+# with simplified Chinese too.
+#. Translators: This is the list of encodings shown by default in the Character Encoding
+#. menu in open/save file selector. Only recognized encodings are displayed.
+#: ../data/gedit.schemas.in.in.h:91
+msgid "[ISO-8859-15]"
+msgstr "[BIG5,BIG5-HKSCS,EUC-TW,GB2312,GBK,GB18030,ISO-8859-15]"
+
+#. Translators: This is the sorted list of encodings used by gedit
+#. for automatic detection of the file encoding. You may want to customize it adding
+#. encodings that are common in your country, for instance the GB18030 encoding
+#. for the Chinese	translation. You may also want to remove the ISO-8859-15 encoding
+#. (covering English and most Western European languages) if you think people
+#. in you country will rarely use it.
+#. "CURRENT" is a magic value used by gedit and it represents the encoding
+#. for the current locale, so please don't translate the "CURRENT" term.
+#. Only recognized encodings are used.
+#. See http://svn.mate.org/viewcvs/gedit/trunk/gedit/gedit-encodings.c?view=markup for
+#. a list of supported encodings
+#: ../data/gedit.schemas.in.in.h:103
+msgid "[UTF-8,CURRENT,ISO-8859-15,UTF-16]"
+msgstr "[UTF-8,CURRENT,BIG5,BIG5-HKSCS,EUC-TW,GB2312,GBK,GB18030,ISO-8859-15,UTF-16]"
+
+#: ../gedit/dialogs/gedit-close-confirmation-dialog.c:140
+msgid "Log Out _without Saving"
+msgstr "登出且不儲存(_W)"
+
+#: ../gedit/dialogs/gedit-close-confirmation-dialog.c:144
+msgid "_Cancel Logout"
+msgstr "取消登出(_C)"
+
+#: ../gedit/dialogs/gedit-close-confirmation-dialog.c:151
+msgid "Close _without Saving"
+msgstr "關閉但不儲存(_W)"
+
+#: ../gedit/dialogs/gedit-close-confirmation-dialog.c:212
+msgid "Question"
+msgstr "問題"
+
+#: ../gedit/dialogs/gedit-close-confirmation-dialog.c:412
+#, c-format
+msgid ""
+"If you don't save, changes from the last %ld second will be permanently lost."
+msgid_plural ""
+"If you don't save, changes from the last %ld seconds will be permanently "
+"lost."
+msgstr[0] "如果不儲存，將會永久地失去 %ld 秒前所作的修改。"
+msgstr[1] "如果不儲存，將會永久地失去 %ld 秒前所作的修改。"
+
+#: ../gedit/dialogs/gedit-close-confirmation-dialog.c:421
+msgid ""
+"If you don't save, changes from the last minute will be permanently lost."
+msgstr "如果不儲存，將會永久地失去 1 分鐘前所作的修改。"
+
+#: ../gedit/dialogs/gedit-close-confirmation-dialog.c:427
+#, c-format
+msgid ""
+"If you don't save, changes from the last minute and %ld second will be "
+"permanently lost."
+msgid_plural ""
+"If you don't save, changes from the last minute and %ld seconds will be "
+"permanently lost."
+msgstr[0] "如果不儲存，將會永久地失去 1 分 %ld 秒前所作的修改。"
+msgstr[1] "如果不儲存，將會永久地失去 1 分 %ld 秒前所作的修改。"
+
+#: ../gedit/dialogs/gedit-close-confirmation-dialog.c:437
+#, c-format
+msgid ""
+"If you don't save, changes from the last %ld minute will be permanently lost."
+msgid_plural ""
+"If you don't save, changes from the last %ld minutes will be permanently "
+"lost."
+msgstr[0] "如果不儲存，將會永久地失去  %ld 分前所作的修改。"
+msgstr[1] "如果不儲存，將會永久地失去  %ld 分前所作的修改。"
+
+#: ../gedit/dialogs/gedit-close-confirmation-dialog.c:452
+msgid "If you don't save, changes from the last hour will be permanently lost."
+msgstr "如果不儲存，將會永久地失去 1 小時前所作的修改。"
+
+#: ../gedit/dialogs/gedit-close-confirmation-dialog.c:458
+#, c-format
+msgid ""
+"If you don't save, changes from the last hour and %d minute will be "
+"permanently lost."
+msgid_plural ""
+"If you don't save, changes from the last hour and %d minutes will be "
+"permanently lost."
+msgstr[0] "如果不儲存，將會永久地失去 1 小時 %d 分前所作的修改。"
+msgstr[1] "如果不儲存，將會永久地失去 1 小時 %d 分前所作的修改。"
+
+#: ../gedit/dialogs/gedit-close-confirmation-dialog.c:473
+#, c-format
+msgid ""
+"If you don't save, changes from the last %d hour will be permanently lost."
+msgid_plural ""
+"If you don't save, changes from the last %d hours will be permanently lost."
+msgstr[0] "如果不儲存，將會永久地失去  %d 小時前所作的修改。"
+msgstr[1] "如果不儲存，將會永久地失去  %d 小時前所作的修改。"
+
+#: ../gedit/dialogs/gedit-close-confirmation-dialog.c:516
+#, c-format
+msgid "Changes to document \"%s\" will be permanently lost."
+msgstr "將會永久地失去對文件“%s”所作的修改。"
+
+#: ../gedit/dialogs/gedit-close-confirmation-dialog.c:521
+#, c-format
+msgid "Save changes to document \"%s\" before closing?"
+msgstr "關閉前要儲存修改到文件“%s”嗎？"
+
+#: ../gedit/dialogs/gedit-close-confirmation-dialog.c:535
+#: ../gedit/dialogs/gedit-close-confirmation-dialog.c:746
+msgid "Saving has been disabled by the system administrator."
+msgstr "儲存功能已被系統管理員禁用。"
+
+#: ../gedit/dialogs/gedit-close-confirmation-dialog.c:701
+#, c-format
+msgid "Changes to %d document will be permanently lost."
+msgid_plural "Changes to %d documents will be permanently lost."
+msgstr[0] "將會永久地失去對 %d 個文件所作的修改。"
+msgstr[1] "將會永久地失去對 %d 個文件所作的修改"
+
+#: ../gedit/dialogs/gedit-close-confirmation-dialog.c:707
+#, c-format
+msgid "There is %d document with unsaved changes. Save changes before closing?"
+msgid_plural ""
+"There are %d documents with unsaved changes. Save changes before closing?"
+msgstr[0] "還有 %d 份已修改的文件未儲存。離開前要先儲存文件嗎？"
+msgstr[1] "還有 %d 份已修改的文件未儲存。離開前要先儲存文件嗎？"
+
+#: ../gedit/dialogs/gedit-close-confirmation-dialog.c:725
+msgid "Docum_ents with unsaved changes:"
+msgstr "已修改但未儲存的文件(_E):"
+
+#: ../gedit/dialogs/gedit-close-confirmation-dialog.c:727
+msgid "S_elect the documents you want to save:"
+msgstr "請選擇需要儲存的文件(_E):"
+
+#: ../gedit/dialogs/gedit-close-confirmation-dialog.c:748
+msgid "If you don't save, all your changes will be permanently lost."
+msgstr "如果不儲存，所有已修改的部份將會永久地遺失。"
+
+#: ../gedit/dialogs/gedit-encodings-dialog.c:321
+msgid "Character Encodings"
+msgstr "字符編碼"
+
+#: ../gedit/dialogs/gedit-encodings-dialog.c:385
+#: ../gedit/dialogs/gedit-encodings-dialog.c:446
+msgid "_Description"
+msgstr "描述(_D)"
+
+#: ../gedit/dialogs/gedit-encodings-dialog.c:394
+#: ../gedit/dialogs/gedit-encodings-dialog.c:455
+msgid "_Encoding"
+msgstr "編碼(_E)"
+
+#: ../gedit/dialogs/gedit-encodings-dialog.ui.h:1
+msgid "A_vailable encodings:"
+msgstr "可使用的編碼(_V):"
+
+#: ../gedit/dialogs/gedit-encodings-dialog.ui.h:2
+msgid "Character encodings"
+msgstr "字符編碼"
+
+#: ../gedit/dialogs/gedit-encodings-dialog.ui.h:3
+msgid "E_ncodings shown in menu:"
+msgstr "選單中顯示的編碼(_N):"
+
+#: ../gedit/dialogs/gedit-preferences-dialog.c:571
+msgid "Click on this button to select the font to be used by the editor"
+msgstr "按下此按鈕以選擇編輯器要使用的字型"
+
+#: ../gedit/dialogs/gedit-preferences-dialog.c:581
+#, c-format
+msgid "_Use the system fixed width font (%s)"
+msgstr "使用系統固定闊度字型 [%s](_U)"
+
+#: ../gedit/dialogs/gedit-preferences-dialog.c:784
+msgid "The selected color scheme cannot be installed."
+msgstr "無法安裝所選的色彩配置。"
+
+#: ../gedit/dialogs/gedit-preferences-dialog.c:809
+msgid "Add Scheme"
+msgstr "加入配色"
+
+#: ../gedit/dialogs/gedit-preferences-dialog.c:816
+msgid "A_dd Scheme"
+msgstr "加入配色(_D)"
+
+#: ../gedit/dialogs/gedit-preferences-dialog.c:824
+msgid "Color Scheme Files"
+msgstr "色彩配置檔案"
+
+#: ../gedit/dialogs/gedit-preferences-dialog.c:831
+#: ../gedit/gedit-file-chooser-dialog.c:52
+msgid "All Files"
+msgstr "所有檔案"
+
+#: ../gedit/dialogs/gedit-preferences-dialog.c:876
+#, c-format
+msgid "Could not remove color scheme \"%s\"."
+msgstr "無法移除色彩配置「%s」。"
+
+#: ../gedit/dialogs/gedit-preferences-dialog.c:1087
+msgid "gedit Preferences"
+msgstr "gedit 偏好設定"
+
+#. ex:ts=4:et:
+#: ../gedit/dialogs/gedit-preferences-dialog.ui.h:1
+#: ../plugins/docinfo/docinfo.ui.h:1
+#: ../plugins/externaltools/tools/tools.ui.h:1
+#: ../plugins/snippets/snippets/snippets.ui.h:1
+#: ../plugins/time/gedit-time-dialog.ui.h:1
+#: ../plugins/time/gedit-time-setup-dialog.ui.h:1
+msgid "    "
+msgstr "    "
+
+#: ../gedit/dialogs/gedit-preferences-dialog.ui.h:2
+msgid "Automatic Indentation"
+msgstr "自動縮排"
+
+#: ../gedit/dialogs/gedit-preferences-dialog.ui.h:3
+msgid "Bracket Matching"
+msgstr "對稱括號"
+
+#: ../gedit/dialogs/gedit-preferences-dialog.ui.h:4
+msgid "Color Scheme"
+msgstr "色彩配置"
+
+#: ../gedit/dialogs/gedit-preferences-dialog.ui.h:5
+msgid "Create a _backup copy of files before saving"
+msgstr "儲存前先製作暫存檔(_B)"
+
+#: ../gedit/dialogs/gedit-preferences-dialog.ui.h:6
+msgid "Current Line"
+msgstr "目前的行"
+
+#: ../gedit/dialogs/gedit-preferences-dialog.ui.h:7
+msgid "Display right _margin"
+msgstr "顯示右邊邊界(_M)"
+
+#: ../gedit/dialogs/gedit-preferences-dialog.ui.h:8
+#: ../gedit/gedit-print-preferences.ui.h:1
+msgid "Do not _split words over two lines"
+msgstr "換行時不將字詞斷開(_S)"
+
+#: ../gedit/dialogs/gedit-preferences-dialog.ui.h:9
+msgid "Editor"
+msgstr "編輯器"
+
+#: ../gedit/dialogs/gedit-preferences-dialog.ui.h:10
+msgid "Editor _font: "
+msgstr "編輯器字型(_F):"
+
+#: ../gedit/dialogs/gedit-preferences-dialog.ui.h:11
+#: ../gedit/gedit-print-preferences.ui.h:2
+msgid "Enable text _wrapping"
+msgstr "啟用換行功能(_W)"
+
+#: ../gedit/dialogs/gedit-preferences-dialog.ui.h:12
+msgid "File Saving"
+msgstr "正在儲存檔案"
+
+#: ../gedit/dialogs/gedit-preferences-dialog.ui.h:13
+msgid "Font"
+msgstr "字型"
+
+#: ../gedit/dialogs/gedit-preferences-dialog.ui.h:14
+msgid "Font & Colors"
+msgstr "字型及顏色"
+
+#: ../gedit/dialogs/gedit-preferences-dialog.ui.h:15
+msgid "Highlight current _line"
+msgstr "標示當前的行(_L)"
+
+#: ../gedit/dialogs/gedit-preferences-dialog.ui.h:16
+msgid "Highlight matching _bracket"
+msgstr "標示對稱的括號(_B)"
+
+#: ../gedit/dialogs/gedit-preferences-dialog.ui.h:17
+msgid "Insert _spaces instead of tabs"
+msgstr "插入空格代替 _Tab 字符"
+
+#: ../gedit/dialogs/gedit-preferences-dialog.ui.h:18
+#: ../gedit/gedit-print-preferences.ui.h:5
+msgid "Line Numbers"
+msgstr "行號"
+
+#: ../gedit/dialogs/gedit-preferences-dialog.ui.h:19
+msgid "Pick the editor font"
+msgstr "請指定編輯器字型"
+
+#: ../gedit/dialogs/gedit-preferences-dialog.ui.h:20
+msgid "Plugins"
+msgstr "外掛程式"
+
+#: ../gedit/dialogs/gedit-preferences-dialog.ui.h:21
+msgid "Preferences"
+msgstr "偏好設定"
+
+#: ../gedit/dialogs/gedit-preferences-dialog.ui.h:22
+msgid "Right Margin"
+msgstr "右邊邊界"
+
+#: ../gedit/dialogs/gedit-preferences-dialog.ui.h:23
+msgid "Tab Stops"
+msgstr "Tab 停止位置"
+
+#: ../gedit/dialogs/gedit-preferences-dialog.ui.h:24
+#: ../gedit/gedit-print-preferences.ui.h:11
+msgid "Text Wrapping"
+msgstr "文字換行"
+
+#: ../gedit/dialogs/gedit-preferences-dialog.ui.h:25
+msgid "View"
+msgstr "檢視"
+
+#: ../gedit/dialogs/gedit-preferences-dialog.ui.h:26
+msgid "_Add..."
+msgstr "加入(_A)..."
+
+#: ../gedit/dialogs/gedit-preferences-dialog.ui.h:27
+msgid "_Autosave files every"
+msgstr "每隔指定時間自動儲存檔案(_A):"
+
+#: ../gedit/dialogs/gedit-preferences-dialog.ui.h:28
+#: ../gedit/gedit-view.c:1968
+msgid "_Display line numbers"
+msgstr "顯示行號(_D)"
+
+#: ../gedit/dialogs/gedit-preferences-dialog.ui.h:29
+msgid "_Enable automatic indentation"
+msgstr "啟用自動縮排功能(_E)"
+
+#: ../gedit/dialogs/gedit-preferences-dialog.ui.h:30
+msgid "_Right margin at column:"
+msgstr "指定右邊邊界於欄位(_R):"
+
+#: ../gedit/dialogs/gedit-preferences-dialog.ui.h:31
+msgid "_Tab width:"
+msgstr "_Tab 字符闊度："
+
+#: ../gedit/dialogs/gedit-preferences-dialog.ui.h:32
+msgid "_minutes"
+msgstr "分鐘(_M)"
+
+#: ../gedit/dialogs/gedit-search-dialog.c:300
+#: ../gedit/dialogs/gedit-search-dialog.ui.h:2 ../gedit/gedit-window.c:1522
+msgid "Replace"
+msgstr "取代"
+
+#: ../gedit/dialogs/gedit-search-dialog.c:311 ../gedit/gedit-window.c:1520
+msgid "Find"
+msgstr "尋找"
+
+#: ../gedit/dialogs/gedit-search-dialog.c:415
+msgid "Replace _All"
+msgstr "全部取代(_A)"
+
+#: ../gedit/dialogs/gedit-search-dialog.c:416
+#: ../gedit/gedit-commands-file.c:582
+msgid "_Replace"
+msgstr "取代(_R)"
+
+#: ../gedit/dialogs/gedit-search-dialog.ui.h:1
+msgid "Match _entire word only"
+msgstr "只符合整個字詞(_E)"
+
+#: ../gedit/dialogs/gedit-search-dialog.ui.h:3
+msgid "Replace All"
+msgstr "全部取代"
+
+#: ../gedit/dialogs/gedit-search-dialog.ui.h:4
+msgid "Replace _with: "
+msgstr "取代為(_W):"
+
+#: ../gedit/dialogs/gedit-search-dialog.ui.h:5
+msgid "Search _backwards"
+msgstr "向上搜尋(_B)"
+
+#: ../gedit/dialogs/gedit-search-dialog.ui.h:6
+msgid "_Match case"
+msgstr "符合大小寫(_M)"
+
+#: ../gedit/dialogs/gedit-search-dialog.ui.h:7
+msgid "_Search for: "
+msgstr "搜尋(_S):"
+
+#: ../gedit/dialogs/gedit-search-dialog.ui.h:8
+msgid "_Wrap around"
+msgstr "回到檔案開始部份再搜尋(_W)"
+
+#: ../gedit/gedit.c:123
+msgid "Show the application's version"
+msgstr "顯示應用程式的版本"
+
+#: ../gedit/gedit.c:126
+msgid ""
+"Set the character encoding to be used to open the files listed on the "
+"command line"
+msgstr "設定在命令列中開啟檔案時所使用的文字編碼"
+
+#: ../gedit/gedit.c:126
+msgid "ENCODING"
+msgstr "編碼"
+
+#: ../gedit/gedit.c:129
+msgid "Display list of possible values for the encoding option"
+msgstr "顯示編碼選項可用數值的清單"
+
+#: ../gedit/gedit.c:132
+msgid "Create a new top-level window in an existing instance of gedit"
+msgstr "開啟一個屬於執行中的 gedit 實體的新的頂層視窗"
+
+#: ../gedit/gedit.c:135
+msgid "Create a new document in an existing instance of gedit"
+msgstr "在執行中的 gedit 開啟新的文件"
+
+#: ../gedit/gedit.c:138
+msgid "[FILE...]"
+msgstr "[檔案...]"
+
+#: ../gedit/gedit.c:193
+#, c-format
+msgid "%s: invalid encoding.\n"
+msgstr "%s：無效的編碼。\n"
+
+#. Setup command line options
+#: ../gedit/gedit.c:576
+msgid "- Edit text files"
+msgstr "- 編輯文字檔"
+
+#: ../gedit/gedit.c:612
+#, c-format
+msgid ""
+"%s\n"
+"Run '%s --help' to see a full list of available command line options.\n"
+msgstr ""
+"%s\n"
+"執行 「%s --help」以查看完整的命令列可用選項清單。\n"
+
+#: ../gedit/gedit-commands-file.c:255
+#, c-format
+msgid "Loading file '%s'…"
+msgstr "正在載入檔案‘%s’..."
+
+#: ../gedit/gedit-commands-file.c:264
+#, c-format
+msgid "Loading %d file…"
+msgid_plural "Loading %d files…"
+msgstr[0] "正在載入 %d 個檔案..."
+msgstr[1] "正在載入 %d 個檔案..."
+
+#. Translators: "Open Files" is the title of the file chooser window
+#: ../gedit/gedit-commands-file.c:458
+msgid "Open Files"
+msgstr "開啟檔案"
+
+#: ../gedit/gedit-commands-file.c:569
+#, c-format
+msgid "The file \"%s\" is read-only."
+msgstr "檔案“%s”是唯讀檔案。"
+
+#: ../gedit/gedit-commands-file.c:574
+msgid "Do you want to try to replace it with the one you are saving?"
+msgstr "你是否嘗試以準備儲存的版本覆寫該檔案？"
+
+#: ../gedit/gedit-commands-file.c:643 ../gedit/gedit-commands-file.c:866
+#, c-format
+msgid "Saving file '%s'…"
+msgstr "正在儲存檔案‘%s’..."
+
+#: ../gedit/gedit-commands-file.c:751
+msgid "Save As…"
+msgstr "另存新檔..."
+
+#: ../gedit/gedit-commands-file.c:1080
+#, c-format
+msgid "Reverting the document '%s'…"
+msgstr "正在還原文件‘%s’..."
+
+#: ../gedit/gedit-commands-file.c:1125
+#, c-format
+msgid "Revert unsaved changes to document '%s'?"
+msgstr "是否將未儲存的文件‘%s’還原？"
+
+#: ../gedit/gedit-commands-file.c:1134
+#, c-format
+msgid ""
+"Changes made to the document in the last %ld second will be permanently lost."
+msgid_plural ""
+"Changes made to the document in the last %ld seconds will be permanently "
+"lost."
+msgstr[0] "將會永久地失去 %ld 秒前對文件所作的修改。"
+msgstr[1] "將會永久地失去 %ld 秒前對文件所作的修改。"
+
+#: ../gedit/gedit-commands-file.c:1143
+msgid ""
+"Changes made to the document in the last minute will be permanently lost."
+msgstr "將會永久地失去 1 分鐘秒前對文件所作的修改。"
+
+#: ../gedit/gedit-commands-file.c:1149
+#, c-format
+msgid ""
+"Changes made to the document in the last minute and %ld second will be "
+"permanently lost."
+msgid_plural ""
+"Changes made to the document in the last minute and %ld seconds will be "
+"permanently lost."
+msgstr[0] "將會永久地失去 1 分 %ld 秒前對文件所作的修改。"
+msgstr[1] "將會永久地失去 1 分 %ld 秒前對文件所作的修改。"
+
+#: ../gedit/gedit-commands-file.c:1159
+#, c-format
+msgid ""
+"Changes made to the document in the last %ld minute will be permanently lost."
+msgid_plural ""
+"Changes made to the document in the last %ld minutes will be permanently "
+"lost."
+msgstr[0] "將會永久地失去 %ld 分鐘前對文件所作的修改。"
+msgstr[1] "將會永久地失去 %ld 分鐘前對文件所作的修改。"
+
+#: ../gedit/gedit-commands-file.c:1174
+msgid "Changes made to the document in the last hour will be permanently lost."
+msgstr "將會永久地失去 1 小時前對文件所作的修改。"
+
+#: ../gedit/gedit-commands-file.c:1180
+#, c-format
+msgid ""
+"Changes made to the document in the last hour and %d minute will be "
+"permanently lost."
+msgid_plural ""
+"Changes made to the document in the last hour and %d minutes will be "
+"permanently lost."
+msgstr[0] "將會永久地失去 %d 分鐘前對文件所作的修改。"
+msgstr[1] "將會永久地失去 %d 分鐘前對文件所作的修改。"
+
+#: ../gedit/gedit-commands-file.c:1195
+#, c-format
+msgid ""
+"Changes made to the document in the last %d hour will be permanently lost."
+msgid_plural ""
+"Changes made to the document in the last %d hours will be permanently lost."
+msgstr[0] "將會永久地失去 %d 小時前對文件所作的修改。"
+msgstr[1] "將會永久地失去 %d 小時前對文件所作的修改。"
+
+#: ../gedit/gedit-commands-file.c:1221
+msgid "_Revert"
+msgstr "還原(_R)"
+
+#: ../gedit/gedit-commands-help.c:83
+msgid "gedit is a small and lightweight text editor for the MATE Desktop"
+msgstr "gedit 是一個小巧的文字編輯器，適用於 MATE 桌面"
+
+#: ../gedit/gedit-commands-help.c:108
+msgid "translator-credits"
+msgstr ""
+"如對翻譯有任何意見，請送一封電子郵件給\n"
+"以下地址，MATE 翻譯隊伍會儘快回覆你：\n"
+"zh-l10n@lists.linux.org.tw\n"
+"\n"
+"Woodman Tuen <wmtuen@gmail.com>, 2005-07\n"
+"Anthony Tang <tkyanthony@yahoo.com.hk>, 2004\n"
+"Abel Cheung <abel@oaka.org>, 2001-03\n"
+"Jing-Jong Shyue <shyue@sonoma.com.tw>, 2000"
+
+#: ../gedit/gedit-commands-search.c:114
+#, c-format
+msgid "Found and replaced %d occurrence"
+msgid_plural "Found and replaced %d occurrences"
+msgstr[0] "找到並取代了 %d 個字串"
+msgstr[1] "找到並取代了 %d 個字串"
+
+#: ../gedit/gedit-commands-search.c:124
+msgid "Found and replaced one occurrence"
+msgstr "找到及取代了一個字串"
+
+#. Translators: %s is replaced by the text
+#. entered by the user in the search box
+#: ../gedit/gedit-commands-search.c:145
+#, c-format
+msgid "\"%s\" not found"
+msgstr "找不到「%s」"
+
+#: ../gedit/gedit-document.c:1066 ../gedit/gedit-document.c:1081
+#, c-format
+msgid "Unsaved Document %d"
+msgstr "未儲存文件 %d"
+
+#: ../gedit/gedit-documents-panel.c:97 ../gedit/gedit-documents-panel.c:111
+#: ../gedit/gedit-window.c:2271 ../gedit/gedit-window.c:2276
+msgid "Read-Only"
+msgstr "唯讀"
+
+#: ../gedit/gedit-documents-panel.c:780 ../gedit/gedit-window.c:3670
+msgid "Documents"
+msgstr "文件"
+
+#: ../gedit/gedit-encodings.c:138 ../gedit/gedit-encodings.c:180
+#: ../gedit/gedit-encodings.c:182 ../gedit/gedit-encodings.c:184
+#: ../gedit/gedit-encodings.c:186 ../gedit/gedit-encodings.c:188
+#: ../gedit/gedit-encodings.c:190 ../gedit/gedit-encodings.c:192
+msgid "Unicode"
+msgstr "萬國碼"
+
+#: ../gedit/gedit-encodings.c:151 ../gedit/gedit-encodings.c:175
+#: ../gedit/gedit-encodings.c:225 ../gedit/gedit-encodings.c:268
+msgid "Western"
+msgstr "西歐語系"
+
+#: ../gedit/gedit-encodings.c:153 ../gedit/gedit-encodings.c:227
+#: ../gedit/gedit-encodings.c:264
+msgid "Central European"
+msgstr "中歐語系"
+
+#: ../gedit/gedit-encodings.c:155
+msgid "South European"
+msgstr "南歐語系"
+
+#: ../gedit/gedit-encodings.c:157 ../gedit/gedit-encodings.c:171
+#: ../gedit/gedit-encodings.c:278
+msgid "Baltic"
+msgstr "波羅的海語系"
+
+#: ../gedit/gedit-encodings.c:159 ../gedit/gedit-encodings.c:229
+#: ../gedit/gedit-encodings.c:242 ../gedit/gedit-encodings.c:246
+#: ../gedit/gedit-encodings.c:248 ../gedit/gedit-encodings.c:266
+msgid "Cyrillic"
+msgstr "斯拉夫語系"
+
+#: ../gedit/gedit-encodings.c:161 ../gedit/gedit-encodings.c:235
+#: ../gedit/gedit-encodings.c:276
+msgid "Arabic"
+msgstr "阿拉伯文"
+
+#: ../gedit/gedit-encodings.c:163 ../gedit/gedit-encodings.c:270
+msgid "Greek"
+msgstr "希臘文"
+
+#: ../gedit/gedit-encodings.c:165
+msgid "Hebrew Visual"
+msgstr "希伯來文(左至右)"
+
+#: ../gedit/gedit-encodings.c:167 ../gedit/gedit-encodings.c:231
+#: ../gedit/gedit-encodings.c:272
+msgid "Turkish"
+msgstr "土耳其文"
+
+#: ../gedit/gedit-encodings.c:169
+msgid "Nordic"
+msgstr "北歐語系"
+
+#: ../gedit/gedit-encodings.c:173
+msgid "Celtic"
+msgstr "塞爾特語系"
+
+#: ../gedit/gedit-encodings.c:177
+msgid "Romanian"
+msgstr "羅馬尼亞文"
+
+#: ../gedit/gedit-encodings.c:195
+msgid "Armenian"
+msgstr "亞美尼亞文"
+
+#: ../gedit/gedit-encodings.c:197 ../gedit/gedit-encodings.c:199
+#: ../gedit/gedit-encodings.c:213
+msgid "Chinese Traditional"
+msgstr "繁體中文"
+
+#: ../gedit/gedit-encodings.c:201
+msgid "Cyrillic/Russian"
+msgstr "斯拉夫語系/俄文"
+
+#: ../gedit/gedit-encodings.c:204 ../gedit/gedit-encodings.c:206
+#: ../gedit/gedit-encodings.c:208 ../gedit/gedit-encodings.c:238
+#: ../gedit/gedit-encodings.c:253
+msgid "Japanese"
+msgstr "日文"
+
+#: ../gedit/gedit-encodings.c:211 ../gedit/gedit-encodings.c:240
+#: ../gedit/gedit-encodings.c:244 ../gedit/gedit-encodings.c:259
+msgid "Korean"
+msgstr "韓文"
+
+#: ../gedit/gedit-encodings.c:216 ../gedit/gedit-encodings.c:218
+#: ../gedit/gedit-encodings.c:220
+msgid "Chinese Simplified"
+msgstr "簡體中文"
+
+#: ../gedit/gedit-encodings.c:222
+msgid "Georgian"
+msgstr "格魯吉亞文"
+
+#: ../gedit/gedit-encodings.c:233 ../gedit/gedit-encodings.c:274
+msgid "Hebrew"
+msgstr "希伯來文"
+
+#: ../gedit/gedit-encodings.c:250
+msgid "Cyrillic/Ukrainian"
+msgstr "斯拉夫/烏克蘭語系"
+
+#: ../gedit/gedit-encodings.c:255 ../gedit/gedit-encodings.c:261
+#: ../gedit/gedit-encodings.c:280
+msgid "Vietnamese"
+msgstr "越南文"
+
+#: ../gedit/gedit-encodings.c:257
+msgid "Thai"
+msgstr "泰文"
+
+#: ../gedit/gedit-encodings.c:431
+msgid "Unknown"
+msgstr "不明"
+
+#: ../gedit/gedit-encodings-combo-box.c:272
+msgid "Automatically Detected"
+msgstr "自動偵測"
+
+#: ../gedit/gedit-encodings-combo-box.c:288
+#: ../gedit/gedit-encodings-combo-box.c:303
+#, c-format
+msgid "Current Locale (%s)"
+msgstr "目前的地區設定 (%s)"
+
+#: ../gedit/gedit-encodings-combo-box.c:353
+msgid "Add or Remove..."
+msgstr "加入或移除..."
+
+#: ../gedit/gedit-file-chooser-dialog.c:53
+msgid "All Text Files"
+msgstr "所有文字檔"
+
+#: ../gedit/gedit-file-chooser-dialog.c:81
+msgid "C_haracter Encoding:"
+msgstr "字符編碼(_H):"
+
+#: ../gedit/gedit-file-chooser-dialog.c:141
+msgid "L_ine Ending:"
+msgstr "行結尾(_I):"
+
+#: ../gedit/gedit-file-chooser-dialog.c:160
+msgid "Unix/Linux"
+msgstr "Unix/Linux"
+
+#: ../gedit/gedit-file-chooser-dialog.c:166
+msgid "Mac OS Classic"
+msgstr "Mac OS Classic"
+
+#: ../gedit/gedit-file-chooser-dialog.c:172
+msgid "Windows"
+msgstr "Windows"
+
+#: ../gedit/gedit-help.c:104
+msgid "There was an error displaying the help."
+msgstr "顯示說明文件時發生錯誤。"
+
+#: ../gedit/gedit-io-error-message-area.c:198
+#: ../gedit/gedit-io-error-message-area.c:203
+#: ../gedit/gedit-io-error-message-area.c:504
+#: ../gedit/gedit-io-error-message-area.c:527
+msgid "_Retry"
+msgstr "重試(_R)"
+
+#: ../gedit/gedit-io-error-message-area.c:224
+#, c-format
+msgid "Could not find the file %s."
+msgstr "無法找到檔案 %s。"
+
+#: ../gedit/gedit-io-error-message-area.c:226
+#: ../gedit/gedit-io-error-message-area.c:265
+#: ../gedit/gedit-io-error-message-area.c:272
+msgid "Please check that you typed the location correctly and try again."
+msgstr "檢查所輸入的位置是否正確後再試一次。"
+
+#. Translators: %s is a URI scheme (like for example http:, ftp:, etc.)
+#: ../gedit/gedit-io-error-message-area.c:241
+#, c-format
+msgid "gedit cannot handle %s locations."
+msgstr "gedit 無法處理 %s 位置。"
+
+#: ../gedit/gedit-io-error-message-area.c:247
+msgid "gedit cannot handle this location."
+msgstr "gedit 無法處理此位置。"
+
+#: ../gedit/gedit-io-error-message-area.c:255
+msgid "The location of the file cannot be mounted."
+msgstr "此檔案的位置不能被掛載。"
+
+#: ../gedit/gedit-io-error-message-area.c:259
+msgid "The location of the file cannot be accessed because it is not mounted."
+msgstr "不能存取該檔案的位置，因為它尚未被掛載。"
+
+#: ../gedit/gedit-io-error-message-area.c:263
+#, c-format
+msgid "%s is a directory."
+msgstr "%s 是一個目錄"
+
+#: ../gedit/gedit-io-error-message-area.c:270
+#, c-format
+msgid "%s is not a valid location."
+msgstr "%s 並不是一個有效的位置。"
+
+#: ../gedit/gedit-io-error-message-area.c:300
+#, c-format
+msgid ""
+"Host %s could not be found. Please check that your proxy settings are "
+"correct and try again."
+msgstr "無法找到主機 %s。檢查代理伺服器的設定是否正確後再試一次。"
+
+#: ../gedit/gedit-io-error-message-area.c:313
+#, c-format
+msgid ""
+"Hostname was invalid. Please check that you typed the location correctly and "
+"try again."
+msgstr "主機名稱無效。請檢查你所輸入的位置是否正確後再試一次。"
+
+#: ../gedit/gedit-io-error-message-area.c:321
+#, c-format
+msgid "%s is not a regular file."
+msgstr "%s 不是一個正規的檔案。"
+
+#: ../gedit/gedit-io-error-message-area.c:326
+msgid "Connection timed out. Please try again."
+msgstr "連線逾時，請再嘗試。"
+
+#: ../gedit/gedit-io-error-message-area.c:349
+msgid "The file is too big."
+msgstr "檔案太大。"
+
+#: ../gedit/gedit-io-error-message-area.c:390
+#, c-format
+msgid "Unexpected error: %s"
+msgstr "無法預期錯誤：%s"
+
+#: ../gedit/gedit-io-error-message-area.c:426
+msgid "gedit cannot find the file. Perhaps it has recently been deleted."
+msgstr "gedit 找不到該檔案。可能其已被刪除。"
+
+#: ../gedit/gedit-io-error-message-area.c:435
+#, c-format
+msgid "Could not revert the file %s."
+msgstr "無法還原檔案 %s。"
+
+#: ../gedit/gedit-io-error-message-area.c:460
+msgid "Ch_aracter Encoding:"
+msgstr "字符編碼(_A):"
+
+#. Translators: the access key chosen for this string should be
+#. different from other main menu access keys (Open, Edit, View...)
+#: ../gedit/gedit-io-error-message-area.c:511
+#: ../gedit/gedit-io-error-message-area.c:536
+#: ../gedit/gedit-io-error-message-area.c:809
+#: ../gedit/gedit-io-error-message-area.c:819
+msgid "Edit Any_way"
+msgstr "強制編輯(_W)"
+
+#. Translators: the access key chosen for this string should be
+#. different from other main menu access keys (Open, Edit, View...)
+#: ../gedit/gedit-io-error-message-area.c:514
+#: ../gedit/gedit-io-error-message-area.c:541
+#: ../gedit/gedit-io-error-message-area.c:812
+#: ../gedit/gedit-io-error-message-area.c:824
+msgid "D_on't Edit"
+msgstr "不要編輯(_O)"
+
+#: ../gedit/gedit-io-error-message-area.c:637
+msgid ""
+"The number of followed links is limited and the actual file could not be "
+"found within this limit."
+msgstr "連結的數量被限制而在此限制內找不到實際的檔案。"
+
+#: ../gedit/gedit-io-error-message-area.c:641
+msgid "You do not have the permissions necessary to open the file."
+msgstr "你沒有足夠的權限來開啟檔案。"
+
+#: ../gedit/gedit-io-error-message-area.c:647
+#, c-format
+msgid "Could not open the file %s."
+msgstr "無法開啟檔案 %s。"
+
+#: ../gedit/gedit-io-error-message-area.c:649
+msgid "gedit has not been able to detect the character encoding."
+msgstr "gedit 將無法偵測字符編碼。"
+
+#: ../gedit/gedit-io-error-message-area.c:651
+#: ../gedit/gedit-io-error-message-area.c:673
+msgid "Please check that you are not trying to open a binary file."
+msgstr "請檢查是否在嘗試開啟二元碼檔案。"
+
+#: ../gedit/gedit-io-error-message-area.c:652
+msgid "Select a character encoding from the menu and try again."
+msgstr "在選單中選取字符編碼後再試一次。"
+
+#: ../gedit/gedit-io-error-message-area.c:658
+#, c-format
+msgid "There was a problem opening the file %s."
+msgstr "開啟檔案 %s 時發生錯誤。"
+
+#: ../gedit/gedit-io-error-message-area.c:660
+msgid ""
+"The file you opened has some invalid characters. If you continue editing "
+"this file you could make this document useless."
+msgstr "你所開啟的檔案有部分無效的字符，如果你繼續編輯這個檔案，可能會讓這個文件無法使用。"
+
+#: ../gedit/gedit-io-error-message-area.c:663
+msgid "You can also choose another character encoding and try again."
+msgstr "你可以選擇別的字符編碼後再試一次。"
+
+#: ../gedit/gedit-io-error-message-area.c:670
+#, c-format
+msgid "Could not open the file %s using the %s character encoding."
+msgstr "無法使用 %2$s 編碼來開啟檔案 %1$s。"
+
+#: ../gedit/gedit-io-error-message-area.c:674
+#: ../gedit/gedit-io-error-message-area.c:742
+msgid "Select a different character encoding from the menu and try again."
+msgstr "在選單中選取其他的字符編碼後再試一次。"
+
+#: ../gedit/gedit-io-error-message-area.c:737
+#, c-format
+msgid "Could not save the file %s using the %s character encoding."
+msgstr "無法使用 %2$s 編碼來儲存檔案 %1$s。"
+
+#: ../gedit/gedit-io-error-message-area.c:740
+msgid ""
+"The document contains one or more characters that cannot be encoded using "
+"the specified character encoding."
+msgstr "文件中包含了一個或更多無法使用指定編碼來儲存的字符。"
+
+#: ../gedit/gedit-io-error-message-area.c:839
+#, c-format
+msgid "This file (%s) is already open in another gedit window."
+msgstr "檔案 (%s) 已在其它的 gedit 視窗中開啟。"
+
+#: ../gedit/gedit-io-error-message-area.c:853
+msgid ""
+"gedit opened this instance of the file in a non-editable way. Do you want to "
+"edit it anyway?"
+msgstr "gedit 會以「不能編輯」的方式開啟此檔案。但是否仍然要編輯它？"
+
+#: ../gedit/gedit-io-error-message-area.c:912
+#: ../gedit/gedit-io-error-message-area.c:922
+#: ../gedit/gedit-io-error-message-area.c:1018
+#: ../gedit/gedit-io-error-message-area.c:1028
+msgid "S_ave Anyway"
+msgstr "仍然儲存(_A)"
+
+#: ../gedit/gedit-io-error-message-area.c:916
+#: ../gedit/gedit-io-error-message-area.c:926
+#: ../gedit/gedit-io-error-message-area.c:1022
+#: ../gedit/gedit-io-error-message-area.c:1032
+msgid "D_on't Save"
+msgstr "不要儲存(_O)"
+
+#. FIXME: review this message, it's not clear since for the user the "modification"
+#. could be interpreted as the changes he made in the document. beside "reading" is
+#. not accurate (since last load/save)
+#: ../gedit/gedit-io-error-message-area.c:944
+#, c-format
+msgid "The file %s has been modified since reading it."
+msgstr "檔案 %s 在閱讀前已被修改。"
+
+#: ../gedit/gedit-io-error-message-area.c:959
+msgid "If you save it, all the external changes could be lost. Save it anyway?"
+msgstr "如果儲存它，將會失去所有外部作出的更改。仍要儲存它？"
+
+#: ../gedit/gedit-io-error-message-area.c:1050
+#, c-format
+msgid "Could not create a backup file while saving %s"
+msgstr "儲存 %s 時無法建立備份檔"
+
+#: ../gedit/gedit-io-error-message-area.c:1053
+#, c-format
+msgid "Could not create a temporary backup file while saving %s"
+msgstr "儲存 %s 時無法建立暫停檔"
+
+#: ../gedit/gedit-io-error-message-area.c:1069
+msgid ""
+"gedit could not back up the old copy of the file before saving the new one. "
+"You can ignore this warning and save the file anyway, but if an error occurs "
+"while saving, you could lose the old copy of the file. Save anyway?"
+msgstr "在儲存新的檔案前 gedit 無法備份舊的檔案。你可以忽略此警告訊息，然後繼續儲存；但如果儲存時發生錯誤，你將會失去檔案的舊版本，仍要儲存？"
+
+#. Translators: %s is a URI scheme (like for example http:, ftp:, etc.)
+#: ../gedit/gedit-io-error-message-area.c:1129
+#, c-format
+msgid ""
+"gedit cannot handle %s locations in write mode. Please check that you typed "
+"the location correctly and try again."
+msgstr "gedit 無法以寫入模式處理 %s 位置。檢查所輸入的位置是否正確後再試。"
+
+#: ../gedit/gedit-io-error-message-area.c:1137
+msgid ""
+"gedit cannot handle this location in write mode. Please check that you typed "
+"the location correctly and try again."
+msgstr "gedit 無法以寫入模式處理此位置。檢查所輸入的位置是否正確後再試一次。"
+
+#: ../gedit/gedit-io-error-message-area.c:1146
+#, c-format
+msgid ""
+"%s is not a valid location. Please check that you typed the location "
+"correctly and try again."
+msgstr "%s 並不是一個有效的位置。檢查所輸入的位置是否正確後再試一次。"
+
+#: ../gedit/gedit-io-error-message-area.c:1152
+msgid ""
+"You do not have the permissions necessary to save the file. Please check "
+"that you typed the location correctly and try again."
+msgstr "你沒有足夠的權限來儲存檔案。檢查所輸入的位置是否正確後再試一次。"
+
+#: ../gedit/gedit-io-error-message-area.c:1158
+msgid ""
+"There is not enough disk space to save the file. Please free some disk space "
+"and try again."
+msgstr "剩餘的磁碟空間不足以儲存檔案。請先騰空部份磁碟空間後再試一次。"
+
+#: ../gedit/gedit-io-error-message-area.c:1163
+msgid ""
+"You are trying to save the file on a read-only disk. Please check that you "
+"typed the location correctly and try again."
+msgstr "嘗試將檔案寫入唯讀的磁碟上。檢查所輸入的位置是否正確後再試一次。"
+
+#: ../gedit/gedit-io-error-message-area.c:1169
+msgid "A file with the same name already exists. Please use a different name."
+msgstr "相同名稱的檔案已經存在，請使用其它名稱。"
+
+#: ../gedit/gedit-io-error-message-area.c:1174
+msgid ""
+"The disk where you are trying to save the file has a limitation on length of "
+"the file names. Please use a shorter name."
+msgstr "準備用來儲存檔案的磁碟有檔案長度的限制。請使用較短的名稱。"
+
+#: ../gedit/gedit-io-error-message-area.c:1181
+msgid ""
+"The disk where you are trying to save the file has a limitation on file "
+"sizes. Please try saving a smaller file or saving it to a disk that does not "
+"have this limitation."
+msgstr "準備用來儲存檔案的磁碟加上了有關檔案大小的限制。請嘗試儲存較小的檔案，或儲存至另一個沒有檔案大小限制的磁碟。"
+
+#: ../gedit/gedit-io-error-message-area.c:1196
+#, c-format
+msgid "Could not save the file %s."
+msgstr "無法儲存檔案 %s。"
+
+#. FIXME: review this message, it's not clear since for the user the "modification"
+#. could be interpreted as the changes he made in the document. beside "reading" is
+#. not accurate (since last load/save)
+#: ../gedit/gedit-io-error-message-area.c:1239
+#, c-format
+msgid "The file %s changed on disk."
+msgstr "磁碟上的檔案 %s 已更改"
+
+#: ../gedit/gedit-io-error-message-area.c:1244
+msgid "Do you want to drop your changes and reload the file?"
+msgstr "是否要丟棄所有更改及重新載入檔案？"
+
+#: ../gedit/gedit-io-error-message-area.c:1246
+msgid "Do you want to reload the file?"
+msgstr "要重新載入檔案？"
+
+#: ../gedit/gedit-io-error-message-area.c:1252
+#: ../gedit/gedit-io-error-message-area.c:1263
+msgid "_Reload"
+msgstr "重新載入(_R)"
+
+#: ../gedit/gedit-panel.c:356 ../gedit/gedit-panel.c:528
+msgid "Empty"
+msgstr "空白"
+
+#: ../gedit/gedit-panel.c:418
+msgid "Hide panel"
+msgstr "隱藏面板"
+
+#: ../gedit/gedit-plugin-manager.c:54
+msgid "Plugin"
+msgstr "外掛程式"
+
+#: ../gedit/gedit-plugin-manager.c:55
+msgid "Enabled"
+msgstr "已啟用"
+
+#: ../gedit/gedit-plugin-manager.c:504
+msgid "_About"
+msgstr "關於(_A)"
+
+#: ../gedit/gedit-plugin-manager.c:512
+msgid "C_onfigure"
+msgstr "設定(_O)"
+
+#: ../gedit/gedit-plugin-manager.c:521
+msgid "A_ctivate"
+msgstr "啟用(_C)"
+
+#: ../gedit/gedit-plugin-manager.c:532
+msgid "Ac_tivate All"
+msgstr "全部啟用(_T)"
+
+#: ../gedit/gedit-plugin-manager.c:537
+msgid "_Deactivate All"
+msgstr "全部停用(_D)"
+
+#: ../gedit/gedit-plugin-manager.c:800
+msgid "Active _Plugins:"
+msgstr "使用中外掛程式(_P):"
+
+#: ../gedit/gedit-plugin-manager.c:825
+msgid "_About Plugin"
+msgstr "關於外掛程式(_A)"
+
+#: ../gedit/gedit-plugin-manager.c:829
+msgid "C_onfigure Plugin"
+msgstr "設定外掛程式(_O)"
+
+#: ../gedit/gedit-prefs-manager.c:170
+msgid "Cannot initialize preferences manager."
+msgstr "無法初始化偏好設定管理員。"
+
+#: ../gedit/gedit-prefs-manager.c:1138
+#, c-format
+msgid "Expected `%s', got `%s' for key %s"
+msgstr "設定鍵 %3$s 的值應該是「%1$s」但實際上是「%2$s」"
+
+#: ../gedit/gedit-print-job.c:541
+#, c-format
+msgid "File: %s"
+msgstr "檔案：%s"
+
+#: ../gedit/gedit-print-job.c:550
+msgid "Page %N of %Q"
+msgstr "%N / %Q 頁"
+
+#: ../gedit/gedit-print-job.c:809
+msgid "Preparing..."
+msgstr "正在準備..."
+
+#: ../gedit/gedit-print-preferences.ui.h:3
+msgid "Fonts"
+msgstr "字型"
+
+#: ../gedit/gedit-print-preferences.ui.h:4
+msgid "He_aders and footers:"
+msgstr "頁首和頁尾(_A):"
+
+#: ../gedit/gedit-print-preferences.ui.h:6
+msgid "Page header"
+msgstr "頁首"
+
+# zh_HK: msgstr "打印行號(_L)"
+#: ../gedit/gedit-print-preferences.ui.h:7
+msgid "Print line nu_mbers"
+msgstr "打印行號(_L)"
+
+# zh_HK: msgstr "打印頁首(_P)"
+#: ../gedit/gedit-print-preferences.ui.h:8
+msgid "Print page _headers"
+msgstr "打印頁首(_P)"
+
+# zh_HK: msgstr "打印語法標示的顏色(_Y)"
+#: ../gedit/gedit-print-preferences.ui.h:9
+msgid "Print synta_x highlighting"
+msgstr "打印語法標示的顏色(_Y)"
+
+# zh_HK: msgstr "打印時顯示語法色彩"
+#: ../gedit/gedit-print-preferences.ui.h:10
+msgid "Syntax Highlighting"
+msgstr "打印時顯示語法色彩"
+
+#: ../gedit/gedit-print-preferences.ui.h:12
+msgid "_Body:"
+msgstr "內容(_B):"
+
+#: ../gedit/gedit-print-preferences.ui.h:13
+msgid "_Line numbers:"
+msgstr "行號(_L):"
+
+#. 'Number every' from 'Number every 3 lines' in the 'Text Editor' tab of the print preferences.
+#: ../gedit/gedit-print-preferences.ui.h:15
+msgid "_Number every"
+msgstr "每隔指定行數加上行號(_N):"
+
+#: ../gedit/gedit-print-preferences.ui.h:16
+msgid "_Restore Default Fonts"
+msgstr "還原為預設字型(_R)"
+
+#. 'lines' from 'Number every 3 lines' in the 'Text Editor' tab of the print preferences.
+#: ../gedit/gedit-print-preferences.ui.h:18
+msgid "lines"
+msgstr "行"
+
+#: ../gedit/gedit-print-preview.c:565
+msgid "Show the previous page"
+msgstr "顯示上一頁"
+
+#: ../gedit/gedit-print-preview.c:577
+msgid "Show the next page"
+msgstr "顯示下一頁"
+
+#: ../gedit/gedit-print-preview.c:593
+msgid "Current page (Alt+P)"
+msgstr "目前的頁 (Alt+P)"
+
+#. Translators: the "of" from "1 of 19" in print preview.
+#: ../gedit/gedit-print-preview.c:616
+msgid "of"
+msgstr "/"
+
+#: ../gedit/gedit-print-preview.c:624
+msgid "Page total"
+msgstr "總頁數"
+
+#: ../gedit/gedit-print-preview.c:625
+msgid "The total number of pages in the document"
+msgstr "文件的總頁數"
+
+#: ../gedit/gedit-print-preview.c:642
+msgid "Show multiple pages"
+msgstr "顯示多頁"
+
+#: ../gedit/gedit-print-preview.c:655
+msgid "Zoom 1:1"
+msgstr "正常大小"
+
+#: ../gedit/gedit-print-preview.c:664
+msgid "Zoom to fit the whole page"
+msgstr "整頁大小"
+
+#: ../gedit/gedit-print-preview.c:673
+msgid "Zoom the page in"
+msgstr "放大"
+
+#: ../gedit/gedit-print-preview.c:682
+msgid "Zoom the page out"
+msgstr "縮小"
+
+#: ../gedit/gedit-print-preview.c:694
+msgid "_Close Preview"
+msgstr "關閉預覽(_C)"
+
+#: ../gedit/gedit-print-preview.c:697
+msgid "Close print preview"
+msgstr "關閉預覽打印"
+
+#: ../gedit/gedit-print-preview.c:767
+#, c-format
+msgid "Page %d of %d"
+msgstr "第 %d / %d 頁"
+
+#: ../gedit/gedit-print-preview.c:951
+msgid "Page Preview"
+msgstr "頁面預覽"
+
+# zh_HK: msgstr "將會打印的文件的預覽"
+#: ../gedit/gedit-print-preview.c:952
+msgid "The preview of a page in the document to be printed"
+msgstr "將會打印的文件的預覽"
+
+#: ../gedit/gedit-smart-charset-converter.c:308
+msgid "It is not possible to detect the encoding automatically"
+msgstr "無法自動偵測編碼"
+
+#: ../gedit/gedit-statusbar.c:70 ../gedit/gedit-statusbar.c:76
+msgid "OVR"
+msgstr "覆寫"
+
+#: ../gedit/gedit-statusbar.c:70 ../gedit/gedit-statusbar.c:76
+msgid "INS"
+msgstr "插入"
+
+#. Translators: "Ln" is an abbreviation for "Line", Col is an abbreviation for "Column". Please,
+#. use abbreviations if possible to avoid space problems.
+#: ../gedit/gedit-statusbar.c:332
+#, c-format
+msgid "  Ln %d, Col %d"
+msgstr "第 %d 行第 %d 字"
+
+#: ../gedit/gedit-statusbar.c:431
+#, c-format
+msgid "There is a tab with errors"
+msgid_plural "There are %d tabs with errors"
+msgstr[0] "有一個分頁有錯誤"
+msgstr[1] "有 %d 個分頁有錯誤"
+
+#: ../gedit/gedit-style-scheme-manager.c:207
+#, c-format
+msgid "Directory '%s' could not be created: g_mkdir_with_parents() failed: %s"
+msgstr "無法建立目錄「%s」： g_mkdir_with_parents() 失敗：%s"
+
+#. Translators: the first %s is a file name (e.g. test.txt) the second one
+#. is a directory (e.g. ssh://master.mate.org/home/users/paolo)
+#: ../gedit/gedit-tab.c:660
+#, c-format
+msgid "Reverting %s from %s"
+msgstr "正在還原 %2$s 中的 %1$s"
+
+#: ../gedit/gedit-tab.c:667
+#, c-format
+msgid "Reverting %s"
+msgstr "正在還原 %s"
+
+#. Translators: the first %s is a file name (e.g. test.txt) the second one
+#. is a directory (e.g. ssh://master.mate.org/home/users/paolo)
+#: ../gedit/gedit-tab.c:683
+#, c-format
+msgid "Loading %s from %s"
+msgstr "從 %2$s 載入 %1$s"
+
+#: ../gedit/gedit-tab.c:690
+#, c-format
+msgid "Loading %s"
+msgstr "正在載入 %s"
+
+#. Translators: the first %s is a file name (e.g. test.txt) the second one
+#. is a directory (e.g. ssh://master.mate.org/home/users/paolo)
+#: ../gedit/gedit-tab.c:773
+#, c-format
+msgid "Saving %s to %s"
+msgstr "儲存 %s 至 %s"
+
+#: ../gedit/gedit-tab.c:780
+#, c-format
+msgid "Saving %s"
+msgstr "正在儲存 %s"
+
+#. Read only
+#: ../gedit/gedit-tab.c:1711
+msgid "RO"
+msgstr "唯讀"
+
+#: ../gedit/gedit-tab.c:1758
+#, c-format
+msgid "Error opening file %s"
+msgstr "開啟 %s 時出現錯誤"
+
+#: ../gedit/gedit-tab.c:1763
+#, c-format
+msgid "Error reverting file %s"
+msgstr "還原檔案 %s 時出現錯誤"
+
+#: ../gedit/gedit-tab.c:1768
+#, c-format
+msgid "Error saving file %s"
+msgstr "儲存檔案 %s 時出現錯誤"
+
+#: ../gedit/gedit-tab.c:1789
+msgid "Unicode (UTF-8)"
+msgstr "統一碼 (UTF-8)"
+
+#: ../gedit/gedit-tab.c:1796
+msgid "Name:"
+msgstr "名稱:"
+
+#: ../gedit/gedit-tab.c:1797
+msgid "MIME Type:"
+msgstr "MIME 類型："
+
+#: ../gedit/gedit-tab.c:1798
+msgid "Encoding:"
+msgstr "編碼："
+
+#: ../gedit/gedit-tab-label.c:200
+msgid "Close document"
+msgstr "關閉文件"
+
+#. Toplevel
+#: ../gedit/gedit-ui.h:47
+msgid "_File"
+msgstr "檔案(_F)"
+
+#: ../gedit/gedit-ui.h:48
+msgid "_Edit"
+msgstr "編輯(_E)"
+
+#: ../gedit/gedit-ui.h:49
+msgid "_View"
+msgstr "檢視(_V)"
+
+#: ../gedit/gedit-ui.h:50
+msgid "_Search"
+msgstr "搜尋(_S)"
+
+#: ../gedit/gedit-ui.h:51
+msgid "_Tools"
+msgstr "工具(_T)"
+
+#: ../gedit/gedit-ui.h:52
+msgid "_Documents"
+msgstr "文件(_D)"
+
+#: ../gedit/gedit-ui.h:53
+msgid "_Help"
+msgstr "求助(_H)"
+
+#: ../gedit/gedit-ui.h:57
+msgid "Create a new document"
+msgstr "新增文件"
+
+#: ../gedit/gedit-ui.h:58
+msgid "_Open..."
+msgstr "開啟(_O)..."
+
+#: ../gedit/gedit-ui.h:59 ../gedit/gedit-window.c:1450
+msgid "Open a file"
+msgstr "開啟檔案"
+
+#. Edit menu
+#: ../gedit/gedit-ui.h:62
+msgid "Pr_eferences"
+msgstr "偏好設定(_E)"
+
+#: ../gedit/gedit-ui.h:63
+msgid "Configure the application"
+msgstr "設定應用程式"
+
+#. Help menu
+#: ../gedit/gedit-ui.h:66
+msgid "_Contents"
+msgstr "內容(_C)"
+
+#: ../gedit/gedit-ui.h:67
+msgid "Open the gedit manual"
+msgstr "開啟 gedit 手冊"
+
+#: ../gedit/gedit-ui.h:69
+msgid "About this application"
+msgstr "關於此程式"
+
+#: ../gedit/gedit-ui.h:73
+msgid "Leave fullscreen mode"
+msgstr "離開全螢幕模式"
+
+#: ../gedit/gedit-ui.h:81
+msgid "Save the current file"
+msgstr "儲存目前的檔案"
+
+#: ../gedit/gedit-ui.h:82
+msgid "Save _As..."
+msgstr "另存新檔(_A)..."
+
+#: ../gedit/gedit-ui.h:83
+msgid "Save the current file with a different name"
+msgstr "以另一個名稱儲存目前的檔案"
+
+#: ../gedit/gedit-ui.h:85
+msgid "Revert to a saved version of the file"
+msgstr "將檔案還原為已儲存的版本"
+
+#: ../gedit/gedit-ui.h:87
+msgid "Page Set_up..."
+msgstr "頁面設定(_U)..."
+
+#: ../gedit/gedit-ui.h:88
+msgid "Set up the page settings"
+msgstr "設定頁面的設定值"
+
+#: ../gedit/gedit-ui.h:90
+msgid "Print Previe_w"
+msgstr "預覽打印(_W)"
+
+#: ../gedit/gedit-ui.h:91
+msgid "Print preview"
+msgstr "預覽打印"
+
+#: ../gedit/gedit-ui.h:92
+msgid "_Print..."
+msgstr "打印(_P)..."
+
+# zh_HK: msgstr "打印本頁"
+#: ../gedit/gedit-ui.h:93
+msgid "Print the current page"
+msgstr "打印本頁"
+
+#: ../gedit/gedit-ui.h:97
+msgid "Undo the last action"
+msgstr "復原最後一個動作"
+
+#: ../gedit/gedit-ui.h:99
+msgid "Redo the last undone action"
+msgstr "取消上一個復原動作"
+
+#: ../gedit/gedit-ui.h:101
+msgid "Cut the selection"
+msgstr "剪下選擇區域"
+
+#: ../gedit/gedit-ui.h:103
+msgid "Copy the selection"
+msgstr "複製選取的內容"
+
+#: ../gedit/gedit-ui.h:105
+msgid "Paste the clipboard"
+msgstr "貼上剪貼簿的內容"
+
+#: ../gedit/gedit-ui.h:107
+msgid "Delete the selected text"
+msgstr "刪除已選的文字"
+
+#: ../gedit/gedit-ui.h:108
+msgid "Select _All"
+msgstr "全部選取(_A)"
+
+#: ../gedit/gedit-ui.h:109
+msgid "Select the entire document"
+msgstr "選取整份文件"
+
+#. View menu
+#: ../gedit/gedit-ui.h:112
+msgid "_Highlight Mode"
+msgstr "語法標示模式(_H)"
+
+#. Search menu
+#: ../gedit/gedit-ui.h:115
+msgid "_Find..."
+msgstr "尋找(_F)..."
+
+#: ../gedit/gedit-ui.h:116
+msgid "Search for text"
+msgstr "搜尋字串"
+
+#: ../gedit/gedit-ui.h:117
+msgid "Find Ne_xt"
+msgstr "找下一個(_X)"
+
+#: ../gedit/gedit-ui.h:118
+msgid "Search forwards for the same text"
+msgstr "向下搜尋同一個字串"
+
+#: ../gedit/gedit-ui.h:119
+msgid "Find Pre_vious"
+msgstr "找上一個(_V)"
+
+#: ../gedit/gedit-ui.h:120
+msgid "Search backwards for the same text"
+msgstr "向上搜尋同一個字串"
+
+#: ../gedit/gedit-ui.h:122 ../gedit/gedit-ui.h:125
+msgid "_Replace..."
+msgstr "取代(_R)..."
+
+#: ../gedit/gedit-ui.h:123 ../gedit/gedit-ui.h:126
+msgid "Search for and replace text"
+msgstr "搜尋並取代字串"
+
+#: ../gedit/gedit-ui.h:128
+msgid "_Clear Highlight"
+msgstr "清除標示(_C)"
+
+#: ../gedit/gedit-ui.h:129
+msgid "Clear highlighting of search matches"
+msgstr "清除與搜尋相應的標示"
+
+#: ../gedit/gedit-ui.h:130
+msgid "Go to _Line..."
+msgstr "前往行數(_L)..."
+
+#: ../gedit/gedit-ui.h:131
+msgid "Go to a specific line"
+msgstr "前往指定的行數"
+
+#: ../gedit/gedit-ui.h:132
+msgid "_Incremental Search..."
+msgstr "漸進式搜尋(_I)...."
+
+#: ../gedit/gedit-ui.h:133
+msgid "Incrementally search for text"
+msgstr "漸進式搜尋文字"
+
+#. Documents menu
+#: ../gedit/gedit-ui.h:136
+msgid "_Save All"
+msgstr "全部儲存(_S)"
+
+#: ../gedit/gedit-ui.h:137
+msgid "Save all open files"
+msgstr "儲存所有開啟的檔案"
+
+#: ../gedit/gedit-ui.h:138
+msgid "_Close All"
+msgstr "全部關閉(_C)"
+
+#: ../gedit/gedit-ui.h:139
+msgid "Close all open files"
+msgstr "關閉所有開啟的檔案"
+
+#: ../gedit/gedit-ui.h:140
+msgid "_Previous Document"
+msgstr "上一個文件(_P)"
+
+#: ../gedit/gedit-ui.h:141
+msgid "Activate previous document"
+msgstr "編輯上一個文件"
+
+#: ../gedit/gedit-ui.h:142
+msgid "_Next Document"
+msgstr "下一個文件(_P)"
+
+#: ../gedit/gedit-ui.h:143
+msgid "Activate next document"
+msgstr "編輯下一個文件"
+
+#: ../gedit/gedit-ui.h:144
+msgid "_Move to New Window"
+msgstr "移至新的視窗(_M)"
+
+#: ../gedit/gedit-ui.h:145
+msgid "Move the current document to a new window"
+msgstr "將目前的文件移至新的視窗"
+
+#: ../gedit/gedit-ui.h:152
+msgid "Close the current file"
+msgstr "關閉目前的檔案"
+
+#: ../gedit/gedit-ui.h:159
+msgid "Quit the program"
+msgstr "結束程式"
+
+#: ../gedit/gedit-ui.h:164
+msgid "_Toolbar"
+msgstr "工具列(_T)"
+
+#: ../gedit/gedit-ui.h:165
+msgid "Show or hide the toolbar in the current window"
+msgstr "在目前的視窗中顯示或隱藏工具列"
+
+#: ../gedit/gedit-ui.h:167
+msgid "_Statusbar"
+msgstr "狀態列(_S)"
+
+#: ../gedit/gedit-ui.h:168
+msgid "Show or hide the statusbar in the current window"
+msgstr "在目前的視窗中顯示或隱藏狀態列"
+
+#: ../gedit/gedit-ui.h:171
+msgid "Edit text in fullscreen"
+msgstr "在全螢幕模式編輯文字檔"
+
+#: ../gedit/gedit-ui.h:178
+msgid "Side _Pane"
+msgstr "側邊窗格(_P)"
+
+#: ../gedit/gedit-ui.h:179
+msgid "Show or hide the side pane in the current window"
+msgstr "在目前的視窗中顯示或隱藏側面窗格"
+
+#: ../gedit/gedit-ui.h:181
+msgid "_Bottom Pane"
+msgstr "底部面板(_B)"
+
+#: ../gedit/gedit-ui.h:182
+msgid "Show or hide the bottom pane in the current window"
+msgstr "在目前的視窗中顯示或隱藏底部面板"
+
+#: ../gedit/gedit-utils.c:1071
+msgid "Please check your installation."
+msgstr "請檢查安裝是否正確。"
+
+#: ../gedit/gedit-utils.c:1140
+#, c-format
+msgid "Unable to open UI file %s. Error: %s"
+msgstr "無法開啟 UI 檔案 %s。錯誤：%s"
+
+#: ../gedit/gedit-utils.c:1160
+#, c-format
+msgid "Unable to find the object '%s' inside file %s."
+msgstr "無法在檔案 %2$s 中找到物件「%1$s」。"
+
+#. Translators: '/ on <remote-share>'
+#: ../gedit/gedit-utils.c:1320
+#, c-format
+msgid "/ on %s"
+msgstr "/ 於 %s"
+
+#. create "Wrap Around" menu item.
+#: ../gedit/gedit-view.c:1218
+msgid "_Wrap Around"
+msgstr "回到檔案開始部份再搜尋(_W)"
+
+#. create "Match Entire Word Only" menu item.
+#: ../gedit/gedit-view.c:1228
+msgid "Match _Entire Word Only"
+msgstr "只符合整個字詞(_E)"
+
+#. create "Match Case" menu item.
+#: ../gedit/gedit-view.c:1238
+msgid "_Match Case"
+msgstr "符合大小寫(_M)"
+
+#: ../gedit/gedit-view.c:1352
+msgid "String you want to search for"
+msgstr "要搜尋的字串"
+
+#: ../gedit/gedit-view.c:1361
+msgid "Line you want to move the cursor to"
+msgstr "游標要移至的行"
+
+#: ../gedit/gedit-window.c:1003
+#, c-format
+msgid "Use %s highlight mode"
+msgstr "使用 %s 標示模式"
+
+#. add the "Plain Text" item before all the others
+#. Translators: "Plain Text" means that no highlight mode is selected in the
+#. * "View->Highlight Mode" submenu and so syntax highlighting is disabled
+#: ../gedit/gedit-window.c:1060 ../gedit/gedit-window.c:1972
+#: ../plugins/externaltools/tools/manager.py:121
+#: ../plugins/externaltools/tools/manager.py:419
+#: ../plugins/externaltools/tools/manager.py:529
+#: ../plugins/externaltools/tools/manager.py:844
+msgid "Plain Text"
+msgstr "純文字"
+
+#: ../gedit/gedit-window.c:1061
+msgid "Disable syntax highlighting"
+msgstr "停用語法標示"
+
+#. Translators: %s is a URI
+#: ../gedit/gedit-window.c:1347
+#, c-format
+msgid "Open '%s'"
+msgstr "開啟「%s」"
+
+#: ../gedit/gedit-window.c:1452
+msgid "Open a recently used file"
+msgstr "開啟最近使用過的檔案"
+
+#: ../gedit/gedit-window.c:1458
+msgid "Open"
+msgstr "開啟"
+
+#: ../gedit/gedit-window.c:1516
+msgid "Save"
+msgstr "儲存"
+
+#: ../gedit/gedit-window.c:1518
+msgid "Print"
+msgstr "打印"
+
+#. Translators: %s is a URI
+#: ../gedit/gedit-window.c:1697
+#, c-format
+msgid "Activate '%s'"
+msgstr "開啟‘%s’"
+
+#: ../gedit/gedit-window.c:1950
+msgid "Use Spaces"
+msgstr "使用空格"
+
+#: ../gedit/gedit-window.c:2021
+msgid "Tab Width"
+msgstr "Tab 字符闊度"
+
+#: ../gedit/gedit-window.c:3874
+msgid "About gedit"
+msgstr "關於 gedit"
+
+#: ../plugins/changecase/changecase.gedit-plugin.desktop.in.h:1
+msgid "Change Case"
+msgstr "更改大小寫"
+
+#: ../plugins/changecase/changecase.gedit-plugin.desktop.in.h:2
+msgid "Changes the case of selected text."
+msgstr "更改已選取文字的大小寫。"
+
+#: ../plugins/changecase/gedit-changecase-plugin.c:222
+msgid "C_hange Case"
+msgstr "更改大小寫(_H)"
+
+#: ../plugins/changecase/gedit-changecase-plugin.c:223
+msgid "All _Upper Case"
+msgstr "全大寫(_U)"
+
+#: ../plugins/changecase/gedit-changecase-plugin.c:224
+msgid "Change selected text to upper case"
+msgstr "將已選文字變為大寫"
+
+#: ../plugins/changecase/gedit-changecase-plugin.c:226
+msgid "All _Lower Case"
+msgstr "全小寫(_L)"
+
+#: ../plugins/changecase/gedit-changecase-plugin.c:227
+msgid "Change selected text to lower case"
+msgstr "將已選文字變為小寫"
+
+#: ../plugins/changecase/gedit-changecase-plugin.c:229
+msgid "_Invert Case"
+msgstr "大小寫顛倒(_I)"
+
+#: ../plugins/changecase/gedit-changecase-plugin.c:230
+msgid "Invert the case of selected text"
+msgstr "將已選取文字的大小寫顛倒"
+
+#: ../plugins/changecase/gedit-changecase-plugin.c:232
+msgid "_Title Case"
+msgstr "第一個字母的大小寫(_T)"
+
+#: ../plugins/changecase/gedit-changecase-plugin.c:233
+msgid "Capitalize the first letter of each selected word"
+msgstr "將已選取字詞的第一個字母變成大寫"
+
+#: ../plugins/checkupdate/checkupdate.gedit-plugin.desktop.in.h:1
+msgid "Check for latest version of gedit"
+msgstr "檢查 gedit 的最新版本"
+
+#: ../plugins/checkupdate/checkupdate.gedit-plugin.desktop.in.h:2
+msgid "Check update"
+msgstr "檢查更新"
+
+#: ../plugins/checkupdate/gedit-check-update-plugin.c:246
+msgid "There was an error displaying the URI."
+msgstr "顯示這個 URI 時發生錯誤。"
+
+#: ../plugins/checkupdate/gedit-check-update-plugin.c:293
+#: ../plugins/checkupdate/gedit-check-update-plugin.c:308
+msgid "_Download"
+msgstr "下載(_D)"
+
+#: ../plugins/checkupdate/gedit-check-update-plugin.c:297
+#: ../plugins/checkupdate/gedit-check-update-plugin.c:316
+msgid "_Ignore Version"
+msgstr "忽略版本(_I)"
+
+#: ../plugins/checkupdate/gedit-check-update-plugin.c:332
+msgid "There is a new version of gedit"
+msgstr "已有新版本的 gedit"
+
+#: ../plugins/checkupdate/gedit-check-update-plugin.c:336
+msgid ""
+"You can download the new version of gedit by clicking on the download button "
+"or ignore that version and wait for a new one"
+msgstr "你可以按「下載」按鈕來下載最新版 gedit 或是忽略那個版本等待更新的"
+
+#: ../plugins/checkupdate/gedit-check-update.schemas.in.h:1
+msgid "Version to ignore until the next version is released"
+msgstr "在下個版本推出前要忽略的版本"
+
+#: ../plugins/docinfo/docinfo.gedit-plugin.desktop.in.h:1
+msgid ""
+"Analyzes the current document and reports the number of words, lines, "
+"characters and non-space characters in it."
+msgstr "分析目前的文件並計算字數、行數、字符數目及非空格的字符數目，並顯示結果。"
+
+#: ../plugins/docinfo/docinfo.gedit-plugin.desktop.in.h:2
+#: ../plugins/docinfo/docinfo.ui.h:6
+msgid "Document Statistics"
+msgstr "文件統計"
+
+#: ../plugins/docinfo/docinfo.ui.h:2
+msgid "Bytes"
+msgstr "位元組"
+
+#: ../plugins/docinfo/docinfo.ui.h:3
+msgid "Characters (no spaces)"
+msgstr "字符（不包括空格）"
+
+#: ../plugins/docinfo/docinfo.ui.h:4
+msgid "Characters (with spaces)"
+msgstr "字符（包括空格）"
+
+#: ../plugins/docinfo/docinfo.ui.h:5
+msgid "Document"
+msgstr "文件"
+
+#: ../plugins/docinfo/docinfo.ui.h:7
+msgid "File Name"
+msgstr "檔案名稱"
+
+#: ../plugins/docinfo/docinfo.ui.h:8
+msgid "Lines"
+msgstr "行"
+
+#: ../plugins/docinfo/docinfo.ui.h:9
+msgid "Selection"
+msgstr "選擇區域"
+
+#: ../plugins/docinfo/docinfo.ui.h:10
+msgid "Words"
+msgstr "字詞"
+
+#: ../plugins/docinfo/docinfo.ui.h:11
+msgid "_Update"
+msgstr "更新(_U)"
+
+#: ../plugins/docinfo/gedit-docinfo-plugin.c:422
+msgid "_Document Statistics"
+msgstr "文件統計(_D)"
+
+#: ../plugins/docinfo/gedit-docinfo-plugin.c:424
+msgid "Get statistical information on the current document"
+msgstr "獲取有關目前文件的統計資訊"
+
+#: ../plugins/externaltools/data/open-terminal-here-osx.desktop.in.h:1
+#: ../plugins/externaltools/data/open-terminal-here.desktop.in.h:1
+msgid "Open a terminal in the document location"
+msgstr "在文件的位置開啟終端機"
+
+#: ../plugins/externaltools/data/open-terminal-here-osx.desktop.in.h:2
+#: ../plugins/externaltools/data/open-terminal-here.desktop.in.h:2
+msgid "Open terminal here"
+msgstr "在這裏開啟終端機"
+
+#: ../plugins/externaltools/externaltools.gedit-plugin.desktop.in.h:1
+msgid "Execute external commands and shell scripts."
+msgstr "執行外部指令及 shell script。"
+
+#: ../plugins/externaltools/externaltools.gedit-plugin.desktop.in.h:2
+msgid "External Tools"
+msgstr "外部工具"
+
+#: ../plugins/externaltools/tools/__init__.py:172
+msgid "Manage _External Tools..."
+msgstr "管理外部工具(_E)..."
+
+#: ../plugins/externaltools/tools/__init__.py:174
+msgid "Opens the External Tools Manager"
+msgstr "開啟外部工具管理員"
+
+#: ../plugins/externaltools/tools/__init__.py:178
+msgid "External _Tools"
+msgstr "外部工具(_T)"
+
+#: ../plugins/externaltools/tools/__init__.py:180
+msgid "External tools"
+msgstr "外部工具"
+
+#: ../plugins/externaltools/tools/__init__.py:212
+msgid "Shell Output"
+msgstr "Shell 輸出"
+
+#: ../plugins/externaltools/tools/capture.py:92
+#, python-format
+msgid "Could not execute command: %s"
+msgstr "無法執行指令：%s"
+
+#: ../plugins/externaltools/tools/functions.py:162
+msgid "You must be inside a word to run this command"
+msgstr "必須在字詞中執行此命令"
+
+#: ../plugins/externaltools/tools/functions.py:267
+msgid "Running tool:"
+msgstr "執行工具："
+
+#: ../plugins/externaltools/tools/functions.py:292
+msgid "Done."
+msgstr "完成。"
+
+#: ../plugins/externaltools/tools/functions.py:294
+msgid "Exited"
+msgstr "已離開"
+
+#: ../plugins/externaltools/tools/manager.py:119
+msgid "All languages"
+msgstr "所有語言"
+
+#: ../plugins/externaltools/tools/manager.py:518
+#: ../plugins/externaltools/tools/manager.py:522
+#: ../plugins/externaltools/tools/manager.py:842
+#: ../plugins/externaltools/tools/tools.ui.h:2
+msgid "All Languages"
+msgstr "所有語言"
+
+#: ../plugins/externaltools/tools/manager.py:628
+msgid "New tool"
+msgstr "新增工具"
+
+#: ../plugins/externaltools/tools/manager.py:759
+#, python-format
+msgid "This accelerator is already bound to %s"
+msgstr "此捷徑鍵已經給 %s 使用"
+
+#: ../plugins/externaltools/tools/manager.py:810
+msgid "Type a new accelerator, or press Backspace to clear"
+msgstr "輸入新的捷徑鍵，或按後退鍵清除"
+
+#: ../plugins/externaltools/tools/manager.py:812
+msgid "Type a new accelerator"
+msgstr "輸入新的捷徑鍵"
+
+#: ../plugins/externaltools/tools/outputpanel.py:105
+msgid "Stopped."
+msgstr "已停止。"
+
+#: ../plugins/externaltools/tools/tools.ui.h:3
+msgid "All documents"
+msgstr "所有文件"
+
+#: ../plugins/externaltools/tools/tools.ui.h:4
+msgid "All documents except untitled ones"
+msgstr "所有除了未命名的檔案"
+
+#: ../plugins/externaltools/tools/tools.ui.h:5
+msgid "Append to current document"
+msgstr "加入至目前文件"
+
+#: ../plugins/externaltools/tools/tools.ui.h:6
+msgid "Create new document"
+msgstr "建立新文件"
+
+#: ../plugins/externaltools/tools/tools.ui.h:7
+msgid "Current document"
+msgstr "目前文件"
+
+#: ../plugins/externaltools/tools/tools.ui.h:8
+msgid "Current line"
+msgstr "當前的行"
+
+#: ../plugins/externaltools/tools/tools.ui.h:9
+msgid "Current selection"
+msgstr "目前選擇區域"
+
+#: ../plugins/externaltools/tools/tools.ui.h:10
+msgid "Current selection (default to document)"
+msgstr "目前的選擇區域（預設為文件）"
+
+#: ../plugins/externaltools/tools/tools.ui.h:11
+msgid "Current word"
+msgstr "目前字詞"
+
+#: ../plugins/externaltools/tools/tools.ui.h:12
+msgid "Display in bottom pane"
+msgstr "底部面板中顯示"
+
+#: ../plugins/externaltools/tools/tools.ui.h:13
+msgid "External Tools Manager"
+msgstr "外部工具管理員"
+
+#: ../plugins/externaltools/tools/tools.ui.h:14
+msgid "Insert at cursor position"
+msgstr "在游標的位置插入"
+
+#: ../plugins/externaltools/tools/tools.ui.h:15
+msgid "Local files only"
+msgstr "只有本機檔案"
+
+#: ../plugins/externaltools/tools/tools.ui.h:16
+msgid "Nothing"
+msgstr "沒有"
+
+#: ../plugins/externaltools/tools/tools.ui.h:17
+msgid "Remote files only"
+msgstr "只有遠端檔案"
+
+#: ../plugins/externaltools/tools/tools.ui.h:18
+msgid "Replace current document"
+msgstr "取代目前的文件"
+
+#: ../plugins/externaltools/tools/tools.ui.h:19
+msgid "Replace current selection"
+msgstr "取代目前的選擇區域"
+
+#: ../plugins/externaltools/tools/tools.ui.h:20
+msgid "Untitled documents only"
+msgstr "只有未命名的文件"
+
+#: ../plugins/externaltools/tools/tools.ui.h:21
+msgid "_Applicability:"
+msgstr "適用於(_A):"
+
+#: ../plugins/externaltools/tools/tools.ui.h:22
+#: ../plugins/snippets/snippets/snippets.ui.h:12
+msgid "_Edit:"
+msgstr "編輯(_E):"
+
+#: ../plugins/externaltools/tools/tools.ui.h:23
+msgid "_Input:"
+msgstr "輸入(_I):"
+
+#: ../plugins/externaltools/tools/tools.ui.h:24
+msgid "_Output:"
+msgstr "輸出(_O):"
+
+#: ../plugins/externaltools/tools/tools.ui.h:25
+msgid "_Save:"
+msgstr "儲存(_S):"
+
+#: ../plugins/externaltools/tools/tools.ui.h:26
+msgid "_Shortcut Key:"
+msgstr "捷徑鍵(_S):"
+
+#: ../plugins/externaltools/tools/tools.ui.h:27
+msgid "_Tools:"
+msgstr "工具(_T):"
+
+#: ../plugins/externaltools/data/build.desktop.in.h:1
+msgid "Build"
+msgstr "建立"
+
+#: ../plugins/externaltools/data/build.desktop.in.h:2
+msgid "Run \"make\" in the document directory"
+msgstr "在文件資料夾中執行“make”指令"
+
+#: ../plugins/externaltools/data/remove-trailing-spaces.desktop.in.h:1
+msgid "Remove trailing spaces"
+msgstr "移除句尾空格"
+
+#: ../plugins/externaltools/data/remove-trailing-spaces.desktop.in.h:2
+msgid "Remove useless trailing spaces in your file"
+msgstr "移除檔案中沒用的句尾空格"
+
+#: ../plugins/externaltools/data/run-command.desktop.in.h:1
+msgid "Execute a custom command and put its output in a new document"
+msgstr "執行自選指令及輸出在一個新的文件上"
+
+#: ../plugins/externaltools/data/run-command.desktop.in.h:2
+msgid "Run command"
+msgstr "執行指令"
+
+#: ../plugins/filebrowser/filebrowser.gedit-plugin.desktop.in.h:1
+msgid "Easy file access from the side pane"
+msgstr "輕鬆地從側面窗格存取檔案"
+
+#: ../plugins/filebrowser/filebrowser.gedit-plugin.desktop.in.h:2
+msgid "File Browser Pane"
+msgstr "檔案瀏覽器窗格"
+
+#: ../plugins/filebrowser/gedit-file-bookmarks-store.c:235
+msgid "File System"
+msgstr "檔案系統"
+
+#. ex:ts=8:noet:
+#: ../plugins/filebrowser/gedit-file-browser.schemas.in.h:1
+msgid "Enable Restore of Remote Locations"
+msgstr "啟用遠端位置回復"
+
+#: ../plugins/filebrowser/gedit-file-browser.schemas.in.h:2
+msgid "File Browser Filter Mode"
+msgstr "檔案瀏覽器過濾器模式"
+
+#: ../plugins/filebrowser/gedit-file-browser.schemas.in.h:3
+msgid "File Browser Filter Pattern"
+msgstr "檔案瀏覽器過濾器樣式"
+
+#: ../plugins/filebrowser/gedit-file-browser.schemas.in.h:4
+msgid "File Browser Root Directory"
+msgstr "檔案瀏覽器根資料夾"
+
+#: ../plugins/filebrowser/gedit-file-browser.schemas.in.h:5
+msgid "File Browser Virtual Root Directory"
+msgstr "檔案瀏覽器虛擬根資料夾"
+
+#: ../plugins/filebrowser/gedit-file-browser.schemas.in.h:6
+msgid ""
+"If TRUE the file browser plugin will view the directory of the first opened "
+"document given that the file browser hasn't been used yet. (Thus this "
+"generally applies to opening a document from the command line or opening it "
+"with Caja, etc.)"
+msgstr "如設定為 TRUE，當從未使用過檔案瀏覽器時，則檔案瀏覽器外掛程式會顯示第一個開啟的檔案所在的目錄。（這通常會用於在命令列或 Caja 等程式中開啟文件時）"
+
+#: ../plugins/filebrowser/gedit-file-browser.schemas.in.h:7
+msgid "Open With Tree View"
+msgstr "以樹狀顯示模式開啟"
+
+#: ../plugins/filebrowser/gedit-file-browser.schemas.in.h:8
+msgid ""
+"Open the tree view when the file browser plugin gets loaded instead of the "
+"bookmarks view"
+msgstr "載入檔案瀏覽器外掛程式時，是否開啟樹狀顯示模式取代書籤顯示模式"
+
+#: ../plugins/filebrowser/gedit-file-browser.schemas.in.h:9
+msgid "Set Location to First Document"
+msgstr "設定第一個文件的位置"
+
+#: ../plugins/filebrowser/gedit-file-browser.schemas.in.h:10
+msgid "Sets whether to enable restoring of remote locations."
+msgstr "設定是否啟用遠端位置回復"
+
+#: ../plugins/filebrowser/gedit-file-browser.schemas.in.h:11
+msgid ""
+"The file browser root directory to use when loading the file browser plugin "
+"and onload/tree_view is TRUE."
+msgstr "檔案瀏覽器根資料夾是用於載入檔案瀏覽器外掛程式及 onload/tree_view 設定為‘TRUE’時。"
+
+#: ../plugins/filebrowser/gedit-file-browser.schemas.in.h:12
+msgid ""
+"The file browser virtual root directory to use when loading the file browser "
+"plugin when onload/tree_view is TRUE. The virtual root must always be below "
+"the actual root."
+msgstr "檔案瀏覽器虛擬根資料夾是用於載入檔案瀏覽器外掛程式及 onload/tree_view 設定為‘TRUE’時。虛擬根資料夾必須是處於真正的根資料夾之下。"
+
+#: ../plugins/filebrowser/gedit-file-browser.schemas.in.h:13
+msgid ""
+"The filter pattern to filter the file browser with. This filter works on top "
+"of the filter_mode."
+msgstr "過濾器樣式用於檔案瀏覽器過濾檔案。此過濾器會在 filter_mode 上使用。"
+
+#: ../plugins/filebrowser/gedit-file-browser.schemas.in.h:14
+msgid ""
+"This value determines what files get filtered from the file browser. Valid "
+"values are: none (filter nothing), hidden (filter hidden files), binary "
+"(filter binary files) and hidden_and_binary (filter both hidden and binary "
+"files)."
+msgstr "本數值決定哪些檔案在檔案瀏覽器中會被過濾。有效的數值為“none”（不過濾），“hidden”（只過濾隱藏檔），“binary”（只過濾二位元檔），“hidden_and_binary”（過濾隱藏檔及二位元檔）。"
+
+#: ../plugins/filebrowser/gedit-file-browser-plugin.c:597
+msgid "_Set root to active document"
+msgstr "設定正在編輯文件的位置為根資料夾(_S)"
+
+#: ../plugins/filebrowser/gedit-file-browser-plugin.c:599
+msgid "Set the root to the active document location"
+msgstr "設定正在編輯文件的位置為根資料夾"
+
+#: ../plugins/filebrowser/gedit-file-browser-plugin.c:604
+msgid "_Open terminal here"
+msgstr "在這裏開啟終端機(_O)"
+
+#: ../plugins/filebrowser/gedit-file-browser-plugin.c:606
+msgid "Open a terminal at the currently opened directory"
+msgstr "在目前的目錄中開啟終端機"
+
+#: ../plugins/filebrowser/gedit-file-browser-plugin.c:742
+msgid "File Browser"
+msgstr "檔案瀏覽器"
+
+#: ../plugins/filebrowser/gedit-file-browser-plugin.c:873
+msgid "An error occurred while creating a new directory"
+msgstr "建立新的資料夾時發生錯誤"
+
+#: ../plugins/filebrowser/gedit-file-browser-plugin.c:876
+msgid "An error occurred while creating a new file"
+msgstr "建立新的檔案時發生錯誤"
+
+#: ../plugins/filebrowser/gedit-file-browser-plugin.c:881
+msgid "An error occurred while renaming a file or directory"
+msgstr "更改檔案或資料夾名稱時發生錯誤"
+
+#: ../plugins/filebrowser/gedit-file-browser-plugin.c:886
+msgid "An error occurred while deleting a file or directory"
+msgstr "刪除檔案或資料夾時發生錯誤"
+
+#: ../plugins/filebrowser/gedit-file-browser-plugin.c:891
+msgid "An error occurred while opening a directory in the file manager"
+msgstr "在檔案管理員中開啟資料夾時發生錯誤"
+
+#: ../plugins/filebrowser/gedit-file-browser-plugin.c:895
+msgid "An error occurred while setting a root directory"
+msgstr "設定根資料夾時發生錯誤"
+
+#: ../plugins/filebrowser/gedit-file-browser-plugin.c:899
+msgid "An error occurred while loading a directory"
+msgstr "載入資料夾時發生錯誤"
+
+#: ../plugins/filebrowser/gedit-file-browser-plugin.c:902
+msgid "An error occurred"
+msgstr "發生錯誤"
+
+#: ../plugins/filebrowser/gedit-file-browser-plugin.c:1194
+msgid ""
+"Cannot move file to trash, do you\n"
+"want to delete permanently?"
+msgstr ""
+"檔案無法移至回收筒，\n"
+"要把它永久地刪除嗎？"
+
+#: ../plugins/filebrowser/gedit-file-browser-plugin.c:1198
+#, c-format
+msgid "The file \"%s\" cannot be moved to the trash."
+msgstr "檔案“%s”無法移至回收筒。"
+
+#: ../plugins/filebrowser/gedit-file-browser-plugin.c:1201
+msgid "The selected files cannot be moved to the trash."
+msgstr "所選的檔案無法移至回收筒。"
+
+#: ../plugins/filebrowser/gedit-file-browser-plugin.c:1234
+#, c-format
+msgid "Are you sure you want to permanently delete \"%s\"?"
+msgstr "確定要永遠刪除“%s”嗎？"
+
+#: ../plugins/filebrowser/gedit-file-browser-plugin.c:1237
+msgid "Are you sure you want to permanently delete the selected files?"
+msgstr "確定要永久刪除已選的檔案嗎？"
+
+#: ../plugins/filebrowser/gedit-file-browser-plugin.c:1240
+msgid "If you delete an item, it is permanently lost."
+msgstr "如果將項目刪除，它將會永久失去。"
+
+#: ../plugins/filebrowser/gedit-file-browser-store.c:1667
+msgid "(Empty)"
+msgstr "（空的）"
+
+#: ../plugins/filebrowser/gedit-file-browser-store.c:3305
+msgid ""
+"The renamed file is currently filtered out. You need to adjust your filter "
+"settings to make the file visible"
+msgstr "目前重新命名的檔案已被過濾。你需要調整過濾器設定來使檔案重新顯示"
+
+#. Translators: This is the default name of new files created by the file browser pane.
+#: ../plugins/filebrowser/gedit-file-browser-store.c:3544
+msgid "file"
+msgstr "檔案"
+
+#: ../plugins/filebrowser/gedit-file-browser-store.c:3568
+msgid ""
+"The new file is currently filtered out. You need to adjust your filter "
+"settings to make the file visible"
+msgstr "目前新的檔案已被過濾。你需要調整過濾器設定來使檔案重新顯示"
+
+#. Translators: This is the default name of new directories created by the file browser pane.
+#: ../plugins/filebrowser/gedit-file-browser-store.c:3597
+msgid "directory"
+msgstr "資料夾"
+
+#: ../plugins/filebrowser/gedit-file-browser-store.c:3617
+msgid ""
+"The new directory is currently filtered out. You need to adjust your filter "
+"settings to make the directory visible"
+msgstr "目前新的目錄已被過濾。你需要調整過濾器設定來使目錄重新顯示"
+
+#: ../plugins/filebrowser/gedit-file-browser-widget.c:704
+msgid "Bookmarks"
+msgstr "書籤"
+
+#: ../plugins/filebrowser/gedit-file-browser-widget.c:785
+msgid "_Filter"
+msgstr "過濾條件(_F)"
+
+#: ../plugins/filebrowser/gedit-file-browser-widget.c:790
+msgid "_Move to Trash"
+msgstr "移至回收筒(_M)"
+
+#: ../plugins/filebrowser/gedit-file-browser-widget.c:791
+msgid "Move selected file or folder to trash"
+msgstr "將已選的檔案或資料夾移至回收筒"
+
+#: ../plugins/filebrowser/gedit-file-browser-widget.c:793
+msgid "_Delete"
+msgstr "刪除(_D)"
+
+#: ../plugins/filebrowser/gedit-file-browser-widget.c:794
+msgid "Delete selected file or folder"
+msgstr "刪除已選的檔案或資料夾"
+
+#: ../plugins/filebrowser/gedit-file-browser-widget.c:801
+msgid "Open selected file"
+msgstr "開啟選取的檔案"
+
+#: ../plugins/filebrowser/gedit-file-browser-widget.c:807
+msgid "Up"
+msgstr "上"
+
+#: ../plugins/filebrowser/gedit-file-browser-widget.c:808
+msgid "Open the parent folder"
+msgstr "開啟主資料夾"
+
+#: ../plugins/filebrowser/gedit-file-browser-widget.c:813
+msgid "_New Folder"
+msgstr "新增資料夾(_N)"
+
+#: ../plugins/filebrowser/gedit-file-browser-widget.c:814
+msgid "Add new empty folder"
+msgstr "加入新的資料夾"
+
+#: ../plugins/filebrowser/gedit-file-browser-widget.c:816
+msgid "New F_ile"
+msgstr "新增檔案(_I)"
+
+#: ../plugins/filebrowser/gedit-file-browser-widget.c:817
+msgid "Add new empty file"
+msgstr "加入新的檔案"
+
+#: ../plugins/filebrowser/gedit-file-browser-widget.c:822
+msgid "_Rename"
+msgstr "重新命名(_R)"
+
+#: ../plugins/filebrowser/gedit-file-browser-widget.c:823
+msgid "Rename selected file or folder"
+msgstr "更改已選檔案或資料夾的名稱"
+
+#: ../plugins/filebrowser/gedit-file-browser-widget.c:829
+msgid "_Previous Location"
+msgstr "上一個位置(_P)"
+
+#: ../plugins/filebrowser/gedit-file-browser-widget.c:831
+msgid "Go to the previous visited location"
+msgstr "回到上一個已造訪位置"
+
+#: ../plugins/filebrowser/gedit-file-browser-widget.c:833
+msgid "_Next Location"
+msgstr "下一個位置(_N)"
+
+#: ../plugins/filebrowser/gedit-file-browser-widget.c:834
+msgid "Go to the next visited location"
+msgstr "前往下一個已造訪位置"
+
+#: ../plugins/filebrowser/gedit-file-browser-widget.c:835
+msgid "Re_fresh View"
+msgstr "重新整理(_F)"
+
+#: ../plugins/filebrowser/gedit-file-browser-widget.c:836
+msgid "Refresh the view"
+msgstr "重新整理畫面"
+
+#: ../plugins/filebrowser/gedit-file-browser-widget.c:837
+#: ../plugins/filebrowser/gedit-file-browser-widget.c:855
+msgid "_View Folder"
+msgstr "檢視資料夾(_V)"
+
+#: ../plugins/filebrowser/gedit-file-browser-widget.c:838
+#: ../plugins/filebrowser/gedit-file-browser-widget.c:856
+msgid "View folder in file manager"
+msgstr "在檔案管理員中檢視資料夾"
+
+#: ../plugins/filebrowser/gedit-file-browser-widget.c:845
+msgid "Show _Hidden"
+msgstr "顯示隱藏檔(_H)"
+
+#: ../plugins/filebrowser/gedit-file-browser-widget.c:846
+msgid "Show hidden files and folders"
+msgstr "顯示的隱藏檔案及資料夾"
+
+#: ../plugins/filebrowser/gedit-file-browser-widget.c:848
+msgid "Show _Binary"
+msgstr "顯示二位元檔(_B)"
+
+#: ../plugins/filebrowser/gedit-file-browser-widget.c:849
+msgid "Show binary files"
+msgstr "顯示二位元檔"
+
+#: ../plugins/filebrowser/gedit-file-browser-widget.c:981
+#: ../plugins/filebrowser/gedit-file-browser-widget.c:990
+#: ../plugins/filebrowser/gedit-file-browser-widget.c:1011
+msgid "Previous location"
+msgstr "上一個位置"
+
+#: ../plugins/filebrowser/gedit-file-browser-widget.c:983
+msgid "Go to previous location"
+msgstr "回到上一個位置"
+
+#: ../plugins/filebrowser/gedit-file-browser-widget.c:985
+#: ../plugins/filebrowser/gedit-file-browser-widget.c:1006
+msgid "Go to a previously opened location"
+msgstr "回到上一個已開啟的位置"
+
+#: ../plugins/filebrowser/gedit-file-browser-widget.c:1002
+msgid "Next location"
+msgstr "下一個位置"
+
+#: ../plugins/filebrowser/gedit-file-browser-widget.c:1004
+msgid "Go to next location"
+msgstr "前往下一個位置"
+
+#: ../plugins/filebrowser/gedit-file-browser-widget.c:1216
+msgid "_Match Filename"
+msgstr "相符檔名(_M)"
+
+#: ../plugins/filebrowser/gedit-file-browser-widget.c:2118
+#, c-format
+msgid "No mount object for mounted volume: %s"
+msgstr "掛載的儲存裝置沒有掛載物件：%s"
+
+#: ../plugins/filebrowser/gedit-file-browser-widget.c:2198
+#, c-format
+msgid "Could not open media: %s"
+msgstr "無法開啟媒體：%s"
+
+#: ../plugins/filebrowser/gedit-file-browser-widget.c:2245
+#, c-format
+msgid "Could not mount volume: %s"
+msgstr "無法掛載儲存裝置：%s"
+
+#. ex:ts=8:noet:
+#: ../plugins/modelines/modelines.gedit-plugin.desktop.in.h:1
+msgid "Emacs, Kate and Vim-style modelines support for gedit."
+msgstr "geit 的 Emacs, Kate 及 Vim 風格的 modeline 支援"
+
+#: ../plugins/modelines/modelines.gedit-plugin.desktop.in.h:2
+msgid "Modelines"
+msgstr "Modelines"
+
+#: ../plugins/pythonconsole/pythonconsole.gedit-plugin.desktop.in.h:1
+msgid "Interactive Python console standing in the bottom panel"
+msgstr "在底部面板的互動式 Python 主控台"
+
+#: ../plugins/pythonconsole/pythonconsole.gedit-plugin.desktop.in.h:2
+#: ../plugins/pythonconsole/pythonconsole/__init__.py:50
+msgid "Python Console"
+msgstr "Python 終端"
+
+#. ex:et:ts=4:
+#: ../plugins/pythonconsole/pythonconsole/config.ui.h:1
+msgid "C_ommand color:"
+msgstr "指令顏色(_O):"
+
+#: ../plugins/pythonconsole/pythonconsole/config.ui.h:2
+msgid "_Error color:"
+msgstr "錯誤顏色(_E):"
+
+#. ex:ts=8:et:
+#: ../plugins/quickopen/quickopen/popup.py:35
+#: ../plugins/quickopen/quickopen.gedit-plugin.desktop.in.h:1
+msgid "Quick Open"
+msgstr "快速開啟"
+
+#: ../plugins/quickopen/quickopen/windowhelper.py:69
+msgid "Quick open"
+msgstr "快速開啟"
+
+#: ../plugins/quickopen/quickopen/windowhelper.py:70
+msgid "Quickly open documents"
+msgstr "快速開啟文件"
+
+#: ../plugins/quickopen/quickopen.gedit-plugin.desktop.in.h:2
+msgid "Quickly open files"
+msgstr "快速開啟檔案"
+
+#: ../plugins/snippets/snippets.gedit-plugin.desktop.in.h:1
+msgid "Insert often-used pieces of text in a fast way"
+msgstr "以快速的方式插入經常使用的文字片段"
+
+#: ../plugins/snippets/snippets.gedit-plugin.desktop.in.h:2
+#: ../plugins/snippets/snippets/Document.py:58
+msgid "Snippets"
+msgstr "文字片段"
+
+#: ../plugins/snippets/snippets/snippets.ui.h:2
+msgid "Activation"
+msgstr "啟用"
+
+#: ../plugins/snippets/snippets/snippets.ui.h:3
+msgid "Create new snippet"
+msgstr "建立新的文字片段"
+
+#: ../plugins/snippets/snippets/snippets.ui.h:4
+#: ../plugins/snippets/snippets/Manager.py:409
+msgid "Delete selected snippet"
+msgstr "刪除選定的文字片段"
+
+#: ../plugins/snippets/snippets/snippets.ui.h:5
+msgid "Export selected snippets"
+msgstr "匯出選定的文字片段"
+
+#: ../plugins/snippets/snippets/snippets.ui.h:6
+#: ../plugins/snippets/snippets/Manager.py:797
+msgid "Import snippets"
+msgstr "匯入文字片段"
+
+#: ../plugins/snippets/snippets/snippets.ui.h:7
+msgid "S_hortcut key:"
+msgstr "捷徑鍵(_H):"
+
+#: ../plugins/snippets/snippets/snippets.ui.h:8
+msgid "Shortcut key with which the snippet is activated"
+msgstr "該文字片段的捷徑鍵已在使用中"
+
+#. self['hbox_tab_trigger'].set_spacing(0)
+#: ../plugins/snippets/snippets/snippets.ui.h:9
+#: ../plugins/snippets/snippets/Manager.py:686
+msgid "Single word the snippet is activated with after pressing Tab"
+msgstr "按下 tab 鍵後使用文字片段的單字"
+
+#: ../plugins/snippets/snippets/snippets.ui.h:10
+msgid "Snippets Manager"
+msgstr "文字片段管理程式"
+
+#: ../plugins/snippets/snippets/snippets.ui.h:11
+msgid "_Drop targets:"
+msgstr "拖放目標(_D):"
+
+#: ../plugins/snippets/snippets/snippets.ui.h:13
+msgid "_Snippets:"
+msgstr "文字片段(_S):"
+
+#: ../plugins/snippets/snippets/snippets.ui.h:14
+msgid "_Tab trigger:"
+msgstr "切換標籤(_T)"
+
+#: ../plugins/snippets/snippets/WindowHelper.py:130
+msgid "Manage _Snippets..."
+msgstr "管理文字片段(_S)..."
+
+#: ../plugins/snippets/snippets/WindowHelper.py:131
+msgid "Manage snippets"
+msgstr "管理文字片段"
+
+#: ../plugins/snippets/snippets/Manager.py:46
+msgid "Snippets archive"
+msgstr "文字片段壓縮檔"
+
+#: ../plugins/snippets/snippets/Manager.py:71
+msgid "Add a new snippet..."
+msgstr "加入新的文字片段..."
+
+#: ../plugins/snippets/snippets/Manager.py:121
+msgid "Global"
+msgstr "全域"
+
+#: ../plugins/snippets/snippets/Manager.py:406
+msgid "Revert selected snippet"
+msgstr "回復選定的文字片段"
+
+#. self['hbox_tab_trigger'].set_spacing(3)
+#: ../plugins/snippets/snippets/Manager.py:679
+msgid ""
+"This is not a valid Tab trigger. Triggers can either contain letters or a "
+"single (non-alphanumeric) character like: {, [, etc."
+msgstr "這不是有效的切換標籤。切換標籤可以是多個字母，或是單一、非字母數字的字符，如 {, [ 等"
+
+#: ../plugins/snippets/snippets/Manager.py:776
+#, python-format
+msgid "The following error occurred while importing: %s"
+msgstr "匯入時發生下列錯誤：%s"
+
+#: ../plugins/snippets/snippets/Manager.py:783
+msgid "Import successfully completed"
+msgstr "匯入成功"
+
+#: ../plugins/snippets/snippets/Manager.py:802
+#: ../plugins/snippets/snippets/Manager.py:888
+#: ../plugins/snippets/snippets/Manager.py:951
+msgid "All supported archives"
+msgstr "所有支援的壓縮檔"
+
+#: ../plugins/snippets/snippets/Manager.py:803
+#: ../plugins/snippets/snippets/Manager.py:889
+#: ../plugins/snippets/snippets/Manager.py:952
+msgid "Gzip compressed archive"
+msgstr "Gzip 壓縮檔"
+
+#: ../plugins/snippets/snippets/Manager.py:804
+#: ../plugins/snippets/snippets/Manager.py:890
+#: ../plugins/snippets/snippets/Manager.py:953
+msgid "Bzip2 compressed archive"
+msgstr "Bzip2 壓縮檔"
+
+#: ../plugins/snippets/snippets/Manager.py:805
+msgid "Single snippets file"
+msgstr "單一文字片段檔"
+
+#: ../plugins/snippets/snippets/Manager.py:806
+#: ../plugins/snippets/snippets/Manager.py:892
+#: ../plugins/snippets/snippets/Manager.py:955
+msgid "All files"
+msgstr "所有檔案"
+
+#: ../plugins/snippets/snippets/Manager.py:818
+#, python-format
+msgid "The following error occurred while exporting: %s"
+msgstr "匯出時發生下列錯誤：%s"
+
+#: ../plugins/snippets/snippets/Manager.py:822
+msgid "Export successfully completed"
+msgstr "匯出成功"
+
+#. Ask if system snippets should also be exported
+#: ../plugins/snippets/snippets/Manager.py:862
+#: ../plugins/snippets/snippets/Manager.py:929
+msgid "Do you want to include selected <b>system</b> snippets in your export?"
+msgstr "是否一併匯出選定的 <b>系統</b> 文字片段？"
+
+#: ../plugins/snippets/snippets/Manager.py:877
+#: ../plugins/snippets/snippets/Manager.py:947
+msgid "There are no snippets selected to be exported"
+msgstr "沒有選擇要匯出的文字片段"
+
+#: ../plugins/snippets/snippets/Manager.py:882
+#: ../plugins/snippets/snippets/Manager.py:920
+msgid "Export snippets"
+msgstr "匯出文字片段"
+
+#: ../plugins/snippets/snippets/Manager.py:1059
+msgid "Type a new shortcut, or press Backspace to clear"
+msgstr "輸入新的捷徑，或按後退鍵清除"
+
+#: ../plugins/snippets/snippets/Manager.py:1061
+msgid "Type a new shortcut"
+msgstr "輸入新的捷徑"
+
+#: ../plugins/snippets/snippets/Exporter.py:65
+#, python-format
+msgid "The archive \"%s\" could not be created"
+msgstr "無法建立壓縮檔「%s」"
+
+#: ../plugins/snippets/snippets/Exporter.py:82
+#, python-format
+msgid "Target directory \"%s\" does not exist"
+msgstr "目標目錄「%s」不存在"
+
+#: ../plugins/snippets/snippets/Exporter.py:85
+#, python-format
+msgid "Target directory \"%s\" is not a valid directory"
+msgstr "目標目錄「%s」不是有效的目錄"
+
+#: ../plugins/snippets/snippets/Importer.py:29
+#: ../plugins/snippets/snippets/Importer.py:83
+#, python-format
+msgid "File \"%s\" does not exist"
+msgstr "檔案「%s」不存在"
+
+#: ../plugins/snippets/snippets/Importer.py:32
+#, python-format
+msgid "File \"%s\" is not a valid snippets file"
+msgstr "檔案「%s」並不是一個有效的文字片段檔"
+
+#: ../plugins/snippets/snippets/Importer.py:42
+#, python-format
+msgid "Imported file \"%s\" is not a valid snippets file"
+msgstr "匯入的檔案「%s」不是有效的文字片段檔"
+
+#: ../plugins/snippets/snippets/Importer.py:52
+#, python-format
+msgid "The archive \"%s\" could not be extracted"
+msgstr "無法解開壓縮檔「%s」"
+
+#: ../plugins/snippets/snippets/Importer.py:70
+#, python-format
+msgid "The following files could not be imported: %s"
+msgstr "無法匯入下列檔案：%s"
+
+#: ../plugins/snippets/snippets/Importer.py:86
+#: ../plugins/snippets/snippets/Importer.py:99
+#, python-format
+msgid "File \"%s\" is not a valid snippets archive"
+msgstr "檔案「%s」不是有效的文字片段壓縮檔"
+
+#: ../plugins/snippets/snippets/Placeholder.py:594
+#, python-format
+msgid ""
+"Execution of the Python command (%s) exceeds the maximum time, execution "
+"aborted."
+msgstr "Python 指令 (%s) 的執行超出時間上限，中止執行。"
+
+#: ../plugins/snippets/snippets/Placeholder.py:602
+#, python-format
+msgid "Execution of the Python command (%s) failed: %s"
+msgstr "Python 指令 (%s) 的執行失敗：%s"
+
+#: ../plugins/sort/gedit-sort-plugin.c:86
+msgid "S_ort..."
+msgstr "排序(_O)..."
+
+#: ../plugins/sort/gedit-sort-plugin.c:88
+msgid "Sort the current document or selection"
+msgstr "將目前的文件或選擇區域排序"
+
+#: ../plugins/sort/sort.gedit-plugin.desktop.in.h:1
+#: ../plugins/sort/sort.ui.h:3
+msgid "Sort"
+msgstr "排序"
+
+#: ../plugins/sort/sort.gedit-plugin.desktop.in.h:2
+msgid "Sorts a document or selected text."
+msgstr "將整份文件或將已選的文字排序。"
+
+#: ../plugins/sort/sort.ui.h:1
+msgid "R_emove duplicates"
+msgstr "刪除所有重複的內容(_E)"
+
+#: ../plugins/sort/sort.ui.h:2
+msgid "S_tart at column:"
+msgstr "由指定的字母位置開始排序(_T):"
+
+#: ../plugins/sort/sort.ui.h:4
+msgid "You cannot undo a sort operation"
+msgstr "不可以將排序後的內容復原"
+
+#: ../plugins/sort/sort.ui.h:5
+msgid "_Ignore case"
+msgstr "忽略大小寫(_I)"
+
+#: ../plugins/sort/sort.ui.h:6
+msgid "_Reverse order"
+msgstr "相反次序排列(_R)"
+
+#: ../plugins/sort/sort.ui.h:7
+msgid "_Sort"
+msgstr "排序(_S)"
+
+#. Translators: Displayed in the "Check Spelling" dialog if there are no suggestions for the current misspelled word
+#. Translators: Displayed in the "Check Spelling" dialog if there are no suggestions
+#. * for the current misspelled word
+#: ../plugins/spell/gedit-automatic-spell-checker.c:420
+#: ../plugins/spell/gedit-spell-checker-dialog.c:455
+msgid "(no suggested words)"
+msgstr "（不提供任何建議）"
+
+#: ../plugins/spell/gedit-automatic-spell-checker.c:444
+msgid "_More..."
+msgstr "還有(_M)..."
+
+#. Ignore all
+#: ../plugins/spell/gedit-automatic-spell-checker.c:499
+msgid "_Ignore All"
+msgstr "全部忽略(_I)"
+
+#. + Add to Dictionary
+#: ../plugins/spell/gedit-automatic-spell-checker.c:514
+msgid "_Add"
+msgstr "加入(_A)"
+
+#: ../plugins/spell/gedit-automatic-spell-checker.c:553
+msgid "_Spelling Suggestions..."
+msgstr "拼字建議(_S)..."
+
+#: ../plugins/spell/gedit-spell-checker-dialog.c:270
+msgid "Check Spelling"
+msgstr "拼字檢查"
+
+#: ../plugins/spell/gedit-spell-checker-dialog.c:281
+msgid "Suggestions"
+msgstr "建議"
+
+#. Translators: Displayed in the "Check Spelling" dialog if the current word isn't misspelled
+#: ../plugins/spell/gedit-spell-checker-dialog.c:562
+msgid "(correct spelling)"
+msgstr "（拼字正確）"
+
+#: ../plugins/spell/gedit-spell-checker-dialog.c:705
+msgid "Completed spell checking"
+msgstr "拼字檢查完成"
+
+#. Translators: the first %s is the language name, and
+#. * the second %s is the locale name. Example:
+#. * "French (France)"
+#.
+#: ../plugins/spell/gedit-spell-checker-language.c:285
+#: ../plugins/spell/gedit-spell-checker-language.c:291
+#, c-format
+msgctxt "language"
+msgid "%s (%s)"
+msgstr "%s (%s)"
+
+#. Translators: this refers to an unknown language code
+#. * (one which isn't in our built-in list).
+#.
+#: ../plugins/spell/gedit-spell-checker-language.c:300
+#, c-format
+msgctxt "language"
+msgid "Unknown (%s)"
+msgstr "不明 (%s)"
+
+#. Translators: this refers the Default language used by the
+#. * spell checker
+#.
+#: ../plugins/spell/gedit-spell-checker-language.c:406
+msgctxt "language"
+msgid "Default"
+msgstr "預設值"
+
+#: ../plugins/spell/gedit-spell-language-dialog.c:141
+#: ../plugins/spell/languages-dialog.ui.h:2
+msgid "Set language"
+msgstr "設定語言"
+
+#: ../plugins/spell/gedit-spell-language-dialog.c:196
+msgid "Languages"
+msgstr "語言"
+
+#: ../plugins/spell/gedit-spell-plugin.c:86
+msgid "_Check Spelling..."
+msgstr "拼字檢查(_C)..."
+
+#: ../plugins/spell/gedit-spell-plugin.c:88
+msgid "Check the current document for incorrect spelling"
+msgstr "檢查目前的文件中的拼字"
+
+#: ../plugins/spell/gedit-spell-plugin.c:94
+msgid "Set _Language..."
+msgstr "設定語言(_L)..."
+
+#: ../plugins/spell/gedit-spell-plugin.c:96
+msgid "Set the language of the current document"
+msgstr "設定目前文件所用的語言"
+
+#: ../plugins/spell/gedit-spell-plugin.c:105
+msgid "_Autocheck Spelling"
+msgstr "自動檢查拼字(_A)"
+
+#: ../plugins/spell/gedit-spell-plugin.c:107
+msgid "Automatically spell-check the current document"
+msgstr "自動為目前文件進行拼字檢查"
+
+#: ../plugins/spell/gedit-spell-plugin.c:743
+msgid "The document is empty."
+msgstr "文件是空白的。"
+
+#: ../plugins/spell/gedit-spell-plugin.c:773
+msgid "No misspelled words"
+msgstr "沒有拼錯字詞"
+
+#: ../plugins/spell/languages-dialog.ui.h:1
+msgid "Select the _language of the current document."
+msgstr "請選擇目前文件所使的語言(_L)"
+
+#: ../plugins/spell/spell-checker.ui.h:1
+msgid "Add w_ord"
+msgstr "加入字詞(_O)"
+
+#: ../plugins/spell/spell-checker.ui.h:2
+msgid "Cha_nge"
+msgstr "更改(_N)"
+
+#: ../plugins/spell/spell-checker.ui.h:3
+msgid "Change A_ll"
+msgstr "全部更改(_L)"
+
+#: ../plugins/spell/spell-checker.ui.h:4
+msgid "Change _to:"
+msgstr "更改為(_T):"
+
+#: ../plugins/spell/spell-checker.ui.h:5
+msgid "Check _Word"
+msgstr "字詞檢查(_W)"
+
+#: ../plugins/spell/spell-checker.ui.h:6
+msgid "Check spelling"
+msgstr "拼字檢查"
+
+#: ../plugins/spell/spell-checker.ui.h:7
+msgid "Ignore _All"
+msgstr "全部忽略(_A)"
+
+#: ../plugins/spell/spell-checker.ui.h:8
+msgid "Language"
+msgstr "語言"
+
+#: ../plugins/spell/spell-checker.ui.h:9
+msgid "Language:"
+msgstr "語言："
+
+#: ../plugins/spell/spell-checker.ui.h:10
+msgid "Misspelled word:"
+msgstr "拼錯的字詞："
+
+#: ../plugins/spell/spell-checker.ui.h:11
+msgid "User dictionary:"
+msgstr "個人字典："
+
+#: ../plugins/spell/spell-checker.ui.h:12
+msgid "_Ignore"
+msgstr "忽略(_I)"
+
+#: ../plugins/spell/spell-checker.ui.h:13
+msgid "_Suggestions:"
+msgstr "建議(_S):"
+
+#: ../plugins/spell/spell-checker.ui.h:14
+msgid "word"
+msgstr "文字"
+
+#: ../plugins/spell/spell.gedit-plugin.desktop.in.h:1
+msgid "Checks the spelling of the current document."
+msgstr "檢查目前文件中的拼字。"
+
+#: ../plugins/spell/spell.gedit-plugin.desktop.in.h:2
+msgid "Spell Checker"
+msgstr "拼字檢查程式"
+
+#: ../plugins/taglist/gedit-taglist-plugin.c:98
+#: ../plugins/taglist/gedit-taglist-plugin-panel.c:694
+#: ../plugins/taglist/gedit-taglist-plugin-panel.c:710
+msgid "Tags"
+msgstr "標籤"
+
+#: ../plugins/taglist/gedit-taglist-plugin-panel.c:605
+msgid "Select the group of tags you want to use"
+msgstr "請選擇準備使用哪一組標記"
+
+#: ../plugins/taglist/gedit-taglist-plugin-panel.c:624
+msgid "_Preview"
+msgstr "預覽(_P)"
+
+#: ../plugins/taglist/gedit-taglist-plugin-panel.c:691
+msgid "Available Tag Lists"
+msgstr "可用的標記清單"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:1
+msgid "Abbreviated form"
+msgstr "Abbreviated form"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:2
+msgid "Abbreviation"
+msgstr "Abbreviation"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:3
+msgid "Above"
+msgstr "Above"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:4
+msgid "Accessibility key character"
+msgstr "Accessibility key character"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:5
+msgid "Acronym"
+msgstr "Acronym"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:6
+msgid "Align"
+msgstr "Align"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:7
+msgid "Alignment character"
+msgstr "Alignment character"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:8
+msgid "Alternative"
+msgstr "Alternative"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:9
+msgid "Anchor"
+msgstr "Anchor"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:10
+msgid "Anchor URI"
+msgstr "Anchor URI"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:11
+msgid "Applet class file code"
+msgstr "Applet class file code"
+
+#. Deprecated since HTML 4.01, not supported in XHTML 1.0 Strict DTD.
+#: ../plugins/taglist/HTML.tags.xml.in.h:13
+msgid "Applet class file code (deprecated)"
+msgstr "Applet class file code（不建議再使用）"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:14
+msgid "Array"
+msgstr "Array"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:15
+msgid "Associated information"
+msgstr "Associated information"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:16
+msgid "Author info"
+msgstr "Author info"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:17
+msgid "Axis related headers"
+msgstr "Axis related headers"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:18
+msgid "Background color"
+msgstr "Background color"
+
+#. Deprecated since HTML 4.01, not supported in XHTML 1.0 Strict DTD.
+#: ../plugins/taglist/HTML.tags.xml.in.h:20
+msgid "Background color (deprecated)"
+msgstr "Background color（不建議再使用）"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:21
+msgid "Background texture tile"
+msgstr "Background texture tile"
+
+#. Deprecated since HTML 4.01, not supported in XHTML 1.0 Strict DTD.
+#: ../plugins/taglist/HTML.tags.xml.in.h:23
+msgid "Background texture tile (deprecated)"
+msgstr "Background texture tile（不建議再使用）"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:24
+msgid "Base URI"
+msgstr "Base URI"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:25
+msgid "Base font"
+msgstr "Base font"
+
+#. Deprecated since HTML 4.01, not supported in XHTML 1.0 Strict DTD.
+#: ../plugins/taglist/HTML.tags.xml.in.h:27
+msgid "Base font (deprecated)"
+msgstr "Base font（不建議再使用）"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:28
+msgid "Bold"
+msgstr "粗體"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:29
+msgid "Border"
+msgstr "Border"
+
+#. Deprecated since HTML 4.01, not supported in XHTML 1.0 Strict DTD.
+#: ../plugins/taglist/HTML.tags.xml.in.h:31
+msgid "Border (deprecated)"
+msgstr "Border（不建議再使用）"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:32
+msgid "Border color"
+msgstr "Border color"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:33
+msgid "Cell rowspan"
+msgstr "Cell rowspan"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:34
+msgid "Center"
+msgstr "Center"
+
+#. Deprecated since HTML 4.01, not supported in XHTML 1.0 Strict DTD.
+#: ../plugins/taglist/HTML.tags.xml.in.h:36
+msgid "Center (deprecated)"
+msgstr "Center（不建議再使用）"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:37
+msgid "Character encoding of linked resource"
+msgstr "Character encoding of linked resource"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:38
+msgid "Checked (state)"
+msgstr "Checked (state)"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:39
+msgid "Checked state"
+msgstr "Checked state"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:40
+msgid "Citation"
+msgstr "Citation"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:41
+msgid "Cite reason for change"
+msgstr "Cite reason for change"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:42
+msgid "Class implementation ID"
+msgstr "Class implementation ID"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:43
+msgid "Class list"
+msgstr "Class list"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:44
+msgid "Clear text flow control"
+msgstr "Clear text flow control"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:45
+msgid "Code content type"
+msgstr "Code content type"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:46
+msgid "Color of selected links"
+msgstr "Color of selected links"
+
+#. Deprecated since HTML 4.01, not supported in XHTML 1.0 Strict DTD.
+#: ../plugins/taglist/HTML.tags.xml.in.h:48
+msgid "Color of selected links (deprecated)"
+msgstr "Color of selected links（不建議再使用）"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:49
+msgid "Column span"
+msgstr "Column span"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:50
+msgid "Columns"
+msgstr "Columns"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:51
+msgid "Comment"
+msgstr "Comment"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:52
+msgid "Computer code fragment"
+msgstr "Computer code fragment"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:53
+msgid "Content scheme"
+msgstr "Content scheme"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:54
+msgid "Content type"
+msgstr "Content type"
+
+#. The "type" attribute is deprecated for the "ol" tag only,
+#. since HTML 4.01, not supported in XHTML 1.0 Strict DTD.
+#: ../plugins/taglist/HTML.tags.xml.in.h:57
+msgid "Content type (deprecated)"
+msgstr "Content type（不建議再使用）"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:58
+msgid "Coordinates"
+msgstr "Coordinates"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:59
+msgid "DIV Style container"
+msgstr "DIV Style container"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:60
+msgid "DIV container"
+msgstr "DIV container"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:61
+msgid "Date and time of change"
+msgstr "Date and time of change"
+
+#. NOTE: used in "object" tag
+#: ../plugins/taglist/HTML.tags.xml.in.h:63
+msgid "Declare flag"
+msgstr "Declare flag"
+
+#. Translators: DEFER is an optional attribute of the <script> tag.
+#. It indicates that the script is not going to generate any document
+#. content. The browser can continue parsing and drawing the page.
+#: ../plugins/taglist/HTML.tags.xml.in.h:67
+msgid "Defer attribute"
+msgstr "Defer attribute"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:68
+msgid "Definition description"
+msgstr "Definition description"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:69
+msgid "Definition list"
+msgstr "Definition list"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:70
+msgid "Definition term"
+msgstr "Definition term"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:71
+msgid "Deleted text"
+msgstr "Deleted text"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:72
+msgid "Direction"
+msgstr "Direction"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:73
+msgid "Directionality"
+msgstr "Directionality"
+
+#. Deprecated since HTML 4.01, not supported in XHTML 1.0 Strict DTD.
+#: ../plugins/taglist/HTML.tags.xml.in.h:75
+msgid "Directionality (deprecated)"
+msgstr "Directionality（不建議再使用）"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:76
+msgid "Directory list"
+msgstr "Directory list"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:77
+msgid "Disabled"
+msgstr "Disabled"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:78
+msgid "Document base"
+msgstr "Document base"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:79
+msgid "Document body"
+msgstr "Document body"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:80
+msgid "Document head"
+msgstr "Document head"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:81
+msgid "Document title"
+msgstr "Document title"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:82
+msgid "Document type"
+msgstr "Document type"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:83
+msgid "Element ID"
+msgstr "Element ID"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:84
+msgid "Embedded object"
+msgstr "Embedded object"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:85
+#: ../plugins/taglist/Latex.tags.xml.in.h:9
+msgid "Emphasis"
+msgstr "Emphasis"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:86
+msgid "Encode type"
+msgstr "Encode type"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:87
+msgid "Figure"
+msgstr "Figure"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:88
+msgid "Font face"
+msgstr "Font face"
+
+#. Deprecated since HTML 4.01, not supported in XHTML 1.0 Strict DTD.
+#: ../plugins/taglist/HTML.tags.xml.in.h:90
+msgid "Font face (deprecated)"
+msgstr "Font face（不建議再使用）"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:91
+msgid "For label"
+msgstr "For label"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:92
+msgid "Forced line break"
+msgstr "Forced line break"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:93
+msgid "Form"
+msgstr "Form"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:94
+msgid "Form action handler"
+msgstr "Form action handler"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:95
+msgid "Form control group"
+msgstr "Form control group"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:96
+msgid "Form field label text"
+msgstr "Form field label text"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:97
+msgid "Form input"
+msgstr "Form input"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:98
+msgid "Form input type"
+msgstr "Form input type"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:99
+msgid "Form method"
+msgstr "Form method"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:100
+msgid "Forward link"
+msgstr "Forward link"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:101
+msgid "Frame"
+msgstr "Frame"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:102
+msgid "Frame border"
+msgstr "框架邊框"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:103
+msgid "Frame render parts"
+msgstr "Frame render parts"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:104
+msgid "Frame source"
+msgstr "Frame source"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:105
+msgid "Frame spacing"
+msgstr "框架間距"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:106
+msgid "Frame target"
+msgstr "Frame target"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:107
+msgid "Frameborder"
+msgstr "Frameborder"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:108
+msgid "Frameset"
+msgstr "Frameset"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:109
+msgid "Frameset columns"
+msgstr "Frameset columns"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:110
+msgid "Frameset rows"
+msgstr "Frameset rows"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:111
+msgid "Framespacing"
+msgstr "Framespacing"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:112
+msgid "Generic embedded object"
+msgstr "Generic embedded object"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:113
+msgid "Generic metainformation"
+msgstr "Generic metainformation"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:114
+msgid "Generic span"
+msgstr "Generic span"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:115
+msgid "HREF URI"
+msgstr "HREF URI"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:116
+msgid "HTML - Special Characters"
+msgstr "HTML - Special Characters"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:117
+msgid "HTML - Tags"
+msgstr "HTML - Tags"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:118
+msgid "HTML root element"
+msgstr "HTML root element"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:119
+msgid "HTML version"
+msgstr "HTML version"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:120
+msgid "HTTP header name"
+msgstr "HTTP header name"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:121
+msgid "Header cell IDs"
+msgstr "標題儲存格 ID"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:122
+msgid "Heading"
+msgstr "Heading"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:123
+msgid "Heading 1"
+msgstr "Heading 1"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:124
+msgid "Heading 2"
+msgstr "Heading 2"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:125
+msgid "Heading 3"
+msgstr "Heading 3"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:126
+msgid "Heading 4"
+msgstr "Heading 4"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:127
+msgid "Heading 5"
+msgstr "Heading 5"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:128
+msgid "Heading 6"
+msgstr "Heading 6"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:129
+msgid "Height"
+msgstr "Height"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:130
+msgid "Horizontal rule"
+msgstr "Horizontal rule"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:131
+msgid "Horizontal space"
+msgstr "Horizontal space"
+
+#. Deprecated since HTML 4.01, not supported in XHTML 1.0 Strict DTD.
+#: ../plugins/taglist/HTML.tags.xml.in.h:133
+msgid "Horizontal space (deprecated)"
+msgstr "Horizontal space（不建議再使用）"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:134
+msgid "I18N BiDi override"
+msgstr "I18N BiDi override"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:135
+msgid "Image"
+msgstr "Image"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:136
+msgid "Image map"
+msgstr "Image map"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:137
+msgid "Image map area"
+msgstr "Image map area"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:138
+msgid "Image map name"
+msgstr "Image map name"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:139
+msgid "Image source"
+msgstr "Image source"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:140
+msgid "Inline frame"
+msgstr "Inline frame"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:141
+msgid "Inline layer"
+msgstr "Inline layer"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:142
+msgid "Inserted text"
+msgstr "Inserted text"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:143
+msgid "Instance definition"
+msgstr "Instance definition"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:144
+msgid "Italic text"
+msgstr "Italic text"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:145
+msgid "Java applet"
+msgstr "Java applet"
+
+#. Deprecated since HTML 4.01, not supported in XHTML 1.0 Strict DTD.
+#: ../plugins/taglist/HTML.tags.xml.in.h:147
+msgid "Java applet (deprecated)"
+msgstr "Java applet（不建議再使用）"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:148
+msgid "Label"
+msgstr "Label"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:149
+msgid "Language code"
+msgstr "Language code"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:150
+msgid "Large text style"
+msgstr "Large text style"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:151
+msgid "Layer"
+msgstr "Layer"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:152
+msgid "Link color"
+msgstr "Link color"
+
+#. Deprecated since HTML 4.01, not supported in XHTML 1.0 Strict DTD.
+#: ../plugins/taglist/HTML.tags.xml.in.h:154
+msgid "Link color (deprecated)"
+msgstr "Link color（不建議再使用）"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:155
+msgid "List item"
+msgstr "List item"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:156
+msgid "List of MIME types for file upload"
+msgstr "List of MIME types for file upload"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:157
+msgid "List of supported character sets"
+msgstr "List of supported character sets"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:158
+msgid "Listing"
+msgstr "Listing"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:159
+msgid "Local change to font"
+msgstr "Local change to font"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:160
+msgid "Long description link"
+msgstr "Long description link"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:161
+msgid "Long quotation"
+msgstr "Long quotation"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:162
+msgid "Mail link"
+msgstr "Mail link"
+
+#. Supported in XHTML 1.0 Frameset DTD only.
+#: ../plugins/taglist/HTML.tags.xml.in.h:164
+msgid "Margin pixel height"
+msgstr "Margin pixel height"
+
+#. Supported in XHTML 1.0 Frameset DTD only.
+#: ../plugins/taglist/HTML.tags.xml.in.h:166
+msgid "Margin pixel width"
+msgstr "Margin pixel width"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:167
+msgid "Marquee"
+msgstr "Marquee"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:168
+msgid "Maximum length of text field"
+msgstr "Maximum length of text field"
+
+#. Here I take some liberties: There's no mandatory attributes,
+#. but those are most common, and will likely be used.
+#: ../plugins/taglist/HTML.tags.xml.in.h:171
+msgid "Media-independent link"
+msgstr "Media-independent link"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:172
+msgid "Menu list"
+msgstr "Menu list"
+
+#. Deprecated since HTML 4.01, not supported in XHTML 1.0 Strict DTD.
+#: ../plugins/taglist/HTML.tags.xml.in.h:174
+msgid "Menu list (deprecated)"
+msgstr "Menu list（不建議再使用）"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:175
+msgid "Multi-line text field"
+msgstr "Multi-line text field"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:176
+msgid "Multicolumn"
+msgstr "Multicolumn"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:177
+msgid "Multiple"
+msgstr "Multiple"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:178
+msgid "Name"
+msgstr "Name"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:179
+msgid "Named property value"
+msgstr "Named property value"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:180
+msgid "Next ID"
+msgstr "Next ID"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:181
+msgid "No URI"
+msgstr "No URI"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:182
+msgid "No embedded objects"
+msgstr "No embedded objects"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:183
+msgid "No frames"
+msgstr "No frames"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:184
+msgid "No layers"
+msgstr "No layers"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:185
+msgid "No line break"
+msgstr "No line break"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:186
+msgid "No resize"
+msgstr "No resize"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:187
+msgid "No script"
+msgstr "No script"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:188
+msgid "No shade"
+msgstr "No shade"
+
+#. Deprecated since HTML 4.01, not supported in XHTML 1.0 Strict DTD.
+#: ../plugins/taglist/HTML.tags.xml.in.h:190
+msgid "No shade (deprecated)"
+msgstr "No shade（不建議再使用）"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:191
+msgid "No word wrap"
+msgstr "No word wrap"
+
+#. Deprecated since HTML 4.01, not supported in XHTML 1.0 Strict DTD.
+#: ../plugins/taglist/HTML.tags.xml.in.h:193
+msgid "No word wrap (deprecated)"
+msgstr "No word wrap（不建議再使用）"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:194
+msgid "Non-breaking space"
+msgstr "Non-breaking space"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:195
+msgid "Note"
+msgstr "Note"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:196
+msgid "Object applet file"
+msgstr "Object applet file"
+
+#. Deprecated since HTML 4.01, not supported in XHTML 1.0 Strict DTD.
+#: ../plugins/taglist/HTML.tags.xml.in.h:198
+msgid "Object applet file (deprecated)"
+msgstr "Object applet file（不建議再使用）"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:199
+msgid "Object data reference"
+msgstr "Object data reference"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:200
+msgid "Offset for alignment character"
+msgstr "Offset for alignment character"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:201
+msgid "OnBlur event"
+msgstr "OnBlur event"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:202
+msgid "OnChange event"
+msgstr "OnChange event"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:203
+msgid "OnClick event"
+msgstr "OnClick event"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:204
+msgid "OnDblClick event"
+msgstr "OnDblClick event"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:205
+msgid "OnFocus event"
+msgstr "OnFocus event"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:206
+msgid "OnKeyDown event"
+msgstr "OnKeyDown event"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:207
+msgid "OnKeyPress event"
+msgstr "OnKeyPress event"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:208
+msgid "OnKeyUp event"
+msgstr "OnKeyUp event"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:209
+msgid "OnLoad event"
+msgstr "OnLoad event"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:210
+msgid "OnMouseDown event"
+msgstr "OnMouseDown event"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:211
+msgid "OnMouseMove event"
+msgstr "OnMouseMove event"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:212
+msgid "OnMouseOut event"
+msgstr "OnMouseOut event"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:213
+msgid "OnMouseOver event"
+msgstr "OnMouseOver event"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:214
+msgid "OnMouseUp event"
+msgstr "OnMouseUp event"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:215
+msgid "OnReset event"
+msgstr "OnReset event"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:216
+msgid "OnSelect event"
+msgstr "OnSelect event"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:217
+msgid "OnSubmit event"
+msgstr "OnSubmit event"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:218
+msgid "OnUnload event"
+msgstr "OnUnload event"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:219
+msgid "Option group"
+msgstr "Option group"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:220
+msgid "Option selector"
+msgstr "Option selector"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:221
+msgid "Ordered list"
+msgstr "Ordered list"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:222
+msgid "Output media"
+msgstr "Output media"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:223
+msgid "Paragraph"
+msgstr "Paragraph"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:224
+msgid "Paragraph class"
+msgstr "Paragraph class"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:225
+msgid "Paragraph style"
+msgstr "Paragraph style"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:226
+msgid "Preformatted listing"
+msgstr "Preformatted listing"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:227
+msgid "Preformatted text"
+msgstr "Preformatted text"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:228
+msgid "Profile metainfo dictionary"
+msgstr "Profile metainfo dictionary"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:229
+msgid "Prompt message"
+msgstr "Prompt message"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:230
+msgid "Push button"
+msgstr "Push button"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:231
+msgid "Quote"
+msgstr "Quote"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:232
+msgid "Range"
+msgstr "Range"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:233
+msgid "ReadOnly text and password"
+msgstr "ReadOnly text and password"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:234
+msgid "Reduced spacing"
+msgstr "Reduced spacing"
+
+#. Deprecated since HTML 4.01, not supported in XHTML 1.0 Strict DTD.
+#: ../plugins/taglist/HTML.tags.xml.in.h:236
+msgid "Reduced spacing (deprecated)"
+msgstr "Reduced spacing（不建議再使用）"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:237
+msgid "Reverse link"
+msgstr "Reverse link"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:238
+msgid "Root"
+msgstr "Root"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:239
+msgid "Rows"
+msgstr "Rows"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:240
+msgid "Rulings between rows and columns"
+msgstr "Rulings between rows and columns"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:241
+msgid "Sample program output, scripts"
+msgstr "Sample program output, scripts"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:242
+msgid "Scope covered by header cells"
+msgstr "Scope covered by header cells"
+
+#. Deprecated since HTML 4.01, not supported in XHTML 1.0 Strict DTD.
+#: ../plugins/taglist/HTML.tags.xml.in.h:244
+msgid "Script language name"
+msgstr "Script language name"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:245
+msgid "Script statements"
+msgstr "命令稿陳述"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:246
+msgid "Scrollbar"
+msgstr "Scrollbar"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:247
+msgid "Selectable option"
+msgstr "Selectable option"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:248
+msgid "Selected"
+msgstr "Selected"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:249
+msgid "Server-side image map"
+msgstr "Server-side image map"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:250
+msgid "Shape"
+msgstr "Shape"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:251
+msgid "Short inline quotation"
+msgstr "Short inline quotation"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:252
+msgid "Single line prompt"
+msgstr "Single line prompt"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:253
+msgid "Size"
+msgstr "Size"
+
+#. Deprecated since HTML 4.01, not supported in XHTML 1.0 Strict DTD.
+#: ../plugins/taglist/HTML.tags.xml.in.h:255
+msgid "Size (deprecated)"
+msgstr "Size（不建議再使用）"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:256
+msgid "Small text style"
+msgstr "Small text style"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:257
+msgid "Soft line break"
+msgstr "Soft line break"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:258
+msgid "Sound"
+msgstr "Sound"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:259
+msgid "Source"
+msgstr "Source"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:260
+msgid "Space-separated archive list"
+msgstr "以空白分隔的壓縮檔清單"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:261
+msgid "Spacer"
+msgstr "Spacer"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:262
+msgid "Spacing between cells"
+msgstr "Spacing between cells"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:263
+msgid "Spacing within cells"
+msgstr "Spacing within cells"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:264
+msgid "Span"
+msgstr "Span"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:265
+msgid "Square root"
+msgstr "Square root"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:266
+msgid "Standby load message"
+msgstr "待命負載訊息"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:267
+msgid "Starting sequence number"
+msgstr "Starting sequence number"
+
+#. Deprecated since HTML 4.01, not supported in XHTML 1.0 Strict DTD.
+#: ../plugins/taglist/HTML.tags.xml.in.h:269
+msgid "Starting sequence number (deprecated)"
+msgstr "Starting sequence number（不建議再使用）"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:270
+msgid "Strike-through text"
+msgstr "Strike-through text"
+
+#. Deprecated since HTML 4.01, not supported in XHTML 1.0 Strict DTD.
+#: ../plugins/taglist/HTML.tags.xml.in.h:272
+msgid "Strike-through text (deprecated)"
+msgstr "Strike-through text（不建議再使用）"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:273
+msgid "Strike-through text style"
+msgstr "Strike-through text style"
+
+#. Deprecated since HTML 4.01, not supported in XHTML 1.0 Strict DTD.
+#: ../plugins/taglist/HTML.tags.xml.in.h:275
+msgid "Strike-through text style (deprecated)"
+msgstr "Strike-through text style（不建議再使用）"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:276
+msgid "Strong emphasis"
+msgstr "Strong emphasis"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:277
+msgid "Style info"
+msgstr "Style info"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:278
+msgid "Subscript"
+msgstr "Subscript"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:279
+msgid "Superscript"
+msgstr "Superscript"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:280
+msgid "Tab order position"
+msgstr "Tab order position"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:281
+msgid "Table"
+msgstr "Table"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:282
+msgid "Table body"
+msgstr "Table body"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:283
+msgid "Table caption"
+msgstr "Table caption"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:284
+msgid "Table column group properties"
+msgstr "Table column group properties"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:285
+msgid "Table column properties"
+msgstr "Table column properties"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:286
+msgid "Table data cell"
+msgstr "Table data cell"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:287
+msgid "Table footer"
+msgstr "Table footer"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:288
+msgid "Table header"
+msgstr "Table header"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:289
+msgid "Table header cell"
+msgstr "Table header cell"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:290
+msgid "Table row"
+msgstr "Table row"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:291
+msgid "Table summary"
+msgstr "Table summary"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:292
+msgid "Target - Blank"
+msgstr "Target - Blank"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:293
+msgid "Target - Parent"
+msgstr "Target - Parent"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:294
+msgid "Target - Self"
+msgstr "Target - Self"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:295
+msgid "Target - Top"
+msgstr "Target - Top"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:296
+msgid "Teletype or monospace text style"
+msgstr "Teletype or monospace text style"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:297
+msgid "Text"
+msgstr "Text"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:298
+msgid "Text color"
+msgstr "Text color"
+
+#. Deprecated since HTML 4.01, not supported in XHTML 1.0 Strict DTD.
+#: ../plugins/taglist/HTML.tags.xml.in.h:300
+msgid "Text color (deprecated)"
+msgstr "Text color（不建議再使用）"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:301
+msgid "Text entered by user"
+msgstr "Text entered by user"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:302
+msgid "Title"
+msgstr "Title"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:303
+msgid "Top margin in pixels"
+msgstr "頂端邊界（以像素計）"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:304
+msgid "URL"
+msgstr "URL"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:305
+msgid "Underlined text style"
+msgstr "Underlined text style"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:306
+msgid "Unordered list"
+msgstr "Unordered list"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:307
+msgid "Use image map"
+msgstr "Use image map"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:308
+msgid "Value"
+msgstr "Value"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:309
+msgid "Value interpretation"
+msgstr "Value interpretation"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:310
+msgid "Variable or program argument"
+msgstr "Variable or program argument"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:311
+msgid "Vertical cell alignment"
+msgstr "Vertical cell alignment"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:312
+msgid "Vertical space"
+msgstr "Vertical space"
+
+#. Deprecated since HTML 4.01, not supported in XHTML 1.0 Strict DTD.
+#: ../plugins/taglist/HTML.tags.xml.in.h:314
+msgid "Vertical space (deprecated)"
+msgstr "Vertical space （不建議再使用）"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:315
+msgid "Visited link color"
+msgstr "Visited link color"
+
+#. Deprecated since HTML 4.01, not supported in XHTML 1.0 Strict DTD.
+#: ../plugins/taglist/HTML.tags.xml.in.h:317
+msgid "Visited link color (deprecated)"
+msgstr "Visited link color（不建議再使用）"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:318
+msgid "Width"
+msgstr "Width"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:319
+msgid "XHTML 1.0 - Tags"
+msgstr "XHTML 1.0 - Tags"
+
+#: ../plugins/taglist/Latex.tags.xml.in.h:1
+msgid "Bibliography (cite)"
+msgstr "Bibliography (cite)"
+
+#: ../plugins/taglist/Latex.tags.xml.in.h:2
+msgid "Bibliography (item)"
+msgstr "Bibliography (item)"
+
+#: ../plugins/taglist/Latex.tags.xml.in.h:3
+msgid "Bibliography (shortcite)"
+msgstr "Bibliography (shortcite)"
+
+#: ../plugins/taglist/Latex.tags.xml.in.h:4
+msgid "Bibliography (thebibliography)"
+msgstr "Bibliography (thebibliography)"
+
+#: ../plugins/taglist/Latex.tags.xml.in.h:5
+msgid "Brackets ()"
+msgstr "Brackets ()"
+
+#: ../plugins/taglist/Latex.tags.xml.in.h:6
+msgid "Brackets <>"
+msgstr "Brackets <>"
+
+#: ../plugins/taglist/Latex.tags.xml.in.h:7
+msgid "Brackets []"
+msgstr "Brackets []"
+
+#: ../plugins/taglist/Latex.tags.xml.in.h:8
+msgid "Brackets {}"
+msgstr "Brackets {}"
+
+#: ../plugins/taglist/Latex.tags.xml.in.h:10
+msgid "File input"
+msgstr "File input"
+
+#: ../plugins/taglist/Latex.tags.xml.in.h:11
+msgid "Footnote"
+msgstr "Footnote"
+
+#: ../plugins/taglist/Latex.tags.xml.in.h:12
+msgid "Function cosine"
+msgstr "Function cosine"
+
+#: ../plugins/taglist/Latex.tags.xml.in.h:13
+msgid "Function e^"
+msgstr "Function e^"
+
+#: ../plugins/taglist/Latex.tags.xml.in.h:14
+msgid "Function exp"
+msgstr "Function exp"
+
+#: ../plugins/taglist/Latex.tags.xml.in.h:15
+msgid "Function log"
+msgstr "Function log"
+
+#: ../plugins/taglist/Latex.tags.xml.in.h:16
+msgid "Function log10"
+msgstr "Function log10"
+
+#: ../plugins/taglist/Latex.tags.xml.in.h:17
+msgid "Function sine"
+msgstr "Function sine"
+
+#: ../plugins/taglist/Latex.tags.xml.in.h:18
+msgid "Greek alpha"
+msgstr "Greek alpha"
+
+#: ../plugins/taglist/Latex.tags.xml.in.h:19
+msgid "Greek beta"
+msgstr "Greek beta"
+
+#: ../plugins/taglist/Latex.tags.xml.in.h:20
+msgid "Greek epsilon"
+msgstr "Greek epsilon"
+
+#: ../plugins/taglist/Latex.tags.xml.in.h:21
+msgid "Greek gamma"
+msgstr "Greek gamma"
+
+#: ../plugins/taglist/Latex.tags.xml.in.h:22
+msgid "Greek lambda"
+msgstr "Greek lambda"
+
+#: ../plugins/taglist/Latex.tags.xml.in.h:23
+msgid "Greek rho"
+msgstr "Greek rho"
+
+#: ../plugins/taglist/Latex.tags.xml.in.h:24
+msgid "Greek tau"
+msgstr "Greek tau"
+
+#: ../plugins/taglist/Latex.tags.xml.in.h:25
+msgid "Header 0 (chapter)"
+msgstr "Header 0 (chapter)"
+
+#: ../plugins/taglist/Latex.tags.xml.in.h:26
+msgid "Header 0 (chapter*)"
+msgstr "Header 0 (chapter*)"
+
+#: ../plugins/taglist/Latex.tags.xml.in.h:27
+msgid "Header 1 (section)"
+msgstr "Header 1 (section)"
+
+#: ../plugins/taglist/Latex.tags.xml.in.h:28
+msgid "Header 1 (section*)"
+msgstr "Header 1 (section*)"
+
+#: ../plugins/taglist/Latex.tags.xml.in.h:29
+msgid "Header 2 (subsection)"
+msgstr "Header 2 (subsection)"
+
+#: ../plugins/taglist/Latex.tags.xml.in.h:30
+msgid "Header 2 (subsection*)"
+msgstr "Header 2 (subsection*)"
+
+#: ../plugins/taglist/Latex.tags.xml.in.h:31
+msgid "Header 3 (subsubsection)"
+msgstr "Header 3 (subsubsection)"
+
+#: ../plugins/taglist/Latex.tags.xml.in.h:32
+msgid "Header 3 (subsubsection*)"
+msgstr "Header 3 (subsubsection*)"
+
+#: ../plugins/taglist/Latex.tags.xml.in.h:33
+msgid "Header 4 (paragraph)"
+msgstr "Header 4 (paragraph)"
+
+#: ../plugins/taglist/Latex.tags.xml.in.h:34
+msgid "Header appendix"
+msgstr "Header appendix"
+
+#: ../plugins/taglist/Latex.tags.xml.in.h:35
+msgid "Item"
+msgstr "Item"
+
+#: ../plugins/taglist/Latex.tags.xml.in.h:36
+msgid "Item with label"
+msgstr "Item with label"
+
+#: ../plugins/taglist/Latex.tags.xml.in.h:37
+msgid "Latex - Tags"
+msgstr "Latex - Tags"
+
+#: ../plugins/taglist/Latex.tags.xml.in.h:38
+msgid "List description"
+msgstr "List description"
+
+#: ../plugins/taglist/Latex.tags.xml.in.h:39
+msgid "List enumerate"
+msgstr "List enumerate"
+
+#: ../plugins/taglist/Latex.tags.xml.in.h:40
+msgid "List itemize"
+msgstr "List itemize"
+
+#: ../plugins/taglist/Latex.tags.xml.in.h:41
+msgid "Maths (display)"
+msgstr "Maths (display)"
+
+#: ../plugins/taglist/Latex.tags.xml.in.h:42
+msgid "Maths (inline)"
+msgstr "Maths (inline)"
+
+#: ../plugins/taglist/Latex.tags.xml.in.h:43
+msgid "Operator fraction"
+msgstr "Operator fraction"
+
+#: ../plugins/taglist/Latex.tags.xml.in.h:44
+msgid "Operator integral (display)"
+msgstr "Operator integral (display)"
+
+#: ../plugins/taglist/Latex.tags.xml.in.h:45
+msgid "Operator integral (inline)"
+msgstr "Operator integral (inline)"
+
+#: ../plugins/taglist/Latex.tags.xml.in.h:46
+msgid "Operator sum (display)"
+msgstr "Operator sum (display)"
+
+#: ../plugins/taglist/Latex.tags.xml.in.h:47
+msgid "Operator sum (inline)"
+msgstr "Operator sum (inline)"
+
+#: ../plugins/taglist/Latex.tags.xml.in.h:48
+msgid "Reference label"
+msgstr "Reference label"
+
+#: ../plugins/taglist/Latex.tags.xml.in.h:49
+msgid "Reference ref"
+msgstr "Reference ref"
+
+#: ../plugins/taglist/Latex.tags.xml.in.h:50
+msgid "Symbol <<"
+msgstr "Symbol <<d"
+
+#: ../plugins/taglist/Latex.tags.xml.in.h:51
+msgid "Symbol <="
+msgstr "Symbol <="
+
+#: ../plugins/taglist/Latex.tags.xml.in.h:52
+msgid "Symbol >="
+msgstr "Symbol >="
+
+#: ../plugins/taglist/Latex.tags.xml.in.h:53
+msgid "Symbol >>"
+msgstr "Symbol >>"
+
+#: ../plugins/taglist/Latex.tags.xml.in.h:54
+msgid "Symbol and"
+msgstr "Symbol and"
+
+#: ../plugins/taglist/Latex.tags.xml.in.h:55
+msgid "Symbol const"
+msgstr "Symbol const"
+
+#: ../plugins/taglist/Latex.tags.xml.in.h:56
+msgid "Symbol d-by-dt"
+msgstr "Symbol d-by-dt"
+
+#: ../plugins/taglist/Latex.tags.xml.in.h:57
+msgid "Symbol d-by-dt-partial"
+msgstr "Symbol d-by-dt-partial"
+
+#: ../plugins/taglist/Latex.tags.xml.in.h:58
+msgid "Symbol d2-by-dt2-partial"
+msgstr "Symbol d2-by-dt2-partial"
+
+#: ../plugins/taglist/Latex.tags.xml.in.h:59
+msgid "Symbol dagger"
+msgstr "Symbol dagger"
+
+#: ../plugins/taglist/Latex.tags.xml.in.h:60
+msgid "Symbol em-dash ---"
+msgstr "Symbol em-dash ---"
+
+#: ../plugins/taglist/Latex.tags.xml.in.h:61
+msgid "Symbol en-dash --"
+msgstr "Symbol en-dash --"
+
+#: ../plugins/taglist/Latex.tags.xml.in.h:62
+msgid "Symbol equiv"
+msgstr "Symbol equiv"
+
+#: ../plugins/taglist/Latex.tags.xml.in.h:63
+msgid "Symbol infinity"
+msgstr "Symbol infinity"
+
+#: ../plugins/taglist/Latex.tags.xml.in.h:64
+msgid "Symbol mathspace ,"
+msgstr "Symbol mathspace ,"
+
+#: ../plugins/taglist/Latex.tags.xml.in.h:65
+msgid "Symbol mathspace ."
+msgstr "Symbol mathspace ."
+
+#: ../plugins/taglist/Latex.tags.xml.in.h:66
+msgid "Symbol mathspace _"
+msgstr "Symbol mathspace _"
+
+#: ../plugins/taglist/Latex.tags.xml.in.h:67
+msgid "Symbol mathspace __"
+msgstr "Symbol mathspace __"
+
+#: ../plugins/taglist/Latex.tags.xml.in.h:68
+msgid "Symbol simeq"
+msgstr "Symbol simeq"
+
+#: ../plugins/taglist/Latex.tags.xml.in.h:69
+msgid "Symbol star"
+msgstr "Symbol star"
+
+#: ../plugins/taglist/Latex.tags.xml.in.h:70
+msgid "Typeface bold"
+msgstr "Typeface bold"
+
+#: ../plugins/taglist/Latex.tags.xml.in.h:71
+msgid "Typeface italic"
+msgstr "Typeface italic"
+
+#: ../plugins/taglist/Latex.tags.xml.in.h:72
+msgid "Typeface slanted"
+msgstr "Typeface slanted"
+
+#: ../plugins/taglist/Latex.tags.xml.in.h:73
+msgid "Typeface type"
+msgstr "Typeface type"
+
+#: ../plugins/taglist/Latex.tags.xml.in.h:74
+msgid "Unbreakable text"
+msgstr "Unbreakable text"
+
+#: ../plugins/taglist/taglist.gedit-plugin.desktop.in.h:1
+msgid ""
+"Provides a method to easily insert commonly used tags/strings into a "
+"document without having to type them."
+msgstr "提供一種不需打字的簡易方式來在文件中加入常用的標記或字串。"
+
+#: ../plugins/taglist/taglist.gedit-plugin.desktop.in.h:2
+msgid "Tag list"
+msgstr "標記清單"
+
+#: ../plugins/taglist/XSLT.tags.xml.in.h:1
+msgid "XSLT - Axes"
+msgstr "XSLT - Axes"
+
+#: ../plugins/taglist/XSLT.tags.xml.in.h:2
+msgid "XSLT - Elements"
+msgstr "XSLT - Elements"
+
+#: ../plugins/taglist/XSLT.tags.xml.in.h:3
+msgid "XSLT - Functions"
+msgstr "XSLT - Functions"
+
+#: ../plugins/taglist/XSLT.tags.xml.in.h:4
+msgid "ancestor"
+msgstr "ancestor"
+
+#: ../plugins/taglist/XSLT.tags.xml.in.h:5
+msgid "ancestor-or-self"
+msgstr "ancestor-or-self"
+
+#: ../plugins/taglist/XSLT.tags.xml.in.h:6
+msgid "attribute"
+msgstr "attribute"
+
+#: ../plugins/taglist/XSLT.tags.xml.in.h:7
+msgid "child"
+msgstr "child"
+
+#: ../plugins/taglist/XSLT.tags.xml.in.h:8
+msgid "descendant"
+msgstr "descendant"
+
+#: ../plugins/taglist/XSLT.tags.xml.in.h:9
+msgid "descendant-or-self"
+msgstr "descendant-or-self"
+
+#: ../plugins/taglist/XSLT.tags.xml.in.h:10
+msgid "following"
+msgstr "following"
+
+#: ../plugins/taglist/XSLT.tags.xml.in.h:11
+msgid "following-sibling"
+msgstr "following-sibling"
+
+#: ../plugins/taglist/XSLT.tags.xml.in.h:12
+msgid "namespace"
+msgstr "namespace"
+
+#: ../plugins/taglist/XSLT.tags.xml.in.h:13
+msgid "parent"
+msgstr "parent"
+
+#: ../plugins/taglist/XSLT.tags.xml.in.h:14
+msgid "preceding"
+msgstr "preceding"
+
+#: ../plugins/taglist/XSLT.tags.xml.in.h:15
+msgid "preceding-sibling"
+msgstr "preceding-sibling"
+
+#: ../plugins/taglist/XSLT.tags.xml.in.h:16
+msgid "self"
+msgstr "self"
+
+#: ../plugins/taglist/XUL.tags.xml.in.h:1
+msgid "XUL - Tags"
+msgstr "XUL - Tags"
+
+#: ../plugins/time/gedit-time-plugin.c:182
+msgid "In_sert Date and Time..."
+msgstr "插入日期及時間(_S)..."
+
+#: ../plugins/time/gedit-time-plugin.c:184
+msgid "Insert current date and time at the cursor position"
+msgstr "在游標目前的位置加入現在的日期及時間"
+
+#: ../plugins/time/gedit-time-plugin.c:613
+msgid "Available formats"
+msgstr "可用的格式"
+
+#: ../plugins/time/gedit-time-plugin.c:766
+msgid "Configure insert date/time plugin..."
+msgstr "設定「加入日期及時間」外掛程式..."
+
+#: ../plugins/time/time.gedit-plugin.desktop.in.h:1
+msgid "Insert Date/Time"
+msgstr "插入日期/時間"
+
+#: ../plugins/time/time.gedit-plugin.desktop.in.h:2
+msgid "Inserts current date and time at the cursor position."
+msgstr "在游標目前的位置插入現在的日期及時間。"
+
+#. Translators: Use the more common date format in your locale
+#: ../plugins/time/gedit-time-dialog.ui.h:3
+#: ../plugins/time/gedit-time-setup-dialog.ui.h:4
+#, no-c-format
+msgid "%d/%m/%Y %H:%M:%S"
+msgstr "%Y/%m/%d %H:%M:%S"
+
+#. Translators: This example should follow the date format defined in the entry above
+#: ../plugins/time/gedit-time-dialog.ui.h:4
+#: ../plugins/time/gedit-time-setup-dialog.ui.h:6
+msgid "01/11/2009 17:52:00"
+msgstr "2009/11/01 17:52:00"
+
+#: ../plugins/time/gedit-time-dialog.ui.h:5
+msgid "Insert Date and Time"
+msgstr "插入日期及時間"
+
+#: ../plugins/time/gedit-time-dialog.ui.h:6
+#: ../plugins/time/gedit-time-setup-dialog.ui.h:8
+msgid "Use the _selected format"
+msgstr "使用指定的格式(_S)"
+
+#: ../plugins/time/gedit-time-dialog.ui.h:7
+msgid "_Insert"
+msgstr "插入(_I)"
+
+#: ../plugins/time/gedit-time-dialog.ui.h:8
+#: ../plugins/time/gedit-time-setup-dialog.ui.h:11
+msgid "_Use custom format"
+msgstr "使用自選格式(_U)"
+
+#: ../plugins/time/gedit-time-setup-dialog.ui.h:7
+msgid "Configure date/time plugin"
+msgstr "設定「加入日期及時間」外掛程式"
+
+#: ../plugins/time/gedit-time-setup-dialog.ui.h:9
+msgid "When inserting date/time..."
+msgstr "當加入日期及時間..."
+
+#: ../plugins/time/gedit-time-setup-dialog.ui.h:10
+msgid "_Prompt for a format"
+msgstr "提示可使用的格式(_P)"
+
+#~ msgid "*"
+#~ msgstr "*"
+
+#~ msgid "<span size=\"small\">01/11/2002 17:52:00</span>"
+#~ msgstr "<span size=\"small\">01/11/2002 17:52:00</span>"
+
+#~ msgid "<span weight=\"bold\"> When inserting date/time...</span>"
+#~ msgstr "<span weight=\"bold\">當插入日期/時間...</span>"
+
+#~ msgid "Whether gedit should highlight matching bracket."
+#~ msgstr "gedit 應否啟用對稱括號色彩顯示的功能。"
+
+#~ msgid "Character Codings"
+#~ msgstr "字元編碼"
+
+#~ msgid "Ch_aracter Coding:"
+#~ msgstr "字元編碼(_A):"
+
+#~ msgid "0"
+#~ msgstr "0"
+
+#~ msgid "<span weight=\"bold\">File Name</span>"
+#~ msgstr "<span weight=\"bold\">檔案名稱</span>"
+
+#~ msgid "<b>Language</b>"
+#~ msgstr "<b>語言</b>"
+
+#~ msgid "<b>word</b>"
+#~ msgstr "<b>字詞</b>"
+
+#~ msgid "HttP header name"
+#~ msgstr "HttP header name"
+
+#~ msgid "Backup Copy Extension"
+#~ msgstr "備份檔延伸檔名"
+
+#~ msgid ""
+#~ "Extension or suffix to use for backup file names. This will only take "
+#~ "effect if the \"Create Backup Copies\" option is turned on."
+#~ msgstr ""
+#~ "備份檔案名稱的延伸檔名或後置字串。本選項只有在「製作備份」選項開啟後才會生"
+#~ "效。"
+
+#~ msgid "Could not obtain backup filename"
+#~ msgstr "無法取得備份檔名稱"
+
+#~ msgid "<b>Current Line</b>"
+#~ msgstr "<b>當前的行</b>"
+
+#~ msgid "<b>Font</b>"
+#~ msgstr "<b>字型</b>"
+
+#~ msgid "<b>Line Numbers</b>"
+#~ msgstr "<b>行號</b>"
+
+#~ msgid "<span weight=\"bold\">Color Scheme</span>"
+#~ msgstr "<span weight=\"bold\">色彩配置</span>"
+
+#~ msgid "<b>Fonts</b>"
+#~ msgstr "<b>字型</b>"
+
+#~ msgid "<b>Page header</b>"
+#~ msgstr "<b>頁首</b>"
+
+#~ msgid "<b>Syntax Highlighting</b>"
+#~ msgstr "<b>顯示語法色彩</b>"
+
+#~ msgid "_Indent"
+#~ msgstr "增加縮排(_I)"
+
+#~ msgid "U_nindent"
+#~ msgstr "減少縮排(_N)"
+
+#~ msgid "Unindent selected lines"
+#~ msgstr "減少選定的行數的縮排程度"
+
+#~ msgid "Indent Lines"
+#~ msgstr "縮排"
+
+#~ msgid "Indents or un-indents selected lines."
+#~ msgstr "增加或減少已選取的行的縮排程度。"
+
+#~ msgid "Open Location"
+#~ msgstr "開啟位置"
+
+#~ msgid "Enter the _location (URI) of the file you would like to open:"
+#~ msgstr "輸入準備開啟的檔案的位置 (_URI):"
+
+#~ msgid "%s: malformed file name or URI.\n"
+#~ msgstr "%s：錯誤的檔案名稱或 URI。\n"
+
+#~ msgid "Open _Location..."
+#~ msgstr "開啟位置(_L)..."
+
+#~ msgid "Open a file from a specified location"
+#~ msgstr "開啟指定位置的檔案"
+
+#~ msgid "Edit tool <i>%s</i>:"
+#~ msgstr "編輯工具 <i>%s</i>："
+
+#~ msgid "A Brand New Tool"
+#~ msgstr "新的工具"
+
+#~ msgid "Co_mmand(s):"
+#~ msgstr "指令(_M):"
+
+#~ msgid "Edit tool <i>make</i>:"
+#~ msgstr "編輯工具<i>make</i>："
+
+#~ msgid "_Description:"
+#~ msgstr "描述(_D):"
+
+#~ msgid "Insert User Na_me"
+#~ msgstr "插入使用者名稱(_M)"
+
+#~ msgid "Insert the user name at the cursor position"
+#~ msgstr "在游標目前的位置插入使用者名稱"
+
+#~ msgid "Inserts the user name at the cursor position."
+#~ msgstr "在游標目前的位置插入使用者名稱"
+
+#~ msgid "User name"
+#~ msgstr "使用者名稱"
+
+#~ msgid "None"
+#~ msgstr "沒有"
+
+#~ msgid "The following python code, run in a snippet, does not return a value"
+#~ msgstr "以下是 python 代碼，在文字片段中執行，不會返回任何數值"
+
+#~ msgid "language|Unknown (%s)"
+#~ msgstr "不詳 (%s)"
+
+#~ msgid "language|Default"
+#~ msgstr "預設"
+
+#~ msgid "The entered location is not valid."
+#~ msgstr "輸入的位置是無效的。"
+
+#~ msgid "The file contains corrupted data."
+#~ msgstr "檔案含有損壞的資料。"
+
+#~ msgid "The file contains data in an invalid format."
+#~ msgstr "檔案所包含的資料的格式無效。"
+
+#~ msgid ""
+#~ "There are too many open files. Please close some applications and try "
+#~ "again."
+#~ msgstr "已開啟的檔案太多。請先關閉一些程式後再試。"
+
+#~ msgid ""
+#~ "Not enough available memory to open the file. Please close some running "
+#~ "applications and try again."
+#~ msgstr ""
+#~ "剩下的記憶體不足以開啟檔案。請先關閉一些連行中的應用程式並再試一次。"
+
+#~ msgid ""
+#~ "Host name was empty. Please check that your proxy settings are correct "
+#~ "and try again."
+#~ msgstr "主機名稱是空白的。檢查代理伺服器的設定是否正確後再試一次。"
+
+#~ msgid ""
+#~ "Attempt to log in failed. Please check that you typed the location "
+#~ "correctly and try again."
+#~ msgstr "嘗試登入失敗。檢查所輸入的位置是否正確及再試一次。"
+
+#~ msgid "The file you are trying to open is not a regular file."
+#~ msgstr "嘗試開啟的不是一個正規的檔案。"
+
+#~ msgid "Attempt to log in failed."
+#~ msgstr "嘗試登入失敗。"
+
+#~ msgid ""
+#~ "%s is a directory. Please check that you typed the location correctly and "
+#~ "try again."
+#~ msgstr "%s 是一個資料夾，檢查所輸入的位置是否正確後再試一次。"
+
+#~ msgid ""
+#~ "Not enough available memory to save the file. Please close some running "
+#~ "applications and try again."
+#~ msgstr "剩下的記憶體不足以儲存檔案。請先關閉一些執行中的程式後再試一次。"
+
+#~ msgid ""
+#~ "%s is not a regular file. Please check that you typed the location "
+#~ "correctly and try again."
+#~ msgstr "%s 不是一個正規的檔案。檢查所輸入的位置是否正確後及再試一次。"
+
+#~ msgid ""
+#~ "Nothing\n"
+#~ "Current document\n"
+#~ "All documents"
+#~ msgstr ""
+#~ "沒有\n"
+#~ "目前文件\n"
+#~ "所有文件"
+
+#~ msgid "gtk-revert-to-saved"
+#~ msgstr "gtk-revert-to-saved"
+
+#~ msgid "on"
+#~ msgstr "於"
+
+#~ msgid "Invalid uri"
+#~ msgstr "無效的 uri"
+
+#~ msgid "Recent Files"
+#~ msgstr "最近存取檔案"
+
+#~ msgid "Background Color"
+#~ msgstr "背景顏色"
+
+#~ msgid ""
+#~ "Background color for selected text in the editing area. This will only "
+#~ "take effect if the \"Use Default Colors\" option is turned off."
+#~ msgstr ""
+#~ "在編輯區域中，被選取的文字的背景顏色。本選項只有在「使用預設色彩」選項關閉"
+#~ "後才會生效。"
+
+#~ msgid ""
+#~ "Background color for unselected text in the editing area. This will only "
+#~ "take effect if the \"Use Default Colors\" option is turned off."
+#~ msgstr ""
+#~ "在編輯區域中，未被選取的文字的背景顏色。本選項只有在「使用預設色彩」選項關"
+#~ "閉後才會生效。"
+
+#~ msgid ""
+#~ "Foreground color for selected text in the editing area. This will only "
+#~ "take effect if the \"Use Default Colors\" option is turned off."
+#~ msgstr ""
+#~ "在編輯區域中，被選取的文字的顏色。本選項只有在「使用預設色彩」選項關閉後才"
+#~ "會生效。"
+
+#~ msgid ""
+#~ "Foreground color for the unselected text in the editing area. This will "
+#~ "only take effect if the \"Use Default Colors\" option is turned off."
+#~ msgstr ""
+#~ "在編輯區域中，未被選取的文字的顏色。本選項只有在「使用預設色彩」選項關閉後"
+#~ "才會生效。"
+
+#~ msgid "Monospace Regular 9"
+#~ msgstr "Monospace Regular 12"
+
+#~ msgid "Sans Regular 11"
+#~ msgstr "Sans Regular 14"
+
+#~ msgid "Sans Regular 8"
+#~ msgstr "Sans Regular 10"
+
+#~ msgid "Selected Text Color"
+#~ msgstr "已選取文字的顏色"
+
+#~ msgid "Selection Color"
+#~ msgstr "選擇區域的顏色"

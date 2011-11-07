@@ -1,0 +1,11 @@
+prefix=@prefix@
+exec_prefix=@exec_prefix@
+libdir=@libdir@
+includedir=@includedir@
+
+Name: gedit
+Description: gedit
+Requires: gtksourceview-2.0
+Version: @VERSION@
+Cflags: -I${includedir}/gedit-@GEDIT_API_VERSION@
+Libs: -L${libdir} @GEDIT_IMPLIB@

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<snippets language="XML">
+  <snippet id="&quot;">
+    <text><![CDATA[<${1:name} ${2:attr}="${3:value}">$0</${1}>]]></text>
+    <description>Long Attribute Tag</description>
+    <tag>"</tag>
+  </snippet>
+  <snippet id="&lt;">
+    <text><![CDATA[<${1:name}>$0</${1}>
+
+]]></text>
+    <description>Long Tag</description>
+    <tag>&lt;</tag>
+  </snippet>
+  <snippet id="&gt;">
+    <text><![CDATA[<${1:name} />]]></text>
+    <description>Short Tag</description>
+    <tag>&gt;</tag>
+  </snippet>
+  <snippet id="cdata">
+    <text><![CDATA[<![CDATA[$0]]]]><![CDATA[>]]></text>
+    <tag>cdata</tag>
+    <description>CDATA</description>
+  </snippet>
+</snippets>

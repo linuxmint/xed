@@ -1,0 +1,122 @@
+%%
+headers
+#define NO_IMPORT_PYGOBJECT
+#define NO_IMPORT_PYGTK
+#include <pygobject.h>
+#include <pygtk/pygtk.h>
+
+#include "gedit-commands.h"
+#include "gedit-window.h"
+
+void pygeditcommands_register_classes (PyObject *d);
+void pygeditcommands_add_constants (PyObject *module, const gchar *strip_prefix);
+
+%%
+modulename gedit.commands
+%%
+import gedit.Window as PyGeditWindow_Type
+import gedit.Document as PyGeditDocument_Type
+%%
+ignore-glob
+  _*
+%%
+override gedit_commands_load_uri kwargs 
+static PyObject *
+_wrap_gedit_commands_load_uri (PyObject *self, PyObject *args, PyObject *kwargs)
+{
+	static char *kwlist[] = { "window", "uri", "encoding", "line_pos", NULL };
+	PyGObject *window;
+	char *uri;
+	int line_pos = 0;
+	PyObject *py_encoding = NULL;
+	GeditEncoding *encoding = NULL;
+
+	if (!PyArg_ParseTupleAndKeywords (args, kwargs, "O!s|Oi:load_uri", 
+	                                  kwlist, &PyGeditWindow_Type, 
+	                                  &window, &uri, &py_encoding, 
+	                                  &line_pos))
+		return NULL;
+    
+	if (py_encoding != NULL && py_encoding != Py_None)
+	{
+		if (pyg_boxed_check (py_encoding, GEDIT_TYPE_ENCODING))
+			encoding = pyg_boxed_get (py_encoding, GeditEncoding);
+		else
+		{
+			PyErr_SetString (PyExc_TypeError, 
+			                 "encoding should be a GeditEncoding");
+			return NULL;
+		}
+	}
+
+	gedit_commands_load_uri (GEDIT_WINDOW (window->obj), uri, encoding, 
+	                        line_pos);
+	Py_INCREF (Py_None);
+	return Py_None;
+}
+%%
+override gedit_commands_load_uris kwargs 
+static PyObject *
+_wrap_gedit_commands_load_uris (PyObject *self, PyObject *args, PyObject *kwargs)
+{
+	static char *kwlist[] = { "window", "uris", "encoding", "line_pos", NULL };
+	PyGObject *window;
+	GSList *uris = NULL;
+	int line_pos = 0;
+	PyObject *py_encoding = NULL;
+	PyObject *list;
+	PyObject *item;
+	GeditEncoding *encoding = NULL;
+	int len;
+	int i;
+
+	if (!PyArg_ParseTupleAndKeywords (args, kwargs, "O!O|Oi:load_uri", 
+	                                  kwlist, &PyGeditWindow_Type, 
+	                                  &window, &list, &py_encoding, 
+	                                  &line_pos))
+		return NULL;
+    
+	if (py_encoding != NULL && py_encoding != Py_None)
+	{
+		if (pyg_boxed_check (py_encoding, GEDIT_TYPE_ENCODING))
+			encoding = pyg_boxed_get (py_encoding, GeditEncoding);
+		else {
+			PyErr_SetString (PyExc_TypeError, 
+			                 "encoding should be a GeditEncoding");
+			return NULL;
+		}
+	}
+
+	if (!PySequence_Check (list))
+	{
+		PyErr_SetString (PyExc_TypeError, 
+		                 "second argument must be a sequence");
+		return NULL;
+	}
+
+	len = PySequence_Length (list);
+
+	for (i = 0; i < len; i++)
+	{
+		item = PySequence_GetItem (list, i);
+		Py_DECREF (item);
+
+		if (!PyString_Check (item))
+		{
+			PyErr_SetString (PyExc_TypeError,
+					 "sequence item not a string");
+			g_slist_free (uris);
+			return NULL;
+		}
+
+		uris = g_slist_prepend (uris, PyString_AsString (item));
+	}
+
+	uris = g_slist_reverse (uris);
+	gedit_commands_load_uris (GEDIT_WINDOW (window->obj), uris, 
+	                          encoding, line_pos);
+	g_slist_free (uris);
+
+	Py_INCREF (Py_None);
+	return Py_None;
+}

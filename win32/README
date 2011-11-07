@@ -1,0 +1,17 @@
+To create the Windows installer for gedit, ideally all you have to do is to run
+the build-installer script, after having installed all dependencies to the
+correct places (that means precompiled ones to /, and self-built
+ones to /local/). Also, you will need to have Python at C:\Python25.
+The Inno Setup compiler (iscc) needs to be in your PATH.
+
+There are many paths hardcoded to fit my own build environment. Feel free to
+generalize the script, to make it more adaptive to other environments.
+
+The script takes an argument which is the revision number of the installer. If
+it is not given, then it uses 1 as revision number. The revision number should
+be increased every time the installer for the same gedit version is updated,
+and be reset to 1 for a new gedit version.
+
+Ignacio Casal Quinteiro <nacho.resa@gmail.com>
+
+This script was based in Armin Burgmeier script for glom.

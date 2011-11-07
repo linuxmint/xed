@@ -1,0 +1,337 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+	XSLT Tags for gedit
+	Jens Askengren <jensus@linux.nu>
+-->
+<TagList xmlns="http://gedit.sourceforge.net/some-location">
+<TagGroup _name="XSLT - Elements" sort="true">
+	<Tag name="apply-imports">
+		<Begin>&lt;xsl:apply-imports&gt;</Begin>
+		<End>&lt;/xsl:apply-imports&gt;</End>
+	</Tag>
+	<Tag name="apply-templates">
+		<Begin>&lt;xsl:apply-templates select="</Begin>
+		<End>"/&gt;</End>
+	</Tag>
+	<Tag name="attribute">
+		<Begin>&lt;xsl:attribute name="</Begin>
+		<End>"&gt;&lt;/xsl:attribute&gt;</End>
+	</Tag>
+	<Tag name="attribute-set">
+		<Begin>&lt;xsl:attribute-set name="</Begin>
+		<End>"&gt;&lt;/xsl:attribute-set&gt;</End>
+	</Tag>
+	<Tag name="call-template">
+		<Begin>&lt;xsl:call-template name="</Begin>
+		<End>"/&gt;</End>
+	</Tag>
+	<Tag name="choose">
+		<Begin>&lt;xsl:choose&gt;&#10;</Begin>
+		<End>&#10;&lt;/xsl:choose&gt;</End>
+	</Tag>
+	<Tag name="comment">
+		<Begin>&lt;xsl:comment&gt;</Begin>
+		<End>&lt;/xsl:comment&gt;</End>
+	</Tag>
+	<Tag name="copy">
+		<Begin>&lt;xsl:copy/&gt;</Begin>
+	</Tag>
+	<Tag name="copy-of">
+		<Begin>&lt;xsl:copy-of select="</Begin>
+		<End>"/&gt;</End>
+	</Tag>
+	<Tag name="decimal-format">
+		<Begin>&lt;xsl:decimal-format/&gt;</Begin>
+	</Tag>
+	<Tag name="element">
+		<Begin>&lt;xsl:element name="</Begin>
+		<End>"&gt;&lt;/xsl:element&gt;</End>
+	</Tag>
+	<Tag name="fallback">
+		<Begin>&lt;xsl:fallback&gt;</Begin>
+		<End>&lt;/xsl:fallback&gt;</End>
+	</Tag>
+	<Tag name="for-each">
+		<Begin>&lt;xsl:for-each select="</Begin>
+		<End>"&gt;&#10;&lt;/xsl:for-each&gt;</End>
+	</Tag>
+	<Tag name="if">
+		<Begin>&lt;xsl:if test="</Begin>
+		<End>"&gt;&#10;&#10;&lt;/xsl:if&gt;</End>
+	</Tag>
+	<Tag name="import">
+		<Begin>&lt;xsl:import href="</Begin>
+		<End>"/&gt;</End>
+	</Tag>
+	<Tag name="include">
+		<Begin>&lt;xsl:include href="</Begin>
+		<End>"/&gt;</End>
+	</Tag>
+	<Tag name="key">
+		<Begin>&lt;xsl:key name="</Begin>
+		<End>" match="" use=""/&gt;</End>
+	</Tag>
+	<Tag name="message">
+		<Begin>&lt;xsl:message&gt;</Begin>
+		<End>&lt;/xsl:message&gt;</End>
+	</Tag>
+	<Tag name="namespace-alias">
+		<Begin>&lt;xsl:namespace-alias stylesheet-prefix="</Begin>
+		<End>" result-prefix=""/&gt;</End>
+	</Tag>
+	<Tag name="number">
+		<Begin>&lt;xsl:number/&gt;</Begin>
+	</Tag>
+	<Tag name="otherwise">
+		<Begin>&lt;xsl:otherwise&gt;</Begin>
+		<End>&lt;/xsl:otherwise&gt;</End>
+	</Tag>
+	<Tag name="output">
+		<Begin>&lt;xsl:output encoding="utf-8" method="</Begin>
+		<End>"/&gt;</End>
+	</Tag>
+	<Tag name="param">
+		<Begin>&lt;xsl:param name="</Begin>
+		<End>"&gt;&lt;/xsl:param&gt;</End>
+	</Tag>
+	<Tag name="preserve-space">
+		<Begin>&lt;xsl:preserve-space elements="</Begin>
+		<End>"&gt;&lt;/xsl:preserve-space&gt;</End>
+	</Tag>
+	<Tag name="processing-instruction">
+		<Begin>&lt;xsl:processing-instruction name="</Begin>
+		<End>"&gt;&lt;/xsl:processing-instruction&gt;</End>
+	</Tag>
+	<Tag name="sort">
+		<Begin>&lt;xsl:sort/&gt;</Begin>
+	</Tag>
+	<Tag name="strip-space">
+		<Begin>&lt;xsl:strip-space elements="</Begin>
+		<End>"&gt;&lt;/xsl:strip-space&gt;</End>
+	</Tag>
+	<Tag name="stylesheet">
+		<Begin>&lt;xsl:stylesheet version="</Begin>
+		<End>"/&gt;&#10;&#10;&lt;/xsl:stylesheet&gt;</End>
+	</Tag>
+	<Tag name="template">
+		<Begin>&lt;xsl:template match="</Begin>
+		<End>"&gt;&#10;&#10;&lt;/xsl:template&gt;</End>
+	</Tag>
+	<Tag name="text">
+		<Begin>&lt;xsl:text/&gt;</Begin>
+	</Tag>
+	<Tag name="value-of">
+		<Begin>&lt;xsl:value-of select="</Begin>
+		<End>"/&gt;</End>
+	</Tag>
+	<Tag name="variable">
+		<Begin>&lt;xsl:variable select="</Begin>
+		<End>"/&gt;</End>
+	</Tag>
+	<Tag name="when">
+		<Begin>&lt;xsl:when test="</Begin>
+		<End>&gt;&#10;&#10;&lt;/xsl:when&gt;</End>
+	</Tag>
+	<Tag name="with-param">
+		<Begin>&lt;xsl:with-param name="</Begin>
+		<End>"&gt;&lt;/xsl:with-param&gt;</End>
+	</Tag>
+</TagGroup>
+
+<TagGroup _name="XSLT - Functions" sort="true">
+	<Tag name="boolean">
+		<Begin>boolean(</Begin>
+		<End>)</End>
+	</Tag>
+	<Tag name="ceiling">
+		<Begin>ceiling(</Begin>
+		<End>)</End>
+	</Tag>
+	<Tag name="comment">
+		<Begin>comment()</Begin>
+	</Tag>
+	<Tag name="concat">
+		<Begin>concat(</Begin>
+		<End>,,)</End>
+	</Tag>
+	<Tag name="contains">
+		<Begin>contains(</Begin>
+		<End>,)</End>
+	</Tag>
+	<Tag name="count">
+		<Begin>count(</Begin>
+		<End>)</End>
+	</Tag>
+	<Tag name="current">
+		<Begin>current()</Begin>
+	</Tag>
+	<Tag name="document">
+		<Begin>document(</Begin>
+		<End>,)</End>
+	</Tag>
+	<Tag name="element-available">
+		<Begin>element-available(</Begin>
+		<End>)</End>
+	</Tag>
+	<Tag name="false">
+		<Begin>false()</Begin>
+	</Tag>
+	<Tag name="floor">
+		<Begin>floor(</Begin>
+		<End>)</End>
+	</Tag>
+	<Tag name="format-number">
+		<Begin>format-number(</Begin>
+		<End>,,)</End>
+	</Tag>
+	<Tag name="function-available">
+		<Begin>function-available(</Begin>
+		<End>)</End>
+	</Tag>
+	<Tag name="generate-id">
+		<Begin>generate-id(</Begin>
+		<End>)</End>
+	</Tag>
+	<Tag name="id">
+		<Begin>id(</Begin>
+		<End>)</End>
+	</Tag>
+	<Tag name="key">
+		<Begin>key(</Begin>
+		<End>,)</End>
+	</Tag>
+	<Tag name="lang">
+		<Begin>lang(</Begin>
+		<End>)</End>
+	</Tag>
+	<Tag name="last">
+		<Begin>last()</Begin>
+	</Tag>
+	<Tag name="local-name">
+		<Begin>local-name(</Begin>
+		<End>)</End>
+	</Tag>
+	<Tag name="name">
+		<Begin>name(</Begin>
+		<End>)</End>
+	</Tag>
+	<Tag name="namespace-uri">
+		<Begin>namespace-uri(</Begin>
+		<End>)</End>
+	</Tag>
+	<Tag name="node">
+		<Begin>node()</Begin>
+	</Tag>
+	<Tag name="normalize-space">
+		<Begin>normalize-space(</Begin>
+		<End>)</End>
+	</Tag>
+	<Tag name="not">
+		<Begin>not(</Begin>
+		<End>)</End>
+	</Tag>
+	<Tag name="number">
+		<Begin>number(</Begin>
+		<End>)</End>
+	</Tag>
+	<Tag name="position">
+		<Begin>position()</Begin>
+	</Tag>
+	<Tag name="processing-instruction">
+		<Begin>processing-instruction(</Begin>
+		<End>)</End>
+	</Tag>
+	<Tag name="round">
+		<Begin>round(</Begin>
+		<End>)</End>
+	</Tag>
+	<Tag name="starts-with">
+		<Begin>starts-with(</Begin>
+		<End>,)</End>
+	</Tag>
+	<Tag name="string">
+		<Begin>string(</Begin>
+		<End>)</End>
+	</Tag>
+	<Tag name="string-length">
+		<Begin>string-length(</Begin>
+		<End>)</End>
+	</Tag>
+	<Tag name="substring">
+		<Begin>substring(</Begin>
+		<End>,,)</End>
+	</Tag>
+	<Tag name="substring-after">
+		<Begin>substring-after(</Begin>
+		<End>,)</End>
+	</Tag>
+	<Tag name="substring-before">
+		<Begin>substring-before(</Begin>
+		<End>,)</End>
+	</Tag>
+	<Tag name="sum">
+		<Begin>sum(</Begin>
+		<End>)</End>
+	</Tag>
+	<Tag name="system-property">
+		<Begin>system-property(</Begin>
+		<End>)</End>
+	</Tag>
+	<Tag name="text">
+		<Begin>text()</Begin>
+	</Tag>
+	<Tag name="translate">
+		<Begin>translate(</Begin>
+		<End>,,)</End>
+	</Tag>
+	<Tag name="true">
+		<Begin>true()</Begin>
+	</Tag>
+	<Tag name="unparsed-entity-uri">
+		<Begin>unparsed-entity-uri(</Begin>
+		<End>)</End>
+	</Tag>
+</TagGroup>
+
+<TagGroup _name="XSLT - Axes" sort="true">
+	<Tag _name="ancestor">
+		<Begin>ancestor::</Begin>
+	</Tag>
+	<Tag _name="ancestor-or-self">
+		<Begin>ancestor-or-self::</Begin>
+	</Tag>
+	<Tag _name="attribute">
+		<Begin>@</Begin>
+	</Tag>
+	<Tag _name="child">
+		<Begin>child::</Begin>
+	</Tag>
+	<Tag _name="descendant">
+		<Begin>descendant::</Begin>
+	</Tag>
+	<Tag _name="descendant-or-self">
+		<Begin>//</Begin>
+	</Tag>
+	<Tag _name="following">
+		<Begin>following::</Begin>
+	</Tag>
+	<Tag _name="following-sibling">
+		<Begin>following-sibling::</Begin>
+	</Tag>
+	<Tag _name="namespace">
+		<Begin>namespace::</Begin>
+	</Tag>
+	<Tag _name="parent">
+		<Begin>..</Begin>
+	</Tag>
+	<Tag _name="preceding">
+		<Begin>preceding::</Begin>
+	</Tag>
+	<Tag _name="preceding-sibling">
+		<Begin>preceding-sibling::</Begin>
+	</Tag>
+	<Tag _name="self">
+		<Begin>.</Begin>
+	</Tag>
+</TagGroup>
+</TagList>

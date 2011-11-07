@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<snippets language="Tcl">
+  <snippet id="foreach">
+    <text><![CDATA[foreach ${1:var} ${2:$list} {
+	${3}
+}
+]]></text>
+    <description>foreach...</description>
+    <tag>foreach</tag>
+  </snippet>
+  <snippet id="for">
+    <text><![CDATA[for {${1:set i 0}} {${2:$i < $n}} {${3:incr i}} {
+	${4}
+}
+]]></text>
+    <description>for...</description>
+    <tag>for</tag>
+  </snippet>
+  <snippet id="if">
+    <text><![CDATA[if {${1:condition}} {
+	${2}
+}
+]]></text>
+    <description>if...</description>
+    <tag>if</tag>
+  </snippet>
+  <snippet id="proc">
+    <text><![CDATA[proc ${1:name} {${2:args}} \
+{
+	${3}
+}
+]]></text>
+    <description>proc...</description>
+    <tag>proc</tag>
+  </snippet>
+  <snippet id="switch">
+    <text><![CDATA[switch ${1:-exact} -- ${2:$var} {
+	${3:match} {
+		${4}
+	}
+	default {${5}}
+}
+]]></text>
+    <description>switch...</description>
+    <tag>switch</tag>
+  </snippet>
+  <snippet id="while">
+    <text><![CDATA[while {${1:condition}} {
+	${2}
+}
+]]></text>
+    <description>while...</description>
+    <tag>while</tag>
+  </snippet>
+</snippets>

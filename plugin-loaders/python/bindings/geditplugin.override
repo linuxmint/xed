@@ -1,0 +1,193 @@
+%%
+headers
+#include <gedit/gedit-plugin.h>
+#include <gedit/gedit-window.h>
+%%
+override gedit_plugin_activate kwargs
+static PyObject *
+_wrap_gedit_plugin_activate(PyGObject *self, PyObject *args, PyObject *kwargs)
+{
+	gpointer klass, klass2;
+	static char *kwlist[] = { "window", NULL };
+	PyGObject *window;
+	PyObject *cls = (PyObject *)(((PyObject *)self)->ob_type);
+	
+	if (!PyArg_ParseTupleAndKeywords (args, 
+					  kwargs,
+					  "O!:GeditPlugin.activate", 
+					  kwlist,
+					  &PyGeditWindow_Type, 
+					  &window))
+		return NULL;
+
+	klass = g_type_class_ref (pyg_type_from_object (cls));
+	
+	if (GEDIT_IS_PLUGIN_PYTHON_CLASS (klass))
+	{
+		klass2 = g_type_class_peek_parent (klass);
+		g_type_class_unref (klass);
+		klass = g_type_class_ref (G_TYPE_FROM_CLASS (klass2));
+	}
+
+	if (GEDIT_PLUGIN_CLASS (klass)->activate)
+		GEDIT_PLUGIN_CLASS (klass)->activate (GEDIT_PLUGIN (self->obj), 
+						      GEDIT_WINDOW (window->obj));
+	else {
+		PyErr_SetString (PyExc_NotImplementedError, 
+				 "virtual method GeditPlugin.activate not implemented");
+		g_type_class_unref (klass);
+		return NULL;
+	}
+
+	g_type_class_unref (klass);
+	Py_INCREF(Py_None);
+	return Py_None;
+}
+
+%%
+override gedit_plugin_deactivate kwargs
+static PyObject *
+_wrap_gedit_plugin_deactivate(PyGObject *self, PyObject *args, PyObject *kwargs)
+{
+	gpointer klass, klass2;
+	static char *kwlist[] = {"window", NULL};
+	PyGObject *window;
+	PyObject *cls = (PyObject *)(((PyObject *)self)->ob_type);
+
+	if (!PyArg_ParseTupleAndKeywords (args, 
+					  kwargs,
+					  "O!:GeditPlugin.deactivate", 
+					  kwlist,
+					  &PyGeditWindow_Type, 
+					  &window))
+		return NULL;
+
+	klass = g_type_class_ref (pyg_type_from_object (cls));
+
+	if (GEDIT_IS_PLUGIN_PYTHON_CLASS (klass))
+	{
+		klass2 = g_type_class_peek_parent (klass);
+		g_type_class_unref (klass);
+		klass = g_type_class_ref (G_TYPE_FROM_CLASS (klass2));
+	}
+	
+	if (GEDIT_PLUGIN_CLASS (klass)->deactivate)
+		GEDIT_PLUGIN_CLASS (klass)->deactivate (GEDIT_PLUGIN (self->obj), 
+							GEDIT_WINDOW (window->obj));
+	else {
+		PyErr_SetString (PyExc_NotImplementedError, 
+				 "virtual method GeditPlugin.deactivate not implemented");
+		g_type_class_unref (klass);
+		return NULL;
+	}
+
+	g_type_class_unref (klass);
+	Py_INCREF(Py_None);
+	return Py_None;
+}
+
+%%
+override gedit_plugin_update_ui kwargs
+static PyObject *
+_wrap_gedit_plugin_update_ui (PyGObject *self, PyObject *args, PyObject *kwargs)
+{
+	gpointer klass, klass2;
+	static char *kwlist[] = {"window", NULL};
+	PyGObject *window;
+	PyObject *cls = (PyObject *)(((PyObject *)self)->ob_type);
+
+	if (!PyArg_ParseTupleAndKeywords (args, 
+					  kwargs,
+					  "O!:GeditPlugin.update_ui", 
+					  kwlist,
+					  &PyGeditWindow_Type, 
+					  &window))
+		return NULL;
+
+	klass = g_type_class_ref (pyg_type_from_object (cls));
+
+	if (GEDIT_IS_PLUGIN_PYTHON_CLASS (klass))
+	{
+		klass2 = g_type_class_peek_parent (klass);
+		g_type_class_unref (klass);
+		klass = g_type_class_ref (G_TYPE_FROM_CLASS (klass2));
+	}
+	
+	if (GEDIT_PLUGIN_CLASS (klass)->update_ui)
+		GEDIT_PLUGIN_CLASS (klass)->update_ui (GEDIT_PLUGIN (self->obj), 
+						       GEDIT_WINDOW (window->obj));
+	else {
+		PyErr_SetString (PyExc_NotImplementedError, 
+				 "virtual method GeditPlugin.update_ui not implemented");
+		g_type_class_unref (klass);
+		return NULL;
+	}
+
+	g_type_class_unref (klass);
+	Py_INCREF(Py_None);
+	return Py_None;
+}
+
+%%
+override gedit_plugin_is_configurable
+static PyObject *
+_wrap_gedit_plugin_is_configurable (PyGObject *self)
+{
+	int ret;
+	gpointer klass, klass2;
+	PyObject *cls = (PyObject *)(((PyObject *)self)->ob_type);
+
+	klass = g_type_class_ref (pyg_type_from_object (cls));
+
+	if (GEDIT_IS_PLUGIN_PYTHON_CLASS (klass))
+	{
+		klass2 = g_type_class_peek_parent (klass);
+		g_type_class_unref (klass);
+		klass = g_type_class_ref (G_TYPE_FROM_CLASS (klass2));
+	}
+	
+	if (GEDIT_PLUGIN_CLASS (klass)->is_configurable)
+		ret = GEDIT_PLUGIN_CLASS (klass)->is_configurable (GEDIT_PLUGIN (self->obj));
+	else {
+		PyErr_SetString (PyExc_NotImplementedError, 
+				 "virtual method GeditPlugin.is_configurable not implemented");
+		g_type_class_unref (klass);
+		return NULL;
+	}
+
+	g_type_class_unref (klass);
+	return PyBool_FromLong (ret);
+}
+
+%%
+override gedit_plugin_configure_dialog
+static PyObject *
+_wrap_gedit_plugin_create_configure_dialog (PyGObject *self)
+{
+	GtkWidget *ret;
+	gpointer klass, klass2;
+	PyObject *cls = (PyObject *)(((PyObject *)self)->ob_type);
+
+	klass = g_type_class_ref(pyg_type_from_object (cls));
+
+	if (GEDIT_IS_PLUGIN_PYTHON_CLASS (klass))
+	{
+		klass2 = g_type_class_peek_parent (klass);
+		g_type_class_unref (klass);
+		klass = g_type_class_ref (G_TYPE_FROM_CLASS (klass2));
+	}
+	
+	if (GEDIT_PLUGIN_CLASS (klass)->create_configure_dialog)
+		ret = GEDIT_PLUGIN_CLASS (klass)->create_configure_dialog (GEDIT_PLUGIN (self->obj));
+	else {
+		PyErr_SetString (PyExc_NotImplementedError, 
+				 "virtual method GeditPlugin.create_configure_dialog not implemented");
+		g_type_class_unref (klass);
+		return NULL;
+	}
+
+	g_type_class_unref (klass);
+
+	/* pygobject_new handles NULL checking */
+	return pygobject_new ((GObject *)ret);
+}

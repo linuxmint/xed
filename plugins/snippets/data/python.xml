@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<snippets language="Python">
+  <snippet id="py">
+    <text><![CDATA[#!/usr/bin/env python
+#-*- coding:utf-8 -*-
+
+$0]]></text>
+    <description>#!/usr/bin/env python</description>
+    <tag>py</tag>
+  </snippet>
+  <snippet id="def">
+    <text><![CDATA[def ${1:fname}(${2:self}):
+	${3:pass}]]></text>
+    <description>New Function</description>
+    <tag>def</tag>
+  </snippet>
+  <snippet id="doc">
+    <text><![CDATA["""
+	$1
+"""
+$0]]></text>
+    <description>doc string</description>
+    <tag>doc</tag>
+  </snippet>
+  <snippet id="get">
+    <text><![CDATA[def get$1(self): return self._$1]]></text>
+    <description>New Get Method</description>
+    <tag>get</tag>
+  </snippet>
+  <snippet id="class">
+    <text><![CDATA[class ${1:ClassName} (${2:object}):
+
+	def __init__(self${3:,}):
+		${4:pass}
+
+$0]]></text>
+    <description>New Class</description>
+    <tag>class</tag>
+  </snippet>
+  <snippet id="for">
+    <text><![CDATA[for ${1:i} in ${2:xrange}(${3:count}):
+	$0]]></text>
+    <description>for loop</description>
+    <tag>for</tag>
+  </snippet>
+  <snippet id="from">
+    <text><![CDATA[from $1 import $2
+$0]]></text>
+    <description>from</description>
+    <tag>from</tag>
+  </snippet>
+  <snippet id="if">
+    <text><![CDATA[if ${1:condition}:
+	$0]]></text>
+    <description>if</description>
+    <tag>if</tag>
+  </snippet>
+  <snippet id="elif">
+    <text><![CDATA[elif ${1:condition}:
+	$0]]></text>
+    <description>elif</description>
+    <tag>elif</tag>
+  </snippet>
+  <snippet id="else">
+    <text><![CDATA[else:
+	$0]]></text>
+    <description>else</description>
+    <tag>else</tag>
+  </snippet>
+  <snippet id="while">
+    <text><![CDATA[while ${1:condition}:
+	$0]]></text>
+    <tag>while</tag>
+    <description>while loop</description>
+  </snippet>
+  <snippet id="insert">
+    <text><![CDATA["${1:$GEDIT_SELECTED_TEXT}"]]></text>
+    <accelerator><![CDATA[<Control>2]]></accelerator>
+    <description>Inside String: Insert "…"</description>
+  </snippet>
+  <snippet id="insert-1">
+    <text><![CDATA['${1:$GEDIT_SELECTED_TEXT}']]></text>
+    <accelerator><![CDATA[<Control>apostrophe]]></accelerator>
+    <description>Inside String: Insert '…'</description>
+  </snippet>
+  <snippet id=".">
+    <text><![CDATA[self.]]></text>
+    <description>self</description>
+    <tag>.</tag>
+  </snippet>
+  <snippet id="set">
+    <text><![CDATA[def set$1(self, ${2:newValue}): self._$1 = $2]]></text>
+    <description>New Set Method</description>
+    <tag>set</tag>
+  </snippet>
+  <snippet id="try">
+    <text><![CDATA[try:
+	$1
+except ${2:Error}:
+	$0]]></text>
+    <tag>try</tag>
+    <description>Try... Except</description>
+  </snippet>
+  <snippet id="main">
+    <text><![CDATA[if __name__ == '__main__':
+	${1:sys.exit(main())}
+
+$0]]></text>
+    <description>main</description>
+    <tag>main</tag>
+  </snippet>
+</snippets>

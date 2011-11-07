@@ -1,0 +1,5252 @@
+# gedit ja.po.
+# Copyright (C) 1999,2000,2002-2010 Free Software Foundation, Inc.
+# Akira Higuchi <a-higuti@math.sci.hokudai.ac.jp>, 1999
+# Yuusuke Tahara <tahara@mate.gr.jp>
+# Yukihiro Nakai <nakai@mate.gr.jp>
+# Akira TAGOH <tagoh@mate.gr.jp>, 2002.
+# KAMAGASAKO Masatoshi <emerald@mate.gr.jp>, 2003.
+# Takeshi AIHANA <takeshi.aihana@gmail.com>, 2003-2009.
+# Satoru SATOH <ss@mate.gr.jp>, 2006.
+# Hideki Yamane (Debian-JP) <henrich@debian.or.jp>, 2009.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: gedit master\n"
+"Report-Msgid-Bugs-To: http://bugzilla.mate.org/enter_bug.cgi?"
+"product=gedit&component=general\n"
+"POT-Creation-Date: 2010-09-16 08:54+0000\n"
+"PO-Revision-Date: 2010-09-19 18:13+0900\n"
+"Last-Translator: Hideki Yamane (Debian-JP) <henrich@debian.or.jp>\n"
+"Language-Team: Japanese <mate-translation@mate.gr.jp>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: ../data/gedit.desktop.in.in.h:1
+msgid "Edit text files"
+msgstr "テキスト形式のファイルを編集します"
+
+#: ../data/gedit.desktop.in.in.h:2 ../gedit/gedit-print-job.c:759
+msgid "Text Editor"
+msgstr "テキストエディタ"
+
+#: ../data/gedit.desktop.in.in.h:3
+msgid "gedit"
+msgstr "gedit"
+
+#: ../data/gedit.desktop.in.in.h:4
+msgid "gedit Text Editor"
+msgstr "gedit テキストエディタ"
+
+#: ../data/gedit.schemas.in.in.h:1
+msgid ""
+"A custom font that will be used for the editing area. This will only take "
+"effect if the \"Use Default Font\" option is turned off."
+msgstr ""
+"編集領域で使用するカスタムフォントを指定します。これは \"デフォルトのフォント"
+"を使う\" オプションを無効にしている場合にのみ効果があります。"
+
+#: ../data/gedit.schemas.in.in.h:2
+msgid "Active plugins"
+msgstr "利用可能なプラグイン"
+
+#: ../data/gedit.schemas.in.in.h:3
+msgid "Automatic indent"
+msgstr "自動インデント"
+
+#: ../data/gedit.schemas.in.in.h:4
+msgid "Automatically Detected Encodings"
+msgstr "自動検出されたエンコーディング"
+
+#: ../data/gedit.schemas.in.in.h:5
+msgid "Autosave"
+msgstr "自動保存"
+
+#: ../data/gedit.schemas.in.in.h:6
+msgid "Autosave Interval"
+msgstr "自動保存の間隔"
+
+#: ../data/gedit.schemas.in.in.h:7
+msgid "Body Font for Printing"
+msgstr "印刷時の本文に使われるフォント"
+
+#: ../data/gedit.schemas.in.in.h:8
+msgid "Bottom Panel is Visible"
+msgstr "ボトム・ペインの表示可否"
+
+#: ../data/gedit.schemas.in.in.h:9
+msgid "Create Backup Copies"
+msgstr "パックアップコピーの作成"
+
+#: ../data/gedit.schemas.in.in.h:10
+msgid "Display Line Numbers"
+msgstr "行番号の表示"
+
+#: ../data/gedit.schemas.in.in.h:11
+msgid "Display Right Margin"
+msgstr "右マージンを表示"
+
+#: ../data/gedit.schemas.in.in.h:12
+msgid "Editor Font"
+msgstr "エディタのフォント"
+
+#: ../data/gedit.schemas.in.in.h:13
+msgid "Enable Search Highlighting"
+msgstr "検索時の強調表示を有効にする"
+
+#: ../data/gedit.schemas.in.in.h:14
+msgid "Enable Syntax Highlighting"
+msgstr "構文の強調表示を有効にする"
+
+#: ../data/gedit.schemas.in.in.h:15
+msgid "Encodings shown in menu"
+msgstr "メニューに表示するエンコーディング"
+
+#: ../data/gedit.schemas.in.in.h:16
+msgid "Header Font for Printing"
+msgstr "印刷時のヘッダに使用するフォント"
+
+#: ../data/gedit.schemas.in.in.h:17
+msgid "Highlight Current Line"
+msgstr "現在の行の強調表示"
+
+#: ../data/gedit.schemas.in.in.h:18
+msgid "Highlight Matching Bracket"
+msgstr "対応するカッコの強調表示"
+
+#: ../data/gedit.schemas.in.in.h:19
+msgid ""
+"If this value is 0, then no line numbers will be inserted when printing a "
+"document. Otherwise, gedit will print line numbers every such number of "
+"lines."
+msgstr ""
+"この値が 0 の場合はドキュメントを印刷する時に行番号を挿入しません。それ以外の"
+"場合は gedit は行番号を印刷します。"
+
+#: ../data/gedit.schemas.in.in.h:20
+msgid "Insert spaces"
+msgstr "空白の挿入"
+
+#: ../data/gedit.schemas.in.in.h:21
+msgid "Line Number Font for Printing"
+msgstr "印刷時の行番号に使用するフォント"
+
+#: ../data/gedit.schemas.in.in.h:22
+msgid "Line Wrapping Mode"
+msgstr "行の折り返しモード"
+
+#: ../data/gedit.schemas.in.in.h:23
+msgid ""
+"List of VFS schemes gedit supports in write mode. The 'file' scheme is "
+"writable by default."
+msgstr ""
+"gedit が書き込みモードでサポートする VFS の並びです。'file' のスキームはデ"
+"フォルトで書き込み可能です。"
+
+#: ../data/gedit.schemas.in.in.h:24
+msgid ""
+"List of active plugins. It contains the \"Location\" of the active plugins. "
+"See the .gedit-plugin file for obtaining the \"Location\" of a given plugin."
+msgstr ""
+"利用可能なプラグインの一覧です。プラグインの \"場所\" が含まれます。指定した"
+"プラグインの \"場所\" を得るには .gedit-plugin ファイルを参照してください。"
+
+#: ../data/gedit.schemas.in.in.h:25
+msgid ""
+"List of encodings shown in the Character Encoding menu in open/save file "
+"selector. Only recognized encodings are used."
+msgstr ""
+"開く/保存のファイル選択ダイアログの文字エンコーディング・メニューの中に表示す"
+"るエンコーディングのリストです。認識したエンコーディングのみ使用します。"
+
+#: ../data/gedit.schemas.in.in.h:26
+msgid "Maximum Number of Undo Actions"
+msgstr "\"元に戻す\" の最大回数"
+
+#: ../data/gedit.schemas.in.in.h:27
+msgid "Maximum Recent Files"
+msgstr "\"最近使ったファイル\" に表示する最大数"
+
+#: ../data/gedit.schemas.in.in.h:28
+msgid ""
+"Maximum number of actions that gedit will be able to undo or redo. Use \"-1"
+"\" for unlimited number of actions."
+msgstr ""
+"gEdit で \"元に戻す\" または \"やり直す\" ことができる動作の回数を最大値で指"
+"定します (無制限にする場合は \"-1\")。"
+
+#: ../data/gedit.schemas.in.in.h:29
+msgid ""
+"Maximum number of actions that gedit will be able to undo or redo. Use \"-1"
+"\" for unlimited number of actions. Deprecated since 2.12.0"
+msgstr ""
+"gEdit で \"元に戻す\" や \"やり直す\" ことができる動作の最大数を指定します "
+"(無制限にする場合は \"-1\") (このキーは MATE 2.12.0 から廃止になりました)。"
+
+#. Translators: This is the Editor Font.
+#. This is a Pango font
+#: ../data/gedit.schemas.in.in.h:32
+msgid "Monospace 12"
+msgstr "Monospace 12"
+
+#. Translators: This is the Body font for printing.
+#. This is a Pango font.
+#: ../data/gedit.schemas.in.in.h:35
+msgid "Monospace 9"
+msgstr "Monospace 9"
+
+#: ../data/gedit.schemas.in.in.h:36
+msgid ""
+"Number of minutes after which gedit will automatically save modified files. "
+"This will only take effect if the \"Autosave\" option is turned on."
+msgstr ""
+"変更したファイルを gedit が自動的に保存するまでの時間(分単位)です。これは "
+"\"自動保存\" オプションが有効の場合のみ効果があります。"
+
+#: ../data/gedit.schemas.in.in.h:37
+msgid "Print Header"
+msgstr "ヘッダの印刷"
+
+#: ../data/gedit.schemas.in.in.h:38
+msgid "Print Line Numbers"
+msgstr "行番号の印刷"
+
+#: ../data/gedit.schemas.in.in.h:39
+msgid "Print Syntax Highlighting"
+msgstr "強調表示の印刷"
+
+#: ../data/gedit.schemas.in.in.h:40
+msgid "Printing Line Wrapping Mode"
+msgstr "印刷時の行の折り返しモード"
+
+#: ../data/gedit.schemas.in.in.h:41
+msgid "Restore Previous Cursor Position"
+msgstr "以前あったカーソル位置に戻す"
+
+#: ../data/gedit.schemas.in.in.h:42
+msgid "Right Margin Position"
+msgstr "右マージンの位置"
+
+#. Translators: This is the Header font for printing.
+#. This is a Pango font.
+#: ../data/gedit.schemas.in.in.h:45
+msgid "Sans 11"
+msgstr "Sans 11"
+
+#. Translators: This is the Line Number font for printing.
+#. This is a Pango font.
+#: ../data/gedit.schemas.in.in.h:48
+msgid "Sans 8"
+msgstr "Sans 8"
+
+#: ../data/gedit.schemas.in.in.h:49
+msgid "Side Pane is Visible"
+msgstr "サイド・ペインの表示可否"
+
+#: ../data/gedit.schemas.in.in.h:50
+msgid "Smart Home End"
+msgstr "スマート [Home]/[End]"
+
+#: ../data/gedit.schemas.in.in.h:51
+msgid ""
+"Sorted list of encodings used by gedit for automatically detecting the "
+"encoding of a file. \"CURRENT\" represents the current locale encoding. Only "
+"recognized encodings are used."
+msgstr ""
+"ファイルのエンコーディングを自動検出する際に gedit が使用するエンコーディング"
+"のリストです。\"CURRENT\" は現在使用しているロケールを表します。認識したエン"
+"コーディングのみ使用されます。"
+
+#: ../data/gedit.schemas.in.in.h:52
+msgid ""
+"Specifies how the cursor moves when the HOME and END keys are pressed. Use "
+"\"DISABLED\" to always move at the start/end of the line, \"AFTER\" to move "
+"to the start/end of the line the first time the keys are pressed and to the "
+"start/end of the text ignoring whitespaces the second time the keys are "
+"pressed, \"BEFORE\" to move to the start/end of the text before moving to "
+"the start/end of the line and \"ALWAYS\" to always move to the start/end of "
+"the text instead of the start/end of the line."
+msgstr ""
+"[Home]/[End] キーを押下した時のカーソルの動きを指定します。\"DISABLED\" を指"
+"定すると常に行の先頭/末尾にカーソルを移動し、\"AFTER\" を指定するとキーを初め"
+"て押下した時は行の先頭/末尾に移動し二回目に押下したらホワイトスペースを除く文"
+"字列の先頭/終端にカーソルを移動し、\"BEFORE\" を指定すると行の先頭/末尾に移動"
+"する前に一旦文字列の先頭/終端にカーソルを移動し、\"ALWAYS\" を指定すると行の"
+"先頭/末尾ではなく常に文字列の先頭/終端にカーソルを移動します。"
+
+#: ../data/gedit.schemas.in.in.h:53
+msgid ""
+"Specifies how to wrap long lines for printing. Use \"GTK_WRAP_NONE\" for no "
+"wrapping, \"GTK_WRAP_WORD\" for wrapping at word boundaries, and "
+"\"GTK_WRAP_CHAR\" for wrapping at individual character boundaries. Note that "
+"the values are case-sensitive, so make sure they appear exactly as mentioned "
+"here."
+msgstr ""
+"印刷する際に長い行をどのように折り返すかを指定します。折り返さない場合は "
+"\"GTK_WRAP_NONE\"、単語の境界で折り返す場合は \"GTK_WRAP_WORD\"、そして文字の"
+"境界で折り返す場合は \"GTK_WRAP_CHAR\" を使います。値は大文字小文字を区別する"
+"ことに注意してください。そしてここで記述したとおりに印刷されるか確認してくだ"
+"さい。"
+
+#: ../data/gedit.schemas.in.in.h:54
+msgid ""
+"Specifies how to wrap long lines in the editing area. Use \"GTK_WRAP_NONE\" "
+"for no wrapping, \"GTK_WRAP_WORD\" for wrapping at word boundaries, and "
+"\"GTK_WRAP_CHAR\" for wrapping at individual character boundaries. Note that "
+"the values are case-sensitive, so make sure they appear exactly as mentioned "
+"here."
+msgstr ""
+"編集領域内の長い行をどのように折り返すかを指定します。折り返さない場合は "
+"\"GTK_WRAP_NONE\"、単語の境界で折り返す場合は \"GTK_WRAP_WORD\"、そして文字の"
+"境界で折り返す場合は \"GTK_WRAP_CHAR\" を使います。値は大文字小文字を区別する"
+"ことに注意してください。そしてここで記述したとおりに表示されるか確認してくだ"
+"さい。"
+
+#: ../data/gedit.schemas.in.in.h:55
+msgid ""
+"Specifies the font to use for a document's body when printing documents."
+msgstr "ドキュメントを印刷する際の本文に使用するフォントを指定します。"
+
+#: ../data/gedit.schemas.in.in.h:56
+msgid ""
+"Specifies the font to use for line numbers when printing. This will only "
+"take effect if the \"Print Line Numbers\" option is non-zero."
+msgstr ""
+"印刷する際の行番号に使用するフォントを指定します。これは \"行番号の印刷\" オ"
+"プションが 0 以外の場合のみ効果があります。"
+
+#: ../data/gedit.schemas.in.in.h:57
+msgid ""
+"Specifies the font to use for page headers when printing a document. This "
+"will only take effect if the \"Print Header\" option is turned on."
+msgstr ""
+"ドキュメントを印刷する際のページ・ヘッダに使用するフォントを指定します。これ"
+"は \"ヘッダの印刷\" オプションが有効の場合のみ効果があります。"
+
+#: ../data/gedit.schemas.in.in.h:58
+msgid ""
+"Specifies the maximum number of recently opened files that will be displayed "
+"in the \"Recent Files\" submenu."
+msgstr ""
+"\"最近使ったファイル\" のサブメニューに表示するエントリの最大数を指定します。"
+
+#: ../data/gedit.schemas.in.in.h:59
+msgid ""
+"Specifies the number of spaces that should be displayed instead of Tab "
+"characters."
+msgstr "タブ文字の代わりに表示されるスペースの数を指定します。"
+
+#: ../data/gedit.schemas.in.in.h:60
+msgid "Specifies the position of the right margin."
+msgstr "右マージンの位置を指定します。"
+
+#: ../data/gedit.schemas.in.in.h:61
+msgid "Status Bar is Visible"
+msgstr "ステータスバーの表示"
+
+#: ../data/gedit.schemas.in.in.h:62
+msgid "Style Scheme"
+msgstr "スタイルのスキーム"
+
+#: ../data/gedit.schemas.in.in.h:63
+msgid ""
+"Style for the toolbar buttons. Possible values are \"GEDIT_TOOLBAR_SYSTEM\" "
+"to use the system's default style, \"GEDIT_TOOLBAR_ICONS\" to display icons "
+"only, \"GEDIT_TOOLBAR_ICONS_AND_TEXT\" to display both icons and text, and "
+"\"GEDIT_TOOLBAR_ICONS_BOTH_HORIZ\" to display prioritized text beside icons. "
+"Note that the values are case-sensitive, so make sure they appear exactly as "
+"mentioned here."
+msgstr ""
+"ツールバー・ボタンのスタイルを指定します。可能な値はシステムのデフォルト・ス"
+"タイルを使う \"GEDIT_TOOLBAR_SYSTEM\" とアイコンのみを表示する "
+"\"GEDIT_TOOLBAR_ICONS\"、アイコンとテキスト両方を表示する "
+"\"GEDIT_TOOLBAR_ICONS_AND_TEXT\"、そしてアイコンのそばに優先的なテキストを表"
+"示する \"GEDIT_TOOLBAR_ICONS_BOTH_HORIZ\" があります。値は大文字小文字を区別"
+"することに注意してください。そしてここで記述したとおりに表示されるか確認して"
+"ください。"
+
+#: ../data/gedit.schemas.in.in.h:64
+msgid "Tab Size"
+msgstr "タブのサイズ"
+
+#: ../data/gedit.schemas.in.in.h:65
+msgid "The ID of a GtkSourceView Style Scheme used to color the text."
+msgstr ""
+"文字列に色を付ける際に使用する GtkSourceView のスタイルを表すスキームの ID で"
+"す。"
+
+#: ../data/gedit.schemas.in.in.h:66
+msgid "Toolbar Buttons Style"
+msgstr "ツールバーボタンのスタイル"
+
+#: ../data/gedit.schemas.in.in.h:67
+msgid "Toolbar is Visible"
+msgstr "ツールバーの表示可否"
+
+#: ../data/gedit.schemas.in.in.h:68
+msgid "Undo Actions Limit (DEPRECATED)"
+msgstr "\"元に戻す\" 動作の限度 (破棄)"
+
+#: ../data/gedit.schemas.in.in.h:69
+msgid "Use Default Font"
+msgstr "デフォルトのフォントを使う"
+
+#: ../data/gedit.schemas.in.in.h:70
+msgid ""
+"Whether gedit should automatically save modified files after a time "
+"interval. You can set the time interval with the \"Autosave Interval\" "
+"option."
+msgstr ""
+"指定時間後に変更されたファイルを gedit が自動的に保存するかどうかを指定しま"
+"す。\"自動保存の間隔\" オプションで時間を設定できます。"
+
+#: ../data/gedit.schemas.in.in.h:71
+msgid ""
+"Whether gedit should create backup copies for the files it saves. You can "
+"set the backup file extension with the \"Backup Copy Extension\" option."
+msgstr ""
+"ファイルを保存する時にバックアップ・コピーを作成するかどうかを指定します。"
+"\"バックアップ・コピーの拡張子\" オプションでバックアップ・ファイルの拡張子を"
+"設定することができます。"
+
+#: ../data/gedit.schemas.in.in.h:72
+msgid "Whether gedit should display line numbers in the editing area."
+msgstr "編集領域に行番号を表示するかどうかを指定します。"
+
+#: ../data/gedit.schemas.in.in.h:73
+msgid "Whether gedit should display the right margin in the editing area."
+msgstr "編集領域に右マージンを表示するかどうかを指定します。"
+
+#: ../data/gedit.schemas.in.in.h:74
+msgid "Whether gedit should enable automatic indentation."
+msgstr "gedit が自動的にインデントするかどうかを指定します。"
+
+#: ../data/gedit.schemas.in.in.h:75
+msgid "Whether gedit should enable syntax highlighting."
+msgstr "構文の強調表示を有効にするかどうかを指定します。"
+
+#: ../data/gedit.schemas.in.in.h:76
+msgid ""
+"Whether gedit should highlight all the occurrences of the searched text."
+msgstr "検索する時に一致した文字列をすべて強調表示するかどうかを指定します。"
+
+#: ../data/gedit.schemas.in.in.h:77
+msgid "Whether gedit should highlight the bracket matching the selected one."
+msgstr "gedit が選択した文字に対応する括弧を強調表示するかどうかです。"
+
+#: ../data/gedit.schemas.in.in.h:78
+msgid "Whether gedit should highlight the current line."
+msgstr "カーソル行を強調表示するかどうかを指定します。"
+
+#: ../data/gedit.schemas.in.in.h:79
+msgid "Whether gedit should include a document header when printing documents."
+msgstr "ドキュメントを印刷する際にヘッダを含めるかどうかを指定します。"
+
+#: ../data/gedit.schemas.in.in.h:80
+msgid "Whether gedit should insert spaces instead of tabs."
+msgstr "タブ文字の代わりに空白文字を使うかどうかを指定します。"
+
+#: ../data/gedit.schemas.in.in.h:81
+msgid "Whether gedit should print syntax highlighting when printing documents."
+msgstr ""
+"ドキュメントを印刷する際に構文の強調表示も印刷するかどうかを指定します。"
+
+#: ../data/gedit.schemas.in.in.h:82
+msgid ""
+"Whether gedit should restore the previous cursor position when a file is "
+"loaded."
+msgstr ""
+"ファイルを読み込んだ時に記憶していたカーソル位置に戻すかどうか指定します。"
+
+#: ../data/gedit.schemas.in.in.h:83
+msgid ""
+"Whether the bottom panel at the bottom of editing windows should be visible."
+msgstr "編集ウインドウの下側にボトム・ペインを表示するかどうかを指定します。"
+
+#: ../data/gedit.schemas.in.in.h:84
+msgid "Whether the side pane at the left of editing windows should be visible."
+msgstr "編集ウィンドウの左側にサイド・ペインを表示するかどうかです。"
+
+#: ../data/gedit.schemas.in.in.h:85
+msgid ""
+"Whether the status bar at the bottom of editing windows should be visible."
+msgstr "編集ウィンドウの下側にステータスバーを表示するかどうかを指定します。"
+
+#: ../data/gedit.schemas.in.in.h:86
+msgid "Whether the toolbar should be visible in editing windows."
+msgstr "編集ウィンドウの中にツールバーを表示するかどうかを指定します。"
+
+#: ../data/gedit.schemas.in.in.h:87
+msgid ""
+"Whether to use the system's default fixed width font for editing text "
+"instead of a font specific to gedit. If this option is turned off, then the "
+"font named in the \"Editor Font\" option will be used instead of the system "
+"font."
+msgstr ""
+"gedit で指定したフォントの代わりにシステムのデフォルト・フォントを編集で使用"
+"するかどうかを指定します。このオプションを無効にした場合は、システム・フォン"
+"トではなく \"エディタのフォント\" オプションで指定したフォントが使用されま"
+"す。"
+
+#: ../data/gedit.schemas.in.in.h:88
+msgid "Writable VFS schemes"
+msgstr "書き込み可能な VFS スキーム"
+
+#. Translators: This is the list of encodings shown by default in the Character Encoding
+#. menu in open/save file selector. Only recognized encodings are displayed.
+#: ../data/gedit.schemas.in.in.h:91
+msgid "[ISO-8859-15]"
+msgstr "[ISO-8859-15]"
+
+#. Translators: This is the sorted list of encodings used by gedit
+#. for automatic detection of the file encoding. You may want to customize it adding
+#. encodings that are common in your country, for instance the GB18030 encoding
+#. for the Chinese	translation. You may also want to remove the ISO-8859-15 encoding
+#. (covering English and most Western European languages) if you think people
+#. in you country will rarely use it.
+#. "CURRENT" is a magic value used by gedit and it represents the encoding
+#. for the current locale, so please don't translate the "CURRENT" term.
+#. Only recognized encodings are used.
+#. See http://svn.mate.org/viewcvs/gedit/trunk/gedit/gedit-encodings.c?view=markup for
+#. a list of supported encodings
+#: ../data/gedit.schemas.in.in.h:103
+msgid "[UTF-8,CURRENT,ISO-8859-15,UTF-16]"
+msgstr "[UTF-8,CURRENT,ISO-2022-JP,SHIFT_JIS,EUC-JP]"
+
+#: ../gedit/dialogs/gedit-close-confirmation-dialog.c:140
+msgid "Log Out _without Saving"
+msgstr "保存せずにログアウト(_W)"
+
+#: ../gedit/dialogs/gedit-close-confirmation-dialog.c:144
+msgid "_Cancel Logout"
+msgstr "ログアウトのキャンセル(_C)"
+
+#: ../gedit/dialogs/gedit-close-confirmation-dialog.c:151
+msgid "Close _without Saving"
+msgstr "保存せずに閉じる(_W)"
+
+#: ../gedit/dialogs/gedit-close-confirmation-dialog.c:212
+msgid "Question"
+msgstr "質問"
+
+#: ../gedit/dialogs/gedit-close-confirmation-dialog.c:412
+#, c-format
+msgid ""
+"If you don't save, changes from the last %ld second will be permanently lost."
+msgid_plural ""
+"If you don't save, changes from the last %ld seconds will be permanently "
+"lost."
+msgstr[0] "保存しないと、%ld秒前からの変更内容が完全に失われます。"
+
+#: ../gedit/dialogs/gedit-close-confirmation-dialog.c:421
+msgid ""
+"If you don't save, changes from the last minute will be permanently lost."
+msgstr "保存しないと、1分前からの変更内容が完全に失われます。"
+
+#: ../gedit/dialogs/gedit-close-confirmation-dialog.c:427
+#, c-format
+msgid ""
+"If you don't save, changes from the last minute and %ld second will be "
+"permanently lost."
+msgid_plural ""
+"If you don't save, changes from the last minute and %ld seconds will be "
+"permanently lost."
+msgstr[0] "保存しないと、1分 %ld秒前からの変更内容が完全に失われます。"
+
+#: ../gedit/dialogs/gedit-close-confirmation-dialog.c:437
+#, c-format
+msgid ""
+"If you don't save, changes from the last %ld minute will be permanently lost."
+msgid_plural ""
+"If you don't save, changes from the last %ld minutes will be permanently "
+"lost."
+msgstr[0] "保存しないと、%ld分前からの変更内容が完全に失われます。"
+
+#: ../gedit/dialogs/gedit-close-confirmation-dialog.c:452
+msgid "If you don't save, changes from the last hour will be permanently lost."
+msgstr "保存しないと、1時間前からの変更内容が完全に失われます。"
+
+#: ../gedit/dialogs/gedit-close-confirmation-dialog.c:458
+#, c-format
+msgid ""
+"If you don't save, changes from the last hour and %d minute will be "
+"permanently lost."
+msgid_plural ""
+"If you don't save, changes from the last hour and %d minutes will be "
+"permanently lost."
+msgstr[0] "保存しないと、1時間 %d分前からの変更内容が完全に失われます。"
+
+#: ../gedit/dialogs/gedit-close-confirmation-dialog.c:473
+#, c-format
+msgid ""
+"If you don't save, changes from the last %d hour will be permanently lost."
+msgid_plural ""
+"If you don't save, changes from the last %d hours will be permanently lost."
+msgstr[0] "保存しないと、%d時間前からの変更内容が完全に失われます。"
+
+#: ../gedit/dialogs/gedit-close-confirmation-dialog.c:516
+#, c-format
+msgid "Changes to document \"%s\" will be permanently lost."
+msgstr "ドキュメント \"%s\" への変更が完全に失われます。"
+
+#: ../gedit/dialogs/gedit-close-confirmation-dialog.c:521
+#, c-format
+msgid "Save changes to document \"%s\" before closing?"
+msgstr "閉じる前にドキュメント \"%s\" で変更した内容を保存しますか?"
+
+#: ../gedit/dialogs/gedit-close-confirmation-dialog.c:535
+#: ../gedit/dialogs/gedit-close-confirmation-dialog.c:746
+msgid "Saving has been disabled by the system administrator."
+msgstr "システム管理者によってファイルの保存が利用できなくなっています。"
+
+#: ../gedit/dialogs/gedit-close-confirmation-dialog.c:701
+#, c-format
+msgid "Changes to %d document will be permanently lost."
+msgid_plural "Changes to %d documents will be permanently lost."
+msgstr[0] "%d個のドキュメントへの変更が完全に失われます。"
+
+#: ../gedit/dialogs/gedit-close-confirmation-dialog.c:707
+#, c-format
+msgid "There is %d document with unsaved changes. Save changes before closing?"
+msgid_plural ""
+"There are %d documents with unsaved changes. Save changes before closing?"
+msgstr[0] ""
+"まだ保存していないドキュメントが %d個あります。閉じる前にそれらを保存します"
+"か?"
+
+#: ../gedit/dialogs/gedit-close-confirmation-dialog.c:725
+msgid "Docum_ents with unsaved changes:"
+msgstr "まだ保存していない変更点を含むドキュメント(_E):"
+
+#: ../gedit/dialogs/gedit-close-confirmation-dialog.c:727
+msgid "S_elect the documents you want to save:"
+msgstr "保存するドキュメントを選択してください(_E):"
+
+#: ../gedit/dialogs/gedit-close-confirmation-dialog.c:748
+msgid "If you don't save, all your changes will be permanently lost."
+msgstr "保存しないと変更した内容が完全に失われます。"
+
+#: ../gedit/dialogs/gedit-encodings-dialog.c:321
+msgid "Character Encodings"
+msgstr "文字エンコーディング"
+
+#: ../gedit/dialogs/gedit-encodings-dialog.c:385
+#: ../gedit/dialogs/gedit-encodings-dialog.c:446
+msgid "_Description"
+msgstr "説明(_D)"
+
+#: ../gedit/dialogs/gedit-encodings-dialog.c:394
+#: ../gedit/dialogs/gedit-encodings-dialog.c:455
+msgid "_Encoding"
+msgstr "エンコーディング(_E)"
+
+#: ../gedit/dialogs/gedit-encodings-dialog.ui.h:1
+msgid "A_vailable encodings:"
+msgstr "利用可能なエンコーディング(_V):"
+
+#: ../gedit/dialogs/gedit-encodings-dialog.ui.h:2
+msgid "Character encodings"
+msgstr "文字エンコーディング"
+
+#: ../gedit/dialogs/gedit-encodings-dialog.ui.h:3
+msgid "E_ncodings shown in menu:"
+msgstr "メニューに表示するエンコーディング(_N):"
+
+#: ../gedit/dialogs/gedit-preferences-dialog.c:571
+msgid "Click on this button to select the font to be used by the editor"
+msgstr ""
+"エディタで使用するフォントを選択する場合は、このボタンをクリックしてください"
+
+#: ../gedit/dialogs/gedit-preferences-dialog.c:581
+#, c-format
+msgid "_Use the system fixed width font (%s)"
+msgstr "システムの固定幅フォント (%s) を使う(_U)"
+
+#: ../gedit/dialogs/gedit-preferences-dialog.c:784
+msgid "The selected color scheme cannot be installed."
+msgstr "指定した色のスキームをインストールできません。"
+
+#: ../gedit/dialogs/gedit-preferences-dialog.c:809
+msgid "Add Scheme"
+msgstr "スキームの追加"
+
+#: ../gedit/dialogs/gedit-preferences-dialog.c:816
+msgid "A_dd Scheme"
+msgstr "スキームの追加(_D)"
+
+#: ../gedit/dialogs/gedit-preferences-dialog.c:824
+msgid "Color Scheme Files"
+msgstr "色のスキーム"
+
+#: ../gedit/dialogs/gedit-preferences-dialog.c:831
+#: ../gedit/gedit-file-chooser-dialog.c:52
+msgid "All Files"
+msgstr "すべてのファイル"
+
+#: ../gedit/dialogs/gedit-preferences-dialog.c:876
+#, c-format
+msgid "Could not remove color scheme \"%s\"."
+msgstr "色のスキーム \"%s\" を削除できませんでした。"
+
+#: ../gedit/dialogs/gedit-preferences-dialog.c:1087
+msgid "gedit Preferences"
+msgstr "gedit の設定"
+
+#. ex:ts=4:et:
+#: ../gedit/dialogs/gedit-preferences-dialog.ui.h:1
+#: ../plugins/docinfo/docinfo.ui.h:1
+#: ../plugins/externaltools/tools/tools.ui.h:1
+#: ../plugins/snippets/snippets/snippets.ui.h:1
+#: ../plugins/time/gedit-time-dialog.ui.h:1
+#: ../plugins/time/gedit-time-setup-dialog.ui.h:1
+msgid "    "
+msgstr "    "
+
+#: ../gedit/dialogs/gedit-preferences-dialog.ui.h:2
+msgid "Automatic Indentation"
+msgstr "自動インデント"
+
+#: ../gedit/dialogs/gedit-preferences-dialog.ui.h:3
+msgid "Bracket Matching"
+msgstr "対応する括弧"
+
+#: ../gedit/dialogs/gedit-preferences-dialog.ui.h:4
+msgid "Color Scheme"
+msgstr "色のスキーム"
+
+#: ../gedit/dialogs/gedit-preferences-dialog.ui.h:5
+msgid "Create a _backup copy of files before saving"
+msgstr "保存する前にバックアップを生成する(_B)"
+
+#: ../gedit/dialogs/gedit-preferences-dialog.ui.h:6
+msgid "Current Line"
+msgstr "カーソルがある行"
+
+#: ../gedit/dialogs/gedit-preferences-dialog.ui.h:7
+msgid "Display right _margin"
+msgstr "右マージンを表示する(_M)"
+
+#: ../gedit/dialogs/gedit-preferences-dialog.ui.h:8
+#: ../gedit/gedit-print-preferences.ui.h:1
+msgid "Do not _split words over two lines"
+msgstr "単語を二行以上に分割しない(_S)"
+
+#: ../gedit/dialogs/gedit-preferences-dialog.ui.h:9
+msgid "Editor"
+msgstr "エディタ"
+
+#: ../gedit/dialogs/gedit-preferences-dialog.ui.h:10
+msgid "Editor _font: "
+msgstr "エディタのフォント(_F):"
+
+#: ../gedit/dialogs/gedit-preferences-dialog.ui.h:11
+#: ../gedit/gedit-print-preferences.ui.h:2
+msgid "Enable text _wrapping"
+msgstr "テキストの折り返しを有効にする(_W)"
+
+#: ../gedit/dialogs/gedit-preferences-dialog.ui.h:12
+msgid "File Saving"
+msgstr "ファイルの保存"
+
+#: ../gedit/dialogs/gedit-preferences-dialog.ui.h:13
+msgid "Font"
+msgstr "フォント"
+
+#: ../gedit/dialogs/gedit-preferences-dialog.ui.h:14
+msgid "Font & Colors"
+msgstr "フォントと色"
+
+#: ../gedit/dialogs/gedit-preferences-dialog.ui.h:15
+msgid "Highlight current _line"
+msgstr "カーソルのある行を強調表示する(_L)"
+
+#: ../gedit/dialogs/gedit-preferences-dialog.ui.h:16
+msgid "Highlight matching _bracket"
+msgstr "対応するカッコを強調表示する(_B)"
+
+#: ../gedit/dialogs/gedit-preferences-dialog.ui.h:17
+msgid "Insert _spaces instead of tabs"
+msgstr "タブの代わりにスペースを挿入する(_S)"
+
+#: ../gedit/dialogs/gedit-preferences-dialog.ui.h:18
+#: ../gedit/gedit-print-preferences.ui.h:5
+msgid "Line Numbers"
+msgstr "行番号"
+
+#: ../gedit/dialogs/gedit-preferences-dialog.ui.h:19
+msgid "Pick the editor font"
+msgstr "エディタで使用するフォントの取得"
+
+#: ../gedit/dialogs/gedit-preferences-dialog.ui.h:20
+msgid "Plugins"
+msgstr "プラグイン"
+
+#: ../gedit/dialogs/gedit-preferences-dialog.ui.h:21
+msgid "Preferences"
+msgstr "設定"
+
+#: ../gedit/dialogs/gedit-preferences-dialog.ui.h:22
+msgid "Right Margin"
+msgstr "右マージン"
+
+#: ../gedit/dialogs/gedit-preferences-dialog.ui.h:23
+msgid "Tab Stops"
+msgstr "タブ文字"
+
+#: ../gedit/dialogs/gedit-preferences-dialog.ui.h:24
+#: ../gedit/gedit-print-preferences.ui.h:11
+msgid "Text Wrapping"
+msgstr "テキストの折り返し"
+
+#: ../gedit/dialogs/gedit-preferences-dialog.ui.h:25
+msgid "View"
+msgstr "表示"
+
+#: ../gedit/dialogs/gedit-preferences-dialog.ui.h:26
+msgid "_Add..."
+msgstr "追加(_A)..."
+
+#: ../gedit/dialogs/gedit-preferences-dialog.ui.h:27
+msgid "_Autosave files every"
+msgstr "ファイルを自動的に保存する間隔(_A): "
+
+#: ../gedit/dialogs/gedit-preferences-dialog.ui.h:28
+#: ../gedit/gedit-view.c:1968
+msgid "_Display line numbers"
+msgstr "行番号を表示する(_D)"
+
+#: ../gedit/dialogs/gedit-preferences-dialog.ui.h:29
+msgid "_Enable automatic indentation"
+msgstr "自動インデントを有効にする(_E)"
+
+#: ../gedit/dialogs/gedit-preferences-dialog.ui.h:30
+msgid "_Right margin at column:"
+msgstr "右マージンを表す列番号(_R):"
+
+#: ../gedit/dialogs/gedit-preferences-dialog.ui.h:31
+msgid "_Tab width:"
+msgstr "タブの幅(_T):"
+
+#: ../gedit/dialogs/gedit-preferences-dialog.ui.h:32
+msgid "_minutes"
+msgstr "分ごと(_M)"
+
+#: ../gedit/dialogs/gedit-search-dialog.c:300
+#: ../gedit/dialogs/gedit-search-dialog.ui.h:2 ../gedit/gedit-window.c:1522
+msgid "Replace"
+msgstr "置換"
+
+#: ../gedit/dialogs/gedit-search-dialog.c:311 ../gedit/gedit-window.c:1520
+msgid "Find"
+msgstr "検索"
+
+#: ../gedit/dialogs/gedit-search-dialog.c:415
+msgid "Replace _All"
+msgstr "すべて置換(_A)"
+
+#: ../gedit/dialogs/gedit-search-dialog.c:416
+#: ../gedit/gedit-commands-file.c:577
+msgid "_Replace"
+msgstr "置換(_R)"
+
+#: ../gedit/dialogs/gedit-search-dialog.ui.h:1
+msgid "Match _entire word only"
+msgstr "単語全体にマッチさせる(_E)"
+
+#: ../gedit/dialogs/gedit-search-dialog.ui.h:3
+msgid "Replace All"
+msgstr "すべて置換"
+
+#: ../gedit/dialogs/gedit-search-dialog.ui.h:4
+msgid "Replace _with: "
+msgstr "置換後の文字列(_W): "
+
+#: ../gedit/dialogs/gedit-search-dialog.ui.h:5
+msgid "Search _backwards"
+msgstr "先頭に向かって検索する(_B)"
+
+#: ../gedit/dialogs/gedit-search-dialog.ui.h:6
+msgid "_Match case"
+msgstr "大/小文字を区別する(_M)"
+
+#: ../gedit/dialogs/gedit-search-dialog.ui.h:7
+msgid "_Search for: "
+msgstr "検索する文字列(_S): "
+
+#: ../gedit/dialogs/gedit-search-dialog.ui.h:8
+msgid "_Wrap around"
+msgstr "折り返しも対象にする(_W)"
+
+#: ../gedit/gedit.c:126
+msgid "Show the application's version"
+msgstr "バージョンを表示する"
+
+#: ../gedit/gedit.c:129
+msgid ""
+"Set the character encoding to be used to open the files listed on the "
+"command line"
+msgstr "オープンするファイルで使用する文字エンコーディングをセットする"
+
+#: ../gedit/gedit.c:129
+msgid "ENCODING"
+msgstr "ENCODING"
+
+#: ../gedit/gedit.c:132
+msgid "Display list of possible values for the encoding option"
+msgstr "利用可能なエンコーディングオプションの値一覧を表示する"
+
+#: ../gedit/gedit.c:135
+msgid "Create a new top-level window in an existing instance of gedit"
+msgstr "既に実行中の gedit で新しいトップレベル・ウィンドウを作成する"
+
+#: ../gedit/gedit.c:138
+msgid "Create a new document in an existing instance of gedit"
+msgstr "既に実行中の gedit に新しいドキュメントを作成する"
+
+#: ../gedit/gedit.c:141
+msgid "[FILE...]"
+msgstr "[ファイル...]"
+
+#: ../gedit/gedit.c:196
+#, c-format
+msgid "%s: invalid encoding.\n"
+msgstr "%s: エンコーディングが間違っています。\n"
+
+#. Setup command line options
+#: ../gedit/gedit.c:579
+msgid "- Edit text files"
+msgstr "- テキスト・ファイルを編集する"
+
+#: ../gedit/gedit.c:615
+#, c-format
+msgid ""
+"%s\n"
+"Run '%s --help' to see a full list of available command line options.\n"
+msgstr ""
+"%s\n"
+"'%s --help' で利用可能なすべてのコマンドライン・オプションの一覧が表示されま"
+"す\n"
+
+#: ../gedit/gedit-commands-file.c:250
+#, c-format
+msgid "Loading file '%s'…"
+msgstr "ファイル '%s' を読み込んでいます…"
+
+#: ../gedit/gedit-commands-file.c:259
+#, c-format
+msgid "Loading %d file…"
+msgid_plural "Loading %d files…"
+msgstr[0] "%d 個のファイルを読み込んでいます…"
+
+#. Translators: "Open Files" is the title of the file chooser window
+#: ../gedit/gedit-commands-file.c:453
+msgid "Open Files"
+msgstr "ファイルを開く"
+
+#: ../gedit/gedit-commands-file.c:564
+#, c-format
+msgid "The file \"%s\" is read-only."
+msgstr "ファイル \"%s\" は読み込み専用です。"
+
+#: ../gedit/gedit-commands-file.c:569
+msgid "Do you want to try to replace it with the one you are saving?"
+msgstr "このファイルで上書きしてみますか?"
+
+#: ../gedit/gedit-commands-file.c:638 ../gedit/gedit-commands-file.c:861
+#, c-format
+msgid "Saving file '%s'…"
+msgstr "ファイル \"%s\" を保存しています…"
+
+#: ../gedit/gedit-commands-file.c:746
+msgid "Save As…"
+msgstr "別名で保存…"
+
+#: ../gedit/gedit-commands-file.c:1075
+#, c-format
+msgid "Reverting the document '%s'…"
+msgstr "ドキュメント \"%s\" を戻しています…"
+
+#: ../gedit/gedit-commands-file.c:1120
+#, c-format
+msgid "Revert unsaved changes to document '%s'?"
+msgstr "変更部分を保存しないで、元のドキュメント '%s' に戻しますか?"
+
+#: ../gedit/gedit-commands-file.c:1129
+#, c-format
+msgid ""
+"Changes made to the document in the last %ld second will be permanently lost."
+msgid_plural ""
+"Changes made to the document in the last %ld seconds will be permanently "
+"lost."
+msgstr[0] "%ld秒前に編集したドキュメントへの変更が完全に失われます。"
+
+#: ../gedit/gedit-commands-file.c:1138
+msgid ""
+"Changes made to the document in the last minute will be permanently lost."
+msgstr "1分前に編集したドキュメントへの変更が完全に失われます。"
+
+#: ../gedit/gedit-commands-file.c:1144
+#, c-format
+msgid ""
+"Changes made to the document in the last minute and %ld second will be "
+"permanently lost."
+msgid_plural ""
+"Changes made to the document in the last minute and %ld seconds will be "
+"permanently lost."
+msgstr[0] "1分 %ld秒前に編集したドキュメントへの変更が完全に失われます。"
+
+#: ../gedit/gedit-commands-file.c:1154
+#, c-format
+msgid ""
+"Changes made to the document in the last %ld minute will be permanently lost."
+msgid_plural ""
+"Changes made to the document in the last %ld minutes will be permanently "
+"lost."
+msgstr[0] "%ld分前に編集したドキュメントへの変更が完全に失われます。"
+
+#: ../gedit/gedit-commands-file.c:1169
+msgid "Changes made to the document in the last hour will be permanently lost."
+msgstr "1時間前に編集したドキュメントへの変更が完全に失われます。"
+
+#: ../gedit/gedit-commands-file.c:1175
+#, c-format
+msgid ""
+"Changes made to the document in the last hour and %d minute will be "
+"permanently lost."
+msgid_plural ""
+"Changes made to the document in the last hour and %d minutes will be "
+"permanently lost."
+msgstr[0] "1時間 %d分前に編集したドキュメントへの変更が完全に失われます。"
+
+#: ../gedit/gedit-commands-file.c:1190
+#, c-format
+msgid ""
+"Changes made to the document in the last %d hour will be permanently lost."
+msgid_plural ""
+"Changes made to the document in the last %d hours will be permanently lost."
+msgstr[0] "%d時間前に編集したドキュメントへの変更が完全に失われます。"
+
+#: ../gedit/gedit-commands-file.c:1216
+msgid "_Revert"
+msgstr "戻す(_R)"
+
+#: ../gedit/gedit-commands-help.c:83
+msgid "gedit is a small and lightweight text editor for the MATE Desktop"
+msgstr ""
+"gedit は MATE デスクトップ用に作られた小型軽量のテキスト・エディタです。"
+
+#: ../gedit/gedit-commands-help.c:108
+msgid "translator-credits"
+msgstr ""
+"相花 毅 <takeshi.aihana@gmail.com>\n"
+"佐藤 暁 <ss@mate.gr.jp>\n"
+"KAMAGASAKO Masatoshi <emerald@mate.gr.jp>\n"
+"Akira TAGOH <tagoh@mate.gr.jp>\n"
+"Yukihiro Nakai <nakai@mate.gr.jp>\n"
+"Yuusuke Tahara <tahara@mate.gr.jp>\n"
+"Akira Higuchi <a-higuti@math.sci.hokudai.ac.jp>\n"
+"やまね ひでき <henrich@debian.or.jp>\n"
+"日本MATEユーザー会 http://www.mate.gr.jp/"
+
+#: ../gedit/gedit-commands-search.c:111
+#, c-format
+msgid "Found and replaced %d occurrence"
+msgid_plural "Found and replaced %d occurrences"
+msgstr[0] "%d ヶ所で検索と置換を行いました。"
+
+#: ../gedit/gedit-commands-search.c:121
+msgid "Found and replaced one occurrence"
+msgstr "%d ヶ所で検索と置換を行いました。"
+
+#. Translators: %s is replaced by the text
+#. entered by the user in the search box
+#: ../gedit/gedit-commands-search.c:142
+#, c-format
+msgid "\"%s\" not found"
+msgstr "\"%s\" は見つかりませんでした"
+
+#: ../gedit/gedit-document.c:1071 ../gedit/gedit-document.c:1086
+#, c-format
+msgid "Unsaved Document %d"
+msgstr "編集中のドキュメント %d"
+
+#: ../gedit/gedit-documents-panel.c:97 ../gedit/gedit-documents-panel.c:111
+#: ../gedit/gedit-window.c:2271 ../gedit/gedit-window.c:2276
+msgid "Read-Only"
+msgstr "読み取りのみ"
+
+#: ../gedit/gedit-documents-panel.c:780 ../gedit/gedit-window.c:3670
+msgid "Documents"
+msgstr "ドキュメントの一覧"
+
+#: ../gedit/gedit-encodings.c:138 ../gedit/gedit-encodings.c:180
+#: ../gedit/gedit-encodings.c:182 ../gedit/gedit-encodings.c:184
+#: ../gedit/gedit-encodings.c:186 ../gedit/gedit-encodings.c:188
+#: ../gedit/gedit-encodings.c:190 ../gedit/gedit-encodings.c:192
+msgid "Unicode"
+msgstr "Unicode"
+
+#: ../gedit/gedit-encodings.c:151 ../gedit/gedit-encodings.c:175
+#: ../gedit/gedit-encodings.c:225 ../gedit/gedit-encodings.c:268
+msgid "Western"
+msgstr "西欧"
+
+#: ../gedit/gedit-encodings.c:153 ../gedit/gedit-encodings.c:227
+#: ../gedit/gedit-encodings.c:264
+msgid "Central European"
+msgstr "中央ヨーロッパ"
+
+#: ../gedit/gedit-encodings.c:155
+msgid "South European"
+msgstr "南欧"
+
+#: ../gedit/gedit-encodings.c:157 ../gedit/gedit-encodings.c:171
+#: ../gedit/gedit-encodings.c:278
+msgid "Baltic"
+msgstr "バルト語"
+
+#: ../gedit/gedit-encodings.c:159 ../gedit/gedit-encodings.c:229
+#: ../gedit/gedit-encodings.c:242 ../gedit/gedit-encodings.c:246
+#: ../gedit/gedit-encodings.c:248 ../gedit/gedit-encodings.c:266
+msgid "Cyrillic"
+msgstr "キリル文字"
+
+#: ../gedit/gedit-encodings.c:161 ../gedit/gedit-encodings.c:235
+#: ../gedit/gedit-encodings.c:276
+msgid "Arabic"
+msgstr "アラビア語"
+
+#: ../gedit/gedit-encodings.c:163 ../gedit/gedit-encodings.c:270
+msgid "Greek"
+msgstr "ギリシア語"
+
+#: ../gedit/gedit-encodings.c:165
+msgid "Hebrew Visual"
+msgstr "ヘブライ語 (論理表記)"
+
+#: ../gedit/gedit-encodings.c:167 ../gedit/gedit-encodings.c:231
+#: ../gedit/gedit-encodings.c:272
+msgid "Turkish"
+msgstr "トルコ語"
+
+#: ../gedit/gedit-encodings.c:169
+msgid "Nordic"
+msgstr "北欧"
+
+#: ../gedit/gedit-encodings.c:173
+msgid "Celtic"
+msgstr "ケルト語"
+
+#: ../gedit/gedit-encodings.c:177
+msgid "Romanian"
+msgstr "ルーマニア語"
+
+#: ../gedit/gedit-encodings.c:195
+msgid "Armenian"
+msgstr "アルメニア語"
+
+#: ../gedit/gedit-encodings.c:197 ../gedit/gedit-encodings.c:199
+#: ../gedit/gedit-encodings.c:213
+msgid "Chinese Traditional"
+msgstr "中国語 (繁体字)"
+
+#: ../gedit/gedit-encodings.c:201
+msgid "Cyrillic/Russian"
+msgstr "キリル/ロシア語"
+
+#: ../gedit/gedit-encodings.c:204 ../gedit/gedit-encodings.c:206
+#: ../gedit/gedit-encodings.c:208 ../gedit/gedit-encodings.c:238
+#: ../gedit/gedit-encodings.c:253
+msgid "Japanese"
+msgstr "日本語"
+
+#: ../gedit/gedit-encodings.c:211 ../gedit/gedit-encodings.c:240
+#: ../gedit/gedit-encodings.c:244 ../gedit/gedit-encodings.c:259
+msgid "Korean"
+msgstr "韓国語"
+
+#: ../gedit/gedit-encodings.c:216 ../gedit/gedit-encodings.c:218
+#: ../gedit/gedit-encodings.c:220
+msgid "Chinese Simplified"
+msgstr "中国語 (簡体字)"
+
+#: ../gedit/gedit-encodings.c:222
+msgid "Georgian"
+msgstr "グルジア語"
+
+#: ../gedit/gedit-encodings.c:233 ../gedit/gedit-encodings.c:274
+msgid "Hebrew"
+msgstr "ヘブライ語"
+
+#: ../gedit/gedit-encodings.c:250
+msgid "Cyrillic/Ukrainian"
+msgstr "キリル/ウクライナ語"
+
+#: ../gedit/gedit-encodings.c:255 ../gedit/gedit-encodings.c:261
+#: ../gedit/gedit-encodings.c:280
+msgid "Vietnamese"
+msgstr "ベトナム語"
+
+#: ../gedit/gedit-encodings.c:257
+msgid "Thai"
+msgstr "タイ語"
+
+#: ../gedit/gedit-encodings.c:431
+msgid "Unknown"
+msgstr "不明"
+
+#: ../gedit/gedit-encodings-combo-box.c:276
+msgid "Automatically Detected"
+msgstr "自動検出"
+
+#: ../gedit/gedit-encodings-combo-box.c:292
+#: ../gedit/gedit-encodings-combo-box.c:307
+#, c-format
+msgid "Current Locale (%s)"
+msgstr "現在のロケール (%s)"
+
+#: ../gedit/gedit-encodings-combo-box.c:357
+msgid "Add or Remove..."
+msgstr "追加と削除..."
+
+#: ../gedit/gedit-file-chooser-dialog.c:53
+msgid "All Text Files"
+msgstr "すべてのテキスト・ファイル"
+
+#: ../gedit/gedit-file-chooser-dialog.c:81
+msgid "C_haracter Encoding:"
+msgstr "エンコーディング(_H):"
+
+#: ../gedit/gedit-file-chooser-dialog.c:146
+msgid "L_ine Ending:"
+msgstr "行末(_I):"
+
+#: ../gedit/gedit-file-chooser-dialog.c:165
+msgid "Unix/Linux"
+msgstr "Unix/Linux"
+
+#: ../gedit/gedit-file-chooser-dialog.c:171
+msgid "Mac OS Classic"
+msgstr "Mac OS Classic"
+
+#: ../gedit/gedit-file-chooser-dialog.c:177
+msgid "Windows"
+msgstr "Windows"
+
+#: ../gedit/gedit-help.c:104
+msgid "There was an error displaying the help."
+msgstr "ヘルプを表示する際にエラーが発生しました。"
+
+#: ../gedit/gedit-io-error-message-area.c:196
+#: ../gedit/gedit-io-error-message-area.c:201
+#: ../gedit/gedit-io-error-message-area.c:505
+#: ../gedit/gedit-io-error-message-area.c:528
+msgid "_Retry"
+msgstr "再試行(_R)"
+
+#: ../gedit/gedit-io-error-message-area.c:223
+#, c-format
+msgid "Could not find the file %s."
+msgstr "ファイル %s が見つかりませんでした。"
+
+#: ../gedit/gedit-io-error-message-area.c:225
+#: ../gedit/gedit-io-error-message-area.c:264
+#: ../gedit/gedit-io-error-message-area.c:271
+msgid "Please check that you typed the location correctly and try again."
+msgstr "入力した場所が正しいか確認して、もう一度実行してみてください。"
+
+#. Translators: %s is a URI scheme (like for example http:, ftp:, etc.)
+#: ../gedit/gedit-io-error-message-area.c:240
+#, c-format
+msgid "gedit cannot handle %s locations."
+msgstr "場所 %s を処理できません。"
+
+#: ../gedit/gedit-io-error-message-area.c:246
+msgid "gedit cannot handle this location."
+msgstr "この場所を処理できません。"
+
+#: ../gedit/gedit-io-error-message-area.c:254
+msgid "The location of the file cannot be mounted."
+msgstr "ファイルが格納されている場所をマウントできません。"
+
+#: ../gedit/gedit-io-error-message-area.c:258
+msgid "The location of the file cannot be accessed because it is not mounted."
+msgstr ""
+"ファイルが格納されている場所がマウントされていないのでファイルにアクセスでき"
+"ません。"
+
+#: ../gedit/gedit-io-error-message-area.c:262
+#, c-format
+msgid "%s is a directory."
+msgstr "%s はフォルダです。"
+
+#: ../gedit/gedit-io-error-message-area.c:269
+#, c-format
+msgid "%s is not a valid location."
+msgstr "%s は適切な場所ではありません"
+
+#: ../gedit/gedit-io-error-message-area.c:299
+#, c-format
+msgid ""
+"Host %s could not be found. Please check that your proxy settings are "
+"correct and try again."
+msgstr ""
+"ホスト %s が見つかりませんでした。プロキシの設定が正しいか確認して、もう一度"
+"実行してみてください。"
+
+#: ../gedit/gedit-io-error-message-area.c:312
+#, c-format
+msgid ""
+"Hostname was invalid. Please check that you typed the location correctly and "
+"try again."
+msgstr ""
+"ホスト名が間違っています。入力した場所が正しいか確認して、もう一度実行してみ"
+"てください。"
+
+#: ../gedit/gedit-io-error-message-area.c:320
+#, c-format
+msgid "%s is not a regular file."
+msgstr "%s は通常のファイルではありません。"
+
+#: ../gedit/gedit-io-error-message-area.c:325
+msgid "Connection timed out. Please try again."
+msgstr "接続がタイムアウトしたので、もう一度実行してみてください。"
+
+#: ../gedit/gedit-io-error-message-area.c:348
+msgid "The file is too big."
+msgstr "ファイル・サイズが大きすぎます。"
+
+#: ../gedit/gedit-io-error-message-area.c:389
+#, c-format
+msgid "Unexpected error: %s"
+msgstr "原因不明のエラー: %s"
+
+#: ../gedit/gedit-io-error-message-area.c:425
+msgid "gedit cannot find the file. Perhaps it has recently been deleted."
+msgstr "ファイルが見つかりません。それは最近削除されたのかもしれません。"
+
+#: ../gedit/gedit-io-error-message-area.c:435
+#, c-format
+msgid "Could not revert the file %s."
+msgstr "ファイル \"%s\" を元に戻せませんでした"
+
+#: ../gedit/gedit-io-error-message-area.c:461
+msgid "Ch_aracter Encoding:"
+msgstr "エンコーディング(_A):"
+
+#. Translators: the access key chosen for this string should be
+#. different from other main menu access keys (Open, Edit, View...)
+#: ../gedit/gedit-io-error-message-area.c:512
+#: ../gedit/gedit-io-error-message-area.c:537
+#: ../gedit/gedit-io-error-message-area.c:815
+#: ../gedit/gedit-io-error-message-area.c:825
+msgid "Edit Any_way"
+msgstr "強制的に編集する(_W)"
+
+#. Translators: the access key chosen for this string should be
+#. different from other main menu access keys (Open, Edit, View...)
+#: ../gedit/gedit-io-error-message-area.c:515
+#: ../gedit/gedit-io-error-message-area.c:542
+#: ../gedit/gedit-io-error-message-area.c:818
+#: ../gedit/gedit-io-error-message-area.c:830
+msgid "D_on't Edit"
+msgstr "編集しない(_O)"
+
+#: ../gedit/gedit-io-error-message-area.c:638
+msgid ""
+"The number of followed links is limited and the actual file could not be "
+"found within this limit."
+msgstr ""
+"リンクの数が制限され、実際のファイルがこの制限内に見つけることができませんで"
+"した。"
+
+#: ../gedit/gedit-io-error-message-area.c:642
+msgid "You do not have the permissions necessary to open the file."
+msgstr "そのファイルを開く権限がありません。"
+
+#: ../gedit/gedit-io-error-message-area.c:648
+msgid "gedit has not been able to detect the character encoding."
+msgstr "文字のエンコーディングを検出できませんでした。"
+
+#: ../gedit/gedit-io-error-message-area.c:650
+#: ../gedit/gedit-io-error-message-area.c:672
+msgid "Please check that you are not trying to open a binary file."
+msgstr "バイナリ・ファイルを開こうとしていないか確認してください。"
+
+#: ../gedit/gedit-io-error-message-area.c:651
+msgid "Select a character encoding from the menu and try again."
+msgstr "メニューから文字エンコーディングを選択して、もう一度実行してください。"
+
+#: ../gedit/gedit-io-error-message-area.c:657
+#, c-format
+msgid "There was a problem opening the file %s."
+msgstr "ファイル %s を開くする際にエラーが発生しました。"
+
+#: ../gedit/gedit-io-error-message-area.c:659
+msgid ""
+"The file you opened has some invalid characters. If you continue editing "
+"this file you could make this document useless."
+msgstr ""
+"開いたファイルに正しくない文字が含まれています。このファイルを編集し続ける"
+"と、この文書が役に立たなくなるかもしれません。"
+
+#: ../gedit/gedit-io-error-message-area.c:662
+msgid "You can also choose another character encoding and try again."
+msgstr "メニューから文字エンコーディングを選択して、もう一度実行してください。"
+
+#: ../gedit/gedit-io-error-message-area.c:669
+#, c-format
+msgid "Could not open the file %s using the %s character encoding."
+msgstr "ファイル %s を文字エンコーディング %s で開けませんでした。"
+
+#: ../gedit/gedit-io-error-message-area.c:673
+#: ../gedit/gedit-io-error-message-area.c:748
+msgid "Select a different character encoding from the menu and try again."
+msgstr ""
+"メニューから別の文字エンコーディングを選択して、もう一度実行してください。"
+
+#: ../gedit/gedit-io-error-message-area.c:683
+#, c-format
+msgid "Could not open the file %s."
+msgstr "ファイル %s を開けませんでした。"
+
+#: ../gedit/gedit-io-error-message-area.c:743
+#, c-format
+msgid "Could not save the file %s using the %s character encoding."
+msgstr "ファイル %s を文字エンコーディング %s で保存できませんでした。"
+
+#: ../gedit/gedit-io-error-message-area.c:746
+msgid ""
+"The document contains one or more characters that cannot be encoded using "
+"the specified character encoding."
+msgstr ""
+"そのドキュメントには、指定した文字エンコーディングで表せない文字が一つ以上含"
+"まれています。"
+
+#: ../gedit/gedit-io-error-message-area.c:845
+#, c-format
+msgid "This file (%s) is already open in another gedit window."
+msgstr "このファイル (%s) は既に別の gedit ウィンドウの中に開いています。"
+
+#: ../gedit/gedit-io-error-message-area.c:859
+msgid ""
+"gedit opened this instance of the file in a non-editable way. Do you want to "
+"edit it anyway?"
+msgstr ""
+"このファイルのインスタンスを編集不可モードで開きました。編集を続行しますか?"
+
+#: ../gedit/gedit-io-error-message-area.c:918
+#: ../gedit/gedit-io-error-message-area.c:928
+#: ../gedit/gedit-io-error-message-area.c:1024
+#: ../gedit/gedit-io-error-message-area.c:1034
+msgid "S_ave Anyway"
+msgstr "とにかく保存する(_A)"
+
+#: ../gedit/gedit-io-error-message-area.c:922
+#: ../gedit/gedit-io-error-message-area.c:932
+#: ../gedit/gedit-io-error-message-area.c:1028
+#: ../gedit/gedit-io-error-message-area.c:1038
+msgid "D_on't Save"
+msgstr "保存しない(_O)"
+
+#. FIXME: review this message, it's not clear since for the user the "modification"
+#. could be interpreted as the changes he made in the document. beside "reading" is
+#. not accurate (since last load/save)
+#: ../gedit/gedit-io-error-message-area.c:950
+#, c-format
+msgid "The file %s has been modified since reading it."
+msgstr "ファイル %s は変更されています。"
+
+#: ../gedit/gedit-io-error-message-area.c:965
+msgid "If you save it, all the external changes could be lost. Save it anyway?"
+msgstr ""
+"このファイルを保存すると外部からの変更はすべて失われます。強制的に保存します"
+"か?"
+
+#: ../gedit/gedit-io-error-message-area.c:1056
+#, c-format
+msgid "Could not create a backup file while saving %s"
+msgstr "%s を保存する際にバックアップ・ファイルを作成できませんでした。"
+
+#: ../gedit/gedit-io-error-message-area.c:1059
+#, c-format
+msgid "Could not create a temporary backup file while saving %s"
+msgstr ""
+"%s を保存する際に作業用のバックアップ・ファイルを作成できませんでした。"
+
+#: ../gedit/gedit-io-error-message-area.c:1075
+msgid ""
+"gedit could not back up the old copy of the file before saving the new one. "
+"You can ignore this warning and save the file anyway, but if an error occurs "
+"while saving, you could lose the old copy of the file. Save anyway?"
+msgstr ""
+"gedit は新しいファイルを保存する前に古いファイルのバックアップ・ファイルを作"
+"成することはできません。この警告を無視してファイルを強制的に保存することは可"
+"能ですが、保存中にエラーが発生すると古いファイルの内容を失う可能性がありま"
+"す。とにかく保存しますか?"
+
+#. Translators: %s is a URI scheme (like for example http:, ftp:, etc.)
+#: ../gedit/gedit-io-error-message-area.c:1135
+#, c-format
+msgid ""
+"gedit cannot handle %s locations in write mode. Please check that you typed "
+"the location correctly and try again."
+msgstr ""
+"場所 %s へ書き込めません。入力した場所が正しいか確認して、もう一度実行してみ"
+"てください。"
+
+#: ../gedit/gedit-io-error-message-area.c:1143
+msgid ""
+"gedit cannot handle this location in write mode. Please check that you typed "
+"the location correctly and try again."
+msgstr ""
+"この場所へ書き込めません。入力した場所が正しいか確認して、もう一度実行してみ"
+"てください。"
+
+#: ../gedit/gedit-io-error-message-area.c:1152
+#, c-format
+msgid ""
+"%s is not a valid location. Please check that you typed the location "
+"correctly and try again."
+msgstr ""
+"場所 %s が間違っています。入力した場所が正しいか確認して、もう一度実行してみ"
+"てください。"
+
+#: ../gedit/gedit-io-error-message-area.c:1158
+msgid ""
+"You do not have the permissions necessary to save the file. Please check "
+"that you typed the location correctly and try again."
+msgstr ""
+"そのファイルを保存するために必要な権限がありません。入力した場所が正しいか確"
+"認して、もう一度実行してみてください。"
+
+#: ../gedit/gedit-io-error-message-area.c:1164
+msgid ""
+"There is not enough disk space to save the file. Please free some disk space "
+"and try again."
+msgstr ""
+"そのファイルを保存するのに十分な空き容量がありません。空き容量を増やしてか"
+"ら、もう一度実行してみてください。"
+
+#: ../gedit/gedit-io-error-message-area.c:1169
+msgid ""
+"You are trying to save the file on a read-only disk. Please check that you "
+"typed the location correctly and try again."
+msgstr ""
+"読み込み専用のディスクにファイルを保存しようとしています。入力した場所が正し"
+"いか確認して、もう一度実行してみてください。"
+
+#: ../gedit/gedit-io-error-message-area.c:1175
+msgid "A file with the same name already exists. Please use a different name."
+msgstr "同名のファイルが存在します。別の名前にしてください。"
+
+#: ../gedit/gedit-io-error-message-area.c:1180
+msgid ""
+"The disk where you are trying to save the file has a limitation on length of "
+"the file names. Please use a shorter name."
+msgstr ""
+"保存先のディスクには指定できるファイル名の長さに制限があります。もっと短い"
+"ファイル名にしてください。"
+
+#: ../gedit/gedit-io-error-message-area.c:1187
+msgid ""
+"The disk where you are trying to save the file has a limitation on file "
+"sizes. Please try saving a smaller file or saving it to a disk that does not "
+"have this limitation."
+msgstr ""
+"保存先のディスクにはファイル・サイズの制限があります。小さいファイルを保存す"
+"るか、この制限のない泥空くに保存してください。"
+
+#: ../gedit/gedit-io-error-message-area.c:1203
+#, c-format
+msgid "Could not save the file %s."
+msgstr "ファイル %s を保存できませんでした。"
+
+#. FIXME: review this message, it's not clear since for the user the "modification"
+#. could be interpreted as the changes he made in the document. beside "reading" is
+#. not accurate (since last load/save)
+#: ../gedit/gedit-io-error-message-area.c:1247
+#, c-format
+msgid "The file %s changed on disk."
+msgstr "ファイル %s が変更されたようです。"
+
+#: ../gedit/gedit-io-error-message-area.c:1252
+msgid "Do you want to drop your changes and reload the file?"
+msgstr "変更を破棄して、もう一度ファイルを読み込み直してみますか?"
+
+#: ../gedit/gedit-io-error-message-area.c:1254
+msgid "Do you want to reload the file?"
+msgstr "そのファイルを読み込み直してみますか?"
+
+#: ../gedit/gedit-io-error-message-area.c:1260
+#: ../gedit/gedit-io-error-message-area.c:1271
+msgid "_Reload"
+msgstr "再読み込み(_R)"
+
+#: ../gedit/gedit-panel.c:360 ../gedit/gedit-panel.c:532
+msgid "Empty"
+msgstr "履歴なし"
+
+#: ../gedit/gedit-panel.c:422
+msgid "Hide panel"
+msgstr "このペインを隠します"
+
+#: ../gedit/gedit-plugin-manager.c:54
+msgid "Plugin"
+msgstr "プラグイン"
+
+#: ../gedit/gedit-plugin-manager.c:55
+msgid "Enabled"
+msgstr "有効"
+
+#: ../gedit/gedit-plugin-manager.c:504
+msgid "_About"
+msgstr "情報(_A)"
+
+#: ../gedit/gedit-plugin-manager.c:512
+msgid "C_onfigure"
+msgstr "設定(_O)"
+
+#: ../gedit/gedit-plugin-manager.c:521
+msgid "A_ctivate"
+msgstr "有効にする(_C)"
+
+#: ../gedit/gedit-plugin-manager.c:532
+msgid "Ac_tivate All"
+msgstr "すべて有効にする(_T)"
+
+#: ../gedit/gedit-plugin-manager.c:537
+msgid "_Deactivate All"
+msgstr "すべて無効にする(_D)"
+
+#: ../gedit/gedit-plugin-manager.c:800
+msgid "Active _Plugins:"
+msgstr "利用可能なプラグイン(_P):"
+
+#: ../gedit/gedit-plugin-manager.c:825
+msgid "_About Plugin"
+msgstr "プラグインについて(_A)"
+
+#: ../gedit/gedit-plugin-manager.c:829
+msgid "C_onfigure Plugin"
+msgstr "プラグインの設定(_O)"
+
+#: ../gedit/gedit-prefs-manager.c:170
+msgid "Cannot initialize preferences manager."
+msgstr "設定マネージャを初期化できません。"
+
+#: ../gedit/gedit-prefs-manager.c:1138
+#, c-format
+msgid "Expected `%s', got `%s' for key %s"
+msgstr "キー %3$s の '%1$s' を期待しましたが '%2$s' を得ました"
+
+#: ../gedit/gedit-print-job.c:541
+#, c-format
+msgid "File: %s"
+msgstr "ファイル: %s"
+
+#: ../gedit/gedit-print-job.c:550
+msgid "Page %N of %Q"
+msgstr "ページ %N / %Q"
+
+#: ../gedit/gedit-print-job.c:809
+msgid "Preparing..."
+msgstr "準備中..."
+
+#: ../gedit/gedit-print-preferences.ui.h:3
+msgid "Fonts"
+msgstr "フォント"
+
+#: ../gedit/gedit-print-preferences.ui.h:4
+msgid "He_aders and footers:"
+msgstr "ヘッダとフッタ(_A):"
+
+#: ../gedit/gedit-print-preferences.ui.h:6
+msgid "Page header"
+msgstr "ページヘッダ"
+
+#: ../gedit/gedit-print-preferences.ui.h:7
+msgid "Print line nu_mbers"
+msgstr "行番号を印刷する(_M)"
+
+#: ../gedit/gedit-print-preferences.ui.h:8
+msgid "Print page _headers"
+msgstr "ページのヘッダを印刷する(_H)"
+
+#: ../gedit/gedit-print-preferences.ui.h:9
+msgid "Print synta_x highlighting"
+msgstr "強調表示を含めて印刷する(_X)"
+
+#: ../gedit/gedit-print-preferences.ui.h:10
+msgid "Syntax Highlighting"
+msgstr "強調表示"
+
+#: ../gedit/gedit-print-preferences.ui.h:12
+msgid "_Body:"
+msgstr "本文(_B):"
+
+#: ../gedit/gedit-print-preferences.ui.h:13
+msgid "_Line numbers:"
+msgstr "行番号(_L):"
+
+#. 'Number every' from 'Number every 3 lines' in the 'Text Editor' tab of the print preferences.
+#: ../gedit/gedit-print-preferences.ui.h:15
+msgid "_Number every"
+msgstr "行番号を付与する間隔(_N) "
+
+#: ../gedit/gedit-print-preferences.ui.h:16
+msgid "_Restore Default Fonts"
+msgstr "デフォルトに戻す(_R)"
+
+#. 'lines' from 'Number every 3 lines' in the 'Text Editor' tab of the print preferences.
+#: ../gedit/gedit-print-preferences.ui.h:18
+msgid "lines"
+msgstr "行"
+
+#: ../gedit/gedit-print-preview.c:565
+msgid "Show the previous page"
+msgstr "前のページに戻ります"
+
+#: ../gedit/gedit-print-preview.c:577
+msgid "Show the next page"
+msgstr "次のページに進みます"
+
+#: ../gedit/gedit-print-preview.c:593
+msgid "Current page (Alt+P)"
+msgstr "現在のページです (Alt+P)"
+
+#. Translators: the "of" from "1 of 19" in print preview.
+#: ../gedit/gedit-print-preview.c:616
+msgid "of"
+msgstr "/"
+
+#: ../gedit/gedit-print-preview.c:624
+msgid "Page total"
+msgstr "ページ数"
+
+#: ../gedit/gedit-print-preview.c:625
+msgid "The total number of pages in the document"
+msgstr "ドキュメントのページ数の合計です"
+
+#: ../gedit/gedit-print-preview.c:642
+msgid "Show multiple pages"
+msgstr "複数のページを表示します"
+
+#: ../gedit/gedit-print-preview.c:655
+msgid "Zoom 1:1"
+msgstr "拡大率を 1:1 にします"
+
+#: ../gedit/gedit-print-preview.c:664
+msgid "Zoom to fit the whole page"
+msgstr "ページ全体を表示します"
+
+#: ../gedit/gedit-print-preview.c:673
+msgid "Zoom the page in"
+msgstr "この文書を拡大します"
+
+#: ../gedit/gedit-print-preview.c:682
+msgid "Zoom the page out"
+msgstr "この文書を縮小します"
+
+#: ../gedit/gedit-print-preview.c:694
+msgid "_Close Preview"
+msgstr "プレビューを閉じる(_C)"
+
+#: ../gedit/gedit-print-preview.c:697
+msgid "Close print preview"
+msgstr "印刷プレビューを閉じます"
+
+#: ../gedit/gedit-print-preview.c:767
+#, c-format
+msgid "Page %d of %d"
+msgstr "%d / %d ページ"
+
+#: ../gedit/gedit-print-preview.c:951
+msgid "Page Preview"
+msgstr "ページのプレビュー"
+
+#: ../gedit/gedit-print-preview.c:952
+msgid "The preview of a page in the document to be printed"
+msgstr "印刷するドキュメントのページをプレビューします"
+
+#: ../gedit/gedit-smart-charset-converter.c:319
+msgid "It is not possible to detect the encoding automatically"
+msgstr "自動的にエンコーディングを検出できません"
+
+#: ../gedit/gedit-statusbar.c:70 ../gedit/gedit-statusbar.c:76
+msgid "OVR"
+msgstr " [上書き]"
+
+#: ../gedit/gedit-statusbar.c:70 ../gedit/gedit-statusbar.c:76
+msgid "INS"
+msgstr " [挿入]"
+
+#. Translators: "Ln" is an abbreviation for "Line", Col is an abbreviation for "Column". Please,
+#. use abbreviations if possible to avoid space problems.
+#: ../gedit/gedit-statusbar.c:332
+#, c-format
+msgid "  Ln %d, Col %d"
+msgstr " (%d行、%d列)"
+
+#: ../gedit/gedit-statusbar.c:431
+#, c-format
+msgid "There is a tab with errors"
+msgid_plural "There are %d tabs with errors"
+msgstr[0] "エラーが発生したタブが %d 個あります"
+
+#: ../gedit/gedit-style-scheme-manager.c:207
+#, c-format
+msgid "Directory '%s' could not be created: g_mkdir_with_parents() failed: %s"
+msgstr ""
+"'%s' というフォルダを生成できませんでした: g_mkdir_with_parents() に失敗: %s"
+
+#. Translators: the first %s is a file name (e.g. test.txt) the second one
+#. is a directory (e.g. ssh://master.mate.org/home/users/paolo)
+#: ../gedit/gedit-tab.c:660
+#, c-format
+msgid "Reverting %s from %s"
+msgstr "%2$s から %1$s に戻しています"
+
+#: ../gedit/gedit-tab.c:667
+#, c-format
+msgid "Reverting %s"
+msgstr "%s に戻しています"
+
+#. Translators: the first %s is a file name (e.g. test.txt) the second one
+#. is a directory (e.g. ssh://master.mate.org/home/users/paolo)
+#: ../gedit/gedit-tab.c:683
+#, c-format
+msgid "Loading %s from %s"
+msgstr "%2$s から %1$s を読み込んでいます"
+
+#: ../gedit/gedit-tab.c:690
+#, c-format
+msgid "Loading %s"
+msgstr "%s を読み込んでいます"
+
+#. Translators: the first %s is a file name (e.g. test.txt) the second one
+#. is a directory (e.g. ssh://master.mate.org/home/users/paolo)
+#: ../gedit/gedit-tab.c:773
+#, c-format
+msgid "Saving %s to %s"
+msgstr "%s を %s へ保存しています"
+
+#: ../gedit/gedit-tab.c:780
+#, c-format
+msgid "Saving %s"
+msgstr "%s を保存しています"
+
+#. Read only
+#: ../gedit/gedit-tab.c:1673
+msgid "RO"
+msgstr "[書き込み禁止]"
+
+#: ../gedit/gedit-tab.c:1720
+#, c-format
+msgid "Error opening file %s"
+msgstr "ファイル %s を読み込む際にエラー"
+
+#: ../gedit/gedit-tab.c:1725
+#, c-format
+msgid "Error reverting file %s"
+msgstr "ファイル %s に戻す際にエラー"
+
+#: ../gedit/gedit-tab.c:1730
+#, c-format
+msgid "Error saving file %s"
+msgstr "ファイル %s を保存する際にエラー"
+
+#: ../gedit/gedit-tab.c:1751
+msgid "Unicode (UTF-8)"
+msgstr "Unicode (UTF-8)"
+
+#: ../gedit/gedit-tab.c:1758
+msgid "Name:"
+msgstr "名前:"
+
+#: ../gedit/gedit-tab.c:1759
+msgid "MIME Type:"
+msgstr "MIME 型:"
+
+#: ../gedit/gedit-tab.c:1760
+msgid "Encoding:"
+msgstr "エンコーディング:"
+
+#: ../gedit/gedit-tab-label.c:285
+msgid "Close document"
+msgstr "このドキュメントを閉じます"
+
+#. Toplevel
+#: ../gedit/gedit-ui.h:47
+msgid "_File"
+msgstr "ファイル(_F)"
+
+#: ../gedit/gedit-ui.h:48
+msgid "_Edit"
+msgstr "編集(_E)"
+
+#: ../gedit/gedit-ui.h:49
+msgid "_View"
+msgstr "表示(_V)"
+
+#: ../gedit/gedit-ui.h:50
+msgid "_Search"
+msgstr "検索(_S)"
+
+#: ../gedit/gedit-ui.h:51
+msgid "_Tools"
+msgstr "ツール(_T)"
+
+#: ../gedit/gedit-ui.h:52
+msgid "_Documents"
+msgstr "ドキュメント(_D)"
+
+#: ../gedit/gedit-ui.h:53
+msgid "_Help"
+msgstr "ヘルプ(_H)"
+
+#: ../gedit/gedit-ui.h:57
+msgid "Create a new document"
+msgstr "新しいドキュメントを作成します"
+
+#: ../gedit/gedit-ui.h:58
+msgid "_Open..."
+msgstr "開く(_O)..."
+
+#: ../gedit/gedit-ui.h:59 ../gedit/gedit-window.c:1450
+msgid "Open a file"
+msgstr "ファイルを開きます"
+
+#. Edit menu
+#: ../gedit/gedit-ui.h:62
+msgid "Pr_eferences"
+msgstr "設定(_E)"
+
+#: ../gedit/gedit-ui.h:63
+msgid "Configure the application"
+msgstr "gedit を設定します"
+
+#. Help menu
+#: ../gedit/gedit-ui.h:66
+msgid "_Contents"
+msgstr "目次(_C)"
+
+#: ../gedit/gedit-ui.h:67
+msgid "Open the gedit manual"
+msgstr "gedit のマニュアルを開きます"
+
+#: ../gedit/gedit-ui.h:69
+msgid "About this application"
+msgstr "このアプリケーションの情報を表示します"
+
+#: ../gedit/gedit-ui.h:73
+msgid "Leave fullscreen mode"
+msgstr "フルスクリーン表示の解除"
+
+#: ../gedit/gedit-ui.h:81
+msgid "Save the current file"
+msgstr "このファイルを保存します"
+
+#: ../gedit/gedit-ui.h:82
+msgid "Save _As..."
+msgstr "別名で保存(_A)..."
+
+#: ../gedit/gedit-ui.h:83
+msgid "Save the current file with a different name"
+msgstr "このファイルに名前を付けて保存します"
+
+#: ../gedit/gedit-ui.h:85
+msgid "Revert to a saved version of the file"
+msgstr "保存してある元のファイルに戻します"
+
+#: ../gedit/gedit-ui.h:87
+msgid "Page Set_up..."
+msgstr "ページ設定(_U)..."
+
+#: ../gedit/gedit-ui.h:88
+msgid "Set up the page settings"
+msgstr "ページを設定します"
+
+#: ../gedit/gedit-ui.h:90
+msgid "Print Previe_w"
+msgstr "印刷プレビュー(_W)"
+
+#: ../gedit/gedit-ui.h:91
+msgid "Print preview"
+msgstr "印刷プレビューを表示します"
+
+#: ../gedit/gedit-ui.h:92
+msgid "_Print..."
+msgstr "印刷(_P)..."
+
+#: ../gedit/gedit-ui.h:93
+msgid "Print the current page"
+msgstr "このドキュメントを印刷します"
+
+#: ../gedit/gedit-ui.h:97
+msgid "Undo the last action"
+msgstr "最後に実行した操作を元に戻します"
+
+#: ../gedit/gedit-ui.h:99
+msgid "Redo the last undone action"
+msgstr "最後に実行しようとした操作をやり直します"
+
+#: ../gedit/gedit-ui.h:101
+msgid "Cut the selection"
+msgstr "選択範囲を切り取ります"
+
+#: ../gedit/gedit-ui.h:103
+msgid "Copy the selection"
+msgstr "選択範囲をコピーします"
+
+#: ../gedit/gedit-ui.h:105
+msgid "Paste the clipboard"
+msgstr "クリップボードから貼り付けます"
+
+#: ../gedit/gedit-ui.h:107
+msgid "Delete the selected text"
+msgstr "選択したテキストを削除します"
+
+#: ../gedit/gedit-ui.h:108
+msgid "Select _All"
+msgstr "すべて選択(_A)"
+
+#: ../gedit/gedit-ui.h:109
+msgid "Select the entire document"
+msgstr "ドキュメント全体を選択します"
+
+#. View menu
+#: ../gedit/gedit-ui.h:112
+msgid "_Highlight Mode"
+msgstr "強調表示モード(_H)"
+
+#. Search menu
+#: ../gedit/gedit-ui.h:115
+msgid "_Find..."
+msgstr "検索(_F)..."
+
+#: ../gedit/gedit-ui.h:116
+msgid "Search for text"
+msgstr "文字列を検索します"
+
+#: ../gedit/gedit-ui.h:117
+msgid "Find Ne_xt"
+msgstr "次を検索(_X)"
+
+#: ../gedit/gedit-ui.h:118
+msgid "Search forwards for the same text"
+msgstr "同じ文字列を前方検索します"
+
+#: ../gedit/gedit-ui.h:119
+msgid "Find Pre_vious"
+msgstr "前を検索(_V)"
+
+#: ../gedit/gedit-ui.h:120
+msgid "Search backwards for the same text"
+msgstr "同じ文字列を後方検索します"
+
+#: ../gedit/gedit-ui.h:122 ../gedit/gedit-ui.h:125
+msgid "_Replace..."
+msgstr "置換(_R)..."
+
+#: ../gedit/gedit-ui.h:123 ../gedit/gedit-ui.h:126
+msgid "Search for and replace text"
+msgstr "文字列を検索し置換します"
+
+#: ../gedit/gedit-ui.h:128
+msgid "_Clear Highlight"
+msgstr "強調表示のクリア(_C)"
+
+#: ../gedit/gedit-ui.h:129
+msgid "Clear highlighting of search matches"
+msgstr "検索時にマッチした文字列の強調表示をクリアします"
+
+#: ../gedit/gedit-ui.h:130
+msgid "Go to _Line..."
+msgstr "指定行へジャンプ(_L)..."
+
+#: ../gedit/gedit-ui.h:131
+msgid "Go to a specific line"
+msgstr "指定した行に移動します"
+
+#: ../gedit/gedit-ui.h:132
+msgid "_Incremental Search..."
+msgstr "インクリメンタル検索(_I)..."
+
+#: ../gedit/gedit-ui.h:133
+msgid "Incrementally search for text"
+msgstr "文字を入力しながら逐次検索します"
+
+#. Documents menu
+#: ../gedit/gedit-ui.h:136
+msgid "_Save All"
+msgstr "すべて保存(_S)"
+
+#: ../gedit/gedit-ui.h:137
+msgid "Save all open files"
+msgstr "開いているすべてのファイルを保存します"
+
+#: ../gedit/gedit-ui.h:138
+msgid "_Close All"
+msgstr "すべて閉じる(_C)"
+
+#: ../gedit/gedit-ui.h:139
+msgid "Close all open files"
+msgstr "開いているすべてのファイルを閉じます"
+
+#: ../gedit/gedit-ui.h:140
+msgid "_Previous Document"
+msgstr "前のドキュメント(_P)"
+
+#: ../gedit/gedit-ui.h:141
+msgid "Activate previous document"
+msgstr "前のドキュメントをアクティブにします"
+
+#: ../gedit/gedit-ui.h:142
+msgid "_Next Document"
+msgstr "次のドキュメント(_N)"
+
+#: ../gedit/gedit-ui.h:143
+msgid "Activate next document"
+msgstr "次のドキュメントをアクティブにします"
+
+#: ../gedit/gedit-ui.h:144
+msgid "_Move to New Window"
+msgstr "新しいウィンドウへ移動(_M)"
+
+#: ../gedit/gedit-ui.h:145
+msgid "Move the current document to a new window"
+msgstr "このドキュメントを新しいウィンドウへ移動します"
+
+#: ../gedit/gedit-ui.h:152
+msgid "Close the current file"
+msgstr "このファイルを閉じます"
+
+#: ../gedit/gedit-ui.h:159
+msgid "Quit the program"
+msgstr "gedit を終了します"
+
+#: ../gedit/gedit-ui.h:164
+msgid "_Toolbar"
+msgstr "ツールバー(_T)"
+
+#: ../gedit/gedit-ui.h:165
+msgid "Show or hide the toolbar in the current window"
+msgstr "このウィンドウでツールバーの表示/非表示を切り替えます"
+
+#: ../gedit/gedit-ui.h:167
+msgid "_Statusbar"
+msgstr "ステータスバー(_S)"
+
+#: ../gedit/gedit-ui.h:168
+msgid "Show or hide the statusbar in the current window"
+msgstr "このウィンドウでステータスバーの表示/非表示を切り替えます"
+
+#: ../gedit/gedit-ui.h:171
+msgid "Edit text in fullscreen"
+msgstr "フルスクリーン表示で編集します"
+
+#: ../gedit/gedit-ui.h:178
+msgid "Side _Pane"
+msgstr "サイド・ペイン(_P)"
+
+#: ../gedit/gedit-ui.h:179
+msgid "Show or hide the side pane in the current window"
+msgstr "このウィンドウでサイド・ペインの表示/非表示を切り替えます"
+
+#: ../gedit/gedit-ui.h:181
+msgid "_Bottom Pane"
+msgstr "ボトム・ペイン(_B)"
+
+#: ../gedit/gedit-ui.h:182
+msgid "Show or hide the bottom pane in the current window"
+msgstr "このウィンドウでボトム・ペインの表示/非表示を切り替えます"
+
+#: ../gedit/gedit-utils.c:1071
+msgid "Please check your installation."
+msgstr "gedit のインストールを確認してください。"
+
+#: ../gedit/gedit-utils.c:1140
+#, c-format
+msgid "Unable to open UI file %s. Error: %s"
+msgstr "UI ファイル %s を開けません。エラー: %s"
+
+#: ../gedit/gedit-utils.c:1160
+#, c-format
+msgid "Unable to find the object '%s' inside file %s."
+msgstr "オブジェクトの '%s' は %s というファイルの中にありませんでした。"
+
+#. Translators: '/ on <remote-share>'
+#: ../gedit/gedit-utils.c:1320
+#, c-format
+msgid "/ on %s"
+msgstr "%s の / (ルート)"
+
+#. create "Wrap Around" menu item.
+#: ../gedit/gedit-view.c:1218
+msgid "_Wrap Around"
+msgstr "折り返しも検索する(_W)"
+
+#. create "Match Entire Word Only" menu item.
+#: ../gedit/gedit-view.c:1228
+msgid "Match _Entire Word Only"
+msgstr "単語全体にマッチさせる(_E)"
+
+#. create "Match Case" menu item.
+#: ../gedit/gedit-view.c:1238
+msgid "_Match Case"
+msgstr "大/小文字を区別する(_M)"
+
+#: ../gedit/gedit-view.c:1352
+msgid "String you want to search for"
+msgstr "検索する文字列"
+
+#: ../gedit/gedit-view.c:1361
+msgid "Line you want to move the cursor to"
+msgstr "カーソルを移動する行を入力してください"
+
+#: ../gedit/gedit-window.c:1003
+#, c-format
+msgid "Use %s highlight mode"
+msgstr "%s 用の強調表示モードにします"
+
+#. add the "Plain Text" item before all the others
+#. Translators: "Plain Text" means that no highlight mode is selected in the
+#. * "View->Highlight Mode" submenu and so syntax highlighting is disabled
+#: ../gedit/gedit-window.c:1060 ../gedit/gedit-window.c:1972
+#: ../plugins/externaltools/tools/manager.py:121
+#: ../plugins/externaltools/tools/manager.py:419
+#: ../plugins/externaltools/tools/manager.py:529
+#: ../plugins/externaltools/tools/manager.py:844
+msgid "Plain Text"
+msgstr "なし"
+
+#: ../gedit/gedit-window.c:1061
+msgid "Disable syntax highlighting"
+msgstr "構文の強調表示を無効にします"
+
+#. Translators: %s is a URI
+#: ../gedit/gedit-window.c:1347
+#, c-format
+msgid "Open '%s'"
+msgstr "'%s' を開きます"
+
+#: ../gedit/gedit-window.c:1452
+msgid "Open a recently used file"
+msgstr "最近使用したファイルを開きます"
+
+#: ../gedit/gedit-window.c:1458
+msgid "Open"
+msgstr "開く"
+
+#: ../gedit/gedit-window.c:1516
+msgid "Save"
+msgstr "保存"
+
+#: ../gedit/gedit-window.c:1518
+msgid "Print"
+msgstr "印刷"
+
+#. Translators: %s is a URI
+#: ../gedit/gedit-window.c:1697
+#, c-format
+msgid "Activate '%s'"
+msgstr "'%s' に切り替えます"
+
+#: ../gedit/gedit-window.c:1950
+msgid "Use Spaces"
+msgstr "空白にする"
+
+#: ../gedit/gedit-window.c:2021
+msgid "Tab Width"
+msgstr "タブの幅:"
+
+#: ../gedit/gedit-window.c:3874
+msgid "About gedit"
+msgstr "gedit について"
+
+#: ../plugins/changecase/changecase.gedit-plugin.desktop.in.h:1
+msgid "Change Case"
+msgstr "大/小文字の変更"
+
+#: ../plugins/changecase/changecase.gedit-plugin.desktop.in.h:2
+msgid "Changes the case of selected text."
+msgstr "選択したテキストの大/小文字を変更します。"
+
+#: ../plugins/changecase/gedit-changecase-plugin.c:222
+msgid "C_hange Case"
+msgstr "大/小文字の変更(_H)"
+
+#: ../plugins/changecase/gedit-changecase-plugin.c:223
+msgid "All _Upper Case"
+msgstr "すべて大文字にする(_U)"
+
+#: ../plugins/changecase/gedit-changecase-plugin.c:224
+msgid "Change selected text to upper case"
+msgstr "選択したテキストを大文字に変更します"
+
+#: ../plugins/changecase/gedit-changecase-plugin.c:226
+msgid "All _Lower Case"
+msgstr "すべて小文字にする(_L)"
+
+#: ../plugins/changecase/gedit-changecase-plugin.c:227
+msgid "Change selected text to lower case"
+msgstr "選択したテキストを小文字に変更します"
+
+#: ../plugins/changecase/gedit-changecase-plugin.c:229
+msgid "_Invert Case"
+msgstr "大/小文字を逆にする(_I)"
+
+#: ../plugins/changecase/gedit-changecase-plugin.c:230
+msgid "Invert the case of selected text"
+msgstr "選択したテキストの大/小文字を逆にします"
+
+#: ../plugins/changecase/gedit-changecase-plugin.c:232
+msgid "_Title Case"
+msgstr "先頭文字を大文字にする(_T)"
+
+#: ../plugins/changecase/gedit-changecase-plugin.c:233
+msgid "Capitalize the first letter of each selected word"
+msgstr "選択した単語の先頭文字を大文字にします"
+
+#: ../plugins/checkupdate/checkupdate.gedit-plugin.desktop.in.h:1
+msgid "Check for latest version of gedit"
+msgstr "最新版の gedit をチェックします"
+
+#: ../plugins/checkupdate/checkupdate.gedit-plugin.desktop.in.h:2
+msgid "Check update"
+msgstr "更新のチェック"
+
+#: ../plugins/checkupdate/gedit-check-update-plugin.c:246
+msgid "There was an error displaying the URI."
+msgstr "URI を表示する際にエラーが発生しました。"
+
+#: ../plugins/checkupdate/gedit-check-update-plugin.c:293
+#: ../plugins/checkupdate/gedit-check-update-plugin.c:308
+msgid "_Download"
+msgstr "ダウンロード(_D)"
+
+#: ../plugins/checkupdate/gedit-check-update-plugin.c:297
+#: ../plugins/checkupdate/gedit-check-update-plugin.c:316
+msgid "_Ignore Version"
+msgstr "バージョンを無視(_I)"
+
+#: ../plugins/checkupdate/gedit-check-update-plugin.c:332
+msgid "There is a new version of gedit"
+msgstr "gedit の新しいバージョンがあります"
+
+#: ../plugins/checkupdate/gedit-check-update-plugin.c:336
+msgid ""
+"You can download the new version of gedit by clicking on the download button "
+"or ignore that version and wait for a new one"
+msgstr ""
+"ダウンロードボタンを押せば新しいバージョンの gedit をダウンロードできます。そ"
+"のバージョンを無視して新しいの待つこともできます。"
+
+#: ../plugins/checkupdate/gedit-check-update.schemas.in.h:1
+msgid "Version to ignore until the next version is released"
+msgstr "次のバージョンがリリースされるまで無視するバージョン"
+
+#: ../plugins/docinfo/docinfo.gedit-plugin.desktop.in.h:1
+msgid ""
+"Analyzes the current document and reports the number of words, lines, "
+"characters and non-space characters in it."
+msgstr ""
+"ドキュメントを解析して、単語、行、文字と非スペース文字の数を測定しその結果を"
+"表示します。"
+
+#: ../plugins/docinfo/docinfo.gedit-plugin.desktop.in.h:2
+#: ../plugins/docinfo/docinfo.ui.h:6
+msgid "Document Statistics"
+msgstr "ドキュメントの統計"
+
+#: ../plugins/docinfo/docinfo.ui.h:2
+msgid "Bytes"
+msgstr "バイト"
+
+#: ../plugins/docinfo/docinfo.ui.h:3
+msgid "Characters (no spaces)"
+msgstr "文字数 (スペースなし)"
+
+#: ../plugins/docinfo/docinfo.ui.h:4
+msgid "Characters (with spaces)"
+msgstr "文字数 (スペース含む)"
+
+#: ../plugins/docinfo/docinfo.ui.h:5
+msgid "Document"
+msgstr "ドキュメント"
+
+#: ../plugins/docinfo/docinfo.ui.h:7
+msgid "File Name"
+msgstr "ファイル名"
+
+#: ../plugins/docinfo/docinfo.ui.h:8
+msgid "Lines"
+msgstr "行"
+
+#: ../plugins/docinfo/docinfo.ui.h:9
+msgid "Selection"
+msgstr "選択範囲"
+
+#: ../plugins/docinfo/docinfo.ui.h:10
+msgid "Words"
+msgstr "単語の数"
+
+#: ../plugins/docinfo/docinfo.ui.h:11
+msgid "_Update"
+msgstr "更新(_U)"
+
+#: ../plugins/docinfo/gedit-docinfo-plugin.c:422
+msgid "_Document Statistics"
+msgstr "ドキュメントの統計情報(_D)"
+
+#: ../plugins/docinfo/gedit-docinfo-plugin.c:424
+msgid "Get statistical information on the current document"
+msgstr "このドキュメントから統計情報を取得"
+
+#: ../plugins/externaltools/data/open-terminal-here-osx.desktop.in.h:1
+#: ../plugins/externaltools/data/open-terminal-here.desktop.in.h:1
+msgid "Open a terminal in the document location"
+msgstr "ドキュメントのあるフォルダで端末を開きます"
+
+#: ../plugins/externaltools/data/open-terminal-here-osx.desktop.in.h:2
+#: ../plugins/externaltools/data/open-terminal-here.desktop.in.h:2
+msgid "Open terminal here"
+msgstr "ここで端末を開く"
+
+#: ../plugins/externaltools/externaltools.gedit-plugin.desktop.in.h:1
+msgid "Execute external commands and shell scripts."
+msgstr "外部コマンドと Shell スクリプトを実行します。"
+
+#: ../plugins/externaltools/externaltools.gedit-plugin.desktop.in.h:2
+msgid "External Tools"
+msgstr "外部ツール"
+
+#: ../plugins/externaltools/tools/__init__.py:172
+msgid "Manage _External Tools..."
+msgstr "外部ツールの管理(_E)..."
+
+#: ../plugins/externaltools/tools/__init__.py:174
+msgid "Opens the External Tools Manager"
+msgstr "外部ツールを管理するマネージャを開きます"
+
+#: ../plugins/externaltools/tools/__init__.py:178
+msgid "External _Tools"
+msgstr "外部ツール(_T)"
+
+#: ../plugins/externaltools/tools/__init__.py:180
+msgid "External tools"
+msgstr "外部ツール"
+
+#: ../plugins/externaltools/tools/__init__.py:212
+msgid "Shell Output"
+msgstr "シェルの出力"
+
+#: ../plugins/externaltools/tools/capture.py:93
+#, python-format
+msgid "Could not execute command: %s"
+msgstr "次のコマンドを実行できませんでした: %s"
+
+#: ../plugins/externaltools/tools/functions.py:162
+msgid "You must be inside a word to run this command"
+msgstr "このコマンドを実行するために必要な語句を入力してください"
+
+#: ../plugins/externaltools/tools/functions.py:267
+msgid "Running tool:"
+msgstr "実行したツール:"
+
+#: ../plugins/externaltools/tools/functions.py:292
+msgid "Done."
+msgstr "完了しました。"
+
+#: ../plugins/externaltools/tools/functions.py:294
+msgid "Exited"
+msgstr "終了コード:"
+
+#: ../plugins/externaltools/tools/manager.py:119
+msgid "All languages"
+msgstr "すべての言語"
+
+#: ../plugins/externaltools/tools/manager.py:518
+#: ../plugins/externaltools/tools/manager.py:522
+#: ../plugins/externaltools/tools/manager.py:842
+#: ../plugins/externaltools/tools/tools.ui.h:2
+msgid "All Languages"
+msgstr "すべての言語"
+
+#: ../plugins/externaltools/tools/manager.py:628
+msgid "New tool"
+msgstr "新しいツール"
+
+#: ../plugins/externaltools/tools/manager.py:759
+#, python-format
+msgid "This accelerator is already bound to %s"
+msgstr "既にこのアクセレータは %s に割当られています"
+
+#: ../plugins/externaltools/tools/manager.py:810
+msgid "Type a new accelerator, or press Backspace to clear"
+msgstr "(新しいアクセラレータを入力してください/[BS]キーでクリア)"
+
+#: ../plugins/externaltools/tools/manager.py:812
+msgid "Type a new accelerator"
+msgstr "(新しいアクセラレータを入力してください)"
+
+#: ../plugins/externaltools/tools/outputpanel.py:105
+msgid "Stopped."
+msgstr "停止しました。"
+
+#: ../plugins/externaltools/tools/tools.ui.h:3
+msgid "All documents"
+msgstr "すべてのドキュメント"
+
+#: ../plugins/externaltools/tools/tools.ui.h:4
+msgid "All documents except untitled ones"
+msgstr "保存していないものを除くすべてのドキュメント"
+
+#: ../plugins/externaltools/tools/tools.ui.h:5
+msgid "Append to current document"
+msgstr "編集中のドキュメントに追加する"
+
+#: ../plugins/externaltools/tools/tools.ui.h:6
+msgid "Create new document"
+msgstr "新しいドキュメントを作成する"
+
+#: ../plugins/externaltools/tools/tools.ui.h:7
+msgid "Current document"
+msgstr "編集中のドキュメント"
+
+#: ../plugins/externaltools/tools/tools.ui.h:8
+msgid "Current line"
+msgstr "カーソルがある行"
+
+#: ../plugins/externaltools/tools/tools.ui.h:9
+msgid "Current selection"
+msgstr "現在の選択範囲"
+
+#: ../plugins/externaltools/tools/tools.ui.h:10
+msgid "Current selection (default to document)"
+msgstr "現在の選択範囲 (デフォルトではドキュメントになります)"
+
+#: ../plugins/externaltools/tools/tools.ui.h:11
+msgid "Current word"
+msgstr "カーソルがある文字"
+
+#: ../plugins/externaltools/tools/tools.ui.h:12
+msgid "Display in bottom pane"
+msgstr "ボトム・ペインに表示する"
+
+#: ../plugins/externaltools/tools/tools.ui.h:13
+msgid "External Tools Manager"
+msgstr "外部ツール・マネージャ"
+
+#: ../plugins/externaltools/tools/tools.ui.h:14
+msgid "Insert at cursor position"
+msgstr "カーソルがある位置に挿入する"
+
+#: ../plugins/externaltools/tools/tools.ui.h:15
+msgid "Local files only"
+msgstr "ローカルのファイルのみ"
+
+#: ../plugins/externaltools/tools/tools.ui.h:16
+msgid "Nothing"
+msgstr "なし"
+
+#: ../plugins/externaltools/tools/tools.ui.h:17
+msgid "Remote files only"
+msgstr "リモートのファイルのみ"
+
+#: ../plugins/externaltools/tools/tools.ui.h:18
+msgid "Replace current document"
+msgstr "編集中のドキュメントを置き換える"
+
+#: ../plugins/externaltools/tools/tools.ui.h:19
+msgid "Replace current selection"
+msgstr "現在の選択範囲を置き換える"
+
+#: ../plugins/externaltools/tools/tools.ui.h:20
+msgid "Untitled documents only"
+msgstr "保存していないドキュメントのみ"
+
+#: ../plugins/externaltools/tools/tools.ui.h:21
+msgid "_Applicability:"
+msgstr "適用範囲(_A):"
+
+#: ../plugins/externaltools/tools/tools.ui.h:22
+#: ../plugins/snippets/snippets/snippets.ui.h:12
+msgid "_Edit:"
+msgstr "編集(_E):"
+
+#: ../plugins/externaltools/tools/tools.ui.h:23
+msgid "_Input:"
+msgstr "入力(_I):"
+
+#: ../plugins/externaltools/tools/tools.ui.h:24
+msgid "_Output:"
+msgstr "出力(_O):"
+
+#: ../plugins/externaltools/tools/tools.ui.h:25
+msgid "_Save:"
+msgstr "保存(_S):"
+
+#: ../plugins/externaltools/tools/tools.ui.h:26
+msgid "_Shortcut Key:"
+msgstr "ショートカット・キー(_S):"
+
+#: ../plugins/externaltools/tools/tools.ui.h:27
+msgid "_Tools:"
+msgstr "ツール(_T):"
+
+#: ../plugins/externaltools/data/build.desktop.in.h:1
+msgid "Build"
+msgstr "ビルド"
+
+#: ../plugins/externaltools/data/build.desktop.in.h:2
+msgid "Run \"make\" in the document directory"
+msgstr "ドキュメントのあるフォルダで \"make\" を実行します"
+
+#: ../plugins/externaltools/data/remove-trailing-spaces.desktop.in.h:1
+msgid "Remove trailing spaces"
+msgstr "末尾の空白を削除する"
+
+#: ../plugins/externaltools/data/remove-trailing-spaces.desktop.in.h:2
+msgid "Remove useless trailing spaces in your file"
+msgstr "ファイルの中にある不用な末尾の空白を取り除きます"
+
+#: ../plugins/externaltools/data/run-command.desktop.in.h:1
+msgid "Execute a custom command and put its output in a new document"
+msgstr "コマンドを実行した結果を新しいドキュメントとして取り込みます"
+
+#: ../plugins/externaltools/data/run-command.desktop.in.h:2
+msgid "Run command"
+msgstr "コマンドの実行"
+
+#: ../plugins/filebrowser/filebrowser.gedit-plugin.desktop.in.h:1
+msgid "Easy file access from the side pane"
+msgstr "サイド・ペインから簡単にファイルにアクセスできます。"
+
+#: ../plugins/filebrowser/filebrowser.gedit-plugin.desktop.in.h:2
+msgid "File Browser Pane"
+msgstr "ファイル参照ペイン"
+
+#: ../plugins/filebrowser/gedit-file-bookmarks-store.c:235
+msgid "File System"
+msgstr "ファイル・システム"
+
+#. ex:ts=8:noet:
+#: ../plugins/filebrowser/gedit-file-browser.schemas.in.h:1
+msgid "Enable Restore of Remote Locations"
+msgstr "リモートの場所のリストアを可能にする"
+
+#: ../plugins/filebrowser/gedit-file-browser.schemas.in.h:2
+msgid "File Browser Filter Mode"
+msgstr "ファイル参照ペインのフィルタ (モード)"
+
+#: ../plugins/filebrowser/gedit-file-browser.schemas.in.h:3
+msgid "File Browser Filter Pattern"
+msgstr "ファイル参照ペインのフィルタ (パターン)"
+
+#: ../plugins/filebrowser/gedit-file-browser.schemas.in.h:4
+msgid "File Browser Root Directory"
+msgstr "ファイル参照ペインのルート・フォルダ"
+
+#: ../plugins/filebrowser/gedit-file-browser.schemas.in.h:5
+msgid "File Browser Virtual Root Directory"
+msgstr "ファイル参照ペインの仮想的なルート・フォルダ"
+
+#: ../plugins/filebrowser/gedit-file-browser.schemas.in.h:6
+msgid ""
+"If TRUE the file browser plugin will view the directory of the first opened "
+"document given that the file browser hasn't been used yet. (Thus this "
+"generally applies to opening a document from the command line or opening it "
+"with Caja, etc.)"
+msgstr ""
+"TRUE にすると、初めて開いたドキュメントがあるフォルダで、ファイル参照プラグイ"
+"ンがまだ使われたことがないディレクトリを表示します。(すなわち、この機能は一般"
+"的にコマンドラインからドキュメントを開く場合や Caja などからドキュメント"
+"を開く際に動作します。)"
+
+#: ../plugins/filebrowser/gedit-file-browser.schemas.in.h:7
+msgid "Open With Tree View"
+msgstr "ツリー表示で開く"
+
+#: ../plugins/filebrowser/gedit-file-browser.schemas.in.h:8
+msgid ""
+"Open the tree view when the file browser plugin gets loaded instead of the "
+"bookmarks view"
+msgstr ""
+"ファイル参照プラグインを読み込んだ際に、ブックマーク表示ではなくツリー表示で"
+"開きます。"
+
+#: ../plugins/filebrowser/gedit-file-browser.schemas.in.h:9
+msgid "Set Location to First Document"
+msgstr "初めて開くドキュメントの場所を設定"
+
+#: ../plugins/filebrowser/gedit-file-browser.schemas.in.h:10
+msgid "Sets whether to enable restoring of remote locations."
+msgstr "リモートの場所でのリストア機能を有効にするかどうかです。"
+
+# (pofilter) accelerators: accelerator _ is missing from translation
+#: ../plugins/filebrowser/gedit-file-browser.schemas.in.h:11
+msgid ""
+"The file browser root directory to use when loading the file browser plugin "
+"and onload/tree_view is TRUE."
+msgstr ""
+"ファイル参照プラグインを読み込んで onload/tree_view が TRUE の場合のファイル"
+"参照ブラウザのルート・フォルダ"
+
+#: ../plugins/filebrowser/gedit-file-browser.schemas.in.h:12
+msgid ""
+"The file browser virtual root directory to use when loading the file browser "
+"plugin when onload/tree_view is TRUE. The virtual root must always be below "
+"the actual root."
+msgstr ""
+"ファイル参照プラグインを読み込んで onload/tree_view が TRUE の場合にファイル"
+"参照ブラウザが参照する仮想的なルート・フォルダを指定します。この仮想フォルダ"
+"は必ず実際のルートよりも下層にあるフォルダを指定してください。"
+
+#: ../plugins/filebrowser/gedit-file-browser.schemas.in.h:13
+msgid ""
+"The filter pattern to filter the file browser with. This filter works on top "
+"of the filter_mode."
+msgstr ""
+"ファイル参照ペインでフィルタするパターンです。これは filter_mode の先頭で機能"
+"します。"
+
+#: ../plugins/filebrowser/gedit-file-browser.schemas.in.h:14
+msgid ""
+"This value determines what files get filtered from the file browser. Valid "
+"values are: none (filter nothing), hidden (filter hidden files), binary "
+"(filter binary files) and hidden_and_binary (filter both hidden and binary "
+"files)."
+msgstr ""
+"ファイル参照ペインでフィルタして表示しないファイルを指定します。指定可能な"
+"値: none (フィルタしない)、hidden (隠しファイルをフィルタする)、binary (バイ"
+"ナリ・ファイルをフィルタする)、hidden_and_binary (隠しファイルとバイナリの両"
+"方をフィルタする)"
+
+#: ../plugins/filebrowser/gedit-file-browser-plugin.c:597
+msgid "_Set root to active document"
+msgstr "ドキュメントのルートにする(_S)"
+
+#: ../plugins/filebrowser/gedit-file-browser-plugin.c:599
+msgid "Set the root to the active document location"
+msgstr "ドキュメントを格納しているルート・フォルダに指定します"
+
+#: ../plugins/filebrowser/gedit-file-browser-plugin.c:604
+msgid "_Open terminal here"
+msgstr "端末を開く(_O)"
+
+#: ../plugins/filebrowser/gedit-file-browser-plugin.c:606
+msgid "Open a terminal at the currently opened directory"
+msgstr "このフォルダで端末を開きます"
+
+#: ../plugins/filebrowser/gedit-file-browser-plugin.c:742
+msgid "File Browser"
+msgstr "ファイル・ブラウザ"
+
+#: ../plugins/filebrowser/gedit-file-browser-plugin.c:873
+msgid "An error occurred while creating a new directory"
+msgstr "新しいフォルダを生成する際にエラーが発生しました"
+
+#: ../plugins/filebrowser/gedit-file-browser-plugin.c:876
+msgid "An error occurred while creating a new file"
+msgstr "新しいファイルを生成する際にエラーが発生しました"
+
+#: ../plugins/filebrowser/gedit-file-browser-plugin.c:881
+msgid "An error occurred while renaming a file or directory"
+msgstr "ファイルまたはフォルダの名前を変更する際にエラーが発生しました"
+
+#: ../plugins/filebrowser/gedit-file-browser-plugin.c:886
+msgid "An error occurred while deleting a file or directory"
+msgstr "ファイルまたはフォルダを削除する際にエラーが発生しました"
+
+#: ../plugins/filebrowser/gedit-file-browser-plugin.c:891
+msgid "An error occurred while opening a directory in the file manager"
+msgstr "ファイル参照ペインの中でフォルダを開く際にエラーが発生しました"
+
+#: ../plugins/filebrowser/gedit-file-browser-plugin.c:895
+msgid "An error occurred while setting a root directory"
+msgstr "ルート・フォルダを設定する際にエラーが発生しました"
+
+#: ../plugins/filebrowser/gedit-file-browser-plugin.c:899
+msgid "An error occurred while loading a directory"
+msgstr "フォルダを読み込む際にエラーが発生しました"
+
+#: ../plugins/filebrowser/gedit-file-browser-plugin.c:902
+msgid "An error occurred"
+msgstr "エラーが発生しました"
+
+#: ../plugins/filebrowser/gedit-file-browser-plugin.c:1194
+msgid ""
+"Cannot move file to trash, do you\n"
+"want to delete permanently?"
+msgstr ""
+"ファイルをゴミ箱へ移動できません。\n"
+"今すぐファイルを削除しますか?"
+
+#: ../plugins/filebrowser/gedit-file-browser-plugin.c:1198
+#, c-format
+msgid "The file \"%s\" cannot be moved to the trash."
+msgstr "ファイル \"%s\" をゴミ箱へ移動できません。"
+
+#: ../plugins/filebrowser/gedit-file-browser-plugin.c:1201
+msgid "The selected files cannot be moved to the trash."
+msgstr "選択したファイルをゴミ箱へ移動できません。"
+
+#: ../plugins/filebrowser/gedit-file-browser-plugin.c:1234
+#, c-format
+msgid "Are you sure you want to permanently delete \"%s\"?"
+msgstr "\"%s\" を完全に抹消してもよろしいですか?"
+
+#: ../plugins/filebrowser/gedit-file-browser-plugin.c:1237
+msgid "Are you sure you want to permanently delete the selected files?"
+msgstr "選択したファイルを完全に削除してもよろしいですか?"
+
+#: ../plugins/filebrowser/gedit-file-browser-plugin.c:1240
+msgid "If you delete an item, it is permanently lost."
+msgstr "削除すると、そのアイテムは完全に無くなります。"
+
+#: ../plugins/filebrowser/gedit-file-browser-store.c:1667
+msgid "(Empty)"
+msgstr "(空)"
+
+#: ../plugins/filebrowser/gedit-file-browser-store.c:3305
+msgid ""
+"The renamed file is currently filtered out. You need to adjust your filter "
+"settings to make the file visible"
+msgstr ""
+"新しい名前のファイルはフィルタの機能により表示されていません。そのファイルを"
+"表示するにはフィルタの設定を調整してください。"
+
+#. Translators: This is the default name of new files created by the file browser pane.
+#: ../plugins/filebrowser/gedit-file-browser-store.c:3544
+msgid "file"
+msgstr "ファイル"
+
+#: ../plugins/filebrowser/gedit-file-browser-store.c:3568
+msgid ""
+"The new file is currently filtered out. You need to adjust your filter "
+"settings to make the file visible"
+msgstr ""
+"新しいファイルはフィルタの機能により表示されていません。そのファイルを表示す"
+"るにはフィルタの設定を変調整してください。"
+
+#. Translators: This is the default name of new directories created by the file browser pane.
+#: ../plugins/filebrowser/gedit-file-browser-store.c:3597
+msgid "directory"
+msgstr "フォルダ"
+
+#: ../plugins/filebrowser/gedit-file-browser-store.c:3617
+msgid ""
+"The new directory is currently filtered out. You need to adjust your filter "
+"settings to make the directory visible"
+msgstr ""
+"新しい名前のフォルダはフィルタの機能により表示されていません。そのフォルダを"
+"表示するにはフィルタの設定を調整してください。"
+
+#: ../plugins/filebrowser/gedit-file-browser-widget.c:709
+msgid "Bookmarks"
+msgstr "ブックマーク"
+
+#: ../plugins/filebrowser/gedit-file-browser-widget.c:790
+msgid "_Filter"
+msgstr "フィルタ(_F)"
+
+#: ../plugins/filebrowser/gedit-file-browser-widget.c:795
+msgid "_Move to Trash"
+msgstr "ゴミ箱へ移動(_M)"
+
+#: ../plugins/filebrowser/gedit-file-browser-widget.c:796
+msgid "Move selected file or folder to trash"
+msgstr "選択したファイルやフォルダをゴミ箱へ移動します"
+
+#: ../plugins/filebrowser/gedit-file-browser-widget.c:798
+msgid "_Delete"
+msgstr "削除(_D)"
+
+#: ../plugins/filebrowser/gedit-file-browser-widget.c:799
+msgid "Delete selected file or folder"
+msgstr "選択したファイルやフォルダを削除します"
+
+#: ../plugins/filebrowser/gedit-file-browser-widget.c:806
+msgid "Open selected file"
+msgstr "選択したファイルを開く"
+
+#: ../plugins/filebrowser/gedit-file-browser-widget.c:812
+msgid "Up"
+msgstr "上へ"
+
+#: ../plugins/filebrowser/gedit-file-browser-widget.c:813
+msgid "Open the parent folder"
+msgstr "親フォルダを開きます"
+
+#: ../plugins/filebrowser/gedit-file-browser-widget.c:818
+msgid "_New Folder"
+msgstr "新しいフォルダ(_N)"
+
+#: ../plugins/filebrowser/gedit-file-browser-widget.c:819
+msgid "Add new empty folder"
+msgstr "新しい空のフォルダを追加します"
+
+#: ../plugins/filebrowser/gedit-file-browser-widget.c:821
+msgid "New F_ile"
+msgstr "新しいファイル(_I)"
+
+#: ../plugins/filebrowser/gedit-file-browser-widget.c:822
+msgid "Add new empty file"
+msgstr "新しい空のファイルを追加します"
+
+#: ../plugins/filebrowser/gedit-file-browser-widget.c:827
+msgid "_Rename"
+msgstr "名前の変更(_R)"
+
+#: ../plugins/filebrowser/gedit-file-browser-widget.c:828
+msgid "Rename selected file or folder"
+msgstr "選択したファイルやフォルダの名前を変更します"
+
+#: ../plugins/filebrowser/gedit-file-browser-widget.c:834
+msgid "_Previous Location"
+msgstr "前の場所(_P)"
+
+#: ../plugins/filebrowser/gedit-file-browser-widget.c:836
+msgid "Go to the previous visited location"
+msgstr "前に表示した場所へ戻ります"
+
+#: ../plugins/filebrowser/gedit-file-browser-widget.c:838
+msgid "_Next Location"
+msgstr "次の場所(_N)"
+
+#: ../plugins/filebrowser/gedit-file-browser-widget.c:839
+msgid "Go to the next visited location"
+msgstr "次に表示した場所へ進みます"
+
+#: ../plugins/filebrowser/gedit-file-browser-widget.c:840
+msgid "Re_fresh View"
+msgstr "表示の更新(_F)"
+
+#: ../plugins/filebrowser/gedit-file-browser-widget.c:841
+msgid "Refresh the view"
+msgstr "表示をリフレッシュします"
+
+#: ../plugins/filebrowser/gedit-file-browser-widget.c:842
+#: ../plugins/filebrowser/gedit-file-browser-widget.c:860
+msgid "_View Folder"
+msgstr "フォルダを開く(_V)"
+
+#: ../plugins/filebrowser/gedit-file-browser-widget.c:843
+#: ../plugins/filebrowser/gedit-file-browser-widget.c:861
+msgid "View folder in file manager"
+msgstr "指定したフォルダをファイル・マネージャで開きます"
+
+#: ../plugins/filebrowser/gedit-file-browser-widget.c:850
+msgid "Show _Hidden"
+msgstr "隠しファイル(_H)"
+
+#: ../plugins/filebrowser/gedit-file-browser-widget.c:851
+msgid "Show hidden files and folders"
+msgstr "隠しファイルやフォルダを表示します"
+
+#: ../plugins/filebrowser/gedit-file-browser-widget.c:853
+msgid "Show _Binary"
+msgstr "バイナリ(_B)"
+
+#: ../plugins/filebrowser/gedit-file-browser-widget.c:854
+msgid "Show binary files"
+msgstr "バイナリ・ファイルを表示します"
+
+#: ../plugins/filebrowser/gedit-file-browser-widget.c:986
+#: ../plugins/filebrowser/gedit-file-browser-widget.c:995
+#: ../plugins/filebrowser/gedit-file-browser-widget.c:1016
+msgid "Previous location"
+msgstr "前の場所"
+
+#: ../plugins/filebrowser/gedit-file-browser-widget.c:988
+msgid "Go to previous location"
+msgstr "前の場所へ戻ります"
+
+#: ../plugins/filebrowser/gedit-file-browser-widget.c:990
+#: ../plugins/filebrowser/gedit-file-browser-widget.c:1011
+msgid "Go to a previously opened location"
+msgstr "前に表示した場所へ戻ります"
+
+#: ../plugins/filebrowser/gedit-file-browser-widget.c:1007
+msgid "Next location"
+msgstr "次の場所"
+
+#: ../plugins/filebrowser/gedit-file-browser-widget.c:1009
+msgid "Go to next location"
+msgstr "次の場所へ進みます"
+
+#: ../plugins/filebrowser/gedit-file-browser-widget.c:1221
+msgid "_Match Filename"
+msgstr "ファイル名のフィルタ(_M)"
+
+#: ../plugins/filebrowser/gedit-file-browser-widget.c:2123
+#, c-format
+msgid "No mount object for mounted volume: %s"
+msgstr "マウントしたボリュームには何もありません: %s"
+
+#: ../plugins/filebrowser/gedit-file-browser-widget.c:2203
+#, c-format
+msgid "Could not open media: %s"
+msgstr "次のメディアを開けませんでした: %s"
+
+#: ../plugins/filebrowser/gedit-file-browser-widget.c:2250
+#, c-format
+msgid "Could not mount volume: %s"
+msgstr "次のボリュームをマウントできませんでした: %s"
+
+#. ex:ts=8:noet:
+#: ../plugins/modelines/modelines.gedit-plugin.desktop.in.h:1
+msgid "Emacs, Kate and Vim-style modelines support for gedit."
+msgstr "Emacs や Kate、Vim スタイルなモードラインの機能を gedit に提供します。"
+
+#: ../plugins/modelines/modelines.gedit-plugin.desktop.in.h:2
+msgid "Modelines"
+msgstr "モードライン"
+
+#: ../plugins/pythonconsole/pythonconsole.gedit-plugin.desktop.in.h:1
+msgid "Interactive Python console standing in the bottom panel"
+msgstr "ボトム・パネルに対話式の Python コンソールを開きます。"
+
+#: ../plugins/pythonconsole/pythonconsole.gedit-plugin.desktop.in.h:2
+#: ../plugins/pythonconsole/pythonconsole/__init__.py:50
+msgid "Python Console"
+msgstr "Python コンソール"
+
+#. ex:et:ts=4:
+#: ../plugins/pythonconsole/pythonconsole/config.ui.h:1
+msgid "C_ommand color:"
+msgstr "コマンドの色(_O):"
+
+#: ../plugins/pythonconsole/pythonconsole/config.ui.h:2
+msgid "_Error color:"
+msgstr "エラーの色(_E):"
+
+#. ex:ts=8:et:
+#: ../plugins/quickopen/quickopen/popup.py:35
+#: ../plugins/quickopen/quickopen.gedit-plugin.desktop.in.h:1
+msgid "Quick Open"
+msgstr "クイック・オープン"
+
+#: ../plugins/quickopen/quickopen/windowhelper.py:69
+msgid "Quick open"
+msgstr "クイック・オープン"
+
+#: ../plugins/quickopen/quickopen/windowhelper.py:70
+msgid "Quickly open documents"
+msgstr "ドキュメントを素早く開きます"
+
+#: ../plugins/quickopen/quickopen.gedit-plugin.desktop.in.h:2
+msgid "Quickly open files"
+msgstr "素早くファイルを開きます"
+
+#: ../plugins/snippets/snippets.gedit-plugin.desktop.in.h:1
+msgid "Insert often-used pieces of text in a fast way"
+msgstr "よく使用する文字列をすばやく挿入します。"
+
+#: ../plugins/snippets/snippets.gedit-plugin.desktop.in.h:2
+#: ../plugins/snippets/snippets/Document.py:58
+msgid "Snippets"
+msgstr "コード・スニペット"
+
+#: ../plugins/snippets/snippets/snippets.ui.h:2
+msgid "Activation"
+msgstr "アクティベーション"
+
+#: ../plugins/snippets/snippets/snippets.ui.h:3
+msgid "Create new snippet"
+msgstr "新しいスニペットを生成します"
+
+#: ../plugins/snippets/snippets/snippets.ui.h:4
+#: ../plugins/snippets/snippets/Manager.py:412
+msgid "Delete selected snippet"
+msgstr "選択したスニペットを削除します"
+
+#: ../plugins/snippets/snippets/snippets.ui.h:5
+msgid "Export selected snippets"
+msgstr "選択したスニペットを保存します"
+
+#: ../plugins/snippets/snippets/snippets.ui.h:6
+#: ../plugins/snippets/snippets/Manager.py:800
+msgid "Import snippets"
+msgstr "スニペットのインポート"
+
+#: ../plugins/snippets/snippets/snippets.ui.h:7
+msgid "S_hortcut key:"
+msgstr "ショートカット・キー(_H):"
+
+#: ../plugins/snippets/snippets/snippets.ui.h:8
+msgid "Shortcut key with which the snippet is activated"
+msgstr "スニペットを実行するためのショートカット・キーです"
+
+#. self['hbox_tab_trigger'].set_spacing(0)
+#: ../plugins/snippets/snippets/snippets.ui.h:9
+#: ../plugins/snippets/snippets/Manager.py:689
+msgid "Single word the snippet is activated with after pressing Tab"
+msgstr "スニペットを実行するために [Tab] キーを押下した後に入力する単語"
+
+# snippet=断片,抜粋,...
+# とりあえず訳してはおくがあやしい。動作を見るかコードを読む必要あり。
+#
+# (2006-02-22) T.Aihana
+# "snippet" (スニペット) はコード・エディタにある機能で
+# 従来の "コード補間" 機能を発展させたものです。
+# (例) http://www.microsoft.com/japan/msdn/vs05/vbasic/vbnet2005_preview.asp#vbnetwhidbey_updated%20v2_topic2				
+#: ../plugins/snippets/snippets/snippets.ui.h:10
+msgid "Snippets Manager"
+msgstr "スニペットの管理"
+
+#: ../plugins/snippets/snippets/snippets.ui.h:11
+msgid "_Drop targets:"
+msgstr "挿入する対象(_D):"
+
+#: ../plugins/snippets/snippets/snippets.ui.h:13
+msgid "_Snippets:"
+msgstr "スニペット(_S):"
+
+#: ../plugins/snippets/snippets/snippets.ui.h:14
+msgid "_Tab trigger:"
+msgstr "タブ(_T):"
+
+#: ../plugins/snippets/snippets/WindowHelper.py:130
+msgid "Manage _Snippets..."
+msgstr "スニペットの管理(_S)..."
+
+#: ../plugins/snippets/snippets/WindowHelper.py:131
+msgid "Manage snippets"
+msgstr "スニペットを管理します"
+
+# snippet=断片,抜粋,...
+# とりあえず訳してはおくがあやしい。動作を見るかコードを読む必要あり。
+#
+# (2006-02-22) T.Aihana
+# "snippet" (スニペット) はコード・エディタにある機能で
+# 従来の "コード補間" 機能を発展させたものです。
+# (例) http://www.microsoft.com/japan/msdn/vs05/vbasic/vbnet2005_preview.asp#vbnetwhidbey_updated%20v2_topic2				
+#: ../plugins/snippets/snippets/Manager.py:46
+msgid "Snippets archive"
+msgstr "スニペットのアーカイブ"
+
+#: ../plugins/snippets/snippets/Manager.py:71
+msgid "Add a new snippet..."
+msgstr "新しいスニペットの追加..."
+
+#: ../plugins/snippets/snippets/Manager.py:121
+msgid "Global"
+msgstr "全般"
+
+#: ../plugins/snippets/snippets/Manager.py:409
+msgid "Revert selected snippet"
+msgstr "選択したスニペットを戻します"
+
+#. self['hbox_tab_trigger'].set_spacing(3)
+#: ../plugins/snippets/snippets/Manager.py:682
+msgid ""
+"This is not a valid Tab trigger. Triggers can either contain letters or a "
+"single (non-alphanumeric) character like: {, [, etc."
+msgstr ""
+"これは [Tab] のトリガーとしては妥当ではありません。トリガーは文字または非英数"
+"文字(例: {, [ など) を一つだけ含めることができます。"
+
+#: ../plugins/snippets/snippets/Manager.py:779
+#, python-format
+msgid "The following error occurred while importing: %s"
+msgstr "インポートする際に次のエラーが発生しました: %s"
+
+#: ../plugins/snippets/snippets/Manager.py:786
+msgid "Import successfully completed"
+msgstr "インポートが完了しました"
+
+#: ../plugins/snippets/snippets/Manager.py:805
+#: ../plugins/snippets/snippets/Manager.py:891
+#: ../plugins/snippets/snippets/Manager.py:954
+msgid "All supported archives"
+msgstr "サポートしている全アーカイブ"
+
+#: ../plugins/snippets/snippets/Manager.py:806
+#: ../plugins/snippets/snippets/Manager.py:892
+#: ../plugins/snippets/snippets/Manager.py:955
+msgid "Gzip compressed archive"
+msgstr "Gzip 圧縮のアーカイブ"
+
+#: ../plugins/snippets/snippets/Manager.py:807
+#: ../plugins/snippets/snippets/Manager.py:893
+#: ../plugins/snippets/snippets/Manager.py:956
+msgid "Bzip2 compressed archive"
+msgstr "Bzip2 圧縮のアーカイブ"
+
+#: ../plugins/snippets/snippets/Manager.py:808
+msgid "Single snippets file"
+msgstr "単一のファイル"
+
+#: ../plugins/snippets/snippets/Manager.py:809
+#: ../plugins/snippets/snippets/Manager.py:895
+#: ../plugins/snippets/snippets/Manager.py:958
+msgid "All files"
+msgstr "すべてのファイル"
+
+#: ../plugins/snippets/snippets/Manager.py:821
+#, python-format
+msgid "The following error occurred while exporting: %s"
+msgstr "スニペットを保存する際にエラーが発生しました: %s"
+
+#: ../plugins/snippets/snippets/Manager.py:825
+msgid "Export successfully completed"
+msgstr "保存が完了しました"
+
+#. Ask if system snippets should also be exported
+#: ../plugins/snippets/snippets/Manager.py:865
+#: ../plugins/snippets/snippets/Manager.py:932
+msgid "Do you want to include selected <b>system</b> snippets in your export?"
+msgstr "選択した<b>システム</b>スニペットも一緒に保存しますか?"
+
+#: ../plugins/snippets/snippets/Manager.py:880
+#: ../plugins/snippets/snippets/Manager.py:950
+msgid "There are no snippets selected to be exported"
+msgstr "保存するスニペットがありません"
+
+#: ../plugins/snippets/snippets/Manager.py:885
+#: ../plugins/snippets/snippets/Manager.py:923
+msgid "Export snippets"
+msgstr "スニペットの保存"
+
+#: ../plugins/snippets/snippets/Manager.py:1062
+msgid "Type a new shortcut, or press Backspace to clear"
+msgstr "(新しいショートカットを入力してください/[BS]キーでクリア)"
+
+#: ../plugins/snippets/snippets/Manager.py:1064
+msgid "Type a new shortcut"
+msgstr "(新しいショートカットを入力してください)"
+
+#: ../plugins/snippets/snippets/Exporter.py:65
+#, python-format
+msgid "The archive \"%s\" could not be created"
+msgstr "アーカイブ \"%s\" を作成できませんでした"
+
+#: ../plugins/snippets/snippets/Exporter.py:82
+#, python-format
+msgid "Target directory \"%s\" does not exist"
+msgstr "対象ディレクトリ \"%s\" が存在しません"
+
+#: ../plugins/snippets/snippets/Exporter.py:85
+#, python-format
+msgid "Target directory \"%s\" is not a valid directory"
+msgstr "対象ディレクトリ \"%s\" は妥当なディレクトリではありません"
+
+#: ../plugins/snippets/snippets/Importer.py:29
+#: ../plugins/snippets/snippets/Importer.py:83
+#, python-format
+msgid "File \"%s\" does not exist"
+msgstr "ファイル \"%s\" は存在しませんでした"
+
+#: ../plugins/snippets/snippets/Importer.py:32
+#, python-format
+msgid "File \"%s\" is not a valid snippets file"
+msgstr "ファイル \"%s\" は妥当なスニペット・ファイルではありません"
+
+#: ../plugins/snippets/snippets/Importer.py:42
+#, python-format
+msgid "Imported file \"%s\" is not a valid snippets file"
+msgstr ""
+"インポートしたファイル \"%s\" は妥当なスニペット・ファイルではありません"
+
+#: ../plugins/snippets/snippets/Importer.py:52
+#, python-format
+msgid "The archive \"%s\" could not be extracted"
+msgstr "アーカイブ \"%s\" を解凍できませんでした"
+
+#: ../plugins/snippets/snippets/Importer.py:70
+#, python-format
+msgid "The following files could not be imported: %s"
+msgstr "次のファイルをインポートできませんでした: %s"
+
+#: ../plugins/snippets/snippets/Importer.py:86
+#: ../plugins/snippets/snippets/Importer.py:99
+#, python-format
+msgid "File \"%s\" is not a valid snippets archive"
+msgstr "ファイル \"%s\" は妥当なスニペット・アーカイブではありません"
+
+#: ../plugins/snippets/snippets/Placeholder.py:594
+#, python-format
+msgid ""
+"Execution of the Python command (%s) exceeds the maximum time, execution "
+"aborted."
+msgstr "Python コマンド (%s) の実行がタイムアウトしたので中止します"
+
+#: ../plugins/snippets/snippets/Placeholder.py:602
+#, python-format
+msgid "Execution of the Python command (%s) failed: %s"
+msgstr "Python コマンド (%s) の実行に失敗しました: %s"
+
+#: ../plugins/sort/gedit-sort-plugin.c:88
+msgid "S_ort..."
+msgstr "並び替え(_O)..."
+
+#: ../plugins/sort/gedit-sort-plugin.c:90
+msgid "Sort the current document or selection"
+msgstr "このドキュメントまたは選択範囲を並べ替えます"
+
+#: ../plugins/sort/sort.gedit-plugin.desktop.in.h:1
+#: ../plugins/sort/sort.ui.h:3
+msgid "Sort"
+msgstr "並び替え"
+
+#: ../plugins/sort/sort.gedit-plugin.desktop.in.h:2
+msgid "Sorts a document or selected text."
+msgstr "ドキュメントまたは選択した文字列を並べ替えます。"
+
+#: ../plugins/sort/sort.ui.h:1
+msgid "R_emove duplicates"
+msgstr "重複する部分を削除する(_E)"
+
+#: ../plugins/sort/sort.ui.h:2
+msgid "S_tart at column:"
+msgstr "開始行(_T):"
+
+#: ../plugins/sort/sort.ui.h:4
+msgid "You cannot undo a sort operation"
+msgstr "並び替えの操作をやり直すことはできません"
+
+#: ../plugins/sort/sort.ui.h:5
+msgid "_Ignore case"
+msgstr "大/小文字を区別する(_I)"
+
+#: ../plugins/sort/sort.ui.h:6
+msgid "_Reverse order"
+msgstr "逆順にする(_R)"
+
+#: ../plugins/sort/sort.ui.h:7
+msgid "_Sort"
+msgstr "並び替え(_S)"
+
+#. Translators: Displayed in the "Check Spelling" dialog if there are no suggestions for the current misspelled word
+#. Translators: Displayed in the "Check Spelling" dialog if there are no suggestions
+#. * for the current misspelled word
+#: ../plugins/spell/gedit-automatic-spell-checker.c:420
+#: ../plugins/spell/gedit-spell-checker-dialog.c:455
+msgid "(no suggested words)"
+msgstr "(単語の候補なし)"
+
+#: ../plugins/spell/gedit-automatic-spell-checker.c:444
+msgid "_More..."
+msgstr "詳細(_M)..."
+
+#. Ignore all
+#: ../plugins/spell/gedit-automatic-spell-checker.c:499
+msgid "_Ignore All"
+msgstr "すべて無視(_I)"
+
+#. + Add to Dictionary
+#: ../plugins/spell/gedit-automatic-spell-checker.c:514
+msgid "_Add"
+msgstr "追加(_A)"
+
+#: ../plugins/spell/gedit-automatic-spell-checker.c:553
+msgid "_Spelling Suggestions..."
+msgstr "スペルの提示(_S)..."
+
+#: ../plugins/spell/gedit-spell-checker-dialog.c:270
+msgid "Check Spelling"
+msgstr "スペル・チェック"
+
+#: ../plugins/spell/gedit-spell-checker-dialog.c:281
+msgid "Suggestions"
+msgstr "提示"
+
+#. Translators: Displayed in the "Check Spelling" dialog if the current word isn't misspelled
+#: ../plugins/spell/gedit-spell-checker-dialog.c:562
+msgid "(correct spelling)"
+msgstr "(正しいつづり)"
+
+#: ../plugins/spell/gedit-spell-checker-dialog.c:705
+msgid "Completed spell checking"
+msgstr "スペル・チェック完了"
+
+#. Translators: the first %s is the language name, and
+#. * the second %s is the locale name. Example:
+#. * "French (France)"
+#.
+#: ../plugins/spell/gedit-spell-checker-language.c:285
+#: ../plugins/spell/gedit-spell-checker-language.c:291
+#, c-format
+msgctxt "language"
+msgid "%s (%s)"
+msgstr "%s (%s)"
+
+#. Translators: this refers to an unknown language code
+#. * (one which isn't in our built-in list).
+#.
+#: ../plugins/spell/gedit-spell-checker-language.c:300
+#, c-format
+msgctxt "language"
+msgid "Unknown (%s)"
+msgstr "不明 (%s)"
+
+#. Translators: this refers the Default language used by the
+#. * spell checker
+#.
+#: ../plugins/spell/gedit-spell-checker-language.c:406
+msgctxt "language"
+msgid "Default"
+msgstr "デフォルト"
+
+#: ../plugins/spell/gedit-spell-language-dialog.c:141
+#: ../plugins/spell/languages-dialog.ui.h:2
+msgid "Set language"
+msgstr "言語の設定"
+
+#: ../plugins/spell/gedit-spell-language-dialog.c:196
+msgid "Languages"
+msgstr "言語"
+
+#: ../plugins/spell/gedit-spell-plugin.c:86
+msgid "_Check Spelling..."
+msgstr "スペル・チェック(_C)..."
+
+#: ../plugins/spell/gedit-spell-plugin.c:88
+msgid "Check the current document for incorrect spelling"
+msgstr "このドキュメントにある間違ったスペルをチェックします"
+
+#: ../plugins/spell/gedit-spell-plugin.c:94
+msgid "Set _Language..."
+msgstr "言語の設定(_L).."
+
+#: ../plugins/spell/gedit-spell-plugin.c:96
+msgid "Set the language of the current document"
+msgstr "このドキュメントの言語を設定します"
+
+#: ../plugins/spell/gedit-spell-plugin.c:105
+msgid "_Autocheck Spelling"
+msgstr "自動スペル・チェック(_A)"
+
+#: ../plugins/spell/gedit-spell-plugin.c:107
+msgid "Automatically spell-check the current document"
+msgstr "このドキュメントを自動的にスペルチェックします"
+
+#: ../plugins/spell/gedit-spell-plugin.c:752
+msgid "The document is empty."
+msgstr "ドキュメントは空です。"
+
+#: ../plugins/spell/gedit-spell-plugin.c:782
+msgid "No misspelled words"
+msgstr "スペルミスと思われる単語はありません"
+
+#: ../plugins/spell/languages-dialog.ui.h:1
+msgid "Select the _language of the current document."
+msgstr "このドキュメントの言語を選択してください(_L):"
+
+#: ../plugins/spell/spell-checker.ui.h:1
+msgid "Add w_ord"
+msgstr "単語の追加(_O)"
+
+#: ../plugins/spell/spell-checker.ui.h:2
+msgid "Cha_nge"
+msgstr "変更(_N)"
+
+#: ../plugins/spell/spell-checker.ui.h:3
+msgid "Change A_ll"
+msgstr "すべて変更(_L)"
+
+#: ../plugins/spell/spell-checker.ui.h:4
+msgid "Change _to:"
+msgstr "変更先(_T):"
+
+#: ../plugins/spell/spell-checker.ui.h:5
+msgid "Check _Word"
+msgstr "単語のチェック(_W)"
+
+#: ../plugins/spell/spell-checker.ui.h:6
+msgid "Check spelling"
+msgstr "スペルをチェックします"
+
+#: ../plugins/spell/spell-checker.ui.h:7
+msgid "Ignore _All"
+msgstr "すべて無視(_A)"
+
+#: ../plugins/spell/spell-checker.ui.h:8
+msgid "Language"
+msgstr "言語"
+
+#: ../plugins/spell/spell-checker.ui.h:9
+msgid "Language:"
+msgstr "言語:"
+
+#: ../plugins/spell/spell-checker.ui.h:10
+msgid "Misspelled word:"
+msgstr "スペルミスと思われる単語:"
+
+#: ../plugins/spell/spell-checker.ui.h:11
+msgid "User dictionary:"
+msgstr "ユーザ辞書:"
+
+#: ../plugins/spell/spell-checker.ui.h:12
+msgid "_Ignore"
+msgstr "無視(_I)"
+
+#: ../plugins/spell/spell-checker.ui.h:13
+msgid "_Suggestions:"
+msgstr "正解の候補(_S):"
+
+#: ../plugins/spell/spell-checker.ui.h:14
+msgid "word"
+msgstr "単語"
+
+#: ../plugins/spell/spell.gedit-plugin.desktop.in.h:1
+msgid "Checks the spelling of the current document."
+msgstr "このドキュメントのスペルをチェックします。"
+
+#: ../plugins/spell/spell.gedit-plugin.desktop.in.h:2
+msgid "Spell Checker"
+msgstr "スペル・チェッカ"
+
+#: ../plugins/taglist/gedit-taglist-plugin.c:98
+#: ../plugins/taglist/gedit-taglist-plugin-panel.c:694
+#: ../plugins/taglist/gedit-taglist-plugin-panel.c:710
+msgid "Tags"
+msgstr "タグ"
+
+#: ../plugins/taglist/gedit-taglist-plugin-panel.c:605
+msgid "Select the group of tags you want to use"
+msgstr "使用するタグのグループを選択してください"
+
+#: ../plugins/taglist/gedit-taglist-plugin-panel.c:624
+msgid "_Preview"
+msgstr "プレビュー(_P)"
+
+#: ../plugins/taglist/gedit-taglist-plugin-panel.c:691
+msgid "Available Tag Lists"
+msgstr "利用可能なタグの一覧"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:1
+msgid "Abbreviated form"
+msgstr "<ABBR> (略語/頭文字を表す)"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:2
+msgid "Abbreviation"
+msgstr "ABBR= (略語/頭文字を表す)"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:3
+msgid "Above"
+msgstr "<ABOVE> (上の枠だけを表示する)"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:4
+msgid "Accessibility key character"
+msgstr "<ACCESSKEY> (ショートカット・キーの割り当て)"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:5
+msgid "Acronym"
+msgstr "<ACRONYM> (略語/頭文字を表す)"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:6
+msgid "Align"
+msgstr "ALIGN= (配置する場所)"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:7
+msgid "Alignment character"
+msgstr "CHAR= (位置揃えする文字)"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:8
+msgid "Alternative"
+msgstr "ALT= (代替文字)"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:9
+msgid "Anchor"
+msgstr "<A> (アンカー)"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:10
+msgid "Anchor URI"
+msgstr "<A HREF=> (URI 付きアンカー)"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:11
+msgid "Applet class file code"
+msgstr "CODE= (アプレット・クラスのファイル)"
+
+#. Deprecated since HTML 4.01, not supported in XHTML 1.0 Strict DTD.
+#: ../plugins/taglist/HTML.tags.xml.in.h:13
+msgid "Applet class file code (deprecated)"
+msgstr "アプレットのクラス・ファイル (廃止)"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:14
+msgid "Array"
+msgstr "<ARRAY>"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:15
+msgid "Associated information"
+msgstr "CONTENT= (関連する情報)"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:16
+msgid "Author info"
+msgstr "<ADDRESS> (作者の情報)"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:17
+msgid "Axis related headers"
+msgstr "AXIS= "
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:18
+msgid "Background color"
+msgstr "BGCOLOR= (背景の色)"
+
+#. Deprecated since HTML 4.01, not supported in XHTML 1.0 Strict DTD.
+#: ../plugins/taglist/HTML.tags.xml.in.h:20
+msgid "Background color (deprecated)"
+msgstr "背景の色 (廃止)"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:21
+msgid "Background texture tile"
+msgstr "BACKGROUND= (背景画像)"
+
+#. Deprecated since HTML 4.01, not supported in XHTML 1.0 Strict DTD.
+#: ../plugins/taglist/HTML.tags.xml.in.h:23
+msgid "Background texture tile (deprecated)"
+msgstr "背景画像 (廃止)"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:24
+msgid "Base URI"
+msgstr "CODEBASE="
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:25
+msgid "Base font"
+msgstr "<BASEFONT> (基準となるフォント)"
+
+#. Deprecated since HTML 4.01, not supported in XHTML 1.0 Strict DTD.
+#: ../plugins/taglist/HTML.tags.xml.in.h:27
+msgid "Base font (deprecated)"
+msgstr "Base font (廃止)"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:28
+msgid "Bold"
+msgstr "太字"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:29
+msgid "Border"
+msgstr "BORDER= (画像の枠線)"
+
+#. Deprecated since HTML 4.01, not supported in XHTML 1.0 Strict DTD.
+#: ../plugins/taglist/HTML.tags.xml.in.h:31
+msgid "Border (deprecated)"
+msgstr "Border (廃止)"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:32
+msgid "Border color"
+msgstr "BORDERCOLOR= (枠線の色)"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:33
+msgid "Cell rowspan"
+msgstr "ROWSPAN= (セルの縦方向の連結)"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:34
+msgid "Center"
+msgstr "<CENTER> (中央揃え)"
+
+#. Deprecated since HTML 4.01, not supported in XHTML 1.0 Strict DTD.
+#: ../plugins/taglist/HTML.tags.xml.in.h:36
+msgid "Center (deprecated)"
+msgstr "Center (廃止)"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:37
+msgid "Character encoding of linked resource"
+msgstr "CHARSET= (文字コード)"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:38
+msgid "Checked (state)"
+msgstr "Checked (state)"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:39
+msgid "Checked state"
+msgstr "Checked state"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:40
+msgid "Citation"
+msgstr "<CITE>"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:41
+msgid "Cite reason for change"
+msgstr "CITE= "
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:42
+msgid "Class implementation ID"
+msgstr "CLASSID="
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:43
+msgid "Class list"
+msgstr "CLASS= (スタイルシートの属性)"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:44
+msgid "Clear text flow control"
+msgstr "CLEAR="
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:45
+msgid "Code content type"
+msgstr "CODETYPE="
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:46
+msgid "Color of selected links"
+msgstr "ALINK="
+
+#. Deprecated since HTML 4.01, not supported in XHTML 1.0 Strict DTD.
+#: ../plugins/taglist/HTML.tags.xml.in.h:48
+msgid "Color of selected links (deprecated)"
+msgstr "選択したリンクの色 (廃止)"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:49
+msgid "Column span"
+msgstr "COLSPAN="
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:50
+msgid "Columns"
+msgstr "COLS="
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:51
+msgid "Comment"
+msgstr "<!--  -->"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:52
+msgid "Computer code fragment"
+msgstr "<CODE>"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:53
+msgid "Content scheme"
+msgstr "SCHEME="
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:54
+msgid "Content type"
+msgstr "TYPE="
+
+#. The "type" attribute is deprecated for the "ol" tag only,
+#. since HTML 4.01, not supported in XHTML 1.0 Strict DTD.
+#: ../plugins/taglist/HTML.tags.xml.in.h:57
+msgid "Content type (deprecated)"
+msgstr "コンテンツの種類 (廃止)"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:58
+msgid "Coordinates"
+msgstr "COORDS="
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:59
+msgid "DIV Style container"
+msgstr "<DIV>"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:60
+msgid "DIV container"
+msgstr "<DIV>"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:61
+msgid "Date and time of change"
+msgstr "DATETIME="
+
+#. NOTE: used in "object" tag
+#: ../plugins/taglist/HTML.tags.xml.in.h:63
+msgid "Declare flag"
+msgstr "DECLARE"
+
+#. Translators: DEFER is an optional attribute of the <script> tag.
+#. It indicates that the script is not going to generate any document
+#. content. The browser can continue parsing and drawing the page.
+#: ../plugins/taglist/HTML.tags.xml.in.h:67
+msgid "Defer attribute"
+msgstr "Defer attribute"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:68
+msgid "Definition description"
+msgstr "<DD>"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:69
+msgid "Definition list"
+msgstr "<DL>"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:70
+msgid "Definition term"
+msgstr "<DT>"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:71
+msgid "Deleted text"
+msgstr "<DEL>"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:72
+msgid "Direction"
+msgstr "DIRECTION="
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:73
+msgid "Directionality"
+msgstr "DIR="
+
+#. Deprecated since HTML 4.01, not supported in XHTML 1.0 Strict DTD.
+#: ../plugins/taglist/HTML.tags.xml.in.h:75
+msgid "Directionality (deprecated)"
+msgstr "Directionality (廃止)"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:76
+msgid "Directory list"
+msgstr "<DIR>"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:77
+msgid "Disabled"
+msgstr "DISABLED"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:78
+msgid "Document base"
+msgstr "<BASE>"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:79
+msgid "Document body"
+msgstr "<BODY> (ドキュメントの本文)"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:80
+msgid "Document head"
+msgstr "<HEAD> (ドキュメントのヘッダ)"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:81
+msgid "Document title"
+msgstr "<TITLE> (ドキュメントのタイトル)"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:82
+msgid "Document type"
+msgstr "<IDOCTYPE> (ドキュメントの種類)"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:83
+msgid "Element ID"
+msgstr "ID="
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:84
+msgid "Embedded object"
+msgstr "<EMBED>"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:85
+#: ../plugins/taglist/Latex.tags.xml.in.h:9
+msgid "Emphasis"
+msgstr "<EM> (文字の強調)"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:86
+msgid "Encode type"
+msgstr "ENCTYPE="
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:87
+msgid "Figure"
+msgstr "<FIG>"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:88
+msgid "Font face"
+msgstr "FACE="
+
+#. Deprecated since HTML 4.01, not supported in XHTML 1.0 Strict DTD.
+#: ../plugins/taglist/HTML.tags.xml.in.h:90
+msgid "Font face (deprecated)"
+msgstr "Font face (廃止)"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:91
+msgid "For label"
+msgstr "FOR="
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:92
+msgid "Forced line break"
+msgstr "<BR>"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:93
+msgid "Form"
+msgstr "<FORM>"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:94
+msgid "Form action handler"
+msgstr "ACTION="
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:95
+msgid "Form control group"
+msgstr "<FIELDSET>"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:96
+msgid "Form field label text"
+msgstr "<LABEL>"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:97
+msgid "Form input"
+msgstr "<INPUT>"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:98
+msgid "Form input type"
+msgstr "<INPUT TYPE=>"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:99
+msgid "Form method"
+msgstr "<FORM METHOD=>"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:100
+msgid "Forward link"
+msgstr "REL=<"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:101
+msgid "Frame"
+msgstr "<FRAME>"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:102
+msgid "Frame border"
+msgstr "frame の枠"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:103
+msgid "Frame render parts"
+msgstr "FRAME="
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:104
+msgid "Frame source"
+msgstr "<FRAME SRC=>"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:105
+msgid "Frame spacing"
+msgstr "frame 間隔"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:106
+msgid "Frame target"
+msgstr "TARGET="
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:107
+msgid "Frameborder"
+msgstr "FRAMEBORDER="
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:108
+msgid "Frameset"
+msgstr "<FRAMESET>"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:109
+msgid "Frameset columns"
+msgstr "<FRAMESET COLS=>"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:110
+msgid "Frameset rows"
+msgstr "<FRAMESET ROWS=>"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:111
+msgid "Framespacing"
+msgstr "FRAMESPACING="
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:112
+msgid "Generic embedded object"
+msgstr "<OBJECT>"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:113
+msgid "Generic metainformation"
+msgstr "<META>"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:114
+msgid "Generic span"
+msgstr "<SPAN>"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:115
+msgid "HREF URI"
+msgstr "HREF="
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:116
+msgid "HTML - Special Characters"
+msgstr "HTML - 特殊文字"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:117
+msgid "HTML - Tags"
+msgstr "HTML - タグ"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:118
+msgid "HTML root element"
+msgstr "<HTML>"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:119
+msgid "HTML version"
+msgstr "VERSION="
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:120
+msgid "HTTP header name"
+msgstr "HTTP-EQUIV="
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:121
+msgid "Header cell IDs"
+msgstr ""
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:122
+msgid "Heading"
+msgstr "<H>"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:123
+msgid "Heading 1"
+msgstr "<H1>"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:124
+msgid "Heading 2"
+msgstr "<H2>"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:125
+msgid "Heading 3"
+msgstr "<H3>"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:126
+msgid "Heading 4"
+msgstr "<H4>"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:127
+msgid "Heading 5"
+msgstr "<H5>"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:128
+msgid "Heading 6"
+msgstr "<H6>"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:129
+msgid "Height"
+msgstr "HEIGHT="
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:130
+msgid "Horizontal rule"
+msgstr "<HR>"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:131
+msgid "Horizontal space"
+msgstr "HSPACE="
+
+#. Deprecated since HTML 4.01, not supported in XHTML 1.0 Strict DTD.
+#: ../plugins/taglist/HTML.tags.xml.in.h:133
+msgid "Horizontal space (deprecated)"
+msgstr "Horizontal space (廃止)"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:134
+msgid "I18N BiDi override"
+msgstr ""
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:135
+msgid "Image"
+msgstr "<IMG>"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:136
+msgid "Image map"
+msgstr "<MAP>"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:137
+msgid "Image map area"
+msgstr "<AREA>"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:138
+msgid "Image map name"
+msgstr "<MAP NAME=>"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:139
+msgid "Image source"
+msgstr "<IMG SRC=>"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:140
+msgid "Inline frame"
+msgstr "<IFRAME>"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:141
+msgid "Inline layer"
+msgstr "<ILAYER>"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:142
+msgid "Inserted text"
+msgstr "<INS>"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:143
+msgid "Instance definition"
+msgstr "<DFN>"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:144
+msgid "Italic text"
+msgstr "<I>"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:145
+msgid "Java applet"
+msgstr "<APPLET>"
+
+#. Deprecated since HTML 4.01, not supported in XHTML 1.0 Strict DTD.
+#: ../plugins/taglist/HTML.tags.xml.in.h:147
+msgid "Java applet (deprecated)"
+msgstr "Java アプレット (廃止)"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:148
+msgid "Label"
+msgstr "LABEL="
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:149
+msgid "Language code"
+msgstr "HREFLANG="
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:150
+msgid "Large text style"
+msgstr "<BIG>"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:151
+msgid "Layer"
+msgstr "<LAYER>"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:152
+msgid "Link color"
+msgstr "LINK="
+
+#. Deprecated since HTML 4.01, not supported in XHTML 1.0 Strict DTD.
+#: ../plugins/taglist/HTML.tags.xml.in.h:154
+msgid "Link color (deprecated)"
+msgstr "リンクの色 (廃止)"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:155
+msgid "List item"
+msgstr "<LI>"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:156
+msgid "List of MIME types for file upload"
+msgstr "ACCEPT="
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:157
+msgid "List of supported character sets"
+msgstr "CCEPT-CHARSET="
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:158
+msgid "Listing"
+msgstr "<LISTING>"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:159
+msgid "Local change to font"
+msgstr "<FONT>"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:160
+msgid "Long description link"
+msgstr "LONGDESC="
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:161
+msgid "Long quotation"
+msgstr "<BLOCKQUOTE>"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:162
+msgid "Mail link"
+msgstr "MAILTO="
+
+#. Supported in XHTML 1.0 Frameset DTD only.
+#: ../plugins/taglist/HTML.tags.xml.in.h:164
+msgid "Margin pixel height"
+msgstr "MARGINHEIGHT="
+
+#. Supported in XHTML 1.0 Frameset DTD only.
+#: ../plugins/taglist/HTML.tags.xml.in.h:166
+msgid "Margin pixel width"
+msgstr "MARGINWIDTH="
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:167
+msgid "Marquee"
+msgstr "<MARQUEE>"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:168
+msgid "Maximum length of text field"
+msgstr "MAXLENGTH="
+
+#. Here I take some liberties: There's no mandatory attributes,
+#. but those are most common, and will likely be used.
+#: ../plugins/taglist/HTML.tags.xml.in.h:171
+msgid "Media-independent link"
+msgstr "<LINK>"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:172
+msgid "Menu list"
+msgstr "<MENU>"
+
+#. Deprecated since HTML 4.01, not supported in XHTML 1.0 Strict DTD.
+#: ../plugins/taglist/HTML.tags.xml.in.h:174
+msgid "Menu list (deprecated)"
+msgstr "Menu list (廃止)"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:175
+msgid "Multi-line text field"
+msgstr "<TEXTAREA>"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:176
+msgid "Multicolumn"
+msgstr "<MULTICOL>"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:177
+msgid "Multiple"
+msgstr "MULTIPLE"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:178
+msgid "Name"
+msgstr "NAME="
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:179
+msgid "Named property value"
+msgstr "<PARAM>"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:180
+msgid "Next ID"
+msgstr "<NEXTID>"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:181
+msgid "No URI"
+msgstr "NOHREF"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:182
+msgid "No embedded objects"
+msgstr "<NOEMBED>"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:183
+msgid "No frames"
+msgstr "<NOFRAMES>"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:184
+msgid "No layers"
+msgstr "<NOLAYER>"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:185
+msgid "No line break"
+msgstr "<NOBR>"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:186
+msgid "No resize"
+msgstr "NORESIZE"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:187
+msgid "No script"
+msgstr "<NOSCRIPT>"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:188
+msgid "No shade"
+msgstr "NOSHADE"
+
+#. Deprecated since HTML 4.01, not supported in XHTML 1.0 Strict DTD.
+#: ../plugins/taglist/HTML.tags.xml.in.h:190
+msgid "No shade (deprecated)"
+msgstr "No shade (廃止)"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:191
+msgid "No word wrap"
+msgstr "NOWRAP"
+
+#. Deprecated since HTML 4.01, not supported in XHTML 1.0 Strict DTD.
+#: ../plugins/taglist/HTML.tags.xml.in.h:193
+msgid "No word wrap (deprecated)"
+msgstr "No word wrap (廃止)"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:194
+msgid "Non-breaking space"
+msgstr "Non-breaking space"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:195
+msgid "Note"
+msgstr "<NOTE>"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:196
+msgid "Object applet file"
+msgstr "OBJECT="
+
+#. Deprecated since HTML 4.01, not supported in XHTML 1.0 Strict DTD.
+#: ../plugins/taglist/HTML.tags.xml.in.h:198
+msgid "Object applet file (deprecated)"
+msgstr "Object applet file (廃止)"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:199
+msgid "Object data reference"
+msgstr "DATA="
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:200
+msgid "Offset for alignment character"
+msgstr "CHAROFF="
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:201
+msgid "OnBlur event"
+msgstr "ONBLUR="
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:202
+msgid "OnChange event"
+msgstr "ONCHANGE="
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:203
+msgid "OnClick event"
+msgstr "ONCLICK="
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:204
+msgid "OnDblClick event"
+msgstr "ONDBLCLICK="
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:205
+msgid "OnFocus event"
+msgstr "ONFOCUS="
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:206
+msgid "OnKeyDown event"
+msgstr "ONKEYDOWN="
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:207
+msgid "OnKeyPress event"
+msgstr "ONKEYPRESS="
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:208
+msgid "OnKeyUp event"
+msgstr "ONKEYUP="
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:209
+msgid "OnLoad event"
+msgstr "ONLOAD="
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:210
+msgid "OnMouseDown event"
+msgstr "ONMOUSEDOWN="
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:211
+msgid "OnMouseMove event"
+msgstr "ONMOUSEMOVE="
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:212
+msgid "OnMouseOut event"
+msgstr "ONMOUSEOUT="
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:213
+msgid "OnMouseOver event"
+msgstr "ONMOUSEOVER="
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:214
+msgid "OnMouseUp event"
+msgstr "ONMOUSEUP="
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:215
+msgid "OnReset event"
+msgstr "ONRESET="
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:216
+msgid "OnSelect event"
+msgstr "ONSELECT="
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:217
+msgid "OnSubmit event"
+msgstr "ONSUBMIT="
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:218
+msgid "OnUnload event"
+msgstr "ONUNLOAD="
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:219
+msgid "Option group"
+msgstr "<OPTGROUP>"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:220
+msgid "Option selector"
+msgstr "<SELECT>"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:221
+msgid "Ordered list"
+msgstr "<OL>"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:222
+msgid "Output media"
+msgstr "MEDIA="
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:223
+msgid "Paragraph"
+msgstr "<P>"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:224
+msgid "Paragraph class"
+msgstr "<P CLASS=>"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:225
+msgid "Paragraph style"
+msgstr "<P STYLE=>"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:226
+msgid "Preformatted listing"
+msgstr "<XMP>"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:227
+msgid "Preformatted text"
+msgstr "<PRE>"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:228
+msgid "Profile metainfo dictionary"
+msgstr "PROFILE="
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:229
+msgid "Prompt message"
+msgstr "PROMPT="
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:230
+msgid "Push button"
+msgstr "<BUTTON>"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:231
+msgid "Quote"
+msgstr "<QUOTE>"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:232
+msgid "Range"
+msgstr "<RANGE>"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:233
+msgid "ReadOnly text and password"
+msgstr "READONLY"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:234
+msgid "Reduced spacing"
+msgstr "COMPACT"
+
+#. Deprecated since HTML 4.01, not supported in XHTML 1.0 Strict DTD.
+#: ../plugins/taglist/HTML.tags.xml.in.h:236
+msgid "Reduced spacing (deprecated)"
+msgstr "Reduced spacing (廃止)"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:237
+msgid "Reverse link"
+msgstr "REV="
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:238
+msgid "Root"
+msgstr "<ROOT>"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:239
+msgid "Rows"
+msgstr "ROWS="
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:240
+msgid "Rulings between rows and columns"
+msgstr "RULES="
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:241
+msgid "Sample program output, scripts"
+msgstr "<SAMP>"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:242
+msgid "Scope covered by header cells"
+msgstr "SCOPE="
+
+#. Deprecated since HTML 4.01, not supported in XHTML 1.0 Strict DTD.
+#: ../plugins/taglist/HTML.tags.xml.in.h:244
+msgid "Script language name"
+msgstr "LANGUAGE"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:245
+msgid "Script statements"
+msgstr "スクリプト"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:246
+msgid "Scrollbar"
+msgstr "SCROLLING="
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:247
+msgid "Selectable option"
+msgstr "<OPTION>"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:248
+msgid "Selected"
+msgstr "SELECTED"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:249
+msgid "Server-side image map"
+msgstr "ISMAP"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:250
+msgid "Shape"
+msgstr "SHAPE="
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:251
+msgid "Short inline quotation"
+msgstr "<Q>"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:252
+msgid "Single line prompt"
+msgstr "<ISINDEX>"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:253
+msgid "Size"
+msgstr "SIZE="
+
+#. Deprecated since HTML 4.01, not supported in XHTML 1.0 Strict DTD.
+#: ../plugins/taglist/HTML.tags.xml.in.h:255
+msgid "Size (deprecated)"
+msgstr "Size (廃止)"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:256
+msgid "Small text style"
+msgstr "<SMALL>"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:257
+msgid "Soft line break"
+msgstr "<WBR>"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:258
+msgid "Sound"
+msgstr "<SOUND>"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:259
+msgid "Source"
+msgstr "ソース"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:260
+msgid "Space-separated archive list"
+msgstr ""
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:261
+msgid "Spacer"
+msgstr "<SPACER>"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:262
+msgid "Spacing between cells"
+msgstr "CELLSPACING="
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:263
+msgid "Spacing within cells"
+msgstr "CELLPADDING="
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:264
+msgid "Span"
+msgstr "SPAN"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:265
+msgid "Square root"
+msgstr "<SQRT>"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:266
+msgid "Standby load message"
+msgstr ""
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:267
+msgid "Starting sequence number"
+msgstr "START"
+
+#. Deprecated since HTML 4.01, not supported in XHTML 1.0 Strict DTD.
+#: ../plugins/taglist/HTML.tags.xml.in.h:269
+msgid "Starting sequence number (deprecated)"
+msgstr "Starting sequence number (廃止)"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:270
+msgid "Strike-through text"
+msgstr "<STRIKE>"
+
+#. Deprecated since HTML 4.01, not supported in XHTML 1.0 Strict DTD.
+#: ../plugins/taglist/HTML.tags.xml.in.h:272
+msgid "Strike-through text (deprecated)"
+msgstr "文字列の打ち消し線 (廃止)"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:273
+msgid "Strike-through text style"
+msgstr "<S>"
+
+#. Deprecated since HTML 4.01, not supported in XHTML 1.0 Strict DTD.
+#: ../plugins/taglist/HTML.tags.xml.in.h:275
+msgid "Strike-through text style (deprecated)"
+msgstr "文字列の打ち消し線のスタイル (廃止)"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:276
+msgid "Strong emphasis"
+msgstr "<STRONG>"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:277
+msgid "Style info"
+msgstr "<STYLE>"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:278
+msgid "Subscript"
+msgstr "<SUB>"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:279
+msgid "Superscript"
+msgstr "<SUP>"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:280
+msgid "Tab order position"
+msgstr "TABINDEX="
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:281
+msgid "Table"
+msgstr "<TABLE>"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:282
+msgid "Table body"
+msgstr "<TBODY>"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:283
+msgid "Table caption"
+msgstr "<CAPTION>"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:284
+msgid "Table column group properties"
+msgstr "<COLGROUP>"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:285
+msgid "Table column properties"
+msgstr "<COL>"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:286
+msgid "Table data cell"
+msgstr "<TD>"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:287
+msgid "Table footer"
+msgstr "<TFOOT>"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:288
+msgid "Table header"
+msgstr "<TH>"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:289
+msgid "Table header cell"
+msgstr "<TH>"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:290
+msgid "Table row"
+msgstr "<TR>"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:291
+msgid "Table summary"
+msgstr "SUMMARY="
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:292
+msgid "Target - Blank"
+msgstr "<A TARGET=>"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:293
+msgid "Target - Parent"
+msgstr "<A TARGET=\"_parent\">"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:294
+msgid "Target - Self"
+msgstr "<A TARGET=\"_self\">"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:295
+msgid "Target - Top"
+msgstr "<A TARGET=\"_top\">"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:296
+msgid "Teletype or monospace text style"
+msgstr "<TT>"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:297
+msgid "Text"
+msgstr "<TEXT>"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:298
+msgid "Text color"
+msgstr "COLOR="
+
+#. Deprecated since HTML 4.01, not supported in XHTML 1.0 Strict DTD.
+#: ../plugins/taglist/HTML.tags.xml.in.h:300
+msgid "Text color (deprecated)"
+msgstr "文字列の色 (廃止)"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:301
+msgid "Text entered by user"
+msgstr "<KBD>"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:302
+msgid "Title"
+msgstr "TITLE="
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:303
+msgid "Top margin in pixels"
+msgstr ""
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:304
+msgid "URL"
+msgstr "URL="
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:305
+msgid "Underlined text style"
+msgstr "<U>"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:306
+msgid "Unordered list"
+msgstr "<UL>"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:307
+msgid "Use image map"
+msgstr "USEMAP="
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:308
+msgid "Value"
+msgstr "VALUE="
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:309
+msgid "Value interpretation"
+msgstr "VALUETYPE="
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:310
+msgid "Variable or program argument"
+msgstr "<VAR>"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:311
+msgid "Vertical cell alignment"
+msgstr "VALIGN="
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:312
+msgid "Vertical space"
+msgstr "VSPACE="
+
+#. Deprecated since HTML 4.01, not supported in XHTML 1.0 Strict DTD.
+#: ../plugins/taglist/HTML.tags.xml.in.h:314
+msgid "Vertical space (deprecated)"
+msgstr "Vertical space (廃止)"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:315
+msgid "Visited link color"
+msgstr "VLINK="
+
+#. Deprecated since HTML 4.01, not supported in XHTML 1.0 Strict DTD.
+#: ../plugins/taglist/HTML.tags.xml.in.h:317
+msgid "Visited link color (deprecated)"
+msgstr "Visited link color (廃止)"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:318
+msgid "Width"
+msgstr "WIDTH="
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:319
+msgid "XHTML 1.0 - Tags"
+msgstr "XHTML 1.0 - タグ"
+
+#: ../plugins/taglist/Latex.tags.xml.in.h:1
+msgid "Bibliography (cite)"
+msgstr "Bibliography (cite)"
+
+#: ../plugins/taglist/Latex.tags.xml.in.h:2
+msgid "Bibliography (item)"
+msgstr "Bibliography (item)"
+
+#: ../plugins/taglist/Latex.tags.xml.in.h:3
+msgid "Bibliography (shortcite)"
+msgstr "Bibliography (shortcite)"
+
+#: ../plugins/taglist/Latex.tags.xml.in.h:4
+msgid "Bibliography (thebibliography)"
+msgstr "Bibliography (thebibliography)"
+
+#: ../plugins/taglist/Latex.tags.xml.in.h:5
+msgid "Brackets ()"
+msgstr "カッコ ()"
+
+#: ../plugins/taglist/Latex.tags.xml.in.h:6
+msgid "Brackets <>"
+msgstr "カッコ <>"
+
+#: ../plugins/taglist/Latex.tags.xml.in.h:7
+msgid "Brackets []"
+msgstr "カッコ []"
+
+#: ../plugins/taglist/Latex.tags.xml.in.h:8
+msgid "Brackets {}"
+msgstr "カッコ {}"
+
+#: ../plugins/taglist/Latex.tags.xml.in.h:10
+msgid "File input"
+msgstr "ファイル入力"
+
+#: ../plugins/taglist/Latex.tags.xml.in.h:11
+msgid "Footnote"
+msgstr "注釈"
+
+#: ../plugins/taglist/Latex.tags.xml.in.h:12
+msgid "Function cosine"
+msgstr "関数 cosine"
+
+#: ../plugins/taglist/Latex.tags.xml.in.h:13
+msgid "Function e^"
+msgstr "関数 e^"
+
+#: ../plugins/taglist/Latex.tags.xml.in.h:14
+msgid "Function exp"
+msgstr "関数 exp"
+
+#: ../plugins/taglist/Latex.tags.xml.in.h:15
+msgid "Function log"
+msgstr "関数 log"
+
+#: ../plugins/taglist/Latex.tags.xml.in.h:16
+msgid "Function log10"
+msgstr "関数 log10"
+
+#: ../plugins/taglist/Latex.tags.xml.in.h:17
+msgid "Function sine"
+msgstr "関数 sine"
+
+#: ../plugins/taglist/Latex.tags.xml.in.h:18
+msgid "Greek alpha"
+msgstr "ギリシア文字 α"
+
+#: ../plugins/taglist/Latex.tags.xml.in.h:19
+msgid "Greek beta"
+msgstr "ギリシア文字 β"
+
+#: ../plugins/taglist/Latex.tags.xml.in.h:20
+msgid "Greek epsilon"
+msgstr "ギリシア文字 ε"
+
+#: ../plugins/taglist/Latex.tags.xml.in.h:21
+msgid "Greek gamma"
+msgstr "ギリシア文字 γ"
+
+#: ../plugins/taglist/Latex.tags.xml.in.h:22
+msgid "Greek lambda"
+msgstr "ギリシア文字 λ"
+
+#: ../plugins/taglist/Latex.tags.xml.in.h:23
+msgid "Greek rho"
+msgstr "ギリシア文字 ρ"
+
+#: ../plugins/taglist/Latex.tags.xml.in.h:24
+msgid "Greek tau"
+msgstr "ギリシア文字 τ"
+
+#: ../plugins/taglist/Latex.tags.xml.in.h:25
+msgid "Header 0 (chapter)"
+msgstr "ヘッダ 0 (chapter)"
+
+#: ../plugins/taglist/Latex.tags.xml.in.h:26
+msgid "Header 0 (chapter*)"
+msgstr "ヘッダ 0 (chpter*)"
+
+#: ../plugins/taglist/Latex.tags.xml.in.h:27
+msgid "Header 1 (section)"
+msgstr "ヘッダ 1 (section)"
+
+#: ../plugins/taglist/Latex.tags.xml.in.h:28
+msgid "Header 1 (section*)"
+msgstr "ヘッダ 1 (section*)"
+
+#: ../plugins/taglist/Latex.tags.xml.in.h:29
+msgid "Header 2 (subsection)"
+msgstr "ヘッダ 2 (subsection)"
+
+#: ../plugins/taglist/Latex.tags.xml.in.h:30
+msgid "Header 2 (subsection*)"
+msgstr "ヘッダ 2 (subsection*)"
+
+#: ../plugins/taglist/Latex.tags.xml.in.h:31
+msgid "Header 3 (subsubsection)"
+msgstr "ヘッダ 3 (subsubsection)"
+
+#: ../plugins/taglist/Latex.tags.xml.in.h:32
+msgid "Header 3 (subsubsection*)"
+msgstr "ヘッダ 3 (subsubsection*)"
+
+#: ../plugins/taglist/Latex.tags.xml.in.h:33
+msgid "Header 4 (paragraph)"
+msgstr "ヘッダ 4 (paragraph)"
+
+#: ../plugins/taglist/Latex.tags.xml.in.h:34
+msgid "Header appendix"
+msgstr "ヘッダの目次"
+
+#: ../plugins/taglist/Latex.tags.xml.in.h:35
+msgid "Item"
+msgstr "アイテム"
+
+#: ../plugins/taglist/Latex.tags.xml.in.h:36
+msgid "Item with label"
+msgstr "ラベル付きアイテム"
+
+#: ../plugins/taglist/Latex.tags.xml.in.h:37
+msgid "Latex - Tags"
+msgstr "Latex - タグ"
+
+#: ../plugins/taglist/Latex.tags.xml.in.h:38
+msgid "List description"
+msgstr "List description"
+
+#: ../plugins/taglist/Latex.tags.xml.in.h:39
+msgid "List enumerate"
+msgstr "List enumerate"
+
+#: ../plugins/taglist/Latex.tags.xml.in.h:40
+msgid "List itemize"
+msgstr "List itemize"
+
+#: ../plugins/taglist/Latex.tags.xml.in.h:41
+msgid "Maths (display)"
+msgstr "数式 (display)"
+
+#: ../plugins/taglist/Latex.tags.xml.in.h:42
+msgid "Maths (inline)"
+msgstr "数式 (inline)"
+
+#: ../plugins/taglist/Latex.tags.xml.in.h:43
+msgid "Operator fraction"
+msgstr "Operator fraction"
+
+#: ../plugins/taglist/Latex.tags.xml.in.h:44
+msgid "Operator integral (display)"
+msgstr "Operator integral (display)"
+
+#: ../plugins/taglist/Latex.tags.xml.in.h:45
+msgid "Operator integral (inline)"
+msgstr "Operator integral (inline)"
+
+#: ../plugins/taglist/Latex.tags.xml.in.h:46
+msgid "Operator sum (display)"
+msgstr "Operator sum (display)"
+
+#: ../plugins/taglist/Latex.tags.xml.in.h:47
+msgid "Operator sum (inline)"
+msgstr "Operator sum (inline)"
+
+#: ../plugins/taglist/Latex.tags.xml.in.h:48
+msgid "Reference label"
+msgstr "Reference label"
+
+#: ../plugins/taglist/Latex.tags.xml.in.h:49
+msgid "Reference ref"
+msgstr "Reference ref"
+
+#: ../plugins/taglist/Latex.tags.xml.in.h:50
+msgid "Symbol <<"
+msgstr "記号 <"
+
+#: ../plugins/taglist/Latex.tags.xml.in.h:51
+msgid "Symbol <="
+msgstr "記号 <="
+
+#: ../plugins/taglist/Latex.tags.xml.in.h:52
+msgid "Symbol >="
+msgstr "記号 >="
+
+#: ../plugins/taglist/Latex.tags.xml.in.h:53
+msgid "Symbol >>"
+msgstr "記号 >>"
+
+#: ../plugins/taglist/Latex.tags.xml.in.h:54
+msgid "Symbol and"
+msgstr "記号 and"
+
+#: ../plugins/taglist/Latex.tags.xml.in.h:55
+msgid "Symbol const"
+msgstr "記号 const"
+
+#: ../plugins/taglist/Latex.tags.xml.in.h:56
+msgid "Symbol d-by-dt"
+msgstr "記号 d-by-dt"
+
+#: ../plugins/taglist/Latex.tags.xml.in.h:57
+msgid "Symbol d-by-dt-partial"
+msgstr "記号 d-by-dt-partial"
+
+#: ../plugins/taglist/Latex.tags.xml.in.h:58
+msgid "Symbol d2-by-dt2-partial"
+msgstr "記号 d2-by-dt2-partial"
+
+#: ../plugins/taglist/Latex.tags.xml.in.h:59
+msgid "Symbol dagger"
+msgstr "記号 dagger"
+
+#: ../plugins/taglist/Latex.tags.xml.in.h:60
+msgid "Symbol em-dash ---"
+msgstr "記号 em-dash ---"
+
+#: ../plugins/taglist/Latex.tags.xml.in.h:61
+msgid "Symbol en-dash --"
+msgstr "記号 en-dash --"
+
+#: ../plugins/taglist/Latex.tags.xml.in.h:62
+msgid "Symbol equiv"
+msgstr "記号 equiv"
+
+#: ../plugins/taglist/Latex.tags.xml.in.h:63
+msgid "Symbol infinity"
+msgstr "記号 infinity"
+
+#: ../plugins/taglist/Latex.tags.xml.in.h:64
+msgid "Symbol mathspace ,"
+msgstr "記号 mathspace ,"
+
+#: ../plugins/taglist/Latex.tags.xml.in.h:65
+msgid "Symbol mathspace ."
+msgstr "記号 mathspace ."
+
+#: ../plugins/taglist/Latex.tags.xml.in.h:66
+msgid "Symbol mathspace _"
+msgstr "記号 mathspace _"
+
+#: ../plugins/taglist/Latex.tags.xml.in.h:67
+msgid "Symbol mathspace __"
+msgstr "記号 mathspace __"
+
+#: ../plugins/taglist/Latex.tags.xml.in.h:68
+msgid "Symbol simeq"
+msgstr "記号 simeq"
+
+#: ../plugins/taglist/Latex.tags.xml.in.h:69
+msgid "Symbol star"
+msgstr "記号 star"
+
+#: ../plugins/taglist/Latex.tags.xml.in.h:70
+msgid "Typeface bold"
+msgstr "Typeface bold"
+
+#: ../plugins/taglist/Latex.tags.xml.in.h:71
+msgid "Typeface italic"
+msgstr "Typeface italic"
+
+#: ../plugins/taglist/Latex.tags.xml.in.h:72
+msgid "Typeface slanted"
+msgstr "Typeface slanted"
+
+#: ../plugins/taglist/Latex.tags.xml.in.h:73
+msgid "Typeface type"
+msgstr "Typeface type"
+
+#: ../plugins/taglist/Latex.tags.xml.in.h:74
+msgid "Unbreakable text"
+msgstr "Unbreakable text"
+
+#: ../plugins/taglist/taglist.gedit-plugin.desktop.in.h:1
+msgid ""
+"Provides a method to easily insert commonly used tags/strings into a "
+"document without having to type them."
+msgstr ""
+"よく利用するタグや文字列をキーボードを使わずにドキュメントに挿入する機能を提"
+"供します。"
+
+#: ../plugins/taglist/taglist.gedit-plugin.desktop.in.h:2
+msgid "Tag list"
+msgstr "タグの一覧"
+
+#: ../plugins/taglist/XSLT.tags.xml.in.h:1
+msgid "XSLT - Axes"
+msgstr "XSLT - Axes"
+
+#: ../plugins/taglist/XSLT.tags.xml.in.h:2
+msgid "XSLT - Elements"
+msgstr "XSLT - 要素"
+
+#: ../plugins/taglist/XSLT.tags.xml.in.h:3
+msgid "XSLT - Functions"
+msgstr "XSLT - 関数"
+
+#: ../plugins/taglist/XSLT.tags.xml.in.h:4
+msgid "ancestor"
+msgstr "ancestor"
+
+#: ../plugins/taglist/XSLT.tags.xml.in.h:5
+msgid "ancestor-or-self"
+msgstr "ancestor-or-self"
+
+#: ../plugins/taglist/XSLT.tags.xml.in.h:6
+msgid "attribute"
+msgstr "attribute"
+
+#: ../plugins/taglist/XSLT.tags.xml.in.h:7
+msgid "child"
+msgstr "child"
+
+#: ../plugins/taglist/XSLT.tags.xml.in.h:8
+msgid "descendant"
+msgstr "descendant"
+
+#: ../plugins/taglist/XSLT.tags.xml.in.h:9
+msgid "descendant-or-self"
+msgstr "descendant-or-self"
+
+#: ../plugins/taglist/XSLT.tags.xml.in.h:10
+msgid "following"
+msgstr "following"
+
+#: ../plugins/taglist/XSLT.tags.xml.in.h:11
+msgid "following-sibling"
+msgstr "following-sibling"
+
+#: ../plugins/taglist/XSLT.tags.xml.in.h:12
+msgid "namespace"
+msgstr "namespace"
+
+#: ../plugins/taglist/XSLT.tags.xml.in.h:13
+msgid "parent"
+msgstr "parent"
+
+#: ../plugins/taglist/XSLT.tags.xml.in.h:14
+msgid "preceding"
+msgstr "preceding"
+
+#: ../plugins/taglist/XSLT.tags.xml.in.h:15
+msgid "preceding-sibling"
+msgstr "preceding-sibling"
+
+#: ../plugins/taglist/XSLT.tags.xml.in.h:16
+msgid "self"
+msgstr "self"
+
+#: ../plugins/taglist/XUL.tags.xml.in.h:1
+msgid "XUL - Tags"
+msgstr "XUL - タグ"
+
+#: ../plugins/time/gedit-time-plugin.c:182
+msgid "In_sert Date and Time..."
+msgstr "日付/時刻の挿入(_S)"
+
+#: ../plugins/time/gedit-time-plugin.c:184
+msgid "Insert current date and time at the cursor position"
+msgstr "カーソル位置に現在の日付と時刻を挿入します"
+
+#: ../plugins/time/gedit-time-plugin.c:613
+msgid "Available formats"
+msgstr "利用可能な書式"
+
+#: ../plugins/time/gedit-time-plugin.c:766
+msgid "Configure insert date/time plugin..."
+msgstr "日付/時刻挿入プラグインの設定..."
+
+#: ../plugins/time/time.gedit-plugin.desktop.in.h:1
+msgid "Insert Date/Time"
+msgstr "日付/時刻の挿入"
+
+#: ../plugins/time/time.gedit-plugin.desktop.in.h:2
+msgid "Inserts current date and time at the cursor position."
+msgstr "カーソル位置に現在の日付と時刻を挿入します。"
+
+#. Translators: Use the more common date format in your locale
+#: ../plugins/time/gedit-time-dialog.ui.h:3
+#: ../plugins/time/gedit-time-setup-dialog.ui.h:4
+#, no-c-format
+msgid "%d/%m/%Y %H:%M:%S"
+msgstr "%Y-%m-%d %H:%M:%S"
+
+#. Translators: This example should follow the date format defined in the entry above
+#: ../plugins/time/gedit-time-dialog.ui.h:4
+#: ../plugins/time/gedit-time-setup-dialog.ui.h:6
+msgid "01/11/2009 17:52:00"
+msgstr "2009-11-01 17:52:00"
+
+#: ../plugins/time/gedit-time-dialog.ui.h:5
+msgid "Insert Date and Time"
+msgstr "日付と時間の挿入"
+
+#: ../plugins/time/gedit-time-dialog.ui.h:6
+#: ../plugins/time/gedit-time-setup-dialog.ui.h:8
+msgid "Use the _selected format"
+msgstr "次の書式を使う(_S)"
+
+#: ../plugins/time/gedit-time-dialog.ui.h:7
+msgid "_Insert"
+msgstr "挿入する(_I)"
+
+#: ../plugins/time/gedit-time-dialog.ui.h:8
+#: ../plugins/time/gedit-time-setup-dialog.ui.h:11
+msgid "_Use custom format"
+msgstr "その他(_U)"
+
+#: ../plugins/time/gedit-time-setup-dialog.ui.h:7
+msgid "Configure date/time plugin"
+msgstr "日付/時間プラグインの設定"
+
+#: ../plugins/time/gedit-time-setup-dialog.ui.h:9
+msgid "When inserting date/time..."
+msgstr "日付/時刻を挿入する時..."
+
+#: ../plugins/time/gedit-time-setup-dialog.ui.h:10
+msgid "_Prompt for a format"
+msgstr "書式を毎回指定する(_P)"
+
+#~ msgid "Backup Copy Extension"
+#~ msgstr "バックアップコピーの拡張子"
+
+#~ msgid ""
+#~ "Extension or suffix to use for backup file names. This will only take "
+#~ "effect if the \"Create Backup Copies\" option is turned on."
+#~ msgstr ""
+#~ "バックアップファイル名に使われる拡張子を指定します。これは \"バックアップ"
+#~ "コピーの作成\" オプションが有効になっている場合のみ効果があります。"
+
+#~ msgid "Whether gedit should highlight matching bracket."
+#~ msgstr "対応するカッコを強調表示するかどうかを指定します。"
+
+#~ msgid "Character Codings"
+#~ msgstr "エンコーディング"
+
+#~ msgid "Ch_aracter Coding:"
+#~ msgstr "エンコーディング(_A):"
+
+#~ msgid "Could not obtain backup filename"
+#~ msgstr "バックアップ・ファイルを取得できませんでした"
+
+#~ msgid "0"
+#~ msgstr "0"
+
+#~ msgid "<span weight=\"bold\">File Name</span>"
+#~ msgstr "<span weight=\"bold\">ファイル名</span>"
+
+#~ msgid "*"
+#~ msgstr "*"
+
+#~ msgid "<b>Language</b>"
+#~ msgstr "<b>言語</b>"
+
+#~ msgid "<b>word</b>"
+#~ msgstr "<b>単語</b>"
+
+#~ msgid "HttP header name"
+#~ msgstr "HttP header name"
+
+#~ msgid "<span size=\"small\">01/11/2002 17:52:00</span>"
+#~ msgstr "<span size=\"small\">01/11/2002 17:52:00</span>"
+
+#~ msgid "<span weight=\"bold\"> When inserting date/time...</span>"
+#~ msgstr "<span weight=\"bold\">日付/時刻の挿入...</span>"
+
+#~ msgid "Open Location"
+#~ msgstr "場所を開く"
+
+#~ msgid "Enter the _location (URI) of the file you would like to open:"
+#~ msgstr "開くファイルの格納場所 (URI) を入力してください(_L):"
+
+#~ msgid "<b>Current Line</b>"
+#~ msgstr "<b>カーソルがある行</b>"
+
+#~ msgid "<b>Font</b>"
+#~ msgstr "<b>フォント</b>"
+
+#~ msgid "<b>Line Numbers</b>"
+#~ msgstr "<b>行番号</b>"
+
+#~ msgid "<span weight=\"bold\">Color Scheme</span>"
+#~ msgstr "<span weight=\"bold\">色のスキーム</span>"
+
+#~ msgid "<b>Fonts</b>"
+#~ msgstr "<b>フォント</b>"
+
+#~ msgid "<b>Page header</b>"
+#~ msgstr "<b>ページのヘッダ</b>"
+
+#~ msgid "<b>Syntax Highlighting</b>"
+#~ msgstr "<b>構文の強調表示</b>"
+
+#~ msgid "Open _Location..."
+#~ msgstr "場所を開く(_L)..."
+
+#~ msgid "Open a file from a specified location"
+#~ msgstr "指定した場所にあるファイルを開きます"
+
+#~ msgid "Edit tool <i>%s</i>:"
+#~ msgstr "<i>%s</i> ツールの編集:"
+
+#~ msgid "A Brand New Tool"
+#~ msgstr "(ここにツールの説明を入力してください)"
+
+#~ msgid "Co_mmand(s):"
+#~ msgstr "コマンド(_M):"
+
+#~ msgid "Edit tool <i>make</i>:"
+#~ msgstr "<i>make</i> ツールの編集:"
+
+#~ msgid "_Description:"
+#~ msgstr "説明(_D):"
+
+#~ msgid "_Indent"
+#~ msgstr "インデント(_I)"
+
+#~ msgid "U_nindent"
+#~ msgstr "インデント解除(_N)"
+
+#~ msgid "Unindent selected lines"
+#~ msgstr "指定した行のインデントを解除します"
+
+#~ msgid "Indent Lines"
+#~ msgstr "行のインデント"
+
+#~ msgid "Indents or un-indents selected lines."
+#~ msgstr "指定した行をインデントしたりインデントを解除します。"
+
+#~ msgid "Insert User Na_me"
+#~ msgstr "ユーザ名の挿入(_M)"
+
+#~ msgid "Insert the user name at the cursor position"
+#~ msgstr "カーソル位置にユーザ名を挿入します"
+
+#~ msgid "Inserts the user name at the cursor position."
+#~ msgstr "カーソル位置にユーザ名を挿入します。"
+
+#~ msgid "User name"
+#~ msgstr "ユーザ名"

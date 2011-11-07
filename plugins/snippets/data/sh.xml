@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<snippets language="sh">
+  <snippet id="elif">
+    <text><![CDATA[elif [[ ${1:condition} ]]; then
+	$0]]></text>
+    <description>elif ..</description>
+    <tag>elif</tag>
+  </snippet>
+  <snippet id="case">
+    <text><![CDATA[case ${1:choice} in
+${2:first})
+	$3
+	;;
+*)
+	$4
+	;;
+esac]]></text>
+    <description>case ..</description>
+    <tag>case</tag>
+  </snippet>
+  <snippet id="for">
+    <text><![CDATA[for (( ${1:i = 0}; ${2:i < 10}; ${3:i++} )); do
+	$0
+done]]></text>
+    <description>for .. done</description>
+    <tag>for</tag>
+  </snippet>
+  <snippet id="if">
+    <text><![CDATA[if [[ ${1:condition} ]]; then
+	$0
+fi]]></text>
+    <description>if .. then</description>
+    <tag>if</tag>
+  </snippet>
+  <snippet id="sh">
+    <text><![CDATA[#!/bin/sh
+$0]]></text>
+    <description>#!/bin/sh</description>
+    <tag>sh</tag>
+  </snippet>
+  <snippet id="bash">
+    <text><![CDATA[#!/bin/bash
+$0]]></text>
+    <description>#!/bin/bash</description>
+    <tag>bash</tag>
+  </snippet>
+</snippets>

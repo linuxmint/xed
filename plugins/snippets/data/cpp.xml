@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<snippets language="cpp">
+  <snippet id="main">
+    <text><![CDATA[int main (int argc, char const* argv[])
+{
+	$0
+	return 0;
+}]]></text>
+    <description>main</description>
+    <tag>main</tag>
+  </snippet>
+  <snippet id="for">
+    <text><![CDATA[for (${1:unsigned int} ${2:i} = ${3:0}; ${2:i} < ${4:count}; ${2:i} += ${5:1})
+{
+	$0
+}]]></text>
+    <description>for loop</description>
+    <tag>for</tag>
+  </snippet>
+  <snippet id="beginend">
+    <text><![CDATA[${1:v}.begin(), ${1:v}.end()]]></text>
+    <description>$1.begin</description>
+    <tag>beginend</tag>
+  </snippet>
+  <snippet id="do">
+    <text><![CDATA[do
+{
+	$0
+} while ($1 );]]></text>
+    <description>do .. while</description>
+    <tag>do</tag>
+  </snippet>
+  <snippet id="endif">
+    <text><![CDATA[#endif
+$0]]></text>
+    <accelerator><![CDATA[<Control><Alt>period]]></accelerator>
+    <description>#endif</description>
+  </snippet>
+  <snippet id="if">
+    <text><![CDATA[if (${1:condition})
+{
+	$0
+}]]></text>
+    <description>if ..</description>
+    <tag>if</tag>
+  </snippet>
+  <snippet id="inc">
+    <text><![CDATA[#include "${1:file}"
+$0]]></text>
+    <description>#include ".."</description>
+    <tag>inc</tag>
+  </snippet>
+  <snippet id="Inc">
+    <text><![CDATA[#include <${1:file}>
+$0]]></text>
+    <description>#include &lt;..&gt;</description>
+    <tag>Inc</tag>
+  </snippet>
+  <snippet id="namespace">
+    <text><![CDATA[namespace ${1:ns}
+{
+	$0
+};
+]]></text>
+    <description>namespace ..</description>
+    <tag>namespace</tag>
+  </snippet>
+  <snippet id="readfile">
+    <text><![CDATA[std::vector<uint8_t> v;
+if (FILE* fp = fopen (${1:"filename"}, "r"))
+{
+	uint8_t buf[1024];
+	while (size_t len = fread (buf, 1, sizeof (buf), fp))
+		v.insert (v.end(), buf, buf + len);
+	fclose(fp);
+}
+$0]]></text>
+    <description>Read File Into Vector</description>
+    <tag>readfile</tag>
+  </snippet>
+  <snippet id="map">
+    <text><![CDATA[std::map<${1:key}, ${2:value}> ${3:map};
+$0]]></text>
+    <description>std::map</description>
+    <tag>map</tag>
+  </snippet>
+  <snippet id="vector">
+    <text><![CDATA[std::vector<${1:char}> ${2:v};
+$0]]></text>
+    <description>std::vector</description>
+    <tag>vector</tag>
+  </snippet>
+  <snippet id="struct">
+    <text><![CDATA[struct ${1:name}
+{
+	${0:/* data */}
+};]]></text>
+    <description>struct ..</description>
+    <tag>struct</tag>
+  </snippet>
+  <snippet id="template">
+    <text><![CDATA[template <typename ${1:_InputIter}>]]></text>
+    <description>template &lt;typename ..&gt;</description>
+    <tag>template</tag>
+  </snippet>
+  <snippet id="gpl">
+    <text><![CDATA[/*
+ * ${1:[$GEDIT_CURRENT_DOCUMENT_NAME,<filename>]}
+ * This file is part of ${2:<program name>}
+ *
+ * Copyright (C) $<3: import datetime; return str(datetime.date.today().year)> - $<4:
+import pwd, os
+try:
+  return pwd.getpwuid(os.getuid()).pw_gecos.split(',')[0]
+except KeyError:
+  return '<author\>' >
+ *
+ * ${2} is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * ${2} is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with ${2}; if not, write to the Free Software
+ * Foundation, Inc., 51 Franklin St, Fifth Floor, 
+ * Boston, MA  02110-1301  USA
+ */
+ 
+ $0]]></text>
+    <tag>gpl</tag>
+    <description>GPL License</description>
+  </snippet>
+  <snippet id="lgpl">
+    <text><![CDATA[/*
+ * ${1:[$GEDIT_CURRENT_DOCUMENT_NAME,<filename>]}
+ * This file is part of ${2:<library name>} 
+ *
+ * Copyright (C) $<3: import datetime; return str(datetime.date.today().year)> - $<4:
+import pwd, os
+try:
+  return pwd.getpwuid(os.getuid()).pw_gecos.split(',')[0]
+except KeyError:
+  return '<author\>' >
+ *
+ * ${2} is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Lesser General Public
+ * License as published by the Free Software Foundation; either
+ * version 2.1 of the License, or (at your option) any later version.
+ * 
+ * ${2} is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Lesser General Public License for more details.
+ * 
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with this library; if not, write to the Free Software
+ * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
+ */
+ 
+ $0]]></text>
+    <tag>lgpl</tag>
+    <description>LGPL License</description>
+  </snippet>
+  <snippet id="td">
+    <text><![CDATA[typedef ${1:newtype} ${2:type};
+$0]]></text>
+    <tag>td</tag>
+    <description>typedef</description>
+  </snippet>
+  <snippet id="while">
+    <text><![CDATA[while ($1)
+{
+	$0
+}]]></text>
+    <tag>while</tag>
+    <description>while</description>
+  </snippet>
+</snippets>

@@ -1,0 +1,33 @@
+#!/bin/bash
+
+# fill it
+pkgname=mate-text-editor
+pkgver=2011.08.31
+pkgrel=1
+pkgdesc="An powerfull text editor for MATE"
+depends=('mate-conf')
+
+# editar esta funcion!
+build() {
+	cd $pkgsrc
+	# descomprimir
+	tar xvzf download
+	# entramos a la carpeta
+	cd ${pkgname}
+
+	intltoolize --force --copy --automake || die "intltoolize failed"
+
+	./configure --prefix=/usr --sysconfdir=/etc \
+		--localstatedir=/var --libexecdir=/usr/lib/ \
+		--disable-scrollkeeper --enable-python || return 1
+	make || return 1
+
+	make MATECONF_DISABLE_MAKEFILE_SCHEMA_INSTALL=1 DESTDIR="${pkgdir}" install || return 1
+
+	install -m755 -d "${pkgdir}/usr/share/mateconf/schemas"
+	mateconf-merge-schema "${pkgdir}/usr/share/mateconf/schemas/${pkgname}.schemas" --domain ${pkgname} ${pkgdir}/etc/mateconf/schemas/*.schemas || return 1
+	rm -f ${pkgdir}/etc/mateconf/schemas/*.schemas
+}
+
+# esto incluye la parte que se repite en la mayoria de los builds
+. /usr/share/mate-doc-utils/mate-debian.sh

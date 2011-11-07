@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<snippets language="xslt">
+  <snippet id="stylesheet">
+    <text><![CDATA[<xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+$0
+</xsl:stylesheet>
+]]></text>
+    <description>StyleSheet</description>
+    <tag>stylesheet</tag>
+  </snippet>
+  <snippet id="include">
+    <text><![CDATA[<xsl:include href="$1"/>
+]]></text>
+    <description>Include</description>
+    <tag>inc</tag>
+  </snippet>
+  <snippet id="import">
+    <text><![CDATA[<xsl:import href="$1"/>
+]]></text>
+    <description>Import</description>
+    <tag>imp</tag>
+  </snippet>
+  <snippet id="param">
+    <text><![CDATA[<xsl:param name="$1"/>
+]]></text>
+    <description>Parameter</description>
+    <tag>param</tag>
+  </snippet>
+  <snippet id="template">
+    <text><![CDATA[<xsl:template ${1:[match,name]}="$2" ${3:mode=""}>
+	$0
+</xsl:template>
+]]></text>
+    <description>Template</description>
+    <tag>templ</tag>
+  </snippet>
+  <snippet id="variable-1">
+    <text><![CDATA[<xsl:variable name="$1">
+	$0
+</xsl:variable>
+]]></text>
+    <description>Variable</description>
+    <tag>var</tag>
+  </snippet>
+  <snippet id="variable-2">
+    <text><![CDATA[<xsl:variable name="$1" select="$2"/>
+$0]]></text>
+    <description>Variable with Select Attribute</description>
+    <tag>var</tag>
+  </snippet>
+  <snippet id="choose">
+    <text><![CDATA[<xsl:choose>
+	<xsl:when test="$1">
+		$2
+	</xsl:when>
+	$3
+</xsl:choose>
+]]></text>
+    <description>Choose</description>
+    <tag>choose</tag>
+  </snippet>
+  <snippet id="when">
+    <text><![CDATA[<xsl:when test="$1">
+	$2
+</xsl:when>
+$0]]></text>
+    <description>When</description>
+    <tag>when</tag>
+  </snippet>
+  <snippet id="otherwise">
+    <text><![CDATA[<xsl:otherwise>
+	$1
+</xsl:otherwise>
+$0]]></text>
+    <description>Otherwise</description>
+    <tag>otherwise</tag>
+  </snippet>
+  <snippet id="if">
+    <text><![CDATA[<xsl:if test="$1">
+	$2
+</xsl:if>
+$0]]></text>
+    <description>If</description>
+    <tag>if</tag>
+  </snippet>
+  <snippet id="value-of">
+    <text><![CDATA[<xsl:value-of select="$1"/>
+]]></text>
+    <description>Value of</description>
+    <tag>val</tag>
+  </snippet>
+  <snippet id="element">
+    <text><![CDATA[<xsl:element name="$1">
+</xsl:element>
+$0]]></text>
+    <description>Element</description>
+    <tag>elem</tag>
+  </snippet>
+  <snippet id="attribute">
+    <text><![CDATA[<xsl:attribute name="$1">$2</xsl:attribute>
+$0]]></text>
+    <description>Attribute</description>
+    <tag>attr</tag>
+  </snippet>
+  <snippet id="text">
+    <text><![CDATA[<xsl:text>${1:$GEDIT_SELECTED_TEXT}</xsl:text>
+]]></text>
+    <description>Text</description>
+    <tag>text</tag>
+  </snippet>
+  <snippet id="comment">
+    <text><![CDATA[<xsl:comment>${1:$GEDIT_SELECTED_TEXT}</xsl:comment>
+]]></text>
+    <description>Comment</description>
+    <tag>comment</tag>
+  </snippet>
+  <snippet id="call-template">
+    <text><![CDATA[<xsl:call-template name="$1"/>
+]]></text>
+    <description>Call Template</description>
+    <tag>call</tag>
+  </snippet>
+  <snippet id="apply-templates">
+    <text><![CDATA[<xsl:apply-templates mode="$1" select="$2"/>
+$0]]></text>
+    <description>Apply Templates</description>
+    <tag>applyt</tag>
+  </snippet>
+  <snippet id="apply-imports">
+    <text><![CDATA[<xsl:apply-imports/>
+]]></text>
+    <description>Apply Imports</description>
+    <tag>applyimp</tag>
+  </snippet>
+  <snippet id="with-param">
+    <text><![CDATA[<xsl:with-param name="$1">
+	$2
+</xsl:with-param>
+$0]]></text>
+    <description>With Param</description>
+    <tag>with</tag>
+  </snippet>
+</snippets>

@@ -1,0 +1,5464 @@
+# Dzongkha translation of gedit
+# Copyright @ 2006 Free Software Foundation, Inc.
+# Mindu Dorji.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: gedit.HEAD.Original\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2008-05-27 12:04+0000\n"
+"PO-Revision-Date: 2008-09-10 09:27+0530\n"
+"Last-Translator: Dawa pemo <daws_403@hotmail.com>\n"
+"Language-Team:  <en@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n!=1);\n"
+"X-Poedit-Language: Dzongkha\n"
+"X-Poedit-Country: BHUTAN\n"
+"X-Poedit-SourceCharset: utf-8\n"
+"X-Generator: KBabel 1.10.2\n"
+
+#: ../data/gedit.desktop.in.in.h:1
+msgid "Edit text files"
+msgstr "ཚིག་ཡིག་ཡིག་སྣོད་ཚུ་ ཞུན་དག་རྐྱབས་ "
+
+#: ../data/gedit.desktop.in.in.h:2
+#: ../gedit/gedit.c:475
+#: ../gedit/gedit-print-job.c:751
+msgid "Text Editor"
+msgstr "ཚིག་ཡིག་ཞུན་དགཔ།"
+
+#: ../data/gedit.schemas.in.h:1
+msgid "A custom font that will be used for the editing area. This will only take effect if the \"Use Default Font\" option is turned off."
+msgstr "ཞུན་དག་བརྐྱབ་ནིའི་མངའ་ཁོངས་ནང་ ལག་ལེན་འཐབ་ནིའི་ སྲོལ་སྒྲིག་ཡིག་གཟུགས་ཅིག \"Use Default Font\" ཟེར་མི་གདམ་ཁ་དེ་ ཊརན་ཨོཕ་སྦེ་བཞགཔ་ད་རྐྱངམ་ཅིག་ འདི་ལུ་ནུས་པ་འཐོབ་ཚུགས།"
+
+#: ../data/gedit.schemas.in.h:2
+#: ../gedit/gedit-plugin-manager.c:796
+msgid "Active plugins"
+msgstr "ཤུགས་ལྡན་པལག་ཨིནསི།"
+
+#: ../data/gedit.schemas.in.h:3
+msgid "Auto Detected Encodings"
+msgstr "རང་བཞིན་གྱིས་སྐྱོན་འཛིན་པའི་ ཨིན་ཀོ་ཌིངསི།"
+
+#: ../data/gedit.schemas.in.h:4
+msgid "Auto Save"
+msgstr "རང་བཞིན་སྲུང་བཞག"
+
+#: ../data/gedit.schemas.in.h:5
+msgid "Auto Save Interval"
+msgstr "རང་བཞིན་སྲུང་བཞག་བར་མཚམས།"
+
+#: ../data/gedit.schemas.in.h:6
+msgid "Auto indent"
+msgstr "རང་བཞིན་འགོ་མཚམས།"
+
+#: ../data/gedit.schemas.in.h:7
+msgid "Backup Copy Extension"
+msgstr "འདྲ་བཤུས་རྒྱ་བསྐྱེད་ཀྱི་རྒྱབ་ཐག"
+
+#: ../data/gedit.schemas.in.h:8
+msgid "Body Font for Printing"
+msgstr "དཔར་བསྐྲུན་དོན་ལུ་ མ་གཟུགས་ཡིག་གཟུགས།"
+
+#: ../data/gedit.schemas.in.h:9
+msgid "Bottom Panel is Visible"
+msgstr "མཇུག་གི་པེ་ནཱལ་མཐོང་ཚུགས།"
+
+#: ../data/gedit.schemas.in.h:10
+msgid "Create Backup Copies"
+msgstr "རྒྱབ་ཐག་འདྲ་བཤུས་ གསར་བསྐྲུན་འབད།"
+
+#: ../data/gedit.schemas.in.h:11
+msgid "Display Line Numbers"
+msgstr "གྱལ་རིམ་ཨང་གྲངས་ བཀྲམ་སྟོན་འབད།"
+
+#: ../data/gedit.schemas.in.h:12
+msgid "Display Right Margin"
+msgstr "གཡས་ཀྱི་ས་སྟོང་ བཀྲམ་སྟོན་འབད།"
+
+#: ../data/gedit.schemas.in.h:13
+msgid "Editor Font"
+msgstr "ཞུན་དག་པའི་ཡིག་གཟུགས།"
+
+#: ../data/gedit.schemas.in.h:14
+msgid "Enable Search Highlighting"
+msgstr "འཚོལ་ཞིབ་གཙོ་དམིགས་ ལྕོགས་ཅན་བཟོ།"
+
+#: ../data/gedit.schemas.in.h:15
+msgid "Enable Syntax Highlighting"
+msgstr "ཚིག་སྦྱོར་གཙོ་དམིགས་འབད་ནི་ ལྕོགས་ཅན་བཟོ།"
+
+#: ../data/gedit.schemas.in.h:16
+msgid "Encodings shown in menu"
+msgstr "དཀར་ཆག་ནང་སྟོན་མི་ ཨིན་ཀོ་ཌིངསི།"
+
+#: ../data/gedit.schemas.in.h:17
+msgid "Extension or suffix to use for backup file names. This will only take effect if the \"Create Backup Copies\" option is turned on."
+msgstr "རྒྱབ་ཐག་ཡིག་སྣོད་མིང་གི་དོན་ལུ་ ལག་ལེན་འཐབ་ནིའི་ རྒྱ་བསྐྱེད་ ཡང་ན་ རྗེས་ཚིག \"Create Backup Copies\"ཟེར་མི་ གདམ་ཁ་དེ་ ཊརན་ཨཱོན་སྦེ་བཞགཔ་ད་རྐྱངམ་ཅིག་ འདི་ལུ་ནུས་པ་འཐོབ་ཚུགས།"
+
+#: ../data/gedit.schemas.in.h:18
+msgid "Header Font for Printing"
+msgstr "དཔར་བསྐྲུན་དོན་ལུ་ མགོ་ཡིག་གི་ཡིག་གཟུགས།"
+
+#: ../data/gedit.schemas.in.h:19
+msgid "Highlight Current Line"
+msgstr "ད་ལྟོའི་གྱལ་རིམ་ལུ་ གཙོ་དམིགས་འབད།"
+
+#: ../data/gedit.schemas.in.h:20
+msgid "Highlight Matching Bracket"
+msgstr "མཐུན་སྒྲིག་ཡོད་པའི་གུག་ཤད་ལུ་ གཙོ་དམིགས་འབད།"
+
+#: ../data/gedit.schemas.in.h:21
+msgid "If this value is 0, then no line numbers will be inserted when printing a document. Otherwise, gedit will print line numbers every such number of lines."
+msgstr "བེ་ལུ་འདི་ ༠ ཨིན་པ་ཅིན་ ཡིག་ཆ་དཔར་བསྐྲུན་འབདཝ་ད་ གྱལ་རིམ་ཨང་མི་བཙུགས་ དེ་མིན་ཇི་ཨེ་ཌིཊི་གིས་ དེ་བཟུམ་མའི་ གྱལ་རིམ་རེ་རེ་བཞིན་དུ་ལུ་ གྱལ་རིམ་ཨང་རེ་ དཔར་བསྐྲུན་འབད་འོང༌།"
+
+#: ../data/gedit.schemas.in.h:22
+msgid "Insert spaces"
+msgstr "བར་སྟོང་བཙུགས།"
+
+#: ../data/gedit.schemas.in.h:23
+msgid "Line Number Font for Printing"
+msgstr "དཔར་བསྐྲུན་དོན་ལུ་ གྱལ་རིམ་ཨང་གི་ཡིག་གཟུགས།"
+
+#: ../data/gedit.schemas.in.h:24
+msgid "Line Wrapping Mode"
+msgstr "གྱལ་རིམ་ལོག་མཚམས་ཀྱི་ ཐབས་ལམ།"
+
+#: ../data/gedit.schemas.in.h:25
+msgid "List of VFS schemes gedit supports in write mode. The 'file' scheme is writable by default."
+msgstr "འབྲི་ནིའི་ཐབས་ལམ་ནང་ ཝི་ཨེཕ་ཨེསི་འཆར་ལས་ ཇི་ཨི་ཌིཊི་གི་རྒྱབ་སྐྱོར་གྱི་ཐོ་ཡིག  'ཡིག་སྣོད' ལས་འཆར་དེ་ སྔོན་སྒྲིག་ཐོ་ལས་འབྲི་བཏུབ།"
+
+#: ../data/gedit.schemas.in.h:26
+msgid "List of active plugins. It contains the \"Location\" of the active plugins. See the .gedit-plugin file for obtaining the \"Location\" of a given plugin."
+msgstr "ཤུགས་ལྡན་པ་ལག་ཨིནསི་གི་ཐོ་ཡིག འདི་གི་ནང་ན་ ཤུགས་ལྡན པལག་ཨིནསི་གི་\"Location\" ཡོད། གྲ་སྒྲིགཡོད་མི་ པ་ལག་ཨིན་གྱི་ \"Location\" ལེན་ནིའི་དོན་ལུ་ ཇི་ཨེ་ཌིཊི་པ་ལག་ཨིན་ ཡིག་སྣོད་ལུ་བལྟ།"
+
+#: ../data/gedit.schemas.in.h:27
+msgid "List of encodings shown in Character Coding menu in open/save file selector. Only recognized encodings are used."
+msgstr "ཡིག་འབྲུ་ཀོ་ཌིང་གི་དཀར་ཆག་ནང་ ཁ་ཕྱེ་ནི་ / བསྲུང་ནིའི་ ཡིག་སྣོད་སེལ་བྱེད་ནང་སྟོན་ཏེ་ཡོད་པའི་ ཨིན་ཀོ་ཌིངསི་གི་ཐོ་ཡིག ངོས་འཛིན་ཅན་གྱི་ ཨིན་ཀོ་ཌིངསི་རྐྱངམ་གཅིག་ ལག་ལེན་འཐབ་ཨིན།"
+
+#: ../data/gedit.schemas.in.h:28
+msgid "Max Number of Undo Actions"
+msgstr "འབད་བཤོལ་བྱ་བའི་གྲངས་ཀྱི་མང་མཐའ།"
+
+#: ../data/gedit.schemas.in.h:29
+msgid "Maximum Recent Files"
+msgstr "འཕྲལ་གྱི་ཡིག་སྣོད་ཚུ་གི་མང་མཐའ།"
+
+#: ../data/gedit.schemas.in.h:30
+msgid "Maximum number of actions that gedit will be able to undo or redo. Use \"-1\" for unlimited number of actions."
+msgstr "ཇི་ཨེ་ཌིཊི་གིས་ འབད་བཤོལ་དང་ ལོག་འབད་ཚུགས་པའི་ བྱ་བའི་མང་མཐའ། ཚད་མེད་བྱ་བའི་དོན་ལུ་ \"-1\" ལག་ལེན་འཐབ།"
+
+#: ../data/gedit.schemas.in.h:31
+msgid "Maximum number of actions that gedit will be able to undo or redo. Use \"-1\" for unlimited number of actions. Deprecated since 2.12.0"
+msgstr "ཇི་ཨེ་ཌིཊི་གིས་ འབད་བཤོལ་དང་ ལོག་འབད་ཚུགས་པའི་ བྱ་བའི་མང་མཐའ། ཚད་མེད་བྱ་བའི་དོན་ལུ་ \"-1\" ལག་ལེན་འཐབ། ༢.༡༢.༠ ལས་ཚུར་ ངོས་ལེན་མེདཔ།"
+
+#. Translators: This is the Editor Font.
+#. This is a Pango font
+#: ../data/gedit.schemas.in.h:34
+msgid "Monospace 12"
+msgstr "མོ་ནོ་སི་པེསི་༡༢།"
+
+#. Translators: This is the Body font for printing.
+#. This is a Pango font.
+#: ../data/gedit.schemas.in.h:37
+msgid "Monospace 9"
+msgstr "མོ་ནོ་སི་པེསི་༩།"
+
+#: ../data/gedit.schemas.in.h:38
+msgid "Number of minutes after which gedit will automatically save modified files. This will only take effect if the \"Auto Save\" option is turned on."
+msgstr "ཇི་ཨེ་ཌིཊི་གིས་ རང་བཞིན་ཐོག་ལས་ ལེགས་བཅོས་གྲུབ་པའི་ ཡིག་སྣོད་ཚུ་ སྲུང་བཞག་འབད་བའི་ཤུལ་གྱི་ སྐར་མའི་གྱངས་ཁ། \"Auto Save\" ཟེར་མི་གདམ་ཁ་དེ་ ཊརན་ཨཱོན་འབདཝ་ད་རྐྱངམ་གཅིག་ ནུས་པ་འཐོབ་ཚུགས་།"
+
+#: ../data/gedit.schemas.in.h:39
+msgid "Print Header"
+msgstr "མགོ་ཡིག་དཔར་སྐྲུན་འབད།"
+
+#: ../data/gedit.schemas.in.h:40
+msgid "Print Line Numbers"
+msgstr "གྱལ་རིམ་ཨང་དཔར་བསྐྲུན་འབད།"
+
+#: ../data/gedit.schemas.in.h:41
+msgid "Print Syntax Highlighting"
+msgstr "གཙོ་དམིགས་འབད་མི་ ཚིག་སྦྱོར་དཔར་སྐྲུན་འབད།"
+
+#: ../data/gedit.schemas.in.h:42
+msgid "Printing Line Wrapping Mode"
+msgstr "གྱལ་རིམ་ལོག་མཚམས་ཐབས་ལམ་ དཔར་སྐྲུན་འབད་དོ།"
+
+#: ../data/gedit.schemas.in.h:43
+msgid "Restore Previous Cursor Position"
+msgstr "ཧེ་མའི་འོད་རྟགས་གནས་ས་སླར་གསོ་འབད།"
+
+#: ../data/gedit.schemas.in.h:44
+msgid "Right Margin Position"
+msgstr "གཡས་ཀྱི་ས་སྟོང་གནས་ས།"
+
+#. Translators: This is the Header font for printing.
+#. This is a Pango font.
+#: ../data/gedit.schemas.in.h:47
+msgid "Sans 11"
+msgstr "སེནསི་༡༡།"
+
+#. Translators: This is the Line Number font for printing.
+#. This is a Pango font.
+#: ../data/gedit.schemas.in.h:50
+msgid "Sans 8"
+msgstr "སེནསི་༨།"
+
+#: ../data/gedit.schemas.in.h:51
+msgid "Side Pane is Visible"
+msgstr "ཟུར་ཁའི་པེན་མཐོང་ཚུགས་པས།"
+
+#: ../data/gedit.schemas.in.h:52
+msgid "Smart Home End"
+msgstr "སི་མཊི་ ཧོམ་ ཨེནཌི་ "
+
+#: ../data/gedit.schemas.in.h:53
+msgid "Sorted list of encodings used by gedit for auto-detecting the encoding of a file. \"CURRENT\" represents the current locale encoding. Only recognized encodings are used."
+msgstr "ཡིག་སྣོད་ཅིག་གི་ རང་བཞིན་སྐྱོན་འཛིན་ཨིན་ཀོ་ཌིང་འབད་ནིའི་དོན་ལུ་ ཇི་ཨི་ཌིཊི་གིས་ ལག་ལེན་འཐབ་མི་ ཨིན་ཀོ་ཌིང་གི་ དབྱེ་སེལ་ཅན་ཐོ་ཡིག  \"CURRENT\" གིས་ ད་ལྟོའི་ལོ་ཀེལ་ཨིན་ཀོ་ཌིང་འདི་ཁྱད་ཚབ་འབདཝ་ཨིན། ངོས་འཛིན་འབད་ཡོད་པའི་ ཨིན་ཀོ་ཌིང་ཚུ་རྐྱངམ་གཅིག་ ལག་ལེན་འཐབ་ཨིན།"
+
+#: ../data/gedit.schemas.in.h:54
+msgid "Specifies how the cursor moves when the HOME and END keys are pressed. Use \"DISABLED\" to always move at the start/end of the line, \"AFTER\" to move to the start/end of the line the first time the keys are pressed and to the start/end of the text ignoring whitespaces the second time the keys are pressed, \"BEFORE\" to move to the start/end of the text before moving to the start/end of the line and \"ALWAYS\" to always move to the start/end of the text instead of the start/end of the line."
+msgstr "ཧོམ་ དང་ ཨེནཌི་ ལྡེ་མིག་ཚུ་ གཡེབ་པའི་སྐབས་ འོད་རྟགས་དེ་ ག་དེ་སྦེ་ སྤོ་བཤུད་འབདཝ་ཨིན་ན་ གསལ་བཀོད་འབདཝ་ཨིན། གྲལ་ཐིག་གི་ འགོ/མཇུག་ལུ་ སྤོ་བཤུད་འབད་ནིའི་དོན་ལུ་ ཨ་རྟག་རང་ \"DISABLED\" ་ལག་ལེན་འཐབ། ལྡེ་མིག་ཚུ་འགོ་དང་པ་ གཡེབ་པའི་སྐབས་ གྲལ་ཐིག་གི་ འགོ་/མཇུག་ལུ་ སྤོ་བཤུད་འབད་ནིའི་དོན་ལུ་  དང་ ལྡེ་མིག་ཚུ་ཐེངས་གཉིས་པ་གཡེབ་པའི་སྐབས་ གྲལ་ཐིག་གི་ འགོ/མཇུག་ལུ་ སྤོ་བཤུད་འབད་དེ་ བར་སྟོང་དཀརཔོ་ཚུ་  སྣང་མེད་བཞག་ནིའི་དོན་ལུ་ \"AFTER\" ལག་ལེན་འཐབ།  གྲལ་ཐིག་གི་ འགོ་/མཇུག་ལུ་ སྤོ་བཤུད་མ་འབད་བའི་ཧེ་མ་  ཚིག་ཡིག་གི་ འགོ/མཇུག་ལུ་ སྤོ་བཤུད་འབད་ནིའི་དོན་ལུ་  \"BEFORE\" ལག་ལེན་འཐབ་ནི་དང་  ཨ་རྟག་རང་ གྲལ་ཐིག་གི་ འགོ/མཇུག་ལུ་མེན་པ་ ཚིག་ཡིག་གི་ འགོ/ མཇུག་ལུ་ སྤོ་བཤུད་འབད་ནིའི་དོན་ལུ་  \"ALWAYS\" ལག་ལེན་འཐབ། "
+
+#: ../data/gedit.schemas.in.h:55
+msgid "Specifies how to wrap long lines for printing. Use \"GTK_WRAP_NONE\" for no wrapping, \"GTK_WRAP_WORD\" for wrapping at word boundaries, and \"GTK_WRAP_CHAR\" for wrapping at individual character boundaries. Note that the values are case-sensitive, so make sure they appear exactly as mentioned here."
+msgstr "དཔར་བསྐྲུན་གྱི་དོན་ལུ་ གྱལ་རིམ་རིངམ་ཚུ་ སྤུར་ཐངས་གསལ་བཀོད་འབདཝ་ཨིན། སྤུར་ནི་མེད་པའི་སྐབས་ \"GTK_WRAP_NONE\"ཟེར་མི་འདི་ ལག་ལེན་འཐབ། མིང་ཚིག་གི་ མཐའ་མཚམས་སྤུར་ནིའི་དོན་ལུ་ \"GTK_WRAP_WORD\"དང་ ཡིག་འབྲུ་ངོ་རྐྱང་གི་ མཐའ་མཚམས་ལུ་ སྤུར་ནིའི་དོན་ལུ་ \"GTK_WRAP_CHAR\" ཟེར་མི་ལག་ལེན་འཐབ། དྲན་དགོཔ་འདི་ བེ་ལུསི་འདི་ཚུ་ གནད་དོན་ཉེན་ཅན་ཨིནམ་ལས་ གོང་ལུ་བཀོད་དོ་བཟུམ་སྦེ་རང་ ངེས་ཏིག་འབྱུང་དགོཔ་ སེམས་ཁར་དྲན།"
+
+#: ../data/gedit.schemas.in.h:56
+msgid "Specifies how to wrap long lines in the editing area. Use \"GTK_WRAP_NONE\" for no wrapping, \"GTK_WRAP_WORD\" for wrapping at word boundaries, and \"GTK_WRAP_CHAR\" for wrapping at individual character boundaries. Note that the values are case-sensitive, so make sure they appear exactly as mentioned here."
+msgstr "ཞུན་དག་བརྐྱབ་ནིའི་་མངའ་ཁོངས་ནང་ ཐིཆ་མཉམིངམ་རེཔ་འབད་ཐངས་ གསལ་བཀོད་འབདཝ་ཨིན། ཐིག་སྤུར་ནི་མེད་པའི་སྐབས་ \"GTK_WRAP_NONE\" ཟེར་མི་འདི་ ལག་ལེན་འཐབ། མིང་ཚིག་གི་ མཐའ་མཚམས་ལོག་མཚམས་འི་དོན་ལུ་ \"GTK_WRAP_WORD\" དང་ ཡིག་འབྲུ་ངོ་རྐྱང་གི་མཐའ་མཚམས་ལུ་ ལོག་མཚམས་དོན་ལུ་ \"GTK_WRAP_CHAR\" ཟེར་མི་ལག་ལེན་འཐབ།  བེ་ལུསི་ཚུ་ གནད་དོན་ཉེན་ཅན་ཨིནམ་ལས་ གོང་ལུ་བཀོད་དོ་བཟུམ་སྦེ་རང་ ངེས་ཏིག་འབྱུང་དགོཔ་ སེམས་ཁར་དྲན།"
+
+#: ../data/gedit.schemas.in.h:57
+msgid "Specifies the font to use for a document's body when printing documents."
+msgstr "ཡིག་ཆ་དཔར་སྐྲུན་སྐབས་ ཡིག་ཆའི་མ་གཟུགས་ཀྱི་དོན་ལུ་ ལག་ལེན་འཐབ་ནིའི་ ཡིག་གཟུགས་གསལ་བཀོད་འབདཝ་ཨིན།"
+
+#: ../data/gedit.schemas.in.h:58
+msgid "Specifies the font to use for line numbers when printing. This will only take effect if the \"Print Line Numbers\" option is non-zero."
+msgstr "དཔར་བསྐྲུན་གྱི་སྐབས་ལུ་ གྱལ་རིམ་ཨང་གི་དོན་ལུ་ ལག་ལེན་འཐབ་ནིའི་ ཡིག་གཟུགས་གསལ་བཀོད་འབདཝ་ཨིན། འདི་ \"Print Line Numbers\" ཟེར་མི་གདམ་ཁ་འདི་ ཀླད་ཀོར་མེན་པ་ཅིན་རྐྱངམ་གཅིག་ ནུས་པ་འཐོབ་འོང་།"
+
+#: ../data/gedit.schemas.in.h:59
+msgid "Specifies the font to use for page headers when printing a document. This will only take effect if the \"Print Header\" option is turned on."
+msgstr "ཡིག་ཆ་དཔར་བསྐྲུན་སྐབས་ ཤོག་ལེབ་མགོ་ཡིག་དོན་ལུ་ ལག་ལེན་འཐབ་ནིའི་ ཡིག་གཟུགས་གསལ་བཀོད་འབདཝ་ཨིན། འདི་\"Print Header\" ཟེར་མི་གདམ་ཁ་འདི་ ཊརན་ཨཱོན་འབད་བ་ཅིན་རྐྱངམ་གཅིག་ ནུས་པ་འཐོབ་འོང་།"
+
+#: ../data/gedit.schemas.in.h:60
+msgid "Specifies the maximum number of recently opened files that will be displayed in the \"Recent Files\" submenu."
+msgstr "\"Recent Files\" ཡིག་སྣོད་ཡན་ལག་ནང་ བཀྲམ་སྟོན་གྱི་དོན་ལུ་ འཕྲལ་ཁམས་ཅིག་ཁར་ ཁ་ཕྱེ་ཡོད་པའི་ ཡིག་ཆའི་གྲངས་ཀྱི་མང་མཐའ་ གསལ་བཀོད་འབདཝ་ཨིན།"
+
+#: ../data/gedit.schemas.in.h:61
+msgid "Specifies the number of spaces that should be displayed instead of Tab characters."
+msgstr "མཆོང་ལྡེའི་ཡིག་འབྲུའི་ཚབ་ལུ་ བཀྲམ་སྟོན་འབད་དགོ་པའི་ བར་སྟོང་གྱངས་ཁ་ གསལ་བཀོད་འབདཝ་ཨིན།"
+
+#: ../data/gedit.schemas.in.h:62
+msgid "Specifies the position of the right margin."
+msgstr "གཡས་ཀྱི་ས་སྟོང་གནས་ས་ གསལ་བཀོད་འབདཝ་ཨིན།"
+
+#: ../data/gedit.schemas.in.h:63
+msgid "Status Bar is Visible"
+msgstr "གནས་ཚད་ཕྲ་རིང་ མཐོང་ཚུགས་པས།"
+
+#: ../data/gedit.schemas.in.h:64
+msgid "Style Scheme"
+msgstr "ཁཆར་ལས་ བཟོ་རྣམ་ "
+
+#: ../data/gedit.schemas.in.h:65
+msgid "Style for the toolbar buttons. Possible values are \"GEDIT_TOOLBAR_SYSTEM\" to use the system's default style, \"GEDIT_TOOLBAR_ICONS\" to display icons only, \"GEDIT_TOOLBAR_ICONS_AND_TEXT\" to display both icons and text, and \"GEDIT_TOOLBAR_ICONS_BOTH_HORIZ\" to display prioritized text beside icons. Note that the values are case-sensitive, so make sure they appear exactly as mentioned here."
+msgstr "ལག་ཆས་ཕྲ་རིང་གི་བཟོ་རྣམ། རིམ་ལུགས་ཀྱི་སྔོན་སྒྲིག་བཟོ་རྣམ་ ལག་ལེན་གྱི་དོན་ལུ་ སྲིད་པའི་བེ་ལུསི་ཚུ་ \"GEDIT_TOOLBAR_SYSTEM\"ཨིན།  ངོས་དཔར་བཀྲམ་སྟོན་གྱི་དོན་ལུ་ \"GEDIT_TOOLBAR_ICONS\"ཨིན། ངོས་དཔར་དང་ ཚིག་ཡིག་གཉིས་ཆ་རང་ བཀྲམ་སྟོན་འབད་ནིའི་དོན་ལུ་ \"GEDIT_TOOLBAR_ICONS_AND_TEXT\"ཨིན། དེ་ལས་ ངོས་དཔར་གྱི་ཟུར་ཁར་ གཙོ་རིམ་ཅན་གྱི་ ཚིག་ཡིག་བཀྲམ་སྟོན་འབད་ནི་ལུ་ \"GEDIT_TOOLBAR_ICONS_BOTH_HORIZ\"ཨིན། བེ་ལུསི་ཚུ་ གནད་དོན་ཉེན་ཅན་ཨིནམ་ལས་ གོང་ལུ་བཀོད་དོ་བཟུམ་སྦེ་རང་ ངེས་ཏིག་འབྱུང་བཅུག་དགོཔ་ སེམས་ཁར་དྲན།"
+
+#: ../data/gedit.schemas.in.h:66
+msgid "Tab Size"
+msgstr "མཆོང་ལྡེའི་ཚད།"
+
+#: ../data/gedit.schemas.in.h:67
+msgid "The id of a GtkSourceView Style Scheme used to color the text."
+msgstr "ཚིག་ཡིག་ ཚོས་གཞི་གཏང་ནིའི་དོན་ལུ་ ལག་ལེན་འཐབ་ཡོད་པའི་ ཇི་ཊི་ཀེ་ ཐོན་ཁུངས་ མཐོང་སྣང་ བཟོ་རྣམ་འཆར་ལས་ཀྱི་ ཨའི་ཌི། "
+
+#: ../data/gedit.schemas.in.h:68
+msgid "Toolbar Buttons Style"
+msgstr "ལག་ཆས་ཕྲ་རིང་ ཨེབ་རྟའི་བཟོ་རྣམ།"
+
+#: ../data/gedit.schemas.in.h:69
+msgid "Toolbar is Visible"
+msgstr "ལག་ཆས་ཕྲ་རིང་མཐོང་ཚུགས་པས།"
+
+#: ../data/gedit.schemas.in.h:70
+msgid "Undo Actions Limit (DEPRECATED)"
+msgstr "འབད་བཤོལ་གྱི་ བྱ་བ་ཚུ་གི་ཚད། (ངོས་ལེན་མེདཔ)"
+
+#: ../data/gedit.schemas.in.h:71
+msgid "Use Default Font"
+msgstr "སྔོན་སྒྲིག་ཡིག་གཟུགས་ ལག་ལེན་འཐབ།"
+
+#: ../data/gedit.schemas.in.h:72
+msgid "Whether gedit should automatically save modified files after a time interval. You can set the time interval with the \"Auto Save Interval\" option."
+msgstr "ཇི་ཨེ་ཌིཊི་གིས་ བར་མཚམས་ཅིག་གི་རྒྱབ་ལས་ བསྒྱུར་བཅོས་གྲུབ་པའི་ཡིག་སྣོད་ཚུ་ རང་བཞིན་གྱིས་ བསྲུང་དགོཔ་ཨིན་ན། ཁྱོད་ཀྱིས་བར་མཚམས་དེ་\"Auto Save Interval\" ཟེར་མི་དེ་ གདམ་ཁའི་ཐོག་ལས་ གཞི་སྒྲིག་འབད་ཚུགས། "
+
+#: ../data/gedit.schemas.in.h:73
+msgid "Whether gedit should create backup copies for the files it saves. You can set the backup file extension with the \"Backup Copy Extension\" option."
+msgstr "ཇི་ཨེ་ཌིཊི་གིས་ སྲུང་བཞག་འབད་མི་ ཡིག་སྣོད་ཚུ་གི་དོན་ལས་ རྒྱབ་ཐག་འདྲ་བཤུས་ གསར་བསྐྲུན་འབད་དགོ་ག ཁྱོད་ཀྱིས་ རྒྱབ་ཐག་ཡིག་སྣོད་ཀྱི་རྒྱ་སྐྱེད་འདི་ \"Backup Copy Extension\" ཟེར་མི་ གདམ་ཁའི་ཐོག་ལས་  གཞི་སྒྲིག་འབད་ཚུགས།"
+
+#: ../data/gedit.schemas.in.h:74
+msgid "Whether gedit should display line numbers in the editing area."
+msgstr "ཇི་ཨེ་ཌིཊི་གིས་ ཞུན་དག་བརྐྱབ་ནིའི་མངའ་ཁོངས་ནང་ གྱལ་རིམ་ཨང་ བཀྲམ་སྟོན་འབད་དགོ་ག"
+
+#: ../data/gedit.schemas.in.h:75
+msgid "Whether gedit should display the right margin in the editing area."
+msgstr "ཇི་ཨེ་ཌིཊི་གིས་ ཞུན་དག་བརྐྱབ་ནིའི་མངའ་ཁོངས་ནང་ གཡས་ཀྱི་ས་སྟོང་ བཀྲམ་སྟོན་འབད་དགོ་ག"
+
+#: ../data/gedit.schemas.in.h:76
+msgid "Whether gedit should enable auto indentation."
+msgstr "ཇི་ཨེ་ཌིཊི་གིས་ རང་བཞིན་འགོ་མཚམས་ ལྕོགས་ཅན་བཟོ་དགོ་ག"
+
+#: ../data/gedit.schemas.in.h:77
+msgid "Whether gedit should enable syntax highlighting."
+msgstr "ཇི་ཨེ་ཌིཊི་གིས་ ཚིག་སྦྱོར་གཙོ་དམིགས་ ལྕོགས་ཅན་བཟོ་དགོ་ག"
+
+#: ../data/gedit.schemas.in.h:78
+msgid "Whether gedit should highlight all the occurrences of the searched text."
+msgstr "ཇི་ཨི་ཌིཊི་གིས་ འཚོལ་ཞིབ་འབད་ཡོད་པའི་ ཚིག་ཡིག་གི་འབྱུང་བ་ཆ་མཉམ་ གཙོ་དམིགས་འབད་དགོ་ག་མིན་དགོ"
+
+#: ../data/gedit.schemas.in.h:79
+msgid "Whether gedit should highlight matching bracket."
+msgstr "ཇི་ཨེ་ཌེཊི་གིས་ མཐུན་སྒྲིག་གུག་ཤད་གུ་ གཙོ་དམིགས་འབད་དགོ་ག"
+
+#: ../data/gedit.schemas.in.h:80
+msgid "Whether gedit should highlight the current line."
+msgstr "ཇི་ཨེ་ཌིཊི་གིས་ ད་ལྟོའི་གྱལ་རིམ་ལུ་ གཙོ་དམིགས་འབད་དགོ་ག"
+
+#: ../data/gedit.schemas.in.h:81
+msgid "Whether gedit should include a document header when printing documents."
+msgstr "ཇི་ཨེ་ཌིཊི་གིས་ ཡིག་ཆ་དཔར་བསྐྲུན་སྐབས་ ཡིག་ཆའི་མགོ་ཡིག་ གྲངས་སུ་བཙུགས་དགོ་ག"
+
+#: ../data/gedit.schemas.in.h:82
+msgid "Whether gedit should insert spaces instead of tabs."
+msgstr "ཇི་ཨེ་ཌིཊི་གིས་ མཆོང་ལྡེའི་ཚབ་ལུ་ བར་སྟོང་བཙུགས་དགོ་ག"
+
+#: ../data/gedit.schemas.in.h:83
+msgid "Whether gedit should print syntax highlighting when printing documents."
+msgstr "ཇི་ཨེ་ཌིཊི་གིས་ ཡིག་ཆ་དཔར་བསྐྲུན་སྐབས་ ཚིག་སྦྱོར་གཙོ་དམིགས་འབད་དེ་ དཔར་བསྐྲུན་འབད་དགོ་ག"
+
+#: ../data/gedit.schemas.in.h:84
+msgid "Whether gedit should restore the previous cursor position when a file is loaded."
+msgstr "ཇི་ཨི་ཌིཊི་གིས་ ཡིག་སྣོད་ཅིག་མངོན་གསལ་འབད་བའི་སྐབས་ལུ་ ཧེ་མའི་འོད་རྟགས་གནས་ས་དེ་ སླར་གསོ་འབད་དགོ་ག་མིན་དགོ"
+
+#: ../data/gedit.schemas.in.h:85
+msgid "Whether the bottom panel at the bottom of editing windows should be visible."
+msgstr "ཞུན་དག་སྒོ་སྒྲིག་ཚུ་གི་མཇུག་ལུ་ མཇུག་གི་པེ་ནཱལ་དེ་ མཐོང་ཚུགསཔ་སྦེ་ དགོཔ་ཨིན་ན་མེན།"
+
+#: ../data/gedit.schemas.in.h:86
+msgid "Whether the side pane at the left of the editing window should be visible."
+msgstr "ཞུན་དག་སྒོ་སྒྲིག་ཚུ་གི་གཡོན་ལུ་ ཟུར་ཁའི་པེ་ནཱལ་དེ་ མཐོང་ཚུགསཔ་སྦེ་ དགོཔ་ཨིན་ན་མེན།"
+
+#: ../data/gedit.schemas.in.h:87
+msgid "Whether the status bar at the bottom of editing windows should be visible."
+msgstr "ཞུན་དག་བརྐྱབ་ནིའི་ སྒོ་སྒྲིག་ཚུ་གི་མཇུག་ལུ་ གནས་ཚད་ཕྲ་རིང་དེ་ མཐོང་ཚུགསཔ་སྦེ་ དགོཔ་ཨིན་ན།"
+
+#: ../data/gedit.schemas.in.h:88
+msgid "Whether the toolbar should be visible in editing windows."
+msgstr "ཞུན་དག་སྒོ་སྒྲིག་ནང་ ལག་ཆས་ཕྲ་རིང་ མཐོང་ཚུགསཔ་སྦེ་ དགོཔ་ཨིན་ན། "
+
+#: ../data/gedit.schemas.in.h:89
+msgid "Whether to use the system's default fixed width font for editing text instead of a font specific to gedit. If this option is turned off, then the font named in the \"Editor Font\" option will be used instead of the system font."
+msgstr "ཚིག་ཡིག་ཞུན་དག་བརྐྱབ་ནིའི་དོན་ལུ་ ཇི་ཨེ་ཌིཊི་གི་ དམིགས་བསལ་ཡིག་གཟུགས་ཚབ་ལུ་ རིམ་ལུགས་ཀྱི་ སྔོན་སྒྲིག་གཏན་བཟོས་རྒཡ་ཚད་ཡིག་གཟུགས་ ལག་ལེན་འཐབ་ནི་ཨིན་ན་མེན་ན། གལ་སྲིད་ གདམ་ཁ་འདི་ ཊཱན་ཨོཕ་འབད་བ་ཅིན་ རིམ་ལུགས་ཡིག་གཟུགས་ཀྱི་ཚབ་ལུ་ \"Editor Font\" གདམ་ཁ་ནང་ལུ་ མིང་བཀོད་མི་ཡིག་གཟུགས་དེ་ ལག་ལེན་འཐབ་འོང༌།"
+
+#: ../data/gedit.schemas.in.h:90
+msgid "Writable VFS schemes"
+msgstr "འབྲི་བཏུབ་པའི་ ཝི་ཨེཕ་ཨེསི་འཆར་ལས།"
+
+#. Translators: This is the list of encodings shown by default in the Character Coding
+#. menu in open/save file selector. Only recognized encodings are displayed.
+#: ../data/gedit.schemas.in.h:93
+msgid "[ISO-8859-15]"
+msgstr "[ཨའིཨེསི་ཨོ་-༨༨༥༩-༡༥]"
+
+#. Translators: This is the sorted list of encodings used by gedit
+#. for auto-detecting the encoding of a file. You may want to customize it adding
+#. encodings that are common in your country, for instance the GB18030 encoding
+#. for the Chinese	translation. You may also want to remove the ISO-8859-15 encoding
+#. (covering English and most Western European languages) if you think people
+#. in you country will rarely use it.
+#. "CURRENT" is a magic value used by gedit and it represents the encoding
+#. for the current locale, so please don't translate the "CURRENT" term.
+#. Only recognized encodings are used.
+#. See http://svn.mate.org/viewcvs/gedit/trunk/gedit/gedit-encodings.c?view=markup for
+#. a list of supported encodings
+#: ../data/gedit.schemas.in.h:105
+msgid "[UTF-8,CURRENT,ISO-8859-15,UTF-16]"
+msgstr "[ཡུ་ཊི་ཨེཕ་-༨  ད་ལྟོ་  ཨའི་ཨེསི་ཨོ་-༨༨༥༩-༡༥  ཡུ་ཊི་ཨེཕ་-༡༦]"
+
+#: ../gedit/dialogs/gedit-close-confirmation-dialog.c:140
+msgid "Logout _without Saving"
+msgstr "སྲུང་བཞག་མ་འབད་བར་ཕྱིར་བསྐྱོད་འབད།(_w)"
+
+#: ../gedit/dialogs/gedit-close-confirmation-dialog.c:144
+msgid "_Cancel Logout"
+msgstr "ཕྱིར་བསྐྱོད་ཆ་མེད་གཏང་།(_C)"
+
+#: ../gedit/dialogs/gedit-close-confirmation-dialog.c:151
+msgid "Close _without Saving"
+msgstr "སྲུང་བཞག་མ་འབད་བར་ཁ་བསྡམས།(_w)"
+
+#: ../gedit/dialogs/gedit-close-confirmation-dialog.c:211
+msgid "Question"
+msgstr "དྲི་བ།"
+
+#: ../gedit/dialogs/gedit-close-confirmation-dialog.c:411
+#, c-format
+msgid "If you don't save, changes from the last %ld second will be permanently lost."
+msgid_plural "If you don't save, changes from the last %ld seconds will be permanently lost."
+msgstr[0] "ཁྱོད་ཀྱིས་སྲུང་བཞག་མ་འབད་བ་ཅིན་ མཐའ་མཇུག་གི་སྐར་ཆ་%ld ནང་བསྒྱུར་བཅོས་འབད་མི་ཚུ་ རྟག་བརྟན་སྦེ་ བརླག་སྟོར་ཞུགས་འོང་།"
+msgstr[1] "ཁྱོད་ཀྱིས་སྲུང་བཞག་མ་འབད་བ་ཅིན་ མཐའ་མཇུག་གི་སྐར་ཆ་%ld ནང་བསྒྱུར་བཅོས་འབད་མི་ཚུ་ རྟག་བརྟན་སྦེ་ བརླག་སྟོར་ཞུགས་འོང་།"
+
+#: ../gedit/dialogs/gedit-close-confirmation-dialog.c:420
+msgid "If you don't save, changes from the last minute will be permanently lost."
+msgstr "ཁྱོད་ཀྱིས་སྲུང་བཞག་མ་འབད་བ་ཅིན་ མཐའ་མཇུག་གི་སྐར་མ་ནང་བསྒྱུར་བཅོས་འབད་མི་ཚུ་ རྟག་བརྟན་སྦེ་ བརླག་སྟོར་ཞུགས་འོང་།"
+
+#: ../gedit/dialogs/gedit-close-confirmation-dialog.c:426
+#, c-format
+msgid "If you don't save, changes from the last minute and %ld second will be permanently lost."
+msgid_plural "If you don't save, changes from the last minute and %ld seconds will be permanently lost."
+msgstr[0] "ཁྱོད་ཀྱིས་སྲུང་བཞག་མ་འབད་བ་ཅིན་ མཐའ་མཇུག་གི་སྐར་མ་ནང་དང་ སྐར་ཆ་%ld ནང་ བསྒྱུར་བཅོས་འབད་མི་ཚུ་ རྟག་བརྟན་སྦེ་ བརླག་སྟོར་ཞུགས་འོང་།"
+msgstr[1] " ཁྱོད་ཀྱིས་སྲུང་བཞག་མ་འབད་བ་ཅིན་ ཧེ་མའི་སྐར་མ་ནང་དང་ སྐར་ཆ་%ld ཚུ་ནང་ བསྒྱུར་བཅོས་འབད་མི་ཚུ་ རྟག་བརྟན་སྦེ་ བརླག་སྟོར་ཞུགས་འོང་།"
+
+#: ../gedit/dialogs/gedit-close-confirmation-dialog.c:436
+#, c-format
+msgid "If you don't save, changes from the last %ld minute will be permanently lost."
+msgid_plural "If you don't save, changes from the last %ld minutes will be permanently lost."
+msgstr[0] "ཁྱོད་ཀྱིས་སྲུང་བཞག་མ་འབད་བ་ཅིན་ མཐའ་མཇུག་གི་སྐར་ཆ་%ld ནང་ བསྒྱུར་བཅོས་འབད་མི་ཚུ་ རྟག་བརྟན་སྦེ་ བརླག་སྟོར་ཞུགས་འོང་།"
+msgstr[1] "ཁྱོད་ཀྱིས་སྲུང་བཞག་མ་འབད་བ་ཅིན་ ཧེ་མའི་སྐར་ཆ་%ld ཚུ་ནང་ བསྒྱུར་བཅོས་འབད་མི་ཚུ་ རྟག་བརྟན་སྦེ་ བརླག་སྟོར་ཞུགས་འོང་།"
+
+#: ../gedit/dialogs/gedit-close-confirmation-dialog.c:451
+msgid "If you don't save, changes from the last hour will be permanently lost."
+msgstr "ཁྱོད་ཀྱིས་སྲུང་བཞག་མ་འབད་བ་ཅིན་ མཇུག་གི་ཆུ་ཚོད་ལས་ བསྒྱུར་བཅོས་འབད་མི་ཚུ་ རྟག་བརྟན་སྦེ་ བརླག་སྟོར་ཞུགས་འོང་།"
+
+#: ../gedit/dialogs/gedit-close-confirmation-dialog.c:457
+#, c-format
+msgid "If you don't save, changes from the last hour and %d minute will be permanently lost."
+msgid_plural "If you don't save, changes from the last hour and %d minutes will be permanently lost."
+msgstr[0] "ཁྱོད་ཀྱིས་སྲུང་བཞག་མ་འབད་བ་ཅིན་ མཐའ་མཇུག་གི་ཆུ་ཚོད་དང་ སྐར་མ་%d ནང་ བསྒྱུར་བཅོས་འབད་མི་ཚུ་ རྟག་བརྟན་སྦེ་ བརླག་སྟོར་ཞུགས་འོང་།"
+msgstr[1] "ཁྱོད་ཀྱིས་སྲུང་བཞག་མ་འབད་བ་ཅིན་ མཐའ་མཇུག་གི་ཆུ་ཚོད་དང་ སྐར་མ་%d ཚུ་ནང་ བསྒྱུར་བཅོས་འབད་མི་ཚུ་ རྟག་བརྟན་སྦེ་ བརླག་སྟོར་ཞུགས་འོང་།"
+
+#: ../gedit/dialogs/gedit-close-confirmation-dialog.c:472
+#, c-format
+msgid "If you don't save, changes from the last %d hour will be permanently lost."
+msgid_plural "If you don't save, changes from the last %d hours will be permanently lost."
+msgstr[0] "ཁྱོད་ཀྱིས་སྲུང་བཞག་མ་འབད་བ་ཅིན་ མཐའ་མཇུག་གི་ཆུ་ཚོད་ %d འདི་ལས་བསྒྱུར་བཅོས་འབད་མི་ཚུ་ རྟག་བརྟན་སྦེ་ བརླག་སྟོར་ཞུགས་འོང་།"
+msgstr[1] "ཁྱོད་ཀྱིས་སྲུང་བཞག་མ་འབད་བ་ཅིན་ མཐའ་མཇུག་གི་ཆུ་ཚོད་ %d ཚུ་ལས་ བསྒྱུར་བཅོས་འབད་མི་ཚུ་ རྟག་བརྟན་སྦེ་ བརླག་སྟོར་ཞུགས་འོང་།"
+
+#: ../gedit/dialogs/gedit-close-confirmation-dialog.c:515
+#, c-format
+msgid "Changes to document \"%s\" will be permanently lost."
+msgstr "་ ཡིག་ཆ་\"%s\" ལུ་བསྒྱུར་བཅོས་འབད་མི་ཚུ་ རྟག་བརྟན་སྦེ་ བརླག་སྟོར་ཞུགས་འོང༌། "
+
+#: ../gedit/dialogs/gedit-close-confirmation-dialog.c:520
+#, c-format
+msgid "Save the changes to document \"%s\" before closing?"
+msgstr "བསྒྱུར་བཅོས་ཚུ་ ཁ་མ་བསྡམ་པའི་ཧེ་མར་ ཡིག་ཆ་\"%s\" ནང་ སྲུང་བཞག་འབད་ནི་ཨིན་ན?"
+
+#: ../gedit/dialogs/gedit-close-confirmation-dialog.c:534
+#: ../gedit/dialogs/gedit-close-confirmation-dialog.c:745
+msgid "Saving has been disabled by the system administrator."
+msgstr "བསྲུང་བཞག་འབད་ནི་དེ་ རིམ་ལུགས་བདག་སྐྱོང་པ་གིས་ ལྕོགས་མིན་བཟོ་ནུག།"
+
+#: ../gedit/dialogs/gedit-close-confirmation-dialog.c:700
+#, c-format
+msgid "Changes to %d document will be permanently lost."
+msgid_plural "Changes to %d documents will be permanently lost."
+msgstr[0] "ཡིག་ཆ་%dལུ་བསྒྱུར་བཅོས་འབད་མི་ཚུ་ རྟག་བརྟན་སྦེ་ བརླག་སྟོར་ཞུགས་འོང༌། "
+msgstr[1] "ཡིག་ཆ་%dལུ་བསྒྱུར་བཅོས་འབད་མི་ཚུ་ རྟག་བརྟན་སྦེ་ བརླག་སྟོར་ཞུགས་འོང༌། "
+
+#: ../gedit/dialogs/gedit-close-confirmation-dialog.c:706
+#, c-format
+msgid "There is %d document with unsaved changes. Save changes before closing?"
+msgid_plural "There are %d documents with unsaved changes. Save changes before closing?"
+msgstr[0] "བསྒྱུར་བཅོས་སྲུང་བཞག་མ་འབད་བའི་ཡིག་ཆ་%dའདུག བསྒྱུར་བཅོས་ཚུ་ ཁ་མ་བསྡམས་ལས་བསྲུང་ནི་ཨིན་ན?"
+msgstr[1] " བསྒྱུར་བཅོས་སྲུང་བཞག་མ་འབད་བའི་ཡིག་ཆ་%dཚུ་འདུག བསྒྱུར་བཅོས་ཚུ་ ཁ་མ་བསྡམས་ལས་བསྲུང་ནི་ཨིན་ན?།"
+
+#: ../gedit/dialogs/gedit-close-confirmation-dialog.c:724
+msgid "Docum_ents with unsaved changes:"
+msgstr "བསྒྱུར་བཅོས་ཚུ་ མ་བསྲུངས་པའི་ཡིག་ཆ་ཚུ།(_e)"
+
+#: ../gedit/dialogs/gedit-close-confirmation-dialog.c:726
+msgid "S_elect the documents you want to save:"
+msgstr "ཁྱོད་ཀྱིས་སྲུང་བཞག་འབད་དགོ་མི་ ཡིག་ཆ་ཚུ་ སེལ་འཐུ་འབད། (_e)"
+
+#: ../gedit/dialogs/gedit-close-confirmation-dialog.c:747
+msgid "If you don't save, all your changes will be permanently lost."
+msgstr "ཁྱོད་ཀྱིས་སྲུང་བཞག་མ་འབད་བ་ཅིན་ བསྒྱུར་ཆ་མཉམ་ར་ རྟག་བརྟན་སྦེ་ བརླག་སྟོར་ཞུགས་འོང་།"
+
+#: ../gedit/dialogs/gedit-encodings-dialog.c:315
+msgid "Character Codings"
+msgstr "ཡིག་འབྲུའི་ཀོ་ཌིངསི།"
+
+#: ../gedit/dialogs/gedit-encodings-dialog.c:373
+#: ../gedit/dialogs/gedit-encodings-dialog.c:434
+msgid "_Description"
+msgstr "འགྲེལ་བཤད། (_D)"
+
+#: ../gedit/dialogs/gedit-encodings-dialog.c:382
+#: ../gedit/dialogs/gedit-encodings-dialog.c:443
+msgid "_Encoding"
+msgstr "ཨིན་ཀོ་ཌིང་།  (_E)"
+
+#: ../gedit/dialogs/gedit-encodings-dialog.glade.h:1
+msgid "A_vailable encodings:"
+msgstr "འཐོབ་ཚུགས་པའི་ ཨིན་ཀོ་ཌིངསི་: (_v)"
+
+#: ../gedit/dialogs/gedit-encodings-dialog.glade.h:2
+msgid "Character codings"
+msgstr "ཡིག་འབྲུའི་ཀོ་ཌིངསི།"
+
+#: ../gedit/dialogs/gedit-encodings-dialog.glade.h:3
+msgid "E_ncodings shown in menu:"
+msgstr "དཀར་ཆག་ནང་སྟོན་མི་ ཨིན་ཀོ་ཌིངསི།  (_n)"
+
+#: ../gedit/dialogs/gedit-open-location-dialog.c:139
+#: ../gedit/dialogs/gedit-open-location-dialog.glade.h:3
+msgid "Open Location"
+msgstr "གནས་ཁོངས་ཁ་ཕྱེ།"
+
+#: ../gedit/dialogs/gedit-open-location-dialog.glade.h:1
+msgid "Ch_aracter coding:"
+msgstr "ཡིག་འབྲུའི་ཀོ་ཌིང་།(_a)"
+
+#: ../gedit/dialogs/gedit-open-location-dialog.glade.h:2
+msgid "Enter the _location (URI) of the file you would like to open:"
+msgstr "ཁྱོད་ཀྱིས་ཁ་ཕྱེ་དགོ་མནོ་མི་ ཡིག་སྣོད་ཀྱི་གནས་ཁོངས་ (ཡུ་ཨར་ཨའི་)བཙུགས། (_l)"
+
+#: ../gedit/dialogs/gedit-preferences-dialog.c:570
+msgid "Push this button to select the font to be used by the editor"
+msgstr "ཞུན་དགཔ་གིས་ ལག་ལེན་འཐབ་ནིའི་ཡིག་གཟུགས་ སེལ་འཐུ་འབད་ནི་ལུ་ ཨེབ་རྟ་འདི་ཨེབ།"
+
+#: ../gedit/dialogs/gedit-preferences-dialog.c:580
+#, c-format
+msgid "_Use the system fixed width font (%s)"
+msgstr "རིམ་ལུགས་གཏན་བཟོས་འབད་ཡོད་པའི་རྒྱ་ཙད་ཡིག་གཟུགས་(%s)འདི་ལག་ལེན་འཐབ་ (_U)"
+
+#: ../gedit/dialogs/gedit-preferences-dialog.c:783
+msgid "The selected color scheme cannot be installed."
+msgstr "སེལ་འཐུ་འབད་ཡོད་པའི་ ཚོས་གཞིའི་བཟོ་རྣམ་དེ་ གཞི་བཙུགས་འདབ་མི་ཚུགས་པས། "
+
+#: ../gedit/dialogs/gedit-preferences-dialog.c:808
+msgid "Add Scheme"
+msgstr "འཆར་ལས་ ཁ་སྐོང་རྐྱབས་"
+
+#: ../gedit/dialogs/gedit-preferences-dialog.c:815
+msgid "A_dd Scheme"
+msgstr "འཆར་ལས་ ཁ་སྐོང་རྐྱབས་ (_D)"
+
+#: ../gedit/dialogs/gedit-preferences-dialog.c:823
+msgid "Color Scheme Files"
+msgstr "འཆར་ལས་ ཡིག་སྣོད་ཚུ་ ཚོསགཞི་ གཏང་ "
+
+#: ../gedit/dialogs/gedit-preferences-dialog.c:830
+#: ../gedit/gedit-file-chooser-dialog.c:52
+msgid "All Files"
+msgstr "ཡིག་སྣོད་ཆ་མཉམ།"
+
+#: ../gedit/dialogs/gedit-preferences-dialog.c:875
+#, c-format
+msgid "Could not remove color scheme \"%s\"."
+msgstr "ཚོས་གཞི་འཆར་ལས་ \"%s\" རྩ་བསྐྲད་གཏང་མི་ཚུགས་པས། "
+
+#: ../gedit/dialogs/gedit-preferences-dialog.c:1077
+msgid "gedit Preferences"
+msgstr "ཇི་ཨི་ཌིཊི་གི་དགའ་གདམ་ཚུ།"
+
+#. ex:ts=4:et:
+#: ../gedit/dialogs/gedit-preferences-dialog.glade.h:1
+#: ../plugins/docinfo/docinfo.glade2.h:1
+#: ../plugins/externaltools/tools/tools.glade.h:1
+#: ../plugins/snippets/snippets/snippets.glade.h:1
+#: ../plugins/time/time.glade2.h:1
+msgid "    "
+msgstr "    "
+
+#: ../gedit/dialogs/gedit-preferences-dialog.glade.h:2
+msgid "<b>Automatic Indentation</b>"
+msgstr "<b>རང་བཞིན་འགོ་མཚམས་བཀོད་པ།</b>"
+
+#: ../gedit/dialogs/gedit-preferences-dialog.glade.h:3
+msgid "<b>Bracket Matching</b>"
+msgstr "<b>གུག་ཤད་མཐུན་སྒྲིག</b>"
+
+#: ../gedit/dialogs/gedit-preferences-dialog.glade.h:4
+msgid "<b>Current Line</b>"
+msgstr "<b>ད་ལྟོའི་གྱལ་རིམ།</b>"
+
+#: ../gedit/dialogs/gedit-preferences-dialog.glade.h:5
+msgid "<b>File Saving</b>"
+msgstr "<b>ཡིག་སྣོད་སྲུང་བཞག</b>"
+
+#: ../gedit/dialogs/gedit-preferences-dialog.glade.h:6
+msgid "<b>Font</b>"
+msgstr "<b>ཡིག་གཟུགས།</b>"
+
+#: ../gedit/dialogs/gedit-preferences-dialog.glade.h:7
+#: ../gedit/gedit-print-preferences.glade.h:2
+msgid "<b>Line Numbers</b>"
+msgstr "<b>གྱལ་རིམ་ཨང༌།</b>"
+
+#: ../gedit/dialogs/gedit-preferences-dialog.glade.h:8
+msgid "<b>Right Margin</b>"
+msgstr "<b>གཡས་ཀྱི་ས་སྟོང་།</b>"
+
+#: ../gedit/dialogs/gedit-preferences-dialog.glade.h:9
+msgid "<b>Tab Stops</b>"
+msgstr "<b>མཆོང་ལྡེ་བཀག་ས།</b>"
+
+#: ../gedit/dialogs/gedit-preferences-dialog.glade.h:10
+#: ../gedit/gedit-print-preferences.glade.h:5
+msgid "<b>Text Wrapping</b>"
+msgstr "<b>ཚིག་ཡིག་ལོག་མཚམས།</b>"
+
+#: ../gedit/dialogs/gedit-preferences-dialog.glade.h:11
+msgid "<span weight=\"bold\">Color Scheme</span>"
+msgstr "<span weight=\"bold\">ཚོས་གཞི་ འཆར་ལས་</span>"
+
+#: ../gedit/dialogs/gedit-preferences-dialog.glade.h:12
+msgid "Create a _backup copy of files before saving"
+msgstr "སྲུང་བཞག་མ་འབད་བའི་ཧེ་མ་ རྒྱབ་ཐག་འདྲ་བཤུས་ཅིག་ གསར་བསྐྲུན་འབད། (_b)"
+
+#: ../gedit/dialogs/gedit-preferences-dialog.glade.h:13
+msgid "Display right _margin"
+msgstr "གཡས་ཀྱི་ས་སྟོང་ བཀྲམ་སྟོན་འབད། (_m)"
+
+#: ../gedit/dialogs/gedit-preferences-dialog.glade.h:14
+#: ../gedit/gedit-print-preferences.glade.h:6
+msgid "Do not _split words over two lines"
+msgstr "མིང་ཚིག་ཚུ་ གྱལ་རིམ་གཉིས་ལས་ལྷག་སྟེ་མ་གཤག(_s)"
+
+#: ../gedit/dialogs/gedit-preferences-dialog.glade.h:15
+msgid "Editor"
+msgstr "ཞུན་དགཔ།"
+
+#: ../gedit/dialogs/gedit-preferences-dialog.glade.h:16
+msgid "Editor _font: "
+msgstr "ཞུན་དག་པའི་ཡིག་གཟུགས་: (_f)"
+
+#: ../gedit/dialogs/gedit-preferences-dialog.glade.h:17
+#: ../gedit/gedit-print-preferences.glade.h:7
+msgid "Enable text _wrapping"
+msgstr "ཚིག་ཡིག་ལོག་མཚམས་ ལྕོགས་ཅན་བཟོ།(_w)"
+
+#: ../gedit/dialogs/gedit-preferences-dialog.glade.h:18
+msgid "Font & Colors"
+msgstr "ཡིག་གཟུགས་དང་ཚོས་གཞི།"
+
+#: ../gedit/dialogs/gedit-preferences-dialog.glade.h:19
+msgid "Highlight current _line"
+msgstr "ད་ལྟོའི་གྱལ་རིན་ གཙོ་དམིགས་འབད་ (_L)"
+
+#: ../gedit/dialogs/gedit-preferences-dialog.glade.h:20
+msgid "Highlight matching _bracket"
+msgstr "མཐུན་སྒྲིག་ཅན་གྱི་གུག་ཤད་ལུ་ གཙོ་དམིགས་འབད།(_b)"
+
+#: ../gedit/dialogs/gedit-preferences-dialog.glade.h:21
+msgid "Insert _spaces instead of tabs"
+msgstr "མཆོང་ལྡེའི་ཚབ་ལུ་ བར་སྟོང་བཙུགས། (_s)"
+
+#: ../gedit/dialogs/gedit-preferences-dialog.glade.h:22
+msgid "Pick the editor font"
+msgstr "ཞུན་དག་པའི་ཡིག་གཟུགས་འཐུ།"
+
+#: ../gedit/dialogs/gedit-preferences-dialog.glade.h:23
+msgid "Plugins"
+msgstr "པལག་ཨིནསི།"
+
+#: ../gedit/dialogs/gedit-preferences-dialog.glade.h:24
+msgid "Preferences"
+msgstr "དགའ་གདམ་ཚུ།"
+
+#: ../gedit/dialogs/gedit-preferences-dialog.glade.h:25
+msgid "View"
+msgstr "མཐོང་སྣང་།"
+
+#: ../gedit/dialogs/gedit-preferences-dialog.glade.h:26
+msgid "_Add..."
+msgstr "ཁ་སྐོང༌རྐྱབས་(_A)"
+
+#: ../gedit/dialogs/gedit-preferences-dialog.glade.h:27
+msgid "_Autosave files every"
+msgstr "རེ་རེའི་ནང་ ཡིག་སྣོད་ཚུ་རང་བཞིན་གྱིས་སྲུངས། (_A)"
+
+#: ../gedit/dialogs/gedit-preferences-dialog.glade.h:28
+msgid "_Display line numbers"
+msgstr "གྱལ་རིམ་ཨང་ཨང་ བཀྲམ་སྟོན་འབད། (_D)"
+
+#: ../gedit/dialogs/gedit-preferences-dialog.glade.h:29
+msgid "_Enable automatic indentation"
+msgstr "རང་བཞིན་འགོ་མཚམས་ ལྕོགས་ཅན་བཟོ། (_E)"
+
+#: ../gedit/dialogs/gedit-preferences-dialog.glade.h:30
+msgid "_Right margin at column:"
+msgstr "ཀེར་ཐིག་ལུ་ གཡས་ཀྱི་ས་སྟོང་། (_R)"
+
+#: ../gedit/dialogs/gedit-preferences-dialog.glade.h:31
+msgid "_Tab width:"
+msgstr "མཆོང་ལྡེའི་རྒྱ་ཚད༌། (_T)"
+
+#: ../gedit/dialogs/gedit-preferences-dialog.glade.h:32
+msgid "_minutes"
+msgstr "སྐར་མ། (_m)"
+
+#: ../gedit/dialogs/gedit-search-dialog.c:301
+#: ../gedit/dialogs/gedit-search-dialog.glade.h:2
+#: ../gedit/gedit-window.c:1363
+msgid "Replace"
+msgstr "ཚབ་བཙུགས།"
+
+#: ../gedit/dialogs/gedit-search-dialog.c:312
+#: ../gedit/gedit-window.c:1361
+msgid "Find"
+msgstr "འཚོལ།"
+
+#: ../gedit/dialogs/gedit-search-dialog.c:404
+msgid "Replace _All"
+msgstr "ཆ་མཉམ་ཚབ་བཙུགས། (_A)"
+
+#: ../gedit/dialogs/gedit-search-dialog.c:405
+#: ../gedit/gedit-commands-file.c:678
+msgid "_Replace"
+msgstr "ཚབ་བཙུགས། (_R)"
+
+#: ../gedit/dialogs/gedit-search-dialog.glade.h:1
+msgid "Match _entire word only"
+msgstr "མིང་ཚིག་ཧྲིལ་བུ་རྐྱངམ་ མཐུན་སྒྲིག་འབད། (_e)"
+
+#: ../gedit/dialogs/gedit-search-dialog.glade.h:3
+msgid "Replace All"
+msgstr "ཆ་མཉམ་ཚབ་བཙུགས།"
+
+#: ../gedit/dialogs/gedit-search-dialog.glade.h:4
+msgid "Replace _with: "
+msgstr "ཚབ་འདི་བཙུགས་: (_w)"
+
+#: ../gedit/dialogs/gedit-search-dialog.glade.h:5
+msgid "Search _backwards"
+msgstr "རྒྱབ་ལོག་འཚོལ་ཞིབ་འབད། (_b)"
+
+#: ../gedit/dialogs/gedit-search-dialog.glade.h:6
+msgid "_Match case"
+msgstr "གནད་དོན་མཐུན་སྒྲིག་འབད། (_M)"
+
+#: ../gedit/dialogs/gedit-search-dialog.glade.h:7
+msgid "_Search for: "
+msgstr "དོན་ལུ་ འཚོལ་ཞིབ་འབད། (_S)"
+
+#: ../gedit/dialogs/gedit-search-dialog.glade.h:8
+msgid "_Wrap around"
+msgstr "མཐའ་བསྐོར་ཏེ་ལོག (_W)"
+
+#: ../gedit/gedit.c:73
+msgid "Set the character encoding to be used to open the files listed on the command line"
+msgstr "བཀོད་ལམ་ནང་ ཐོ་བཀོད་འབད་ཡོད་པའི་ ཡིག་སྣོད་ཁ་ཕྱེ་ནིའི་དོན་ལུ་ ལག་ལེན་འཐབ་ནིའི་ ཡིག་འབྲུའི་ཨིན་ཀོ་ཌིང་ གཞི་སྒྲིག་འབད།"
+
+#: ../gedit/gedit.c:73
+msgid "ENCODING"
+msgstr "ཨིན་ཀོ་ཌིང་ "
+
+#: ../gedit/gedit.c:76
+msgid "Create a new toplevel window in an existing instance of gedit"
+msgstr "ཇི་ཨེ་ཌིཊི་གི་ གནས་བཞིན་པའི་དུས་སྐབས་ཅིག་ནང་ གནས་རིམ་མཐོ་ཤོས་ཀྱི་ སྒོ་སྒྲིག་གསརཔ་ཅིག་ གསར་བསྐྲུན་འབད།"
+
+#: ../gedit/gedit.c:79
+msgid "Create a new document in an existing instance of gedit"
+msgstr "ཇི་ཨེ་ཌིཊི་གི་ གནས་བཞིན་པའི་དུས་སྐབས་ཅིག་ནང་ ཡིག་ཆ་གསརཔ་ཅིག་གསར་བསྐྲུན་འབད།"
+
+#: ../gedit/gedit.c:82
+msgid "[FILE...]"
+msgstr "[ཡིག་སྣོད་...]"
+
+#: ../gedit/gedit.c:114
+#, c-format
+msgid "%s: malformed file name or URI.\n"
+msgstr "%s: བཟོ་ཉེས་གྱུར་བའི་ཡིག་སྣོད་མིང་ ཡང་ན་ ཨུ་ཨར་ཨའི།\n"
+
+#: ../gedit/gedit.c:126
+#, c-format
+msgid "%s: invalid encoding.\n"
+msgstr "%s:ནུས་མེད་ཀོ་ཌིང་།\n"
+
+#. Setup command line options
+#: ../gedit/gedit.c:467
+msgid "- Edit text files"
+msgstr "ཇི་ཨི་ཌིཊི་གི་ཚིག་ཡིག་(_E)"
+
+#: ../gedit/gedit-commands-file.c:225
+#: ../gedit/gedit-commands-file.c:271
+#, c-format
+msgid "Loading file '%s'…"
+msgstr "ཡིག་སྣོད་'%s'མངོན་གསལ་འབད་དོ་..."
+
+#: ../gedit/gedit-commands-file.c:280
+#, c-format
+msgid "Loading %d file…"
+msgid_plural "Loading %d files…"
+msgstr[0] "ཡིག་སྣོད་%dམངོན་གསལ་འབད་དོ།"
+msgstr[1] "ཡིག་སྣོད་%d མངོན་གསལ་འབད་དོ།"
+
+#. Translators: "Open Files" is the title of the file chooser window
+#: ../gedit/gedit-commands-file.c:424
+msgid "Open Files"
+msgstr "ཡིག་སྣོད་ཚུ་ ཁ་ཕྱ་ "
+
+#: ../gedit/gedit-commands-file.c:530
+msgid "The entered location is not valid."
+msgstr "བཙུགས་མི་གནས་ཁོངས་དེ་ ནུས་ཅན་མེན་པས།"
+
+#: ../gedit/gedit-commands-file.c:533
+#: ../gedit/gedit-io-error-message-area.c:187
+#: ../gedit/gedit-io-error-message-area.c:226
+#: ../gedit/gedit-io-error-message-area.c:242
+msgid "Please check that you typed the location correctly and try again."
+msgstr "ཁྱོད་ཀྱིས་གནས་ཁོངས་ ངེས་བདེན་སྦེ་ ཡིག་དཔར་རྐྱབས་མ་རྐྱབས་ ཞིབ་དཔྱད་འབད་ཞིནམ་ལས་ ལོག་སྟེ་འབད་རྩོལ་བསྐྱེད་གནང༌།"
+
+#: ../gedit/gedit-commands-file.c:659
+#, c-format
+msgid "The file \"%s\" is read-only."
+msgstr "ཡིག་སྣོད་ \"%s\" དེ་ ལྷབ་ནི་ཙམ་ཅིག་ཨིན།"
+
+#: ../gedit/gedit-commands-file.c:670
+msgid "Do you want to try to replace it with the one you are saving?"
+msgstr "འདི་གི་ཚབ་ལུ་ ཁྱོད་ཀྱིས་སྲུང་བཞག་འབད་མི་དེ་ བཙུགས་ནིའི་འབད་རྩོལ་བསྐྱེད་ནི་ཨིན་ན?"
+
+#: ../gedit/gedit-commands-file.c:736
+#: ../gedit/gedit-commands-file.c:939
+#, c-format
+msgid "Saving file '%s'…"
+msgstr "ཡིག་སྣོད་'%s'སྲུང་དོ་..."
+
+#: ../gedit/gedit-commands-file.c:837
+msgid "Save As…"
+msgstr "དེ་སྦེ་སྲུངས་..."
+
+#: ../gedit/gedit-commands-file.c:1118
+#, c-format
+msgid "Reverting the document '%s'…"
+msgstr "ཡིག་ཆ་'%s'དེ་ རྒྱབ་ལོག་འབད་དོ་..."
+
+#: ../gedit/gedit-commands-file.c:1163
+#, c-format
+msgid "Revert unsaved changes to document '%s'?"
+msgstr "སྲུང་བཞག་མ་འབད་བའི་བསྒྱུར་བཅོས་ཚུ་ ཡིག་ཆ་  '%s'ལུ་ རྒྱབ་ལོག་གཏང་ནི་ཨིན་ན?"
+
+#: ../gedit/gedit-commands-file.c:1172
+#, c-format
+msgid "Changes made to the document in the last %ld second will be permanently lost."
+msgid_plural "Changes made to the document in the last %ld seconds will be permanently lost."
+msgstr[0] "མཐའ་མཇུག་གི་་སྐར་ཆ་ %ld གི་ནང་འཁོད་  ཡིག་ཆ་ལུ་བསྒྱུར་བཅོས་འབད་མི་ཚུ་ རྟག་བརྟན་སྦེ་ བརླག་སྟོར་ཞུགས་འོང༌།"
+msgstr[1] "མཐའ་མཇུག་གི་སྐར་ཆ་ %ld ཚུ་གི་ནང་འཁོད་  ཡིག་ཆ་ལུ་བསྒྱུར་བཅོས་འབད་མི་ཚུ་ རྟག་བརྟན་སྦེ་ བརླག་སྟོར་ཞུགས་འོང༌།"
+
+#: ../gedit/gedit-commands-file.c:1181
+msgid "Changes made to the document in the last minute will be permanently lost."
+msgstr "མཐའ་མཇུག་གི་སྐར་མའི་ནང་ ཡིག་ཆ་ལུ་བསྒྱུར་བཅོས་འབད་མི་ཚུ་ རྟག་བརྟན་སྦེ་ བརླག་སྟོར་ཞུགས་འོང༌།"
+
+#: ../gedit/gedit-commands-file.c:1187
+#, c-format
+msgid "Changes made to the document in the last minute and %ld second will be permanently lost."
+msgid_plural "Changes made to the document in the last minute and %ld seconds will be permanently lost."
+msgstr[0] "མཐའ་མཇུག་གི་སྐར་མ་དང་ སྐར་ཆ་ %ld གི་ནང་ ཡིག་ཆ་ལུ་བསྒྱུར་བཅོས་འབད་མི་ཚུ་ རྟག་བརྟན་སྦེ་ བརླག་སྟོར་ཞུགས་འོང༌། "
+msgstr[1] "མཐའ་མཇུག་གི་སྐར་མ་དང་ སྐར་ཆ་ %ld ཚུ་གི་ནང་ ཡིག་ཆ་ལུ་བསྒྱུར་བཅོས་འབད་མི་ཚུ་ རྟག་བརྟན་སྦེ་ བརླག་སྟོར་ཞུགས་འོང༌།"
+
+#: ../gedit/gedit-commands-file.c:1197
+#, c-format
+msgid "Changes made to the document in the last %ld minute will be permanently lost."
+msgid_plural "Changes made to the document in the last %ld minutes will be permanently lost."
+msgstr[0] "མཐའ་མཇུག་གི་ཆུ་ཚོད་%ldནང་ ཡིག་ཆ་ལུ་བསྒྱུར་བཅོས་འབད་མི་ཚུ་ རྟག་བརྟན་སྦེ་ བརླག་སྟོར་ཞུགས་འོང༌། "
+msgstr[1] "མཐའ་མཇུག་གི་སྐར་མ་ %ld ཚུ་གི་ནང་ ཡིག་ཆ་ལུ་བསྒྱུར་བཅོས་འབད་མི་ཚུ་ རྟག་བརྟན་སྦེ་ བརླག་སྟོར་ཞུགས་འོང༌། "
+
+#: ../gedit/gedit-commands-file.c:1212
+msgid "Changes made to the document in the last hour will be permanently lost."
+msgstr "མཐའ་མཇུག་གི་ཆུ་ཚོད་ནང་ ཡིག་ཆ་འདི་ལུ་བསྒྱུར་བཅོས་འབད་མི་ཚུ་ རྟག་བརྟན་སྦེ་ བརླག་སྟོར་ཞུགས་འོང༌།"
+
+#: ../gedit/gedit-commands-file.c:1218
+#, c-format
+msgid "Changes made to the document in the last hour and %d minute will be permanently lost."
+msgid_plural "Changes made to the document in the last hour and %d minutes will be permanently lost."
+msgstr[0] "མཐའ་མཇུག་གི་ཆུ་ཚོད་དང་ སྐར་མ་ %d གི་ནང་ ཡིག་ཆ་ལུ་བསྒྱུར་བཅོས་འབད་མི་ཚུ་ རྟག་བརྟན་སྦེ་ བརླག་སྟོར་ཞུགས་འོང༌།"
+msgstr[1] "མཐའ་མཇུག་གི་ཆུ་ཚོད་དང་ སྐར་མ་%d ཚུ་གི་ནང་ ཡིག་ཆ་ལུ་བསྒྱུར་བཅོས་འབད་མི་ཚུ་ རྟག་བརྟན་སྦེ་ བརླག་སྟོར་ཞུགས་འོང༌།"
+
+#: ../gedit/gedit-commands-file.c:1233
+#, c-format
+msgid "Changes made to the document in the last %d hour will be permanently lost."
+msgid_plural "Changes made to the document in the last %d hours will be permanently lost."
+msgstr[0] "མཐའ་མཇུག་གི་ཆུ་ཚོད་ %d འདི་ནང་གི་ ཡིག་ཆ་ལུ་བསྒྱུར་བཅོས་འབད་མི་ཚུ་ རྟག་བརྟན་སྦེ་ བརླག་སྟོར་ཞུགས་འོང༌། "
+msgstr[1] "མཐའ་མཇུག་གི་ཆུ་ཚོད་ %d ཚུ་གི་ནང་ ཡིག་ཆ་ལུ་བསྒྱུར་བཅོས་འབད་མི་ཚུ་ རྟག་བརྟན་སྦེ་ བརླག་སྟོར་ཞུགས་འོང༌། "
+
+#: ../gedit/gedit-commands-file.c:1259
+msgid "_Revert"
+msgstr "རྒྱབ་ལོག (_R)"
+
+#: ../gedit/gedit-commands-help.c:80
+msgid "gedit is a small and lightweight text editor for the MATE Desktop"
+msgstr "ཇི་ཨེ་ཌིཊི་དེ་ ཇི་ནོམ་ཌེཀསི་ཊོཔ་གི་དོན་ལས་ ཚིག་ཡིག་ཞུན་དགཔ་ ཆུང་ཀུ་དང་ལྗིད་ཡང་ཅིག་ཨིན།"
+
+#: ../gedit/gedit-commands-help.c:96
+msgid "translator-credits"
+msgstr "ཨའི་ཌི་ཨར་སི་གི་མ་དངུལ་རྒྱབ་སྐྱོར་ཐོག་ལས་ བརྡ་དོན་འཕྲུལ་རིག་ལས་ཁུངས་ནང་ སྐད་བསྒྱུར་འབད་ཡི། ཁ་གསལ་གྱི་དོན་ལུ་ འབྲེལ་བ་འཐབ་ས་: <pema_geyleg@druknet.bt>/<pgeyleg@dit.gov.bt>"
+
+#: ../gedit/gedit-commands-search.c:165
+#, c-format
+msgid "Found and replaced %d occurrence"
+msgid_plural "Found and replaced %d occurrences"
+msgstr[0] "འབྱུང་བ་%d ཐོབ་སྟེ་ ཚབ་བཙུགས་ཡོད།"
+msgstr[1] "འབྱུང་བ་%d ཐོབ་སྟེ་ ཚབ་བཙུགས་ཡོད།"
+
+#: ../gedit/gedit-commands-search.c:175
+msgid "Found and replaced one occurrence"
+msgstr "འབྱུང་བ་གཅིག་ཐོབ་སྟེ་ ཚབ་བཙུགས་ཡོད།"
+
+#: ../gedit/gedit-commands-search.c:188
+msgid "Phrase not found"
+msgstr "ཚིག་ཚན་མ་ཐོབ།"
+
+#: ../gedit/gedit-document.c:862
+#: ../gedit/gedit-document.c:956
+#, c-format
+msgid "Unsaved Document %d"
+msgstr "སྲུང་བཞག་མ་འབད་བའི་ཡིག་ཆ་%d།"
+
+#: ../gedit/gedit-documents-panel.c:89
+#: ../gedit/gedit-documents-panel.c:103
+#: ../gedit/gedit-window.c:1929
+#: ../gedit/gedit-window.c:1934
+msgid "Read Only"
+msgstr "ལྷག་ནི་ཙམ།"
+
+#: ../gedit/gedit-documents-panel.c:760
+#: ../gedit/gedit-window.c:2873
+msgid "Documents"
+msgstr "ཡིག་ཆ་ཚུ།"
+
+#: ../gedit/gedit-encodings.c:140
+#: ../gedit/gedit-encodings.c:184
+#: ../gedit/gedit-encodings.c:186
+#: ../gedit/gedit-encodings.c:188
+#: ../gedit/gedit-encodings.c:190
+#: ../gedit/gedit-encodings.c:192
+#: ../gedit/gedit-encodings.c:194
+#: ../gedit/gedit-encodings.c:196
+msgid "Unicode"
+msgstr "ཡུ་ནི་ཀོཌི།"
+
+#: ../gedit/gedit-encodings.c:153
+#: ../gedit/gedit-encodings.c:179
+#: ../gedit/gedit-encodings.c:231
+#: ../gedit/gedit-encodings.c:274
+msgid "Western"
+msgstr "ནུབ་ཕྱོགས་ཀྱི།"
+
+#: ../gedit/gedit-encodings.c:155
+#: ../gedit/gedit-encodings.c:233
+#: ../gedit/gedit-encodings.c:270
+msgid "Central European"
+msgstr "དབུས་ཕྱོགས་ཡུ་རོ་པི་ཡཱན།"
+
+#: ../gedit/gedit-encodings.c:157
+msgid "South European"
+msgstr "ལྷོ་ཕྱོགས་ཡུ་རོ་པི་ཡཱན།"
+
+#: ../gedit/gedit-encodings.c:159
+#: ../gedit/gedit-encodings.c:175
+#: ../gedit/gedit-encodings.c:284
+msgid "Baltic"
+msgstr "བཱལ་ཊིཀ།"
+
+#: ../gedit/gedit-encodings.c:161
+#: ../gedit/gedit-encodings.c:235
+#: ../gedit/gedit-encodings.c:248
+#: ../gedit/gedit-encodings.c:252
+#: ../gedit/gedit-encodings.c:254
+#: ../gedit/gedit-encodings.c:272
+msgid "Cyrillic"
+msgstr "སི་རི་ལིཀ།"
+
+#: ../gedit/gedit-encodings.c:163
+#: ../gedit/gedit-encodings.c:241
+#: ../gedit/gedit-encodings.c:282
+msgid "Arabic"
+msgstr "ཨ་ར་བིཀ།"
+
+#: ../gedit/gedit-encodings.c:165
+#: ../gedit/gedit-encodings.c:276
+msgid "Greek"
+msgstr "གིརིཀ།"
+
+#: ../gedit/gedit-encodings.c:167
+msgid "Hebrew Visual"
+msgstr "ཧེབ་བིརིའུ་ བི་ཤུ་ཡལ།"
+
+#: ../gedit/gedit-encodings.c:169
+#: ../gedit/gedit-encodings.c:239
+#: ../gedit/gedit-encodings.c:280
+msgid "Hebrew"
+msgstr "ཧེབ་བིརིའུ།"
+
+#: ../gedit/gedit-encodings.c:171
+#: ../gedit/gedit-encodings.c:237
+#: ../gedit/gedit-encodings.c:278
+msgid "Turkish"
+msgstr "ཊར་ཀིཤ།"
+
+#: ../gedit/gedit-encodings.c:173
+msgid "Nordic"
+msgstr "ནོར་ཌིཀ།"
+
+#: ../gedit/gedit-encodings.c:177
+msgid "Celtic"
+msgstr "སེལ་ཊིཀ།"
+
+#: ../gedit/gedit-encodings.c:181
+msgid "Romanian"
+msgstr "རོ་མ་ནི་ཡཱན།"
+
+#: ../gedit/gedit-encodings.c:199
+msgid "Armenian"
+msgstr "ཨར་མི་ནི་ཡཱན།"
+
+#: ../gedit/gedit-encodings.c:201
+#: ../gedit/gedit-encodings.c:203
+#: ../gedit/gedit-encodings.c:217
+msgid "Chinese Traditional"
+msgstr "རྒྱ་ནག་གཡུས་སྐད།"
+
+#: ../gedit/gedit-encodings.c:205
+msgid "Cyrillic/Russian"
+msgstr "སི་རི་ལིཀ་ / ར་ཤི་ཡཱན།"
+
+#: ../gedit/gedit-encodings.c:208
+#: ../gedit/gedit-encodings.c:210
+#: ../gedit/gedit-encodings.c:212
+#: ../gedit/gedit-encodings.c:244
+#: ../gedit/gedit-encodings.c:259
+msgid "Japanese"
+msgstr "ཇཱ་པ་ནིསི།"
+
+#: ../gedit/gedit-encodings.c:215
+#: ../gedit/gedit-encodings.c:246
+#: ../gedit/gedit-encodings.c:250
+#: ../gedit/gedit-encodings.c:265
+msgid "Korean"
+msgstr "ཀོ་རི་ཡཱན།"
+
+#: ../gedit/gedit-encodings.c:220
+#: ../gedit/gedit-encodings.c:222
+#: ../gedit/gedit-encodings.c:224
+#: ../gedit/gedit-encodings.c:228
+msgid "Chinese Simplified"
+msgstr "འཇམ་སམ་བཟོས་པའི་རྒྱ་ནག་སྐད་ཡིག"
+
+#: ../gedit/gedit-encodings.c:226
+msgid "Georgian"
+msgstr "ཇི་ཨོར་ཇི་ཡཱན།"
+
+#: ../gedit/gedit-encodings.c:256
+msgid "Cyrillic/Ukrainian"
+msgstr "སི་རི་ལིཀ་/ ཡུཀ་རའི་ནི་ཡཱན།"
+
+#: ../gedit/gedit-encodings.c:261
+#: ../gedit/gedit-encodings.c:267
+#: ../gedit/gedit-encodings.c:286
+msgid "Vietnamese"
+msgstr "བེཊི་ན་མིསི།"
+
+#: ../gedit/gedit-encodings.c:263
+msgid "Thai"
+msgstr "ཐཱའི།"
+
+#: ../gedit/gedit-encodings.c:437
+msgid "Unknown"
+msgstr "མ་ཤེསཔ།"
+
+#: ../gedit/gedit-encodings-option-menu.c:220
+msgid "Auto Detected"
+msgstr "རང་བཞིན་སྐྱོན་འཛིན་འབད་ཡོདཔ།"
+
+#: ../gedit/gedit-encodings-option-menu.c:240
+#: ../gedit/gedit-encodings-option-menu.c:262
+#, c-format
+msgid "Current Locale (%s)"
+msgstr "ད་ལྟོའི་ལོ་ཀེལ་(%s)"
+
+#: ../gedit/gedit-encodings-option-menu.c:323
+msgid "Add or _Remove..."
+msgstr "ཁ་སྐོང་རྐྱབས་ ཡང་ན་ རྩ་བསྐྲད་གཏང༌...(_R)"
+
+#: ../gedit/gedit-file-chooser-dialog.c:53
+msgid "All Text Files"
+msgstr "ཚིག་ཡིག་ཡིག་སྣོད་ཆ་མཉམ།"
+
+#: ../gedit/gedit-file-chooser-dialog.c:79
+msgid "C_haracter Coding:"
+msgstr "ཡིག་འབྲུའི་ཀོ་ཌིང་:(_h)"
+
+#: ../gedit/gedit-help.c:66
+msgid "There was an error displaying help."
+msgstr "གྲོགས་རམ་བཀྲམ་སྟོན་འབད་ནི་ལུ་ འཛོལ་བ་ཅིག་འདུག"
+
+#: ../gedit/gedit-io-error-message-area.c:185
+#, c-format
+msgid "Could not find the file %s."
+msgstr "ཡིག་སྣོད་ %sདེ་འཚོལ་མ་ཐོབ། "
+
+#: ../gedit/gedit-io-error-message-area.c:192
+#: ../gedit/gedit-io-error-message-area.c:441
+msgid "The file contains corrupted data."
+msgstr "ཡིག་སྣོད་ནང་ན་ ངན་ཅན་གནད་སྡུད་འདུག"
+
+#. Translators: %s is a URI scheme (like for example http:, ftp:, etc.)
+#: ../gedit/gedit-io-error-message-area.c:203
+#: ../gedit/gedit-io-error-message-area.c:452
+#, c-format
+msgid "gedit cannot handle %s locations."
+msgstr "ཇི་ཨེ་ཌིཊི་གི་ གནས་ཁོངས་ %s ལེགས་སྐྱོང་འཐབ་མི་ཚུགས་པས།"
+
+#: ../gedit/gedit-io-error-message-area.c:209
+#: ../gedit/gedit-io-error-message-area.c:458
+msgid "gedit cannot handle this location."
+msgstr "ཇི་ཨེ་ཌིཊི་གིས་ གནས་ཁོངས་འདི་ ལེགས་སྐྱོང་འཐབ་མི་ཚུགས་པས།"
+
+#: ../gedit/gedit-io-error-message-area.c:216
+#: ../gedit/gedit-io-error-message-area.c:465
+msgid "The file contains data in an invalid format."
+msgstr "ཡིག་སྣོད་ནང་ན་ ནུས་མེད་རྩ་སྒྲིག་འདུག"
+
+#: ../gedit/gedit-io-error-message-area.c:220
+#: ../gedit/gedit-io-error-message-area.c:469
+msgid "The file is too big."
+msgstr "ཡིག་སྣོད་དེ་སྦོམ་དྲགས་པས།"
+
+#: ../gedit/gedit-io-error-message-area.c:224
+#, c-format
+msgid "%s is not a valid location."
+msgstr "%sདེ་ ནུས་ཅན་གནས་ཁོངས་ཅིག་མེན་པས།"
+
+#: ../gedit/gedit-io-error-message-area.c:231
+#: ../gedit/gedit-io-error-message-area.c:473
+msgid "You do not have the permissions necessary to open the file."
+msgstr "ཁྱོད་ལུ་ཡིག་སྣོད་འདི་ཁ་ཕྱེ་ནིའི་གནང་བ་མིན་འདུག"
+
+#: ../gedit/gedit-io-error-message-area.c:235
+#: ../gedit/gedit-io-error-message-area.c:477
+#: ../gedit/gedit-io-error-message-area.c:1230
+msgid "There are too many open files. Please close some applications and try again."
+msgstr "ཡིག་སྣོད་ཁ་ཕྱེ་ཕྱེཝ་མང་དྲགས་པས། གློག་རིམ་ལ་ལོ་ཅིག་ ཁ་བསྡམ་ཞིནམ་ལས་ ལོག་སྟེ་འབད་རྩོལ་བསྐྱེད་གནང་།"
+
+#: ../gedit/gedit-io-error-message-area.c:240
+#: ../gedit/gedit-io-error-message-area.c:482
+#, c-format
+msgid "%s is a directory."
+msgstr "%sསྣོད་ཐོ་ཅིག་ཨིན།"
+
+#: ../gedit/gedit-io-error-message-area.c:247
+#: ../gedit/gedit-io-error-message-area.c:487
+msgid "Not enough available memory to open the file. Please close some running applications and try again."
+msgstr "ཡིག་སྣོད་ཁ་ཕྱེ་ནིའི་དོན་ལུ་ དྲན་ཚད་ལངམ་མིན་འདུག ད་ལྟོ་གཡོག་བཀོལ་བའི་བསྒང་ཡོད་མི་ གློག་རིམ་ལ་ལུ་ཅིག་ ཁ་བསྡམ་ཏེ་ ལོག་འབད་རྩོལ་བསྐྱེད་གནང་།"
+
+#: ../gedit/gedit-io-error-message-area.c:275
+#: ../gedit/gedit-io-error-message-area.c:515
+#: ../gedit/gedit-io-error-message-area.c:1269
+#, c-format
+msgid "Host %s could not be found. Please check that your proxy settings are correct and try again."
+msgstr "ཧོསཊི་ %s དེ་འཚོལ་མ་འཐོབ། ཁྱོད་རའི་པོརོ་སི་སྒྲིག་སྟངས་ཚུ་ ངེས་བདེན་ཨིནམ་མིནམ་ ཞིབ་དཔྱད་འབད་དེ་ ལོག་འབད་རྩོལ་བསྐྱེད་གནང་། "
+
+#: ../gedit/gedit-io-error-message-area.c:286
+#: ../gedit/gedit-io-error-message-area.c:297
+#: ../gedit/gedit-io-error-message-area.c:305
+#: ../gedit/gedit-io-error-message-area.c:526
+#: ../gedit/gedit-io-error-message-area.c:537
+#: ../gedit/gedit-io-error-message-area.c:1280
+#: ../gedit/gedit-io-error-message-area.c:1291
+#: ../gedit/gedit-io-error-message-area.c:1299
+#, c-format
+msgid "Host name was invalid. Please check that you typed the location correctly and try again."
+msgstr "ཧོསཊི་ནེམ་དེ་ ནུས་མེད་ཨིནམ་ལཔས། ཁྱོད་ཀྱིས་གནས་ཁོངས་ ངེས་བདེན་སྦེ་ཡིག་དཔར་རྐྱབས་ཡོདཔ་ཨིནམ་མེནམ་ ཞིབ་དཔད་འབད་དེ་ ལོག་འབད་རྩོལ་བསྐྱེད་གནང་།"
+
+#: ../gedit/gedit-io-error-message-area.c:311
+#: ../gedit/gedit-io-error-message-area.c:545
+#: ../gedit/gedit-io-error-message-area.c:1305
+msgid "Host name was empty. Please check that your proxy settings are correct and try again."
+msgstr "ཧོསཊི་ནེམ་ སྟོངམ་ཨིན་པས། ཁྱོད་རའི་པོརོ་སི་གཞི་སྒྲིག་ཚུ་ ངེས་བདེན་ཨིནམ་མེནམ་ ཞིབ་དཔྱད་འབད་དེ་ ལོག་འབད་རྩོལ་བསྐྱེད་གནང་། "
+
+#: ../gedit/gedit-io-error-message-area.c:317
+#: ../gedit/gedit-io-error-message-area.c:1311
+msgid "Attempt to log in failed. Please check that you typed the location correctly and try again."
+msgstr "ནང་བསྐྱོད་འབད་དཔའ་བཅམ་མི་འཐུས་ཤོར་འབྱུང་ཡོད། ཁྱོད་ཀྱིས་གནས་ཁོངས་ ངེས་བདེན་སྦེ་ཡིག་དཔར་རྐྱབས་ཡོདཔ་ཨིནམ་མེནམ་ ཞིབ་དཔྱད་འབད་དེ་ ལོག་འབད་རྩོལ་བསྐྱེད་གནང་།"
+
+#: ../gedit/gedit-io-error-message-area.c:323
+msgid "The file you are trying to open is not a regular file."
+msgstr "ཁྱོད་ཀྱིས་ཁ་ཕྱེ་ནིའི་ འབད་རྩོལ་བསྐྱེད་མི་ཡིག་སྣོད་དེ་ དུས་རྒྱུན་གྱི་ཡིག་སྣོད་ཅིག་མེན་པས།"
+
+#: ../gedit/gedit-io-error-message-area.c:327
+#: ../gedit/gedit-io-error-message-area.c:560
+#: ../gedit/gedit-io-error-message-area.c:1339
+msgid "Connection timed out. Please try again."
+msgstr "མཐུད་ལམ་ངལ་མཚམས་ལུས་ཡོདཔ། ལོག་འབད་རྩོལ་བསྐྱེད་གནང་།"
+
+#: ../gedit/gedit-io-error-message-area.c:376
+#: ../gedit/gedit-io-error-message-area.c:610
+#: ../gedit/gedit-io-error-message-area.c:1380
+#, c-format
+msgid "Unexpected error: %s"
+msgstr "རེ་བ་མེད་པའི་འཛོལ་བ་:%s"
+
+#: ../gedit/gedit-io-error-message-area.c:382
+#: ../gedit/gedit-io-error-message-area.c:776
+#, c-format
+msgid "Could not open the file %s."
+msgstr "ཡིག་སྣོད་%sདེ་ ཁ་ཕྱེ་མ་ཚུགས།"
+
+#: ../gedit/gedit-io-error-message-area.c:391
+#: ../gedit/gedit-io-error-message-area.c:683
+msgid "_Retry"
+msgstr "སླར་རྩོལ།(_R)"
+
+#: ../gedit/gedit-io-error-message-area.c:436
+msgid "gedit cannot find it. Perhaps it has recently been deleted."
+msgstr "ཇི་ཨི་ཌིཊི་གིས་ དེ་འཚོལ་མི་འཐོབ། ཡང་ཅིན་ འཕྲལ་ཁམས་བཏོན་བཏང་དཔ་འོང༌ནི་མས།"
+
+#: ../gedit/gedit-io-error-message-area.c:551
+msgid "Attempt to log in failed."
+msgstr "ནང་བསྐྱོད་འབད་ནིིའི་ དཔའ་བཅམས་ད་མ་ཚུགས།"
+
+#: ../gedit/gedit-io-error-message-area.c:555
+#, c-format
+msgid "%s is not a regular file."
+msgstr "%sའདི་དུས་རྒྱུན་གྱི་ཡིག་སྣོད་ཅིག་མེན་པས།"
+
+#: ../gedit/gedit-io-error-message-area.c:616
+#, c-format
+msgid "Could not revert the file %s."
+msgstr "ཡིག་སྣོད་%sརྒྱབ་ལོག་འབད་མ་ཚུགས།"
+
+#: ../gedit/gedit-io-error-message-area.c:640
+msgid "Ch_aracter Coding:"
+msgstr "ཡིག་འབྲུའི་ཀོ་ཌིང་:(_a)"
+
+#: ../gedit/gedit-io-error-message-area.c:778
+msgid "gedit has not been able to detect the character coding."
+msgstr "ཇི་ཨི་ཌིཊི་གིས་ ཡིག་འབྲུའི་ཀོ་ཌིང་ ངོས་འཛིན་འབད་མ་ཚུགས།"
+
+#: ../gedit/gedit-io-error-message-area.c:780
+#: ../gedit/gedit-io-error-message-area.c:789
+msgid "Please check that you are not trying to open a binary file."
+msgstr "ཁྱོད་ཀྱིས་ཟུང་ལྡན་ཡིག་སྣོད་ཅིག་ ཁ་ཕྱེ་དོ་ཡོདཔ་ཨིན་ན་མེན་ ཞིབ་དཔྱད་འབད།"
+
+#: ../gedit/gedit-io-error-message-area.c:781
+msgid "Select a character coding from the menu and try again."
+msgstr "དཀར་ཆག་ནང་ལས་ ཡིག་འབྲུའི་ཀོ་ཌིང་ཅིག་ སེལ་འཐུ་འབད་དེ་ ལོག་སྟེ་འབད་རྩོལ་བསྐྱེད་གནང་།"
+
+#: ../gedit/gedit-io-error-message-area.c:786
+#, c-format
+msgid "Could not open the file %s using the %s character coding."
+msgstr "ཡིག་སྣོད་%s ཁ་ཕྱེ་མ་ཚུགས་ ཡིག་འབྲུའི་ཀོ་ཌིང་%sལག་ལེན་འཐབ་ཐོག་ལས།"
+
+#: ../gedit/gedit-io-error-message-area.c:790
+#: ../gedit/gedit-io-error-message-area.c:842
+msgid "Select a different character coding from the menu and try again."
+msgstr "དཀར་ཆག་ནང་ལས་ ཡིག་འབྲུའི་ཀོ་ཌིང་སོ་སོ་ཅིག་ སེལ་འཐུ་འབད་དེ་ ལོག་སྟེ་འབད་རྩོལ་བསྐྱེད་གནང་།"
+
+#: ../gedit/gedit-io-error-message-area.c:837
+#, c-format
+msgid "Could not save the file %s using the %s character coding."
+msgstr "ཡིག་སྣོད་%s བསྲུང་མ་ཚུགས་ ཡིག་འབྲུའི་ཀོ་ཌིང་%sལག་ལེན་འཐབ་ཐོག་ལས།"
+
+#: ../gedit/gedit-io-error-message-area.c:840
+msgid "The document contains one or more characters that cannot be encoded using the specified character coding."
+msgstr "ཡིག་ཆ་དེ་ནང་ སེལ་འཐུ་འབད་མི་ཡིག་འབྲུའི་ཀོ་ཌིང་གེ་གིས་ ཨིན་ཀོཌི་འབད་མ་ཚུགས་པའི་ ཡིག་འབྲུ་གཅིག་ ཡང་ན་ དེ་ལས་མངམ་འདུག"
+
+#: ../gedit/gedit-io-error-message-area.c:903
+msgid "_Edit Anyway"
+msgstr "གང་རུང་སྦེ་ ཞུན་དག་རྐྱབས།(_E)"
+
+#: ../gedit/gedit-io-error-message-area.c:906
+msgid "_Don't Edit"
+msgstr "ཞུན་དག་མ་རྐྱབས།(_D)"
+
+#: ../gedit/gedit-io-error-message-area.c:921
+#, c-format
+msgid "This file (%s) is already open in another gedit window."
+msgstr "ཡིག་སྣོད་ (%s) དེ་ཧེ་མ་ལས་རང་  ཇི་ཨི་ཌིཊི་སྒོ་སྒྲིག་གཞན་མི་ཅིག་ནང་ ཁ་ཕྱེ་སྟེ་འདུག།"
+
+#: ../gedit/gedit-io-error-message-area.c:936
+msgid "gedit opened this instance of the file in a non-editable way. Do you want to edit it anyway?"
+msgstr "ཇི་ཨི་ཌིཊི་གིས་ ཡིག་སྣོད་འདི་གི་དུས་སྐབས་ ཞུན་དག་འབད་མ་བཏུབ་པའི་ཐབས་ལམ་ཅིག་ནང་ ཁ་ཕྱེ་ནུག  ཁྱོད་ཀྱིས་གང་རུང་སྦེ་ ཞུན་དག་འབད་ནི་ཨིན་ན?"
+
+#: ../gedit/gedit-io-error-message-area.c:994
+#: ../gedit/gedit-io-error-message-area.c:1089
+msgid "S_ave Anyway"
+msgstr "གང་རུང་སྦེ་སྲུངས་  (_A)"
+
+#: ../gedit/gedit-io-error-message-area.c:998
+#: ../gedit/gedit-io-error-message-area.c:1093
+msgid "D_on't Save"
+msgstr "མ་སྲུངས་ (_O)"
+
+#. FIXME: review this message, it's not clear since for the user the "modification"
+#. could be interpreted as the changes he made in the document. beside "reading" is
+#. not accurate (since last load/save)
+#: ../gedit/gedit-io-error-message-area.c:1016
+#, c-format
+msgid "The file %s has been modified since reading it."
+msgstr "ཡིག་སྣོད་%sའདི་ མཐའ་མཇུག་ལྷག་པའི་ཤུལ་ལུ་ ལེགས་བཅོས་འབད་ཡི།"
+
+#: ../gedit/gedit-io-error-message-area.c:1032
+msgid "If you save it, all the external changes could be lost. Save it anyway?"
+msgstr "ཁྱོད་ཀྱིས་བསྲུང་པ་ཅིན་ ཕྱིའི་བསྒྱུར་བཅོས་ཚུ་ཆ་མཉམ་རང་ བརླག་སྟོར་ཞུགས་འོང་། གང་རུང་སྦེ་ བསྲུང་ནི་ཨིན་ན?"
+
+#: ../gedit/gedit-io-error-message-area.c:1111
+#, c-format
+msgid "Could not create a backup file while saving %s"
+msgstr "%s སྲུང་པའི་སྐབས་ རྒྱབ་ཐག་ཡིག་སྣོད་ཅིག་ཅིག་ གསར་བསྐྲུན་འབད་མ་ཚུགས།"
+
+#: ../gedit/gedit-io-error-message-area.c:1114
+#, c-format
+msgid "Could not create a temporary backup file while saving %s"
+msgstr "%sསྲུང་པའི་སྐབས་ གནས་སྐབས་ཀྱི་རྒྱབ་ཐག་ཡིག་སྣོད་ཅིག་ གསར་བསྐྲུན་འབད་མ་ཚུགས།"
+
+#: ../gedit/gedit-io-error-message-area.c:1131
+msgid "gedit could not backup the old copy of the file before saving the new one. You can ignore this warning and save the file anyway, but if an error occurs while saving, you could lose the old copy of the file. Save anyway?"
+msgstr "ཇི་ཨི་ཌིཊི་གིས་ ཡིག་སྣོད་གསརཔ་མ་བསྲུངས་པའི་ཧེ་མར་ ཡིག་སྣོད་རྙིང་པའི་རྒྱབ་ཐག་བཟོ་མ་ཚུགས།  ཁྱོད་ཀྱིས་ཉེན་བརྡ་འདི་སྣང་མེད་བཞག་སྟེ་ གང་རུང་སྦེ་སྲུངས། དེ་འབཝད་དང་སྲུང་པའི་སྐབས་ལུ་ འཛོལ་བ་ཐོན་པ་ཅིན་ ཡིག་སྣོད་ཀྱི་འདྲ་རྙིངམ་དེ་ བརླག་སྟོར་ཞུགས་འོང་། གང་རུང་སྦེ་ བསྲུང་ནི་ཨིན་ན?"
+
+#. Translators: %s is a URI scheme (like for example http:, ftp:, etc.)
+#: ../gedit/gedit-io-error-message-area.c:1192
+#, c-format
+msgid "gedit cannot handle %s locations in write mode. Please check that you typed the location correctly and try again."
+msgstr "ཇི་ཨི་ཌིཊི་གིས་ འབྲི་བའི་ཐབས་ལམ་ནང་ གནས་ཁོངས་%sལེགས་སྐྱོང་འཐབ་མི་ཚུགས་པས། ཁྱོད་ཀྱིས་གནས་ཁོངས་ ངེས་བདེན་སྦེ་ཡིག་དཔར་རྐྱབས་ཡོདཔ་ཨིནམ་མེནམ་ ཞིབ་དཔད་འབད་དེ་ ལོག་འབད་རྩོལ་བསྐྱེད་གནང་།"
+
+#: ../gedit/gedit-io-error-message-area.c:1200
+msgid "gedit cannot handle this location in write mode. Please check that you typed the location correctly and try again."
+msgstr "ཇི་ཨི་ཌིཊི་གིས་ འབྲི་བའི་ཐབས་ལམ་ནང་ གནས་ཁོངས་འདི་ལེགས་སྐྱོང་འཐབ་མི་ཚུགས་པས། ཁྱོད་ཀྱིས་གནས་ཁོངས་ ངེས་བདེན་སྦེ་ཡིག་དཔར་རྐྱབས་མ་རྐྱབས་ ཞིབ་དཔྱད་འབད་དེ་ ལོག་འབད་རྩོལ་བསྐྱེད་གནང་།"
+
+#: ../gedit/gedit-io-error-message-area.c:1209
+msgid "The disk where you are trying to save the file has a limitation on file sizes.  Please try saving a smaller file or saving it to a disk that does not have this limitation."
+msgstr "ཁྱོད་ཀྱིས་བསྲུང་ནིའི་ ཌིཀསི་དེ་ལུ་ ཡིག་སྣོད་ཀྱི་བཅད་མཚམས་འདུག ཡིག་སྣོད་ཆུང་སུ་ཅིག་ བསྲུང་ནིའི་འབད་རྩོལ་བསྐྱེད་ ཡང་ཅིན་ ཡིག་སྣོད་ཀྱི་་གཅད་མཚམས་མེད་པའི་ ཌིཀསི་ཅིག་ནང་ སྲུང་བཞག་འབད་གནང་།"
+
+#: ../gedit/gedit-io-error-message-area.c:1216
+#, c-format
+msgid "%s is not a valid location. Please check that you typed the location correctly and try again."
+msgstr "%s འདི་ནུས་ཅན་གནས་ཁོངས་ཅིག་མེན་པས། ཁྱོད་ཀྱིས་གནས་ཁོངས་ ངེས་བདེན་སྦེ་ཡིག་དཔར་རྐྱབས་མ་རྐྱབས་ ཞིབ་དཔྱད་འབད་དེ་ ལོག་འབད་རྩོལ་བསྐྱེད་གནང་།"
+
+#: ../gedit/gedit-io-error-message-area.c:1223
+msgid "You do not have the permissions necessary to save the file. Please check that you typed the location correctly and try again."
+msgstr "ཁྱོད་ལུ་ཡིག་སྣོད་འདི་སྲུང་ནིའི་ཉེར་མཁོའི་གནང་བ་མིན་འདུག  ཁྱོད་ཀྱིས་གནས་ཁོངས་ ངེས་བདེན་སྦེ་ ཡིག་དཔར་རྐྱབས་མ་རྐྱབས་ ཞིབ་དཔྱད་འབད་དེ་ ལོག་འབད་རྩོལ་བསྐྱེད་གནང་།"
+
+#: ../gedit/gedit-io-error-message-area.c:1235
+#, c-format
+msgid "%s is a directory. Please check that you typed the location correctly and try again."
+msgstr "%s འདི་སྣོད་ཐོ་ཅིག་ཨིན། ཁྱོད་ཀྱིས་གནས་ཁོངས་ ངེས་བདེན་སྦེ་ ཡིག་དཔར་རྐྱབས་མ་རྐྱབས་ ཞིབ་དཔྱད་འབད་དེ་ ལོག་འབད་རྩོལ་བསྐྱེད་གནང་།"
+
+#: ../gedit/gedit-io-error-message-area.c:1241
+msgid "Not enough available memory to save the file. Please close some running applications and try again."
+msgstr "ཡིག་སྣོད་སྲུང་ནིའི་བར་སྟོང་ལངམ་མིན་འདུག  གཡོག་བཀོལ་བཞིན་ཡོད་མི་ གློག་རིམ་ལ་ལོ་ཅིག་ ཁ་བསྡམ་ཞིནམ་ལས་ ལོག་འབད་རྩོལ་བསྐྱེད་གནང་།"
+
+#: ../gedit/gedit-io-error-message-area.c:1317
+msgid "There is not enough disk space to save the file. Please free some disk space and try again."
+msgstr "ཡིག་སྣོད་སྲུང་ནི་ལུ་ ཌིཀསི་ནང་བར་སྟོང་ལངམ་མིན་འདུག  ཌིཀསི་ནང་ བར་སྟོང་ལ་ལུ་ཅིག་བཏོན་ཞིནམ་ལས་ ལོག་འབད་རྩོལ་བསྐྱེད་གནང་།"
+
+#: ../gedit/gedit-io-error-message-area.c:1323
+msgid "You are trying to save the file on a read-only disk. Please check that you typed the location correctly and try again."
+msgstr "ཁྱོད་ཀྱིས་ཡིག་སྣོད་འདི་ ལྷག་ནི་ཙམ་གྱི་ཌིཀསི་ཅིག་ནང་ སྲུང་ནིའི་འབད་རྩོལ་བསྐྱེད་དོ། ཁྱོད་ཀྱིས་གནས་ཁོངས་ངེས་བདེན་སྦེ་ ཡིག་དཔར་རྐྱབས་མ་རྐྱབས་ ཞིབ་དཔྱད་འབད་དེ་ ལོག་འབད་རྩོལ་བསྐྱེད་གནང་།"
+
+#: ../gedit/gedit-io-error-message-area.c:1329
+msgid "A file with the same name already exists. Please use a different name."
+msgstr "མིང་འདི་དང་གཅིག་པའི་ ཡིག་སྣོད་ཅིག་ ཧེ་མ་ལས་རང་འདུག མིང་གཞན་མི་ཅིག་ ལག་ལེན་འཐབ་གནང་།"
+
+#: ../gedit/gedit-io-error-message-area.c:1334
+msgid "The disk where you are trying to save the file has a limitation on length of the file names. Please use a shorter name."
+msgstr "ཁྱོད་ཀྱིས་ཡིག་སྣོད་འདི་སྲུང་ནིའི་དཔའ་བཅམ་མི་ ཌིཀསི་དེ་ལུ་ ཡིག་སྣོད་མིང་གི་རིང་ཚད་གུ་ ཚད་ཅིག་འདུག  མིང་ཐུང་སུ་ཅིག་ ལག་ལེན་འཐབ་གནང་།"
+
+#: ../gedit/gedit-io-error-message-area.c:1343
+#, c-format
+msgid "%s is not a regular file. Please check that you typed the location correctly and try again."
+msgstr "%s འདི་དུས་རྒྱུན་ཡིག་སྣོད་ཅིག་མེན།  གནས་ཁོངས་ངེས་བདེན་སྦེ་ ཡིག་དཔར་རྐྱབས་མ་རྐྱབས་ ཞིབ་དཔྱད་འབད་དེ་ ལོག་འབད་རྩོལ་བསྐྱེད་གནང་།"
+
+#: ../gedit/gedit-io-error-message-area.c:1386
+#, c-format
+msgid "Could not save the file %s."
+msgstr "ཡིག་སྣོད་%sབསྲུངས་མ་ཚུགས།"
+
+#. FIXME: review this message, it's not clear since for the user the "modification"
+#. could be interpreted as the changes he made in the document. beside "reading" is
+#. not accurate (since last load/save)
+#: ../gedit/gedit-io-error-message-area.c:1428
+#, c-format
+msgid "The file %s changed on disk."
+msgstr "ཡིག་སྣོད་ %s འདི་ཌིཀསི་གུ་བསྒྱུར་བཅོས་འབད་ཡོད།"
+
+#: ../gedit/gedit-io-error-message-area.c:1433
+msgid "Do you want to drop your changes and reload the file?"
+msgstr "ཁྱོད་ཀྱིས་ཁྱོད་རའི་བསྒྱུར་བཅོས་ཚུ་བཀོག་བཞག་ཞིནམ་ལས་ ཡིག་སྣོད་འདི་ཡང་བསྐྱར་མངོན་གསལ་འབད་ནི་ཨིན་ན?"
+
+#: ../gedit/gedit-io-error-message-area.c:1435
+msgid "Do you want to reload the file?"
+msgstr "ཁྱོད་ཀྱིས་ཡིག་སྣོད་འདི་ ཡང་བསྐྱར་མངོན་གསལ་འབད་ནི་ཨིན་ན?"
+
+#: ../gedit/gedit-io-error-message-area.c:1445
+msgid "_Reload"
+msgstr "ཡང་བསྐྱར་མངོན་གསལ་(_R)"
+
+#. bad bad luck...
+#: ../gedit/gedit-local-document-saver.c:361
+msgid "Could not obtain backup filename"
+msgstr "རྒྱབ་ཐག་ཡིག་སྣོད་ཀྱི་མིང་ཐོབ་མ་ཚུགས།"
+
+#: ../gedit/gedit-notebook.c:834
+msgid "Close document"
+msgstr "ཁ་བསྡམས་ཡོད་པའི་ཡིག་ཆ།"
+
+#: ../gedit/gedit-panel.c:364
+#: ../gedit/gedit-panel.c:572
+msgid "Empty"
+msgstr "སྟོངམ་བཏོན།"
+
+#: ../gedit/gedit-panel.c:517
+#: ../gedit/gedit-panel.c:591
+msgid "Hide panel"
+msgstr "པེ་ནཱལ་སྦ་གཞག"
+
+#: ../gedit/gedit-plugin-manager.c:55
+msgid "Plugin"
+msgstr "པལག་ཨིན།"
+
+#: ../gedit/gedit-plugin-manager.c:56
+msgid "Enabled"
+msgstr "ལྕོགས་ཅན།"
+
+#: ../gedit/gedit-plugin-manager.c:504
+msgid "_About"
+msgstr "སྐོར་ལས།(_A)"
+
+#: ../gedit/gedit-plugin-manager.c:512
+msgid "C_onfigure"
+msgstr "རིམ་སྒྲིག་འབད། (_o)"
+
+#: ../gedit/gedit-plugin-manager.c:521
+msgid "A_ctivate"
+msgstr "ཤུགས་ལྡན་བཟོ། (_c)"
+
+#: ../gedit/gedit-plugin-manager.c:532
+msgid "Ac_tivate All"
+msgstr "ཆ་མཉམ་ཤུགས་ལྡན་བཟོ།(_t)"
+
+#: ../gedit/gedit-plugin-manager.c:537
+msgid "_Deactivate All"
+msgstr "ཆ་མཉམ་ཤུགས་མེད་བཟོ། (_D)"
+
+#: ../gedit/gedit-plugin-manager.c:825
+msgid "_About Plugin"
+msgstr "པ་ལག་ཨིན་གྱི་སྐོར་ལས། (_A)"
+
+#: ../gedit/gedit-plugin-manager.c:829
+msgid "C_onfigure Plugin"
+msgstr "པ་ལག་ཨིན་ རིམ་སྒྲིག་འབད། (_o)"
+
+#: ../gedit/gedit-prefs-manager.c:170
+msgid "Cannot initialize preferences manager."
+msgstr "དགའ་གདམ་འཛིན་སྐྱོང་པ་ འགོ་བྱེད་འབད་མི་ཚུགས།"
+
+#: ../gedit/gedit-prefs-manager.c:1102
+#, c-format
+msgid "Expected `%s' got `%s' for key %s"
+msgstr "ལྡེ་མིག་ %s གི་དོན་ལུ་ `%s' རེ་བ་བསྐྱེདཔ་ད་ `%s' ཐོབ་ཅི།"
+
+#: ../gedit/gedit-print-job.c:534
+#, c-format
+msgid "File: %s"
+msgstr "ཡིག་སྣོད་ %s"
+
+#: ../gedit/gedit-print-job.c:543
+msgid "Page %N of %Q"
+msgstr "ཤོག་ལེབ་%Q གི་ %N"
+
+#: ../gedit/gedit-print-job.c:801
+msgid "Preparing..."
+msgstr "གྲ་སྒྲིག་འབད་དོ་..."
+
+#: ../gedit/gedit-print-preferences.glade.h:1
+msgid "<b>Fonts</b>"
+msgstr "<b>ཡིག་གཟུགས་ཚུ་</b>"
+
+#: ../gedit/gedit-print-preferences.glade.h:3
+msgid "<b>Page header</b>"
+msgstr "b>ཤོག་ལེབ་ མགོ་ཡིག་</b>"
+
+#: ../gedit/gedit-print-preferences.glade.h:4
+msgid "<b>Syntax Highlighting</b>"
+msgstr "<b>ཚིག་སྦྱོར་གཙོ་དམིགས་འབད་དོ་ </b>"
+
+#: ../gedit/gedit-print-preferences.glade.h:8
+msgid "He_aders and footers:"
+msgstr "མགོ་ཡིག་དང་ མཇུག་ཡིག་: (_a)"
+
+#: ../gedit/gedit-print-preferences.glade.h:9
+msgid "Print line nu_mbers"
+msgstr "གྱལ་རིམ་ཨང་ དཔར་བསྐྲུན་འབད་ (_M)"
+
+#: ../gedit/gedit-print-preferences.glade.h:10
+msgid "Print page _headers"
+msgstr "ཤོག་ལེབ་ཀྱི་མགོ་ཡིག་ དཔར་བསྐྲུན་འབད་  (_H)"
+
+#: ../gedit/gedit-print-preferences.glade.h:11
+msgid "Print synta_x highlighting"
+msgstr "གཙོ་དམིགས་འབད་མི་ཚིག་སྦྱོར་ དཔར་བསྐྲུནའབད་ (_X)"
+
+#: ../gedit/gedit-print-preferences.glade.h:12
+msgid "_Body:"
+msgstr "མ་གཟུགས་: (_B)"
+
+#: ../gedit/gedit-print-preferences.glade.h:13
+msgid "_Line numbers:"
+msgstr "གྱལ་རིམ་ཨང༌ཚུ་:།(_L)"
+
+#: ../gedit/gedit-print-preferences.glade.h:14
+msgid "_Number every"
+msgstr "རེ་རེའི་ནང་ ཨང་གྲངས་བཏགས། (_N)"
+
+#: ../gedit/gedit-print-preferences.glade.h:15
+msgid "_Restore Default Fonts"
+msgstr "སྔོན་སྒྲིག་ཡིག་གཟུགས་ཚུ་སོར་ཆུད་འབད། (_R)"
+
+#: ../gedit/gedit-print-preferences.glade.h:16
+msgid "lines"
+msgstr "གྱལ་རིམ། "
+
+#: ../gedit/gedit-print-preview.c:563
+msgid "Show the previous page"
+msgstr "ཤོག་ལེབ་ཧེ་མམ་སྟོན།"
+
+#: ../gedit/gedit-print-preview.c:577
+msgid "Show the next page"
+msgstr "ཤོག་ལེབ་ཤུལ་མམ་སྟོན།"
+
+#: ../gedit/gedit-print-preview.c:594
+msgid "Current page (Alt+P)"
+msgstr "ད་ལྟོའི་ཤོག་ལེབ་(གདམ་ལྡེ་+པི་)"
+
+#: ../gedit/gedit-print-preview.c:616
+msgid "of"
+msgstr "གི"
+
+#: ../gedit/gedit-print-preview.c:624
+msgid "Page total"
+msgstr "ཤོག་ལེབ་བསྡོམས།"
+
+#: ../gedit/gedit-print-preview.c:625
+msgid "The total number of pages in the document"
+msgstr "ཡིག་ཆ་ནང་ལུ་ ཤོག་ལེབ་ཀྱི་གྱངས་ཁ་བསྡོམས།"
+
+#: ../gedit/gedit-print-preview.c:644
+msgid "Show multiple pages"
+msgstr "སྣ་མང་ཤོག་ལེབ་སྟོན།"
+
+#: ../gedit/gedit-print-preview.c:659
+msgid "Zoom 1:1"
+msgstr "རྒྱས་ཟུམ་༡:༡"
+
+#: ../gedit/gedit-print-preview.c:670
+msgid "Zoom to fit the whole page"
+msgstr "ཤོག་ལེབ་ཧྲིལ་བུ་ཚུད་སྒྲིག་འབད་ནི་ལུ་རྒྱས་ཟུམ་འབད།"
+
+#: ../gedit/gedit-print-preview.c:681
+msgid "Zoom the page in"
+msgstr "ཤོག་ལེབ་ཕྱིར་རྒྱས།"
+
+#: ../gedit/gedit-print-preview.c:692
+msgid "Zoom the page out"
+msgstr "ཤོག་ལེབ་ནང་ཟུམ་འབད།"
+
+#: ../gedit/gedit-print-preview.c:704
+msgid "_Close Preview"
+msgstr "སྔོན་ལྟ་ཁ་བསྡམ། (_C)"
+
+#: ../gedit/gedit-print-preview.c:708
+msgid "Close print preview"
+msgstr "དཔར་བསྐྲུན་སྔོན་ལྟ་ཁ་བསྡམས།"
+
+#: ../gedit/gedit-print-preview.c:774
+#, c-format
+msgid "Page %d of %d"
+msgstr "ཤོག་ལེབ་ %d གི་  %d"
+
+#: ../gedit/gedit-print-preview.c:958
+msgid "Page Preview"
+msgstr "ཤོག་ལེབ་སྔོན་ལྟ།"
+
+#: ../gedit/gedit-print-preview.c:959
+msgid "The preview of a page in the document to be printed"
+msgstr "དཔར་བསྐྲུན་འབད་ནིའི་ཡིག་ཆ་དེ་ནང་གི་ ཤོག་ལེབ་ཅིག་གི་སྔོན་ལྟ།"
+
+#: ../gedit/gedit-statusbar.c:248
+msgid "  OVR"
+msgstr "ཨོ་ཝི་ཨར།"
+
+#: ../gedit/gedit-statusbar.c:250
+msgid "  INS"
+msgstr "ཨེའི་ཨེན་ཨེསི།"
+
+#. Translators: "Ln" is an abbreviation for "Line", Col is an abbreviation for "Column". Please,
+#. use abbreviations if possible to avoid space problems.
+#: ../gedit/gedit-statusbar.c:289
+#, c-format
+msgid "  Ln %d, Col %d"
+msgstr "གྱལ་རིམ་ %d ཀེར་ཐིག་ %d "
+
+#: ../gedit/gedit-statusbar.c:388
+#, c-format
+msgid "There is a tab with errors"
+msgid_plural "There are %d tabs with errors"
+msgstr[0] "འཛོལ་བ་ཡོད་པའི་ཨེབ་ལྡེ་ཅིག་འདུག"
+msgstr[1] "འཛོལ་བ་ཡོད་པའི་ཨེབ་ལྡེ་%dའདུག"
+
+#: ../gedit/gedit-style-scheme-manager.c:214
+#, c-format
+msgid "Directory '%s' could not be created: g_mkdir_with_parents() failed: %s"
+msgstr "སྣོད་ཐོ་ '%s'  གསར་བསྐྲུན་འབད་ཚུགས་: ཇི་_ཨེམ་ཀེ་ཌི་ཨའི་ཨར་ རྩ་ལག་ཚུ་དང་གཅིག་ཁར་ འཐུས་ཤོར་འབྱུང་ཡོདཔ: %s"
+
+#. Translators: the first %s is a file name (e.g. test.txt) the second one
+#. is a directory (e.g. ssh://master.mate.org/home/users/paolo)
+#: ../gedit/gedit-tab.c:660
+#, c-format
+msgid "Reverting %s from %s"
+msgstr "%s ལས་ %s ལུ་རྒྱབ་ལོག་འབད་དོ།"
+
+#: ../gedit/gedit-tab.c:667
+#, c-format
+msgid "Reverting %s"
+msgstr "%sརྒྱབ་ལོག་འབད་དོ།"
+
+#. Translators: the first %s is a file name (e.g. test.txt) the second one
+#. is a directory (e.g. ssh://master.mate.org/home/users/paolo)
+#: ../gedit/gedit-tab.c:683
+#, c-format
+msgid "Loading %s from %s"
+msgstr "%s ལས་%s ལུ་མངོན་གསལ་འབད་དོ།"
+
+#: ../gedit/gedit-tab.c:690
+#, c-format
+msgid "Loading %s"
+msgstr "%sམངོན་གསལ་འབད་དོ།"
+
+#. Translators: the first %s is a file name (e.g. test.txt) the second one
+#. is a directory (e.g. ssh://master.mate.org/home/users/paolo)
+#: ../gedit/gedit-tab.c:773
+#, c-format
+msgid "Saving %s to %s"
+msgstr "%sདེ་%sལུ་སྲུང་དོ།"
+
+#: ../gedit/gedit-tab.c:780
+#, c-format
+msgid "Saving %s"
+msgstr "%sསྲུང་དོ།"
+
+#. Read only
+#: ../gedit/gedit-tab.c:1643
+msgid "RO"
+msgstr "ལྷག་ནི་ཙམ།"
+
+#: ../gedit/gedit-tab.c:1688
+#, c-format
+msgid "Error opening file %s"
+msgstr "ཡིག་སྣོད་%s ཁ་ཕྱེ་ནི་ལུ་འཛོལ་བ།"
+
+#: ../gedit/gedit-tab.c:1693
+#, c-format
+msgid "Error reverting file %s"
+msgstr "ཡིག་སྣོད་%sརྒྱབ་ལོག་འབད་ནི་ལུ་འཛོལ་བ།"
+
+#: ../gedit/gedit-tab.c:1698
+#, c-format
+msgid "Error saving file %s"
+msgstr "ཡིག་སྣོད་%sབསྲུང་ནི་ལུ་འཛོལ་བ།"
+
+#: ../gedit/gedit-tab.c:1716
+msgid "Unicode (UTF-8)"
+msgstr "ཡུ་ནི་ཀོཌི་ (ཡི་ཊི་ཨེཕ་-༨)"
+
+#: ../gedit/gedit-tab.c:1723
+msgid "Name:"
+msgstr "མིང་:"
+
+#: ../gedit/gedit-tab.c:1724
+msgid "MIME Type:"
+msgstr "མ་ཡིམ་དབྱེ་བ་:"
+
+#: ../gedit/gedit-tab.c:1725
+msgid "Encoding:"
+msgstr "ཨིན་ཀོ་ཌིང་:"
+
+#. Toplevel
+#: ../gedit/gedit-ui.h:49
+msgid "_File"
+msgstr "ཡིག་སྣོད།(_F)"
+
+#: ../gedit/gedit-ui.h:50
+msgid "_Edit"
+msgstr "ཞུན་དག(_E)"
+
+#: ../gedit/gedit-ui.h:51
+msgid "_View"
+msgstr "མཐོང་སྣང་།(_V)"
+
+#: ../gedit/gedit-ui.h:52
+msgid "_Search"
+msgstr "འཚོལ་ཞིབ། (_S)"
+
+#: ../gedit/gedit-ui.h:53
+msgid "_Tools"
+msgstr "ལག་ཆས།(_T)"
+
+#: ../gedit/gedit-ui.h:54
+msgid "_Documents"
+msgstr "ཡིག་ཆ་ཚུ།(_D)"
+
+#: ../gedit/gedit-ui.h:55
+msgid "_Help"
+msgstr "གྲོགས་རམ།(_H)"
+
+#: ../gedit/gedit-ui.h:59
+msgid "Create a new document"
+msgstr "ཡིག་ཆ་གསརཔ་ཅིག་ གསར་བསྐྲུན་འབད།"
+
+#: ../gedit/gedit-ui.h:60
+msgid "_Open..."
+msgstr "ཁ་ཕྱེ་་…(_O)"
+
+#: ../gedit/gedit-ui.h:61
+#: ../gedit/gedit-window.c:1483
+msgid "Open a file"
+msgstr "ཡིག་སྣོད་ཅིག་ཁ་ཕྱེ།"
+
+#: ../gedit/gedit-ui.h:62
+msgid "Open _Location..."
+msgstr "གནས་ཁོངས་ཁ་ཕྱེ་…(_L)"
+
+#: ../gedit/gedit-ui.h:63
+msgid "Open a file from a specified location"
+msgstr "གསལ་བཀོད་འབད་མི་ གནས་ཁོངས་ཅིག་ནང་ལས་ ཡིག་སྣོད་ཅིག་ཁ་ཕྱེ།"
+
+#. Edit menu
+#: ../gedit/gedit-ui.h:66
+msgid "Pr_eferences"
+msgstr "དགའ་གདམ་ཚུ། (_e)"
+
+#: ../gedit/gedit-ui.h:67
+msgid "Configure the application"
+msgstr "ད་ལྟོའི་གློག་རིམ་དེ་ རིམ་སྒྲིག་འབད།"
+
+#. Help menu
+#: ../gedit/gedit-ui.h:70
+msgid "_Contents"
+msgstr "ནང་དོན་ཚུ། (_C)"
+
+#: ../gedit/gedit-ui.h:71
+msgid "Open the gedit manual"
+msgstr "ཇི་ཨེ་ཌིཊི་གི་ལག་དེབ་ཁ་ཕྱེ།"
+
+#: ../gedit/gedit-ui.h:73
+msgid "About this application"
+msgstr "གློག་རིམ་འདི་གི་སྐོར་ལས།"
+
+#: ../gedit/gedit-ui.h:80
+msgid "Save the current file"
+msgstr "ད་ལྟོའི་ཡིག་སྣོད་དེ་སྲུངས།"
+
+#: ../gedit/gedit-ui.h:81
+msgid "Save _As..."
+msgstr "དེ་སྦེ་སྲུངས་...(_A)"
+
+#: ../gedit/gedit-ui.h:82
+msgid "Save the current file with a different name"
+msgstr "ད་ལྟོའི་ཡིག་སྣོད་དེ་ མིང་སོ་སོ་ཅིག་གི་ཐོག་ལས་སྲུངས།"
+
+#: ../gedit/gedit-ui.h:84
+msgid "Revert to a saved version of the file"
+msgstr "ཡིག་སྣོད་ཀྱི་ཐོན་རིམ་ སྲུང་བཞག་འབད་འབདཝ་ཅིག་ལུ་ རྒྱབ་ལོག་འབད།"
+
+#: ../gedit/gedit-ui.h:85
+msgid "Page Set_up..."
+msgstr "ཤོག་ལེབ་གཞི་སྒྲིག་... (_u)"
+
+#: ../gedit/gedit-ui.h:86
+msgid "Setup the page settings"
+msgstr "ཤོག་ལེབ་ཀྱི་སྒྲིག་སྟངས་ཚུ་ གཞི་སྒྲིག་འབད།"
+
+#: ../gedit/gedit-ui.h:87
+msgid "Print Previe_w"
+msgstr "དཔར་བསྐྲུན་སྔོན་ལྟ།(_w)"
+
+#: ../gedit/gedit-ui.h:88
+msgid "Print preview"
+msgstr "དཔར་བསྐྲུན་སྔོན་ལྟ།"
+
+#: ../gedit/gedit-ui.h:89
+msgid "_Print..."
+msgstr "དཔར་བསྐྲུན་...།(_P)"
+
+#: ../gedit/gedit-ui.h:90
+msgid "Print the current page"
+msgstr "ད་ལྟོའི་ཤོག་ལེབ་དེ་དཔར་བསྐྲུན་འབད།"
+
+#: ../gedit/gedit-ui.h:92
+msgid "Close the current file"
+msgstr "ད་ལྟོའི་ཡིག་སྣོད་དེ་ཁ་བསྡམས།"
+
+#: ../gedit/gedit-ui.h:96
+msgid "Undo the last action"
+msgstr "བྱ་བ་མཇུག་མམ་དེ་ འབད་བཤོལ།"
+
+#: ../gedit/gedit-ui.h:98
+msgid "Redo the last undone action"
+msgstr "མཐའ་མཇུག་གི་བྱ་བ་ འབད་བཤོལ་འབད་མི་དེ་ལོག་འབད།"
+
+#: ../gedit/gedit-ui.h:100
+msgid "Cut the selection"
+msgstr "སེལ་འཐུ་དེ་བཏོག"
+
+#: ../gedit/gedit-ui.h:102
+msgid "Copy the selection"
+msgstr "སེལ་འཐུ་དེ་ འདྲ་བཤུས་རྐྱབས"
+
+#: ../gedit/gedit-ui.h:104
+msgid "Paste the clipboard"
+msgstr "འཛིན་པང་དེ་སྦྱར།"
+
+#: ../gedit/gedit-ui.h:106
+msgid "Delete the selected text"
+msgstr "སེལ་འཐུ་ཅན་གྱི་ ཚིག་ཡིག་དེ་བཏོན་གཏང༌།"
+
+#: ../gedit/gedit-ui.h:107
+msgid "Select _All"
+msgstr "ཆ་མཉམ་སེལ་འཐུ་འབད།(_A)"
+
+#: ../gedit/gedit-ui.h:108
+msgid "Select the entire document"
+msgstr "ཡིག་ཆ་ཧྲིལ་བུ་ སེལ་འཐུ་འབད།"
+
+#. View menu
+#: ../gedit/gedit-ui.h:111
+msgid "_Highlight Mode"
+msgstr "ཐབས་ལམ་གཙོ་དམིགས་འབད།(_H)"
+
+#. Search menu
+#: ../gedit/gedit-ui.h:114
+msgid "_Find..."
+msgstr "འཚོལ་…(_F)"
+
+#: ../gedit/gedit-ui.h:115
+msgid "Search for text"
+msgstr "ཚིག་ཡིག་གི་དོན་ལས་ འཚོལ་ཞིབ་འབད།"
+
+#: ../gedit/gedit-ui.h:116
+msgid "Find Ne_xt"
+msgstr "ཤུལ་མམ་འཚོལ། (_x)"
+
+#: ../gedit/gedit-ui.h:117
+msgid "Search forwards for the same text"
+msgstr "ཚིག་ཡིག་གཅིག་པའི་དོན་ལུ་ གདོང་ཕྱོགས་ལུ་ འཚོལ་ཞིབ་འབད།"
+
+#: ../gedit/gedit-ui.h:118
+msgid "Find Pre_vious"
+msgstr "ཧེ་མམ་འཚོལ། (_v)"
+
+#: ../gedit/gedit-ui.h:119
+msgid "Search backwards for the same text"
+msgstr "ཚིག་ཡིག་གཅིག་པའི་དོན་ལུ་ རྒྱབ་ཕྱོགས་ལུ་ འཚོལ་ཞིབ་འབད།"
+
+#: ../gedit/gedit-ui.h:120
+msgid "_Replace..."
+msgstr "ཚབ་བཙུགས་…(_R)"
+
+#: ../gedit/gedit-ui.h:121
+msgid "Search for and replace text"
+msgstr "འཚོལ་ཞིབ་འབད་དེ་ ཚིག་ཡིག་གི་ཚབ་བཙུགས།"
+
+#: ../gedit/gedit-ui.h:122
+msgid "_Clear Highlight"
+msgstr "གཙོ་དམིགས་བསལ།(_C)"
+
+#: ../gedit/gedit-ui.h:123
+msgid "Clear highlighting of search matches"
+msgstr "འཚོལ་ཞིབ་མཐུན་སྒྲིག་གི་དོན་ལུ་ གཙོ་དམིགས་བསལ།"
+
+#: ../gedit/gedit-ui.h:124
+msgid "Go to _Line..."
+msgstr "གྱལ་རིམ་ལུ་འགྱོ་…(_L)"
+
+#: ../gedit/gedit-ui.h:125
+msgid "Go to a specific line"
+msgstr "དམིགས་བསལ་གྱི་ གྱལ་རིམ་ཅིག་ལུ་འགྱོ།"
+
+#: ../gedit/gedit-ui.h:126
+msgid "_Incremental Search..."
+msgstr "ཡར་འཕར་འ ཚོལ་ཞིབ་...(_I)"
+
+#: ../gedit/gedit-ui.h:127
+msgid "Incrementally search for text"
+msgstr "ཚིག་ཡིག་གི་དོན་ལུ་ ཡར་འཕར་སྦེ་ འཚོལ་ཞིབ་འབད་"
+
+#. Documents menu
+#: ../gedit/gedit-ui.h:130
+msgid "_Save All"
+msgstr "ཆ་མཉམ་སྲུངས། (_S)"
+
+#: ../gedit/gedit-ui.h:131
+msgid "Save all open files"
+msgstr "ཁ་ཕྱེ་སྟེ་ཡོད་མི་ ཡིག་སྣོད་ཆ་མཉམ་སྲུངས།"
+
+#: ../gedit/gedit-ui.h:132
+msgid "_Close All"
+msgstr "ཆ་མཉམ་ཁ་བསྡམས། (_C)"
+
+#: ../gedit/gedit-ui.h:133
+msgid "Close all open files"
+msgstr "ཁ་ཕྱེ་སྟེ་ཡོད་མི་ཡིག་སྣོད་ཆ་མཉམ་ཁ་བསྡམས།"
+
+#: ../gedit/gedit-ui.h:134
+msgid "_Previous Document"
+msgstr "ཧེ་མའི་ཡིག་ཆ།(_P)"
+
+#: ../gedit/gedit-ui.h:135
+msgid "Activate previous document"
+msgstr "ཧེ་མའི་ཡིག་ཆ་ཤུགས་ལྡན་བཟོ།"
+
+#: ../gedit/gedit-ui.h:136
+msgid "_Next Document"
+msgstr "ཤུལ་མའི་ཡིག་ཆ(_N)"
+
+#: ../gedit/gedit-ui.h:137
+msgid "Activate next document"
+msgstr "ཤུལ་མའི་ཡིག་ཆ་ ཤུགས་ལྡན་བཟོ།"
+
+#: ../gedit/gedit-ui.h:138
+msgid "_Move to New Window"
+msgstr "སྒོ་སྒྲིག་གསར་པའི་ནང་སྤོ་བཤུད་འབད། (_M)"
+
+#: ../gedit/gedit-ui.h:139
+msgid "Move the current document to a new window"
+msgstr "ད་ལྟོའི་ཡིག་ཆ་དེ་ སྒོ་སྒྲིག་གསརཔ་ཅིག་ནང་ སྤོ་བཤུད་འབད།"
+
+#: ../gedit/gedit-ui.h:146
+msgid "Quit the program"
+msgstr "ལས་རིམ་དེ་སྤངས"
+
+#: ../gedit/gedit-ui.h:151
+msgid "_Toolbar"
+msgstr "ལག་ཆས་ཕྲ་རིང་།(_T)"
+
+#: ../gedit/gedit-ui.h:152
+msgid "Show or hide the toolbar in the current window"
+msgstr "ད་ལྟོའི་སྒོ་སྒྲིག་ནང་ ལག་ཆས་ཕྲ་རིང་སྟོན་ ཡང་ན་ སྦ་བཞག"
+
+#: ../gedit/gedit-ui.h:154
+msgid "_Statusbar"
+msgstr "གནས་ཚད་ཕྲ་རིང་།(_S)"
+
+#: ../gedit/gedit-ui.h:155
+msgid "Show or hide the statusbar in the current window"
+msgstr "ད་ལྟོའི་སྒོ་སྒྲིག་ནང་ གནས་ཚད་ཕྲ་རིང་སྟོན་ ཡང་ན་ སྦ་བཞག།"
+
+#: ../gedit/gedit-ui.h:157
+msgid "Side _Pane"
+msgstr "ཟུར་ཁའི་པེན།(_P)"
+
+#: ../gedit/gedit-ui.h:158
+msgid "Show or hide the side pane in the current window"
+msgstr "ད་ལྟོའི་སྒོ་སྒྲིག་ནང་ ཟུར་ཁའི་པེན་སྟོན་ ཡང་ན་ སྦ་བཞག"
+
+#: ../gedit/gedit-ui.h:164
+msgid "_Bottom Pane"
+msgstr "མཇུག་གི་པེན། (_B)"
+
+#: ../gedit/gedit-ui.h:165
+msgid "Show or hide the bottom pane in the current window"
+msgstr "ད་ལྟོའི་སྒོ་སྒྲིག་ནང་ མཇུག་གི་པེན་སྟོན་ ཡང་ན་ སྦ་བཞག"
+
+#: ../gedit/gedit-utils.c:1049
+#, c-format
+msgid "Unable to find file %s."
+msgstr "ཡིག་སྣོད་%sའཚོལ་མ་ཐོབ། "
+
+#: ../gedit/gedit-utils.c:1053
+#: ../gedit/gedit-utils.c:1089
+msgid "Please check your installation."
+msgstr "ཁྱོད་རའི་གཞི་བཙུགས་ལུ་ ཞིབ་དཔྱད་འབད་གནང༌།"
+
+#: ../gedit/gedit-utils.c:1085
+#, c-format
+msgid "Unable to find the required widgets inside file %s."
+msgstr "ཡིག་སྣོད་%sགི་ནང་ན་ དགོས་མཁོ་ཡོད་པའི་ ཝི་གེཊིསི་འཚོལ་མ་འཐོབ།"
+
+#. create "Wrap Around" menu item.
+#: ../gedit/gedit-view.c:1169
+msgid "_Wrap Around"
+msgstr "མཐའ་བསྐོར་ཏེ་ལོག (_W)"
+
+#. create "Match Entire Word Only" menu item.
+#: ../gedit/gedit-view.c:1179
+msgid "Match _Entire Word Only"
+msgstr "མིང་ཚིག་ཧྲིལ་བུ་རྐྱངམ་ མཐུན་སྒྲིག་འབད། (_E)"
+
+#. create "Match Case" menu item.
+#: ../gedit/gedit-view.c:1189
+msgid "_Match Case"
+msgstr "ཡི་གུ་མཐུན་སྒྲིག་འབད། (_M)"
+
+#: ../gedit/gedit-view.c:1277
+msgid "String you want to search for"
+msgstr "ཁྱོད་ཀྱིས་འཚོལ་ཞིབ་འབད་དགོ་མནོ་མི་ཡིག་རྒྱུན།"
+
+#: ../gedit/gedit-view.c:1285
+msgid "Line you want to move the cursor to"
+msgstr "ཁྱོད་ཀྱིས་འོད་རྟགས་སྤོ་བཤུད་འབད་དགོ་མནོ་སའི་གྲལ་ཐིག"
+
+#: ../gedit/gedit-window.c:896
+#, c-format
+msgid "Use %s highlight mode"
+msgstr "གཙོ་དམིགས་%s ཐབས་ལམ་ལག་ལེན་འཐབ།"
+
+#. add the "None" item before all the others
+#. Translators: "None" means that no highlight mode is selected in the
+#. * "View->Highlight Mode" submenu and so syntax highlighting is disabled
+#: ../gedit/gedit-window.c:953
+msgid "None"
+msgstr "ཅི་མེད།"
+
+#: ../gedit/gedit-window.c:954
+msgid "Disable syntax highlighting"
+msgstr "ཚིག་སྦྱོར་གཙོ་དམིགས་འབད་ནི་ ལྕོགས་མེད་བཟོ། (_E)"
+
+#. Translators: %s is a URI
+#: ../gedit/gedit-window.c:1240
+#, c-format
+msgid "Open '%s'"
+msgstr "'%s'ཁ་ཕྱེ།"
+
+#: ../gedit/gedit-window.c:1359
+msgid "Save"
+msgstr "སྲུངས"
+
+#: ../gedit/gedit-window.c:1487
+msgid "Open a recently used file"
+msgstr "འཕྲལ་ཁམས་ལག་ལེན་འཐབ་མི་ ཡིག་སྣོད་ཅིག་ཁ་ཕྱེ།"
+
+#: ../gedit/gedit-window.c:1494
+msgid "Open"
+msgstr "ཁ་ཕྱེ"
+
+#. Translators: %s is a URI
+#: ../gedit/gedit-window.c:1544
+#, c-format
+msgid "Activate '%s'"
+msgstr "'%s' ཤུགས་ལྡན་བཟོ་"
+
+#: ../plugins/changecase/changecase.gedit-plugin.desktop.in.h:1
+msgid "Change Case"
+msgstr "ཡི་གུ་བསྒྱུར་བཅོས་འབད།"
+
+#: ../plugins/changecase/changecase.gedit-plugin.desktop.in.h:2
+msgid "Changes the case of selected text."
+msgstr "སེལ་འཐུ་འབད་མི་ ཚིག་ཡིག་ཚུ་གི་ ཡི་གུ་བསྒྱུར་བཅོས་འབད།"
+
+#: ../plugins/changecase/gedit-changecase-plugin.c:222
+msgid "C_hange Case"
+msgstr "ཡི་གུ་སོར།(_h)"
+
+#: ../plugins/changecase/gedit-changecase-plugin.c:223
+msgid "All _Upper Case"
+msgstr "ཚུགས་ཡིག་ཆ་མཉམ་(_U)"
+
+#: ../plugins/changecase/gedit-changecase-plugin.c:224
+msgid "Change selected text to upper case"
+msgstr "སེལ་འཐུ་འབད་མི་ཡིག་ཚིག་ཚུ་ ཚུགས་ཡིག་ལུ་ བསྒྱུར་བཅོས་འབད།"
+
+#: ../plugins/changecase/gedit-changecase-plugin.c:226
+msgid "All _Lower Case"
+msgstr "མགྱོགས་ཡིག་ཆ་མཉམ་(_L)"
+
+#: ../plugins/changecase/gedit-changecase-plugin.c:227
+msgid "Change selected text to lower case"
+msgstr "སེལ་འཐུ་འབད་མི་ཡིག་ཚིག་ཚུ་ མགྱོགས་ཡིག་ལུ་ བསྒྱུར་བཅོས་འབད།"
+
+#: ../plugins/changecase/gedit-changecase-plugin.c:229
+msgid "_Invert Case"
+msgstr "ཡི་གུ་འདྲེན་རྟགས་ནང་བཙུགས།(_I)"
+
+#: ../plugins/changecase/gedit-changecase-plugin.c:230
+msgid "Invert the case of selected text"
+msgstr "སེལ་འཐུ་འབད་མི་ཡིག་ཚིག་གི་ ཡི་གུ་འདྲེན་རྟགས་ནང་བཙུགས།"
+
+#: ../plugins/changecase/gedit-changecase-plugin.c:232
+msgid "_Title Case"
+msgstr "མགོ་མིང་ཡི་གུ(_T)"
+
+#: ../plugins/changecase/gedit-changecase-plugin.c:233
+msgid "Capitalize the first letter of each selected word"
+msgstr "སེལ་འཐུ་འབད་མི་ མིང་ཚིག་རེ་རེ་བཞིན་དུ་གི་ ཡི་གུ་དང་པ་དེ་ ཚུགས་ཡིག་བཟོ།"
+
+#: ../plugins/docinfo/docinfo.gedit-plugin.desktop.in.h:1
+msgid "Analyzes the current document and reports the number of words, lines, characters and non-space characters in it."
+msgstr "ད་ལྟོའི་ཡིག་ཆ་ དབྱེ་དཔྱད་འབད་དེ་ དེ་ནང་ཡོད་པའི་མིང་ཚིག་དང་ གྱལ་རིམ་ ཡིག་འབྲུ་ བར་སྟོང་མེད་པའི་ ཡིག་འབྲུ་ཚུ་གི་སྙན་ཞུ་འབད།"
+
+#: ../plugins/docinfo/docinfo.gedit-plugin.desktop.in.h:2
+#: ../plugins/docinfo/docinfo.glade2.h:8
+msgid "Document Statistics"
+msgstr "ཡིག་ཆའི་ཚད་རྩིས།"
+
+#: ../plugins/docinfo/docinfo.glade2.h:2
+msgid "0"
+msgstr "༠"
+
+#: ../plugins/docinfo/docinfo.glade2.h:3
+msgid "<span weight=\"bold\">File Name</span>"
+msgstr "<span weight=\"bold\">>ཡིག་སྣོད་མིང་</span>"
+
+#: ../plugins/docinfo/docinfo.glade2.h:4
+msgid "Bytes"
+msgstr "བཱའིཊིསི།"
+
+#: ../plugins/docinfo/docinfo.glade2.h:5
+msgid "Characters (no spaces)"
+msgstr "ཡིག་འབྲུ། (བར་སྟོང་མེདཔ)"
+
+#: ../plugins/docinfo/docinfo.glade2.h:6
+msgid "Characters (with spaces)"
+msgstr "ཡིག་འབྲུ། (བར་སྟོང་ཡོདཔ)"
+
+#: ../plugins/docinfo/docinfo.glade2.h:7
+msgid "Document"
+msgstr "ཡིག་ཆ།"
+
+#: ../plugins/docinfo/docinfo.glade2.h:9
+msgid "Lines"
+msgstr "གྱལ་རིམ།"
+
+#: ../plugins/docinfo/docinfo.glade2.h:10
+msgid "Selection"
+msgstr "སེལ་འཐུ།"
+
+#: ../plugins/docinfo/docinfo.glade2.h:11
+msgid "Words"
+msgstr "མིང་ཚིག་ཚུ།"
+
+#: ../plugins/docinfo/docinfo.glade2.h:12
+msgid "_Update"
+msgstr "དུས་མཐུན་བཟོ། (_U)"
+
+#: ../plugins/docinfo/gedit-docinfo-plugin.c:411
+msgid "_Document Statistics"
+msgstr "ཡིག་ཆའི་ཚད་རྩིས།(_D)"
+
+#: ../plugins/docinfo/gedit-docinfo-plugin.c:413
+msgid "Get statistic info on current document"
+msgstr "ད་ལྟོའི་ཡིག་ཆའི་སྐོར་ལས་ ཚད་རྩིས་ལེན།"
+
+#: ../plugins/externaltools/externaltools.gedit-plugin.desktop.in.h:1
+msgid "Execute external commands and shell scripts."
+msgstr "ཕྱི་ཁའི་བརྡ་དོན་དང་ ཤལ་གྱི་ཡིག་ཚུགས་ཚུ་ལག་ལེན་འཐབ།"
+
+#: ../plugins/externaltools/externaltools.gedit-plugin.desktop.in.h:2
+msgid "External Tools"
+msgstr "ཕྱི་ཁའི་ལག་ཆས་ཚུ།"
+
+#: ../plugins/externaltools/tools/__init__.py:129
+msgid "_External Tools..."
+msgstr "ཕྱི་ཁའི་ལག་ཆས་ཚུ་་་(_E)"
+
+#: ../plugins/externaltools/tools/__init__.py:131
+msgid "Opens the External Tools Manager"
+msgstr "ཕྱི་ཁའི་ལག་ཆས་འཛིན་སྐྱོང་པ་ཁ་ཕྱེཝ་ཨིན།"
+
+#: ../plugins/externaltools/tools/__init__.py:161
+msgid "Shell Output"
+msgstr "ཤལ་ཨའུཊི་པུཊི་"
+
+#: ../plugins/externaltools/tools/functions.py:109
+msgid "You must be inside a word to run this command"
+msgstr "བརྡ་དོན་འདི་གཡོག་བཀོལ་ནི་ལུ་ ཁྱོད་མིང་ཚིག་ཅིག་གི་ནང་ན་ཨིན་དགོ"
+
+#: ../plugins/externaltools/tools/functions.py:166
+msgid "Running tool:"
+msgstr "ལག་ཆས་གཡོག་བཀོལ་དོ་:"
+
+#: ../plugins/externaltools/tools/functions.py:189
+msgid "Done."
+msgstr "འབད་ཚར།"
+
+#: ../plugins/externaltools/tools/functions.py:191
+msgid "Exited"
+msgstr "ཕྱིར་ཐོན་འབད་ཡི།"
+
+#: ../plugins/externaltools/tools/manager.py:41
+msgid "Nothing"
+msgstr "ག་ནི་ཡང་མེདཔ།"
+
+#: ../plugins/externaltools/tools/manager.py:42
+msgid "Current document"
+msgstr "ད་ལྟོའི་ཡིག་ཆ།"
+
+#: ../plugins/externaltools/tools/manager.py:43
+msgid "Current selection"
+msgstr "ད་ལྟོའི་སེལ་འཐུ།"
+
+#: ../plugins/externaltools/tools/manager.py:44
+msgid "Current line"
+msgstr "ད་ལྟོའི་གྱལ་རིམ།"
+
+#: ../plugins/externaltools/tools/manager.py:45
+msgid "Current word"
+msgstr "དལྟོའི་མིང་ཚིག"
+
+#: ../plugins/externaltools/tools/manager.py:48
+msgid "Display in bottom pane"
+msgstr "མཇུག་གི་པེན་ནང་བཀྲམ་སྟོན་འབད་"
+
+#: ../plugins/externaltools/tools/manager.py:49
+msgid "Create new document"
+msgstr "ཡིག་ཆ་གསརཔ་གསར་བསྐྲུན་འབད།"
+
+#: ../plugins/externaltools/tools/manager.py:50
+msgid "Append to current document"
+msgstr "ད་ལྟོའི་ཡིག་ཆ་ལུ་ མཇུག་བསྣོན་འབད།"
+
+#: ../plugins/externaltools/tools/manager.py:51
+msgid "Replace current document"
+msgstr "ད་ལྟོའི་ཡིག་ཆའི་ཚབ་བཙུགས།"
+
+#: ../plugins/externaltools/tools/manager.py:52
+msgid "Replace current selection"
+msgstr "ད་ལྟོའི་སེལ་འཐུའི་ཚབ་བཙུགས།"
+
+#: ../plugins/externaltools/tools/manager.py:53
+msgid "Insert at cursor position"
+msgstr "འོད་རྟགས་གནས་སར་བཙུགས།"
+
+#: ../plugins/externaltools/tools/manager.py:56
+msgid "All documents"
+msgstr "ཡིག་ཆ་ཆ་མཉམ།"
+
+#: ../plugins/externaltools/tools/manager.py:57
+msgid "All documents except untitled ones"
+msgstr "མགོ་མིང་མ་བཏགསཔ་ཚུ་མ་གཏོགས་པའི་ ཡིག་ཆ་མ་མཉམ།"
+
+#: ../plugins/externaltools/tools/manager.py:58
+msgid "Local files only"
+msgstr "ཉེ་གནས་ཀྱི་ཡིག་སྣོད་ཚུ་རྐྱངམ་གཅིག"
+
+#: ../plugins/externaltools/tools/manager.py:59
+msgid "Remote files only"
+msgstr "ཐག་རིང་གི་ཡིག་སྣོད་ཚུ་རྐྱངམ་གཅིག"
+
+#: ../plugins/externaltools/tools/manager.py:60
+msgid "Untitled documents only"
+msgstr "མགོ་མིང་མ་བཏགས་པའི་ཡིག་ཆ་རྐྱངམ་གཅིག"
+
+#: ../plugins/externaltools/tools/manager.py:200
+#: ../plugins/externaltools/tools/manager.py:230
+#: ../plugins/externaltools/tools/manager.py:278
+#, python-format
+msgid "Edit tool <i>%s</i>:"
+msgstr "ཞུན་དག་ལག་ཆས་<i>%s</i>:"
+
+#: ../plugins/externaltools/tools/manager.py:204
+msgid "A Brand New Tool"
+msgstr "ལག་ཆས་གསར་རྐྱང་ཅིག"
+
+#: ../plugins/externaltools/tools/manager.py:239
+msgid "New tool"
+msgstr "ལག་ཆས་གསརཔ།"
+
+#: ../plugins/externaltools/tools/manager.py:314
+#, python-format
+msgid "This accelerator is already bound to %s"
+msgstr "མགྱོགས་འཕྲུལ་འདི་ཧེ་མ་ལས་རང་ %sལུ་གནས་དགོཔ་ཨིན་པས།"
+
+#: ../plugins/externaltools/tools/manager.py:360
+msgid "Type a new accelerator, or press Backspace to clear"
+msgstr "མགྱོགས་འཕྲུལ་གསརཔ་ཅིག་ ཡིག་དཔར་རྐྱབས་ ཡང་ན་ བསལ་ནིའི་དོན་ལུ་ རྒྱབ་བཤུད་ལུ་ཨེབ།"
+
+#: ../plugins/externaltools/tools/manager.py:362
+msgid "Type a new accelerator"
+msgstr "མགྱོགས་འཕྲུལ་གསརཔ་ཅིག་ ཡིག་དཔར་རྐྱབས།"
+
+#: ../plugins/externaltools/tools/outputpanel.py:78
+msgid "Stopped."
+msgstr "བཀག་ཡོད།"
+
+#: ../plugins/externaltools/tools/tools.glade.h:2
+msgid "Co_mmand(s):"
+msgstr "བརྡ་བཀོད་:(_m)"
+
+#: ../plugins/externaltools/tools/tools.glade.h:3
+msgid "Edit tool <i>make</i>:"
+msgstr "ཞུན་དག་ལག་ཆས། <i>བཟོ་</i>:"
+
+#: ../plugins/externaltools/tools/tools.glade.h:4
+msgid "External Tools Manager"
+msgstr "ཕྱི་ཁའི་ལག་ཆས་འཛིན་སྐྱོང་པ།"
+
+#: ../plugins/externaltools/tools/tools.glade.h:5
+msgid ""
+"Nothing\n"
+"Current document\n"
+"All documents"
+msgstr ""
+"ག་ནི་ཡང་མེདཔ།\n"
+"ད་ལྟོའི་ཡིག་ཆ།\n"
+"ཡིག་ཆ་ཆ་མཉམ།"
+
+#: ../plugins/externaltools/tools/tools.glade.h:8
+msgid "_Applicability:"
+msgstr "འཇུག་སྤྱོད་བཏུབ་མི་བཏུབ་:།(_A)"
+
+#: ../plugins/externaltools/tools/tools.glade.h:9
+msgid "_Description:"
+msgstr "འགྲེལ་བཤད་: (_D)"
+
+#: ../plugins/externaltools/tools/tools.glade.h:10
+msgid "_Input:"
+msgstr "ཨིན་པུཊི་:(_I)"
+
+#: ../plugins/externaltools/tools/tools.glade.h:11
+msgid "_Output:"
+msgstr "ཨའུཊི་པུཊི་: (_O)"
+
+#: ../plugins/externaltools/tools/tools.glade.h:12
+msgid "_Save:"
+msgstr "སྲུངས་:(_S)"
+
+#: ../plugins/externaltools/tools/tools.glade.h:13
+msgid "_Shortcut Key:"
+msgstr "མགྱོགས་ཐབས་ལྡེ་མིག་:(_S)"
+
+#: ../plugins/externaltools/tools/tools.glade.h:14
+msgid "_Tools:"
+msgstr "ལག་ཆས་ཚུ་:(_T)"
+
+#: ../plugins/externaltools/data/build.desktop.in.h:1
+msgid "Build"
+msgstr "བཟོ་བརྩིགས་"
+
+#: ../plugins/externaltools/data/build.desktop.in.h:2
+msgid "Run \"make\" in the document directory"
+msgstr "ཡིག་ཆའི་སྣོད་ཐོ་ནང་ \"make\" གཡོག་བཀོལ།"
+
+#: ../plugins/externaltools/data/open-terminal-here.desktop.in.h:1
+msgid "Open a terminal in the document location"
+msgstr "ཡིག་ཆའི་གནས་ཁོངས་འདི་ནང་ ཊར་མི་ནཱལ་ཅིག་ཁ་ཕྱེ།"
+
+#: ../plugins/externaltools/data/open-terminal-here.desktop.in.h:2
+msgid "Open terminal here"
+msgstr "ཊར་མི་ནཱལ་ ནཱ་ལུ་ཁ་ཕྱེ་"
+
+#: ../plugins/externaltools/data/remove-trailing-spaces.desktop.in.h:1
+msgid "Remove trailing spaces"
+msgstr "རྒྱབ་ལུས་བར་སྟོང་ཚུ་རྩ་བསྐྲད་གཏང་"
+
+#: ../plugins/externaltools/data/remove-trailing-spaces.desktop.in.h:2
+msgid "Remove useless trailing spaces in your file"
+msgstr "ཁྱོད་རའི་ཡིག་སྣོད་ནང་ ཕན་མེད་རྒྱབ་ལུས་བར་སྟོང་ཚུ་ རྩ་བསྐྲད་གཏང་"
+
+#: ../plugins/externaltools/data/run-command.desktop.in.h:1
+msgid "Execute a custom command and put its output in a new document"
+msgstr "སྲོལ་སྒྲིག་བརྡ་བཀོད་ཅིག་ལག་ལེན་འཐབ་ དེ་ལས་དེའི་ཨའུཊི་པུཏི་འདི་ ཡིག་ཆ་གསརཔ་ཅིག་ནང་བཙུགས་"
+
+#: ../plugins/externaltools/data/run-command.desktop.in.h:2
+msgid "Run command"
+msgstr "བརྡ་བཀོད་གཡོག་བཀོལ་"
+
+#: ../plugins/filebrowser/filebrowser.gedit-plugin.desktop.in.h:1
+msgid "Easy file access from the side pane"
+msgstr "ཟུར་ཁའི་པེན་ནང་ལས་ ཡིག་སྣོད་ལུ་འཛུལ་སྤྱོད་འཇམ་ཏོང་ཏོ་"
+
+#: ../plugins/filebrowser/filebrowser.gedit-plugin.desktop.in.h:2
+msgid "File Browser Pane"
+msgstr "ཡིག་སྣོད་བརའུ་ཟར་པེན་"
+
+#. Translators: this is used in "file on host", e.g. "/foo/bar on ftp.baz.org"
+#: ../plugins/filebrowser/gedit-file-bookmarks-store.c:199
+msgid "on"
+msgstr "ཨཱོན་"
+
+#: ../plugins/filebrowser/gedit-file-bookmarks-store.c:334
+msgid "File System"
+msgstr "ཡིག་སྣོད་ རིམ་ལུགས་ "
+
+#. ex:ts=8:noet:
+#: ../plugins/filebrowser/gedit-file-browser.schemas.in.h:1
+msgid "Enable Restore of Remote Locations"
+msgstr "ཐག་རིང་གནས་ཁོངས་ཚུ་ སོར་ཆུད་འབད་ནི་ ལྕོགས་ཅན་བཟོ་"
+
+#: ../plugins/filebrowser/gedit-file-browser.schemas.in.h:2
+msgid "File Browser Filter Mode"
+msgstr "ཡིག་སྣོད་བརའུ་ཟར་ ཚགས་མའི་ཐབས་ལམ་"
+
+#: ../plugins/filebrowser/gedit-file-browser.schemas.in.h:3
+msgid "File Browser Filter Pattern"
+msgstr "ཡིག་སྣོད་བརའུ་ཟར་ ཚགས་མའི་དཔེ་གཞི་"
+
+#: ../plugins/filebrowser/gedit-file-browser.schemas.in.h:4
+msgid "File Browser Root Directory"
+msgstr "ཡིག་སྣོད་བརའུ་ཟར་ རྩ་བའི་སྣོད་ཐོ་"
+
+#: ../plugins/filebrowser/gedit-file-browser.schemas.in.h:5
+msgid "File Browser Virtual Root Directory"
+msgstr "ཡིག་སྣོད་བརའུ་ཟར་ བར་ཅུ་ཡལ་ རྩ་བའི་སྣོད་ཐོ་"
+
+#: ../plugins/filebrowser/gedit-file-browser.schemas.in.h:6
+msgid "If TRUE the file browser plugin will view the directory of the first opened document given that the file browser hasn't been used yet. (Thus this generally applies to opening a document from the command line or opening it with caja etc)"
+msgstr "བདེན་པ་ཨིན་པ་ཅིན་ ཡིག་སྣོད་བརའུ་ཟར་ པལག་ཨིན་དེ་གིས་ ཡིང་སྣོད་བརའུ་ཟར་དེ་ དེ་ཚུན་ལག་ལེན་མ་འཐབ་པ་ཅིན་ དང་པ་ཁ་ཕྱེ་མི་ཡིག་ཆ་དེ་གི་སྣོད་ཐོ་དེ་སྟོན་འོང་། (འདི་ཡང་སྤྱིར་བཏང་ལུ་ བཀོད་ལམ་ནང་ལས་ ཡིག་ཆ་ཅིག་ཁ་ཕྱེ་ནི་ ཡང་ན་ ནའུ་ཊི་ལཱསི་ལ་སོགས་པའི་ཐོག་ལས་ ཁ་ཕྱེ་ནི་ལུ་འཇུགཔ་ཨིན)"
+
+#: ../plugins/filebrowser/gedit-file-browser.schemas.in.h:7
+msgid "Open With Tree View"
+msgstr "རྩ་འབྲེལ་མཐོང་སྣང་ཐོག་ལས་ཁ་ཕྱེ་"
+
+#: ../plugins/filebrowser/gedit-file-browser.schemas.in.h:8
+msgid "Open the tree view when the file browser plugin gets loaded instead of the bookmarks view"
+msgstr "ཡིག་སྣོད་བརའུ་ཟར་ པ་ལག་ཨིན་དེ་ མངོན་གསལ་འབད་བའི་སྐབས་ དེབ་རྟགས་མཐོང་སྣང་གི་ཚབ་ལུ་ རྩ་འབྲེལ་མཐོང་སྣང་ཁ་ཕྱེ།"
+
+#: ../plugins/filebrowser/gedit-file-browser.schemas.in.h:9
+msgid "Set Location To First Document"
+msgstr "གནས་ཁོངས་དེ་ ཡིག་ཆ་དང་པ་ལུ་ གཞི་སྒྲིག་འབད་"
+
+#: ../plugins/filebrowser/gedit-file-browser.schemas.in.h:10
+msgid "Sets whether to enable restoring of remote locations."
+msgstr "ཐག་རིང་གནས་ཁོངས་ཚུ་ སོར་ཆུད་འབད་ཚུགསཔ་ བཟོ་ནི་ཨིན་ན་མེན་ གཞི་སྒྲིག་འབདཝ་ཨིནཝ"
+
+#: ../plugins/filebrowser/gedit-file-browser.schemas.in.h:11
+msgid "The file browser root directory to use when loading the file browser plugin and onload/tree_view is TRUE."
+msgstr "ཡིག་སྣོད་བརའུ་ཟར་ པ་ལག་ཨིན་མངོན་གསལ་བའི་སྐབས་ onload/tree_view དེ་བདེན་པ་ཨིན་པ་ཅིན་ ལག་ལེན་འཐབ་ནིའི་ ཡིག་སྣོད་བརའུ་ཟར་གྱི་ རྩ་བའི་སྣོད་ཐོ།"
+
+#: ../plugins/filebrowser/gedit-file-browser.schemas.in.h:12
+msgid "The file browser virtual root directory to use when loading the file browser plugin when onload/tree_view is TRUE. The virtual root must always be below the actual root."
+msgstr "ཡིག་སྣོད་བརའུ་ཟར་ པ་ལག་ཨིན་མངོན་གསལ་བའི་སྐབས་ onload/tree_view དེ་བདེན་པ་ཨིན་པ་ཅིན་ ལག་ལེན་འཐབ་ནིའི་ ཡིག་སྣོད་བརའུ་ཟར་གྱི་ བར་ཅུ་ཡལ་ རྩ་བའི་སྣོད་ཐོ། བཡ་ཅུ་ཡལ་རྩ་བ་དེ་ ཨ་རྟག་ར་ རྩ་བ་ངོ་མ་དེ་གི་འོག་ལུ་འོང་དགོ།"
+
+#: ../plugins/filebrowser/gedit-file-browser.schemas.in.h:13
+msgid "The filter pattern to filter the file browser with. This filter works on top of the filter_mode."
+msgstr "ཡིག་སྣོད་བརའུ་ཟར་ བཙག་ནིའི་ཚགས་མའི་དཔེ་གཞི། ཚགས་མ་འདི་གིས་ ཚགས་མའི་ཐབས་ལམ་གུ་ལུ་ ལཱ་འབདཝ་ཨིན།"
+
+#: ../plugins/filebrowser/gedit-file-browser.schemas.in.h:14
+msgid "This value determines what files get filtered from the file browser. Valid values are: none (filter nothing), hidden (filter hidden files), binary (filter binary files) and hidden_and_binary (filter both hidden and binary files)."
+msgstr "བེ་ལུ་འདི་གིས་ ཡིག་སྣོད་བརའུ་ཟར་ནང་ལས་ ཡིག་སྣོད་ག་ཅི་ར་ བཙག་དགོཔ་ཨིན་ ཐག་བཅདཔ་ཨིན། ནུས་ཅན་བེ་ལུསི་ཚུ་: ཅི་མེད་(ད་ནི་ཡི་བཙགནི་མེདཔ་) སྦ་སྟེཡོདཔ་ (སྦ་སྟེ་ཡོད་པའི་ཡིག་སྣོད་ཚུ་བཙག་ནི) བའི་ན་རི་ (བའི་ན་རི་ཡིག་སྣོད་ཚུ་བཙག་ནི) སྦ་སྟེ་ཡོདཔ་དང་ བའི་ན་རི་ (སྦ་སྟེ་ཡོདཔ་དང་ བའི་ན་རི་ཡིག་སྣོད་གཉིས་ཆ་ར་བཙག་ནི)"
+
+#: ../plugins/filebrowser/gedit-file-browser-plugin.c:598
+msgid "_Set root to active document"
+msgstr "ཤུགས་ལྡན་ཡིག་ཆ་ལུ་ རྩ་བ་གཞི་སྒྲིག་འབད།(_S)"
+
+#: ../plugins/filebrowser/gedit-file-browser-plugin.c:600
+msgid "Set the root to the active document location"
+msgstr "ཤུགས་ལྡན་ཡིག་ཆའི་གནས་ཁོངས་ལུ་ རྩ་བ་གཞི་སྒྲིག་འབད།"
+
+#: ../plugins/filebrowser/gedit-file-browser-plugin.c:605
+msgid "_Open terminal here"
+msgstr "ཊར་མི་ནཱལ་ ནཱ་ལུ་ཁ་ཕྱེ་(_O)"
+
+#: ../plugins/filebrowser/gedit-file-browser-plugin.c:607
+msgid "Open a terminal at the currently opened directory"
+msgstr "ད་ལྟོ་ཁ་ཕྱེ་ཡོད་མི་སྣོད་ཐོ་འདི་གུ་ ཊར་མི་ནཱལ་ཅིག་ཁ་ཕྱེ།"
+
+#: ../plugins/filebrowser/gedit-file-browser-plugin.c:741
+msgid "File Browser"
+msgstr "ཡིག་སྣོད་བརའུ་ཟར་"
+
+#: ../plugins/filebrowser/gedit-file-browser-plugin.c:864
+msgid "An error occurred while creating a new directory"
+msgstr "སྣོད་ཐོ་གསརཔ་ཅིག་ གསར་བསྐྲུན་འབད་བའི་སྐབས་ འཛོལ་བ་ཅིག་བྱུང་ཡི།"
+
+#: ../plugins/filebrowser/gedit-file-browser-plugin.c:867
+msgid "An error occurred while creating a new file"
+msgstr "ཡིག་སྣོད་གསརཔ་ཅིག་ གསར་བསྐྲུན་འབད་བའི་སྐབས་ འཛོལ་བ་ཅིག་བྱུང་ཡི།"
+
+#: ../plugins/filebrowser/gedit-file-browser-plugin.c:872
+msgid "An error occurred while renaming a file or directory"
+msgstr "ཡིག་སྣོད་ ཡང་ན་ སྣོད་ཐོག་ཅིག་ལུ་ བསྐྱར་མིང་བཏགས་པའི་སྐབས་ འཛོལ་བ་ཅིག་བྱུང་ཡི།"
+
+#: ../plugins/filebrowser/gedit-file-browser-plugin.c:877
+msgid "An error occurred while deleting a file or directory"
+msgstr "ཡིག་སྣོད་ ཡང་ན་ སྣོད་ཐོ་ཅིག་བཏོན་གཏང་བའི་སྐབས་ལུ་ འཛོལ་བ་ཅིག་བྱུང་ཡི།ཡིག་"
+
+#: ../plugins/filebrowser/gedit-file-browser-plugin.c:882
+msgid "An error occurred while opening a directory in the file manager"
+msgstr "ཡིག་སྣོད་འཛིན་སྐྱོང་པའི་ནང་ སྣོད་ཐོ་ཅིག་ཁ་ཕྱེ་བའི་སྐབས་ལུ་ འཛོལ་བ་ཅིག་བྱུང་ཡི།"
+
+#: ../plugins/filebrowser/gedit-file-browser-plugin.c:886
+msgid "An error occurred while setting a root directory"
+msgstr "རྩ་བའི་སྣོད་ཐོ་ཅིག་ གཞི་སྒྲིག་འབད་བའི་སྐབས་ལུ་ འཛོལ་བ་ཅིག་བྱུང་ཡི།"
+
+#: ../plugins/filebrowser/gedit-file-browser-plugin.c:890
+msgid "An error occurred while loading a directory"
+msgstr "སྣོད་ཐོ་ཅིག་ མངོན་གསལ་འབད་བའི་སྐབས་ལུ་ འཛོལ་བ་ཅིག་བྱུང་ཡི།"
+
+#: ../plugins/filebrowser/gedit-file-browser-plugin.c:893
+msgid "An error occurred"
+msgstr "འཛོལ་བ་ཅིག་བྱུང་ཡི་"
+
+#: ../plugins/filebrowser/gedit-file-browser-plugin.c:1123
+msgid ""
+"Cannot move file to trash, do you\n"
+"want to delete permanently?"
+msgstr ""
+"ཡིག་སྣོད་ ཕྱགས་ཧོད་ནང་སྤོ་བཤུད་འབད་མི་ཚུགས་  ཁྱོད་ཀྱིས་\n"
+"རྟག་བརྟན་སྦེ་བཏོན་གཏང་ནི་ཨིན་ན?"
+
+#: ../plugins/filebrowser/gedit-file-browser-plugin.c:1127
+#, c-format
+msgid "The file \"%s\" cannot be moved to the trash."
+msgstr "ཡིག་སྣོད་ \"%s\" དེ་ ཕྱགས་ཧོད་ནང་ སྤོ་བཤུད་འབད་མི་ཚུགས་པས།"
+
+#: ../plugins/filebrowser/gedit-file-browser-plugin.c:1130
+msgid "The selected files cannot be moved to the trash."
+msgstr "སེལ་འཐུ་འབད་ཡོད་པའི་ཡིག་སྣོད་ཚུ་ ཕྱགས་ཧོད་ནང་ སྤོ་བཤུད་འབད་མི་ཚུགས།"
+
+#: ../plugins/filebrowser/gedit-file-browser-plugin.c:1163
+#, c-format
+msgid "Are you sure you want to permanently delete \"%s\"?"
+msgstr "ཁྱོད་ཀྱིས་\"%s\"དེ་ བཏོན་གཏང་ནི་ ངེས་གཏན་ཨིན་ན?"
+
+#: ../plugins/filebrowser/gedit-file-browser-plugin.c:1166
+msgid "Are you sure you want to permanently delete the selected files?"
+msgstr "ཁྱོད་ཀྱིས་ སེལ་འཐུ་འབད་ཡོད་པའི་ཡིག་སྣོད་ཚུ་ བཏོན་གཏང་ནི་ངེས་གཏན་ཨིན་ན?"
+
+#: ../plugins/filebrowser/gedit-file-browser-plugin.c:1169
+msgid "If you delete an item, it is permanently lost."
+msgstr "ཁྱོད་ཀྱིས་རྣམ་གྲངས་ཅིག་ བཏོན་གཏང་པ་ཅིན་  འདི་རྟག་བརྟན་སྦེ་ བརླག་སྟོར་ཞུགས་འོང་།"
+
+#: ../plugins/filebrowser/gedit-file-browser-store.c:1583
+msgid "(Empty)"
+msgstr "(སྟོངམ་)"
+
+#: ../plugins/filebrowser/gedit-file-browser-store.c:2723
+#: ../plugins/filebrowser/gedit-file-browser-widget.c:1840
+msgid "Invalid uri"
+msgstr "ནུས་མེད་ཡུ་ཨར་ཨའི་"
+
+#: ../plugins/filebrowser/gedit-file-browser-store.c:3155
+msgid "file"
+msgstr "ཡིག་སྣོད་"
+
+#: ../plugins/filebrowser/gedit-file-browser-store.c:3176
+#: ../plugins/filebrowser/gedit-file-browser-store.c:3223
+msgid "The new file is currently filtered out. You need to adjust your filter settings to make the file visible"
+msgstr "ཡིག་སྣོད་གསརཔ་དེ་ ད་ལྟོ་བཙགས་པའི་བསྒང་ཨིན། ཡིག་སྣོད་དེ་མཐོངམ་བཟོ་ནི་ལུ་ ཁྱོད་ཀྱིས་ཁྱོད་རའི་ཚགས་མའི་སྒྲིག་སྟངས་ བདེ་སྒྲིག་འབད་དགོ།"
+
+#: ../plugins/filebrowser/gedit-file-browser-store.c:3204
+msgid "directory"
+msgstr "སྣོད་ཐོ་"
+
+#: ../plugins/filebrowser/gedit-file-browser-widget.c:738
+msgid "Bookmarks"
+msgstr "དེབ་རྟགས་ཚུ་"
+
+#: ../plugins/filebrowser/gedit-file-browser-widget.c:748
+msgid "Recent Files"
+msgstr "འཕྲལ་གྱི་ཡིག་སྣོད་ཚུ་"
+
+#: ../plugins/filebrowser/gedit-file-browser-widget.c:827
+msgid "_Filter"
+msgstr "ཚགས་མ་ (_F)"
+
+#: ../plugins/filebrowser/gedit-file-browser-widget.c:832
+msgid "_Move To Trash"
+msgstr "ཕྱགས་ཧོད་ནང་སྤོ་(_M)"
+
+#: ../plugins/filebrowser/gedit-file-browser-widget.c:833
+msgid "Move selected file or folder to trash"
+msgstr "སེལ་འཐུ་འབད་མི་ ཡིག་སྣོད་ ཡང་ན་ སྣོད་འཛིན་ ཕྱགས་ཧོད་ནང་སྤོ་"
+
+#: ../plugins/filebrowser/gedit-file-browser-widget.c:835
+msgid "_Delete"
+msgstr "བཏོན་གཏང༌།(_D)"
+
+#: ../plugins/filebrowser/gedit-file-browser-widget.c:836
+msgid "Delete selected file or folder"
+msgstr "སེལ་འཐུ་འབད་མི་ ཡིག་སྣོད་ ཡང་ན་ སྣོད་འཛིན་བཏོན་གཏང་"
+
+#: ../plugins/filebrowser/gedit-file-browser-widget.c:842
+msgid "Up"
+msgstr "ཡར་"
+
+#: ../plugins/filebrowser/gedit-file-browser-widget.c:843
+msgid "Open the parent folder"
+msgstr "རྩ་ལག་སྣོད་འཛིན་དེ་ཁ་ཕྱེ་"
+
+#: ../plugins/filebrowser/gedit-file-browser-widget.c:848
+msgid "_New Folder"
+msgstr "སྣོད་འཛིན་གསརཔ་(_N)"
+
+#: ../plugins/filebrowser/gedit-file-browser-widget.c:849
+msgid "Add new empty folder"
+msgstr "སྣོད་འཛིན་གསརཔ་སྟོངམ་ཁ་སྐོང་རྐྱབས་"
+
+#: ../plugins/filebrowser/gedit-file-browser-widget.c:851
+msgid "New F_ile"
+msgstr "ཡིག་སྣོད་བཟོ་(_i)"
+
+#: ../plugins/filebrowser/gedit-file-browser-widget.c:852
+msgid "Add new empty file"
+msgstr "ཡིག་སྣོད་གསརཔ་སྟོངམ་ཅིག་ཁ་སྐོང་རྐྱབས་"
+
+#: ../plugins/filebrowser/gedit-file-browser-widget.c:857
+msgid "_Rename"
+msgstr "བསྐྱར་མིང་བཏགས་(_R)"
+
+#: ../plugins/filebrowser/gedit-file-browser-widget.c:858
+msgid "Rename selected file or folder"
+msgstr "སེལ་འཐུ་འབད་ཡོད་པའི་ཡིག་སྣོད་ཡང་ན་སྣོད་འཛིན་ བསྐྱར་མིང་བཏགས་"
+
+#: ../plugins/filebrowser/gedit-file-browser-widget.c:864
+msgid "_Previous Location"
+msgstr "གནས་ཁོངས་ཧེ་མམ་(_P)"
+
+#: ../plugins/filebrowser/gedit-file-browser-widget.c:866
+msgid "Go to the previous visited location"
+msgstr "ཧེ་མ་ལྟ་སྤྱོད་འབད་མི་གནས་ཁོངས་ལུ་འགྱོ།"
+
+#: ../plugins/filebrowser/gedit-file-browser-widget.c:868
+msgid "_Next Location"
+msgstr "གནས་ཁོངས་ཤུལ་མམ་(_N)"
+
+#: ../plugins/filebrowser/gedit-file-browser-widget.c:869
+msgid "Go to the next visited location"
+msgstr "ཤུལ་མ་ལྟ་སྤྱོད་འབད་མི་གནས་ཁོངས་ལུ་འགྱོ།"
+
+#: ../plugins/filebrowser/gedit-file-browser-widget.c:870
+msgid "Re_fresh View"
+msgstr "མཐོང་སྣང་ཡང་སེལ་འབད།(_f)"
+
+#: ../plugins/filebrowser/gedit-file-browser-widget.c:871
+msgid "Refresh the view"
+msgstr "མཐོང་སྣང་དེ་ ཡང་སེལ་འབད་"
+
+#: ../plugins/filebrowser/gedit-file-browser-widget.c:872
+msgid "_View Folder"
+msgstr "སྣོད་འཛིན་སྟོན་(_V)"
+
+#: ../plugins/filebrowser/gedit-file-browser-widget.c:873
+msgid "View folder in file manager"
+msgstr "ཡིག་སྣོད་འཛིན་སྐྱོང་པའི་ནང་ སྣོད་འཛིན་སྟོན་"
+
+#: ../plugins/filebrowser/gedit-file-browser-widget.c:880
+msgid "Show _Hidden"
+msgstr "སྦ་སྟེ་ཡོད་མི་སྟོན་(_H)"
+
+#: ../plugins/filebrowser/gedit-file-browser-widget.c:881
+msgid "Show hidden files and folders"
+msgstr "སྦ་སྟེ་ཡོད་མི་ཡིག་སྣོད་དང་སྣོད་འཛིན་ཚུ་སྟོན་"
+
+#: ../plugins/filebrowser/gedit-file-browser-widget.c:883
+msgid "Show _Binary"
+msgstr "བའི་ནི་རི་སྟོན་(_B)"
+
+#: ../plugins/filebrowser/gedit-file-browser-widget.c:884
+msgid "Show binary files"
+msgstr "བའི་ན་རི་ཡིག་སྣོད་ཚུ་སྟོན་"
+
+#: ../plugins/filebrowser/gedit-file-browser-widget.c:989
+#: ../plugins/filebrowser/gedit-file-browser-widget.c:1005
+#: ../plugins/filebrowser/gedit-file-browser-widget.c:1037
+msgid "Previous location"
+msgstr "གནས་ཁོངས་ཧེ་མམ་"
+
+#: ../plugins/filebrowser/gedit-file-browser-widget.c:993
+msgid "Go to previous location"
+msgstr "གནས་ཁོངས་ཧེ་མམ་ལུ་འགྱོ་"
+
+#: ../plugins/filebrowser/gedit-file-browser-widget.c:998
+#: ../plugins/filebrowser/gedit-file-browser-widget.c:1030
+msgid "Go to a previously opened location"
+msgstr "ཧེམ་ཁ་ཕྱེ་ཡོད་མི་གནས་ཁོངས་ཅིག་ལུ་འགྱོ་"
+
+#: ../plugins/filebrowser/gedit-file-browser-widget.c:1020
+msgid "Next location"
+msgstr "གནས་ཁོངས་ཤུལ་མམ་"
+
+#: ../plugins/filebrowser/gedit-file-browser-widget.c:1024
+msgid "Go to next location"
+msgstr "གནས་ཁོངས་ཤུལ་མམ་ལུ་འགྱོ་"
+
+#: ../plugins/filebrowser/gedit-file-browser-widget.c:1201
+msgid "_Match Filename"
+msgstr "ཡིག་སྣོད་མིང་མཐུན་སྒྲིག་འབད་ (_M)"
+
+#: ../plugins/indent/gedit-indent-plugin.c:56
+msgid "_Indent"
+msgstr "འགོ་མཚམས།(_I)"
+
+#: ../plugins/indent/gedit-indent-plugin.c:58
+msgid "Indent selected lines"
+msgstr "སེལ་འཐུ་ཅན་གྱི་གྱལ་རིམ་ཚུ་གི་ འགོ་མཚམས་བཟོ།"
+
+#: ../plugins/indent/gedit-indent-plugin.c:63
+msgid "U_nindent"
+msgstr "འགོ་མཚམས་བཤོལ། (_n)"
+
+#: ../plugins/indent/gedit-indent-plugin.c:65
+msgid "Unindent selected lines"
+msgstr "སེལ་འཐུ་ཅན་གྱི་གྱལ་རིམ་ཚུ་གི་ འགོ་མཚམས་བཤོལ།"
+
+#: ../plugins/indent/indent.gedit-plugin.desktop.in.h:1
+msgid "Indent Lines"
+msgstr "འགོ་མཚམས་གྲལ་ཐིག་ཚུ་"
+
+#: ../plugins/indent/indent.gedit-plugin.desktop.in.h:2
+msgid "Indents or un-indents selected lines."
+msgstr "སེལ་འཐུ་ཅན་གྱི་གྱལ་རིམ་ཚུ་ འགོ་མཚམས་བཟོ་བའམ་ འགོ་མཚམས་བཤོལཝ་ཨིན།"
+
+#: ../plugins/modelines/modelines.gedit-plugin.desktop.in.h:1
+msgid "Emacs, Kate and Vim-style modelines support for gedit."
+msgstr "ཇི་ཨི་ཌིཊི་གི་དོན་ལུ་ ཨི་མེཀསི་དང་ ཀ་ཊེ་ ཝིམ་བཟོ་རྣམ་ཅན་གྱི་ ཐབས་ལམ་ཐིག་གི་རྒྱབ་སྐྱོར།"
+
+#: ../plugins/modelines/modelines.gedit-plugin.desktop.in.h:2
+msgid "Modelines"
+msgstr "ཐབས་ཐིག"
+
+#: ../plugins/pythonconsole/pythonconsole.gedit-plugin.desktop.in.h:1
+msgid "Interactive python console standing in the bottom panel"
+msgstr "མཇུག་གི་པེ་ནཱལ་ནང་ཡོད་པའི་ ཕན་ཚུན་འབྲེལ་བ་ཅན་གྱི་ པ་ཡི་ཐཱོན་མ་སྒྲོམ།"
+
+#: ../plugins/pythonconsole/pythonconsole.gedit-plugin.desktop.in.h:2
+#: ../plugins/pythonconsole/pythonconsole/__init__.py:45
+msgid "Python Console"
+msgstr "པ་ཡི་ཐཱོན་མ་སྒྲོམ།"
+
+#: ../plugins/sample/gedit-sample-plugin.c:63
+msgid "Insert User Na_me"
+msgstr "ལག་ལེན་པའི་མིང་བཙུགས།(_m)"
+
+#: ../plugins/sample/gedit-sample-plugin.c:65
+msgid "Insert the user name at the cursor position"
+msgstr "འོད་རྟགས་གནས་སར་ ལག་ལེན་པའི་མིང་བཙུགས།"
+
+#: ../plugins/sample/sample.gedit-plugin.desktop.in.h:1
+msgid "Inserts the user name at the cursor position."
+msgstr "འོད་རྟགས་གནས་སར་ ལག་ལེན་པའི་མིང་བཙུགསཔ་ཨིན།"
+
+#: ../plugins/sample/sample.gedit-plugin.desktop.in.h:2
+msgid "User name"
+msgstr "ལག་ལེན་པའི་མིང༌།"
+
+#: ../plugins/snippets/snippets.gedit-plugin.desktop.in.h:1
+msgid "Insert often used pieces of text in a fast way"
+msgstr "འཕྲལ་འཕྲལ་རང་ ལག་ལེན་འཐབ་མི་ཚིག་ཡིག་ཚུ་ མགྱོགས་ཐབས་ཐོག་ལས་བཙུགས།"
+
+#: ../plugins/snippets/snippets.gedit-plugin.desktop.in.h:2
+msgid "Snippets"
+msgstr "ཕྲ་དུམ་ཚུ།"
+
+#: ../plugins/snippets/snippets/snippets.glade.h:2
+msgid "<b>Activation</b>"
+msgstr "<b>ཤུགས་བཟོ།</b>"
+
+#: ../plugins/snippets/snippets/snippets.glade.h:3
+msgid "Create new snippet"
+msgstr "ཕྲ་དུམ་ གསརཔ་ གསར་བསྐྲུན་འབད་ "
+
+#: ../plugins/snippets/snippets/snippets.glade.h:4
+#: ../plugins/snippets/snippets/Manager.py:428
+msgid "Delete selected snippet"
+msgstr "སེལ་འཐུ་འབད་ཡོད་པའི་ ཕྲ་དུམ་ བཏོན་གཏང་ "
+
+#: ../plugins/snippets/snippets/snippets.glade.h:5
+msgid "Export selected snippets"
+msgstr "སེལ་འཐུ་འབད་ཡོད་པའི་ ཕྲ་དུམ་ཚུ་ ཕྱིར་དྲེན་འབད་ "
+
+#: ../plugins/snippets/snippets/snippets.glade.h:6
+#: ../plugins/snippets/snippets/Manager.py:806
+msgid "Import snippets"
+msgstr "ཕྲ་དུམ་ཚུ་ ནང་འདྲེན་འབད་ "
+
+#: ../plugins/snippets/snippets/snippets.glade.h:7
+msgid "S_hortcut key:"
+msgstr "མགྱོགས་ཐབས་ལྡེ་མིག་:(_h)"
+
+#: ../plugins/snippets/snippets/snippets.glade.h:8
+msgid "Shortcut key with which the snippet is activated"
+msgstr "ཕྲ་དུམ་ཤུགས་ལྡན་བཟོ་ཡོད་པའི་ མགྱོགས་ཐབས་ ལྡེ་མིག་"
+
+#: ../plugins/snippets/snippets/snippets.glade.h:9
+#: ../plugins/snippets/snippets/Manager.py:697
+msgid "Single word with which the snippet is activated after pressing tab"
+msgstr "མཆོང་ལྡེ་ ཨེབ་གཡེབ་ཞིནམ་ལས་ ཕྲ་དུམ་ཤུགས་ལྡན་བཟོ་ཡོད་པའི་ མིང་ཚིག་རྐྱང་པ་ "
+
+#: ../plugins/snippets/snippets/snippets.glade.h:10
+msgid "Snippets Manager"
+msgstr "ཕྲ་དུམ་འཛིན་སྐྱོང་པ།"
+
+#: ../plugins/snippets/snippets/snippets.glade.h:11
+msgid "_Drop targets:"
+msgstr "དམིགས་གཏད་ཚུ་ བཀོག་བཞག: (_D)"
+
+#: ../plugins/snippets/snippets/snippets.glade.h:12
+msgid "_Edit:"
+msgstr "ཞུན་དག: (_E)"
+
+#: ../plugins/snippets/snippets/snippets.glade.h:13
+msgid "_Snippets:"
+msgstr "ཕྲ་དུམ་ཚུ་:(_S)"
+
+#. "tab" here means the tab key, not the notebook tab!
+#: ../plugins/snippets/snippets/snippets.glade.h:15
+msgid "_Tab trigger:"
+msgstr "ཨེབ་ལྡེ་ཐར་རྟ་:(_T)"
+
+#: ../plugins/snippets/snippets/WindowHelper.py:74
+msgid "Manage _Snippets..."
+msgstr "ཕྲ་དུམ་ཚུ་འཛིན་སྐྱོང་འཐབ་...(_S)"
+
+#: ../plugins/snippets/snippets/WindowHelper.py:75
+msgid "Manage snippets"
+msgstr "ཕྲ་དུམ་ཚུ་འཛིན་སྐྱོང་འཐབ།"
+
+#: ../plugins/snippets/snippets/Manager.py:46
+msgid "Snippets archive"
+msgstr "ཕྲ་དུམ་ ཡིག་མཛོད་ "
+
+#: ../plugins/snippets/snippets/Manager.py:70
+msgid "Add a new snippet..."
+msgstr "ཕྲ་དུམ་གསརཔ་ཅིག་ ཁ་སྐོང་རྐྱབས་..."
+
+#: ../plugins/snippets/snippets/Manager.py:120
+msgid "Global"
+msgstr "སྤྱི་ཁྱབ།"
+
+#: ../plugins/snippets/snippets/Manager.py:425
+msgid "Revert selected snippet"
+msgstr "སེལ་འཐུ་ཅན་འབད་ཡོད་པའི་ ཕྲ་དུམ་ རྒྱབ་ལོག་འབད་ "
+
+#: ../plugins/snippets/snippets/Manager.py:692
+msgid "This is not a valid tab trigger. Triggers can either contain letters or a single, non alphanumeric, character like {, [, etcetera."
+msgstr "འདི་ནུས་ཅན་ཨེབ་ལྡེ་ཐར་རྟ་ཅིག་མེན་པས། ཐར་རྟ་ཚུ་ནང་ ཡི་གུ་ལེ་ཤའམ་རྐྱང་པ་ གསལ་བྱེད་མེན་པའི་ཡིག་འབྲུ་{དང་ [ ལ་སོགས་པ་འོང་སྲིད།"
+
+#: ../plugins/snippets/snippets/Manager.py:785
+#, python-format
+msgid "The following error occurred while importing: %s"
+msgstr "ནང་འདྲེན་འབད་བའི་སྐབས་ འོག་གི་འཛོལ་བ་དེ་ འབྱུང་ནུག་ : %s"
+
+#: ../plugins/snippets/snippets/Manager.py:792
+msgid "Import succesfully completed"
+msgstr "ནང་འདྲེན་དེ་ མཐར་འཁྱོལ་ཅན་སྦེ་ མཇུག་བསྡུ་ཡོདཔ་ "
+
+#: ../plugins/snippets/snippets/Manager.py:811
+#: ../plugins/snippets/snippets/Manager.py:897
+#: ../plugins/snippets/snippets/Manager.py:960
+msgid "All supported archives"
+msgstr "རྒྱབ་སྐྱོར་ཡོད་པའི་ ཡིག་མཛོད་ ཆ་མཉམ་ "
+
+#: ../plugins/snippets/snippets/Manager.py:812
+#: ../plugins/snippets/snippets/Manager.py:898
+#: ../plugins/snippets/snippets/Manager.py:961
+msgid "Gzip compressed archive"
+msgstr "ཇི་ གནས་ཡུལ་ ཨེབ་བཙུགས་འབད་ཡོད་པའི་ཡིག་མཛོད་ "
+
+#: ../plugins/snippets/snippets/Manager.py:813
+#: ../plugins/snippets/snippets/Manager.py:899
+#: ../plugins/snippets/snippets/Manager.py:962
+msgid "Bzip compressed archive"
+msgstr "བི་ གནས་ཡུལ་ ཨེབ་བཙུགས་འབད་ཡོད་པའི་ཡིག་མཛོད་ "
+
+#: ../plugins/snippets/snippets/Manager.py:814
+msgid "Single snippets file"
+msgstr "ཕྲ་དུམ་ ཡིག་སྣོད་རྐྱང་པ་ "
+
+#: ../plugins/snippets/snippets/Manager.py:815
+#: ../plugins/snippets/snippets/Manager.py:901
+#: ../plugins/snippets/snippets/Manager.py:964
+msgid "All files"
+msgstr "ཡིག་སྣོད་ ཆ་མཉམ།"
+
+#: ../plugins/snippets/snippets/Manager.py:827
+#, python-format
+msgid "The following error occurred while exporting: %s"
+msgstr "ཕྱིར་དྲེན་འབད་བའི་སྐབས་ འོག་གི་འཛོལ་བ་དེ་ འབྱུང་ཡི: %s "
+
+#: ../plugins/snippets/snippets/Manager.py:831
+msgid "Export succesfully completed"
+msgstr "ཕྱིར་འདྲེན་ མཐར་འཁྱོལ་ཅན་སྦེ་ མཇུག་བསྡུ་ཡོདཔ་ "
+
+#. Ask if system snippets should also be exported
+#: ../plugins/snippets/snippets/Manager.py:871
+#: ../plugins/snippets/snippets/Manager.py:938
+msgid "Do you want to include selected <b>system</b> snippets in your export?"
+msgstr "ཁྱོད་ཀྱི་ཕྱིར་འདྲེན་གྱི་གྲངས་སུ་  ལེལ་འཐུ་འབད་ཡོད་པའི་ <b>རིམ་ལུགས་</b> ཕྲ་དུམ་ཚུ་ཡང་  བཙུགས་ནི་ཨིན་ན?"
+
+#: ../plugins/snippets/snippets/Manager.py:886
+#: ../plugins/snippets/snippets/Manager.py:956
+msgid "There are no snippets selected to be exported"
+msgstr "ཕྱིར་འདྲེན་འབད་ནིའིདོན་ལུ་ ཕྲ་དུམ་ཚུ་ སེལ་འཐུ་འབད་དེ་མིན་ནུག་ "
+
+#: ../plugins/snippets/snippets/Manager.py:891
+#: ../plugins/snippets/snippets/Manager.py:929
+msgid "Export snippets"
+msgstr "ཕྲ་དུམ་ཚུ་ ཕྱིར་དྲེན་འབད་ "
+
+#: ../plugins/snippets/snippets/Manager.py:1068
+msgid "Type a new shortcut, or press Backspace to clear"
+msgstr "མགྱོགས་ཐབས་གསརཔ་ཅིག་ ཡིག་དཔར་རྐྱབས་ ཡང་ན་ བསལ་ནིའི་དོན་ལས་ རྒྱབ་བཤུད་ལུ་ཨེབ་"
+
+#: ../plugins/snippets/snippets/Manager.py:1070
+msgid "Type a new shortcut"
+msgstr "མགྱོགས་ཐབས་གསརཔ་ཅིག་ ཡིག་དཔར་རྐྱབས་"
+
+#: ../plugins/snippets/snippets/Exporter.py:65
+#, python-format
+msgid "The archive `%s` could not be created"
+msgstr "ཡིག་མཛོད་ %s` གསར་བསྐྲུན་འདབ་མི་ཚུགས་ "
+
+#: ../plugins/snippets/snippets/Exporter.py:82
+#, python-format
+msgid "Target directory `%s` does not exist"
+msgstr "དམིགས་གཏད་ སྣོད་ཐོ་ %s` དེ་ མིན་འདུག་ "
+
+#: ../plugins/snippets/snippets/Exporter.py:85
+#, python-format
+msgid "Target directory `%s` is not a valid directory"
+msgstr "དམིགས་གཏད་ སྣོད་ཐོ་ `%s` དེ་ ནུས་ཅན་གྱི་སྣདོ་ཐོ་ཅིག་མེན་མས་ "
+
+#: ../plugins/snippets/snippets/Importer.py:29
+#: ../plugins/snippets/snippets/Importer.py:83
+#, python-format
+msgid "File `%s` does not exist"
+msgstr "`%s` དེ་མིན་འདུག་ "
+
+#: ../plugins/snippets/snippets/Importer.py:32
+#, python-format
+msgid "File `%s` is not a valid snippets file"
+msgstr "ཡིག་སྣོད་ `%s`དེ་ ཕྲ་དུམ་ཚུ་གི་ཡིག་སྣོད་མེན་མས་ "
+
+#: ../plugins/snippets/snippets/Importer.py:42
+#, python-format
+msgid "Imported file `%s` is not a valid snippets file"
+msgstr "ནང་འདྲེན་འབད་ཡོད་པའི་ ཡིག་སྣོད་ `%s` དེ་ ནུས་ཅན་ ཕྲ་དུམ་ཡིག་སྣོད་ཅིག་མེན་མས་ "
+
+#: ../plugins/snippets/snippets/Importer.py:52
+#, python-format
+msgid "The archive `%s` could not be extracted"
+msgstr "ཡིག་མཛོད་  `%s` ཕྱིར་དོན་ འབད་མི་ ཚུགས་ "
+
+#: ../plugins/snippets/snippets/Importer.py:70
+#, python-format
+msgid "The following files could not be imported: %s"
+msgstr "འོག་གི་ ཡིག་སྣོད་ཚུ་ ནང་འདྲེན་འབད་མི་ཚུགས་པས: %s"
+
+#: ../plugins/snippets/snippets/Importer.py:86
+#: ../plugins/snippets/snippets/Importer.py:99
+#, python-format
+msgid "File `%s` is not a valid snippets archive"
+msgstr "ཡིག་སྣོད་ %s` དེ་ ནུས་ཅན་ ཕྲ་དུམ་ ཡིག་མཛོད་ཅིག་མེན་མས་ "
+
+#: ../plugins/snippets/snippets/Placeholder.py:550
+#, python-format
+msgid "Execution of the python command (%s) exceeds the maximum time, execution aborted."
+msgstr "པ་ཡི་ཐཱོན་བརྡ་བཀོད་ (%s) འདི་གི་ལག་ལེན་འཐབ་ནི་འདི་ མང་མཐའ་ཆུ་ཚོད་འདི་ལས་ལྷག་པས་ ལག་ལེན་འཐབ་ནི་བར་བཤོལ་འབད་ཡོད།"
+
+#: ../plugins/snippets/snippets/Placeholder.py:558
+#, python-format
+msgid "Execution of the python command (%s) failed: %s"
+msgstr "པ་ཡི་ཐཱོན་བརྡ་བཀོད་ (%s) འདི་གི་ལག་ལེན་འཐབ་ནི་འཐུས་ཤོར་འབྱུང་ཡོད་: %s"
+
+#: ../plugins/snippets/snippets/Placeholder.py:564
+msgid "The following python code, run in a snippet, does not return a value"
+msgstr "ཕྲ་དུམ་ཅིག་ནང་གཡོག་བཀོལ་མི་ འོག་གི་པ་ཡི་ཐཱོན་ཨང་རྟགས་འདི་གིས་ གནས་གོང་ཅིག་སླར་ལོག་མི་འབད་བས་"
+
+#: ../plugins/sort/gedit-sort-plugin.c:80
+msgid "S_ort..."
+msgstr "དབྱེ་སེལ་... (_o)"
+
+#: ../plugins/sort/gedit-sort-plugin.c:82
+msgid "Sort the current document or selection"
+msgstr "ད་ལྟོའི་ཡིག་ཆ་ ཡང་ན་ སེལ་འཐུ་དེ་ དབྱེ་སེལ་འབད།"
+
+#: ../plugins/sort/sort.gedit-plugin.desktop.in.h:1
+#: ../plugins/sort/sort.glade2.h:3
+msgid "Sort"
+msgstr "དབྱེ་སེལ།"
+
+#: ../plugins/sort/sort.gedit-plugin.desktop.in.h:2
+msgid "Sorts a document or selected text."
+msgstr "ཡིག་ཆའམ་སེལ་འཐུ་ཅན་གྱི་ ཚིག་ཡིག་དབྱེ་སེལ་འབདཝ་ཨིན།"
+
+#: ../plugins/sort/sort.glade2.h:1
+msgid "R_emove duplicates"
+msgstr "ངོ་བཤུས་ཚུ་ རྩ་བསྐྲད་གཏང་། (_e)"
+
+#: ../plugins/sort/sort.glade2.h:2
+msgid "S_tart at column:"
+msgstr "ཀེར་ཐིག་ལུ་འགོ་བཙུགས། (_t)"
+
+#: ../plugins/sort/sort.glade2.h:4
+msgid "You cannot undo a sort operation"
+msgstr "དབྱེ་སེལ་གྱི་བཀོལ་སྤྱོད་ འབད་བཤོལ་འབད་མི་བཏུབ།"
+
+#: ../plugins/sort/sort.glade2.h:5
+msgid "_Ignore case"
+msgstr "ཡི་གུ་སྣང་མེད་བཞག (_I)"
+
+#: ../plugins/sort/sort.glade2.h:6
+msgid "_Reverse order"
+msgstr "རིམ་ལོག་གོ་རིམ།(_R)"
+
+#: ../plugins/sort/sort.glade2.h:7
+msgid "_Sort"
+msgstr "དབྱེ་སེལ།(_S) "
+
+#: ../plugins/spell/gedit-automatic-spell-checker.c:418
+#: ../plugins/spell/gedit-spell-checker-dialog.c:477
+msgid "(no suggested words)"
+msgstr "(བསམ་འཆར་གྱི་མིང་ཚིག་མིན་འདུག)"
+
+#: ../plugins/spell/gedit-automatic-spell-checker.c:442
+msgid "_More..."
+msgstr "ཧེང་བཀལ་...(_M)"
+
+#. Ignore all
+#: ../plugins/spell/gedit-automatic-spell-checker.c:497
+msgid "_Ignore All"
+msgstr "ཆ་མཉམ་སྣང་མེད་སྦེ་བཞག(_I)"
+
+#. + Add to Dictionary
+#: ../plugins/spell/gedit-automatic-spell-checker.c:512
+msgid "_Add"
+msgstr "ཁ་སྐོང༌རྐྱབས།(_A)"
+
+#: ../plugins/spell/gedit-automatic-spell-checker.c:551
+msgid "_Spelling Suggestions..."
+msgstr "ཡིག་སྡེབ་ཀྱི་བསམ་འཆར་...(_S)"
+
+#: ../plugins/spell/gedit-spell-checker-dialog.c:274
+msgid "Check Spelling"
+msgstr "ཡིག་སྡེབ་ཞིབ་དཔྱད།"
+
+#: ../plugins/spell/gedit-spell-checker-dialog.c:285
+msgid "Suggestions"
+msgstr "བསམ་འཆར་ཚུ།"
+
+#: ../plugins/spell/gedit-spell-checker-dialog.c:583
+msgid "(correct spelling)"
+msgstr "(ངེས་བདེན་ཡིག་སྡེབ)"
+
+#: ../plugins/spell/gedit-spell-checker-dialog.c:726
+msgid "Completed spell checking"
+msgstr "ཡིག་སྡེབ་ཞིབ་དཔྱད་ཚར།"
+
+#. Translators: The text before the "|" is context to help you decide on
+#. * the correct translation. You MUST OMIT it in the translated string.
+#. * Translators: the first %s is the language name, and the
+#. * second %s is the locale name. Example:
+#. * "French (France)"
+#.
+#. Translators: The text before the "|" is context to help you decide on
+#. * the correct translation. You MUST OMIT it in the translated string.
+#: ../plugins/spell/gedit-spell-checker-language.c:287
+#: ../plugins/spell/gedit-spell-checker-language.c:295
+#, c-format
+msgid "language|%s (%s)"
+msgstr "སྐད་ཡིག་|%s (%s)"
+
+#. Translators: The text before the "|" is context to help you decide on
+#. * the correct translation. You MUST OMIT it in the translated string.
+#. * Translators: this refers to an unknown language code
+#. * (one which isn't in our built-in list).
+#.
+#: ../plugins/spell/gedit-spell-checker-language.c:306
+#, c-format
+msgid "language|Unknown (%s)"
+msgstr "སྐད་ཡིག་|མ་ཤེསཔ་ (%s)"
+
+#. Translators: The text before the "|" is context to help you decide on
+#. * the correct translation. You MUST OMIT it in the translated string.
+#. * Translators: this refers the Default language used by the
+#. * spell checker
+#.
+#: ../plugins/spell/gedit-spell-checker-language.c:414
+msgid "language|Default"
+msgstr "སྐད་ཡིག་|སྔོན་སྒྲིག"
+
+#: ../plugins/spell/gedit-spell-language-dialog.c:135
+#: ../plugins/spell/languages-dialog.glade2.h:2
+msgid "Set language"
+msgstr "སྐད་ཡིག་གཞི་སྒྲིག་འབད།"
+
+#: ../plugins/spell/gedit-spell-language-dialog.c:184
+msgid "Languages"
+msgstr "སྐད་ཡིག་ཚུ།"
+
+#: ../plugins/spell/gedit-spell-plugin.c:70
+msgid "_Check Spelling"
+msgstr "ཡིག་སྡེབ་ཞིབ་དཔྱད།(_C)"
+
+#: ../plugins/spell/gedit-spell-plugin.c:72
+msgid "Check the current document for incorrect spelling"
+msgstr "ད་ལྟོའི་ཡིག་ཆ་ནང་ བདེན་མེད་ཡིག་སྡེབ་ཚུ་ ཞིབ་དཔྱད་འབད།"
+
+#: ../plugins/spell/gedit-spell-plugin.c:78
+msgid "Set _Language..."
+msgstr "སྐད་ཡིག་གཞི་སྒྲིག་འབད་...(_L)"
+
+#: ../plugins/spell/gedit-spell-plugin.c:80
+msgid "Set the language of the current document"
+msgstr "ད་ལྟོའི་ཡིག་ཆ་གི་ སྐད་ཡིག་གཞི་སྒྲིག་འབད།"
+
+#: ../plugins/spell/gedit-spell-plugin.c:89
+msgid "_Autocheck Spelling"
+msgstr "རང་བཞིན་གྱིས་ ཡིག་སྡེབ་ཞིབ་དཔྱད་རྐྱབས། (_A)"
+
+#: ../plugins/spell/gedit-spell-plugin.c:91
+msgid "Automatically spell-check the current document"
+msgstr "ད་ལྟོའི་ཡིག་ཆ་དེ་ རང་བཞིན་གྱིས་ ཡིག་སྡེབ་ཞིབ་དཔྱད་འབད།"
+
+#: ../plugins/spell/gedit-spell-plugin.c:749
+msgid "The document is empty."
+msgstr "ཡིག་ཆ་དེ་ སྟོངམ་ཨིན་མས།"
+
+#: ../plugins/spell/gedit-spell-plugin.c:781
+msgid "No misspelled words"
+msgstr "ཡིག་སྡེབ་འཛོལ་བའི་མིང་ཚིག་མིན་འདུག"
+
+#: ../plugins/spell/languages-dialog.glade2.h:1
+msgid "Select the _language of the current document."
+msgstr "ད་ལྟོའི་ཡིག་ཆ་གི་སྐད་ཡིག་ སེལ་འཐུ་འབད།(_l)"
+
+#: ../plugins/spell/spell-checker.glade2.h:1
+#: ../plugins/time/time.glade2.h:2
+msgid "*"
+msgstr "*"
+
+#: ../plugins/spell/spell-checker.glade2.h:2
+msgid "<b>Language</b>"
+msgstr "b>སྐད་ཡིག</b>"
+
+#: ../plugins/spell/spell-checker.glade2.h:3
+msgid "<b>word</b>"
+msgstr "<b>མིང་ཚིག</b>"
+
+#: ../plugins/spell/spell-checker.glade2.h:4
+msgid "Add w_ord"
+msgstr "མིང་ཚིག་ཁ་སྐོང་རྐྱབས།(_o)"
+
+#: ../plugins/spell/spell-checker.glade2.h:5
+msgid "Cha_nge"
+msgstr "བསྒྱུར་བཅོས་འབད།(_n)"
+
+#: ../plugins/spell/spell-checker.glade2.h:6
+msgid "Change A_ll"
+msgstr "ཆ་མཉམ་བསྒྱུར་བཅོས་འབད།(_l)"
+
+#: ../plugins/spell/spell-checker.glade2.h:7
+msgid "Change _to:"
+msgstr "ལུ་བསྒྱུར་བཅོས་འབད་:(_t)"
+
+#: ../plugins/spell/spell-checker.glade2.h:8
+msgid "Check _Word"
+msgstr "མིང་ཚིག་ཞིབ་དཔྱད་འབད།(_W)"
+
+#: ../plugins/spell/spell-checker.glade2.h:9
+msgid "Check spelling"
+msgstr "ཡིག་སྡེབ་ཞིབ་དཔྱད་འབད།"
+
+#: ../plugins/spell/spell-checker.glade2.h:10
+msgid "Ignore _All"
+msgstr "ཆ་མཉམ་སྣང་མེད་བཞག(_A)"
+
+#: ../plugins/spell/spell-checker.glade2.h:11
+msgid "Language:"
+msgstr "སྐད་ཡིག་:"
+
+#: ../plugins/spell/spell-checker.glade2.h:12
+msgid "Misspelled word:"
+msgstr "ཡིག་སྡེབ་འཛོལ་བའི་མིང་ཚིག་:"
+
+#: ../plugins/spell/spell-checker.glade2.h:13
+msgid "User dictionary:"
+msgstr "ལག་ལེན་པའི་ཚིག་མཛོད་:"
+
+#: ../plugins/spell/spell-checker.glade2.h:14
+msgid "_Ignore"
+msgstr "སྣང་མེད་བཞག(_I)"
+
+#: ../plugins/spell/spell-checker.glade2.h:15
+msgid "_Suggestions:"
+msgstr "བསམ་འཆར་ཚུ་:(_S)"
+
+#: ../plugins/spell/spell.gedit-plugin.desktop.in.h:1
+msgid "Checks the spelling of the current document."
+msgstr "ད་ལྟོའི་ཡིག་ཆ་གི་ ཡིག་སྡེབ་ཞིབ་དཔྱད་འབདཝ་ཨིན།"
+
+#: ../plugins/spell/spell.gedit-plugin.desktop.in.h:2
+msgid "Spell Checker"
+msgstr "སྡེབ་དཔྱོདཔ་"
+
+#: ../plugins/taglist/gedit-taglist-plugin.c:94
+#: ../plugins/taglist/gedit-taglist-plugin-panel.c:687
+#: ../plugins/taglist/gedit-taglist-plugin-panel.c:703
+msgid "Tags"
+msgstr "ངོ་རྟགས་ཚུ།"
+
+#: ../plugins/taglist/gedit-taglist-plugin-panel.c:599
+msgid "Select the group of tags you want to use"
+msgstr "ཁྱོད་ཀྱིས་ལག་ལེན་འཐབ་དགོ་མནོ་མི་ ངོ་རྟགས་སྡེ་ཚན་དེ་ སེལ་འཐུ་འབད།"
+
+#: ../plugins/taglist/gedit-taglist-plugin-panel.c:618
+msgid "_Preview"
+msgstr "སྔོན་ལྟ། (_P)"
+
+#: ../plugins/taglist/gedit-taglist-plugin-panel.c:684
+msgid "Available Tag Lists"
+msgstr "འཐོབ་ཚུགས་པའི་ ངོ་རྟགས་ཐོ་ཡིག་ཚུ།"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:1
+msgid "Abbreviated form"
+msgstr "སྡུད་པའི་རྣམ་པ།"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:2
+msgid "Abbreviation"
+msgstr "སྡུད་ཚིག"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:3
+msgid "Above"
+msgstr "ལྟག་ལུ།"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:4
+msgid "Accessibility key character"
+msgstr "འཛུལ་སྤྱོད་ཀྱི་ཡིག་འབྲུ་གཙོ་བོ།"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:5
+msgid "Acronym"
+msgstr "བསྡུ་ཡིག"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:6
+msgid "Align"
+msgstr "ཕྲང་སྒྲིག"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:7
+msgid "Alignment character"
+msgstr "ཕྲང་སྒྲིག་ཡིག་འབྲུ།"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:8
+msgid "Alternative"
+msgstr "ཐབས་གཞན།"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:9
+msgid "Anchor"
+msgstr "ཨེན་ཀོར།"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:10
+msgid "Anchor URI"
+msgstr "ཨེན་ཀོར་ ཡུ་ཨར་ཨའི།"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:11
+msgid "Applet class file code"
+msgstr "ཡིག་སྣོད་ཨང་རྟགས་ཀྱི་ ཨེཔ་ལེཊི་དབྱེ་རིགས།"
+
+#. Deprecated since HTML 4.01, not supported in XHTML 1.0 Strict DTD.
+#: ../plugins/taglist/HTML.tags.xml.in.h:13
+msgid "Applet class file code (deprecated)"
+msgstr "ཨེཔ་ལེཊི་དབྱེ་རིགས་ ཡིག་སྣོད་ཨང་རྟགས་ཀྱི་་ (ངོས་ལེན་མེད་པ་)"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:14
+msgid "Array"
+msgstr "ཨེ་རེ།"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:15
+msgid "Associated information"
+msgstr "འབྲེལ་བ་ཡོད་པའི་བརྡ་དོན།"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:16
+msgid "Author info"
+msgstr "རྩོམ་པ་པོའི་བརྡ་དོན།"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:17
+msgid "Axis related headers"
+msgstr "མགོ་ཡིག་དང་འབྲེལ་བའི་ཚད་ཐིག"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:18
+msgid "Background color"
+msgstr "རྒྱབ་གཞིའི་ཚོས་གཞི།"
+
+#. Deprecated since HTML 4.01, not supported in XHTML 1.0 Strict DTD.
+#: ../plugins/taglist/HTML.tags.xml.in.h:20
+msgid "Background color (deprecated)"
+msgstr "རྒྱབ་གཞིའི་ཚོས་གཞི་ (ངོས་ལེན་མེད་པ་)"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:21
+msgid "Background texture tile"
+msgstr "རྒྱབ་གཞིའི་རེག་བྱའི་ཊ་ཡེལ།"
+
+#. Deprecated since HTML 4.01, not supported in XHTML 1.0 Strict DTD.
+#: ../plugins/taglist/HTML.tags.xml.in.h:23
+msgid "Background texture tile (deprecated)"
+msgstr "རྒྱབ་གཞིའི་རེག་བྱའི་ཊ་ཡེལ་ (ངོས་ལེན་མེད་པ་)"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:24
+msgid "Base URI"
+msgstr "གཞི་རྟེན་ཡུ་ཨར་ཨའི།"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:25
+msgid "Base font"
+msgstr "གཞི་རྟེན་ཡིག་གཟུགས།"
+
+#. Deprecated since HTML 4.01, not supported in XHTML 1.0 Strict DTD.
+#: ../plugins/taglist/HTML.tags.xml.in.h:27
+msgid "Base font (deprecated)"
+msgstr "གཞི་རྟེན་ཡིག་གཟུགས་(ངོས་ལེན་མེད་པ་)"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:28
+msgid "Bold"
+msgstr "རྒྱགས་པ།"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:29
+msgid "Border"
+msgstr "མཐའ་མཚམས།"
+
+#. Deprecated since HTML 4.01, not supported in XHTML 1.0 Strict DTD.
+#: ../plugins/taglist/HTML.tags.xml.in.h:31
+msgid "Border (deprecated)"
+msgstr "མཐའ་མཚམས་(ངོས་ལེན་མེད་པ་)"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:32
+msgid "Border color"
+msgstr "མཐའ་མཚམས་ཚོས་གཞི།"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:33
+msgid "Cell rowspan"
+msgstr "ནང་ཐིག་གི་ གྲལ་ཐིག་ཚད།"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:34
+msgid "Center"
+msgstr "དབུས།"
+
+#. Deprecated since HTML 4.01, not supported in XHTML 1.0 Strict DTD.
+#: ../plugins/taglist/HTML.tags.xml.in.h:36
+msgid "Center (deprecated)"
+msgstr "དབུས་(ངོས་ལེན་མེད་པ་)"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:37
+msgid "Character encoding of linked resource"
+msgstr "འབྲེལ་ལམ་ཅན་གྱི་ཐོན་ཁུངས་ཀྱི་ ཡིག་འབྲུའི་ཨིན་ཀོ་ཌིང་།"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:38
+msgid "Checked (state)"
+msgstr "ཞིབ་དཔྱད་ཚར། (གནས་ལུགས)"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:39
+msgid "Checked state"
+msgstr "ཞིབ་དཔྱད་འབད་ཡོད་པའི་གནས་ལུགས་"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:40
+msgid "Citation"
+msgstr "ལུང་འདྲེན།"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:41
+msgid "Cite reason for change"
+msgstr "བསྒྱུར་བཅོས་འབད་དགོ་པའི་རྒྱུ་མཚན་བཀོད།"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:42
+msgid "Class implementation ID"
+msgstr "དབྱེ་རིགས་ལག་ལེན་གྱི་ཨའི་ཌི།"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:43
+msgid "Class list"
+msgstr "དབྱེ་རིགས་ཐོ་ཡིག"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:44
+msgid "Clear text flow control"
+msgstr "ཡིག་ཚིག་འབྱུང་འབབ་ཀྱི་ཚད་འཛིན་བསལ།"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:45
+msgid "Code content type"
+msgstr "ཨང་རྟགས་ཀྱི་ནང་དོན་དབྱེ་བ།"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:46
+msgid "Color of selected links"
+msgstr "སེལ་འཐུ་འབད་མི་ འབྲེལ་ལམ་གྱི་ཚོས་གཞི།"
+
+#. Deprecated since HTML 4.01, not supported in XHTML 1.0 Strict DTD.
+#: ../plugins/taglist/HTML.tags.xml.in.h:48
+msgid "Color of selected links (deprecated)"
+msgstr "སེལ་འཐུ་འབད་མི་ འབྲེལ་ལམ་གྱི་ཚོས་གཞི་ (ངོས་ལེན་མེད་པ་)"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:49
+msgid "Column span"
+msgstr "ཀེར་ཐིག་གི་ཚད།"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:50
+msgid "Columns"
+msgstr "ཀེར་ཐིག་ཚུ།"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:51
+msgid "Comment"
+msgstr "བསམ་བཀོད།"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:52
+msgid "Computer code fragment"
+msgstr "གློག་རིག་ཀོཌི་གི་ཆ་ཤས།"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:53
+msgid "Content scheme"
+msgstr "ནང་དོན་ལས་འཆར།"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:54
+msgid "Content type"
+msgstr "ནང་དོན་དབྱེ་བ།"
+
+#. The "type" attribute is deprecated for the "ol" tag only,
+#. since HTML 4.01, not supported in XHTML 1.0 Strict DTD.
+#: ../plugins/taglist/HTML.tags.xml.in.h:57
+msgid "Content type (deprecated)"
+msgstr "ནང་དོན་དབྱེ་བ་ (ངོས་ལེན་མེད་པ་)"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:58
+msgid "Coordinates"
+msgstr "མཉམ་འབྲེལ་འབདཝ་ཨིན།"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:59
+msgid "DIV Style container"
+msgstr "ཌི་ཨའི་ཝི་བཟོ་རྣམ་འཛིན་སྣོད།"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:60
+msgid "DIV container"
+msgstr "ཌི་ཨའི་ཝི་འཛིན་སྣོད།"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:61
+msgid "Date and time of change"
+msgstr "བསྒྱུར་བཅོས་ཀྱི་ ཚེས་གྲངས་དང་ཆུ་ཚོད།"
+
+#. NOTE: used in "object" tag
+#: ../plugins/taglist/HTML.tags.xml.in.h:63
+msgid "Declare flag"
+msgstr "ཟུར་རྟགས་གསལ་བསྒྲགས་འབད།"
+
+#. Translators: DEFER is an optional attribute of the <script> tag.
+#. It indicates that the script is not going to generate any document
+#. content. The browser can continue parsing and drawing the page.
+#: ../plugins/taglist/HTML.tags.xml.in.h:67
+msgid "Defer attribute"
+msgstr "ཁྱད་ཆོས་ཕར་འགྱངས་འབད།"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:68
+msgid "Definition description"
+msgstr "ངེས་ཚིག་འགྲེལ་བཤད།"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:69
+msgid "Definition list"
+msgstr "ངེས་ཚིག་ཐོ་ཡིག"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:70
+msgid "Definition term"
+msgstr "ངེས་ཚིག་གི་ཊརམ།"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:71
+msgid "Deleted text"
+msgstr "བཏོན་བཏང་ཡོད་པའི་ཚིག་ཡིག"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:72
+msgid "Direction"
+msgstr "ཁ་ཕྱོགས།"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:73
+msgid "Directionality"
+msgstr "ཁ་ཕྱོགས།"
+
+#. Deprecated since HTML 4.01, not supported in XHTML 1.0 Strict DTD.
+#: ../plugins/taglist/HTML.tags.xml.in.h:75
+msgid "Directionality (deprecated)"
+msgstr "ཁ་ཕྱོགས་ (ངོས་ལེན་མེད་པ་)"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:76
+msgid "Directory list"
+msgstr "སྣོད་ཐོའི་ཐོ་ཡིག"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:77
+msgid "Disabled"
+msgstr "ལྕོགས་མིན།"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:78
+msgid "Document base"
+msgstr "ཡིག་ཆའི་གཞི་རྟེན།"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:79
+msgid "Document body"
+msgstr "ཡིག་ཆའི་མ་གཟུགས།"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:80
+msgid "Document head"
+msgstr "ཡིག་ཆའི་མགོ"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:81
+msgid "Document title"
+msgstr "ཡིག་ཆའི་མགོ་མིང་།"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:82
+msgid "Document type"
+msgstr "ཡིག་ཆའི་དབྱེ་བ།"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:83
+msgid "Element ID"
+msgstr "རྒྱུ་རྫས་ཀྱི་ཨའི་ཌི།"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:84
+msgid "Embedded object"
+msgstr "ཟུག་ཅན་དངོས་པོ།"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:85
+#: ../plugins/taglist/Latex.tags.xml.in.h:9
+msgid "Emphasis"
+msgstr "གཙོ་བཏོན།"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:86
+msgid "Encode type"
+msgstr "ཨིན་ཀོཌི་གི་དབྱེ་བ།"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:87
+msgid "Figure"
+msgstr "ཨང་ཡིག"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:88
+msgid "Font face"
+msgstr "ཡིག་གཟུགས་ཀྱི་བཀོད་རྣམ།"
+
+#. Deprecated since HTML 4.01, not supported in XHTML 1.0 Strict DTD.
+#: ../plugins/taglist/HTML.tags.xml.in.h:90
+msgid "Font face (deprecated)"
+msgstr "ཡིག་གཟུགས་བཀོད་རྣམ་(ངོས་ལེན་མེད་པ་)"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:91
+msgid "For label"
+msgstr "ཁ་ཡིག་གི་དོན་ལུ།"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:92
+msgid "Forced line break"
+msgstr "བང་བཙོང་གི་གྱལ་རིམ་མཚམས།"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:93
+msgid "Form"
+msgstr "གཞི་སྒྲུབ།"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:94
+msgid "Form action handler"
+msgstr "བྱ་བའི་ལེགས་སྐྱོང་པ་ གཞི་སྒྲུབ་འབད།"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:95
+msgid "Form control group"
+msgstr "ཚད་འཛིན་སྡེ་ཚན་ གཞི་སྒྲུབ་འབད།"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:96
+msgid "Form field label text"
+msgstr "ས་སྒོ་ཁ་ཡིག་གི་ཚིག་ཡིག་ གཞི་སྒྲུབ་འབད།"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:97
+msgid "Form input"
+msgstr "ཨིན་པུཊི་ གཞི་སྒྲུབ་འབད།"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:98
+msgid "Form input type"
+msgstr "ཨིན་པུཊི་གི་དབྱེ་བ་ གཞི་སྒྲུབ་འབད།"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:99
+msgid "Form method"
+msgstr "ཐབས་ལམ་གཞི་སྒྲུབ་འབད།"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:100
+msgid "Forward link"
+msgstr "འབྲེལ་ལམ་གདོང་བསྐྱོད་འབད།"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:101
+msgid "Frame"
+msgstr "གཞི་ཁྲམ།"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:102
+msgid "Frame render parts"
+msgstr "གཞི་ཁྲམ་ལྷག་སྟོན་ཡན་ལག "
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:103
+msgid "Frame source"
+msgstr "གཞི་ཁྲམ་འབྱུང་ཁུངས།"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:104
+msgid "Frame target"
+msgstr "གཞི་ཁྲམ་དམིགས་གཏད།"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:105
+msgid "Frameborder"
+msgstr "གཞི་ཁྲམ་མཐའ་མཚམས།"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:106
+msgid "Frameset"
+msgstr "གཞི་ཁྲམ་ཚན།"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:107
+msgid "Frameset columns"
+msgstr "གཞི་ཁྲམ་ཚན་གྱི་ཀེར་ཐིག"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:108
+msgid "Frameset rows"
+msgstr "གཞི་ཁྲམ་ཚན་གྱི་གྲལ་ཐིག"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:109
+msgid "Framespacing"
+msgstr "གཞི་ཁྲམ་བར་སྟོང་བཞག་ཐངས།"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:110
+msgid "Generic embedded object"
+msgstr "ཇེ་ནི་རིཀ་ཟུག་ཅན་ཡོད་པའི་དངོས་པོ།"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:111
+msgid "Generic metainformation"
+msgstr "ཇེ་ནི་རིཀ་གི་ མེ་ཊ་བརྡ་དོན།"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:112
+msgid "Generic span"
+msgstr "ཇེ་ནི་རིཀ་གི་ཚད།"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:113
+msgid "HREF URI"
+msgstr "ཨེཆ་ཨར་ཨི་ཨེཕ་ ཡུ་ཨར་ཨའི།"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:114
+msgid "HTML - Special Characters"
+msgstr "ཨེཆ་ཊི་ཨེམ་ཨེལ་-དམིགས་བསལ་ཡིག་འབྲུ་ཚུ།"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:115
+msgid "HTML - Tags"
+msgstr "ཨེཆ་ཊི་ཨེམ་ཨེལ་-ངོ་རྟགས་ཚུ།"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:116
+msgid "HTML root element"
+msgstr "ཨེཆ་ཊི་ཨེམ་ཨེལ་ རྩ་བའི་རྒྱུ་ཆས།"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:117
+msgid "HTML version"
+msgstr "ཨེཆ་ཊི་ཨེམ་ཨེལ་ ཐོན་རིམ།"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:118
+msgid "HTTP header name"
+msgstr "ཨེཆ་ཊི་ཊི་པི་ མགོ་ཡིག་མིང་།"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:119
+msgid "Header cell ID's"
+msgstr "མགོ་ཡིག་ནང་ཐིག་གི་ཨའི་ཌི།"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:120
+msgid "Heading"
+msgstr "མགུ་རྒྱན།"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:121
+msgid "Heading 1"
+msgstr "མགུ་རྒྱན་ ༡།"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:122
+msgid "Heading 2"
+msgstr "མགུ་རྒྱན་ ༢།"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:123
+msgid "Heading 3"
+msgstr "མགུ་རྒྱན་ ༣།"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:124
+msgid "Heading 4"
+msgstr "མགུ་རྒྱན་ ༤།"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:125
+msgid "Heading 5"
+msgstr "མགུ་རྒྱན་ ༥།"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:126
+msgid "Heading 6"
+msgstr "མགུ་རྒྱན་ ༦།"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:127
+msgid "Height"
+msgstr "མཐོ་ཚད།"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:128
+msgid "Horizontal rule"
+msgstr "ཐད་སྙོམས་ལམ་ལུགས།"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:129
+msgid "Horizontal space"
+msgstr "ཐད་སྙོམས་བར་སྟོང་།"
+
+#. Deprecated since HTML 4.01, not supported in XHTML 1.0 Strict DTD.
+#: ../plugins/taglist/HTML.tags.xml.in.h:131
+msgid "Horizontal space (deprecated)"
+msgstr "ཐད་སྙོམས་བར་སྟོང་ (ངོས་ལེན་མེད་པ་)"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:132
+msgid "HttP header name"
+msgstr "ཨེཆ་ཊི་ཊི་པི་ མགོ་ཡིག་མིང་"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:133
+msgid "I18N BiDi over-ride"
+msgstr "ཨའི་༡༨ཨེན་ བི་ཨའི་ཌི་ཨའི་ ཆ་མེད་བཟོ་ནི།"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:134
+msgid "Image"
+msgstr "གཟུགས་བརྙན།"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:135
+msgid "Image map"
+msgstr "གཟུགས་བརྙན་ས་ཁྲ།"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:136
+msgid "Image map area"
+msgstr "གཟུགས་བརྙན་ས་ཁྲའི་མངའ་ཁོངས།"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:137
+msgid "Image map name"
+msgstr "གཟུགས་བརྙན་ས་ཁྲའི་མིང་།"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:138
+msgid "Image source"
+msgstr "གཟུགས་བརྙན་འབྱུང་ཁུངས།"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:139
+msgid "Inline frame"
+msgstr "ཨིན་ལའིན་གྱི་གཞི་ཁྲམ།"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:140
+msgid "Inline layer"
+msgstr "ཨིན་ལའིན་གྱི་བང་རིམ།"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:141
+msgid "Inserted text"
+msgstr "ནང་བཙུགས་ཀྱི་ཚིག་ཡིག"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:142
+msgid "Instance definition"
+msgstr "དུས་སྐབས་ཀྱི་ངེས་ཚིག"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:143
+msgid "Italic text"
+msgstr "ཨའི་ཊ་ལིཀ་ཚིག་ཡིག"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:144
+msgid "Java applet"
+msgstr "ཇ་བ་ ཨེཔ་ལེཊི།"
+
+#. Deprecated since HTML 4.01, not supported in XHTML 1.0 Strict DTD.
+#: ../plugins/taglist/HTML.tags.xml.in.h:146
+msgid "Java applet (deprecated)"
+msgstr "ཇ་བ་ ཨེཔ་ལེཊི་ (ངོས་ལེན་མེད་པ་)"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:147
+msgid "Label"
+msgstr "ཁ་ཡིག"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:148
+msgid "Language code"
+msgstr "སྐད་ཡིག་ཨང་རྟགས།"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:149
+msgid "Large text style"
+msgstr "ཚིག་ཡིག་ཆེ་བའི་བཟོ་རྣམ།"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:150
+msgid "Layer"
+msgstr "བང་རིམ།"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:151
+msgid "Link color"
+msgstr "འབྲེལ་ལམ་ཚོས་གཞི།"
+
+#. Deprecated since HTML 4.01, not supported in XHTML 1.0 Strict DTD.
+#: ../plugins/taglist/HTML.tags.xml.in.h:153
+msgid "Link color (deprecated)"
+msgstr "འབྲེལ་ལམ་ཚོས་གཞི་ (ངོས་ལེན་མེད་པ་)"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:154
+msgid "List item"
+msgstr "ཐོ་ཡིག་རྣམ་གྲངས།"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:155
+msgid "List of MIME types for file upload"
+msgstr "ཡིག་སྣོད་ཨཔ་ལོཌི་གི་དོན་ལུ་ མ་ཡིམདབྱེ་བའི་ཐོ་ཡིག"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:156
+msgid "List of supported character sets"
+msgstr "རྒྱབ་སྐྱོར་ཡོད་པའི་ ཡིག་འབྲུའི་ཆ་ཚན་གྱི་ཐོ་ཡིག"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:157
+msgid "Listing"
+msgstr "ཐོ་བཀོད།"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:158
+msgid "Local change to font"
+msgstr "ཡིག་གཟུགས་ལུ་ ཉེ་གནས་ཀྱི་བསྒྱུར་བཅོས།"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:159
+msgid "Long description link"
+msgstr "འགྲེལ་བཤད་རིང་བའི་འབྲེལ་ལམ།"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:160
+msgid "Long quotation"
+msgstr "འདྲེན་ཚིག་རིངམ།"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:161
+msgid "Mail link"
+msgstr "ཡིག་འཕྲིན་འབྲེལ་ལམ།"
+
+#. Supported in XHTML 1.0 Frameset DTD only.
+#: ../plugins/taglist/HTML.tags.xml.in.h:163
+msgid "Margin pixel height"
+msgstr "ས་སྟོང་གི་ པིག་སེལ་མཐོ་ཚད།"
+
+#. Supported in XHTML 1.0 Frameset DTD only.
+#: ../plugins/taglist/HTML.tags.xml.in.h:165
+msgid "Margin pixel width"
+msgstr "ས་སྟོང་གི་ པིག་སེལ་རྒྱ་ཚད།"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:166
+msgid "Marquee"
+msgstr "མར་ཀུའི།"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:167
+msgid "Maximum length of text field"
+msgstr "ཚིག་ཡིག་ས་སྒོ་གྱི་རིང་ཚད་མང་མཐའ།"
+
+#. Here I take some liberties: There's no mandatory attributes,
+#. but those are most common, and will likely be used.
+#: ../plugins/taglist/HTML.tags.xml.in.h:170
+msgid "Media-independent link"
+msgstr "བརྡ་ལམ་རང་དབང་གི་འབྲེལ་ལམ།"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:171
+msgid "Menu list"
+msgstr "དཀར་ཆག་ཐོ་ཡིག"
+
+#. Deprecated since HTML 4.01, not supported in XHTML 1.0 Strict DTD.
+#: ../plugins/taglist/HTML.tags.xml.in.h:173
+msgid "Menu list (deprecated)"
+msgstr "དཀར་ཆག་ཐོ་ཡིག་(ངོས་ལེན་མེད་པ་)"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:174
+msgid "Multi-line text field"
+msgstr "འབྲེལ་ལམ་སྣ་མང་གི་ ཚིག་ཡིག་ས་སྒོ།"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:175
+msgid "Multicolumn"
+msgstr "སྣ་མང་ཀེར་ཐིག"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:176
+msgid "Multiple"
+msgstr "སྣ་མང་།"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:177
+msgid "Name"
+msgstr "མིང་།"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:178
+msgid "Named property value"
+msgstr "མིང་བཏགས་ཡོད་པའི་ རྒྱུ་དངོས་ཀྱི་གནས་གོང་"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:179
+msgid "Next ID"
+msgstr "ཤུལ་མའི་ཨའི་ཌི།"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:180
+msgid "No URI"
+msgstr "ཡུ་ཨར་ཨའི་ མིན་འདུག"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:181
+msgid "No embedded objects"
+msgstr "ཟུག་ཅན་དངོས་པོ་མིན་འདུག"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:182
+msgid "No frames"
+msgstr "གཞི་ཁྲམ་མིན་འདུག"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:183
+msgid "No layers"
+msgstr "བང་རིམ་མིན་འདུག"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:184
+msgid "No line break"
+msgstr "གྱལ་རིམ་བར་མཚམས་མིན་འདུག"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:185
+msgid "No resize"
+msgstr "ཚད་གཞི་བསྐྱར་བཟོ་མིན་འདུག"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:186
+msgid "No script"
+msgstr "ཡིག་ཚུགས་མིན་འདུག"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:187
+msgid "No shade"
+msgstr "ནག་གྲིབ་མིན་འདུག"
+
+#. Deprecated since HTML 4.01, not supported in XHTML 1.0 Strict DTD.
+#: ../plugins/taglist/HTML.tags.xml.in.h:189
+msgid "No shade (deprecated)"
+msgstr "ནག་གྲིབ་མེད་(ངོས་ལེན་མེད་པ་)"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:190
+msgid "No word wrap"
+msgstr "མིང་ཚིག་གི་ ལོག་མཚམས་མིན་འདུག"
+
+#. Deprecated since HTML 4.01, not supported in XHTML 1.0 Strict DTD.
+#: ../plugins/taglist/HTML.tags.xml.in.h:192
+msgid "No word wrap (deprecated)"
+msgstr "མིང་ཚིག་གི་ ལོག་མཚམས་མིན་འདུག (ངོས་ལེན་མེད་པ་)"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:193
+msgid "Non-breaking space"
+msgstr "རྒྱུན་ཆད་མེད་པའི་བར་སྟོང་"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:194
+msgid "Note"
+msgstr "དྲན་འཛིན།"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:195
+msgid "Object applet file"
+msgstr "དངོས་པོའི་ ཨེཔ་ལེཊི་ ཡིག་སྣོད།"
+
+#. Deprecated since HTML 4.01, not supported in XHTML 1.0 Strict DTD.
+#: ../plugins/taglist/HTML.tags.xml.in.h:197
+msgid "Object applet file (deprecated)"
+msgstr "དངོས་པོའི་ ཨེཔ་ལེཊི་ ཡིག་སྣོད་ (ངོས་ལེན་མེད་པ་)"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:198
+msgid "Object data reference"
+msgstr "དངོས་པོའི་གནད་སྡུད་གཞི་བསྟུན།"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:199
+msgid "Offset for alignment character"
+msgstr "ཕྲང་སྒྲིག་ཡིག་འབྲུའི་དོན་ལུ་ པར་ལེན་འབད།"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:200
+msgid "OnBlur event"
+msgstr "རབ་རིབ་གུ་ཡོད་པའི་བྱུང་ལས།"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:201
+msgid "OnChange event"
+msgstr "འགྱུར་བའི་གུ་ཡོད་པའི་བྱུང་ལས།"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:202
+msgid "OnClick event"
+msgstr "ཨེབ་གཏང་གུ་ཡོད་པའི་བྱུང་ལས།"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:203
+msgid "OnDblClick event"
+msgstr "ཨེབ་གཏང་ཐེངས་གཉིས་གུ་ཡོད་པའི་བྱུང་ལས།"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:204
+msgid "OnFocus event"
+msgstr "ཆེད་དམིགས་གུ་ཡོད་པའི་བྱུང་ལས།"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:205
+msgid "OnKeyDown event"
+msgstr "ལྡེ་མིག་མར་འཐེན་གུ་ཡོད་པའི་བྱུང་ལས།"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:206
+msgid "OnKeyPress event"
+msgstr "ལྡེ་མིག་ཨེབ་ཐོག་ལུ་ཡོད་པའི་བྱུང་ལས།"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:207
+msgid "OnKeyUp event"
+msgstr "ལྡེ་མིག་ཡར་འཐེན་གུ་ཡོད་པའི་བྱུང་ལས།"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:208
+msgid "OnLoad event"
+msgstr "མངོན་གསལ་གུ་ཡོད་པའི་བྱུང་ལས།"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:209
+msgid "OnMouseDown event"
+msgstr "མཱའུསི་ མར་འཐེན་གུ་ཡོད་པའི་བྱུང་ལས།"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:210
+msgid "OnMouseMove event"
+msgstr "མཱའུསི་ འགུལ་སྤར་གུ་ཡོད་པའི་བྱུང་ལས།"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:211
+msgid "OnMouseOut event"
+msgstr "མཱའུསི་ ཕྱིར་བསྐྱོད་གུ་ཡོད་པའི་བྱུང་ལས།"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:212
+msgid "OnMouseOver event"
+msgstr "མཱའུསི་གི་ ལྟག་ལས་ཕར་ཡོད་པའི་བྱུང་ལས།"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:213
+msgid "OnMouseUp event"
+msgstr "མཱའུསི་ ཡར་འཐེན་གུ་ཡོད་པའི་བྱུང་ལས།"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:214
+msgid "OnReset event"
+msgstr "སླར་སྒྲིག་གུ་ཡོད་པའི་བྱུང་ལས།"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:215
+msgid "OnSelect event"
+msgstr "སེལ་འཐུ་གུ་ཡོད་པའི་བྱུང་ལས།"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:216
+msgid "OnSubmit event"
+msgstr "ཞུ་འབུལ་གུ་ཡོད་པའི་བྱུང་ལས།"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:217
+msgid "OnUnload event"
+msgstr "མངོན་གསལ་བཤོལ་ནི་གུ་ཡོད་པའི་བྱུང་ལས།"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:218
+msgid "Option group"
+msgstr "གདམ་ཁའི་སྡེ་ཚན།"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:219
+msgid "Option selector"
+msgstr "གདམ་ཁ་སེལ་བྱེད།"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:220
+msgid "Ordered list"
+msgstr "གོ་རིམ་ལྡན་པའི་ཐོ་ཡིག"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:221
+msgid "Output media"
+msgstr "ཨའུཊི་པུཊི་གི་ བརྡ་ལམ།"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:222
+msgid "Paragraph"
+msgstr "དོན་མཚམས།"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:223
+msgid "Paragraph class"
+msgstr "དོན་མཚམས་དབྱེ་རིགས།"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:224
+msgid "Paragraph style"
+msgstr "དོན་མཚམས་བཟོ་རྣམ།"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:225
+msgid "Preformatted listing"
+msgstr "སྔ་གོང་རྩ་སྒྲིག་འབད་བའི་ཐོ་བཀོད།"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:226
+msgid "Preformatted text"
+msgstr "སྔ་གོང་རྩ་སྒྲིག་འབད་བའི་ཚིག་ཡིག"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:227
+msgid "Profile metainfo dictionary"
+msgstr "གསལ་སྡུད་ཀྱི་ མེ་ཊ་བརྡ་དོན་ཚིག་མཛོད།"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:228
+msgid "Prompt message"
+msgstr "འཕྲིན་དོན་ནུས་སྤེལ།"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:229
+msgid "Push button"
+msgstr "ཨེབ་རྟ་འཕུལ།"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:230
+msgid "Quote"
+msgstr "ལུང་འདྲེན།"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:231
+msgid "Range"
+msgstr "ཁྱབ་ཚད།"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:232
+msgid "ReadOnly text and password"
+msgstr "ལྷག་ནི་ཙམ་ཅིག་གི་ ཚིག་ཡིག་དང་ཆོག་ཡིག"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:233
+msgid "Reduced spacing"
+msgstr "མར་ཕབ་ཅན་གྱི་བར་སྟོང་།"
+
+#. Deprecated since HTML 4.01, not supported in XHTML 1.0 Strict DTD.
+#: ../plugins/taglist/HTML.tags.xml.in.h:235
+msgid "Reduced spacing (deprecated)"
+msgstr "མར་ཕབ་ཅན་གྱི་བར་སྟོང་ (ངོས་ལེན་མེད་པ་)"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:236
+msgid "Reverse link"
+msgstr "འབྲེལ་ལམ་རིམ་ལོག་འབད།"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:237
+msgid "Root"
+msgstr "རྩ་བ།"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:238
+msgid "Rows"
+msgstr "གྲལ་ཐིག"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:239
+msgid "Rulings between rows and columns"
+msgstr "གྲལ་ཐིག་དང་ཀེར་ཐིག་ཚུ་གི་བར་ནའི་ཚད་བཟུང་།"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:240
+msgid "Sample program output, scripts"
+msgstr "དཔེ་ཚད་ལས་རིམ་གྱི་ ཨའུཊི་པུཊི་ ཡིག་ཚུགས།"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:241
+msgid "Scope covered by header cells"
+msgstr "མགོ་ཡིག་ནང་ཐིག་གིས་ཁྱབ་པའི་འོས་སྐབས།"
+
+#. Deprecated since HTML 4.01, not supported in XHTML 1.0 Strict DTD.
+#: ../plugins/taglist/HTML.tags.xml.in.h:243
+msgid "Script language name"
+msgstr "ཡིག་ཚུགས་སྐད་ཡིག་གི་མིང་།"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:244
+msgid "Script statments"
+msgstr "ཡིག་ཚུགས་ཀྱི་གསལ་བཤད།"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:245
+msgid "Scrollbar"
+msgstr "བཤུད་ཕྲ།"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:246
+msgid "Selectable option"
+msgstr "སེལ་འཐུ་འབད་བཏུབ་པའི་གདམ་ཁ།"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:247
+msgid "Selected"
+msgstr "སེལ་འཐུ་འབད་མི།"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:248
+msgid "Server-side image map"
+msgstr "སར་བར་ཕྱོགས་ཀྱི་ གཟུགས་བརྙན་ས་ཁྲ།"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:249
+msgid "Shape"
+msgstr "དབྱིབས།"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:250
+msgid "Short inline quotation"
+msgstr "ཨིན་ལའིན་གྱི་ འདྲེན་ཚིག་ཐུང་ཀུ།"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:251
+msgid "Single line prompt"
+msgstr "གྱལ་རིམ་རྐྱང་པོའི་ནུས་སྤེལ།"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:252
+msgid "Size"
+msgstr "ཚད།"
+
+#. Deprecated since HTML 4.01, not supported in XHTML 1.0 Strict DTD.
+#: ../plugins/taglist/HTML.tags.xml.in.h:254
+msgid "Size (deprecated)"
+msgstr "ཚད་(ངོས་ལེན་མེད་པ་)"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:255
+msgid "Small text style"
+msgstr "ཚིག་ཡིག་ཆུང་ཀུའི་བཟོ་རྣམ།"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:256
+msgid "Soft line break"
+msgstr "འཇམ་ཁྱུག་གྱལ་རིམ་གྱི་བར་མཚམས།"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:257
+msgid "Sound"
+msgstr "སྒྲ་སྐད།"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:258
+msgid "Source"
+msgstr "འབྱུང་ཁུངས།"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:259
+msgid "Space separated archive list"
+msgstr "བར་སྟོང་གིས་ཁ་འཕྱལ་མི་ ཡིག་མཛོད་ཐོ་ཡིག"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:260
+msgid "Spacer"
+msgstr "བར་སྟོང་བཞག་མི།"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:261
+msgid "Spacing between cells"
+msgstr "ནང་ཐིག་ཚུ་གི་བར་ནའི་བར་སྟོང་།"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:262
+msgid "Spacing within cells"
+msgstr "ནང་ཐིག་ཚུ་གི་ནང་འཁོད་ཀྱི་བར་སྟོང་།"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:263
+msgid "Span"
+msgstr "འཕར་ཚད་། "
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:264
+msgid "Square root"
+msgstr "སིཀོའེར་རུཊི།"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:265
+msgid "Standby load msg"
+msgstr "མངོན་གསལ་འཕྲིན་དོན་གྱི་རྒྱབ་ཐག"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:266
+msgid "Starting sequence number"
+msgstr "འབྱུང་རིམ་ཨང་གྲངས་ འགོ་བཙུགས་དོ།"
+
+#. Deprecated since HTML 4.01, not supported in XHTML 1.0 Strict DTD.
+#: ../plugins/taglist/HTML.tags.xml.in.h:268
+msgid "Starting sequence number (deprecated)"
+msgstr "འབྱུང་རིམ་ཨང་གྲངས་ འགོ་བཙུགས་དོ་ (ངོས་ལེན་མེད་པ་)"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:269
+msgid "Strike-through text"
+msgstr "སྦུག་འབྲེག་ཚིག་ཡིག"
+
+#. Deprecated since HTML 4.01, not supported in XHTML 1.0 Strict DTD.
+#: ../plugins/taglist/HTML.tags.xml.in.h:271
+msgid "Strike-through text (deprecated)"
+msgstr "སྦུག་འབྲེག་ཚིག་ཡིག་ (ངོས་ལེན་མེད་པ་)"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:272
+msgid "Strike-through text style"
+msgstr "སྦུག་འབྲེག་ཚིག་ཡིག་གི་བཟོ་རྣམ།"
+
+#. Deprecated since HTML 4.01, not supported in XHTML 1.0 Strict DTD.
+#: ../plugins/taglist/HTML.tags.xml.in.h:274
+msgid "Strike-through text style (deprecated)"
+msgstr "སྦུག་འབྲེག་ཚིག་ཡིག་གི་བཟོ་རྣམ་ (ངོས་ལེན་མེད་པ་)"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:275
+msgid "Strong emphasis"
+msgstr "གཙོ་བཏོན་དྲག་པོ།"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:276
+msgid "Style info"
+msgstr "བཟོ་རྣམ་བརྡ་དོན།"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:277
+msgid "Subscript"
+msgstr "འོག་ཡིག"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:278
+msgid "Superscript"
+msgstr "སྟེང་ཡིག"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:279
+msgid "Tab order position"
+msgstr "མཆོང་ལྡེའི་གོ་རིམ་གནས་ས།"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:280
+msgid "Table"
+msgstr "ཐིག་ཁྲམ།"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:281
+msgid "Table body"
+msgstr "ཐིག་ཁྲམ་མ་གཟུགས།"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:282
+msgid "Table caption"
+msgstr "ཐིག་ཁྲམ་འགོ་བརྗོད།"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:283
+msgid "Table column group properties"
+msgstr "ཐིག་ཁྲམ་ཀེར་ཐིག་སྡེ་ཚན་གྱི་རྒྱུ་དངོས།"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:284
+msgid "Table column properties"
+msgstr "ཐིག་ཁྲམ་ཀེར་ཐིག་གི་རྒྱུ་དངོས།"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:285
+msgid "Table data cell"
+msgstr "ཐིག་ཁྲམ་གནད་སྡུད་ནང་ཐིག"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:286
+msgid "Table footer"
+msgstr "ཐིག་ཁྲམ་མཇུག་ཡིག"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:287
+msgid "Table header"
+msgstr "ཐིག་ཁྲམ་མགོ་ཡིག"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:288
+msgid "Table header cell"
+msgstr "ཐིག་ཁྲམ་མགོ་ཡིག་གི་ནང་ཐིག"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:289
+msgid "Table row"
+msgstr "ཐིག་ཁྲམ་གྲལ་ཐིག"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:290
+msgid "Table summary"
+msgstr "ཐིག་ཁྲམ་བཅུད་སྡུད།"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:291
+msgid "Target - Blank"
+msgstr "དམིགས་གཏད་-སྟོངམ།"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:292
+msgid "Target - Parent"
+msgstr "དམིགས་གཏད་-རྩ་ལག"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:293
+msgid "Target - Self"
+msgstr "དམིགས་གཏད་-རང་ཉིད་ལུ།"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:294
+msgid "Target - Top"
+msgstr "དམིགས་གཏད་-མགོ་ལུ།"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:295
+msgid "Teletype or monospace text style"
+msgstr "ཊེ་ལི་ཊའིབ་ ཡང་ཅིན་ མོ་ནོ་སི་པེསི་གི་ ཚིག་ཡིག་བཟོ་རྣམ།"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:296
+msgid "Text"
+msgstr "ཚིག་ཡིག"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:297
+msgid "Text color"
+msgstr "ཚིག་ཡིག་ཚོས་གཞི།"
+
+#. Deprecated since HTML 4.01, not supported in XHTML 1.0 Strict DTD.
+#: ../plugins/taglist/HTML.tags.xml.in.h:299
+msgid "Text color (deprecated)"
+msgstr "ཚིག་ཡིག་ཚོས་གཞི་ (ངོས་ལེན་མེད་པ་)"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:300
+msgid "Text entered by user"
+msgstr "ལག་ལེན་པ་གིས་བཙུགས་མི་ཚིག་ཡིག"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:301
+msgid "Title"
+msgstr "མགོ་མིང་།"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:302
+msgid "Topmargin in pixels"
+msgstr "མགོའི་ས་སྟོང་ པིག་སེལསི་ནང་།"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:303
+msgid "URL"
+msgstr "ཡུ་ཨར་ཨེལ།"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:304
+msgid "Underlined text style"
+msgstr "འོག་ཐིག་བཀལ་མི་ ཚིག་ཡིག་གི་བཟོ་རྣམ།"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:305
+msgid "Unordered list"
+msgstr "གོ་རིམ་མེད་པའི་ཐོ་ཡིག"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:306
+msgid "Use image map"
+msgstr "གཟུགས་བརྙན་ས་ཁྲ་ལག་ལེན་འཐབ།"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:307
+msgid "Value"
+msgstr "བེ་ལུ།"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:308
+msgid "Value interpretation"
+msgstr "བེ་ལུའི་གོ་དོན།"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:309
+msgid "Variable or program argument"
+msgstr "འགྱུར་བ་ཅན་ ཡང་ན་ ལས་རིམ་གྱི་སྒྲུབ་རྟགས།"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:310
+msgid "Vertical cell alignment"
+msgstr "ཀེར་ཕྲང་གི་ ནང་ཐིག་ཕྲང་སྒྲིག"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:311
+msgid "Vertical space"
+msgstr "ཀེར་ཕྲང་གི་བར་སྟོང་།"
+
+#. Deprecated since HTML 4.01, not supported in XHTML 1.0 Strict DTD.
+#: ../plugins/taglist/HTML.tags.xml.in.h:313
+msgid "Vertical space (deprecated)"
+msgstr "ཀེར་ཕྲང་གི་བར་སྟོང་ (ངོས་ལེན་མེད་པ་)"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:314
+msgid "Visited link color"
+msgstr "ལྟ་སྤྱོད་འབད་བའི་ འབྲེལ་ལམ་ཚོས་གཞི།"
+
+#. Deprecated since HTML 4.01, not supported in XHTML 1.0 Strict DTD.
+#: ../plugins/taglist/HTML.tags.xml.in.h:316
+msgid "Visited link color (deprecated)"
+msgstr "བལྟ་སྤྱོད་འབད་བའི་ འབྲེལ་ལམ་ཚོས་གཞི་ (ངོས་ལེན་མེད་པ་)"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:317
+msgid "Width"
+msgstr "རྒྱ་ཚད།"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:318
+msgid "XHTML 1.0 - Tags"
+msgstr "ཨེགསི་ཨེཆ་ཊི་ཨེམ་ཨེལ་ ༡.༠ - ངོ་རྟགས་ཚུ།"
+
+#: ../plugins/taglist/Latex.tags.xml.in.h:1
+msgid "Bibliography (cite)"
+msgstr "དེབ་ཐོ། (བརྗོད་པ)"
+
+#: ../plugins/taglist/Latex.tags.xml.in.h:2
+msgid "Bibliography (item)"
+msgstr "དེབ་ཐོ། (རྣམ་གྲངས)"
+
+#: ../plugins/taglist/Latex.tags.xml.in.h:3
+msgid "Bibliography (shortcite)"
+msgstr "དེབ་ཐོ། (བརྗོད་ཐུང་)"
+
+#: ../plugins/taglist/Latex.tags.xml.in.h:4
+msgid "Bibliography (thebibliography)"
+msgstr "དེབ་ཐོ། (དེབ་ཐོ་དེ)"
+
+#: ../plugins/taglist/Latex.tags.xml.in.h:5
+msgid "Brackets ()"
+msgstr "གུག་ཤད་ཚུ་()"
+
+#: ../plugins/taglist/Latex.tags.xml.in.h:6
+msgid "Brackets <>"
+msgstr "གུག་ཤད་ཚུ་ <>།"
+
+#: ../plugins/taglist/Latex.tags.xml.in.h:7
+msgid "Brackets []"
+msgstr "གུག་ཤད་ཚུ་[]"
+
+#: ../plugins/taglist/Latex.tags.xml.in.h:8
+msgid "Brackets {}"
+msgstr "གུག་ཤད་ཚུ་{}"
+
+#: ../plugins/taglist/Latex.tags.xml.in.h:10
+msgid "File input"
+msgstr "ཡིག་སྣོད་ཀྱི་ ཨིན་པུཊི།"
+
+#: ../plugins/taglist/Latex.tags.xml.in.h:11
+msgid "Footnote"
+msgstr "མཇུག་གི་དྲན་འཛིན།"
+
+#: ../plugins/taglist/Latex.tags.xml.in.h:12
+msgid "Function cosin"
+msgstr "ལས་འགན་ ཀོ་སའིན།"
+
+#: ../plugins/taglist/Latex.tags.xml.in.h:13
+msgid "Function e^"
+msgstr "ལས་འགན་ ཨི^།"
+
+#: ../plugins/taglist/Latex.tags.xml.in.h:14
+msgid "Function exp"
+msgstr "ལས་འགན་ ཨི་ཨེགསི་པི།"
+
+#: ../plugins/taglist/Latex.tags.xml.in.h:15
+msgid "Function log"
+msgstr "ལས་འགན་ དྲན་དེབ།"
+
+#: ../plugins/taglist/Latex.tags.xml.in.h:16
+msgid "Function log10"
+msgstr "ལས་འགན་ དྲན་དེབ་ ༡༠།"
+
+#: ../plugins/taglist/Latex.tags.xml.in.h:17
+msgid "Function sine"
+msgstr "ལས་འགན་ སའིན།"
+
+#: ../plugins/taglist/Latex.tags.xml.in.h:18
+msgid "Greek alpha"
+msgstr "གིརིཀ་ ཨཱལ་ཕ།"
+
+#: ../plugins/taglist/Latex.tags.xml.in.h:19
+msgid "Greek beta"
+msgstr "གིརིཀ་ བེ་ཊ།"
+
+#: ../plugins/taglist/Latex.tags.xml.in.h:20
+msgid "Greek epsilon"
+msgstr "གིརིཀ་ ཨིཔ་སི་ལཱོན"
+
+#: ../plugins/taglist/Latex.tags.xml.in.h:21
+msgid "Greek gamma"
+msgstr "གིརིཀ་ གམ་མ།"
+
+#: ../plugins/taglist/Latex.tags.xml.in.h:22
+msgid "Greek lambda"
+msgstr "གིརིཀ་ ལེམ་ཌ།"
+
+#: ../plugins/taglist/Latex.tags.xml.in.h:23
+msgid "Greek rho"
+msgstr "གིརིཀ་ རཱོ།"
+
+#: ../plugins/taglist/Latex.tags.xml.in.h:24
+msgid "Greek tau"
+msgstr "གིརིཀ་ ཏའུ།"
+
+#: ../plugins/taglist/Latex.tags.xml.in.h:25
+msgid "Header 0 (chapter)"
+msgstr "མགོ་ཡིག་ ༠ (ལེའུ)"
+
+#: ../plugins/taglist/Latex.tags.xml.in.h:26
+msgid "Header 0 (chapter*)"
+msgstr "མགོ་ཡིག་ ༠ (ལེའུ་*)"
+
+#: ../plugins/taglist/Latex.tags.xml.in.h:27
+msgid "Header 1 (section)"
+msgstr "མགོ་ཡིག་ ༡ (དབྱེ་ཚན)"
+
+#: ../plugins/taglist/Latex.tags.xml.in.h:28
+msgid "Header 1 (section*)"
+msgstr "མགོ་ཡིག་ ༡ (དབྱེ་ཚན་*)"
+
+#: ../plugins/taglist/Latex.tags.xml.in.h:29
+msgid "Header 2 (subsection)"
+msgstr "མགོ་ཡིག་ ༢ (དབྱེ་ཚན་ཡན་ལག)"
+
+#: ../plugins/taglist/Latex.tags.xml.in.h:30
+msgid "Header 2 (subsection*)"
+msgstr "མགོ་ཡིག་ ༢ (དབྱེ་ཚན་ཡན་ལག*)"
+
+#: ../plugins/taglist/Latex.tags.xml.in.h:31
+msgid "Header 3 (subsubsection)"
+msgstr "མགོ་ཡིག་ ༣ (དོན་ཚན་ཡན་ལག་ནང་གསེས)"
+
+#: ../plugins/taglist/Latex.tags.xml.in.h:32
+msgid "Header 3 (subsubsection*)"
+msgstr "མགོ་ཡིག་ ༣ (དོན་ཚན་ཡན་ལག་ནང་གསེས*)"
+
+#: ../plugins/taglist/Latex.tags.xml.in.h:33
+msgid "Header 4 (paragraph)"
+msgstr "མགོ་ཡིག་ ༤ (དོན་མཚམས)"
+
+#: ../plugins/taglist/Latex.tags.xml.in.h:34
+msgid "Header appendix"
+msgstr "མགོ་ཡིག་ཟུར་དེབ།"
+
+#: ../plugins/taglist/Latex.tags.xml.in.h:35
+msgid "Item"
+msgstr "རྣམ་གྲངས།"
+
+#: ../plugins/taglist/Latex.tags.xml.in.h:36
+msgid "Item with label"
+msgstr "ཁ་ཡིག་དང་བཅས་པའི་རྣམ་གྲངས།"
+
+#: ../plugins/taglist/Latex.tags.xml.in.h:37
+msgid "Latex - Tags"
+msgstr "ལེ་ཊེགསི་-ངོ་རྟགས།"
+
+#: ../plugins/taglist/Latex.tags.xml.in.h:38
+msgid "List description"
+msgstr "ཐོ་ཡིག་གི་འགྲེལ་བཤད།"
+
+#: ../plugins/taglist/Latex.tags.xml.in.h:39
+msgid "List enumerate"
+msgstr "གྲངས་བཀོད་ཐོ་བཀོད་འབད།"
+
+#: ../plugins/taglist/Latex.tags.xml.in.h:40
+msgid "List itemize"
+msgstr "རྣམ་གྲངས་ཐོ་བཀོད་འབད།"
+
+#: ../plugins/taglist/Latex.tags.xml.in.h:41
+msgid "Maths (display)"
+msgstr "ཨང་རྩིས། (བཀྲམ་སྟོན)"
+
+#: ../plugins/taglist/Latex.tags.xml.in.h:42
+msgid "Maths (inline)"
+msgstr "ཨང་རྩིས། (ཨིན་ལའིན)"
+
+#: ../plugins/taglist/Latex.tags.xml.in.h:43
+msgid "Operator fraction"
+msgstr "བཀོལ་སྤྱོད་པའི་ཆ་ལག"
+
+#: ../plugins/taglist/Latex.tags.xml.in.h:44
+msgid "Operator integral (display)"
+msgstr "བཀོལ་སྤྱོད་པའི་གཅིག་སྒྲིལ། (བཀྲམ་སྟོན)"
+
+#: ../plugins/taglist/Latex.tags.xml.in.h:45
+msgid "Operator integral (inline)"
+msgstr "བཀོལ་སྤྱོད་པའི་གཅིག་སྒྲིལ། (ཨིན་ལའིན)"
+
+#: ../plugins/taglist/Latex.tags.xml.in.h:46
+msgid "Operator sum (display)"
+msgstr "བཀོལ་སྤྱོད་པའི་དངུལ་བསྡོམས། (བཀྲམ་སྟོན)"
+
+#: ../plugins/taglist/Latex.tags.xml.in.h:47
+msgid "Operator sum (inline)"
+msgstr "བཀོལ་སྤྱོད་པའི་དངུལ་བསྡོམས། (ཨིན་ལའིན)"
+
+#: ../plugins/taglist/Latex.tags.xml.in.h:48
+msgid "Reference label"
+msgstr "གཞི་བསྟུན་ཁ་ཡིག"
+
+#: ../plugins/taglist/Latex.tags.xml.in.h:49
+msgid "Reference ref"
+msgstr "གཞི་བསྟུན་ རེཕ།"
+
+#: ../plugins/taglist/Latex.tags.xml.in.h:50
+msgid "Symbol <<"
+msgstr "བརྡ་མཚོན་ <<།"
+
+#: ../plugins/taglist/Latex.tags.xml.in.h:51
+msgid "Symbol <="
+msgstr "བརྡ་མཚོན་ <=།"
+
+#: ../plugins/taglist/Latex.tags.xml.in.h:52
+msgid "Symbol >="
+msgstr "བརྡ་མཚོན་>=།"
+
+#: ../plugins/taglist/Latex.tags.xml.in.h:53
+msgid "Symbol >>"
+msgstr "བརྡ་མཚོན་ >>།"
+
+#: ../plugins/taglist/Latex.tags.xml.in.h:54
+msgid "Symbol and"
+msgstr "བརྡ་མཚོན་དང་།"
+
+#: ../plugins/taglist/Latex.tags.xml.in.h:55
+msgid "Symbol const"
+msgstr "བརྡ་མཚོན་བཟོ་བསྐྲུན།"
+
+#: ../plugins/taglist/Latex.tags.xml.in.h:56
+msgid "Symbol d-by-dt"
+msgstr "བརྡ་མཚོན་ ཌི་-བི་ཝའི་-ཌི་ཊི།"
+
+#: ../plugins/taglist/Latex.tags.xml.in.h:57
+msgid "Symbol d-by-dt-partial"
+msgstr "བརྡ་མཚོན་ ཌི་-བི་ཝའི་-ཌི་ཊི-ཆ་ཤས།"
+
+#: ../plugins/taglist/Latex.tags.xml.in.h:58
+msgid "Symbol d2-by-dt2-partial"
+msgstr "བརྡ་མཚོན་ ཌི་༢-བི་ཝའི་-ཌི་ཊི་༢-ཆ་ཤས།"
+
+#: ../plugins/taglist/Latex.tags.xml.in.h:59
+msgid "Symbol dagger"
+msgstr "བརྡ་མཚོན་ ཌེ་གར།"
+
+#: ../plugins/taglist/Latex.tags.xml.in.h:60
+msgid "Symbol equiv"
+msgstr "བརྡ་མཚོན་འདྲ་མཉམ།"
+
+#: ../plugins/taglist/Latex.tags.xml.in.h:61
+msgid "Symbol hyphen --"
+msgstr "བརྡ་མཚོན་ སྦྲེལ་རྟགས་--"
+
+#: ../plugins/taglist/Latex.tags.xml.in.h:62
+msgid "Symbol hyphen ---"
+msgstr "བརྡ་མཚོན་ སྦྲེལ་རྟགས་---"
+
+#: ../plugins/taglist/Latex.tags.xml.in.h:63
+msgid "Symbol infinity"
+msgstr "བརྡ་མཚོན་ ཚད་མེད།"
+
+#: ../plugins/taglist/Latex.tags.xml.in.h:64
+msgid "Symbol mathspace ,"
+msgstr "བརྡ་མཚོན་ རྩིས་ཀྱི་བར་སྟོང་ ,།"
+
+#: ../plugins/taglist/Latex.tags.xml.in.h:65
+msgid "Symbol mathspace ."
+msgstr "བརྡ་མཚོན་ རྩིས་ཀྱི་བར་སྟོང་ .།"
+
+#: ../plugins/taglist/Latex.tags.xml.in.h:66
+msgid "Symbol mathspace _"
+msgstr "བརྡ་མཚོན་ རྩིས་ཀྱི་བར་སྟོང་_།"
+
+#: ../plugins/taglist/Latex.tags.xml.in.h:67
+msgid "Symbol mathspace __"
+msgstr "བརྡ་མཚོན་ རྩིས་ཀྱི་བར་སྟོང་ __།"
+
+#: ../plugins/taglist/Latex.tags.xml.in.h:68
+msgid "Symbol simeq"
+msgstr "བརྡ་མཚོན་ སི་མེཀ། "
+
+#: ../plugins/taglist/Latex.tags.xml.in.h:69
+msgid "Symbol star"
+msgstr "བརྡ་མཚོན་ སྐར་མ།"
+
+#: ../plugins/taglist/Latex.tags.xml.in.h:70
+msgid "Typeface bold"
+msgstr "ཡིག་བཟོ་རྒྱགས་པ།"
+
+#: ../plugins/taglist/Latex.tags.xml.in.h:71
+msgid "Typeface italic"
+msgstr "ཡིག་བཟོ་ ཨའི་ཏ་ལིཀ།"
+
+#: ../plugins/taglist/Latex.tags.xml.in.h:72
+msgid "Typeface slanted"
+msgstr "ཡིག་བཟོ་ གཡོ་གཡོཝ།"
+
+#: ../plugins/taglist/Latex.tags.xml.in.h:73
+msgid "Typeface type"
+msgstr "ཡིག་བཟོའི་ དབྱེ་བ།"
+
+#: ../plugins/taglist/Latex.tags.xml.in.h:74
+msgid "Unbreakable text"
+msgstr "བར་བཏོག་འབད་མ་ཚུགས་པའི་ཚིག་ཡིག"
+
+#: ../plugins/taglist/taglist.gedit-plugin.desktop.in.h:1
+msgid "Provides a method to easily insert into a document commonly used tags/strings without having to type them."
+msgstr "ཡིག་དཔར་བརྐྱབ་མ་དགོ་པར་ ཐུན་མོང་གིས་ ལག་ལེན་འཐབ་མི་ ངོ་རྟགས་དང་/ཡིག་རྒྱུན་ཚུ་ ཡིག་ཆ་ཅིག་ནང་ འཇམ་ཏོང་ཏོ་སྦེ་ བཙུགས་ནིའི་ ཐབས་ལམ་ཅིག་སྤྲོདཔ་ཨིན།"
+
+#: ../plugins/taglist/taglist.gedit-plugin.desktop.in.h:2
+msgid "Tag list"
+msgstr "ངོ་རྟགས་ཐོ་ཡིག"
+
+#: ../plugins/taglist/XSLT.tags.xml.in.h:1
+msgid "XSLT - Axes"
+msgstr "ཨེགསི་ཨེསི་ཨེལ་ཊི་-ཨེག་སེསི།"
+
+#: ../plugins/taglist/XSLT.tags.xml.in.h:2
+msgid "XSLT - Elements"
+msgstr "ཨེགསི་ཨེསི་ཨེལ་ཊི་-རྒྱུ་རྫས།"
+
+#: ../plugins/taglist/XSLT.tags.xml.in.h:3
+msgid "XSLT - Functions"
+msgstr "ཨེགསི་ཨེསི་ཨེལ་ཊི་-ལས་འགན།"
+
+#: ../plugins/taglist/XSLT.tags.xml.in.h:4
+msgid "ancestor"
+msgstr "ཕ་མས།"
+
+#: ../plugins/taglist/XSLT.tags.xml.in.h:5
+msgid "ancestor-or-self"
+msgstr "ཕ་མས་ ཡང་ཅིན་ རང་ཉིད།"
+
+#: ../plugins/taglist/XSLT.tags.xml.in.h:6
+msgid "attribute"
+msgstr "ཁྱད་ཆོས།"
+
+#: ../plugins/taglist/XSLT.tags.xml.in.h:7
+msgid "child"
+msgstr "ཆ་ལག"
+
+#: ../plugins/taglist/XSLT.tags.xml.in.h:8
+msgid "descendant"
+msgstr "རྒྱུད་པ།"
+
+#: ../plugins/taglist/XSLT.tags.xml.in.h:9
+msgid "descendant-or-self"
+msgstr "རྒྱུད་པ་ ཡང་ན་ རང་ཉིད།"
+
+#: ../plugins/taglist/XSLT.tags.xml.in.h:10
+msgid "following"
+msgstr "འོག་གི།"
+
+#: ../plugins/taglist/XSLT.tags.xml.in.h:11
+msgid "following-sibling"
+msgstr "འོག་གི་སྤུན་ཆ།"
+
+#: ../plugins/taglist/XSLT.tags.xml.in.h:12
+msgid "namespace"
+msgstr "མིང་གི་བར་སྟོང་།"
+
+#: ../plugins/taglist/XSLT.tags.xml.in.h:13
+msgid "parent"
+msgstr "རྩ་ལག"
+
+#: ../plugins/taglist/XSLT.tags.xml.in.h:14
+msgid "preceding"
+msgstr "སྦོམ་ཤོས།"
+
+#: ../plugins/taglist/XSLT.tags.xml.in.h:15
+msgid "preceding-sibling"
+msgstr "སྤུན་ཆ་སྦོམ་ཤོས།"
+
+#: ../plugins/taglist/XSLT.tags.xml.in.h:16
+msgid "self"
+msgstr "རང་ཉིད།"
+
+#: ../plugins/taglist/XUL.tags.xml.in.h:1
+msgid "XUL - Tags"
+msgstr "ཨེགསི་ཡུ་ཨེལ་ - ངོ་རྟགས་ཚུ།"
+
+#: ../plugins/time/gedit-time-plugin.c:180
+msgid "In_sert Date and Time..."
+msgstr "ཚེས་གྲངས་དང་ཆུ་ཚོད་བཙུགས་...(_s)"
+
+#: ../plugins/time/gedit-time-plugin.c:182
+msgid "Insert current date and time at the cursor position"
+msgstr "འོད་རྟགས་གནས་སར་ ད་ལྟོའི་ཚེས་གྲངས་དང་ ཆུ་ཚོད་བཙུགས།"
+
+#: ../plugins/time/gedit-time-plugin.c:611
+msgid "Available formats"
+msgstr "འཐོབ་ཚུགས་པའི་རྩ་སྒྲིག"
+
+#: ../plugins/time/gedit-time-plugin.c:755
+msgid "Configure insert date/time plugin..."
+msgstr "ཚེས་གྲངས་/ཆུ་ཚོད་ཀྱི་ པ་ལག་ཨིན་ རིམ་སྒྲིག་འབད་..."
+
+#: ../plugins/time/time.gedit-plugin.desktop.in.h:1
+msgid "Insert Date/Time"
+msgstr "ཚེས་གྲངས་/ཆུ་ཚོད་བཙུགས།"
+
+#: ../plugins/time/time.gedit-plugin.desktop.in.h:2
+msgid "Inserts current date and time at the cursor position."
+msgstr "འོད་རྟགས་གནས་སར་ ད་ལྟོའི་ཚེས་གྲངས་དང་ ཆུ་ཚོད་བཙུགསཔ་ཨིན།༌།"
+
+#: ../plugins/time/time.glade2.h:3
+msgid "<span size=\"small\">01/11/2002 17:52:00</span>"
+msgstr "<span size=\"small\">༠༡ / ༡༡ / ༢༠༠༢ ༡༧:༥༢:༠༠</span>"
+
+#: ../plugins/time/time.glade2.h:4
+msgid "<span weight=\"bold\"> When inserting date/time...</span>"
+msgstr "<span weight=\"bold\"> ཚེས་གྲངས་ / ཆུ་ཚོད་བཙུགས་པའི་སྐབས་… </span>"
+
+#: ../plugins/time/time.glade2.h:5
+msgid "Configure date/time plugin"
+msgstr "ཚེས་གྲངས་/ཆུ་ཚོད་ཀྱི་ པ་ལག་ཨིན་ རིམ་སྒྲིག་འབད།"
+
+#: ../plugins/time/time.glade2.h:6
+msgid "Insert Date and Time"
+msgstr "ཚེས་གྲངས་དང་ཆུ་ཚོད་བཙུགས།"
+
+#: ../plugins/time/time.glade2.h:7
+msgid "Use the _selected format"
+msgstr "སེལ་འཐུ་འབད་མི་རྩ་སྒྲིག་ ལག་ལེན་འཐབ།(_s)"
+
+#: ../plugins/time/time.glade2.h:8
+msgid "_Insert"
+msgstr "བཙུགས།(_I)"
+
+#: ../plugins/time/time.glade2.h:9
+msgid "_Prompt for a format"
+msgstr "རྩ་སྒྲིག་ཅིག་གི་དོན་ལུ་ ནུས་སྤེལ་འབད།(_P)"
+
+#: ../plugins/time/time.glade2.h:10
+msgid "_Use custom format"
+msgstr "སྲོལ་སྒྲིག་རྩ་སྒྲིག་ ལག་ལེན་འཐབ།(_U)"
+
+#~ msgid "Background Color"
+#~ msgstr "རྒྱབ་གཞིའི་ཚོས་གཞི།"
+#~ msgid ""
+#~ "Background color for selected text in the editing area. This will only "
+#~ "take effect if the \"Use Default Colors\" option is turned off."
+#~ msgstr ""
+#~ "ཞུན་དག་བརྐྱབ་ནིའི་མངའ་ཁོངས་ནང་ གདམ་ཁ་བརྐྱབས་ཡོད་པའི་ ཚིག་ཡིག་གི་རྒྱབ་གཞིའི་ཚོས་གཞི། \"Use "
+#~ "Default Colors\" ཟེར་མི་གདམ་ཁ་དེ་ ཊརན་ཨོཕ་སྦེ་བཞགཔ་ད་རྐྱངམ་ཅིག་ འདི་ལུ་ནུས་པ་འཐོབ་ཚུགས།"
+#~ msgid ""
+#~ "Background color for unselected text in the editing area. This will only "
+#~ "take effect if the \"Use Default Colors\" option is turned off."
+#~ msgstr ""
+#~ "ཞུན་དག་བརྐྱབ་ནིའི་མངའ་ཁོངས་ནང་ གདམ་ཁ་མ་བརྐྱབས་པའི་ ཚིག་ཡིག་གི་རྒྱབ་གཞིའི་ཚོས་གཞི། \"Use "
+#~ "Default Colors\" ཟེར་མི་གདམ་ཁ་དེ་ ཊརན་ཨོཕ་སྦེ་བཞགཔ་ད་རྐྱངམ་ཅིག་ འདི་ལུ་ནུས་པ་འཐོབ་ཚུགས།"
+#~ msgid ""
+#~ "Foreground color for selected text in the editing area. This will only "
+#~ "take effect if the \"Use Default Colors\" option is turned off."
+#~ msgstr ""
+#~ "ཞུན་དག་བརྐྱབ་ནིའི་མངའ་ཁོངས་ནང་ གདམ་ཁ་རྐྱབ་ཡོད་པའི་ ཚིག་ཡིག་གི་གདོང་གཞིའི་ཚོས་གཞི། \"Use "
+#~ "Default Colors\" ཟེར་མི་གདམ་ཁ་དེ་ ཊརན་ཨོཕ་སྦེ་ བཞགཔ་ད་རྐྱངམ་ཅིག་ འདི་ལུ་ནུས་པ་འཐོབ་ཚུགས།"
+#~ msgid ""
+#~ "Foreground color for the unselected text in the editing area. This will "
+#~ "only take effect if the \"Use Default Colors\" option is turned off."
+#~ msgstr ""
+#~ "ཞུན་དག་བརྐྱབ་ནིའི་མངའ་ཁོངས་ནང་ གདམ་ཁ་མ་བརྐྱབ་པའི་ ཚིག་ཡིག་གི་ གདོང་གཞིའི་ཚོས་གཞི། \"Use "
+#~ "Default Colors\" ཟེར་མི་གདམ་ཁ་དེ་ ཊརན་ཨོཕ་སྦེ་ བཞགཔ་ད་རྐྱངམ་ཅིག་ འདི་ལུ་ནུས་པ་འཐོབ་ཚུགས།"
+#~ msgid "Monospace Regular 9"
+#~ msgstr "མོ་ནོ་སི་པེསི་ དུས་རྒྱུན་༩།"
+#~ msgid "Sans Regular 11"
+#~ msgstr "སེནསི་རེ་གུ་ལར་༡༡།"
+#~ msgid "Sans Regular 8"
+#~ msgstr "སེནསི་རེ་གུ་ལར་༨།"
+#~ msgid "Selected Text Color"
+#~ msgstr "སེལ་འཐུ་འབད་མི་ ཚིག་ཡིག་གི་ཚོས་གཞི།"
+#~ msgid "Selection Color"
+#~ msgstr "སེལ་འཐུའི་ཚོས་གཞི།"
+#~ msgid ""
+#~ "Specifies the font to use for a document's body when printing documents. "
+#~ "This is a mate-print font name and replaced by print_font_body_pango."
+#~ msgstr ""
+#~ "ཡིག་ཆ་དཔར་བསྐྲུན་འབདཝ་ད་ ཡིག་ཆའི་མ་གཟུགས་ཀྱི་དོན་ལུ་ ཡིག་གཟུགས་གསལ་བཀོད་འབདཝ་ཨིན། འདི་ཇི་"
+#~ "ནོམ་-དཔར་བསྐྲུན་ ཡིག་གཟུགས་ཀྱི་མིང་ཅིག་ཨིནམ་ད་ དེ་གི་ཚབ་ལུ་ དཔར་བསྐྲུན་_ཡིག་གཟུགས་_མ་གཟུགས་_ "
+#~ "པང་གོ་བཙུགས་ཏེ་ཡོད།"
+#~ msgid ""
+#~ "Specifies the font to use for line numbers when printing. This will only "
+#~ "take effect if the \"Print Line Numbers\" option is non-zero. This is a "
+#~ "mate-print font name and replaced by print_font_numbers_pango."
+#~ msgstr ""
+#~ "དཔར་བསྐྲུན་གྱི་སྐབས་ལུ་ གྱལ་རིམ་ཨང་གི་དོན་ལུ་ ལག་ལེན་འཐབ་ནིའི་ ཡིག་གཟུགས་གསལ་བཀོད་འབདཝ་ཨིན། "
+#~ "འདི་ \"Print Line Numbers\" ཟེར་མི་གདམ་ཁ་འདི་ ཀླད་ཀོར་མེན་པ་ཅིན་རྐྱངམ་གཅིག་ ནུས་པ་འཐོབ་"
+#~ "འོང་། འདི་ཇི་ནོམ་-དཔར་བསྐྲུན་ཡིག་གཟུགས་ཀྱི་མིང་ཅིག་ཨིནམ་ད་ དེ་གི་ཚབ་ལུ་ དཔར་བསྐྲུན་ཡིག་གཟུགས་ཀྱི་"
+#~ "ཨང་ པང་གོ་བཙུགས་ཏེ་ཡོད།"
+#~ msgid ""
+#~ "Specifies the font to use for page headers when printing a document. This "
+#~ "will only take effect if the \"Print Header\" option is turned on. This "
+#~ "is a mate-print font name and replaced by print_font_header_pango."
+#~ msgstr ""
+#~ "ཡིག་ཆ་དཔར་བསྐྲུན་སྐབས་ ཤོག་ལེབ་མགོ་ཡིག་དོན་ལུ་ ལག་ལེན་འཐབ་ནིའི་ ཡིག་གཟུགས་གསལ་བཀོད་འབདཝ་"
+#~ "ཨིན། འདི་\"Print Header\" ཟེར་མི་ གདམ་ཁ་འདི་ ཊརན་ཨཱོན་འབད་བ་ཅིན་རྐྱངམ་གཅིག་ ནུས་པ་འཐོབ་"
+#~ "འོང་། འདི་ཇི་ནོམ་-དཔར་བསྐྲུན་ཡིག་གཟུགས་ཀྱི་མིང་ཅིག་ཨིནམ་ད་ དེ་གི་ཚབ་ལུ་ དཔར་བསྐྲུན་_ཡིག་གཟུགས་"
+#~ "_མགོ་ཡིག་_པང་གོ་བཙུགས་ཏེ་ཡོད།"
+#~ msgid "Text Color"
+#~ msgstr "ཚིག་ཡིག་ཚོས་གཞི།"
+#~ msgid "Use Default Colors"
+#~ msgstr "སྔོན་སྒྲིག་ཚོས་གཞི་ ལག་ལེན་འཐབ།"
+#~ msgid ""
+#~ "Whether to use the system's default colors for the editing area. If this "
+#~ "option is turned off, then the colors of the editing area will be those "
+#~ "specified in the \"Background Color\", \"Text Color\", \"Selected Text "
+#~ "Color\", and \"Selection Color\" options."
+#~ msgstr ""
+#~ "ཞུན་དག་བརྐྱབ་ནིའི་མངའ་ཁོངས་ཀྱི་དོན་ལུ་ རིམ་ལུགས་ཀྱི་སྔོན་སྒྲིག་ཚོས་གཞི་ ལག་ལེན་འཐབ་དགོཔ་ཨིན་ན། གལ་"
+#~ "སྲིད་ གདམ་ཁ་འདི་ཊརན་ཨོཕ་འབད་བ་ཅིན་ ཞུན་དག་བརྐྱབ་ནིའི་མངའ་ཁོངས་ཀྱི་ ཚོས་གཞི་\"Background "
+#~ "Color\" དང་ \"Text Color\", \"Selected Text Color\" དེ་ལས་ \"Selection "
+#~ "Color\" ཟེར་མི་གདམ་ཁ་ཚུ་ནང་ གསལ་བཀོད་འབད་མི་ཚུ་ཨིན། "
+#~ msgid "Page Setup"
+#~ msgstr "ཤོག་ལེབ་གཞི་སྒྲིག"
+#~ msgid "Fonts"
+#~ msgstr "ཡིག་གཟུགས།"
+#~ msgid "General"
+#~ msgstr "ཡོངས་ཁྱབ།"
+#~ msgid "Push this button to configure text color"
+#~ msgstr "ཚིག་ཡིག་གི་ ཚོས་གཞི་རིམ་སྒྲིག་འབད་ནི་ལུ་ ཨེབ་རྟ་འདི་ཨེབ།"
+#~ msgid "Push this button to configure background color"
+#~ msgstr "རྒྱབ་གཞིའི་ཚོས་གཞི་ རིམ་སྒྲིག་འབད་ནི་ལུ་ ཨེབ་རྟ་འདི་ཨེབ།"
+#~ msgid ""
+#~ "Push this button to configure the color in which the selected text should "
+#~ "appear"
+#~ msgstr "སེལ་འཐུ་ཅན་གྱི་ ཚིག་ཡིག་འབྱུང་དགོ་པའི་ ཚོས་གཞི་རིམ་སྒྲིག་འབད་ནི་ལུ་ ཨེབ་རྟ་འདི་ཨེབ། "
+#~ msgid ""
+#~ "Push this button to configure the color in which the selected text should "
+#~ "be marked"
+#~ msgstr ""
+#~ "སེལ་འཐུ་ཅན་གྱི་ ཚིག་ཡིག་ལུ་རྟགས་བཀལ་དགོ་པའི་ ཚོས་གཞི་རིམ་སྒྲིག་འབད་ནི་ལུ་ ཨེབ་རྟ་འདི་ཨེབ། "
+#~ msgid "Elements"
+#~ msgstr "རྒྱུ་རྫས།"
+#~ msgid "<b>Elements</b>"
+#~ msgstr "<b>རྒྱུ་རྫས་ཚུ།</b>"
+#~ msgid "Highlight _mode:"
+#~ msgstr "གཙོ་དམིགས་ཐབས་ལམ: (_m)"
+#~ msgid "Italic"
+#~ msgstr "ཨའི་ཊ་ལིག"
+#~ msgid "Normal _text color:"
+#~ msgstr "སྤྱི་བཏང་ཚིག་ཡིག་གི་ཚོས་གཞི་: (_t)"
+#~ msgid "Pick a color"
+#~ msgstr "ཚོས་གཞི་ཅིག་འཐུ།"
+#~ msgid "Pick the background color"
+#~ msgstr "རྒྱབ་གཞིའི་ཚོས་གཞི་འཐུ།"
+#~ msgid "Pick the normal text color"
+#~ msgstr "སྤྱི་བཏང་ཚིག་ཡིག་གི་ཚོས་གཞི་འཐུ།"
+#~ msgid "Pick the selected text color"
+#~ msgstr "སེལ་འཐུ་འབད་མི་ ཚིག་ཡིག་ཚོས་གཞི་འཐུ།"
+#~ msgid "Pick the selection color"
+#~ msgstr "སེལ་འཐུའི་ཚོས་གཞི་འཐུ།"
+#~ msgid "Se_lection color:"
+#~ msgstr "སེལ་འཐུའི་ཚོས་གཞི་: (_l)"
+#~ msgid "Selecte_d text color:"
+#~ msgstr "སེལ་འཐུ་ཅན་གྱི་ ཚིག་ཡིག་གི་ཚོས་གཞི། (_d)"
+#~ msgid "Strikethrough"
+#~ msgstr "སྦུག་འབྲེག"
+#~ msgid "U_se default theme colors"
+#~ msgstr "བརྗོད་དོན་གྱི་སྔོན་སྒྲིག་ཚོས་གཞི་ལག་ལེན་འཐབ། (_s)"
+#~ msgid "Underline"
+#~ msgstr "འོག་ཐིག"
+#~ msgid "_Background color:"
+#~ msgstr "རྒྱབ་གཞིའི་ཚོས་གཞི་:(_B)"
+#~ msgid "_Background:"
+#~ msgstr "རྒྱབ་གཞི་: (_B)"
+#~ msgid "_Enable syntax highlighting"
+#~ msgstr "ཚིག་སྦྱོར་གཙོ་དམིགས་ ལྕོགས་ཅན་བཟོ། (_E)"
+#~ msgid "_Foreground:"
+#~ msgstr "གདོང་གཞི་: (_F)"
+#~ msgid "_Reset to Default "
+#~ msgstr "སྔོན་སྒྲིག་ལུ་ སླར་སྒྲིག་འབད། (_R)"
+#~ msgid "Please, check that you typed the location correctly and try again."
+#~ msgstr ""
+#~ "ཁྱོད་ཀྱིས་གནས་ཁོངས་མིང་ ངེས་བདེན་སྦེ་ ཡིག་དཔར་བརྐྱབས་མ་བརྐྱབས་ ཞིབ་དཔྱད་འབད་ཞིནམ་ལས་ ལོག་སྟེ་"
+#~ "འབད་རྩོལ་བསྐྱེད་གནང༌།"
+#~ msgid "Print"
+#~ msgstr "དཔར་བསྐྲུན།"
+#~ msgid "Other"
+#~ msgstr "གཞན།"
+#~ msgid "Number of pages horizontally"
+#~ msgstr "ཐད་སྙོམས་སྦེ་ཡོད་པའི་ཤོག་ལེབ་གྲངས།"
+#~ msgid "Number of pages vertically"
+#~ msgstr "ཀེར་ཕྲང་གི་ཤོག་ལེབ་གྲངས། (_N)"
+#~ msgid "No visible output was created."
+#~ msgstr "མིག་མཐོང་གི་ཨའུཊི་པུཊི་ གསར་བསྐྲུན་མ་འབད་བས།"
+#~ msgid "Rendering page %d of %d..."
+#~ msgstr "ཤོག་ལེབ་ %d ལས་ %d པ་ལྷག་སྟོན་འབད་དོ་..."
+#~ msgid "gtk-revert-to-saved"
+#~ msgstr "ཇི་ཊི་ཀེ་-རྒྱབ་ལོག་-ལུ་-སྲུང་བཞག་འབད་ཡོད་"
+#~ msgid "Could not find the required widgets inside %s."
+#~ msgstr "%sགི་ནང་ལས་ དགོས་མཁོ་ཡོད་པའི་ ཝི་གེཊིསི་ འཚོལ་མ་འཐོབ།"
+#~ msgid "Double-click on a tag to insert it in the current document"
+#~ msgstr "ངོ་རྟགས་ཅིག་ ད་ལྟོའི་ཡིག་ཆ་ནང་ བཙུགས་ནིའི་དོན་ལུ་ ངོ་རྟགས་ལུ་ཨེབ་གཏང་ཚར་གཉིས་འབད།"
+#~ msgid "_Use default theme font"
+#~ msgstr "སྔོན་སྒྲིག་བརྗོད་དོན་གྱི་ ཚིག་ཡིག་ལག་ལེན་འཐབ། (_U)"
+#~ msgid "Insert in output panel"
+#~ msgstr "ཨའུཊི་པེ་ནཱལ་ནང་བཙུགས།"
+#~ msgid "F7"
+#~ msgstr "ཨེཕ་༧།"
+#~ msgid "_Accelerator:"
+#~ msgstr "མགྱོགས་འཕྲུལ་:(_A)"
+#~ msgid "_New Directory"
+#~ msgstr "སྣོད་ཐོ་གསརཔ་(_N)"
+#~ msgid "Add new empty directory"
+#~ msgstr "སྣོད་ཐོ་གསརཔ་སྟོངམ་ཅིག་ཁ་སྐོངརྐྱབས།"
+#~ msgid "_View Directory"
+#~ msgstr "སྣོད་ཐོ་སྟོན་:(_V)"
+#~ msgid "Advanced filtering"
+#~ msgstr "མཐོ་རིམ་ཅན་གྱི་བཙག་ཐངས་"
+#~ msgid "Afrikaans"
+#~ msgstr "ཨཕ་རི་ཀཱནསི།"
+#~ msgid "Amharic"
+#~ msgstr "ཨམ་ཧ་རིཀ།"
+#~ msgid "Arabic (Egypt)"
+#~ msgstr "ཨ་ར་བིཀ། (ཨི་ཇིཔཊི་)"
+#~ msgid "Azerbaijani"
+#~ msgstr "ཨ་ཛར་བའི་ཇ་ནི།"
+#~ msgid "Belarusian"
+#~ msgstr "བེ་ལ་ར་ཤི་ཡཱན།"
+#~ msgid "Bulgarian"
+#~ msgstr "བཱལ་ག་རི་ཡཱན།"
+#~ msgid "Bengali"
+#~ msgstr "བེང་ག་ལི། "
+#~ msgid "Breton"
+#~ msgstr "བིརི་ཊཱོན།"
+#~ msgid "Catalan"
+#~ msgstr "ཀེ་ཊ་ལཱན།"
+#~ msgid "Czech"
+#~ msgstr "ཅེཛི།"
+#~ msgid "Welsh"
+#~ msgstr "ཝེལཤི།"
+#~ msgid "Danish"
+#~ msgstr "ཌེ་ནིཤ།"
+#~ msgid "German (Austria)"
+#~ msgstr "ཇར་མཱན། (ཨཱསི་ཊ་ལི་ཡ)"
+#~ msgid "German (Germany)"
+#~ msgstr "ཇར་མཱན། (ཇར་མ་ནི་)"
+#~ msgid "German (Swiss)"
+#~ msgstr "ཇར་མཱན། (སུའིསི་)"
+#~ msgid "English (American)"
+#~ msgstr "ཨིང་ལིཤ། (ཨ་མི་རི་ཀཱན་)"
+#~ msgid "English (British)"
+#~ msgstr "ཨིང་ལིཤ། (བིརི་ཊིཤ་)"
+#~ msgid "English (Canadian)"
+#~ msgstr "ཨིང་ལིཤ། (ཀེ་ན་ཌི་ཡཱན་)"
+#~ msgid "Esperanto"
+#~ msgstr "ཨིསི་པེ་རེན་ཊོ།"
+#~ msgid "Spanish"
+#~ msgstr "སིཔེ་ནིཤ།"
+#~ msgid "Estonian"
+#~ msgstr "ཨིསི་ཊོ་ནི་ཡཱན།"
+#~ msgid "Persian"
+#~ msgstr "པར་ཤི་ཡཱན།"
+#~ msgid "Finnish"
+#~ msgstr "ཕིན་ནིཤ།"
+#~ msgid "Faroese"
+#~ msgstr "ཕེ་རོ་སི།"
+#~ msgid "French (France)"
+#~ msgstr "ཕིརེནཆི། (ཕརཱནསི་)"
+#~ msgid "French (Swiss)"
+#~ msgstr "ཕིརེནཆི། (སུའིསི)"
+#~ msgid "Irish"
+#~ msgstr "ཨའི་རིཤ། "
+#~ msgid "Scottish Gaelic"
+#~ msgstr "སིཀོ་ཊིཤ་ གེ་ལིཀ།"
+#~ msgid "Gallegan"
+#~ msgstr "གེ་ལི་གཱན།"
+#~ msgid "Manx Gaelic"
+#~ msgstr "མེ་ནེགསི་ གེ་ལིཀ།"
+#~ msgid "Hindi"
+#~ msgstr "ཧིན་དི།"
+#~ msgid "Croatian"
+#~ msgstr "ཀོརོ་ཤི་ཡཱན།"
+#~ msgid "Upper Sorbian"
+#~ msgstr "ཨ་པར་སོར་བི་ཡཱན།"
+#~ msgid "Hungarian"
+#~ msgstr "ཧང་ག་རི་ཡཱན།"
+#~ msgid "Interlingua (IALA)"
+#~ msgstr "ཨིན་ཊར་ལིང་གུ་འ། (ཨའི་ཨེ་ཨེལ་ཨེ)"
+#~ msgid "Indonesian"
+#~ msgstr "ཨིན་ཌོ་ནེ་ཤི་ཡཱན།"
+#~ msgid "Icelandic"
+#~ msgstr "ཨའིསི་ལེན་ཌིཀ།"
+#~ msgid "Italian"
+#~ msgstr "ཨི་ཊ་ལི་ཡཱན།"
+#~ msgid "Kurdish"
+#~ msgstr "ཀར་ཌིཤ།"
+#~ msgid "Latin"
+#~ msgstr "ལེ་ཊིན།"
+#~ msgid "Lithuanian"
+#~ msgstr "ལི་ཐུ་འ་ནི་ཡཱན།"
+#~ msgid "Latvian"
+#~ msgstr "ལེཊི་བི་ཡཱན།"
+#~ msgid "Malagasy"
+#~ msgstr "མ་ལ་ག་སེ།"
+#~ msgid "Maori"
+#~ msgstr "མའོ་རི།"
+#~ msgid "Macedonian"
+#~ msgstr "མེ་སི་ཌོ་ནི་ཡཱན།"
+#~ msgid "Mongolian"
+#~ msgstr "མོང་གོ་ལི་ཡཱན།"
+#~ msgid "Marathi"
+#~ msgstr "མ་ར་ཐི།"
+#~ msgid "Malay"
+#~ msgstr "མ་ལེ།"
+#~ msgid "Maltese"
+#~ msgstr "མཱལ་ཊི་སི།"
+#~ msgid "Norwegian Bokmal"
+#~ msgstr "ནོར་ཝེ་ཇི་ཡཱན་ བོཀ་མཱལ།"
+#~ msgid "Dutch"
+#~ msgstr "ཌཆ།"
+#~ msgid "Norwegian Nynorsk"
+#~ msgstr "ནོར་ཝེ་ཇི་ཡཱན་ ནི་ནོར་སིཀ།"
+#~ msgid "Norwegian"
+#~ msgstr "ནོར་ཝེ་ཇི་ཡཱན་"
+#~ msgid "Nyanja"
+#~ msgstr "ནི་ཡཱན་ཇ།"
+#~ msgid "Polish"
+#~ msgstr "པོ་ལིཤ།"
+#~ msgid "Portuguese (Portugal)"
+#~ msgstr "པོར་ཊུ་གིསི། (པོར་ཊུ་གཱལ་)"
+#~ msgid "Portuguese (Brazilian)"
+#~ msgstr "པོར་ཊུ་གིསི། (བཱ་ར་ཛི་ལི་ཡཱན་)"
+#~ msgid "Quechua"
+#~ msgstr "ཀུའི་ཅུ་འ།"
+#~ msgid "Russian"
+#~ msgstr "ར་ཤི་ཡཱན།"
+#~ msgid "Kinyarwanda"
+#~ msgstr "ཀིན་ཡར་ཝན་ཌ།"
+#~ msgid "Sardinian"
+#~ msgstr "སར་དི་ནི་ཡཱན།"
+#~ msgid "Slovak"
+#~ msgstr "སོལོ་བཀ།"
+#~ msgid "Slovenian"
+#~ msgstr "སོལོ་བི་ནི་ཡཱན།"
+#~ msgid "Swedish"
+#~ msgstr "སུའི་ཌིཤི།"
+#~ msgid "Swahili"
+#~ msgstr "ས་ཝ་ཧི་ལི།"
+#~ msgid "Tamil"
+#~ msgstr "ཏ་མིལ།"
+#~ msgid "Tetum"
+#~ msgstr "ཊི་ཊམ།"
+#~ msgid "Tagalog"
+#~ msgstr "ཊ་ག་ལོག"
+#~ msgid "Tswana"
+#~ msgstr "ཙ་ཝ་ན།"
+#~ msgid "Ukrainian"
+#~ msgstr "ཡུཀ་རའི་ནི་ཡཱན།"
+#~ msgid "Uzbek"
+#~ msgstr "ཨུཛ་བེཀ།"
+#~ msgid "Walloon"
+#~ msgstr "ཝ་ལཱུན།"
+#~ msgid "Yiddish"
+#~ msgstr "ཡིད་དིཤ།"
+#~ msgid "Zulu"
+#~ msgstr "ཛུ་ལུ།"
+#~ msgid "BGSound"
+#~ msgstr "རྒྱབ་གཞིའི་སྒྲ་སྐད།"
+#~ msgid "Behavior"
+#~ msgstr "སྤྱོད་ལམ།"
+#~ msgid "Blinking text"
+#~ msgstr "འགུལ་སྤར་ཅན་གྱི་ཡིག་ཚིག"
+#~ msgid "Box"
+#~ msgstr "སྒྲོམ།"
+#~ msgid "Space"
+#~ msgstr "བར་སྟོང་།"
+#~ msgid "Normal"
+#~ msgstr "སྤྱིར་བཏང་།"
+#~ msgid "Use Normal highlight mode"
+#~ msgstr "དུས་རྒྱུན་གྱི་གཙོ་དམིགས་ཐབས་ལམ་ ལག་ལེན་འཐབ།"
+#~ msgid "Gedit View"
+#~ msgstr "ཇི་ཨེཌིཊི་གི་ མཐོང་སྣང་།"
+#~ msgid "Gedit View."
+#~ msgstr "ཇི་ཨེཌིཊི་གི་ མཐོང་སྣང་།"
+#~ msgid "Gedit viewer factory"
+#~ msgstr "ཇི་ཨེཌིཊི་གི་ མཐོང་བྱེད་འཕྲུལ་ཁང༌།"
+#~ msgid "gedit application"
+#~ msgstr "ཇི་ཨེཌིཊི་གི་ གློག་རིམ།"
+#~ msgid "gedit automation factory"
+#~ msgstr "ཇི་ཨེཌིཊི་གི་ འཕྲུལ་སྤྱོད་འཕྲུལ་ཁང༌།"
+#~ msgid "Go to Line"
+#~ msgstr "གྱལ་རིམ་ལུ་འགྱོ།"
+#~ msgid "The text \"%s\" was not found."
+#~ msgstr "ཡིག་ཚིག་\"%s\" དེ་མ་ཐོབ།"
+#~ msgid "Set program location..."
+#~ msgstr "ལས་རིམ་གནས་ཁོངས་ གཞི་སྒྲིག་འབད་..."
+#~ msgid ""
+#~ "The %s plugin uses an external program, called <tt>%s</tt>, to perform "
+#~ "its task.\n"
+#~ "\n"
+#~ "Please, specify the location of the <tt>%s</tt> program."
+#~ msgstr ""
+#~ "པ་ལག་ཨིན་ %s གིས་ དེ་གི་ལས་ཀ་འགྲུབ་ནི་ལུ་ ཕྱི་ཁའི་ལས་རིམ་ <tt>%s</tt་> ཟེར་མི་དེ་ ལག་ལེན་"
+#~ "འཐབ་ཨིན།\n"
+#~ "\n"
+#~ "ལས་རིམ་<tt>%s</tt་> གི་གནས་ཁོངས་དེ་ གསལ་བཀོད་འབད་གནང༌།"
+#~ msgid "Goto Line"
+#~ msgstr "གྱལ་རིམ་ལུ་སོང་།"
+#~ msgid "_Line number:"
+#~ msgstr "གྱལ་རིམ་ཨང་: (_L)"
+#~ msgid "button1"
+#~ msgstr "ཨེབ་རྟ་༡།"
+#~ msgid "dialog1"
+#~ msgstr "ཌའི་ལོག་༡།"
+#~ msgid "Browse for program location..."
+#~ msgstr "ལས་རིམ་ག་ཡོད་བལྟ་ནིའི་དོན་ལུ་བརྡ་འཚོལ།"
+#~ msgid "label"
+#~ msgstr "ཁ་ཡིག"
+#~ msgid "Find Next"
+#~ msgstr "ཤུལ་མམ་འཚོལ།"
+#~ msgid "Open from URI"
+#~ msgstr "ཡུ་ཨར་ཨའི་ནང་ལས་ཁ་ཕྱེ།"
+#~ msgid "gedit"
+#~ msgstr "ཇི་ཨེ་ཌིཊི།"
+#~ msgid "%s %d"
+#~ msgstr "%s %d"
+#~ msgid "Invalid UTF-8 data"
+#~ msgstr "ནུས་མེད་ཡུ་ཊི་ཨེཕ་-༨ཀྱི་ གནད་སྡུད།"
+#~ msgid "Could not read symbolic link information for %s"
+#~ msgstr "%s གི་དོན་ལུ་ བརྡ་མཚོན་འབྲེལ་ལམ་བརྡ་དོན་ ལྷག་མ་ཚུགས།"
+#~ msgid "The file has too many symbolic links."
+#~ msgstr "ཡིག་སྣོད་འདི་ནང་ བརྡ་མཚོན་འབྲེལ་ལམ་ མང་དྲགས་པས།"
+#~ msgid "gedit cannot handle %s: locations in write mode."
+#~ msgstr "ཇི་ཨེ་ཌིཊི་གིས་ ཡིག་འབྲི་ཐབས་ལམ་ནང་ %sགི་གནས་ཁོངས་ཚུ་ ལེགས་སྐྱོང་འཐབ་མི་ཚུགས་པས།"
+#~ msgid "gedit cannot handle this kind of location in write mode."
+#~ msgstr ""
+#~ "ཇི་ཨེ་ཌིཊི་གིས་ ཡིག་འབྲི་ཐབས་ལམ་ནང་ དབྱེ་ཁག་འདི་བཟུམ་གྱི་གནས་ཁོངས་ ལེགས་སྐྱོང་འཐབ་མི་ཚུགས་པས།"
+#~ msgid "A file named \"%s\" already exists.\n"
+#~ msgstr "ཡིག་སྣོད་མིང་ \"%s\" འབད་མི་ཅིག་ ཧེ་མ་ལས་འདུག\n"
+#~ msgid "Select a file to open"
+#~ msgstr "ཁ་ཕྱེ་ནིའི་དོན་ལུ་ ཡིག་སྣོད་ཅིག་ སེལ་འཐུ་འབད།"
+#~ msgid "Select files to open"
+#~ msgstr "ཁ་ཕྱེ་ནི་དོན་ལུ་ ཡིག་སྣོད་ཚུ་ སེལ་འཐུ་འབད།"
+#~ msgid "Select a filename to save"
+#~ msgstr "སྲུང་བཞག་འབད་ནིའི་དོན་ལུ་ ཡིག་སྣོད་ཀྱི་མིང་ཅིག་ སེལ་འཐུ་འབད།"
+#~ msgid "Saving document \"%s\"..."
+#~ msgstr "ཡིག་ཆ་\"%s\"སྲུང་བཞག་འབད་དོ་... "
+#~ msgid "The document \"%s\" has not been saved."
+#~ msgstr "ཡིག་ཆ་ \"%s\" དེ་ སྲུང་བཞག་མ་འབད་བས།"
+#~ msgid "The document \"%s\" has been saved."
+#~ msgstr "ཡིག་ཆ་\"%s\"དེ་ སྲུང་བཞག་འབད་ནུག"
+#~ msgid "Save as..."
+#~ msgstr "དེ་སྦེ་སྲུངས་..."
+#~ msgid "Error reverting the document \"%s\"."
+#~ msgstr "ཡིག་ཆ་ \"%s\"དེ་ རྒྱབ་ལོག་འབད་ནི་ལུ་འཛོལ་བ།"
+#~ msgid "The document \"%s\" has not been reverted."
+#~ msgstr "ཡིག་ཆ་ \"%s\" དེ་ རྒྱབ་ལོག་མ་འབད་བས།"
+#~ msgid "The document \"%s\" has been reverted."
+#~ msgstr "ཡིག་ཆ་\"%s\"དེ་ རྒྱབ་ལོག་འབད་ནུག"
+#~ msgid "Could not read data from stdin."
+#~ msgstr "ཨེསི་ཊི་ཌི་ཨའི་ཨེན་ནང་ལས་ གནད་སྡུད་ལྷག་མ་ཚུགས།"
+#~ msgid "Loaded file \"%s\""
+#~ msgstr "ཡིག་སྣོད་\"%s\"མངོན་གསལ་འབད་ཡོད།"
+#~ msgid "Loaded %d file"
+#~ msgid_plural "Loaded %d files"
+#~ msgstr[0] "ཡིག་སྣོད་%dམངོན་གསལ་འབད་ཡོད།"
+#~ msgstr[1] "ཡིག་སྣོད་%dཚུ་མངོན་གསལ་འབད་ཡོད།"
+#~ msgid "Created file \"%s\""
+#~ msgstr "ཡིག་སྣོད་\"%s\"གསར་བསྐྲུན་འབད་ཡོད།"
+#~ msgid "Access was denied."
+#~ msgstr "འཛུལ་སྤྱོད་འབད་མ་བཏུབ།"
+#~ msgid ""
+#~ "there are too many open files. Please, close some open files and try "
+#~ "again."
+#~ msgstr ""
+#~ "ཡིག་སྣོད་ཁ་ཕྱེ་ཕྱེཝ་མང་དྲགསཔ་ལས་ ཡིག་སྣོད་ཁ་ཕྱེ་ཕྱེཝ་ལ་ལུ་ཅིག་ ཁ་བསྡམས་ཞིནམ་ལས་ ལོག་སྟེ་འབད་རྩོལ་"
+#~ "བསྐྱེད་གནང་།"
+#~ msgid ""
+#~ "gedit was not able to automatically detect the character coding. Please, "
+#~ "check that you are not trying to open a binary file and try again "
+#~ "selecting a character coding in the 'Open File...' (or 'Open Location') "
+#~ "dialog."
+#~ msgstr ""
+#~ "ཇི་ཨེ་ཌིཊི་གིས་ ཡིག་འབྲུའི་ཀོ་ཌིང་སྐྱོན་འཛིན་འབད་མ་ཚུགས། ཁྱོད་ཀྱིས་བའི་ན་རི་ཡིག་སྣོད་ཅིག་ ཁ་ཕྱེ་ནི་་ལུ་"
+#~ "འབད་རྩོལ་བསྐྱེདཔ་མེན་ན་ ཞིབ་དཔྱད་འབད་ཞིནམ་ལས་ ‘ཡིག་སྣོད་ཁ་ཕྱེ་...’(ཡང་ན་ གནས་ཁོངས་ཁ་ཕྱེ་) "
+#~ "ཟེར་མི་ཌའི་ལོག་ནང་ ཡིག་འབྲུའི་ཀོ་ཌིང་གཅིག་ སེལ་འཐུ་འབད་དེ་ ལོག་སྟེ་འབད་རྩོལ་བསྐྱེད་གནང་།"
+#~ msgid ""
+#~ "Please, check that you are not trying to open a binary file and that you "
+#~ "selected the right character coding in the 'Open File... ' (or 'Open "
+#~ "Location') dialog and try again."
+#~ msgstr ""
+#~ "ཁྱོད་ཀྱིས་བའི་ན་རི་ཡིག་སྣོད་ཅིག་ ཁ་ཕྱེ་ནི་ལུ་འབད་རྩོལ་བསྐྱེདཔ་མེན་ན་ ཞིབ་དཔྱད་་འབད་ཞིནམ་ལས་ ‘ཡིག་"
+#~ "སྣོད་ཁ་ཕྱེ་་...'(ཡང་ན་ གནས་ཁོངས་ཁ་ཕྱེ་) ཟེར་མི་ཌའི་ལོག་ནང་ ཡིག་འབྲུའི་ཀོ་ཌིང་ངེས་བདེན་དེ་ སེལ་"
+#~ "འཐུ་འབད་དེ་ ལོག་སྟེ་འབད་རྩོལ་བསྐྱེད་གནང་། "
+#~ msgid ""
+#~ "The file contains data in an invalid format. Probably, you are trying to "
+#~ "open a binary file."
+#~ msgstr ""
+#~ "ཡིག་སྣོད་ནང་ན་ ནུས་མེད་རྩ་སྒྲིག་གི་ གནད་སྡུད་འདུག ཁྱོད་ཀྱིས་ བའི་ན་རི་ཡིག་སྣོད་ཅིག་ ཁ་ཕྱེ་ནི་ལུ་འབད་"
+#~ "རྩོལ་བསྐྱེདཔ་འོང་ནི་མས།"
+#~ msgid ""
+#~ "Not enough available memory. Please, close some running applications and "
+#~ "try again."
+#~ msgstr ""
+#~ "དྲན་ཚད་ལངམ་མིན་འདུག གཡོག་བཀོལ་བའི་བསྒང་གི་ གློག་རིམ་ལ་ལོ་ཅིག་ ཁ་བསྡམས་ཞིནམ་ལས་ ལོག་སྟེ་འབད་"
+#~ "རྩོལ་བསྐྱེད་གནང་།"
+#~ msgid ""
+#~ "The host name was empty. Please, check that your proxy settings are "
+#~ "correct and try again."
+#~ msgstr ""
+#~ "ཧོསཊི་ནེམ་དེ་ སྟོངམ་ཨིན་པས། ཁྱོད་ཀྱི་པོརོག་སི་གཞི་སྒྲིག་ཚུ་ ངོས་བདེན་ཨིནམ་མིནམ་ ཞིབ་དཔྱད་འབད་ཞིནམ་"
+#~ "ལས་ ལོག་སྟེ་འབད་རྩོལ་བསྐྱེད་གནང་།"
+#~ msgid ""
+#~ "The file contains invalid UTF-8 data. Probably, you are trying to revert "
+#~ "a binary file."
+#~ msgstr ""
+#~ "ཡིག་སྣོད་ནང་ན་ ནུས་མེད་གནད་སྡུད་ ཡུ་ཊི་ཨེཕ་-༨ འདུག ཁྱོད་ཀྱིས་བའི་ན་རི་ཡིག་སྣོད་ཅིག་ རྒྱབ་ལོག་འབད་"
+#~ "ནིའི་ འབད་རྩོལ་བསྐྱེད་དོ་ཡོདཔ་འོང་ནི་མས།"
+#~ msgid "It is not possible to revert an Untitled document."
+#~ msgstr "མགོ་མིང་མ་བཏགས་པའི་ ཡིག་ཆ་ཅིག་ རྒྱབ་ལོག་འབད་མི་ཚུགས།"
+#~ msgid "Could not create the file \"%s\""
+#~ msgstr "ཡིག་སྣོད་ \"%s\"དེ་ གསར་བསྐྲུན་འབད་མ་ཚུགས། "
+#~ msgid "Make sure you have the appropriate write permissions."
+#~ msgstr "ཁྱོད་ལུ་འོས་བབས་ལྡན་པའི་ ཡིག་འབྲིའི་གནང་བ་ ངེས་ཏིག་ཡོདཔ་བཟོ།"
+#~ msgid "The file name is too long."
+#~ msgstr "ཡིག་སྣོད་ཀྱི་མིང་དེ་ རིང་དྲགས་པས།"
+#~ msgid ""
+#~ "A directory component in the file name does not exist or is a dangling "
+#~ "symbolic link."
+#~ msgstr ""
+#~ "ཡིག་སྣོད་ཀྱི་མིང་ནང་ སྣོད་ཐོའི་ཆ་ཤས་ཅིག་མེད་པའམ་ ཡང་ན་ དཔྱངས་ཏེ་ཡོད་མི་ བརྡ་མཚོན་འབྲེལ་ལམ་ཅིག་ "
+#~ "ཨིནམ་འོང་ནི་མས།"
+#~ msgid ""
+#~ "There is not enough disk space to create the file. Please free some disk "
+#~ "space and try again."
+#~ msgstr ""
+#~ "ཡིག་སྣོད་གསར་བསྐྲུན་འབད་ནིའི་དོན་ལུ་ ཌིཀསི་ནང་བར་སྟོང་ལངམ་མིན་འདུག ཌིཀསི་ནང་ བར་སྟོང་དུམ་གྲ་ཅིག་"
+#~ "བཏོན་ཞིནམ་ལས་ ལོག་སྟེ་འབད་རྩོལ་བསྐྱེད་གནང་།"
+#~ msgid "Close the output window"
+#~ msgstr "ཨའུཊི་པུཊི་ སྒོ་སྒྲིག་ཁ་བསྡམས།"
+#~ msgid "Clear the output window"
+#~ msgstr "ཨའུཊི་པུཊི་ སྒོ་སྒྲིག་བསལ།"
+#~ msgid "Output Lines"
+#~ msgstr "ཨའུཊི་པུཊི་གྱལ་རིམ།"
+#~ msgid "Printing page %d of %d..."
+#~ msgstr "ཤོག་ལེབ་ %d ལས་ %d པ་དཔར་བསྐྲུན་འབད་དོ།"
+#~ msgid "Change the visibility of the output window in the current window"
+#~ msgstr "ད་ལྟོའི་སྒོ་སྒྲིག་ནང་གི་ ཨའུཊི་པུཊི་སྒོ་སྒྲིག་གི་མཐོང་གསལ་ བསྒྱུར་བཅོས་འབད།"
+#~ msgid "Close"
+#~ msgstr "ཁ་བསྡམས།"
+#~ msgid "Copy"
+#~ msgstr "འདྲ་བཤུས།"
+#~ msgid "Cu_t"
+#~ msgstr "བཏོག (_t)"
+#~ msgid "Cut"
+#~ msgstr "བཏོག"
+#~ msgid "Delete"
+#~ msgstr "བཏོན་གཏང༌།"
+#~ msgid "Find Previous"
+#~ msgstr "ཧེ་མམ་འཚོལ།"
+#~ msgid "Main toolbar"
+#~ msgstr "ལག་ཆས་ཕྲ་རིང་གཙོ་བོ།"
+#~ msgid "New"
+#~ msgstr "གསརཔ།"
+#~ msgid "Open Location..."
+#~ msgstr "གནས་ཁོངས་ཁ་ཕྱེ་…"
+#~ msgid "Paste"
+#~ msgstr "སྦྱར།"
+#~ msgid "Print Previe_w..."
+#~ msgstr "དཔར་བསྐྲུན་སྔོན་ལྟ་...(_w)"
+#~ msgid "Quit"
+#~ msgstr "སྤངས"
+#~ msgid "Redo"
+#~ msgstr "ལོག་འབད།"
+#~ msgid "Revert"
+#~ msgstr "རྒྱབ་ལོག"
+#~ msgid "Select All"
+#~ msgstr "ཆ་མཉམ་སེལ་འཐུ་འབད།"
+#~ msgid ""
+#~ "Set toolbar button style according to desktop Menu and Toolbar Preferences"
+#~ msgstr ""
+#~ "ལག་ཆས་ཕྲ་རིང་ ཨེབ་རྟའི་བཟོ་རྣམ་དེ་ ཌེཀསི་ཊོཔ་དཀར་ཆག་དང་ ལག་ཆས་ཕྲ་རིང་གི་ དགའ་གདམ་དང་འཁྲིལ་"
+#~ "ཏེ་ གཞི་སྒྲིག་འབད།  "
+#~ msgid "Show only icons in the toolbar"
+#~ msgstr "ལག་ཆས་ཕྲ་རིང་ནང་ ངོས་དཔར་ཚུ་རྐྱངམ་གཅིག་སྟོན།"
+#~ msgid "Show text below every icon in the toolbar"
+#~ msgstr "ལག་ཆས་ཕྲ་རིང་ནང་ ངོས་དཔར་རེ་རེ་བཞིན་དུའི་འོག་ལུ་ ཚིག་ཡིག་སྟོན།"
+#~ msgid "Show text only beside important icons in the toolbar"
+#~ msgstr "ལག་ཆས་ཕྲ་རིང་ནང་ ཚིག་ཡིག་དེ་ ངོས་དཔར་གལ་ཅན་གྱི་ ཟུར་ཁར་རྐྱངམ་གཅིག་སྟོན།"
+#~ msgid "T_ext for Important Icons"
+#~ msgstr "ངོས་དཔར་གལ་ཅན་ཚུ་གི་དོན་ལུ་ཚིག་ཡིག (_e)"
+#~ msgid "Undo"
+#~ msgstr "འབད་བཤོལ།"
+#~ msgid "_Close"
+#~ msgstr "ཁ་བསྡམས། (_C)"
+#~ msgid "_Copy"
+#~ msgstr "འདྲ་བཤུས།(_C)"
+#~ msgid "_Customize Toolbar"
+#~ msgstr "ལག་ཆས་ཕྲ་རིང་ སྲོལ་སྒྲིག་འབད།(_C)"
+#~ msgid "_Desktop Default"
+#~ msgstr "ཌེཀསི་ཊོཔ་་ སྔོན་སྒྲིག (_D)"
+#~ msgid "_Icons Only"
+#~ msgstr "ངོས་དཔར་ཚུ་རྐྱངམ་གཅིག(_I)"
+#~ msgid "_New"
+#~ msgstr "གསརཔ།(_N)"
+#~ msgid "_Paste"
+#~ msgstr "སྦྱར། (_P)"
+#~ msgid "_Quit"
+#~ msgstr "སྤངས།(_Q)"
+#~ msgid "_Redo"
+#~ msgstr "ལོག་འབད།(_R)"
+#~ msgid "_Text for All Icons"
+#~ msgstr "ངོས་དཔར་ཆ་མཉམ་གྱི་དོན་ལུ་ཚིག་ཡིག (_T)"
+#~ msgid "_Undo"
+#~ msgstr "འབད་བཤོལ།(_U)"
+#~ msgid "Quit an existing instance of gedit"
+#~ msgstr "ཇི་ཨེ་ཌིཊི་གི་ གནས་བཞིན་པའི་ དུས་སྐབས་ཅིག་སྤངས་།"
+#~ msgid "The file you are trying to open contains an invalid byte sequence."
+#~ msgstr "ཁྱོད་ཀྱིས་ཁ་ཕྱེ་ནི་ལུ་འབད་རྩོལ་བསྐྱེད་མི་ ཡིག་སྣོད་ནང་ན་ ནུས་མེད་བའིཊི་གི་ འབྱུང་རིམ་ཅིག་འདུག"
+#~ msgid ""
+#~ "gedit was not able to automatically determine the encoding of the file "
+#~ "you want to open."
+#~ msgstr ""
+#~ "ཇི་ཨེ་ཌིཊི་གིས་ ཁྱོད་ཀྱིས་ཁ་ཕྱེ་དགོ་མོན་མི་ ཡིག་སྣོད་ཀྱི་ཨིན་ཀོ་ཌིང་དེ་ རང་བཞིན་གྱིས་ གཏན་འབེབས་་འབད་"
+#~ "མ་ཚུགས།"
+#~ msgid "Update"
+#~ msgstr "དུས་མཐུན་བཟོ།"
+#~ msgid "gedit: Document Info plugin"
+#~ msgstr "ཇི་ཨེ་ཌིཊི: ཡིག་ཆའི་བརྡ་དོན་གྱི་ པ་ལག་ཨིན།"
+#~ msgid "Sa_ve Copy..."
+#~ msgstr "འདྲ་བཤུས་སྲུངས་...(_v)"
+#~ msgid "Could not save a copy of the file to \"%s\""
+#~ msgstr "ཡིག་སྣོད་ཀྱི་འདྲ་བཤུས་\"%s\"ལུ་ བསྲུངས་མ་ཚུགས།"
+#~ msgid "You are trying to overwrite the original file"
+#~ msgstr "ཁྱོད་ཀྱིས་ཡིག་སྣོད་ངོ་མ་དེ་ ཚབ་སྲུང་འབད་ནིའི་འབད་རྩོལ་བསྐྱེད་དོ།"
+#~ msgid "Save Copy..."
+#~ msgstr "འདྲ་བཤུས་སྲུངས་..."
+#~ msgid "%s (copy)"
+#~ msgstr "%s(འདྲ་བཤུས)"
+#~ msgid "Save a Copy"
+#~ msgstr "འདྲ་བཤུས་ཅིག་སྲུངས།"
+#~ msgid "Saves a copy of the current document to a local or remote location."
+#~ msgstr "ད་ལྟོའི་ཡིག་ཆ་དེ་གི་འདྲ་ཅིག་ ཉེ་གནས་སམ་ ཐག་རིང་གནས་ཁོངས་ཅིག་ལུ་སྲུངམཨིན།"
+#~ msgid "_Run Command..."
+#~ msgstr "བརྡ་བཀོད་གཡོག་བཀོལ་...(_R)"
+#~ msgid "Run Command"
+#~ msgstr "བརྡ་བཀོད་གཡོག་བཀོལ།"
+#~ msgid "_Run"
+#~ msgstr "གཡོག་བཀོལ།(_R)"
+#~ msgid "Failed"
+#~ msgstr "མ་ཚུགས།"
+#~ msgid ""
+#~ "The shell command entry is empty.\n"
+#~ "\n"
+#~ "Please, insert a valid shell command."
+#~ msgstr ""
+#~ "ཤལ་གྱི་བརྡ་བཀོད་ ཐོ་བཀོད་སྟོངམ་ཨིན་པས།\n"
+#~ " \n"
+#~ "ནུས་ཅན་ཤལ་གྱི་ བརྡ་བཀོད་ཅིག་བཙུགས་གནང་།"
+#~ msgid ""
+#~ "Error parsing the shell command.\n"
+#~ "\n"
+#~ "Please, insert a valid shell command."
+#~ msgstr ""
+#~ "ཤལ་གྱི་བརྡ་བཀོད་ མིང་དཔྱད་འབད་ནི་ལུ་འཛོལ་བ། \n"
+#~ " \n"
+#~ "ནུས་ཅན་ཤལ་གྱི་ བརྡ་བཀོད་ཅིག་བཙུགས་གནང་།"
+#~ msgid "Executing command"
+#~ msgstr "བརྡ་བཀོད་ལག་ལེན་འཐབ་དོ།"
+#~ msgid ""
+#~ "Executes an external program and, if required, displays its output in the "
+#~ "output window."
+#~ msgstr ""
+#~ "ཕྱི་ཁའི་ལས་རིམ་ཅིག་ ལག་ལེན་འཐབ་ཨིནམ་ད་ དགོས་མཁོ་ཡོད་པ་ཅིན་ དེ་གི་ཨའུཊི་པུཊི་དེ་ ཨའུཊི་པུཊི་སྒོ་སྒྲིག་"
+#~ "ནང་ བཀྲམ་སྟོན་འབདཝ་ཨིན།"
+#~ msgid "Shell command"
+#~ msgstr "ཤལ་གྱི་བརྡ་བཀོད།"
+#~ msgid "_Show results in Output Window"
+#~ msgstr "གྲུབ་འབྲས་འདི་ ཨའུཊི་པུཊི་སྒོ་སྒྲིག་ནང་སྟོན།(_S)"
+#~ msgid "The selected text does not contain misspelled words."
+#~ msgstr "སེལ་འཐུ་འབད་མི་ ཡིག་ཆའི་ནང་ ཡིག་སྡེབ་འཛོལ་བའི་ མིང་ཚིག་མིན་འདུག"
+#~ msgid "The document does not contain misspelled words."
+#~ msgstr "ཡིག་ཆ་དེ་ནང་ ཡིག་སྡེབ་འཛོལ་བའི་ མིང་ཚིག་མིན་འདུག"
+#~ msgid "Tag list plugin"
+#~ msgstr "ངོ་རྟགས་ཐོ་ཡིག་གི་ པ་ལག་ཨིན།"
+#~ msgid "Tag _List"
+#~ msgstr "ངོ་རྟགས་ཐོ་ཡིག (_L)"
+#~ msgid "Show the tag list window"
+#~ msgstr "ངོ་རྟགས་ཐོ་ཡིག་གི་ སྒོ་སྒྲིག་སྟོན།"
+#~ msgid "<b>Undo</b>"
+#~ msgstr "<b>འབད་བཤོལ།</b>"
+#~ msgid "_Limit to"
+#~ msgstr "ལུ་ཚད་བཟུང་། (_L)"
+#~ msgid "_Unlimited undo"
+#~ msgstr "ཚད་མེད་འབད་་བཤོལ། (_U)"
+#~ msgid "act_ions"
+#~ msgstr "བྱ་བ་ཚུ། (_i)"
+#~ msgid "Invalid file name"
+#~ msgstr "ནུས་མེད་ཡིག་སྣོད་ཀྱི་མིང་།"
+#~ msgid "Brackets &lt;&gt;"
+#~ msgstr "གུག་ཤད་ &lt;&gt།"
+#~ msgid "Symbol &gt;&gt;"
+#~ msgstr "བརྡ་མཚོན་ &gt;&gt།"
+#~ msgid "Symbol &gt;="
+#~ msgstr "བརྡ་མཚོན་&gt;=།"
+#~ msgid "Symbol &lt;&lt;"
+#~ msgstr "བརྡ་མཚོན་&lt;&lt;།"
+#~ msgid "TagList"
+#~ msgstr "ངོ་རྟགས་ཐོ་ཡིག"
+

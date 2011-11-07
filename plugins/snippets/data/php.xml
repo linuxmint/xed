@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<snippets language="PHP">
+  <snippet id="class">
+    <text><![CDATA[#doc
+#	classname:	${1:ClassName}
+#	scope:		${2:PUBLIC}
+#
+#/doc
+
+class ${1:ClassName} ${3:extends AnotherClass}
+{
+	#	internal variables
+	
+	#	Constructor
+	function __construct (${4:argument})
+	{
+		# code...
+		$0
+	}
+	###	
+
+}
+###]]></text>
+    <description>class ..</description>
+    <tag>class</tag>
+  </snippet>
+  <snippet id="$">
+    <text><![CDATA[\$_COOKIE['${1:variable}']]]></text>
+    <description>COOKIE['..']</description>
+    <tag>$</tag>
+  </snippet>
+  <snippet id="do">
+    <text><![CDATA[do
+{
+	# code...
+	$0
+} while (${1:$a <= 10});]]></text>
+    <description>do .. while ..</description>
+    <tag>do</tag>
+  </snippet>
+  <snippet id="elseif">
+    <text><![CDATA[elseif (${1:condition})
+{
+	# code...
+	$0
+}]]></text>
+    <description>elseif ..</description>
+    <tag>elseif</tag>
+  </snippet>
+  <snippet id="else">
+    <text><![CDATA[else
+{
+	# code...
+	$0
+}]]></text>
+    <description>else ..</description>
+    <tag>else</tag>
+  </snippet>
+  <snippet id="$-1">
+    <text><![CDATA[\$_ENV['${1:variable}']]]></text>
+    <description>ENV['..']</description>
+    <tag>$</tag>
+  </snippet>
+  <snippet id="$-2">
+    <text><![CDATA[\$_FILES['${1:variable}']]]></text>
+    <description>FILES['..']</description>
+    <tag>$</tag>
+  </snippet>
+  <snippet id="foreach">
+    <text><![CDATA[foreach ($${1:variable} as $${2:key} => $${3:value})
+{
+	# code...
+	$0:
+}]]></text>
+    <description>foreach ..</description>
+    <tag>foreach</tag>
+  </snippet>
+  <snippet id="for">
+    <text><![CDATA[for ($${1:i} = ${2:0}; $${1:i} < $3; $${1:i}++)
+{
+	# code...
+	$0
+}]]></text>
+    <description>for ..</description>
+    <tag>for</tag>
+  </snippet>
+  <snippet id="function">
+    <text><![CDATA[${1:public }function ${2:FunctionName}($3)
+{
+	${0:# code...}
+}]]></text>
+    <description>function ..</description>
+    <tag>function</tag>
+  </snippet>
+  <snippet id="$-3">
+    <text><![CDATA[\$_GET['${1:variable}']]]></text>
+    <description>GET['..']</description>
+    <tag>$</tag>
+  </snippet>
+  <snippet id="globals">
+    <text><![CDATA[\$GLOBALS['${1:variable}']${2: =} ${3:something} ${4:;}]]></text>
+    <description>$GLOBALS['..']</description>
+    <tag>globals</tag>
+  </snippet>
+  <snippet id="if?">
+    <text><![CDATA[$${1:retVal} = (${2:condition}) ? ${3:a} : ${4:b};]]></text>
+    <description>$.. =</description>
+    <tag>iff</tag>
+  </snippet>
+  <snippet id="ifelse">
+    <text><![CDATA[if (${1:condition})
+{
+	${2:# code...}
+}
+else
+{
+	${3:# code...}
+}
+$0]]></text>
+    <description>if .. else ..</description>
+    <tag>ifelse</tag>
+  </snippet>
+  <snippet id="if">
+    <text><![CDATA[if (${1:condition})
+{
+	# code...
+	$0
+}]]></text>
+    <description>if ..</description>
+    <tag>if</tag>
+  </snippet>
+  <snippet id="incl1">
+    <text><![CDATA[include_once('${1:file}');$0]]></text>
+    <description>include_once</description>
+    <tag>inclo</tag>
+  </snippet>
+  <snippet id="incl">
+    <text><![CDATA[include('${1:file}');$0]]></text>
+    <description>include</description>
+    <tag>incl</tag>
+  </snippet>
+  <snippet id="array">
+    <text><![CDATA[$${1:arrayName} = array('$2'${3:,});]]></text>
+    <description>$.. = array</description>
+    <tag>array</tag>
+  </snippet>
+  <snippet id="php">
+    <text><![CDATA[<?php
+
+	$0
+
+?>]]></text>
+    <description>&lt;?php .. ?&gt;</description>
+    <tag>php</tag>
+  </snippet>
+  <snippet id="$-4">
+    <text><![CDATA[\$_POST['${1:variable}']]]></text>
+    <description>POST['..']</description>
+    <tag>$</tag>
+  </snippet>
+  <snippet id="print">
+    <text><![CDATA[print "${1:string}"${2: . };]]></text>
+    <description>print ".."</description>
+    <tag>print</tag>
+  </snippet>
+  <snippet id="$-5">
+    <text><![CDATA[\$_REQUEST['${1:variable}']]]></text>
+    <description>REQUEST['..']</description>
+    <tag>$</tag>
+  </snippet>
+  <snippet id="req1">
+    <text><![CDATA[require_once('${1:file}');]]></text>
+    <description>require_once</description>
+    <tag>reqo</tag>
+  </snippet>
+  <snippet id="req">
+    <text><![CDATA[require('${1:file}');]]></text>
+    <description>require</description>
+    <tag>req</tag>
+  </snippet>
+  <snippet id="$-6">
+    <text><![CDATA[\$_SERVER['${1:variable}']]]></text>
+    <description>SERVER['..']</description>
+    <tag>$</tag>
+  </snippet>
+  <snippet id="$-7">
+    <text><![CDATA[\$_SESSION['${1:variable}']]]></text>
+    <description>SESSION['..']</description>
+    <tag>$</tag>
+  </snippet>
+  <snippet id="case">
+    <text><![CDATA[case '${1:variable}':
+	# code...
+	$0
+break;]]></text>
+    <description>case ..</description>
+    <tag>case</tag>
+  </snippet>
+  <snippet id="switch">
+    <text><![CDATA[switch (${1:variable})
+{
+	case '${2:value}':
+		${3:# code...}
+	break;
+	
+	$0
+			
+	default:
+		${4:# code...}
+	break;
+}]]></text>
+    <description>switch ..</description>
+    <tag>switch</tag>
+  </snippet>
+  <snippet id="while">
+    <text><![CDATA[while (${1:$a <= 10})
+{
+	# code...
+	$0
+}]]></text>
+    <description>while ..</description>
+    <tag>while</tag>
+  </snippet>
+</snippets>

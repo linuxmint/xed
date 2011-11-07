@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<snippets language="Perl">
+  <snippet id="perl">
+    <text><![CDATA[#!/usr/bin/perl
+$0]]></text>
+    <tag>perl</tag>
+    <description>#!/usr/bin/perl</description>
+  </snippet>
+  <snippet id="ife">
+    <text><![CDATA[if ($1) {
+	${2:# body...}
+} else {
+	${3:# else...}
+}
+]]></text>
+    <description>Conditional if..else</description>
+    <tag>ife</tag>
+  </snippet>
+  <snippet id="ifee">
+    <text><![CDATA[if ($1) {
+	${2:# body...}
+} elsif ($3) {
+	${4:# elsif...}
+} else {
+	${5:# else...}
+}
+]]></text>
+    <description>Conditional if..elsif..else</description>
+    <tag>ifee</tag>
+  </snippet>
+  <snippet id="xunless">
+    <text><![CDATA[${1:expression} unless ${2:condition};
+]]></text>
+    <description>Conditional one-line</description>
+    <tag>xunless</tag>
+  </snippet>
+  <snippet id="xif">
+    <text><![CDATA[${1:expression} if ${2:condition};
+]]></text>
+    <description>Conditional one-line</description>
+    <tag>xif</tag>
+  </snippet>
+  <snippet id="eval">
+    <text><![CDATA[eval {
+	${1:# do something risky...}
+};
+if ($@) {
+	${2:# handle failure...}
+}
+]]></text>
+    <description>Try/Except</description>
+    <tag>eval</tag>
+  </snippet>
+  <snippet id="fore">
+    <text><![CDATA[foreach ${1:my $${2:x} }(@${3:array}) {
+	${4:# body...}
+}
+]]></text>
+    <description>Loop</description>
+    <tag>fore</tag>
+  </snippet>
+  <snippet id="for">
+    <text><![CDATA[for (my $${1:var} = 0; $$1 < ${2:expression}; $$1++) {
+	${3:# body...}
+}
+]]></text>
+    <description>Loop</description>
+    <tag>for</tag>
+  </snippet>
+  <snippet id="sub">
+    <text><![CDATA[sub ${1:function_name} {
+	${2:# body...}
+}
+]]></text>
+    <description>Function</description>
+    <tag>sub</tag>
+  </snippet>
+  <snippet id="hashpointer">
+    <text><![CDATA[ => ]]></text>
+    <accelerator><![CDATA[<Shift><Alt>l]]></accelerator>
+    <description>hash pointer</description>
+  </snippet>
+  <snippet id="if">
+    <text><![CDATA[if ($1) {
+	${2:# body...}
+}
+]]></text>
+    <description>Conditional</description>
+    <tag>if</tag>
+  </snippet>
+  <snippet id="xfore">
+    <text><![CDATA[${1:expression} foreach @${2:array};
+]]></text>
+    <description>Loop one-line</description>
+    <tag>xfore</tag>
+  </snippet>
+  <snippet id="xwhile">
+    <text><![CDATA[${1:expression} while ${2:condition};
+]]></text>
+    <description>Loop one-line</description>
+    <tag>xwhile</tag>
+  </snippet>
+  <snippet id="slurp">
+    <text><![CDATA[my $${1:var};
+{ local $/ = undef; local *FILE; open FILE, "<${2:file}"; $$1 = <FILE>; close FILE }
+]]></text>
+    <description>Read File</description>
+    <tag>slurp</tag>
+  </snippet>
+  <snippet id="unless">
+    <text><![CDATA[unless ($1) {
+	${2:# body...}
+}
+]]></text>
+    <description>Conditional</description>
+    <tag>unless</tag>
+  </snippet>
+  <snippet id="while">
+    <text><![CDATA[while ($1) {
+	${2:# body...}
+}
+]]></text>
+    <description>Loop</description>
+    <tag>while</tag>
+  </snippet>
+</snippets>

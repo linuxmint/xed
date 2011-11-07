@@ -1,0 +1,67 @@
+;; -*- scheme -*-
+
+;; From ../../gedit/gedit-utils.h
+
+(define-function uri_has_writable_scheme
+  (c-name "gedit_utils_uri_has_writable_scheme")
+  (return-type "gboolean")
+  (parameters
+    '("const-gchar*" "uri")
+  )
+)
+
+(define-function uri_has_file_scheme
+  (c-name "gedit_utils_uri_has_file_scheme")
+  (return-type "gboolean")
+  (parameters
+    '("const-gchar*" "uri")
+  )
+)
+
+(define-function uri_exists
+  (c-name "gedit_utils_uri_exists")
+  (return-type "gboolean")
+  (parameters
+    '("const-gchar*" "text_uri")
+  )
+)
+
+(define-function uri_is_valid
+  (c-name "gedit_utils_is_valid_uri")
+  (return-type "gboolean")
+  (parameters
+    '("const-gchar*" "uri")
+  )
+)
+
+(define-function uri_get_dirname
+  (c-name "gedit_utils_uri_get_dirname")
+  (return-type "gchar*")
+  (parameters
+    '("const-char*" "uri")
+  )
+)
+
+(define-function menu_position_under_widget
+  (c-name "gedit_utils_menu_position_under_widget")
+  (return-type "none")
+  (parameters
+    '("GtkMenu*" "menu")
+    '("gint*" "x")
+    '("gint*" "y")
+    '("gboolean*" "push_in")
+    '("gpointer" "user_data")
+  )
+)
+
+(define-function menu_position_under_tree_view
+  (c-name "gedit_utils_menu_position_under_tree_view")
+  (return-type "none")
+  (parameters
+    '("GtkMenu*" "menu")
+    '("gint*" "x")
+    '("gint*" "y")
+    '("gboolean*" "push_in")
+    '("gpointer" "user_data")
+  )
+)

@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<snippets language="Java">
+  <snippet id="cd">
+    <text><![CDATA[private static final ${1:String} ${2:var} = "$0";]]></text>
+    <description>const def</description>
+    <tag>cd</tag>
+  </snippet>
+  <snippet id="ife">
+    <text><![CDATA[if ($1) { // $2
+
+   $0
+
+} else { // $3
+
+   
+
+}
+
+]]></text>
+    <description>if .. else</description>
+    <tag>ife</tag>
+  </snippet>
+  <snippet id="if">
+    <text><![CDATA[if ($1) { // $2
+   $0
+}]]></text>
+    <description>if</description>
+    <tag>if</tag>
+  </snippet>
+  <snippet id="log">
+    <text><![CDATA[/** Logger for this class and subclasses. */
+protected final Log log = LogFactory.getLog(getClass());
+]]></text>
+    <description>logger</description>
+    <tag>log</tag>
+  </snippet>
+  <snippet id="tcf">
+    <text><![CDATA[try {
+   $2
+} catch (${1:Exception} e) {
+   $3
+} finally {
+   $4
+}
+$0]]></text>
+    <description>try .. catch .. finally</description>
+    <tag>tcf</tag>
+  </snippet>
+  <snippet id="while">
+    <text><![CDATA[while ($1) { // $2
+   $0
+}]]></text>
+    <description>while statement</description>
+    <tag>while</tag>
+  </snippet>
+  <snippet id="main">
+    <text><![CDATA[public static void main(String[] args) {
+	${1:System.exit(0)};
+}]]></text>
+    <description>main</description>
+    <tag>main</tag>
+  </snippet>
+  <snippet id="sout">
+    <text><![CDATA[System.out.println("${1}");
+$0	
+]]></text>
+    <description>System.out.println</description>
+    <tag>sout</tag>
+  </snippet>
+  <snippet id="try/catch">
+    <text><![CDATA[try {
+	$GEDIT_SELECTED_TEXT
+} 
+catch (Exception e) { 
+	${1:e.printStackTrace();}
+}
+$0]]></text>
+    <accelerator><![CDATA[<Shift><Alt>t]]></accelerator>
+    <description>Wrap Selection in Try/Catch</description>
+  </snippet>
+  <snippet id="tc">
+    <text><![CDATA[try {
+   $2
+} catch (${1:Exception} e) {
+   $3
+}
+$0]]></text>
+    <tag>tc</tag>
+    <description>try .. catch</description>
+  </snippet>
+</snippets>

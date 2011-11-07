@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<snippets language="LaTeX">
+  <snippet id="command">
+    <text><![CDATA[{\\${1:bf} $GEDIT_SELECTED_TEXT}]]></text>
+    <accelerator><![CDATA[<Shift><Alt>w]]></accelerator>
+    <description>Wrap Selection in Command</description>
+  </snippet>
+  <snippet id="$">
+    <text><![CDATA[\[
+	$1
+\]]]></text>
+    <description>Displaymath</description>
+    <tag>$</tag>
+  </snippet>
+  <snippet id="itd">
+    <text><![CDATA[\item[${1:description}] ${0:item}]]></text>
+    <description>\item[description]</description>
+    <tag>itd</tag>
+  </snippet>
+  <snippet id="sec">
+    <text><![CDATA[\section{${1:section name}}\label{${2:label}}
+]]></text>
+    <description>Section</description>
+    <tag>sec</tag>
+  </snippet>
+  <snippet id="sub">
+    <text><![CDATA[\subsection{${1:subsection name}}\label{${2:label}}
+]]></text>
+    <description>Sub Section</description>
+    <tag>sub</tag>
+  </snippet>
+  <snippet id="ssub">
+    <text><![CDATA[\subsubsection{${1:subsubsection name}}\label{${2:label}}
+]]></text>
+    <description>Sub Sub Section</description>
+    <tag>ssub</tag>
+  </snippet>
+</snippets>

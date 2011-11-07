@@ -1,0 +1,45 @@
+;; -*- scheme -*-
+; object definitions ...
+;; Enumerations and flags ...
+
+
+;; From ../../gedit/gedit-commands.h
+
+(define-function load_uri
+  (c-name "gedit_commands_load_uri")
+  (return-type "none")
+  (parameters
+    '("GeditWindow*" "window")
+    '("const-gchar*" "uri")
+    '("const-GeditEncoding*" "encoding")
+    '("gint" "line_pos")
+  )
+)
+
+(define-function load_uris
+  (c-name "gedit_commands_load_uris")
+  (return-type "gint")
+  (parameters
+    '("GeditWindow*" "window")
+    '("const-GSList*" "uris")
+    '("const-GeditEncoding*" "encoding")
+    '("gint" "line_pos")
+  )
+)
+
+(define-function save_document
+  (c-name "gedit_commands_save_document")
+  (return-type "none")
+  (parameters
+    '("GeditWindow*" "window")
+    '("GeditDocument*" "document")
+  )
+)
+
+(define-function save_all_documents
+  (c-name "gedit_commands_save_all_documents")
+  (return-type "none")
+  (parameters
+    '("GeditWindow*" "window")
+  )
+)

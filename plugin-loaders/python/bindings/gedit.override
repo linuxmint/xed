@@ -1,0 +1,461 @@
+%%
+headers
+#include <pygobject.h>
+#include <pygtk/pygtk.h>
+
+#include <gedit/gedit-language-manager.h>
+#include <gedit/gedit-plugin.h>
+#include <gedit/gedit-app.h>
+#include <gedit/gedit-encodings.h>
+#include <gedit/gedit-enum-types.h>
+#include <gedit/gedit-statusbar.h>
+#include <gedit/gedit-debug.h>
+#include <gedit/gedit-help.h>
+
+#include "gedit-plugin-python.h"
+
+void pygedit_register_classes (PyObject *d); 
+void pygedit_add_constants (PyObject *module, const gchar *strip_prefix);
+
+static PyObject *
+_helper_wrap_gobject_glist (const GList *list)
+{
+    PyObject *py_list;
+    const GList *tmp;
+
+    if ((py_list = PyList_New(0)) == NULL) {
+        return NULL;
+    }
+    for (tmp = list; tmp != NULL; tmp = tmp->next) {
+        PyObject *py_obj = pygobject_new(G_OBJECT(tmp->data));
+
+        if (py_obj == NULL) {
+            Py_DECREF(py_list);
+            return NULL;
+        }
+        PyList_Append(py_list, py_obj);
+        Py_DECREF(py_obj);
+    }
+    return py_list;
+}
+
+static PyObject *
+_helper_wrap_gobject_gslist (const GSList *list)
+{
+    PyObject *py_list;
+    const GSList *tmp;
+
+    if ((py_list = PyList_New(0)) == NULL) {
+        return NULL;
+    }
+    for (tmp = list; tmp != NULL; tmp = tmp->next) {
+        PyObject *py_obj = pygobject_new(G_OBJECT(tmp->data));
+
+        if (py_obj == NULL) {
+            Py_DECREF(py_list);
+            return NULL;
+        }
+        PyList_Append(py_list, py_obj);
+        Py_DECREF(py_obj);
+    }
+    return py_list;
+}
+%%
+include
+  geditplugin.override
+  geditmessage.override
+%%
+modulename gedit 
+%%
+import gtk.Widget as PyGtkWidget_Type
+import gobject.GObject as PyGObject_Type
+import gtk.gdk.Screen as PyGdkScreen_Type
+import gtk.VBox as PyGtkVBox_Type
+import gtk.Window as PyGtkWindow_Type
+import gtk.Image as PyGtkImage_Type
+import gtk.Statusbar as PyGtkStatusbar_Type
+import gtksourceview2.Buffer as PyGtkSourceBuffer_Type
+import gtksourceview2.View as PyGtkSourceView_Type
+import gtksourceview2.Language as PyGtkSourceLanguage_Type
+import gtksourceview2.LanguageManager as PyGtkSourceLanguageManager_Type
+%%
+ignore-glob
+  *_get_type
+  gedit_document_error_quark
+  gedit_panel_add_item_with_stock_icon
+%%
+override gedit_app_create_window kwargs
+static PyObject *
+_wrap_gedit_app_create_window(PyGObject *self, PyObject *args, PyObject *kwargs)
+{
+    static char *kwlist[] = { "screen", NULL};
+    PyGObject *screen = NULL;
+    GeditWindow *ret;
+
+    if (!PyArg_ParseTupleAndKeywords(args, kwargs,
+			"|O!", kwlist,
+			&PyGdkScreen_Type, &screen))
+        return NULL;
+
+    ret = gedit_app_create_window(GEDIT_APP(self->obj),
+				  screen ? GDK_SCREEN(screen->obj) : NULL);
+
+    /* pygobject_new handles NULL checking */
+    return pygobject_new((GObject *)ret);
+}
+%%
+override gedit_app_get_windows
+static PyObject *
+_wrap_gedit_app_get_windows(PyGObject *self)
+{
+    const GList *list;
+    PyObject *py_list;
+
+    list = gedit_app_get_windows (GEDIT_APP (self->obj));
+
+    py_list = _helper_wrap_gobject_glist (list);
+
+    return py_list;
+}
+%%
+override gedit_app_get_views
+static PyObject *
+_wrap_gedit_app_get_views(PyGObject *self)
+{
+    GList *list;
+    PyObject *py_list;
+
+    list = gedit_app_get_views (GEDIT_APP (self->obj));
+
+    py_list = _helper_wrap_gobject_glist (list);
+
+    g_list_free (list);
+
+    return py_list;
+}
+%%
+override gedit_app_get_documents
+static PyObject *
+_wrap_gedit_app_get_documents(PyGObject *self)
+{
+    GList *list;
+    PyObject *py_list;
+
+    list = gedit_app_get_documents (GEDIT_APP (self->obj));
+
+    py_list = _helper_wrap_gobject_glist (list);
+
+    g_list_free (list);
+
+    return py_list;
+}
+%%
+override gedit_window_get_documents
+static PyObject *
+_wrap_gedit_window_get_documents(PyGObject *self)
+{
+    GList *list;
+    PyObject *py_list;
+
+    list = gedit_window_get_documents (GEDIT_WINDOW (self->obj));
+
+    py_list = _helper_wrap_gobject_glist (list);
+
+    g_list_free(list);
+
+    return py_list;
+}
+%%
+override gedit_window_get_unsaved_documents
+static PyObject *
+_wrap_gedit_window_get_unsaved_documents(PyGObject *self)
+{
+    GList *list;
+    PyObject *py_list;
+
+    list = gedit_window_get_unsaved_documents (GEDIT_WINDOW (self->obj));
+
+    py_list = _helper_wrap_gobject_glist (list);
+
+    g_list_free(list);
+
+    return py_list;
+}
+%%
+override gedit_window_get_views
+static PyObject *
+_wrap_gedit_window_get_views(PyGObject *self)
+{
+    GList *list;
+    PyObject *py_list;
+
+    list = gedit_window_get_views (GEDIT_WINDOW (self->obj));
+
+    py_list = _helper_wrap_gobject_glist (list);
+
+    g_list_free(list);
+
+    return py_list;
+}
+%%
+override gedit_window_close_tabs kwargs
+static PyObject *
+_wrap_gedit_window_close_tabs (PyGObject *self,
+			       PyObject  *args,
+			       PyObject  *kwargs)
+{
+	static char *kwlist[] = { "tabs", NULL };
+	PyObject *list, *item;
+	GList *glist = NULL;
+	int len, i;
+
+	if (!PyArg_ParseTupleAndKeywords (args, kwargs,
+					  "O:GeditWindow.close_tabs", kwlist,
+					  &list))
+		return NULL;
+
+	if (!PySequence_Check (list))
+	{
+		PyErr_SetString (PyExc_TypeError,
+				 "first argument must be a sequence");
+		return NULL;
+	}
+
+	len = PySequence_Length (list);
+
+	for (i = 0; i < len; i++)
+	{
+		item = PySequence_GetItem (list, i);
+		Py_DECREF(item);
+
+		if (!pygobject_check (item, &PyGeditTab_Type))
+		{
+			PyErr_SetString (PyExc_TypeError,
+					 "sequence item not a Gtkwidget object");
+			g_list_free (glist);
+			return NULL;
+		}
+
+		glist = g_list_append (glist, pygobject_get (item));
+	}
+
+	gedit_window_close_tabs (GEDIT_WINDOW (self->obj), glist);
+
+	g_list_free (glist);
+	Py_INCREF (Py_None);
+	return Py_None;
+}
+%%
+override gedit_document_get_search_text
+static PyObject *
+_wrap_gedit_document_get_search_text(PyGObject *self)
+{
+    PyObject *tuple, *string;
+    guint flags;
+    gchar *ret;
+
+    ret = gedit_document_get_search_text (GEDIT_DOCUMENT (self->obj), &flags);
+
+    tuple = PyTuple_New(2);
+    if (ret) {
+        string = PyString_FromString(ret);
+        PyTuple_SetItem(tuple, 0, string);
+    } else {
+        Py_INCREF(Py_None);
+        PyTuple_SetItem(tuple, 0, Py_None);
+    }
+    PyTuple_SetItem(tuple, 1, PyInt_FromLong(flags));
+
+    g_free(ret);
+
+    return tuple;
+}
+%%
+override gedit_panel_add_item kwargs
+static PyObject *
+_wrap_gedit_panel_add_item(PyGObject *self, PyObject *args, PyObject *kwargs)
+{
+    static char *kwlist1[] = { "item", "name", "image", NULL };
+    static char *kwlist2[] = { "item", "name", "stock_id", NULL };
+    PyGObject *item, *image;
+    char *name = NULL;
+    char *stock_id = NULL;
+
+    if (PyArg_ParseTupleAndKeywords(args, kwargs, "O!sO!:GeditPanel.add_item", kwlist1, &PyGtkWidget_Type, &item, &name, &PyGtkImage_Type, &image)) {
+        gedit_panel_add_item(GEDIT_PANEL(self->obj), GTK_WIDGET(item->obj), name, GTK_WIDGET(image->obj));
+        Py_INCREF(Py_None);
+        return Py_None;
+    }
+
+    PyErr_Clear();
+
+    if (PyArg_ParseTupleAndKeywords(args, kwargs, "O!ss:GeditPanel.add_item", kwlist2, &PyGtkWidget_Type, &item, &name, &stock_id)) {
+        gedit_panel_add_item_with_stock_icon(GEDIT_PANEL(self->obj), GTK_WIDGET(item->obj), name, stock_id);
+        Py_INCREF(Py_None);
+        return Py_None;
+    }
+
+    PyErr_Clear();
+    PyErr_SetString(PyExc_TypeError, "the last arg should be either a gtk.Image or a stock_id string");
+    return NULL;
+}
+%%
+override gedit_app_get_default_deprecated
+/* deprecated wrappers */
+static PyObject *
+_wrap_gedit_app_get_default_deprecated(PyObject *self)
+{
+    if (PyErr_Warn(PyExc_DeprecationWarning, "use gedit.app_get_default instead") < 0)
+	return NULL;
+    return _wrap_gedit_app_get_default(self);
+}
+%%
+override gedit_encoding_get_from_charset_deprecated kwargs
+static PyObject *
+_wrap_gedit_encoding_get_from_charset_deprecated(PyObject *self, PyObject *args, PyObject *kwargs)
+{
+    if (PyErr_Warn(PyExc_DeprecationWarning, "use gedit.encoding_get_from_charset instead") < 0)
+	return NULL;
+    return _wrap_gedit_encoding_get_from_charset(self, args, kwargs);
+}
+%%
+override gedit_encoding_get_from_index_deprecated kwargs
+static PyObject *
+_wrap_gedit_encoding_get_from_index_deprecated(PyObject *self, PyObject *args, PyObject *kwargs)
+{
+    if (PyErr_Warn(PyExc_DeprecationWarning, "use gedit.encoding_get_from_index instead") < 0)
+	return NULL;
+    return _wrap_gedit_encoding_get_from_index(self, args, kwargs);
+}
+%%
+override gedit_encoding_get_utf8_deprecated
+static PyObject *
+_wrap_gedit_encoding_get_utf8_deprecated(PyObject *self)
+{
+    if (PyErr_Warn(PyExc_DeprecationWarning, "use gedit.encoding_get_utf8 instead") < 0)
+	return NULL;
+    return _wrap_gedit_encoding_get_utf8(self);
+}
+%%
+override gedit_encoding_get_current_deprecated
+static PyObject *
+_wrap_gedit_encoding_get_current_deprecated(PyObject *self)
+{
+    if (PyErr_Warn(PyExc_DeprecationWarning, "use gedit.encoding_get_current instead") < 0)
+	return NULL;
+    return _wrap_gedit_encoding_get_current(self);
+}
+%%
+override gedit_tab_get_from_document_deprecated kwargs
+static PyObject *
+_wrap_gedit_tab_get_from_document_deprecated(PyObject *self, PyObject *args, PyObject *kwargs)
+{
+    if (PyErr_Warn(PyExc_DeprecationWarning, "use gedit.tab_get_from_document instead") < 0)
+	return NULL;
+    return _wrap_gedit_tab_get_from_document(self, args, kwargs);
+}
+%%
+override gedit_language_manager_list_languages_sorted kwargs
+static PyObject *
+_wrap_gedit_language_manager_list_languages_sorted(PyObject *self, PyObject *args, PyObject *kwargs)
+{
+    static char *kwlist[] = { "lm", "include_hidden", NULL };
+    PyGObject *lm;
+    int include_hidden;
+    PyObject *py_list;
+    GSList *list;
+
+    if (!PyArg_ParseTupleAndKeywords (args, kwargs,
+                                      "O!i:language_manager_list_languages_sorted",
+                                      kwlist, &PyGtkSourceLanguageManager_Type, &lm,
+                                      &include_hidden))
+        return NULL;
+
+    list = gedit_language_manager_list_languages_sorted (GTK_SOURCE_LANGUAGE_MANAGER (lm->obj),
+                                                         include_hidden);
+
+    py_list = _helper_wrap_gobject_gslist (list);
+
+    g_slist_free (list);
+
+    return py_list;
+}
+%%
+override gedit_debug kwargs
+static PyObject *
+_wrap_gedit_debug(PyObject *self, PyObject *args, PyObject *kwargs)
+{
+    static char *kwlist[] = { "message", NULL };
+    PyObject *traceback_module, *mdict, *func, *traceback, *tuple;
+    PyObject *filename, *lineno, *funcname;
+    char *message = NULL;
+
+    if (g_getenv ("GEDIT_DEBUG_PLUGINS") == NULL)
+    {
+        Py_INCREF (Py_None);
+        return Py_None;
+    }
+
+    if (!PyArg_ParseTupleAndKeywords (args, kwargs, "|s", kwlist, &message))
+        return NULL;
+
+    traceback_module = PyImport_ImportModule ("traceback");
+    if (traceback_module == NULL)
+    {
+        g_warning ("traceback module cannot be imported");
+        Py_INCREF (Py_None);
+        return Py_None;
+    }
+
+    mdict = PyModule_GetDict (traceback_module);
+    func = PyDict_GetItemString (mdict, "extract_stack");
+    traceback = PyObject_CallFunction (func, "zi", NULL, 1);
+    tuple = PyList_GetItem (traceback, 0);
+
+    if (tuple == NULL || !PyTuple_Check (tuple))
+    {
+        g_warning ("traceback tuple is null!");
+    }
+    else
+    {
+        filename = PyTuple_GetItem (tuple, 0);
+        lineno = PyTuple_GetItem (tuple, 1);
+        funcname = PyTuple_GetItem (tuple, 2);
+
+        if (message == NULL)
+            gedit_debug (GEDIT_DEBUG_PLUGINS,
+                         PyString_AsString (filename),
+                         PyInt_AsLong (lineno),
+                         PyString_AsString (funcname));
+        else
+            gedit_debug_message (GEDIT_DEBUG_PLUGINS,
+                                 PyString_AsString (filename),
+                                 PyInt_AsLong (lineno),
+                                 PyString_AsString (funcname),
+                                 "%s",
+                                 message);
+    }
+    Py_DECREF (traceback);
+    Py_DECREF (traceback_module);
+
+    Py_INCREF (Py_None);
+    return Py_None;
+}
+%%
+override gedit_statusbar_flash_message kwargs
+static PyObject *
+_wrap_gedit_statusbar_flash_message(PyGObject *self, PyObject *args, PyObject *kwargs)
+{
+    static char *kwlist[] = { "context_id", "message", NULL };
+    int context_id;
+    char *message;
+
+    if (!PyArg_ParseTupleAndKeywords(args, kwargs,"is:GeditStatusbar.flash_message", kwlist, &context_id, &message))
+        return NULL;
+   
+    gedit_statusbar_flash_message(GEDIT_STATUSBAR(self->obj), context_id, "%s", message);
+
+    Py_INCREF(Py_None);
+    return Py_None;
+}
+%%

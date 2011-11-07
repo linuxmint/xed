@@ -1,0 +1,85 @@
+%%
+headers
+#define NO_IMPORT_PYGOBJECT
+#define NO_IMPORT_PYGTK
+#include <pygobject.h>
+#include <pygtk/pygtk.h>
+
+#include "gedit-utils.h"
+
+void pygeditutils_register_classes (PyObject *d);
+void pygeditutils_add_constants (PyObject *module, const gchar *strip_prefix);
+
+%%
+modulename gedit.utils
+%%
+import gtk.Widget as PyGtkWidget_Type
+import gtk.TreeView as PyGtkTreeView_Type
+import gtk.Menu as PyGtkMenu_Type
+%%
+ignore-glob
+  _*
+%%
+override gedit_utils_menu_position_under_widget kwargs
+static PyObject *
+_wrap_gedit_utils_menu_position_under_widget (PyObject *self,
+					      PyObject *args,
+					      PyObject *kwargs)
+{
+	static char *kwlist[] = { "menu", "widget", NULL };
+	PyObject *py_menu, *py_widget;
+	GtkMenu *menu;
+	GtkWidget *widget;
+	gint x, y;
+	gboolean push_in;
+	PyObject *tuple;
+	
+	if (!PyArg_ParseTupleAndKeywords (args, kwargs,
+					  "O!O!", kwlist,
+					  &PyGtkMenu_Type, &py_menu,
+					  &PyGtkWidget_Type, &py_widget))
+		return NULL;
+	
+	menu   = GTK_MENU (pygobject_get (py_menu));
+	widget = GTK_WIDGET (pygobject_get (py_widget));
+
+	gedit_utils_menu_position_under_widget (menu, &x, &y, &push_in, widget);
+
+	tuple = PyTuple_New (3);
+	PyTuple_SetItem (tuple, 0, PyInt_FromLong (x));
+	PyTuple_SetItem (tuple, 1, PyInt_FromLong (y));
+	PyTuple_SetItem (tuple, 2, PyBool_FromLong (push_in));
+	return tuple;
+}
+%%
+override gedit_utils_menu_position_under_tree_view kwargs
+static PyObject *
+_wrap_gedit_utils_menu_position_under_tree_view (PyObject *self,
+					         PyObject *args,
+					         PyObject *kwargs)
+{
+	static char *kwlist[] = { "menu", "tree_view", NULL };
+	PyObject *py_menu, *py_view;
+	GtkMenu *menu;
+	GtkTreeView *view;
+	gint x, y;
+	gboolean push_in;
+	PyObject *tuple;
+	
+	if (!PyArg_ParseTupleAndKeywords (args, kwargs,
+					  "O!O!", kwlist,
+					  &PyGtkMenu_Type, &py_menu,
+					  &PyGtkTreeView_Type, &py_view))
+		return NULL;
+	
+	menu = GTK_MENU (pygobject_get (py_menu));
+	view = GTK_TREE_VIEW (pygobject_get (py_view));
+
+	gedit_utils_menu_position_under_widget (menu, &x, &y, &push_in, view);
+
+	tuple = PyTuple_New (3);
+	PyTuple_SetItem (tuple, 0, PyInt_FromLong (x));
+	PyTuple_SetItem (tuple, 1, PyInt_FromLong (y));
+	PyTuple_SetItem (tuple, 2, PyBool_FromLong (push_in));
+	return tuple;
+}

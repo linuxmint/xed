@@ -1,0 +1,53 @@
+<?xml version="1.0"?>
+<!-- Generated with glade3
+	Version: 2.91.3
+	Date: Sat Nov 18 13:58:59 2006
+	User: sf
+	Host: antea
+-->
+<interface>
+  <object class="GtkHBox" id="output-panel">
+    <property name="visible">True</property>
+    <child>
+      <object class="GtkScrolledWindow" id="scrolledwindow1">
+    <property name="visible">True</property>
+    <property name="hscrollbar_policy">GTK_POLICY_AUTOMATIC</property>
+    <property name="vscrollbar_policy">GTK_POLICY_AUTOMATIC</property>
+    <property name="shadow_type">GTK_SHADOW_IN</property>
+    <child>
+      <object class="GtkTextView" id="view">
+        <property name="visible">True</property>
+        <property name="editable">False</property>
+        <property name="wrap_mode">GTK_WRAP_WORD</property>
+        <property name="cursor_visible">False</property>
+        <property name="accepts_tab">False</property>
+        <signal name="button_press_event" handler="on_view_button_press_event"/>
+        <signal name="motion_notify_event" handler="on_view_motion_notify_event"/>
+        <signal name="visibility_notify_event" handler="on_view_visibility_notify_event"/>
+      </object>
+    </child>
+      </object>
+    </child>
+    <child>
+      <object class="GtkVButtonBox" id="vbuttonbox1">
+    <property name="visible">True</property>
+    <property name="border_width">6</property>
+    <property name="spacing">6</property>
+    <property name="layout_style">GTK_BUTTONBOX_END</property>
+    <child>
+      <object class="GtkButton" id="stop">
+        <property name="visible">True</property>
+        <property name="sensitive">False</property>
+        <property name="label">gtk-stop</property>
+        <property name="use_stock">True</property>
+        <signal handler="on_stop_clicked" name="clicked"/>
+      </object>
+    </child>
+      </object>
+      <packing>
+    <property name="expand">False</property>
+    <property name="position">1</property>
+      </packing>
+    </child>
+  </object>
+</interface>

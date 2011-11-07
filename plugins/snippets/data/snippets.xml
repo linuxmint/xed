@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<snippets language="snippets">
+  <snippet id="simple">
+    <text><![CDATA[\${${1:n:default}}]]></text>
+    <description>Simple Placeholder</description>
+    <tag>simple</tag>
+  </snippet>
+  <snippet id="simple-fallback">
+    <text><![CDATA[\${${1:n:}[${2:default1,default2}]}]]></text>
+    <description>Simple Fallback Placeholder</description>
+    <tag>simplef</tag>
+  </snippet>
+  <snippet id="shell">
+    <text><![CDATA[\$(${1:n:} ${2:shell code})]]></text>
+    <description>Shell Placeholder</description>
+    <tag>shell</tag>
+  </snippet>
+  <snippet id="python">
+    <text><![CDATA[\$<${1:n:} ${2:[refs]:} return 'python code' >]]></text>
+    <description>Python Placeholder</description>
+    <tag>python</tag>
+  </snippet>
+  <snippet id="regex">
+    <text><![CDATA[\${${1:n:} ${2:input}/${3:regex-pattern}/${4:replacement}/${5:modifiers}}]]></text>
+    <description>Regular Expression Placeholder</description>
+    <tag>regex</tag>
+  </snippet>
+  <snippet id="$-CURRENT_DOCUMENT_PATH">
+    <text><![CDATA[\$GEDIT_CURRENT_DOCUMENT_PATH]]></text>
+    <description>Gedit Current Document Path Variable</description>
+    <tag>$</tag>
+  </snippet>
+  <snippet id="$-CURRENT_DOCUMENT_NAME">
+    <text><![CDATA[\$GEDIT_CURRENT_DOCUMENT_NAME]]></text>
+    <description>Gedit Current Document Name Variable</description>
+    <tag>$</tag>
+  </snippet>
+  <snippet id="$-CURRENT_DOCUMENT_URI">
+    <text><![CDATA[\$GEDIT_CURRENT_DOCUMENT_URI]]></text>
+    <description>Gedit Current Document Uri Variable</description>
+    <tag>$</tag>
+  </snippet>
+  <snippet id="$-CURRENT_DOCUMENT_SCHEME">
+    <text><![CDATA[\$GEDIT_CURRENT_DOCUMENT_SCHEME]]></text>
+    <description>Gedit Current Document Scheme Variable</description>
+    <tag>$</tag>
+  </snippet>
+  <snippet id="$-CURRENT_DOCUMENT_TYPE">
+    <text><![CDATA[\$GEDIT_CURRENT_DOCUMENT_TYPE]]></text>
+    <description>Gedit Current Document Type Variable</description>
+    <tag>$</tag>
+  </snippet>
+  <snippet id="$-DOCUMENTS_URI">
+    <text><![CDATA[\$GEDIT_DOCUMENTS_URI]]></text>
+    <description>Gedit Documents Uri Variable</description>
+    <tag>$</tag>
+  </snippet>
+  <snippet id="$-DOCUMENTS_PATH">
+    <text><![CDATA[\$GEDIT_DOCUMENTS_PATH]]></text>
+    <description>Gedit Documents Path Variable</description>
+    <tag>$</tag>
+  </snippet>
+  <snippet id="$-SELECTED_TEXT">
+    <text><![CDATA[\$GEDIT_SELECTED_TEXT]]></text>
+    <description>Gedit Selected Text Variable</description>
+    <tag>$</tag>
+  </snippet>
+  <snippet id="$-CURRENT_WORD">
+    <text><![CDATA[\$GEDIT_CURRENT_WORD]]></text>
+    <description>Gedit Current Word Variable</description>
+    <tag>$</tag>
+  </snippet>
+  <snippet id="$-CURRENT_LINE">
+    <text><![CDATA[\$GEDIT_CURRENT_LINE]]></text>
+    <description>Gedit Current Line Variable</description>
+    <tag>$</tag>
+  </snippet>
+  <snippet id="$-CURRENT_LINE_NUMBER">
+    <text><![CDATA[\$GEDIT_CURRENT_LINE_NUMBER]]></text>
+    <description>Gedit Current Line Number Variable</description>
+    <tag>$</tag>
+  </snippet>
+  <snippet id="$-DROP_FILENAME">
+    <text><![CDATA[\$GEDIT_DROP_FILENAME]]></text>
+    <description>Gedit Drop Filename Variable</description>
+    <tag>$</tag>
+  </snippet>
+  <snippet id="$-DROP_REL_FILENAME">
+    <text><![CDATA[\$GEDIT_DROP_REL_FILENAME]]></text>
+    <description>Gedit Drop Relative Filename Variable</description>
+    <tag>$</tag>
+  </snippet>
+  <snippet id="$-DROP_MIME_TYPE">
+    <text><![CDATA[\$GEDIT_DROP_MIME_TYPE]]></text>
+    <description>Gedit Drop Mime Type Variable</description>
+    <tag>$</tag>
+  </snippet>
+</snippets>

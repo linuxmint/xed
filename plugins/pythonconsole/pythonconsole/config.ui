@@ -1,0 +1,107 @@
+<?xml version="1.0"?>
+<interface>
+  <requires lib="gtk+" version="2.14"/>
+  <!-- interface-naming-policy toplevel-contextual -->
+  <object class="GtkDialog" id="dialog-config">
+    <property name="window_position">center-on-parent</property>
+    <property name="destroy_with_parent">True</property>
+    <property name="type_hint">dialog</property>
+    <property name="has_separator">False</property>
+    <signal name="destroy" handler="on_dialog_config_destroy"/>
+    <signal name="response" handler="on_dialog_config_response"/>
+    <child internal-child="vbox">
+      <object class="GtkVBox" id="dialog-vbox1">
+        <property name="visible">True</property>
+        <child>
+          <object class="GtkTable" id="table2">
+            <property name="visible">True</property>
+            <property name="border_width">6</property>
+            <property name="n_rows">2</property>
+            <property name="n_columns">2</property>
+            <property name="column_spacing">6</property>
+            <property name="row_spacing">6</property>
+            <child>
+              <object class="GtkLabel" id="label-command">
+                <property name="visible">True</property>
+                <property name="xalign">0</property>
+                <property name="label" translatable="yes">C_ommand color:</property>
+                <property name="use_underline">True</property>
+                <property name="mnemonic_widget">colorbutton-command</property>
+              </object>
+            </child>
+            <child>
+              <object class="GtkLabel" id="label-error">
+                <property name="visible">True</property>
+                <property name="xalign">0</property>
+                <property name="label" translatable="yes">_Error color:</property>
+                <property name="use_underline">True</property>
+                <property name="mnemonic_widget">colorbutton-error</property>
+              </object>
+              <packing>
+                <property name="top_attach">1</property>
+                <property name="bottom_attach">2</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkColorButton" id="colorbutton-command">
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="receives_default">True</property>
+                <property name="color">#31314e4e6c6c</property>
+                <signal name="color_set" handler="on_colorbutton_command_color_set"/>
+              </object>
+              <packing>
+                <property name="left_attach">1</property>
+                <property name="right_attach">2</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkColorButton" id="colorbutton-error">
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="receives_default">True</property>
+                <property name="color">#999900000000</property>
+                <signal name="color_set" handler="on_colorbutton_error_color_set"/>
+              </object>
+              <packing>
+                <property name="left_attach">1</property>
+                <property name="right_attach">2</property>
+                <property name="top_attach">1</property>
+                <property name="bottom_attach">2</property>
+              </packing>
+            </child>
+          </object>
+          <packing>
+            <property name="position">1</property>
+          </packing>
+        </child>
+        <child internal-child="action_area">
+          <object class="GtkHButtonBox" id="dialog-action_area1">
+            <property name="visible">True</property>
+            <property name="layout_style">end</property>
+            <child>
+              <object class="GtkButton" id="button1">
+                <property name="label">gtk-close</property>
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="receives_default">True</property>
+                <property name="use_stock">True</property>
+              </object>
+              <packing>
+                <property name="position">0</property>
+              </packing>
+            </child>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="pack_type">end</property>
+            <property name="position">0</property>
+          </packing>
+        </child>
+      </object>
+    </child>
+    <action-widgets>
+      <action-widget response="-7">button1</action-widget>
+    </action-widgets>
+  </object>
+</interface>

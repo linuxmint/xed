@@ -1,0 +1,283 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<snippets language="C">
+  <snippet id="gpl">
+    <text><![CDATA[/*
+ * ${1:[$GEDIT_CURRENT_DOCUMENT_NAME,<filename>]}
+ * This file is part of ${2:<program name>}
+ *
+ * Copyright (C) $<3: import datetime; return str(datetime.date.today().year)> - $<4:
+import pwd, os
+try:
+  return pwd.getpwuid(os.getuid()).pw_gecos.split(',')[0]
+except KeyError:
+  return '<author\>' >
+ *
+ * ${2} is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * ${2} is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with ${2}; if not, write to the Free Software
+ * Foundation, Inc., 51 Franklin St, Fifth Floor, 
+ * Boston, MA  02110-1301  USA
+ */
+
+$0]]></text>
+    <tag>gpl</tag>
+    <description>GPL License</description>
+  </snippet>
+  <snippet id="lgpl">
+    <text><![CDATA[/*
+ * ${1:[$GEDIT_CURRENT_DOCUMENT_NAME,<filename>]}
+ * This file is part of ${2:<library name>} 
+ *
+ * Copyright (C) $<3: import datetime; return str(datetime.date.today().year)> - $<4:
+import pwd, os
+try:
+  return pwd.getpwuid(os.getuid()).pw_gecos.split(',')[0]
+except KeyError:
+  return '<author\>' >
+ *
+ * ${2} is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Lesser General Public
+ * License as published by the Free Software Foundation; either
+ * version 2.1 of the License, or (at your option) any later version.
+ * 
+ * ${2} is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Lesser General Public License for more details.
+ * 
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with this library; if not, write to the Free Software
+ * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
+ */
+
+$0]]></text>
+    <tag>lgpl</tag>
+    <description>LGPL License</description>
+  </snippet>
+  <snippet id="do">
+    <text><![CDATA[do
+{
+	$0
+} while ($1);]]></text>
+    <tag>do</tag>
+    <description>do .. while</description>
+  </snippet>
+  <snippet id="for">
+    <text><![CDATA[for (${1:i} = ${2:0}; ${1:i} < ${3:count}; ${1:i} += ${4:1})
+{
+	$0
+}]]></text>
+    <tag>for</tag>
+    <description>for loop</description>
+  </snippet>
+  <snippet id="while">
+    <text><![CDATA[while (${1:condition})
+{
+	$0
+}]]></text>
+    <tag>while</tag>
+    <description>while loop</description>
+  </snippet>
+  <snippet id="if">
+    <text><![CDATA[if (${1:condition})
+{
+	$0
+}]]></text>
+    <tag>if</tag>
+    <description>if</description>
+  </snippet>
+  <snippet id="elif">
+    <text><![CDATA[else if (${1:condition})
+{
+	$0
+}]]></text>
+    <tag>elif</tag>
+    <description>else if</description>
+  </snippet>
+  <snippet id="else">
+    <text><![CDATA[else
+{
+	$0
+}]]></text>
+    <tag>else</tag>
+    <description>else</description>
+  </snippet>
+  <snippet id="Inc">
+    <text><![CDATA[#include <${1:file}.h>
+$0]]></text>
+    <tag>Inc</tag>
+    <description>#include &lt;..&gt;</description>
+  </snippet>
+  <snippet id="inc">
+    <text><![CDATA[#include "${1:file}.h"
+$0]]></text>
+    <tag>inc</tag>
+    <description>#include ".."</description>
+  </snippet>
+  <snippet id="main">
+    <text><![CDATA[int 
+main (int argc, char *argv[])
+{
+	$0
+	return 0;
+}]]></text>
+    <tag>main</tag>
+    <description>main</description>
+  </snippet>
+  <snippet id="struct">
+    <text><![CDATA[struct ${1:name}
+{
+	${0:/* data */}
+};]]></text>
+    <tag>struct</tag>
+    <description>struct</description>
+  </snippet>
+  <snippet id="endif">
+    <text><![CDATA[#endif
+$0]]></text>
+    <description>#endif</description>
+    <accelerator><![CDATA[<Control><Alt>period]]></accelerator>
+  </snippet>
+  <snippet id="td">
+    <text><![CDATA[typedef ${1:newtype} ${2:type};
+$0]]></text>
+    <tag>td</tag>
+    <description>typedef</description>
+  </snippet>
+  <snippet id="gobject">
+    <text><![CDATA[#include "$1.h"
+$<
+global camel_str,low_str, type_str, is_str, up_str
+components = $1.split('-')
+low_str = '_'.join(components).lower()
+up_str = '_'.join(components).upper()
+type_str = '_'.join([components[0], 'TYPE'] + components[1:]).upper()
+is_str = '_'.join([components[0], 'IS'] + components[1:]).upper()
+camel_str = ''
+
+for t in components:
+  camel_str += t.capitalize()
+>
+
+#define $<[1]: return up_str >_GET_PRIVATE(object)(G_TYPE_INSTANCE_GET_PRIVATE((object), $<[1]: return type_str >, $<[1]: return camel_str >Private))
+
+struct _$<[1]: return camel_str >Private
+{
+};
+
+G_DEFINE_TYPE ($<[1]: return camel_str >, $<[1]: return low_str >, ${2:G_TYPE_OBJECT})
+
+static void
+$<[1]: return low_str>_finalize (GObject *object)
+{
+	G_OBJECT_CLASS ($<[1]: return low_str >_parent_class)->finalize (object);
+}
+
+static void
+$<[1]: return low_str >_class_init ($<[1]: return camel_str >Class *klass)
+{
+	GObjectClass *object_class = G_OBJECT_CLASS (klass);
+	
+	object_class->finalize = $<[1]: return low_str >_finalize;
+
+	g_type_class_add_private (object_class, sizeof ($<[1]: return camel_str >Private));
+}
+
+static void
+$<[1]: return low_str >_init ($<[1]: return camel_str> *self)
+{
+	self->priv = $<[1]: return up_str >_GET_PRIVATE (self);
+}
+
+$<[1]: return camel_str > *
+$<[1]: return low_str >_new ()
+{
+	return g_object_new ($<[1]: return type_str >, NULL);
+}]]></text>
+    <tag>gobject</tag>
+    <description>GObject template</description>
+  </snippet>
+  <snippet id="ginterface">
+    <text><![CDATA[#include "$1.h"
+$<
+global camel_str,low_str,up_str
+components = $1.split('-')
+low_str = '_'.join(components).lower()
+up_str = '_'.join(components).upper()
+camel_str = ''
+
+for t in components:
+  camel_str += t.capitalize()
+>
+/* Default implementation */
+static const gchar *
+$<[1]: return low_str>_example_method_default ($<[1]: return camel_str > *self)
+{
+	g_return_val_if_reached (NULL);
+}
+
+static void 
+$<[1]: return low_str>_init ($<[1]: return camel_str >Iface *iface)
+{
+	static gboolean initialized = FALSE;
+	
+	iface->example_method = $<[1]: return low_str>_example_method_default;
+	
+	if (!initialized)
+	{
+		initialized = TRUE;
+	}
+}
+
+/*
+ * This is an method example for an interface
+ */
+const gchar *
+$<[1]: return low_str>_example_method ($<[1]: return camel_str > *self)
+{
+	g_return_val_if_fail ($<[1]: return up_str> (self), NULL);
+	return $<[1]: return up_str>_GET_INTERFACE (self)->example_method (self);
+}
+
+GType 
+$<[1]: return low_str>_get_type ()
+{
+	static GType $<[1]: return low_str>_type_id = 0;
+	
+	if (!$<[1]: return low_str>_type_id)
+	{
+		static const GTypeInfo g_define_type_info =
+		{
+			sizeof ($<[1]: return camel_str >Iface),
+			(GBaseInitFunc) $<[1]: return low_str>_init, 
+			NULL,
+			NULL,
+			NULL,
+			NULL,
+			0,
+			0,
+			NULL
+		};
+		
+		$<[1]: return low_str>_type_id = 
+			g_type_register_static (G_TYPE_INTERFACE,
+						"$<[1]: return camel_str>",
+						&g_define_type_info,
+						0);
+	}
+	
+	return $<[1]: return low_str>_type_id;
+}]]></text>
+    <tag>ginterface</tag>
+    <description>GObject interface</description>
+  </snippet>
+</snippets>

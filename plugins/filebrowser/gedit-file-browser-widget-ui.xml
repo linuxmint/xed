@@ -1,0 +1,54 @@
+<ui>
+  <toolbar name="ToolBar">
+    <placeholder name="Tool_Opt1"/>
+    <toolitem action="DirectoryUp"/>
+    <separator/>
+    <toolitem action="DirectoryRefresh"/>
+    <separator/>
+    <placeholder name="Tool_Opt2"/>
+    <separator/>
+    <toolitem action="FilterHidden"/>
+    <separator/>
+    <placeholder name="Tool_Opt3"/>
+  </toolbar>
+
+  <popup name="FilePopup" action="FilePopupAction">
+    <menuitem action="FileOpen" />
+    <placeholder name="FilePopup_Opt1" />
+    <separator/>
+    <menuitem action="DirectoryNew" />
+    <menuitem action="FileNew" />
+    <separator/>
+    <placeholder name="FilePopup_Opt2" />
+    <separator/>
+    <menuitem action="FileRename"/>
+    <menuitem action="FileMoveToTrash"/>
+    <menuitem action="FileDelete"/>
+    <separator/>
+    <placeholder name="FilePopup_Opt3" />
+    <separator/>
+    <menuitem action="DirectoryRefresh"/>
+    <menuitem action="DirectoryOpen"/>
+    <placeholder name="FilePopup_Opt4" />
+    <separator/>
+    <placeholder name="FilePopup_Opt5" />
+    <separator/>
+    <menu name="FilterMenu" action="FilterMenuAction">
+      <menuitem action="FilterHidden"/>
+      <menuitem action="FilterBinary"/>
+    </menu>
+    <placeholder name="FilePopup_Opt6" />
+    <separator/>
+  </popup>
+
+  <popup name="BookmarkPopup" action="BookmarkPopupAction">
+    <placeholder name="BookmarkPopup_Opt1" />
+    <separator/>
+    <placeholder name="BookmarkPopup_Opt2" />
+    <separator/>
+    <menuitem action="BookmarkOpen"/>
+    <placeholder name="BookmarkPopup_Opt3" />
+    <separator/>
+    <placeholder name="BookmarkPopup_Opt4" />
+  </popup>
+</ui>

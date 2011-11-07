@@ -1,0 +1,135 @@
+General Information
+===================
+
+This is version 2.30.4 of gedit. gedit is a small and lightweight UTF-8 text
+editor for the MATE environment.
+
+gedit is part of MATE and uses the latest GTK+ and MATE libraries.
+Complete MATE integration is featured, with support for Drag and Drop (DnD) 
+from Caja (the MATE file manager), the use of the MATE help system,
+the MATE Virtual File System and the MATE print framework.
+
+gedit uses a Multiple Document Interface (MDI), which lets you edit more than 
+one document at the same time.
+
+gedit supports most standard editing features, plus several not found in your 
+average text editor (plugins being the most notable of these).
+
+gedit plugins may also be written in the python scripting language: to enable
+python support you need the pygtk and mate-python-desktop bindings.
+
+Although new features are always under development, currently gedit has:
+
+    * Complete support for UTF-8 text
+    * Syntax highlighting
+    * Support for editing remote files
+    * Search and Replace
+    * Printing and Print Previewing Support
+    * File Revert
+    * A complete preferences interface
+    * Configurable Plugin system, with optional python support
+
+
+Some of the plugins, packaged and installed with gedit include, among others:
+
+    * Word count
+    * Spell checker
+    * Change case of selected text
+    * File Browser
+    * Automatic snippet expansion
+    * Sort
+    * Insert Date/Time
+    * External Tools
+    * Tag list
+
+Other external plugins are also available.
+
+
+gedit is released under the GNU General Public License (GPL) version 2, see
+the file 'COPYING' for more information.
+
+
+The official web site is:
+
+    http://www.gedit.org
+
+You can download the latest gedit tarball from:
+
+    http://download.mate.org/sources/gedit/
+
+Information about gedit mailing lists can be found at
+
+    http://mail.mate.org/mailman/listinfo/gedit-list
+
+
+Installation
+============
+
+gedit requires GTK+-2.16.x, GtkSourceView 2.4.x and MateConf libraries.
+PyGobject 2.12.x, PyGtk 2.12.x and PyGtkSourceView 2.4.x are required to
+enable python plugins support.
+
+Simple install procedure:
+
+  % gzip -cd gedit-2.30.4.tar.gz | tar xvf - 	# unpack the sources
+  % cd gedit-2.30.4				# change to the toplevel directory
+  % ./configure					# run the `configure' script
+  % make					# build gedit
+  [ Become root if necessary ]
+  % make install				# install gedit
+
+See the file 'INSTALL' for more detailed information.
+
+
+How to report bugs
+==================
+
+Bugs should be reported to the MATE bug tracking system.
+(http://bugzilla.mate.org, product gedit). You will need to create an
+account for yourself.
+
+You can also report bugs using the MATE program bug-buddy.
+
+In the bug report please include:
+
+* Information about your system. For instance:
+
+   - What operating system and version
+   - What version of X
+   - What version of the gtk+, glib and mate libraries
+   - For Linux, what version of the C library
+
+  And anything else you think is relevant.
+
+* How to reproduce the bug. 
+
+* If the bug was a crash, the exact text that was printed out when the
+  crash occurred.
+
+* Further information such as stack traces may be useful, but is not
+  necessary. If you do send a stack trace, and the error is an X error,
+  it will be more useful if the stack trace is produced running the test
+  program with the --sync command line option.
+
+See the file 'BUGS' for the list of known bugs.
+
+
+Patches
+=======
+
+Patches should also be submitted to bugzilla.mate.org. If the patch
+fixes an existing bug, add the patch as an attachment to that bug
+report.
+
+Otherwise, enter a new bug report that describes the patch, and attach
+the patch to that bug report.
+
+Patches should be in unified diff form. (The -u option to GNU diff.)
+
+If you are interested in helping us to develop gedit, please see the 
+file 'AUTHOR' for contact information and/or send a message to the gedit
+mailing list. See also the file 'HACKING' for more detailed information.
+
+
+  The gedit team.
+

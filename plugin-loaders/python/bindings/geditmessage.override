@@ -1,0 +1,556 @@
+%%
+headers
+
+#include <gedit/gedit-message-bus.h>
+#include <gedit/gedit-message.h>
+
+static GType
+_helper_wrap_get_gtype_from_pytype (PyObject *pytype)
+{
+    PyTypeObject *type = (PyTypeObject *)pytype;
+    
+    if (type == &PyList_Type || type == &PyTuple_Type)
+    	return G_TYPE_STRV;
+
+    return pyg_type_from_object (pytype);
+}
+
+static gchar *
+_helper_wrap_get_string (PyObject *obj)
+{
+	PyObject *str;
+	gchar *result;
+	
+	str = PyObject_Str (obj);
+	
+	if (!str)
+		return NULL;
+	
+	result = g_strdup (PyString_AsString (str));
+	Py_DECREF (str);
+	
+	return result;
+}
+
+static int
+_helper_wrap_list_to_gvalue (GValue *gvalue, PyObject *pyvalue)
+{
+	int num;
+	gchar **lst;
+	gint i;
+	
+	num = PySequence_Size (pyvalue);
+	lst = g_new0 (gchar *, num + 1);
+	
+	for (i = 0; i < num; i++)
+	{
+		lst[i] = _helper_wrap_get_string (PySequence_GetItem (pyvalue, i));
+		
+		if (lst[i] == NULL)
+		{
+			g_strfreev (lst);
+			return 1;
+		}
+	}
+	
+	g_value_set_boxed (gvalue, lst);
+	g_strfreev (lst);
+	
+	return 0;
+}
+
+static int
+_helper_wrap_get_gvalue_from_pyobject (GValue *gvalue, PyObject *pyvalue)
+{
+	if (pyvalue->ob_type == &PyList_Type || pyvalue->ob_type == &PyTuple_Type)
+		return _helper_wrap_list_to_gvalue (gvalue, pyvalue);
+
+	return pyg_value_from_pyobject(gvalue, pyvalue);
+}
+
+static int
+_helper_wrap_message_set_value(GeditMessage *message, PyObject *pykey, PyObject *pyvalue)
+{
+    gchar *key;
+    GType gtype;
+    GValue value = {0,};
+
+    key = _helper_wrap_get_string(pykey);
+    
+    if (key == NULL)
+        return 0;
+
+    gtype = gedit_message_get_key_type(message, key);
+    
+    if (gtype == 0) {
+        PyErr_SetString(PyExc_TypeError, "invalid key");
+        g_free (key);
+        return 0;
+    }
+
+    g_value_init(&value, gtype);
+    
+    if (_helper_wrap_get_gvalue_from_pyobject (&value, pyvalue)) {
+        PyErr_SetString(PyExc_TypeError,
+                        "value is of the wrong type for this key");
+        g_free (key);
+        return 0;
+    }
+
+    gedit_message_set_value(message, key, &value);
+    g_value_unset(&value);
+    g_free (key);
+    
+    return 1;
+}
+
+typedef void (*ParsePairFunc)(PyObject *key, PyObject *value, gpointer user_data);
+
+static void
+_helper_parse_pairs_dict (PyObject *dict, ParsePairFunc func, gpointer user_data)
+{
+    if (!dict)
+        return;
+    
+    PyObject *key, *value;
+    Py_ssize_t i = 0;
+    
+    while (PyDict_Next(dict, &i, &key, &value))
+    {
+        func(key, value, user_data);
+    }
+}
+
+static void
+_helper_parse_pairs(PyObject *args, PyObject *kwargs, ParsePairFunc func, gpointer user_data)
+{
+    guint len;
+    guint i;
+    
+    len = PyTuple_Size(args);
+    
+    for (i = 0; i < len; ++i)
+    {
+    	PyObject *d = PyTuple_GetItem(args, i);
+    	
+    	if (PyDict_Check(d))
+            _helper_parse_pairs_dict(d, func, user_data);
+    }
+  
+    _helper_parse_pairs_dict(kwargs, func, user_data);  
+}
+
+static void
+_helper_message_set(PyObject *key, PyObject *value, GeditMessage *message)
+{
+    _helper_wrap_message_set_value(message, key, value);
+}
+
+static void
+_helper_message_set_values(GeditMessage *message, PyObject *args, PyObject *kwargs)
+{
+    _helper_parse_pairs(args, kwargs, (ParsePairFunc)_helper_message_set, message);
+}
+
+static GeditMessage *
+_helper_wrap_create_message(GeditMessageBus *bus, PyObject *args, PyObject *kwargs)
+{
+    PyObject *pypath, *pymethod, *pydict;
+    
+    if (!PyArg_ParseTuple(args, "OO|O:GeditMessage.create", &pypath, &pymethod, &pydict))
+        return NULL;
+    
+    gchar *object_path = _helper_wrap_get_string(pypath);
+    gchar *method = _helper_wrap_get_string(pymethod);
+    
+    GeditMessageType *message_type = gedit_message_bus_lookup (bus, object_path, method);
+    GeditMessage *message;
+     
+    if (message_type)
+    {
+        message = gedit_message_type_instantiate(message_type, NULL);
+        _helper_message_set_values(message, args, kwargs);
+    }
+    else
+    {
+    	PyErr_SetString(PyExc_StandardError, "Message type does not exist");
+        message = NULL;
+    }
+    
+    g_free(object_path);
+    g_free(method);
+    
+    return message;
+}
+
+typedef struct {
+    PyObject *func;
+    PyObject *data;
+} PyGeditCustomNotify;
+
+static void 
+pygedit_custom_destroy_notify(gpointer user_data)
+{
+    PyGeditCustomNotify *cunote = user_data;
+    PyGILState_STATE state;
+    
+    g_return_if_fail(user_data);
+    state = pyg_gil_state_ensure();
+    Py_XDECREF(cunote->func);
+    Py_XDECREF(cunote->data);
+    pyg_gil_state_release(state);
+    
+    g_free(cunote);
+}
+%%
+ignore-glob
+  *_get_type
+  gedit_message_type_foreach
+  gedit_message_type_instantiate_valist
+  gedit_message_type_new_valist
+  gedit_message_get_valist
+  gedit_message_set_valist
+  gedit_message_set_valuesv
+  gedit_message_bus_disconnect_by_func
+  gedit_message_bus_block_by_func
+  gedit_message_bus_unblock_by_func
+%%
+override gedit_message_type_new kwargs
+
+typedef struct
+{
+    GeditMessageType *message_type;
+    PyObject *optional;
+} MessageTypeSetInfo;
+
+static void
+_message_type_set(PyObject *key, PyObject *value, MessageTypeSetInfo *info)
+{
+    GType gtype;
+    
+    gchar *k = _helper_wrap_get_string(key);
+
+    if (!k)
+        return;
+
+    gtype = _helper_wrap_get_gtype_from_pytype(value);
+    
+    gboolean optional = info->optional && PySequence_Contains(info->optional, key);
+    
+    gedit_message_type_set(info->message_type, optional, k, gtype, NULL);
+    g_free(k);
+}
+
+static int
+_wrap_gedit_message_type_new(PyGObject *self, PyObject *args, PyObject *kwargs)
+{
+    PyObject *pypath, *pymethod, *optional = NULL, *pydict;
+    
+    if (!PyArg_ParseTuple(args, "OO|OO:GeditMessageType.new", &pypath, &pymethod, &optional, &pydict))
+        return -1;
+    
+    GeditMessageType *message_type = GEDIT_MESSAGE_TYPE(g_object_new(pyg_type_from_object((PyObject *) self), NULL));
+    
+    MessageTypeSetInfo info = {message_type, optional && PySequence_Check(optional) ? optional : NULL};
+    _helper_parse_pairs (args, kwargs, (ParsePairFunc)_message_type_set, &info);
+    
+    self->obj = (GObject *)message_type;    
+    pygobject_register_wrapper((PyObject *) self);
+    
+    return 0;
+}
+%%
+override gedit_message_type_instantiate kwargs
+static PyObject *
+_wrap_gedit_message_type_instantiate(PyGObject *self, PyObject *args, PyObject *kwargs)
+{
+    GeditMessageType *message_type = GEDIT_MESSAGE_TYPE (self->obj);
+    GeditMessage *message = gedit_message_type_instantiate(message_type, NULL);
+    
+    _helper_message_set_values(message, args, kwargs);
+    
+    return pygobject_new((GObject *)message);
+}
+%%
+override gedit_message_get args
+static PyObject *
+_wrap_gedit_message_get(PyGObject *self, PyObject *args)
+{
+    guint len, i;
+    PyObject *ret;
+
+    len = PyTuple_Size(args);
+    
+    ret = PyTuple_New(len);
+    
+    for (i = 0; i < len; i++) {
+        GValue value = { 0, };
+        PyObject *py_key = PyTuple_GetItem(args, i);
+        gchar *key = _helper_wrap_get_string(py_key);
+        
+        if (!key) {
+	    PyErr_SetString(PyExc_TypeError, "keys must be strings");
+	    Py_DECREF(ret);
+	    return NULL;
+	}
+	
+	gedit_message_get_value (GEDIT_MESSAGE (self->obj), key, &value);
+	g_free (key);
+
+	PyTuple_SetItem(ret, i, pyg_value_as_pyobject(&value, TRUE));
+	g_value_unset(&value);
+    }
+    
+    return ret;
+}
+%%
+override gedit_message_get_value kwargs
+static PyObject *
+_wrap_gedit_message_get_value(PyGObject *self, PyObject *args, PyObject *kwargs)
+{
+    static char *kwlist[] = { "key", NULL };
+    const gchar *key;
+    PyObject *ret;
+    GValue value = { 0, };
+    
+    if (!PyArg_ParseTupleAndKeywords(args, kwargs, "s:GeditMessage.get_value", kwlist, &key))
+        return NULL;
+
+    gedit_message_get_value(GEDIT_MESSAGE(self->obj), key, &value);
+    ret = pyg_value_as_pyobject(&value, TRUE);
+    g_value_unset(&value);
+    
+    return ret;
+}
+%%
+override gedit_message_set_value kwargs
+static PyObject *
+_wrap_gedit_message_set_value(PyGObject *self, PyObject *args, PyObject *kwargs)
+{
+    static char *kwlist[] = { "key", "value", NULL };
+    PyObject *pykey, *pyvalue;
+    
+    if (!PyArg_ParseTupleAndKeywords(args, kwargs, "OO:GeditMessage.set_value", kwlist, &pykey, &pyvalue))
+        return NULL;
+    
+    if (!_helper_wrap_message_set_value(GEDIT_MESSAGE(self->obj), pykey, pyvalue))
+        return NULL;
+    
+    Py_INCREF(Py_None);
+    return Py_None;
+}
+%%
+override gedit_message_set kwargs
+static PyObject *
+_wrap_gedit_message_set (PyGObject *self, PyObject *args, PyObject *kwargs) {
+    _helper_message_set_values(GEDIT_MESSAGE(self->obj), args, kwargs);
+
+    Py_INCREF(Py_None);
+    return Py_None;
+}
+%%
+override gedit_message_bus_new
+static int
+_wrap_gedit_message_bus_new(PyGObject *self)
+{
+    pygobject_construct (self, NULL);
+    
+    if (!self->obj) {
+        PyErr_SetString (PyExc_RuntimeError, "could not create gedit.MessageBus object");
+        return -1;
+    }
+
+    return 0;
+}
+%%
+new-constructor GEDIT_TYPE_MESSAGE_BUS
+%%
+override gedit_message_bus_register kwargs
+static PyObject *
+_wrap_gedit_message_bus_register(PyGObject *self, PyObject *args, PyObject *kwargs)
+{
+    PyObject *pypath, *pymethod, *optional = NULL, *pydict;
+    GeditMessageBus *bus = GEDIT_MESSAGE_BUS(self->obj);
+
+    if (!PyArg_ParseTuple(args, "OO|OO:GeditMessageBus.register", &pypath, &pymethod, &optional, &pydict))
+        return NULL;
+    
+    gchar *object_path = _helper_wrap_get_string(pypath);
+    gchar *method = _helper_wrap_get_string(pymethod);
+    
+    GeditMessageType *message_type = gedit_message_bus_register(bus, object_path, method, 0, NULL);
+    
+    g_free(object_path);
+    g_free(method);
+    
+    if (!message_type)
+    {
+    	PyErr_SetString(PyExc_StandardError, "Message type already exists");
+    	return NULL;
+    }
+    
+    MessageTypeSetInfo info = {message_type, optional && PySequence_Check(optional) ? optional : NULL};
+    _helper_parse_pairs (args, kwargs, (ParsePairFunc)_message_type_set, &info);
+    
+    return pyg_boxed_new(GEDIT_TYPE_MESSAGE_TYPE, message_type, TRUE, TRUE);
+}
+%%
+override gedit_message_bus_connect kwargs
+static void
+pygedit_message_bus_connect_cb(GeditMessageBus *bus, GeditMessage *message, gpointer data)
+{
+    PyGILState_STATE state;
+    PyGeditCustomNotify *cunote = data;
+    PyObject *pybus, *pymessage, *retobj;
+
+    g_assert(cunote->func);
+
+    state = pyg_gil_state_ensure();
+
+    pybus = pygobject_new((GObject *)bus);
+    pymessage = pygobject_new((GObject *)message);
+
+    if (cunote->data) {
+        retobj = PyEval_CallFunction(cunote->func, "(NNO)", pybus, pymessage, cunote->data);
+    } else {
+        retobj = PyEval_CallFunction(cunote->func, "(NN)", pybus, pymessage);
+    }
+
+    if (PyErr_Occurred()) {
+        PyErr_Print();
+    }
+
+    Py_XDECREF(retobj);
+
+    pyg_gil_state_release(state);
+}
+
+static PyObject *
+_wrap_gedit_message_bus_connect(PyGObject *self, PyObject *args, PyObject *kwargs) 
+{
+    static char *kwlist[] = { "domain", "name", "func", "data", NULL };
+    PyObject *pyfunc, *pyarg = NULL;
+    const gchar *domain;
+    const gchar *name;
+    PyGeditCustomNotify *cunote;
+
+    if (!PyArg_ParseTupleAndKeywords(args, kwargs,
+				     "ssO|O:GeditMessageBus.connect",
+				     kwlist, &domain, &name, &pyfunc, &pyarg))
+        return NULL;
+
+    if (!PyCallable_Check(pyfunc)) {
+        PyErr_SetString(PyExc_TypeError, "func must be a callable object");
+        return NULL;
+    }
+    cunote = g_new(PyGeditCustomNotify, 1);
+    Py_INCREF(pyfunc);
+    cunote->func = pyfunc;
+    Py_XINCREF(pyarg);
+    cunote->data = pyarg;
+
+    guint id = gedit_message_bus_connect(GEDIT_MESSAGE_BUS(self->obj),
+                                         domain,
+                                         name,
+                                         pygedit_message_bus_connect_cb,
+                                         (gpointer)cunote,
+                                         pygedit_custom_destroy_notify);
+    return PyLong_FromUnsignedLong(id);
+}
+%%
+override gedit_message_bus_send kwargs
+static PyObject *
+_wrap_gedit_message_bus_send(PyGObject *self, PyObject *args, PyObject *kwargs)
+{
+    /* create a new message object */
+    GeditMessage *message;
+    GeditMessageBus *bus = GEDIT_MESSAGE_BUS(self->obj);
+    message = _helper_wrap_create_message(bus, args, kwargs);
+    
+    if (!message)
+        return NULL;
+    
+    gedit_message_bus_send_message(bus, message);
+    g_object_unref (message);
+    
+    Py_INCREF(Py_None);
+    return Py_None;
+}
+%%
+override gedit_message_bus_send_sync kwargs
+static PyObject *
+_wrap_gedit_message_bus_send_sync(PyGObject *self, PyObject *args, PyObject *kwargs)
+{
+    /* create a new message object */
+    GeditMessage *message;
+    GeditMessageBus *bus = GEDIT_MESSAGE_BUS(self->obj);
+    
+    message = _helper_wrap_create_message(bus, args, kwargs);
+    
+    if (!message)
+        return NULL;
+    
+    gedit_message_bus_send_message_sync(bus, message);
+    return pygobject_new((GObject *)message);
+}
+%%
+override-slot GeditMessage.tp_getattro
+static PyObject *
+_wrap_gedit_message_tp_getattro(PyObject *self, PyObject *attrname)
+{
+	GeditMessage *message = GEDIT_MESSAGE(((PyGObject *)self)->obj);
+	GeditMessageType *type;
+
+	gchar *name = _helper_wrap_get_string (attrname);
+	gboolean exists;
+	gboolean intype;
+	PyObject *ret;
+	
+	if (name == NULL)
+	{
+		PyErr_SetString(PyExc_TypeError, "attr name somehow not a string");
+		return NULL;
+	}
+	
+	g_object_get (message, "type", &type, NULL);
+	intype = gedit_message_type_lookup (type, name) != G_TYPE_INVALID;
+	gedit_message_type_unref (type);
+	
+	exists = gedit_message_has_key (message, name);
+	
+	if (!intype)
+	{
+		ret = PyObject_GenericGetAttr(self, attrname);
+	}
+	else if (exists)
+	{
+		GValue value = { 0, };
+		gedit_message_get_value (message, name, &value);
+		ret = pyg_value_as_pyobject(&value, TRUE);
+		g_value_unset (&value);
+	}
+	else
+	{
+		Py_INCREF(Py_None);
+		ret = Py_None;
+	}
+
+	g_free (name);
+	return ret;
+}
+%%
+override-slot GeditMessage.tp_setattro
+static int
+_wrap_gedit_message_tp_setattro(PyObject *self, PyObject *attrname, PyObject *value)
+{
+	GeditMessage *message = GEDIT_MESSAGE(((PyGObject *)self)->obj);
+
+	if (!_helper_wrap_message_set_value(message, attrname, value))
+	{
+		return PyObject_GenericSetAttr(self, attrname, value);
+	}
+	else
+	{
+		return 1;
+	}
+}

@@ -1,0 +1,4 @@
+#!/bin/sh
+
+#TODO: use "mateconftool-2 -g /desktop/mate/applications/terminal/exec"
+exec `matedialog --entry --title="Run command - gedit" --text="Command to run"`

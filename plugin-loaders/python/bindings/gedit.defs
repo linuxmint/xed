@@ -1,0 +1,1461 @@
+;; -*- scheme -*-
+; object definitions ...
+(define-object App
+  (in-module "Gedit")
+  (parent "GObject")
+  (c-name "GeditApp")
+  (gtype-id "GEDIT_TYPE_APP")
+)
+
+(define-object Document
+  (in-module "Gedit")
+  (parent "GtkSourceBuffer")
+  (c-name "GeditDocument")
+  (gtype-id "GEDIT_TYPE_DOCUMENT")
+)
+
+(define-object Message
+  (in-module "Gedit")
+  (parent "GObject")
+  (c-name "GeditMessage")
+  (gtype-id "GEDIT_TYPE_MESSAGE")
+)
+
+(define-object MessageBus
+  (in-module "Gedit")
+  (parent "GObject")
+  (c-name "GeditMessageBus")
+  (gtype-id "GEDIT_TYPE_MESSAGE_BUS")
+)
+
+(define-object Panel
+  (in-module "Gedit")
+  (parent "GtkVBox")
+  (c-name "GeditPanel")
+  (gtype-id "GEDIT_TYPE_PANEL")
+)
+
+(define-object __Plugin
+  (in-module "Gedit")
+  (parent "GObject")
+  (c-name "GeditPlugin")
+  (gtype-id "GEDIT_TYPE_PLUGIN")
+)
+
+(define-object Plugin
+  (in-module "Gedit")
+  (parent "GeditPlugin")
+  (c-name "GeditPluginPython")
+  (gtype-id "GEDIT_TYPE_PLUGIN_PYTHON")
+)
+
+(define-object Statusbar
+  (in-module "Gedit")
+  (parent "GtkStatusbar")
+  (c-name "GeditStatusbar")
+  (gtype-id "GEDIT_TYPE_STATUSBAR")
+)
+
+(define-object Tab
+  (in-module "Gedit")
+  (parent "GtkVBox")
+  (c-name "GeditTab")
+  (gtype-id "GEDIT_TYPE_TAB")
+)
+
+(define-object View
+  (in-module "Gedit")
+  (parent "GtkSourceView")
+  (c-name "GeditView")
+  (gtype-id "GEDIT_TYPE_VIEW")
+)
+
+(define-object Window
+  (in-module "Gedit")
+  (parent "GtkWindow")
+  (c-name "GeditWindow")
+  (gtype-id "GEDIT_TYPE_WINDOW")
+)
+
+;; Enumerations and flags ...
+
+(define-flags LockdownMask
+  (in-module "Gedit")
+  (c-name "GeditLockdownMask")
+  (gtype-id "GEDIT_TYPE_LOCKDOWN_MASK")
+  (values
+    '("command-line" "GEDIT_LOCKDOWN_COMMAND_LINE")
+    '("printing" "GEDIT_LOCKDOWN_PRINTING")
+    '("print-setup" "GEDIT_LOCKDOWN_PRINT_SETUP")
+    '("save-to-disk" "GEDIT_LOCKDOWN_SAVE_TO_DISK")
+    '("all" "GEDIT_LOCKDOWN_ALL")
+  )
+)
+
+(define-flags SearchFlags
+  (in-module "Gedit")
+  (c-name "GeditSearchFlags")
+  (gtype-id "GEDIT_TYPE_SEARCH_FLAGS")
+  (values
+    '("dont-set-flags" "GEDIT_SEARCH_DONT_SET_FLAGS")
+    '("entire-word" "GEDIT_SEARCH_ENTIRE_WORD")
+    '("case-sensitive" "GEDIT_SEARCH_CASE_SENSITIVE")
+  )
+)
+
+(define-flags DocumentSaveFlags
+  (in-module "Gedit")
+  (c-name "GeditDocumentSaveFlags")
+  (gtype-id "GEDIT_TYPE_DOCUMENT_SAVE_FLAGS")
+  (values
+    '("ignore-mtime" "GEDIT_DOCUMENT_SAVE_IGNORE_MTIME")
+    '("ignore-backup" "GEDIT_DOCUMENT_SAVE_IGNORE_BACKUP")
+    '("preserve-backup" "GEDIT_DOCUMENT_SAVE_PRESERVE_BACKUP")
+  )
+)
+
+(define-enum TabState
+  (in-module "Gedit")
+  (c-name "GeditTabState")
+  (gtype-id "GEDIT_TYPE_TAB_STATE")
+  (values
+    '("normal" "GEDIT_TAB_STATE_NORMAL")
+    '("loading" "GEDIT_TAB_STATE_LOADING")
+    '("reverting" "GEDIT_TAB_STATE_REVERTING")
+    '("saving" "GEDIT_TAB_STATE_SAVING")
+    '("printing" "GEDIT_TAB_STATE_PRINTING")
+    '("print-previewing" "GEDIT_TAB_STATE_PRINT_PREVIEWING")
+    '("showing-print-preview" "GEDIT_TAB_STATE_SHOWING_PRINT_PREVIEW")
+    '("generic-not-editable" "GEDIT_TAB_STATE_GENERIC_NOT_EDITABLE")
+    '("loading-error" "GEDIT_TAB_STATE_LOADING_ERROR")
+    '("reverting-error" "GEDIT_TAB_STATE_REVERTING_ERROR")
+    '("saving-error" "GEDIT_TAB_STATE_SAVING_ERROR")
+    '("generic-error" "GEDIT_TAB_STATE_GENERIC_ERROR")
+    '("closing" "GEDIT_TAB_STATE_CLOSING")
+  )
+)
+
+(define-flags WindowState
+  (in-module "Gedit")
+  (c-name "GeditWindowState")
+  (gtype-id "GEDIT_TYPE_WINDOW_STATE")
+  (values
+    '("normal" "GEDIT_WINDOW_STATE_NORMAL")
+    '("saving" "GEDIT_WINDOW_STATE_SAVING")
+    '("printing" "GEDIT_WINDOW_STATE_PRINTING")
+    '("loading" "GEDIT_WINDOW_STATE_LOADING")
+    '("error" "GEDIT_WINDOW_STATE_ERROR")
+    '("saving-session" "GEDIT_WINDOW_STATE_SAVING_SESSION")    
+  )
+)
+
+;; Boxed types
+(define-boxed Encoding
+  (in-module "Gedit")
+  (c-name "GeditEncoding")
+  (gtype-id "GEDIT_TYPE_ENCODING")
+  (copy-func "gedit_encoding_copy")
+  (release-func "gedit_encoding_free")
+;;  (fields
+;;    '("gint" "index")
+;;    '("gchar*" "charset")
+;;    '("gchar*" "name")
+;;  )
+)
+
+(define-boxed MessageType
+  (in-module "Gedit")
+  (c-name "GeditMessageType")
+  (gtype-id "GEDIT_TYPE_MESSAGE_TYPE")
+  (copy-func "gedit_message_type_ref")
+  (release-func "gedit_message_type_unref")
+)
+
+
+;; From ../../gedit/gedit-app.h
+
+(define-function gedit_app_get_type
+  (c-name "gedit_app_get_type")
+  (return-type "GType")
+)
+
+(define-function app_get_default
+  (c-name "gedit_app_get_default")
+  (return-type "GeditApp*")
+)
+
+; deprecated version !
+(define-function gedit_app_get_default
+  (c-name "gedit_app_get_default_deprecated")
+  (return-type "GeditApp*")
+)
+
+(define-method create_window
+  (of-object "GeditApp")
+  (c-name "gedit_app_create_window")
+  (return-type "GeditWindow*")
+  (parameters
+    '("GdkScreen*" "screen")
+  )
+)
+
+(define-method get_windows
+  (of-object "GeditApp")
+  (c-name "gedit_app_get_windows")
+  (return-type "const-GList*")
+)
+
+(define-method get_active_window
+  (of-object "GeditApp")
+  (c-name "gedit_app_get_active_window")
+  (return-type "GeditWindow*")
+)
+
+(define-method get_documents
+  (of-object "GeditApp")
+  (c-name "gedit_app_get_documents")
+  (return-type "GList*")
+)
+
+(define-method get_views
+  (of-object "GeditApp")
+  (c-name "gedit_app_get_views")
+  (return-type "GList*")
+)
+
+(define-method get_lockdown
+  (of-object "GeditApp")
+  (c-name "gedit_app_get_lockdown")
+  (return-type "GeditLockdownMask")
+)
+
+
+;; From ../../gedit/gedit-document.h
+
+(define-function document_error_quark
+  (c-name "gedit_document_error_quark")
+  (return-type "GQuark")
+)
+
+(define-function gedit_document_get_type
+  (c-name "gedit_document_get_type")
+  (return-type "GType")
+)
+
+(define-function gedit_document_new
+  (c-name "gedit_document_new")
+  (is-constructor-of "GeditDocument")
+  (return-type "GeditDocument*")
+)
+
+(define-method get_location
+  (of-object "GeditDocument")
+  (c-name "gedit_document_get_location")
+  (return-type "GFile*")
+)
+
+(define-method get_uri
+  (of-object "GeditDocument")
+  (c-name "gedit_document_get_uri")
+  (return-type "gchar*")
+)
+
+(define-method set_uri
+  (of-object "GeditDocument")
+  (c-name "gedit_document_set_uri")
+  (return-type "none")
+  (parameters
+    '("const-gchar*" "uri")
+  )
+)
+
+(define-method get_uri_for_display
+  (of-object "GeditDocument")
+  (c-name "gedit_document_get_uri_for_display")
+  (return-type "gchar*")
+)
+
+(define-method get_short_name_for_display
+  (of-object "GeditDocument")
+  (c-name "gedit_document_get_short_name_for_display")
+  (return-type "gchar*")
+)
+
+(define-method get_content_type
+  (of-object "GeditDocument")
+  (c-name "gedit_document_get_content_type")
+  (return-type "gchar*")
+)
+
+(define-method get_mime_type
+  (of-object "GeditDocument")
+  (c-name "gedit_document_get_mime_type")
+  (return-type "gchar*")
+)
+
+(define-method get_readonly
+  (of-object "GeditDocument")
+  (c-name "gedit_document_get_readonly")
+  (return-type "gboolean")
+)
+
+(define-method load
+  (of-object "GeditDocument")
+  (c-name "gedit_document_load")
+  (return-type "none")
+  (parameters
+    '("const-gchar*" "uri")
+    '("const-GeditEncoding*" "encoding")
+    '("gint" "line_pos")
+    '("gboolean" "create")
+  )
+)
+
+(define-method insert_file
+  (of-object "GeditDocument")
+  (c-name "gedit_document_insert_file")
+  (return-type "gboolean")
+  (parameters
+    '("GtkTextIter*" "iter")
+    '("const-gchar*" "uri")
+    '("const-GeditEncoding*" "encoding")
+  )
+)
+
+(define-method load_cancel
+  (of-object "GeditDocument")
+  (c-name "gedit_document_load_cancel")
+  (return-type "gboolean")
+)
+
+(define-method save
+  (of-object "GeditDocument")
+  (c-name "gedit_document_save")
+  (parameters
+    '("GeditDocumentSaveFlags" "flags")
+  )
+  (return-type "none")
+)
+
+(define-method save_as
+  (of-object "GeditDocument")
+  (c-name "gedit_document_save_as")
+  (return-type "none")
+  (parameters
+    '("const-gchar*" "uri")
+    '("const-GeditEncoding*" "encoding")
+    '("GeditDocumentSaveFlags" "flags")
+  )
+)
+
+(define-method is_untouched
+  (of-object "GeditDocument")
+  (c-name "gedit_document_is_untouched")
+  (return-type "gboolean")
+)
+
+(define-method is_untitled
+  (of-object "GeditDocument")
+  (c-name "gedit_document_is_untitled")
+  (return-type "gboolean")
+)
+
+(define-method is_local
+  (of-object "GeditDocument")
+  (c-name "gedit_document_is_local")
+  (return-type "gboolean")
+)
+
+(define-method get_deleted
+  (of-object "GeditDocument")
+  (c-name "gedit_document_get_deleted")
+  (return-type "gboolean")
+)
+
+(define-method goto_line
+  (of-object "GeditDocument")
+  (c-name "gedit_document_goto_line")
+  (return-type "gboolean")
+  (parameters
+    '("gint" "line")
+  )
+)
+
+(define-method set_search_text
+  (of-object "GeditDocument")
+  (c-name "gedit_document_set_search_text")
+  (return-type "none")
+  (parameters
+    '("const-gchar*" "text")
+    '("guint" "flags")
+  )
+)
+
+(define-method get_search_text
+  (of-object "GeditDocument")
+  (c-name "gedit_document_get_search_text")
+  (return-type "gchar*")
+  (parameters
+    '("guint*" "flags")
+  )
+)
+
+(define-method get_can_search_again
+  (of-object "GeditDocument")
+  (c-name "gedit_document_get_can_search_again")
+  (return-type "gboolean")
+)
+
+(define-method search_forward
+  (of-object "GeditDocument")
+  (c-name "gedit_document_search_forward")
+  (return-type "gboolean")
+  (parameters
+    '("const-GtkTextIter*" "start")
+    '("const-GtkTextIter*" "end")
+    '("GtkTextIter*" "match_start")
+    '("GtkTextIter*" "match_end")
+  )
+)
+
+(define-method replace_all
+  (of-object "GeditDocument")
+  (c-name "gedit_document_replace_all")
+  (return-type "gint")
+  (parameters
+    '("const-gchar*" "find")
+    '("const-gchar*" "replace")
+    '("guint" "flags")
+  )
+)
+
+(define-method search_backward
+  (of-object "GeditDocument")
+  (c-name "gedit_document_search_backward")
+  (return-type "gboolean")
+  (parameters
+    '("const-GtkTextIter*" "start")
+    '("const-GtkTextIter*" "end")
+    '("GtkTextIter*" "match_start")
+    '("GtkTextIter*" "match_end")
+  )
+)
+
+(define-method set_language
+  (of-object "GeditDocument")
+  (c-name "gedit_document_set_language")
+  (return-type "none")
+  (parameters
+    '("GtkSourceLanguage*" "lang" (null-ok))
+  )
+)
+
+(define-method get_language
+  (of-object "GeditDocument")
+  (c-name "gedit_document_get_language")
+  (return-type "GtkSourceLanguage*")
+)
+
+(define-method get_encoding
+  (of-object "GeditDocument")
+  (c-name "gedit_document_get_encoding")
+  (return-type "const-GeditEncoding*")
+)
+
+(define-method set_enable_search_highlighting
+  (of-object "GeditDocument")
+  (c-name "gedit_document_set_enable_search_highlighting")
+  (return-type "none")
+  (parameters
+    '("gboolean" "enable")
+  )
+)
+
+(define-method get_enable_search_highlighting
+  (of-object "GeditDocument")
+  (c-name "gedit_document_get_enable_search_highlighting")
+  (return-type "gboolean")
+)
+
+;; From ../../gedit/gedit-encodings.h
+
+(define-function gedit_encoding_get_type
+  (c-name "gedit_encoding_get_type")
+  (return-type "GType")
+)
+
+(define-method copy
+  (of-object "GeditEncoding")
+  (c-name "gedit_encoding_copy")
+  (return-type "GeditEncoding*")
+)
+
+(define-method free
+  (of-object "GeditEncoding")
+  (c-name "gedit_encoding_free")
+  (return-type "none")
+)
+
+(define-function encoding_get_from_charset
+  (c-name "gedit_encoding_get_from_charset")
+  (return-type "const-GeditEncoding*")
+  (parameters
+    '("const-gchar*" "charset")
+  )
+)
+
+; Deprecated version !
+(define-function gedit_encoding_get_from_charset
+  (c-name "gedit_encoding_get_from_charset_deprecated")
+  (return-type "const-GeditEncoding*")
+  (parameters
+    '("const-gchar*" "charset")
+  )
+)
+
+(define-function encoding_get_from_index
+  (c-name "gedit_encoding_get_from_index")
+  (return-type "const-GeditEncoding*")
+  (parameters
+    '("gint" "index")
+  )
+)
+
+; Deprecated version !
+(define-function gedit_encoding_get_from_index
+  (c-name "gedit_encoding_get_from_index_deprecated")
+  (return-type "const-GeditEncoding*")
+  (parameters
+    '("gint" "index")
+  )
+)
+
+(define-method to_string
+  (of-object "GeditEncoding")
+  (c-name "gedit_encoding_to_string")
+  (return-type "gchar*")
+)
+
+(define-method get_name
+  (of-object "GeditEncoding")
+  (c-name "gedit_encoding_get_name")
+  (return-type "const-gchar*")
+)
+
+(define-method get_charset
+  (of-object "GeditEncoding")
+  (c-name "gedit_encoding_get_charset")
+  (return-type "const-gchar*")
+)
+
+(define-function encoding_get_utf8
+  (c-name "gedit_encoding_get_utf8")
+  (return-type "const-GeditEncoding*")
+)
+
+; Deprecated version !
+(define-function gedit_encoding_get_utf8
+  (c-name "gedit_encoding_get_utf8_deprecated")
+  (return-type "const-GeditEncoding*")
+)
+
+(define-function encoding_get_current
+  (c-name "gedit_encoding_get_current")
+  (return-type "const-GeditEncoding*")
+)
+
+; Deprecated version !
+(define-function gedit_encoding_get_current
+  (c-name "gedit_encoding_get_current_deprecated")
+  (return-type "const-GeditEncoding*")
+)
+
+;; From ../../gedit/gedit-help.h
+
+(define-function help_display
+  (c-name "gedit_help_display")
+  (return-type "gboolean")
+  (parameters
+    '("GtkWindow*" "parent")
+    '("const-gchar*" "name")
+    '("const-gchar*" "link_id")
+  )
+)
+
+
+
+;; From ../../gedit/gedit-panel.h
+
+(define-function gedit_panel_get_type
+  (c-name "gedit_panel_get_type")
+  (return-type "GType")
+)
+
+(define-function gedit_panel_new
+  (c-name "gedit_panel_new")
+  (is-constructor-of "GeditPanel")
+  (return-type "GtkWidget*")
+)
+
+(define-method add_item
+  (of-object "GeditPanel")
+  (c-name "gedit_panel_add_item")
+  (return-type "none")
+  (parameters
+    '("GtkWidget*" "item")
+    '("const-gchar*" "name")
+    '("GtkWidget*" "image")
+  )
+)
+
+(define-method add_item_with_stock_icon
+  (of-object "GeditPanel")
+  (c-name "gedit_panel_add_item_with_stock_icon")
+  (return-type "none")
+  (parameters
+    '("GtkWidget*" "item")
+    '("const-gchar*" "name")
+    '("const-gchar*" "stock_id")
+  )
+)
+
+(define-method remove_item
+  (of-object "GeditPanel")
+  (c-name "gedit_panel_remove_item")
+  (return-type "gboolean")
+  (parameters
+    '("GtkWidget*" "item")
+  )
+)
+
+(define-method activate_item
+  (of-object "GeditPanel")
+  (c-name "gedit_panel_activate_item")
+  (return-type "gboolean")
+  (parameters
+    '("GtkWidget*" "item")
+  )
+)
+
+(define-method item_is_active
+  (of-object "GeditPanel")
+  (c-name "gedit_panel_item_is_active")
+  (return-type "gboolean")
+  (parameters
+    '("GtkWidget*" "item")
+  )
+)
+
+(define-method get_orientation
+  (of-object "GeditPanel")
+  (c-name "gedit_panel_get_orientation")
+  (return-type "GtkOrientation")
+)
+
+(define-method get_n_items
+  (of-object "GeditPanel")
+  (c-name "gedit_panel_get_n_items")
+  (return-type "gint")
+)
+
+
+;; From ../../gedit/gedit-plugin.h
+
+(define-function gedit_plugin_get_type
+  (c-name "gedit_plugin_get_type")
+  (return-type "GType")
+)
+
+(define-method get_install_dir
+  (of-object "GeditPlugin")
+  (c-name "gedit_plugin_get_install_dir")
+  (return-type "gchar*")
+)
+
+(define-method get_data_dir
+  (of-object "GeditPlugin")
+  (c-name "gedit_plugin_get_data_dir")
+  (return-type "gchar*")
+)
+
+(define-method activate
+  (of-object "GeditPlugin")
+  (c-name "gedit_plugin_activate")
+  (return-type "none")
+  (parameters
+    '("GeditWindow*" "window")
+  )
+)
+
+(define-method deactivate
+  (of-object "GeditPlugin")
+  (c-name "gedit_plugin_deactivate")
+  (return-type "none")
+  (parameters
+    '("GeditWindow*" "window")
+  )
+)
+
+(define-method update_ui
+  (of-object "GeditPlugin")
+  (c-name "gedit_plugin_update_ui")
+  (return-type "none")
+  (parameters
+    '("GeditWindow*" "window")
+  )
+)
+
+(define-method is_configurable
+  (of-object "GeditPlugin")
+  (c-name "gedit_plugin_is_configurable")
+  (return-type "gboolean")
+)
+
+(define-method create_configure_dialog
+  (of-object "GeditPlugin")
+  (c-name "gedit_plugin_create_configure_dialog")
+  (return-type "GtkWidget*")
+)
+
+;; From ../gedit/gedit-plugin-python.h
+
+(define-function gedit_plugin_python_get_type
+  (c-name "gedit_plugin_python_get_type")
+  (return-type "GType")
+)
+
+(define-function gedit_plugin_python_new
+  (c-name "gedit_plugin_python_new")
+  (is-constructor-of "GeditPluginPython")
+  (return-type "GeditPluginPython*")
+)
+
+;; From ../../gedit/gedit-status-bar.h
+
+(define-method flash_message
+  (of-object "GeditStatusbar")
+  (c-name "gedit_statusbar_flash_message")
+  (return-type "none")
+  (parameters
+    '("int" "context_id")
+    '("const-gchar*" "message")
+  )
+ )
+
+;; From ../../gedit/gedit-tab.h
+
+(define-function gedit_tab_get_type
+  (c-name "gedit_tab_get_type")
+  (return-type "GType")
+)
+
+(define-method get_view
+  (of-object "GeditTab")
+  (c-name "gedit_tab_get_view")
+  (return-type "GeditView*")
+)
+
+(define-method get_document
+  (of-object "GeditTab")
+  (c-name "gedit_tab_get_document")
+  (return-type "GeditDocument*")
+)
+
+(define-function tab_get_from_document
+  (c-name "gedit_tab_get_from_document")
+  (return-type "GeditTab*")
+  (parameters
+    '("GeditDocument*" "doc")
+  )
+)
+
+; Deprecated version !
+(define-function gedit_tab_get_from_document
+  (c-name "gedit_tab_get_from_document_deprecated")
+  (return-type "GeditTab*")
+  (parameters
+    '("GeditDocument*" "doc")
+  )
+)
+
+(define-method get_state
+  (of-object "GeditTab")
+  (c-name "gedit_tab_get_state")
+  (return-type "GeditTabState")
+)
+
+(define-method set_auto_save_enabled
+  (of-object "GeditTab")
+  (c-name "gedit_tab_set_auto_save_enabled")
+  (return-type "none")
+  (parameters
+    '("gboolean" "enable")
+  )
+)
+
+(define-method get_auto_save_enabled
+  (of-object "GeditTab")
+  (c-name "gedit_tab_get_auto_save_enabled")
+  (return-type "gboolean")
+)
+
+(define-method set_auto_save_interval
+  (of-object "GeditTab")
+  (c-name "gedit_tab_set_auto_save_interval")
+  (return-type "none")
+  (parameters
+    '("gint" "interval")
+  )
+)
+
+(define-method get_auto_save_interval
+  (of-object "GeditTab")
+  (c-name "gedit_tab_get_auto_save_interval")
+  (return-type "gint")
+)
+
+;; From ../../gedit/gedit-view.h
+
+(define-function gedit_view_get_type
+  (c-name "gedit_view_get_type")
+  (return-type "GtkType")
+)
+
+(define-function gedit_view_new
+  (c-name "gedit_view_new")
+  (is-constructor-of "GeditView")
+  (return-type "GtkWidget*")
+  (parameters
+    '("GeditDocument*" "doc")
+  )
+)
+
+(define-method cut_clipboard
+  (of-object "GeditView")
+  (c-name "gedit_view_cut_clipboard")
+  (return-type "none")
+)
+
+(define-method copy_clipboard
+  (of-object "GeditView")
+  (c-name "gedit_view_copy_clipboard")
+  (return-type "none")
+)
+
+(define-method paste_clipboard
+  (of-object "GeditView")
+  (c-name "gedit_view_paste_clipboard")
+  (return-type "none")
+)
+
+(define-method delete_selection
+  (of-object "GeditView")
+  (c-name "gedit_view_delete_selection")
+  (return-type "none")
+)
+
+(define-method select_all
+  (of-object "GeditView")
+  (c-name "gedit_view_select_all")
+  (return-type "none")
+)
+
+(define-method scroll_to_cursor
+  (of-object "GeditView")
+  (c-name "gedit_view_scroll_to_cursor")
+  (return-type "none")
+)
+
+(define-method set_font
+  (of-object "GeditView")
+  (c-name "gedit_view_set_font")
+  (return-type "none")
+  (parameters
+    '("gboolean" "def")
+    '("const-gchar*" "font_name")
+  )
+)
+
+
+
+;; From ../../gedit/gedit-window.h
+
+(define-function gedit_window_get_type
+  (c-name "gedit_window_get_type")
+  (return-type "GType")
+)
+
+(define-method create_tab
+  (of-object "GeditWindow")
+  (c-name "gedit_window_create_tab")
+  (return-type "GeditTab*")
+  (parameters
+    '("gboolean" "jump_to")
+  )
+)
+
+(define-method create_tab_from_uri
+  (of-object "GeditWindow")
+  (c-name "gedit_window_create_tab_from_uri")
+  (return-type "GeditTab*")
+  (parameters
+    '("const-gchar*" "uri")
+    '("const-GeditEncoding*" "encoding" (null-ok))
+    '("gint" "line_pos")
+    '("gboolean" "create")
+    '("gboolean" "jump_to")
+  )
+)
+
+(define-method close_tab
+  (of-object "GeditWindow")
+  (c-name "gedit_window_close_tab")
+  (return-type "none")
+  (parameters
+    '("GeditTab*" "tab")
+  )
+)
+
+(define-method close_tabs
+  (of-object "GeditWindow")
+  (c-name "gedit_window_close_tabs")
+  (return-type "none")
+  (parameters
+    '("const-GList*" "tabs")
+  )
+)
+
+(define-method close_all_tabs
+  (of-object "GeditWindow")
+  (c-name "gedit_window_close_all_tabs")
+  (return-type "none")
+)
+
+(define-method get_active_tab
+  (of-object "GeditWindow")
+  (c-name "gedit_window_get_active_tab")
+  (return-type "GeditTab*")
+)
+
+(define-method set_active_tab
+  (of-object "GeditWindow")
+  (c-name "gedit_window_set_active_tab")
+  (return-type "none")
+  (parameters
+    '("GeditTab*" "tab")
+  )
+)
+
+(define-method get_active_view
+  (of-object "GeditWindow")
+  (c-name "gedit_window_get_active_view")
+  (return-type "GeditView*")
+)
+
+(define-method get_active_document
+  (of-object "GeditWindow")
+  (c-name "gedit_window_get_active_document")
+  (return-type "GeditDocument*")
+)
+
+(define-method get_documents
+  (of-object "GeditWindow")
+  (c-name "gedit_window_get_documents")
+  (return-type "GList*")
+)
+
+(define-method get_unsaved_documents
+  (of-object "GeditWindow")
+  (c-name "gedit_window_get_unsaved_documents")
+  (return-type "GList*")
+)
+
+(define-method get_views
+  (of-object "GeditWindow")
+  (c-name "gedit_window_get_views")
+  (return-type "GList*")
+)
+
+(define-method get_group
+  (of-object "GeditWindow")
+  (c-name "gedit_window_get_group")
+  (return-type "GtkWindowGroup*")
+)
+
+(define-method get_side_panel
+  (of-object "GeditWindow")
+  (c-name "gedit_window_get_side_panel")
+  (return-type "GeditPanel*")
+)
+
+(define-method get_bottom_panel
+  (of-object "GeditWindow")
+  (c-name "gedit_window_get_bottom_panel")
+  (return-type "GeditPanel*")
+)
+
+(define-method get_statusbar
+  (of-object "GeditWindow")
+  (c-name "gedit_window_get_statusbar")
+  (return-type "GtkWidget*")
+)
+
+(define-method get_ui_manager
+  (of-object "GeditWindow")
+  (c-name "gedit_window_get_ui_manager")
+  (return-type "GtkUIManager*")
+)
+
+(define-method get_state
+  (of-object "GeditWindow")
+  (c-name "gedit_window_get_state")
+  (return-type "GeditWindowState")
+)
+
+(define-method get_message_bus
+  (of-object "GeditWindow")
+  (c-name "gedit_window_get_message_bus")
+  (return-type "GeditMessageBus*")
+)
+
+(define-method get_tab_from_uri
+  (of-object "GeditWindow")
+  (c-name "gedit_window_get_tab_from_uri")
+  (return-type "GeditTab*")
+  (parameters
+    '("const-gchar*" "uri")
+  )
+)
+
+;; From gedit-language-manager.h
+
+(define-function get_language_manager
+  (c-name "gedit_get_language_manager")
+  (return-type "GtkSourceLanguageManager*")
+)
+
+(define-function language_manager_list_languages_sorted
+  (c-name "gedit_language_manager_list_languages_sorted")
+  (return-type "GSList*")
+  (parameters
+    '("GtkSourceLanguageManager*" "lm")
+    '("gboolean" "include_hidden")
+  )
+)
+
+
+;; From gedit-message-bus.h
+
+(define-function gedit_message_bus_get_type
+  (c-name "gedit_message_bus_get_type")
+  (return-type "GType")
+)
+
+(define-function message_bus_get_default
+  (c-name "gedit_message_bus_get_default")
+  (return-type "GeditMessageBus*")
+)
+
+(define-function gedit_message_bus_new
+  (c-name "gedit_message_bus_new")
+  (is-constructor-of "GeditMessageBus")
+  (return-type "GeditMessageBus*")
+)
+
+(define-method lookup
+  (of-object "GeditMessageBus")
+  (c-name "gedit_message_bus_lookup")
+  (return-type "GeditMessageType*")
+  (parameters
+    '("const-gchar*" "object_path")
+    '("const-gchar*" "method")
+  )
+)
+
+(define-method register
+  (of-object "GeditMessageBus")
+  (c-name "gedit_message_bus_register")
+  (return-type "GeditMessageType*")
+  (parameters
+    '("const-gchar*" "object_path")
+    '("const-gchar*" "method")
+    '("guint" "num_optional")
+  )
+  (varargs #t)
+)
+
+(define-method unregister
+  (of-object "GeditMessageBus")
+  (c-name "gedit_message_bus_unregister")
+  (return-type "none")
+  (parameters
+    '("GeditMessageType*" "message_type")
+  )
+)
+
+(define-method unregister_all
+  (of-object "GeditMessageBus")
+  (c-name "gedit_message_bus_unregister_all")
+  (return-type "none")
+  (parameters
+    '("const-gchar*" "object_path")
+  )
+)
+
+(define-method is_registered
+  (of-object "GeditMessageBus")
+  (c-name "gedit_message_bus_is_registered")
+  (return-type "gboolean")
+  (parameters
+    '("const-gchar*" "object_path")
+    '("const-gchar*" "method")
+  )
+)
+
+(define-method connect
+  (of-object "GeditMessageBus")
+  (c-name "gedit_message_bus_connect")
+  (return-type "guint")
+  (parameters
+    '("const-gchar*" "object_path")
+    '("const-gchar*" "method")
+    '("GeditMessageCallback" "callback")
+    '("gpointer" "userdata")
+    '("GDestroyNotify" "destroy_data")
+  )
+)
+
+(define-method disconnect
+  (of-object "GeditMessageBus")
+  (c-name "gedit_message_bus_disconnect")
+  (return-type "none")
+  (parameters
+    '("guint" "id")
+  )
+)
+
+(define-method disconnect_by_func
+  (of-object "GeditMessageBus")
+  (c-name "gedit_message_bus_disconnect_by_func")
+  (return-type "none")
+  (parameters
+    '("const-gchar*" "object_path")
+    '("const-gchar*" "method")
+    '("GeditMessageCallback" "callback")
+    '("gpointer" "userdata")
+  )
+)
+
+(define-method block
+  (of-object "GeditMessageBus")
+  (c-name "gedit_message_bus_block")
+  (return-type "none")
+  (parameters
+    '("guint" "id")
+  )
+)
+
+(define-method block_by_func
+  (of-object "GeditMessageBus")
+  (c-name "gedit_message_bus_block_by_func")
+  (return-type "none")
+  (parameters
+    '("const-gchar*" "object_path")
+    '("const-gchar*" "method")
+    '("GeditMessageCallback" "callback")
+    '("gpointer" "userdata")
+  )
+)
+
+(define-method unblock
+  (of-object "GeditMessageBus")
+  (c-name "gedit_message_bus_unblock")
+  (return-type "none")
+  (parameters
+    '("guint" "id")
+  )
+)
+
+(define-method unblock_by_func
+  (of-object "GeditMessageBus")
+  (c-name "gedit_message_bus_unblock_by_func")
+  (return-type "none")
+  (parameters
+    '("const-gchar*" "object_path")
+    '("const-gchar*" "method")
+    '("GeditMessageCallback" "callback")
+    '("gpointer" "userdata")
+  )
+)
+
+(define-method send_message
+  (of-object "GeditMessageBus")
+  (c-name "gedit_message_bus_send_message")
+  (return-type "none")
+  (parameters
+    '("GeditMessage*" "message")
+  )
+)
+
+(define-method send_message_sync
+  (of-object "GeditMessageBus")
+  (c-name "gedit_message_bus_send_message_sync")
+  (return-type "none")
+  (parameters
+    '("GeditMessage*" "message")
+  )
+)
+
+(define-method send
+  (of-object "GeditMessageBus")
+  (c-name "gedit_message_bus_send")
+  (return-type "none")
+  (parameters
+    '("const-gchar*" "object_path")
+    '("const-gchar*" "method")
+  )
+  (varargs #t)
+)
+
+(define-method send_sync
+  (of-object "GeditMessageBus")
+  (c-name "gedit_message_bus_send_sync")
+  (return-type "GeditMessage*")
+  (parameters
+    '("const-gchar*" "object_path")
+    '("const-gchar*" "method")
+  )
+  (varargs #t)
+)
+
+
+;; From gedit-message-type.h
+
+(define-function gedit_message_type_get_type
+  (c-name "gedit_message_type_get_type")
+  (return-type "GType")
+)
+
+(define-function gedit_message_type_is_supported
+  (c-name "gedit_message_type_is_supported")
+  (return-type "gboolean")
+  (parameters
+    '("GType" "type")
+  )
+)
+
+(define-function gedit_message_type_identifier
+  (c-name "gedit_message_type_identifier")
+  (return-type "gchar*")
+  (parameters
+    '("const-gchar*" "object_path")
+    '("const-gchar*" "method")
+  )
+)
+
+(define-function gedit_message_type_new
+  (c-name "gedit_message_type_new")
+  (is-constructor-of "GeditMessageType")
+  (return-type "GeditMessageType*")
+  (parameters
+    '("const-gchar*" "object_path")
+    '("const-gchar*" "method")
+    '("guint" "num_optional")
+  )
+  (varargs #t)
+)
+
+(define-function gedit_message_type_new_valist
+  (c-name "gedit_message_type_new_valist")
+  (return-type "GeditMessageType*")
+  (parameters
+    '("const-gchar*" "object_path")
+    '("const-gchar*" "method")
+    '("guint" "num_optional")
+    '("va_list" "va_args")
+  )
+)
+
+(define-method ref
+  (of-object "GeditMessageType")
+  (c-name "gedit_message_type_ref")
+  (return-type "GeditMessageType*")
+)
+
+(define-method unref
+  (of-object "GeditMessageType")
+  (c-name "gedit_message_type_unref")
+  (return-type "none")
+)
+
+(define-method instantiate_valist
+  (of-object "GeditMessageType")
+  (c-name "gedit_message_type_instantiate_valist")
+  (return-type "GeditMessage*")
+  (parameters
+    '("va_list" "va_args")
+  )
+)
+
+(define-method instantiate
+  (of-object "GeditMessageType")
+  (c-name "gedit_message_type_instantiate")
+  (return-type "GeditMessage*")
+  (parameters
+  )
+  (varargs #t)
+)
+
+(define-method get_object_path
+  (of-object "GeditMessageType")
+  (c-name "gedit_message_type_get_object_path")
+  (return-type "const-gchar*")
+)
+
+(define-method get_method
+  (of-object "GeditMessageType")
+  (c-name "gedit_message_type_get_method")
+  (return-type "const-gchar*")
+)
+
+(define-method lookup
+  (of-object "GeditMessageType")
+  (c-name "gedit_message_type_lookup")
+  (return-type "GType")
+  (parameters
+    '("const-gchar*" "key")
+  )
+)
+
+(define-method foreach
+  (of-object "GeditMessageType")
+  (c-name "gedit_message_type_foreach")
+  (return-type "none")
+  (parameters
+    '("GeditMessageTypeForeach" "func")
+    '("gpointer" "user_data")
+  )
+)
+
+
+;; From gedit-message.h
+
+(define-function gedit_message_get_type
+  (c-name "gedit_message_get_type")
+  (return-type "GType")
+)
+
+(define-method get
+  (of-object "GeditMessage")
+  (c-name "gedit_message_get")
+  (return-type "none")
+  (parameters
+  )
+  (varargs #t)
+)
+
+(define-method get_valist
+  (of-object "GeditMessage")
+  (c-name "gedit_message_get_valist")
+  (return-type "none")
+  (parameters
+    '("va_list" "var_args")
+  )
+)
+
+(define-method get_value
+  (of-object "GeditMessage")
+  (c-name "gedit_message_get_value")
+  (return-type "none")
+  (parameters
+    '("const-gchar*" "key")
+    '("GValue*" "value")
+  )
+)
+
+(define-method set
+  (of-object "GeditMessage")
+  (c-name "gedit_message_set")
+  (return-type "none")
+  (parameters
+  )
+  (varargs #t)
+)
+
+(define-method set_valist
+  (of-object "GeditMessage")
+  (c-name "gedit_message_set_valist")
+  (return-type "none")
+  (parameters
+    '("va_list" "var_args")
+  )
+)
+
+(define-method set_value
+  (of-object "GeditMessage")
+  (c-name "gedit_message_set_value")
+  (return-type "none")
+  (parameters
+    '("const-gchar*" "key")
+    '("GValue*" "value")
+  )
+)
+
+(define-method set_valuesv
+  (of-object "GeditMessage")
+  (c-name "gedit_message_set_valuesv")
+  (return-type "none")
+  (parameters
+    '("const-gchar**" "keys")
+    '("GValue*" "values")
+    '("gint" "n_values")
+  )
+)
+
+(define-method get_object_path
+  (of-object "GeditMessage")
+  (c-name "gedit_message_get_object_path")
+  (return-type "const-gchar*")
+)
+
+(define-method get_method
+  (of-object "GeditMessage")
+  (c-name "gedit_message_get_method")
+  (return-type "const-gchar*")
+)
+
+(define-method has_key
+  (of-object "GeditMessage")
+  (c-name "gedit_message_has_key")
+  (return-type "gboolean")
+  (parameters
+    '("const-gchar*" "key")
+  )
+)
+
+(define-method get_key_type
+  (of-object "GeditMessage")
+  (c-name "gedit_message_get_key_type")
+  (return-type "GType")
+  (parameters
+    '("const-gchar*" "key")
+  )
+)
+
+(define-method validate
+  (of-object "GeditMessage")
+  (c-name "gedit_message_validate")
+  (return-type "gboolean")
+)
+
+
+;; From ../../gedit/gedit-debug.h
+
+(define-function debug
+  (c-name "gedit_debug")
+  (parameters
+    '("const-gchar*" "message")
+  )
+  (return-type "none")
+)
+

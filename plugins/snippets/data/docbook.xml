@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<snippets language="docbook">
+  <!-- useful snippets from xml set -->
+  <snippet id="&lt;">
+    <text><![CDATA[<${1}>$0</${1}>]]></text>
+    <description>XML tag</description>
+    <tag>&lt;</tag>
+  </snippet>
+  <snippet id="menuchoice">
+    <text><![CDATA[<menuchoice><guimenu>$1</guimenu><guimenuitem>$2</guimenuitem></menuchoice>
+]]></text>
+    <tag>menu</tag>
+    <description>menuchoice</description>
+    <accelerator />
+  </snippet>
+  <snippet id="keycombo">
+    <text><![CDATA[<keycombo><keycap>${1:Ctrl}</keycap><keycap>${2}</keycap></keycombo>]]></text>
+    <tag>key</tag>
+    <description>keycombo</description>
+    <accelerator/>
+  </snippet>
+  <snippet id="sect">
+    <text><![CDATA[<sect${1} id="${2}">
+  <title>${3}</title>
+</sect${1}>]]></text>
+    <tag>sect</tag>
+    <description>sect*</description>
+    <accelerator/>
+  </snippet>
+  <snippet id="app">
+    <text><![CDATA[<application>&app;</application>]]></text>
+    <tag>app</tag>
+    <description>app entity</description>
+    <accelerator/>
+  </snippet>
+  <snippet id="appwrap">
+    <text><![CDATA[<application>$GEDIT_SELECTED_TEXT</application>]]></text>
+    <tag>application</tag>
+    <description>application tag</description>
+    <accelerator/>
+  </snippet>
+  <snippet id="enclose">
+    <text><![CDATA[<${1}>$GEDIT_SELECTED_TEXT</${1}>]]></text>
+    <tag>enclose</tag>
+    <description>enclose selected text</description>
+    <accelerator/>
+  </snippet>
+  <snippet id="itemizedlist">
+    <text><![CDATA[<itemizedlist>
+  <listitem>
+    <para>${1}</para>
+  </listitem>
+</itemizedlist>]]></text>
+    <tag>ul</tag>
+    <description>itemized list</description>
+    <accelerator/>
+  </snippet>
+  <snippet id="orderedlist">
+    <text><![CDATA[<orderedlist>
+  <listitem>
+    <para>${1}</para>
+  </listitem>
+</orderedlist>]]></text>
+    <tag>ol</tag>
+    <description>ordered list</description>
+    <accelerator/>
+  </snippet>
+  <snippet id="listitem">
+    <text><![CDATA[<listitem>
+  <para>${1}</para>
+</listitem>]]></text>
+    <tag>li</tag>
+    <description>list item</description>
+    <accelerator/>
+  </snippet>
+  <snippet id="variablelist">
+    <text><![CDATA[<variablelist>
+  $1
+</variablelist>]]></text>
+    <tag>vl</tag>
+    <description>variablelist</description>
+    <accelerator/>
+  </snippet>
+  <snippet id="varlistentry">
+    <text><![CDATA[<varlistentry><term>${1}</term>
+  <listitem>
+    <para>${2}</para>
+  </listitem>
+</varlistentry>]]></text>
+    <tag>vli</tag>
+    <description>variablelist entry</description>
+    <accelerator/>
+  </snippet>
+  <snippet id="closepara">
+    <text><![CDATA[</para>]]></text>
+    <tag>/</tag>
+    <description>para close</description>
+    <accelerator/>
+  </snippet>
+  <snippet id="openpara">
+    <text><![CDATA[<para>]]></text>
+    <tag>p</tag>
+    <description>para open</description>
+    <accelerator/>
+  </snippet>
+  <snippet id="http">
+    <text><![CDATA[<ulink type="http" url="$1">$2</ulink>]]></text>
+    <tag>http</tag>
+    <description>ulink http</description>
+    <accelerator/>
+  </snippet>
+  <snippet id="yelp">
+    <text><![CDATA[<ulink type="help" url="$1">$2</ulink>]]></text>
+    <tag>help</tag>
+    <description>ulink mate help</description>
+    <accelerator/>
+  </snippet>
+</snippets>
