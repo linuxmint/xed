@@ -225,8 +225,6 @@ cp "${_pluma_prefix}/share/pluma/ui/"* installer/pluma/share/pluma/ui || exit
 #Icons & logo
 mkdir -p installer/pluma/share/pluma/icons || exit
 cp "${_pluma_prefix}/share/pluma/icons/pluma-plugin.png" installer/pluma/share/pluma/icons || exit
-mkdir -p installer/pluma/share/pluma/logo || exit
-cp "${_pluma_prefix}/share/pluma/logo/pluma-logo.png" installer/pluma/share/pluma/logo || exit
 
 #Plugins
 mkdir -p installer/pluma/share/pluma/plugins || exit
