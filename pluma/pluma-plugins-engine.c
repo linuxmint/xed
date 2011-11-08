@@ -2,7 +2,7 @@
  * pluma-plugins-engine.c
  * This file is part of pluma
  *
- * Copyright (C) 2002-2005 Paolo Maggi 
+ * Copyright (C) 2002-2005 Paolo Maggi
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,14 +16,14 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
- * Foundation, Inc., 59 Temple Place, Suite 330, 
- * Boston, MA 02111-1307, USA. 
+ * Foundation, Inc., 59 Temple Place, Suite 330,
+ * Boston, MA 02111-1307, USA.
  */
 
 /*
- * Modified by the pluma Team, 2002-2005. See the AUTHORS file for a 
- * list of people on the pluma Team.  
- * See the ChangeLog files for a list of changes. 
+ * Modified by the pluma Team, 2002-2005. See the AUTHORS file for a
+ * list of people on the pluma Team.
+ * See the ChangeLog files for a list of changes.
  *
  * $Id$
  */
@@ -46,7 +46,7 @@
 #include "pluma-object-module.h"
 #include "pluma-dirs.h"
 
-#define PLUMA_PLUGINS_ENGINE_BASE_KEY "/apps/pluma-2/plugins"
+#define PLUMA_PLUGINS_ENGINE_BASE_KEY "/apps/pluma/plugins"
 #define PLUMA_PLUGINS_ENGINE_KEY PLUMA_PLUGINS_ENGINE_BASE_KEY "/active-plugins"
 
 #define PLUGIN_EXT	".pluma-plugin"
@@ -110,7 +110,7 @@ load_dir_real (PlumaPluginsEngine *engine,
 		g_error_free (error);
 		return TRUE;
 	}
-	
+
 	while ((dirent = g_dir_read_name (d)))
 	{
 		gchar *filename;
@@ -138,7 +138,7 @@ load_plugin_info (PlumaPluginsEngine *engine,
 		  gpointer            userdata)
 {
 	PlumaPluginInfo *info;
-	
+
 	info = _pluma_plugin_info_new (filename);
 
 	if (info == NULL)
@@ -227,11 +227,11 @@ hash_lowercase (gconstpointer data)
 {
 	gchar *lowercase;
 	guint ret;
-	
+
 	lowercase = g_ascii_strdown ((const gchar *)data, -1);
 	ret = g_str_hash (lowercase);
 	g_free (lowercase);
-	
+
 	return ret;
 }
 
@@ -246,10 +246,10 @@ loader_destroy (LoaderInfo *info)
 {
 	if (!info)
 		return;
-	
+
 	if (info->loader)
 		g_object_unref (info->loader);
-	
+
 	g_free (info);
 }
 
@@ -315,19 +315,19 @@ pluma_plugins_engine_finalize (GObject *object)
 {
 	PlumaPluginsEngine *engine = PLUMA_PLUGINS_ENGINE (object);
 	GList *item;
-	
+
 	pluma_debug (DEBUG_PLUGINS);
 
 	/* Firs deactivate all plugins */
 	for (item = engine->priv->plugin_list; item; item = item->next)
 	{
 		PlumaPluginInfo *info = PLUMA_PLUGIN_INFO (item->data);
-		
+
 		if (pluma_plugin_info_is_active (info))
 			pluma_plugins_engine_deactivate_plugin_real (engine, info);
 	}
-	
-	/* unref the loaders */	
+
+	/* unref the loaders */
 	g_hash_table_destroy (engine->priv->loaders);
 
 	/* and finally free the infos */
@@ -388,7 +388,7 @@ load_loader (PlumaPluginsEngine *engine,
 	gchar *path;
 	const gchar *id;
 	GType type;
-	
+
 	/* try to load in the module */
 	path = g_path_get_dirname (filename);
 	base = g_path_get_basename (filename);
@@ -411,12 +411,12 @@ load_loader (PlumaPluginsEngine *engine,
 		return TRUE;
 	}
 
-	/* get the exported type and check the name as exported by the 
+	/* get the exported type and check the name as exported by the
 	 * loader interface */
 	type = pluma_object_module_get_object_type (module);
 	id = pluma_plugin_loader_type_get_id (type);
-	
-	add_loader (engine, id, module);	
+
+	add_loader (engine, id, module);
 	g_type_module_unuse (G_TYPE_MODULE (module));
 
 	return TRUE;
@@ -430,11 +430,11 @@ ensure_loader (LoaderInfo *info)
 		/* create a new loader object */
 		PlumaPluginLoader *loader;
 		loader = (PlumaPluginLoader *)pluma_object_module_new_object (info->module, NULL);
-	
+
 		if (loader == NULL || !PLUMA_IS_PLUGIN_LOADER (loader))
 		{
 			g_warning ("Loader object is not a valid PlumaPluginLoader instance");
-		
+
 			if (loader != NULL && G_IS_OBJECT (loader))
 				g_object_unref (loader);
 		}
@@ -454,7 +454,7 @@ get_plugin_loader (PlumaPluginsEngine *engine, PlumaPluginInfo *info)
 	loader_id = info->loader;
 
 	loader_info = (LoaderInfo *)g_hash_table_lookup (
-			engine->priv->loaders, 
+			engine->priv->loaders,
 			loader_id);
 
 	if (loader_info == NULL)
@@ -463,17 +463,17 @@ get_plugin_loader (PlumaPluginsEngine *engine, PlumaPluginInfo *info)
 
 		loader_dir = pluma_dirs_get_pluma_plugin_loaders_dir ();
 
-		/* loader could not be found in the hash, try to find it by 
+		/* loader could not be found in the hash, try to find it by
 		   scanning */
-		load_dir_real (engine, 
+		load_dir_real (engine,
 			       loader_dir,
 			       LOADER_EXT,
 			       (LoadDirCallback)load_loader,
 			       NULL);
 		g_free (loader_dir);
-		
+
 		loader_info = (LoaderInfo *)g_hash_table_lookup (
-				engine->priv->loaders, 
+				engine->priv->loaders,
 				loader_id);
 	}
 
@@ -483,7 +483,7 @@ get_plugin_loader (PlumaPluginsEngine *engine, PlumaPluginInfo *info)
 		add_loader (engine, loader_id, NULL);
 		return NULL;
 	}
-	
+
 	ensure_loader (loader_info);
 	return loader_info->loader;
 }
@@ -557,33 +557,33 @@ load_plugin (PlumaPluginsEngine *engine,
 
 	if (pluma_plugin_info_is_active (info))
 		return TRUE;
-	
+
 	if (!pluma_plugin_info_is_available (info))
 		return FALSE;
 
 	loader = get_plugin_loader (engine, info);
-	
+
 	if (loader == NULL)
 	{
 		g_warning ("Could not find loader `%s' for plugin `%s'", info->loader, info->name);
 		info->available = FALSE;
 		return FALSE;
 	}
-	
+
 	path = g_path_get_dirname (info->file);
 	g_return_val_if_fail (path != NULL, FALSE);
 
 	info->plugin = pluma_plugin_loader_load (loader, info, path);
-	
+
 	g_free (path);
-	
+
 	if (info->plugin == NULL)
 	{
 		g_warning ("Error loading plugin '%s'", info->name);
 		info->available = FALSE;
 		return FALSE;
 	}
-	
+
 	return TRUE;
 }
 
@@ -614,7 +614,7 @@ pluma_plugins_engine_activate_plugin (PlumaPluginsEngine *engine,
 
 	if (!pluma_plugin_info_is_available (info))
 		return FALSE;
-		
+
 	if (pluma_plugin_info_is_active (info))
 		return TRUE;
 
@@ -627,7 +627,7 @@ pluma_plugins_engine_activate_plugin (PlumaPluginsEngine *engine,
 }
 
 static void
-call_plugin_deactivate (PlumaPlugin *plugin, 
+call_plugin_deactivate (PlumaPlugin *plugin,
 			PlumaWindow *window)
 {
 	pluma_plugin_deactivate (plugin, window);
@@ -646,7 +646,7 @@ pluma_plugins_engine_deactivate_plugin_real (PlumaPluginsEngine *engine,
 	const GList *wins;
 	PlumaPluginLoader *loader;
 
-	if (!pluma_plugin_info_is_active (info) || 
+	if (!pluma_plugin_info_is_active (info) ||
 	    !pluma_plugin_info_is_available (info))
 		return;
 
@@ -659,13 +659,13 @@ pluma_plugins_engine_deactivate_plugin_real (PlumaPluginsEngine *engine,
 
 	/* first unref the plugin (the loader still has one) */
 	g_object_unref (info->plugin);
-	
+
 	/* find the loader and tell it to gc and unload the plugin */
 	loader = get_plugin_loader (engine, info);
-	
+
 	pluma_plugin_loader_garbage_collect (loader);
 	pluma_plugin_loader_unload (loader, info);
-	
+
 	info->plugin = NULL;
 }
 
@@ -708,15 +708,15 @@ pluma_plugins_engine_activate_plugins (PlumaPluginsEngine *engine,
 	for (pl = engine->priv->plugin_list; pl; pl = pl->next)
 	{
 		PlumaPluginInfo *info = (PlumaPluginInfo*)pl->data;
-		
-		if (engine->priv->activate_from_prefs && 
+
+		if (engine->priv->activate_from_prefs &&
 		    g_slist_find_custom (active_plugins,
 					 pluma_plugin_info_get_module_name (info),
 					 (GCompareFunc)strcmp) == NULL)
 			continue;
-		
+
 		/* If plugin is not active, don't try to activate/load it */
-		if (!engine->priv->activate_from_prefs && 
+		if (!engine->priv->activate_from_prefs &&
 		    !pluma_plugin_info_is_active (info))
 			continue;
 
@@ -724,14 +724,14 @@ pluma_plugins_engine_activate_plugins (PlumaPluginsEngine *engine,
 			pluma_plugin_activate (info->plugin,
 					       window);
 	}
-	
+
 	if (engine->priv->activate_from_prefs)
 	{
 		g_slist_foreach (active_plugins, (GFunc) g_free, NULL);
 		g_slist_free (active_plugins);
 		engine->priv->activate_from_prefs = FALSE;
 	}
-	
+
 	pluma_debug_message (DEBUG_PLUGINS, "End");
 
 	/* also call update_ui after activation */
@@ -743,24 +743,24 @@ pluma_plugins_engine_deactivate_plugins (PlumaPluginsEngine *engine,
 					  PlumaWindow        *window)
 {
 	GList *pl;
-	
+
 	pluma_debug (DEBUG_PLUGINS);
 
 	g_return_if_fail (PLUMA_IS_PLUGINS_ENGINE (engine));
 	g_return_if_fail (PLUMA_IS_WINDOW (window));
-	
+
 	for (pl = engine->priv->plugin_list; pl; pl = pl->next)
 	{
 		PlumaPluginInfo *info = (PlumaPluginInfo*)pl->data;
-		
+
 		/* check if the plugin is actually active */
 		if (!pluma_plugin_info_is_active (info))
 			continue;
-		
+
 		/* call deactivate for the plugin for this window */
 		pluma_plugin_deactivate (info->plugin, window);
 	}
-	
+
 	pluma_debug_message (DEBUG_PLUGINS, "End");
 }
 
@@ -782,21 +782,21 @@ pluma_plugins_engine_update_plugins_ui (PlumaPluginsEngine *engine,
 
 		if (!pluma_plugin_info_is_active (info))
 			continue;
-			
+
 	       	pluma_debug_message (DEBUG_PLUGINS, "Updating UI of %s", info->name);
 		pluma_plugin_update_ui (info->plugin, window);
 	}
 }
 
-void 	 
+void
 pluma_plugins_engine_configure_plugin (PlumaPluginsEngine *engine,
 				       PlumaPluginInfo    *info,
 				       GtkWindow          *parent)
 {
 	GtkWidget *conf_dlg;
-	
+
 	GtkWindowGroup *wg;
-	
+
 	pluma_debug (DEBUG_PLUGINS);
 
 	g_return_if_fail (info != NULL);
@@ -812,15 +812,15 @@ pluma_plugins_engine_configure_plugin (PlumaPluginsEngine *engine,
 		wg = gtk_window_group_new ();
 		gtk_window_group_add_window (wg, parent);
 	}
-			
+
 	gtk_window_group_add_window (wg,
 				     GTK_WINDOW (conf_dlg));
-		
-	gtk_window_set_modal (GTK_WINDOW (conf_dlg), TRUE);		     
+
+	gtk_window_set_modal (GTK_WINDOW (conf_dlg), TRUE);
 	gtk_widget_show (conf_dlg);
 }
 
-void 
+void
 pluma_plugins_engine_active_plugins_changed (PlumaPluginsEngine *engine)
 {
 	gboolean to_activate;
@@ -856,6 +856,6 @@ void
 pluma_plugins_engine_rescan_plugins (PlumaPluginsEngine *engine)
 {
 	pluma_debug (DEBUG_PLUGINS);
-	
+
 	load_all_plugins (engine);
 }

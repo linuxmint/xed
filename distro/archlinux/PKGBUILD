@@ -32,6 +32,9 @@ package() {
 
 	make MATECONF_DISABLE_MAKEFILE_SCHEMA_INSTALL=1 DESTDIR="${pkgdir}" install || return 1
 
+	# just for easy find
+	ln -s pluma /usr/bin/mate-text-editor
+
 	install -m755 -d "${pkgdir}/usr/share/mateconf/schemas"
 	mateconf-merge-schema "${pkgdir}/usr/share/mateconf/schemas/${pkgname}.schemas" --domain ${pkgname} ${pkgdir}/etc/mateconf/schemas/*.schemas || return 1
 	rm -f ${pkgdir}/etc/mateconf/schemas/*.schemas

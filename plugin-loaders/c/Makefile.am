@@ -1,6 +1,6 @@
 # C plugin loader
 
-loaderdir = $(libdir)/pluma-2/plugin-loaders
+loaderdir = $(libdir)/pluma/plugin-loaders
 
 INCLUDES = \
 	-I$(top_srcdir) 						\

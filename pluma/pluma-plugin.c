@@ -2,7 +2,7 @@
  * pluma-plugin.h
  * This file is part of pluma
  *
- * Copyright (C) 2002-2005 Paolo Maggi 
+ * Copyright (C) 2002-2005 Paolo Maggi
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,14 +16,14 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
- * Foundation, Inc., 59 Temple Place, Suite 330, 
- * Boston, MA 02111-1307, USA. 
+ * Foundation, Inc., 59 Temple Place, Suite 330,
+ * Boston, MA 02111-1307, USA.
  */
- 
+
 /*
- * Modified by the pluma Team, 2002-2005. See the AUTHORS file for a 
- * list of people on the pluma Team.  
- * See the ChangeLog files for a list of changes. 
+ * Modified by the pluma Team, 2002-2005. See the AUTHORS file for a
+ * list of people on the pluma Team.
+ * See the ChangeLog files for a list of changes.
  *
  * $Id$
  */
@@ -125,7 +125,7 @@ pluma_plugin_finalize (GObject *object)
 	G_OBJECT_CLASS (pluma_plugin_parent_class)->finalize (object);
 }
 
-static void 
+static void
 pluma_plugin_class_init (PlumaPluginClass *klass)
 {
     	GObjectClass *object_class = G_OBJECT_CLASS (klass);
@@ -133,7 +133,7 @@ pluma_plugin_class_init (PlumaPluginClass *klass)
 	klass->activate = dummy;
 	klass->deactivate = dummy;
 	klass->update_ui = dummy;
-	
+
 	klass->create_configure_dialog = create_configure_dialog;
 	klass->is_configurable = is_configurable;
 
@@ -217,7 +217,7 @@ pluma_plugin_get_data_dir (PlumaPlugin *plugin)
 	/* If it's a "user" plugin the data dir is
 	 * install_dir/data_dir_name if instead it's a
 	 * "system" plugin the data dir is under pluma_data_dir,
-	 * so it's under $prefix/share/pluma-2/plugins/data_dir_name
+	 * so it's under $prefix/share/pluma/plugins/data_dir_name
 	 * where data_dir_name usually it's the name of the plugin
 	 */
 	pluma_lib_dir = pluma_dirs_get_pluma_lib_dir ();
@@ -253,7 +253,7 @@ pluma_plugin_get_data_dir (PlumaPlugin *plugin)
  * pluma_plugin_activate:
  * @plugin: a #PlumaPlugin
  * @window: a #PlumaWindow
- * 
+ *
  * Activates the plugin.
  */
 void
@@ -262,7 +262,7 @@ pluma_plugin_activate (PlumaPlugin *plugin,
 {
 	g_return_if_fail (PLUMA_IS_PLUGIN (plugin));
 	g_return_if_fail (PLUMA_IS_WINDOW (window));
-	
+
 	PLUMA_PLUGIN_GET_CLASS (plugin)->activate (plugin, window);
 }
 
@@ -270,7 +270,7 @@ pluma_plugin_activate (PlumaPlugin *plugin,
  * pluma_plugin_deactivate:
  * @plugin: a #PlumaPlugin
  * @window: a #PlumaWindow
- * 
+ *
  * Deactivates the plugin.
  */
 void
@@ -290,7 +290,7 @@ pluma_plugin_deactivate	(PlumaPlugin *plugin,
  *
  * Triggers an update of the user interface to take into account state changes
  * caused by the plugin.
- */		 
+ */
 void
 pluma_plugin_update_ui	(PlumaPlugin *plugin,
 			 PlumaWindow *window)
@@ -329,6 +329,6 @@ GtkWidget *
 pluma_plugin_create_configure_dialog (PlumaPlugin *plugin)
 {
 	g_return_val_if_fail (PLUMA_IS_PLUGIN (plugin), NULL);
-	
+
 	return PLUMA_PLUGIN_GET_CLASS (plugin)->create_configure_dialog (plugin);
 }

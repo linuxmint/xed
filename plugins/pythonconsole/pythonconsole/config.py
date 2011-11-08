@@ -8,7 +8,7 @@
 # it under the terms of the GNU General Public License as published by
 # the Free Software Foundation; either version 2, or (at your option)
 # any later version.
-# 
+#
 # This program is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
@@ -29,7 +29,7 @@ import gtk
 
 __all__ = ('PythonConsoleConfig', 'PythonConsoleConfigDialog')
 
-MATECONF_KEY_BASE = '/apps/pluma-2/plugins/pythonconsole'
+MATECONF_KEY_BASE = '/apps/pluma/plugins/pythonconsole'
 MATECONF_KEY_COMMAND_COLOR = MATECONF_KEY_BASE + '/command-color'
 MATECONF_KEY_ERROR_COLOR = MATECONF_KEY_BASE + '/error-color'
 
@@ -99,16 +99,16 @@ class PythonConsoleConfigDialog(object):
                                         self.config.color_command)
             self.set_colorbutton_color(self._ui.get_object('colorbutton-error'),
                                         self.config.color_error)
-            
+
             self._ui.connect_signals(self)
-            
+
             self._dialog = self._ui.get_object('dialog-config')
             self._dialog.show_all()
         else:
             self._dialog.present()
-        
+
         return self._dialog
-    
+
     @staticmethod
     def set_colorbutton_color(colorbutton, value):
         try:
@@ -124,7 +124,7 @@ class PythonConsoleConfigDialog(object):
     def on_dialog_config_destroy(self, dialog):
         self._dialog = None
         self._ui = None
-        
+
     def on_colorbutton_command_color_set(self, colorbutton):
         self.config.color_command = colorbutton.get_color().to_string()
 

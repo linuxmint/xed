@@ -20,21 +20,21 @@ echo_padded ()
 #if (which mateconftool-2 >/dev/null)
 #then
 #	echo "MateConf configuration dump:"
-#	mateconftool-2 --dump /apps/pluma-2 | grep -Ev "</?(entry|mateconfentryfile|entrylist|value|schema_key)" | cut -c4-
+#	mateconftool-2 --dump /apps/pluma | grep -Ev "</?(entry|mateconfentryfile|entrylist|value|schema_key)" | cut -c4-
 #	echo
 #fi
 
 echo "Active plugins:"
-mateconftool-2 --get /apps/pluma-2/plugins/active-plugins			\
+mateconftool-2 --get /apps/pluma/plugins/active-plugins			\
 	| sed -r -e 's/^\[(.*)\]$/\1/' -e 's/,/\n/g'			\
 	| sed -e 's/^.*$/  - \0/'
 echo
 
 # Manually installed plugins (in $HOME)
-if [ -d $HOME/.mate2/pluma/plugins ]
+if [ -d $HOME/.config/pluma/plugins ]
 then
 	echo "Plugins in \$HOME:"
-	ls $HOME/.mate2/pluma/plugins/*.pluma-plugin			\
+	ls $HOME/.config/pluma/plugins/*.pluma-plugin			\
 		| sed -r -e 's#.*/([^/]*)\.pluma-plugin$#  - \1#'
 else
 	echo "No plugin installed in \$HOME."

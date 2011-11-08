@@ -1,7 +1,7 @@
-icondir = $(datadir)/pluma-2/icons
+icondir = $(datadir)/pluma/icons
 icon_DATA = pluma-plugin.png
 
-logodir = $(datadir)/pluma-2/logo
+logodir = $(datadir)/pluma/logo
 logo_DATA = pluma-logo.png
 
 EXTRA_DIST = \

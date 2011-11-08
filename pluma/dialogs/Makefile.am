@@ -1,4 +1,4 @@
-uidir = $(datadir)/pluma-2/ui/
+uidir = $(datadir)/pluma/ui/
 
 INCLUDES = 							\
 	-I$(top_srcdir)						\
@@ -26,6 +26,6 @@ ui_DATA =					\
 	pluma-preferences-dialog.ui		\
 	pluma-search-dialog.ui
 
-EXTRA_DIST = $(ui_DATA) 
+EXTRA_DIST = $(ui_DATA)
 
 -include $(top_srcdir)/git.mk

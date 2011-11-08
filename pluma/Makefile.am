@@ -18,13 +18,13 @@ INCLUDES =								\
 	$(WARN_CFLAGS)							\
 	$(DISABLE_DEPRECATED_CFLAGS)					\
 	-DDATADIR=\""$(datadir)"\"					\
-	-DLIBDIR=\""$(libdir)"\"					
+	-DLIBDIR=\""$(libdir)"\"
 
 pluma_SOURCES = \
 	pluma.c
 
 pluma_LDADD = libpluma.la $(PLUMA_LIBS) $(IGE_MAC_LIBS) $(EGG_SMCLIENT_LIBS)
- 
+
 if PLATFORM_WIN32
 pluma_LDFLAGS = -Wl,--export-all-symbols -Wl,--out-implib,libpluma-$(PLUMA_API_VERSION).a
 if OS_WIN32
@@ -189,7 +189,7 @@ libpluma_la_SOURCES = 			\
 	$(INST_H_FILES)
 
 if !ENABLE_GVFS_METADATA
-libpluma_la_SOURCES += pluma-metadata-manager.c 
+libpluma_la_SOURCES += pluma-metadata-manager.c
 endif
 
 pluma-enum-types.h: pluma-enum-types.h.template $(INST_H_FILES) $(GLIB_MKENUMS)
@@ -205,7 +205,7 @@ pluma-marshal.c: pluma-marshal.list $(GLIB_GENMARSHAL)
 	$(AM_V_GEN) echo "#include \"pluma-marshal.h\"" > $@ && \
 	$(GLIB_GENMARSHAL) $< --body --prefix=pluma_marshal >> $@
 
-uidir = $(datadir)/pluma-2/ui/
+uidir = $(datadir)/pluma/ui/
 ui_DATA = 				\
 	pluma-ui.xml			\
 	pluma-print-preferences.ui

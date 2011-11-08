@@ -23,7 +23,7 @@
 	 <title>Pluma Manual<!-- not using app entity because of lowercase ugliness --></title>
 	 <copyright>
 		<year>2007</year>
-		<holder>MATE Documentation Project</holder> </copyright>	 
+		<holder>MATE Documentation Project</holder> </copyright>
 	 <copyright>
 		<year>2002</year>
 		<year>2003</year>
@@ -60,10 +60,10 @@
 		  </affiliation>
 		</author>
 		<author>
-			<firstname>Hal</firstname> 
+			<firstname>Hal</firstname>
 			<surname>Canary</surname>
 			<contrib>Added the Shortcut Keys Table</contrib>
-		</author>		
+		</author>
 		<author>
 		  <firstname>Sun Java Desktop System Documentation Team</firstname>
 		  <surname></surname>
@@ -387,7 +387,7 @@
 		</orderedlist>
 		<para>Valid types of <replaceable>URI</replaceable> include <literal>http:</literal>, <literal>ftp:</literal>, <literal>file:</literal>, and all of the methods supported by <literal>mate-vfs</literal>.</para>
 		<para>Files from some types of URI are opened as read-only, and any changes you make must be saved to a different location. HTTP only allows files to be read. Files opened from FTP are read-only because because not all FTP servers may correctly work with saving remote files.</para>
-		<warning><para>Saving to FTP servers can be enabled with <ulink type="help" url="ghelp:mateconf-editor"><application>Configuration Editor</application></ulink>, setting the key <systemitem>/apps/pluma-2/preferences/editor/save/writable_vfs_schemes</systemitem>, but this may cause errors.</para></warning>
+		<warning><para>Saving to FTP servers can be enabled with <ulink type="help" url="ghelp:mateconf-editor"><application>Configuration Editor</application></ulink>, setting the key <systemitem>/apps/pluma/preferences/editor/save/writable_vfs_schemes</systemitem>, but this may cause errors.</para></warning>
 	 </sect2>
 
 <!-- ============= Working with tabs ======================== -->
@@ -526,7 +526,7 @@
               <para>The backslash character itself must be escaped if it is being searched for.
                     For example, if you are looking for the "<literal>\n</literal>" literal, you will
                     have to type "\\n" in the <guilabel>Search for</guilabel> field. Or if you are
-                    looking for a sequence of backslashes, you will have to double the number of 
+                    looking for a sequence of backslashes, you will have to double the number of
                     searched backslashes.</para>
     				</listitem>
         </varlistentry>
@@ -850,7 +850,7 @@
   </sect1>
 
 <!-- ================ Shortcut Keys ============================= -->
-<sect1 id="pluma-shortcutkeys"> 
+<sect1 id="pluma-shortcutkeys">
   <title>Shortcut Keys</title>
   <para>Use shortcut keys to perform common tasks more quickly than with the mouse and menus. The following tables list all of <application>&app;</application>'s shortcut keys.</para>
   <para>For more on shortcut keys, see the <ulink type="help" url="ghelp:user-guide?keyboard-skills">Desktop User Guide</ulink>.</para>
@@ -866,32 +866,32 @@
         <row valign="top">
           <entry colname="COLSPEC0">
             <para>Shortcut Key</para></entry>
-          <entry colname="COLSPEC1" align="left"> 
+          <entry colname="COLSPEC1" align="left">
             <para>Command</para></entry>
         </row>
       </thead>
       <tbody>
-        <row valign="top">               
+        <row valign="top">
           <entry><para>Ctrl + Alt + PageUp</para></entry>
           <entry><para>Switches to the next tab to the left.</para></entry>
         </row>
-        <row valign="top">               
+        <row valign="top">
           <entry><para>Ctrl + Alt + PageDown</para></entry>
           <entry><para>Switches to the next tab to the right.</para></entry>
         </row>
-        <row valign="top">               
+        <row valign="top">
           <entry><para>Ctrl + W</para></entry>
           <entry><para>Close tab.</para></entry>
         </row>
-        <row valign="top">               
+        <row valign="top">
           <entry><para>Ctrl + Shift + L</para></entry>
           <entry><para>Save all tabs.</para></entry>
         </row>
-        <row valign="top">               
+        <row valign="top">
           <entry><para>Ctrl + Shift + W</para></entry>
           <entry><para>Close all tabs. </para></entry>
         </row>
-        <row valign="top">               
+        <row valign="top">
           <entry><para>Alt + n</para></entry>
           <entry><para>Jump to nth tab.</para></entry>
         </row>
@@ -910,44 +910,44 @@
                       <row valign="top">
                         <entry colname="COLSPEC0">
                           <para>Shortcut Key</para></entry>
-                        <entry colname="COLSPEC1" align="left"> 
+                        <entry colname="COLSPEC1" align="left">
                           <para>Command</para></entry>
                       </row>
                     </thead>
                     <tbody>
-                      <row valign="top">               
+                      <row valign="top">
                         <entry><para>Ctrl + N</para></entry>
                         <entry><para>Create a new document.</para></entry>
                       </row>
-                      <row valign="top">               
+                      <row valign="top">
                         <entry><para>Ctrl + O</para></entry>
                         <entry><para>Open a document.</para></entry>
                       </row>
-                      <row valign="top">               
+                      <row valign="top">
                         <entry><para>Ctrl + L</para></entry>
                         <entry><para>Open a location.</para></entry>
                       </row>
-                      <row valign="top">               
+                      <row valign="top">
                         <entry><para>Ctrl + S</para></entry>
                         <entry><para>Save the current document to disk.</para></entry>
                       </row>
-                      <row valign="top">               
+                      <row valign="top">
                         <entry><para>Ctrl + Shift + S</para></entry>
                         <entry><para>Save the current document with a new filename.</para></entry>
                       </row>
-                      <row valign="top">               
+                      <row valign="top">
                         <entry><para>Ctrl + P</para></entry>
                         <entry><para>Print the current document.</para></entry>
                       </row>
-                      <row valign="top">               
+                      <row valign="top">
                         <entry><para>Ctrl + Shift + P</para></entry>
                         <entry><para>Print preview.</para></entry>
                       </row>
-                      <row valign="top">               
+                      <row valign="top">
                         <entry><para>Ctrl + W</para></entry>
                         <entry><para>Close the current document.</para></entry>
                       </row>
-                      <row valign="top">               
+                      <row valign="top">
                         <entry><para>Ctrl + Q</para></entry>
                         <entry><para>Quit Pluma.</para></entry>
                       </row>
@@ -957,7 +957,7 @@
 
   <!-- ============= Edit ======================= -->
 	<bridgehead>Edit</bridgehead>
-	<para>Shortcuts for editing documents:</para>	
+	<para>Shortcuts for editing documents:</para>
 	  <informaltable frame="all">
                   <tgroup cols="2" colsep="1" rowsep="1">
                     <colspec colname="COLSPEC0" colwidth="50*"/>
@@ -966,7 +966,7 @@
                       <row valign="top">
                         <entry colname="COLSPEC0">
                           <para>Shortcut Key</para></entry>
-                        <entry colname="COLSPEC1" align="left"> 
+                        <entry colname="COLSPEC1" align="left">
                           <para>Command</para></entry>
                       </row>
                     </thead>
@@ -1013,7 +1013,7 @@
 
   <!-- ============= Panes ======================= -->
 	<bridgehead>Panes</bridgehead>
-	<para>Shortcuts for showing and hiding panes:</para>	
+	<para>Shortcuts for showing and hiding panes:</para>
 	  <informaltable frame="all">
                   <tgroup cols="2" colsep="1" rowsep="1">
                     <colspec colname="COLSPEC0" colwidth="50*"/>
@@ -1022,16 +1022,16 @@
                       <row valign="top">
                         <entry colname="COLSPEC0">
                           <para>Shortcut Key</para></entry>
-                        <entry colname="COLSPEC1" align="left"> 
+                        <entry colname="COLSPEC1" align="left">
                           <para>Command</para></entry>
                       </row>
                     </thead>
                     <tbody>
-                      <row valign="top">               
+                      <row valign="top">
                         <entry><para>F9</para></entry>
                         <entry><para>Show/hide the side pane.</para></entry>
                       </row>
-                      <row valign="top">               
+                      <row valign="top">
                         <entry><para>Ctrl + F9</para></entry>
                         <entry><para>Show/hide the bottom pane.</para></entry>
                       </row>
@@ -1041,7 +1041,7 @@
 
   <!-- ============= Search ======================= -->
 	<bridgehead>Search</bridgehead>
-	<para>Shortcuts for searching:</para>	
+	<para>Shortcuts for searching:</para>
 	  <informaltable frame="all">
                   <tgroup cols="2" colsep="1" rowsep="1">
                     <colspec colname="COLSPEC0" colwidth="50*"/>
@@ -1050,36 +1050,36 @@
                       <row valign="top">
                         <entry colname="COLSPEC0">
                           <para>Shortcut Key</para></entry>
-                        <entry colname="COLSPEC1" align="left"> 
+                        <entry colname="COLSPEC1" align="left">
                           <para>Command</para></entry>
                       </row>
                     </thead>
                     <tbody>
-                      <row valign="top">               
+                      <row valign="top">
                         <entry><para>Ctrl + F</para></entry>
                         <entry><para>Find a string.</para></entry>
                       </row>
-                      <row valign="top">               
+                      <row valign="top">
                         <entry><para>Ctrl + G</para></entry>
                         <entry><para>Find the next instance of the string.</para></entry>
                       </row>
-                      <row valign="top">               
+                      <row valign="top">
                         <entry><para>Ctrl + Shift + G</para></entry>
                         <entry><para>Find the previous instance of the string.</para></entry>
                       </row>
-                      <row valign="top">               
+                      <row valign="top">
                         <entry><para>Ctrl + K</para></entry>
                         <entry><para>Interactive search.</para></entry>
                       </row>
-                      <row valign="top">               
+                      <row valign="top">
                         <entry><para>Ctrl + H</para></entry>
                         <entry><para>Search and replace.</para></entry>
                       </row>
-                      <row valign="top">               
+                      <row valign="top">
                         <entry><para>Ctrl + Shift + K</para></entry>
                         <entry><para>Clear highlight.</para></entry>
                       </row>
-                      <row valign="top">               
+                      <row valign="top">
                         <entry><para>Ctrl + I</para></entry>
                         <entry><para>Goto line.</para></entry>
                       </row>
@@ -1088,7 +1088,7 @@
                 </informaltable>
   <!-- ============= Tools ======================= -->
 	<bridgehead>Tools</bridgehead>
-	<para>Shortcuts for tools:</para>	
+	<para>Shortcuts for tools:</para>
 	  <informaltable frame="all">
                   <tgroup cols="2" colsep="1" rowsep="1">
                     <colspec colname="COLSPEC0" colwidth="50*"/>
@@ -1097,32 +1097,32 @@
                       <row valign="top">
                         <entry colname="COLSPEC0">
                           <para>Shortcut Key</para></entry>
-                        <entry colname="COLSPEC1" align="left"> 
+                        <entry colname="COLSPEC1" align="left">
                           <para>Command</para></entry>
                       </row>
                     </thead>
                     <tbody>
-                      <row valign="top">               
+                      <row valign="top">
                         <entry><para>Shift + F7</para></entry>
                         <entry><para>Check spelling (with plugin).</para></entry>
                       </row>
-                      <row valign="top">               
+                      <row valign="top">
                         <entry><para>Alt + F12</para></entry>
                         <entry><para>Remove trailing spaces (with plugin).</para></entry>
                       </row>
-                      <row valign="top">               
+                      <row valign="top">
                         <entry><para>Ctrl + T</para></entry>
                         <entry><para>Indent (with plugin).</para></entry>
                       </row>
-                      <row valign="top">               
+                      <row valign="top">
                         <entry><para>Ctrl + Shift + T</para></entry>
                         <entry><para>Remove Indent (with plugin).</para></entry>
                       </row>
-                      <row valign="top">               
+                      <row valign="top">
                         <entry><para>F8</para></entry>
                         <entry><para>Run "make" in current directory (with plugin).</para></entry>
                       </row>
-                      <row valign="top">               
+                      <row valign="top">
                         <entry><para>Ctrl + Shift + D</para></entry>
                         <entry><para>Directory listing (with plugin).</para></entry>
                       </row>
@@ -1140,12 +1140,12 @@
         <row valign="top">
           <entry colname="COLSPEC0">
             <para>Shortcut Key</para></entry>
-          <entry colname="COLSPEC1" align="left"> 
+          <entry colname="COLSPEC1" align="left">
             <para>Command</para></entry>
         </row>
       </thead>
       <tbody>
-        <row valign="top">               
+        <row valign="top">
           <entry><para>F1</para></entry>
           <entry><para>Open <application>&app;</application>'s user manual.</para></entry>
         </row>
@@ -1515,37 +1515,37 @@
       <varlistentry><term>Description</term>
         <listitem>
           <para>This description is shown in the statusbar when the menu command is chosen.</para>
-        </listitem>     
+        </listitem>
       </varlistentry>
       <varlistentry><term>Accelerator</term>
         <listitem>
           <para>Enter a keyboard shortcut for the command.</para>
-        </listitem>     
+        </listitem>
       </varlistentry>
       <varlistentry><term>Commands</term>
         <listitem>
           <para>The actual commands to be run. Several <application>&app;</application> environment variables can be used to pass content to these commands: see <xref linkend="pluma-external-tools-plugin-variables"/>.</para>
-        </listitem>     
+        </listitem>
       </varlistentry>
       <varlistentry><term>Input</term>
         <listitem>
           <para>The content to give to the commands (as <systemitem>stdin</systemitem>): the entire text of the current document, the current selection, line, or word.</para>
-        </listitem>     
+        </listitem>
       </varlistentry>
       <varlistentry><term>Output</term>
         <listitem>
           <para>What to do with the output of the commands: display in the bottom pane, put in a new document, or place in the current document, at the end, at the cursor position, or replacing the selection or the entire document.</para>
-        </listitem>     
+        </listitem>
       </varlistentry>
       <varlistentry><term>Applicability</term>
         <listitem>
           <para>Determines which sort of documents can be affected by the command, for example whether saved or not, and local or remote.</para>
-        </listitem>     
+        </listitem>
       </varlistentry>
     </variablelist>
 
   </sect3>
-  
+
   <sect3 id="pluma-external-tools-plugin-edit">
     <title>Editing and Removing Tools</title>
     <para>To edit a tool, select it in the list and make changes to its properties.</para>
@@ -1553,8 +1553,8 @@
     <para>To restore a built-in tool that you have changed, press <guilabel>Revert</guilabel>.</para>
     <para>To remove a tool, select it in the list and press <guibutton>Remove</guibutton>. You can not remove built-in tools, only those you have created yourself.</para>
   </sect3>
-  
-  <sect3 id="pluma-external-tools-plugin-variables">    
+
+  <sect3 id="pluma-external-tools-plugin-variables">
     <title>Variables</title>
     <para>You can use the following variables in the <guilabel>Commands</guilabel> field of the command definition:</para>
     <itemizedlist>
@@ -1583,21 +1583,21 @@
   </sect3>
 </sect2>
 
-<sect2 id="pluma-file-browser-plugin">    
+<sect2 id="pluma-file-browser-plugin">
   <title>File Browser Plugin</title>
   <para>The <application>File Browser</application> Plugin shows your files and folders in the side pane, allowing you to quickly open files.</para>
   <para>To view the File Browser, choose <menuchoice><guimenu>View</guimenu> <guimenuitem>Side Pane</guimenuitem> </menuchoice> and then click on the tab showing the File Browser icon at the bottom of the side pane.</para>
-  <sect3 id="pluma-file-browser-plugin-browsing">    
+  <sect3 id="pluma-file-browser-plugin-browsing">
     <title>Browsing your Files</title>
     <para>The File Browser tab initially shows your file manager bookmarks. To browse the contents of any item, double-click it.</para>
     <para>To show a parent folder, choose from the drop-down list, or press the up arrow on the File Browser's toolbar.</para>
     <para>To show the folder that contains the document you are currently working on, right-click in the file list and choose <guimenuitem>Set root to active document</guimenuitem>.</para>
   </sect3>
-  <sect3 id="pluma-file-browser-plugin-open">    
+  <sect3 id="pluma-file-browser-plugin-open">
     <title>Opening a File</title>
     <para>To open a file in <application>&app;</application>, double-click it in the file list.</para>
   </sect3>
-  <sect3 id="pluma-file-browser-plugin-create">    
+  <sect3 id="pluma-file-browser-plugin-create">
     <title>Creating Files and Folders</title>
     <para>To create a new, empty text file in the current folder shown in the browser, right-click in the file list and choose <guimenuitem>New File</guimenuitem>.</para>
     <para>To create a new folder in the current folder shown in the browser, right-click in the file list and choose <guimenuitem>New Folder</guimenuitem>.</para>
@@ -1716,7 +1716,7 @@
     </sect3>
 </sect2>
 
-<sect2 id="pluma-python-console-plugin">    
+<sect2 id="pluma-python-console-plugin">
   <title>Python Console Plugin</title>
   <para>The <application>Python Console</application> Plugin allows you to run commands in the python programming language from <application>&app;</application>. Enabling the plugin adds a tab to the bottom pane. This shows recent output and a command prompt field.</para>
   <caution><para>Commands entered into the python console are not checked before they are run. It is therefore possible to hang <application>&app;</application>, for example by entering an infinite loop.</para></caution>
@@ -1845,14 +1845,14 @@
           <listitem>
             <para><literal>$(<replaceable>cmd</replaceable>)</literal> is replaced by the result of executing <replaceable>cmd</replaceable> in a shell. </para>
             <para><literal>$(<replaceable>n</replaceable>:<replaceable>cmd</replaceable>)</literal> allows you to give this placeholder a reference, where <replaceable>n</replaceable> is any number from 1 upwards. Use <literal>$<replaceable>n</replaceable></literal> to use the output from one shell placeholder as input in another.</para>
-          </listitem>     
+          </listitem>
         </varlistentry>
         <varlistentry><term>Python placeholders</term>
           <listitem>
             <para><literal>$&lt;<replaceable>cmd</replaceable>&gt;</literal> is replaced by the result of evaluating <replaceable>cmd</replaceable> in the python interpreter.</para>
             <para><literal>$&lt;<replaceable>a</replaceable>:<replaceable>cmd</replaceable>&gt;</literal> specifies another python placeholder as a dependency, where <replaceable>a</replaceable> gives its order in the snippet. This allows you to use python functions defined in another snippet. To specify several dependencies, separate the numbers with commas thus: <literal>$&lt;<replaceable>a</replaceable>,<replaceable>b</replaceable>:<replaceable>cmd</replaceable>&gt;</literal></para>
             <para>To use a variable in all other python snippets, declare it as <literal>global</literal>.</para>
-          </listitem>     
+          </listitem>
         </varlistentry>
       </variablelist>
   </sect3>

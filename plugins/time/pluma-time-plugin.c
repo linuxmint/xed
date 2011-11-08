@@ -53,7 +53,7 @@
 #define MENU_PATH "/MenuBar/EditMenu/EditOps_4"
 
 /* mateconf keys */
-#define TIME_BASE_KEY		"/apps/pluma-2/plugins/time"
+#define TIME_BASE_KEY		"/apps/pluma/plugins/time"
 #define PROMPT_TYPE_KEY		TIME_BASE_KEY "/prompt_type"
 #define SELECTED_FORMAT_KEY	TIME_BASE_KEY "/selected_format"
 #define CUSTOM_FORMAT_KEY	TIME_BASE_KEY "/custom_format"
@@ -758,7 +758,7 @@ get_configure_dialog (PlumaTimePlugin *plugin)
 		"time_dialog_content",
 		NULL
 	};
-	
+
 	pluma_debug (DEBUG_PLUGINS);
 
 	dialog = g_new0 (TimeConfigureDialog, 1);
@@ -938,7 +938,7 @@ get_choose_format_dialog (GtkWindow                 *parent,
 	gboolean ret;
 	gchar *sf, *cf;
 	GtkWindowGroup *wg = NULL;
-	
+
 	if (parent != NULL)
 		wg = gtk_window_get_group (parent);
 

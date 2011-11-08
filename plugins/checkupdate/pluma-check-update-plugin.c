@@ -5,7 +5,7 @@
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
  * any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
@@ -35,7 +35,7 @@
 #include <pluma/pluma-message-area.h>
 #endif
 
-#define MATECONF_KEY_BASE "/apps/pluma-2/plugins/checkupdate"
+#define MATECONF_KEY_BASE "/apps/pluma/plugins/checkupdate"
 #define MATECONF_KEY_IGNORE_VERSION   MATECONF_KEY_BASE "/ignore_version"
 
 #define WINDOW_DATA_KEY "PlumaCheckUpdatePluginWindowData"
@@ -125,13 +125,13 @@ pluma_check_update_plugin_dispose (GObject *object)
 		mateconf_client_suggest_sync (plugin->priv->mateconf_client, NULL);
 
 		g_object_unref (G_OBJECT (plugin->priv->mateconf_client));
-		
+
 		plugin->priv->mateconf_client = NULL;
 	}
 
 	pluma_debug_message (DEBUG_PLUGINS,
 			     "PlumaCheckUpdatePlugin disposing");
-	
+
 	G_OBJECT_CLASS (pluma_check_update_plugin_parent_class)->dispose (object);
 }
 
@@ -153,7 +153,7 @@ set_contents (GtkWidget *infobar,
 					 contents);
 #else
 	GtkWidget *content_area;
-	
+
 	content_area = gtk_info_bar_get_content_area (GTK_INFO_BAR (infobar));
 	gtk_container_add (GTK_CONTAINER (content_area), contents);
 #endif
@@ -210,7 +210,7 @@ set_message_area_text_and_icon (GtkWidget        *message_area,
 		gtk_label_set_selectable (GTK_LABEL (secondary_label), TRUE);
 		gtk_misc_set_alignment (GTK_MISC (secondary_label), 0, 0.5);
 	}
-	
+
 	set_contents (message_area, hbox_content);
 }
 
@@ -223,7 +223,7 @@ on_response_cb (GtkWidget   *infobar,
 	{
 		GError *error = NULL;
 		WindowData *data;
-		
+
 		data = g_object_get_data (G_OBJECT (window),
 					  WINDOW_DATA_KEY);
 
@@ -242,7 +242,7 @@ on_response_cb (GtkWidget   *infobar,
 			dialog = gtk_message_dialog_new (GTK_WINDOW (window),
 							 GTK_DIALOG_DESTROY_WITH_PARENT,
 							 GTK_MESSAGE_ERROR,
-							 GTK_BUTTONS_CLOSE, 
+							 GTK_BUTTONS_CLOSE,
 							 _("There was an error displaying the URI."));
 
 			gtk_message_dialog_format_secondary_text (GTK_MESSAGE_DIALOG (dialog),
@@ -263,7 +263,7 @@ on_response_cb (GtkWidget   *infobar,
 	else if (response_id == GTK_RESPONSE_NO)
 	{
 		WindowData *data;
-		
+
 		data = g_object_get_data (G_OBJECT (window), WINDOW_DATA_KEY);
 
 		mateconf_client_set_string (data->plugin->priv->mateconf_client,
@@ -288,7 +288,7 @@ create_infobar (PlumaWindow *window,
 
 #if !GTK_CHECK_VERSION (2, 17, 1)
 	infobar = pluma_message_area_new ();
-	
+
 	pluma_message_area_add_stock_button_with_text (PLUMA_MESSAGE_AREA (infobar),
 						       _("_Download"),
 						       GTK_STOCK_SAVE,
@@ -304,7 +304,7 @@ create_infobar (PlumaWindow *window,
 	GtkWidget *button;
 
 	infobar = gtk_info_bar_new ();
-	
+
 	button = pluma_gtk_button_new_with_stock_icon (_("_Download"),
 						       GTK_STOCK_SAVE);
 	gtk_widget_show (button);
@@ -324,7 +324,7 @@ create_infobar (PlumaWindow *window,
 	gtk_info_bar_add_button (GTK_INFO_BAR (infobar),
 				 GTK_STOCK_CANCEL,
 				 GTK_RESPONSE_CANCEL);
-	
+
 	gtk_info_bar_set_message_type (GTK_INFO_BAR (infobar),
 				       GTK_MESSAGE_INFO);
 #endif
@@ -342,7 +342,7 @@ create_infobar (PlumaWindow *window,
 	g_signal_connect (infobar, "response",
 			  G_CALLBACK (on_response_cb),
 			  window);
-	
+
 	return infobar;
 }
 
@@ -351,9 +351,9 @@ pack_infobar (GtkWidget *window,
 	      GtkWidget *infobar)
 {
 	GtkWidget *vbox;
-	
+
 	vbox = gtk_bin_get_child (GTK_BIN (window));
-	
+
 	gtk_box_pack_start (GTK_BOX (vbox), infobar, FALSE, FALSE, 0);
 	gtk_box_reorder_child (GTK_BOX (vbox), infobar, 2);
 }
@@ -365,20 +365,20 @@ get_file (const gchar *text,
 	GRegex *regex;
 	GMatchInfo *match_info;
 	gchar *word = NULL;
-	
+
 	regex = g_regex_new (regex_place, 0, 0, NULL);
 	g_regex_match (regex, text, 0, &match_info);
 	while (g_match_info_matches (match_info))
 	{
 		g_free (word);
-		
+
 		word = g_match_info_fetch (match_info, 0);
-		
+
 		g_match_info_next (match_info, NULL);
 	}
 	g_match_info_free (match_info);
 	g_regex_unref (regex);
-	
+
 	return word;
 }
 
@@ -390,16 +390,16 @@ get_numbers (const gchar *version,
 {
 	gchar **split;
 	gint num = 2;
-	
+
 	if (micro != NULL)
 		num = 3;
-	
+
 	split = g_strsplit (version, ".", num);
 	*major = atoi (split[0]);
 	*minor = atoi (split[1]);
 	if (micro != NULL)
 		*micro = atoi (split[2]);
-	
+
 	g_strfreev (split);
 }
 
@@ -411,7 +411,7 @@ newer_version (const gchar *v1,
 	gboolean newer = FALSE;
 	gint major1, minor1, micro1;
 	gint major2, minor2, micro2;
-	
+
 	if (v1 == NULL || v2 == NULL)
 		return FALSE;
 
@@ -438,7 +438,7 @@ newer_version (const gchar *v1,
 	{
 		newer = TRUE;
 	}
-	
+
 	return newer;
 }
 
@@ -446,21 +446,21 @@ static gchar *
 parse_file_version (const gchar *file)
 {
 	gchar *p, *aux;
-	
+
 	p = (gchar *)file;
-	
+
 	while (*p != '\0' && !g_ascii_isdigit (*p))
 	{
 		p++;
 	}
-	
+
 	if (*p == '\0')
 		return NULL;
-	
+
 	aux = g_strrstr (p, "-");
 	if (aux == NULL)
 		aux = g_strrstr (p, ".");
-	
+
 	return g_strndup (p, aux - p);
 }
 
@@ -500,13 +500,13 @@ parse_page_file (SoupSession *session,
 
 			data = g_object_get_data (G_OBJECT (window),
 						  WINDOW_DATA_KEY);
-			
+
 			file_url = g_strconcat (data->url, file, NULL);
 
 			g_free (data->url);
 			data->url = file_url;
 			data->version = g_strdup (file_version);
-		
+
 			infobar = create_infobar (window, file_version);
 			pack_infobar (GTK_WIDGET (window), infobar);
 			gtk_widget_show (infobar);
@@ -530,14 +530,14 @@ is_unstable (const gchar *version)
 	gchar **split;
 	gint minor;
 	gboolean unstable = TRUE;;
-	
+
 	split = g_strsplit (version, ".", 2);
 	minor = atoi (split[1]);
 	g_strfreev (split);
-	
+
 	if ((minor % 2) == 0)
 		unstable = FALSE;
-	
+
 	return unstable;
 }
 
@@ -550,25 +550,25 @@ get_file_page_version (const gchar *text,
 	GString *string = NULL;
 	gchar *unstable = NULL;
 	gchar *stable = NULL;
-	
+
 	regex = g_regex_new (regex_place, 0, 0, NULL);
 	g_regex_match (regex, text, 0, &match_info);
 	while (g_match_info_matches (match_info))
 	{
 		gint end;
 		gint i;
-		
+
 		g_match_info_fetch_pos (match_info, 0, NULL, &end);
-		
+
 		string = g_string_new ("");
-		
+
 		i = end;
 		while (text[i] != '/')
 		{
 			string = g_string_append_c (string, text[i]);
 			i++;
 		}
-		
+
 		if (is_unstable (string->str))
 		{
 			g_free (unstable);
@@ -579,16 +579,16 @@ get_file_page_version (const gchar *text,
 			g_free (stable);
 			stable = g_string_free (string, FALSE);
 		}
-		
+
 		g_match_info_next (match_info, NULL);
 	}
 	g_match_info_free (match_info);
 	g_regex_unref (regex);
-	
+
 	if ((PLUMA_MINOR_VERSION % 2) == 0)
 	{
 		g_free (unstable);
-		
+
 		return stable;
 	}
 	else
@@ -597,13 +597,13 @@ get_file_page_version (const gchar *text,
 		if (newer_version (stable, unstable, FALSE))
 		{
 			g_free (unstable);
-			
+
 			return stable;
 		}
 		else
 		{
 			g_free (stable);
-		
+
 			return unstable;
 		}
 	}
@@ -621,14 +621,14 @@ parse_page_version (SoupSession *session,
 		WindowData *data;
 
 		data = g_object_get_data (G_OBJECT (window), WINDOW_DATA_KEY);
-		
+
 		version = get_file_page_version (msg->response_body->data,
 						 VERSION_PLACE);
-		
+
 		data->url = g_strconcat (PLUMA_URL, version, "/", NULL);
 		g_free (version);
 		msg2 = soup_message_new ("GET", data->url);
-	
+
 		soup_session_queue_message (session, msg2,
 					    (SoupSessionCallback)parse_page_file,
 					    window);
@@ -647,7 +647,7 @@ impl_activate (PlumaPlugin *plugin,
 {
 	SoupMessage *msg;
 	WindowData *data;
-	
+
 	pluma_debug (DEBUG_PLUGINS);
 
 	data = g_slice_new (WindowData);
@@ -661,7 +661,7 @@ impl_activate (PlumaPlugin *plugin,
 				free_window_data);
 
 	msg = soup_message_new ("GET", PLUMA_URL);
-	
+
 	soup_session_queue_message (PLUMA_CHECK_UPDATE_PLUGIN (plugin)->priv->session, msg,
 				    (SoupSessionCallback)parse_page_version,
 				    window);
@@ -673,9 +673,9 @@ impl_deactivate (PlumaPlugin *plugin,
 {
 
 	pluma_debug (DEBUG_PLUGINS);
-	
+
 	soup_session_abort (PLUMA_CHECK_UPDATE_PLUGIN (plugin)->priv->session);
-	
+
 	g_object_set_data (G_OBJECT (window),
 			   WINDOW_DATA_KEY,
 			   NULL);
@@ -686,7 +686,7 @@ pluma_check_update_plugin_class_init (PlumaCheckUpdatePluginClass *klass)
 {
 	GObjectClass *object_class = G_OBJECT_CLASS (klass);
 	PlumaPluginClass *plugin_class = PLUMA_PLUGIN_CLASS (klass);
-	
+
 	g_type_class_add_private (object_class, sizeof (PlumaCheckUpdatePluginPrivate));
 
 	object_class->finalize = pluma_check_update_plugin_finalize;

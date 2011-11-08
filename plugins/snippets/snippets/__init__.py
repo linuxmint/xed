@@ -20,7 +20,7 @@ import os
 import shutil
 
 import gtk
-from gtk import gdk    
+from gtk import gdk
 import pluma
 import platform
 
@@ -34,7 +34,7 @@ class SnippetsPlugin(pluma.Plugin):
                 pluma.Plugin.__init__(self)
 
                 self.dlg = None
-                
+
                 library = Library()
                 library.set_accelerator_callback(self.accelerator_activated)
 
@@ -45,7 +45,7 @@ class SnippetsPlugin(pluma.Plugin):
                         if userdir:
                                 snippetsdir = os.path.join(userdir, 'pluma/snippets')
                         else:
-                                snippetsdir = os.path.expanduser('~/.mate2/pluma/snippets')
+                                snippetsdir = os.path.expanduser('~/.config/pluma/snippets')
 
                 library.set_dirs(snippetsdir, self.system_dirs())
 
@@ -55,18 +55,18 @@ class SnippetsPlugin(pluma.Plugin):
 		                datadirs = os.environ['XDG_DATA_DIRS']
 		        else:
 		                datadirs = '/usr/local/share' + os.pathsep + '/usr/share'
-		        
+
 		        dirs = []
-		        
+
 		        for d in datadirs.split(os.pathsep):
-		                d = os.path.join(d, 'pluma-2', 'plugins', 'snippets')
-		                
+		                d = os.path.join(d, 'pluma', 'plugins', 'snippets')
+
 		                if os.path.isdir(d):
 		                        dirs.append(d)
-                
+
                 dirs.append(self.get_data_dir())
                 return dirs
-        
+
         def activate(self, window):
                 data = WindowHelper(self)
                 window._snippets_plugin_data = data
@@ -75,23 +75,23 @@ class SnippetsPlugin(pluma.Plugin):
         def deactivate(self, window):
                 window._snippets_plugin_data.stop()
                 window._snippets_plugin_data = None
-                
+
         def update_ui(self, window):
                 window._snippets_plugin_data.update()
-        
+
         def create_configure_dialog(self):
                 if not self.dlg:
                         self.dlg = Manager(self.get_data_dir())
                 else:
                         self.dlg.run()
-                
+
                 window = pluma.app_get_default().get_active_window()
-                
+
                 if window:
                         self.dlg.dlg.set_transient_for(window)
-                
+
                 return self.dlg.dlg
-        
+
         def accelerator_activated(self, group, obj, keyval, mod):
                 ret = False
 

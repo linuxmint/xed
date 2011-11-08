@@ -5,6 +5,7 @@
  * Copyright (C) 1998, 1999 Alex Roberts, Evan Lawrence
  * Copyright (C) 2000, 2001 Chema Celorio, Paolo Maggi
  * Copyright (C) 2002-2005 Paolo Maggi
+ * Copyright (C) 2011 Perberos
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -23,7 +24,7 @@
  */
 
 /*
- * Modified by the pluma Team, 1998-2005. See the AUTHORS file for a
+ * Modified by the gedit Team, 1998-2005. See the AUTHORS file for a
  * list of people on the pluma Team.
  * See the ChangeLog files for a list of changes.
  *
@@ -31,7 +32,7 @@
  */
 
 #ifdef HAVE_CONFIG_H
-#include <config.h>
+	#include <config.h>
 #endif
 
 #include <glib/gi18n.h>
@@ -42,20 +43,16 @@
 #include "pluma-help.h"
 #include "pluma-dirs.h"
 
-void
-_pluma_cmd_help_contents (GtkAction   *action,
-			  PlumaWindow *window)
+void _pluma_cmd_help_contents(GtkAction* action, PlumaWindow* window)
 {
-	pluma_debug (DEBUG_COMMANDS);
+	pluma_debug(DEBUG_COMMANDS);
 
-	pluma_help_display (GTK_WINDOW (window), NULL, NULL);
+	pluma_help_display(GTK_WINDOW(window), NULL, NULL);
 }
 
-void
-_pluma_cmd_help_about (GtkAction   *action,
-		       PlumaWindow *window)
+void _pluma_cmd_help_about(GtkAction* action, PlumaWindow* window)
 {
-	static const gchar * const authors[] = {
+	static const gchar* const authors[] = {
 		"Paolo Maggi <paolo@gnome.org>",
 		"Paolo Borelli <pborelli@katamail.com>",
 		"Steve Fr\303\251cinaux  <steve@istique.net>",
@@ -64,11 +61,12 @@ _pluma_cmd_help_about (GtkAction   *action,
 		"James Willcox <jwillcox@gnome.org>",
 		"Chema Celorio",
 		"Federico Mena Quintero <federico@novell.com>",
+		"Perberos <perberos@gmail.com>",
 		NULL
 	};
 
-	static const gchar * const documenters[] = {
-		"Sun MATE Documentation Team <gdocteam@sun.com>",
+	static const gchar* const documenters[] = {
+		"Sun GNOME Documentation Team <gdocteam@sun.com>",
 		"Eric Baudais <baudais@okstate.edu>",
 		NULL
 	};
@@ -81,23 +79,17 @@ _pluma_cmd_help_about (GtkAction   *action,
 		"Copyright \xc2\xa9 2011 Perberos";
 
 	static const gchar comments[] = \
-		N_("pluma is a small and lightweight text editor for the "
-		   "MATE Desktop");
-
-	GdkPixbuf *logo;
-	gchar *data_dir;
-	gchar *logo_file;
+		N_("pluma is a small and lightweight text editor for the MATE Desktop");
 
 	pluma_debug (DEBUG_COMMANDS);
 
-	data_dir = pluma_dirs_get_pluma_data_dir ();
-	logo_file = g_build_filename (data_dir,
-				      "logo",
-				      "pluma.png",
-				      NULL);
-	g_free (data_dir);
-	logo = gdk_pixbuf_new_from_file (logo_file, NULL);
-	g_free (logo_file);
+	GdkPixbuf* logo = NULL;
+	GtkIconTheme* icon_theme = gtk_icon_theme_get_default();
+
+	if (gtk_icon_theme_has_icon(icon_theme, "accessories-text-editor"))
+	{
+		logo = gtk_icon_theme_load_icon(icon_theme, "accessories-text-editor", 64, 0, NULL);
+	}
 
 	gtk_show_about_dialog (GTK_WINDOW (window),
 			       "program-name", "Pluma",
@@ -112,5 +104,7 @@ _pluma_cmd_help_about (GtkAction   *action,
 			       NULL);
 
 	if (logo)
-		g_object_unref (logo);
+	{
+		g_object_unref(logo);
+	}
 }

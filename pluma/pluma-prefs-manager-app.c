@@ -3,7 +3,7 @@
  * pluma-prefs-manager.c
  * This file is part of pluma
  *
- * Copyright (C) 2002-2005  Paolo Maggi 
+ * Copyright (C) 2002-2005  Paolo Maggi
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,13 +17,13 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
- * Foundation, Inc., 59 Temple Place, Suite 330, 
- * Boston, MA 02111-1307, USA. 
+ * Foundation, Inc., 59 Temple Place, Suite 330,
+ * Boston, MA 02111-1307, USA.
  */
- 
+
 /*
- * Modified by the pluma Team, 2002-2003. See the AUTHORS file for a 
- * list of people on the pluma Team.  
+ * Modified by the pluma Team, 2002-2003. See the AUTHORS file for a
+ * list of people on the pluma Team.
  * See the ChangeLog files for a list of changes.
  *
  * $Id$
@@ -58,69 +58,69 @@ static void pluma_prefs_manager_system_font_changed	(MateConfClient *client,
 							 gpointer     user_data);
 
 static void pluma_prefs_manager_tabs_size_changed	(MateConfClient *client,
-							 guint        cnxn_id, 
-							 MateConfEntry  *entry, 
+							 guint        cnxn_id,
+							 MateConfEntry  *entry,
 							 gpointer     user_data);
 
 static void pluma_prefs_manager_wrap_mode_changed	(MateConfClient *client,
-							 guint        cnxn_id, 
-							 MateConfEntry  *entry, 
+							 guint        cnxn_id,
+							 MateConfEntry  *entry,
 							 gpointer     user_data);
 
 static void pluma_prefs_manager_line_numbers_changed	(MateConfClient *client,
-							 guint        cnxn_id, 
-							 MateConfEntry  *entry, 
+							 guint        cnxn_id,
+							 MateConfEntry  *entry,
 							 gpointer     user_data);
 
 static void pluma_prefs_manager_auto_indent_changed	(MateConfClient *client,
-							 guint        cnxn_id, 
-							 MateConfEntry  *entry, 
+							 guint        cnxn_id,
+							 MateConfEntry  *entry,
 							 gpointer     user_data);
 
 static void pluma_prefs_manager_undo_changed		(MateConfClient *client,
-							 guint        cnxn_id, 
-							 MateConfEntry  *entry, 
+							 guint        cnxn_id,
+							 MateConfEntry  *entry,
 							 gpointer     user_data);
 
 static void pluma_prefs_manager_right_margin_changed	(MateConfClient *client,
-							 guint        cnxn_id, 
-							 MateConfEntry  *entry, 
+							 guint        cnxn_id,
+							 MateConfEntry  *entry,
 							 gpointer     user_data);
 
 static void pluma_prefs_manager_smart_home_end_changed	(MateConfClient *client,
-							 guint        cnxn_id, 
-							 MateConfEntry  *entry, 
+							 guint        cnxn_id,
+							 MateConfEntry  *entry,
 							 gpointer     user_data);
 
 static void pluma_prefs_manager_hl_current_line_changed	(MateConfClient *client,
-							 guint        cnxn_id, 
-							 MateConfEntry  *entry, 
+							 guint        cnxn_id,
+							 MateConfEntry  *entry,
 							 gpointer     user_data);
-							 
+
 static void pluma_prefs_manager_bracket_matching_changed(MateConfClient *client,
-							 guint        cnxn_id, 
-							 MateConfEntry  *entry, 
+							 guint        cnxn_id,
+							 MateConfEntry  *entry,
 							 gpointer     user_data);
 
 static void pluma_prefs_manager_syntax_hl_enable_changed(MateConfClient *client,
-							 guint        cnxn_id, 
-							 MateConfEntry  *entry, 
+							 guint        cnxn_id,
+							 MateConfEntry  *entry,
 							 gpointer     user_data);
 
 static void pluma_prefs_manager_search_hl_enable_changed(MateConfClient *client,
-							 guint        cnxn_id, 
-							 MateConfEntry  *entry, 
+							 guint        cnxn_id,
+							 MateConfEntry  *entry,
 							 gpointer     user_data);
 
 static void pluma_prefs_manager_source_style_scheme_changed
 							(MateConfClient *client,
-							 guint        cnxn_id, 
-							 MateConfEntry  *entry, 
+							 guint        cnxn_id,
+							 MateConfEntry  *entry,
 							 gpointer     user_data);
 
 static void pluma_prefs_manager_max_recents_changed	(MateConfClient *client,
-							 guint        cnxn_id, 
-							 MateConfEntry  *entry, 
+							 guint        cnxn_id,
+							 MateConfEntry  *entry,
 							 gpointer     user_data);
 
 static void pluma_prefs_manager_auto_save_changed	(MateConfClient *client,
@@ -129,8 +129,8 @@ static void pluma_prefs_manager_auto_save_changed	(MateConfClient *client,
 							 gpointer     user_data);
 
 static void pluma_prefs_manager_active_plugins_changed	(MateConfClient *client,
-							 guint        cnxn_id, 
-							 MateConfEntry  *entry, 
+							 guint        cnxn_id,
+							 MateConfEntry  *entry,
 							 gpointer     user_data);
 
 static void pluma_prefs_manager_lockdown_changed	(MateConfClient *client,
@@ -146,7 +146,7 @@ static void pluma_prefs_manager_lockdown_changed	(MateConfClient *client,
 #define PLUMA_STATE_DEFAULT_SIDE_PANEL_SIZE	200
 #define PLUMA_STATE_DEFAULT_BOTTOM_PANEL_SIZE	140
 
-#define PLUMA_STATE_FILE_LOCATION "pluma-2"
+#define PLUMA_STATE_FILE_LOCATION "pluma.ini"
 
 #define PLUMA_STATE_WINDOW_GROUP "window"
 #define PLUMA_STATE_WINDOW_STATE "state"
@@ -356,12 +356,12 @@ pluma_prefs_manager_get_window_state (void)
 
 	return window_state;
 }
-			
+
 void
 pluma_prefs_manager_set_window_state (gint ws)
 {
 	g_return_if_fail (ws > -1);
-	
+
 	window_state = ws;
 
 	pluma_state_set_int (PLUMA_STATE_WINDOW_GROUP,
@@ -426,7 +426,7 @@ pluma_prefs_manager_set_window_size (gint width, gint height)
 			     height);
 }
 
-gboolean 
+gboolean
 pluma_prefs_manager_window_size_can_set (void)
 {
 	return TRUE;
@@ -447,27 +447,27 @@ pluma_prefs_manager_get_side_panel_size (void)
 	return side_panel_size;
 }
 
-gint 
+gint
 pluma_prefs_manager_get_default_side_panel_size (void)
 {
 	return PLUMA_STATE_DEFAULT_SIDE_PANEL_SIZE;
 }
 
-void 
+void
 pluma_prefs_manager_set_side_panel_size (gint ps)
 {
 	g_return_if_fail (ps > -1);
-	
+
 	if (side_panel_size == ps)
 		return;
-		
+
 	side_panel_size = ps;
 	pluma_state_set_int (PLUMA_STATE_WINDOW_GROUP,
 			     PLUMA_STATE_SIDE_PANEL_SIZE,
 			     ps);
 }
 
-gboolean 
+gboolean
 pluma_prefs_manager_side_panel_size_can_set (void)
 {
 	return TRUE;
@@ -499,7 +499,7 @@ pluma_prefs_manager_set_side_panel_active_page (gint id)
 			     id);
 }
 
-gboolean 
+gboolean
 pluma_prefs_manager_side_panel_active_page_can_set (void)
 {
 	return TRUE;
@@ -520,27 +520,27 @@ pluma_prefs_manager_get_bottom_panel_size (void)
 	return bottom_panel_size;
 }
 
-gint 
+gint
 pluma_prefs_manager_get_default_bottom_panel_size (void)
 {
 	return PLUMA_STATE_DEFAULT_BOTTOM_PANEL_SIZE;
 }
 
-void 
+void
 pluma_prefs_manager_set_bottom_panel_size (gint ps)
 {
 	g_return_if_fail (ps > -1);
 
 	if (bottom_panel_size == ps)
 		return;
-	
+
 	bottom_panel_size = ps;
 	pluma_state_set_int (PLUMA_STATE_WINDOW_GROUP,
 			     PLUMA_STATE_BOTTOM_PANEL_SIZE,
 			     ps);
 }
 
-gboolean 
+gboolean
 pluma_prefs_manager_bottom_panel_size_can_set (void)
 {
 	return TRUE;
@@ -572,7 +572,7 @@ pluma_prefs_manager_set_bottom_panel_active_page (gint id)
 			     id);
 }
 
-gboolean 
+gboolean
 pluma_prefs_manager_bottom_panel_active_page_can_set (void)
 {
 	return TRUE;
@@ -597,7 +597,7 @@ void
 pluma_prefs_manager_set_active_file_filter (gint id)
 {
 	g_return_if_fail (id >= 0);
-	
+
 	if (active_file_filter == id)
 		return;
 
@@ -607,7 +607,7 @@ pluma_prefs_manager_set_active_file_filter (gint id)
 			     id);
 }
 
-gboolean 
+gboolean
 pluma_prefs_manager_active_file_filter_can_set (void)
 {
 	return TRUE;
@@ -636,12 +636,12 @@ pluma_prefs_manager_app_init (void)
 				GPM_PLUGINS_DIR,
 				MATECONF_CLIENT_PRELOAD_RECURSIVE,
 				NULL);
-		
+
 		mateconf_client_add_dir (pluma_prefs_manager->mateconf_client,
 				GPM_LOCKDOWN_DIR,
 				MATECONF_CLIENT_PRELOAD_RECURSIVE,
 				NULL);
-		
+
 		mateconf_client_notify_add (pluma_prefs_manager->mateconf_client,
 				GPM_FONT_DIR,
 				pluma_prefs_manager_editor_font_changed,
@@ -661,7 +661,7 @@ pluma_prefs_manager_app_init (void)
 				GPM_WRAP_MODE_DIR,
 				pluma_prefs_manager_wrap_mode_changed,
 				NULL, NULL, NULL);
-		
+
 		mateconf_client_notify_add (pluma_prefs_manager->mateconf_client,
 				GPM_LINE_NUMBERS_DIR,
 				pluma_prefs_manager_line_numbers_changed,
@@ -733,7 +733,7 @@ pluma_prefs_manager_app_init (void)
 				NULL, NULL, NULL);
 	}
 
-	return pluma_prefs_manager != NULL;	
+	return pluma_prefs_manager != NULL;
 }
 
 /* This function must be called before exiting pluma */
@@ -748,10 +748,10 @@ pluma_prefs_manager_app_shutdown (void)
 }
 
 
-static void 
+static void
 pluma_prefs_manager_editor_font_changed (MateConfClient *client,
-					 guint        cnxn_id, 
-					 MateConfEntry  *entry, 
+					 guint        cnxn_id,
+					 MateConfEntry  *entry,
 					 gpointer     user_data)
 {
 	GList *views;
@@ -771,7 +771,7 @@ pluma_prefs_manager_editor_font_changed (MateConfClient *client,
 			def = mateconf_value_get_bool (entry->value);
 		else
 			def = GPM_DEFAULT_USE_DEFAULT_FONT;
-		
+
 		if (def)
 			font = pluma_prefs_manager_get_system_font ();
 		else
@@ -783,14 +783,14 @@ pluma_prefs_manager_editor_font_changed (MateConfClient *client,
 			font = g_strdup (mateconf_value_get_string (entry->value));
 		else
 			font = g_strdup (GPM_DEFAULT_EDITOR_FONT);
-				
+
 		def = pluma_prefs_manager_get_use_default_font ();
 	}
 	else
 		return;
 
 	g_return_if_fail (font != NULL);
-	
+
 	ts = pluma_prefs_manager_get_tabs_size ();
 
 	views = pluma_app_get_views (pluma_app_get_default ());
@@ -809,10 +809,10 @@ pluma_prefs_manager_editor_font_changed (MateConfClient *client,
 	g_free (font);
 }
 
-static void 
+static void
 pluma_prefs_manager_system_font_changed (MateConfClient *client,
-					 guint        cnxn_id, 
-					 MateConfEntry  *entry, 
+					 guint        cnxn_id,
+					 MateConfEntry  *entry,
 					 gpointer     user_data)
 {
 	GList *views;
@@ -854,10 +854,10 @@ pluma_prefs_manager_system_font_changed (MateConfClient *client,
 	g_free (font);
 }
 
-static void 
+static void
 pluma_prefs_manager_tabs_size_changed (MateConfClient *client,
 				       guint        cnxn_id,
-				       MateConfEntry  *entry, 
+				       MateConfEntry  *entry,
 				       gpointer     user_data)
 {
 	pluma_debug (DEBUG_PREFS);
@@ -875,7 +875,7 @@ pluma_prefs_manager_tabs_size_changed (MateConfClient *client,
 			tab_width = mateconf_value_get_int (entry->value);
 		else
 			tab_width = GPM_DEFAULT_TABS_SIZE;
-	
+
 		tab_width = CLAMP (tab_width, 1, 24);
 
 		views = pluma_app_get_views (pluma_app_get_default ());
@@ -883,7 +883,7 @@ pluma_prefs_manager_tabs_size_changed (MateConfClient *client,
 
 		while (l != NULL)
 		{
-			gtk_source_view_set_tab_width (GTK_SOURCE_VIEW (l->data), 
+			gtk_source_view_set_tab_width (GTK_SOURCE_VIEW (l->data),
 						       tab_width);
 
 			l = l->next;
@@ -898,7 +898,7 @@ pluma_prefs_manager_tabs_size_changed (MateConfClient *client,
 		GList *l;
 
 		if (entry->value->type == MATECONF_VALUE_BOOL)
-			enable = mateconf_value_get_bool (entry->value);	
+			enable = mateconf_value_get_bool (entry->value);
 		else
 			enable = GPM_DEFAULT_INSERT_SPACES;
 
@@ -908,7 +908,7 @@ pluma_prefs_manager_tabs_size_changed (MateConfClient *client,
 		while (l != NULL)
 		{
 			gtk_source_view_set_insert_spaces_instead_of_tabs (
-					GTK_SOURCE_VIEW (l->data), 
+					GTK_SOURCE_VIEW (l->data),
 					enable);
 
 			l = l->next;
@@ -918,13 +918,13 @@ pluma_prefs_manager_tabs_size_changed (MateConfClient *client,
 	}
 }
 
-static GtkWrapMode 
+static GtkWrapMode
 get_wrap_mode_from_string (const gchar* str)
 {
 	GtkWrapMode res;
 
 	g_return_val_if_fail (str != NULL, GTK_WRAP_WORD);
-	
+
 	if (strcmp (str, "GTK_WRAP_NONE") == 0)
 		res = GTK_WRAP_NONE;
 	else
@@ -938,10 +938,10 @@ get_wrap_mode_from_string (const gchar* str)
 	return res;
 }
 
-static void 
+static void
 pluma_prefs_manager_wrap_mode_changed (MateConfClient *client,
-	                               guint        cnxn_id, 
-	                               MateConfEntry  *entry, 
+	                               guint        cnxn_id,
+	                               MateConfEntry  *entry,
 	                               gpointer     user_data)
 {
 	pluma_debug (DEBUG_PREFS);
@@ -956,8 +956,8 @@ pluma_prefs_manager_wrap_mode_changed (MateConfClient *client,
 		GList *l;
 
 		if (entry->value->type == MATECONF_VALUE_STRING)
-			wrap_mode = 
-				get_wrap_mode_from_string (mateconf_value_get_string (entry->value));	
+			wrap_mode =
+				get_wrap_mode_from_string (mateconf_value_get_string (entry->value));
 		else
 			wrap_mode = get_wrap_mode_from_string (GPM_DEFAULT_WRAP_MODE);
 
@@ -976,10 +976,10 @@ pluma_prefs_manager_wrap_mode_changed (MateConfClient *client,
 	}
 }
 
-static void 
+static void
 pluma_prefs_manager_line_numbers_changed (MateConfClient *client,
-					  guint        cnxn_id, 
-					  MateConfEntry  *entry, 
+					  guint        cnxn_id,
+					  MateConfEntry  *entry,
 					  gpointer     user_data)
 {
 	pluma_debug (DEBUG_PREFS);
@@ -994,7 +994,7 @@ pluma_prefs_manager_line_numbers_changed (MateConfClient *client,
 		GList *l;
 
 		if (entry->value->type == MATECONF_VALUE_BOOL)
-			dln = mateconf_value_get_bool (entry->value);	
+			dln = mateconf_value_get_bool (entry->value);
 		else
 			dln = GPM_DEFAULT_DISPLAY_LINE_NUMBERS;
 
@@ -1003,7 +1003,7 @@ pluma_prefs_manager_line_numbers_changed (MateConfClient *client,
 
 		while (l != NULL)
 		{
-			gtk_source_view_set_show_line_numbers (GTK_SOURCE_VIEW (l->data), 
+			gtk_source_view_set_show_line_numbers (GTK_SOURCE_VIEW (l->data),
 							       dln);
 
 			l = l->next;
@@ -1013,10 +1013,10 @@ pluma_prefs_manager_line_numbers_changed (MateConfClient *client,
 	}
 }
 
-static void 
+static void
 pluma_prefs_manager_hl_current_line_changed (MateConfClient *client,
-					     guint        cnxn_id, 
-					     MateConfEntry  *entry, 
+					     guint        cnxn_id,
+					     MateConfEntry  *entry,
 					     gpointer     user_data)
 {
 	pluma_debug (DEBUG_PREFS);
@@ -1031,7 +1031,7 @@ pluma_prefs_manager_hl_current_line_changed (MateConfClient *client,
 		GList *l;
 
 		if (entry->value->type == MATECONF_VALUE_BOOL)
-			hl = mateconf_value_get_bool (entry->value);	
+			hl = mateconf_value_get_bool (entry->value);
 		else
 			hl = GPM_DEFAULT_HIGHLIGHT_CURRENT_LINE;
 
@@ -1040,7 +1040,7 @@ pluma_prefs_manager_hl_current_line_changed (MateConfClient *client,
 
 		while (l != NULL)
 		{
-			gtk_source_view_set_highlight_current_line (GTK_SOURCE_VIEW (l->data), 
+			gtk_source_view_set_highlight_current_line (GTK_SOURCE_VIEW (l->data),
 								    hl);
 
 			l = l->next;
@@ -1050,10 +1050,10 @@ pluma_prefs_manager_hl_current_line_changed (MateConfClient *client,
 	}
 }
 
-static void 
+static void
 pluma_prefs_manager_bracket_matching_changed (MateConfClient *client,
-					      guint        cnxn_id, 
-					      MateConfEntry  *entry, 
+					      guint        cnxn_id,
+					      MateConfEntry  *entry,
 					      gpointer     user_data)
 {
 	pluma_debug (DEBUG_PREFS);
@@ -1087,10 +1087,10 @@ pluma_prefs_manager_bracket_matching_changed (MateConfClient *client,
 	}
 }
 
-static void 
+static void
 pluma_prefs_manager_auto_indent_changed (MateConfClient *client,
-					 guint        cnxn_id, 
-					 MateConfEntry  *entry, 
+					 guint        cnxn_id,
+					 MateConfEntry  *entry,
 					 gpointer     user_data)
 {
 	pluma_debug (DEBUG_PREFS);
@@ -1105,18 +1105,18 @@ pluma_prefs_manager_auto_indent_changed (MateConfClient *client,
 		GList *l;
 
 		if (entry->value->type == MATECONF_VALUE_BOOL)
-			enable = mateconf_value_get_bool (entry->value);	
+			enable = mateconf_value_get_bool (entry->value);
 		else
 			enable = GPM_DEFAULT_AUTO_INDENT;
-	
+
 		views = pluma_app_get_views (pluma_app_get_default ());
 		l = views;
 
 		while (l != NULL)
-		{		
-			gtk_source_view_set_auto_indent (GTK_SOURCE_VIEW (l->data), 
+		{
+			gtk_source_view_set_auto_indent (GTK_SOURCE_VIEW (l->data),
 							 enable);
-			
+
 			l = l->next;
 		}
 
@@ -1124,10 +1124,10 @@ pluma_prefs_manager_auto_indent_changed (MateConfClient *client,
 	}
 }
 
-static void 
+static void
 pluma_prefs_manager_undo_changed (MateConfClient *client,
-				  guint        cnxn_id, 
-				  MateConfEntry  *entry, 
+				  guint        cnxn_id,
+				  MateConfEntry  *entry,
 				  gpointer     user_data)
 {
 	pluma_debug (DEBUG_PREFS);
@@ -1145,15 +1145,15 @@ pluma_prefs_manager_undo_changed (MateConfClient *client,
 			ul = mateconf_value_get_int (entry->value);
 		else
 			ul = GPM_DEFAULT_UNDO_ACTIONS_LIMIT;
-	
+
 		ul = CLAMP (ul, -1, 250);
 
 		docs = pluma_app_get_documents (pluma_app_get_default ());
 		l = docs;
-		
+
 		while (l != NULL)
 		{
-			gtk_source_buffer_set_max_undo_levels (GTK_SOURCE_BUFFER (l->data), 
+			gtk_source_buffer_set_max_undo_levels (GTK_SOURCE_BUFFER (l->data),
 							       ul);
 
 			l = l->next;
@@ -1163,7 +1163,7 @@ pluma_prefs_manager_undo_changed (MateConfClient *client,
 	}
 }
 
-static void 
+static void
 pluma_prefs_manager_right_margin_changed (MateConfClient *client,
 					  guint cnxn_id,
 					  MateConfEntry *entry,
@@ -1207,7 +1207,7 @@ pluma_prefs_manager_right_margin_changed (MateConfClient *client,
 		GList *l;
 
 		if (entry->value->type == MATECONF_VALUE_BOOL)
-			display = mateconf_value_get_bool (entry->value);	
+			display = mateconf_value_get_bool (entry->value);
 		else
 			display = GPM_DEFAULT_DISPLAY_RIGHT_MARGIN;
 
@@ -1263,8 +1263,8 @@ pluma_prefs_manager_smart_home_end_changed (MateConfClient *client,
 		GList *l;
 
 		if (entry->value->type == MATECONF_VALUE_STRING)
-			smart_he = 
-				get_smart_home_end_from_string (mateconf_value_get_string (entry->value));	
+			smart_he =
+				get_smart_home_end_from_string (mateconf_value_get_string (entry->value));
 		else
 			smart_he = get_smart_home_end_from_string (GPM_DEFAULT_SMART_HOME_END);
 
@@ -1416,12 +1416,12 @@ pluma_prefs_manager_source_style_scheme_changed (MateConfClient *client,
 		if (style == NULL)
 		{
 			g_warning ("Default style scheme '%s' not found, falling back to 'classic'", scheme);
-			
+
 			style = gtk_source_style_scheme_manager_get_scheme (
 				pluma_get_style_scheme_manager (),
 				"classic");
 
-			if (style == NULL) 
+			if (style == NULL)
 			{
 				g_warning ("Style scheme 'classic' cannot be found, check your GtkSourceView installation.");
 				return;
@@ -1552,7 +1552,7 @@ pluma_prefs_manager_auto_save_changed (MateConfClient *client,
 	}
 }
 
-static void 
+static void
 pluma_prefs_manager_active_plugins_changed (MateConfClient *client,
 					    guint        cnxn_id,
 					    MateConfEntry  *entry,
@@ -1565,7 +1565,7 @@ pluma_prefs_manager_active_plugins_changed (MateConfClient *client,
 
 	if (strcmp (entry->key, GPM_ACTIVE_PLUGINS) == 0)
 	{
-		if ((entry->value->type == MATECONF_VALUE_LIST) && 
+		if ((entry->value->type == MATECONF_VALUE_LIST) &&
 		    (mateconf_value_get_list_type (entry->value) == MATECONF_VALUE_STRING))
 		{
 			PlumaPluginsEngine *engine;
@@ -1599,22 +1599,22 @@ pluma_prefs_manager_lockdown_changed (MateConfClient *client,
 	app = pluma_app_get_default ();
 
 	if (strcmp (entry->key, GPM_LOCKDOWN_COMMAND_LINE) == 0)
-		_pluma_app_set_lockdown_bit (app, 
+		_pluma_app_set_lockdown_bit (app,
 					     PLUMA_LOCKDOWN_COMMAND_LINE,
 					     locked);
 
 	else if (strcmp (entry->key, GPM_LOCKDOWN_PRINTING) == 0)
-		_pluma_app_set_lockdown_bit (app, 
+		_pluma_app_set_lockdown_bit (app,
 					     PLUMA_LOCKDOWN_PRINTING,
 					     locked);
 
 	else if (strcmp (entry->key, GPM_LOCKDOWN_PRINT_SETUP) == 0)
-		_pluma_app_set_lockdown_bit (app, 
+		_pluma_app_set_lockdown_bit (app,
 					     PLUMA_LOCKDOWN_PRINT_SETUP,
 					     locked);
 
 	else if (strcmp (entry->key, GPM_LOCKDOWN_SAVE_TO_DISK) == 0)
-		_pluma_app_set_lockdown_bit (app, 
+		_pluma_app_set_lockdown_bit (app,
 					     PLUMA_LOCKDOWN_SAVE_TO_DISK,
 					     locked);
 }

@@ -3,7 +3,7 @@
  * pluma-prefs-manager.h
  * This file is part of pluma
  *
- * Copyright (C) 2002  Paolo Maggi 
+ * Copyright (C) 2002  Paolo Maggi
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,14 +17,14 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
- * Foundation, Inc., 59 Temple Place, Suite 330, 
- * Boston, MA 02111-1307, USA. 
+ * Foundation, Inc., 59 Temple Place, Suite 330,
+ * Boston, MA 02111-1307, USA.
  */
- 
+
 /*
- * Modified by the pluma Team, 2002. See the AUTHORS file for a 
- * list of people on the pluma Team.  
- * See the ChangeLog files for a list of changes. 
+ * Modified by the pluma Team, 2002. See the AUTHORS file for a
+ * list of people on the pluma Team.
+ * See the ChangeLog files for a list of changes.
  */
 
 #ifndef __PLUMA_PREFS_MANAGER_H__
@@ -35,7 +35,7 @@
 #include <gtksourceview/gtksourceview.h>
 #include "pluma-app.h"
 
-#define PLUMA_BASE_KEY	"/apps/pluma-2"
+#define PLUMA_BASE_KEY	"/apps/pluma"
 
 #define GPM_PREFS_DIR			PLUMA_BASE_KEY "/preferences"
 
@@ -170,7 +170,7 @@
 #define GPM_DEFAULT_DISPLAY_LINE_NUMBERS 0 /* FALSE */
 
 #define GPM_DEFAULT_AUTO_DETECTED_ENCODINGS {"UTF-8", "CURRENT", "ISO-8859-15", NULL}
-       	
+
 #define GPM_DEFAULT_TOOLBAR_VISIBLE	1 /* TRUE */
 #define GPM_DEFAULT_TOOLBAR_BUTTONS_STYLE "PLUMA_TOOLBAR_SYSTEM"
 #define GPM_DEFAULT_TOOLBAR_SHOW_TOOLTIPS 1 /* TRUE */
@@ -295,8 +295,8 @@ void			 pluma_prefs_manager_set_toolbar_visible	(gboolean tv);
 gboolean		 pluma_prefs_manager_toolbar_visible_can_set	(void);
 
 /* Toolbar buttons style */
-PlumaToolbarSetting 	 pluma_prefs_manager_get_toolbar_buttons_style	(void); 
-void 			 pluma_prefs_manager_set_toolbar_buttons_style	(PlumaToolbarSetting tbs); 
+PlumaToolbarSetting 	 pluma_prefs_manager_get_toolbar_buttons_style	(void);
+void 			 pluma_prefs_manager_set_toolbar_buttons_style	(PlumaToolbarSetting tbs);
 gboolean		 pluma_prefs_manager_toolbar_buttons_style_can_set (void);
 
 /* Statusbar visible */
@@ -322,13 +322,13 @@ gboolean		 pluma_prefs_manager_print_syntax_hl_can_set	(void);
 gboolean		 pluma_prefs_manager_get_print_header		(void);
 void			 pluma_prefs_manager_set_print_header		(gboolean ph);
 gboolean		 pluma_prefs_manager_print_header_can_set	(void);
-	
+
 /* Wrap mode while printing */
 GtkWrapMode		 pluma_prefs_manager_get_print_wrap_mode	(void);
 void			 pluma_prefs_manager_set_print_wrap_mode	(GtkWrapMode pwm);
 gboolean		 pluma_prefs_manager_print_wrap_mode_can_set	(void);
 
-/* Print line numbers */	
+/* Print line numbers */
 gint		 	 pluma_prefs_manager_get_print_line_numbers	(void);
 void 			 pluma_prefs_manager_set_print_line_numbers	(gint pln);
 gboolean		 pluma_prefs_manager_print_line_numbers_can_set	(void);
@@ -351,8 +351,8 @@ void			 pluma_prefs_manager_set_print_font_numbers	(const gchar *font);
 gboolean		 pluma_prefs_manager_print_font_numbers_can_set	(void);
 const gchar		*pluma_prefs_manager_get_default_print_font_numbers (void);
 
-/* Max number of files in "Recent Files" menu. 
- * This is configurable only using mateconftool or mateconf-editor 
+/* Max number of files in "Recent Files" menu.
+ * This is configurable only using mateconftool or mateconf-editor
  */
 gint		 	 pluma_prefs_manager_get_max_recents		(void);
 

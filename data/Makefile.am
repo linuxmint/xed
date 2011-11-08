@@ -16,7 +16,7 @@ pkgconfig_DATA = pluma-@PLUMA_API_VERSION@.pc
 pluma-@PLUMA_API_VERSION@.pc: pluma.pc
 	cp pluma.pc pluma-@PLUMA_API_VERSION@.pc
 
-bugreportdir = $(libexecdir)/pluma-2
+bugreportdir = $(libexecdir)/pluma
 bugreport_SCRIPTS = pluma-bugreport.sh
 
 if MATECONF_SCHEMAS_INSTALL

@@ -219,22 +219,22 @@ cp -R "${_gtksourceview_prefix}/share/gtksourceview-2.0/language-specs" installe
 cp -R "${_gtksourceview_prefix}/share/gtksourceview-2.0/styles" installer/pluma/share/gtksourceview-2.0 || exit
 
 #GtkBuilder files and xml files
-mkdir -p installer/pluma/share/pluma-2/ui || exit
-cp "${_pluma_prefix}/share/pluma-2/ui/"* installer/pluma/share/pluma-2/ui || exit
+mkdir -p installer/pluma/share/pluma/ui || exit
+cp "${_pluma_prefix}/share/pluma/ui/"* installer/pluma/share/pluma/ui || exit
 
 #Icons & logo
-mkdir -p installer/pluma/share/pluma-2/icons || exit
-cp "${_pluma_prefix}/share/pluma-2/icons/pluma-plugin.png" installer/pluma/share/pluma-2/icons || exit
-mkdir -p installer/pluma/share/pluma-2/logo || exit
-cp "${_pluma_prefix}/share/pluma-2/logo/pluma-logo.png" installer/pluma/share/pluma-2/logo || exit
+mkdir -p installer/pluma/share/pluma/icons || exit
+cp "${_pluma_prefix}/share/pluma/icons/pluma-plugin.png" installer/pluma/share/pluma/icons || exit
+mkdir -p installer/pluma/share/pluma/logo || exit
+cp "${_pluma_prefix}/share/pluma/logo/pluma-logo.png" installer/pluma/share/pluma/logo || exit
 
 #Plugins
-mkdir -p installer/pluma/share/pluma-2/plugins || exit
-cp -R "${_pluma_prefix}/share/pluma-2/plugins/"* installer/pluma/share/pluma-2/plugins || exit
-mkdir -p installer/pluma/lib/pluma-2/plugins || exit
-cp -R "${_pluma_prefix}/lib/pluma-2/plugins/"* installer/pluma/lib/pluma-2/plugins || exit
-mkdir -p installer/pluma/lib/pluma-2/plugin-loaders || exit
-cp -R "${_pluma_prefix}/lib/pluma-2/plugin-loaders/"* installer/pluma/lib/pluma-2/plugin-loaders || exit
+mkdir -p installer/pluma/share/pluma/plugins || exit
+cp -R "${_pluma_prefix}/share/pluma/plugins/"* installer/pluma/share/pluma/plugins || exit
+mkdir -p installer/pluma/lib/pluma/plugins || exit
+cp -R "${_pluma_prefix}/lib/pluma/plugins/"* installer/pluma/lib/pluma/plugins || exit
+mkdir -p installer/pluma/lib/pluma/plugin-loaders || exit
+cp -R "${_pluma_prefix}/lib/pluma/plugin-loaders/"* installer/pluma/lib/pluma/plugin-loaders || exit
 
 #MateConf
 mkdir -p installer/pluma/etc/mateconf/schemas || exit

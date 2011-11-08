@@ -35,13 +35,13 @@ class Singleton(object):
 class ToolLibrary(Singleton):
     def __init_once__(self):
         self.locations = []
-    
+
     def set_locations(self, datadir):
         self.locations = []
 
         if platform.platform() != 'Windows':
             for d in self.get_xdg_data_dirs():
-                self.locations.append(os.path.join(d, 'pluma-2', 'plugins', 'externaltools', 'tools'))
+                self.locations.append(os.path.join(d, 'pluma', 'plugins', 'externaltools', 'tools'))
 
         self.locations.append(datadir)
 
@@ -53,7 +53,7 @@ class ToolLibrary(Singleton):
             if userdir:
                 toolsdir = os.path.join(userdir, 'pluma/tools')
             else:
-                toolsdir = os.path.expanduser('~/.mate2/pluma/tools')
+                toolsdir = os.path.expanduser('~/.config/pluma/tools')
 
         self.locations.insert(0, toolsdir);
 
@@ -82,7 +82,7 @@ class ToolLibrary(Singleton):
         if userdir:
             filename = os.path.join(userdir, 'pluma/pluma-tools.xml')
         else:
-            filename = os.path.expanduser('~/.mate2/pluma/pluma-tools.xml')
+            filename = os.path.expanduser('~/.config/pluma/pluma-tools.xml')
 
         if not os.path.isfile(filename):
             return
@@ -226,7 +226,7 @@ class Tool(object):
             return []
         else:
             return map(lambda x: x.strip(), value.split(','))
-    
+
     def _from_list(self, value):
         return ','.join(value)
 
@@ -266,7 +266,7 @@ class Tool(object):
                 break
         fp.close()
         self.changed = False
-        
+
     def _set_property_if_changed(self, key, value):
         if value != self._properties.get(key):
             self._properties[key] = value
@@ -350,7 +350,7 @@ class Tool(object):
     def set_save_files(self, value):
         self._set_property_if_changed('Save-files', value)
     save_files = property(get_save_files, set_save_files)
-    
+
     def get_languages(self):
         languages = self._properties.get('Languages')
         if languages: return languages
@@ -371,7 +371,7 @@ class Tool(object):
         for line in fp:
             if line.strip() == '':
                 continue
-            
+
             return line.startswith('#!')
 
     # There is no property for this one because this function is quite
@@ -417,7 +417,7 @@ class Tool(object):
 
     def save_with_script(self, script):
         filename = self.library.get_full_path(self.filename, 'w')
-        
+
         fp = open(filename, 'w', 1)
 
         # Make sure to first print header (shebang, modeline), then
@@ -429,7 +429,7 @@ class Tool(object):
         # Parse
         for line in script:
             line = line.rstrip("\n")
-            
+
             if not inheader:
                 content.append(line)
             elif line.startswith('#!'):
@@ -444,10 +444,10 @@ class Tool(object):
         # Write out header
         for line in header:
             fp.write(line + "\n")
-        
+
         fp.write(self._dump_properties())
         fp.write("\n")
-        
+
         for line in content:
             fp.write(line + "\n")
 

@@ -1,6 +1,6 @@
 /*
  * pluma-sort-plugin.c
- * 
+ *
  * Original author: Carlo Borreo <borreo@softhome.net>
  * Ported to Pluma2 by Lee Mallabone <mate@fonicmonkey.net>
  *
@@ -8,7 +8,7 @@
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
  * any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
@@ -38,7 +38,7 @@
 #define PLUMA_SORT_PLUGIN_GET_PRIVATE(object)(G_TYPE_INSTANCE_GET_PRIVATE ((object), PLUMA_TYPE_SORT_PLUGIN, PlumaSortPluginPrivate))
 
 /* Key in case the plugin ever needs any settings. */
-#define SORT_BASE_KEY "/apps/pluma-2/plugins/sort"
+#define SORT_BASE_KEY "/apps/pluma/plugins/sort"
 
 #define WINDOW_DATA_KEY "PlumaSortPluginWindowData"
 #define MENU_PATH "/MenuBar/EditMenu/EditOps_6"
@@ -232,7 +232,7 @@ sort_cb (GtkAction  *action,
 
 	gtk_window_set_transient_for (GTK_WINDOW (dialog->dialog),
 				      GTK_WINDOW (action_data->window));
-				      
+
 	gtk_window_set_modal (GTK_WINDOW (dialog->dialog),
 			      TRUE);
 
@@ -488,7 +488,7 @@ impl_activate (PlumaPlugin *plugin,
 	manager = pluma_window_get_ui_manager (window);
 
 	data->ui_action_group = gtk_action_group_new ("PlumaSortPluginActions");
-	gtk_action_group_set_translation_domain (data->ui_action_group, 
+	gtk_action_group_set_translation_domain (data->ui_action_group,
 						 GETTEXT_PACKAGE);
 	gtk_action_group_add_actions_full (data->ui_action_group,
 					   action_entries,
@@ -502,17 +502,17 @@ impl_activate (PlumaPlugin *plugin,
 
 	data->ui_id = gtk_ui_manager_new_merge_id (manager);
 
-	g_object_set_data_full (G_OBJECT (window), 
-				WINDOW_DATA_KEY, 
+	g_object_set_data_full (G_OBJECT (window),
+				WINDOW_DATA_KEY,
 				data,
 				(GDestroyNotify) free_window_data);
 
-	gtk_ui_manager_add_ui (manager, 
-			       data->ui_id, 
+	gtk_ui_manager_add_ui (manager,
+			       data->ui_id,
 			       MENU_PATH,
-			       "Sort", 
 			       "Sort",
-			       GTK_UI_MANAGER_MENUITEM, 
+			       "Sort",
+			       GTK_UI_MANAGER_MENUITEM,
 			       FALSE);
 
 	update_ui_real (window,
