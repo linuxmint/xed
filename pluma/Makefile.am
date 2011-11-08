@@ -26,7 +26,7 @@ pluma_SOURCES = \
 pluma_LDADD = libpluma.la $(PLUMA_LIBS) $(IGE_MAC_LIBS) $(EGG_SMCLIENT_LIBS)
 
 if PLATFORM_WIN32
-pluma_LDFLAGS = -Wl,--export-all-symbols -Wl,--out-implib,libpluma-$(PLUMA_API_VERSION).a
+pluma_LDFLAGS = -Wl,--export-all-symbols -Wl,--out-implib,libpluma.a
 if OS_WIN32
 pluma_LDFLAGS += -mwindows
 endif
@@ -121,7 +121,7 @@ if !ENABLE_GVFS_METADATA
 INST_H_FILES += pluma-metadata-manager.h
 endif
 
-headerdir = $(prefix)/include/pluma-@PLUMA_API_VERSION@/pluma
+headerdir = $(prefix)/include/pluma/pluma
 
 header_DATA = 				\
 	$(INST_H_FILES)
@@ -225,7 +225,7 @@ dist-hook:
 install-exec-hook:
 if PLATFORM_WIN32
 	$(mkinstalldirs) "$(DESTDIR)$(libdir)"
-	$(INSTALL_DATA) libpluma-$(PLUMA_API_VERSION).a "$(DESTDIR)$(libdir)"
+	$(INSTALL_DATA) libpluma.a "$(DESTDIR)$(libdir)"
 else
 	rm -f $(DESTDIR)$(bindir)/mate-text-editor
 	ln -s pluma $(DESTDIR)$(bindir)/mate-text-editor

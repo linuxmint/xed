@@ -11,10 +11,10 @@ schemas_DATA 	 = $(schemas_in_files:.schemas.in=.schemas)
 man_MANS = pluma.1
 
 pkgconfigdir = $(libdir)/pkgconfig
-pkgconfig_DATA = pluma-@PLUMA_API_VERSION@.pc
+pkgconfig_DATA = pluma.pc
 
-pluma-@PLUMA_API_VERSION@.pc: pluma.pc
-	cp pluma.pc pluma-@PLUMA_API_VERSION@.pc
+pluma.pc: pluma.pc
+	cp pluma.pc pluma.pc
 
 bugreportdir = $(libexecdir)/pluma
 bugreport_SCRIPTS = pluma-bugreport.sh

@@ -37,6 +37,7 @@ AC_PROG_OBJC
 LT_PREREQ([2.2.6])
 LT_INIT(disable-static)
 
+#unused (maybe)
 PLUMA_API_VERSION=2.20
 AC_SUBST(PLUMA_API_VERSION)
 
@@ -484,9 +485,9 @@ fi
 # on win32 plugins must be able to resolve all symbols at link time
 # so we create a lib
 if test "$platform_win32" = yes; then
-	PLUMA_IMPLIB="-lpluma-$PLUMA_API_VERSION"
-	PLUGIN_LIBTOOL_FLAGS="-module -avoid-version -no-undefined -Wl,\$(top_builddir)/pluma/libpluma-\$(PLUMA_API_VERSION).a"
-	LOADER_LIBTOOL_FLAGS="-module -avoid-version -no-undefined -Wl,\$(top_builddir)/pluma/libpluma-\$(PLUMA_API_VERSION).a"
+	PLUMA_IMPLIB="-lpluma"
+	PLUGIN_LIBTOOL_FLAGS="-module -avoid-version -no-undefined -Wl,\$(top_builddir)/pluma/libpluma.a"
+	LOADER_LIBTOOL_FLAGS="-module -avoid-version -no-undefined -Wl,\$(top_builddir)/pluma/libpluma.a"
 	if test "$os_win32" = yes; then
 		PLUGIN_LIBTOOL_FLAGS="${PLUGIN_LIBTOOL_FLAGS} -mwindows"
 		LOADER_LIBTOOL_FLAGS="${LOADER_LIBTOOL_FLAGS} -mwindows"
