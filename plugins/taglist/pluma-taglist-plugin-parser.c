@@ -31,7 +31,7 @@
 /* FIXME: we should rewrite the parser to avoid using DOM */
 
 #ifdef HAVE_CONFIG_H
-#include <config.h>
+	#include <config.h>
 #endif
 
 #include <string.h>
@@ -47,7 +47,7 @@
 #define USER_PLUMA_TAGLIST_PLUGIN_LOCATION_LEGACY ".pluma/plugins/taglist/"
 #define USER_PLUMA_TAGLIST_PLUGIN_LOCATION "pluma/taglist/"
 
-TagList *taglist = NULL;
+TagList* taglist = NULL;
 static gint taglist_ref_count = 0;
 
 static gboolean	 parse_tag (Tag *tag, xmlDocPtr doc, xmlNsPtr ns, xmlNodePtr cur);
@@ -525,25 +525,29 @@ free_tag_group (TagGroup *tag_group)
 	pluma_debug_message (DEBUG_PLUGINS, "END");
 }
 
-void
-free_taglist (void)
+void free_taglist(void)
 {
-	GList *l;
+	GList* l;
 
-	pluma_debug_message (DEBUG_PLUGINS, "ref_count: %d", taglist_ref_count);
+	pluma_debug_message(DEBUG_PLUGINS, "ref_count: %d", taglist_ref_count);
 
 	if (taglist == NULL)
+	{
 		return;
+	}
 
-	g_return_if_fail (taglist_ref_count > 0);
+	g_return_if_fail(taglist_ref_count > 0);
 
 	--taglist_ref_count;
+
 	if (taglist_ref_count > 0)
+	{
 		return;
+	}
 
 	for (l = taglist->tag_groups; l != NULL; l = g_list_next (l))
 	{
-		free_tag_group ((TagGroup *) l->data);
+		free_tag_group ((TagGroup*) l->data);
 	}
 
 	g_list_free (taglist->tag_groups);
@@ -553,30 +557,29 @@ free_taglist (void)
 	pluma_debug_message (DEBUG_PLUGINS, "Really freed");
 }
 
-static TagList *
-parse_taglist_dir (const gchar *dir)
+static TagList* parse_taglist_dir(const gchar* dir)
 {
-	GError *error = NULL;
-	GDir *d;
-	const gchar *dirent;
+	GError* error = NULL;
+	GDir* d;
+	const gchar* dirent;
 
-	pluma_debug_message (DEBUG_PLUGINS, "DIR: %s", dir);
+	pluma_debug_message(DEBUG_PLUGINS, "DIR: %s", dir);
 
-	d = g_dir_open (dir, 0, &error);
+	d = g_dir_open(dir, 0, &error);
+
 	if (!d)
 	{
-		pluma_debug_message (DEBUG_PLUGINS, "%s", error->message);
+		pluma_debug_message(DEBUG_PLUGINS, "%s", error->message);
 		g_error_free (error);
 		return taglist;
 	}
 
-	while ((dirent = g_dir_read_name (d)))
+	while ((dirent = g_dir_read_name(d)))
 	{
-		if (g_str_has_suffix (dirent, ".tags") ||
-		    g_str_has_suffix (dirent, ".tags.gz"))
+		if (g_str_has_suffix(dirent, ".tags") || g_str_has_suffix(dirent, ".tags.gz"))
 		{
-			gchar *tags_file = g_build_filename (dir, dirent, NULL);
-			parse_taglist_file (tags_file);
+			gchar* tags_file = g_build_filename(dir, dirent, NULL);
+			parse_taglist_file(tags_file);
 			g_free (tags_file);
 		}
 	}
@@ -586,11 +589,11 @@ parse_taglist_dir (const gchar *dir)
 	return taglist;
 }
 
-TagList* create_taglist (const gchar *data_dir)
+TagList* create_taglist(const gchar* data_dir)
 {
-	gchar *pdir;
+	gchar* pdir;
 
-	pluma_debug_message (DEBUG_PLUGINS, "ref_count: %d", taglist_ref_count);
+	pluma_debug_message(DEBUG_PLUGINS, "ref_count: %d", taglist_ref_count);
 
 	if (taglist_ref_count > 0)
 	{
@@ -599,57 +602,51 @@ TagList* create_taglist (const gchar *data_dir)
 		return taglist;
 	}
 
-#ifndef G_OS_WIN32
-	const gchar *home;
-	const gchar *envvar;
+	#ifndef G_OS_WIN32
+		const gchar* home;
+		const gchar* envvar;
 
-	/* load user's taglists */
+		/* load user's taglists */
 
-	/* legacy dir */
-	home = g_get_home_dir ();
-	if (home != NULL)
-	{
-		pdir = g_build_filename (home,
-					 USER_PLUMA_TAGLIST_PLUGIN_LOCATION_LEGACY,
-					 NULL);
-		parse_taglist_dir (pdir);
-		g_free (pdir);
-	}
+		/* legacy dir */
+		home = g_get_home_dir ();
+		if (home != NULL)
+		{
+			pdir = g_build_filename (home,
+						 USER_PLUMA_TAGLIST_PLUGIN_LOCATION_LEGACY,
+						 NULL);
+			parse_taglist_dir (pdir);
+			g_free (pdir);
+		}
 
-	/* Support old libmate env var */
-	envvar = g_getenv ("MATE22_USER_DIR");
-	if (envvar != NULL)
-	{
-		pdir = g_build_filename (envvar,
-					 USER_PLUMA_TAGLIST_PLUGIN_LOCATION,
-					 NULL);
-		parse_taglist_dir (pdir);
-		g_free (pdir);
-	}
-	else if (home != NULL)
-	{
-		pdir = g_build_filename (home,
-					 ".config",
-					 USER_PLUMA_TAGLIST_PLUGIN_LOCATION,
-					 NULL);
-		parse_taglist_dir (pdir);
-		g_free (pdir);
-	}
+		/* Support old libmate env var */
+		envvar = g_getenv ("MATE22_USER_DIR");
+		if (envvar != NULL)
+		{
+			pdir = g_build_filename (envvar,
+						 USER_PLUMA_TAGLIST_PLUGIN_LOCATION,
+						 NULL);
+			parse_taglist_dir (pdir);
+			g_free (pdir);
+		}
+		else if (home != NULL)
+		{
+			pdir = g_build_filename(home, ".config", USER_PLUMA_TAGLIST_PLUGIN_LOCATION, NULL);
+			parse_taglist_dir(pdir);
+			g_free (pdir);
+		}
 
-#else
-	pdir = g_build_filename (g_get_user_config_dir (),
-				 "pluma",
-				 "taglist",
-				 NULL);
-	parse_taglist_dir (pdir);
-	g_free (pdir);
-#endif
+	#else
+		pdir = g_build_filename(g_get_user_config_dir(), "pluma", "taglist", NULL);
+		parse_taglist_dir(pdir);
+		g_free(pdir);
+	#endif
 
 	/* load system's taglists */
-	parse_taglist_dir (data_dir);
+	parse_taglist_dir(data_dir);
 
 	++taglist_ref_count;
-	g_return_val_if_fail (taglist_ref_count == 1, taglist);
+	g_return_val_if_fail(taglist_ref_count == 1, taglist);
 
 	return taglist;
 }

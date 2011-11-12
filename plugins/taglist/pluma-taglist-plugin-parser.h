@@ -38,31 +38,28 @@ typedef struct _TagList TagList;
 typedef struct _TagGroup TagGroup;
 typedef struct _Tag Tag;
 
-struct _TagList
-{
-	GList *tag_groups;
+struct _TagList {
+	GList* tag_groups;
 };
 
-struct _TagGroup
-{
-	xmlChar *name;
+struct _TagGroup {
+	xmlChar* name;
 
-	GList *tags;
+	GList* tags;
 };
 
-struct _Tag
-{
-	xmlChar *name;
-	xmlChar *begin;
-	xmlChar *end;
+struct _Tag {
+	xmlChar* name;
+	xmlChar* begin;
+	xmlChar* end;
 };
 
 /* Note that the taglist is ref counted */
 extern TagList *taglist;
 
-TagList* create_taglist (const gchar *data_dir);
+TagList* create_taglist(const gchar* data_dir);
 
-void free_taglist (void);
+void free_taglist(void);
 
 #endif /* __PLUMA_TAGLIST_PLUGIN_PARSER_H__ */
 

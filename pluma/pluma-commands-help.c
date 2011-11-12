@@ -75,7 +75,7 @@ void _pluma_cmd_help_about(GtkAction* action, PlumaWindow* window)
 		"Copyright \xc2\xa9 1998-2000 Evan Lawrence, Alex Robert\n"
 		"Copyright \xc2\xa9 2000-2002 Chema Celorio, Paolo Maggi\n"
 		"Copyright \xc2\xa9 2003-2006 Paolo Maggi\n"
-		"Copyright \xc2\xa9 2004-2010 Paolo Borelli, Jesse van den Kieboom\nSteve Fr\303\251cinaux, Ignacio Casal Quinteiro"
+		"Copyright \xc2\xa9 2004-2010 Paolo Borelli, Jesse van den Kieboom\nSteve Fr\303\251cinaux, Ignacio Casal Quinteiro\n"
 		"Copyright \xc2\xa9 2011 Perberos";
 
 	static const gchar comments[] = \
