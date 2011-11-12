@@ -1,7 +1,6 @@
 # Maintainer: neocrust
-
 pkgname=mate-text-editor
-pkgver=2011.08.31
+pkgver=2011.11.12
 pkgrel=1
 pkgdesc="An powerfull text editor for MATE"
 arch=('i686' 'x86_64')
@@ -14,29 +13,25 @@ url="http://matsusoft.com.ar/projects"
 groups=('mate-extras')
 install=mate-text-editor.install
 source=(http://sourceforge.net/projects/matede/files/${pkgver}/${pkgname}.tar.gz/download)
-sha256sums=('24d479745aa4eee503bf12d7cfe4ea60a58ff23f708a2b0c3b1f0862a69b6423')
+sha256sums=('6ccc4831b4b2b7445d827ad54a409455032da9d63b7eaed5fbb4610b6f0a6cbd')
 
 build() {
-	cd "${srcdir}/${pkgname}"
-	intltoolize --force --copy --automake || die "intltoolize failed"
+    cd "${srcdir}/${pkgname}"
 
-	PYTHON=/usr/bin/python2 ./autogen.sh --prefix=/usr --sysconfdir=/etc \
-		--localstatedir=/var --libexecdir=/usr/lib/ \
-		--disable-scrollkeeper --enable-python || return 1
-	make || return 1
+    PYTHON=/usr/bin/python2 ./autogen.sh --prefix=/usr --sysconfdir=/etc \
+        --localstatedir=/var --libexecdir=/usr/lib/ \
+        --disable-scrollkeeper --enable-python || return 1
+    make || return 1
 
 }
 
 package() {
-	cd "${srcdir}/${pkgname}"
+    cd "${srcdir}/${pkgname}"
 
-	make MATECONF_DISABLE_MAKEFILE_SCHEMA_INSTALL=1 DESTDIR="${pkgdir}" install || return 1
+    make MATECONF_DISABLE_MAKEFILE_SCHEMA_INSTALL=1 DESTDIR="${pkgdir}" install || return 1
 
-	# just for easy find
-	ln -s pluma /usr/bin/mate-text-editor
-
-	install -m755 -d "${pkgdir}/usr/share/mateconf/schemas"
-	mateconf-merge-schema "${pkgdir}/usr/share/mateconf/schemas/${pkgname}.schemas" --domain ${pkgname} ${pkgdir}/etc/mateconf/schemas/*.schemas || return 1
-	rm -f ${pkgdir}/etc/mateconf/schemas/*.schemas
+    install -m755 -d "${pkgdir}/usr/share/mateconf/schemas"
+    mateconf-merge-schema "${pkgdir}/usr/share/mateconf/schemas/${pkgname}.schemas" --domain ${pkgname} ${pkgdir}/etc/mateconf/schemas/*.schemas || return 1
+    rm -f ${pkgdir}/etc/mateconf/schemas/*.schemas
 }
 

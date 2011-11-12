@@ -2,7 +2,10 @@
 
 pkgname=mate-text-editor
 
-/usr/sbin/mateconfpkg --install ${pkgname}
+if [ -f /usr/sbin/mateconfpkg ]; then
+    /usr/sbin/mateconfpkg --install ${pkgname}
+fi
+
 gtk-update-icon-cache -q -t -f /usr/share/icons/hicolor
 
 exit 0
