@@ -4,10 +4,12 @@ AC_PREREQ(2.63.2)
 
 m4_define(pluma_major_version, 2011)
 m4_define(pluma_minor_version, 11)
-m4_define(pluma_micro_version, 7)
+m4_define(pluma_micro_version, 12)
 m4_define(pluma_version, pluma_major_version.pluma_minor_version.pluma_micro_version)
 
-AC_INIT([pluma],[pluma_version],[http://bugzilla.gnome.org/enter_bug.cgi?product=pluma],[pluma],[http://projects.gnome.org/pluma/])
+AC_INIT([pluma], [pluma_version],
+    [https://github.com/perberos/mate-text-editor],
+    [pluma], [https://matsusoft.com.ar/projects/mate/])
 
 AC_CONFIG_HEADERS(config.h)
 AC_CONFIG_SRCDIR(pluma/pluma.c)
