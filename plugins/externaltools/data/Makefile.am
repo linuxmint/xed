@@ -7,7 +7,8 @@ tools_in_files = \
 tools_in_linux = \
 	open-terminal-here.tool.in \
 	run-command.tool.in \
-	search-recursive.tool.in
+	search-recursive.tool.in \
+	switch-c.desktop.tool.in
 
 tools_in_osx = \
 	open-terminal-here-osx.tool.in
