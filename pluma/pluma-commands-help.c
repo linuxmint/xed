@@ -83,28 +83,15 @@ void _pluma_cmd_help_about(GtkAction* action, PlumaWindow* window)
 
 	pluma_debug (DEBUG_COMMANDS);
 
-	GdkPixbuf* logo = NULL;
-	GtkIconTheme* icon_theme = gtk_icon_theme_get_default();
-
-	if (gtk_icon_theme_has_icon(icon_theme, "accessories-text-editor"))
-	{
-		logo = gtk_icon_theme_load_icon(icon_theme, "accessories-text-editor", 64, 0, NULL);
-	}
-
 	gtk_show_about_dialog (GTK_WINDOW (window),
 			       "program-name", "Pluma",
 			       "authors", authors,
 			       "comments", _(comments),
 			       "copyright", copyright,
 			       "documenters", documenters,
-			       "logo", logo,
+			       "logo_icon_name", "accessories-text-editor",
 			       "translator-credits", _("translator-credits"),
 			       "version", VERSION,
 			       "website", "http://matsusoft.com.ar/projects/mate/",
 			       NULL);
-
-	if (logo)
-	{
-		g_object_unref(logo);
-	}
 }
