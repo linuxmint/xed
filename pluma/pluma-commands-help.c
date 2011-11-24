@@ -83,15 +83,15 @@ void _pluma_cmd_help_about(GtkAction* action, PlumaWindow* window)
 
 	pluma_debug (DEBUG_COMMANDS);
 
-	gtk_show_about_dialog (GTK_WINDOW (window),
-			       "program-name", "Pluma",
-			       "authors", authors,
-			       "comments", _(comments),
-			       "copyright", copyright,
-			       "documenters", documenters,
-			       "logo_icon_name", "accessories-text-editor",
-			       "translator-credits", _("translator-credits"),
-			       "version", VERSION,
-			       "website", "http://matsusoft.com.ar/projects/mate/",
-			       NULL);
+	gtk_show_about_dialog(GTK_WINDOW(window),
+		"program-name", "Pluma",
+		"authors", authors,
+		"comments", _(comments),
+		"copyright", copyright,
+		"documenters", documenters,
+		"logo_icon_name", "accessories-text-editor",
+		"translator-credits", _("translator-credits"),
+		"version", VERSION,
+		"website", "http://matsusoft.com.ar/projects/mate/",
+		NULL);
 }
