@@ -8,7 +8,7 @@ tools_in_linux = \
 	open-terminal-here.tool.in \
 	run-command.tool.in \
 	search-recursive.tool.in \
-	switch-c.desktop.tool.in
+	switch-c.tool.in
 
 tools_in_osx = \
 	open-terminal-here-osx.tool.in
@@ -21,7 +21,7 @@ if PLATFORM_OSX
 install_tools_in_files += $(tools_in_osx)
 else
 if PLATFORM_WIN32
-install_tools_in_files += $(tools_in_win32) 
+install_tools_in_files += $(tools_in_win32)
 else
 install_tools_in_files += $(tools_in_linux)
 endif
