@@ -1,6 +1,6 @@
 # Maintainer: neocrust
 pkgname=mate-text-editor
-pkgver=2011.11.12
+pkgver=2011.11.22
 pkgrel=1
 pkgdesc="An powerfull text editor for MATE"
 arch=('i686' 'x86_64')
@@ -13,7 +13,7 @@ url="http://matsusoft.com.ar/projects"
 groups=('mate-extras')
 install=mate-text-editor.install
 source=(http://sourceforge.net/projects/matede/files/${pkgver}/${pkgname}.tar.gz/download)
-sha256sums=('6ccc4831b4b2b7445d827ad54a409455032da9d63b7eaed5fbb4610b6f0a6cbd')
+sha256sums=('b8f3cfac7f275b0256173ff63ba9cbf7c27cac534e03268fea216593736515a2')
 
 build() {
     cd "${srcdir}/${pkgname}"
