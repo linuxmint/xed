@@ -2,9 +2,9 @@ dnl Process this file with autoconf to produce a configure script.
 
 AC_PREREQ(2.63.2)
 
-m4_define(pluma_major_version, 2011)
-m4_define(pluma_minor_version, 12)
-m4_define(pluma_micro_version, 01)
+m4_define(pluma_major_version, 1)
+m4_define(pluma_minor_version, 1)
+m4_define(pluma_micro_version, 0)
 m4_define(pluma_version, pluma_major_version.pluma_minor_version.pluma_micro_version)
 
 AC_INIT([pluma], [pluma_version],
@@ -277,7 +277,7 @@ PKG_CHECK_MODULES(PLUMA, [
 	gio-2.0 >= 2.23.1
 	gtk+-2.0 >= 2.16.0
 	gtksourceview-2.0 >= 2.9.7
-	mateconf-2.0 >= 1.1.11
+	mateconf-2.0 >= 1.1.0
 ])
 
 if test "$os_osx" = "no" &&
