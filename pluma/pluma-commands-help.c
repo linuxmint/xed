@@ -92,6 +92,6 @@ void _pluma_cmd_help_about(GtkAction* action, PlumaWindow* window)
 		"logo_icon_name", "accessories-text-editor",
 		"translator-credits", _("translator-credits"),
 		"version", VERSION,
-		"website", "http://matsusoft.com.ar/projects/mate/",
+		"website", "http://mate-desktop.org",
 		NULL);
 }
