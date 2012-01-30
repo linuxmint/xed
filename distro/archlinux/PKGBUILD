@@ -12,11 +12,11 @@ conflicts=('pluma')
 url="http://matsusoft.com.ar/projects"
 groups=('mate-extras')
 install=mate-text-editor.install
-source=(http://sourceforge.net/projects/matede/files/${pkgver}/${pkgname}.tar.gz/download)
-sha256sums=('b8f3cfac7f275b0256173ff63ba9cbf7c27cac534e03268fea216593736515a2')
+source=()
+sha256sums=()
 
 build() {
-    cd "${srcdir}/${pkgname}"
+	cd "${srcdir}/../../../"
 
     PYTHON=/usr/bin/python2 ./autogen.sh --prefix=/usr --sysconfdir=/etc \
         --localstatedir=/var --libexecdir=/usr/lib/ \
@@ -26,7 +26,7 @@ build() {
 }
 
 package() {
-    cd "${srcdir}/${pkgname}"
+	cd "${srcdir}/../../../"
 
     make MATECONF_DISABLE_MAKEFILE_SCHEMA_INSTALL=1 DESTDIR="${pkgdir}" install || return 1
 
