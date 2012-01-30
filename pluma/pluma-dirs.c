@@ -56,7 +56,11 @@ gchar* pluma_dirs_get_user_config_dir(void)
 			}
 		}
 	#else
-		config_dir = g_build_filename(g_get_user_config_dir(), "pluma", NULL);
+		#if GLIB_CHECK_VERSION(2, 6, 0)
+			config_dir = g_build_filename(g_get_user_config_dir(), "pluma", NULL);
+		#else // glib version < 2.6.0
+			config_dir = g_build_filename(g_get_home_dir(), ".config", "pluma", NULL);
+		#endif
 	#endif
 
 	return config_dir;
