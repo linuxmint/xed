@@ -13,9 +13,6 @@ man_MANS = pluma.1
 pkgconfigdir = $(libdir)/pkgconfig
 pkgconfig_DATA = pluma.pc
 
-pluma.pc: pluma.pc
-	cp pluma.pc pluma.pc
-
 bugreportdir = $(libexecdir)/pluma
 bugreport_SCRIPTS = pluma-bugreport.sh
 
