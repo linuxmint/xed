@@ -41,7 +41,7 @@ libpluma_la_LIBADD = \
 	smclient/libeggsmclient.la
 
 # PLUMA_LIBS must be the last to ensure correct order on some platforms
-libpluma_la_LIBADD += $(PLUMA_LIBS)
+libpluma_la_LIBADD += $(PLUMA_LIBS) -lICE
 
 if OS_OSX
 pluma_LDFLAGS += -framework Carbon
