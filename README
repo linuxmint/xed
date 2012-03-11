@@ -1,9 +1,8 @@
 General Information
 ===================
 
-This is version 2011.12.01 of pluma. pluma is a small and lightweight UTF-8 text
-editor for the MATE environment. Based on gedit, the text editor for the GNOME2
-environment.
+pluma is a small and lightweight UTF-8 text editor for the MATE
+environment. Based on gedit, the text editor for the GNOME2 environment.
 
 pluma is part of MATE and uses the latest GTK+ and MATE libraries.
 Complete MATE integration is featured, with support for Drag and Drop (DnD)
@@ -52,16 +51,11 @@ the file 'COPYING' for more information.
 
 The official web site is:
 
-    http://matsusoft.com.ar/projects/mate/
+    http://www.mate-desktop.org/
 
 You can download the latest pluma tarball from:
 
-    https://sourceforge.net/projects/matede/files/
-
-Information about pluma mailing lists can be found at
-
-    http://matsusoft.com.ar/projects/mate/
-
+    https://pub.mate-desktop.org/releases/
 
 Installation
 ============
@@ -74,12 +68,10 @@ Simple install procedure:
 
   % gzip -cd mate-file-manager.tar.gz | tar xvf - 	# unpack the sources
   % cd mate-file-manager			# change to the toplevel directory
-  % ./configure					# run the `configure' script
+  % ./autogen.sh					# run the `configure' script
   % make					# build pluma
   [ Become root if necessary ]
   % make install				# install pluma
-
-See the file 'INSTALL' for more detailed information.
 
 
 How to report bugs
@@ -111,8 +103,6 @@ In the bug report please include:
   necessary. If you do send a stack trace, and the error is an X error,
   it will be more useful if the stack trace is produced running the test
   program with the --sync command line option.
-
-See the file 'BUGS' for the list of known bugs.
 
 
 Patches

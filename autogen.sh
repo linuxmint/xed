@@ -12,7 +12,7 @@ PKG_NAME="mate-text-editor"
     exit 1
 }
 
-which mate-autogen.sh || {
+which mate-autogen || {
     echo "You need to install mate-common from the MATE Git"
     exit 1
 }
@@ -22,5 +22,5 @@ REQUIRED_MACROS=python.m4
 MATE_DATADIR="$mate_datadir"
 USE_COMMON_DOC_BUILD=yes
 
-. mate-autogen.sh
+. mate-autogen
 
