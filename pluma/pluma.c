@@ -678,7 +678,7 @@ main (int argc, char *argv[])
 	egg_set_desktop_file (DATADIR "/applications/pluma.desktop");
 #else
 	/* manually set name and icon */
-	g_set_application_name("pluma");
+	g_set_application_name("Pluma");
 	gtk_window_set_default_icon_name ("accessories-text-editor");
 #endif
 
