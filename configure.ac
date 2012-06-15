@@ -270,9 +270,11 @@ dnl ================================================================
 dnl Start of pkg-config checks
 dnl ================================================================
 
+PKG_CHECK_MODULES(GMODULE,gmodule-2.0,[GMODULE_ADD="gmodule-2.0"],[GMODULE_ADD=""])
 PKG_CHECK_MODULES(PLUMA, [
 	libxml-2.0 >= 2.5.0
 	glib-2.0 >= 2.22.0
+        $GMODULE_ADD
 	gthread-2.0 >= 2.13.0
 	gio-2.0 >= 2.23.1
 	gtk+-2.0 >= 2.16.0
