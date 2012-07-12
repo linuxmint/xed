@@ -1,7 +1,1785 @@
-commit 24d2fe1208a7f54a8e5869da9886ce202392b1a0
-Author: Paul Cutler <pcutler@gnome.org>
-Date:   2010-09-26
+commit 501849698af0e384d17cd8a550b2315912ba55e3
+Author: Stefano Karapetsas <stefano@karapetsas.com>
+Date:   Thu Jul 12 15:57:55 2012 +0200
 
-    Fix typo in mallard snippets
+    sync translations with transifex
 
-M	plugins/snippets/data/mallard.xml
+ po/gnome-copyrights.txt | 1308 +++++++++++++++++++++++++++++++++++++++++++++++
+ po/ru.po                |  955 ++++++++++++++--------------------
+ 2 files changed, 1685 insertions(+), 578 deletions(-)
+
+commit 846b62eaddd7460ed227bccb99d86c9b4e9178be
+Merge: 2afb124 f0d7c1d
+Author: Stefano Karapetsas <stefano@karapetsas.com>
+Date:   Fri Jun 15 05:45:46 2012 -0700
+
+    Merge pull request #5 from MDykstra/master
+    
+    now linking under up-to-date Arch Linux system
+
+commit 2afb124045601ad07210b5b65ccf6b6f595d6514
+Author: Stefano Karapetsas <stefano@karapetsas.com>
+Date:   Sat May 19 22:22:57 2012 +0200
+
+    rename pluma to Pluma
+
+ data/pluma.desktop.in.in |    4 ++--
+ pluma/pluma.c            |    2 +-
+ 2 files changed, 3 insertions(+), 3 deletions(-)
+
+commit f0d7c1d5d701e6b01c22e5d88464064caeadb0c9
+Author: Marcel Dijkstra <marcel.dykstra@gmail.com>
+Date:   Wed May 16 03:54:49 2012 +0200
+
+    only depend on gmodule-2.0 if it exists
+
+ configure.ac |    3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+
+commit 5d39a44c94fabff2892bc64e16901795dba24a61
+Author: Marcel Dijkstra <marcel.dykstra@gmail.com>
+Date:   Fri Apr 27 02:29:08 2012 +0200
+
+    linker now requires gmodule-2.0 in mate-text-editor
+
+ configure.ac |    1 +
+ 1 file changed, 1 insertion(+)
+
+commit abcdc86ee6e83730a4744b47c4493952a09bd57f
+Merge: 5dd56f7 1000c0b
+Author: Stefano Karapetsas <stefano@karapetsas.com>
+Date:   Fri Apr 6 02:54:33 2012 -0700
+
+    Merge pull request #3 from benpicco/master
+    
+    sync with upstream
+
+commit 5dd56f746ff34aeb87451d19d88ed38a4501ec47
+Author: Perberos <perberos@(none).(none)>
+Date:   Sun Mar 18 02:40:59 2012 -0300
+
+    adding enchant on depends array
+
+ distro/archlinux/PKGBUILD |    2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 1000c0b77ca712c2ceddbc7e2800291b3d166388
+Author: Ignacio Casal Quinteiro <icq@gnome.org>
+Date:   Sun Oct 3 11:59:46 2010 +0000
+
+    Get the current tab label instead of creating a new one.
+
+ pluma/pluma-notebook.c |   24 ++++++++++++------------
+ 1 file changed, 12 insertions(+), 12 deletions(-)
+
+commit 8c239347fd7200ef28fb28ffff971ef642a6472a
+Author: Stefano Karapetsas <stefano@karapetsas.com>
+Date:   Sun Mar 11 20:34:30 2012 +0100
+
+    fix other executable bits
+
+ help/C/figures/pluma_format_bold.png             |  Bin 726 -> 726 bytes
+ help/C/figures/pluma_format_italic.png           |  Bin 689 -> 689 bytes
+ help/C/figures/pluma_format_strikethrough.png    |  Bin 743 -> 743 bytes
+ help/C/figures/pluma_format_underline.png        |  Bin 737 -> 737 bytes
+ help/C/figures/pluma_recent_files_menu_icon.png  |  Bin 192 -> 192 bytes
+ help/C/figures/pluma_window.png                  |  Bin 35054 -> 35054 bytes
+ help/bg/figures/pluma_window.png                 |  Bin 30289 -> 30289 bytes
+ help/ca/figures/pluma_window.png                 |  Bin 29283 -> 29283 bytes
+ help/cs/figures/pluma_window.png                 |  Bin 30439 -> 30439 bytes
+ help/de/figures/pluma_window.png                 |  Bin 30621 -> 30621 bytes
+ help/el/figures/pluma_window.png                 |  Bin 33502 -> 33502 bytes
+ help/es/figures/pluma_window.png                 |  Bin 30275 -> 30275 bytes
+ help/fi/figures/pluma_window.png                 |  Bin 24939 -> 24939 bytes
+ help/fr/figures/pluma_recent_files_menu_icon.png |  Bin 430 -> 430 bytes
+ help/fr/figures/pluma_window.png                 |  Bin 23551 -> 23551 bytes
+ help/it/figures/pluma_window.png                 |  Bin 31468 -> 31468 bytes
+ help/ja/figures/pluma_window.png                 |  Bin 38561 -> 38561 bytes
+ help/ko/figures/pluma_window.png                 |  Bin 33894 -> 33894 bytes
+ help/sv/figures/pluma_window.png                 |  Bin 37511 -> 37511 bytes
+ help/uk/figures/pluma_window.png                 |  Bin 26281 -> 26281 bytes
+ help/zh_CN/figures/pluma_window.png              |  Bin 15743 -> 15743 bytes
+ help/zh_HK/figures/pluma_window.png              |  Bin 15743 -> 15743 bytes
+ help/zh_TW/figures/pluma_window.png              |  Bin 15743 -> 15743 bytes
+ 23 files changed, 0 insertions(+), 0 deletions(-)
+
+commit 0b694f0d10220676b07d041e0088885769780f16
+Author: Stefano Karapetsas <stefano@karapetsas.com>
+Date:   Sun Mar 11 20:28:11 2012 +0100
+
+    update for 1.2 release and fix executable bits
+
+ AUTHORS                  |   11 ++-
+ BUGS                     |    7 --
+ HACKING                  |   14 +--
+ MAINTAINERS              |   12 ---
+ README                   |   20 ++---
+ autogen.sh               |    4 +-
+ configure.ac             |    4 +-
+ docs/class-diagram.dia   |  Bin 8258 -> 8258 bytes
+ pixmaps/pluma-plugin.png |  Bin 2525 -> 2525 bytes
+ pixmaps/pluma.ico        |  Bin 9662 -> 9662 bytes
+ po/Makefile.in.in~       |  217 ----------------------------------------------
+ 11 files changed, 20 insertions(+), 269 deletions(-)
+
+commit 3fe8f220a9ce835b4deeb8ceb12ec14cccc03fcc
+Author: Perberos <perberos@gmail.com>
+Date:   Fri Mar 9 15:36:12 2012 -0300
+
+    /usr/bin/ld: note: 'IceConnectionNumber' is defined in DSO /usr/lib/libICE.so.6 so try adding it to the linker command line
+
+ pluma/Makefile.am |    2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit bd3372e21399f630c13bd3f81b5e697b6115d7bf
+Author: Stefano Karapetsas <stefano@karapetsas.com>
+Date:   Mon Feb 20 14:40:31 2012 +0100
+
+    fixed recursive rule, thanks to samtygier
+    https://github.com/mate-desktop/mate-text-editor/issues/2
+
+ data/Makefile.am |    3 ---
+ 1 file changed, 3 deletions(-)
+
+commit 6f5d2fdf953ae8e2687fbd4808babb0bcb73b81c
+Author: Perberos <perberos@gmail.com>
+Date:   Mon Jan 30 12:29:07 2012 -0300
+
+    g_get_user_config_dir() would be better (https://github.com/mate-desktop/mate-panel/issues/8)
+
+ pluma/pluma-dirs.c |    6 +++++-
+ 1 file changed, 5 insertions(+), 1 deletion(-)
+
+commit ffdb44194ef7dfab2f4abc5afcfa267b54139ef5
+Author: Perberos <perberos@gmail.com>
+Date:   Mon Jan 30 12:23:43 2012 -0300
+
+    set patch on archlinux script
+
+ distro/archlinux/PKGBUILD |    8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
+
+commit f3a8febfec4c03efbb478fd976097d2a9815ccf1
+Author: Steve Zesch <stevezesch2@gmail.com>
+Date:   Fri Jan 13 19:41:45 2012 -0500
+
+    Changed url in about window.
+
+ configure.ac                |    4 ++--
+ pluma/pluma-commands-help.c |    2 +-
+ 2 files changed, 3 insertions(+), 3 deletions(-)
+
+commit d90bda7d80e42efbc7ec813e179091dad8ea93e3
+Author: Steve Zesch <stevezesch2@gmail.com>
+Date:   Tue Jan 10 14:42:52 2012 -0500
+
+    Changed mate.gr.jp to gnome.gr.jp as requested in issue #86
+
+ po/ja.po |   24 ++++++++++++------------
+ 1 file changed, 12 insertions(+), 12 deletions(-)
+
+commit 5606f6144ada6bf1e43a60c158ff06becf2a8a4d
+Author: Steve Zesch <stevezesch2@gmail.com>
+Date:   Fri Dec 9 23:39:03 2011 -0500
+
+    updated version (missed a few files)
+
+ distro/archlinux/PKGBUILD |    2 +-
+ distro/ubuntu/build       |    2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
+
+commit ec4fa66159e00cf4fecd03e1fd27c15ab7e51655
+Author: Steve Zesch <stevezesch2@gmail.com>
+Date:   Fri Dec 9 23:37:30 2011 -0500
+
+    updated version
+
+ configure.ac |    8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
+
+commit 8790ba833e4648560e02fda46a24d1c21e077ee3
+Author: Steve Zesch <stevezesch2@gmail.com>
+Date:   Fri Dec 2 20:56:30 2011 -0500
+
+    Changed version to 2011.12.01
+
+ README                    |    2 +-
+ configure.ac              |    4 ++--
+ distro/archlinux/PKGBUILD |    2 +-
+ distro/ubuntu/build       |    2 +-
+ 4 files changed, 5 insertions(+), 5 deletions(-)
+
+commit f6f1f854c9e37b0ed2f6d71856473b3d0e3616e3
+Author: Perberos <perberos@gmail.com>
+Date:   Tue Nov 29 04:44:24 2011 -0300
+
+    updating archlinux hash
+
+ configure.ac              |    2 +-
+ distro/archlinux/PKGBUILD |    4 ++--
+ 2 files changed, 3 insertions(+), 3 deletions(-)
+
+commit 798174ce185a17b710cb6b87d32ea9b50684868e
+Author: Perberos <perberos@gmail.com>
+Date:   Sun Nov 27 20:14:18 2011 -0300
+
+    a copypaste failure
+
+ plugins/externaltools/data/Makefile.am |    4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+commit 3676895ea7d42631a3e1a1cec0882a473062afa8
+Author: Perberos <perberos@gmail.com>
+Date:   Thu Nov 24 15:18:12 2011 -0300
+
+    removing extra spaces
+
+ pluma/pluma-commands-help.c |   22 +++++++++++-----------
+ 1 file changed, 11 insertions(+), 11 deletions(-)
+
+commit 584d672f069e58afe3252ef55f309de951078cf7
+Author: Perberos <perberos@gmail.com>
+Date:   Wed Nov 23 17:57:00 2011 -0300
+
+    using generic logo
+
+ pluma/pluma-commands-help.c |   15 +--------------
+ 1 file changed, 1 insertion(+), 14 deletions(-)
+
+commit 267fbd64ccc4786932147069715239a17dfcf814
+Author: Perberos <perberos@gmail.com>
+Date:   Tue Nov 22 14:38:03 2011 -0300
+
+    adding a tool for external tools, for switch onto .c and .h files
+
+ plugins/externaltools/data/Makefile.am         |    3 ++-
+ plugins/externaltools/data/switch-c.desktop.in |    7 +++++++
+ plugins/externaltools/data/switch-c.tool.in    |   25 ++++++++++++++++++++++++
+ 3 files changed, 34 insertions(+), 1 deletion(-)
+
+commit 490f2d5bb5c5fb7c5575ac1eddcd8ae15e756495
+Author: Perberos <perberos@gmail.com>
+Date:   Sat Nov 12 05:44:22 2011 -0300
+
+    updating distro scripts
+
+ distro/archlinux/PKGBUILD |   29 ++++++++++++-----------------
+ distro/ubuntu/build       |   32 +++++++++++++++-----------------
+ distro/ubuntu/postinst    |    5 ++++-
+ distro/ubuntu/preinst     |    4 +++-
+ distro/ubuntu/prerm       |    4 +++-
+ 5 files changed, 37 insertions(+), 37 deletions(-)
+
+commit 6a04ee4e4eecb96a2461012c435fbfec1187e9e0
+Author: Perberos <perberos@gmail.com>
+Date:   Sat Nov 12 04:31:16 2011 -0300
+
+    updating version number, and HP
+
+ configure.ac |    6 ++++--
+ 1 file changed, 4 insertions(+), 2 deletions(-)
+
+commit 8e150735c5c65267abb9268cb60687b2c9725b39
+Author: Perberos <perberos@gmail.com>
+Date:   Sat Nov 12 04:28:06 2011 -0300
+
+    end of line mistake
+
+ autogen.sh                                    |   17 ++--
+ plugins/taglist/pluma-taglist-plugin-parser.c |  131 ++++++++++++-------------
+ plugins/taglist/pluma-taglist-plugin-parser.h |   25 +++--
+ pluma/pluma-commands-help.c                   |    2 +-
+ 4 files changed, 86 insertions(+), 89 deletions(-)
+
+commit 09be0113ed921fd1841feca0bf0a3b76314f4c2d
+Author: Perberos <perberos@gmail.com>
+Date:   Sat Nov 12 04:26:45 2011 -0300
+
+    adding a "search on text" external tool
+
+ plugins/externaltools/data/Makefile.am             |    3 +-
+ .../externaltools/data/search-recursive.desktop.in |    9 +++++
+ .../externaltools/data/search-recursive.tool.in    |   39 ++++++++++++++++++++
+ 3 files changed, 50 insertions(+), 1 deletion(-)
+
+commit 78c5d0b687cfa66318a8189396eeb13c5050444a
+Author: Perberos <perberos@gmail.com>
+Date:   Mon Nov 7 22:28:00 2011 -0300
+
+    removing unused gedit logo
+
+ pixmaps/pluma-logo.png |  Bin 25918 -> 0 bytes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 49a92964b89227d8226a88a816cd15501dcb806c
+Author: Perberos <perberos@gmail.com>
+Date:   Mon Nov 7 22:27:36 2011 -0300
+
+    removing unused gedit logo
+
+ pixmaps/Makefile.am      |    4 ----
+ win32/build-installer.sh |    2 --
+ 2 files changed, 6 deletions(-)
+
+commit e27c2373016af63918fb7ae540a26346513f4a98
+Author: Perberos <perberos@gmail.com>
+Date:   Mon Nov 7 22:13:36 2011 -0300
+
+    removing version tag from library
+
+ configure.ac      |    7 ++++---
+ data/Makefile.am  |    6 +++---
+ data/pluma.pc.in  |    2 +-
+ pluma/Makefile.am |    6 +++---
+ 4 files changed, 11 insertions(+), 10 deletions(-)
+
+commit c7e1c2017b54f82463101d3680e23cb6090c3467
+Author: Perberos <perberos@gmail.com>
+Date:   Mon Nov 7 21:13:10 2011 -0300
+
+    settings tango as default theme
+
+ data/pluma.schemas.in.in |    4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+commit 421415f7cb1ba9c8a97a1837d4f789242c2fb0e6
+Author: Perberos <perberos@gmail.com>
+Date:   Mon Nov 7 21:10:16 2011 -0300
+
+    using ./config/ instead of ./mate2/
+
+ README                                            |    4 +-
+ configure.ac                                      |    4 +-
+ data/Makefile.am                                  |    2 +-
+ data/pluma-bugreport.sh.in                        |    8 +-
+ data/pluma.desktop.in.in                          |    2 +-
+ data/pluma.schemas.in.in                          |  152 ++++----
+ distro/archlinux/PKGBUILD                         |    3 +
+ help/C/pluma.xml                                  |  128 +++----
+ help/ar/ar.po                                     |    4 +-
+ help/ca/ca.po                                     |    4 +-
+ help/cs/cs.po                                     |    4 +-
+ help/da/da.po                                     |    4 +-
+ help/de/de.po                                     |    6 +-
+ help/el/el.po                                     |    4 +-
+ help/es/es.po                                     |    4 +-
+ help/fi/fi.po                                     |    4 +-
+ help/fr/fr.po                                     |    4 +-
+ help/hu/hu.po                                     |    4 +-
+ help/it/it.po                                     |    4 +-
+ help/ja/ja.po                                     |    4 +-
+ help/ko/ko.po                                     |    4 +-
+ help/oc/oc.po                                     |    2 +-
+ help/pt_BR/pt_BR.po                               |    4 +-
+ help/ru/ru.po                                     |    4 +-
+ help/sv/sv.po                                     |    4 +-
+ help/th/th.po                                     |    2 +-
+ help/uk/uk.po                                     |    4 +-
+ help/zh_CN/zh_CN.po                               |    4 +-
+ pixmaps/Makefile.am                               |    4 +-
+ plugin-loaders/c/Makefile.am                      |    2 +-
+ plugin-loaders/python/Makefile.am                 |    2 +-
+ plugins/checkupdate/pluma-check-update-plugin.c   |  104 ++---
+ plugins/checkupdate/pluma-check-update.schemas.in |    4 +-
+ plugins/externaltools/tools/library.py            |   24 +-
+ plugins/filebrowser/pluma-file-browser-plugin.c   |  246 ++++++------
+ plugins/filebrowser/pluma-file-browser.schemas.in |   40 +-
+ plugins/pythonconsole/pythonconsole/config.py     |   14 +-
+ plugins/snippets/snippets/__init__.py             |   30 +-
+ plugins/sort/pluma-sort-plugin.c                  |   22 +-
+ plugins/taglist/pluma-taglist-plugin-parser.c     |  166 ++++----
+ plugins/time/pluma-time-plugin.c                  |    6 +-
+ pluma/Makefile.am                                 |    8 +-
+ pluma/dialogs/Makefile.am                         |    4 +-
+ pluma/pluma-commands-help.c                       |   50 ++-
+ pluma/pluma-dirs.c                                |  423 +++++++++------------
+ pluma/pluma-plugin.c                              |   30 +-
+ pluma/pluma-plugins-engine.c                      |  122 +++---
+ pluma/pluma-prefs-manager-app.c                   |  234 ++++++------
+ pluma/pluma-prefs-manager.h                       |   30 +-
+ win32/build-installer.sh                          |   24 +-
+ 50 files changed, 957 insertions(+), 1013 deletions(-)
+
+commit 1d63a49a77ab8f7d01daef6ce18e57100508067b
+Author: Perberos <perberos@gmail.com>
+Date:   Mon Nov 7 20:10:50 2011 -0300
+
+    using autogen.sh instead of configure
+
+ distro/archlinux/PKGBUILD |    2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 3c649a5d41206704c9cd67e38fab6224dd1f42f1
+Author: Perberos <perberos@gmail.com>
+Date:   Mon Nov 7 19:56:15 2011 -0300
+
+    now delete INSTALL using make maintainer-clean
+
+ Makefile.am |    1 +
+ 1 file changed, 1 insertion(+)
+
+commit fdb4d77e4462a9980752f13f7607145fcd655d3f
+Author: Perberos <perberos@gmail.com>
+Date:   Mon Nov 7 19:55:44 2011 -0300
+
+    file so long
+
+ ChangeLog | 7563 -------------------------------------------------------------
+ 1 file changed, 7563 deletions(-)
+
+commit 5ded9cba8563f336939400303d6a841d5089b107
+Author: Perberos <perberos@gmail.com>
+Date:   Mon Nov 7 19:52:18 2011 -0300
+
+    renaming from gedit to pluma
+
+ BUGS                                               |    4 +-
+ ChangeLog                                          | 1498 +++---
+ HACKING                                            |   18 +-
+ Makefile.am                                        |   10 +-
+ NEWS                                               |  118 +-
+ README                                             |   53 +-
+ autogen.sh                                         |    4 +-
+ configure.ac                                       |  112 +-
+ data/Makefile.am                                   |   22 +-
+ data/gedit-bugreport.sh.in                         |   73 -
+ data/gedit.1                                       |   76 -
+ data/gedit.desktop.in.in                           |   18 -
+ data/gedit.pc.in                                   |   11 -
+ data/gedit.schemas.in.in                           |  537 ---
+ data/pluma-bugreport.sh.in                         |   73 +
+ data/pluma.1                                       |   76 +
+ data/pluma.desktop.in.in                           |   18 +
+ data/pluma.pc.in                                   |   11 +
+ data/pluma.schemas.in.in                           |  537 +++
+ distro/archlinux/PKGBUILD                          |    4 +-
+ docs/reference/Makefile.am                         |   80 +-
+ docs/reference/gedit-docs.sgml                     |   37 -
+ docs/reference/gedit-sections.txt                  |  809 ----
+ docs/reference/gedit.types                         |   32 -
+ docs/reference/pluma-docs.sgml                     |   37 +
+ docs/reference/pluma-sections.txt                  |  809 ++++
+ docs/reference/pluma.types                         |   32 +
+ gedit/Makefile.am                                  |  254 --
+ gedit/bacon-message-connection.c                   |  396 --
+ gedit/bacon-message-connection.h                   |   43 -
+ gedit/dialogs/Makefile.am                          |   31 -
+ gedit/dialogs/gedit-close-confirmation-dialog.c    |  790 ----
+ gedit/dialogs/gedit-close-confirmation-dialog.h    |   75 -
+ gedit/dialogs/gedit-encodings-dialog.c             |  499 --
+ gedit/dialogs/gedit-encodings-dialog.h             |   86 -
+ gedit/dialogs/gedit-encodings-dialog.ui            |  256 --
+ gedit/dialogs/gedit-preferences-dialog.c           | 1189 -----
+ gedit/dialogs/gedit-preferences-dialog.h           |   87 -
+ gedit/dialogs/gedit-preferences-dialog.ui          | 1107 -----
+ gedit/dialogs/gedit-search-dialog.c                |  634 ---
+ gedit/dialogs/gedit-search-dialog.h                |  128 -
+ gedit/dialogs/gedit-search-dialog.ui               |  255 --
+ gedit/gedit-app.c                                  |  911 ----
+ gedit/gedit-app.h                                  |  142 -
+ gedit/gedit-close-button.c                         |   80 -
+ gedit/gedit-close-button.h                         |   56 -
+ gedit/gedit-commands-documents.c                   |   87 -
+ gedit/gedit-commands-edit.c                        |  174 -
+ gedit/gedit-commands-file-print.c                  |   91 -
+ gedit/gedit-commands-file.c                        | 1885 --------
+ gedit/gedit-commands-help.c                        |  115 -
+ gedit/gedit-commands-search.c                      |  716 ---
+ gedit/gedit-commands-view.c                        |  154 -
+ gedit/gedit-commands.h                             |  166 -
+ gedit/gedit-debug.c                                |  159 -
+ gedit/gedit-debug.h                                |   93 -
+ gedit/gedit-dirs.c                                 |  320 --
+ gedit/gedit-dirs.h                                 |   54 -
+ gedit/gedit-document-input-stream.c                |  479 --
+ gedit/gedit-document-input-stream.h                |   68 -
+ gedit/gedit-document-loader.c                      |  357 --
+ gedit/gedit-document-loader.h                      |  130 -
+ gedit/gedit-document-output-stream.c               |  391 --
+ gedit/gedit-document-output-stream.h               |   64 -
+ gedit/gedit-document-saver.c                       |  359 --
+ gedit/gedit-document-saver.h                       |  133 -
+ gedit/gedit-document.c                             | 2732 -----------
+ gedit/gedit-document.h                             |  338 --
+ gedit/gedit-documents-panel.c                      |  828 ----
+ gedit/gedit-documents-panel.h                      |   85 -
+ gedit/gedit-encodings-combo-box.c                  |  468 --
+ gedit/gedit-encodings-combo-box.h                  |   78 -
+ gedit/gedit-encodings.c                            |  473 --
+ gedit/gedit-encodings.h                            |   62 -
+ gedit/gedit-enum-types.c.template                  |   39 -
+ gedit/gedit-enum-types.h.template                  |   27 -
+ gedit/gedit-file-chooser-dialog.c                  |  560 ---
+ gedit/gedit-file-chooser-dialog.h                  |   89 -
+ gedit/gedit-gio-document-loader.c                  |  708 ---
+ gedit/gedit-gio-document-loader.h                  |   79 -
+ gedit/gedit-gio-document-saver.c                   |  775 ----
+ gedit/gedit-gio-document-saver.h                   |   76 -
+ gedit/gedit-help.c                                 |  122 -
+ gedit/gedit-help.h                                 |   44 -
+ gedit/gedit-history-entry.c                        |  632 ---
+ gedit/gedit-history-entry.h                        |   96 -
+ gedit/gedit-io-error-message-area.c                | 1288 ------
+ gedit/gedit-io-error-message-area.h                |   68 -
+ gedit/gedit-language-manager.c                     |   90 -
+ gedit/gedit-language-manager.h                     |   47 -
+ gedit/gedit-marshal.list                           |   13 -
+ gedit/gedit-message-area.c                         |  626 ---
+ gedit/gedit-message-area.h                         |  129 -
+ gedit/gedit-message-bus.c                          | 1158 -----
+ gedit/gedit-message-bus.h                          |  129 -
+ gedit/gedit-message-type.c                         |  526 ---
+ gedit/gedit-message-type.h                         |   67 -
+ gedit/gedit-message.c                              |  593 ---
+ gedit/gedit-message.h                              |   71 -
+ gedit/gedit-metadata-manager.c                     |  563 ---
+ gedit/gedit-metadata-manager.h                     |   50 -
+ gedit/gedit-notebook.c                             | 1099 -----
+ gedit/gedit-notebook.h                             |  143 -
+ gedit/gedit-object-module.c                        |  343 --
+ gedit/gedit-object-module.h                        |   94 -
+ gedit/gedit-panel.c                                |  950 ----
+ gedit/gedit-panel.h                                |  130 -
+ gedit/gedit-plugin-info-priv.h                     |   68 -
+ gedit/gedit-plugin-info.c                          |  394 --
+ gedit/gedit-plugin-info.h                          |   63 -
+ gedit/gedit-plugin-loader.c                        |  131 -
+ gedit/gedit-plugin-loader.h                        |  106 -
+ gedit/gedit-plugin-manager.c                       |  889 ----
+ gedit/gedit-plugin-manager.h                       |   83 -
+ gedit/gedit-plugin.c                               |  334 --
+ gedit/gedit-plugin.h                               |  240 -
+ gedit/gedit-plugins-engine.c                       |  861 ----
+ gedit/gedit-plugins-engine.h                       |  107 -
+ gedit/gedit-prefs-manager-app.c                    | 1620 -------
+ gedit/gedit-prefs-manager-app.h                    |   84 -
+ gedit/gedit-prefs-manager-private.h                |   45 -
+ gedit/gedit-prefs-manager.c                        | 1241 -----
+ gedit/gedit-prefs-manager.h                        |  423 --
+ gedit/gedit-print-job.c                            |  865 ----
+ gedit/gedit-print-job.h                            |  133 -
+ gedit/gedit-print-preferences.ui                   |  497 --
+ gedit/gedit-print-preview.c                        | 1327 ------
+ gedit/gedit-print-preview.h                        |   71 -
+ gedit/gedit-progress-message-area.c                |  261 --
+ gedit/gedit-progress-message-area.h                |  112 -
+ gedit/gedit-session.c                              |  601 ---
+ gedit/gedit-session.h                              |   47 -
+ gedit/gedit-smart-charset-converter.c              |  422 --
+ gedit/gedit-smart-charset-converter.h              |   66 -
+ gedit/gedit-spinner.c                              |  989 ----
+ gedit/gedit-spinner.h                              |   95 -
+ gedit/gedit-status-combo-box.c                     |  418 --
+ gedit/gedit-status-combo-box.h                     |   82 -
+ gedit/gedit-statusbar.c                            |  448 --
+ gedit/gedit-statusbar.h                            |   99 -
+ gedit/gedit-style-scheme-manager.c                 |  364 --
+ gedit/gedit-style-scheme-manager.h                 |   56 -
+ gedit/gedit-tab-label.c                            |  371 --
+ gedit/gedit-tab-label.h                            |   66 -
+ gedit/gedit-tab.c                                  | 2832 ------------
+ gedit/gedit-tab.h                                  |  165 -
+ gedit/gedit-ui.h                                   |  188 -
+ gedit/gedit-ui.xml                                 |  203 -
+ gedit/gedit-utils.c                                | 1546 -------
+ gedit/gedit-utils.h                                |  162 -
+ gedit/gedit-view.c                                 | 2181 ---------
+ gedit/gedit-view.h                                 |  108 -
+ gedit/gedit-window-private.h                       |  124 -
+ gedit/gedit-window.c                               | 4798 --------------------
+ gedit/gedit-window.h                               |  195 -
+ gedit/gedit.c                                      |  766 ----
+ gedit/gedit.rc                                     |    1 -
+ gedit/gedittextregion.c                            |  647 ---
+ gedit/gedittextregion.h                            |   88 -
+ gedit/osx/Makefile.am                              |   23 -
+ gedit/osx/gedit-osx-delegate.h                     |   16 -
+ gedit/osx/gedit-osx-delegate.m                     |   84 -
+ gedit/osx/gedit-osx.c                              |   94 -
+ gedit/osx/gedit-osx.h                              |   17 -
+ gedit/smclient/Makefile.am                         |   52 -
+ gedit/smclient/eggdesktopfile.c                    | 1510 ------
+ gedit/smclient/eggdesktopfile.h                    |  160 -
+ gedit/smclient/eggsmclient-osx.c                   |  235 -
+ gedit/smclient/eggsmclient-private.h               |   53 -
+ gedit/smclient/eggsmclient-win32.c                 |  353 --
+ gedit/smclient/eggsmclient-xsmp.c                  | 1370 ------
+ gedit/smclient/eggsmclient.c                       |  589 ---
+ gedit/smclient/eggsmclient.h                       |  117 -
+ help/C/figures/gedit_format_bold.png               |  Bin 726 -> 0 bytes
+ help/C/figures/gedit_format_italic.png             |  Bin 689 -> 0 bytes
+ help/C/figures/gedit_format_strikethrough.png      |  Bin 743 -> 0 bytes
+ help/C/figures/gedit_format_underline.png          |  Bin 737 -> 0 bytes
+ help/C/figures/gedit_recent_files_menu_icon.png    |  Bin 192 -> 0 bytes
+ help/C/figures/gedit_window.png                    |  Bin 35054 -> 0 bytes
+ help/C/figures/pluma_format_bold.png               |  Bin 0 -> 726 bytes
+ help/C/figures/pluma_format_italic.png             |  Bin 0 -> 689 bytes
+ help/C/figures/pluma_format_strikethrough.png      |  Bin 0 -> 743 bytes
+ help/C/figures/pluma_format_underline.png          |  Bin 0 -> 737 bytes
+ help/C/figures/pluma_recent_files_menu_icon.png    |  Bin 0 -> 192 bytes
+ help/C/figures/pluma_window.png                    |  Bin 0 -> 35054 bytes
+ help/C/gedit.xml                                   | 1986 --------
+ help/C/pluma.xml                                   | 1986 ++++++++
+ help/Makefile.am                                   |   14 +-
+ help/ar/ar.po                                      | 1754 +++----
+ help/bg/bg.po                                      | 1392 +++---
+ help/bg/figures/gedit_window.png                   |  Bin 30289 -> 0 bytes
+ help/bg/figures/pluma_window.png                   |  Bin 0 -> 30289 bytes
+ help/ca/ca.po                                      | 1944 ++++----
+ help/ca/figures/gedit_window.png                   |  Bin 29283 -> 0 bytes
+ help/ca/figures/pluma_window.png                   |  Bin 0 -> 29283 bytes
+ help/cs/cs.po                                      | 1914 ++++----
+ help/cs/figures/gedit_window.png                   |  Bin 30439 -> 0 bytes
+ help/cs/figures/pluma_window.png                   |  Bin 0 -> 30439 bytes
+ help/da/da.po                                      | 1990 ++++----
+ help/de/de.po                                      | 1934 ++++----
+ help/de/figures/gedit_window.png                   |  Bin 30621 -> 0 bytes
+ help/de/figures/pluma_window.png                   |  Bin 0 -> 30621 bytes
+ help/el/el.po                                      | 1946 ++++----
+ help/el/figures/gedit_window.png                   |  Bin 33502 -> 0 bytes
+ help/el/figures/pluma_window.png                   |  Bin 0 -> 33502 bytes
+ help/es/es.po                                      | 1956 ++++----
+ help/es/figures/gedit_window.png                   |  Bin 30275 -> 0 bytes
+ help/es/figures/pluma_window.png                   |  Bin 0 -> 30275 bytes
+ help/fi/fi.po                                      | 1938 ++++----
+ help/fi/figures/gedit_window.png                   |  Bin 24939 -> 0 bytes
+ help/fi/figures/pluma_window.png                   |  Bin 0 -> 24939 bytes
+ help/fr/figures/gedit_recent_files_menu_icon.png   |  Bin 430 -> 0 bytes
+ help/fr/figures/gedit_window.png                   |  Bin 23551 -> 0 bytes
+ help/fr/figures/pluma_recent_files_menu_icon.png   |  Bin 0 -> 430 bytes
+ help/fr/figures/pluma_window.png                   |  Bin 0 -> 23551 bytes
+ help/fr/fr.po                                      | 1900 ++++----
+ help/gedit.omf.in                                  |    9 -
+ help/hu/hu.po                                      | 1908 ++++----
+ help/it/figures/gedit_window.png                   |  Bin 31468 -> 0 bytes
+ help/it/figures/pluma_window.png                   |  Bin 0 -> 31468 bytes
+ help/it/it.po                                      | 1934 ++++----
+ help/ja/figures/gedit_window.png                   |  Bin 38561 -> 0 bytes
+ help/ja/figures/pluma_window.png                   |  Bin 0 -> 38561 bytes
+ help/ja/ja.po                                      | 1974 ++++----
+ help/ko/figures/gedit_window.png                   |  Bin 33894 -> 0 bytes
+ help/ko/figures/pluma_window.png                   |  Bin 0 -> 33894 bytes
+ help/ko/ko.po                                      | 1954 ++++----
+ help/oc/oc.po                                      | 1704 +++----
+ help/pluma.omf.in                                  |    9 +
+ help/pt_BR/pt_BR.po                                | 1942 ++++----
+ help/ru/ru.po                                      | 1912 ++++----
+ help/sv/figures/gedit_window.png                   |  Bin 37511 -> 0 bytes
+ help/sv/figures/pluma_window.png                   |  Bin 0 -> 37511 bytes
+ help/sv/sv.po                                      | 1984 ++++----
+ help/th/th.po                                      | 1756 +++----
+ help/uk/figures/gedit_window.png                   |  Bin 26281 -> 0 bytes
+ help/uk/figures/pluma_window.png                   |  Bin 0 -> 26281 bytes
+ help/uk/uk.po                                      | 1948 ++++----
+ help/zh_CN/figures/gedit_window.png                |  Bin 15743 -> 0 bytes
+ help/zh_CN/figures/pluma_window.png                |  Bin 0 -> 15743 bytes
+ help/zh_CN/zh_CN.po                                | 2072 ++++-----
+ help/zh_HK/figures/gedit_window.png                |  Bin 15743 -> 0 bytes
+ help/zh_HK/figures/pluma_window.png                |  Bin 0 -> 15743 bytes
+ help/zh_HK/zh_HK.po                                |  378 +-
+ help/zh_TW/figures/gedit_window.png                |  Bin 15743 -> 0 bytes
+ help/zh_TW/figures/pluma_window.png                |  Bin 0 -> 15743 bytes
+ help/zh_TW/zh_TW.po                                |  374 +-
+ osx/Info.plist.in                                  |   14 +-
+ pixmaps/Makefile.am                                |   10 +-
+ pixmaps/gedit-logo.png                             |  Bin 25918 -> 0 bytes
+ pixmaps/gedit-plugin.png                           |  Bin 2525 -> 0 bytes
+ pixmaps/gedit.ico                                  |  Bin 9662 -> 0 bytes
+ pixmaps/pluma-logo.png                             |  Bin 0 -> 25918 bytes
+ pixmaps/pluma-plugin.png                           |  Bin 0 -> 2525 bytes
+ pixmaps/pluma.ico                                  |  Bin 0 -> 9662 bytes
+ plugin-loaders/c/Makefile.am                       |   12 +-
+ plugin-loaders/c/gedit-plugin-loader-c.c           |  182 -
+ plugin-loaders/c/gedit-plugin-loader-c.h           |   60 -
+ plugin-loaders/c/pluma-plugin-loader-c.c           |  182 +
+ plugin-loaders/c/pluma-plugin-loader-c.h           |   60 +
+ plugin-loaders/python/Makefile.am                  |   24 +-
+ plugin-loaders/python/bindings/Makefile.am         |  102 +-
+ plugin-loaders/python/bindings/gedit.defs          | 1461 ------
+ plugin-loaders/python/bindings/gedit.override      |  461 --
+ plugin-loaders/python/bindings/geditcommands.defs  |   45 -
+ .../python/bindings/geditcommands.override         |  122 -
+ .../python/bindings/geditmessage.override          |  556 ---
+ .../python/bindings/geditplugin.override           |  193 -
+ plugin-loaders/python/bindings/geditutils.defs     |   67 -
+ plugin-loaders/python/bindings/geditutils.override |   85 -
+ plugin-loaders/python/bindings/pluma.defs          | 1461 ++++++
+ plugin-loaders/python/bindings/pluma.override      |  461 ++
+ plugin-loaders/python/bindings/plumacommands.defs  |   45 +
+ .../python/bindings/plumacommands.override         |  122 +
+ .../python/bindings/plumamessage.override          |  556 +++
+ .../python/bindings/plumaplugin.override           |  193 +
+ plugin-loaders/python/bindings/plumautils.defs     |   67 +
+ plugin-loaders/python/bindings/plumautils.override |   85 +
+ plugin-loaders/python/gedit-plugin-loader-python.c |  719 ---
+ plugin-loaders/python/gedit-plugin-loader-python.h |   61 -
+ plugin-loaders/python/gedit-plugin-python.c        |  281 --
+ plugin-loaders/python/gedit-plugin-python.h        |   88 -
+ plugin-loaders/python/pluma-plugin-loader-python.c |  719 +++
+ plugin-loaders/python/pluma-plugin-loader-python.h |   61 +
+ plugin-loaders/python/pluma-plugin-python.c        |  281 ++
+ plugin-loaders/python/pluma-plugin-python.h        |   88 +
+ plugins/changecase/Makefile.am                     |   18 +-
+ .../changecase/changecase.gedit-plugin.desktop.in  |    8 -
+ .../changecase/changecase.pluma-plugin.desktop.in  |    8 +
+ plugins/changecase/gedit-changecase-plugin.c       |  395 --
+ plugins/changecase/gedit-changecase-plugin.h       |   72 -
+ plugins/changecase/pluma-changecase-plugin.c       |  395 ++
+ plugins/changecase/pluma-changecase-plugin.h       |   72 +
+ plugins/checkupdate/Makefile.am                    |   20 +-
+ .../checkupdate.gedit-plugin.desktop.in            |    9 -
+ .../checkupdate.pluma-plugin.desktop.in            |    9 +
+ plugins/checkupdate/gedit-check-update-plugin.c    |  697 ---
+ plugins/checkupdate/gedit-check-update-plugin.h    |   74 -
+ plugins/checkupdate/gedit-check-update.schemas.in  |   13 -
+ plugins/checkupdate/pluma-check-update-plugin.c    |  697 +++
+ plugins/checkupdate/pluma-check-update-plugin.h    |   74 +
+ plugins/checkupdate/pluma-check-update.schemas.in  |   13 +
+ plugins/docinfo/Makefile.am                        |   18 +-
+ plugins/docinfo/docinfo.gedit-plugin.desktop.in    |    7 -
+ plugins/docinfo/docinfo.pluma-plugin.desktop.in    |    7 +
+ plugins/docinfo/gedit-docinfo-plugin.c             |  580 ---
+ plugins/docinfo/gedit-docinfo-plugin.h             |   75 -
+ plugins/docinfo/pluma-docinfo-plugin.c             |  580 +++
+ plugins/docinfo/pluma-docinfo-plugin.h             |   75 +
+ plugins/externaltools/Makefile.am                  |    8 +-
+ plugins/externaltools/data/Makefile.am             |    4 +-
+ plugins/externaltools/data/build.desktop.in        |    2 +-
+ plugins/externaltools/data/build.tool.in           |    2 +-
+ .../data/open-terminal-here-osx.desktop.in         |    2 +-
+ .../data/open-terminal-here-osx.tool.in            |    2 +-
+ .../data/open-terminal-here.desktop.in             |    2 +-
+ .../externaltools/data/open-terminal-here.tool.in  |    2 +-
+ .../data/remove-trailing-spaces.desktop.in         |    2 +-
+ plugins/externaltools/data/run-command.desktop.in  |    2 +-
+ plugins/externaltools/data/run-command.tool.in     |    2 +-
+ .../externaltools.gedit-plugin.desktop.in          |    9 -
+ .../externaltools.pluma-plugin.desktop.in          |    9 +
+ plugins/externaltools/scripts/Makefile.am          |    2 +-
+ plugins/externaltools/scripts/gedit-tool-merge.pl  |   78 -
+ plugins/externaltools/scripts/pluma-tool-merge.pl  |   78 +
+ plugins/externaltools/tools/Makefile.am            |    4 +-
+ plugins/externaltools/tools/__init__.py            |   10 +-
+ plugins/externaltools/tools/capture.py             |    2 +-
+ plugins/externaltools/tools/filelookup.py          |    6 +-
+ plugins/externaltools/tools/functions.py           |   38 +-
+ plugins/externaltools/tools/library.py             |   20 +-
+ plugins/externaltools/tools/manager.py             |   12 +-
+ plugins/externaltools/tools/outputpanel.py         |    6 +-
+ plugins/externaltools/tools/tools.ui               |    4 +-
+ plugins/filebrowser/Makefile.am                    |   84 +-
+ .../filebrowser.gedit-plugin.desktop.in            |   10 -
+ .../filebrowser.pluma-plugin.desktop.in            |   10 +
+ plugins/filebrowser/gedit-file-bookmarks-store.c   |  879 ----
+ plugins/filebrowser/gedit-file-bookmarks-store.h   |   90 -
+ .../gedit-file-browser-enum-register.c.template    |   20 -
+ .../gedit-file-browser-enum-types.c.template       |   45 -
+ .../gedit-file-browser-enum-types.h.template       |   29 -
+ plugins/filebrowser/gedit-file-browser-error.h     |   41 -
+ .../filebrowser/gedit-file-browser-marshal.list    |    5 -
+ plugins/filebrowser/gedit-file-browser-messages.c  | 1033 -----
+ plugins/filebrowser/gedit-file-browser-messages.h  |   35 -
+ plugins/filebrowser/gedit-file-browser-plugin.c    | 1254 -----
+ plugins/filebrowser/gedit-file-browser-plugin.h    |   71 -
+ plugins/filebrowser/gedit-file-browser-store.c     | 3625 ---------------
+ plugins/filebrowser/gedit-file-browser-store.h     |  200 -
+ plugins/filebrowser/gedit-file-browser-utils.c     |  198 -
+ plugins/filebrowser/gedit-file-browser-utils.h     |   27 -
+ plugins/filebrowser/gedit-file-browser-view.c      | 1256 -----
+ plugins/filebrowser/gedit-file-browser-view.h      |   84 -
+ .../filebrowser/gedit-file-browser-widget-ui.xml   |   54 -
+ plugins/filebrowser/gedit-file-browser-widget.c    | 3143 -------------
+ plugins/filebrowser/gedit-file-browser-widget.h    |  121 -
+ plugins/filebrowser/gedit-file-browser.schemas.in  |   97 -
+ plugins/filebrowser/pluma-file-bookmarks-store.c   |  879 ++++
+ plugins/filebrowser/pluma-file-bookmarks-store.h   |   90 +
+ .../pluma-file-browser-enum-register.c.template    |   20 +
+ .../pluma-file-browser-enum-types.c.template       |   45 +
+ .../pluma-file-browser-enum-types.h.template       |   29 +
+ plugins/filebrowser/pluma-file-browser-error.h     |   41 +
+ .../filebrowser/pluma-file-browser-marshal.list    |    5 +
+ plugins/filebrowser/pluma-file-browser-messages.c  | 1033 +++++
+ plugins/filebrowser/pluma-file-browser-messages.h  |   35 +
+ plugins/filebrowser/pluma-file-browser-plugin.c    | 1254 +++++
+ plugins/filebrowser/pluma-file-browser-plugin.h    |   71 +
+ plugins/filebrowser/pluma-file-browser-store.c     | 3625 +++++++++++++++
+ plugins/filebrowser/pluma-file-browser-store.h     |  200 +
+ plugins/filebrowser/pluma-file-browser-utils.c     |  198 +
+ plugins/filebrowser/pluma-file-browser-utils.h     |   27 +
+ plugins/filebrowser/pluma-file-browser-view.c      | 1256 +++++
+ plugins/filebrowser/pluma-file-browser-view.h      |   84 +
+ .../filebrowser/pluma-file-browser-widget-ui.xml   |   54 +
+ plugins/filebrowser/pluma-file-browser-widget.c    | 3143 +++++++++++++
+ plugins/filebrowser/pluma-file-browser-widget.h    |  121 +
+ plugins/filebrowser/pluma-file-browser.schemas.in  |   97 +
+ plugins/modelines/Makefile.am                      |   18 +-
+ plugins/modelines/gedit-modeline-plugin.c          |  248 -
+ plugins/modelines/gedit-modeline-plugin.h          |   48 -
+ plugins/modelines/modeline-parser.c                |   38 +-
+ plugins/modelines/modeline-parser.h                |    2 +-
+ .../modelines/modelines.gedit-plugin.desktop.in    |    8 -
+ .../modelines/modelines.pluma-plugin.desktop.in    |    8 +
+ plugins/modelines/pluma-modeline-plugin.c          |  248 +
+ plugins/modelines/pluma-modeline-plugin.h          |   48 +
+ plugins/pythonconsole/Makefile.am                  |    8 +-
+ .../pythonconsole.gedit-plugin.desktop.in          |   10 -
+ .../pythonconsole.pluma-plugin.desktop.in          |   10 +
+ plugins/pythonconsole/pythonconsole/Makefile.am    |    4 +-
+ plugins/pythonconsole/pythonconsole/__init__.py    |   14 +-
+ plugins/pythonconsole/pythonconsole/config.py      |    4 +-
+ plugins/pythonconsole/pythonconsole/console.py     |    2 +-
+ plugins/quickopen/Makefile.am                      |    8 +-
+ .../quickopen/quickopen.gedit-plugin.desktop.in    |   10 -
+ .../quickopen/quickopen.pluma-plugin.desktop.in    |   10 +
+ plugins/quickopen/quickopen/Makefile.am            |    2 +-
+ plugins/quickopen/quickopen/__init__.py            |    6 +-
+ plugins/quickopen/quickopen/popup.py               |    4 +-
+ plugins/quickopen/quickopen/virtualdirs.py         |    2 +-
+ plugins/quickopen/quickopen/windowhelper.py        |   10 +-
+ plugins/snippets/Makefile.am                       |    8 +-
+ plugins/snippets/data/Makefile.am                  |    2 +-
+ plugins/snippets/data/c.xml                        |    4 +-
+ plugins/snippets/data/chdr.xml                     |    4 +-
+ plugins/snippets/data/cpp.xml                      |    4 +-
+ plugins/snippets/data/docbook.xml                  |    4 +-
+ plugins/snippets/data/html.xml                     |    8 +-
+ plugins/snippets/data/java.xml                     |    2 +-
+ plugins/snippets/data/lang/Makefile.am             |    2 +-
+ plugins/snippets/data/latex.xml                    |    2 +-
+ plugins/snippets/data/python.xml                   |    4 +-
+ plugins/snippets/data/snippets.xml                 |   56 +-
+ plugins/snippets/data/xslt.xml                     |    4 +-
+ plugins/snippets/snippets.gedit-plugin.desktop.in  |    9 -
+ plugins/snippets/snippets.pluma-plugin.desktop.in  |    9 +
+ plugins/snippets/snippets/Completion.py            |    4 +-
+ plugins/snippets/snippets/Document.py              |   54 +-
+ plugins/snippets/snippets/Helper.py                |    8 +-
+ plugins/snippets/snippets/Library.py               |    2 +-
+ plugins/snippets/snippets/Makefile.am              |    4 +-
+ plugins/snippets/snippets/Manager.py               |   12 +-
+ plugins/snippets/snippets/Parser.py                |    2 +-
+ plugins/snippets/snippets/Placeholder.py           |    8 +-
+ plugins/snippets/snippets/Snippet.py               |    2 +-
+ plugins/snippets/snippets/SubstitutionParser.py    |    2 +-
+ plugins/snippets/snippets/WindowHelper.py          |   20 +-
+ plugins/snippets/snippets/__init__.py              |   18 +-
+ plugins/snippets/snippets/snippets.ui              |    4 +-
+ plugins/sort/Makefile.am                           |   18 +-
+ plugins/sort/gedit-sort-plugin.c                   |  588 ---
+ plugins/sort/gedit-sort-plugin.h                   |   73 -
+ plugins/sort/pluma-sort-plugin.c                   |  588 +++
+ plugins/sort/pluma-sort-plugin.h                   |   73 +
+ plugins/sort/sort.gedit-plugin.desktop.in          |    9 -
+ plugins/sort/sort.pluma-plugin.desktop.in          |    9 +
+ plugins/spell/Makefile.am                          |   58 +-
+ plugins/spell/gedit-automatic-spell-checker.c      | 1015 -----
+ plugins/spell/gedit-automatic-spell-checker.h      |   67 -
+ plugins/spell/gedit-spell-checker-dialog.c         |  722 ---
+ plugins/spell/gedit-spell-checker-dialog.h         |   92 -
+ plugins/spell/gedit-spell-checker-language.c       |  439 --
+ plugins/spell/gedit-spell-checker-language.h       |   51 -
+ plugins/spell/gedit-spell-checker.c                |  520 ---
+ plugins/spell/gedit-spell-checker.h                |  109 -
+ plugins/spell/gedit-spell-language-dialog.c        |  309 --
+ plugins/spell/gedit-spell-language-dialog.h        |   67 -
+ plugins/spell/gedit-spell-marshal.list             |    6 -
+ plugins/spell/gedit-spell-plugin.c                 | 1217 -----
+ plugins/spell/gedit-spell-plugin.h                 |   75 -
+ plugins/spell/gedit-spell-utils.c                  |   94 -
+ plugins/spell/gedit-spell-utils.h                  |   37 -
+ plugins/spell/pluma-automatic-spell-checker.c      | 1015 +++++
+ plugins/spell/pluma-automatic-spell-checker.h      |   67 +
+ plugins/spell/pluma-spell-checker-dialog.c         |  722 +++
+ plugins/spell/pluma-spell-checker-dialog.h         |   92 +
+ plugins/spell/pluma-spell-checker-language.c       |  439 ++
+ plugins/spell/pluma-spell-checker-language.h       |   51 +
+ plugins/spell/pluma-spell-checker.c                |  520 +++
+ plugins/spell/pluma-spell-checker.h                |  109 +
+ plugins/spell/pluma-spell-language-dialog.c        |  309 ++
+ plugins/spell/pluma-spell-language-dialog.h        |   67 +
+ plugins/spell/pluma-spell-marshal.list             |    6 +
+ plugins/spell/pluma-spell-plugin.c                 | 1217 +++++
+ plugins/spell/pluma-spell-plugin.h                 |   75 +
+ plugins/spell/pluma-spell-utils.c                  |   94 +
+ plugins/spell/pluma-spell-utils.h                  |   37 +
+ plugins/spell/spell.gedit-plugin.desktop.in        |    9 -
+ plugins/spell/spell.pluma-plugin.desktop.in        |    9 +
+ plugins/taglist/HTML.tags.xml.in                   |    2 +-
+ plugins/taglist/Latex.tags.xml.in                  |    2 +-
+ plugins/taglist/Makefile.am                        |   26 +-
+ plugins/taglist/XSLT.tags.xml.in                   |    4 +-
+ plugins/taglist/XUL.tags.xml.in                    |    2 +-
+ plugins/taglist/gedit-taglist-plugin-panel.c       |  776 ----
+ plugins/taglist/gedit-taglist-plugin-panel.h       |   89 -
+ plugins/taglist/gedit-taglist-plugin-parser.c      |  655 ---
+ plugins/taglist/gedit-taglist-plugin-parser.h      |   68 -
+ plugins/taglist/gedit-taglist-plugin.c             |  160 -
+ plugins/taglist/gedit-taglist-plugin.h             |   85 -
+ plugins/taglist/pluma-taglist-plugin-panel.c       |  776 ++++
+ plugins/taglist/pluma-taglist-plugin-panel.h       |   89 +
+ plugins/taglist/pluma-taglist-plugin-parser.c      |  655 +++
+ plugins/taglist/pluma-taglist-plugin-parser.h      |   68 +
+ plugins/taglist/pluma-taglist-plugin.c             |  160 +
+ plugins/taglist/pluma-taglist-plugin.h             |   85 +
+ plugins/taglist/taglist.gedit-plugin.desktop.in    |    8 -
+ plugins/taglist/taglist.pluma-plugin.desktop.in    |    8 +
+ plugins/time/Makefile.am                           |   22 +-
+ plugins/time/gedit-time-dialog.ui                  |  297 --
+ plugins/time/gedit-time-plugin.c                   | 1272 ------
+ plugins/time/gedit-time-plugin.h                   |   78 -
+ plugins/time/gedit-time-setup-dialog.ui            |  330 --
+ plugins/time/pluma-time-dialog.ui                  |  297 ++
+ plugins/time/pluma-time-plugin.c                   | 1272 ++++++
+ plugins/time/pluma-time-plugin.h                   |   78 +
+ plugins/time/pluma-time-setup-dialog.ui            |  330 ++
+ plugins/time/time.gedit-plugin.desktop.in          |    8 -
+ plugins/time/time.pluma-plugin.desktop.in          |    8 +
+ pluma/Makefile.am                                  |  254 ++
+ pluma/bacon-message-connection.c                   |  396 ++
+ pluma/bacon-message-connection.h                   |   43 +
+ pluma/dialogs/Makefile.am                          |   31 +
+ pluma/dialogs/pluma-close-confirmation-dialog.c    |  790 ++++
+ pluma/dialogs/pluma-close-confirmation-dialog.h    |   75 +
+ pluma/dialogs/pluma-encodings-dialog.c             |  499 ++
+ pluma/dialogs/pluma-encodings-dialog.h             |   86 +
+ pluma/dialogs/pluma-encodings-dialog.ui            |  256 ++
+ pluma/dialogs/pluma-preferences-dialog.c           | 1189 +++++
+ pluma/dialogs/pluma-preferences-dialog.h           |   87 +
+ pluma/dialogs/pluma-preferences-dialog.ui          | 1107 +++++
+ pluma/dialogs/pluma-search-dialog.c                |  634 +++
+ pluma/dialogs/pluma-search-dialog.h                |  128 +
+ pluma/dialogs/pluma-search-dialog.ui               |  255 ++
+ pluma/osx/Makefile.am                              |   23 +
+ pluma/osx/pluma-osx-delegate.h                     |   16 +
+ pluma/osx/pluma-osx-delegate.m                     |   84 +
+ pluma/osx/pluma-osx.c                              |   94 +
+ pluma/osx/pluma-osx.h                              |   17 +
+ pluma/pluma-app.c                                  |  911 ++++
+ pluma/pluma-app.h                                  |  142 +
+ pluma/pluma-close-button.c                         |   80 +
+ pluma/pluma-close-button.h                         |   56 +
+ pluma/pluma-commands-documents.c                   |   87 +
+ pluma/pluma-commands-edit.c                        |  174 +
+ pluma/pluma-commands-file-print.c                  |   91 +
+ pluma/pluma-commands-file.c                        | 1885 ++++++++
+ pluma/pluma-commands-help.c                        |  116 +
+ pluma/pluma-commands-search.c                      |  716 +++
+ pluma/pluma-commands-view.c                        |  154 +
+ pluma/pluma-commands.h                             |  166 +
+ pluma/pluma-debug.c                                |  159 +
+ pluma/pluma-debug.h                                |   93 +
+ pluma/pluma-dirs.c                                 |  320 ++
+ pluma/pluma-dirs.h                                 |   54 +
+ pluma/pluma-document-input-stream.c                |  479 ++
+ pluma/pluma-document-input-stream.h                |   68 +
+ pluma/pluma-document-loader.c                      |  357 ++
+ pluma/pluma-document-loader.h                      |  130 +
+ pluma/pluma-document-output-stream.c               |  391 ++
+ pluma/pluma-document-output-stream.h               |   64 +
+ pluma/pluma-document-saver.c                       |  359 ++
+ pluma/pluma-document-saver.h                       |  133 +
+ pluma/pluma-document.c                             | 2732 +++++++++++
+ pluma/pluma-document.h                             |  338 ++
+ pluma/pluma-documents-panel.c                      |  828 ++++
+ pluma/pluma-documents-panel.h                      |   85 +
+ pluma/pluma-encodings-combo-box.c                  |  468 ++
+ pluma/pluma-encodings-combo-box.h                  |   78 +
+ pluma/pluma-encodings.c                            |  473 ++
+ pluma/pluma-encodings.h                            |   62 +
+ pluma/pluma-enum-types.c.template                  |   39 +
+ pluma/pluma-enum-types.h.template                  |   27 +
+ pluma/pluma-file-chooser-dialog.c                  |  560 +++
+ pluma/pluma-file-chooser-dialog.h                  |   89 +
+ pluma/pluma-gio-document-loader.c                  |  708 +++
+ pluma/pluma-gio-document-loader.h                  |   79 +
+ pluma/pluma-gio-document-saver.c                   |  775 ++++
+ pluma/pluma-gio-document-saver.h                   |   76 +
+ pluma/pluma-help.c                                 |  122 +
+ pluma/pluma-help.h                                 |   44 +
+ pluma/pluma-history-entry.c                        |  632 +++
+ pluma/pluma-history-entry.h                        |   96 +
+ pluma/pluma-io-error-message-area.c                | 1288 ++++++
+ pluma/pluma-io-error-message-area.h                |   68 +
+ pluma/pluma-language-manager.c                     |   90 +
+ pluma/pluma-language-manager.h                     |   47 +
+ pluma/pluma-marshal.list                           |   13 +
+ pluma/pluma-message-area.c                         |  626 +++
+ pluma/pluma-message-area.h                         |  129 +
+ pluma/pluma-message-bus.c                          | 1158 +++++
+ pluma/pluma-message-bus.h                          |  129 +
+ pluma/pluma-message-type.c                         |  526 +++
+ pluma/pluma-message-type.h                         |   67 +
+ pluma/pluma-message.c                              |  593 +++
+ pluma/pluma-message.h                              |   71 +
+ pluma/pluma-metadata-manager.c                     |  563 +++
+ pluma/pluma-metadata-manager.h                     |   50 +
+ pluma/pluma-notebook.c                             | 1099 +++++
+ pluma/pluma-notebook.h                             |  143 +
+ pluma/pluma-object-module.c                        |  343 ++
+ pluma/pluma-object-module.h                        |   94 +
+ pluma/pluma-panel.c                                |  950 ++++
+ pluma/pluma-panel.h                                |  130 +
+ pluma/pluma-plugin-info-priv.h                     |   68 +
+ pluma/pluma-plugin-info.c                          |  394 ++
+ pluma/pluma-plugin-info.h                          |   63 +
+ pluma/pluma-plugin-loader.c                        |  131 +
+ pluma/pluma-plugin-loader.h                        |  106 +
+ pluma/pluma-plugin-manager.c                       |  889 ++++
+ pluma/pluma-plugin-manager.h                       |   83 +
+ pluma/pluma-plugin.c                               |  334 ++
+ pluma/pluma-plugin.h                               |  240 +
+ pluma/pluma-plugins-engine.c                       |  861 ++++
+ pluma/pluma-plugins-engine.h                       |  107 +
+ pluma/pluma-prefs-manager-app.c                    | 1620 +++++++
+ pluma/pluma-prefs-manager-app.h                    |   84 +
+ pluma/pluma-prefs-manager-private.h                |   45 +
+ pluma/pluma-prefs-manager.c                        | 1241 +++++
+ pluma/pluma-prefs-manager.h                        |  423 ++
+ pluma/pluma-print-job.c                            |  865 ++++
+ pluma/pluma-print-job.h                            |  133 +
+ pluma/pluma-print-preferences.ui                   |  497 ++
+ pluma/pluma-print-preview.c                        | 1327 ++++++
+ pluma/pluma-print-preview.h                        |   71 +
+ pluma/pluma-progress-message-area.c                |  261 ++
+ pluma/pluma-progress-message-area.h                |  112 +
+ pluma/pluma-session.c                              |  601 +++
+ pluma/pluma-session.h                              |   47 +
+ pluma/pluma-smart-charset-converter.c              |  422 ++
+ pluma/pluma-smart-charset-converter.h              |   66 +
+ pluma/pluma-spinner.c                              |  989 ++++
+ pluma/pluma-spinner.h                              |   95 +
+ pluma/pluma-status-combo-box.c                     |  418 ++
+ pluma/pluma-status-combo-box.h                     |   82 +
+ pluma/pluma-statusbar.c                            |  448 ++
+ pluma/pluma-statusbar.h                            |   99 +
+ pluma/pluma-style-scheme-manager.c                 |  364 ++
+ pluma/pluma-style-scheme-manager.h                 |   56 +
+ pluma/pluma-tab-label.c                            |  371 ++
+ pluma/pluma-tab-label.h                            |   66 +
+ pluma/pluma-tab.c                                  | 2832 ++++++++++++
+ pluma/pluma-tab.h                                  |  165 +
+ pluma/pluma-ui.h                                   |  188 +
+ pluma/pluma-ui.xml                                 |  203 +
+ pluma/pluma-utils.c                                | 1546 +++++++
+ pluma/pluma-utils.h                                |  162 +
+ pluma/pluma-view.c                                 | 2181 +++++++++
+ pluma/pluma-view.h                                 |  108 +
+ pluma/pluma-window-private.h                       |  124 +
+ pluma/pluma-window.c                               | 4798 ++++++++++++++++++++
+ pluma/pluma-window.h                               |  195 +
+ pluma/pluma.c                                      |  766 ++++
+ pluma/pluma.rc                                     |    1 +
+ pluma/plumatextregion.c                            |  647 +++
+ pluma/plumatextregion.h                            |   88 +
+ pluma/smclient/Makefile.am                         |   52 +
+ pluma/smclient/eggdesktopfile.c                    | 1510 ++++++
+ pluma/smclient/eggdesktopfile.h                    |  160 +
+ pluma/smclient/eggsmclient-osx.c                   |  235 +
+ pluma/smclient/eggsmclient-private.h               |   53 +
+ pluma/smclient/eggsmclient-win32.c                 |  353 ++
+ pluma/smclient/eggsmclient-xsmp.c                  | 1370 ++++++
+ pluma/smclient/eggsmclient.c                       |  589 +++
+ pluma/smclient/eggsmclient.h                       |  117 +
+ po/LINGUAS                                         |    2 +-
+ po/POTFILES.in                                     |  158 +-
+ po/POTFILES.skip                                   |   22 +-
+ po/af.po                                           | 1552 +++----
+ po/am.po                                           | 1360 +++---
+ po/ar.po                                           | 1464 +++---
+ po/as.po                                           | 1530 +++----
+ po/ast.po                                          | 1560 +++----
+ po/az.po                                           | 1412 +++---
+ po/be.po                                           | 1514 +++---
+ po/be@latin.po                                     | 1444 +++---
+ po/bg.po                                           | 1544 +++----
+ po/bn.po                                           | 1564 +++----
+ po/bn_IN.po                                        | 1564 +++----
+ po/br.po                                           | 1536 +++----
+ po/bs.po                                           | 1438 +++---
+ po/ca.po                                           | 1606 +++----
+ po/ca@valencia.po                                  | 1606 +++----
+ po/crh.po                                          | 1550 +++----
+ po/cs.po                                           | 1552 +++----
+ po/cy.po                                           | 1614 +++----
+ po/da.po                                           | 1488 +++---
+ po/de.po                                           | 1542 +++----
+ po/dz.po                                           | 1522 +++----
+ po/el.po                                           | 1512 +++---
+ po/en@shaw.po                                      | 1450 +++---
+ po/en_CA.po                                        | 1508 +++---
+ po/en_GB.po                                        | 1592 +++----
+ po/eo.po                                           | 1516 +++----
+ po/es.po                                           | 1556 +++----
+ po/et.po                                           |  210 +-
+ po/eu.po                                           | 1542 +++----
+ po/fa.po                                           | 1436 +++---
+ po/fi.po                                           | 1574 +++----
+ po/fr.po                                           | 1550 +++----
+ po/ga.po                                           | 1438 +++---
+ po/gl.po                                           | 1552 +++----
+ po/gu.po                                           | 1528 +++----
+ po/he.po                                           | 1562 +++----
+ po/hi.po                                           | 1462 +++---
+ po/hr.po                                           | 1424 +++---
+ po/hu.po                                           | 1522 +++----
+ po/hy.po                                           | 1432 +++---
+ po/id.po                                           | 1562 +++----
+ po/is.po                                           | 1354 +++---
+ po/it.po                                           | 1474 +++---
+ po/ja.po                                           | 1518 +++----
+ po/ka.po                                           | 1432 +++---
+ po/kk.po                                           | 1530 +++----
+ po/kn.po                                           | 1544 +++----
+ po/ko.po                                           | 1468 +++---
+ po/ku.po                                           | 1500 +++---
+ po/la.po                                           | 1354 +++---
+ po/lt.po                                           | 1544 +++----
+ po/lv.po                                           | 1566 +++----
+ po/mai.po                                          | 1474 +++---
+ po/mg.po                                           | 1528 +++----
+ po/mi.po                                           | 1354 +++---
+ po/mk.po                                           | 1434 +++---
+ po/ml.po                                           | 1494 +++---
+ po/mn.po                                           | 1364 +++---
+ po/mr.po                                           | 1496 +++---
+ po/ms.po                                           | 1438 +++---
+ po/nb.po                                           | 1542 +++----
+ po/nds.po                                          | 1518 +++----
+ po/ne.po                                           | 1528 +++----
+ po/nl.po                                           | 1524 +++----
+ po/nn.po                                           | 1568 +++----
+ po/oc.po                                           | 1428 +++---
+ po/or.po                                           | 1566 +++----
+ po/pa.po                                           | 1484 +++---
+ po/pl.po                                           | 1534 +++----
+ po/ps.po                                           | 1482 +++---
+ po/pt.po                                           | 1602 +++----
+ po/pt_BR.po                                        | 1540 +++----
+ po/ro.po                                           | 1656 +++----
+ po/ru.po                                           | 1506 +++---
+ po/rw.po                                           | 1354 +++---
+ po/si.po                                           | 1492 +++---
+ po/sk.po                                           | 1438 +++---
+ po/sl.po                                           | 1612 +++----
+ po/sq.po                                           | 1432 +++---
+ po/sr.po                                           | 1496 +++---
+ po/sr@latin.po                                     | 1518 +++----
+ po/sv.po                                           | 1614 +++----
+ po/ta.po                                           | 1472 +++---
+ po/te.po                                           | 1498 +++---
+ po/th.po                                           | 1618 +++----
+ po/tk.po                                           | 1436 +++---
+ po/tr.po                                           | 1562 +++----
+ po/uk.po                                           | 1502 +++---
+ po/vi.po                                           | 1508 +++---
+ po/wa.po                                           | 1382 +++---
+ po/xh.po                                           | 1438 +++---
+ po/zh_CN.po                                        | 1540 +++----
+ po/zh_HK.po                                        | 1552 +++----
+ po/zh_TW.po                                        | 1552 +++----
+ tests/Makefile.am                                  |    4 +-
+ tests/document-input-stream.c                      |   64 +-
+ tests/document-loader.c                            |   36 +-
+ tests/document-output-stream.c                     |   46 +-
+ tests/document-saver.c                             |  134 +-
+ tests/setup-document-saver.sh                      |    6 +-
+ tests/smart-converter.c                            |   66 +-
+ win32/Makefile.am                                  |    2 +-
+ win32/README                                       |    6 +-
+ win32/build-installer.sh                           |  136 +-
+ win32/gedit.iss.in                                 |   60 -
+ win32/pluma.iss.in                                 |   60 +
+ 756 files changed, 186439 insertions(+), 186433 deletions(-)
+
+commit f00b3a11a199f9f85a4d46a600f9d14179b37dbf
+Author: Perberos <perberos@gmail.com>
+Date:   Mon Nov 7 19:19:18 2011 -0300
+
+    deleting doap file
+
+ gedit.doap |   39 ---------------------------------------
+ 1 file changed, 39 deletions(-)
+
+commit 11e023c043e0a5a3dd60a181162cf2ce584091f6
+Author: Perberos <perberos@gmail.com>
+Date:   Mon Nov 7 17:16:09 2011 -0300
+
+    warning: underquoted definition of AM_CHECK_PYMOD
+
+ m4/python.m4 |    2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit d124ed5c11f148147af13aced03f5f10304ac5a9
+Author: Perberos <perberos@gmail.com>
+Date:   Mon Nov 7 17:01:59 2011 -0300
+
+    adding changelog
+
+ ChangeLog | 7570 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 7570 insertions(+)
+
+commit 2bd2d9c6e39019b340757b7cfde77cc6804c8ce0
+Author: Perberos <perberos@gmail.com>
+Date:   Mon Nov 7 16:58:25 2011 -0300
+
+    updating version number
+
+ configure.ac |    6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
+commit 40a5edfd260f8d15413a38b55404f010dc6211d7
+Author: Perberos <perberos@gmail.com>
+Date:   Mon Nov 7 16:58:10 2011 -0300
+
+    adding missing python macro
+
+ autogen.sh |    2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 5bb79424e350326dcca0d9f0d1894ed3634a3b25
+Author: Perberos <perberos@gmail.com>
+Date:   Mon Nov 7 16:58:03 2011 -0300
+
+    adding missing python macro
+
+ m4/python.m4 |   62 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 62 insertions(+)
+
+commit 528c1e5ff51e213936e800fc5a9a25da99c0bdf2
+Author: Perberos <perberos@gmail.com>
+Date:   Mon Nov 7 16:46:58 2011 -0300
+
+    initial
+
+ AUTHORS                                            |   13 +
+ BUGS                                               |    7 +
+ COPYING                                            |  340 ++
+ HACKING                                            |   65 +
+ MAINTAINERS                                        |   12 +
+ Makefile.am                                        |   75 +
+ NEWS                                               | 1350 +++++
+ README                                             |  135 +
+ autogen.sh                                         |   23 +
+ configure.ac                                       |  600 ++
+ data/Makefile.am                                   |   49 +
+ data/gedit-bugreport.sh.in                         |   73 +
+ data/gedit.1                                       |   76 +
+ data/gedit.desktop.in.in                           |   18 +
+ data/gedit.pc.in                                   |   11 +
+ data/gedit.schemas.in.in                           |  537 ++
+ distro/archlinux/PKGBUILD                          |   39 +
+ distro/archlinux/mate-text-editor.install          |   22 +
+ distro/ubuntu/build                                |   33 +
+ distro/ubuntu/postinst                             |    8 +
+ distro/ubuntu/postrm                               |    7 +
+ distro/ubuntu/preinst                              |    6 +
+ distro/ubuntu/prerm                                |    7 +
+ docs/Makefile.am                                   |    5 +
+ docs/class-diagram.dia                             |  Bin 0 -> 8258 bytes
+ docs/reference/Makefile.am                         |  121 +
+ docs/reference/gedit-docs.sgml                     |   37 +
+ docs/reference/gedit-sections.txt                  |  809 +++
+ docs/reference/gedit.types                         |   32 +
+ gedit.doap                                         |   39 +
+ gedit/Makefile.am                                  |  254 +
+ gedit/bacon-message-connection.c                   |  396 ++
+ gedit/bacon-message-connection.h                   |   43 +
+ gedit/dialogs/Makefile.am                          |   31 +
+ gedit/dialogs/gedit-close-confirmation-dialog.c    |  790 +++
+ gedit/dialogs/gedit-close-confirmation-dialog.h    |   75 +
+ gedit/dialogs/gedit-encodings-dialog.c             |  499 ++
+ gedit/dialogs/gedit-encodings-dialog.h             |   86 +
+ gedit/dialogs/gedit-encodings-dialog.ui            |  256 +
+ gedit/dialogs/gedit-preferences-dialog.c           | 1189 ++++
+ gedit/dialogs/gedit-preferences-dialog.h           |   87 +
+ gedit/dialogs/gedit-preferences-dialog.ui          | 1107 ++++
+ gedit/dialogs/gedit-search-dialog.c                |  634 ++
+ gedit/dialogs/gedit-search-dialog.h                |  128 +
+ gedit/dialogs/gedit-search-dialog.ui               |  255 +
+ gedit/gedit-app.c                                  |  911 +++
+ gedit/gedit-app.h                                  |  142 +
+ gedit/gedit-close-button.c                         |   80 +
+ gedit/gedit-close-button.h                         |   56 +
+ gedit/gedit-commands-documents.c                   |   87 +
+ gedit/gedit-commands-edit.c                        |  174 +
+ gedit/gedit-commands-file-print.c                  |   91 +
+ gedit/gedit-commands-file.c                        | 1885 ++++++
+ gedit/gedit-commands-help.c                        |  115 +
+ gedit/gedit-commands-search.c                      |  716 +++
+ gedit/gedit-commands-view.c                        |  154 +
+ gedit/gedit-commands.h                             |  166 +
+ gedit/gedit-debug.c                                |  159 +
+ gedit/gedit-debug.h                                |   93 +
+ gedit/gedit-dirs.c                                 |  320 +
+ gedit/gedit-dirs.h                                 |   54 +
+ gedit/gedit-document-input-stream.c                |  479 ++
+ gedit/gedit-document-input-stream.h                |   68 +
+ gedit/gedit-document-loader.c                      |  357 ++
+ gedit/gedit-document-loader.h                      |  130 +
+ gedit/gedit-document-output-stream.c               |  391 ++
+ gedit/gedit-document-output-stream.h               |   64 +
+ gedit/gedit-document-saver.c                       |  359 ++
+ gedit/gedit-document-saver.h                       |  133 +
+ gedit/gedit-document.c                             | 2732 +++++++++
+ gedit/gedit-document.h                             |  338 ++
+ gedit/gedit-documents-panel.c                      |  828 +++
+ gedit/gedit-documents-panel.h                      |   85 +
+ gedit/gedit-encodings-combo-box.c                  |  468 ++
+ gedit/gedit-encodings-combo-box.h                  |   78 +
+ gedit/gedit-encodings.c                            |  473 ++
+ gedit/gedit-encodings.h                            |   62 +
+ gedit/gedit-enum-types.c.template                  |   39 +
+ gedit/gedit-enum-types.h.template                  |   27 +
+ gedit/gedit-file-chooser-dialog.c                  |  560 ++
+ gedit/gedit-file-chooser-dialog.h                  |   89 +
+ gedit/gedit-gio-document-loader.c                  |  708 +++
+ gedit/gedit-gio-document-loader.h                  |   79 +
+ gedit/gedit-gio-document-saver.c                   |  775 +++
+ gedit/gedit-gio-document-saver.h                   |   76 +
+ gedit/gedit-help.c                                 |  122 +
+ gedit/gedit-help.h                                 |   44 +
+ gedit/gedit-history-entry.c                        |  632 ++
+ gedit/gedit-history-entry.h                        |   96 +
+ gedit/gedit-io-error-message-area.c                | 1288 ++++
+ gedit/gedit-io-error-message-area.h                |   68 +
+ gedit/gedit-language-manager.c                     |   90 +
+ gedit/gedit-language-manager.h                     |   47 +
+ gedit/gedit-marshal.list                           |   13 +
+ gedit/gedit-message-area.c                         |  626 ++
+ gedit/gedit-message-area.h                         |  129 +
+ gedit/gedit-message-bus.c                          | 1158 ++++
+ gedit/gedit-message-bus.h                          |  129 +
+ gedit/gedit-message-type.c                         |  526 ++
+ gedit/gedit-message-type.h                         |   67 +
+ gedit/gedit-message.c                              |  593 ++
+ gedit/gedit-message.h                              |   71 +
+ gedit/gedit-metadata-manager.c                     |  563 ++
+ gedit/gedit-metadata-manager.h                     |   50 +
+ gedit/gedit-notebook.c                             | 1099 ++++
+ gedit/gedit-notebook.h                             |  143 +
+ gedit/gedit-object-module.c                        |  343 ++
+ gedit/gedit-object-module.h                        |   94 +
+ gedit/gedit-panel.c                                |  950 +++
+ gedit/gedit-panel.h                                |  130 +
+ gedit/gedit-plugin-info-priv.h                     |   68 +
+ gedit/gedit-plugin-info.c                          |  394 ++
+ gedit/gedit-plugin-info.h                          |   63 +
+ gedit/gedit-plugin-loader.c                        |  131 +
+ gedit/gedit-plugin-loader.h                        |  106 +
+ gedit/gedit-plugin-manager.c                       |  889 +++
+ gedit/gedit-plugin-manager.h                       |   83 +
+ gedit/gedit-plugin.c                               |  334 +
+ gedit/gedit-plugin.h                               |  240 +
+ gedit/gedit-plugins-engine.c                       |  861 +++
+ gedit/gedit-plugins-engine.h                       |  107 +
+ gedit/gedit-prefs-manager-app.c                    | 1620 +++++
+ gedit/gedit-prefs-manager-app.h                    |   84 +
+ gedit/gedit-prefs-manager-private.h                |   45 +
+ gedit/gedit-prefs-manager.c                        | 1241 ++++
+ gedit/gedit-prefs-manager.h                        |  423 ++
+ gedit/gedit-print-job.c                            |  865 +++
+ gedit/gedit-print-job.h                            |  133 +
+ gedit/gedit-print-preferences.ui                   |  497 ++
+ gedit/gedit-print-preview.c                        | 1327 ++++
+ gedit/gedit-print-preview.h                        |   71 +
+ gedit/gedit-progress-message-area.c                |  261 +
+ gedit/gedit-progress-message-area.h                |  112 +
+ gedit/gedit-session.c                              |  601 ++
+ gedit/gedit-session.h                              |   47 +
+ gedit/gedit-smart-charset-converter.c              |  422 ++
+ gedit/gedit-smart-charset-converter.h              |   66 +
+ gedit/gedit-spinner.c                              |  989 +++
+ gedit/gedit-spinner.h                              |   95 +
+ gedit/gedit-status-combo-box.c                     |  418 ++
+ gedit/gedit-status-combo-box.h                     |   82 +
+ gedit/gedit-statusbar.c                            |  448 ++
+ gedit/gedit-statusbar.h                            |   99 +
+ gedit/gedit-style-scheme-manager.c                 |  364 ++
+ gedit/gedit-style-scheme-manager.h                 |   56 +
+ gedit/gedit-tab-label.c                            |  371 ++
+ gedit/gedit-tab-label.h                            |   66 +
+ gedit/gedit-tab.c                                  | 2832 +++++++++
+ gedit/gedit-tab.h                                  |  165 +
+ gedit/gedit-ui.h                                   |  188 +
+ gedit/gedit-ui.xml                                 |  203 +
+ gedit/gedit-utils.c                                | 1546 +++++
+ gedit/gedit-utils.h                                |  162 +
+ gedit/gedit-view.c                                 | 2181 +++++++
+ gedit/gedit-view.h                                 |  108 +
+ gedit/gedit-window-private.h                       |  124 +
+ gedit/gedit-window.c                               | 4798 +++++++++++++++
+ gedit/gedit-window.h                               |  195 +
+ gedit/gedit.c                                      |  766 +++
+ gedit/gedit.rc                                     |    1 +
+ gedit/gedittextregion.c                            |  647 ++
+ gedit/gedittextregion.h                            |   88 +
+ gedit/osx/Makefile.am                              |   23 +
+ gedit/osx/gedit-osx-delegate.h                     |   16 +
+ gedit/osx/gedit-osx-delegate.m                     |   84 +
+ gedit/osx/gedit-osx.c                              |   94 +
+ gedit/osx/gedit-osx.h                              |   17 +
+ gedit/smclient/Makefile.am                         |   52 +
+ gedit/smclient/eggdesktopfile.c                    | 1510 +++++
+ gedit/smclient/eggdesktopfile.h                    |  160 +
+ gedit/smclient/eggsmclient-osx.c                   |  235 +
+ gedit/smclient/eggsmclient-private.h               |   53 +
+ gedit/smclient/eggsmclient-win32.c                 |  353 ++
+ gedit/smclient/eggsmclient-xsmp.c                  | 1370 +++++
+ gedit/smclient/eggsmclient.c                       |  589 ++
+ gedit/smclient/eggsmclient.h                       |  117 +
+ help/C/figures/gedit_format_bold.png               |  Bin 0 -> 726 bytes
+ help/C/figures/gedit_format_italic.png             |  Bin 0 -> 689 bytes
+ help/C/figures/gedit_format_strikethrough.png      |  Bin 0 -> 743 bytes
+ help/C/figures/gedit_format_underline.png          |  Bin 0 -> 737 bytes
+ help/C/figures/gedit_recent_files_menu_icon.png    |  Bin 0 -> 192 bytes
+ help/C/figures/gedit_window.png                    |  Bin 0 -> 35054 bytes
+ help/C/gedit.xml                                   | 1986 ++++++
+ help/C/legal.xml                                   |   73 +
+ help/Makefile.am                                   |   18 +
+ help/ar/ar.po                                      | 4057 +++++++++++++
+ help/bg/bg.po                                      | 3332 ++++++++++
+ help/bg/figures/gedit_window.png                   |  Bin 0 -> 30289 bytes
+ help/ca/ca.po                                      | 4698 ++++++++++++++
+ help/ca/figures/gedit_window.png                   |  Bin 0 -> 29283 bytes
+ help/cs/cs.po                                      | 4386 ++++++++++++++
+ help/cs/figures/gedit_window.png                   |  Bin 0 -> 30439 bytes
+ help/da/da.po                                      | 4673 ++++++++++++++
+ help/de/de.po                                      | 4715 ++++++++++++++
+ help/de/figures/gedit_window.png                   |  Bin 0 -> 30621 bytes
+ help/el/el.po                                      | 2824 +++++++++
+ help/el/figures/gedit_window.png                   |  Bin 0 -> 33502 bytes
+ help/es/es.po                                      | 4690 ++++++++++++++
+ help/es/figures/gedit_window.png                   |  Bin 0 -> 30275 bytes
+ help/fi/fi.po                                      | 4545 ++++++++++++++
+ help/fi/figures/gedit_window.png                   |  Bin 0 -> 24939 bytes
+ help/fr/figures/gedit_recent_files_menu_icon.png   |  Bin 0 -> 430 bytes
+ help/fr/figures/gedit_window.png                   |  Bin 0 -> 23551 bytes
+ help/fr/fr.po                                      | 4470 ++++++++++++++
+ help/gedit.omf.in                                  |    9 +
+ help/hu/hu.po                                      | 4406 ++++++++++++++
+ help/it/figures/gedit_window.png                   |  Bin 0 -> 31468 bytes
+ help/it/it.po                                      | 4679 ++++++++++++++
+ help/ja/figures/gedit_window.png                   |  Bin 0 -> 38561 bytes
+ help/ja/ja.po                                      | 4472 ++++++++++++++
+ help/ko/figures/gedit_window.png                   |  Bin 0 -> 33894 bytes
+ help/ko/ko.po                                      | 4399 ++++++++++++++
+ help/oc/oc.po                                      | 3650 +++++++++++
+ help/pt_BR/pt_BR.po                                | 4672 ++++++++++++++
+ help/ru/ru.po                                      | 4488 ++++++++++++++
+ help/sv/figures/gedit_window.png                   |  Bin 0 -> 37511 bytes
+ help/sv/sv.po                                      | 3026 +++++++++
+ help/th/th.po                                      | 3777 ++++++++++++
+ help/uk/figures/gedit_window.png                   |  Bin 0 -> 26281 bytes
+ help/uk/uk.po                                      | 4362 +++++++++++++
+ help/zh_CN/figures/gedit_window.png                |  Bin 0 -> 15743 bytes
+ help/zh_CN/zh_CN.po                                | 5100 ++++++++++++++++
+ help/zh_HK/figures/gedit_window.png                |  Bin 0 -> 15743 bytes
+ help/zh_HK/zh_HK.po                                | 2717 +++++++++
+ help/zh_TW/figures/gedit_window.png                |  Bin 0 -> 15743 bytes
+ help/zh_TW/zh_TW.po                                | 2686 ++++++++
+ osx/Info.plist.in                                  |  260 +
+ osx/Makefile.am                                    |    3 +
+ pixmaps/Makefile.am                                |   12 +
+ pixmaps/gedit-logo.png                             |  Bin 0 -> 25918 bytes
+ pixmaps/gedit-plugin.png                           |  Bin 0 -> 2525 bytes
+ pixmaps/gedit.ico                                  |  Bin 0 -> 9662 bytes
+ plugin-loaders/Makefile.am                         |    7 +
+ plugin-loaders/c/Makefile.am                       |   24 +
+ plugin-loaders/c/gedit-plugin-loader-c.c           |  182 +
+ plugin-loaders/c/gedit-plugin-loader-c.h           |   60 +
+ plugin-loaders/python/Makefile.am                  |   36 +
+ plugin-loaders/python/bindings/Makefile.am         |  115 +
+ plugin-loaders/python/bindings/gedit.defs          | 1461 +++++
+ plugin-loaders/python/bindings/gedit.override      |  461 ++
+ plugin-loaders/python/bindings/geditcommands.defs  |   45 +
+ .../python/bindings/geditcommands.override         |  122 +
+ .../python/bindings/geditmessage.override          |  556 ++
+ .../python/bindings/geditplugin.override           |  193 +
+ plugin-loaders/python/bindings/geditutils.defs     |   67 +
+ plugin-loaders/python/bindings/geditutils.override |   85 +
+ plugin-loaders/python/gedit-plugin-loader-python.c |  719 +++
+ plugin-loaders/python/gedit-plugin-loader-python.h |   61 +
+ plugin-loaders/python/gedit-plugin-python.c        |  281 +
+ plugin-loaders/python/gedit-plugin-python.h        |   88 +
+ plugins/Makefile.am                                |   42 +
+ plugins/changecase/Makefile.am                     |   34 +
+ .../changecase/changecase.gedit-plugin.desktop.in  |    8 +
+ plugins/changecase/gedit-changecase-plugin.c       |  395 ++
+ plugins/changecase/gedit-changecase-plugin.h       |   72 +
+ plugins/checkupdate/Makefile.am                    |   49 +
+ .../checkupdate.gedit-plugin.desktop.in            |    9 +
+ plugins/checkupdate/gedit-check-update-plugin.c    |  697 +++
+ plugins/checkupdate/gedit-check-update-plugin.h    |   74 +
+ plugins/checkupdate/gedit-check-update.schemas.in  |   13 +
+ plugins/docinfo/Makefile.am                        |   34 +
+ plugins/docinfo/docinfo.gedit-plugin.desktop.in    |    7 +
+ plugins/docinfo/docinfo.ui                         |  621 ++
+ plugins/docinfo/gedit-docinfo-plugin.c             |  580 ++
+ plugins/docinfo/gedit-docinfo-plugin.h             |   75 +
+ plugins/externaltools/Makefile.am                  |   15 +
+ plugins/externaltools/data/Makefile.am             |   65 +
+ plugins/externaltools/data/build.desktop.in        |    9 +
+ plugins/externaltools/data/build.tool.in           |   15 +
+ .../data/open-terminal-here-osx.desktop.in         |    8 +
+ .../data/open-terminal-here-osx.tool.in            |   16 +
+ .../data/open-terminal-here.desktop.in             |    8 +
+ .../externaltools/data/open-terminal-here.tool.in  |    4 +
+ .../data/remove-trailing-spaces.desktop.in         |    9 +
+ .../data/remove-trailing-spaces.tool.in            |    3 +
+ plugins/externaltools/data/run-command.desktop.in  |    8 +
+ plugins/externaltools/data/run-command.tool.in     |    4 +
+ .../externaltools.gedit-plugin.desktop.in          |    9 +
+ plugins/externaltools/scripts/Makefile.am          |    4 +
+ plugins/externaltools/scripts/gedit-tool-merge.pl  |   78 +
+ plugins/externaltools/tools/Makefile.am            |   23 +
+ plugins/externaltools/tools/__init__.py            |  281 +
+ plugins/externaltools/tools/capture.py             |  214 +
+ plugins/externaltools/tools/filelookup.py          |  145 +
+ plugins/externaltools/tools/functions.py           |  303 +
+ plugins/externaltools/tools/library.py             |  493 ++
+ plugins/externaltools/tools/linkparsing.py         |  231 +
+ plugins/externaltools/tools/manager.py             |  948 +++
+ plugins/externaltools/tools/outputpanel.py         |  224 +
+ plugins/externaltools/tools/outputpanel.ui         |   53 +
+ plugins/externaltools/tools/tools.ui               |  606 ++
+ plugins/filebrowser/Makefile.am                    |  104 +
+ .../filebrowser.gedit-plugin.desktop.in            |   10 +
+ plugins/filebrowser/gedit-file-bookmarks-store.c   |  879 +++
+ plugins/filebrowser/gedit-file-bookmarks-store.h   |   90 +
+ .../gedit-file-browser-enum-register.c.template    |   20 +
+ .../gedit-file-browser-enum-types.c.template       |   45 +
+ .../gedit-file-browser-enum-types.h.template       |   29 +
+ plugins/filebrowser/gedit-file-browser-error.h     |   41 +
+ .../filebrowser/gedit-file-browser-marshal.list    |    5 +
+ plugins/filebrowser/gedit-file-browser-messages.c  | 1033 ++++
+ plugins/filebrowser/gedit-file-browser-messages.h  |   35 +
+ plugins/filebrowser/gedit-file-browser-plugin.c    | 1254 ++++
+ plugins/filebrowser/gedit-file-browser-plugin.h    |   71 +
+ plugins/filebrowser/gedit-file-browser-store.c     | 3625 +++++++++++
+ plugins/filebrowser/gedit-file-browser-store.h     |  200 +
+ plugins/filebrowser/gedit-file-browser-utils.c     |  198 +
+ plugins/filebrowser/gedit-file-browser-utils.h     |   27 +
+ plugins/filebrowser/gedit-file-browser-view.c      | 1256 ++++
+ plugins/filebrowser/gedit-file-browser-view.h      |   84 +
+ .../filebrowser/gedit-file-browser-widget-ui.xml   |   54 +
+ plugins/filebrowser/gedit-file-browser-widget.c    | 3143 ++++++++++
+ plugins/filebrowser/gedit-file-browser-widget.h    |  121 +
+ plugins/filebrowser/gedit-file-browser.schemas.in  |   97 +
+ plugins/modelines/Makefile.am                      |   38 +
+ plugins/modelines/gedit-modeline-plugin.c          |  248 +
+ plugins/modelines/gedit-modeline-plugin.h          |   48 +
+ plugins/modelines/language-mappings                |   14 +
+ plugins/modelines/modeline-parser.c                |  852 +++
+ plugins/modelines/modeline-parser.h                |   37 +
+ .../modelines/modelines.gedit-plugin.desktop.in    |    8 +
+ plugins/pythonconsole/Makefile.am                  |   15 +
+ .../pythonconsole.gedit-plugin.desktop.in          |   10 +
+ plugins/pythonconsole/pythonconsole/Makefile.am    |   17 +
+ plugins/pythonconsole/pythonconsole/__init__.py    |   78 +
+ plugins/pythonconsole/pythonconsole/config.py      |  134 +
+ plugins/pythonconsole/pythonconsole/config.ui      |  107 +
+ plugins/pythonconsole/pythonconsole/console.py     |  370 ++
+ plugins/quickopen/Makefile.am                      |   15 +
+ .../quickopen/quickopen.gedit-plugin.desktop.in    |   10 +
+ plugins/quickopen/quickopen/Makefile.am            |   13 +
+ plugins/quickopen/quickopen/__init__.py            |   46 +
+ plugins/quickopen/quickopen/popup.py               |  534 ++
+ plugins/quickopen/quickopen/virtualdirs.py         |   87 +
+ plugins/quickopen/quickopen/windowhelper.py        |  198 +
+ plugins/snippets/Makefile.am                       |   15 +
+ plugins/snippets/data/Makefile.am                  |   33 +
+ plugins/snippets/data/c.xml                        |  283 +
+ plugins/snippets/data/chdr.xml                     |  241 +
+ plugins/snippets/data/cpp.xml                      |  183 +
+ plugins/snippets/data/css.xml                      |  557 ++
+ plugins/snippets/data/docbook.xml                  |  118 +
+ plugins/snippets/data/fortran.xml                  |  164 +
+ plugins/snippets/data/global.xml                   |    2 +
+ plugins/snippets/data/haskell.xml                  |   14 +
+ plugins/snippets/data/html.xml                     |  246 +
+ plugins/snippets/data/idl.xml                      |   49 +
+ plugins/snippets/data/java.xml                     |   91 +
+ plugins/snippets/data/javascript.xml               |   11 +
+ plugins/snippets/data/lang/Makefile.am             |    9 +
+ plugins/snippets/data/lang/snippets.lang           |  162 +
+ plugins/snippets/data/latex.xml                    |   38 +
+ plugins/snippets/data/mallard.xml                  |  207 +
+ plugins/snippets/data/perl.xml                     |  126 +
+ plugins/snippets/data/php.xml                      |  224 +
+ plugins/snippets/data/python.xml                   |  112 +
+ plugins/snippets/data/ruby.xml                     |  166 +
+ plugins/snippets/data/sh.xml                       |   47 +
+ plugins/snippets/data/snippets.xml                 |   98 +
+ plugins/snippets/data/tcl.xml                      |   55 +
+ plugins/snippets/data/xml.xml                      |   25 +
+ plugins/snippets/data/xslt.xml                     |  143 +
+ plugins/snippets/snippets.gedit-plugin.desktop.in  |    9 +
+ plugins/snippets/snippets/Completion.py            |  165 +
+ plugins/snippets/snippets/Document.py              | 1089 ++++
+ plugins/snippets/snippets/Exporter.py              |   98 +
+ plugins/snippets/snippets/Helper.py                |  182 +
+ plugins/snippets/snippets/Importer.py              |  100 +
+ plugins/snippets/snippets/LanguageManager.py       |   21 +
+ plugins/snippets/snippets/Library.py               |  993 +++
+ plugins/snippets/snippets/Makefile.am              |   28 +
+ plugins/snippets/snippets/Manager.py               | 1157 ++++
+ plugins/snippets/snippets/Parser.py                |  259 +
+ plugins/snippets/snippets/Placeholder.py           |  700 +++
+ plugins/snippets/snippets/Snippet.py               |  355 ++
+ plugins/snippets/snippets/SubstitutionParser.py    |  202 +
+ plugins/snippets/snippets/WindowHelper.py          |  209 +
+ plugins/snippets/snippets/__init__.py              |  101 +
+ plugins/snippets/snippets/snippets.ui              |  647 ++
+ plugins/sort/Makefile.am                           |   34 +
+ plugins/sort/gedit-sort-plugin.c                   |  588 ++
+ plugins/sort/gedit-sort-plugin.h                   |   73 +
+ plugins/sort/sort.gedit-plugin.desktop.in          |    9 +
+ plugins/sort/sort.ui                               |  275 +
+ plugins/spell/Makefile.am                          |   63 +
+ plugins/spell/gedit-automatic-spell-checker.c      | 1015 ++++
+ plugins/spell/gedit-automatic-spell-checker.h      |   67 +
+ plugins/spell/gedit-spell-checker-dialog.c         |  722 +++
+ plugins/spell/gedit-spell-checker-dialog.h         |   92 +
+ plugins/spell/gedit-spell-checker-language.c       |  439 ++
+ plugins/spell/gedit-spell-checker-language.h       |   51 +
+ plugins/spell/gedit-spell-checker.c                |  520 ++
+ plugins/spell/gedit-spell-checker.h                |  109 +
+ plugins/spell/gedit-spell-language-dialog.c        |  309 +
+ plugins/spell/gedit-spell-language-dialog.h        |   67 +
+ plugins/spell/gedit-spell-marshal.list             |    6 +
+ plugins/spell/gedit-spell-plugin.c                 | 1217 ++++
+ plugins/spell/gedit-spell-plugin.h                 |   75 +
+ plugins/spell/gedit-spell-utils.c                  |   94 +
+ plugins/spell/gedit-spell-utils.h                  |   37 +
+ plugins/spell/languages-dialog.ui                  |  145 +
+ plugins/spell/spell-checker.ui                     |  482 ++
+ plugins/spell/spell.gedit-plugin.desktop.in        |    9 +
+ plugins/taglist/HTML.tags.xml.in                   | 2672 ++++++++
+ plugins/taglist/Latex.tags.xml.in                  |  344 ++
+ plugins/taglist/Makefile.am                        |   60 +
+ plugins/taglist/XSLT.tags.xml.in                   |  337 +
+ plugins/taglist/XUL.tags.xml.in                    |  536 ++
+ plugins/taglist/gedit-taglist-plugin-panel.c       |  776 +++
+ plugins/taglist/gedit-taglist-plugin-panel.h       |   89 +
+ plugins/taglist/gedit-taglist-plugin-parser.c      |  655 ++
+ plugins/taglist/gedit-taglist-plugin-parser.h      |   68 +
+ plugins/taglist/gedit-taglist-plugin.c             |  160 +
+ plugins/taglist/gedit-taglist-plugin.h             |   85 +
+ plugins/taglist/taglist.gedit-plugin.desktop.in    |    8 +
+ plugins/time/Makefile.am                           |   36 +
+ plugins/time/gedit-time-dialog.ui                  |  297 +
+ plugins/time/gedit-time-plugin.c                   | 1272 ++++
+ plugins/time/gedit-time-plugin.h                   |   78 +
+ plugins/time/gedit-time-setup-dialog.ui            |  330 +
+ plugins/time/time.gedit-plugin.desktop.in          |    8 +
+ po/LINGUAS                                         |   97 +
+ po/Makefile.in.in~                                 |  217 +
+ po/POTFILES.in                                     |  112 +
+ po/POTFILES.skip                                   |   12 +
+ po/af.po                                           | 6097 +++++++++++++++++++
+ po/am.po                                           | 4655 ++++++++++++++
+ po/ar.po                                           | 5305 ++++++++++++++++
+ po/as.po                                           | 5293 ++++++++++++++++
+ po/ast.po                                          | 5514 +++++++++++++++++
+ po/az.po                                           | 4813 +++++++++++++++
+ po/be.po                                           | 5700 +++++++++++++++++
+ po/be@latin.po                                     | 5297 ++++++++++++++++
+ po/bg.po                                           | 5200 ++++++++++++++++
+ po/bn.po                                           | 5447 +++++++++++++++++
+ po/bn_IN.po                                        | 5251 ++++++++++++++++
+ po/br.po                                           | 4895 +++++++++++++++
+ po/bs.po                                           | 4852 +++++++++++++++
+ po/ca.po                                           | 6405 ++++++++++++++++++++
+ po/ca@valencia.po                                  | 6403 +++++++++++++++++++
+ po/crh.po                                          | 5387 ++++++++++++++++
+ po/cs.po                                           | 5249 ++++++++++++++++
+ po/cy.po                                           | 5548 +++++++++++++++++
+ po/da.po                                           | 5868 ++++++++++++++++++
+ po/de.po                                           | 5529 +++++++++++++++++
+ po/dz.po                                           | 5464 +++++++++++++++++
+ po/el.po                                           | 5262 ++++++++++++++++
+ po/en@shaw.po                                      | 5067 ++++++++++++++++
+ po/en_CA.po                                        | 4709 ++++++++++++++
+ po/en_GB.po                                        | 6272 +++++++++++++++++++
+ po/eo.po                                           | 5183 ++++++++++++++++
+ po/es.po                                           | 5398 +++++++++++++++++
+ po/et.po                                           | 3966 ++++++++++++
+ po/eu.po                                           | 5348 ++++++++++++++++
+ po/fa.po                                           | 4600 ++++++++++++++
+ po/fi.po                                           | 5478 +++++++++++++++++
+ po/fr.po                                           | 5264 ++++++++++++++++
+ po/ga.po                                           | 4949 +++++++++++++++
+ po/gl.po                                           | 5208 ++++++++++++++++
+ po/gu.po                                           | 5045 +++++++++++++++
+ po/he.po                                           | 5522 +++++++++++++++++
+ po/hi.po                                           | 5091 ++++++++++++++++
+ po/hr.po                                           | 5032 +++++++++++++++
+ po/hu.po                                           | 5167 ++++++++++++++++
+ po/hy.po                                           | 4555 ++++++++++++++
+ po/id.po                                           | 5155 ++++++++++++++++
+ po/is.po                                           | 4557 ++++++++++++++
+ po/it.po                                           | 5241 ++++++++++++++++
+ po/ja.po                                           | 5252 ++++++++++++++++
+ po/ka.po                                           | 4890 +++++++++++++++
+ po/kk.po                                           | 4854 +++++++++++++++
+ po/kn.po                                           | 5214 ++++++++++++++++
+ po/ko.po                                           | 5055 +++++++++++++++
+ po/ku.po                                           | 5180 ++++++++++++++++
+ po/la.po                                           | 4876 +++++++++++++++
+ po/lt.po                                           | 5403 +++++++++++++++++
+ po/lv.po                                           | 5450 +++++++++++++++++
+ po/mai.po                                          | 5109 ++++++++++++++++
+ po/mg.po                                           | 4864 +++++++++++++++
+ po/mi.po                                           | 4590 ++++++++++++++
+ po/mk.po                                           | 5084 ++++++++++++++++
+ po/ml.po                                           | 5401 +++++++++++++++++
+ po/mn.po                                           | 4826 +++++++++++++++
+ po/mr.po                                           | 5073 ++++++++++++++++
+ po/ms.po                                           | 4794 +++++++++++++++
+ po/nb.po                                           | 5128 ++++++++++++++++
+ po/nds.po                                          | 4800 +++++++++++++++
+ po/ne.po                                           | 5049 +++++++++++++++
+ po/nl.po                                           | 5389 ++++++++++++++++
+ po/nn.po                                           | 6129 +++++++++++++++++++
+ po/oc.po                                           | 4946 +++++++++++++++
+ po/or.po                                           | 5292 ++++++++++++++++
+ po/pa.po                                           | 5454 +++++++++++++++++
+ po/pl.po                                           | 5245 ++++++++++++++++
+ po/ps.po                                           | 4782 +++++++++++++++
+ po/pt.po                                           | 6335 +++++++++++++++++++
+ po/pt_BR.po                                        | 5450 +++++++++++++++++
+ po/ro.po                                           | 5291 ++++++++++++++++
+ po/ru.po                                           | 5223 ++++++++++++++++
+ po/rw.po                                           | 5489 +++++++++++++++++
+ po/si.po                                           | 4934 +++++++++++++++
+ po/sk.po                                           | 5183 ++++++++++++++++
+ po/sl.po                                           | 5078 ++++++++++++++++
+ po/sq.po                                           | 5042 +++++++++++++++
+ po/sr.po                                           | 6344 +++++++++++++++++++
+ po/sr@latin.po                                     | 6344 +++++++++++++++++++
+ po/sv.po                                           | 5350 ++++++++++++++++
+ po/ta.po                                           | 5241 ++++++++++++++++
+ po/te.po                                           | 5054 +++++++++++++++
+ po/th.po                                           | 6166 +++++++++++++++++++
+ po/tk.po                                           | 4795 +++++++++++++++
+ po/tr.po                                           | 6170 +++++++++++++++++++
+ po/uk.po                                           | 5185 ++++++++++++++++
+ po/vi.po                                           | 4782 +++++++++++++++
+ po/wa.po                                           | 4720 +++++++++++++++
+ po/xh.po                                           | 4673 ++++++++++++++
+ po/zh_CN.po                                        | 5153 ++++++++++++++++
+ po/zh_HK.po                                        | 5276 ++++++++++++++++
+ po/zh_TW.po                                        | 5328 ++++++++++++++++
+ tests/Makefile.am                                  |   28 +
+ tests/document-input-stream.c                      |  156 +
+ tests/document-loader.c                            |  251 +
+ tests/document-output-stream.c                     |  134 +
+ tests/document-saver.c                             |  735 +++
+ tests/setup-document-saver.sh                      |   27 +
+ tests/smart-converter.c                            |  353 ++
+ win32/Makefile.am                                  |    4 +
+ win32/README                                       |   17 +
+ win32/build-installer.sh                           |  260 +
+ win32/gedit.iss.in                                 |   60 +
+ win32/querymodules.bat                             |    3 +
+ 531 files changed, 709826 insertions(+)

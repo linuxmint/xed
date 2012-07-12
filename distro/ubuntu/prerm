@@ -1,9 +1,0 @@
-#!/bin/sh -e
-
-pkgname=mate-text-editor
-
-if [ -f /usr/sbin/mateconfpkg ]; then
-    /usr/sbin/mateconfpkg --uninstall ${pkgname}
-fi
-
-exit 0
