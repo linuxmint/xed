@@ -121,7 +121,7 @@ if !ENABLE_GVFS_METADATA
 INST_H_FILES += pluma-metadata-manager.h
 endif
 
-headerdir = $(prefix)/include/pluma/pluma
+headerdir = $(prefix)/include/pluma
 
 header_DATA = 				\
 	$(INST_H_FILES)
