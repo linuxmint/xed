@@ -17,18 +17,18 @@ echo_padded ()
 	done
 }
 
-#if (which mateconftool-2 >/dev/null)
-#then
-#	echo "MateConf configuration dump:"
-#	mateconftool-2 --dump /apps/pluma | grep -Ev "</?(entry|mateconfentryfile|entrylist|value|schema_key)" | cut -c4-
-#	echo
-#fi
+if (which gsettings >/dev/null)
+then
+	echo "GSettings configuration dump:"
+	gsettings list-recursively org.mate.pluma
+	echo
+fi
 
-echo "Active plugins:"
-mateconftool-2 --get /apps/pluma/plugins/active-plugins			\
-	| sed -r -e 's/^\[(.*)\]$/\1/' -e 's/,/\n/g'			\
-	| sed -e 's/^.*$/  - \0/'
-echo
+#echo "Active plugins:"
+#mateconftool-2 --get /apps/pluma/plugins/active-plugins			\
+#	| sed -r -e 's/^\[(.*)\]$/\1/' -e 's/,/\n/g'			\
+#	| sed -e 's/^.*$/  - \0/'
+#echo
 
 # Manually installed plugins (in $HOME)
 if [ -d $HOME/.config/pluma/plugins ]
