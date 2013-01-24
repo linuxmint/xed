@@ -43,8 +43,6 @@ LT_INIT(disable-static)
 PLUMA_API_VERSION=2.20
 AC_SUBST(PLUMA_API_VERSION)
 
-AC_PATH_PROG(MATECONFTOOL, mateconftool-2)
-
 GTK_DOC_CHECK([1.0],[--flavour=no-tmpl])
 
 AC_CHECK_FUNC(sigaction)
@@ -53,11 +51,11 @@ AC_CHECK_LIB(m, floor)
 dnl make sure we keep ACLOCAL_FLAGS around for maintainer builds to work
 AC_SUBST(ACLOCAL_AMFLAGS, "$ACLOCAL_FLAGS -I m4")
 
-dnl active plugins for pluma.schemas
-ACTIVE_PLUGINS="docinfo,modelines,filebrowser,spell,time"
+dnl active plugins for GSettings schema
+ACTIVE_PLUGINS="'docinfo', 'modelines', 'filebrowser', 'spell', 'time'"
 AC_SUBST(ACTIVE_PLUGINS)
 
-dnl toolbar style for pluma schemas
+dnl toolbar style for GSettings schemas
 TOOLBAR_STYLE="PLUMA_TOOLBAR_SYSTEM"
 AC_SUBST(TOOLBAR_STYLE)
 
@@ -80,7 +78,7 @@ case "$host" in
   *-*-mingw*)
     os_win32=yes
     AC_CHECK_TOOL(WINDRES, windres)
-    ACTIVE_PLUGINS="${ACTIVE_PLUGINS},checkupdate"
+    ACTIVE_PLUGINS="${ACTIVE_PLUGINS}, 'checkupdate'"
     ;;
   *)
     os_win32=no
@@ -108,7 +106,7 @@ gdk_windowing=`$PKG_CONFIG --variable=target gdk-2.0`
 AC_MSG_CHECKING([for native Mac OS X])
 if test "$gdk_windowing" = "quartz"; then
 	os_osx=yes
-	ACTIVE_PLUGINS="${ACTIVE_PLUGINS},checkupdate"
+	ACTIVE_PLUGINS="${ACTIVE_PLUGINS}, 'checkupdate'"
 else
 	os_osx=no
 fi
@@ -276,10 +274,9 @@ PKG_CHECK_MODULES(PLUMA, [
 	glib-2.0 >= 2.22.0
         $GMODULE_ADD
 	gthread-2.0 >= 2.13.0
-	gio-2.0 >= 2.23.1
+	gio-2.0 >= 2.26.0
 	gtk+-2.0 >= 2.16.0
 	gtksourceview-2.0 >= 2.9.7
-	mateconf-2.0 >= 1.1.0
 ])
 
 if test "$os_osx" = "no" &&
@@ -335,10 +332,10 @@ AC_SUBST(EGG_SMCLIENT_CFLAGS)
 AC_SUBST(EGG_SMCLIENT_LIBS)
 
 dnl ================================================================
-dnl MateConf related settings
+dnl GSettings related settings
 dnl ================================================================
 
-AM_MATECONF_SOURCE_2
+GLIB_GSETTINGS
 
 dnl ================================================================
 dnl Python
@@ -519,7 +516,6 @@ Makefile
 data/pluma.desktop.in
 data/pluma-bugreport.sh
 data/pluma.pc
-data/pluma.schemas.in
 data/Makefile
 docs/Makefile
 docs/reference/Makefile
@@ -590,11 +586,11 @@ It will probably crash and you will lose your data.
 If you are looking for a stable release of pluma, either download
 it from:
 
-  http://ftp.gnome.org/pub/mate/sources/pluma/2.${stable_version}/
+  http://pub.mate-desktop.org/release/1.${stable_version}/
 
 Or checkout the mate-${stable_version} branch of the pluma module from:
 
-  git://git.gnome.org/pluma
+  git://github.com/mate-desktop/mate-text-editor.git
 
 Thanks,
 The pluma team
