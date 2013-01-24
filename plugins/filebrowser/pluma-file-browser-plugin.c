@@ -29,7 +29,7 @@
 #include <pluma/pluma-app.h>
 #include <glib/gi18n-lib.h>
 #include <pluma/pluma-debug.h>
-#include <mateconf/mateconf-client.h>
+#include <gio/gio.h>
 #include <string.h>
 
 #include "pluma-file-browser-enum-types.h"
@@ -40,18 +40,21 @@
 #include "pluma-file-browser-messages.h"
 
 #define WINDOW_DATA_KEY	        	"PlumaFileBrowserPluginWindowData"
-#define FILE_BROWSER_BASE_KEY 		"/apps/pluma/plugins/filebrowser"
-#define CAJA_CLICK_POLICY_BASE_KEY 	"/apps/caja/preferences"
-#define CAJA_CLICK_POLICY_KEY	"click_policy"
-#define CAJA_ENABLE_DELETE_KEY	"enable_delete"
-#define CAJA_CONFIRM_TRASH_KEY	"confirm_trash"
-#define TERMINAL_EXEC_KEY		"/desktop/mate/applications/terminal/exec"
+
+#define FILE_BROWSER_SCHEMA 		"org.mate.pluma.plugins.filebrowser"
+#define FILE_BROWSER_ONLOAD_SCHEMA 	"org.mate.pluma.plugins.filebrowser.on-load"
+#define CAJA_SCHEMA					"org.mate.caja.preferences"
+#define CAJA_CLICK_POLICY_KEY		"click-policy"
+#define CAJA_ENABLE_DELETE_KEY		"enable-delete"
+#define CAJA_CONFIRM_TRASH_KEY		"confirm-trash"
+#define TERMINAL_SCHEMA				"org.mate.applications-terminal"
+#define TERMINAL_EXEC_KEY			"exec"
 
 #define PLUMA_FILE_BROWSER_PLUGIN_GET_PRIVATE(object)	(G_TYPE_INSTANCE_GET_PRIVATE ((object), PLUMA_TYPE_FILE_BROWSER_PLUGIN, PlumaFileBrowserPluginPrivate))
 
 struct _PlumaFileBrowserPluginPrivate
 {
-	gpointer dummy;
+	gpointer *dummy;
 };
 
 typedef struct _PlumaFileBrowserPluginData
@@ -64,9 +67,10 @@ typedef struct _PlumaFileBrowserPluginData
 	gulong                   end_loading_handle;
 	gboolean		 confirm_trash;
 
-	guint			 click_policy_handle;
-	guint			 enable_delete_handle;
-	guint			 confirm_trash_handle;
+	GSettings *settings;
+	GSettings *onload_settings;
+	GSettings *caja_settings;
+	GSettings *terminal_settings;
 } PlumaFileBrowserPluginData;
 
 static void on_uri_activated_cb          (PlumaFileBrowserWidget * widget,
@@ -170,32 +174,18 @@ restore_default_location (PlumaFileBrowserPluginData *data)
 	gchar * virtual_root;
 	gboolean bookmarks;
 	gboolean remote;
-	MateConfClient * client;
 
-	client = mateconf_client_get_default ();
-	if (!client)
-		return;
-
-	bookmarks = !mateconf_client_get_bool (client,
-	                                    FILE_BROWSER_BASE_KEY "/on_load/tree_view",
-	                                    NULL);
+	bookmarks = !g_settings_get_boolean (data->onload_settings, "tree-view");
 
 	if (bookmarks) {
-		g_object_unref (client);
 		pluma_file_browser_widget_show_bookmarks (data->tree_widget);
 		return;
 	}
 
-	root = mateconf_client_get_string (client,
-	                                FILE_BROWSER_BASE_KEY "/on_load/root",
-	                                NULL);
-	virtual_root = mateconf_client_get_string (client,
-	                                   FILE_BROWSER_BASE_KEY "/on_load/virtual_root",
-	                                   NULL);
+	root = g_settings_get_string (data->onload_settings, "root");
+	virtual_root = g_settings_get_string (data->onload_settings, "virtual-root");
 
-	remote = mateconf_client_get_bool (client,
-	                                FILE_BROWSER_BASE_KEY "/on_load/enable_remote",
-	                                NULL);
+	remote = g_settings_get_boolean (data->onload_settings, "enable-remote");
 
 	if (root != NULL && *root != '\0') {
 		GFile *file;
@@ -219,7 +209,6 @@ restore_default_location (PlumaFileBrowserPluginData *data)
 		g_object_unref (file);
 	}
 
-	g_object_unref (client);
 	g_free (root);
 	g_free (virtual_root);
 }
@@ -227,19 +216,12 @@ restore_default_location (PlumaFileBrowserPluginData *data)
 static void
 restore_filter (PlumaFileBrowserPluginData * data)
 {
-	MateConfClient * client;
 	gchar *filter_mode;
 	PlumaFileBrowserStoreFilterMode mode;
 	gchar *pattern;
 
-	client = mateconf_client_get_default ();
-	if (!client)
-		return;
-
 	/* Get filter_mode */
-	filter_mode = mateconf_client_get_string (client,
-	                                       FILE_BROWSER_BASE_KEY "/filter_mode",
-	                                       NULL);
+	filter_mode = g_settings_get_string (data->settings, "filter-mode");
 
 	/* Filter mode */
 	mode = pluma_file_browser_store_filter_mode_get_default ();
@@ -264,14 +246,11 @@ restore_filter (PlumaFileBrowserPluginData * data)
 	    pluma_file_browser_widget_get_browser_store (data->tree_widget),
 	    mode);
 
-	pattern = mateconf_client_get_string (client,
-	                                   FILE_BROWSER_BASE_KEY "/filter_pattern",
-	                                   NULL);
+	pattern = g_settings_get_string (data->settings, "filter-pattern");
 
 	pluma_file_browser_widget_set_filter_pattern (data->tree_widget,
 	                                              pattern);
 
-	g_object_unref (client);
 	g_free (filter_mode);
 	g_free (pattern);
 }
@@ -286,64 +265,48 @@ click_policy_from_string (gchar const *click_policy)
 }
 
 static void
-on_click_policy_changed (MateConfClient *client,
-			 guint cnxn_id,
-			 MateConfEntry *entry,
+on_click_policy_changed (GSettings *settings,
+			 gchar *key,
 			 gpointer user_data)
 {
-	MateConfValue *value;
 	PlumaFileBrowserPluginData * data;
-	gchar const *click_policy;
+	gchar *click_policy;
 	PlumaFileBrowserViewClickPolicy policy = PLUMA_FILE_BROWSER_VIEW_CLICK_POLICY_DOUBLE;
 	PlumaFileBrowserView *view;
 
 	data = (PlumaFileBrowserPluginData *)(user_data);
-	value = mateconf_entry_get_value (entry);
 
-	if (value && value->type == MATECONF_VALUE_STRING) {
-		click_policy = mateconf_value_get_string (value);
-
-		policy = click_policy_from_string (click_policy);
-	}
+	click_policy = g_settings_get_string (settings, key);
+	policy = click_policy_from_string (click_policy);
 
 	view = pluma_file_browser_widget_get_browser_view (data->tree_widget);
 	pluma_file_browser_view_set_click_policy (view, policy);
+	g_free (click_policy);
 }
 
 static void
-on_enable_delete_changed (MateConfClient *client,
-		 	  guint cnxn_id,
-			  MateConfEntry *entry,
+on_enable_delete_changed (GSettings *settings,
+			  gchar *key,
 			  gpointer user_data)
 {
-	MateConfValue *value;
 	PlumaFileBrowserPluginData *data;
 	gboolean enable = FALSE;
 
 	data = (PlumaFileBrowserPluginData *)(user_data);
-	value = mateconf_entry_get_value (entry);
-
-	if (value && value->type == MATECONF_VALUE_BOOL)
-		enable = mateconf_value_get_bool (value);
+	enable = g_settings_get_boolean (settings, key);
 
 	g_object_set (G_OBJECT (data->tree_widget), "enable-delete", enable, NULL);
 }
 
 static void
-on_confirm_trash_changed (MateConfClient *client,
-		 	  guint cnxn_id,
-			  MateConfEntry *entry,
+on_confirm_trash_changed (GSettings *settings,
+		 	  gchar *key,
 			  gpointer user_data)
 {
-	MateConfValue *value;
 	PlumaFileBrowserPluginData *data;
 	gboolean enable = FALSE;
 
-	data = (PlumaFileBrowserPluginData *)(user_data);
-	value = mateconf_entry_get_value (entry);
-
-	if (value && value->type == MATECONF_VALUE_BOOL)
-		enable = mateconf_value_get_bool (value);
+	enable = g_settings_get_boolean (settings, key);
 
 	data->confirm_trash = enable;
 }
@@ -351,25 +314,13 @@ on_confirm_trash_changed (MateConfClient *client,
 static void
 install_caja_prefs (PlumaFileBrowserPluginData *data)
 {
-	MateConfClient *client;
 	gchar *pref;
 	gboolean prefb;
 	PlumaFileBrowserViewClickPolicy policy;
 	PlumaFileBrowserView *view;
 
-	client = mateconf_client_get_default ();
-	if (!client)
-		return;
-
-	mateconf_client_add_dir (client,
-			      CAJA_CLICK_POLICY_BASE_KEY,
-			      MATECONF_CLIENT_PRELOAD_NONE,
-			      NULL);
-
 	/* Get click_policy */
-	pref = mateconf_client_get_string (client,
-	                                CAJA_CLICK_POLICY_BASE_KEY "/" CAJA_CLICK_POLICY_KEY,
-	                                NULL);
+	pref = g_settings_get_string (data->caja_settings, CAJA_CLICK_POLICY_KEY);
 
 	policy = click_policy_from_string (pref);
 
@@ -377,46 +328,32 @@ install_caja_prefs (PlumaFileBrowserPluginData *data)
 	pluma_file_browser_view_set_click_policy (view, policy);
 
 	if (pref) {
-		data->click_policy_handle =
-			mateconf_client_notify_add (client,
-						 CAJA_CLICK_POLICY_BASE_KEY "/" CAJA_CLICK_POLICY_KEY,
-						 on_click_policy_changed,
-						 data,
-						 NULL,
-						 NULL);
+		g_signal_connect (data->caja_settings,
+						  "changed::" CAJA_CLICK_POLICY_KEY,
+						  G_CALLBACK (on_click_policy_changed),
+						  data);
 		g_free (pref);
 	}
 
 	/* Get enable_delete */
-	prefb = mateconf_client_get_bool (client,
-	                               CAJA_CLICK_POLICY_BASE_KEY "/" CAJA_ENABLE_DELETE_KEY,
-	                               NULL);
+	prefb = g_settings_get_boolean (data->caja_settings, CAJA_ENABLE_DELETE_KEY);
 
 	g_object_set (G_OBJECT (data->tree_widget), "enable-delete", prefb, NULL);
 
-	data->enable_delete_handle =
-			mateconf_client_notify_add (client,
-						 CAJA_CLICK_POLICY_BASE_KEY "/" CAJA_ENABLE_DELETE_KEY,
-						 on_enable_delete_changed,
-						 data,
-						 NULL,
-						 NULL);
+	g_signal_connect (data->caja_settings,
+					  "changed::" CAJA_ENABLE_DELETE_KEY,
+					  G_CALLBACK (on_enable_delete_changed),
+					  data);
 
 	/* Get confirm_trash */
-	prefb = mateconf_client_get_bool (client,
-	                               CAJA_CLICK_POLICY_BASE_KEY "/" CAJA_CONFIRM_TRASH_KEY,
-	                               NULL);
+	prefb = g_settings_get_boolean (data->caja_settings, CAJA_CONFIRM_TRASH_KEY);
 
 	data->confirm_trash = prefb;
 
-	data->confirm_trash_handle =
-			mateconf_client_notify_add (client,
-						 CAJA_CLICK_POLICY_BASE_KEY "/" CAJA_CONFIRM_TRASH_KEY,
-						 on_confirm_trash_changed,
-						 data,
-						 NULL,
-						 NULL);
-	g_object_unref (client);
+	g_signal_connect (data->caja_settings,
+					  "changed::" CAJA_CONFIRM_TRASH_KEY,
+					  G_CALLBACK (on_confirm_trash_changed),
+					  data);
 }
 
 static void
@@ -463,16 +400,12 @@ on_action_set_active_root (GtkAction * action,
 }
 
 static gchar *
-get_terminal (void)
+get_terminal (PlumaFileBrowserPluginData * data)
 {
-	MateConfClient * client;
 	gchar * terminal;
 
-	client = mateconf_client_get_default ();
-	terminal = mateconf_client_get_string (client,
-					    TERMINAL_EXEC_KEY,
-					    NULL);
-	g_object_unref (client);
+	terminal = g_settings_get_string (data->terminal_settings,
+					    TERMINAL_EXEC_KEY);
 
 	if (terminal == NULL) {
 		const gchar *term = g_getenv ("TERM");
@@ -516,7 +449,7 @@ on_action_open_terminal (GtkAction * action,
 	if (wd == NULL)
 		return;
 
-	terminal = get_terminal ();
+	terminal = get_terminal (data);
 
 	file = g_file_new_for_uri (wd);
 	local = g_file_get_path (file);
@@ -696,6 +629,11 @@ impl_activate (PlumaPlugin * plugin, PlumaWindow * window)
 	data->tree_widget = PLUMA_FILE_BROWSER_WIDGET (pluma_file_browser_widget_new (data_dir));
 	g_free (data_dir);
 
+	data->settings = g_settings_new (FILE_BROWSER_SCHEMA);
+	data->onload_settings = g_settings_new (FILE_BROWSER_ONLOAD_SCHEMA);
+	data->caja_settings = g_settings_new (CAJA_SCHEMA);
+	data->terminal_settings = g_settings_new (TERMINAL_SCHEMA);
+
 	g_signal_connect (data->tree_widget,
 			  "uri-activated",
 			  G_CALLBACK (on_uri_activated_cb), window);
@@ -790,7 +728,6 @@ impl_deactivate (PlumaPlugin * plugin, PlumaWindow * window)
 {
 	PlumaFileBrowserPluginData * data;
 	PlumaPanel * panel;
-	MateConfClient *client;
 
 	data = get_plugin_data (window);
 
@@ -802,19 +739,11 @@ impl_deactivate (PlumaPlugin * plugin, PlumaWindow * window)
 	                                      G_CALLBACK (on_tab_added_cb),
 	                                      data);
 
-	client = mateconf_client_get_default ();
-	mateconf_client_remove_dir (client, CAJA_CLICK_POLICY_BASE_KEY, NULL);
+	g_object_unref (data->settings);
+	g_object_unref (data->onload_settings);
+	g_object_unref (data->caja_settings);
+	g_object_unref (data->terminal_settings);
 
-	if (data->click_policy_handle)
-		mateconf_client_notify_remove (client, data->click_policy_handle);
-
-	if (data->enable_delete_handle)
-		mateconf_client_notify_remove (client, data->enable_delete_handle);
-
-	if (data->confirm_trash_handle)
-		mateconf_client_notify_remove (client, data->confirm_trash_handle);
-
-	g_object_unref (client);
 	remove_popup_ui (window);
 
 	panel = pluma_window_get_side_panel (window);
@@ -922,19 +851,15 @@ on_model_set_cb (PlumaFileBrowserView * widget,
 {
 	PlumaFileBrowserPluginData * data = get_plugin_data (window);
 	GtkTreeModel * model;
-	MateConfClient * client;
 
 	model = gtk_tree_view_get_model (GTK_TREE_VIEW (pluma_file_browser_widget_get_browser_view (data->tree_widget)));
 
 	if (model == NULL)
 		return;
 
-	client = mateconf_client_get_default ();
-	mateconf_client_set_bool (client,
-	                       FILE_BROWSER_BASE_KEY "/on_load/tree_view",
-	                       PLUMA_IS_FILE_BROWSER_STORE (model),
-	                       NULL);
-	g_object_unref (client);
+	g_settings_set_boolean (data->onload_settings,
+	                       "tree-view",
+	                       PLUMA_IS_FILE_BROWSER_STORE (model));
 }
 
 static void
@@ -942,41 +867,21 @@ on_filter_mode_changed_cb (PlumaFileBrowserStore * model,
                            GParamSpec * param,
                            PlumaWindow * window)
 {
-	MateConfClient * client;
+	PlumaFileBrowserPluginData * data = get_plugin_data (window);
 	PlumaFileBrowserStoreFilterMode mode;
-
-	client = mateconf_client_get_default ();
-
-	if (!client)
-		return;
 
 	mode = pluma_file_browser_store_get_filter_mode (model);
 
 	if ((mode & PLUMA_FILE_BROWSER_STORE_FILTER_MODE_HIDE_HIDDEN) &&
 	    (mode & PLUMA_FILE_BROWSER_STORE_FILTER_MODE_HIDE_BINARY)) {
-		mateconf_client_set_string (client,
-		                         FILE_BROWSER_BASE_KEY "/filter_mode",
-		                         "hidden_and_binary",
-		                         NULL);
+		g_settings_set_string (data->settings, "filter-mode", "hidden_and_binary");
 	} else if (mode & PLUMA_FILE_BROWSER_STORE_FILTER_MODE_HIDE_HIDDEN) {
-		mateconf_client_set_string (client,
-		                         FILE_BROWSER_BASE_KEY "/filter_mode",
-		                         "hidden",
-		                         NULL);
+		g_settings_set_string (data->settings, "filter-mode", "hidden");
 	} else if (mode & PLUMA_FILE_BROWSER_STORE_FILTER_MODE_HIDE_BINARY) {
-		mateconf_client_set_string (client,
-		                         FILE_BROWSER_BASE_KEY "/filter_mode",
-		                         "binary",
-		                         NULL);
+		g_settings_set_string (data->settings, "filter-mode", "binary");
 	} else {
-		mateconf_client_set_string (client,
-		                         FILE_BROWSER_BASE_KEY "/filter_mode",
-		                         "none",
-		                         NULL);
+		g_settings_set_string (data->settings, "filter-mode", "none");
 	}
-
-	g_object_unref (client);
-
 }
 
 static void
@@ -1048,26 +953,15 @@ on_filter_pattern_changed_cb (PlumaFileBrowserWidget * widget,
                               GParamSpec * param,
                               PlumaWindow * window)
 {
-	MateConfClient * client;
+	PlumaFileBrowserPluginData * data = get_plugin_data (window);
 	gchar * pattern;
-
-	client = mateconf_client_get_default ();
-
-	if (!client)
-		return;
 
 	g_object_get (G_OBJECT (widget), "filter-pattern", &pattern, NULL);
 
 	if (pattern == NULL)
-		mateconf_client_set_string (client,
-		                         FILE_BROWSER_BASE_KEY "/filter_pattern",
-		                         "",
-		                         NULL);
+		g_settings_set_string (data->settings, "filter-pattern", "");
 	else
-		mateconf_client_set_string (client,
-		                         FILE_BROWSER_BASE_KEY "/filter_pattern",
-		                         pattern,
-		                         NULL);
+		g_settings_set_string (data->settings, "filter-pattern", pattern);
 
 	g_free (pattern);
 }
@@ -1080,43 +974,27 @@ on_virtual_root_changed_cb (PlumaFileBrowserStore * store,
 	PlumaFileBrowserPluginData * data = get_plugin_data (window);
 	gchar * root;
 	gchar * virtual_root;
-	MateConfClient * client;
 
 	root = pluma_file_browser_store_get_root (store);
 
 	if (!root)
 		return;
 
-	client = mateconf_client_get_default ();
-
-	if (!client)
-		return;
-
-	mateconf_client_set_string (client,
-	                         FILE_BROWSER_BASE_KEY "/on_load/root",
-	                         root,
-	                         NULL);
+	g_settings_set_string (data->onload_settings, "root", root);
 
 	virtual_root = pluma_file_browser_store_get_virtual_root (store);
 
 	if (!virtual_root) {
 		/* Set virtual to same as root then */
-		mateconf_client_set_string (client,
-	                                 FILE_BROWSER_BASE_KEY "/on_load/virtual_root",
-	                                 root,
-	                                 NULL);
+		g_settings_set_string (data->onload_settings, "virtual-root", root);
 	} else {
-		mateconf_client_set_string (client,
-	                                 FILE_BROWSER_BASE_KEY "/on_load/virtual_root",
-	                                 virtual_root,
-	                                 NULL);
+		g_settings_set_string (data->onload_settings, "virtual-root", virtual_root);
 	}
 
 	g_signal_handlers_disconnect_by_func (window,
 	                                      G_CALLBACK (on_tab_added_cb),
 	                                      data);
 
-	g_object_unref (client);
 	g_free (root);
 	g_free (virtual_root);
 }
@@ -1126,18 +1004,10 @@ on_tab_added_cb (PlumaWindow * window,
                  PlumaTab * tab,
                  PlumaFileBrowserPluginData * data)
 {
-	MateConfClient *client;
 	gboolean open;
 	gboolean load_default = TRUE;
 
-	client = mateconf_client_get_default ();
-
-	if (!client)
-		return;
-
-	open = mateconf_client_get_bool (client,
-	                              FILE_BROWSER_BASE_KEY "/open_at_first_doc",
-	                              NULL);
+	open = g_settings_get_boolean (data->settings, "open-at-first-doc");
 
 	if (open) {
 		PlumaDocument *doc;
@@ -1158,8 +1028,6 @@ on_tab_added_cb (PlumaWindow * window,
 
 	if (load_default)
 		restore_default_location (data);
-
-	g_object_unref (client);
 
 	/* Disconnect this signal, it's only called once */
 	g_signal_handlers_disconnect_by_func (window,
