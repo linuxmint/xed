@@ -29,24 +29,24 @@
 #include <gtk/gtk.h>
 #include <stdlib.h>
 
-#include <mateconf/mateconf-client.h>
+#include <gio/gio.h>
 
 #if !GTK_CHECK_VERSION(2, 17, 1)
 #include <pluma/pluma-message-area.h>
 #endif
 
-#define MATECONF_KEY_BASE "/apps/pluma/plugins/checkupdate"
-#define MATECONF_KEY_IGNORE_VERSION   MATECONF_KEY_BASE "/ignore_version"
+#define SETTINGS_SCHEMA           "org.mate.pluma.plugins.checkupdate"
+#define SETTINGS_IGNORE_VERSION   "ignore-version"
 
 #define WINDOW_DATA_KEY "PlumaCheckUpdatePluginWindowData"
 
 #define VERSION_PLACE "<a href=\"[0-9]\\.[0-9]+/\">"
 
 #ifdef G_OS_WIN32
-#define PLUMA_URL "http://ftp.acc.umu.se/pub/mate/binaries/win32/pluma/"
+#define PLUMA_URL "http://pub.mate-desktop.org/sources/mate-text-editor/"
 #define FILE_REGEX "pluma\\-setup\\-[0-9]+\\.[0-9]+\\.[0-9]+(\\-[0-9]+)?\\.exe"
 #else
-#define PLUMA_URL "http://ftp.acc.umu.se/pub/mate/binaries/mac/pluma/"
+#define PLUMA_URL "http://pub.mate-desktop.org/sources/mate-text-editor/"
 #define FILE_REGEX "pluma\\-[0-9]+\\.[0-9]+\\.[0-9]+(\\-[0-9]+)?\\.dmg"
 #endif
 
@@ -65,7 +65,7 @@ struct _PlumaCheckUpdatePluginPrivate
 {
 	SoupSession *session;
 
-	MateConfClient *mateconf_client;
+	GSettings *settings;
 };
 
 typedef struct
@@ -101,12 +101,7 @@ pluma_check_update_plugin_init (PlumaCheckUpdatePlugin *plugin)
 
 	plugin->priv->session = soup_session_async_new ();
 
-	plugin->priv->mateconf_client = mateconf_client_get_default ();
-
-	mateconf_client_add_dir (plugin->priv->mateconf_client,
-			      MATECONF_KEY_BASE,
-			      MATECONF_CLIENT_PRELOAD_ONELEVEL,
-			      NULL);
+	plugin->priv->settings = g_settings_new (SETTINGS_SCHEMA);
 }
 
 static void
@@ -120,13 +115,11 @@ pluma_check_update_plugin_dispose (GObject *object)
 		plugin->priv->session = NULL;
 	}
 
-	if (plugin->priv->mateconf_client != NULL)
+	if (plugin->priv->settings != NULL)
 	{
-		mateconf_client_suggest_sync (plugin->priv->mateconf_client, NULL);
+		g_object_unref (G_OBJECT (plugin->priv->settings));
 
-		g_object_unref (G_OBJECT (plugin->priv->mateconf_client));
-
-		plugin->priv->mateconf_client = NULL;
+		plugin->priv->settings = NULL;
 	}
 
 	pluma_debug_message (DEBUG_PLUGINS,
@@ -266,10 +259,9 @@ on_response_cb (GtkWidget   *infobar,
 
 		data = g_object_get_data (G_OBJECT (window), WINDOW_DATA_KEY);
 
-		mateconf_client_set_string (data->plugin->priv->mateconf_client,
-					 MATECONF_KEY_IGNORE_VERSION,
-					 data->version,
-					 NULL);
+		g_settings_set_string (data->plugin->priv->settings,
+					 SETTINGS_IGNORE_VERSION,
+					 data->version);
 	}
 
 	g_object_set_data (G_OBJECT (window),
@@ -467,9 +459,8 @@ parse_file_version (const gchar *file)
 static gchar *
 get_ignore_version (PlumaCheckUpdatePlugin *plugin)
 {
-	return mateconf_client_get_string (plugin->priv->mateconf_client,
-					MATECONF_KEY_IGNORE_VERSION,
-					NULL);
+	return g_settings_get_string (plugin->priv->settings,
+					SETTINGS_IGNORE_VERSION);
 }
 
 static void
