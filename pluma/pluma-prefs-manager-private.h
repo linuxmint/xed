@@ -30,12 +30,14 @@
 #ifndef __PLUMA_PREFS_MANAGER_PRIVATE_H__
 #define __PLUMA_PREFS_MANAGER_PRIVATE_H__
 
-#include <mateconf/mateconf-client.h>
+#include <gio/gio.h>
 
 typedef struct _PlumaPrefsManager 	PlumaPrefsManager;
 
 struct _PlumaPrefsManager {
-	MateConfClient *mateconf_client;
+	GSettings *settings;
+	GSettings *lockdown_settings;
+	GSettings *interface_settings;
 };
 
 extern PlumaPrefsManager *pluma_prefs_manager;

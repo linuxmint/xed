@@ -34,7 +34,7 @@
 #include <string.h>
 
 #include <glib/gi18n.h>
-#include <mateconf/mateconf-value.h>
+#include <gio/gio.h>
 
 #include "pluma-prefs-manager.h"
 #include "pluma-prefs-manager-private.h"
@@ -42,13 +42,12 @@
 #include "pluma-encodings.h"
 #include "pluma-utils.h"
 
-#define DEFINE_BOOL_PREF(name, key, def) gboolean 			\
+#define DEFINE_BOOL_PREF(name, key) gboolean 				\
 pluma_prefs_manager_get_ ## name (void)					\
 {									\
 	pluma_debug (DEBUG_PREFS);					\
 									\
-	return pluma_prefs_manager_get_bool (key,			\
-					     (def));			\
+	return pluma_prefs_manager_get_bool (key);			\
 }									\
 									\
 void 									\
@@ -70,13 +69,12 @@ pluma_prefs_manager_ ## name ## _can_set (void)				\
 
 
 
-#define DEFINE_INT_PREF(name, key, def) gint	 			\
+#define DEFINE_INT_PREF(name, key) gint					\
 pluma_prefs_manager_get_ ## name (void)			 		\
 {									\
 	pluma_debug (DEBUG_PREFS);					\
 									\
-	return pluma_prefs_manager_get_int (key,			\
-					    (def));			\
+	return pluma_prefs_manager_get_int (key);			\
 }									\
 									\
 void 									\
@@ -98,13 +96,12 @@ pluma_prefs_manager_ ## name ## _can_set (void)				\
 
 
 
-#define DEFINE_STRING_PREF(name, key, def) gchar*	 		\
+#define DEFINE_STRING_PREF(name, key) gchar*				\
 pluma_prefs_manager_get_ ## name (void)			 		\
 {									\
 	pluma_debug (DEBUG_PREFS);					\
 									\
-	return pluma_prefs_manager_get_string (key,			\
-					       def);			\
+	return pluma_prefs_manager_get_string (key);			\
 }									\
 									\
 void 									\
@@ -130,29 +127,11 @@ PlumaPrefsManager *pluma_prefs_manager = NULL;
 
 static GtkWrapMode 	 get_wrap_mode_from_string 		(const gchar* str);
 
-static gboolean 	 mateconf_client_get_bool_with_default 	(MateConfClient* client, 
-								 const gchar* key, 
-								 gboolean def, 
-								 GError** err);
+static gboolean		 pluma_prefs_manager_get_bool		(const gchar* key);
 
-static gchar		*mateconf_client_get_string_with_default 	(MateConfClient* client, 
-								 const gchar* key,
-								 const gchar* def, 
-								 GError** err);
+static gint		 pluma_prefs_manager_get_int		(const gchar* key);
 
-static gint		 mateconf_client_get_int_with_default 	(MateConfClient* client, 
-								 const gchar* key,
-								 gint def, 
-								 GError** err);
-
-static gboolean		 pluma_prefs_manager_get_bool		(const gchar* key, 
-								 gboolean def);
-
-static gint		 pluma_prefs_manager_get_int		(const gchar* key, 
-								 gint def);
-
-static gchar		*pluma_prefs_manager_get_string		(const gchar* key, 
-								 const gchar* def);
+static gchar		*pluma_prefs_manager_get_string		(const gchar* key);
 
 
 gboolean
@@ -162,28 +141,13 @@ pluma_prefs_manager_init (void)
 
 	if (pluma_prefs_manager == NULL)
 	{
-		MateConfClient *mateconf_client;
-
-		mateconf_client = mateconf_client_get_default ();
-		if (mateconf_client == NULL)
-		{
-			g_warning (_("Cannot initialize preferences manager."));
-			return FALSE;
-		}
-
 		pluma_prefs_manager = g_new0 (PlumaPrefsManager, 1);
-
-		pluma_prefs_manager->mateconf_client = mateconf_client;
-	}
-
-	if (pluma_prefs_manager->mateconf_client == NULL)
-	{
-		g_free (pluma_prefs_manager);
-		pluma_prefs_manager = NULL;
+		pluma_prefs_manager->settings = g_settings_new (PLUMA_SCHEMA);
+		pluma_prefs_manager->lockdown_settings = g_settings_new (GPM_LOCKDOWN_SCHEMA);
+		pluma_prefs_manager->interface_settings = g_settings_new (GPM_INTERFACE_SCHEMA);
 	}
 
 	return pluma_prefs_manager != NULL;
-	
 }
 
 void
@@ -193,65 +157,47 @@ pluma_prefs_manager_shutdown (void)
 
 	g_return_if_fail (pluma_prefs_manager != NULL);
 
-	g_object_unref (pluma_prefs_manager->mateconf_client);
-	pluma_prefs_manager->mateconf_client = NULL;
+	g_object_unref (pluma_prefs_manager->settings);
+	pluma_prefs_manager->settings = NULL;
+	g_object_unref (pluma_prefs_manager->lockdown_settings);
+	pluma_prefs_manager->lockdown_settings = NULL;
+	g_object_unref (pluma_prefs_manager->interface_settings);
+	pluma_prefs_manager->interface_settings = NULL;
 }
 
 static gboolean		 
-pluma_prefs_manager_get_bool (const gchar* key, gboolean def)
+pluma_prefs_manager_get_bool (const gchar* key)
 {
 	pluma_debug (DEBUG_PREFS);
 
-	g_return_val_if_fail (pluma_prefs_manager != NULL, def);
-	g_return_val_if_fail (pluma_prefs_manager->mateconf_client != NULL, def);
-
-	return mateconf_client_get_bool_with_default (pluma_prefs_manager->mateconf_client,
-						   key,
-						   def,
-						   NULL);
+	return g_settings_get_boolean (pluma_prefs_manager->settings, key);
 }
 
 static gint 
-pluma_prefs_manager_get_int (const gchar* key, gint def)
+pluma_prefs_manager_get_int (const gchar* key)
 {
 	pluma_debug (DEBUG_PREFS);
 
-	g_return_val_if_fail (pluma_prefs_manager != NULL, def);
-	g_return_val_if_fail (pluma_prefs_manager->mateconf_client != NULL, def);
-
-	return mateconf_client_get_int_with_default (pluma_prefs_manager->mateconf_client,
-						  key,
-						  def,
-						  NULL);
-}	
+	return g_settings_get_int (pluma_prefs_manager->settings, key);
+}
 
 static gchar *
-pluma_prefs_manager_get_string (const gchar* key, const gchar* def)
+pluma_prefs_manager_get_string (const gchar* key)
 {
 	pluma_debug (DEBUG_PREFS);
 
-	g_return_val_if_fail (pluma_prefs_manager != NULL, 
-			      def ? g_strdup (def) : NULL);
-	g_return_val_if_fail (pluma_prefs_manager->mateconf_client != NULL, 
-			      def ? g_strdup (def) : NULL);
-
-	return mateconf_client_get_string_with_default (pluma_prefs_manager->mateconf_client,
-						     key,
-						     def,
-						     NULL);
-}	
+	return g_settings_get_string (pluma_prefs_manager->settings, key);
+}
 
 static void		 
 pluma_prefs_manager_set_bool (const gchar* key, gboolean value)
 {
 	pluma_debug (DEBUG_PREFS);
 
-	g_return_if_fail (pluma_prefs_manager != NULL);
-	g_return_if_fail (pluma_prefs_manager->mateconf_client != NULL);
-	g_return_if_fail (mateconf_client_key_is_writable (
-				pluma_prefs_manager->mateconf_client, key, NULL));
-			
-	mateconf_client_set_bool (pluma_prefs_manager->mateconf_client, key, value, NULL);
+	g_return_if_fail (g_settings_is_writable (
+				pluma_prefs_manager->settings, key));
+
+	g_settings_set_boolean (pluma_prefs_manager->settings, key, value);
 }
 
 static void		 
@@ -259,12 +205,10 @@ pluma_prefs_manager_set_int (const gchar* key, gint value)
 {
 	pluma_debug (DEBUG_PREFS);
 
-	g_return_if_fail (pluma_prefs_manager != NULL);
-	g_return_if_fail (pluma_prefs_manager->mateconf_client != NULL);
-	g_return_if_fail (mateconf_client_key_is_writable (
-				pluma_prefs_manager->mateconf_client, key, NULL));
-			
-	mateconf_client_set_int (pluma_prefs_manager->mateconf_client, key, value, NULL);
+	g_return_if_fail (g_settings_is_writable (
+				pluma_prefs_manager->settings, key));
+
+	g_settings_set_int (pluma_prefs_manager->settings, key, value);
 }
 
 static void		 
@@ -274,12 +218,10 @@ pluma_prefs_manager_set_string (const gchar* key, const gchar* value)
 
 	g_return_if_fail (value != NULL);
 	
-	g_return_if_fail (pluma_prefs_manager != NULL);
-	g_return_if_fail (pluma_prefs_manager->mateconf_client != NULL);
-	g_return_if_fail (mateconf_client_key_is_writable (
-				pluma_prefs_manager->mateconf_client, key, NULL));
-			
-	mateconf_client_set_string (pluma_prefs_manager->mateconf_client, key, value, NULL);
+	g_return_if_fail (g_settings_is_writable (
+				pluma_prefs_manager->settings, key));
+
+	g_settings_set_string (pluma_prefs_manager->settings, key, value);
 }
 
 static gboolean 
@@ -288,20 +230,18 @@ pluma_prefs_manager_key_is_writable (const gchar* key)
 	pluma_debug (DEBUG_PREFS);
 
 	g_return_val_if_fail (pluma_prefs_manager != NULL, FALSE);
-	g_return_val_if_fail (pluma_prefs_manager->mateconf_client != NULL, FALSE);
+	g_return_val_if_fail (pluma_prefs_manager->settings != NULL, FALSE);
 
-	return mateconf_client_key_is_writable (pluma_prefs_manager->mateconf_client, key, NULL);
+	return g_settings_is_writable (pluma_prefs_manager->settings, key);
 }
 
 /* Use default font */
 DEFINE_BOOL_PREF (use_default_font,
-		  GPM_USE_DEFAULT_FONT,
-		  GPM_DEFAULT_USE_DEFAULT_FONT)
+		  GPM_USE_DEFAULT_FONT)
 
 /* Editor font */
 DEFINE_STRING_PREF (editor_font,
-		    GPM_EDITOR_FONT,
-		    GPM_DEFAULT_EDITOR_FONT)
+		    GPM_EDITOR_FONT)
 
 /* System font */
 gchar *
@@ -309,30 +249,26 @@ pluma_prefs_manager_get_system_font (void)
 {
 	pluma_debug (DEBUG_PREFS);
 
-	return pluma_prefs_manager_get_string (GPM_SYSTEM_FONT,
-					       GPM_DEFAULT_SYSTEM_FONT);
+	return g_settings_get_string (pluma_prefs_manager->interface_settings,
+				      GPM_SYSTEM_FONT);
 }
 
 /* Create backup copy */
 DEFINE_BOOL_PREF (create_backup_copy,
-		  GPM_CREATE_BACKUP_COPY,
-		  GPM_DEFAULT_CREATE_BACKUP_COPY)
+		  GPM_CREATE_BACKUP_COPY)
 
 /* Auto save */
 DEFINE_BOOL_PREF (auto_save,
-		  GPM_AUTO_SAVE,
-		  GPM_DEFAULT_AUTO_SAVE)
+		  GPM_AUTO_SAVE)
 
 /* Auto save interval */
 DEFINE_INT_PREF (auto_save_interval,
-		 GPM_AUTO_SAVE_INTERVAL,
-		 GPM_DEFAULT_AUTO_SAVE_INTERVAL)
+		 GPM_AUTO_SAVE_INTERVAL)
 
 
 /* Undo actions limit: if < 1 then no limits */
 DEFINE_INT_PREF (undo_actions_limit,
-		 GPM_UNDO_ACTIONS_LIMIT,
-		 GPM_DEFAULT_UNDO_ACTIONS_LIMIT)
+		 GPM_UNDO_ACTIONS_LIMIT)
 
 static GtkWrapMode 
 get_wrap_mode_from_string (const gchar* str)
@@ -363,8 +299,7 @@ pluma_prefs_manager_get_wrap_mode (void)
 	
 	pluma_debug (DEBUG_PREFS);
 	
-	str = pluma_prefs_manager_get_string (GPM_WRAP_MODE,
-					      GPM_DEFAULT_WRAP_MODE);
+	str = pluma_prefs_manager_get_string (GPM_WRAP_MODE);
 
 	res = get_wrap_mode_from_string (str);
 
@@ -409,28 +344,23 @@ pluma_prefs_manager_wrap_mode_can_set (void)
 
 /* Tabs size */
 DEFINE_INT_PREF (tabs_size, 
-		 GPM_TABS_SIZE, 
-		 GPM_DEFAULT_TABS_SIZE)
+		 GPM_TABS_SIZE)
 
 /* Insert spaces */
 DEFINE_BOOL_PREF (insert_spaces, 
-		  GPM_INSERT_SPACES, 
-		  GPM_DEFAULT_INSERT_SPACES)
+		  GPM_INSERT_SPACES)
 
 /* Auto indent */
 DEFINE_BOOL_PREF (auto_indent, 
-		  GPM_AUTO_INDENT, 
-		  GPM_DEFAULT_AUTO_INDENT)
+		  GPM_AUTO_INDENT)
 
 /* Display line numbers */
 DEFINE_BOOL_PREF (display_line_numbers, 
-		  GPM_DISPLAY_LINE_NUMBERS, 
-		  GPM_DEFAULT_DISPLAY_LINE_NUMBERS)
+		  GPM_DISPLAY_LINE_NUMBERS)
 
 /* Toolbar visibility */
 DEFINE_BOOL_PREF (toolbar_visible,
-		  GPM_TOOLBAR_VISIBLE,
-		  GPM_DEFAULT_TOOLBAR_VISIBLE)
+		  GPM_TOOLBAR_VISIBLE)
 
 
 /* Toolbar suttons style */
@@ -442,8 +372,7 @@ pluma_prefs_manager_get_toolbar_buttons_style (void)
 	
 	pluma_debug (DEBUG_PREFS);
 	
-	str = pluma_prefs_manager_get_string (GPM_TOOLBAR_BUTTONS_STYLE,
-					      GPM_DEFAULT_TOOLBAR_BUTTONS_STYLE);
+	str = pluma_prefs_manager_get_string (GPM_TOOLBAR_BUTTONS_STYLE);
 
 	if (strcmp (str, "PLUMA_TOOLBAR_ICONS") == 0)
 		res = PLUMA_TOOLBAR_ICONS;
@@ -505,28 +434,23 @@ pluma_prefs_manager_toolbar_buttons_style_can_set (void)
 
 /* Statusbar visiblity */
 DEFINE_BOOL_PREF (statusbar_visible,
-		  GPM_STATUSBAR_VISIBLE,
-		  GPM_DEFAULT_STATUSBAR_VISIBLE)
+		  GPM_STATUSBAR_VISIBLE)
 		  
 /* Side Pane visiblity */
 DEFINE_BOOL_PREF (side_pane_visible,
-		  GPM_SIDE_PANE_VISIBLE,
-		  GPM_DEFAULT_SIDE_PANE_VISIBLE)
+		  GPM_SIDE_PANE_VISIBLE)
 		  
 /* Bottom Panel visiblity */
 DEFINE_BOOL_PREF (bottom_panel_visible,
-		  GPM_BOTTOM_PANEL_VISIBLE,
-		  GPM_DEFAULT_BOTTOM_PANEL_VISIBLE)		  		  
+		  GPM_BOTTOM_PANEL_VISIBLE)
 
 /* Print syntax highlighting */
 DEFINE_BOOL_PREF (print_syntax_hl,
-		  GPM_PRINT_SYNTAX,
-		  GPM_DEFAULT_PRINT_SYNTAX)
+		  GPM_PRINT_SYNTAX)
 
 /* Print header */
 DEFINE_BOOL_PREF (print_header,
-		  GPM_PRINT_HEADER,
-		  GPM_DEFAULT_PRINT_HEADER)
+		  GPM_PRINT_HEADER)
 
 
 /* Print Wrap mode */
@@ -538,8 +462,7 @@ pluma_prefs_manager_get_print_wrap_mode (void)
 	
 	pluma_debug (DEBUG_PREFS);
 	
-	str = pluma_prefs_manager_get_string (GPM_PRINT_WRAP_MODE,
-					      GPM_DEFAULT_PRINT_WRAP_MODE);
+	str = pluma_prefs_manager_get_string (GPM_PRINT_WRAP_MODE);
 
 	if (strcmp (str, "GTK_WRAP_NONE") == 0)
 		res = GTK_WRAP_NONE;
@@ -590,52 +513,90 @@ pluma_prefs_manager_print_wrap_mode_can_set (void)
 
 /* Print line numbers */	
 DEFINE_INT_PREF (print_line_numbers,
-		 GPM_PRINT_LINE_NUMBERS,
-		 GPM_DEFAULT_PRINT_LINE_NUMBERS)
+		 GPM_PRINT_LINE_NUMBERS)
 
 /* Printing fonts */
 DEFINE_STRING_PREF (print_font_body,
-		    GPM_PRINT_FONT_BODY,
-		    GPM_DEFAULT_PRINT_FONT_BODY)
+		    GPM_PRINT_FONT_BODY)
 
-const gchar *
+gchar *
+pluma_prefs_manager_get_default_string_value (const gchar *key)
+{
+	gchar *font = NULL;
+	g_settings_delay (pluma_prefs_manager->settings);
+	g_settings_reset (pluma_prefs_manager->settings, key);
+	font = g_settings_get_string (pluma_prefs_manager->settings, key);
+	g_settings_revert (pluma_prefs_manager->settings);
+	return font;
+}
+
+gchar *
 pluma_prefs_manager_get_default_print_font_body (void)
 {
-	return GPM_DEFAULT_PRINT_FONT_BODY;
+	return pluma_prefs_manager_get_default_string_value (GPM_PRINT_FONT_BODY);
 }
 
 DEFINE_STRING_PREF (print_font_header,
-		    GPM_PRINT_FONT_HEADER,
-		    GPM_DEFAULT_PRINT_FONT_HEADER)
+		    GPM_PRINT_FONT_HEADER)
 
-const gchar *
+gchar *
 pluma_prefs_manager_get_default_print_font_header (void)
 {
-	return GPM_DEFAULT_PRINT_FONT_HEADER;
+	return pluma_prefs_manager_get_default_string_value (GPM_PRINT_FONT_HEADER);
 }
 
 DEFINE_STRING_PREF (print_font_numbers,
-		    GPM_PRINT_FONT_NUMBERS,
-		    GPM_DEFAULT_PRINT_FONT_NUMBERS)
+		    GPM_PRINT_FONT_NUMBERS)
 
-const gchar *
+gchar *
 pluma_prefs_manager_get_default_print_font_numbers (void)
 {
-	return GPM_DEFAULT_PRINT_FONT_NUMBERS;
+	return pluma_prefs_manager_get_default_string_value (GPM_PRINT_FONT_NUMBERS);
 }
 
 /* Max number of files in "Recent Files" menu. 
- * This is configurable only using mateconftool or mateconf-editor 
+ * This is configurable only using gsettings, dconf or dconf-editor 
  */
 gint
 pluma_prefs_manager_get_max_recents (void)
 {
 	pluma_debug (DEBUG_PREFS);
 
-	return pluma_prefs_manager_get_int (GPM_MAX_RECENTS,	
-					    GPM_DEFAULT_MAX_RECENTS);
+	return pluma_prefs_manager_get_int (GPM_MAX_RECENTS);
 
 }
+
+/* GSettings/GSList utility functions from mate-panel */
+
+GSList*
+pluma_prefs_manager_get_gslist (GSettings *settings, const gchar *key)
+{
+    gchar **array;
+    GSList *list = NULL;
+    gint i;
+    array = g_settings_get_strv (settings, key);
+    if (array != NULL) {
+        for (i = 0; array[i]; i++) {
+            list = g_slist_append (list, g_strdup (array[i]));
+        }
+    }
+    g_strfreev (array);
+    return list;
+}
+
+void
+pluma_prefs_manager_set_gslist (GSettings *settings, const gchar *key, GSList *list)
+{
+    GArray *array;
+    GSList *l;
+    array = g_array_new (TRUE, TRUE, sizeof (gchar *));
+    for (l = list; l; l = l->next) {
+        array = g_array_append_val (array, l->data);
+    }
+    g_settings_set_strv (settings, key, (const gchar **) array->data);
+    g_array_free (array, TRUE);
+}
+
 
 /* Encodings */
 
@@ -663,28 +624,9 @@ pluma_prefs_manager_get_auto_detected_encodings (void)
 	pluma_debug (DEBUG_PREFS);
 
 	g_return_val_if_fail (pluma_prefs_manager != NULL, NULL);
-	g_return_val_if_fail (pluma_prefs_manager->mateconf_client != NULL, NULL);
+	g_return_val_if_fail (pluma_prefs_manager->settings != NULL, NULL);
 
-	strings = mateconf_client_get_list (pluma_prefs_manager->mateconf_client,
-				GPM_AUTO_DETECTED_ENCODINGS,
-				MATECONF_VALUE_STRING, 
-				NULL);
-
-	if (strings == NULL)
-	{
-		gint i = 0;
-		const gchar* s[] = GPM_DEFAULT_AUTO_DETECTED_ENCODINGS;
-
-		while (s[i] != NULL)
-		{
-			strings = g_slist_prepend (strings, g_strdup (s[i]));
-
-			++i;
-		}
-
-
-		strings = g_slist_reverse (strings);
-	}
+	strings = pluma_prefs_manager_get_gslist (pluma_prefs_manager->settings, GPM_AUTO_DETECTED_ENCODINGS);
 
 	if (strings != NULL)
 	{	
@@ -733,12 +675,9 @@ pluma_prefs_manager_get_shown_in_menu_encodings (void)
 	pluma_debug (DEBUG_PREFS);
 
 	g_return_val_if_fail (pluma_prefs_manager != NULL, NULL);
-	g_return_val_if_fail (pluma_prefs_manager->mateconf_client != NULL, NULL);
+	g_return_val_if_fail (pluma_prefs_manager->settings != NULL, NULL);
 
-	strings = mateconf_client_get_list (pluma_prefs_manager->mateconf_client,
-				GPM_SHOWN_IN_MENU_ENCODINGS,
-				MATECONF_VALUE_STRING, 
-				NULL);
+	strings = pluma_prefs_manager_get_gslist (pluma_prefs_manager->settings, GPM_SHOWN_IN_MENU_ENCODINGS);
 
 	if (strings != NULL)
 	{	
@@ -781,7 +720,7 @@ pluma_prefs_manager_set_shown_in_menu_encodings (const GSList *encs)
 	GSList *list = NULL;
 	
 	g_return_if_fail (pluma_prefs_manager != NULL);
-	g_return_if_fail (pluma_prefs_manager->mateconf_client != NULL);
+	g_return_if_fail (pluma_prefs_manager->settings != NULL);
 	g_return_if_fail (pluma_prefs_manager_shown_in_menu_encodings_can_set ());
 
 	while (encs != NULL)
@@ -800,12 +739,8 @@ pluma_prefs_manager_set_shown_in_menu_encodings (const GSList *encs)
 	}
 
 	list = g_slist_reverse (list);
-		
-	mateconf_client_set_list (pluma_prefs_manager->mateconf_client,
-			GPM_SHOWN_IN_MENU_ENCODINGS,
-			MATECONF_VALUE_STRING,
-		       	list,
-			NULL);
+
+	pluma_prefs_manager_set_gslist (pluma_prefs_manager->settings, GPM_SHOWN_IN_MENU_ENCODINGS, list);
 
 	g_slist_free (list);
 }
@@ -821,23 +756,19 @@ pluma_prefs_manager_shown_in_menu_encodings_can_set (void)
 
 /* Highlight current line */
 DEFINE_BOOL_PREF (highlight_current_line,
-		  GPM_HIGHLIGHT_CURRENT_LINE,
-		  GPM_DEFAULT_HIGHLIGHT_CURRENT_LINE)
+		  GPM_HIGHLIGHT_CURRENT_LINE)
 
 /* Highlight matching bracket */
 DEFINE_BOOL_PREF (bracket_matching,
-		  GPM_BRACKET_MATCHING,
-		  GPM_DEFAULT_BRACKET_MATCHING)
+		  GPM_BRACKET_MATCHING)
 	
 /* Display Right Margin */
 DEFINE_BOOL_PREF (display_right_margin,
-		  GPM_DISPLAY_RIGHT_MARGIN,
-		  GPM_DEFAULT_DISPLAY_RIGHT_MARGIN)
+		  GPM_DISPLAY_RIGHT_MARGIN)
 
 /* Right Margin Position */	
 DEFINE_INT_PREF (right_margin_position,
-		 GPM_RIGHT_MARGIN_POSITION,
-		 GPM_DEFAULT_RIGHT_MARGIN_POSITION)
+		 GPM_RIGHT_MARGIN_POSITION)
 
 static GtkSourceSmartHomeEndType
 get_smart_home_end_from_string (const gchar *str)
@@ -866,8 +797,7 @@ pluma_prefs_manager_get_smart_home_end (void)
 
 	pluma_debug (DEBUG_PREFS);
 
-	str = pluma_prefs_manager_get_string (GPM_SMART_HOME_END,
-					      GPM_DEFAULT_SMART_HOME_END);
+	str = pluma_prefs_manager_get_string (GPM_SMART_HOME_END);
 
 	res = get_smart_home_end_from_string (str);
 
@@ -914,18 +844,15 @@ pluma_prefs_manager_smart_home_end_can_set (void)
 
 /* Enable syntax highlighting */
 DEFINE_BOOL_PREF (enable_syntax_highlighting,
-		  GPM_SYNTAX_HL_ENABLE,
-		  GPM_DEFAULT_SYNTAX_HL_ENABLE)
+		  GPM_SYNTAX_HL_ENABLE)
 
 /* Enable search highlighting */
 DEFINE_BOOL_PREF (enable_search_highlighting,
-		  GPM_SEARCH_HIGHLIGHTING_ENABLE,
-		  GPM_DEFAULT_SEARCH_HIGHLIGHTING_ENABLE)
+		  GPM_SEARCH_HIGHLIGHTING_ENABLE)
 
 /* Source style scheme */
 DEFINE_STRING_PREF (source_style_scheme,
-		    GPM_SOURCE_STYLE_SCHEME,
-		    GPM_DEFAULT_SOURCE_STYLE_SCHEME)
+		    GPM_SOURCE_STYLE_SCHEME)
 
 GSList *
 pluma_prefs_manager_get_writable_vfs_schemes (void)
@@ -935,27 +862,9 @@ pluma_prefs_manager_get_writable_vfs_schemes (void)
 	pluma_debug (DEBUG_PREFS);
 
 	g_return_val_if_fail (pluma_prefs_manager != NULL, NULL);
-	g_return_val_if_fail (pluma_prefs_manager->mateconf_client != NULL, NULL);
+	g_return_val_if_fail (pluma_prefs_manager->settings != NULL, NULL);
 
-	strings = mateconf_client_get_list (pluma_prefs_manager->mateconf_client,
-				GPM_WRITABLE_VFS_SCHEMES,
-				MATECONF_VALUE_STRING, 
-				NULL);
-
-	if (strings == NULL)
-	{
-		gint i = 0;
-		const gchar* s[] = GPM_DEFAULT_WRITABLE_VFS_SCHEMES;
-
-		while (s[i] != NULL)
-		{
-			strings = g_slist_prepend (strings, g_strdup (s[i]));
-
-			++i;
-		}
-
-		strings = g_slist_reverse (strings);
-	}
+	strings = pluma_prefs_manager_get_gslist (pluma_prefs_manager->settings, GPM_WRITABLE_VFS_SCHEMES);
 
 	/* The 'file' scheme is writable by default. */
 	strings = g_slist_prepend (strings, g_strdup ("file")); 
@@ -970,8 +879,7 @@ pluma_prefs_manager_get_restore_cursor_position (void)
 {
 	pluma_debug (DEBUG_PREFS);
 
-	return pluma_prefs_manager_get_bool (GPM_RESTORE_CURSOR_POSITION,
-					     GPM_DEFAULT_RESTORE_CURSOR_POSITION);
+	return pluma_prefs_manager_get_bool (GPM_RESTORE_CURSOR_POSITION);
 }
 
 /* Plugins: we just store/return a list of strings, all the magic has to
@@ -985,12 +893,9 @@ pluma_prefs_manager_get_active_plugins (void)
 	pluma_debug (DEBUG_PREFS);
 
 	g_return_val_if_fail (pluma_prefs_manager != NULL, NULL);
-	g_return_val_if_fail (pluma_prefs_manager->mateconf_client != NULL, NULL);
+	g_return_val_if_fail (pluma_prefs_manager->settings != NULL, NULL);
 
-	plugins = mateconf_client_get_list (pluma_prefs_manager->mateconf_client,
-					 GPM_ACTIVE_PLUGINS,
-					 MATECONF_VALUE_STRING, 
-					 NULL);
+	plugins = pluma_prefs_manager_get_gslist (pluma_prefs_manager->settings, GPM_ACTIVE_PLUGINS);
 
 	return plugins;
 }
@@ -999,14 +904,10 @@ void
 pluma_prefs_manager_set_active_plugins (const GSList *plugins)
 {	
 	g_return_if_fail (pluma_prefs_manager != NULL);
-	g_return_if_fail (pluma_prefs_manager->mateconf_client != NULL);
+	g_return_if_fail (pluma_prefs_manager->settings != NULL);
 	g_return_if_fail (pluma_prefs_manager_active_plugins_can_set ());
 
-	mateconf_client_set_list (pluma_prefs_manager->mateconf_client,
-			       GPM_ACTIVE_PLUGINS,
-			       MATECONF_VALUE_STRING,
-		       	       (GSList *) plugins,
-			       NULL);
+	pluma_prefs_manager_set_gslist (pluma_prefs_manager->settings, GPM_ACTIVE_PLUGINS, (GSList *) plugins);
 }
 
 gboolean
@@ -1024,218 +925,17 @@ pluma_prefs_manager_get_lockdown (void)
 {
 	guint lockdown = 0;
 
-	if (pluma_prefs_manager_get_bool (GPM_LOCKDOWN_COMMAND_LINE, FALSE))
+	if (g_settings_get_boolean (pluma_prefs_manager->lockdown_settings, GPM_LOCKDOWN_COMMAND_LINE))
 		lockdown |= PLUMA_LOCKDOWN_COMMAND_LINE;
 
-	if (pluma_prefs_manager_get_bool (GPM_LOCKDOWN_PRINTING, FALSE))
+	if (g_settings_get_boolean (pluma_prefs_manager->lockdown_settings, GPM_LOCKDOWN_PRINTING))
 		lockdown |= PLUMA_LOCKDOWN_PRINTING;
 
-	if (pluma_prefs_manager_get_bool (GPM_LOCKDOWN_PRINT_SETUP, FALSE))
+	if (g_settings_get_boolean (pluma_prefs_manager->lockdown_settings, GPM_LOCKDOWN_PRINT_SETUP))
 		lockdown |= PLUMA_LOCKDOWN_PRINT_SETUP;
 
-	if (pluma_prefs_manager_get_bool (GPM_LOCKDOWN_SAVE_TO_DISK, FALSE))
+	if (g_settings_get_boolean (pluma_prefs_manager->lockdown_settings, GPM_LOCKDOWN_SAVE_TO_DISK))
 		lockdown |= PLUMA_LOCKDOWN_SAVE_TO_DISK;
 
 	return lockdown;
 }
-
-/* The following functions are taken from mateconf-client.c 
- * and partially modified. 
- * The licensing terms on these is: 
- *
- * 
- * MateConf
- * Copyright (C) 1999, 2000, 2000 Red Hat Inc.
- *
- * This library is free software; you can redistribute it and/or
- * modify it under the terms of the GNU Library General Public
- * License as published by the Free Software Foundation; either
- * version 2 of the License, or (at your option) any later version.
- *
- * This library is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
- * Library General Public License for more details.
- *
- * You should have received a copy of the GNU Library General Public
- * License along with this library; if not, write to the
- * Free Software Foundation, Inc., 51 Franklin St, Fifth Floor,
- * Boston, MA 02110-1301, USA.
- */
-
-
-static const gchar* 
-mateconf_value_type_to_string(MateConfValueType type)
-{
-  switch (type)
-    {
-    case MATECONF_VALUE_INT:
-      return "int";
-      break;
-    case MATECONF_VALUE_STRING:
-      return "string";
-      break;
-    case MATECONF_VALUE_FLOAT:
-      return "float";
-      break;
-    case MATECONF_VALUE_BOOL:
-      return "bool";
-      break;
-    case MATECONF_VALUE_SCHEMA:
-      return "schema";
-      break;
-    case MATECONF_VALUE_LIST:
-      return "list";
-      break;
-    case MATECONF_VALUE_PAIR:
-      return "pair";
-      break;
-    case MATECONF_VALUE_INVALID:
-      return "*invalid*";
-      break;
-    default:
-      g_return_val_if_reached (NULL);
-      break;
-    }
-}
-
-/* Emit the proper signals for the error, and fill in err */
-static gboolean
-handle_error (MateConfClient* client, GError* error, GError** err)
-{
-  if (error != NULL)
-    {
-      mateconf_client_error(client, error);
-      
-      if (err == NULL)
-        {
-          mateconf_client_unreturned_error(client, error);
-
-          g_error_free(error);
-        }
-      else
-        *err = error;
-
-      return TRUE;
-    }
-  else
-    return FALSE;
-}
-
-static gboolean
-check_type (const gchar* key, MateConfValue* val, MateConfValueType t, GError** err)
-{
-  if (val->type != t)
-    {
-      /*
-      mateconf_set_error(err, MATECONF_ERROR_TYPE_MISMATCH,
-                      _("Expected `%s' got, `%s' for key %s"),
-                      mateconf_value_type_to_string(t),
-                      mateconf_value_type_to_string(val->type),
-                      key);
-      */
-      g_set_error (err, MATECONF_ERROR, MATECONF_ERROR_TYPE_MISMATCH,
-	  	   _("Expected `%s', got `%s' for key %s"),
-                   mateconf_value_type_to_string(t),
-                   mateconf_value_type_to_string(val->type),
-                   key);
-	      
-      return FALSE;
-    }
-  else
-    return TRUE;
-}
-
-static gboolean
-mateconf_client_get_bool_with_default (MateConfClient* client, const gchar* key,
-                        	    gboolean def, GError** err)
-{
-  GError* error = NULL;
-  MateConfValue* val;
-
-  g_return_val_if_fail (err == NULL || *err == NULL, def);
-
-  val = mateconf_client_get (client, key, &error);
-
-  if (val != NULL)
-    {
-      gboolean retval = def;
-
-      g_return_val_if_fail (error == NULL, retval);
-      
-      if (check_type (key, val, MATECONF_VALUE_BOOL, &error))
-        retval = mateconf_value_get_bool (val);
-      else
-        handle_error (client, error, err);
-
-      mateconf_value_free (val);
-
-      return retval;
-    }
-  else
-    {
-      if (error != NULL)
-        handle_error (client, error, err);
-      return def;
-    }
-}
-
-static gchar*
-mateconf_client_get_string_with_default (MateConfClient* client, const gchar* key,
-                        	      const gchar* def, GError** err)
-{
-  GError* error = NULL;
-  gchar* val;
-
-  g_return_val_if_fail (err == NULL || *err == NULL, def ? g_strdup (def) : NULL);
-
-  val = mateconf_client_get_string (client, key, &error);
-
-  if (val != NULL)
-    {
-      g_return_val_if_fail (error == NULL, def ? g_strdup (def) : NULL);
-      
-      return val;
-    }
-  else
-    {
-      if (error != NULL)
-        handle_error (client, error, err);
-      return def ? g_strdup (def) : NULL;
-    }
-}
-
-static gint
-mateconf_client_get_int_with_default (MateConfClient* client, const gchar* key,
-                        	   gint def, GError** err)
-{
-  GError* error = NULL;
-  MateConfValue* val;
-
-  g_return_val_if_fail (err == NULL || *err == NULL, def);
-
-  val = mateconf_client_get (client, key, &error);
-
-  if (val != NULL)
-    {
-      gint retval = def;
-
-      g_return_val_if_fail (error == NULL, def);
-      
-      if (check_type (key, val, MATECONF_VALUE_INT, &error))
-        retval = mateconf_value_get_int(val);
-      else
-        handle_error (client, error, err);
-
-      mateconf_value_free (val);
-
-      return retval;
-    }
-  else
-    {
-      if (error != NULL)
-        handle_error (client, error, err);
-      return def;
-    }
-}
-

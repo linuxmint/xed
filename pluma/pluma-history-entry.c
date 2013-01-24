@@ -35,9 +35,10 @@
 #include <string.h>
 #include <glib/gi18n.h>
 #include <gtk/gtk.h>
-#include <mateconf/mateconf-client.h>
+#include <gio/gio.h>
 
 #include "pluma-history-entry.h"
+#include "pluma-prefs-manager.h"
 
 enum {
 	PROP_0,
@@ -60,7 +61,7 @@ struct _PlumaHistoryEntryPrivate
 	
 	GtkEntryCompletion *completion;
 	
-	MateConfClient        *mateconf_client;
+	GSettings          *settings;
 };
 
 G_DEFINE_TYPE(PlumaHistoryEntry, pluma_history_entry, GTK_TYPE_COMBO_BOX_ENTRY)
@@ -132,10 +133,10 @@ pluma_history_entry_finalize (GObject *object)
 	
 	g_free (priv->history_id);
 
-	if (priv->mateconf_client != NULL)
+	if (priv->settings != NULL)
 	{
-		g_object_unref (G_OBJECT (priv->mateconf_client));
-		priv->mateconf_client = NULL;
+		g_object_unref (G_OBJECT (priv->settings));
+		priv->settings = NULL;
 	}
 
 	G_OBJECT_CLASS (pluma_history_entry_parent_class)->finalize (object);
@@ -188,30 +189,6 @@ get_history_store (PlumaHistoryEntry *entry)
 	return (GtkListStore *) store;
 }
 
-static char *
-get_history_key (PlumaHistoryEntry *entry)
-{
-	gchar *tmp;
-	gchar *key;
-
-	/*
-	 * We store the data under /apps/mate-settings/
-	 * like the old MateEntry did. Maybe we should
-	 * consider moving it to the /pluma MateConf prefix...
-	 * Or maybe we should just switch away from MateConf.
-	 */
-
-	tmp = mateconf_escape_key (entry->priv->history_id, -1);
-	key = g_strconcat ("/apps/mate-settings/",
-			   "pluma",
-			   "/history-",
-			   tmp,
-			   NULL);
-	g_free (tmp);
-
-	return key;
-}
-
 static GSList *
 get_history_list (PlumaHistoryEntry *entry)
 {
@@ -246,23 +223,18 @@ get_history_list (PlumaHistoryEntry *entry)
 static void
 pluma_history_entry_save_history (PlumaHistoryEntry *entry)
 {
-	GSList *mateconf_items;
-	gchar *key;
+	GSList *settings_items;
 
 	g_return_if_fail (PLUMA_IS_HISTORY_ENTRY (entry));
 
-	mateconf_items = get_history_list (entry);
-	key = get_history_key (entry);
+	settings_items = get_history_list (entry);
 
-	mateconf_client_set_list (entry->priv->mateconf_client,
-			      key,
-			      MATECONF_VALUE_STRING,
-			      mateconf_items,
-			      NULL);
+	pluma_prefs_manager_set_gslist (entry->priv->settings,
+			      entry->priv->history_id,
+			      settings_items);
 
-	g_slist_foreach (mateconf_items, (GFunc) g_free, NULL);
-	g_slist_free (mateconf_items);
-	g_free (key);
+	g_slist_foreach (settings_items, (GFunc) g_free, NULL);
+	g_slist_free (settings_items);
 }
 
 static gboolean
@@ -382,25 +354,21 @@ pluma_history_entry_append_text (PlumaHistoryEntry *entry,
 static void
 pluma_history_entry_load_history (PlumaHistoryEntry *entry)
 {
-	GSList *mateconf_items, *l;
+	GSList *settings_items, *l;
 	GtkListStore *store;
 	GtkTreeIter iter;
-	gchar *key;
 	guint i;
 
 	g_return_if_fail (PLUMA_IS_HISTORY_ENTRY (entry));
 
 	store = get_history_store (entry);
-	key = get_history_key (entry);
 
-	mateconf_items = mateconf_client_get_list (entry->priv->mateconf_client,
-					     key,
-					     MATECONF_VALUE_STRING,
-					     NULL);
+	settings_items = pluma_prefs_manager_get_gslist (entry->priv->settings,
+					     entry->priv->history_id);
 
 	gtk_list_store_clear (store);
 
-	for (l = mateconf_items, i = 0;
+	for (l = settings_items, i = 0;
 	     l != NULL && i < entry->priv->history_length;
 	     l = l->next, i++)
 	{
@@ -412,9 +380,8 @@ pluma_history_entry_load_history (PlumaHistoryEntry *entry)
 				    -1);
 	}
 
-	g_slist_foreach (mateconf_items, (GFunc) g_free, NULL);
-	g_slist_free (mateconf_items);
-	g_free (key);
+	g_slist_foreach (settings_items, (GFunc) g_free, NULL);
+	g_slist_free (settings_items);
 }
 
 void
@@ -442,8 +409,8 @@ pluma_history_entry_init (PlumaHistoryEntry *entry)
 	priv->history_length = PLUMA_HISTORY_ENTRY_HISTORY_LENGTH_DEFAULT;
 
 	priv->completion = NULL;
-	
-	priv->mateconf_client = mateconf_client_get_default ();
+
+	priv->settings = g_settings_new (PLUMA_SCHEMA);
 }
 
 void

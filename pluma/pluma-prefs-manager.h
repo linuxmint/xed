@@ -35,184 +35,92 @@
 #include <gtksourceview/gtksourceview.h>
 #include "pluma-app.h"
 
-#define PLUMA_BASE_KEY	"/apps/pluma"
-
-#define GPM_PREFS_DIR			PLUMA_BASE_KEY "/preferences"
+#define PLUMA_SCHEMA	"org.mate.pluma"
 
 /* Editor */
-#define GPM_FONT_DIR			GPM_PREFS_DIR "/editor/font"
-#define GPM_USE_DEFAULT_FONT		GPM_FONT_DIR "/use_default_font"
-#define GPM_EDITOR_FONT			GPM_FONT_DIR "/editor_font"
-#define GPM_SYSTEM_FONT			"/desktop/mate/interface/monospace_font_name"
+#define GPM_USE_DEFAULT_FONT	"use-default-font"
+#define GPM_EDITOR_FONT			"editor-font"
 
-#define GPM_SAVE_DIR			GPM_PREFS_DIR  "/editor/save"
-#define GPM_CREATE_BACKUP_COPY  	GPM_SAVE_DIR "/create_backup_copy"
+#define GPM_CREATE_BACKUP_COPY	"create-backup-copy"
 
-#define GPM_AUTO_SAVE			GPM_SAVE_DIR "/auto_save"
-#define GPM_AUTO_SAVE_INTERVAL		GPM_SAVE_DIR "/auto_save_interval"
+#define GPM_AUTO_SAVE			"auto-save"
+#define GPM_AUTO_SAVE_INTERVAL	"auto-save-interval"
 
-#define GPM_UNDO_DIR			GPM_PREFS_DIR  "/editor/undo"
-#define GPM_UNDO_ACTIONS_LIMIT		GPM_UNDO_DIR "/max_undo_actions"
+#define GPM_UNDO_ACTIONS_LIMIT	"max-undo-actions"
 
-#define GPM_WRAP_MODE_DIR		GPM_PREFS_DIR "/editor/wrap_mode"
-#define GPM_WRAP_MODE			GPM_WRAP_MODE_DIR "/wrap_mode"
+#define GPM_WRAP_MODE			"wrap-mode"
 
-#define GPM_TABS_DIR			GPM_PREFS_DIR "/editor/tabs"
-#define GPM_TABS_SIZE			GPM_TABS_DIR "/tabs_size"
-#define GPM_INSERT_SPACES		GPM_TABS_DIR "/insert_spaces"
+#define GPM_TABS_SIZE			"tabs-size"
+#define GPM_INSERT_SPACES		"insert-spaces"
 
-#define GPM_AUTO_INDENT_DIR		GPM_PREFS_DIR "/editor/auto_indent"
-#define GPM_AUTO_INDENT			GPM_AUTO_INDENT_DIR "/auto_indent"
+#define GPM_AUTO_INDENT			"auto-indent"
 
-#define GPM_LINE_NUMBERS_DIR		GPM_PREFS_DIR "/editor/line_numbers"
-#define GPM_DISPLAY_LINE_NUMBERS 	GPM_LINE_NUMBERS_DIR "/display_line_numbers"
+#define GPM_DISPLAY_LINE_NUMBERS	"display-line-numbers"
 
-#define GPM_CURRENT_LINE_DIR		GPM_PREFS_DIR "/editor/current_line"
-#define GPM_HIGHLIGHT_CURRENT_LINE 	GPM_CURRENT_LINE_DIR "/highlight_current_line"
+#define GPM_HIGHLIGHT_CURRENT_LINE	"highlight-current-line"
 
-#define GPM_BRACKET_MATCHING_DIR	GPM_PREFS_DIR "/editor/bracket_matching"
-#define GPM_BRACKET_MATCHING		GPM_BRACKET_MATCHING_DIR "/bracket_matching"
+#define GPM_BRACKET_MATCHING		"bracket-matching"
 
-#define GPM_RIGHT_MARGIN_DIR		GPM_PREFS_DIR "/editor/right_margin"
-#define GPM_DISPLAY_RIGHT_MARGIN	GPM_RIGHT_MARGIN_DIR "/display_right_margin"
-#define GPM_RIGHT_MARGIN_POSITION	GPM_RIGHT_MARGIN_DIR "/right_margin_position"
+#define GPM_DISPLAY_RIGHT_MARGIN	"display-right-margin"
+#define GPM_RIGHT_MARGIN_POSITION	"right-margin-position"
 
-#define GPM_SMART_HOME_END_DIR		GPM_PREFS_DIR "/editor/smart_home_end"
-#define GPM_SMART_HOME_END		GPM_SMART_HOME_END_DIR "/smart_home_end"
+#define GPM_SMART_HOME_END			"smart-home-end"
 
-#define GPM_CURSOR_POSITION_DIR		GPM_PREFS_DIR  "/editor/cursor_position"
-#define GPM_RESTORE_CURSOR_POSITION	GPM_CURSOR_POSITION_DIR "/restore_cursor_position"
+#define GPM_RESTORE_CURSOR_POSITION	"restore-cursor-position"
 
-#define GPM_SEARCH_HIGHLIGHTING_DIR	GPM_PREFS_DIR "/editor/search_highlighting"
-#define GPM_SEARCH_HIGHLIGHTING_ENABLE	GPM_SEARCH_HIGHLIGHTING_DIR "/enable"
+#define GPM_SEARCH_HIGHLIGHTING_ENABLE	"enable-search-highlighting"
 
-#define GPM_SOURCE_STYLE_DIR		GPM_PREFS_DIR "/editor/colors"
-#define GPM_SOURCE_STYLE_SCHEME		GPM_SOURCE_STYLE_DIR "/scheme"
+#define GPM_SOURCE_STYLE_SCHEME		"color-scheme"
 
 /* UI */
-#define GPM_TOOLBAR_DIR			GPM_PREFS_DIR "/ui/toolbar"
-#define GPM_TOOLBAR_VISIBLE	 	GPM_TOOLBAR_DIR "/toolbar_visible"
-#define GPM_TOOLBAR_BUTTONS_STYLE 	GPM_TOOLBAR_DIR "/toolbar_buttons_style"
+#define GPM_TOOLBAR_VISIBLE			"toolbar-visible"
+#define GPM_TOOLBAR_BUTTONS_STYLE	"toolbar-buttons-style"
 
-#define GPM_STATUSBAR_DIR		GPM_PREFS_DIR "/ui/statusbar"
-#define GPM_STATUSBAR_VISIBLE		GPM_STATUSBAR_DIR "/statusbar_visible"
+#define GPM_STATUSBAR_VISIBLE		"statusbar-visible"
 
-#define GPM_SIDE_PANE_DIR		GPM_PREFS_DIR "/ui/side_pane"
-#define GPM_SIDE_PANE_VISIBLE		GPM_SIDE_PANE_DIR "/side_pane_visible"
+#define GPM_SIDE_PANE_VISIBLE		"side-pane-visible"
 
-#define GPM_BOTTOM_PANEL_DIR		GPM_PREFS_DIR "/ui/bottom_panel"
-#define GPM_BOTTOM_PANEL_VISIBLE	GPM_BOTTOM_PANEL_DIR "/bottom_panel_visible"
+#define GPM_BOTTOM_PANEL_VISIBLE	"bottom-panel-visible"
 
-#define GPM_RECENTS_DIR			GPM_PREFS_DIR "/ui/recents"
-#define GPM_MAX_RECENTS			GPM_RECENTS_DIR "/max_recents"
+#define GPM_MAX_RECENTS			"max-recents"
 
 /* Print */
-#define GPM_PRINT_PAGE_DIR		GPM_PREFS_DIR "/print/page"
-#define GPM_PRINT_SYNTAX		GPM_PRINT_PAGE_DIR "/print_syntax_highlighting"
-#define GPM_PRINT_HEADER		GPM_PRINT_PAGE_DIR "/print_header"
-#define GPM_PRINT_WRAP_MODE		GPM_PRINT_PAGE_DIR "/print_wrap_mode"
-#define GPM_PRINT_LINE_NUMBERS		GPM_PRINT_PAGE_DIR "/print_line_numbers"
+#define GPM_PRINT_SYNTAX		"print-syntax-highlighting"
+#define GPM_PRINT_HEADER		"print-header"
+#define GPM_PRINT_WRAP_MODE		"print-wrap-mode"
+#define GPM_PRINT_LINE_NUMBERS	"print-line-numbers"
 
-#define GPM_PRINT_FONT_DIR		GPM_PREFS_DIR "/print/fonts"
-#define GPM_PRINT_FONT_BODY		GPM_PRINT_FONT_DIR "/print_font_body_pango"
-#define GPM_PRINT_FONT_HEADER		GPM_PRINT_FONT_DIR "/print_font_header_pango"
-#define GPM_PRINT_FONT_NUMBERS		GPM_PRINT_FONT_DIR "/print_font_numbers_pango"
+#define GPM_PRINT_FONT_BODY			"print-font-body-pango"
+#define GPM_PRINT_FONT_HEADER		"print-font-header-pango"
+#define GPM_PRINT_FONT_NUMBERS		"print-font-numbers-pango"
 
 /* Encodings */
-#define GPM_ENCODINGS_DIR		GPM_PREFS_DIR "/encodings"
-#define GPM_AUTO_DETECTED_ENCODINGS	GPM_ENCODINGS_DIR "/auto_detected"
-#define GPM_SHOWN_IN_MENU_ENCODINGS	GPM_ENCODINGS_DIR "/shown_in_menu"
+#define GPM_AUTO_DETECTED_ENCODINGS		"auto-detected-encodings"
+#define GPM_SHOWN_IN_MENU_ENCODINGS		"shown-in-menu-encodings"
 
 /* Syntax highlighting */
-#define GPM_SYNTAX_HL_DIR		GPM_PREFS_DIR "/syntax_highlighting"
-#define GPM_SYNTAX_HL_ENABLE		GPM_SYNTAX_HL_DIR "/enable"
+#define GPM_SYNTAX_HL_ENABLE		"enable-syntax-highlighting"
 
 /* White list of writable mate-vfs methods */
-#define GPM_WRITABLE_VFS_SCHEMES 	GPM_SAVE_DIR "/writable_vfs_schemes"
+#define GPM_WRITABLE_VFS_SCHEMES 	"writable-vfs-schemes"
 
 /* Plugins */
-#define GPM_PLUGINS_DIR			PLUMA_BASE_KEY "/plugins"
-#define GPM_ACTIVE_PLUGINS		GPM_PLUGINS_DIR "/active-plugins"
+#define GPM_ACTIVE_PLUGINS			"active-plugins"
+
+/* Global Interface keys */
+#define GPM_INTERFACE_SCHEMA		"org.mate.interface"
+#define GPM_SYSTEM_FONT				"monospace-font-name"
 
 /* Global Lockdown keys */
-#define GPM_LOCKDOWN_DIR		"/desktop/mate/lockdown"
-#define GPM_LOCKDOWN_COMMAND_LINE	GPM_LOCKDOWN_DIR "/disable_command_line"
-#define GPM_LOCKDOWN_PRINTING		GPM_LOCKDOWN_DIR "/disable_printing"
-#define GPM_LOCKDOWN_PRINT_SETUP	GPM_LOCKDOWN_DIR "/disable_print_setup"
-#define GPM_LOCKDOWN_SAVE_TO_DISK	GPM_LOCKDOWN_DIR "/disable_save_to_disk"
+#define GPM_LOCKDOWN_SCHEMA			"org.mate.lockdown"
+#define GPM_LOCKDOWN_COMMAND_LINE	"disable-command-line"
+#define GPM_LOCKDOWN_PRINTING		"disable-printing"
+#define GPM_LOCKDOWN_PRINT_SETUP	"disable-print-setup"
+#define GPM_LOCKDOWN_SAVE_TO_DISK	"disable-save-to-disk"
 
-/* Fallback default values. Keep in sync with pluma.schemas */
-
-#define GPM_DEFAULT_USE_DEFAULT_FONT 	1 /* TRUE */
-
-#ifndef PLATFORM_OSX
-#define GPM_DEFAULT_EDITOR_FONT 	(const gchar*) "Monospace 12"
-#define GPM_DEFAULT_SYSTEM_FONT 	(const gchar*) "Monospace 10"
-#else
-#define GPM_DEFAULT_EDITOR_FONT		(const gchar*) "Monaco 12"
-#define GPM_DEFAULT_SYSTEM_FONT		(const gchar*) "Monaco 12"
-#endif
-
-#define GPM_DEFAULT_CREATE_BACKUP_COPY	0 /* FALSE */
-
-#define GPM_DEFAULT_AUTO_SAVE		0 /* FALSE */
+/* Fallback default values. Keep in sync with org.mate.pluma.gschema.xml */
 #define GPM_DEFAULT_AUTO_SAVE_INTERVAL	10 /* minutes */
-
-#define GPM_DEFAULT_UNDO_ACTIONS_LIMIT	2000 /* actions */
-
-#define GPM_DEFAULT_WRAP_MODE		"GTK_WRAP_WORD"
-
-#define GPM_DEFAULT_TABS_SIZE		8
-#define GPM_DEFAULT_INSERT_SPACES	0 /* FALSE */
-
-#define GPM_DEFAULT_AUTO_INDENT		0 /* FALSE */
-
-#define GPM_DEFAULT_DISPLAY_LINE_NUMBERS 0 /* FALSE */
-
-#define GPM_DEFAULT_AUTO_DETECTED_ENCODINGS {"UTF-8", "CURRENT", "ISO-8859-15", NULL}
-
-#define GPM_DEFAULT_TOOLBAR_VISIBLE	1 /* TRUE */
-#define GPM_DEFAULT_TOOLBAR_BUTTONS_STYLE "PLUMA_TOOLBAR_SYSTEM"
-#define GPM_DEFAULT_TOOLBAR_SHOW_TOOLTIPS 1 /* TRUE */
-
-#define GPM_DEFAULT_STATUSBAR_VISIBLE	1 /* TRUE */
-#define GPM_DEFAULT_SIDE_PANE_VISIBLE	0 /* FALSE */
-#define GPM_DEFAULT_BOTTOM_PANEL_VISIBLE 0 /* FALSE */
-
-#define GPM_DEFAULT_PRINT_SYNTAX	1 /* TRUE */
-#define GPM_DEFAULT_PRINT_HEADER	1 /* TRUE */
-#define GPM_DEFAULT_PRINT_WRAP_MODE	"GTK_WRAP_WORD"
-#define GPM_DEFAULT_PRINT_LINE_NUMBERS	0 /* No numbers */
-
-#ifndef PLATFORM_OSX
-#define GPM_DEFAULT_PRINT_FONT_BODY 	(const gchar*) "Monospace 9"
-#else
-#define GPM_DEFAULT_PRINT_FONT_BODY	(const gchar*) "Monaco 10"
-#endif
-
-#define GPM_DEFAULT_PRINT_FONT_HEADER	(const gchar*) "Sans 11"
-#define GPM_DEFAULT_PRINT_FONT_NUMBERS	(const gchar*) "Sans 8"
-
-#define GPM_DEFAULT_MAX_RECENTS		5
-
-#define GPM_DEFAULT_HIGHLIGHT_CURRENT_LINE  1 /* TRUE */
-
-#define GPM_DEFAULT_BRACKET_MATCHING	  0 /* FALSE */
-
-#define GPM_DEFAULT_DISPLAY_RIGHT_MARGIN  0 /* FALSE */
-#define GPM_DEFAULT_RIGHT_MARGIN_POSITION 80
-
-#define GPM_DEFAULT_SMART_HOME_END	"AFTER"
-
-#define GPM_DEFAULT_SYNTAX_HL_ENABLE	1 /* TRUE */
-
-#define GPM_DEFAULT_WRITABLE_VFS_SCHEMES {"ssh", "sftp", "smb", "dav", "davs", NULL}
-
-#define GPM_DEFAULT_RESTORE_CURSOR_POSITION 1 /* TRUE */
-
-#define GPM_DEFAULT_SEARCH_HIGHLIGHTING_ENABLE 1 /* TRUE */
-
-#define GPM_DEFAULT_SOURCE_STYLE_SCHEME "classic"
+#define GPM_DEFAULT_MAX_RECENTS			5
 
 typedef enum {
 	PLUMA_TOOLBAR_SYSTEM = 0,
@@ -337,22 +245,22 @@ gboolean		 pluma_prefs_manager_print_line_numbers_can_set	(void);
 gchar			*pluma_prefs_manager_get_print_font_body	(void);
 void			 pluma_prefs_manager_set_print_font_body	(const gchar *font);
 gboolean		 pluma_prefs_manager_print_font_body_can_set	(void);
-const gchar		*pluma_prefs_manager_get_default_print_font_body (void);
+gchar			*pluma_prefs_manager_get_default_print_font_body (void);
 
 /* Font used to print headers */
 gchar			*pluma_prefs_manager_get_print_font_header	(void);
 void			 pluma_prefs_manager_set_print_font_header	(const gchar *font);
 gboolean		 pluma_prefs_manager_print_font_header_can_set	(void);
-const gchar		*pluma_prefs_manager_get_default_print_font_header (void);
+gchar			*pluma_prefs_manager_get_default_print_font_header (void);
 
 /* Font used to print line numbers */
 gchar			*pluma_prefs_manager_get_print_font_numbers	(void);
 void			 pluma_prefs_manager_set_print_font_numbers	(const gchar *font);
 gboolean		 pluma_prefs_manager_print_font_numbers_can_set	(void);
-const gchar		*pluma_prefs_manager_get_default_print_font_numbers (void);
+gchar			*pluma_prefs_manager_get_default_print_font_numbers (void);
 
 /* Max number of files in "Recent Files" menu.
- * This is configurable only using mateconftool or mateconf-editor
+ * This is configurable only using gsettings, dconf or dconf-editor
  */
 gint		 	 pluma_prefs_manager_get_max_recents		(void);
 
@@ -417,6 +325,11 @@ gboolean 		 pluma_prefs_manager_active_plugins_can_set	(void);
 
 /* Global lockdown */
 PlumaLockdownMask	 pluma_prefs_manager_get_lockdown			(void);
+
+/* GSettings utilities */
+GSList*				 pluma_prefs_manager_get_gslist (GSettings *settings, const gchar *key);
+void				 pluma_prefs_manager_set_gslist (GSettings *settings, const gchar *key, GSList *list);
+
 
 #endif  /* __PLUMA_PREFS_MANAGER_H__ */
 

@@ -269,35 +269,41 @@ restore_button_clicked (GtkButton     *button,
 {
 	if (pluma_prefs_manager_print_font_body_can_set ())
 	{
-		const gchar *font;
+		gchar *font;
 
 		font = pluma_prefs_manager_get_default_print_font_body ();
 
 		gtk_font_button_set_font_name (
 				GTK_FONT_BUTTON (job->priv->body_fontbutton),
 				font);
+
+		g_free (font);
 	}
 	
 	if (pluma_prefs_manager_print_font_header_can_set ())
 	{
-		const gchar *font;
+		gchar *font;
 
 		font = pluma_prefs_manager_get_default_print_font_header ();
 
 		gtk_font_button_set_font_name (
 				GTK_FONT_BUTTON (job->priv->headers_fontbutton),
 				font);
+
+		g_free (font);
 	}
 
 	if (pluma_prefs_manager_print_font_numbers_can_set ())
 	{
-		const gchar *font;
+		gchar *font;
 
 		font = pluma_prefs_manager_get_default_print_font_numbers ();
 
 		gtk_font_button_set_font_name (
 				GTK_FONT_BUTTON (job->priv->numbers_fontbutton),
 				font);
+
+		g_free (font);
 	}
 }
 

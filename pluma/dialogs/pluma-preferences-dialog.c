@@ -37,7 +37,6 @@
 #include <string.h>
 
 #include <glib/gi18n.h>
-#include <mateconf/mateconf-client.h>
 
 #include <pluma/pluma-prefs-manager.h>
 

@@ -699,7 +699,7 @@ pluma_plugins_engine_activate_plugins (PlumaPluginsEngine *engine,
 	g_return_if_fail (PLUMA_IS_PLUGINS_ENGINE (engine));
 	g_return_if_fail (PLUMA_IS_WINDOW (window));
 
-	/* the first time, we get the 'active' plugins from mateconf */
+	/* the first time, we get the 'active' plugins from GSettings */
 	if (engine->priv->activate_from_prefs)
 	{
 		active_plugins = pluma_prefs_manager_get_active_plugins ();

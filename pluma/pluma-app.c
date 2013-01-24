@@ -811,7 +811,7 @@ pluma_app_get_views (PlumaApp *app)
  *
  * Gets the lockdown mask (see #PlumaLockdownMask) for the application.
  * The lockdown mask determines which functions are locked down using
- * the MATE-wise lockdown MateConf keys.
+ * the MATE-wise lockdown GSettings keys.
  **/
 PlumaLockdownMask
 pluma_app_get_lockdown (PlumaApp *app)

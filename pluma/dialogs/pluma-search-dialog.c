@@ -375,7 +375,7 @@ pluma_search_dialog_init (PlumaSearchDialog *dlg)
 		return;
 	}
 
-	dlg->priv->search_entry = pluma_history_entry_new ("pluma2_search_for_entry",
+	dlg->priv->search_entry = pluma_history_entry_new ("history-search-for",
 							   TRUE);
 	gtk_widget_set_size_request (dlg->priv->search_entry, 300, -1);
 	pluma_history_entry_set_escape_func
@@ -391,7 +391,7 @@ pluma_search_dialog_init (PlumaSearchDialog *dlg)
 				   dlg->priv->search_entry,
 				   1, 2, 0, 1);
 
-	dlg->priv->replace_entry = pluma_history_entry_new ("pluma2_replace_with_entry",
+	dlg->priv->replace_entry = pluma_history_entry_new ("history-replace-with",
 							    TRUE);
 	pluma_history_entry_set_escape_func
 			(PLUMA_HISTORY_ENTRY (dlg->priv->replace_entry),

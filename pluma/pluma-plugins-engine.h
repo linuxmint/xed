@@ -96,7 +96,7 @@ void 		 pluma_plugins_engine_deactivate_plugins (PlumaPluginsEngine *engine,
 void		 pluma_plugins_engine_update_plugins_ui  (PlumaPluginsEngine *engine,
 							  PlumaWindow        *window);
 
-/* private for mateconf notification */
+/* private for GSettings notification */
 void		 pluma_plugins_engine_active_plugins_changed
 							(PlumaPluginsEngine *engine);
 
