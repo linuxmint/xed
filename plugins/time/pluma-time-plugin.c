@@ -33,14 +33,13 @@
 #include <string.h>
 #include <time.h>
 
-#include <mateconf/mateconf-client.h>
-
 #include "pluma-time-plugin.h"
 #include <pluma/pluma-help.h>
 
 #include <glib/gi18n-lib.h>
 #include <glib.h>
 #include <gmodule.h>
+#include <gio/gio.h>
 
 #include <pluma/pluma-debug.h>
 #include <pluma/pluma-utils.h>
@@ -52,11 +51,11 @@
 #define WINDOW_DATA_KEY "PlumaTimePluginWindowData"
 #define MENU_PATH "/MenuBar/EditMenu/EditOps_4"
 
-/* mateconf keys */
-#define TIME_BASE_KEY		"/apps/pluma/plugins/time"
-#define PROMPT_TYPE_KEY		TIME_BASE_KEY "/prompt_type"
-#define SELECTED_FORMAT_KEY	TIME_BASE_KEY "/selected_format"
-#define CUSTOM_FORMAT_KEY	TIME_BASE_KEY "/custom_format"
+/* GSettings keys */
+#define TIME_SCHEMA			"org.mate.pluma.plugins.time"
+#define PROMPT_TYPE_KEY		"prompt-type"
+#define SELECTED_FORMAT_KEY	"selected-format"
+#define CUSTOM_FORMAT_KEY	"custom-format"
 
 #define DEFAULT_CUSTOM_FORMAT "%d/%m/%Y %H:%M:%S"
 
@@ -155,7 +154,7 @@ typedef enum
 
 struct _PlumaTimePluginPrivate
 {
-	MateConfClient *mateconf_client;
+	GSettings *settings;
 };
 
 PLUMA_PLUGIN_REGISTER_TYPE(PlumaTimePlugin, pluma_time_plugin)
@@ -193,12 +192,7 @@ pluma_time_plugin_init (PlumaTimePlugin *plugin)
 
 	plugin->priv = PLUMA_TIME_PLUGIN_GET_PRIVATE (plugin);
 
-	plugin->priv->mateconf_client = mateconf_client_get_default ();
-
-	mateconf_client_add_dir (plugin->priv->mateconf_client,
-			      TIME_BASE_KEY,
-			      MATECONF_CLIENT_PRELOAD_ONELEVEL,
-			      NULL);
+	plugin->priv->settings = g_settings_new (TIME_SCHEMA);
 }
 
 static void
@@ -208,9 +202,7 @@ pluma_time_plugin_finalize (GObject *object)
 
 	pluma_debug_message (DEBUG_PLUGINS, "PlumaTimePlugin finalizing");
 
-	mateconf_client_suggest_sync (plugin->priv->mateconf_client, NULL);
-
-	g_object_unref (G_OBJECT (plugin->priv->mateconf_client));
+	g_object_unref (G_OBJECT (plugin->priv->settings));
 
 	G_OBJECT_CLASS (pluma_time_plugin_parent_class)->finalize (object);
 }
@@ -329,62 +321,27 @@ impl_update_ui	(PlumaPlugin *plugin,
 static PlumaTimePluginPromptType
 get_prompt_type (PlumaTimePlugin *plugin)
 {
-	gchar *prompt_type;
-	PlumaTimePluginPromptType res;
+	PlumaTimePluginPromptType prompt_type;
 
-	prompt_type = mateconf_client_get_string (plugin->priv->mateconf_client,
-			        	       PROMPT_TYPE_KEY,
-					       NULL);
+	prompt_type = g_settings_get_enum (plugin->priv->settings,
+			        	       PROMPT_TYPE_KEY);
 
-	if (prompt_type == NULL)
-		return PROMPT_SELECTED_FORMAT;
-
-	if (strcmp (prompt_type, "USE_SELECTED_FORMAT") == 0)
-		res = USE_SELECTED_FORMAT;
-	else if (strcmp (prompt_type, "USE_CUSTOM_FORMAT") == 0)
-		res = USE_CUSTOM_FORMAT;
-	else if (strcmp (prompt_type, "PROMPT_CUSTOM_FORMAT") == 0)
-		res = PROMPT_CUSTOM_FORMAT;
-	else
-		res = PROMPT_SELECTED_FORMAT;
-
-	g_free (prompt_type);
-
-	return res;
+	return prompt_type;
 }
 
 static void
 set_prompt_type (PlumaTimePlugin           *plugin,
 		 PlumaTimePluginPromptType  prompt_type)
 {
-	const gchar * str;
-
-	if (!mateconf_client_key_is_writable (plugin->priv->mateconf_client,
-					   PROMPT_TYPE_KEY,
-					   NULL))
+	if (!g_settings_is_writable (plugin->priv->settings,
+					   PROMPT_TYPE_KEY))
 	{
 		return;
 	}
 
-	switch (prompt_type)
-	{
-		case USE_SELECTED_FORMAT:
-			str = "USE_SELECTED_FORMAT";
-			break;
-		case USE_CUSTOM_FORMAT:
-			str = "USE_CUSTOM_FORMAT";
-			break;
-		case PROMPT_CUSTOM_FORMAT:
-			str = "PROMPT_CUSTOM_FORMAT";
-			break;
-		default:
-			str = "PROMPT_SELECTED_FORMAT";
-	}
-
-	mateconf_client_set_string (plugin->priv->mateconf_client,
+	g_settings_set_enum (plugin->priv->settings,
 				 PROMPT_TYPE_KEY,
-		       		 str,
-		       		 NULL);
+				 prompt_type);
 }
 
 /* The selected format in the list */
@@ -393,9 +350,8 @@ get_selected_format (PlumaTimePlugin *plugin)
 {
 	gchar *sel_format;
 
-	sel_format = mateconf_client_get_string (plugin->priv->mateconf_client,
-					      SELECTED_FORMAT_KEY,
-					      NULL);
+	sel_format = g_settings_get_string (plugin->priv->settings,
+					      SELECTED_FORMAT_KEY);
 
 	return sel_format ? sel_format : g_strdup (formats [0]);
 }
@@ -406,17 +362,15 @@ set_selected_format (PlumaTimePlugin *plugin,
 {
 	g_return_if_fail (format != NULL);
 
-	if (!mateconf_client_key_is_writable (plugin->priv->mateconf_client,
-					   SELECTED_FORMAT_KEY,
-					   NULL))
+	if (!g_settings_is_writable (plugin->priv->settings,
+					   SELECTED_FORMAT_KEY))
 	{
 		return;
 	}
 
-	mateconf_client_set_string (plugin->priv->mateconf_client,
+	g_settings_set_string (plugin->priv->settings,
 				 SELECTED_FORMAT_KEY,
-		       		 format,
-		       		 NULL);
+		       		 format);
 }
 
 /* the custom format in the entry */
@@ -425,9 +379,8 @@ get_custom_format (PlumaTimePlugin *plugin)
 {
 	gchar *format;
 
-	format = mateconf_client_get_string (plugin->priv->mateconf_client,
-					  CUSTOM_FORMAT_KEY,
-					  NULL);
+	format = g_settings_get_string (plugin->priv->settings,
+					  CUSTOM_FORMAT_KEY);
 
 	return format ? format : g_strdup (DEFAULT_CUSTOM_FORMAT);
 }
@@ -438,15 +391,13 @@ set_custom_format (PlumaTimePlugin *plugin,
 {
 	g_return_if_fail (format != NULL);
 
-	if (!mateconf_client_key_is_writable (plugin->priv->mateconf_client,
-					   CUSTOM_FORMAT_KEY,
-					   NULL))
+	if (!g_settings_is_writable (plugin->priv->settings,
+					   CUSTOM_FORMAT_KEY))
 		return;
 
-	mateconf_client_set_string (plugin->priv->mateconf_client,
+	g_settings_set_string (plugin->priv->settings,
 				 CUSTOM_FORMAT_KEY,
-		       		 format,
-		       		 NULL);
+		       		 format);
 }
 
 static gchar *

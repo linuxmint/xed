@@ -27,10 +27,17 @@ plugin_in_files = time.pluma-plugin.desktop.in
 
 plugin_DATA = $(plugin_in_files:.pluma-plugin.desktop.in=.pluma-plugin)
 
-EXTRA_DIST = $(ui_DATA) $(plugin_in_files)
+@INTLTOOL_XML_NOMERGE_RULE@
+gsettings_SCHEMAS = org.mate.pluma.plugins.time.gschema.xml
+@GSETTINGS_RULES@
 
-CLEANFILES = $(plugin_DATA)
-DISTCLEANFILES = $(plugin_DATA)
+%.gschema.xml.in: %.gschema.xml.in.in Makefile
+	$(AM_V_GEN) $(SED) -e 's^\@GETTEXT_PACKAGE\@^$(GETTEXT_PACKAGE)^g' < $< > $@
+
+EXTRA_DIST = $(ui_DATA) $(plugin_in_files) $(gsettings_SCHEMAS_in_in)
+
+CLEANFILES = $(plugin_DATA) $(gsettings_SCHEMAS_in) $(gsettings_SCHEMASn)
+DISTCLEANFILES = $(plugin_DATA) $(gsettings_SCHEMAS_in) $(gsettings_SCHEMAS)
 
 
 -include $(top_srcdir)/git.mk
