@@ -1,0 +1,8 @@
+pluma 1.5.0
+===========
+
+  * Migration to GSettings and drop mateconf
+    (All code is migrated, except pythonconsole plugin. The plugin works,
+    except you cant configure it; the configurable things were command
+    and error colors; this will be fixed migrating the plugin to Gir
+    instead of python-gtk)
