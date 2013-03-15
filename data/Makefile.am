@@ -14,6 +14,9 @@ gsettings_SCHEMAS = org.mate.pluma.gschema.xml
 		-e 's^\@TOOLBAR_STYLE\@^$(TOOLBAR_STYLE)^g' \
 		< $< > $@
 
+convertdir = $(datadir)/MateConf/gsettings
+convert_DATA = pluma.convert
+
 man_MANS = pluma.1
 
 pkgconfigdir = $(libdir)/pkgconfig
@@ -25,6 +28,7 @@ bugreport_SCRIPTS = pluma-bugreport.sh
 EXTRA_DIST = 				\
 	$(desktop_in_files)		\
 	$(gsettings_SCHEMAS_in_in)	\
+	$(convert_DATA)			\
 	$(man_MANS)			\
 	pluma.pc.in			\
 	pluma-bugreport.sh.in
