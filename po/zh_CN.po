@@ -1,251 +1,188 @@
-# Original by Dillion Chen <dillon.chen@turbolinux.com.cn>
-# Totally rewritten by Tom Mak <mhh@126.com>, 2001
-# Minor update by Wang Jian <lark@linux.net.cn>, 2001
-# Sun Gl0n <mate_int_l10n@ireland.sun.com>, 2002
-# Miles Hoo <MilesHoo@sohu.com>, 2002
-# Funda Wang <fundawang@linux.net.cn>, 2003-2005
-# 甘露(Gan Lu) <rhythm.gan@gmail.com>, 2009
-# Richard Ma <richard.ma.19850509@gmail.com>, 2009
-# 樊栖江(Fan Qijiang) <fqj1994@gmail.com>, 2009.
-# du baodao <centerpoint@139.com>, 2010.
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
+# Haonan Yu <rebuilty@gmail.com>, 2013.
 msgid ""
 msgstr ""
-"Project-Id-Version: pluma master\n"
-"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
-"product=pluma&component=general\n"
-"POT-Creation-Date: 2010-06-28 18:59+0000\n"
-"PO-Revision-Date: 2010-07-18 11:28+0800\n"
-"Last-Translator: du baodao <centerpoint@139.com>\n"
-"Language-Team: Chinese (simplified) <i18n-zh@googlegroups.com>\n"
+"Project-Id-Version: MATE Desktop Environment\n"
+"Report-Msgid-Bugs-To: https://github.com/mate-desktop/\n"
+"POT-Creation-Date: 2013-02-11 14:33+0100\n"
+"PO-Revision-Date: 2013-03-26 14:36+0000\n"
+"Last-Translator: rebuilty <rebuilty@gmail.com>\n"
+"Language-Team: Chinese (China) (http://www.transifex.com/projects/p/MATE/language/zh_CN/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: zh_CN\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: ../data/pluma.desktop.in.in.h:1
-msgid "Edit text files"
-msgstr "编辑文本文件"
+#: ../data/org.mate.pluma.gschema.xml.in.in.h:1
+msgid "Use Default Font"
+msgstr "使用默认字体"
 
-#: ../data/pluma.desktop.in.in.h:2 ../pluma/pluma-print-job.c:759
-msgid "Text Editor"
-msgstr "文本编辑器"
+#: ../data/org.mate.pluma.gschema.xml.in.in.h:2
+msgid ""
+"Whether to use the system's default fixed width font for editing text "
+"instead of a font specific to pluma. If this option is turned off, then the "
+"font named in the \"Editor Font\" option will be used instead of the system "
+"font."
+msgstr "是否要为编辑文本指定不同于系统默认字体的字体。如果关闭了此选项，“编辑器字体”选项中的字体名称将会替代系统字体。"
 
-#: ../data/pluma.desktop.in.in.h:3
-msgid "pluma"
-msgstr "Pluma"
+#: ../data/org.mate.pluma.gschema.xml.in.in.h:3
+msgid "Editor Font"
+msgstr "编辑字体"
 
-#: ../data/pluma.desktop.in.in.h:4
-msgid "pluma Text Editor"
-msgstr "文本编辑器"
-
-#: ../data/pluma.schemas.in.in.h:1
+#: ../data/org.mate.pluma.gschema.xml.in.in.h:4
 msgid ""
 "A custom font that will be used for the editing area. This will only take "
 "effect if the \"Use Default Font\" option is turned off."
 msgstr "编辑区使用的自定义字体。只有当“使用默认字体”选项关掉时才有效。"
 
-#: ../data/pluma.schemas.in.in.h:2
-msgid "Active plugins"
-msgstr "激活插件"
+#: ../data/org.mate.pluma.gschema.xml.in.in.h:5
+msgid "Style Scheme"
+msgstr "风格大纲"
 
-#: ../data/pluma.schemas.in.in.h:3
-msgid "Automatic indent"
-msgstr "自动缩进"
+#: ../data/org.mate.pluma.gschema.xml.in.in.h:6
+msgid "The ID of a GtkSourceView Style Scheme used to color the text."
+msgstr "用于文本颜色的 GtkSourceView 样式主题 ID。"
 
-#: ../data/pluma.schemas.in.in.h:4
-msgid "Automatically Detected Encodings"
-msgstr "自动检测的编码"
-
-#: ../data/pluma.schemas.in.in.h:5
-msgid "Autosave"
-msgstr "自动保存"
-
-#: ../data/pluma.schemas.in.in.h:6
-msgid "Autosave Interval"
-msgstr "自动保存时间间隔"
-
-#: ../data/pluma.schemas.in.in.h:7
-msgid "Body Font for Printing"
-msgstr "打印时文档主体所用字体"
-
-#: ../data/pluma.schemas.in.in.h:8
-msgid "Bottom Panel is Visible"
-msgstr "底部面板可见"
-
-#: ../data/pluma.schemas.in.in.h:9
+#: ../data/org.mate.pluma.gschema.xml.in.in.h:7
 msgid "Create Backup Copies"
 msgstr "生成备份文件"
 
-#: ../data/pluma.schemas.in.in.h:10
-msgid "Display Line Numbers"
-msgstr "显示行号"
-
-#: ../data/pluma.schemas.in.in.h:11
-msgid "Display Right Margin"
-msgstr "显示右边距"
-
-#: ../data/pluma.schemas.in.in.h:12
-msgid "Editor Font"
-msgstr "编辑字体"
-
-#: ../data/pluma.schemas.in.in.h:13
-msgid "Enable Search Highlighting"
-msgstr "启用搜索突出显示"
-
-#: ../data/pluma.schemas.in.in.h:14
-msgid "Enable Syntax Highlighting"
-msgstr "启用语法突出显示"
-
-#: ../data/pluma.schemas.in.in.h:15
-msgid "Encodings shown in menu"
-msgstr "菜单中显示的编码"
-
-#: ../data/pluma.schemas.in.in.h:16
-msgid "Header Font for Printing"
-msgstr "打印时页眉所用的字体"
-
-#: ../data/pluma.schemas.in.in.h:17
-msgid "Highlight Current Line"
-msgstr "突出显示当前行"
-
-#: ../data/pluma.schemas.in.in.h:18
-msgid "Highlight Matching Bracket"
-msgstr "突出显示匹配的括号"
-
-#: ../data/pluma.schemas.in.in.h:19
+#: ../data/org.mate.pluma.gschema.xml.in.in.h:8
 msgid ""
-"If this value is 0, then no line numbers will be inserted when printing a "
-"document. Otherwise, pluma will print line numbers every such number of "
-"lines."
-msgstr ""
-"如果该值(N)为0，则在打印文档时不插入行号；否则，pluma 将每隔 N 行插入行号。"
+"Whether pluma should create backup copies for the files it saves. You can "
+"set the backup file extension with the \"Backup Copy Extension\" option."
+msgstr "pluma 是否为保存的文件创建备份文件。您可以在“备份文件扩展名”选项中设置备份文件的扩展名。"
 
-#: ../data/pluma.schemas.in.in.h:20
-msgid "Insert spaces"
-msgstr "插入空格"
+#: ../data/org.mate.pluma.gschema.xml.in.in.h:9
+msgid "Autosave"
+msgstr "自动保存"
 
-#: ../data/pluma.schemas.in.in.h:21
-msgid "Line Number Font for Printing"
-msgstr "打印时行号所用的字体"
-
-#: ../data/pluma.schemas.in.in.h:22
-msgid "Line Wrapping Mode"
-msgstr "自动换行模式"
-
-#: ../data/pluma.schemas.in.in.h:23
+#: ../data/org.mate.pluma.gschema.xml.in.in.h:10
 msgid ""
-"List of VFS schemes pluma supports in write mode. The 'file' scheme is "
-"writable by default."
-msgstr "列出 pluma 在写入模式中支持的 VFS 大纲。“file”大纲默认可写。"
+"Whether pluma should automatically save modified files after a time "
+"interval. You can set the time interval with the \"Autosave Interval\" "
+"option."
+msgstr "pluma 是否每隔一段时间自动保存已修改的文件。您可以在“自动保存时间间隔”选项中设置该时间间隔。"
 
-#: ../data/pluma.schemas.in.in.h:24
-msgid ""
-"List of active plugins. It contains the \"Location\" of the active plugins. "
-"See the .pluma-plugin file for obtaining the \"Location\" of a given plugin."
-msgstr ""
-"列出激活的插件。其中包含激活插件的“位置”。请参看 .pluma-plugin 文件以便获得给"
-"定插件的“位置”。"
+#: ../data/org.mate.pluma.gschema.xml.in.in.h:11
+msgid "Autosave Interval"
+msgstr "自动保存时间间隔"
 
-#: ../data/pluma.schemas.in.in.h:25
-msgid ""
-"List of encodings shown in the Character Encoding menu in open/save file "
-"selector. Only recognized encodings are used."
-msgstr ""
-"在打开/保存文件选择器中的字符代码菜单中显示的编码列表。只使用可识别的编码。"
-
-#: ../data/pluma.schemas.in.in.h:26
-msgid "Maximum Number of Undo Actions"
-msgstr "撤消操作的最多数量"
-
-#: ../data/pluma.schemas.in.in.h:27
-msgid "Maximum Recent Files"
-msgstr "最大当前文件数"
-
-#: ../data/pluma.schemas.in.in.h:28
-msgid ""
-"Maximum number of actions that pluma will be able to undo or redo. Use \"-1"
-"\" for unlimited number of actions."
-msgstr "pluma 撤消或重做操作的最多次数。使用“-1”代表无限制。"
-
-#: ../data/pluma.schemas.in.in.h:29
-msgid ""
-"Maximum number of actions that pluma will be able to undo or redo. Use \"-1"
-"\" for unlimited number of actions. Deprecated since 2.12.0"
-msgstr ""
-"pluma 撤消或重做操作的最多次数。使用“-1”代表无限制。2.12.0 之后不再使用"
-
-#. Translators: This is the Editor Font.
-#. This is a Pango font
-#: ../data/pluma.schemas.in.in.h:32
-msgid "Monospace 12"
-msgstr "Monospace 12"
-
-#. Translators: This is the Body font for printing.
-#. This is a Pango font.
-#: ../data/pluma.schemas.in.in.h:35
-msgid "Monospace 9"
-msgstr "Monospace 9"
-
-#: ../data/pluma.schemas.in.in.h:36
+#: ../data/org.mate.pluma.gschema.xml.in.in.h:12
 msgid ""
 "Number of minutes after which pluma will automatically save modified files. "
 "This will only take effect if the \"Autosave\" option is turned on."
 msgstr "文件修改后到自动保存的时间。只有当“自动保存”选项打开后才有效。"
 
-#: ../data/pluma.schemas.in.in.h:37
-msgid "Print Header"
-msgstr "打印页眉"
+#: ../data/org.mate.pluma.gschema.xml.in.in.h:13
+msgid "Writable VFS schemes"
+msgstr "可写入的 VFS 大纲"
 
-#: ../data/pluma.schemas.in.in.h:38
-msgid "Print Line Numbers"
-msgstr "打印行号"
+#: ../data/org.mate.pluma.gschema.xml.in.in.h:14
+msgid ""
+"List of VFS schemes pluma supports in write mode. The 'file' scheme is "
+"writable by default."
+msgstr "列出 pluma 在写入模式中支持的 VFS 大纲。“file”大纲默认可写。"
 
-#: ../data/pluma.schemas.in.in.h:39
-msgid "Print Syntax Highlighting"
-msgstr "打印语法突出显示"
+#: ../data/org.mate.pluma.gschema.xml.in.in.h:15
+msgid "Maximum Number of Undo Actions"
+msgstr "撤消操作的最多数量"
 
-#: ../data/pluma.schemas.in.in.h:40
-msgid "Printing Line Wrapping Mode"
-msgstr "打印时换行模式"
+#: ../data/org.mate.pluma.gschema.xml.in.in.h:16
+msgid ""
+"Maximum number of actions that pluma will be able to undo or redo. Use "
+"\"-1\" for unlimited number of actions."
+msgstr "pluma 撤消或重做操作的最多次数。使用“-1”代表无限制。"
 
-#: ../data/pluma.schemas.in.in.h:41
-msgid "Restore Previous Cursor Position"
-msgstr "恢复上一次的光标位置"
+#: ../data/org.mate.pluma.gschema.xml.in.in.h:17
+msgid "Line Wrapping Mode"
+msgstr "自动换行模式"
 
-#: ../data/pluma.schemas.in.in.h:42
+#: ../data/org.mate.pluma.gschema.xml.in.in.h:18
+msgid ""
+"Specifies how to wrap long lines in the editing area. Use \"GTK_WRAP_NONE\" "
+"for no wrapping, \"GTK_WRAP_WORD\" for wrapping at word boundaries, and "
+"\"GTK_WRAP_CHAR\" for wrapping at individual character boundaries. Note that"
+" the values are case-sensitive, so make sure they appear exactly as "
+"mentioned here."
+msgstr "指定编辑区域中如何将长行折断。使用“GTK_WRAP_NONE”代表不换行，“GTK_WRAP_WORD”代表按单词换行，而“GTK_WRAP_CHAR”代表按字符换行。请注意，这些值是区分大小写的，所以请确定必须按照这里说明的大小写出现。"
+
+#: ../data/org.mate.pluma.gschema.xml.in.in.h:19
+msgid "Tab Size"
+msgstr "制表符长度"
+
+#: ../data/org.mate.pluma.gschema.xml.in.in.h:20
+msgid ""
+"Specifies the number of spaces that should be displayed instead of Tab "
+"characters."
+msgstr "设定用于代替制表符的空格数。"
+
+#: ../data/org.mate.pluma.gschema.xml.in.in.h:21
+msgid "Insert spaces"
+msgstr "插入空格"
+
+#: ../data/org.mate.pluma.gschema.xml.in.in.h:22
+msgid "Whether pluma should insert spaces instead of tabs."
+msgstr "pluma 是否要插入空格代替制表符。"
+
+#: ../data/org.mate.pluma.gschema.xml.in.in.h:23
+msgid "Automatic indent"
+msgstr "自动缩进"
+
+#: ../data/org.mate.pluma.gschema.xml.in.in.h:24
+msgid "Whether pluma should enable automatic indentation."
+msgstr "pluma 是否启用自动缩进。"
+
+#: ../data/org.mate.pluma.gschema.xml.in.in.h:25
+msgid "Display Line Numbers"
+msgstr "显示行号"
+
+#: ../data/org.mate.pluma.gschema.xml.in.in.h:26
+msgid "Whether pluma should display line numbers in the editing area."
+msgstr "pluma 是否在编辑区域显示行号。"
+
+#: ../data/org.mate.pluma.gschema.xml.in.in.h:27
+msgid "Highlight Current Line"
+msgstr "突出显示当前行"
+
+#: ../data/org.mate.pluma.gschema.xml.in.in.h:28
+msgid "Whether pluma should highlight the current line."
+msgstr "pluma 是否应该突出显示当前行。"
+
+#: ../data/org.mate.pluma.gschema.xml.in.in.h:29
+msgid "Highlight Matching Bracket"
+msgstr "突出显示匹配的括号"
+
+#: ../data/org.mate.pluma.gschema.xml.in.in.h:30
+msgid "Whether pluma should highlight the bracket matching the selected one."
+msgstr "pluma 是否应该突出显示和选择的括号所匹配的括号。"
+
+#: ../data/org.mate.pluma.gschema.xml.in.in.h:31
+msgid "Display Right Margin"
+msgstr "显示右边距"
+
+#: ../data/org.mate.pluma.gschema.xml.in.in.h:32
+msgid "Whether pluma should display the right margin in the editing area."
+msgstr "pluma 是否在编辑区域显示右边距。"
+
+#: ../data/org.mate.pluma.gschema.xml.in.in.h:33
 msgid "Right Margin Position"
 msgstr "右边距位置"
 
-#. Translators: This is the Header font for printing.
-#. This is a Pango font.
-#: ../data/pluma.schemas.in.in.h:45
-msgid "Sans 11"
-msgstr "Sans 11"
+#: ../data/org.mate.pluma.gschema.xml.in.in.h:34
+msgid "Specifies the position of the right margin."
+msgstr "指定右边距的位置。"
 
-#. Translators: This is the Line Number font for printing.
-#. This is a Pango font.
-#: ../data/pluma.schemas.in.in.h:48
-msgid "Sans 8"
-msgstr "Sans 8"
-
-#: ../data/pluma.schemas.in.in.h:49
-msgid "Side Pane is Visible"
-msgstr "侧边栏可见"
-
-#: ../data/pluma.schemas.in.in.h:50
+#: ../data/org.mate.pluma.gschema.xml.in.in.h:35
 msgid "Smart Home End"
 msgstr "智能 Home End"
 
-#: ../data/pluma.schemas.in.in.h:51
-msgid ""
-"Sorted list of encodings used by pluma for automatically detecting the "
-"encoding of a file. \"CURRENT\" represents the current locale encoding. Only "
-"recognized encodings are used."
-msgstr ""
-"pluma 自动检测文件编码时所用的编码清单。“CURRENT”为当前区域编码。只能使用可识"
-"别的编码。"
-
-#: ../data/pluma.schemas.in.in.h:52
+#: ../data/org.mate.pluma.gschema.xml.in.in.h:36
 msgid ""
 "Specifies how the cursor moves when the HOME and END keys are pressed. Use "
 "\"DISABLED\" to always move at the start/end of the line, \"AFTER\" to move "
@@ -254,231 +191,227 @@ msgid ""
 "pressed, \"BEFORE\" to move to the start/end of the text before moving to "
 "the start/end of the line and \"ALWAYS\" to always move to the start/end of "
 "the text instead of the start/end of the line."
-msgstr ""
-"指定在按下 HOME 和 END 键时光标如何移动。使用“DISABLED”以总是移动到行的开始/"
-"结尾，“AFTER”以在第一次按下键时移动到行的开始/结尾并在第二次按下键时忽略空白"
-"地移动到文本的开始/结尾，“BEFORE”以在移动到行的开始/结尾前先移动到文本的开始/"
-"结尾，“ALWAYS”以总是移动到文本的开始/结尾而不是行的开始/结尾。"
+msgstr "指定在按下 HOME 和 END 键时光标如何移动。使用“DISABLED”以总是移动到行的开始/结尾，“AFTER”以在第一次按下键时移动到行的开始/结尾并在第二次按下键时忽略空白地移动到文本的开始/结尾，“BEFORE”以在移动到行的开始/结尾前先移动到文本的开始/结尾，“ALWAYS”以总是移动到文本的开始/结尾而不是行的开始/结尾。"
 
-#: ../data/pluma.schemas.in.in.h:53
-msgid ""
-"Specifies how to wrap long lines for printing. Use \"GTK_WRAP_NONE\" for no "
-"wrapping, \"GTK_WRAP_WORD\" for wrapping at word boundaries, and "
-"\"GTK_WRAP_CHAR\" for wrapping at individual character boundaries. Note that "
-"the values are case-sensitive, so make sure they appear exactly as mentioned "
-"here."
-msgstr ""
-"指定打印时如何将长行折断。使用“GTK_WRAP_NONE”代表不换行，“GTK_WRAP_WORD”代表"
-"按单词换行，而“GTK_WRAP_CHAR”代表按字符换行。请注意，这些值是区分大小写的，所"
-"以请确定必须按照这里说明的大小写出现。"
+#: ../data/org.mate.pluma.gschema.xml.in.in.h:37
+msgid "Restore Previous Cursor Position"
+msgstr "恢复上一次的光标位置"
 
-#: ../data/pluma.schemas.in.in.h:54
-msgid ""
-"Specifies how to wrap long lines in the editing area. Use \"GTK_WRAP_NONE\" "
-"for no wrapping, \"GTK_WRAP_WORD\" for wrapping at word boundaries, and "
-"\"GTK_WRAP_CHAR\" for wrapping at individual character boundaries. Note that "
-"the values are case-sensitive, so make sure they appear exactly as mentioned "
-"here."
-msgstr ""
-"指定编辑区域中如何将长行折断。使用“GTK_WRAP_NONE”代表不换"
-"行，“GTK_WRAP_WORD”代表按单词换行，而“GTK_WRAP_CHAR”代表按字符换行。请注意，"
-"这些值是区分大小写的，所以请确定必须按照这里说明的大小写出现。"
-
-#: ../data/pluma.schemas.in.in.h:55
-msgid ""
-"Specifies the font to use for a document's body when printing documents."
-msgstr "设定打印时文档主体所用的字体。"
-
-#: ../data/pluma.schemas.in.in.h:56
-msgid ""
-"Specifies the font to use for line numbers when printing. This will only "
-"take effect if the \"Print Line Numbers\" option is non-zero."
-msgstr "设定打印时行号所用的字体。只有当“打印行号”选项打开时才有效。"
-
-#: ../data/pluma.schemas.in.in.h:57
-msgid ""
-"Specifies the font to use for page headers when printing a document. This "
-"will only take effect if the \"Print Header\" option is turned on."
-msgstr "设定打印时页眉所用的字体。只有当“打印页眉”选项打开时才有效。"
-
-#: ../data/pluma.schemas.in.in.h:58
-msgid ""
-"Specifies the maximum number of recently opened files that will be displayed "
-"in the \"Recent Files\" submenu."
-msgstr "设定最近打开文件数的最大值，这个将在“最近打开过的文件”子菜单中显示。"
-
-#: ../data/pluma.schemas.in.in.h:59
-msgid ""
-"Specifies the number of spaces that should be displayed instead of Tab "
-"characters."
-msgstr "设定用于代替制表符的空格数。"
-
-#: ../data/pluma.schemas.in.in.h:60
-msgid "Specifies the position of the right margin."
-msgstr "指定右边距的位置。"
-
-#: ../data/pluma.schemas.in.in.h:61
-msgid "Status Bar is Visible"
-msgstr "状态栏可见"
-
-#: ../data/pluma.schemas.in.in.h:62
-msgid "Style Scheme"
-msgstr "风格大纲"
-
-#: ../data/pluma.schemas.in.in.h:63
-msgid ""
-"Style for the toolbar buttons. Possible values are \"PLUMA_TOOLBAR_SYSTEM\" "
-"to use the system's default style, \"PLUMA_TOOLBAR_ICONS\" to display icons "
-"only, \"PLUMA_TOOLBAR_ICONS_AND_TEXT\" to display both icons and text, and "
-"\"PLUMA_TOOLBAR_ICONS_BOTH_HORIZ\" to display prioritized text beside icons. "
-"Note that the values are case-sensitive, so make sure they appear exactly as "
-"mentioned here."
-msgstr ""
-"工具栏按钮的风格。可供选择的值包括：“PLUMA_TOOLBAR_SYSTEM”代表使用系统默认风"
-"格，“PLUMA_TOOLBAR_ICONS”代表只显示图标，“PLUMA_TOOLBAR_AND_TEXT”代表同时显示"
-"图标和文字，而“PLUMA_TOOLBAR_ICONS_BOTH_HORIZ”代表在图标旁边显示文字。请注"
-"意，这些值是区分大小写的，所以请确定必须按照这里说明的大小写出现。"
-
-#: ../data/pluma.schemas.in.in.h:64
-msgid "Tab Size"
-msgstr "制表符长度"
-
-#: ../data/pluma.schemas.in.in.h:65
-msgid "The ID of a GtkSourceView Style Scheme used to color the text."
-msgstr "用于文本颜色的 GtkSourceView 样式主题 ID。"
-
-#: ../data/pluma.schemas.in.in.h:66
-msgid "Toolbar Buttons Style"
-msgstr "工具栏按钮风格"
-
-#: ../data/pluma.schemas.in.in.h:67
-msgid "Toolbar is Visible"
-msgstr "显示工具栏"
-
-#: ../data/pluma.schemas.in.in.h:68
-msgid "Undo Actions Limit (DEPRECATED)"
-msgstr "撤消操作次数限制(不再使用)"
-
-#: ../data/pluma.schemas.in.in.h:69
-msgid "Use Default Font"
-msgstr "使用默认字体"
-
-#: ../data/pluma.schemas.in.in.h:70
-msgid ""
-"Whether pluma should automatically save modified files after a time "
-"interval. You can set the time interval with the \"Autosave Interval\" "
-"option."
-msgstr ""
-"pluma 是否每隔一段时间自动保存已修改的文件。您可以在“自动保存时间间隔”选项中"
-"设置该时间间隔。"
-
-#: ../data/pluma.schemas.in.in.h:71
-msgid ""
-"Whether pluma should create backup copies for the files it saves. You can "
-"set the backup file extension with the \"Backup Copy Extension\" option."
-msgstr ""
-"pluma 是否为保存的文件创建备份文件。您可以在“备份文件扩展名”选项中设置备份文"
-"件的扩展名。"
-
-#: ../data/pluma.schemas.in.in.h:72
-msgid "Whether pluma should display line numbers in the editing area."
-msgstr "pluma 是否在编辑区域显示行号。"
-
-#: ../data/pluma.schemas.in.in.h:73
-msgid "Whether pluma should display the right margin in the editing area."
-msgstr "pluma 是否在编辑区域显示右边距。"
-
-#: ../data/pluma.schemas.in.in.h:74
-msgid "Whether pluma should enable automatic indentation."
-msgstr "pluma 是否启用自动缩进。"
-
-#: ../data/pluma.schemas.in.in.h:75
-msgid "Whether pluma should enable syntax highlighting."
-msgstr "pluma 是否启用语法突出显示。"
-
-#: ../data/pluma.schemas.in.in.h:76
-msgid ""
-"Whether pluma should highlight all the occurrences of the searched text."
-msgstr "pluma 是否应该突出显示被搜索文本的全部出现。"
-
-#: ../data/pluma.schemas.in.in.h:77
-msgid "Whether pluma should highlight the bracket matching the selected one."
-msgstr "pluma 是否应该突出显示和选择的括号所匹配的括号。"
-
-#: ../data/pluma.schemas.in.in.h:78
-msgid "Whether pluma should highlight the current line."
-msgstr "pluma 是否应该突出显示当前行。"
-
-#: ../data/pluma.schemas.in.in.h:79
-msgid "Whether pluma should include a document header when printing documents."
-msgstr "pluma 是否在打印文档时包含文档头。"
-
-#: ../data/pluma.schemas.in.in.h:80
-msgid "Whether pluma should insert spaces instead of tabs."
-msgstr "pluma 是否要插入空格代替制表符。"
-
-#: ../data/pluma.schemas.in.in.h:81
-msgid "Whether pluma should print syntax highlighting when printing documents."
-msgstr "pluma 是否在打印文档时打印语法突出显示。"
-
-#: ../data/pluma.schemas.in.in.h:82
+#: ../data/org.mate.pluma.gschema.xml.in.in.h:38
 msgid ""
 "Whether pluma should restore the previous cursor position when a file is "
 "loaded."
 msgstr "在载入文件时 pluma 是否应恢复上次的光标位置。"
 
-#: ../data/pluma.schemas.in.in.h:83
+#: ../data/org.mate.pluma.gschema.xml.in.in.h:39
+msgid "Enable Search Highlighting"
+msgstr "启用搜索突出显示"
+
+#: ../data/org.mate.pluma.gschema.xml.in.in.h:40
 msgid ""
-"Whether the bottom panel at the bottom of editing windows should be visible."
-msgstr "是否显示编辑窗口底部的面板。"
+"Whether pluma should highlight all the occurrences of the searched text."
+msgstr "pluma 是否应该突出显示被搜索文本的全部出现。"
 
-#: ../data/pluma.schemas.in.in.h:84
-msgid "Whether the side pane at the left of editing windows should be visible."
-msgstr "是否显示编辑窗口左侧的侧边栏。"
+#: ../data/org.mate.pluma.gschema.xml.in.in.h:41
+msgid "Enable Syntax Highlighting"
+msgstr "启用语法突出显示"
 
-#: ../data/pluma.schemas.in.in.h:85
+#: ../data/org.mate.pluma.gschema.xml.in.in.h:42
+msgid "Whether pluma should enable syntax highlighting."
+msgstr "pluma 是否启用语法突出显示。"
+
+#: ../data/org.mate.pluma.gschema.xml.in.in.h:43
+msgid "Toolbar is Visible"
+msgstr "显示工具栏"
+
+#: ../data/org.mate.pluma.gschema.xml.in.in.h:44
+msgid "Whether the toolbar should be visible in editing windows."
+msgstr "是否在编辑窗口中显示工具栏。"
+
+#: ../data/org.mate.pluma.gschema.xml.in.in.h:45
+msgid "Toolbar Buttons Style"
+msgstr "工具栏按钮风格"
+
+#: ../data/org.mate.pluma.gschema.xml.in.in.h:46
+msgid ""
+"Style for the toolbar buttons. Possible values are \"PLUMA_TOOLBAR_SYSTEM\" "
+"to use the system's default style, \"PLUMA_TOOLBAR_ICONS\" to display icons "
+"only, \"PLUMA_TOOLBAR_ICONS_AND_TEXT\" to display both icons and text, and "
+"\"PLUMA_TOOLBAR_ICONS_BOTH_HORIZ\" to display prioritized text beside icons."
+" Note that the values are case-sensitive, so make sure they appear exactly "
+"as mentioned here."
+msgstr "工具栏按钮的风格。可供选择的值包括：“PLUMA_TOOLBAR_SYSTEM”代表使用系统默认风格，“PLUMA_TOOLBAR_ICONS”代表只显示图标，“PLUMA_TOOLBAR_AND_TEXT”代表同时显示图标和文字，而“PLUMA_TOOLBAR_ICONS_BOTH_HORIZ”代表在图标旁边显示文字。请注意，这些值是区分大小写的，所以请确定必须按照这里说明的大小写出现。"
+
+#: ../data/org.mate.pluma.gschema.xml.in.in.h:47
+msgid "Status Bar is Visible"
+msgstr "状态栏可见"
+
+#: ../data/org.mate.pluma.gschema.xml.in.in.h:48
 msgid ""
 "Whether the status bar at the bottom of editing windows should be visible."
 msgstr "是否显示编辑窗口底部的状态栏。"
 
-#: ../data/pluma.schemas.in.in.h:86
-msgid "Whether the toolbar should be visible in editing windows."
-msgstr "是否在编辑窗口中显示工具栏。"
+#: ../data/org.mate.pluma.gschema.xml.in.in.h:49
+msgid "Side Pane is Visible"
+msgstr "侧边栏可见"
 
-#: ../data/pluma.schemas.in.in.h:87
+#: ../data/org.mate.pluma.gschema.xml.in.in.h:50
 msgid ""
-"Whether to use the system's default fixed width font for editing text "
-"instead of a font specific to pluma. If this option is turned off, then the "
-"font named in the \"Editor Font\" option will be used instead of the system "
-"font."
+"Whether the side pane at the left of editing windows should be visible."
+msgstr "是否显示编辑窗口左侧的侧边栏。"
+
+#: ../data/org.mate.pluma.gschema.xml.in.in.h:51
+msgid "Bottom Panel is Visible"
+msgstr "底部面板可见"
+
+#: ../data/org.mate.pluma.gschema.xml.in.in.h:52
+msgid ""
+"Whether the bottom panel at the bottom of editing windows should be visible."
+msgstr "是否显示编辑窗口底部的面板。"
+
+#: ../data/org.mate.pluma.gschema.xml.in.in.h:53
+msgid "Maximum Recent Files"
+msgstr "最大当前文件数"
+
+#: ../data/org.mate.pluma.gschema.xml.in.in.h:54
+msgid ""
+"Specifies the maximum number of recently opened files that will be displayed"
+" in the \"Recent Files\" submenu."
+msgstr "设定最近打开文件数的最大值，这个将在“最近打开过的文件”子菜单中显示。"
+
+#: ../data/org.mate.pluma.gschema.xml.in.in.h:55
+msgid "Print Syntax Highlighting"
+msgstr "打印语法突出显示"
+
+#: ../data/org.mate.pluma.gschema.xml.in.in.h:56
+msgid ""
+"Whether pluma should print syntax highlighting when printing documents."
+msgstr "pluma 是否在打印文档时打印语法突出显示。"
+
+#: ../data/org.mate.pluma.gschema.xml.in.in.h:57
+msgid "Print Header"
+msgstr "打印页眉"
+
+#: ../data/org.mate.pluma.gschema.xml.in.in.h:58
+msgid ""
+"Whether pluma should include a document header when printing documents."
+msgstr "pluma 是否在打印文档时包含文档头。"
+
+#: ../data/org.mate.pluma.gschema.xml.in.in.h:59
+msgid "Printing Line Wrapping Mode"
+msgstr "打印时换行模式"
+
+#: ../data/org.mate.pluma.gschema.xml.in.in.h:60
+msgid ""
+"Specifies how to wrap long lines for printing. Use \"GTK_WRAP_NONE\" for no "
+"wrapping, \"GTK_WRAP_WORD\" for wrapping at word boundaries, and "
+"\"GTK_WRAP_CHAR\" for wrapping at individual character boundaries. Note that"
+" the values are case-sensitive, so make sure they appear exactly as "
+"mentioned here."
+msgstr "指定打印时如何将长行折断。使用“GTK_WRAP_NONE”代表不换行，“GTK_WRAP_WORD”代表按单词换行，而“GTK_WRAP_CHAR”代表按字符换行。请注意，这些值是区分大小写的，所以请确定必须按照这里说明的大小写出现。"
+
+#: ../data/org.mate.pluma.gschema.xml.in.in.h:61
+msgid "Print Line Numbers"
+msgstr "打印行号"
+
+#: ../data/org.mate.pluma.gschema.xml.in.in.h:62
+msgid ""
+"If this value is 0, then no line numbers will be inserted when printing a "
+"document. Otherwise, pluma will print line numbers every such number of "
+"lines."
+msgstr "如果该值(N)为0，则在打印文档时不插入行号；否则，pluma 将每隔 N 行插入行号。"
+
+#: ../data/org.mate.pluma.gschema.xml.in.in.h:63
+msgid "Body Font for Printing"
+msgstr "打印时文档主体所用字体"
+
+#: ../data/org.mate.pluma.gschema.xml.in.in.h:64
+msgid ""
+"Specifies the font to use for a document's body when printing documents."
+msgstr "设定打印时文档主体所用的字体。"
+
+#: ../data/org.mate.pluma.gschema.xml.in.in.h:65
+msgid "Header Font for Printing"
+msgstr "打印时页眉所用的字体"
+
+#: ../data/org.mate.pluma.gschema.xml.in.in.h:66
+msgid ""
+"Specifies the font to use for page headers when printing a document. This "
+"will only take effect if the \"Print Header\" option is turned on."
+msgstr "设定打印时页眉所用的字体。只有当“打印页眉”选项打开时才有效。"
+
+#: ../data/org.mate.pluma.gschema.xml.in.in.h:67
+msgid "Line Number Font for Printing"
+msgstr "打印时行号所用的字体"
+
+#: ../data/org.mate.pluma.gschema.xml.in.in.h:68
+msgid ""
+"Specifies the font to use for line numbers when printing. This will only "
+"take effect if the \"Print Line Numbers\" option is non-zero."
+msgstr "设定打印时行号所用的字体。只有当“打印行号”选项打开时才有效。"
+
+#: ../data/org.mate.pluma.gschema.xml.in.in.h:69
+msgid "Automatically Detected Encodings"
+msgstr "自动检测的编码"
+
+#: ../data/org.mate.pluma.gschema.xml.in.in.h:70
+msgid ""
+"Sorted list of encodings used by pluma for automatically detecting the "
+"encoding of a file. \"CURRENT\" represents the current locale encoding. Only"
+" recognized encodings are used."
+msgstr "pluma 自动检测文件编码时所用的编码清单。“CURRENT”为当前区域编码。只能使用可识别的编码。"
+
+#: ../data/org.mate.pluma.gschema.xml.in.in.h:71
+msgid "Encodings shown in menu"
+msgstr "菜单中显示的编码"
+
+#: ../data/org.mate.pluma.gschema.xml.in.in.h:72
+msgid ""
+"List of encodings shown in the Character Encoding menu in open/save file "
+"selector. Only recognized encodings are used."
+msgstr "在打开/保存文件选择器中的字符代码菜单中显示的编码列表。只使用可识别的编码。"
+
+#: ../data/org.mate.pluma.gschema.xml.in.in.h:73
+msgid "History for \"search for\" entries"
+msgstr "查找历史记录"
+
+#: ../data/org.mate.pluma.gschema.xml.in.in.h:74
+msgid "List of entries in \"search for\" textbox."
 msgstr ""
-"是否要为编辑文本指定不同于系统默认字体的字体。如果关闭了此选项，“编辑器字"
-"体”选项中的字体名称将会替代系统字体。"
 
-#: ../data/pluma.schemas.in.in.h:88
-msgid "Writable VFS schemes"
-msgstr "可写入的 VFS 大纲"
+#: ../data/org.mate.pluma.gschema.xml.in.in.h:75
+msgid "History for \"replace with\" entries"
+msgstr "替换历史记录"
 
-#. Translators: This is the list of encodings shown by default in the Character Encoding
-#. menu in open/save file selector. Only recognized encodings are displayed.
-#: ../data/pluma.schemas.in.in.h:91
-msgid "[ISO-8859-15]"
-msgstr "[GB18030,GBK,GB2312,UTF-8]"
+#: ../data/org.mate.pluma.gschema.xml.in.in.h:76
+msgid "List of entries in \"replace with\" textbox."
+msgstr ""
 
-#. Translators: This is the sorted list of encodings used by pluma
-#. for automatic detection of the file encoding. You may want to customize it adding
-#. encodings that are common in your country, for instance the GB18030 encoding
-#. for the Chinese	translation. You may also want to remove the ISO-8859-15 encoding
-#. (covering English and most Western European languages) if you think people
-#. in you country will rarely use it.
-#. "CURRENT" is a magic value used by pluma and it represents the encoding
-#. for the current locale, so please don't translate the "CURRENT" term.
-#. Only recognized encodings are used.
-#. See http://svn.gnome.org/viewcvs/pluma/trunk/pluma/pluma-encodings.c?view=markup for
-#. a list of supported encodings
-#: ../data/pluma.schemas.in.in.h:103
-msgid "[UTF-8,CURRENT,ISO-8859-15,UTF-16]"
-msgstr "[CURRENT,GB18030,GBK,GB2312,UTF-8,UTF-16]"
+#: ../data/org.mate.pluma.gschema.xml.in.in.h:77
+msgid "Active plugins"
+msgstr "激活插件"
+
+#: ../data/org.mate.pluma.gschema.xml.in.in.h:78
+msgid ""
+"List of active plugins. It contains the \"Location\" of the active plugins. "
+"See the .pluma-plugin file for obtaining the \"Location\" of a given plugin."
+msgstr "列出激活的插件。其中包含激活插件的“位置”。请参看 .pluma-plugin 文件以便获得给定插件的“位置”。"
+
+#: ../data/pluma.desktop.in.in.h:1
+msgid "Pluma"
+msgstr "Pluma"
+
+#: ../data/pluma.desktop.in.in.h:2 ../pluma/pluma-print-job.c:765
+msgid "Text Editor"
+msgstr "文本编辑器"
+
+#: ../data/pluma.desktop.in.in.h:3
+msgid "Edit text files"
+msgstr "编辑文本文件"
+
+#: ../data/pluma.desktop.in.in.h:4
+msgid "pluma Text Editor"
+msgstr "文本编辑器"
 
 #: ../pluma/dialogs/pluma-close-confirmation-dialog.c:140
 msgid "Log Out _without Saving"
@@ -499,7 +432,8 @@ msgstr "问题"
 #: ../pluma/dialogs/pluma-close-confirmation-dialog.c:412
 #, c-format
 msgid ""
-"If you don't save, changes from the last %ld second will be permanently lost."
+"If you don't save, changes from the last %ld second will be permanently "
+"lost."
 msgid_plural ""
 "If you don't save, changes from the last %ld seconds will be permanently "
 "lost."
@@ -523,14 +457,16 @@ msgstr[0] "如果您不保存，前一分钟零 %ld 秒所做的更改将永久�
 #: ../pluma/dialogs/pluma-close-confirmation-dialog.c:437
 #, c-format
 msgid ""
-"If you don't save, changes from the last %ld minute will be permanently lost."
+"If you don't save, changes from the last %ld minute will be permanently "
+"lost."
 msgid_plural ""
 "If you don't save, changes from the last %ld minutes will be permanently "
 "lost."
 msgstr[0] "如果您不保存，前 %ld 分钟所做的更改将永久丢失。"
 
 #: ../pluma/dialogs/pluma-close-confirmation-dialog.c:452
-msgid "If you don't save, changes from the last hour will be permanently lost."
+msgid ""
+"If you don't save, changes from the last hour will be permanently lost."
 msgstr "如果您不保存，上 %d 小时所做的更改将永久丢失。"
 
 #: ../pluma/dialogs/pluma-close-confirmation-dialog.c:458
@@ -574,7 +510,8 @@ msgstr[0] "对 %d 个文档所做的更改将永久丢失。"
 
 #: ../pluma/dialogs/pluma-close-confirmation-dialog.c:707
 #, c-format
-msgid "There is %d document with unsaved changes. Save changes before closing?"
+msgid ""
+"There is %d document with unsaved changes. Save changes before closing?"
 msgid_plural ""
 "There are %d documents with unsaved changes. Save changes before closing?"
 msgstr[0] "还有 %d 个文档已做更改但尚未保存。关闭前先保存吗？"
@@ -606,197 +543,195 @@ msgid "_Encoding"
 msgstr "编码(_E)"
 
 #: ../pluma/dialogs/pluma-encodings-dialog.ui.h:1
-msgid "A_vailable encodings:"
-msgstr "可用编码(_V)："
-
-#: ../pluma/dialogs/pluma-encodings-dialog.ui.h:2
 msgid "Character encodings"
 msgstr "字符编码"
+
+#: ../pluma/dialogs/pluma-encodings-dialog.ui.h:2
+msgid "A_vailable encodings:"
+msgstr "可用编码(_V)："
 
 #: ../pluma/dialogs/pluma-encodings-dialog.ui.h:3
 msgid "E_ncodings shown in menu:"
 msgstr "菜单中显示的编码(_N)："
 
-#: ../pluma/dialogs/pluma-preferences-dialog.c:571
+#: ../pluma/dialogs/pluma-preferences-dialog.c:570
 msgid "Click on this button to select the font to be used by the editor"
 msgstr "按下此按钮可以选择编辑器所用的字体"
 
-#: ../pluma/dialogs/pluma-preferences-dialog.c:581
+#: ../pluma/dialogs/pluma-preferences-dialog.c:580
 #, c-format
 msgid "_Use the system fixed width font (%s)"
 msgstr "使用系统等宽字体(_U)(%s)"
 
-#: ../pluma/dialogs/pluma-preferences-dialog.c:784
+#: ../pluma/dialogs/pluma-preferences-dialog.c:783
 msgid "The selected color scheme cannot be installed."
 msgstr "无法安装选中的配色方案。"
 
-#: ../pluma/dialogs/pluma-preferences-dialog.c:809
+#: ../pluma/dialogs/pluma-preferences-dialog.c:808
 msgid "Add Scheme"
 msgstr "添加方案"
 
-#: ../pluma/dialogs/pluma-preferences-dialog.c:816
+#: ../pluma/dialogs/pluma-preferences-dialog.c:815
 msgid "A_dd Scheme"
 msgstr "添加方案(_D)"
 
-#: ../pluma/dialogs/pluma-preferences-dialog.c:824
+#: ../pluma/dialogs/pluma-preferences-dialog.c:823
 msgid "Color Scheme Files"
 msgstr "配色方案文件"
 
-#: ../pluma/dialogs/pluma-preferences-dialog.c:831
+#: ../pluma/dialogs/pluma-preferences-dialog.c:830
 #: ../pluma/pluma-file-chooser-dialog.c:52
 msgid "All Files"
 msgstr "全部文件"
 
-#: ../pluma/dialogs/pluma-preferences-dialog.c:876
+#: ../pluma/dialogs/pluma-preferences-dialog.c:875
 #, c-format
 msgid "Could not remove color scheme \"%s\"."
 msgstr "无法删除配色方案“%s”。"
 
-#: ../pluma/dialogs/pluma-preferences-dialog.c:1087
+#: ../pluma/dialogs/pluma-preferences-dialog.c:1086
 msgid "pluma Preferences"
 msgstr "pluma 首选项"
 
-#. ex:ts=4:et:
 #: ../pluma/dialogs/pluma-preferences-dialog.ui.h:1
-#: ../plugins/docinfo/docinfo.ui.h:1
-#: ../plugins/externaltools/tools/tools.ui.h:1
-#: ../plugins/snippets/snippets/snippets.ui.h:1
-#: ../plugins/time/pluma-time-dialog.ui.h:1
-#: ../plugins/time/pluma-time-setup-dialog.ui.h:1
-msgid "    "
-msgstr "    "
-
-#: ../pluma/dialogs/pluma-preferences-dialog.ui.h:2
-msgid "Automatic Indentation"
-msgstr "自动缩进"
-
-#: ../pluma/dialogs/pluma-preferences-dialog.ui.h:3
-msgid "Bracket Matching"
-msgstr "括号匹配"
-
-#: ../pluma/dialogs/pluma-preferences-dialog.ui.h:4
-msgid "Color Scheme"
-msgstr "配色方案"
-
-#: ../pluma/dialogs/pluma-preferences-dialog.ui.h:5
-msgid "Create a _backup copy of files before saving"
-msgstr "在保存之前创建一个备份文件(_B)"
-
-#: ../pluma/dialogs/pluma-preferences-dialog.ui.h:6
-msgid "Current Line"
-msgstr "当前行"
-
-#: ../pluma/dialogs/pluma-preferences-dialog.ui.h:7
-msgid "Display right _margin"
-msgstr "显示右边距(_M)"
-
-#: ../pluma/dialogs/pluma-preferences-dialog.ui.h:8
-#: ../pluma/pluma-print-preferences.ui.h:1
-msgid "Do not _split words over two lines"
-msgstr "不将一个单词拆在两行(_S)"
-
-#: ../pluma/dialogs/pluma-preferences-dialog.ui.h:9
-msgid "Editor"
-msgstr "编辑器"
-
-#: ../pluma/dialogs/pluma-preferences-dialog.ui.h:10
-msgid "Editor _font: "
-msgstr "编辑器字体(_F)："
-
-#: ../pluma/dialogs/pluma-preferences-dialog.ui.h:11
-#: ../pluma/pluma-print-preferences.ui.h:2
-msgid "Enable text _wrapping"
-msgstr "启用自动换行(_W)"
-
-#: ../pluma/dialogs/pluma-preferences-dialog.ui.h:12
-msgid "File Saving"
-msgstr "文件保存"
-
-#: ../pluma/dialogs/pluma-preferences-dialog.ui.h:13
-msgid "Font"
-msgstr "字体"
-
-#: ../pluma/dialogs/pluma-preferences-dialog.ui.h:14
-msgid "Font & Colors"
-msgstr "字体和颜色"
-
-#: ../pluma/dialogs/pluma-preferences-dialog.ui.h:15
-msgid "Highlight current _line"
-msgstr "突出显示当前行(_L)"
-
-#: ../pluma/dialogs/pluma-preferences-dialog.ui.h:16
-msgid "Highlight matching _bracket"
-msgstr "突出显示匹配的括号(_B)"
-
-#: ../pluma/dialogs/pluma-preferences-dialog.ui.h:17
-msgid "Insert _spaces instead of tabs"
-msgstr "插入空格代替制表符(_S)"
-
-#: ../pluma/dialogs/pluma-preferences-dialog.ui.h:18
-#: ../pluma/pluma-print-preferences.ui.h:5
-msgid "Line Numbers"
-msgstr "行号"
-
-#: ../pluma/dialogs/pluma-preferences-dialog.ui.h:19
-msgid "Pick the editor font"
-msgstr "选择编辑器字体"
-
-#: ../pluma/dialogs/pluma-preferences-dialog.ui.h:20
-msgid "Plugins"
-msgstr "插件"
-
-#: ../pluma/dialogs/pluma-preferences-dialog.ui.h:21
 msgid "Preferences"
 msgstr "首选项"
 
-#: ../pluma/dialogs/pluma-preferences-dialog.ui.h:22
-msgid "Right Margin"
-msgstr "右边距"
-
-#: ../pluma/dialogs/pluma-preferences-dialog.ui.h:23
-msgid "Tab Stops"
-msgstr "制表位"
-
-#: ../pluma/dialogs/pluma-preferences-dialog.ui.h:24
-#: ../pluma/pluma-print-preferences.ui.h:11
+#: ../pluma/dialogs/pluma-preferences-dialog.ui.h:2
+#: ../pluma/pluma-print-preferences.ui.h:9
 msgid "Text Wrapping"
 msgstr "文字折行"
 
-#: ../pluma/dialogs/pluma-preferences-dialog.ui.h:25
-msgid "View"
-msgstr "查看"
+#: ../pluma/dialogs/pluma-preferences-dialog.ui.h:3
+#: ../plugins/docinfo/docinfo.ui.h:4
+#: ../plugins/externaltools/tools/tools.ui.h:21
+#: ../plugins/snippets/snippets/snippets.ui.h:9
+#: ../plugins/time/pluma-time-dialog.ui.h:4
+#: ../plugins/time/pluma-time-setup-dialog.ui.h:3
+msgid "    "
+msgstr "    "
 
-#: ../pluma/dialogs/pluma-preferences-dialog.ui.h:26
-msgid "_Add..."
-msgstr "添加(_A)..."
+#: ../pluma/dialogs/pluma-preferences-dialog.ui.h:4
+#: ../pluma/pluma-print-preferences.ui.h:10
+msgid "Enable text _wrapping"
+msgstr "启用自动换行(_W)"
 
-#: ../pluma/dialogs/pluma-preferences-dialog.ui.h:27
-msgid "_Autosave files every"
-msgstr "自动保存文件，每隔(_A)"
+#: ../pluma/dialogs/pluma-preferences-dialog.ui.h:5
+#: ../pluma/pluma-print-preferences.ui.h:11
+msgid "Do not _split words over two lines"
+msgstr "不将一个单词拆在两行(_S)"
 
-#: ../pluma/dialogs/pluma-preferences-dialog.ui.h:28
-#: ../pluma/pluma-view.c:1968
+#: ../pluma/dialogs/pluma-preferences-dialog.ui.h:6
+#: ../pluma/pluma-print-preferences.ui.h:3
+msgid "Line Numbers"
+msgstr "行号"
+
+#: ../pluma/dialogs/pluma-preferences-dialog.ui.h:7 ../pluma/pluma-view.c:1968
 msgid "_Display line numbers"
 msgstr "显示行号(_D)"
 
-#: ../pluma/dialogs/pluma-preferences-dialog.ui.h:29
-msgid "_Enable automatic indentation"
-msgstr "启用自动缩进(_E)"
+#: ../pluma/dialogs/pluma-preferences-dialog.ui.h:8
+msgid "Current Line"
+msgstr "当前行"
 
-#: ../pluma/dialogs/pluma-preferences-dialog.ui.h:30
+#: ../pluma/dialogs/pluma-preferences-dialog.ui.h:9
+msgid "Highlight current _line"
+msgstr "突出显示当前行(_L)"
+
+#: ../pluma/dialogs/pluma-preferences-dialog.ui.h:10
+msgid "Right Margin"
+msgstr "右边距"
+
+#: ../pluma/dialogs/pluma-preferences-dialog.ui.h:11
+msgid "Display right _margin"
+msgstr "显示右边距(_M)"
+
+#: ../pluma/dialogs/pluma-preferences-dialog.ui.h:12
 msgid "_Right margin at column:"
 msgstr "右边距于列(_R)："
 
-#: ../pluma/dialogs/pluma-preferences-dialog.ui.h:31
+#: ../pluma/dialogs/pluma-preferences-dialog.ui.h:13
+msgid "Bracket Matching"
+msgstr "括号匹配"
+
+#: ../pluma/dialogs/pluma-preferences-dialog.ui.h:14
+msgid "Highlight matching _bracket"
+msgstr "突出显示匹配的括号(_B)"
+
+#: ../pluma/dialogs/pluma-preferences-dialog.ui.h:15
+msgid "View"
+msgstr "查看"
+
+#: ../pluma/dialogs/pluma-preferences-dialog.ui.h:16
+msgid "Tab Stops"
+msgstr "制表位"
+
+#: ../pluma/dialogs/pluma-preferences-dialog.ui.h:17
 msgid "_Tab width:"
 msgstr "跳格宽度(_T)："
 
-#: ../pluma/dialogs/pluma-preferences-dialog.ui.h:32
+#: ../pluma/dialogs/pluma-preferences-dialog.ui.h:18
+msgid "Insert _spaces instead of tabs"
+msgstr "插入空格代替制表符(_S)"
+
+#: ../pluma/dialogs/pluma-preferences-dialog.ui.h:19
+msgid "Automatic Indentation"
+msgstr "自动缩进"
+
+#: ../pluma/dialogs/pluma-preferences-dialog.ui.h:20
+msgid "_Enable automatic indentation"
+msgstr "启用自动缩进(_E)"
+
+#: ../pluma/dialogs/pluma-preferences-dialog.ui.h:21
+msgid "File Saving"
+msgstr "文件保存"
+
+#: ../pluma/dialogs/pluma-preferences-dialog.ui.h:22
+msgid "Create a _backup copy of files before saving"
+msgstr "在保存之前创建一个备份文件(_B)"
+
+#: ../pluma/dialogs/pluma-preferences-dialog.ui.h:23
+msgid "_Autosave files every"
+msgstr "自动保存文件，每隔(_A)"
+
+#: ../pluma/dialogs/pluma-preferences-dialog.ui.h:24
 msgid "_minutes"
 msgstr "分钟(_M)"
 
+#: ../pluma/dialogs/pluma-preferences-dialog.ui.h:25
+msgid "Editor"
+msgstr "编辑器"
+
+#: ../pluma/dialogs/pluma-preferences-dialog.ui.h:26
+msgid "Font"
+msgstr "字体"
+
+#: ../pluma/dialogs/pluma-preferences-dialog.ui.h:27
+msgid "Editor _font: "
+msgstr "编辑器字体(_F)："
+
+#: ../pluma/dialogs/pluma-preferences-dialog.ui.h:28
+msgid "Pick the editor font"
+msgstr "选择编辑器字体"
+
+#: ../pluma/dialogs/pluma-preferences-dialog.ui.h:29
+msgid "Color Scheme"
+msgstr "配色方案"
+
+#: ../pluma/dialogs/pluma-preferences-dialog.ui.h:30
+msgid "_Add..."
+msgstr "添加(_A)..."
+
+#: ../pluma/dialogs/pluma-preferences-dialog.ui.h:31
+msgid "Font & Colors"
+msgstr "字体和颜色"
+
+#: ../pluma/dialogs/pluma-preferences-dialog.ui.h:32
+msgid "Plugins"
+msgstr "插件"
+
 #: ../pluma/dialogs/pluma-search-dialog.c:300
-#: ../pluma/dialogs/pluma-search-dialog.ui.h:2 ../pluma/pluma-window.c:1522
+#: ../pluma/dialogs/pluma-search-dialog.ui.h:1 ../pluma/pluma-window.c:1522
 msgid "Replace"
 msgstr "替换"
 
@@ -813,29 +748,29 @@ msgstr "全部替换(_A)"
 msgid "_Replace"
 msgstr "替换(_R)"
 
-#: ../pluma/dialogs/pluma-search-dialog.ui.h:1
-msgid "Match _entire word only"
-msgstr "匹配整个单词(_E)"
-
-#: ../pluma/dialogs/pluma-search-dialog.ui.h:3
+#: ../pluma/dialogs/pluma-search-dialog.ui.h:2
 msgid "Replace All"
 msgstr "全部替换"
+
+#: ../pluma/dialogs/pluma-search-dialog.ui.h:3
+msgid "_Search for: "
+msgstr "搜索(_S)："
 
 #: ../pluma/dialogs/pluma-search-dialog.ui.h:4
 msgid "Replace _with: "
 msgstr "替换为(_W)："
 
 #: ../pluma/dialogs/pluma-search-dialog.ui.h:5
-msgid "Search _backwards"
-msgstr "反向搜索(_B)"
-
-#: ../pluma/dialogs/pluma-search-dialog.ui.h:6
 msgid "_Match case"
 msgstr "区分大小写(_M)"
 
+#: ../pluma/dialogs/pluma-search-dialog.ui.h:6
+msgid "Match _entire word only"
+msgstr "匹配整个单词(_E)"
+
 #: ../pluma/dialogs/pluma-search-dialog.ui.h:7
-msgid "_Search for: "
-msgstr "搜索(_S)："
+msgid "Search _backwards"
+msgstr "反向搜索(_B)"
 
 #: ../pluma/dialogs/pluma-search-dialog.ui.h:8
 msgid "_Wrap around"
@@ -886,9 +821,7 @@ msgstr "- 编辑文本文件"
 msgid ""
 "%s\n"
 "Run '%s --help' to see a full list of available command line options.\n"
-msgstr ""
-"%s\n"
-"运行“%s --help”可查看可用的命令行选项的完整列表。\n"
+msgstr "%s\n运行“%s --help”可查看可用的命令行选项的完整列表。\n"
 
 #: ../pluma/pluma-commands-file.c:250
 #, c-format
@@ -937,7 +870,8 @@ msgstr "还原对文档“%s”未保存的更改吗？"
 #: ../pluma/pluma-commands-file.c:1129
 #, c-format
 msgid ""
-"Changes made to the document in the last %ld second will be permanently lost."
+"Changes made to the document in the last %ld second will be permanently "
+"lost."
 msgid_plural ""
 "Changes made to the document in the last %ld seconds will be permanently "
 "lost."
@@ -961,14 +895,16 @@ msgstr[0] "上一分钟零 %ld 秒内对文档所做的更改将永久丢失。"
 #: ../pluma/pluma-commands-file.c:1154
 #, c-format
 msgid ""
-"Changes made to the document in the last %ld minute will be permanently lost."
+"Changes made to the document in the last %ld minute will be permanently "
+"lost."
 msgid_plural ""
 "Changes made to the document in the last %ld minutes will be permanently "
 "lost."
 msgstr[0] "前 %ld 分钟内对文档所做的更改将永久丢失。"
 
 #: ../pluma/pluma-commands-file.c:1169
-msgid "Changes made to the document in the last hour will be permanently lost."
+msgid ""
+"Changes made to the document in the last hour will be permanently lost."
 msgstr "上 %d 小时内对文档所做的更改将永久丢失。"
 
 #: ../pluma/pluma-commands-file.c:1175
@@ -993,21 +929,13 @@ msgstr[0] "上 %d 小时内对文档所做的更改将永久丢失。"
 msgid "_Revert"
 msgstr "还原(_R)"
 
-#: ../pluma/pluma-commands-help.c:83
+#: ../pluma/pluma-commands-help.c:82
 msgid "pluma is a small and lightweight text editor for the MATE Desktop"
 msgstr "pluma 是 MATE 桌面的小型文本编辑器"
 
-#: ../pluma/pluma-commands-help.c:108
+#: ../pluma/pluma-commands-help.c:93
 msgid "translator-credits"
-msgstr ""
-"Dillion Chen <dillon.chen@turbolinux.com.cn>\n"
-"Tom Mak <mhh@126.com>, 2001\n"
-"Wang Jian <lark@linux.net.cn>, 2001\n"
-"Sun Gl0n <mate_int_l10n@ireland.sun.com>, 2002\n"
-"Miles Hoo <MilesHoo@sohu.com>, 2002\n"
-"Funda Wang <fundawang@linux.net.cn>, 2003-2005\n"
-"甘露(Gan Lu) <rhythm.gan@gmail.com>, 2009\n"
-"樊栖江(Fan Qijiang) <fqj1994@gmail.com>, 2009"
+msgstr "Dillion Chen <dillon.chen@turbolinux.com.cn>\nTom Mak <mhh@126.com>, 2001\nWang Jian <lark@linux.net.cn>, 2001\nSun Gl0n <mate_int_l10n@ireland.sun.com>, 2002\nMiles Hoo <MilesHoo@sohu.com>, 2002\nFunda Wang <fundawang@linux.net.cn>, 2003-2005\n甘露(Gan Lu) <rhythm.gan@gmail.com>, 2009\n樊栖江(Fan Qijiang) <fqj1994@gmail.com>, 2009"
 
 #: ../pluma/pluma-commands-search.c:111
 #, c-format
@@ -1254,8 +1182,8 @@ msgstr "找不到主机 %s。请检查您的代理服务器设置是否正确，
 #: ../pluma/pluma-io-error-message-area.c:312
 #, c-format
 msgid ""
-"Hostname was invalid. Please check that you typed the location correctly and "
-"try again."
+"Hostname was invalid. Please check that you typed the location correctly and"
+" try again."
 msgstr "主机名无效。请检查键入的位置是否正确，然后重试。"
 
 #: ../pluma/pluma-io-error-message-area.c:320
@@ -1339,8 +1267,7 @@ msgstr "在打开文件 %s 的时候出现问题。"
 msgid ""
 "The file you opened has some invalid characters. If you continue editing "
 "this file you could make this document useless."
-msgstr ""
-"您打开的文件有一些非法字符。如果您继续编辑这个文件，这个文件有可能不能使用。"
+msgstr "您打开的文件有一些非法字符。如果您继续编辑这个文件，这个文件有可能不能使用。"
 
 #: ../pluma/pluma-io-error-message-area.c:662
 msgid "You can also choose another character encoding and try again."
@@ -1379,8 +1306,8 @@ msgstr "此文件(%s)已经在另外的 pluma 窗口中打开。"
 
 #: ../pluma/pluma-io-error-message-area.c:859
 msgid ""
-"pluma opened this instance of the file in a non-editable way. Do you want to "
-"edit it anyway?"
+"pluma opened this instance of the file in a non-editable way. Do you want to"
+" edit it anyway?"
 msgstr "pluma 已经在非编辑方式中打开了此文件的其它实例。您是否想要仍然编辑？"
 
 #: ../pluma/pluma-io-error-message-area.c:918
@@ -1397,8 +1324,10 @@ msgstr "仍然保存(_A)"
 msgid "D_on't Save"
 msgstr "不保存(_O)"
 
-#. FIXME: review this message, it's not clear since for the user the "modification"
-#. could be interpreted as the changes he made in the document. beside "reading" is
+#. FIXME: review this message, it's not clear since for the user the
+#. "modification"
+#. could be interpreted as the changes he made in the document. beside
+#. "reading" is
 #. not accurate (since last load/save)
 #: ../pluma/pluma-io-error-message-area.c:950
 #, c-format
@@ -1406,7 +1335,8 @@ msgid "The file %s has been modified since reading it."
 msgstr "文件 %s 自上次读取之后发生了修改。"
 
 #: ../pluma/pluma-io-error-message-area.c:965
-msgid "If you save it, all the external changes could be lost. Save it anyway?"
+msgid ""
+"If you save it, all the external changes could be lost. Save it anyway?"
 msgstr "如果您保存的话，外部的所有更改都将丢失。仍然保存吗？"
 
 #: ../pluma/pluma-io-error-message-area.c:1056
@@ -1422,11 +1352,9 @@ msgstr "保存 %s 时无法创建临时备份文件"
 #: ../pluma/pluma-io-error-message-area.c:1075
 msgid ""
 "pluma could not back up the old copy of the file before saving the new one. "
-"You can ignore this warning and save the file anyway, but if an error occurs "
-"while saving, you could lose the old copy of the file. Save anyway?"
-msgstr ""
-"pluma 无法在保存新文件时备份文件的旧副本。您可以忽略此警告，仍然进行保存，但"
-"是如果是在保存中发生了错误，，您可能会丢失文件的旧副本。仍然保存吗？"
+"You can ignore this warning and save the file anyway, but if an error occurs"
+" while saving, you could lose the old copy of the file. Save anyway?"
+msgstr "pluma 无法在保存新文件时备份文件的旧副本。您可以忽略此警告，仍然进行保存，但是如果是在保存中发生了错误，，您可能会丢失文件的旧副本。仍然保存吗？"
 
 #. Translators: %s is a URI scheme (like for example http:, ftp:, etc.)
 #: ../pluma/pluma-io-error-message-area.c:1135
@@ -1438,8 +1366,8 @@ msgstr "pluma 无法以写入模式处理 %s 位置。请检查键入的位置�
 
 #: ../pluma/pluma-io-error-message-area.c:1143
 msgid ""
-"pluma cannot handle this location in write mode. Please check that you typed "
-"the location correctly and try again."
+"pluma cannot handle this location in write mode. Please check that you typed"
+" the location correctly and try again."
 msgstr "pluma 无法以写入模式处理此位置。请检查键入的位置是否正确，然后重试。"
 
 #: ../pluma/pluma-io-error-message-area.c:1152
@@ -1457,8 +1385,8 @@ msgstr "您没有权限保存文件。请检查键入的位置是否正确，然
 
 #: ../pluma/pluma-io-error-message-area.c:1164
 msgid ""
-"There is not enough disk space to save the file. Please free some disk space "
-"and try again."
+"There is not enough disk space to save the file. Please free some disk space"
+" and try again."
 msgstr "没有足够的磁盘空间用于保存文件。请释放一些磁盘空间，然后重试。"
 
 #: ../pluma/pluma-io-error-message-area.c:1169
@@ -1473,25 +1401,26 @@ msgstr "已经存在同名文件。请使用不同的名称。"
 
 #: ../pluma/pluma-io-error-message-area.c:1180
 msgid ""
-"The disk where you are trying to save the file has a limitation on length of "
-"the file names. Please use a shorter name."
+"The disk where you are trying to save the file has a limitation on length of"
+" the file names. Please use a shorter name."
 msgstr "您试图用来保存文件的磁盘有文件名长度的限制。请使用较短的名称。"
 
 #: ../pluma/pluma-io-error-message-area.c:1187
 msgid ""
 "The disk where you are trying to save the file has a limitation on file "
-"sizes. Please try saving a smaller file or saving it to a disk that does not "
-"have this limitation."
-msgstr ""
-"磁盘有文件大小的限制，请保存较小的文件或者将文件保存到没有此限制的磁盘上。"
+"sizes. Please try saving a smaller file or saving it to a disk that does not"
+" have this limitation."
+msgstr "磁盘有文件大小的限制，请保存较小的文件或者将文件保存到没有此限制的磁盘上。"
 
 #: ../pluma/pluma-io-error-message-area.c:1203
 #, c-format
 msgid "Could not save the file %s."
 msgstr "无法保存文件 %s。"
 
-#. FIXME: review this message, it's not clear since for the user the "modification"
-#. could be interpreted as the changes he made in the document. beside "reading" is
+#. FIXME: review this message, it's not clear since for the user the
+#. "modification"
+#. could be interpreted as the changes he made in the document. beside
+#. "reading" is
 #. not accurate (since last load/save)
 #: ../pluma/pluma-io-error-message-area.c:1247
 #, c-format
@@ -1559,77 +1488,70 @@ msgstr "关于插件(_A)"
 msgid "C_onfigure Plugin"
 msgstr "配置插件(_O)"
 
-#: ../pluma/pluma-prefs-manager.c:170
-msgid "Cannot initialize preferences manager."
-msgstr "无法初始化首选项管理器。"
-
-#: ../pluma/pluma-prefs-manager.c:1138
-#, c-format
-msgid "Expected `%s', got `%s' for key %s"
-msgstr "Gconf 项 %3$s 期望的类型是“%1$s”，得到的类型是“`%2$s'”"
-
-#: ../pluma/pluma-print-job.c:541
+#: ../pluma/pluma-print-job.c:547
 #, c-format
 msgid "File: %s"
 msgstr "文件：%s"
 
-#: ../pluma/pluma-print-job.c:550
+#: ../pluma/pluma-print-job.c:556
 msgid "Page %N of %Q"
 msgstr "第 %N 页共 %Q 页"
 
-#: ../pluma/pluma-print-job.c:809
+#: ../pluma/pluma-print-job.c:815
 msgid "Preparing..."
 msgstr "正在准备..."
 
-#: ../pluma/pluma-print-preferences.ui.h:3
-msgid "Fonts"
-msgstr "字体"
-
-#: ../pluma/pluma-print-preferences.ui.h:4
-msgid "He_aders and footers:"
-msgstr "页眉和页脚(_A)："
-
-#: ../pluma/pluma-print-preferences.ui.h:6
-msgid "Page header"
-msgstr "页眉"
-
-#: ../pluma/pluma-print-preferences.ui.h:7
-msgid "Print line nu_mbers"
-msgstr "打印行号(_M)"
-
-#: ../pluma/pluma-print-preferences.ui.h:8
-msgid "Print page _headers"
-msgstr "打印页眉(_H)"
-
-#: ../pluma/pluma-print-preferences.ui.h:9
-msgid "Print synta_x highlighting"
-msgstr "打印语法突出显示(_X)"
-
-#: ../pluma/pluma-print-preferences.ui.h:10
+#: ../pluma/pluma-print-preferences.ui.h:1
 msgid "Syntax Highlighting"
 msgstr "语法高亮"
 
-#: ../pluma/pluma-print-preferences.ui.h:12
-msgid "_Body:"
-msgstr "主体(_B)："
+#: ../pluma/pluma-print-preferences.ui.h:2
+msgid "Print synta_x highlighting"
+msgstr "打印语法突出显示(_X)"
 
-#: ../pluma/pluma-print-preferences.ui.h:13
-msgid "_Line numbers:"
-msgstr "行号(_L)："
+#: ../pluma/pluma-print-preferences.ui.h:4
+msgid "Print line nu_mbers"
+msgstr "打印行号(_M)"
 
-#. 'Number every' from 'Number every 3 lines' in the 'Text Editor' tab of the print preferences.
-#: ../pluma/pluma-print-preferences.ui.h:15
+#. 'Number every' from 'Number every 3 lines' in the 'Text Editor' tab of the
+#. print preferences.
+#: ../pluma/pluma-print-preferences.ui.h:6
 msgid "_Number every"
 msgstr "每几行打印一次行号(_N)"
 
-#: ../pluma/pluma-print-preferences.ui.h:16
-msgid "_Restore Default Fonts"
-msgstr "恢复为默认字体(_R)"
-
-#. 'lines' from 'Number every 3 lines' in the 'Text Editor' tab of the print preferences.
-#: ../pluma/pluma-print-preferences.ui.h:18
+#. 'lines' from 'Number every 3 lines' in the 'Text Editor' tab of the print
+#. preferences.
+#: ../pluma/pluma-print-preferences.ui.h:8
 msgid "lines"
 msgstr "行"
+
+#: ../pluma/pluma-print-preferences.ui.h:12
+msgid "Page header"
+msgstr "页眉"
+
+#: ../pluma/pluma-print-preferences.ui.h:13
+msgid "Print page _headers"
+msgstr "打印页眉(_H)"
+
+#: ../pluma/pluma-print-preferences.ui.h:14
+msgid "Fonts"
+msgstr "字体"
+
+#: ../pluma/pluma-print-preferences.ui.h:15
+msgid "_Body:"
+msgstr "主体(_B)："
+
+#: ../pluma/pluma-print-preferences.ui.h:16
+msgid "_Line numbers:"
+msgstr "行号(_L)："
+
+#: ../pluma/pluma-print-preferences.ui.h:17
+msgid "He_aders and footers:"
+msgstr "页眉和页脚(_A)："
+
+#: ../pluma/pluma-print-preferences.ui.h:18
+msgid "_Restore Default Fonts"
+msgstr "恢复为默认字体(_R)"
 
 #: ../pluma/pluma-print-preview.c:565
 msgid "Show the previous page"
@@ -1709,7 +1631,8 @@ msgstr "覆盖"
 msgid "INS"
 msgstr "插入"
 
-#. Translators: "Ln" is an abbreviation for "Line", Col is an abbreviation for "Column". Please,
+#. Translators: "Ln" is an abbreviation for "Line", Col is an abbreviation for
+#. "Column". Please,
 #. use abbreviations if possible to avoid space problems.
 #: ../pluma/pluma-statusbar.c:332
 #, c-format
@@ -2237,87 +2160,87 @@ msgid "Capitalize the first letter of each selected word"
 msgstr "将选中的每个单词的第一个字母变成大写"
 
 #: ../plugins/checkupdate/checkupdate.pluma-plugin.desktop.in.h:1
-msgid "Check for latest version of pluma"
-msgstr "检查新版本"
-
-#: ../plugins/checkupdate/checkupdate.pluma-plugin.desktop.in.h:2
 msgid "Check update"
 msgstr "检查更新"
 
-#: ../plugins/checkupdate/pluma-check-update-plugin.c:246
-msgid "There was an error displaying the URI."
-msgstr "显示链接出错。"
+#: ../plugins/checkupdate/checkupdate.pluma-plugin.desktop.in.h:2
+msgid "Check for latest version of pluma"
+msgstr "检查新版本"
 
-#: ../plugins/checkupdate/pluma-check-update-plugin.c:293
-#: ../plugins/checkupdate/pluma-check-update-plugin.c:308
-msgid "_Download"
-msgstr "下载(_D)"
-
-#: ../plugins/checkupdate/pluma-check-update-plugin.c:297
-#: ../plugins/checkupdate/pluma-check-update-plugin.c:316
-msgid "_Ignore Version"
-msgstr "忽略版本(_I)"
-
-#: ../plugins/checkupdate/pluma-check-update-plugin.c:332
-msgid "There is a new version of pluma"
-msgstr "有新版本的 Pluma"
-
-#: ../plugins/checkupdate/pluma-check-update-plugin.c:336
-msgid ""
-"You can download the new version of pluma by clicking on the download button "
-"or ignore that version and wait for a new one"
-msgstr "点击下载按钮下载最新版本的 Pluma 或者忽略那个版本并等待新版本发行"
-
-#: ../plugins/checkupdate/pluma-check-update.schemas.in.h:1
+#: ../plugins/checkupdate/org.mate.pluma.plugins.checkupdate.gschema.xml.in.in.h:1
 msgid "Version to ignore until the next version is released"
 msgstr "在下一个版本发布前忽略的版本"
 
+#: ../plugins/checkupdate/pluma-check-update-plugin.c:239
+msgid "There was an error displaying the URI."
+msgstr "显示链接出错。"
+
+#: ../plugins/checkupdate/pluma-check-update-plugin.c:285
+#: ../plugins/checkupdate/pluma-check-update-plugin.c:300
+msgid "_Download"
+msgstr "下载(_D)"
+
+#: ../plugins/checkupdate/pluma-check-update-plugin.c:289
+#: ../plugins/checkupdate/pluma-check-update-plugin.c:308
+msgid "_Ignore Version"
+msgstr "忽略版本(_I)"
+
+#: ../plugins/checkupdate/pluma-check-update-plugin.c:324
+msgid "There is a new version of pluma"
+msgstr "有新版本的 Pluma"
+
+#: ../plugins/checkupdate/pluma-check-update-plugin.c:328
+msgid ""
+"You can download the new version of pluma by clicking on the download button"
+" or ignore that version and wait for a new one"
+msgstr "点击下载按钮下载最新版本的 Pluma 或者忽略那个版本并等待新版本发行"
+
 #: ../plugins/docinfo/docinfo.pluma-plugin.desktop.in.h:1
+#: ../plugins/docinfo/docinfo.ui.h:1
+msgid "Document Statistics"
+msgstr "文档统计"
+
+#: ../plugins/docinfo/docinfo.pluma-plugin.desktop.in.h:2
 msgid ""
 "Analyzes the current document and reports the number of words, lines, "
 "characters and non-space characters in it."
 msgstr "分析当前文档，并报告文档中的单词数、行数、字符数和非空格字符数。"
 
-#: ../plugins/docinfo/docinfo.pluma-plugin.desktop.in.h:2
-#: ../plugins/docinfo/docinfo.ui.h:6
-msgid "Document Statistics"
-msgstr "文档统计"
-
 #: ../plugins/docinfo/docinfo.ui.h:2
-msgid "Bytes"
-msgstr "字节数"
+msgid "_Update"
+msgstr "更新(_U)"
 
 #: ../plugins/docinfo/docinfo.ui.h:3
-msgid "Characters (no spaces)"
-msgstr "字符数(不含空格)"
-
-#: ../plugins/docinfo/docinfo.ui.h:4
-msgid "Characters (with spaces)"
-msgstr "字符数(含空格)"
-
-#: ../plugins/docinfo/docinfo.ui.h:5
-msgid "Document"
-msgstr "文档"
-
-#: ../plugins/docinfo/docinfo.ui.h:7
 msgid "File Name"
 msgstr "文件名"
 
+#: ../plugins/docinfo/docinfo.ui.h:5
+msgid "Bytes"
+msgstr "字节数"
+
+#: ../plugins/docinfo/docinfo.ui.h:6
+msgid "Characters (no spaces)"
+msgstr "字符数(不含空格)"
+
+#: ../plugins/docinfo/docinfo.ui.h:7
+msgid "Characters (with spaces)"
+msgstr "字符数(含空格)"
+
 #: ../plugins/docinfo/docinfo.ui.h:8
-msgid "Lines"
-msgstr "行数"
-
-#: ../plugins/docinfo/docinfo.ui.h:9
-msgid "Selection"
-msgstr "选中范围"
-
-#: ../plugins/docinfo/docinfo.ui.h:10
 msgid "Words"
 msgstr "单词数"
 
+#: ../plugins/docinfo/docinfo.ui.h:9
+msgid "Lines"
+msgstr "行数"
+
+#: ../plugins/docinfo/docinfo.ui.h:10
+msgid "Document"
+msgstr "文档"
+
 #: ../plugins/docinfo/docinfo.ui.h:11
-msgid "_Update"
-msgstr "更新(_U)"
+msgid "Selection"
+msgstr "选中范围"
 
 #: ../plugins/docinfo/pluma-docinfo-plugin.c:422
 msgid "_Document Statistics"
@@ -2329,21 +2252,21 @@ msgstr "获取当前文档的统计信息"
 
 #: ../plugins/externaltools/data/open-terminal-here-osx.desktop.in.h:1
 #: ../plugins/externaltools/data/open-terminal-here.desktop.in.h:1
-msgid "Open a terminal in the document location"
-msgstr "在文档位置中打开终端"
-
-#: ../plugins/externaltools/data/open-terminal-here-osx.desktop.in.h:2
-#: ../plugins/externaltools/data/open-terminal-here.desktop.in.h:2
 msgid "Open terminal here"
 msgstr "在此打开终端"
 
-#: ../plugins/externaltools/externaltools.pluma-plugin.desktop.in.h:1
-msgid "Execute external commands and shell scripts."
-msgstr "执行外部命令和 Shell 脚本。"
+#: ../plugins/externaltools/data/open-terminal-here-osx.desktop.in.h:2
+#: ../plugins/externaltools/data/open-terminal-here.desktop.in.h:2
+msgid "Open a terminal in the document location"
+msgstr "在文档位置中打开终端"
 
-#: ../plugins/externaltools/externaltools.pluma-plugin.desktop.in.h:2
+#: ../plugins/externaltools/externaltools.pluma-plugin.desktop.in.h:1
 msgid "External Tools"
 msgstr "外部工具"
+
+#: ../plugins/externaltools/externaltools.pluma-plugin.desktop.in.h:2
+msgid "Execute external commands and shell scripts."
+msgstr "执行外部命令和 Shell 脚本。"
 
 #: ../plugins/externaltools/tools/__init__.py:172
 msgid "Manage _External Tools..."
@@ -2393,7 +2316,7 @@ msgstr "全部语言"
 #: ../plugins/externaltools/tools/manager.py:518
 #: ../plugins/externaltools/tools/manager.py:522
 #: ../plugins/externaltools/tools/manager.py:842
-#: ../plugins/externaltools/tools/tools.ui.h:2
+#: ../plugins/externaltools/tools/tools.ui.h:22
 msgid "All Languages"
 msgstr "全部语言"
 
@@ -2418,106 +2341,107 @@ msgstr "输入新加速键"
 msgid "Stopped."
 msgstr "已停止。"
 
+#. ex:ts=4:et:
+#: ../plugins/externaltools/tools/tools.ui.h:1
+msgid "Nothing"
+msgstr "无"
+
+#: ../plugins/externaltools/tools/tools.ui.h:2
+msgid "Current document"
+msgstr "当前文档"
+
 #: ../plugins/externaltools/tools/tools.ui.h:3
 msgid "All documents"
 msgstr "全部文档"
 
 #: ../plugins/externaltools/tools/tools.ui.h:4
-msgid "All documents except untitled ones"
-msgstr "除无标题文档的全部文档"
-
-#: ../plugins/externaltools/tools/tools.ui.h:5
-msgid "Append to current document"
-msgstr "追加到当前文档"
-
-#: ../plugins/externaltools/tools/tools.ui.h:6
-msgid "Create new document"
-msgstr "创建新文档"
-
-#: ../plugins/externaltools/tools/tools.ui.h:7
-msgid "Current document"
-msgstr "当前文档"
-
-#: ../plugins/externaltools/tools/tools.ui.h:8
-msgid "Current line"
-msgstr "当前行"
-
-#: ../plugins/externaltools/tools/tools.ui.h:9
 msgid "Current selection"
 msgstr "选中区域"
 
-#: ../plugins/externaltools/tools/tools.ui.h:10
+#: ../plugins/externaltools/tools/tools.ui.h:5
 msgid "Current selection (default to document)"
 msgstr "选中区域"
 
-#: ../plugins/externaltools/tools/tools.ui.h:11
+#: ../plugins/externaltools/tools/tools.ui.h:6
+msgid "Current line"
+msgstr "当前行"
+
+#: ../plugins/externaltools/tools/tools.ui.h:7
 msgid "Current word"
 msgstr "当前单词"
 
-#: ../plugins/externaltools/tools/tools.ui.h:12
+#: ../plugins/externaltools/tools/tools.ui.h:8
 msgid "Display in bottom pane"
 msgstr "在下方面板中显示"
 
-#: ../plugins/externaltools/tools/tools.ui.h:13
-msgid "External Tools Manager"
-msgstr "外部工具管理器"
+#: ../plugins/externaltools/tools/tools.ui.h:9
+msgid "Create new document"
+msgstr "创建新文档"
 
-#: ../plugins/externaltools/tools/tools.ui.h:14
+#: ../plugins/externaltools/tools/tools.ui.h:10
+msgid "Append to current document"
+msgstr "追加到当前文档"
+
+#: ../plugins/externaltools/tools/tools.ui.h:11
+msgid "Replace current document"
+msgstr "替换当前文档"
+
+#: ../plugins/externaltools/tools/tools.ui.h:12
+msgid "Replace current selection"
+msgstr "替换选中区域"
+
+#: ../plugins/externaltools/tools/tools.ui.h:13
 msgid "Insert at cursor position"
 msgstr "在光标处插入"
+
+#: ../plugins/externaltools/tools/tools.ui.h:14
+msgid "All documents except untitled ones"
+msgstr "除无标题文档的全部文档"
 
 #: ../plugins/externaltools/tools/tools.ui.h:15
 msgid "Local files only"
 msgstr "只对本地文件"
 
 #: ../plugins/externaltools/tools/tools.ui.h:16
-msgid "Nothing"
-msgstr "无"
-
-#: ../plugins/externaltools/tools/tools.ui.h:17
 msgid "Remote files only"
 msgstr "只对远程文件"
 
-#: ../plugins/externaltools/tools/tools.ui.h:18
-msgid "Replace current document"
-msgstr "替换当前文档"
-
-#: ../plugins/externaltools/tools/tools.ui.h:19
-msgid "Replace current selection"
-msgstr "替换选中区域"
-
-#: ../plugins/externaltools/tools/tools.ui.h:20
+#: ../plugins/externaltools/tools/tools.ui.h:17
 msgid "Untitled documents only"
 msgstr "只对无标题文档"
 
-#: ../plugins/externaltools/tools/tools.ui.h:21
-msgid "_Applicability:"
-msgstr "适用范围(_A)："
+#: ../plugins/externaltools/tools/tools.ui.h:18
+msgid "External Tools Manager"
+msgstr "外部工具管理器"
 
-#: ../plugins/externaltools/tools/tools.ui.h:22
-#: ../plugins/snippets/snippets/snippets.ui.h:12
+#: ../plugins/externaltools/tools/tools.ui.h:19
+msgid "_Tools:"
+msgstr "工具(_T)："
+
+#: ../plugins/externaltools/tools/tools.ui.h:20
+#: ../plugins/snippets/snippets/snippets.ui.h:7
 msgid "_Edit:"
 msgstr "编辑(_E)："
 
 #: ../plugins/externaltools/tools/tools.ui.h:23
-msgid "_Input:"
-msgstr "输入(_I)："
+msgid "_Applicability:"
+msgstr "适用范围(_A)："
 
 #: ../plugins/externaltools/tools/tools.ui.h:24
 msgid "_Output:"
 msgstr "输出(_O)："
 
 #: ../plugins/externaltools/tools/tools.ui.h:25
+msgid "_Input:"
+msgstr "输入(_I)："
+
+#: ../plugins/externaltools/tools/tools.ui.h:26
 msgid "_Save:"
 msgstr "保存(_S)："
 
-#: ../plugins/externaltools/tools/tools.ui.h:26
+#: ../plugins/externaltools/tools/tools.ui.h:27
 msgid "_Shortcut Key:"
 msgstr "快捷键(_S)："
-
-#: ../plugins/externaltools/tools/tools.ui.h:27
-msgid "_Tools:"
-msgstr "工具(_T)："
 
 #: ../plugins/externaltools/data/build.desktop.in.h:1
 msgid "Build"
@@ -2536,185 +2460,175 @@ msgid "Remove useless trailing spaces in your file"
 msgstr "删除文件中无用的尾随空格"
 
 #: ../plugins/externaltools/data/run-command.desktop.in.h:1
-msgid "Execute a custom command and put its output in a new document"
-msgstr "执行自定义命令并将其输出捕获至新文档"
-
-#: ../plugins/externaltools/data/run-command.desktop.in.h:2
 msgid "Run command"
 msgstr "运行命令"
 
-#: ../plugins/filebrowser/filebrowser.pluma-plugin.desktop.in.h:1
-msgid "Easy file access from the side pane"
-msgstr "从侧边栏轻松访问文件"
+#: ../plugins/externaltools/data/run-command.desktop.in.h:2
+msgid "Execute a custom command and put its output in a new document"
+msgstr "执行自定义命令并将其输出捕获至新文档"
 
-#: ../plugins/filebrowser/filebrowser.pluma-plugin.desktop.in.h:2
+#: ../plugins/filebrowser/filebrowser.pluma-plugin.desktop.in.h:1
 msgid "File Browser Pane"
 msgstr "文件浏览器面板"
 
-#: ../plugins/filebrowser/pluma-file-bookmarks-store.c:235
-msgid "File System"
-msgstr "文件系统"
+#: ../plugins/filebrowser/filebrowser.pluma-plugin.desktop.in.h:2
+msgid "Easy file access from the side pane"
+msgstr "从侧边栏轻松访问文件"
 
-#. ex:ts=8:noet:
-#: ../plugins/filebrowser/pluma-file-browser.schemas.in.h:1
-msgid "Enable Restore of Remote Locations"
-msgstr "启用恢复远程位置"
+#: ../plugins/filebrowser/org.mate.pluma.plugins.filebrowser.gschema.xml.in.in.h:1
+msgid "Set Location to First Document"
+msgstr "将位置设定为第一个文档"
 
-#: ../plugins/filebrowser/pluma-file-browser.schemas.in.h:2
-msgid "File Browser Filter Mode"
-msgstr "文件浏览器过滤方式"
-
-#: ../plugins/filebrowser/pluma-file-browser.schemas.in.h:3
-msgid "File Browser Filter Pattern"
-msgstr "文件浏览器过滤模式"
-
-#: ../plugins/filebrowser/pluma-file-browser.schemas.in.h:4
-msgid "File Browser Root Directory"
-msgstr "文件浏览器根目录"
-
-#: ../plugins/filebrowser/pluma-file-browser.schemas.in.h:5
-msgid "File Browser Virtual Root Directory"
-msgstr "文件浏览器虚拟根目录"
-
-#: ../plugins/filebrowser/pluma-file-browser.schemas.in.h:6
+#: ../plugins/filebrowser/org.mate.pluma.plugins.filebrowser.gschema.xml.in.in.h:2
 msgid ""
 "If TRUE the file browser plugin will view the directory of the first opened "
 "document given that the file browser hasn't been used yet. (Thus this "
 "generally applies to opening a document from the command line or opening it "
 "with Caja, etc.)"
-msgstr ""
-"如果为 TRUE，则文件浏览器插件将查看第一个打开的文件所在目录，如果文件浏览器没"
-"有使用过的话。(这种情况通常出现在从命令行或者 Caja 打开文档)"
+msgstr "如果为 TRUE，则文件浏览器插件将查看第一个打开的文件所在目录，如果文件浏览器没有使用过的话。(这种情况通常出现在从命令行或者 Caja 打开文档)"
 
-#: ../plugins/filebrowser/pluma-file-browser.schemas.in.h:7
-msgid "Open With Tree View"
-msgstr "以树视图打开"
+#: ../plugins/filebrowser/org.mate.pluma.plugins.filebrowser.gschema.xml.in.in.h:3
+msgid "File Browser Filter Mode"
+msgstr "文件浏览器过滤方式"
 
-#: ../plugins/filebrowser/pluma-file-browser.schemas.in.h:8
-msgid ""
-"Open the tree view when the file browser plugin gets loaded instead of the "
-"bookmarks view"
-msgstr "文件浏览器插件载入时以树视图而不是书签视图打开"
-
-#: ../plugins/filebrowser/pluma-file-browser.schemas.in.h:9
-msgid "Set Location to First Document"
-msgstr "将位置设定为第一个文档"
-
-#: ../plugins/filebrowser/pluma-file-browser.schemas.in.h:10
-msgid "Sets whether to enable restoring of remote locations."
-msgstr "设定是否允许恢复远程位置。"
-
-#: ../plugins/filebrowser/pluma-file-browser.schemas.in.h:11
-msgid ""
-"The file browser root directory to use when loading the file browser plugin "
-"and onload/tree_view is TRUE."
-msgstr ""
-"当 onload/tree_view 为 TRUE 时，文件浏览器插件载入将使用此值作为文件浏览器的"
-"根目录。"
-
-#: ../plugins/filebrowser/pluma-file-browser.schemas.in.h:12
-msgid ""
-"The file browser virtual root directory to use when loading the file browser "
-"plugin when onload/tree_view is TRUE. The virtual root must always be below "
-"the actual root."
-msgstr ""
-"当 onload/tree_view 为 TRUE 时，文件浏览器插件载入将使用此值作为文件浏览器的"
-"虚拟根目录。虚拟根目录必须位于实际根目录之下。"
-
-#: ../plugins/filebrowser/pluma-file-browser.schemas.in.h:13
-msgid ""
-"The filter pattern to filter the file browser with. This filter works on top "
-"of the filter_mode."
-msgstr "文件浏览器进行过滤的模式。此过滤器取决于 filter_mode。"
-
-#: ../plugins/filebrowser/pluma-file-browser.schemas.in.h:14
+#: ../plugins/filebrowser/org.mate.pluma.plugins.filebrowser.gschema.xml.in.in.h:4
 msgid ""
 "This value determines what files get filtered from the file browser. Valid "
 "values are: none (filter nothing), hidden (filter hidden files), binary "
 "(filter binary files) and hidden_and_binary (filter both hidden and binary "
 "files)."
-msgstr ""
-"此值决定了文件浏览器过滤文件的方式。可供选择的值有：none (不进行过滤)，"
-"hidden (过滤隐藏文件)，binary (过滤二进制文件)和 hidden_and_binary (过滤隐藏"
-"文件和二进制文件)"
+msgstr "此值决定了文件浏览器过滤文件的方式。可供选择的值有：none (不进行过滤)，hidden (过滤隐藏文件)，binary (过滤二进制文件)和 hidden_and_binary (过滤隐藏文件和二进制文件)"
 
-#: ../plugins/filebrowser/pluma-file-browser-plugin.c:597
+#: ../plugins/filebrowser/org.mate.pluma.plugins.filebrowser.gschema.xml.in.in.h:5
+msgid "File Browser Filter Pattern"
+msgstr "文件浏览器过滤模式"
+
+#: ../plugins/filebrowser/org.mate.pluma.plugins.filebrowser.gschema.xml.in.in.h:6
+msgid ""
+"The filter pattern to filter the file browser with. This filter works on top"
+" of the filter_mode."
+msgstr "文件浏览器进行过滤的模式。此过滤器取决于 filter_mode。"
+
+#: ../plugins/filebrowser/org.mate.pluma.plugins.filebrowser.gschema.xml.in.in.h:7
+msgid "Open With Tree View"
+msgstr "以树视图打开"
+
+#: ../plugins/filebrowser/org.mate.pluma.plugins.filebrowser.gschema.xml.in.in.h:8
+msgid ""
+"Open the tree view when the file browser plugin gets loaded instead of the "
+"bookmarks view"
+msgstr "文件浏览器插件载入时以树视图而不是书签视图打开"
+
+#: ../plugins/filebrowser/org.mate.pluma.plugins.filebrowser.gschema.xml.in.in.h:9
+msgid "File Browser Root Directory"
+msgstr "文件浏览器根目录"
+
+#: ../plugins/filebrowser/org.mate.pluma.plugins.filebrowser.gschema.xml.in.in.h:10
+msgid ""
+"The file browser root directory to use when loading the file browser plugin "
+"and onload/tree_view is TRUE."
+msgstr "当 onload/tree_view 为 TRUE 时，文件浏览器插件载入将使用此值作为文件浏览器的根目录。"
+
+#: ../plugins/filebrowser/org.mate.pluma.plugins.filebrowser.gschema.xml.in.in.h:11
+msgid "File Browser Virtual Root Directory"
+msgstr "文件浏览器虚拟根目录"
+
+#: ../plugins/filebrowser/org.mate.pluma.plugins.filebrowser.gschema.xml.in.in.h:12
+msgid ""
+"The file browser virtual root directory to use when loading the file browser"
+" plugin when onload/tree_view is TRUE. The virtual root must always be below"
+" the actual root."
+msgstr "当 onload/tree_view 为 TRUE 时，文件浏览器插件载入将使用此值作为文件浏览器的虚拟根目录。虚拟根目录必须位于实际根目录之下。"
+
+#: ../plugins/filebrowser/org.mate.pluma.plugins.filebrowser.gschema.xml.in.in.h:13
+msgid "Enable Restore of Remote Locations"
+msgstr "启用恢复远程位置"
+
+#: ../plugins/filebrowser/org.mate.pluma.plugins.filebrowser.gschema.xml.in.in.h:14
+msgid "Sets whether to enable restoring of remote locations."
+msgstr "设定是否允许恢复远程位置。"
+
+#: ../plugins/filebrowser/pluma-file-bookmarks-store.c:235
+msgid "File System"
+msgstr "文件系统"
+
+#: ../plugins/filebrowser/pluma-file-browser-plugin.c:530
 msgid "_Set root to active document"
 msgstr "将根设定为当前文档(_S)"
 
-#: ../plugins/filebrowser/pluma-file-browser-plugin.c:599
+#: ../plugins/filebrowser/pluma-file-browser-plugin.c:532
 msgid "Set the root to the active document location"
 msgstr "将根设定为当前文档的位置"
 
-#: ../plugins/filebrowser/pluma-file-browser-plugin.c:604
+#: ../plugins/filebrowser/pluma-file-browser-plugin.c:537
 msgid "_Open terminal here"
 msgstr "在此打开终端(_O)"
 
-#: ../plugins/filebrowser/pluma-file-browser-plugin.c:606
+#: ../plugins/filebrowser/pluma-file-browser-plugin.c:539
 msgid "Open a terminal at the currently opened directory"
 msgstr "在目前打开的目录中打开终端"
 
-#: ../plugins/filebrowser/pluma-file-browser-plugin.c:742
+#: ../plugins/filebrowser/pluma-file-browser-plugin.c:680
 msgid "File Browser"
 msgstr "文件浏览器"
 
-#: ../plugins/filebrowser/pluma-file-browser-plugin.c:873
+#: ../plugins/filebrowser/pluma-file-browser-plugin.c:802
 msgid "An error occurred while creating a new directory"
 msgstr "创建新目录时发生了错误"
 
-#: ../plugins/filebrowser/pluma-file-browser-plugin.c:876
+#: ../plugins/filebrowser/pluma-file-browser-plugin.c:805
 msgid "An error occurred while creating a new file"
 msgstr "创建新文件时发生了错误"
 
-#: ../plugins/filebrowser/pluma-file-browser-plugin.c:881
+#: ../plugins/filebrowser/pluma-file-browser-plugin.c:810
 msgid "An error occurred while renaming a file or directory"
 msgstr "重命名文件或目录时发生了错误"
 
-#: ../plugins/filebrowser/pluma-file-browser-plugin.c:886
+#: ../plugins/filebrowser/pluma-file-browser-plugin.c:815
 msgid "An error occurred while deleting a file or directory"
 msgstr "删除文件或目录时发生了错误"
 
-#: ../plugins/filebrowser/pluma-file-browser-plugin.c:891
+#: ../plugins/filebrowser/pluma-file-browser-plugin.c:820
 msgid "An error occurred while opening a directory in the file manager"
 msgstr "在文件管理其中打开目录时发生了错误"
 
-#: ../plugins/filebrowser/pluma-file-browser-plugin.c:895
+#: ../plugins/filebrowser/pluma-file-browser-plugin.c:824
 msgid "An error occurred while setting a root directory"
 msgstr "设定根目录时发生了错误"
 
-#: ../plugins/filebrowser/pluma-file-browser-plugin.c:899
+#: ../plugins/filebrowser/pluma-file-browser-plugin.c:828
 msgid "An error occurred while loading a directory"
 msgstr "载入目录时发生了错误"
 
-#: ../plugins/filebrowser/pluma-file-browser-plugin.c:902
+#: ../plugins/filebrowser/pluma-file-browser-plugin.c:831
 msgid "An error occurred"
 msgstr "发生了错误"
 
-#: ../plugins/filebrowser/pluma-file-browser-plugin.c:1194
+#: ../plugins/filebrowser/pluma-file-browser-plugin.c:1062
 msgid ""
 "Cannot move file to trash, do you\n"
 "want to delete permanently?"
 msgstr "无法将文件移动到回收站，您是否想要永久删除？"
 
-#: ../plugins/filebrowser/pluma-file-browser-plugin.c:1198
+#: ../plugins/filebrowser/pluma-file-browser-plugin.c:1066
 #, c-format
 msgid "The file \"%s\" cannot be moved to the trash."
 msgstr "无法将文件“%s”移动到回收站。"
 
-#: ../plugins/filebrowser/pluma-file-browser-plugin.c:1201
+#: ../plugins/filebrowser/pluma-file-browser-plugin.c:1069
 msgid "The selected files cannot be moved to the trash."
 msgstr "无法将选中文件移动到回收站。"
 
-#: ../plugins/filebrowser/pluma-file-browser-plugin.c:1234
+#: ../plugins/filebrowser/pluma-file-browser-plugin.c:1102
 #, c-format
 msgid "Are you sure you want to permanently delete \"%s\"?"
 msgstr "您确定想要永久删除“%s”吗？"
 
-#: ../plugins/filebrowser/pluma-file-browser-plugin.c:1237
+#: ../plugins/filebrowser/pluma-file-browser-plugin.c:1105
 msgid "Are you sure you want to permanently delete the selected files?"
 msgstr "您确定想要永久删除选中文件吗？"
 
-#: ../plugins/filebrowser/pluma-file-browser-plugin.c:1240
+#: ../plugins/filebrowser/pluma-file-browser-plugin.c:1108
 msgid "If you delete an item, it is permanently lost."
 msgstr "如果您删除的话，该文件将永久丢失。"
 
@@ -2728,7 +2642,8 @@ msgid ""
 "settings to make the file visible"
 msgstr "重命名的文件现在已被过滤掉。您需要调整您的过滤器设置才能看到文件"
 
-#. Translators: This is the default name of new files created by the file browser pane.
+#. Translators: This is the default name of new files created by the file
+#. browser pane.
 #: ../plugins/filebrowser/pluma-file-browser-store.c:3544
 msgid "file"
 msgstr "文件"
@@ -2739,7 +2654,8 @@ msgid ""
 "settings to make the file visible"
 msgstr "新文件现在已被过滤掉。您需要调整您的过滤器设置才能看到文件"
 
-#. Translators: This is the default name of new directories created by the file browser pane.
+#. Translators: This is the default name of new directories created by the
+#. file browser pane.
 #: ../plugins/filebrowser/pluma-file-browser-store.c:3597
 msgid "directory"
 msgstr "目录"
@@ -2904,21 +2820,21 @@ msgstr "无法挂载卷：%s"
 
 #. ex:ts=8:noet:
 #: ../plugins/modelines/modelines.pluma-plugin.desktop.in.h:1
-msgid "Emacs, Kate and Vim-style modelines support for pluma."
-msgstr "pluma 的 Emacs、Kate 和 Vim 风格的 modeline 支持。"
-
-#: ../plugins/modelines/modelines.pluma-plugin.desktop.in.h:2
 msgid "Modelines"
 msgstr "模式行"
 
-#: ../plugins/pythonconsole/pythonconsole.pluma-plugin.desktop.in.h:1
-msgid "Interactive Python console standing in the bottom panel"
-msgstr "位于底部面板中的交互式 Python 控制台"
+#: ../plugins/modelines/modelines.pluma-plugin.desktop.in.h:2
+msgid "Emacs, Kate and Vim-style modelines support for pluma."
+msgstr "pluma 的 Emacs、Kate 和 Vim 风格的 modeline 支持。"
 
-#: ../plugins/pythonconsole/pythonconsole.pluma-plugin.desktop.in.h:2
+#: ../plugins/pythonconsole/pythonconsole.pluma-plugin.desktop.in.h:1
 #: ../plugins/pythonconsole/pythonconsole/__init__.py:50
 msgid "Python Console"
 msgstr "Python 控制台"
+
+#: ../plugins/pythonconsole/pythonconsole.pluma-plugin.desktop.in.h:2
+msgid "Interactive Python console standing in the bottom panel"
+msgstr "位于底部面板中的交互式 Python 控制台"
 
 #. ex:et:ts=4:
 #: ../plugins/pythonconsole/pythonconsole/config.ui.h:1
@@ -2948,65 +2864,65 @@ msgid "Quickly open files"
 msgstr "快速打开文件"
 
 #: ../plugins/snippets/snippets.pluma-plugin.desktop.in.h:1
-msgid "Insert often-used pieces of text in a fast way"
-msgstr "快速插入最常使用的文本片断"
-
-#: ../plugins/snippets/snippets.pluma-plugin.desktop.in.h:2
 #: ../plugins/snippets/snippets/Document.py:58
 msgid "Snippets"
 msgstr "片断"
 
+#: ../plugins/snippets/snippets.pluma-plugin.desktop.in.h:2
+msgid "Insert often-used pieces of text in a fast way"
+msgstr "快速插入最常使用的文本片断"
+
+#: ../plugins/snippets/snippets/snippets.ui.h:1
+msgid "Snippets Manager"
+msgstr "片断管理器"
+
 #: ../plugins/snippets/snippets/snippets.ui.h:2
-msgid "Activation"
-msgstr "激活"
+msgid "_Snippets:"
+msgstr "片断(_S)："
 
 #: ../plugins/snippets/snippets/snippets.ui.h:3
 msgid "Create new snippet"
 msgstr "创建新片断"
 
 #: ../plugins/snippets/snippets/snippets.ui.h:4
-#: ../plugins/snippets/snippets/Manager.py:412
-msgid "Delete selected snippet"
-msgstr "删除选中的片断"
+#: ../plugins/snippets/snippets/Manager.py:800
+msgid "Import snippets"
+msgstr "导入片断"
 
 #: ../plugins/snippets/snippets/snippets.ui.h:5
 msgid "Export selected snippets"
 msgstr "导出选中片断"
 
 #: ../plugins/snippets/snippets/snippets.ui.h:6
-#: ../plugins/snippets/snippets/Manager.py:800
-msgid "Import snippets"
-msgstr "导入片断"
-
-#: ../plugins/snippets/snippets/snippets.ui.h:7
-msgid "S_hortcut key:"
-msgstr "快捷键(_H)："
+#: ../plugins/snippets/snippets/Manager.py:412
+msgid "Delete selected snippet"
+msgstr "删除选中的片断"
 
 #: ../plugins/snippets/snippets/snippets.ui.h:8
-msgid "Shortcut key with which the snippet is activated"
-msgstr "此片断的快捷键已经激活"
+msgid "Activation"
+msgstr "激活"
+
+#: ../plugins/snippets/snippets/snippets.ui.h:10
+msgid "_Tab trigger:"
+msgstr "_Tab 触发器："
 
 #. self['hbox_tab_trigger'].set_spacing(0)
-#: ../plugins/snippets/snippets/snippets.ui.h:9
+#: ../plugins/snippets/snippets/snippets.ui.h:11
 #: ../plugins/snippets/snippets/Manager.py:689
 msgid "Single word the snippet is activated with after pressing Tab"
 msgstr "按下 tab 键后和片断一起激活的单字"
 
-#: ../plugins/snippets/snippets/snippets.ui.h:10
-msgid "Snippets Manager"
-msgstr "片断管理器"
-
-#: ../plugins/snippets/snippets/snippets.ui.h:11
-msgid "_Drop targets:"
-msgstr "拖放目标(_D)："
+#: ../plugins/snippets/snippets/snippets.ui.h:12
+msgid "Shortcut key with which the snippet is activated"
+msgstr "此片断的快捷键已经激活"
 
 #: ../plugins/snippets/snippets/snippets.ui.h:13
-msgid "_Snippets:"
-msgstr "片断(_S)："
+msgid "S_hortcut key:"
+msgstr "快捷键(_H)："
 
 #: ../plugins/snippets/snippets/snippets.ui.h:14
-msgid "_Tab trigger:"
-msgstr "_Tab 触发器："
+msgid "_Drop targets:"
+msgstr "拖放目标(_D)："
 
 #: ../plugins/snippets/snippets/WindowHelper.py:130
 msgid "Manage _Snippets..."
@@ -3037,9 +2953,7 @@ msgstr "还原选中的片断"
 msgid ""
 "This is not a valid Tab trigger. Triggers can either contain letters or a "
 "single (non-alphanumeric) character like: {, [, etc."
-msgstr ""
-"这不是有效的跳格触发器。触发器必须是包含包含字母或者单个非字母字符，比如 "
-"{ 或 [ 等等。"
+msgstr "这不是有效的跳格触发器。触发器必须是包含包含字母或者单个非字母字符，比如 { 或 [ 等等。"
 
 #: ../plugins/snippets/snippets/Manager.py:779
 #, python-format
@@ -3179,7 +3093,7 @@ msgid "Sort the current document or selection"
 msgstr "将当前文档或选中的文字排序"
 
 #: ../plugins/sort/sort.pluma-plugin.desktop.in.h:1
-#: ../plugins/sort/sort.ui.h:3
+#: ../plugins/sort/sort.ui.h:1
 msgid "Sort"
 msgstr "排序"
 
@@ -3187,32 +3101,34 @@ msgstr "排序"
 msgid "Sorts a document or selected text."
 msgstr "将文档或选中的文字排序。"
 
-#: ../plugins/sort/sort.ui.h:1
-msgid "R_emove duplicates"
-msgstr "删除重复内容(_E)"
-
 #: ../plugins/sort/sort.ui.h:2
-msgid "S_tart at column:"
-msgstr "排序开始于列(_T)："
+msgid "_Sort"
+msgstr "排序(_S)"
+
+#: ../plugins/sort/sort.ui.h:3
+msgid "_Reverse order"
+msgstr "逆序排序(_R)"
 
 #: ../plugins/sort/sort.ui.h:4
-msgid "You cannot undo a sort operation"
-msgstr "您无法撤消排序操作"
+msgid "R_emove duplicates"
+msgstr "删除重复内容(_E)"
 
 #: ../plugins/sort/sort.ui.h:5
 msgid "_Ignore case"
 msgstr "忽略大小写(_I)"
 
 #: ../plugins/sort/sort.ui.h:6
-msgid "_Reverse order"
-msgstr "逆序排序(_R)"
+msgid "S_tart at column:"
+msgstr "排序开始于列(_T)："
 
 #: ../plugins/sort/sort.ui.h:7
-msgid "_Sort"
-msgstr "排序(_S)"
+msgid "You cannot undo a sort operation"
+msgstr "您无法撤消排序操作"
 
-#. Translators: Displayed in the "Check Spelling" dialog if there are no suggestions for the current misspelled word
-#. Translators: Displayed in the "Check Spelling" dialog if there are no suggestions
+#. Translators: Displayed in the "Check Spelling" dialog if there are no
+#. suggestions for the current misspelled word
+#. Translators: Displayed in the "Check Spelling" dialog if there are no
+#. suggestions
 #. * for the current misspelled word
 #: ../plugins/spell/pluma-automatic-spell-checker.c:420
 #: ../plugins/spell/pluma-spell-checker-dialog.c:455
@@ -3245,7 +3161,8 @@ msgstr "检查拼写"
 msgid "Suggestions"
 msgstr "建议"
 
-#. Translators: Displayed in the "Check Spelling" dialog if the current word isn't misspelled
+#. Translators: Displayed in the "Check Spelling" dialog if the current word
+#. isn't misspelled
 #: ../plugins/spell/pluma-spell-checker-dialog.c:562
 msgid "(correct spelling)"
 msgstr "(正确的拼写)"
@@ -3257,7 +3174,7 @@ msgstr "完成拼写检查"
 #. Translators: the first %s is the language name, and
 #. * the second %s is the locale name. Example:
 #. * "French (France)"
-#.
+#. 
 #: ../plugins/spell/pluma-spell-checker-language.c:285
 #: ../plugins/spell/pluma-spell-checker-language.c:291
 #, c-format
@@ -3267,7 +3184,7 @@ msgstr "%s (%s)"
 
 #. Translators: this refers to an unknown language code
 #. * (one which isn't in our built-in list).
-#.
+#. 
 #: ../plugins/spell/pluma-spell-checker-language.c:300
 #, c-format
 msgctxt "language"
@@ -3276,14 +3193,14 @@ msgstr "未知 (%s)"
 
 #. Translators: this refers the Default language used by the
 #. * spell checker
-#.
+#. 
 #: ../plugins/spell/pluma-spell-checker-language.c:406
 msgctxt "language"
 msgid "Default"
 msgstr "默认"
 
 #: ../plugins/spell/pluma-spell-language-dialog.c:141
-#: ../plugins/spell/languages-dialog.ui.h:2
+#: ../plugins/spell/languages-dialog.ui.h:1
 msgid "Set language"
 msgstr "设置语言"
 
@@ -3323,21 +3240,21 @@ msgstr "文档为空。"
 msgid "No misspelled words"
 msgstr "没有拼错的单词"
 
-#: ../plugins/spell/languages-dialog.ui.h:1
+#: ../plugins/spell/languages-dialog.ui.h:2
 msgid "Select the _language of the current document."
 msgstr "选择当前文档的语言(_L)。"
 
 #: ../plugins/spell/spell-checker.ui.h:1
-msgid "Add w_ord"
-msgstr "添加单词(_O)"
+msgid "Check spelling"
+msgstr "拼写检查"
 
 #: ../plugins/spell/spell-checker.ui.h:2
-msgid "Cha_nge"
-msgstr "更改(_N)"
+msgid "Misspelled word:"
+msgstr "拼错的单词："
 
 #: ../plugins/spell/spell-checker.ui.h:3
-msgid "Change A_ll"
-msgstr "全部更改(_L)"
+msgid "word"
+msgstr "单词"
 
 #: ../plugins/spell/spell-checker.ui.h:4
 msgid "Change _to:"
@@ -3348,48 +3265,48 @@ msgid "Check _Word"
 msgstr "检查单词(_W)"
 
 #: ../plugins/spell/spell-checker.ui.h:6
-msgid "Check spelling"
-msgstr "拼写检查"
+msgid "_Suggestions:"
+msgstr "建议(_S)："
 
 #: ../plugins/spell/spell-checker.ui.h:7
+msgid "_Ignore"
+msgstr "忽略(_I)"
+
+#: ../plugins/spell/spell-checker.ui.h:8
+msgid "Cha_nge"
+msgstr "更改(_N)"
+
+#: ../plugins/spell/spell-checker.ui.h:9
 msgid "Ignore _All"
 msgstr "全部忽略(_A)"
 
-#: ../plugins/spell/spell-checker.ui.h:8
-msgid "Language"
-msgstr "语言"
-
-#: ../plugins/spell/spell-checker.ui.h:9
-msgid "Language:"
-msgstr "语言："
-
 #: ../plugins/spell/spell-checker.ui.h:10
-msgid "Misspelled word:"
-msgstr "拼错的单词："
+msgid "Change A_ll"
+msgstr "全部更改(_L)"
 
 #: ../plugins/spell/spell-checker.ui.h:11
 msgid "User dictionary:"
 msgstr "用户字典："
 
 #: ../plugins/spell/spell-checker.ui.h:12
-msgid "_Ignore"
-msgstr "忽略(_I)"
+msgid "Add w_ord"
+msgstr "添加单词(_O)"
 
 #: ../plugins/spell/spell-checker.ui.h:13
-msgid "_Suggestions:"
-msgstr "建议(_S)："
+msgid "Language:"
+msgstr "语言："
 
 #: ../plugins/spell/spell-checker.ui.h:14
-msgid "word"
-msgstr "单词"
+msgid "Language"
+msgstr "语言"
 
 #: ../plugins/spell/spell.pluma-plugin.desktop.in.h:1
-msgid "Checks the spelling of the current document."
-msgstr "检查当前文档的拼写。"
-
-#: ../plugins/spell/spell.pluma-plugin.desktop.in.h:2
 msgid "Spell Checker"
 msgstr "拼写检查器"
+
+#: ../plugins/spell/spell.pluma-plugin.desktop.in.h:2
+msgid "Checks the spelling of the current document."
+msgstr "检查当前文档的拼写。"
 
 #: ../plugins/taglist/pluma-taglist-plugin.c:98
 #: ../plugins/taglist/pluma-taglist-plugin-panel.c:694
@@ -3410,16 +3327,16 @@ msgid "Available Tag Lists"
 msgstr "可用的标记列表"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:1
+msgid "XHTML 1.0 - Tags"
+msgstr "XHTML 1.0 - 标记"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:2
 msgid "Abbreviated form"
 msgstr "缩写格式"
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:2
+#: ../plugins/taglist/HTML.tags.xml.in.h:3
 msgid "Abbreviation"
 msgstr "缩写"
-
-#: ../plugins/taglist/HTML.tags.xml.in.h:3
-msgid "Above"
-msgstr "以上"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:4
 msgid "Accessibility key character"
@@ -3442,1168 +3359,1168 @@ msgid "Alternative"
 msgstr "替代"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:9
-msgid "Anchor"
-msgstr "锚"
-
-#: ../plugins/taglist/HTML.tags.xml.in.h:10
 msgid "Anchor URI"
 msgstr "锚 URI"
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:11
-msgid "Applet class file code"
-msgstr "小程序类文件代码"
+#: ../plugins/taglist/HTML.tags.xml.in.h:10
+msgid "Anchor"
+msgstr "锚"
 
 #. Deprecated since HTML 4.01, not supported in XHTML 1.0 Strict DTD.
-#: ../plugins/taglist/HTML.tags.xml.in.h:13
+#: ../plugins/taglist/HTML.tags.xml.in.h:12
 msgid "Applet class file code (deprecated)"
 msgstr "小程序类文件代码(已废弃)"
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:14
-msgid "Array"
-msgstr "数组"
-
-#: ../plugins/taglist/HTML.tags.xml.in.h:15
+#: ../plugins/taglist/HTML.tags.xml.in.h:13
 msgid "Associated information"
 msgstr "关联的新ch"
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:16
+#: ../plugins/taglist/HTML.tags.xml.in.h:14
 msgid "Author info"
 msgstr "作者信息"
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:17
+#: ../plugins/taglist/HTML.tags.xml.in.h:15
 msgid "Axis related headers"
 msgstr "与轴相关的页眉"
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:18
-msgid "Background color"
-msgstr "背景颜色"
-
 #. Deprecated since HTML 4.01, not supported in XHTML 1.0 Strict DTD.
-#: ../plugins/taglist/HTML.tags.xml.in.h:20
+#: ../plugins/taglist/HTML.tags.xml.in.h:17
 msgid "Background color (deprecated)"
 msgstr "背景颜色(已废弃)"
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:21
-msgid "Background texture tile"
-msgstr "背景纹理平铺"
-
 #. Deprecated since HTML 4.01, not supported in XHTML 1.0 Strict DTD.
-#: ../plugins/taglist/HTML.tags.xml.in.h:23
+#: ../plugins/taglist/HTML.tags.xml.in.h:19
 msgid "Background texture tile (deprecated)"
 msgstr "背景纹理平铺(已废弃)"
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:24
-msgid "Base URI"
-msgstr "基 URI"
-
-#: ../plugins/taglist/HTML.tags.xml.in.h:25
-msgid "Base font"
-msgstr "基本字体"
-
 #. Deprecated since HTML 4.01, not supported in XHTML 1.0 Strict DTD.
-#: ../plugins/taglist/HTML.tags.xml.in.h:27
+#: ../plugins/taglist/HTML.tags.xml.in.h:21
 msgid "Base font (deprecated)"
 msgstr "基本字体(已废弃)"
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:28
+#: ../plugins/taglist/HTML.tags.xml.in.h:22
+msgid "Base URI"
+msgstr "基 URI"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:23
 msgid "Bold"
 msgstr "粗体"
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:29
-msgid "Border"
-msgstr "边框"
-
 #. Deprecated since HTML 4.01, not supported in XHTML 1.0 Strict DTD.
-#: ../plugins/taglist/HTML.tags.xml.in.h:31
+#: ../plugins/taglist/HTML.tags.xml.in.h:25
 msgid "Border (deprecated)"
 msgstr "边框(已废弃)"
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:32
-msgid "Border color"
-msgstr "边框颜色"
-
-#: ../plugins/taglist/HTML.tags.xml.in.h:33
+#: ../plugins/taglist/HTML.tags.xml.in.h:26
 msgid "Cell rowspan"
 msgstr "单元格跨行"
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:34
-msgid "Center"
-msgstr "居中"
-
 #. Deprecated since HTML 4.01, not supported in XHTML 1.0 Strict DTD.
-#: ../plugins/taglist/HTML.tags.xml.in.h:36
+#: ../plugins/taglist/HTML.tags.xml.in.h:28
 msgid "Center (deprecated)"
 msgstr "居中(已废弃)"
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:37
+#: ../plugins/taglist/HTML.tags.xml.in.h:29
 msgid "Character encoding of linked resource"
 msgstr "链接资源的字符编码"
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:38
-msgid "Checked (state)"
-msgstr "已选中(状态)"
-
-#: ../plugins/taglist/HTML.tags.xml.in.h:39
+#: ../plugins/taglist/HTML.tags.xml.in.h:30
 msgid "Checked state"
 msgstr "已选中状态"
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:40
+#: ../plugins/taglist/HTML.tags.xml.in.h:31
 msgid "Citation"
 msgstr "引用"
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:41
+#: ../plugins/taglist/HTML.tags.xml.in.h:32
 msgid "Cite reason for change"
 msgstr "更改的引用原因"
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:42
+#: ../plugins/taglist/HTML.tags.xml.in.h:33
 msgid "Class implementation ID"
 msgstr "类实现 ID"
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:43
+#: ../plugins/taglist/HTML.tags.xml.in.h:34
 msgid "Class list"
 msgstr "类列表"
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:44
+#: ../plugins/taglist/HTML.tags.xml.in.h:35
 msgid "Clear text flow control"
 msgstr "清除文本流控制"
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:45
+#: ../plugins/taglist/HTML.tags.xml.in.h:36
 msgid "Code content type"
 msgstr "代码内容类型"
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:46
-msgid "Color of selected links"
-msgstr "选中链接的颜色"
-
 #. Deprecated since HTML 4.01, not supported in XHTML 1.0 Strict DTD.
-#: ../plugins/taglist/HTML.tags.xml.in.h:48
+#: ../plugins/taglist/HTML.tags.xml.in.h:38
 msgid "Color of selected links (deprecated)"
 msgstr "选中链接的颜色(已废弃)"
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:49
+#: ../plugins/taglist/HTML.tags.xml.in.h:39
 msgid "Column span"
 msgstr "跨列"
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:50
+#: ../plugins/taglist/HTML.tags.xml.in.h:40
 msgid "Columns"
 msgstr "列"
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:51
+#: ../plugins/taglist/HTML.tags.xml.in.h:41
 msgid "Comment"
 msgstr "注释"
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:52
+#: ../plugins/taglist/HTML.tags.xml.in.h:42
 msgid "Computer code fragment"
 msgstr "计算机代码段"
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:53
-msgid "Content scheme"
-msgstr "目录大纲"
-
-#: ../plugins/taglist/HTML.tags.xml.in.h:54
-msgid "Content type"
-msgstr "内容类型"
-
 #. The "type" attribute is deprecated for the "ol" tag only,
 #. since HTML 4.01, not supported in XHTML 1.0 Strict DTD.
-#: ../plugins/taglist/HTML.tags.xml.in.h:57
+#: ../plugins/taglist/HTML.tags.xml.in.h:45
 msgid "Content type (deprecated)"
 msgstr "内容类型(已废弃)"
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:58
+#: ../plugins/taglist/HTML.tags.xml.in.h:46
 msgid "Coordinates"
 msgstr "坐标"
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:59
-msgid "DIV Style container"
-msgstr "DIV 样式容器"
-
-#: ../plugins/taglist/HTML.tags.xml.in.h:60
-msgid "DIV container"
-msgstr "DIV 容器"
-
-#: ../plugins/taglist/HTML.tags.xml.in.h:61
+#: ../plugins/taglist/HTML.tags.xml.in.h:47
 msgid "Date and time of change"
 msgstr "更改日期和时间"
 
 #. NOTE: used in "object" tag
-#: ../plugins/taglist/HTML.tags.xml.in.h:63
+#: ../plugins/taglist/HTML.tags.xml.in.h:49
 msgid "Declare flag"
 msgstr "声明标志"
 
 #. Translators: DEFER is an optional attribute of the <script> tag.
 #. It indicates that the script is not going to generate any document
 #. content. The browser can continue parsing and drawing the page.
-#: ../plugins/taglist/HTML.tags.xml.in.h:67
+#: ../plugins/taglist/HTML.tags.xml.in.h:53
 msgid "Defer attribute"
 msgstr "延期属性"
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:68
+#: ../plugins/taglist/HTML.tags.xml.in.h:54
 msgid "Definition description"
 msgstr "定义描述"
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:69
+#: ../plugins/taglist/HTML.tags.xml.in.h:55
 msgid "Definition list"
 msgstr "定义列表"
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:70
+#: ../plugins/taglist/HTML.tags.xml.in.h:56
 msgid "Definition term"
 msgstr "定义条款"
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:71
+#: ../plugins/taglist/HTML.tags.xml.in.h:57
 msgid "Deleted text"
 msgstr "删除的文本"
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:72
-msgid "Direction"
-msgstr "方向"
-
-#: ../plugins/taglist/HTML.tags.xml.in.h:73
+#: ../plugins/taglist/HTML.tags.xml.in.h:58
 msgid "Directionality"
 msgstr "方向性"
 
 #. Deprecated since HTML 4.01, not supported in XHTML 1.0 Strict DTD.
-#: ../plugins/taglist/HTML.tags.xml.in.h:75
+#: ../plugins/taglist/HTML.tags.xml.in.h:60
 msgid "Directionality (deprecated)"
 msgstr "方向性(已废弃)"
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:76
-msgid "Directory list"
-msgstr "目录列表"
-
-#: ../plugins/taglist/HTML.tags.xml.in.h:77
+#: ../plugins/taglist/HTML.tags.xml.in.h:61
 msgid "Disabled"
 msgstr "已禁用"
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:78
+#: ../plugins/taglist/HTML.tags.xml.in.h:62
+msgid "DIV container"
+msgstr "DIV 容器"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:63
+msgid "DIV Style container"
+msgstr "DIV 样式容器"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:64
 msgid "Document base"
 msgstr "文档基础"
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:79
+#: ../plugins/taglist/HTML.tags.xml.in.h:65
 msgid "Document body"
 msgstr "文档主体"
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:80
+#: ../plugins/taglist/HTML.tags.xml.in.h:66
 msgid "Document head"
 msgstr "文档头"
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:81
-msgid "Document title"
-msgstr "文档标题"
-
-#: ../plugins/taglist/HTML.tags.xml.in.h:82
-msgid "Document type"
-msgstr "文档类型"
-
-#: ../plugins/taglist/HTML.tags.xml.in.h:83
+#: ../plugins/taglist/HTML.tags.xml.in.h:67
 msgid "Element ID"
 msgstr "元素 ID"
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:84
-msgid "Embedded object"
-msgstr "嵌入对象"
+#: ../plugins/taglist/HTML.tags.xml.in.h:68
+msgid "Document title"
+msgstr "文档标题"
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:85
-#: ../plugins/taglist/Latex.tags.xml.in.h:9
+#: ../plugins/taglist/HTML.tags.xml.in.h:69
+msgid "Document type"
+msgstr "文档类型"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:70
+#: ../plugins/taglist/Latex.tags.xml.in.h:72
 msgid "Emphasis"
 msgstr "强调"
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:86
+#: ../plugins/taglist/HTML.tags.xml.in.h:71
 msgid "Encode type"
 msgstr "编码类型"
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:87
-msgid "Figure"
-msgstr "图形"
-
-#: ../plugins/taglist/HTML.tags.xml.in.h:88
-msgid "Font face"
-msgstr "字体名"
-
 #. Deprecated since HTML 4.01, not supported in XHTML 1.0 Strict DTD.
-#: ../plugins/taglist/HTML.tags.xml.in.h:90
+#: ../plugins/taglist/HTML.tags.xml.in.h:73
 msgid "Font face (deprecated)"
 msgstr "字体族(已废弃)"
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:91
+#: ../plugins/taglist/HTML.tags.xml.in.h:74
 msgid "For label"
 msgstr "For 标签"
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:92
+#: ../plugins/taglist/HTML.tags.xml.in.h:75
 msgid "Forced line break"
 msgstr "强制换行"
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:93
-msgid "Form"
-msgstr "表单"
-
-#: ../plugins/taglist/HTML.tags.xml.in.h:94
+#: ../plugins/taglist/HTML.tags.xml.in.h:76
 msgid "Form action handler"
 msgstr "表单动作处理器"
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:95
+#: ../plugins/taglist/HTML.tags.xml.in.h:77
 msgid "Form control group"
 msgstr "表单控件组"
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:96
+#: ../plugins/taglist/HTML.tags.xml.in.h:78
 msgid "Form field label text"
 msgstr "表单域标签文字"
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:97
-msgid "Form input"
-msgstr "表单输入"
-
-#: ../plugins/taglist/HTML.tags.xml.in.h:98
+#: ../plugins/taglist/HTML.tags.xml.in.h:79
 msgid "Form input type"
 msgstr "表单输入类型"
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:99
+#: ../plugins/taglist/HTML.tags.xml.in.h:80
+msgid "Form input"
+msgstr "表单输入"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:81
 msgid "Form method"
 msgstr "表单方式"
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:100
+#: ../plugins/taglist/HTML.tags.xml.in.h:82
+msgid "Form"
+msgstr "表单"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:83
 msgid "Forward link"
 msgstr "转发链接"
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:101
-msgid "Frame"
-msgstr "框架"
-
-#: ../plugins/taglist/HTML.tags.xml.in.h:102
-msgid "Frame border"
-msgstr "框架边框"
-
-#: ../plugins/taglist/HTML.tags.xml.in.h:103
+#: ../plugins/taglist/HTML.tags.xml.in.h:84
 msgid "Frame render parts"
 msgstr "边框渲染部件"
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:104
+#: ../plugins/taglist/HTML.tags.xml.in.h:85
 msgid "Frame source"
 msgstr "框架源"
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:105
-msgid "Frame spacing"
-msgstr "框架间距"
-
-#: ../plugins/taglist/HTML.tags.xml.in.h:106
+#: ../plugins/taglist/HTML.tags.xml.in.h:86
 msgid "Frame target"
 msgstr "框架目标"
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:107
-msgid "Frameborder"
+#: ../plugins/taglist/HTML.tags.xml.in.h:87
+msgid "Frame"
+msgstr "框架"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:88
+msgid "Frame border"
 msgstr "框架边框"
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:108
-msgid "Frameset"
-msgstr "框架集"
-
-#: ../plugins/taglist/HTML.tags.xml.in.h:109
+#: ../plugins/taglist/HTML.tags.xml.in.h:89
 msgid "Frameset columns"
 msgstr "框架集列"
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:110
+#: ../plugins/taglist/HTML.tags.xml.in.h:90
 msgid "Frameset rows"
 msgstr "框架集行"
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:111
-msgid "Framespacing"
+#: ../plugins/taglist/HTML.tags.xml.in.h:91
+msgid "Frameset"
+msgstr "框架集"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:92
+msgid "Frame spacing"
 msgstr "框架间距"
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:112
+#: ../plugins/taglist/HTML.tags.xml.in.h:93
 msgid "Generic embedded object"
 msgstr "通用嵌入对象"
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:113
+#: ../plugins/taglist/HTML.tags.xml.in.h:94
 msgid "Generic metainformation"
 msgstr "通用元信息"
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:114
+#: ../plugins/taglist/HTML.tags.xml.in.h:95
 msgid "Generic span"
 msgstr "通用 span"
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:115
-msgid "HREF URI"
-msgstr "HREF URI"
-
-#: ../plugins/taglist/HTML.tags.xml.in.h:116
-msgid "HTML - Special Characters"
-msgstr "HTML - 特殊字符"
-
-#: ../plugins/taglist/HTML.tags.xml.in.h:117
-msgid "HTML - Tags"
-msgstr "HTML - 标记"
-
-#: ../plugins/taglist/HTML.tags.xml.in.h:118
-msgid "HTML root element"
-msgstr "HTML 根元素"
-
-#: ../plugins/taglist/HTML.tags.xml.in.h:119
-msgid "HTML version"
-msgstr "HTML 版本"
-
-#: ../plugins/taglist/HTML.tags.xml.in.h:120
-msgid "HTTP header name"
-msgstr "HTTP 头名称"
-
-#: ../plugins/taglist/HTML.tags.xml.in.h:121
+#: ../plugins/taglist/HTML.tags.xml.in.h:96
 msgid "Header cell IDs"
 msgstr "表头单元格 ID"
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:122
-msgid "Heading"
-msgstr "标题"
-
-#: ../plugins/taglist/HTML.tags.xml.in.h:123
+#: ../plugins/taglist/HTML.tags.xml.in.h:97
 msgid "Heading 1"
 msgstr "一级标题"
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:124
+#: ../plugins/taglist/HTML.tags.xml.in.h:98
 msgid "Heading 2"
 msgstr "二级标题"
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:125
+#: ../plugins/taglist/HTML.tags.xml.in.h:99
 msgid "Heading 3"
 msgstr "三级标题"
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:126
+#: ../plugins/taglist/HTML.tags.xml.in.h:100
 msgid "Heading 4"
 msgstr "四级标题"
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:127
+#: ../plugins/taglist/HTML.tags.xml.in.h:101
 msgid "Heading 5"
 msgstr "五级标题"
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:128
+#: ../plugins/taglist/HTML.tags.xml.in.h:102
 msgid "Heading 6"
 msgstr "六级标题"
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:129
+#: ../plugins/taglist/HTML.tags.xml.in.h:103
 msgid "Height"
 msgstr "高度"
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:130
+#: ../plugins/taglist/HTML.tags.xml.in.h:104
 msgid "Horizontal rule"
 msgstr "水平线"
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:131
-msgid "Horizontal space"
-msgstr "水平间距"
-
 #. Deprecated since HTML 4.01, not supported in XHTML 1.0 Strict DTD.
-#: ../plugins/taglist/HTML.tags.xml.in.h:133
+#: ../plugins/taglist/HTML.tags.xml.in.h:106
 msgid "Horizontal space (deprecated)"
 msgstr "水平间距(已废弃)"
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:134
+#: ../plugins/taglist/HTML.tags.xml.in.h:107
+msgid "HREF URI"
+msgstr "HREF URI"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:108
+msgid "HTML root element"
+msgstr "HTML 根元素"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:109
+msgid "HTTP header name"
+msgstr "HTTP 头名称"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:110
 msgid "I18N BiDi override"
 msgstr "I18N 双向文字覆盖"
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:135
-msgid "Image"
-msgstr "图像"
-
-#: ../plugins/taglist/HTML.tags.xml.in.h:136
-msgid "Image map"
-msgstr "图像映射"
-
-#: ../plugins/taglist/HTML.tags.xml.in.h:137
+#: ../plugins/taglist/HTML.tags.xml.in.h:111
 msgid "Image map area"
 msgstr "图像映射区域"
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:138
+#: ../plugins/taglist/HTML.tags.xml.in.h:112
 msgid "Image map name"
 msgstr "图像映射名称"
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:139
-msgid "Image source"
-msgstr "图象源"
+#: ../plugins/taglist/HTML.tags.xml.in.h:113
+msgid "Image map"
+msgstr "图像映射"
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:140
+#: ../plugins/taglist/HTML.tags.xml.in.h:114
+msgid "Image"
+msgstr "图像"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:115
 msgid "Inline frame"
 msgstr "内嵌框架"
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:141
-msgid "Inline layer"
-msgstr "内嵌层"
-
-#: ../plugins/taglist/HTML.tags.xml.in.h:142
+#: ../plugins/taglist/HTML.tags.xml.in.h:116
 msgid "Inserted text"
 msgstr "插入的文字"
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:143
+#: ../plugins/taglist/HTML.tags.xml.in.h:117
 msgid "Instance definition"
 msgstr "实例定义"
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:144
+#: ../plugins/taglist/HTML.tags.xml.in.h:118
 msgid "Italic text"
 msgstr "斜体文字"
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:145
-msgid "Java applet"
-msgstr "Java 小程序"
-
 #. Deprecated since HTML 4.01, not supported in XHTML 1.0 Strict DTD.
-#: ../plugins/taglist/HTML.tags.xml.in.h:147
+#: ../plugins/taglist/HTML.tags.xml.in.h:120
 msgid "Java applet (deprecated)"
 msgstr "Java 小程序(已废弃)"
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:148
+#: ../plugins/taglist/HTML.tags.xml.in.h:121
 msgid "Label"
 msgstr "标签"
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:149
+#: ../plugins/taglist/HTML.tags.xml.in.h:122
 msgid "Language code"
 msgstr "语言代码"
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:150
+#: ../plugins/taglist/HTML.tags.xml.in.h:123
 msgid "Large text style"
 msgstr "大文本样式"
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:151
-msgid "Layer"
-msgstr "层"
-
-#: ../plugins/taglist/HTML.tags.xml.in.h:152
-msgid "Link color"
-msgstr "链接颜色"
-
 #. Deprecated since HTML 4.01, not supported in XHTML 1.0 Strict DTD.
-#: ../plugins/taglist/HTML.tags.xml.in.h:154
+#: ../plugins/taglist/HTML.tags.xml.in.h:125
 msgid "Link color (deprecated)"
 msgstr "链接颜色(已废弃)"
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:155
+#: ../plugins/taglist/HTML.tags.xml.in.h:126
 msgid "List item"
 msgstr "列表项目"
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:156
+#: ../plugins/taglist/HTML.tags.xml.in.h:127
 msgid "List of MIME types for file upload"
 msgstr "列出上传文件的 MIME 类型"
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:157
+#: ../plugins/taglist/HTML.tags.xml.in.h:128
 msgid "List of supported character sets"
 msgstr "列出可接受的字符集"
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:158
-msgid "Listing"
-msgstr "列表"
-
-#: ../plugins/taglist/HTML.tags.xml.in.h:159
+#: ../plugins/taglist/HTML.tags.xml.in.h:129
 msgid "Local change to font"
 msgstr "字体的本地更改"
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:160
+#: ../plugins/taglist/HTML.tags.xml.in.h:130
 msgid "Long description link"
 msgstr "长描述链接"
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:161
+#: ../plugins/taglist/HTML.tags.xml.in.h:131
 msgid "Long quotation"
 msgstr "长引用"
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:162
-msgid "Mail link"
-msgstr "邮寄链接"
-
 #. Supported in XHTML 1.0 Frameset DTD only.
-#: ../plugins/taglist/HTML.tags.xml.in.h:164
+#: ../plugins/taglist/HTML.tags.xml.in.h:133
 msgid "Margin pixel height"
 msgstr "边距像素高度"
 
 #. Supported in XHTML 1.0 Frameset DTD only.
-#: ../plugins/taglist/HTML.tags.xml.in.h:166
+#: ../plugins/taglist/HTML.tags.xml.in.h:135
 msgid "Margin pixel width"
 msgstr "边距像素宽度"
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:167
-msgid "Marquee"
-msgstr "字幕"
-
-#: ../plugins/taglist/HTML.tags.xml.in.h:168
+#: ../plugins/taglist/HTML.tags.xml.in.h:136
 msgid "Maximum length of text field"
 msgstr "文本框的最大长度"
 
-#. Here I take some liberties: There's no mandatory attributes,
-#. but those are most common, and will likely be used.
-#: ../plugins/taglist/HTML.tags.xml.in.h:171
-msgid "Media-independent link"
-msgstr "独立于媒体的链接"
-
-#: ../plugins/taglist/HTML.tags.xml.in.h:172
-msgid "Menu list"
-msgstr "菜单列表"
-
-#. Deprecated since HTML 4.01, not supported in XHTML 1.0 Strict DTD.
-#: ../plugins/taglist/HTML.tags.xml.in.h:174
-msgid "Menu list (deprecated)"
-msgstr "菜单列表(已废弃)"
-
-#: ../plugins/taglist/HTML.tags.xml.in.h:175
-msgid "Multi-line text field"
-msgstr "多行文本框"
-
-#: ../plugins/taglist/HTML.tags.xml.in.h:176
-msgid "Multicolumn"
-msgstr "多列"
-
-#: ../plugins/taglist/HTML.tags.xml.in.h:177
-msgid "Multiple"
-msgstr "多个"
-
-#: ../plugins/taglist/HTML.tags.xml.in.h:178
-msgid "Name"
-msgstr "名称"
-
-#: ../plugins/taglist/HTML.tags.xml.in.h:179
-msgid "Named property value"
-msgstr "命名属性值"
-
-#: ../plugins/taglist/HTML.tags.xml.in.h:180
-msgid "Next ID"
-msgstr "下一 ID"
-
-#: ../plugins/taglist/HTML.tags.xml.in.h:181
-msgid "No URI"
-msgstr "无 URI"
-
-#: ../plugins/taglist/HTML.tags.xml.in.h:182
-msgid "No embedded objects"
-msgstr "无嵌入对象"
-
-#: ../plugins/taglist/HTML.tags.xml.in.h:183
-msgid "No frames"
-msgstr "无框架"
-
-#: ../plugins/taglist/HTML.tags.xml.in.h:184
-msgid "No layers"
-msgstr "无层"
-
-#: ../plugins/taglist/HTML.tags.xml.in.h:185
-msgid "No line break"
-msgstr "无换行"
-
-#: ../plugins/taglist/HTML.tags.xml.in.h:186
-msgid "No resize"
-msgstr "不更改大小"
-
-#: ../plugins/taglist/HTML.tags.xml.in.h:187
-msgid "No script"
-msgstr "无脚本"
-
-#: ../plugins/taglist/HTML.tags.xml.in.h:188
-msgid "No shade"
-msgstr "无阴影"
-
-#. Deprecated since HTML 4.01, not supported in XHTML 1.0 Strict DTD.
-#: ../plugins/taglist/HTML.tags.xml.in.h:190
-msgid "No shade (deprecated)"
-msgstr "无阴影(已废弃)"
-
-#: ../plugins/taglist/HTML.tags.xml.in.h:191
-msgid "No word wrap"
-msgstr "无换行"
-
-#. Deprecated since HTML 4.01, not supported in XHTML 1.0 Strict DTD.
-#: ../plugins/taglist/HTML.tags.xml.in.h:193
-msgid "No word wrap (deprecated)"
-msgstr "无换行(已废弃)"
-
-#: ../plugins/taglist/HTML.tags.xml.in.h:194
-msgid "Non-breaking space"
-msgstr "无间距空格"
-
-#: ../plugins/taglist/HTML.tags.xml.in.h:195
-msgid "Note"
-msgstr "备忘"
-
-#: ../plugins/taglist/HTML.tags.xml.in.h:196
-msgid "Object applet file"
-msgstr "对象小程序文件"
-
-#. Deprecated since HTML 4.01, not supported in XHTML 1.0 Strict DTD.
-#: ../plugins/taglist/HTML.tags.xml.in.h:198
-msgid "Object applet file (deprecated)"
-msgstr "对象小程序文件(已废弃)"
-
-#: ../plugins/taglist/HTML.tags.xml.in.h:199
-msgid "Object data reference"
-msgstr "对象数据引用"
-
-#: ../plugins/taglist/HTML.tags.xml.in.h:200
-msgid "Offset for alignment character"
-msgstr "对齐字符的偏移"
-
-#: ../plugins/taglist/HTML.tags.xml.in.h:201
-msgid "OnBlur event"
-msgstr "OnBlur 事件"
-
-#: ../plugins/taglist/HTML.tags.xml.in.h:202
-msgid "OnChange event"
-msgstr "OnChange 事件"
-
-#: ../plugins/taglist/HTML.tags.xml.in.h:203
-msgid "OnClick event"
-msgstr "OnClick 事件"
-
-#: ../plugins/taglist/HTML.tags.xml.in.h:204
-msgid "OnDblClick event"
-msgstr "OnDblClick 事件"
-
-#: ../plugins/taglist/HTML.tags.xml.in.h:205
-msgid "OnFocus event"
-msgstr "OnFocus 事件"
-
-#: ../plugins/taglist/HTML.tags.xml.in.h:206
-msgid "OnKeyDown event"
-msgstr "OnKeyDown 事件"
-
-#: ../plugins/taglist/HTML.tags.xml.in.h:207
-msgid "OnKeyPress event"
-msgstr "OnKeyPress 事件"
-
-#: ../plugins/taglist/HTML.tags.xml.in.h:208
-msgid "OnKeyUp event"
-msgstr "OnKeyUp 事件"
-
-#: ../plugins/taglist/HTML.tags.xml.in.h:209
-msgid "OnLoad event"
-msgstr "OnLoad 事件"
-
-#: ../plugins/taglist/HTML.tags.xml.in.h:210
-msgid "OnMouseDown event"
-msgstr "OnMouseDown 事件"
-
-#: ../plugins/taglist/HTML.tags.xml.in.h:211
-msgid "OnMouseMove event"
-msgstr "OnMouseMove 事件"
-
-#: ../plugins/taglist/HTML.tags.xml.in.h:212
-msgid "OnMouseOut event"
-msgstr "OnMouseOut 事件"
-
-#: ../plugins/taglist/HTML.tags.xml.in.h:213
-msgid "OnMouseOver event"
-msgstr "OnMouseOver 事件"
-
-#: ../plugins/taglist/HTML.tags.xml.in.h:214
-msgid "OnMouseUp event"
-msgstr "OnMouseUp 事件"
-
-#: ../plugins/taglist/HTML.tags.xml.in.h:215
-msgid "OnReset event"
-msgstr "OnReset 事件"
-
-#: ../plugins/taglist/HTML.tags.xml.in.h:216
-msgid "OnSelect event"
-msgstr "OnSelect 事件"
-
-#: ../plugins/taglist/HTML.tags.xml.in.h:217
-msgid "OnSubmit event"
-msgstr "OnSubmit 事件"
-
-#: ../plugins/taglist/HTML.tags.xml.in.h:218
-msgid "OnUnload event"
-msgstr "OnUnload 事件"
-
-#: ../plugins/taglist/HTML.tags.xml.in.h:219
-msgid "Option group"
-msgstr "选项组"
-
-#: ../plugins/taglist/HTML.tags.xml.in.h:220
-msgid "Option selector"
-msgstr "选择器"
-
-#: ../plugins/taglist/HTML.tags.xml.in.h:221
-msgid "Ordered list"
-msgstr "有序列表"
-
-#: ../plugins/taglist/HTML.tags.xml.in.h:222
+#: ../plugins/taglist/HTML.tags.xml.in.h:137
 msgid "Output media"
 msgstr "输出介质"
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:223
-msgid "Paragraph"
-msgstr "段落"
+#. Here I take some liberties: There's no mandatory attributes,
+#. but those are most common, and will likely be used.
+#: ../plugins/taglist/HTML.tags.xml.in.h:140
+msgid "Media-independent link"
+msgstr "独立于媒体的链接"
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:224
+#. Deprecated since HTML 4.01, not supported in XHTML 1.0 Strict DTD.
+#: ../plugins/taglist/HTML.tags.xml.in.h:142
+msgid "Menu list (deprecated)"
+msgstr "菜单列表(已废弃)"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:143
+msgid "Multi-line text field"
+msgstr "多行文本框"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:144
+msgid "Multiple"
+msgstr "多个"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:145
+msgid "Name"
+msgstr "名称"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:146
+msgid "Named property value"
+msgstr "命名属性值"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:147
+msgid "No frames"
+msgstr "无框架"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:148
+msgid "No resize"
+msgstr "不更改大小"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:149
+msgid "No script"
+msgstr "无脚本"
+
+#. Deprecated since HTML 4.01, not supported in XHTML 1.0 Strict DTD.
+#: ../plugins/taglist/HTML.tags.xml.in.h:151
+msgid "No shade (deprecated)"
+msgstr "无阴影(已废弃)"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:152
+msgid "No URI"
+msgstr "无 URI"
+
+#. Deprecated since HTML 4.01, not supported in XHTML 1.0 Strict DTD.
+#: ../plugins/taglist/HTML.tags.xml.in.h:154
+msgid "No word wrap (deprecated)"
+msgstr "无换行(已废弃)"
+
+#. Deprecated since HTML 4.01, not supported in XHTML 1.0 Strict DTD.
+#: ../plugins/taglist/HTML.tags.xml.in.h:156
+msgid "Object applet file (deprecated)"
+msgstr "对象小程序文件(已废弃)"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:157
+msgid "Object data reference"
+msgstr "对象数据引用"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:158
+msgid "Offset for alignment character"
+msgstr "对齐字符的偏移"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:159
+msgid "OnBlur event"
+msgstr "OnBlur 事件"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:160
+msgid "OnChange event"
+msgstr "OnChange 事件"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:161
+msgid "OnClick event"
+msgstr "OnClick 事件"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:162
+msgid "OnDblClick event"
+msgstr "OnDblClick 事件"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:163
+msgid "OnFocus event"
+msgstr "OnFocus 事件"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:164
+msgid "OnKeyDown event"
+msgstr "OnKeyDown 事件"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:165
+msgid "OnKeyPress event"
+msgstr "OnKeyPress 事件"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:166
+msgid "OnKeyUp event"
+msgstr "OnKeyUp 事件"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:167
+msgid "OnLoad event"
+msgstr "OnLoad 事件"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:168
+msgid "OnMouseDown event"
+msgstr "OnMouseDown 事件"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:169
+msgid "OnMouseMove event"
+msgstr "OnMouseMove 事件"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:170
+msgid "OnMouseOut event"
+msgstr "OnMouseOut 事件"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:171
+msgid "OnMouseOver event"
+msgstr "OnMouseOver 事件"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:172
+msgid "OnMouseUp event"
+msgstr "OnMouseUp 事件"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:173
+msgid "OnReset event"
+msgstr "OnReset 事件"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:174
+msgid "OnSelect event"
+msgstr "OnSelect 事件"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:175
+msgid "OnSubmit event"
+msgstr "OnSubmit 事件"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:176
+msgid "OnUnload event"
+msgstr "OnUnload 事件"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:177
+msgid "Option group"
+msgstr "选项组"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:178
+msgid "Option selector"
+msgstr "选择器"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:179
+msgid "Ordered list"
+msgstr "有序列表"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:180
 msgid "Paragraph class"
 msgstr "段落类"
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:225
+#: ../plugins/taglist/HTML.tags.xml.in.h:181
 msgid "Paragraph style"
 msgstr "段落样式"
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:226
-msgid "Preformatted listing"
-msgstr "预格式化列表"
+#: ../plugins/taglist/HTML.tags.xml.in.h:182
+msgid "Paragraph"
+msgstr "段落"
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:227
+#: ../plugins/taglist/HTML.tags.xml.in.h:183
 msgid "Preformatted text"
 msgstr "预格式化文本"
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:228
+#: ../plugins/taglist/HTML.tags.xml.in.h:184
 msgid "Profile metainfo dictionary"
 msgstr "配置文件元信息字典"
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:229
-msgid "Prompt message"
-msgstr "提示信息"
-
-#: ../plugins/taglist/HTML.tags.xml.in.h:230
+#: ../plugins/taglist/HTML.tags.xml.in.h:185
 msgid "Push button"
 msgstr "按钮"
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:231
-msgid "Quote"
-msgstr "引用"
-
-#: ../plugins/taglist/HTML.tags.xml.in.h:232
-msgid "Range"
-msgstr "范围"
-
-#: ../plugins/taglist/HTML.tags.xml.in.h:233
+#: ../plugins/taglist/HTML.tags.xml.in.h:186
 msgid "ReadOnly text and password"
 msgstr "只读文字和密码"
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:234
-msgid "Reduced spacing"
-msgstr "减少间距"
-
 #. Deprecated since HTML 4.01, not supported in XHTML 1.0 Strict DTD.
-#: ../plugins/taglist/HTML.tags.xml.in.h:236
+#: ../plugins/taglist/HTML.tags.xml.in.h:188
 msgid "Reduced spacing (deprecated)"
 msgstr "减少间距(已废弃)"
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:237
+#: ../plugins/taglist/HTML.tags.xml.in.h:189
 msgid "Reverse link"
 msgstr "保留链接"
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:238
-msgid "Root"
-msgstr "根"
-
-#: ../plugins/taglist/HTML.tags.xml.in.h:239
+#: ../plugins/taglist/HTML.tags.xml.in.h:190
 msgid "Rows"
 msgstr "行"
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:240
+#: ../plugins/taglist/HTML.tags.xml.in.h:191
 msgid "Rulings between rows and columns"
 msgstr "行列刻度"
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:241
+#: ../plugins/taglist/HTML.tags.xml.in.h:192
 msgid "Sample program output, scripts"
 msgstr "示例程序输出，脚本"
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:242
+#: ../plugins/taglist/HTML.tags.xml.in.h:193
 msgid "Scope covered by header cells"
 msgstr "表头单元格覆盖的范围"
 
 #. Deprecated since HTML 4.01, not supported in XHTML 1.0 Strict DTD.
-#: ../plugins/taglist/HTML.tags.xml.in.h:244
+#: ../plugins/taglist/HTML.tags.xml.in.h:195
 msgid "Script language name"
 msgstr "脚本语言名称"
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:245
+#: ../plugins/taglist/HTML.tags.xml.in.h:196
 msgid "Script statements"
 msgstr "脚本声明"
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:246
+#: ../plugins/taglist/HTML.tags.xml.in.h:197
 msgid "Scrollbar"
 msgstr "滚动条"
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:247
+#: ../plugins/taglist/HTML.tags.xml.in.h:198
 msgid "Selectable option"
 msgstr "可选项"
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:248
+#: ../plugins/taglist/HTML.tags.xml.in.h:199
 msgid "Selected"
 msgstr "选中"
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:249
+#: ../plugins/taglist/HTML.tags.xml.in.h:200
 msgid "Server-side image map"
 msgstr "服务器端图像映射"
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:250
+#: ../plugins/taglist/HTML.tags.xml.in.h:201
 msgid "Shape"
 msgstr "形状"
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:251
+#: ../plugins/taglist/HTML.tags.xml.in.h:202
 msgid "Short inline quotation"
 msgstr "短嵌入引用"
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:252
-msgid "Single line prompt"
-msgstr "单行提示"
-
-#: ../plugins/taglist/HTML.tags.xml.in.h:253
-msgid "Size"
-msgstr "大小"
-
 #. Deprecated since HTML 4.01, not supported in XHTML 1.0 Strict DTD.
-#: ../plugins/taglist/HTML.tags.xml.in.h:255
+#: ../plugins/taglist/HTML.tags.xml.in.h:204
 msgid "Size (deprecated)"
 msgstr "大小(已废弃)"
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:256
+#: ../plugins/taglist/HTML.tags.xml.in.h:205
 msgid "Small text style"
 msgstr "小文本样式"
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:257
-msgid "Soft line break"
-msgstr "软换行"
-
-#: ../plugins/taglist/HTML.tags.xml.in.h:258
-msgid "Sound"
-msgstr "声音"
-
-#: ../plugins/taglist/HTML.tags.xml.in.h:259
+#: ../plugins/taglist/HTML.tags.xml.in.h:206
 msgid "Source"
 msgstr "来源"
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:260
+#: ../plugins/taglist/HTML.tags.xml.in.h:207
 msgid "Space-separated archive list"
 msgstr "以空格分隔的存档列表"
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:261
-msgid "Spacer"
-msgstr "间距符"
-
-#: ../plugins/taglist/HTML.tags.xml.in.h:262
+#: ../plugins/taglist/HTML.tags.xml.in.h:208
 msgid "Spacing between cells"
 msgstr "单元格间距"
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:263
+#: ../plugins/taglist/HTML.tags.xml.in.h:209
 msgid "Spacing within cells"
 msgstr "单元格内间距"
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:264
+#: ../plugins/taglist/HTML.tags.xml.in.h:210
 msgid "Span"
 msgstr "Span"
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:265
-msgid "Square root"
-msgstr "平方根"
-
-#: ../plugins/taglist/HTML.tags.xml.in.h:266
+#: ../plugins/taglist/HTML.tags.xml.in.h:211
 msgid "Standby load message"
 msgstr "等候载入信息"
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:267
-msgid "Starting sequence number"
-msgstr "起始序列号"
-
 #. Deprecated since HTML 4.01, not supported in XHTML 1.0 Strict DTD.
-#: ../plugins/taglist/HTML.tags.xml.in.h:269
+#: ../plugins/taglist/HTML.tags.xml.in.h:213
 msgid "Starting sequence number (deprecated)"
 msgstr "起始序列号(已废弃)"
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:270
-msgid "Strike-through text"
-msgstr "删除线文字"
-
 #. Deprecated since HTML 4.01, not supported in XHTML 1.0 Strict DTD.
-#: ../plugins/taglist/HTML.tags.xml.in.h:272
-msgid "Strike-through text (deprecated)"
-msgstr "删除线文字(已废弃)"
-
-#: ../plugins/taglist/HTML.tags.xml.in.h:273
-msgid "Strike-through text style"
-msgstr "删除线文字样式"
-
-#. Deprecated since HTML 4.01, not supported in XHTML 1.0 Strict DTD.
-#: ../plugins/taglist/HTML.tags.xml.in.h:275
+#: ../plugins/taglist/HTML.tags.xml.in.h:215
 msgid "Strike-through text style (deprecated)"
 msgstr "删除线文字样式(已废弃)"
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:276
+#. Deprecated since HTML 4.01, not supported in XHTML 1.0 Strict DTD.
+#: ../plugins/taglist/HTML.tags.xml.in.h:217
+msgid "Strike-through text (deprecated)"
+msgstr "删除线文字(已废弃)"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:218
 msgid "Strong emphasis"
 msgstr "强调"
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:277
+#: ../plugins/taglist/HTML.tags.xml.in.h:219
 msgid "Style info"
 msgstr "样式信息"
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:278
+#: ../plugins/taglist/HTML.tags.xml.in.h:220
 msgid "Subscript"
 msgstr "上标"
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:279
+#: ../plugins/taglist/HTML.tags.xml.in.h:221
 msgid "Superscript"
 msgstr "下标"
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:280
-msgid "Tab order position"
-msgstr "Tab 顺序位置"
-
-#: ../plugins/taglist/HTML.tags.xml.in.h:281
-msgid "Table"
-msgstr "表格"
-
-#: ../plugins/taglist/HTML.tags.xml.in.h:282
+#: ../plugins/taglist/HTML.tags.xml.in.h:222
 msgid "Table body"
 msgstr "表体"
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:283
+#: ../plugins/taglist/HTML.tags.xml.in.h:223
 msgid "Table caption"
 msgstr "表格标题"
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:284
+#: ../plugins/taglist/HTML.tags.xml.in.h:224
 msgid "Table column group properties"
 msgstr "表列组属性"
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:285
+#: ../plugins/taglist/HTML.tags.xml.in.h:225
 msgid "Table column properties"
 msgstr "表列属性"
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:286
+#: ../plugins/taglist/HTML.tags.xml.in.h:226
 msgid "Table data cell"
 msgstr "表格数据单元格"
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:287
+#: ../plugins/taglist/HTML.tags.xml.in.h:227
 msgid "Table footer"
 msgstr "表脚"
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:288
-msgid "Table header"
-msgstr "表头"
-
-#: ../plugins/taglist/HTML.tags.xml.in.h:289
+#: ../plugins/taglist/HTML.tags.xml.in.h:228
 msgid "Table header cell"
 msgstr "表头元素"
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:290
+#: ../plugins/taglist/HTML.tags.xml.in.h:229
+msgid "Table header"
+msgstr "表头"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:230
 msgid "Table row"
 msgstr "表格行"
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:291
+#: ../plugins/taglist/HTML.tags.xml.in.h:231
 msgid "Table summary"
 msgstr "表格概览"
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:292
+#: ../plugins/taglist/HTML.tags.xml.in.h:232
+msgid "Table"
+msgstr "表格"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:233
 msgid "Target - Blank"
 msgstr "目标 - Blank"
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:293
+#: ../plugins/taglist/HTML.tags.xml.in.h:234
 msgid "Target - Parent"
 msgstr "目标 - Parent"
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:294
+#: ../plugins/taglist/HTML.tags.xml.in.h:235
 msgid "Target - Self"
 msgstr "目标 - Self"
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:295
+#: ../plugins/taglist/HTML.tags.xml.in.h:236
 msgid "Target - Top"
 msgstr "目标 - Top"
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:296
+#: ../plugins/taglist/HTML.tags.xml.in.h:237
 msgid "Teletype or monospace text style"
 msgstr "电传或等宽文字样式"
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:297
-msgid "Text"
-msgstr "文本"
-
-#: ../plugins/taglist/HTML.tags.xml.in.h:298
-msgid "Text color"
-msgstr "文本颜色"
-
 #. Deprecated since HTML 4.01, not supported in XHTML 1.0 Strict DTD.
-#: ../plugins/taglist/HTML.tags.xml.in.h:300
+#: ../plugins/taglist/HTML.tags.xml.in.h:239
 msgid "Text color (deprecated)"
 msgstr "文本颜色(已废弃)"
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:301
+#: ../plugins/taglist/HTML.tags.xml.in.h:240
 msgid "Text entered by user"
 msgstr "用户输入的文字"
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:302
+#: ../plugins/taglist/HTML.tags.xml.in.h:241
 msgid "Title"
 msgstr "标题"
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:303
-msgid "Top margin in pixels"
-msgstr "以像素计的上边距"
-
-#: ../plugins/taglist/HTML.tags.xml.in.h:304
-msgid "URL"
-msgstr "URL"
-
-#: ../plugins/taglist/HTML.tags.xml.in.h:305
+#: ../plugins/taglist/HTML.tags.xml.in.h:242
 msgid "Underlined text style"
 msgstr "下划线文字样式"
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:306
+#: ../plugins/taglist/HTML.tags.xml.in.h:243
 msgid "Unordered list"
 msgstr "无序列表"
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:307
+#: ../plugins/taglist/HTML.tags.xml.in.h:244
 msgid "Use image map"
 msgstr "使用图像映射"
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:308
-msgid "Value"
-msgstr "值"
-
-#: ../plugins/taglist/HTML.tags.xml.in.h:309
+#: ../plugins/taglist/HTML.tags.xml.in.h:245
 msgid "Value interpretation"
 msgstr "值解释"
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:310
+#: ../plugins/taglist/HTML.tags.xml.in.h:246
+msgid "Value"
+msgstr "值"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:247
 msgid "Variable or program argument"
 msgstr "变量或程序参数"
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:311
+#: ../plugins/taglist/HTML.tags.xml.in.h:248
 msgid "Vertical cell alignment"
 msgstr "单元格垂直对齐"
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:312
-msgid "Vertical space"
-msgstr "垂直间距"
-
 #. Deprecated since HTML 4.01, not supported in XHTML 1.0 Strict DTD.
-#: ../plugins/taglist/HTML.tags.xml.in.h:314
+#: ../plugins/taglist/HTML.tags.xml.in.h:250
 msgid "Vertical space (deprecated)"
 msgstr "垂直间距(已废弃)"
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:315
-msgid "Visited link color"
-msgstr "已浏览的链接颜色"
-
 #. Deprecated since HTML 4.01, not supported in XHTML 1.0 Strict DTD.
-#: ../plugins/taglist/HTML.tags.xml.in.h:317
+#: ../plugins/taglist/HTML.tags.xml.in.h:252
 msgid "Visited link color (deprecated)"
 msgstr "已浏览的链接颜色(已废弃)"
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:318
+#: ../plugins/taglist/HTML.tags.xml.in.h:253
 msgid "Width"
 msgstr "宽度"
 
+#: ../plugins/taglist/HTML.tags.xml.in.h:254
+msgid "HTML - Tags"
+msgstr "HTML - 标记"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:255
+msgid "Above"
+msgstr "以上"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:256
+msgid "Applet class file code"
+msgstr "小程序类文件代码"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:257
+msgid "Array"
+msgstr "数组"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:258
+msgid "Background color"
+msgstr "背景颜色"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:259
+msgid "Background texture tile"
+msgstr "背景纹理平铺"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:260
+msgid "Base font"
+msgstr "基本字体"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:261
+msgid "Border color"
+msgstr "边框颜色"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:262
+msgid "Border"
+msgstr "边框"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:263
+msgid "Center"
+msgstr "居中"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:264
+msgid "Checked (state)"
+msgstr "已选中(状态)"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:265
+msgid "Color of selected links"
+msgstr "选中链接的颜色"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:266
+msgid "Content scheme"
+msgstr "目录大纲"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:267
+msgid "Content type"
+msgstr "内容类型"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:268
+msgid "Direction"
+msgstr "方向"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:269
+msgid "Directory list"
+msgstr "目录列表"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:270
+msgid "HTML version"
+msgstr "HTML 版本"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:271
+msgid "Embedded object"
+msgstr "嵌入对象"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:272
+msgid "Figure"
+msgstr "图形"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:273
+msgid "Font face"
+msgstr "字体名"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:274
+msgid "Frameborder"
+msgstr "框架边框"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:275
+msgid "Framespacing"
+msgstr "框架间距"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:276
+msgid "Heading"
+msgstr "标题"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:277
+msgid "Horizontal space"
+msgstr "水平间距"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:278
+msgid "Image source"
+msgstr "图象源"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:279
+msgid "Inline layer"
+msgstr "内嵌层"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:280
+msgid "Java applet"
+msgstr "Java 小程序"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:281
+msgid "Layer"
+msgstr "层"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:282
+msgid "Link color"
+msgstr "链接颜色"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:283
+msgid "Listing"
+msgstr "列表"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:284
+msgid "Mail link"
+msgstr "邮寄链接"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:285
+msgid "Marquee"
+msgstr "字幕"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:286
+msgid "Menu list"
+msgstr "菜单列表"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:287
+msgid "Multicolumn"
+msgstr "多列"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:288
+msgid "Next ID"
+msgstr "下一 ID"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:289
+msgid "No embedded objects"
+msgstr "无嵌入对象"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:290
+msgid "No layers"
+msgstr "无层"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:291
+msgid "No line break"
+msgstr "无换行"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:292
+msgid "No shade"
+msgstr "无阴影"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:293
+msgid "No word wrap"
+msgstr "无换行"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:294
+msgid "Note"
+msgstr "备忘"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:295
+msgid "Object applet file"
+msgstr "对象小程序文件"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:296
+msgid "Preformatted listing"
+msgstr "预格式化列表"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:297
+msgid "Prompt message"
+msgstr "提示信息"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:298
+msgid "Quote"
+msgstr "引用"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:299
+msgid "Range"
+msgstr "范围"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:300
+msgid "Reduced spacing"
+msgstr "减少间距"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:301
+msgid "Root"
+msgstr "根"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:302
+msgid "Single line prompt"
+msgstr "单行提示"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:303
+msgid "Size"
+msgstr "大小"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:304
+msgid "Soft line break"
+msgstr "软换行"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:305
+msgid "Sound"
+msgstr "声音"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:306
+msgid "Spacer"
+msgstr "间距符"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:307
+msgid "Square root"
+msgstr "平方根"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:308
+msgid "Starting sequence number"
+msgstr "起始序列号"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:309
+msgid "Strike-through text style"
+msgstr "删除线文字样式"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:310
+msgid "Strike-through text"
+msgstr "删除线文字"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:311
+msgid "Tab order position"
+msgstr "Tab 顺序位置"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:312
+msgid "Text color"
+msgstr "文本颜色"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:313
+msgid "Text"
+msgstr "文本"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:314
+msgid "Top margin in pixels"
+msgstr "以像素计的上边距"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:315
+msgid "URL"
+msgstr "URL"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:316
+msgid "Vertical space"
+msgstr "垂直间距"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:317
+msgid "Visited link color"
+msgstr "已浏览的链接颜色"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:318
+msgid "HTML - Special Characters"
+msgstr "HTML - 特殊字符"
+
 #: ../plugins/taglist/HTML.tags.xml.in.h:319
-msgid "XHTML 1.0 - Tags"
-msgstr "XHTML 1.0 - 标记"
+msgid "Non-breaking space"
+msgstr "无间距空格"
 
 #: ../plugins/taglist/Latex.tags.xml.in.h:1
+msgid "Latex - Tags"
+msgstr "Latex - 标记"
+
+#: ../plugins/taglist/Latex.tags.xml.in.h:2
 msgid "Bibliography (cite)"
 msgstr "文献引用(cite)"
 
-#: ../plugins/taglist/Latex.tags.xml.in.h:2
+#: ../plugins/taglist/Latex.tags.xml.in.h:3
 msgid "Bibliography (item)"
 msgstr "文献项目(item)"
 
-#: ../plugins/taglist/Latex.tags.xml.in.h:3
+#: ../plugins/taglist/Latex.tags.xml.in.h:4
 msgid "Bibliography (shortcite)"
 msgstr "文献短引(shortcite)"
 
-#: ../plugins/taglist/Latex.tags.xml.in.h:4
+#: ../plugins/taglist/Latex.tags.xml.in.h:5
 msgid "Bibliography (thebibliography)"
 msgstr "文献嵌套引用(thebibliography)"
 
-#: ../plugins/taglist/Latex.tags.xml.in.h:5
+#: ../plugins/taglist/Latex.tags.xml.in.h:6
 msgid "Brackets ()"
 msgstr "圆括号 ()"
-
-#: ../plugins/taglist/Latex.tags.xml.in.h:6
-msgid "Brackets <>"
-msgstr "尖括号 <>"
 
 #: ../plugins/taglist/Latex.tags.xml.in.h:7
 msgid "Brackets []"
@@ -4613,189 +4530,193 @@ msgstr "方括号 []"
 msgid "Brackets {}"
 msgstr "大括号 {}"
 
+#: ../plugins/taglist/Latex.tags.xml.in.h:9
+msgid "Brackets <>"
+msgstr "尖括号 <>"
+
 #: ../plugins/taglist/Latex.tags.xml.in.h:10
 msgid "File input"
 msgstr "文件输入"
 
 #: ../plugins/taglist/Latex.tags.xml.in.h:11
-msgid "Footnote"
-msgstr "脚注"
-
-#: ../plugins/taglist/Latex.tags.xml.in.h:12
 msgid "Function cosine"
 msgstr "余弦函数"
 
-#: ../plugins/taglist/Latex.tags.xml.in.h:13
+#: ../plugins/taglist/Latex.tags.xml.in.h:12
 msgid "Function e^"
 msgstr "e^ 函数"
 
-#: ../plugins/taglist/Latex.tags.xml.in.h:14
+#: ../plugins/taglist/Latex.tags.xml.in.h:13
 msgid "Function exp"
 msgstr "exp 函数"
 
-#: ../plugins/taglist/Latex.tags.xml.in.h:15
+#: ../plugins/taglist/Latex.tags.xml.in.h:14
 msgid "Function log"
 msgstr "log 函数"
 
-#: ../plugins/taglist/Latex.tags.xml.in.h:16
+#: ../plugins/taglist/Latex.tags.xml.in.h:15
 msgid "Function log10"
 msgstr "log10 函数"
 
-#: ../plugins/taglist/Latex.tags.xml.in.h:17
+#: ../plugins/taglist/Latex.tags.xml.in.h:16
 msgid "Function sine"
 msgstr "sin 函数"
 
-#: ../plugins/taglist/Latex.tags.xml.in.h:18
+#: ../plugins/taglist/Latex.tags.xml.in.h:17
 msgid "Greek alpha"
 msgstr "α"
 
-#: ../plugins/taglist/Latex.tags.xml.in.h:19
+#: ../plugins/taglist/Latex.tags.xml.in.h:18
 msgid "Greek beta"
 msgstr "β"
 
-#: ../plugins/taglist/Latex.tags.xml.in.h:20
+#: ../plugins/taglist/Latex.tags.xml.in.h:19
 msgid "Greek epsilon"
 msgstr "ε"
 
-#: ../plugins/taglist/Latex.tags.xml.in.h:21
+#: ../plugins/taglist/Latex.tags.xml.in.h:20
 msgid "Greek gamma"
 msgstr "γ"
 
-#: ../plugins/taglist/Latex.tags.xml.in.h:22
+#: ../plugins/taglist/Latex.tags.xml.in.h:21
 msgid "Greek lambda"
 msgstr "λ"
 
-#: ../plugins/taglist/Latex.tags.xml.in.h:23
+#: ../plugins/taglist/Latex.tags.xml.in.h:22
 msgid "Greek rho"
 msgstr "ρ"
 
-#: ../plugins/taglist/Latex.tags.xml.in.h:24
+#: ../plugins/taglist/Latex.tags.xml.in.h:23
 msgid "Greek tau"
 msgstr "τ"
 
-#: ../plugins/taglist/Latex.tags.xml.in.h:25
+#: ../plugins/taglist/Latex.tags.xml.in.h:24
 msgid "Header 0 (chapter)"
 msgstr "零级标题(chapter)"
 
-#: ../plugins/taglist/Latex.tags.xml.in.h:26
+#: ../plugins/taglist/Latex.tags.xml.in.h:25
 msgid "Header 0 (chapter*)"
 msgstr "零级标题(chapter*)"
 
-#: ../plugins/taglist/Latex.tags.xml.in.h:27
+#: ../plugins/taglist/Latex.tags.xml.in.h:26
 msgid "Header 1 (section)"
 msgstr "一级标题(section)"
 
-#: ../plugins/taglist/Latex.tags.xml.in.h:28
+#: ../plugins/taglist/Latex.tags.xml.in.h:27
 msgid "Header 1 (section*)"
 msgstr "一级标题(section*)"
 
-#: ../plugins/taglist/Latex.tags.xml.in.h:29
+#: ../plugins/taglist/Latex.tags.xml.in.h:28
 msgid "Header 2 (subsection)"
 msgstr "二级标题(subsection)"
 
-#: ../plugins/taglist/Latex.tags.xml.in.h:30
+#: ../plugins/taglist/Latex.tags.xml.in.h:29
 msgid "Header 2 (subsection*)"
 msgstr "二级标题(subsection*)"
 
-#: ../plugins/taglist/Latex.tags.xml.in.h:31
+#: ../plugins/taglist/Latex.tags.xml.in.h:30
 msgid "Header 3 (subsubsection)"
 msgstr "三级标题(subsubsection)"
 
-#: ../plugins/taglist/Latex.tags.xml.in.h:32
+#: ../plugins/taglist/Latex.tags.xml.in.h:31
 msgid "Header 3 (subsubsection*)"
 msgstr "三级标题(subsubsection*)"
 
-#: ../plugins/taglist/Latex.tags.xml.in.h:33
+#: ../plugins/taglist/Latex.tags.xml.in.h:32
 msgid "Header 4 (paragraph)"
 msgstr "四级标题(paragraph)"
 
-#: ../plugins/taglist/Latex.tags.xml.in.h:34
+#: ../plugins/taglist/Latex.tags.xml.in.h:33
 msgid "Header appendix"
 msgstr "标题附录"
 
-#: ../plugins/taglist/Latex.tags.xml.in.h:35
-msgid "Item"
-msgstr "项目"
-
-#: ../plugins/taglist/Latex.tags.xml.in.h:36
-msgid "Item with label"
-msgstr "带标签的项目"
-
-#: ../plugins/taglist/Latex.tags.xml.in.h:37
-msgid "Latex - Tags"
-msgstr "Latex - 标记"
-
-#: ../plugins/taglist/Latex.tags.xml.in.h:38
+#: ../plugins/taglist/Latex.tags.xml.in.h:34
 msgid "List description"
 msgstr "列表描述"
 
-#: ../plugins/taglist/Latex.tags.xml.in.h:39
+#: ../plugins/taglist/Latex.tags.xml.in.h:35
 msgid "List enumerate"
 msgstr "枚举列表"
 
-#: ../plugins/taglist/Latex.tags.xml.in.h:40
+#: ../plugins/taglist/Latex.tags.xml.in.h:36
 msgid "List itemize"
 msgstr "项目列表"
 
-#: ../plugins/taglist/Latex.tags.xml.in.h:41
+#: ../plugins/taglist/Latex.tags.xml.in.h:37
+msgid "Item with label"
+msgstr "带标签的项目"
+
+#: ../plugins/taglist/Latex.tags.xml.in.h:38
+msgid "Item"
+msgstr "项目"
+
+#: ../plugins/taglist/Latex.tags.xml.in.h:39
 msgid "Maths (display)"
 msgstr "数学(显示)"
 
-#: ../plugins/taglist/Latex.tags.xml.in.h:42
+#: ../plugins/taglist/Latex.tags.xml.in.h:40
 msgid "Maths (inline)"
 msgstr "数学(嵌入)"
 
-#: ../plugins/taglist/Latex.tags.xml.in.h:43
+#: ../plugins/taglist/Latex.tags.xml.in.h:41
 msgid "Operator fraction"
 msgstr "积分因子"
 
-#: ../plugins/taglist/Latex.tags.xml.in.h:44
+#: ../plugins/taglist/Latex.tags.xml.in.h:42
 msgid "Operator integral (display)"
 msgstr "∫(显示)"
 
-#: ../plugins/taglist/Latex.tags.xml.in.h:45
+#: ../plugins/taglist/Latex.tags.xml.in.h:43
 msgid "Operator integral (inline)"
 msgstr "∫(嵌入)"
 
-#: ../plugins/taglist/Latex.tags.xml.in.h:46
+#: ../plugins/taglist/Latex.tags.xml.in.h:44
 msgid "Operator sum (display)"
 msgstr "∑(显示)"
 
-#: ../plugins/taglist/Latex.tags.xml.in.h:47
+#: ../plugins/taglist/Latex.tags.xml.in.h:45
 msgid "Operator sum (inline)"
 msgstr "∑(嵌入)"
 
-#: ../plugins/taglist/Latex.tags.xml.in.h:48
+#: ../plugins/taglist/Latex.tags.xml.in.h:46
 msgid "Reference label"
 msgstr "引用标签"
 
-#: ../plugins/taglist/Latex.tags.xml.in.h:49
+#: ../plugins/taglist/Latex.tags.xml.in.h:47
 msgid "Reference ref"
 msgstr "引用 ref"
 
-#: ../plugins/taglist/Latex.tags.xml.in.h:50
+#: ../plugins/taglist/Latex.tags.xml.in.h:48
 msgid "Symbol <<"
 msgstr "≪ 符号"
 
-#: ../plugins/taglist/Latex.tags.xml.in.h:51
+#: ../plugins/taglist/Latex.tags.xml.in.h:49
 msgid "Symbol <="
 msgstr "≤符号"
 
-#: ../plugins/taglist/Latex.tags.xml.in.h:52
+#: ../plugins/taglist/Latex.tags.xml.in.h:50
 msgid "Symbol >="
 msgstr "≥符号"
 
-#: ../plugins/taglist/Latex.tags.xml.in.h:53
+#: ../plugins/taglist/Latex.tags.xml.in.h:51
 msgid "Symbol >>"
 msgstr "≫符号"
 
-#: ../plugins/taglist/Latex.tags.xml.in.h:54
+#: ../plugins/taglist/Latex.tags.xml.in.h:52
 msgid "Symbol and"
 msgstr "∧符号"
 
-#: ../plugins/taglist/Latex.tags.xml.in.h:55
+#: ../plugins/taglist/Latex.tags.xml.in.h:53
 msgid "Symbol const"
 msgstr "const 符号"
+
+#: ../plugins/taglist/Latex.tags.xml.in.h:54
+msgid "Symbol d2-by-dt2-partial"
+msgstr "d2/dt2 二阶导符号"
+
+#: ../plugins/taglist/Latex.tags.xml.in.h:55
+msgid "Symbol dagger"
+msgstr "†符号"
 
 #: ../plugins/taglist/Latex.tags.xml.in.h:56
 msgid "Symbol d-by-dt"
@@ -4806,94 +4727,90 @@ msgid "Symbol d-by-dt-partial"
 msgstr "d/dt 部分符号"
 
 #: ../plugins/taglist/Latex.tags.xml.in.h:58
-msgid "Symbol d2-by-dt2-partial"
-msgstr "d2/dt2 二阶导符号"
+msgid "Symbol equiv"
+msgstr "≡符号"
 
 #: ../plugins/taglist/Latex.tags.xml.in.h:59
-msgid "Symbol dagger"
-msgstr "†符号"
+msgid "Symbol en-dash --"
+msgstr "--符号(短破折号)"
 
 #: ../plugins/taglist/Latex.tags.xml.in.h:60
 msgid "Symbol em-dash ---"
 msgstr "---符号(长破折号)"
 
 #: ../plugins/taglist/Latex.tags.xml.in.h:61
-msgid "Symbol en-dash --"
-msgstr "--符号(短破折号)"
-
-#: ../plugins/taglist/Latex.tags.xml.in.h:62
-msgid "Symbol equiv"
-msgstr "≡符号"
-
-#: ../plugins/taglist/Latex.tags.xml.in.h:63
 msgid "Symbol infinity"
 msgstr "∞符号"
 
-#: ../plugins/taglist/Latex.tags.xml.in.h:64
+#: ../plugins/taglist/Latex.tags.xml.in.h:62
 msgid "Symbol mathspace ,"
 msgstr ",符号"
 
-#: ../plugins/taglist/Latex.tags.xml.in.h:65
+#: ../plugins/taglist/Latex.tags.xml.in.h:63
 msgid "Symbol mathspace ."
 msgstr ".符号"
 
-#: ../plugins/taglist/Latex.tags.xml.in.h:66
+#: ../plugins/taglist/Latex.tags.xml.in.h:64
 msgid "Symbol mathspace _"
 msgstr "_符号"
 
-#: ../plugins/taglist/Latex.tags.xml.in.h:67
+#: ../plugins/taglist/Latex.tags.xml.in.h:65
 msgid "Symbol mathspace __"
 msgstr "__符号"
 
-#: ../plugins/taglist/Latex.tags.xml.in.h:68
+#: ../plugins/taglist/Latex.tags.xml.in.h:66
 msgid "Symbol simeq"
 msgstr "≃符号"
 
-#: ../plugins/taglist/Latex.tags.xml.in.h:69
+#: ../plugins/taglist/Latex.tags.xml.in.h:67
 msgid "Symbol star"
 msgstr "⋆符号"
 
-#: ../plugins/taglist/Latex.tags.xml.in.h:70
+#: ../plugins/taglist/Latex.tags.xml.in.h:68
 msgid "Typeface bold"
 msgstr "粗体"
 
-#: ../plugins/taglist/Latex.tags.xml.in.h:71
+#: ../plugins/taglist/Latex.tags.xml.in.h:69
+msgid "Typeface type"
+msgstr "打字机字体"
+
+#: ../plugins/taglist/Latex.tags.xml.in.h:70
 msgid "Typeface italic"
 msgstr "意大利斜体"
 
-#: ../plugins/taglist/Latex.tags.xml.in.h:72
+#: ../plugins/taglist/Latex.tags.xml.in.h:71
 msgid "Typeface slanted"
 msgstr "斜体"
 
 #: ../plugins/taglist/Latex.tags.xml.in.h:73
-msgid "Typeface type"
-msgstr "打字机字体"
-
-#: ../plugins/taglist/Latex.tags.xml.in.h:74
 msgid "Unbreakable text"
 msgstr "不可断文字"
 
+#: ../plugins/taglist/Latex.tags.xml.in.h:74
+msgid "Footnote"
+msgstr "脚注"
+
 #: ../plugins/taglist/taglist.pluma-plugin.desktop.in.h:1
+msgid "Tag list"
+msgstr "标记列表"
+
+#: ../plugins/taglist/taglist.pluma-plugin.desktop.in.h:2
 msgid ""
 "Provides a method to easily insert commonly used tags/strings into a "
 "document without having to type them."
 msgstr "提供一种无需键入即可将常用标记/字符串轻易插入文档的方法。"
 
-#: ../plugins/taglist/taglist.pluma-plugin.desktop.in.h:2
-msgid "Tag list"
-msgstr "标记列表"
-
 #: ../plugins/taglist/XSLT.tags.xml.in.h:1
-msgid "XSLT - Axes"
-msgstr "XSLT - 轴"
-
-#: ../plugins/taglist/XSLT.tags.xml.in.h:2
 msgid "XSLT - Elements"
 msgstr "XSLT - 元素"
 
-#: ../plugins/taglist/XSLT.tags.xml.in.h:3
+#: ../plugins/taglist/XSLT.tags.xml.in.h:2
 msgid "XSLT - Functions"
 msgstr "XSLT - 函数"
+
+#: ../plugins/taglist/XSLT.tags.xml.in.h:3
+msgid "XSLT - Axes"
+msgstr "XSLT - 轴"
 
 #: ../plugins/taglist/XSLT.tags.xml.in.h:4
 msgid "ancestor"
@@ -4951,19 +4868,31 @@ msgstr "self"
 msgid "XUL - Tags"
 msgstr "XUL - 标记"
 
-#: ../plugins/time/pluma-time-plugin.c:182
+#: ../plugins/time/org.mate.pluma.plugins.time.gschema.xml.in.in.h:1
+msgid "Prompt type"
+msgstr "提示类型"
+
+#: ../plugins/time/org.mate.pluma.plugins.time.gschema.xml.in.in.h:2
+msgid "Selected format"
+msgstr "已选格式"
+
+#: ../plugins/time/org.mate.pluma.plugins.time.gschema.xml.in.in.h:3
+msgid "Custom format"
+msgstr "自定义格式"
+
+#: ../plugins/time/pluma-time-plugin.c:181
 msgid "In_sert Date and Time..."
 msgstr "插入日期和时间(_S)..."
 
-#: ../plugins/time/pluma-time-plugin.c:184
+#: ../plugins/time/pluma-time-plugin.c:183
 msgid "Insert current date and time at the cursor position"
 msgstr "在光标处插入当前的日期和时间"
 
-#: ../plugins/time/pluma-time-plugin.c:613
+#: ../plugins/time/pluma-time-plugin.c:564
 msgid "Available formats"
 msgstr "可用格式"
 
-#: ../plugins/time/pluma-time-plugin.c:766
+#: ../plugins/time/pluma-time-plugin.c:717
 msgid "Configure insert date/time plugin..."
 msgstr "配置插入日期/时间插件..."
 
@@ -4975,179 +4904,46 @@ msgstr "插入日期/时间"
 msgid "Inserts current date and time at the cursor position."
 msgstr "在光标处插入当前的日期和时间。"
 
-#. Translators: Use the more common date format in your locale
+#: ../plugins/time/pluma-time-dialog.ui.h:1
+msgid "Insert Date and Time"
+msgstr "插入日期和时间"
+
+#: ../plugins/time/pluma-time-dialog.ui.h:2
+msgid "_Insert"
+msgstr "插入(_I)"
+
 #: ../plugins/time/pluma-time-dialog.ui.h:3
-#: ../plugins/time/pluma-time-setup-dialog.ui.h:4
+#: ../plugins/time/pluma-time-setup-dialog.ui.h:5
+msgid "Use the _selected format"
+msgstr "使用选中的格式(_S)"
+
+#: ../plugins/time/pluma-time-dialog.ui.h:5
+#: ../plugins/time/pluma-time-setup-dialog.ui.h:6
+msgid "_Use custom format"
+msgstr "使用自定义格式(_U)"
+
+#. Translators: Use the more common date format in your locale
+#: ../plugins/time/pluma-time-dialog.ui.h:7
+#: ../plugins/time/pluma-time-setup-dialog.ui.h:9
 #, no-c-format
 msgid "%d/%m/%Y %H:%M:%S"
 msgstr "%Y/%m/%d %H:%M:%S"
 
-#. Translators: This example should follow the date format defined in the entry above
-#: ../plugins/time/pluma-time-dialog.ui.h:4
-#: ../plugins/time/pluma-time-setup-dialog.ui.h:6
+#. Translators: This example should follow the date format defined in the
+#. entry above
+#: ../plugins/time/pluma-time-dialog.ui.h:8
+#: ../plugins/time/pluma-time-setup-dialog.ui.h:11
 msgid "01/11/2009 17:52:00"
 msgstr "2009/01/11 17:52:00"
 
-#: ../plugins/time/pluma-time-dialog.ui.h:5
-msgid "Insert Date and Time"
-msgstr "插入日期和时间"
-
-#: ../plugins/time/pluma-time-dialog.ui.h:6
-#: ../plugins/time/pluma-time-setup-dialog.ui.h:8
-msgid "Use the _selected format"
-msgstr "使用选中的格式(_S)"
-
-#: ../plugins/time/pluma-time-dialog.ui.h:7
-msgid "_Insert"
-msgstr "插入(_I)"
-
-#: ../plugins/time/pluma-time-dialog.ui.h:8
-#: ../plugins/time/pluma-time-setup-dialog.ui.h:11
-msgid "_Use custom format"
-msgstr "使用自定义格式(_U)"
-
-#: ../plugins/time/pluma-time-setup-dialog.ui.h:7
+#: ../plugins/time/pluma-time-setup-dialog.ui.h:1
 msgid "Configure date/time plugin"
 msgstr "配置日期/时间插件"
 
-#: ../plugins/time/pluma-time-setup-dialog.ui.h:9
+#: ../plugins/time/pluma-time-setup-dialog.ui.h:2
 msgid "When inserting date/time..."
 msgstr "在插入日期/时间时..."
 
-#: ../plugins/time/pluma-time-setup-dialog.ui.h:10
+#: ../plugins/time/pluma-time-setup-dialog.ui.h:4
 msgid "_Prompt for a format"
 msgstr "提示可使用的格式(_P)"
-
-#~ msgid "Backup Copy Extension"
-#~ msgstr "备份文件扩展名"
-
-#~ msgid ""
-#~ "Extension or suffix to use for backup file names. This will only take "
-#~ "effect if the \"Create Backup Copies\" option is turned on."
-#~ msgstr "备份文件的扩展名或后缀。只有当“生成备份文件”选项选中时才有效。"
-
-#~ msgid "Whether pluma should highlight matching bracket."
-#~ msgstr "pluma 是否启用突出显示匹配的括号。"
-
-#~ msgid "Character Codings"
-#~ msgstr "字符编码"
-
-#~ msgid "Ch_aracter Coding:"
-#~ msgstr "字符编码(_A)："
-
-#~ msgid "Could not obtain backup filename"
-#~ msgstr "无法获得备份文件名"
-
-#~ msgid "0"
-#~ msgstr "0"
-
-#~ msgid "<span weight=\"bold\">File Name</span>"
-#~ msgstr "<span weight=\"bold\">文件名</span>"
-
-#~ msgid "*"
-#~ msgstr "*"
-
-#~ msgid "<b>Language</b>"
-#~ msgstr "<b>语言</b>"
-
-#~ msgid "<b>word</b>"
-#~ msgstr "<b>单词</b>"
-
-#~ msgid "HttP header name"
-#~ msgstr "HTTP 头名称"
-
-#~ msgid "<span size=\"small\">01/11/2002 17:52:00</span>"
-#~ msgstr "<span size=\"small\">2002/01/11 17:52:00</span>"
-
-#~ msgid "<span weight=\"bold\"> When inserting date/time...</span>"
-#~ msgstr "<span weight=\"bold\">插入日期/时间时...</span>"
-
-#~ msgid "_Indent"
-#~ msgstr "缩进(_I)"
-
-#~ msgid "U_nindent"
-#~ msgstr "取消缩进(_N)"
-
-#~ msgid "Unindent selected lines"
-#~ msgstr "取消缩进选中行"
-
-#~ msgid "Indent Lines"
-#~ msgstr "缩进行"
-
-#~ msgid "Indents or un-indents selected lines."
-#~ msgstr "缩进或取消缩进选中行。"
-
-#~ msgid "<b>Current Line</b>"
-#~ msgstr "<b>当前行</b>"
-
-#~ msgid "<b>Font</b>"
-#~ msgstr "<b>字体</b>"
-
-#~ msgid "<b>Line Numbers</b>"
-#~ msgstr "<b>行号</b>"
-
-#~ msgid "<span weight=\"bold\">Color Scheme</span>"
-#~ msgstr "<span weight=\"bold\">配色方案</span>"
-
-#~ msgid "<b>Fonts</b>"
-#~ msgstr "<b>字体</b>"
-
-#~ msgid "<b>Page header</b>"
-#~ msgstr "<b>页眉</b>"
-
-#~ msgid "<b>Syntax Highlighting</b>"
-#~ msgstr "<b>语法高亮</b>"
-
-#~ msgid "Open Location"
-#~ msgstr "打开位置"
-
-#~ msgid "Enter the _location (URI) of the file you would like to open:"
-#~ msgstr "输入您想打开文件的位置(URI)(_L)："
-
-#~ msgid "%s: malformed file name or URI.\n"
-#~ msgstr "%s：文件名或 URI 格式错误。\n"
-
-#~ msgid "Open _Location..."
-#~ msgstr "打开位置(_L)..."
-
-#~ msgid "Open a file from a specified location"
-#~ msgstr "从指定的位置打开文件"
-
-#~ msgid "Edit tool <i>%s</i>:"
-#~ msgstr "编辑工具 <i>%s</i>："
-
-#~ msgid "A Brand New Tool"
-#~ msgstr "全新工具"
-
-#~ msgid "Co_mmand(s):"
-#~ msgstr "命令(_M)："
-
-#~ msgid "Edit tool <i>make</i>:"
-#~ msgstr "编辑工具 <i>make</i>："
-
-#~ msgid "_Description:"
-#~ msgstr "描述(_D)："
-
-#~ msgid "Insert User Na_me"
-#~ msgstr "插入用户名(_M)"
-
-#~ msgid "Insert the user name at the cursor position"
-#~ msgstr "在光标处插入用户名"
-
-#~ msgid "Inserts the user name at the cursor position."
-#~ msgstr "在光标处插入用户名。"
-
-#~ msgid "User name"
-#~ msgstr "用户名"
-
-#~ msgid "None"
-#~ msgstr "无"
-
-#~ msgid "The following python code, run in a snippet, does not return a value"
-#~ msgstr "以下以片断方式运行的 Python 代码不返回值"
-
-#~ msgid "language|Unknown (%s)"
-#~ msgstr "未知(%s)"
-
-#~ msgid "language|Default"
-#~ msgstr "默认"

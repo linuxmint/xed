@@ -1,387 +1,415 @@
-# Kazakh translation for pluma.
-# Copyright (C) 2010 pluma's COPYRIGHT HOLDER
-# This file is distributed under the same license as the pluma package.
-# Baurzhan Muftakhidinov <baurthefirst@gmail.com>, 2010.
-#
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
 msgid ""
 msgstr ""
-"Project-Id-Version: pluma master\n"
-"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=pluma&component=general\n"
-"POT-Creation-Date: 2010-08-10 08:26+0000\n"
-"PO-Revision-Date: 2010-09-16 14:50+0600\n"
-"Last-Translator: Baurzhan Muftakhidinov <baurthefirst@gmail.com>\n"
-"Language-Team: Kazakh <kk_KZ@googlegroups.com>\n"
+"Project-Id-Version: MATE Desktop Environment\n"
+"Report-Msgid-Bugs-To: https://github.com/mate-desktop/\n"
+"POT-Creation-Date: 2013-02-11 14:33+0100\n"
+"PO-Revision-Date: 2013-02-11 13:34+0000\n"
+"Last-Translator: Stefano Karapetsas <stefano@karapetsas.com>\n"
+"Language-Team: Kazakh (http://www.transifex.com/projects/p/MATE/language/kk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=1; plural=0\n"
-"X-Poedit-Language: Kazakh\n"
-"X-Poedit-Country: KAZAKHSTAN\n"
+"Language: kk\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: ../data/org.mate.pluma.gschema.xml.in.in.h:1
+msgid "Use Default Font"
+msgstr ""
+
+#: ../data/org.mate.pluma.gschema.xml.in.in.h:2
+msgid ""
+"Whether to use the system's default fixed width font for editing text "
+"instead of a font specific to pluma. If this option is turned off, then the "
+"font named in the \"Editor Font\" option will be used instead of the system "
+"font."
+msgstr ""
+
+#: ../data/org.mate.pluma.gschema.xml.in.in.h:3
+msgid "Editor Font"
+msgstr "Түзетуші қарібі"
+
+#: ../data/org.mate.pluma.gschema.xml.in.in.h:4
+msgid ""
+"A custom font that will be used for the editing area. This will only take "
+"effect if the \"Use Default Font\" option is turned off."
+msgstr ""
+
+#: ../data/org.mate.pluma.gschema.xml.in.in.h:5
+msgid "Style Scheme"
+msgstr ""
+
+#: ../data/org.mate.pluma.gschema.xml.in.in.h:6
+msgid "The ID of a GtkSourceView Style Scheme used to color the text."
+msgstr ""
+
+#: ../data/org.mate.pluma.gschema.xml.in.in.h:7
+msgid "Create Backup Copies"
+msgstr ""
+
+#: ../data/org.mate.pluma.gschema.xml.in.in.h:8
+msgid ""
+"Whether pluma should create backup copies for the files it saves. You can "
+"set the backup file extension with the \"Backup Copy Extension\" option."
+msgstr ""
+
+#: ../data/org.mate.pluma.gschema.xml.in.in.h:9
+msgid "Autosave"
+msgstr "Автосақтау"
+
+#: ../data/org.mate.pluma.gschema.xml.in.in.h:10
+msgid ""
+"Whether pluma should automatically save modified files after a time "
+"interval. You can set the time interval with the \"Autosave Interval\" "
+"option."
+msgstr ""
+
+#: ../data/org.mate.pluma.gschema.xml.in.in.h:11
+msgid "Autosave Interval"
+msgstr "Автосақтау мерзімі"
+
+#: ../data/org.mate.pluma.gschema.xml.in.in.h:12
+msgid ""
+"Number of minutes after which pluma will automatically save modified files. "
+"This will only take effect if the \"Autosave\" option is turned on."
+msgstr ""
+
+#: ../data/org.mate.pluma.gschema.xml.in.in.h:13
+msgid "Writable VFS schemes"
+msgstr ""
+
+#: ../data/org.mate.pluma.gschema.xml.in.in.h:14
+msgid ""
+"List of VFS schemes pluma supports in write mode. The 'file' scheme is "
+"writable by default."
+msgstr ""
+
+#: ../data/org.mate.pluma.gschema.xml.in.in.h:15
+msgid "Maximum Number of Undo Actions"
+msgstr ""
+
+#: ../data/org.mate.pluma.gschema.xml.in.in.h:16
+msgid ""
+"Maximum number of actions that pluma will be able to undo or redo. Use "
+"\"-1\" for unlimited number of actions."
+msgstr ""
+
+#: ../data/org.mate.pluma.gschema.xml.in.in.h:17
+msgid "Line Wrapping Mode"
+msgstr ""
+
+#: ../data/org.mate.pluma.gschema.xml.in.in.h:18
+msgid ""
+"Specifies how to wrap long lines in the editing area. Use \"GTK_WRAP_NONE\" "
+"for no wrapping, \"GTK_WRAP_WORD\" for wrapping at word boundaries, and "
+"\"GTK_WRAP_CHAR\" for wrapping at individual character boundaries. Note that"
+" the values are case-sensitive, so make sure they appear exactly as "
+"mentioned here."
+msgstr ""
+
+#: ../data/org.mate.pluma.gschema.xml.in.in.h:19
+msgid "Tab Size"
+msgstr ""
+
+#: ../data/org.mate.pluma.gschema.xml.in.in.h:20
+msgid ""
+"Specifies the number of spaces that should be displayed instead of Tab "
+"characters."
+msgstr ""
+
+#: ../data/org.mate.pluma.gschema.xml.in.in.h:21
+msgid "Insert spaces"
+msgstr ""
+
+#: ../data/org.mate.pluma.gschema.xml.in.in.h:22
+msgid "Whether pluma should insert spaces instead of tabs."
+msgstr ""
+
+#: ../data/org.mate.pluma.gschema.xml.in.in.h:23
+msgid "Automatic indent"
+msgstr ""
+
+#: ../data/org.mate.pluma.gschema.xml.in.in.h:24
+msgid "Whether pluma should enable automatic indentation."
+msgstr ""
+
+#: ../data/org.mate.pluma.gschema.xml.in.in.h:25
+msgid "Display Line Numbers"
+msgstr "Жолдар нөмірлерін көрсету"
+
+#: ../data/org.mate.pluma.gschema.xml.in.in.h:26
+msgid "Whether pluma should display line numbers in the editing area."
+msgstr ""
+
+#: ../data/org.mate.pluma.gschema.xml.in.in.h:27
+msgid "Highlight Current Line"
+msgstr ""
+
+#: ../data/org.mate.pluma.gschema.xml.in.in.h:28
+msgid "Whether pluma should highlight the current line."
+msgstr ""
+
+#: ../data/org.mate.pluma.gschema.xml.in.in.h:29
+msgid "Highlight Matching Bracket"
+msgstr ""
+
+#: ../data/org.mate.pluma.gschema.xml.in.in.h:30
+msgid "Whether pluma should highlight the bracket matching the selected one."
+msgstr ""
+
+#: ../data/org.mate.pluma.gschema.xml.in.in.h:31
+msgid "Display Right Margin"
+msgstr ""
+
+#: ../data/org.mate.pluma.gschema.xml.in.in.h:32
+msgid "Whether pluma should display the right margin in the editing area."
+msgstr ""
+
+#: ../data/org.mate.pluma.gschema.xml.in.in.h:33
+msgid "Right Margin Position"
+msgstr ""
+
+#: ../data/org.mate.pluma.gschema.xml.in.in.h:34
+msgid "Specifies the position of the right margin."
+msgstr ""
+
+#: ../data/org.mate.pluma.gschema.xml.in.in.h:35
+msgid "Smart Home End"
+msgstr ""
+
+#: ../data/org.mate.pluma.gschema.xml.in.in.h:36
+msgid ""
+"Specifies how the cursor moves when the HOME and END keys are pressed. Use "
+"\"DISABLED\" to always move at the start/end of the line, \"AFTER\" to move "
+"to the start/end of the line the first time the keys are pressed and to the "
+"start/end of the text ignoring whitespaces the second time the keys are "
+"pressed, \"BEFORE\" to move to the start/end of the text before moving to "
+"the start/end of the line and \"ALWAYS\" to always move to the start/end of "
+"the text instead of the start/end of the line."
+msgstr ""
+
+#: ../data/org.mate.pluma.gschema.xml.in.in.h:37
+msgid "Restore Previous Cursor Position"
+msgstr ""
+
+#: ../data/org.mate.pluma.gschema.xml.in.in.h:38
+msgid ""
+"Whether pluma should restore the previous cursor position when a file is "
+"loaded."
+msgstr ""
+
+#: ../data/org.mate.pluma.gschema.xml.in.in.h:39
+msgid "Enable Search Highlighting"
+msgstr ""
+
+#: ../data/org.mate.pluma.gschema.xml.in.in.h:40
+msgid ""
+"Whether pluma should highlight all the occurrences of the searched text."
+msgstr ""
+
+#: ../data/org.mate.pluma.gschema.xml.in.in.h:41
+msgid "Enable Syntax Highlighting"
+msgstr ""
+
+#: ../data/org.mate.pluma.gschema.xml.in.in.h:42
+msgid "Whether pluma should enable syntax highlighting."
+msgstr ""
+
+#: ../data/org.mate.pluma.gschema.xml.in.in.h:43
+msgid "Toolbar is Visible"
+msgstr ""
+
+#: ../data/org.mate.pluma.gschema.xml.in.in.h:44
+msgid "Whether the toolbar should be visible in editing windows."
+msgstr ""
+
+#: ../data/org.mate.pluma.gschema.xml.in.in.h:45
+msgid "Toolbar Buttons Style"
+msgstr ""
+
+#: ../data/org.mate.pluma.gschema.xml.in.in.h:46
+msgid ""
+"Style for the toolbar buttons. Possible values are \"PLUMA_TOOLBAR_SYSTEM\" "
+"to use the system's default style, \"PLUMA_TOOLBAR_ICONS\" to display icons "
+"only, \"PLUMA_TOOLBAR_ICONS_AND_TEXT\" to display both icons and text, and "
+"\"PLUMA_TOOLBAR_ICONS_BOTH_HORIZ\" to display prioritized text beside icons."
+" Note that the values are case-sensitive, so make sure they appear exactly "
+"as mentioned here."
+msgstr ""
+
+#: ../data/org.mate.pluma.gschema.xml.in.in.h:47
+msgid "Status Bar is Visible"
+msgstr ""
+
+#: ../data/org.mate.pluma.gschema.xml.in.in.h:48
+msgid ""
+"Whether the status bar at the bottom of editing windows should be visible."
+msgstr ""
+
+#: ../data/org.mate.pluma.gschema.xml.in.in.h:49
+msgid "Side Pane is Visible"
+msgstr ""
+
+#: ../data/org.mate.pluma.gschema.xml.in.in.h:50
+msgid ""
+"Whether the side pane at the left of editing windows should be visible."
+msgstr ""
+
+#: ../data/org.mate.pluma.gschema.xml.in.in.h:51
+msgid "Bottom Panel is Visible"
+msgstr ""
+
+#: ../data/org.mate.pluma.gschema.xml.in.in.h:52
+msgid ""
+"Whether the bottom panel at the bottom of editing windows should be visible."
+msgstr ""
+
+#: ../data/org.mate.pluma.gschema.xml.in.in.h:53
+msgid "Maximum Recent Files"
+msgstr ""
+
+#: ../data/org.mate.pluma.gschema.xml.in.in.h:54
+msgid ""
+"Specifies the maximum number of recently opened files that will be displayed"
+" in the \"Recent Files\" submenu."
+msgstr ""
+
+#: ../data/org.mate.pluma.gschema.xml.in.in.h:55
+msgid "Print Syntax Highlighting"
+msgstr ""
+
+#: ../data/org.mate.pluma.gschema.xml.in.in.h:56
+msgid ""
+"Whether pluma should print syntax highlighting when printing documents."
+msgstr ""
+
+#: ../data/org.mate.pluma.gschema.xml.in.in.h:57
+msgid "Print Header"
+msgstr ""
+
+#: ../data/org.mate.pluma.gschema.xml.in.in.h:58
+msgid ""
+"Whether pluma should include a document header when printing documents."
+msgstr ""
+
+#: ../data/org.mate.pluma.gschema.xml.in.in.h:59
+msgid "Printing Line Wrapping Mode"
+msgstr ""
+
+#: ../data/org.mate.pluma.gschema.xml.in.in.h:60
+msgid ""
+"Specifies how to wrap long lines for printing. Use \"GTK_WRAP_NONE\" for no "
+"wrapping, \"GTK_WRAP_WORD\" for wrapping at word boundaries, and "
+"\"GTK_WRAP_CHAR\" for wrapping at individual character boundaries. Note that"
+" the values are case-sensitive, so make sure they appear exactly as "
+"mentioned here."
+msgstr ""
+
+#: ../data/org.mate.pluma.gschema.xml.in.in.h:61
+msgid "Print Line Numbers"
+msgstr ""
+
+#: ../data/org.mate.pluma.gschema.xml.in.in.h:62
+msgid ""
+"If this value is 0, then no line numbers will be inserted when printing a "
+"document. Otherwise, pluma will print line numbers every such number of "
+"lines."
+msgstr ""
+
+#: ../data/org.mate.pluma.gschema.xml.in.in.h:63
+msgid "Body Font for Printing"
+msgstr ""
+
+#: ../data/org.mate.pluma.gschema.xml.in.in.h:64
+msgid ""
+"Specifies the font to use for a document's body when printing documents."
+msgstr ""
+
+#: ../data/org.mate.pluma.gschema.xml.in.in.h:65
+msgid "Header Font for Printing"
+msgstr ""
+
+#: ../data/org.mate.pluma.gschema.xml.in.in.h:66
+msgid ""
+"Specifies the font to use for page headers when printing a document. This "
+"will only take effect if the \"Print Header\" option is turned on."
+msgstr ""
+
+#: ../data/org.mate.pluma.gschema.xml.in.in.h:67
+msgid "Line Number Font for Printing"
+msgstr ""
+
+#: ../data/org.mate.pluma.gschema.xml.in.in.h:68
+msgid ""
+"Specifies the font to use for line numbers when printing. This will only "
+"take effect if the \"Print Line Numbers\" option is non-zero."
+msgstr ""
+
+#: ../data/org.mate.pluma.gschema.xml.in.in.h:69
+msgid "Automatically Detected Encodings"
+msgstr ""
+
+#: ../data/org.mate.pluma.gschema.xml.in.in.h:70
+msgid ""
+"Sorted list of encodings used by pluma for automatically detecting the "
+"encoding of a file. \"CURRENT\" represents the current locale encoding. Only"
+" recognized encodings are used."
+msgstr ""
+
+#: ../data/org.mate.pluma.gschema.xml.in.in.h:71
+msgid "Encodings shown in menu"
+msgstr ""
+
+#: ../data/org.mate.pluma.gschema.xml.in.in.h:72
+msgid ""
+"List of encodings shown in the Character Encoding menu in open/save file "
+"selector. Only recognized encodings are used."
+msgstr ""
+
+#: ../data/org.mate.pluma.gschema.xml.in.in.h:73
+msgid "History for \"search for\" entries"
+msgstr ""
+
+#: ../data/org.mate.pluma.gschema.xml.in.in.h:74
+msgid "List of entries in \"search for\" textbox."
+msgstr ""
+
+#: ../data/org.mate.pluma.gschema.xml.in.in.h:75
+msgid "History for \"replace with\" entries"
+msgstr ""
+
+#: ../data/org.mate.pluma.gschema.xml.in.in.h:76
+msgid "List of entries in \"replace with\" textbox."
+msgstr ""
+
+#: ../data/org.mate.pluma.gschema.xml.in.in.h:77
+msgid "Active plugins"
+msgstr "Белсенді плагиндер"
+
+#: ../data/org.mate.pluma.gschema.xml.in.in.h:78
+msgid ""
+"List of active plugins. It contains the \"Location\" of the active plugins. "
+"See the .pluma-plugin file for obtaining the \"Location\" of a given plugin."
+msgstr ""
 
 #: ../data/pluma.desktop.in.in.h:1
-msgid "Edit text files"
-msgstr "Мәтіндік файлдарды түзету"
+msgid "Pluma"
+msgstr ""
 
-#: ../data/pluma.desktop.in.in.h:2
-#: ../pluma/pluma-print-job.c:759
+#: ../data/pluma.desktop.in.in.h:2 ../pluma/pluma-print-job.c:765
 msgid "Text Editor"
 msgstr "Мәтін түзетушісі"
 
 #: ../data/pluma.desktop.in.in.h:3
-msgid "pluma"
-msgstr "pluma"
+msgid "Edit text files"
+msgstr "Мәтіндік файлдарды түзету"
 
 #: ../data/pluma.desktop.in.in.h:4
 msgid "pluma Text Editor"
-msgstr ""
-
-#: ../data/pluma.schemas.in.in.h:1
-msgid "A custom font that will be used for the editing area. This will only take effect if the \"Use Default Font\" option is turned off."
-msgstr ""
-
-#: ../data/pluma.schemas.in.in.h:2
-msgid "Active plugins"
-msgstr "Белсенді плагиндер"
-
-#: ../data/pluma.schemas.in.in.h:3
-msgid "Automatic indent"
-msgstr ""
-
-#: ../data/pluma.schemas.in.in.h:4
-msgid "Automatically Detected Encodings"
-msgstr ""
-
-#: ../data/pluma.schemas.in.in.h:5
-msgid "Autosave"
-msgstr "Автосақтау"
-
-#: ../data/pluma.schemas.in.in.h:6
-msgid "Autosave Interval"
-msgstr "Автосақтау мерзімі"
-
-#: ../data/pluma.schemas.in.in.h:7
-msgid "Body Font for Printing"
-msgstr ""
-
-#: ../data/pluma.schemas.in.in.h:8
-msgid "Bottom Panel is Visible"
-msgstr ""
-
-#: ../data/pluma.schemas.in.in.h:9
-msgid "Create Backup Copies"
-msgstr ""
-
-#: ../data/pluma.schemas.in.in.h:10
-msgid "Display Line Numbers"
-msgstr "Жолдар нөмірлерін көрсету"
-
-#: ../data/pluma.schemas.in.in.h:11
-msgid "Display Right Margin"
-msgstr ""
-
-#: ../data/pluma.schemas.in.in.h:12
-msgid "Editor Font"
-msgstr "Түзетуші қарібі"
-
-#: ../data/pluma.schemas.in.in.h:13
-msgid "Enable Search Highlighting"
-msgstr ""
-
-#: ../data/pluma.schemas.in.in.h:14
-msgid "Enable Syntax Highlighting"
-msgstr ""
-
-#: ../data/pluma.schemas.in.in.h:15
-msgid "Encodings shown in menu"
-msgstr ""
-
-#: ../data/pluma.schemas.in.in.h:16
-msgid "Header Font for Printing"
-msgstr ""
-
-#: ../data/pluma.schemas.in.in.h:17
-msgid "Highlight Current Line"
-msgstr ""
-
-#: ../data/pluma.schemas.in.in.h:18
-msgid "Highlight Matching Bracket"
-msgstr ""
-
-#: ../data/pluma.schemas.in.in.h:19
-msgid "If this value is 0, then no line numbers will be inserted when printing a document. Otherwise, pluma will print line numbers every such number of lines."
-msgstr ""
-
-#: ../data/pluma.schemas.in.in.h:20
-msgid "Insert spaces"
-msgstr ""
-
-#: ../data/pluma.schemas.in.in.h:21
-msgid "Line Number Font for Printing"
-msgstr ""
-
-#: ../data/pluma.schemas.in.in.h:22
-msgid "Line Wrapping Mode"
-msgstr ""
-
-#: ../data/pluma.schemas.in.in.h:23
-msgid "List of VFS schemes pluma supports in write mode. The 'file' scheme is writable by default."
-msgstr ""
-
-#: ../data/pluma.schemas.in.in.h:24
-msgid "List of active plugins. It contains the \"Location\" of the active plugins. See the .pluma-plugin file for obtaining the \"Location\" of a given plugin."
-msgstr ""
-
-#: ../data/pluma.schemas.in.in.h:25
-msgid "List of encodings shown in the Character Encoding menu in open/save file selector. Only recognized encodings are used."
-msgstr ""
-
-#: ../data/pluma.schemas.in.in.h:26
-msgid "Maximum Number of Undo Actions"
-msgstr ""
-
-#: ../data/pluma.schemas.in.in.h:27
-msgid "Maximum Recent Files"
-msgstr ""
-
-#: ../data/pluma.schemas.in.in.h:28
-msgid "Maximum number of actions that pluma will be able to undo or redo. Use \"-1\" for unlimited number of actions."
-msgstr ""
-
-#: ../data/pluma.schemas.in.in.h:29
-msgid "Maximum number of actions that pluma will be able to undo or redo. Use \"-1\" for unlimited number of actions. Deprecated since 2.12.0"
-msgstr ""
-
-#. Translators: This is the Editor Font.
-#. This is a Pango font
-#: ../data/pluma.schemas.in.in.h:32
-msgid "Monospace 12"
-msgstr ""
-
-#. Translators: This is the Body font for printing.
-#. This is a Pango font.
-#: ../data/pluma.schemas.in.in.h:35
-msgid "Monospace 9"
-msgstr ""
-
-#: ../data/pluma.schemas.in.in.h:36
-msgid "Number of minutes after which pluma will automatically save modified files. This will only take effect if the \"Autosave\" option is turned on."
-msgstr ""
-
-#: ../data/pluma.schemas.in.in.h:37
-msgid "Print Header"
-msgstr ""
-
-#: ../data/pluma.schemas.in.in.h:38
-msgid "Print Line Numbers"
-msgstr ""
-
-#: ../data/pluma.schemas.in.in.h:39
-msgid "Print Syntax Highlighting"
-msgstr ""
-
-#: ../data/pluma.schemas.in.in.h:40
-msgid "Printing Line Wrapping Mode"
-msgstr ""
-
-#: ../data/pluma.schemas.in.in.h:41
-msgid "Restore Previous Cursor Position"
-msgstr ""
-
-#: ../data/pluma.schemas.in.in.h:42
-msgid "Right Margin Position"
-msgstr ""
-
-#. Translators: This is the Header font for printing.
-#. This is a Pango font.
-#: ../data/pluma.schemas.in.in.h:45
-msgid "Sans 11"
-msgstr "Sans 11"
-
-#. Translators: This is the Line Number font for printing.
-#. This is a Pango font.
-#: ../data/pluma.schemas.in.in.h:48
-msgid "Sans 8"
-msgstr "Sans 8"
-
-#: ../data/pluma.schemas.in.in.h:49
-msgid "Side Pane is Visible"
-msgstr ""
-
-#: ../data/pluma.schemas.in.in.h:50
-msgid "Smart Home End"
-msgstr ""
-
-#: ../data/pluma.schemas.in.in.h:51
-msgid "Sorted list of encodings used by pluma for automatically detecting the encoding of a file. \"CURRENT\" represents the current locale encoding. Only recognized encodings are used."
-msgstr ""
-
-#: ../data/pluma.schemas.in.in.h:52
-msgid "Specifies how the cursor moves when the HOME and END keys are pressed. Use \"DISABLED\" to always move at the start/end of the line, \"AFTER\" to move to the start/end of the line the first time the keys are pressed and to the start/end of the text ignoring whitespaces the second time the keys are pressed, \"BEFORE\" to move to the start/end of the text before moving to the start/end of the line and \"ALWAYS\" to always move to the start/end of the text instead of the start/end of the line."
-msgstr ""
-
-#: ../data/pluma.schemas.in.in.h:53
-msgid "Specifies how to wrap long lines for printing. Use \"GTK_WRAP_NONE\" for no wrapping, \"GTK_WRAP_WORD\" for wrapping at word boundaries, and \"GTK_WRAP_CHAR\" for wrapping at individual character boundaries. Note that the values are case-sensitive, so make sure they appear exactly as mentioned here."
-msgstr ""
-
-#: ../data/pluma.schemas.in.in.h:54
-msgid "Specifies how to wrap long lines in the editing area. Use \"GTK_WRAP_NONE\" for no wrapping, \"GTK_WRAP_WORD\" for wrapping at word boundaries, and \"GTK_WRAP_CHAR\" for wrapping at individual character boundaries. Note that the values are case-sensitive, so make sure they appear exactly as mentioned here."
-msgstr ""
-
-#: ../data/pluma.schemas.in.in.h:55
-msgid "Specifies the font to use for a document's body when printing documents."
-msgstr ""
-
-#: ../data/pluma.schemas.in.in.h:56
-msgid "Specifies the font to use for line numbers when printing. This will only take effect if the \"Print Line Numbers\" option is non-zero."
-msgstr ""
-
-#: ../data/pluma.schemas.in.in.h:57
-msgid "Specifies the font to use for page headers when printing a document. This will only take effect if the \"Print Header\" option is turned on."
-msgstr ""
-
-#: ../data/pluma.schemas.in.in.h:58
-msgid "Specifies the maximum number of recently opened files that will be displayed in the \"Recent Files\" submenu."
-msgstr ""
-
-#: ../data/pluma.schemas.in.in.h:59
-msgid "Specifies the number of spaces that should be displayed instead of Tab characters."
-msgstr ""
-
-#: ../data/pluma.schemas.in.in.h:60
-msgid "Specifies the position of the right margin."
-msgstr ""
-
-#: ../data/pluma.schemas.in.in.h:61
-msgid "Status Bar is Visible"
-msgstr ""
-
-#: ../data/pluma.schemas.in.in.h:62
-msgid "Style Scheme"
-msgstr ""
-
-#: ../data/pluma.schemas.in.in.h:63
-msgid "Style for the toolbar buttons. Possible values are \"PLUMA_TOOLBAR_SYSTEM\" to use the system's default style, \"PLUMA_TOOLBAR_ICONS\" to display icons only, \"PLUMA_TOOLBAR_ICONS_AND_TEXT\" to display both icons and text, and \"PLUMA_TOOLBAR_ICONS_BOTH_HORIZ\" to display prioritized text beside icons. Note that the values are case-sensitive, so make sure they appear exactly as mentioned here."
-msgstr ""
-
-#: ../data/pluma.schemas.in.in.h:64
-msgid "Tab Size"
-msgstr ""
-
-#: ../data/pluma.schemas.in.in.h:65
-msgid "The ID of a GtkSourceView Style Scheme used to color the text."
-msgstr ""
-
-#: ../data/pluma.schemas.in.in.h:66
-msgid "Toolbar Buttons Style"
-msgstr ""
-
-#: ../data/pluma.schemas.in.in.h:67
-msgid "Toolbar is Visible"
-msgstr ""
-
-#: ../data/pluma.schemas.in.in.h:68
-msgid "Undo Actions Limit (DEPRECATED)"
-msgstr ""
-
-#: ../data/pluma.schemas.in.in.h:69
-msgid "Use Default Font"
-msgstr ""
-
-#: ../data/pluma.schemas.in.in.h:70
-msgid "Whether pluma should automatically save modified files after a time interval. You can set the time interval with the \"Autosave Interval\" option."
-msgstr ""
-
-#: ../data/pluma.schemas.in.in.h:71
-msgid "Whether pluma should create backup copies for the files it saves. You can set the backup file extension with the \"Backup Copy Extension\" option."
-msgstr ""
-
-#: ../data/pluma.schemas.in.in.h:72
-msgid "Whether pluma should display line numbers in the editing area."
-msgstr ""
-
-#: ../data/pluma.schemas.in.in.h:73
-msgid "Whether pluma should display the right margin in the editing area."
-msgstr ""
-
-#: ../data/pluma.schemas.in.in.h:74
-msgid "Whether pluma should enable automatic indentation."
-msgstr ""
-
-#: ../data/pluma.schemas.in.in.h:75
-msgid "Whether pluma should enable syntax highlighting."
-msgstr ""
-
-#: ../data/pluma.schemas.in.in.h:76
-msgid "Whether pluma should highlight all the occurrences of the searched text."
-msgstr ""
-
-#: ../data/pluma.schemas.in.in.h:77
-msgid "Whether pluma should highlight the bracket matching the selected one."
-msgstr ""
-
-#: ../data/pluma.schemas.in.in.h:78
-msgid "Whether pluma should highlight the current line."
-msgstr ""
-
-#: ../data/pluma.schemas.in.in.h:79
-msgid "Whether pluma should include a document header when printing documents."
-msgstr ""
-
-#: ../data/pluma.schemas.in.in.h:80
-msgid "Whether pluma should insert spaces instead of tabs."
-msgstr ""
-
-#: ../data/pluma.schemas.in.in.h:81
-msgid "Whether pluma should print syntax highlighting when printing documents."
-msgstr ""
-
-#: ../data/pluma.schemas.in.in.h:82
-msgid "Whether pluma should restore the previous cursor position when a file is loaded."
-msgstr ""
-
-#: ../data/pluma.schemas.in.in.h:83
-msgid "Whether the bottom panel at the bottom of editing windows should be visible."
-msgstr ""
-
-#: ../data/pluma.schemas.in.in.h:84
-msgid "Whether the side pane at the left of editing windows should be visible."
-msgstr ""
-
-#: ../data/pluma.schemas.in.in.h:85
-msgid "Whether the status bar at the bottom of editing windows should be visible."
-msgstr ""
-
-#: ../data/pluma.schemas.in.in.h:86
-msgid "Whether the toolbar should be visible in editing windows."
-msgstr ""
-
-#: ../data/pluma.schemas.in.in.h:87
-msgid "Whether to use the system's default fixed width font for editing text instead of a font specific to pluma. If this option is turned off, then the font named in the \"Editor Font\" option will be used instead of the system font."
-msgstr ""
-
-#: ../data/pluma.schemas.in.in.h:88
-msgid "Writable VFS schemes"
-msgstr ""
-
-#. Translators: This is the list of encodings shown by default in the Character Encoding
-#. menu in open/save file selector. Only recognized encodings are displayed.
-#: ../data/pluma.schemas.in.in.h:91
-msgid "[ISO-8859-15]"
-msgstr ""
-
-#. Translators: This is the sorted list of encodings used by pluma
-#. for automatic detection of the file encoding. You may want to customize it adding
-#. encodings that are common in your country, for instance the GB18030 encoding
-#. for the Chinese	translation. You may also want to remove the ISO-8859-15 encoding
-#. (covering English and most Western European languages) if you think people
-#. in you country will rarely use it.
-#. "CURRENT" is a magic value used by pluma and it represents the encoding
-#. for the current locale, so please don't translate the "CURRENT" term.
-#. Only recognized encodings are used.
-#. See http://svn.gnome.org/viewcvs/pluma/trunk/pluma/pluma-encodings.c?view=markup for
-#. a list of supported encodings
-#: ../data/pluma.schemas.in.in.h:103
-msgid "[UTF-8,CURRENT,ISO-8859-15,UTF-16]"
 msgstr ""
 
 #: ../pluma/dialogs/pluma-close-confirmation-dialog.c:140
@@ -402,46 +430,61 @@ msgstr "Сұрақ"
 
 #: ../pluma/dialogs/pluma-close-confirmation-dialog.c:412
 #, c-format
-msgid "If you don't save, changes from the last %ld second will be permanently lost."
-msgid_plural "If you don't save, changes from the last %ld seconds will be permanently lost."
+msgid ""
+"If you don't save, changes from the last %ld second will be permanently "
+"lost."
+msgid_plural ""
+"If you don't save, changes from the last %ld seconds will be permanently "
+"lost."
 msgstr[0] ""
-msgstr[1] ""
 
 #: ../pluma/dialogs/pluma-close-confirmation-dialog.c:421
-msgid "If you don't save, changes from the last minute will be permanently lost."
+msgid ""
+"If you don't save, changes from the last minute will be permanently lost."
 msgstr ""
 
 #: ../pluma/dialogs/pluma-close-confirmation-dialog.c:427
 #, c-format
-msgid "If you don't save, changes from the last minute and %ld second will be permanently lost."
-msgid_plural "If you don't save, changes from the last minute and %ld seconds will be permanently lost."
+msgid ""
+"If you don't save, changes from the last minute and %ld second will be "
+"permanently lost."
+msgid_plural ""
+"If you don't save, changes from the last minute and %ld seconds will be "
+"permanently lost."
 msgstr[0] ""
-msgstr[1] ""
 
 #: ../pluma/dialogs/pluma-close-confirmation-dialog.c:437
 #, c-format
-msgid "If you don't save, changes from the last %ld minute will be permanently lost."
-msgid_plural "If you don't save, changes from the last %ld minutes will be permanently lost."
+msgid ""
+"If you don't save, changes from the last %ld minute will be permanently "
+"lost."
+msgid_plural ""
+"If you don't save, changes from the last %ld minutes will be permanently "
+"lost."
 msgstr[0] ""
-msgstr[1] ""
 
 #: ../pluma/dialogs/pluma-close-confirmation-dialog.c:452
-msgid "If you don't save, changes from the last hour will be permanently lost."
+msgid ""
+"If you don't save, changes from the last hour will be permanently lost."
 msgstr ""
 
 #: ../pluma/dialogs/pluma-close-confirmation-dialog.c:458
 #, c-format
-msgid "If you don't save, changes from the last hour and %d minute will be permanently lost."
-msgid_plural "If you don't save, changes from the last hour and %d minutes will be permanently lost."
+msgid ""
+"If you don't save, changes from the last hour and %d minute will be "
+"permanently lost."
+msgid_plural ""
+"If you don't save, changes from the last hour and %d minutes will be "
+"permanently lost."
 msgstr[0] ""
-msgstr[1] ""
 
 #: ../pluma/dialogs/pluma-close-confirmation-dialog.c:473
 #, c-format
-msgid "If you don't save, changes from the last %d hour will be permanently lost."
-msgid_plural "If you don't save, changes from the last %d hours will be permanently lost."
+msgid ""
+"If you don't save, changes from the last %d hour will be permanently lost."
+msgid_plural ""
+"If you don't save, changes from the last %d hours will be permanently lost."
 msgstr[0] ""
-msgstr[1] ""
 
 #: ../pluma/dialogs/pluma-close-confirmation-dialog.c:516
 #, c-format
@@ -463,14 +506,14 @@ msgstr ""
 msgid "Changes to %d document will be permanently lost."
 msgid_plural "Changes to %d documents will be permanently lost."
 msgstr[0] ""
-msgstr[1] ""
 
 #: ../pluma/dialogs/pluma-close-confirmation-dialog.c:707
 #, c-format
-msgid "There is %d document with unsaved changes. Save changes before closing?"
-msgid_plural "There are %d documents with unsaved changes. Save changes before closing?"
+msgid ""
+"There is %d document with unsaved changes. Save changes before closing?"
+msgid_plural ""
+"There are %d documents with unsaved changes. Save changes before closing?"
 msgstr[0] ""
-msgstr[1] ""
 
 #: ../pluma/dialogs/pluma-close-confirmation-dialog.c:725
 msgid "Docum_ents with unsaved changes:"
@@ -499,203 +542,199 @@ msgid "_Encoding"
 msgstr "Ко_дталуы"
 
 #: ../pluma/dialogs/pluma-encodings-dialog.ui.h:1
-msgid "A_vailable encodings:"
+msgid "Character encodings"
 msgstr ""
 
 #: ../pluma/dialogs/pluma-encodings-dialog.ui.h:2
-msgid "Character encodings"
+msgid "A_vailable encodings:"
 msgstr ""
 
 #: ../pluma/dialogs/pluma-encodings-dialog.ui.h:3
 msgid "E_ncodings shown in menu:"
 msgstr ""
 
-#: ../pluma/dialogs/pluma-preferences-dialog.c:571
+#: ../pluma/dialogs/pluma-preferences-dialog.c:570
 msgid "Click on this button to select the font to be used by the editor"
 msgstr ""
 
-#: ../pluma/dialogs/pluma-preferences-dialog.c:581
+#: ../pluma/dialogs/pluma-preferences-dialog.c:580
 #, c-format
 msgid "_Use the system fixed width font (%s)"
 msgstr ""
 
-#: ../pluma/dialogs/pluma-preferences-dialog.c:784
+#: ../pluma/dialogs/pluma-preferences-dialog.c:783
 msgid "The selected color scheme cannot be installed."
 msgstr ""
 
-#: ../pluma/dialogs/pluma-preferences-dialog.c:809
+#: ../pluma/dialogs/pluma-preferences-dialog.c:808
 msgid "Add Scheme"
 msgstr ""
 
-#: ../pluma/dialogs/pluma-preferences-dialog.c:816
+#: ../pluma/dialogs/pluma-preferences-dialog.c:815
 msgid "A_dd Scheme"
 msgstr ""
 
-#: ../pluma/dialogs/pluma-preferences-dialog.c:824
+#: ../pluma/dialogs/pluma-preferences-dialog.c:823
 msgid "Color Scheme Files"
 msgstr ""
 
-#: ../pluma/dialogs/pluma-preferences-dialog.c:831
+#: ../pluma/dialogs/pluma-preferences-dialog.c:830
 #: ../pluma/pluma-file-chooser-dialog.c:52
 msgid "All Files"
 msgstr "Барлық файлдар"
 
-#: ../pluma/dialogs/pluma-preferences-dialog.c:876
+#: ../pluma/dialogs/pluma-preferences-dialog.c:875
 #, c-format
 msgid "Could not remove color scheme \"%s\"."
 msgstr ""
 
-#: ../pluma/dialogs/pluma-preferences-dialog.c:1087
+#: ../pluma/dialogs/pluma-preferences-dialog.c:1086
 msgid "pluma Preferences"
 msgstr "pluma қалаулары"
 
-#. ex:ts=4:et:
 #: ../pluma/dialogs/pluma-preferences-dialog.ui.h:1
-#: ../plugins/docinfo/docinfo.ui.h:1
-#: ../plugins/externaltools/tools/tools.ui.h:1
-#: ../plugins/snippets/snippets/snippets.ui.h:1
-#: ../plugins/time/pluma-time-dialog.ui.h:1
-#: ../plugins/time/pluma-time-setup-dialog.ui.h:1
-msgid "    "
-msgstr "    "
-
-#: ../pluma/dialogs/pluma-preferences-dialog.ui.h:2
-msgid "Automatic Indentation"
-msgstr ""
-
-#: ../pluma/dialogs/pluma-preferences-dialog.ui.h:3
-msgid "Bracket Matching"
-msgstr ""
-
-#: ../pluma/dialogs/pluma-preferences-dialog.ui.h:4
-msgid "Color Scheme"
-msgstr ""
-
-#: ../pluma/dialogs/pluma-preferences-dialog.ui.h:5
-msgid "Create a _backup copy of files before saving"
-msgstr ""
-
-#: ../pluma/dialogs/pluma-preferences-dialog.ui.h:6
-msgid "Current Line"
-msgstr "Ағымдағы жол"
-
-#: ../pluma/dialogs/pluma-preferences-dialog.ui.h:7
-msgid "Display right _margin"
-msgstr ""
-
-#: ../pluma/dialogs/pluma-preferences-dialog.ui.h:8
-#: ../pluma/pluma-print-preferences.ui.h:1
-msgid "Do not _split words over two lines"
-msgstr ""
-
-#: ../pluma/dialogs/pluma-preferences-dialog.ui.h:9
-msgid "Editor"
-msgstr "Түзетуші"
-
-#: ../pluma/dialogs/pluma-preferences-dialog.ui.h:10
-msgid "Editor _font: "
-msgstr "Түзету_ші қарібі:"
-
-#: ../pluma/dialogs/pluma-preferences-dialog.ui.h:11
-#: ../pluma/pluma-print-preferences.ui.h:2
-msgid "Enable text _wrapping"
-msgstr ""
-
-#: ../pluma/dialogs/pluma-preferences-dialog.ui.h:12
-msgid "File Saving"
-msgstr ""
-
-#: ../pluma/dialogs/pluma-preferences-dialog.ui.h:13
-msgid "Font"
-msgstr "Қаріп"
-
-#: ../pluma/dialogs/pluma-preferences-dialog.ui.h:14
-msgid "Font & Colors"
-msgstr ""
-
-#: ../pluma/dialogs/pluma-preferences-dialog.ui.h:15
-msgid "Highlight current _line"
-msgstr ""
-
-#: ../pluma/dialogs/pluma-preferences-dialog.ui.h:16
-msgid "Highlight matching _bracket"
-msgstr ""
-
-#: ../pluma/dialogs/pluma-preferences-dialog.ui.h:17
-msgid "Insert _spaces instead of tabs"
-msgstr ""
-
-#: ../pluma/dialogs/pluma-preferences-dialog.ui.h:18
-#: ../pluma/pluma-print-preferences.ui.h:5
-msgid "Line Numbers"
-msgstr ""
-
-#: ../pluma/dialogs/pluma-preferences-dialog.ui.h:19
-msgid "Pick the editor font"
-msgstr ""
-
-#: ../pluma/dialogs/pluma-preferences-dialog.ui.h:20
-msgid "Plugins"
-msgstr "Плагиндер"
-
-#: ../pluma/dialogs/pluma-preferences-dialog.ui.h:21
 msgid "Preferences"
 msgstr "Қалаулар"
 
-#: ../pluma/dialogs/pluma-preferences-dialog.ui.h:22
-msgid "Right Margin"
-msgstr ""
-
-#: ../pluma/dialogs/pluma-preferences-dialog.ui.h:23
-msgid "Tab Stops"
-msgstr ""
-
-#: ../pluma/dialogs/pluma-preferences-dialog.ui.h:24
-#: ../pluma/pluma-print-preferences.ui.h:11
+#: ../pluma/dialogs/pluma-preferences-dialog.ui.h:2
+#: ../pluma/pluma-print-preferences.ui.h:9
 msgid "Text Wrapping"
 msgstr ""
 
-#: ../pluma/dialogs/pluma-preferences-dialog.ui.h:25
-msgid "View"
-msgstr "Қарау"
+#: ../pluma/dialogs/pluma-preferences-dialog.ui.h:3
+#: ../plugins/docinfo/docinfo.ui.h:4
+#: ../plugins/externaltools/tools/tools.ui.h:21
+#: ../plugins/snippets/snippets/snippets.ui.h:9
+#: ../plugins/time/pluma-time-dialog.ui.h:4
+#: ../plugins/time/pluma-time-setup-dialog.ui.h:3
+msgid "    "
+msgstr "    "
 
-#: ../pluma/dialogs/pluma-preferences-dialog.ui.h:26
-msgid "_Add..."
-msgstr "Қ_осу..."
-
-#: ../pluma/dialogs/pluma-preferences-dialog.ui.h:27
-msgid "_Autosave files every"
+#: ../pluma/dialogs/pluma-preferences-dialog.ui.h:4
+#: ../pluma/pluma-print-preferences.ui.h:10
+msgid "Enable text _wrapping"
 msgstr ""
 
-#: ../pluma/dialogs/pluma-preferences-dialog.ui.h:28
-#: ../pluma/pluma-view.c:1968
+#: ../pluma/dialogs/pluma-preferences-dialog.ui.h:5
+#: ../pluma/pluma-print-preferences.ui.h:11
+msgid "Do not _split words over two lines"
+msgstr ""
+
+#: ../pluma/dialogs/pluma-preferences-dialog.ui.h:6
+#: ../pluma/pluma-print-preferences.ui.h:3
+msgid "Line Numbers"
+msgstr ""
+
+#: ../pluma/dialogs/pluma-preferences-dialog.ui.h:7 ../pluma/pluma-view.c:1968
 msgid "_Display line numbers"
 msgstr "Жо_лдар нөмірлерін көрсету"
 
-#: ../pluma/dialogs/pluma-preferences-dialog.ui.h:29
-msgid "_Enable automatic indentation"
+#: ../pluma/dialogs/pluma-preferences-dialog.ui.h:8
+msgid "Current Line"
+msgstr "Ағымдағы жол"
+
+#: ../pluma/dialogs/pluma-preferences-dialog.ui.h:9
+msgid "Highlight current _line"
 msgstr ""
 
-#: ../pluma/dialogs/pluma-preferences-dialog.ui.h:30
+#: ../pluma/dialogs/pluma-preferences-dialog.ui.h:10
+msgid "Right Margin"
+msgstr ""
+
+#: ../pluma/dialogs/pluma-preferences-dialog.ui.h:11
+msgid "Display right _margin"
+msgstr ""
+
+#: ../pluma/dialogs/pluma-preferences-dialog.ui.h:12
 msgid "_Right margin at column:"
 msgstr ""
 
-#: ../pluma/dialogs/pluma-preferences-dialog.ui.h:31
+#: ../pluma/dialogs/pluma-preferences-dialog.ui.h:13
+msgid "Bracket Matching"
+msgstr ""
+
+#: ../pluma/dialogs/pluma-preferences-dialog.ui.h:14
+msgid "Highlight matching _bracket"
+msgstr ""
+
+#: ../pluma/dialogs/pluma-preferences-dialog.ui.h:15
+msgid "View"
+msgstr "Қарау"
+
+#: ../pluma/dialogs/pluma-preferences-dialog.ui.h:16
+msgid "Tab Stops"
+msgstr ""
+
+#: ../pluma/dialogs/pluma-preferences-dialog.ui.h:17
 msgid "_Tab width:"
 msgstr ""
 
-#: ../pluma/dialogs/pluma-preferences-dialog.ui.h:32
+#: ../pluma/dialogs/pluma-preferences-dialog.ui.h:18
+msgid "Insert _spaces instead of tabs"
+msgstr ""
+
+#: ../pluma/dialogs/pluma-preferences-dialog.ui.h:19
+msgid "Automatic Indentation"
+msgstr ""
+
+#: ../pluma/dialogs/pluma-preferences-dialog.ui.h:20
+msgid "_Enable automatic indentation"
+msgstr ""
+
+#: ../pluma/dialogs/pluma-preferences-dialog.ui.h:21
+msgid "File Saving"
+msgstr ""
+
+#: ../pluma/dialogs/pluma-preferences-dialog.ui.h:22
+msgid "Create a _backup copy of files before saving"
+msgstr ""
+
+#: ../pluma/dialogs/pluma-preferences-dialog.ui.h:23
+msgid "_Autosave files every"
+msgstr ""
+
+#: ../pluma/dialogs/pluma-preferences-dialog.ui.h:24
 msgid "_minutes"
 msgstr "_минут"
 
+#: ../pluma/dialogs/pluma-preferences-dialog.ui.h:25
+msgid "Editor"
+msgstr "Түзетуші"
+
+#: ../pluma/dialogs/pluma-preferences-dialog.ui.h:26
+msgid "Font"
+msgstr "Қаріп"
+
+#: ../pluma/dialogs/pluma-preferences-dialog.ui.h:27
+msgid "Editor _font: "
+msgstr "Түзету_ші қарібі:"
+
+#: ../pluma/dialogs/pluma-preferences-dialog.ui.h:28
+msgid "Pick the editor font"
+msgstr ""
+
+#: ../pluma/dialogs/pluma-preferences-dialog.ui.h:29
+msgid "Color Scheme"
+msgstr ""
+
+#: ../pluma/dialogs/pluma-preferences-dialog.ui.h:30
+msgid "_Add..."
+msgstr "Қ_осу..."
+
+#: ../pluma/dialogs/pluma-preferences-dialog.ui.h:31
+msgid "Font & Colors"
+msgstr ""
+
+#: ../pluma/dialogs/pluma-preferences-dialog.ui.h:32
+msgid "Plugins"
+msgstr "Плагиндер"
+
 #: ../pluma/dialogs/pluma-search-dialog.c:300
-#: ../pluma/dialogs/pluma-search-dialog.ui.h:2
-#: ../pluma/pluma-window.c:1522
+#: ../pluma/dialogs/pluma-search-dialog.ui.h:1 ../pluma/pluma-window.c:1522
 msgid "Replace"
 msgstr "Алмастыру"
 
-#: ../pluma/dialogs/pluma-search-dialog.c:311
-#: ../pluma/pluma-window.c:1520
+#: ../pluma/dialogs/pluma-search-dialog.c:311 ../pluma/pluma-window.c:1520
 msgid "Find"
 msgstr "Табу"
 
@@ -708,29 +747,29 @@ msgstr "Барл_ығын алмастыру"
 msgid "_Replace"
 msgstr "А_лмастыру"
 
-#: ../pluma/dialogs/pluma-search-dialog.ui.h:1
-msgid "Match _entire word only"
-msgstr ""
-
-#: ../pluma/dialogs/pluma-search-dialog.ui.h:3
+#: ../pluma/dialogs/pluma-search-dialog.ui.h:2
 msgid "Replace All"
 msgstr "Барлығын алмастыру"
+
+#: ../pluma/dialogs/pluma-search-dialog.ui.h:3
+msgid "_Search for: "
+msgstr "_Нені іздеу керек:"
 
 #: ../pluma/dialogs/pluma-search-dialog.ui.h:4
 msgid "Replace _with: "
 msgstr "Не_мен алмастыру:"
 
 #: ../pluma/dialogs/pluma-search-dialog.ui.h:5
-msgid "Search _backwards"
-msgstr ""
-
-#: ../pluma/dialogs/pluma-search-dialog.ui.h:6
 msgid "_Match case"
 msgstr "_Регистрді ескеру"
 
+#: ../pluma/dialogs/pluma-search-dialog.ui.h:6
+msgid "Match _entire word only"
+msgstr ""
+
 #: ../pluma/dialogs/pluma-search-dialog.ui.h:7
-msgid "_Search for: "
-msgstr "_Нені іздеу керек:"
+msgid "Search _backwards"
+msgstr ""
 
 #: ../pluma/dialogs/pluma-search-dialog.ui.h:8
 msgid "_Wrap around"
@@ -741,7 +780,9 @@ msgid "Show the application's version"
 msgstr "Қолданба нұсқасын көрсету"
 
 #: ../pluma/pluma.c:129
-msgid "Set the character encoding to be used to open the files listed on the command line"
+msgid ""
+"Set the character encoding to be used to open the files listed on the "
+"command line"
 msgstr ""
 
 #: ../pluma/pluma.c:129
@@ -806,8 +847,7 @@ msgstr "\"%s\" файлы тек оқу үшін."
 msgid "Do you want to try to replace it with the one you are saving?"
 msgstr ""
 
-#: ../pluma/pluma-commands-file.c:638
-#: ../pluma/pluma-commands-file.c:861
+#: ../pluma/pluma-commands-file.c:638 ../pluma/pluma-commands-file.c:861
 #, c-format
 msgid "Saving file '%s'…"
 msgstr "'%s' файлы сақталуда…"
@@ -828,56 +868,71 @@ msgstr ""
 
 #: ../pluma/pluma-commands-file.c:1129
 #, c-format
-msgid "Changes made to the document in the last %ld second will be permanently lost."
-msgid_plural "Changes made to the document in the last %ld seconds will be permanently lost."
+msgid ""
+"Changes made to the document in the last %ld second will be permanently "
+"lost."
+msgid_plural ""
+"Changes made to the document in the last %ld seconds will be permanently "
+"lost."
 msgstr[0] ""
-msgstr[1] ""
 
 #: ../pluma/pluma-commands-file.c:1138
-msgid "Changes made to the document in the last minute will be permanently lost."
+msgid ""
+"Changes made to the document in the last minute will be permanently lost."
 msgstr ""
 
 #: ../pluma/pluma-commands-file.c:1144
 #, c-format
-msgid "Changes made to the document in the last minute and %ld second will be permanently lost."
-msgid_plural "Changes made to the document in the last minute and %ld seconds will be permanently lost."
+msgid ""
+"Changes made to the document in the last minute and %ld second will be "
+"permanently lost."
+msgid_plural ""
+"Changes made to the document in the last minute and %ld seconds will be "
+"permanently lost."
 msgstr[0] ""
-msgstr[1] ""
 
 #: ../pluma/pluma-commands-file.c:1154
 #, c-format
-msgid "Changes made to the document in the last %ld minute will be permanently lost."
-msgid_plural "Changes made to the document in the last %ld minutes will be permanently lost."
+msgid ""
+"Changes made to the document in the last %ld minute will be permanently "
+"lost."
+msgid_plural ""
+"Changes made to the document in the last %ld minutes will be permanently "
+"lost."
 msgstr[0] ""
-msgstr[1] ""
 
 #: ../pluma/pluma-commands-file.c:1169
-msgid "Changes made to the document in the last hour will be permanently lost."
+msgid ""
+"Changes made to the document in the last hour will be permanently lost."
 msgstr ""
 
 #: ../pluma/pluma-commands-file.c:1175
 #, c-format
-msgid "Changes made to the document in the last hour and %d minute will be permanently lost."
-msgid_plural "Changes made to the document in the last hour and %d minutes will be permanently lost."
+msgid ""
+"Changes made to the document in the last hour and %d minute will be "
+"permanently lost."
+msgid_plural ""
+"Changes made to the document in the last hour and %d minutes will be "
+"permanently lost."
 msgstr[0] ""
-msgstr[1] ""
 
 #: ../pluma/pluma-commands-file.c:1190
 #, c-format
-msgid "Changes made to the document in the last %d hour will be permanently lost."
-msgid_plural "Changes made to the document in the last %d hours will be permanently lost."
+msgid ""
+"Changes made to the document in the last %d hour will be permanently lost."
+msgid_plural ""
+"Changes made to the document in the last %d hours will be permanently lost."
 msgstr[0] ""
-msgstr[1] ""
 
 #: ../pluma/pluma-commands-file.c:1216
 msgid "_Revert"
 msgstr "Қай_тару"
 
-#: ../pluma/pluma-commands-help.c:83
+#: ../pluma/pluma-commands-help.c:82
 msgid "pluma is a small and lightweight text editor for the MATE Desktop"
 msgstr ""
 
-#: ../pluma/pluma-commands-help.c:108
+#: ../pluma/pluma-commands-help.c:93
 msgid "translator-credits"
 msgstr "Baurzhan Muftakhidinov <baurthefirst@gmail.com>, 2010"
 
@@ -886,7 +941,6 @@ msgstr "Baurzhan Muftakhidinov <baurthefirst@gmail.com>, 2010"
 msgid "Found and replaced %d occurrence"
 msgid_plural "Found and replaced %d occurrences"
 msgstr[0] ""
-msgstr[1] ""
 
 #: ../pluma/pluma-commands-search.c:121
 msgid "Found and replaced one occurrence"
@@ -899,44 +953,33 @@ msgstr ""
 msgid "\"%s\" not found"
 msgstr "\"%s\" табылмады"
 
-#: ../pluma/pluma-document.c:1071
-#: ../pluma/pluma-document.c:1086
+#: ../pluma/pluma-document.c:1071 ../pluma/pluma-document.c:1086
 #, c-format
 msgid "Unsaved Document %d"
 msgstr ""
 
-#: ../pluma/pluma-documents-panel.c:97
-#: ../pluma/pluma-documents-panel.c:111
-#: ../pluma/pluma-window.c:2271
-#: ../pluma/pluma-window.c:2276
+#: ../pluma/pluma-documents-panel.c:97 ../pluma/pluma-documents-panel.c:111
+#: ../pluma/pluma-window.c:2271 ../pluma/pluma-window.c:2276
 msgid "Read-Only"
 msgstr "Тек оқу"
 
-#: ../pluma/pluma-documents-panel.c:780
-#: ../pluma/pluma-window.c:3670
+#: ../pluma/pluma-documents-panel.c:780 ../pluma/pluma-window.c:3670
 msgid "Documents"
 msgstr "Құжаттар"
 
-#: ../pluma/pluma-encodings.c:138
-#: ../pluma/pluma-encodings.c:180
-#: ../pluma/pluma-encodings.c:182
-#: ../pluma/pluma-encodings.c:184
-#: ../pluma/pluma-encodings.c:186
-#: ../pluma/pluma-encodings.c:188
-#: ../pluma/pluma-encodings.c:190
-#: ../pluma/pluma-encodings.c:192
+#: ../pluma/pluma-encodings.c:138 ../pluma/pluma-encodings.c:180
+#: ../pluma/pluma-encodings.c:182 ../pluma/pluma-encodings.c:184
+#: ../pluma/pluma-encodings.c:186 ../pluma/pluma-encodings.c:188
+#: ../pluma/pluma-encodings.c:190 ../pluma/pluma-encodings.c:192
 msgid "Unicode"
 msgstr ""
 
-#: ../pluma/pluma-encodings.c:151
-#: ../pluma/pluma-encodings.c:175
-#: ../pluma/pluma-encodings.c:225
-#: ../pluma/pluma-encodings.c:268
+#: ../pluma/pluma-encodings.c:151 ../pluma/pluma-encodings.c:175
+#: ../pluma/pluma-encodings.c:225 ../pluma/pluma-encodings.c:268
 msgid "Western"
 msgstr ""
 
-#: ../pluma/pluma-encodings.c:153
-#: ../pluma/pluma-encodings.c:227
+#: ../pluma/pluma-encodings.c:153 ../pluma/pluma-encodings.c:227
 #: ../pluma/pluma-encodings.c:264
 msgid "Central European"
 msgstr ""
@@ -945,29 +988,23 @@ msgstr ""
 msgid "South European"
 msgstr ""
 
-#: ../pluma/pluma-encodings.c:157
-#: ../pluma/pluma-encodings.c:171
+#: ../pluma/pluma-encodings.c:157 ../pluma/pluma-encodings.c:171
 #: ../pluma/pluma-encodings.c:278
 msgid "Baltic"
 msgstr ""
 
-#: ../pluma/pluma-encodings.c:159
-#: ../pluma/pluma-encodings.c:229
-#: ../pluma/pluma-encodings.c:242
-#: ../pluma/pluma-encodings.c:246
-#: ../pluma/pluma-encodings.c:248
-#: ../pluma/pluma-encodings.c:266
+#: ../pluma/pluma-encodings.c:159 ../pluma/pluma-encodings.c:229
+#: ../pluma/pluma-encodings.c:242 ../pluma/pluma-encodings.c:246
+#: ../pluma/pluma-encodings.c:248 ../pluma/pluma-encodings.c:266
 msgid "Cyrillic"
 msgstr ""
 
-#: ../pluma/pluma-encodings.c:161
-#: ../pluma/pluma-encodings.c:235
+#: ../pluma/pluma-encodings.c:161 ../pluma/pluma-encodings.c:235
 #: ../pluma/pluma-encodings.c:276
 msgid "Arabic"
 msgstr "Араб"
 
-#: ../pluma/pluma-encodings.c:163
-#: ../pluma/pluma-encodings.c:270
+#: ../pluma/pluma-encodings.c:163 ../pluma/pluma-encodings.c:270
 msgid "Greek"
 msgstr "Грек"
 
@@ -975,8 +1012,7 @@ msgstr "Грек"
 msgid "Hebrew Visual"
 msgstr ""
 
-#: ../pluma/pluma-encodings.c:167
-#: ../pluma/pluma-encodings.c:231
+#: ../pluma/pluma-encodings.c:167 ../pluma/pluma-encodings.c:231
 #: ../pluma/pluma-encodings.c:272
 msgid "Turkish"
 msgstr "Түрік"
@@ -997,8 +1033,7 @@ msgstr "Румын"
 msgid "Armenian"
 msgstr "Армян"
 
-#: ../pluma/pluma-encodings.c:197
-#: ../pluma/pluma-encodings.c:199
+#: ../pluma/pluma-encodings.c:197 ../pluma/pluma-encodings.c:199
 #: ../pluma/pluma-encodings.c:213
 msgid "Chinese Traditional"
 msgstr "Қытайша (Дәстүрлі)"
@@ -1007,23 +1042,18 @@ msgstr "Қытайша (Дәстүрлі)"
 msgid "Cyrillic/Russian"
 msgstr ""
 
-#: ../pluma/pluma-encodings.c:204
-#: ../pluma/pluma-encodings.c:206
-#: ../pluma/pluma-encodings.c:208
-#: ../pluma/pluma-encodings.c:238
+#: ../pluma/pluma-encodings.c:204 ../pluma/pluma-encodings.c:206
+#: ../pluma/pluma-encodings.c:208 ../pluma/pluma-encodings.c:238
 #: ../pluma/pluma-encodings.c:253
 msgid "Japanese"
 msgstr "Жапон"
 
-#: ../pluma/pluma-encodings.c:211
-#: ../pluma/pluma-encodings.c:240
-#: ../pluma/pluma-encodings.c:244
-#: ../pluma/pluma-encodings.c:259
+#: ../pluma/pluma-encodings.c:211 ../pluma/pluma-encodings.c:240
+#: ../pluma/pluma-encodings.c:244 ../pluma/pluma-encodings.c:259
 msgid "Korean"
 msgstr "Кәріс"
 
-#: ../pluma/pluma-encodings.c:216
-#: ../pluma/pluma-encodings.c:218
+#: ../pluma/pluma-encodings.c:216 ../pluma/pluma-encodings.c:218
 #: ../pluma/pluma-encodings.c:220
 msgid "Chinese Simplified"
 msgstr "Қытайша (Қарапайым)"
@@ -1032,8 +1062,7 @@ msgstr "Қытайша (Қарапайым)"
 msgid "Georgian"
 msgstr "Грузин"
 
-#: ../pluma/pluma-encodings.c:233
-#: ../pluma/pluma-encodings.c:274
+#: ../pluma/pluma-encodings.c:233 ../pluma/pluma-encodings.c:274
 msgid "Hebrew"
 msgstr "Иврит"
 
@@ -1041,8 +1070,7 @@ msgstr "Иврит"
 msgid "Cyrillic/Ukrainian"
 msgstr ""
 
-#: ../pluma/pluma-encodings.c:255
-#: ../pluma/pluma-encodings.c:261
+#: ../pluma/pluma-encodings.c:255 ../pluma/pluma-encodings.c:261
 #: ../pluma/pluma-encodings.c:280
 msgid "Vietnamese"
 msgstr "Вьетнам"
@@ -1090,9 +1118,8 @@ msgid "Mac OS Classic"
 msgstr ""
 
 #: ../pluma/pluma-file-chooser-dialog.c:177
-#, fuzzy
 msgid "Windows"
-msgstr "Windows"
+msgstr ""
 
 #: ../pluma/pluma-help.c:104
 msgid "There was an error displaying the help."
@@ -1146,12 +1173,16 @@ msgstr "%s - дұрыс орналасу емес."
 
 #: ../pluma/pluma-io-error-message-area.c:299
 #, c-format
-msgid "Host %s could not be found. Please check that your proxy settings are correct and try again."
+msgid ""
+"Host %s could not be found. Please check that your proxy settings are "
+"correct and try again."
 msgstr ""
 
 #: ../pluma/pluma-io-error-message-area.c:312
 #, c-format
-msgid "Hostname was invalid. Please check that you typed the location correctly and try again."
+msgid ""
+"Hostname was invalid. Please check that you typed the location correctly and"
+" try again."
 msgstr ""
 
 #: ../pluma/pluma-io-error-message-area.c:320
@@ -1204,7 +1235,9 @@ msgid "D_on't Edit"
 msgstr ""
 
 #: ../pluma/pluma-io-error-message-area.c:638
-msgid "The number of followed links is limited and the actual file could not be found within this limit."
+msgid ""
+"The number of followed links is limited and the actual file could not be "
+"found within this limit."
 msgstr ""
 
 #: ../pluma/pluma-io-error-message-area.c:642
@@ -1230,7 +1263,9 @@ msgid "There was a problem opening the file %s."
 msgstr ""
 
 #: ../pluma/pluma-io-error-message-area.c:659
-msgid "The file you opened has some invalid characters. If you continue editing this file you could make this document useless."
+msgid ""
+"The file you opened has some invalid characters. If you continue editing "
+"this file you could make this document useless."
 msgstr ""
 
 #: ../pluma/pluma-io-error-message-area.c:662
@@ -1258,7 +1293,9 @@ msgid "Could not save the file %s using the %s character encoding."
 msgstr ""
 
 #: ../pluma/pluma-io-error-message-area.c:746
-msgid "The document contains one or more characters that cannot be encoded using the specified character encoding."
+msgid ""
+"The document contains one or more characters that cannot be encoded using "
+"the specified character encoding."
 msgstr ""
 
 #: ../pluma/pluma-io-error-message-area.c:845
@@ -1267,7 +1304,9 @@ msgid "This file (%s) is already open in another pluma window."
 msgstr ""
 
 #: ../pluma/pluma-io-error-message-area.c:859
-msgid "pluma opened this instance of the file in a non-editable way. Do you want to edit it anyway?"
+msgid ""
+"pluma opened this instance of the file in a non-editable way. Do you want to"
+" edit it anyway?"
 msgstr ""
 
 #: ../pluma/pluma-io-error-message-area.c:918
@@ -1284,8 +1323,10 @@ msgstr ""
 msgid "D_on't Save"
 msgstr ""
 
-#. FIXME: review this message, it's not clear since for the user the "modification"
-#. could be interpreted as the changes he made in the document. beside "reading" is
+#. FIXME: review this message, it's not clear since for the user the
+#. "modification"
+#. could be interpreted as the changes he made in the document. beside
+#. "reading" is
 #. not accurate (since last load/save)
 #: ../pluma/pluma-io-error-message-area.c:950
 #, c-format
@@ -1293,7 +1334,8 @@ msgid "The file %s has been modified since reading it."
 msgstr ""
 
 #: ../pluma/pluma-io-error-message-area.c:965
-msgid "If you save it, all the external changes could be lost. Save it anyway?"
+msgid ""
+"If you save it, all the external changes could be lost. Save it anyway?"
 msgstr ""
 
 #: ../pluma/pluma-io-error-message-area.c:1056
@@ -1307,34 +1349,49 @@ msgid "Could not create a temporary backup file while saving %s"
 msgstr ""
 
 #: ../pluma/pluma-io-error-message-area.c:1075
-msgid "pluma could not back up the old copy of the file before saving the new one. You can ignore this warning and save the file anyway, but if an error occurs while saving, you could lose the old copy of the file. Save anyway?"
+msgid ""
+"pluma could not back up the old copy of the file before saving the new one. "
+"You can ignore this warning and save the file anyway, but if an error occurs"
+" while saving, you could lose the old copy of the file. Save anyway?"
 msgstr ""
 
 #. Translators: %s is a URI scheme (like for example http:, ftp:, etc.)
 #: ../pluma/pluma-io-error-message-area.c:1135
 #, c-format
-msgid "pluma cannot handle %s locations in write mode. Please check that you typed the location correctly and try again."
+msgid ""
+"pluma cannot handle %s locations in write mode. Please check that you typed "
+"the location correctly and try again."
 msgstr ""
 
 #: ../pluma/pluma-io-error-message-area.c:1143
-msgid "pluma cannot handle this location in write mode. Please check that you typed the location correctly and try again."
+msgid ""
+"pluma cannot handle this location in write mode. Please check that you typed"
+" the location correctly and try again."
 msgstr ""
 
 #: ../pluma/pluma-io-error-message-area.c:1152
 #, c-format
-msgid "%s is not a valid location. Please check that you typed the location correctly and try again."
+msgid ""
+"%s is not a valid location. Please check that you typed the location "
+"correctly and try again."
 msgstr ""
 
 #: ../pluma/pluma-io-error-message-area.c:1158
-msgid "You do not have the permissions necessary to save the file. Please check that you typed the location correctly and try again."
+msgid ""
+"You do not have the permissions necessary to save the file. Please check "
+"that you typed the location correctly and try again."
 msgstr ""
 
 #: ../pluma/pluma-io-error-message-area.c:1164
-msgid "There is not enough disk space to save the file. Please free some disk space and try again."
+msgid ""
+"There is not enough disk space to save the file. Please free some disk space"
+" and try again."
 msgstr ""
 
 #: ../pluma/pluma-io-error-message-area.c:1169
-msgid "You are trying to save the file on a read-only disk. Please check that you typed the location correctly and try again."
+msgid ""
+"You are trying to save the file on a read-only disk. Please check that you "
+"typed the location correctly and try again."
 msgstr ""
 
 #: ../pluma/pluma-io-error-message-area.c:1175
@@ -1342,11 +1399,16 @@ msgid "A file with the same name already exists. Please use a different name."
 msgstr ""
 
 #: ../pluma/pluma-io-error-message-area.c:1180
-msgid "The disk where you are trying to save the file has a limitation on length of the file names. Please use a shorter name."
+msgid ""
+"The disk where you are trying to save the file has a limitation on length of"
+" the file names. Please use a shorter name."
 msgstr ""
 
 #: ../pluma/pluma-io-error-message-area.c:1187
-msgid "The disk where you are trying to save the file has a limitation on file sizes. Please try saving a smaller file or saving it to a disk that does not have this limitation."
+msgid ""
+"The disk where you are trying to save the file has a limitation on file "
+"sizes. Please try saving a smaller file or saving it to a disk that does not"
+" have this limitation."
 msgstr ""
 
 #: ../pluma/pluma-io-error-message-area.c:1203
@@ -1354,8 +1416,10 @@ msgstr ""
 msgid "Could not save the file %s."
 msgstr ""
 
-#. FIXME: review this message, it's not clear since for the user the "modification"
-#. could be interpreted as the changes he made in the document. beside "reading" is
+#. FIXME: review this message, it's not clear since for the user the
+#. "modification"
+#. could be interpreted as the changes he made in the document. beside
+#. "reading" is
 #. not accurate (since last load/save)
 #: ../pluma/pluma-io-error-message-area.c:1247
 #, c-format
@@ -1375,8 +1439,7 @@ msgstr ""
 msgid "_Reload"
 msgstr "Қа_йта жүктеу"
 
-#: ../pluma/pluma-panel.c:360
-#: ../pluma/pluma-panel.c:532
+#: ../pluma/pluma-panel.c:360 ../pluma/pluma-panel.c:532
 msgid "Empty"
 msgstr "Бос"
 
@@ -1424,76 +1487,69 @@ msgstr "П_лагин туралы"
 msgid "C_onfigure Plugin"
 msgstr "Пл_агинді баптау"
 
-#: ../pluma/pluma-prefs-manager.c:170
-msgid "Cannot initialize preferences manager."
-msgstr ""
-
-#: ../pluma/pluma-prefs-manager.c:1138
-#, c-format
-msgid "Expected `%s', got `%s' for key %s"
-msgstr ""
-
-#: ../pluma/pluma-print-job.c:541
+#: ../pluma/pluma-print-job.c:547
 #, c-format
 msgid "File: %s"
 msgstr "Файл: %s"
 
-#: ../pluma/pluma-print-job.c:550
+#: ../pluma/pluma-print-job.c:556
 msgid "Page %N of %Q"
 msgstr "Парақ %N, барлығы %Q"
 
-#: ../pluma/pluma-print-job.c:809
+#: ../pluma/pluma-print-job.c:815
 msgid "Preparing..."
 msgstr "Дайындау..."
 
-#: ../pluma/pluma-print-preferences.ui.h:3
-msgid "Fonts"
-msgstr "Қаріптер"
-
-#: ../pluma/pluma-print-preferences.ui.h:4
-msgid "He_aders and footers:"
-msgstr ""
-
-#: ../pluma/pluma-print-preferences.ui.h:6
-msgid "Page header"
-msgstr ""
-
-#: ../pluma/pluma-print-preferences.ui.h:7
-msgid "Print line nu_mbers"
-msgstr ""
-
-#: ../pluma/pluma-print-preferences.ui.h:8
-msgid "Print page _headers"
-msgstr ""
-
-#: ../pluma/pluma-print-preferences.ui.h:9
-msgid "Print synta_x highlighting"
-msgstr ""
-
-#: ../pluma/pluma-print-preferences.ui.h:10
+#: ../pluma/pluma-print-preferences.ui.h:1
 msgid "Syntax Highlighting"
 msgstr ""
 
-#: ../pluma/pluma-print-preferences.ui.h:12
-msgid "_Body:"
+#: ../pluma/pluma-print-preferences.ui.h:2
+msgid "Print synta_x highlighting"
 msgstr ""
 
-#: ../pluma/pluma-print-preferences.ui.h:13
-msgid "_Line numbers:"
+#: ../pluma/pluma-print-preferences.ui.h:4
+msgid "Print line nu_mbers"
 msgstr ""
 
-#. 'Number every' from 'Number every 3 lines' in the 'Text Editor' tab of the print preferences.
-#: ../pluma/pluma-print-preferences.ui.h:15
+#. 'Number every' from 'Number every 3 lines' in the 'Text Editor' tab of the
+#. print preferences.
+#: ../pluma/pluma-print-preferences.ui.h:6
 msgid "_Number every"
 msgstr ""
 
-#: ../pluma/pluma-print-preferences.ui.h:16
-msgid "_Restore Default Fonts"
+#. 'lines' from 'Number every 3 lines' in the 'Text Editor' tab of the print
+#. preferences.
+#: ../pluma/pluma-print-preferences.ui.h:8
+msgid "lines"
 msgstr ""
 
-#. 'lines' from 'Number every 3 lines' in the 'Text Editor' tab of the print preferences.
+#: ../pluma/pluma-print-preferences.ui.h:12
+msgid "Page header"
+msgstr ""
+
+#: ../pluma/pluma-print-preferences.ui.h:13
+msgid "Print page _headers"
+msgstr ""
+
+#: ../pluma/pluma-print-preferences.ui.h:14
+msgid "Fonts"
+msgstr "Қаріптер"
+
+#: ../pluma/pluma-print-preferences.ui.h:15
+msgid "_Body:"
+msgstr ""
+
+#: ../pluma/pluma-print-preferences.ui.h:16
+msgid "_Line numbers:"
+msgstr ""
+
+#: ../pluma/pluma-print-preferences.ui.h:17
+msgid "He_aders and footers:"
+msgstr ""
+
 #: ../pluma/pluma-print-preferences.ui.h:18
-msgid "lines"
+msgid "_Restore Default Fonts"
 msgstr ""
 
 #: ../pluma/pluma-print-preview.c:565
@@ -1526,9 +1582,8 @@ msgid "Show multiple pages"
 msgstr ""
 
 #: ../pluma/pluma-print-preview.c:655
-#, fuzzy
 msgid "Zoom 1:1"
-msgstr "Үлкейту"
+msgstr ""
 
 #: ../pluma/pluma-print-preview.c:664
 msgid "Zoom to fit the whole page"
@@ -1567,17 +1622,16 @@ msgstr ""
 msgid "It is not possible to detect the encoding automatically"
 msgstr ""
 
-#: ../pluma/pluma-statusbar.c:70
-#: ../pluma/pluma-statusbar.c:76
+#: ../pluma/pluma-statusbar.c:70 ../pluma/pluma-statusbar.c:76
 msgid "OVR"
 msgstr ""
 
-#: ../pluma/pluma-statusbar.c:70
-#: ../pluma/pluma-statusbar.c:76
+#: ../pluma/pluma-statusbar.c:70 ../pluma/pluma-statusbar.c:76
 msgid "INS"
 msgstr ""
 
-#. Translators: "Ln" is an abbreviation for "Line", Col is an abbreviation for "Column". Please,
+#. Translators: "Ln" is an abbreviation for "Line", Col is an abbreviation for
+#. "Column". Please,
 #. use abbreviations if possible to avoid space problems.
 #: ../pluma/pluma-statusbar.c:332
 #, c-format
@@ -1589,7 +1643,6 @@ msgstr ""
 msgid "There is a tab with errors"
 msgid_plural "There are %d tabs with errors"
 msgstr[0] ""
-msgstr[1] ""
 
 #: ../pluma/pluma-style-scheme-manager.c:207
 #, c-format
@@ -1709,8 +1762,7 @@ msgstr "Жаңа құжатты жасау"
 msgid "_Open..."
 msgstr "А_шу..."
 
-#: ../pluma/pluma-ui.h:59
-#: ../pluma/pluma-window.c:1450
+#: ../pluma/pluma-ui.h:59 ../pluma/pluma-window.c:1450
 msgid "Open a file"
 msgstr "Файлды ашу"
 
@@ -1842,13 +1894,11 @@ msgstr "Ал_дыңғысын табу"
 msgid "Search backwards for the same text"
 msgstr ""
 
-#: ../pluma/pluma-ui.h:122
-#: ../pluma/pluma-ui.h:125
+#: ../pluma/pluma-ui.h:122 ../pluma/pluma-ui.h:125
 msgid "_Replace..."
 msgstr "А_лмастыру..."
 
-#: ../pluma/pluma-ui.h:123
-#: ../pluma/pluma-ui.h:126
+#: ../pluma/pluma-ui.h:123 ../pluma/pluma-ui.h:126
 msgid "Search for and replace text"
 msgstr ""
 
@@ -1977,9 +2027,9 @@ msgstr ""
 
 #. Translators: '/ on <remote-share>'
 #: ../pluma/pluma-utils.c:1320
-#, fuzzy, c-format
+#, c-format
 msgid "/ on %s"
-msgstr "%1$s, қайда: %2$s"
+msgstr ""
 
 #. create "Wrap Around" menu item.
 #: ../pluma/pluma-view.c:1218
@@ -2012,8 +2062,7 @@ msgstr ""
 #. add the "Plain Text" item before all the others
 #. Translators: "Plain Text" means that no highlight mode is selected in the
 #. * "View->Highlight Mode" submenu and so syntax highlighting is disabled
-#: ../pluma/pluma-window.c:1060
-#: ../pluma/pluma-window.c:1972
+#: ../pluma/pluma-window.c:1060 ../pluma/pluma-window.c:1972
 #: ../plugins/externaltools/tools/manager.py:121
 #: ../plugins/externaltools/tools/manager.py:419
 #: ../plugins/externaltools/tools/manager.py:529
@@ -2110,83 +2159,87 @@ msgid "Capitalize the first letter of each selected word"
 msgstr ""
 
 #: ../plugins/checkupdate/checkupdate.pluma-plugin.desktop.in.h:1
-msgid "Check for latest version of pluma"
-msgstr ""
-
-#: ../plugins/checkupdate/checkupdate.pluma-plugin.desktop.in.h:2
 msgid "Check update"
 msgstr ""
 
-#: ../plugins/checkupdate/pluma-check-update-plugin.c:246
-msgid "There was an error displaying the URI."
+#: ../plugins/checkupdate/checkupdate.pluma-plugin.desktop.in.h:2
+msgid "Check for latest version of pluma"
 msgstr ""
 
-#: ../plugins/checkupdate/pluma-check-update-plugin.c:293
-#: ../plugins/checkupdate/pluma-check-update-plugin.c:308
-msgid "_Download"
-msgstr "Жү_ктеп алу"
-
-#: ../plugins/checkupdate/pluma-check-update-plugin.c:297
-#: ../plugins/checkupdate/pluma-check-update-plugin.c:316
-msgid "_Ignore Version"
-msgstr ""
-
-#: ../plugins/checkupdate/pluma-check-update-plugin.c:332
-msgid "There is a new version of pluma"
-msgstr ""
-
-#: ../plugins/checkupdate/pluma-check-update-plugin.c:336
-msgid "You can download the new version of pluma by clicking on the download button or ignore that version and wait for a new one"
-msgstr ""
-
-#: ../plugins/checkupdate/pluma-check-update.schemas.in.h:1
+#: ../plugins/checkupdate/org.mate.pluma.plugins.checkupdate.gschema.xml.in.in.h:1
 msgid "Version to ignore until the next version is released"
 msgstr ""
 
-#: ../plugins/docinfo/docinfo.pluma-plugin.desktop.in.h:1
-msgid "Analyzes the current document and reports the number of words, lines, characters and non-space characters in it."
+#: ../plugins/checkupdate/pluma-check-update-plugin.c:239
+msgid "There was an error displaying the URI."
 msgstr ""
 
-#: ../plugins/docinfo/docinfo.pluma-plugin.desktop.in.h:2
-#: ../plugins/docinfo/docinfo.ui.h:6
+#: ../plugins/checkupdate/pluma-check-update-plugin.c:285
+#: ../plugins/checkupdate/pluma-check-update-plugin.c:300
+msgid "_Download"
+msgstr "Жү_ктеп алу"
+
+#: ../plugins/checkupdate/pluma-check-update-plugin.c:289
+#: ../plugins/checkupdate/pluma-check-update-plugin.c:308
+msgid "_Ignore Version"
+msgstr ""
+
+#: ../plugins/checkupdate/pluma-check-update-plugin.c:324
+msgid "There is a new version of pluma"
+msgstr ""
+
+#: ../plugins/checkupdate/pluma-check-update-plugin.c:328
+msgid ""
+"You can download the new version of pluma by clicking on the download button"
+" or ignore that version and wait for a new one"
+msgstr ""
+
+#: ../plugins/docinfo/docinfo.pluma-plugin.desktop.in.h:1
+#: ../plugins/docinfo/docinfo.ui.h:1
 msgid "Document Statistics"
 msgstr ""
 
+#: ../plugins/docinfo/docinfo.pluma-plugin.desktop.in.h:2
+msgid ""
+"Analyzes the current document and reports the number of words, lines, "
+"characters and non-space characters in it."
+msgstr ""
+
 #: ../plugins/docinfo/docinfo.ui.h:2
-msgid "Bytes"
-msgstr "Байт"
+msgid "_Update"
+msgstr "_Жаңарту"
 
 #: ../plugins/docinfo/docinfo.ui.h:3
-msgid "Characters (no spaces)"
-msgstr ""
-
-#: ../plugins/docinfo/docinfo.ui.h:4
-msgid "Characters (with spaces)"
-msgstr ""
-
-#: ../plugins/docinfo/docinfo.ui.h:5
-msgid "Document"
-msgstr "Құжат"
-
-#: ../plugins/docinfo/docinfo.ui.h:7
 msgid "File Name"
 msgstr "Файл аты"
 
-#: ../plugins/docinfo/docinfo.ui.h:8
-msgid "Lines"
+#: ../plugins/docinfo/docinfo.ui.h:5
+msgid "Bytes"
+msgstr "Байт"
+
+#: ../plugins/docinfo/docinfo.ui.h:6
+msgid "Characters (no spaces)"
 msgstr ""
 
-#: ../plugins/docinfo/docinfo.ui.h:9
-msgid "Selection"
-msgstr "Таңдалған"
+#: ../plugins/docinfo/docinfo.ui.h:7
+msgid "Characters (with spaces)"
+msgstr ""
 
-#: ../plugins/docinfo/docinfo.ui.h:10
+#: ../plugins/docinfo/docinfo.ui.h:8
 msgid "Words"
 msgstr "Сөздер"
 
+#: ../plugins/docinfo/docinfo.ui.h:9
+msgid "Lines"
+msgstr ""
+
+#: ../plugins/docinfo/docinfo.ui.h:10
+msgid "Document"
+msgstr "Құжат"
+
 #: ../plugins/docinfo/docinfo.ui.h:11
-msgid "_Update"
-msgstr "_Жаңарту"
+msgid "Selection"
+msgstr "Таңдалған"
 
 #: ../plugins/docinfo/pluma-docinfo-plugin.c:422
 msgid "_Document Statistics"
@@ -2198,20 +2251,20 @@ msgstr ""
 
 #: ../plugins/externaltools/data/open-terminal-here-osx.desktop.in.h:1
 #: ../plugins/externaltools/data/open-terminal-here.desktop.in.h:1
-msgid "Open a terminal in the document location"
-msgstr ""
-
-#: ../plugins/externaltools/data/open-terminal-here-osx.desktop.in.h:2
-#: ../plugins/externaltools/data/open-terminal-here.desktop.in.h:2
 msgid "Open terminal here"
 msgstr "Терминалды осында ашу"
 
+#: ../plugins/externaltools/data/open-terminal-here-osx.desktop.in.h:2
+#: ../plugins/externaltools/data/open-terminal-here.desktop.in.h:2
+msgid "Open a terminal in the document location"
+msgstr ""
+
 #: ../plugins/externaltools/externaltools.pluma-plugin.desktop.in.h:1
-msgid "Execute external commands and shell scripts."
+msgid "External Tools"
 msgstr ""
 
 #: ../plugins/externaltools/externaltools.pluma-plugin.desktop.in.h:2
-msgid "External Tools"
+msgid "Execute external commands and shell scripts."
 msgstr ""
 
 #: ../plugins/externaltools/tools/__init__.py:172
@@ -2262,7 +2315,7 @@ msgstr ""
 #: ../plugins/externaltools/tools/manager.py:518
 #: ../plugins/externaltools/tools/manager.py:522
 #: ../plugins/externaltools/tools/manager.py:842
-#: ../plugins/externaltools/tools/tools.ui.h:2
+#: ../plugins/externaltools/tools/tools.ui.h:22
 msgid "All Languages"
 msgstr ""
 
@@ -2287,52 +2340,61 @@ msgstr ""
 msgid "Stopped."
 msgstr "Тоқтатылған."
 
+#. ex:ts=4:et:
+#: ../plugins/externaltools/tools/tools.ui.h:1
+msgid "Nothing"
+msgstr "Ешнәрсе"
+
+#: ../plugins/externaltools/tools/tools.ui.h:2
+msgid "Current document"
+msgstr ""
+
 #: ../plugins/externaltools/tools/tools.ui.h:3
 msgid "All documents"
 msgstr "Барлық құжаттар"
 
 #: ../plugins/externaltools/tools/tools.ui.h:4
-msgid "All documents except untitled ones"
-msgstr ""
-
-#: ../plugins/externaltools/tools/tools.ui.h:5
-msgid "Append to current document"
-msgstr ""
-
-#: ../plugins/externaltools/tools/tools.ui.h:6
-msgid "Create new document"
-msgstr "Жаңа құжатты жасау"
-
-#: ../plugins/externaltools/tools/tools.ui.h:7
-msgid "Current document"
-msgstr ""
-
-#: ../plugins/externaltools/tools/tools.ui.h:8
-msgid "Current line"
-msgstr ""
-
-#: ../plugins/externaltools/tools/tools.ui.h:9
 msgid "Current selection"
 msgstr ""
 
-#: ../plugins/externaltools/tools/tools.ui.h:10
+#: ../plugins/externaltools/tools/tools.ui.h:5
 msgid "Current selection (default to document)"
 msgstr ""
 
-#: ../plugins/externaltools/tools/tools.ui.h:11
+#: ../plugins/externaltools/tools/tools.ui.h:6
+msgid "Current line"
+msgstr ""
+
+#: ../plugins/externaltools/tools/tools.ui.h:7
 msgid "Current word"
 msgstr ""
 
-#: ../plugins/externaltools/tools/tools.ui.h:12
+#: ../plugins/externaltools/tools/tools.ui.h:8
 msgid "Display in bottom pane"
 msgstr ""
 
+#: ../plugins/externaltools/tools/tools.ui.h:9
+msgid "Create new document"
+msgstr "Жаңа құжатты жасау"
+
+#: ../plugins/externaltools/tools/tools.ui.h:10
+msgid "Append to current document"
+msgstr ""
+
+#: ../plugins/externaltools/tools/tools.ui.h:11
+msgid "Replace current document"
+msgstr ""
+
+#: ../plugins/externaltools/tools/tools.ui.h:12
+msgid "Replace current selection"
+msgstr ""
+
 #: ../plugins/externaltools/tools/tools.ui.h:13
-msgid "External Tools Manager"
+msgid "Insert at cursor position"
 msgstr ""
 
 #: ../plugins/externaltools/tools/tools.ui.h:14
-msgid "Insert at cursor position"
+msgid "All documents except untitled ones"
 msgstr ""
 
 #: ../plugins/externaltools/tools/tools.ui.h:15
@@ -2340,53 +2402,45 @@ msgid "Local files only"
 msgstr ""
 
 #: ../plugins/externaltools/tools/tools.ui.h:16
-msgid "Nothing"
-msgstr "Ешнәрсе"
-
-#: ../plugins/externaltools/tools/tools.ui.h:17
 msgid "Remote files only"
 msgstr ""
 
-#: ../plugins/externaltools/tools/tools.ui.h:18
-msgid "Replace current document"
-msgstr ""
-
-#: ../plugins/externaltools/tools/tools.ui.h:19
-msgid "Replace current selection"
-msgstr ""
-
-#: ../plugins/externaltools/tools/tools.ui.h:20
+#: ../plugins/externaltools/tools/tools.ui.h:17
 msgid "Untitled documents only"
 msgstr ""
 
-#: ../plugins/externaltools/tools/tools.ui.h:21
-msgid "_Applicability:"
+#: ../plugins/externaltools/tools/tools.ui.h:18
+msgid "External Tools Manager"
 msgstr ""
 
-#: ../plugins/externaltools/tools/tools.ui.h:22
-#: ../plugins/snippets/snippets/snippets.ui.h:12
+#: ../plugins/externaltools/tools/tools.ui.h:19
+msgid "_Tools:"
+msgstr "Са_ймандар:"
+
+#: ../plugins/externaltools/tools/tools.ui.h:20
+#: ../plugins/snippets/snippets/snippets.ui.h:7
 msgid "_Edit:"
 msgstr "Тү_зету:"
 
 #: ../plugins/externaltools/tools/tools.ui.h:23
-msgid "_Input:"
-msgstr "Кі_ріс:"
+msgid "_Applicability:"
+msgstr ""
 
 #: ../plugins/externaltools/tools/tools.ui.h:24
 msgid "_Output:"
 msgstr "Ш_ығыс:"
 
 #: ../plugins/externaltools/tools/tools.ui.h:25
+msgid "_Input:"
+msgstr "Кі_ріс:"
+
+#: ../plugins/externaltools/tools/tools.ui.h:26
 msgid "_Save:"
 msgstr "_Сақтау:"
 
-#: ../plugins/externaltools/tools/tools.ui.h:26
+#: ../plugins/externaltools/tools/tools.ui.h:27
 msgid "_Shortcut Key:"
 msgstr "Жар_лық пернесі:"
-
-#: ../plugins/externaltools/tools/tools.ui.h:27
-msgid "_Tools:"
-msgstr "Са_ймандар:"
 
 #: ../plugins/externaltools/data/build.desktop.in.h:1
 msgid "Build"
@@ -2405,159 +2459,175 @@ msgid "Remove useless trailing spaces in your file"
 msgstr ""
 
 #: ../plugins/externaltools/data/run-command.desktop.in.h:1
-msgid "Execute a custom command and put its output in a new document"
-msgstr ""
-
-#: ../plugins/externaltools/data/run-command.desktop.in.h:2
 msgid "Run command"
 msgstr "Команданы орындау"
 
+#: ../plugins/externaltools/data/run-command.desktop.in.h:2
+msgid "Execute a custom command and put its output in a new document"
+msgstr ""
+
 #: ../plugins/filebrowser/filebrowser.pluma-plugin.desktop.in.h:1
-msgid "Easy file access from the side pane"
+msgid "File Browser Pane"
 msgstr ""
 
 #: ../plugins/filebrowser/filebrowser.pluma-plugin.desktop.in.h:2
-msgid "File Browser Pane"
+msgid "Easy file access from the side pane"
+msgstr ""
+
+#: ../plugins/filebrowser/org.mate.pluma.plugins.filebrowser.gschema.xml.in.in.h:1
+msgid "Set Location to First Document"
+msgstr ""
+
+#: ../plugins/filebrowser/org.mate.pluma.plugins.filebrowser.gschema.xml.in.in.h:2
+msgid ""
+"If TRUE the file browser plugin will view the directory of the first opened "
+"document given that the file browser hasn't been used yet. (Thus this "
+"generally applies to opening a document from the command line or opening it "
+"with Caja, etc.)"
+msgstr ""
+
+#: ../plugins/filebrowser/org.mate.pluma.plugins.filebrowser.gschema.xml.in.in.h:3
+msgid "File Browser Filter Mode"
+msgstr ""
+
+#: ../plugins/filebrowser/org.mate.pluma.plugins.filebrowser.gschema.xml.in.in.h:4
+msgid ""
+"This value determines what files get filtered from the file browser. Valid "
+"values are: none (filter nothing), hidden (filter hidden files), binary "
+"(filter binary files) and hidden_and_binary (filter both hidden and binary "
+"files)."
+msgstr ""
+
+#: ../plugins/filebrowser/org.mate.pluma.plugins.filebrowser.gschema.xml.in.in.h:5
+msgid "File Browser Filter Pattern"
+msgstr ""
+
+#: ../plugins/filebrowser/org.mate.pluma.plugins.filebrowser.gschema.xml.in.in.h:6
+msgid ""
+"The filter pattern to filter the file browser with. This filter works on top"
+" of the filter_mode."
+msgstr ""
+
+#: ../plugins/filebrowser/org.mate.pluma.plugins.filebrowser.gschema.xml.in.in.h:7
+msgid "Open With Tree View"
+msgstr ""
+
+#: ../plugins/filebrowser/org.mate.pluma.plugins.filebrowser.gschema.xml.in.in.h:8
+msgid ""
+"Open the tree view when the file browser plugin gets loaded instead of the "
+"bookmarks view"
+msgstr ""
+
+#: ../plugins/filebrowser/org.mate.pluma.plugins.filebrowser.gschema.xml.in.in.h:9
+msgid "File Browser Root Directory"
+msgstr ""
+
+#: ../plugins/filebrowser/org.mate.pluma.plugins.filebrowser.gschema.xml.in.in.h:10
+msgid ""
+"The file browser root directory to use when loading the file browser plugin "
+"and onload/tree_view is TRUE."
+msgstr ""
+
+#: ../plugins/filebrowser/org.mate.pluma.plugins.filebrowser.gschema.xml.in.in.h:11
+msgid "File Browser Virtual Root Directory"
+msgstr ""
+
+#: ../plugins/filebrowser/org.mate.pluma.plugins.filebrowser.gschema.xml.in.in.h:12
+msgid ""
+"The file browser virtual root directory to use when loading the file browser"
+" plugin when onload/tree_view is TRUE. The virtual root must always be below"
+" the actual root."
+msgstr ""
+
+#: ../plugins/filebrowser/org.mate.pluma.plugins.filebrowser.gschema.xml.in.in.h:13
+msgid "Enable Restore of Remote Locations"
+msgstr ""
+
+#: ../plugins/filebrowser/org.mate.pluma.plugins.filebrowser.gschema.xml.in.in.h:14
+msgid "Sets whether to enable restoring of remote locations."
 msgstr ""
 
 #: ../plugins/filebrowser/pluma-file-bookmarks-store.c:235
 msgid "File System"
 msgstr "Файлдық жүйе"
 
-#. ex:ts=8:noet:
-#: ../plugins/filebrowser/pluma-file-browser.schemas.in.h:1
-msgid "Enable Restore of Remote Locations"
-msgstr ""
-
-#: ../plugins/filebrowser/pluma-file-browser.schemas.in.h:2
-msgid "File Browser Filter Mode"
-msgstr ""
-
-#: ../plugins/filebrowser/pluma-file-browser.schemas.in.h:3
-msgid "File Browser Filter Pattern"
-msgstr ""
-
-#: ../plugins/filebrowser/pluma-file-browser.schemas.in.h:4
-msgid "File Browser Root Directory"
-msgstr ""
-
-#: ../plugins/filebrowser/pluma-file-browser.schemas.in.h:5
-msgid "File Browser Virtual Root Directory"
-msgstr ""
-
-#: ../plugins/filebrowser/pluma-file-browser.schemas.in.h:6
-msgid "If TRUE the file browser plugin will view the directory of the first opened document given that the file browser hasn't been used yet. (Thus this generally applies to opening a document from the command line or opening it with Caja, etc.)"
-msgstr ""
-
-#: ../plugins/filebrowser/pluma-file-browser.schemas.in.h:7
-msgid "Open With Tree View"
-msgstr ""
-
-#: ../plugins/filebrowser/pluma-file-browser.schemas.in.h:8
-msgid "Open the tree view when the file browser plugin gets loaded instead of the bookmarks view"
-msgstr ""
-
-#: ../plugins/filebrowser/pluma-file-browser.schemas.in.h:9
-msgid "Set Location to First Document"
-msgstr ""
-
-#: ../plugins/filebrowser/pluma-file-browser.schemas.in.h:10
-msgid "Sets whether to enable restoring of remote locations."
-msgstr ""
-
-#: ../plugins/filebrowser/pluma-file-browser.schemas.in.h:11
-msgid "The file browser root directory to use when loading the file browser plugin and onload/tree_view is TRUE."
-msgstr ""
-
-#: ../plugins/filebrowser/pluma-file-browser.schemas.in.h:12
-msgid "The file browser virtual root directory to use when loading the file browser plugin when onload/tree_view is TRUE. The virtual root must always be below the actual root."
-msgstr ""
-
-#: ../plugins/filebrowser/pluma-file-browser.schemas.in.h:13
-msgid "The filter pattern to filter the file browser with. This filter works on top of the filter_mode."
-msgstr ""
-
-#: ../plugins/filebrowser/pluma-file-browser.schemas.in.h:14
-msgid "This value determines what files get filtered from the file browser. Valid values are: none (filter nothing), hidden (filter hidden files), binary (filter binary files) and hidden_and_binary (filter both hidden and binary files)."
-msgstr ""
-
-#: ../plugins/filebrowser/pluma-file-browser-plugin.c:597
+#: ../plugins/filebrowser/pluma-file-browser-plugin.c:530
 msgid "_Set root to active document"
 msgstr ""
 
-#: ../plugins/filebrowser/pluma-file-browser-plugin.c:599
+#: ../plugins/filebrowser/pluma-file-browser-plugin.c:532
 msgid "Set the root to the active document location"
 msgstr ""
 
-#: ../plugins/filebrowser/pluma-file-browser-plugin.c:604
+#: ../plugins/filebrowser/pluma-file-browser-plugin.c:537
 msgid "_Open terminal here"
 msgstr "Т_ерминалды осында ашу"
 
-#: ../plugins/filebrowser/pluma-file-browser-plugin.c:606
+#: ../plugins/filebrowser/pluma-file-browser-plugin.c:539
 msgid "Open a terminal at the currently opened directory"
 msgstr ""
 
-#: ../plugins/filebrowser/pluma-file-browser-plugin.c:742
+#: ../plugins/filebrowser/pluma-file-browser-plugin.c:680
 msgid "File Browser"
 msgstr "Файлдық шолушы"
 
-#: ../plugins/filebrowser/pluma-file-browser-plugin.c:873
+#: ../plugins/filebrowser/pluma-file-browser-plugin.c:802
 msgid "An error occurred while creating a new directory"
 msgstr ""
 
-#: ../plugins/filebrowser/pluma-file-browser-plugin.c:876
+#: ../plugins/filebrowser/pluma-file-browser-plugin.c:805
 msgid "An error occurred while creating a new file"
 msgstr ""
 
-#: ../plugins/filebrowser/pluma-file-browser-plugin.c:881
+#: ../plugins/filebrowser/pluma-file-browser-plugin.c:810
 msgid "An error occurred while renaming a file or directory"
 msgstr ""
 
-#: ../plugins/filebrowser/pluma-file-browser-plugin.c:886
+#: ../plugins/filebrowser/pluma-file-browser-plugin.c:815
 msgid "An error occurred while deleting a file or directory"
 msgstr ""
 
-#: ../plugins/filebrowser/pluma-file-browser-plugin.c:891
+#: ../plugins/filebrowser/pluma-file-browser-plugin.c:820
 msgid "An error occurred while opening a directory in the file manager"
 msgstr ""
 
-#: ../plugins/filebrowser/pluma-file-browser-plugin.c:895
+#: ../plugins/filebrowser/pluma-file-browser-plugin.c:824
 msgid "An error occurred while setting a root directory"
 msgstr ""
 
-#: ../plugins/filebrowser/pluma-file-browser-plugin.c:899
+#: ../plugins/filebrowser/pluma-file-browser-plugin.c:828
 msgid "An error occurred while loading a directory"
 msgstr ""
 
-#: ../plugins/filebrowser/pluma-file-browser-plugin.c:902
+#: ../plugins/filebrowser/pluma-file-browser-plugin.c:831
 msgid "An error occurred"
 msgstr "Қате кетті"
 
-#: ../plugins/filebrowser/pluma-file-browser-plugin.c:1194
+#: ../plugins/filebrowser/pluma-file-browser-plugin.c:1062
 msgid ""
 "Cannot move file to trash, do you\n"
 "want to delete permanently?"
 msgstr ""
 
-#: ../plugins/filebrowser/pluma-file-browser-plugin.c:1198
+#: ../plugins/filebrowser/pluma-file-browser-plugin.c:1066
 #, c-format
 msgid "The file \"%s\" cannot be moved to the trash."
 msgstr ""
 
-#: ../plugins/filebrowser/pluma-file-browser-plugin.c:1201
+#: ../plugins/filebrowser/pluma-file-browser-plugin.c:1069
 msgid "The selected files cannot be moved to the trash."
 msgstr ""
 
-#: ../plugins/filebrowser/pluma-file-browser-plugin.c:1234
+#: ../plugins/filebrowser/pluma-file-browser-plugin.c:1102
 #, c-format
 msgid "Are you sure you want to permanently delete \"%s\"?"
 msgstr ""
 
-#: ../plugins/filebrowser/pluma-file-browser-plugin.c:1237
+#: ../plugins/filebrowser/pluma-file-browser-plugin.c:1105
 msgid "Are you sure you want to permanently delete the selected files?"
 msgstr ""
 
-#: ../plugins/filebrowser/pluma-file-browser-plugin.c:1240
+#: ../plugins/filebrowser/pluma-file-browser-plugin.c:1108
 msgid "If you delete an item, it is permanently lost."
 msgstr ""
 
@@ -2566,25 +2636,33 @@ msgid "(Empty)"
 msgstr "(Бос)"
 
 #: ../plugins/filebrowser/pluma-file-browser-store.c:3305
-msgid "The renamed file is currently filtered out. You need to adjust your filter settings to make the file visible"
+msgid ""
+"The renamed file is currently filtered out. You need to adjust your filter "
+"settings to make the file visible"
 msgstr ""
 
-#. Translators: This is the default name of new files created by the file browser pane.
+#. Translators: This is the default name of new files created by the file
+#. browser pane.
 #: ../plugins/filebrowser/pluma-file-browser-store.c:3544
 msgid "file"
 msgstr "файл"
 
 #: ../plugins/filebrowser/pluma-file-browser-store.c:3568
-msgid "The new file is currently filtered out. You need to adjust your filter settings to make the file visible"
+msgid ""
+"The new file is currently filtered out. You need to adjust your filter "
+"settings to make the file visible"
 msgstr ""
 
-#. Translators: This is the default name of new directories created by the file browser pane.
+#. Translators: This is the default name of new directories created by the
+#. file browser pane.
 #: ../plugins/filebrowser/pluma-file-browser-store.c:3597
 msgid "directory"
 msgstr "бума"
 
 #: ../plugins/filebrowser/pluma-file-browser-store.c:3617
-msgid "The new directory is currently filtered out. You need to adjust your filter settings to make the directory visible"
+msgid ""
+"The new directory is currently filtered out. You need to adjust your filter "
+"settings to make the directory visible"
 msgstr ""
 
 #: ../plugins/filebrowser/pluma-file-browser-widget.c:709
@@ -2741,20 +2819,20 @@ msgstr ""
 
 #. ex:ts=8:noet:
 #: ../plugins/modelines/modelines.pluma-plugin.desktop.in.h:1
-msgid "Emacs, Kate and Vim-style modelines support for pluma."
-msgstr ""
-
-#: ../plugins/modelines/modelines.pluma-plugin.desktop.in.h:2
 msgid "Modelines"
 msgstr ""
 
+#: ../plugins/modelines/modelines.pluma-plugin.desktop.in.h:2
+msgid "Emacs, Kate and Vim-style modelines support for pluma."
+msgstr ""
+
 #: ../plugins/pythonconsole/pythonconsole.pluma-plugin.desktop.in.h:1
-msgid "Interactive Python console standing in the bottom panel"
+#: ../plugins/pythonconsole/pythonconsole/__init__.py:50
+msgid "Python Console"
 msgstr ""
 
 #: ../plugins/pythonconsole/pythonconsole.pluma-plugin.desktop.in.h:2
-#: ../plugins/pythonconsole/pythonconsole/__init__.py:50
-msgid "Python Console"
+msgid "Interactive Python console standing in the bottom panel"
 msgstr ""
 
 #. ex:et:ts=4:
@@ -2785,16 +2863,20 @@ msgid "Quickly open files"
 msgstr ""
 
 #: ../plugins/snippets/snippets.pluma-plugin.desktop.in.h:1
-msgid "Insert often-used pieces of text in a fast way"
-msgstr ""
-
-#: ../plugins/snippets/snippets.pluma-plugin.desktop.in.h:2
 #: ../plugins/snippets/snippets/Document.py:58
 msgid "Snippets"
 msgstr ""
 
+#: ../plugins/snippets/snippets.pluma-plugin.desktop.in.h:2
+msgid "Insert often-used pieces of text in a fast way"
+msgstr ""
+
+#: ../plugins/snippets/snippets/snippets.ui.h:1
+msgid "Snippets Manager"
+msgstr ""
+
 #: ../plugins/snippets/snippets/snippets.ui.h:2
-msgid "Activation"
+msgid "_Snippets:"
 msgstr ""
 
 #: ../plugins/snippets/snippets/snippets.ui.h:3
@@ -2802,8 +2884,8 @@ msgid "Create new snippet"
 msgstr ""
 
 #: ../plugins/snippets/snippets/snippets.ui.h:4
-#: ../plugins/snippets/snippets/Manager.py:412
-msgid "Delete selected snippet"
+#: ../plugins/snippets/snippets/Manager.py:800
+msgid "Import snippets"
 msgstr ""
 
 #: ../plugins/snippets/snippets/snippets.ui.h:5
@@ -2811,38 +2893,34 @@ msgid "Export selected snippets"
 msgstr ""
 
 #: ../plugins/snippets/snippets/snippets.ui.h:6
-#: ../plugins/snippets/snippets/Manager.py:800
-msgid "Import snippets"
-msgstr ""
-
-#: ../plugins/snippets/snippets/snippets.ui.h:7
-msgid "S_hortcut key:"
+#: ../plugins/snippets/snippets/Manager.py:412
+msgid "Delete selected snippet"
 msgstr ""
 
 #: ../plugins/snippets/snippets/snippets.ui.h:8
-msgid "Shortcut key with which the snippet is activated"
+msgid "Activation"
+msgstr ""
+
+#: ../plugins/snippets/snippets/snippets.ui.h:10
+msgid "_Tab trigger:"
 msgstr ""
 
 #. self['hbox_tab_trigger'].set_spacing(0)
-#: ../plugins/snippets/snippets/snippets.ui.h:9
+#: ../plugins/snippets/snippets/snippets.ui.h:11
 #: ../plugins/snippets/snippets/Manager.py:689
 msgid "Single word the snippet is activated with after pressing Tab"
 msgstr ""
 
-#: ../plugins/snippets/snippets/snippets.ui.h:10
-msgid "Snippets Manager"
-msgstr ""
-
-#: ../plugins/snippets/snippets/snippets.ui.h:11
-msgid "_Drop targets:"
+#: ../plugins/snippets/snippets/snippets.ui.h:12
+msgid "Shortcut key with which the snippet is activated"
 msgstr ""
 
 #: ../plugins/snippets/snippets/snippets.ui.h:13
-msgid "_Snippets:"
+msgid "S_hortcut key:"
 msgstr ""
 
 #: ../plugins/snippets/snippets/snippets.ui.h:14
-msgid "_Tab trigger:"
+msgid "_Drop targets:"
 msgstr ""
 
 #: ../plugins/snippets/snippets/WindowHelper.py:130
@@ -2871,7 +2949,9 @@ msgstr ""
 
 #. self['hbox_tab_trigger'].set_spacing(3)
 #: ../plugins/snippets/snippets/Manager.py:682
-msgid "This is not a valid Tab trigger. Triggers can either contain letters or a single (non-alphanumeric) character like: {, [, etc."
+msgid ""
+"This is not a valid Tab trigger. Triggers can either contain letters or a "
+"single (non-alphanumeric) character like: {, [, etc."
 msgstr ""
 
 #: ../plugins/snippets/snippets/Manager.py:779
@@ -2993,7 +3073,9 @@ msgstr ""
 
 #: ../plugins/snippets/snippets/Placeholder.py:594
 #, python-format
-msgid "Execution of the Python command (%s) exceeds the maximum time, execution aborted."
+msgid ""
+"Execution of the Python command (%s) exceeds the maximum time, execution "
+"aborted."
 msgstr ""
 
 #: ../plugins/snippets/snippets/Placeholder.py:602
@@ -3010,7 +3092,7 @@ msgid "Sort the current document or selection"
 msgstr ""
 
 #: ../plugins/sort/sort.pluma-plugin.desktop.in.h:1
-#: ../plugins/sort/sort.ui.h:3
+#: ../plugins/sort/sort.ui.h:1
 msgid "Sort"
 msgstr ""
 
@@ -3018,16 +3100,16 @@ msgstr ""
 msgid "Sorts a document or selected text."
 msgstr ""
 
-#: ../plugins/sort/sort.ui.h:1
-msgid "R_emove duplicates"
+#: ../plugins/sort/sort.ui.h:2
+msgid "_Sort"
 msgstr ""
 
-#: ../plugins/sort/sort.ui.h:2
-msgid "S_tart at column:"
+#: ../plugins/sort/sort.ui.h:3
+msgid "_Reverse order"
 msgstr ""
 
 #: ../plugins/sort/sort.ui.h:4
-msgid "You cannot undo a sort operation"
+msgid "R_emove duplicates"
 msgstr ""
 
 #: ../plugins/sort/sort.ui.h:5
@@ -3035,15 +3117,17 @@ msgid "_Ignore case"
 msgstr ""
 
 #: ../plugins/sort/sort.ui.h:6
-msgid "_Reverse order"
+msgid "S_tart at column:"
 msgstr ""
 
 #: ../plugins/sort/sort.ui.h:7
-msgid "_Sort"
+msgid "You cannot undo a sort operation"
 msgstr ""
 
-#. Translators: Displayed in the "Check Spelling" dialog if there are no suggestions for the current misspelled word
-#. Translators: Displayed in the "Check Spelling" dialog if there are no suggestions
+#. Translators: Displayed in the "Check Spelling" dialog if there are no
+#. suggestions for the current misspelled word
+#. Translators: Displayed in the "Check Spelling" dialog if there are no
+#. suggestions
 #. * for the current misspelled word
 #: ../plugins/spell/pluma-automatic-spell-checker.c:420
 #: ../plugins/spell/pluma-spell-checker-dialog.c:455
@@ -3076,7 +3160,8 @@ msgstr ""
 msgid "Suggestions"
 msgstr ""
 
-#. Translators: Displayed in the "Check Spelling" dialog if the current word isn't misspelled
+#. Translators: Displayed in the "Check Spelling" dialog if the current word
+#. isn't misspelled
 #: ../plugins/spell/pluma-spell-checker-dialog.c:562
 msgid "(correct spelling)"
 msgstr ""
@@ -3088,7 +3173,7 @@ msgstr ""
 #. Translators: the first %s is the language name, and
 #. * the second %s is the locale name. Example:
 #. * "French (France)"
-#.
+#. 
 #: ../plugins/spell/pluma-spell-checker-language.c:285
 #: ../plugins/spell/pluma-spell-checker-language.c:291
 #, c-format
@@ -3098,7 +3183,7 @@ msgstr "%s (%s)"
 
 #. Translators: this refers to an unknown language code
 #. * (one which isn't in our built-in list).
-#.
+#. 
 #: ../plugins/spell/pluma-spell-checker-language.c:300
 #, c-format
 msgctxt "language"
@@ -3107,14 +3192,14 @@ msgstr "Белгісіз (%s)"
 
 #. Translators: this refers the Default language used by the
 #. * spell checker
-#.
+#. 
 #: ../plugins/spell/pluma-spell-checker-language.c:406
 msgctxt "language"
 msgid "Default"
 msgstr "Бастапқы"
 
 #: ../plugins/spell/pluma-spell-language-dialog.c:141
-#: ../plugins/spell/languages-dialog.ui.h:2
+#: ../plugins/spell/languages-dialog.ui.h:1
 msgid "Set language"
 msgstr "Тілді орнату"
 
@@ -3154,20 +3239,20 @@ msgstr ""
 msgid "No misspelled words"
 msgstr ""
 
-#: ../plugins/spell/languages-dialog.ui.h:1
+#: ../plugins/spell/languages-dialog.ui.h:2
 msgid "Select the _language of the current document."
 msgstr ""
 
 #: ../plugins/spell/spell-checker.ui.h:1
-msgid "Add w_ord"
+msgid "Check spelling"
 msgstr ""
 
 #: ../plugins/spell/spell-checker.ui.h:2
-msgid "Cha_nge"
+msgid "Misspelled word:"
 msgstr ""
 
 #: ../plugins/spell/spell-checker.ui.h:3
-msgid "Change A_ll"
+msgid "word"
 msgstr ""
 
 #: ../plugins/spell/spell-checker.ui.h:4
@@ -3179,23 +3264,23 @@ msgid "Check _Word"
 msgstr ""
 
 #: ../plugins/spell/spell-checker.ui.h:6
-msgid "Check spelling"
+msgid "_Suggestions:"
 msgstr ""
 
 #: ../plugins/spell/spell-checker.ui.h:7
+msgid "_Ignore"
+msgstr "_Елемеу"
+
+#: ../plugins/spell/spell-checker.ui.h:8
+msgid "Cha_nge"
+msgstr ""
+
+#: ../plugins/spell/spell-checker.ui.h:9
 msgid "Ignore _All"
 msgstr ""
 
-#: ../plugins/spell/spell-checker.ui.h:8
-msgid "Language"
-msgstr "Тіл"
-
-#: ../plugins/spell/spell-checker.ui.h:9
-msgid "Language:"
-msgstr "Тіл:"
-
 #: ../plugins/spell/spell-checker.ui.h:10
-msgid "Misspelled word:"
+msgid "Change A_ll"
 msgstr ""
 
 #: ../plugins/spell/spell-checker.ui.h:11
@@ -3203,24 +3288,24 @@ msgid "User dictionary:"
 msgstr ""
 
 #: ../plugins/spell/spell-checker.ui.h:12
-msgid "_Ignore"
-msgstr "_Елемеу"
+msgid "Add w_ord"
+msgstr ""
 
 #: ../plugins/spell/spell-checker.ui.h:13
-msgid "_Suggestions:"
-msgstr ""
+msgid "Language:"
+msgstr "Тіл:"
 
 #: ../plugins/spell/spell-checker.ui.h:14
-msgid "word"
-msgstr ""
+msgid "Language"
+msgstr "Тіл"
 
 #: ../plugins/spell/spell.pluma-plugin.desktop.in.h:1
-msgid "Checks the spelling of the current document."
-msgstr ""
-
-#: ../plugins/spell/spell.pluma-plugin.desktop.in.h:2
 msgid "Spell Checker"
 msgstr "Емлені тексеру"
+
+#: ../plugins/spell/spell.pluma-plugin.desktop.in.h:2
+msgid "Checks the spelling of the current document."
+msgstr ""
 
 #: ../plugins/taglist/pluma-taglist-plugin.c:98
 #: ../plugins/taglist/pluma-taglist-plugin-panel.c:694
@@ -3241,15 +3326,15 @@ msgid "Available Tag Lists"
 msgstr ""
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:1
-msgid "Abbreviated form"
+msgid "XHTML 1.0 - Tags"
 msgstr ""
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:2
-msgid "Abbreviation"
+msgid "Abbreviated form"
 msgstr ""
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:3
-msgid "Above"
+msgid "Abbreviation"
 msgstr ""
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:4
@@ -3273,1172 +3358,1167 @@ msgid "Alternative"
 msgstr ""
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:9
-msgid "Anchor"
-msgstr ""
-
-#: ../plugins/taglist/HTML.tags.xml.in.h:10
 msgid "Anchor URI"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:11
-msgid "Applet class file code"
+#: ../plugins/taglist/HTML.tags.xml.in.h:10
+msgid "Anchor"
 msgstr ""
 
 #. Deprecated since HTML 4.01, not supported in XHTML 1.0 Strict DTD.
-#: ../plugins/taglist/HTML.tags.xml.in.h:13
+#: ../plugins/taglist/HTML.tags.xml.in.h:12
 msgid "Applet class file code (deprecated)"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:14
-msgid "Array"
-msgstr ""
-
-#: ../plugins/taglist/HTML.tags.xml.in.h:15
+#: ../plugins/taglist/HTML.tags.xml.in.h:13
 msgid "Associated information"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:16
+#: ../plugins/taglist/HTML.tags.xml.in.h:14
 msgid "Author info"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:17
+#: ../plugins/taglist/HTML.tags.xml.in.h:15
 msgid "Axis related headers"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:18
-msgid "Background color"
-msgstr "Фон түсі"
-
 #. Deprecated since HTML 4.01, not supported in XHTML 1.0 Strict DTD.
-#: ../plugins/taglist/HTML.tags.xml.in.h:20
+#: ../plugins/taglist/HTML.tags.xml.in.h:17
 msgid "Background color (deprecated)"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:21
-msgid "Background texture tile"
-msgstr ""
-
 #. Deprecated since HTML 4.01, not supported in XHTML 1.0 Strict DTD.
-#: ../plugins/taglist/HTML.tags.xml.in.h:23
+#: ../plugins/taglist/HTML.tags.xml.in.h:19
 msgid "Background texture tile (deprecated)"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:24
-msgid "Base URI"
-msgstr ""
-
-#: ../plugins/taglist/HTML.tags.xml.in.h:25
-msgid "Base font"
-msgstr ""
-
 #. Deprecated since HTML 4.01, not supported in XHTML 1.0 Strict DTD.
-#: ../plugins/taglist/HTML.tags.xml.in.h:27
+#: ../plugins/taglist/HTML.tags.xml.in.h:21
 msgid "Base font (deprecated)"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:28
+#: ../plugins/taglist/HTML.tags.xml.in.h:22
+msgid "Base URI"
+msgstr ""
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:23
 msgid "Bold"
 msgstr "Жуан"
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:29
-msgid "Border"
-msgstr ""
-
 #. Deprecated since HTML 4.01, not supported in XHTML 1.0 Strict DTD.
-#: ../plugins/taglist/HTML.tags.xml.in.h:31
+#: ../plugins/taglist/HTML.tags.xml.in.h:25
 msgid "Border (deprecated)"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:32
-msgid "Border color"
-msgstr ""
-
-#: ../plugins/taglist/HTML.tags.xml.in.h:33
+#: ../plugins/taglist/HTML.tags.xml.in.h:26
 msgid "Cell rowspan"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:34
-msgid "Center"
-msgstr "Ортасы"
-
 #. Deprecated since HTML 4.01, not supported in XHTML 1.0 Strict DTD.
-#: ../plugins/taglist/HTML.tags.xml.in.h:36
+#: ../plugins/taglist/HTML.tags.xml.in.h:28
 msgid "Center (deprecated)"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:37
+#: ../plugins/taglist/HTML.tags.xml.in.h:29
 msgid "Character encoding of linked resource"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:38
-msgid "Checked (state)"
-msgstr ""
-
-#: ../plugins/taglist/HTML.tags.xml.in.h:39
+#: ../plugins/taglist/HTML.tags.xml.in.h:30
 msgid "Checked state"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:40
+#: ../plugins/taglist/HTML.tags.xml.in.h:31
 msgid "Citation"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:41
+#: ../plugins/taglist/HTML.tags.xml.in.h:32
 msgid "Cite reason for change"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:42
+#: ../plugins/taglist/HTML.tags.xml.in.h:33
 msgid "Class implementation ID"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:43
+#: ../plugins/taglist/HTML.tags.xml.in.h:34
 msgid "Class list"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:44
+#: ../plugins/taglist/HTML.tags.xml.in.h:35
 msgid "Clear text flow control"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:45
+#: ../plugins/taglist/HTML.tags.xml.in.h:36
 msgid "Code content type"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:46
-msgid "Color of selected links"
-msgstr ""
-
 #. Deprecated since HTML 4.01, not supported in XHTML 1.0 Strict DTD.
-#: ../plugins/taglist/HTML.tags.xml.in.h:48
+#: ../plugins/taglist/HTML.tags.xml.in.h:38
 msgid "Color of selected links (deprecated)"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:49
+#: ../plugins/taglist/HTML.tags.xml.in.h:39
 msgid "Column span"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:50
+#: ../plugins/taglist/HTML.tags.xml.in.h:40
 msgid "Columns"
 msgstr "Бағандар"
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:51
+#: ../plugins/taglist/HTML.tags.xml.in.h:41
 msgid "Comment"
 msgstr "Түсіндірме"
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:52
+#: ../plugins/taglist/HTML.tags.xml.in.h:42
 msgid "Computer code fragment"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:53
-msgid "Content scheme"
-msgstr ""
-
-#: ../plugins/taglist/HTML.tags.xml.in.h:54
-msgid "Content type"
-msgstr "Құрама түрі"
-
 #. The "type" attribute is deprecated for the "ol" tag only,
 #. since HTML 4.01, not supported in XHTML 1.0 Strict DTD.
-#: ../plugins/taglist/HTML.tags.xml.in.h:57
+#: ../plugins/taglist/HTML.tags.xml.in.h:45
 msgid "Content type (deprecated)"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:58
+#: ../plugins/taglist/HTML.tags.xml.in.h:46
 msgid "Coordinates"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:59
-msgid "DIV Style container"
-msgstr ""
-
-#: ../plugins/taglist/HTML.tags.xml.in.h:60
-msgid "DIV container"
-msgstr ""
-
-#: ../plugins/taglist/HTML.tags.xml.in.h:61
+#: ../plugins/taglist/HTML.tags.xml.in.h:47
 msgid "Date and time of change"
 msgstr ""
 
 #. NOTE: used in "object" tag
-#: ../plugins/taglist/HTML.tags.xml.in.h:63
+#: ../plugins/taglist/HTML.tags.xml.in.h:49
 msgid "Declare flag"
 msgstr ""
 
 #. Translators: DEFER is an optional attribute of the <script> tag.
 #. It indicates that the script is not going to generate any document
 #. content. The browser can continue parsing and drawing the page.
-#: ../plugins/taglist/HTML.tags.xml.in.h:67
+#: ../plugins/taglist/HTML.tags.xml.in.h:53
 msgid "Defer attribute"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:68
+#: ../plugins/taglist/HTML.tags.xml.in.h:54
 msgid "Definition description"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:69
+#: ../plugins/taglist/HTML.tags.xml.in.h:55
 msgid "Definition list"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:70
+#: ../plugins/taglist/HTML.tags.xml.in.h:56
 msgid "Definition term"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:71
+#: ../plugins/taglist/HTML.tags.xml.in.h:57
 msgid "Deleted text"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:72
-msgid "Direction"
-msgstr ""
-
-#: ../plugins/taglist/HTML.tags.xml.in.h:73
+#: ../plugins/taglist/HTML.tags.xml.in.h:58
 msgid "Directionality"
 msgstr ""
 
 #. Deprecated since HTML 4.01, not supported in XHTML 1.0 Strict DTD.
-#: ../plugins/taglist/HTML.tags.xml.in.h:75
+#: ../plugins/taglist/HTML.tags.xml.in.h:60
 msgid "Directionality (deprecated)"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:76
-msgid "Directory list"
-msgstr ""
-
-#: ../plugins/taglist/HTML.tags.xml.in.h:77
+#: ../plugins/taglist/HTML.tags.xml.in.h:61
 msgid "Disabled"
 msgstr "Сөндірулі"
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:78
+#: ../plugins/taglist/HTML.tags.xml.in.h:62
+msgid "DIV container"
+msgstr ""
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:63
+msgid "DIV Style container"
+msgstr ""
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:64
 msgid "Document base"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:79
+#: ../plugins/taglist/HTML.tags.xml.in.h:65
 msgid "Document body"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:80
+#: ../plugins/taglist/HTML.tags.xml.in.h:66
 msgid "Document head"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:81
-msgid "Document title"
-msgstr ""
-
-#: ../plugins/taglist/HTML.tags.xml.in.h:82
-msgid "Document type"
-msgstr ""
-
-#: ../plugins/taglist/HTML.tags.xml.in.h:83
+#: ../plugins/taglist/HTML.tags.xml.in.h:67
 msgid "Element ID"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:84
-msgid "Embedded object"
+#: ../plugins/taglist/HTML.tags.xml.in.h:68
+msgid "Document title"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:85
-#: ../plugins/taglist/Latex.tags.xml.in.h:9
+#: ../plugins/taglist/HTML.tags.xml.in.h:69
+msgid "Document type"
+msgstr ""
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:70
+#: ../plugins/taglist/Latex.tags.xml.in.h:72
 msgid "Emphasis"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:86
+#: ../plugins/taglist/HTML.tags.xml.in.h:71
 msgid "Encode type"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:87
-msgid "Figure"
-msgstr ""
-
-#: ../plugins/taglist/HTML.tags.xml.in.h:88
-msgid "Font face"
-msgstr ""
-
 #. Deprecated since HTML 4.01, not supported in XHTML 1.0 Strict DTD.
-#: ../plugins/taglist/HTML.tags.xml.in.h:90
+#: ../plugins/taglist/HTML.tags.xml.in.h:73
 msgid "Font face (deprecated)"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:91
+#: ../plugins/taglist/HTML.tags.xml.in.h:74
 msgid "For label"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:92
+#: ../plugins/taglist/HTML.tags.xml.in.h:75
 msgid "Forced line break"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:93
-#, fuzzy
-msgid "Form"
-msgstr "Түрі"
-
-#: ../plugins/taglist/HTML.tags.xml.in.h:94
+#: ../plugins/taglist/HTML.tags.xml.in.h:76
 msgid "Form action handler"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:95
+#: ../plugins/taglist/HTML.tags.xml.in.h:77
 msgid "Form control group"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:96
+#: ../plugins/taglist/HTML.tags.xml.in.h:78
 msgid "Form field label text"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:97
-msgid "Form input"
-msgstr ""
-
-#: ../plugins/taglist/HTML.tags.xml.in.h:98
+#: ../plugins/taglist/HTML.tags.xml.in.h:79
 msgid "Form input type"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:99
+#: ../plugins/taglist/HTML.tags.xml.in.h:80
+msgid "Form input"
+msgstr ""
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:81
 msgid "Form method"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:100
+#: ../plugins/taglist/HTML.tags.xml.in.h:82
+msgid "Form"
+msgstr ""
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:83
 msgid "Forward link"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:101
-msgid "Frame"
-msgstr "фрейм"
-
-#: ../plugins/taglist/HTML.tags.xml.in.h:102
-msgid "Frame border"
-msgstr ""
-
-#: ../plugins/taglist/HTML.tags.xml.in.h:103
+#: ../plugins/taglist/HTML.tags.xml.in.h:84
 msgid "Frame render parts"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:104
+#: ../plugins/taglist/HTML.tags.xml.in.h:85
 msgid "Frame source"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:105
-msgid "Frame spacing"
-msgstr ""
-
-#: ../plugins/taglist/HTML.tags.xml.in.h:106
+#: ../plugins/taglist/HTML.tags.xml.in.h:86
 msgid "Frame target"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:107
-msgid "Frameborder"
+#: ../plugins/taglist/HTML.tags.xml.in.h:87
+msgid "Frame"
+msgstr "фрейм"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:88
+msgid "Frame border"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:108
-msgid "Frameset"
-msgstr ""
-
-#: ../plugins/taglist/HTML.tags.xml.in.h:109
+#: ../plugins/taglist/HTML.tags.xml.in.h:89
 msgid "Frameset columns"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:110
+#: ../plugins/taglist/HTML.tags.xml.in.h:90
 msgid "Frameset rows"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:111
-msgid "Framespacing"
+#: ../plugins/taglist/HTML.tags.xml.in.h:91
+msgid "Frameset"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:112
+#: ../plugins/taglist/HTML.tags.xml.in.h:92
+msgid "Frame spacing"
+msgstr ""
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:93
 msgid "Generic embedded object"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:113
+#: ../plugins/taglist/HTML.tags.xml.in.h:94
 msgid "Generic metainformation"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:114
+#: ../plugins/taglist/HTML.tags.xml.in.h:95
 msgid "Generic span"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:115
-msgid "HREF URI"
-msgstr ""
-
-#: ../plugins/taglist/HTML.tags.xml.in.h:116
-msgid "HTML - Special Characters"
-msgstr ""
-
-#: ../plugins/taglist/HTML.tags.xml.in.h:117
-msgid "HTML - Tags"
-msgstr ""
-
-#: ../plugins/taglist/HTML.tags.xml.in.h:118
-msgid "HTML root element"
-msgstr ""
-
-#: ../plugins/taglist/HTML.tags.xml.in.h:119
-msgid "HTML version"
-msgstr ""
-
-#: ../plugins/taglist/HTML.tags.xml.in.h:120
-msgid "HTTP header name"
-msgstr ""
-
-#: ../plugins/taglist/HTML.tags.xml.in.h:121
+#: ../plugins/taglist/HTML.tags.xml.in.h:96
 msgid "Header cell IDs"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:122
-msgid "Heading"
-msgstr ""
-
-#: ../plugins/taglist/HTML.tags.xml.in.h:123
+#: ../plugins/taglist/HTML.tags.xml.in.h:97
 msgid "Heading 1"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:124
+#: ../plugins/taglist/HTML.tags.xml.in.h:98
 msgid "Heading 2"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:125
+#: ../plugins/taglist/HTML.tags.xml.in.h:99
 msgid "Heading 3"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:126
+#: ../plugins/taglist/HTML.tags.xml.in.h:100
 msgid "Heading 4"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:127
+#: ../plugins/taglist/HTML.tags.xml.in.h:101
 msgid "Heading 5"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:128
+#: ../plugins/taglist/HTML.tags.xml.in.h:102
 msgid "Heading 6"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:129
+#: ../plugins/taglist/HTML.tags.xml.in.h:103
 msgid "Height"
 msgstr "Биіктігі"
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:130
+#: ../plugins/taglist/HTML.tags.xml.in.h:104
 msgid "Horizontal rule"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:131
-msgid "Horizontal space"
-msgstr ""
-
 #. Deprecated since HTML 4.01, not supported in XHTML 1.0 Strict DTD.
-#: ../plugins/taglist/HTML.tags.xml.in.h:133
+#: ../plugins/taglist/HTML.tags.xml.in.h:106
 msgid "Horizontal space (deprecated)"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:134
+#: ../plugins/taglist/HTML.tags.xml.in.h:107
+msgid "HREF URI"
+msgstr ""
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:108
+msgid "HTML root element"
+msgstr ""
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:109
+msgid "HTTP header name"
+msgstr ""
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:110
 msgid "I18N BiDi override"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:135
-msgid "Image"
-msgstr "Сурет"
-
-#: ../plugins/taglist/HTML.tags.xml.in.h:136
-msgid "Image map"
-msgstr ""
-
-#: ../plugins/taglist/HTML.tags.xml.in.h:137
+#: ../plugins/taglist/HTML.tags.xml.in.h:111
 msgid "Image map area"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:138
+#: ../plugins/taglist/HTML.tags.xml.in.h:112
 msgid "Image map name"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:139
-msgid "Image source"
+#: ../plugins/taglist/HTML.tags.xml.in.h:113
+msgid "Image map"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:140
+#: ../plugins/taglist/HTML.tags.xml.in.h:114
+msgid "Image"
+msgstr "Сурет"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:115
 msgid "Inline frame"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:141
-msgid "Inline layer"
-msgstr ""
-
-#: ../plugins/taglist/HTML.tags.xml.in.h:142
+#: ../plugins/taglist/HTML.tags.xml.in.h:116
 msgid "Inserted text"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:143
+#: ../plugins/taglist/HTML.tags.xml.in.h:117
 msgid "Instance definition"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:144
+#: ../plugins/taglist/HTML.tags.xml.in.h:118
 msgid "Italic text"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:145
-msgid "Java applet"
-msgstr ""
-
 #. Deprecated since HTML 4.01, not supported in XHTML 1.0 Strict DTD.
-#: ../plugins/taglist/HTML.tags.xml.in.h:147
+#: ../plugins/taglist/HTML.tags.xml.in.h:120
 msgid "Java applet (deprecated)"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:148
+#: ../plugins/taglist/HTML.tags.xml.in.h:121
 msgid "Label"
 msgstr "Белгі"
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:149
+#: ../plugins/taglist/HTML.tags.xml.in.h:122
 msgid "Language code"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:150
+#: ../plugins/taglist/HTML.tags.xml.in.h:123
 msgid "Large text style"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:151
-msgid "Layer"
-msgstr ""
-
-#: ../plugins/taglist/HTML.tags.xml.in.h:152
-msgid "Link color"
-msgstr ""
-
 #. Deprecated since HTML 4.01, not supported in XHTML 1.0 Strict DTD.
-#: ../plugins/taglist/HTML.tags.xml.in.h:154
+#: ../plugins/taglist/HTML.tags.xml.in.h:125
 msgid "Link color (deprecated)"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:155
+#: ../plugins/taglist/HTML.tags.xml.in.h:126
 msgid "List item"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:156
+#: ../plugins/taglist/HTML.tags.xml.in.h:127
 msgid "List of MIME types for file upload"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:157
+#: ../plugins/taglist/HTML.tags.xml.in.h:128
 msgid "List of supported character sets"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:158
-msgid "Listing"
-msgstr ""
-
-#: ../plugins/taglist/HTML.tags.xml.in.h:159
+#: ../plugins/taglist/HTML.tags.xml.in.h:129
 msgid "Local change to font"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:160
+#: ../plugins/taglist/HTML.tags.xml.in.h:130
 msgid "Long description link"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:161
+#: ../plugins/taglist/HTML.tags.xml.in.h:131
 msgid "Long quotation"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:162
-msgid "Mail link"
-msgstr ""
-
 #. Supported in XHTML 1.0 Frameset DTD only.
-#: ../plugins/taglist/HTML.tags.xml.in.h:164
+#: ../plugins/taglist/HTML.tags.xml.in.h:133
 msgid "Margin pixel height"
 msgstr ""
 
 #. Supported in XHTML 1.0 Frameset DTD only.
-#: ../plugins/taglist/HTML.tags.xml.in.h:166
+#: ../plugins/taglist/HTML.tags.xml.in.h:135
 msgid "Margin pixel width"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:167
-msgid "Marquee"
+#: ../plugins/taglist/HTML.tags.xml.in.h:136
+msgid "Maximum length of text field"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:168
-msgid "Maximum length of text field"
+#: ../plugins/taglist/HTML.tags.xml.in.h:137
+msgid "Output media"
 msgstr ""
 
 #. Here I take some liberties: There's no mandatory attributes,
 #. but those are most common, and will likely be used.
-#: ../plugins/taglist/HTML.tags.xml.in.h:171
+#: ../plugins/taglist/HTML.tags.xml.in.h:140
 msgid "Media-independent link"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:172
-msgid "Menu list"
-msgstr ""
-
 #. Deprecated since HTML 4.01, not supported in XHTML 1.0 Strict DTD.
-#: ../plugins/taglist/HTML.tags.xml.in.h:174
+#: ../plugins/taglist/HTML.tags.xml.in.h:142
 msgid "Menu list (deprecated)"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:175
+#: ../plugins/taglist/HTML.tags.xml.in.h:143
 msgid "Multi-line text field"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:176
-msgid "Multicolumn"
-msgstr ""
-
-#: ../plugins/taglist/HTML.tags.xml.in.h:177
+#: ../plugins/taglist/HTML.tags.xml.in.h:144
 msgid "Multiple"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:178
+#: ../plugins/taglist/HTML.tags.xml.in.h:145
 msgid "Name"
 msgstr "Аты"
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:179
+#: ../plugins/taglist/HTML.tags.xml.in.h:146
 msgid "Named property value"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:180
-msgid "Next ID"
-msgstr ""
-
-#: ../plugins/taglist/HTML.tags.xml.in.h:181
-msgid "No URI"
-msgstr ""
-
-#: ../plugins/taglist/HTML.tags.xml.in.h:182
-msgid "No embedded objects"
-msgstr ""
-
-#: ../plugins/taglist/HTML.tags.xml.in.h:183
+#: ../plugins/taglist/HTML.tags.xml.in.h:147
 msgid "No frames"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:184
-msgid "No layers"
-msgstr ""
-
-#: ../plugins/taglist/HTML.tags.xml.in.h:185
-msgid "No line break"
-msgstr ""
-
-#: ../plugins/taglist/HTML.tags.xml.in.h:186
+#: ../plugins/taglist/HTML.tags.xml.in.h:148
 msgid "No resize"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:187
+#: ../plugins/taglist/HTML.tags.xml.in.h:149
 msgid "No script"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:188
-msgid "No shade"
-msgstr ""
-
 #. Deprecated since HTML 4.01, not supported in XHTML 1.0 Strict DTD.
-#: ../plugins/taglist/HTML.tags.xml.in.h:190
+#: ../plugins/taglist/HTML.tags.xml.in.h:151
 msgid "No shade (deprecated)"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:191
-msgid "No word wrap"
+#: ../plugins/taglist/HTML.tags.xml.in.h:152
+msgid "No URI"
 msgstr ""
 
 #. Deprecated since HTML 4.01, not supported in XHTML 1.0 Strict DTD.
-#: ../plugins/taglist/HTML.tags.xml.in.h:193
+#: ../plugins/taglist/HTML.tags.xml.in.h:154
 msgid "No word wrap (deprecated)"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:194
-msgid "Non-breaking space"
-msgstr ""
-
-#: ../plugins/taglist/HTML.tags.xml.in.h:195
-#, fuzzy
-msgid "Note"
-msgstr "Хабарлама"
-
-#: ../plugins/taglist/HTML.tags.xml.in.h:196
-msgid "Object applet file"
-msgstr ""
-
 #. Deprecated since HTML 4.01, not supported in XHTML 1.0 Strict DTD.
-#: ../plugins/taglist/HTML.tags.xml.in.h:198
+#: ../plugins/taglist/HTML.tags.xml.in.h:156
 msgid "Object applet file (deprecated)"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:199
+#: ../plugins/taglist/HTML.tags.xml.in.h:157
 msgid "Object data reference"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:200
+#: ../plugins/taglist/HTML.tags.xml.in.h:158
 msgid "Offset for alignment character"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:201
+#: ../plugins/taglist/HTML.tags.xml.in.h:159
 msgid "OnBlur event"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:202
+#: ../plugins/taglist/HTML.tags.xml.in.h:160
 msgid "OnChange event"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:203
+#: ../plugins/taglist/HTML.tags.xml.in.h:161
 msgid "OnClick event"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:204
+#: ../plugins/taglist/HTML.tags.xml.in.h:162
 msgid "OnDblClick event"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:205
+#: ../plugins/taglist/HTML.tags.xml.in.h:163
 msgid "OnFocus event"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:206
+#: ../plugins/taglist/HTML.tags.xml.in.h:164
 msgid "OnKeyDown event"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:207
+#: ../plugins/taglist/HTML.tags.xml.in.h:165
 msgid "OnKeyPress event"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:208
+#: ../plugins/taglist/HTML.tags.xml.in.h:166
 msgid "OnKeyUp event"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:209
+#: ../plugins/taglist/HTML.tags.xml.in.h:167
 msgid "OnLoad event"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:210
+#: ../plugins/taglist/HTML.tags.xml.in.h:168
 msgid "OnMouseDown event"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:211
+#: ../plugins/taglist/HTML.tags.xml.in.h:169
 msgid "OnMouseMove event"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:212
+#: ../plugins/taglist/HTML.tags.xml.in.h:170
 msgid "OnMouseOut event"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:213
+#: ../plugins/taglist/HTML.tags.xml.in.h:171
 msgid "OnMouseOver event"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:214
+#: ../plugins/taglist/HTML.tags.xml.in.h:172
 msgid "OnMouseUp event"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:215
+#: ../plugins/taglist/HTML.tags.xml.in.h:173
 msgid "OnReset event"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:216
+#: ../plugins/taglist/HTML.tags.xml.in.h:174
 msgid "OnSelect event"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:217
+#: ../plugins/taglist/HTML.tags.xml.in.h:175
 msgid "OnSubmit event"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:218
+#: ../plugins/taglist/HTML.tags.xml.in.h:176
 msgid "OnUnload event"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:219
+#: ../plugins/taglist/HTML.tags.xml.in.h:177
 msgid "Option group"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:220
+#: ../plugins/taglist/HTML.tags.xml.in.h:178
 msgid "Option selector"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:221
+#: ../plugins/taglist/HTML.tags.xml.in.h:179
 msgid "Ordered list"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:222
-msgid "Output media"
-msgstr ""
-
-#: ../plugins/taglist/HTML.tags.xml.in.h:223
-msgid "Paragraph"
-msgstr "Абзац"
-
-#: ../plugins/taglist/HTML.tags.xml.in.h:224
+#: ../plugins/taglist/HTML.tags.xml.in.h:180
 msgid "Paragraph class"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:225
+#: ../plugins/taglist/HTML.tags.xml.in.h:181
 msgid "Paragraph style"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:226
-msgid "Preformatted listing"
-msgstr ""
+#: ../plugins/taglist/HTML.tags.xml.in.h:182
+msgid "Paragraph"
+msgstr "Абзац"
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:227
+#: ../plugins/taglist/HTML.tags.xml.in.h:183
 msgid "Preformatted text"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:228
+#: ../plugins/taglist/HTML.tags.xml.in.h:184
 msgid "Profile metainfo dictionary"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:229
-msgid "Prompt message"
-msgstr ""
-
-#: ../plugins/taglist/HTML.tags.xml.in.h:230
+#: ../plugins/taglist/HTML.tags.xml.in.h:185
 msgid "Push button"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:231
-msgid "Quote"
-msgstr "Дәйексөз"
-
-#: ../plugins/taglist/HTML.tags.xml.in.h:232
-msgid "Range"
-msgstr ""
-
-#: ../plugins/taglist/HTML.tags.xml.in.h:233
+#: ../plugins/taglist/HTML.tags.xml.in.h:186
 msgid "ReadOnly text and password"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:234
-msgid "Reduced spacing"
-msgstr ""
-
 #. Deprecated since HTML 4.01, not supported in XHTML 1.0 Strict DTD.
-#: ../plugins/taglist/HTML.tags.xml.in.h:236
+#: ../plugins/taglist/HTML.tags.xml.in.h:188
 msgid "Reduced spacing (deprecated)"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:237
+#: ../plugins/taglist/HTML.tags.xml.in.h:189
 msgid "Reverse link"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:238
-#, fuzzy
-msgid "Root"
-msgstr "Root"
-
-#: ../plugins/taglist/HTML.tags.xml.in.h:239
+#: ../plugins/taglist/HTML.tags.xml.in.h:190
 msgid "Rows"
 msgstr "Жолдар"
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:240
+#: ../plugins/taglist/HTML.tags.xml.in.h:191
 msgid "Rulings between rows and columns"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:241
+#: ../plugins/taglist/HTML.tags.xml.in.h:192
 msgid "Sample program output, scripts"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:242
+#: ../plugins/taglist/HTML.tags.xml.in.h:193
 msgid "Scope covered by header cells"
 msgstr ""
 
 #. Deprecated since HTML 4.01, not supported in XHTML 1.0 Strict DTD.
-#: ../plugins/taglist/HTML.tags.xml.in.h:244
+#: ../plugins/taglist/HTML.tags.xml.in.h:195
 msgid "Script language name"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:245
+#: ../plugins/taglist/HTML.tags.xml.in.h:196
 msgid "Script statements"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:246
+#: ../plugins/taglist/HTML.tags.xml.in.h:197
 msgid "Scrollbar"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:247
+#: ../plugins/taglist/HTML.tags.xml.in.h:198
 msgid "Selectable option"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:248
+#: ../plugins/taglist/HTML.tags.xml.in.h:199
 msgid "Selected"
 msgstr "Таңдалған"
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:249
+#: ../plugins/taglist/HTML.tags.xml.in.h:200
 msgid "Server-side image map"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:250
+#: ../plugins/taglist/HTML.tags.xml.in.h:201
 msgid "Shape"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:251
+#: ../plugins/taglist/HTML.tags.xml.in.h:202
 msgid "Short inline quotation"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:252
-msgid "Single line prompt"
-msgstr ""
-
-#: ../plugins/taglist/HTML.tags.xml.in.h:253
-msgid "Size"
-msgstr "Өлшемі"
-
 #. Deprecated since HTML 4.01, not supported in XHTML 1.0 Strict DTD.
-#: ../plugins/taglist/HTML.tags.xml.in.h:255
+#: ../plugins/taglist/HTML.tags.xml.in.h:204
 msgid "Size (deprecated)"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:256
+#: ../plugins/taglist/HTML.tags.xml.in.h:205
 msgid "Small text style"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:257
-msgid "Soft line break"
+#: ../plugins/taglist/HTML.tags.xml.in.h:206
+msgid "Source"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:258
-msgid "Sound"
-msgstr "Дыбыс"
-
-#: ../plugins/taglist/HTML.tags.xml.in.h:259
-#, fuzzy
-msgid "Source"
-msgstr "Бастапқы кодтары"
-
-#: ../plugins/taglist/HTML.tags.xml.in.h:260
+#: ../plugins/taglist/HTML.tags.xml.in.h:207
 msgid "Space-separated archive list"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:261
-msgid "Spacer"
-msgstr ""
-
-#: ../plugins/taglist/HTML.tags.xml.in.h:262
+#: ../plugins/taglist/HTML.tags.xml.in.h:208
 msgid "Spacing between cells"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:263
+#: ../plugins/taglist/HTML.tags.xml.in.h:209
 msgid "Spacing within cells"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:264
+#: ../plugins/taglist/HTML.tags.xml.in.h:210
 msgid "Span"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:265
-#, fuzzy
-msgid "Square root"
-msgstr "Шаршы түбірін алу"
-
-#: ../plugins/taglist/HTML.tags.xml.in.h:266
+#: ../plugins/taglist/HTML.tags.xml.in.h:211
 msgid "Standby load message"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:267
-msgid "Starting sequence number"
-msgstr ""
-
 #. Deprecated since HTML 4.01, not supported in XHTML 1.0 Strict DTD.
-#: ../plugins/taglist/HTML.tags.xml.in.h:269
+#: ../plugins/taglist/HTML.tags.xml.in.h:213
 msgid "Starting sequence number (deprecated)"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:270
-msgid "Strike-through text"
-msgstr ""
-
 #. Deprecated since HTML 4.01, not supported in XHTML 1.0 Strict DTD.
-#: ../plugins/taglist/HTML.tags.xml.in.h:272
-msgid "Strike-through text (deprecated)"
-msgstr ""
-
-#: ../plugins/taglist/HTML.tags.xml.in.h:273
-msgid "Strike-through text style"
-msgstr ""
-
-#. Deprecated since HTML 4.01, not supported in XHTML 1.0 Strict DTD.
-#: ../plugins/taglist/HTML.tags.xml.in.h:275
+#: ../plugins/taglist/HTML.tags.xml.in.h:215
 msgid "Strike-through text style (deprecated)"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:276
+#. Deprecated since HTML 4.01, not supported in XHTML 1.0 Strict DTD.
+#: ../plugins/taglist/HTML.tags.xml.in.h:217
+msgid "Strike-through text (deprecated)"
+msgstr ""
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:218
 msgid "Strong emphasis"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:277
+#: ../plugins/taglist/HTML.tags.xml.in.h:219
 msgid "Style info"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:278
+#: ../plugins/taglist/HTML.tags.xml.in.h:220
 msgid "Subscript"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:279
+#: ../plugins/taglist/HTML.tags.xml.in.h:221
 msgid "Superscript"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:280
-msgid "Tab order position"
-msgstr ""
-
-#: ../plugins/taglist/HTML.tags.xml.in.h:281
-msgid "Table"
-msgstr "Кесте"
-
-#: ../plugins/taglist/HTML.tags.xml.in.h:282
+#: ../plugins/taglist/HTML.tags.xml.in.h:222
 msgid "Table body"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:283
+#: ../plugins/taglist/HTML.tags.xml.in.h:223
 msgid "Table caption"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:284
+#: ../plugins/taglist/HTML.tags.xml.in.h:224
 msgid "Table column group properties"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:285
+#: ../plugins/taglist/HTML.tags.xml.in.h:225
 msgid "Table column properties"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:286
+#: ../plugins/taglist/HTML.tags.xml.in.h:226
 msgid "Table data cell"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:287
+#: ../plugins/taglist/HTML.tags.xml.in.h:227
 msgid "Table footer"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:288
-msgid "Table header"
-msgstr ""
-
-#: ../plugins/taglist/HTML.tags.xml.in.h:289
+#: ../plugins/taglist/HTML.tags.xml.in.h:228
 msgid "Table header cell"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:290
+#: ../plugins/taglist/HTML.tags.xml.in.h:229
+msgid "Table header"
+msgstr ""
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:230
 msgid "Table row"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:291
+#: ../plugins/taglist/HTML.tags.xml.in.h:231
 msgid "Table summary"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:292
+#: ../plugins/taglist/HTML.tags.xml.in.h:232
+msgid "Table"
+msgstr "Кесте"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:233
 msgid "Target - Blank"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:293
+#: ../plugins/taglist/HTML.tags.xml.in.h:234
 msgid "Target - Parent"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:294
+#: ../plugins/taglist/HTML.tags.xml.in.h:235
 msgid "Target - Self"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:295
+#: ../plugins/taglist/HTML.tags.xml.in.h:236
 msgid "Target - Top"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:296
+#: ../plugins/taglist/HTML.tags.xml.in.h:237
 msgid "Teletype or monospace text style"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:297
-msgid "Text"
-msgstr "Мәтін"
-
-#: ../plugins/taglist/HTML.tags.xml.in.h:298
-msgid "Text color"
-msgstr "Мәтін түсі"
-
 #. Deprecated since HTML 4.01, not supported in XHTML 1.0 Strict DTD.
-#: ../plugins/taglist/HTML.tags.xml.in.h:300
+#: ../plugins/taglist/HTML.tags.xml.in.h:239
 msgid "Text color (deprecated)"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:301
+#: ../plugins/taglist/HTML.tags.xml.in.h:240
 msgid "Text entered by user"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:302
+#: ../plugins/taglist/HTML.tags.xml.in.h:241
 msgid "Title"
 msgstr "Атауы"
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:303
-msgid "Top margin in pixels"
-msgstr ""
-
-#: ../plugins/taglist/HTML.tags.xml.in.h:304
-msgid "URL"
-msgstr "Сілтеме"
-
-#: ../plugins/taglist/HTML.tags.xml.in.h:305
+#: ../plugins/taglist/HTML.tags.xml.in.h:242
 msgid "Underlined text style"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:306
+#: ../plugins/taglist/HTML.tags.xml.in.h:243
 msgid "Unordered list"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:307
+#: ../plugins/taglist/HTML.tags.xml.in.h:244
 msgid "Use image map"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:308
-msgid "Value"
-msgstr "Мәні"
-
-#: ../plugins/taglist/HTML.tags.xml.in.h:309
+#: ../plugins/taglist/HTML.tags.xml.in.h:245
 msgid "Value interpretation"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:310
+#: ../plugins/taglist/HTML.tags.xml.in.h:246
+msgid "Value"
+msgstr "Мәні"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:247
 msgid "Variable or program argument"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:311
+#: ../plugins/taglist/HTML.tags.xml.in.h:248
 msgid "Vertical cell alignment"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:312
-msgid "Vertical space"
-msgstr ""
-
 #. Deprecated since HTML 4.01, not supported in XHTML 1.0 Strict DTD.
-#: ../plugins/taglist/HTML.tags.xml.in.h:314
+#: ../plugins/taglist/HTML.tags.xml.in.h:250
 msgid "Vertical space (deprecated)"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:315
-msgid "Visited link color"
-msgstr ""
-
 #. Deprecated since HTML 4.01, not supported in XHTML 1.0 Strict DTD.
-#: ../plugins/taglist/HTML.tags.xml.in.h:317
+#: ../plugins/taglist/HTML.tags.xml.in.h:252
 msgid "Visited link color (deprecated)"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:318
+#: ../plugins/taglist/HTML.tags.xml.in.h:253
 msgid "Width"
 msgstr "Ені"
 
+#: ../plugins/taglist/HTML.tags.xml.in.h:254
+msgid "HTML - Tags"
+msgstr ""
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:255
+msgid "Above"
+msgstr ""
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:256
+msgid "Applet class file code"
+msgstr ""
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:257
+msgid "Array"
+msgstr ""
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:258
+msgid "Background color"
+msgstr "Фон түсі"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:259
+msgid "Background texture tile"
+msgstr ""
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:260
+msgid "Base font"
+msgstr ""
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:261
+msgid "Border color"
+msgstr ""
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:262
+msgid "Border"
+msgstr ""
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:263
+msgid "Center"
+msgstr "Ортасы"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:264
+msgid "Checked (state)"
+msgstr ""
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:265
+msgid "Color of selected links"
+msgstr ""
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:266
+msgid "Content scheme"
+msgstr ""
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:267
+msgid "Content type"
+msgstr "Құрама түрі"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:268
+msgid "Direction"
+msgstr ""
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:269
+msgid "Directory list"
+msgstr ""
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:270
+msgid "HTML version"
+msgstr ""
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:271
+msgid "Embedded object"
+msgstr ""
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:272
+msgid "Figure"
+msgstr ""
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:273
+msgid "Font face"
+msgstr ""
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:274
+msgid "Frameborder"
+msgstr ""
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:275
+msgid "Framespacing"
+msgstr ""
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:276
+msgid "Heading"
+msgstr ""
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:277
+msgid "Horizontal space"
+msgstr ""
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:278
+msgid "Image source"
+msgstr ""
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:279
+msgid "Inline layer"
+msgstr ""
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:280
+msgid "Java applet"
+msgstr ""
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:281
+msgid "Layer"
+msgstr ""
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:282
+msgid "Link color"
+msgstr ""
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:283
+msgid "Listing"
+msgstr ""
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:284
+msgid "Mail link"
+msgstr ""
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:285
+msgid "Marquee"
+msgstr ""
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:286
+msgid "Menu list"
+msgstr ""
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:287
+msgid "Multicolumn"
+msgstr ""
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:288
+msgid "Next ID"
+msgstr ""
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:289
+msgid "No embedded objects"
+msgstr ""
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:290
+msgid "No layers"
+msgstr ""
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:291
+msgid "No line break"
+msgstr ""
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:292
+msgid "No shade"
+msgstr ""
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:293
+msgid "No word wrap"
+msgstr ""
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:294
+msgid "Note"
+msgstr ""
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:295
+msgid "Object applet file"
+msgstr ""
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:296
+msgid "Preformatted listing"
+msgstr ""
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:297
+msgid "Prompt message"
+msgstr ""
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:298
+msgid "Quote"
+msgstr "Дәйексөз"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:299
+msgid "Range"
+msgstr ""
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:300
+msgid "Reduced spacing"
+msgstr ""
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:301
+msgid "Root"
+msgstr ""
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:302
+msgid "Single line prompt"
+msgstr ""
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:303
+msgid "Size"
+msgstr "Өлшемі"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:304
+msgid "Soft line break"
+msgstr ""
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:305
+msgid "Sound"
+msgstr "Дыбыс"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:306
+msgid "Spacer"
+msgstr ""
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:307
+msgid "Square root"
+msgstr ""
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:308
+msgid "Starting sequence number"
+msgstr ""
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:309
+msgid "Strike-through text style"
+msgstr ""
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:310
+msgid "Strike-through text"
+msgstr ""
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:311
+msgid "Tab order position"
+msgstr ""
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:312
+msgid "Text color"
+msgstr "Мәтін түсі"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:313
+msgid "Text"
+msgstr "Мәтін"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:314
+msgid "Top margin in pixels"
+msgstr ""
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:315
+msgid "URL"
+msgstr "Сілтеме"
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:316
+msgid "Vertical space"
+msgstr ""
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:317
+msgid "Visited link color"
+msgstr ""
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:318
+msgid "HTML - Special Characters"
+msgstr ""
+
 #: ../plugins/taglist/HTML.tags.xml.in.h:319
-msgid "XHTML 1.0 - Tags"
+msgid "Non-breaking space"
 msgstr ""
 
 #: ../plugins/taglist/Latex.tags.xml.in.h:1
-msgid "Bibliography (cite)"
+msgid "Latex - Tags"
 msgstr ""
 
 #: ../plugins/taglist/Latex.tags.xml.in.h:2
-msgid "Bibliography (item)"
+msgid "Bibliography (cite)"
 msgstr ""
 
 #: ../plugins/taglist/Latex.tags.xml.in.h:3
-msgid "Bibliography (shortcite)"
+msgid "Bibliography (item)"
 msgstr ""
 
 #: ../plugins/taglist/Latex.tags.xml.in.h:4
-msgid "Bibliography (thebibliography)"
+msgid "Bibliography (shortcite)"
 msgstr ""
 
 #: ../plugins/taglist/Latex.tags.xml.in.h:5
-msgid "Brackets ()"
+msgid "Bibliography (thebibliography)"
 msgstr ""
 
 #: ../plugins/taglist/Latex.tags.xml.in.h:6
-msgid "Brackets <>"
+msgid "Brackets ()"
 msgstr ""
 
 #: ../plugins/taglist/Latex.tags.xml.in.h:7
@@ -4449,188 +4529,192 @@ msgstr ""
 msgid "Brackets {}"
 msgstr ""
 
+#: ../plugins/taglist/Latex.tags.xml.in.h:9
+msgid "Brackets <>"
+msgstr ""
+
 #: ../plugins/taglist/Latex.tags.xml.in.h:10
 msgid "File input"
 msgstr ""
 
 #: ../plugins/taglist/Latex.tags.xml.in.h:11
-msgid "Footnote"
-msgstr ""
-
-#: ../plugins/taglist/Latex.tags.xml.in.h:12
 msgid "Function cosine"
 msgstr ""
 
-#: ../plugins/taglist/Latex.tags.xml.in.h:13
+#: ../plugins/taglist/Latex.tags.xml.in.h:12
 msgid "Function e^"
 msgstr ""
 
-#: ../plugins/taglist/Latex.tags.xml.in.h:14
+#: ../plugins/taglist/Latex.tags.xml.in.h:13
 msgid "Function exp"
 msgstr ""
 
-#: ../plugins/taglist/Latex.tags.xml.in.h:15
+#: ../plugins/taglist/Latex.tags.xml.in.h:14
 msgid "Function log"
 msgstr ""
 
-#: ../plugins/taglist/Latex.tags.xml.in.h:16
+#: ../plugins/taglist/Latex.tags.xml.in.h:15
 msgid "Function log10"
 msgstr ""
 
-#: ../plugins/taglist/Latex.tags.xml.in.h:17
+#: ../plugins/taglist/Latex.tags.xml.in.h:16
 msgid "Function sine"
 msgstr ""
 
-#: ../plugins/taglist/Latex.tags.xml.in.h:18
+#: ../plugins/taglist/Latex.tags.xml.in.h:17
 msgid "Greek alpha"
 msgstr ""
 
-#: ../plugins/taglist/Latex.tags.xml.in.h:19
+#: ../plugins/taglist/Latex.tags.xml.in.h:18
 msgid "Greek beta"
 msgstr ""
 
-#: ../plugins/taglist/Latex.tags.xml.in.h:20
+#: ../plugins/taglist/Latex.tags.xml.in.h:19
 msgid "Greek epsilon"
 msgstr ""
 
-#: ../plugins/taglist/Latex.tags.xml.in.h:21
+#: ../plugins/taglist/Latex.tags.xml.in.h:20
 msgid "Greek gamma"
 msgstr ""
 
-#: ../plugins/taglist/Latex.tags.xml.in.h:22
+#: ../plugins/taglist/Latex.tags.xml.in.h:21
 msgid "Greek lambda"
 msgstr ""
 
-#: ../plugins/taglist/Latex.tags.xml.in.h:23
+#: ../plugins/taglist/Latex.tags.xml.in.h:22
 msgid "Greek rho"
 msgstr ""
 
-#: ../plugins/taglist/Latex.tags.xml.in.h:24
+#: ../plugins/taglist/Latex.tags.xml.in.h:23
 msgid "Greek tau"
 msgstr ""
 
-#: ../plugins/taglist/Latex.tags.xml.in.h:25
+#: ../plugins/taglist/Latex.tags.xml.in.h:24
 msgid "Header 0 (chapter)"
 msgstr ""
 
-#: ../plugins/taglist/Latex.tags.xml.in.h:26
+#: ../plugins/taglist/Latex.tags.xml.in.h:25
 msgid "Header 0 (chapter*)"
 msgstr ""
 
-#: ../plugins/taglist/Latex.tags.xml.in.h:27
+#: ../plugins/taglist/Latex.tags.xml.in.h:26
 msgid "Header 1 (section)"
 msgstr ""
 
-#: ../plugins/taglist/Latex.tags.xml.in.h:28
+#: ../plugins/taglist/Latex.tags.xml.in.h:27
 msgid "Header 1 (section*)"
 msgstr ""
 
-#: ../plugins/taglist/Latex.tags.xml.in.h:29
+#: ../plugins/taglist/Latex.tags.xml.in.h:28
 msgid "Header 2 (subsection)"
 msgstr ""
 
-#: ../plugins/taglist/Latex.tags.xml.in.h:30
+#: ../plugins/taglist/Latex.tags.xml.in.h:29
 msgid "Header 2 (subsection*)"
 msgstr ""
 
-#: ../plugins/taglist/Latex.tags.xml.in.h:31
+#: ../plugins/taglist/Latex.tags.xml.in.h:30
 msgid "Header 3 (subsubsection)"
 msgstr ""
 
-#: ../plugins/taglist/Latex.tags.xml.in.h:32
+#: ../plugins/taglist/Latex.tags.xml.in.h:31
 msgid "Header 3 (subsubsection*)"
 msgstr ""
 
-#: ../plugins/taglist/Latex.tags.xml.in.h:33
+#: ../plugins/taglist/Latex.tags.xml.in.h:32
 msgid "Header 4 (paragraph)"
 msgstr ""
 
-#: ../plugins/taglist/Latex.tags.xml.in.h:34
+#: ../plugins/taglist/Latex.tags.xml.in.h:33
 msgid "Header appendix"
 msgstr ""
 
-#: ../plugins/taglist/Latex.tags.xml.in.h:35
-msgid "Item"
-msgstr "Элемент"
-
-#: ../plugins/taglist/Latex.tags.xml.in.h:36
-msgid "Item with label"
-msgstr ""
-
-#: ../plugins/taglist/Latex.tags.xml.in.h:37
-msgid "Latex - Tags"
-msgstr ""
-
-#: ../plugins/taglist/Latex.tags.xml.in.h:38
+#: ../plugins/taglist/Latex.tags.xml.in.h:34
 msgid "List description"
 msgstr ""
 
-#: ../plugins/taglist/Latex.tags.xml.in.h:39
+#: ../plugins/taglist/Latex.tags.xml.in.h:35
 msgid "List enumerate"
 msgstr ""
 
-#: ../plugins/taglist/Latex.tags.xml.in.h:40
+#: ../plugins/taglist/Latex.tags.xml.in.h:36
 msgid "List itemize"
 msgstr ""
 
-#: ../plugins/taglist/Latex.tags.xml.in.h:41
+#: ../plugins/taglist/Latex.tags.xml.in.h:37
+msgid "Item with label"
+msgstr ""
+
+#: ../plugins/taglist/Latex.tags.xml.in.h:38
+msgid "Item"
+msgstr "Элемент"
+
+#: ../plugins/taglist/Latex.tags.xml.in.h:39
 msgid "Maths (display)"
 msgstr ""
 
-#: ../plugins/taglist/Latex.tags.xml.in.h:42
+#: ../plugins/taglist/Latex.tags.xml.in.h:40
 msgid "Maths (inline)"
 msgstr ""
 
-#: ../plugins/taglist/Latex.tags.xml.in.h:43
+#: ../plugins/taglist/Latex.tags.xml.in.h:41
 msgid "Operator fraction"
 msgstr ""
 
-#: ../plugins/taglist/Latex.tags.xml.in.h:44
+#: ../plugins/taglist/Latex.tags.xml.in.h:42
 msgid "Operator integral (display)"
 msgstr ""
 
-#: ../plugins/taglist/Latex.tags.xml.in.h:45
+#: ../plugins/taglist/Latex.tags.xml.in.h:43
 msgid "Operator integral (inline)"
 msgstr ""
 
-#: ../plugins/taglist/Latex.tags.xml.in.h:46
+#: ../plugins/taglist/Latex.tags.xml.in.h:44
 msgid "Operator sum (display)"
 msgstr ""
 
-#: ../plugins/taglist/Latex.tags.xml.in.h:47
+#: ../plugins/taglist/Latex.tags.xml.in.h:45
 msgid "Operator sum (inline)"
 msgstr ""
 
-#: ../plugins/taglist/Latex.tags.xml.in.h:48
+#: ../plugins/taglist/Latex.tags.xml.in.h:46
 msgid "Reference label"
 msgstr ""
 
-#: ../plugins/taglist/Latex.tags.xml.in.h:49
+#: ../plugins/taglist/Latex.tags.xml.in.h:47
 msgid "Reference ref"
 msgstr ""
 
-#: ../plugins/taglist/Latex.tags.xml.in.h:50
+#: ../plugins/taglist/Latex.tags.xml.in.h:48
 msgid "Symbol <<"
 msgstr ""
 
-#: ../plugins/taglist/Latex.tags.xml.in.h:51
+#: ../plugins/taglist/Latex.tags.xml.in.h:49
 msgid "Symbol <="
 msgstr ""
 
-#: ../plugins/taglist/Latex.tags.xml.in.h:52
+#: ../plugins/taglist/Latex.tags.xml.in.h:50
 msgid "Symbol >="
 msgstr ""
 
-#: ../plugins/taglist/Latex.tags.xml.in.h:53
+#: ../plugins/taglist/Latex.tags.xml.in.h:51
 msgid "Symbol >>"
 msgstr ""
 
-#: ../plugins/taglist/Latex.tags.xml.in.h:54
+#: ../plugins/taglist/Latex.tags.xml.in.h:52
 msgid "Symbol and"
 msgstr ""
 
-#: ../plugins/taglist/Latex.tags.xml.in.h:55
+#: ../plugins/taglist/Latex.tags.xml.in.h:53
 msgid "Symbol const"
+msgstr ""
+
+#: ../plugins/taglist/Latex.tags.xml.in.h:54
+msgid "Symbol d2-by-dt2-partial"
+msgstr ""
+
+#: ../plugins/taglist/Latex.tags.xml.in.h:55
+msgid "Symbol dagger"
 msgstr ""
 
 #: ../plugins/taglist/Latex.tags.xml.in.h:56
@@ -4642,11 +4726,11 @@ msgid "Symbol d-by-dt-partial"
 msgstr ""
 
 #: ../plugins/taglist/Latex.tags.xml.in.h:58
-msgid "Symbol d2-by-dt2-partial"
+msgid "Symbol equiv"
 msgstr ""
 
 #: ../plugins/taglist/Latex.tags.xml.in.h:59
-msgid "Symbol dagger"
+msgid "Symbol en-dash --"
 msgstr ""
 
 #: ../plugins/taglist/Latex.tags.xml.in.h:60
@@ -4654,79 +4738,77 @@ msgid "Symbol em-dash ---"
 msgstr ""
 
 #: ../plugins/taglist/Latex.tags.xml.in.h:61
-msgid "Symbol en-dash --"
-msgstr ""
-
-#: ../plugins/taglist/Latex.tags.xml.in.h:62
-msgid "Symbol equiv"
-msgstr ""
-
-#: ../plugins/taglist/Latex.tags.xml.in.h:63
 msgid "Symbol infinity"
 msgstr ""
 
-#: ../plugins/taglist/Latex.tags.xml.in.h:64
+#: ../plugins/taglist/Latex.tags.xml.in.h:62
 msgid "Symbol mathspace ,"
 msgstr ""
 
-#: ../plugins/taglist/Latex.tags.xml.in.h:65
+#: ../plugins/taglist/Latex.tags.xml.in.h:63
 msgid "Symbol mathspace ."
 msgstr ""
 
-#: ../plugins/taglist/Latex.tags.xml.in.h:66
+#: ../plugins/taglist/Latex.tags.xml.in.h:64
 msgid "Symbol mathspace _"
 msgstr ""
 
-#: ../plugins/taglist/Latex.tags.xml.in.h:67
+#: ../plugins/taglist/Latex.tags.xml.in.h:65
 msgid "Symbol mathspace __"
 msgstr ""
 
-#: ../plugins/taglist/Latex.tags.xml.in.h:68
+#: ../plugins/taglist/Latex.tags.xml.in.h:66
 msgid "Symbol simeq"
 msgstr ""
 
-#: ../plugins/taglist/Latex.tags.xml.in.h:69
+#: ../plugins/taglist/Latex.tags.xml.in.h:67
 msgid "Symbol star"
 msgstr ""
 
-#: ../plugins/taglist/Latex.tags.xml.in.h:70
+#: ../plugins/taglist/Latex.tags.xml.in.h:68
 msgid "Typeface bold"
 msgstr ""
 
-#: ../plugins/taglist/Latex.tags.xml.in.h:71
+#: ../plugins/taglist/Latex.tags.xml.in.h:69
+msgid "Typeface type"
+msgstr ""
+
+#: ../plugins/taglist/Latex.tags.xml.in.h:70
 msgid "Typeface italic"
 msgstr ""
 
-#: ../plugins/taglist/Latex.tags.xml.in.h:72
+#: ../plugins/taglist/Latex.tags.xml.in.h:71
 msgid "Typeface slanted"
 msgstr ""
 
 #: ../plugins/taglist/Latex.tags.xml.in.h:73
-msgid "Typeface type"
-msgstr ""
-
-#: ../plugins/taglist/Latex.tags.xml.in.h:74
 msgid "Unbreakable text"
 msgstr ""
 
-#: ../plugins/taglist/taglist.pluma-plugin.desktop.in.h:1
-msgid "Provides a method to easily insert commonly used tags/strings into a document without having to type them."
+#: ../plugins/taglist/Latex.tags.xml.in.h:74
+msgid "Footnote"
 msgstr ""
 
-#: ../plugins/taglist/taglist.pluma-plugin.desktop.in.h:2
+#: ../plugins/taglist/taglist.pluma-plugin.desktop.in.h:1
 msgid "Tag list"
 msgstr ""
 
-#: ../plugins/taglist/XSLT.tags.xml.in.h:1
-msgid "XSLT - Axes"
+#: ../plugins/taglist/taglist.pluma-plugin.desktop.in.h:2
+msgid ""
+"Provides a method to easily insert commonly used tags/strings into a "
+"document without having to type them."
 msgstr ""
 
-#: ../plugins/taglist/XSLT.tags.xml.in.h:2
+#: ../plugins/taglist/XSLT.tags.xml.in.h:1
 msgid "XSLT - Elements"
 msgstr ""
 
-#: ../plugins/taglist/XSLT.tags.xml.in.h:3
+#: ../plugins/taglist/XSLT.tags.xml.in.h:2
 msgid "XSLT - Functions"
+msgstr ""
+
+#: ../plugins/taglist/XSLT.tags.xml.in.h:3
+msgid "XSLT - Axes"
 msgstr ""
 
 #: ../plugins/taglist/XSLT.tags.xml.in.h:4
@@ -4785,19 +4867,31 @@ msgstr ""
 msgid "XUL - Tags"
 msgstr ""
 
-#: ../plugins/time/pluma-time-plugin.c:182
+#: ../plugins/time/org.mate.pluma.plugins.time.gschema.xml.in.in.h:1
+msgid "Prompt type"
+msgstr ""
+
+#: ../plugins/time/org.mate.pluma.plugins.time.gschema.xml.in.in.h:2
+msgid "Selected format"
+msgstr ""
+
+#: ../plugins/time/org.mate.pluma.plugins.time.gschema.xml.in.in.h:3
+msgid "Custom format"
+msgstr ""
+
+#: ../plugins/time/pluma-time-plugin.c:181
 msgid "In_sert Date and Time..."
 msgstr ""
 
-#: ../plugins/time/pluma-time-plugin.c:184
+#: ../plugins/time/pluma-time-plugin.c:183
 msgid "Insert current date and time at the cursor position"
 msgstr ""
 
-#: ../plugins/time/pluma-time-plugin.c:613
+#: ../plugins/time/pluma-time-plugin.c:564
 msgid "Available formats"
 msgstr "Қолжетерлік пішімдер"
 
-#: ../plugins/time/pluma-time-plugin.c:766
+#: ../plugins/time/pluma-time-plugin.c:717
 msgid "Configure insert date/time plugin..."
 msgstr ""
 
@@ -4809,46 +4903,46 @@ msgstr "Күн / Уақытты кірістіру"
 msgid "Inserts current date and time at the cursor position."
 msgstr ""
 
-#. Translators: Use the more common date format in your locale
+#: ../plugins/time/pluma-time-dialog.ui.h:1
+msgid "Insert Date and Time"
+msgstr ""
+
+#: ../plugins/time/pluma-time-dialog.ui.h:2
+msgid "_Insert"
+msgstr "Кірі_стіру"
+
 #: ../plugins/time/pluma-time-dialog.ui.h:3
-#: ../plugins/time/pluma-time-setup-dialog.ui.h:4
+#: ../plugins/time/pluma-time-setup-dialog.ui.h:5
+msgid "Use the _selected format"
+msgstr ""
+
+#: ../plugins/time/pluma-time-dialog.ui.h:5
+#: ../plugins/time/pluma-time-setup-dialog.ui.h:6
+msgid "_Use custom format"
+msgstr ""
+
+#. Translators: Use the more common date format in your locale
+#: ../plugins/time/pluma-time-dialog.ui.h:7
+#: ../plugins/time/pluma-time-setup-dialog.ui.h:9
 #, no-c-format
 msgid "%d/%m/%Y %H:%M:%S"
 msgstr ""
 
-#. Translators: This example should follow the date format defined in the entry above
-#: ../plugins/time/pluma-time-dialog.ui.h:4
-#: ../plugins/time/pluma-time-setup-dialog.ui.h:6
+#. Translators: This example should follow the date format defined in the
+#. entry above
+#: ../plugins/time/pluma-time-dialog.ui.h:8
+#: ../plugins/time/pluma-time-setup-dialog.ui.h:11
 msgid "01/11/2009 17:52:00"
 msgstr ""
 
-#: ../plugins/time/pluma-time-dialog.ui.h:5
-msgid "Insert Date and Time"
-msgstr ""
-
-#: ../plugins/time/pluma-time-dialog.ui.h:6
-#: ../plugins/time/pluma-time-setup-dialog.ui.h:8
-msgid "Use the _selected format"
-msgstr ""
-
-#: ../plugins/time/pluma-time-dialog.ui.h:7
-msgid "_Insert"
-msgstr "Кірі_стіру"
-
-#: ../plugins/time/pluma-time-dialog.ui.h:8
-#: ../plugins/time/pluma-time-setup-dialog.ui.h:11
-msgid "_Use custom format"
-msgstr ""
-
-#: ../plugins/time/pluma-time-setup-dialog.ui.h:7
+#: ../plugins/time/pluma-time-setup-dialog.ui.h:1
 msgid "Configure date/time plugin"
 msgstr ""
 
-#: ../plugins/time/pluma-time-setup-dialog.ui.h:9
+#: ../plugins/time/pluma-time-setup-dialog.ui.h:2
 msgid "When inserting date/time..."
 msgstr ""
 
-#: ../plugins/time/pluma-time-setup-dialog.ui.h:10
+#: ../plugins/time/pluma-time-setup-dialog.ui.h:4
 msgid "_Prompt for a format"
 msgstr ""
-
