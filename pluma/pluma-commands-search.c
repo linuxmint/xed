@@ -241,7 +241,7 @@ do_find (PlumaSearchDialog *dialog,
 
 	doc = PLUMA_DOCUMENT (gtk_text_view_get_buffer (GTK_TEXT_VIEW (active_view)));
 
-	entry_text = pluma_search_dialog_get_search_text (dialog);
+	entry_text = pluma_utils_escape_search_text (pluma_search_dialog_get_search_text (dialog));
 
 	match_case = pluma_search_dialog_get_match_case (dialog);
 	entire_word = pluma_search_dialog_get_entire_word (dialog);
@@ -269,7 +269,7 @@ do_find (PlumaSearchDialog *dialog,
 	if (found)
 		text_found (window, 0);
 	else
-		text_not_found (window, entry_text);
+		text_not_found (window, pluma_utils_unescape_search_text (entry_text));
 
 	gtk_dialog_set_response_sensitive (GTK_DIALOG (dialog),
 					   PLUMA_SEARCH_DIALOG_REPLACE_RESPONSE,
@@ -335,12 +335,12 @@ do_replace (PlumaSearchDialog *dialog,
 	if (doc == NULL)
 		return;
 
-	search_entry_text = pluma_search_dialog_get_search_text (dialog);
+	search_entry_text = pluma_utils_escape_search_text (pluma_search_dialog_get_search_text (dialog));
 	g_return_if_fail ((search_entry_text) != NULL);
 	g_return_if_fail ((*search_entry_text) != '\0');
 
 	/* replace text may be "", we just delete */
-	replace_entry_text = pluma_search_dialog_get_replace_text (dialog);
+	replace_entry_text = pluma_utils_escape_search_text (pluma_search_dialog_get_replace_text (dialog));
 	g_return_if_fail ((replace_entry_text) != NULL);
 
 	unescaped_search_text = pluma_utils_unescape_search_text (search_entry_text);
@@ -394,12 +394,12 @@ do_replace_all (PlumaSearchDialog *dialog,
 
 	doc = PLUMA_DOCUMENT (gtk_text_view_get_buffer (GTK_TEXT_VIEW (active_view)));
 
-	search_entry_text = pluma_search_dialog_get_search_text (dialog);
+	search_entry_text = pluma_utils_escape_search_text( pluma_search_dialog_get_search_text (dialog));
 	g_return_if_fail ((search_entry_text) != NULL);
 	g_return_if_fail ((*search_entry_text) != '\0');
 
 	/* replace text may be "", we just delete all occurrencies */
-	replace_entry_text = pluma_search_dialog_get_replace_text (dialog);
+	replace_entry_text = pluma_utils_escape_search_text (pluma_search_dialog_get_replace_text (dialog));
 	g_return_if_fail ((replace_entry_text) != NULL);
 
 	match_case = pluma_search_dialog_get_match_case (dialog);
@@ -419,7 +419,7 @@ do_replace_all (PlumaSearchDialog *dialog,
 	}
 	else
 	{
-		text_not_found (window, search_entry_text);
+		text_not_found (window, pluma_utils_unescape_search_text (search_entry_text));
 	}
 
 	gtk_dialog_set_response_sensitive (GTK_DIALOG (dialog),
