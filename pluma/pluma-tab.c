@@ -2238,6 +2238,8 @@ get_print_settings (PlumaTab *tab)
 {
 	gpointer data;
 	PlumaDocument *doc;
+	GtkPrintSettings *settings;
+	gchar *uri, *name;
 
 	doc = pluma_tab_get_document (tab);
 
@@ -2246,12 +2248,24 @@ get_print_settings (PlumaTab *tab)
 
 	if (data == NULL)
 	{
-		return _pluma_app_get_default_print_settings (pluma_app_get_default());
+		settings = _pluma_app_get_default_print_settings (pluma_app_get_default());
 	}
 	else
 	{
-		return gtk_print_settings_copy (GTK_PRINT_SETTINGS (data));
+		settings = gtk_print_settings_copy (GTK_PRINT_SETTINGS (data));
 	}
+
+	name = pluma_document_get_short_name_for_display (doc);
+	uri = g_strconcat ("file://",
+			   g_get_user_special_dir (G_USER_DIRECTORY_DOCUMENTS),
+			   "/", name, ".pdf", NULL);
+
+	gtk_print_settings_set (settings, GTK_PRINT_SETTINGS_OUTPUT_URI, uri);
+
+	g_free (uri);
+	g_free (name);
+
+	return settings;
 }
 
 /* FIXME: show the message area only if the operation will be "long" */
