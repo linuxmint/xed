@@ -2,7 +2,7 @@
 
 loaderdir = $(libdir)/pluma/plugin-loaders
 
-INCLUDES = \
+AM_CPPFLAGS = \
 	-I$(top_srcdir) 						\
 	$(PLUMA_CFLAGS) 						\
 	$(WARN_CFLAGS)							\

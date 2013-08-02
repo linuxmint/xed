@@ -14,7 +14,7 @@ platform_sources = eggsmclient-xsmp.c
 endif
 endif
 
-INCLUDES =                               \
+AM_CPPFLAGS =                               \
 	-DG_LOG_DOMAIN=\""EggSMClient"\" \
 	$(PLUMA_CFLAGS)			 \
 	$(platform_defines)              \

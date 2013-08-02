@@ -2,7 +2,7 @@
 
 plugindir = $(PLUMA_PLUGINS_LIBS_DIR)
 
-INCLUDES = \
+AM_CPPFLAGS = \
 	-I$(top_srcdir) 						\
 	$(PLUMA_CFLAGS) 						\
 	$(LIBSOUP_CFLAGS)						\
