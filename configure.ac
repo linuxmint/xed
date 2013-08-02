@@ -508,8 +508,7 @@ AC_SUBST(PLUMA_PLUGINS_DATA_DIR)
 PLUMA_PLUGINS_LIBS_DIR="$libdir/pluma/plugins"
 AC_SUBST(PLUMA_PLUGINS_LIBS_DIR)
 
-MATE_DOC_INIT([0.9.0],,
-  [AC_MSG_WARN([[mate-doc-utils not found: documentation will not be built.]])])
+YELP_HELP_INIT
 
 AC_CONFIG_FILES([
 Makefile
