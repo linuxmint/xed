@@ -1,6 +1,6 @@
 uidir = $(datadir)/pluma/ui/
 
-INCLUDES = 							\
+AM_CPPFLAGS = 							\
 	-I$(top_srcdir)						\
 	-I$(top_builddir)					\
 	-I$(top_srcdir)/pluma 					\

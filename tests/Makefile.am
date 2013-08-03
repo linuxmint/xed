@@ -1,4 +1,4 @@
-INCLUDES = -g -I$(top_srcdir) -I$(top_srcdir)/pluma $(PLUMA_DEBUG_FLAGS) $(PLUMA_CFLAGS)
+AM_CPPFLAGS = -g -I$(top_srcdir) -I$(top_srcdir)/pluma $(PLUMA_DEBUG_FLAGS) $(PLUMA_CFLAGS)
 
 noinst_PROGRAMS = $(TEST_PROGS)
 progs_ldadd     = $(top_builddir)/pluma/libpluma.la

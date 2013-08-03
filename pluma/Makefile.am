@@ -9,7 +9,7 @@ bin_PROGRAMS = pluma
 
 noinst_LTLIBRARIES = libpluma.la
 
-INCLUDES =								\
+AM_CPPFLAGS =								\
 	-I$(top_srcdir)							\
 	-I$(srcdir)							\
 	-I$(srcdir)/smclient						\
