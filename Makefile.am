@@ -19,13 +19,11 @@ EXTRA_DIST = 			\
 	pluma.doap		\
 	xmldocs.make 		\
 	omf.make		\
-	mate-doc-utils.make    \
 	intltool-extract.in 	\
 	intltool-merge.in 	\
 	intltool-update.in
 
 DISTCLEANFILES = 		\
-	mate-doc-utils.make    \
 	intltool-extract 	\
 	intltool-merge 		\
 	intltool-update
@@ -49,7 +47,6 @@ MAINTAINERCLEANFILES = 		\
 	omf.make		\
 	py-compile		\
 	xmldocs.make		\
-	m4/mate-doc-utils.m4	\
 	m4/gtk-doc.m4		\
 	m4/intltool.m4		\
 	m4/libtool.m4		\

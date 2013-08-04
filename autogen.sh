@@ -13,7 +13,13 @@ PKG_NAME="mate-text-editor"
 }
 
 which mate-autogen || {
-    echo "You need to install mate-common from the MATE Git"
+    echo "You need to install mate-common"
+    exit 1
+}
+
+
+which yelp-build || {
+    echo "You need to install yelp-tools" 
     exit 1
 }
 

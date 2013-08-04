@@ -75,9 +75,9 @@ pluma_help_display (GtkWindow   *parent,
 
 #ifndef G_OS_WIN32
 	if (link_id)
-		link = g_strdup_printf ("ghelp:%s?%s", name, link_id);
+		link = g_strdup_printf ("help:%s?%s", name, link_id);
 	else
-		link = g_strdup_printf ("ghelp:%s", name);
+		link = g_strdup_printf ("help:%s", name);
 #else
 	if (link_id)
 		link = g_strdup_printf ("http://library.gnome.org/users/pluma/stable/%s",
