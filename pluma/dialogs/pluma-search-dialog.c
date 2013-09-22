@@ -70,6 +70,7 @@ struct _PlumaSearchDialogPrivate
 	GtkWidget *entire_word_checkbutton;
 	GtkWidget *backwards_checkbutton;
 	GtkWidget *wrap_around_checkbutton;
+	GtkWidget *parse_escapes_checkbutton;
 	GtkWidget *find_button;
 	GtkWidget *replace_button;
 	GtkWidget *replace_all_button;
@@ -357,6 +358,7 @@ pluma_search_dialog_init (PlumaSearchDialog *dlg)
 					  "entire_word_checkbutton", &dlg->priv->entire_word_checkbutton,
 					  "search_backwards_checkbutton", &dlg->priv->backwards_checkbutton,
 					  "wrap_around_checkbutton", &dlg->priv->wrap_around_checkbutton,
+					  "parse_escapes_checkbutton", &dlg->priv->parse_escapes_checkbutton,
 					  NULL);
 	g_free (file);
 
@@ -631,4 +633,22 @@ pluma_search_dialog_get_wrap_around (PlumaSearchDialog *dialog)
 	g_return_val_if_fail (PLUMA_IS_SEARCH_DIALOG (dialog), FALSE);
 
 	return gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (dialog->priv->wrap_around_checkbutton));
+}
+
+void
+pluma_search_dialog_set_parse_escapes (PlumaSearchDialog *dialog,
+				       gboolean           parse_escapes)
+{
+	g_return_if_fail (PLUMA_IS_SEARCH_DIALOG (dialog));
+
+	gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (dialog->priv->parse_escapes_checkbutton),
+				      parse_escapes);
+}
+
+gboolean
+pluma_search_dialog_get_parse_escapes (PlumaSearchDialog *dialog)
+{
+	g_return_val_if_fail (PLUMA_IS_SEARCH_DIALOG (dialog), FALSE);
+
+	return gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (dialog->priv->parse_escapes_checkbutton));
 }

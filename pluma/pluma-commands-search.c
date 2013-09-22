@@ -229,6 +229,7 @@ do_find (PlumaSearchDialog *dialog,
 	gboolean entire_word;
 	gboolean wrap_around;
 	gboolean search_backwards;
+	gboolean parse_escapes;
 	guint flags = 0;
 	guint old_flags = 0;
 	gboolean found;
@@ -241,12 +242,17 @@ do_find (PlumaSearchDialog *dialog,
 
 	doc = PLUMA_DOCUMENT (gtk_text_view_get_buffer (GTK_TEXT_VIEW (active_view)));
 
-	entry_text = pluma_utils_escape_search_text (pluma_search_dialog_get_search_text (dialog));
-
 	match_case = pluma_search_dialog_get_match_case (dialog);
 	entire_word = pluma_search_dialog_get_entire_word (dialog);
 	search_backwards = pluma_search_dialog_get_backwards (dialog);
 	wrap_around = pluma_search_dialog_get_wrap_around (dialog);
+	parse_escapes = pluma_search_dialog_get_parse_escapes (dialog);
+
+	if (!parse_escapes) {
+		entry_text = pluma_utils_escape_search_text (pluma_search_dialog_get_search_text (dialog));
+	} else {
+		entry_text = pluma_search_dialog_get_search_text (dialog);
+	}
 
 	PLUMA_SEARCH_SET_CASE_SENSITIVE (flags, match_case);
 	PLUMA_SEARCH_SET_ENTIRE_WORD (flags, entire_word);
@@ -268,8 +274,13 @@ do_find (PlumaSearchDialog *dialog,
 
 	if (found)
 		text_found (window, 0);
-	else
-		text_not_found (window, pluma_utils_unescape_search_text (entry_text));
+	else {
+		if (!parse_escapes) {
+			text_not_found (window, pluma_utils_unescape_search_text (entry_text));
+		} else {
+			text_not_found (window, entry_text);
+		}
+	}
 
 	gtk_dialog_set_response_sensitive (GTK_DIALOG (dialog),
 					   PLUMA_SEARCH_DIALOG_REPLACE_RESPONSE,
@@ -330,17 +341,27 @@ do_replace (PlumaSearchDialog *dialog,
 	gchar *unescaped_replace_text;
 	gchar *selected_text = NULL;
 	gboolean match_case;
+	gboolean parse_escapes;
 
 	doc = pluma_window_get_active_document (window);
 	if (doc == NULL)
 		return;
 
-	search_entry_text = pluma_utils_escape_search_text (pluma_search_dialog_get_search_text (dialog));
+	parse_escapes = pluma_search_dialog_get_parse_escapes (dialog);
+	if (!parse_escapes) {
+		search_entry_text = pluma_utils_escape_search_text (pluma_search_dialog_get_search_text (dialog));
+	} else {
+		search_entry_text = pluma_search_dialog_get_search_text (dialog);
+	}
 	g_return_if_fail ((search_entry_text) != NULL);
 	g_return_if_fail ((*search_entry_text) != '\0');
 
 	/* replace text may be "", we just delete */
-	replace_entry_text = pluma_utils_escape_search_text (pluma_search_dialog_get_replace_text (dialog));
+	if (!parse_escapes) {
+		replace_entry_text = pluma_utils_escape_search_text (pluma_search_dialog_get_replace_text (dialog));
+	} else {
+		replace_entry_text = pluma_search_dialog_get_replace_text (dialog);
+	}
 	g_return_if_fail ((replace_entry_text) != NULL);
 
 	unescaped_search_text = pluma_utils_unescape_search_text (search_entry_text);
@@ -385,6 +406,7 @@ do_replace_all (PlumaSearchDialog *dialog,
 	const gchar *replace_entry_text;
 	gboolean match_case;
 	gboolean entire_word;
+	gboolean parse_escapes;
 	guint flags = 0;
 	gint count;
 
@@ -394,12 +416,21 @@ do_replace_all (PlumaSearchDialog *dialog,
 
 	doc = PLUMA_DOCUMENT (gtk_text_view_get_buffer (GTK_TEXT_VIEW (active_view)));
 
-	search_entry_text = pluma_utils_escape_search_text( pluma_search_dialog_get_search_text (dialog));
+	parse_escapes = pluma_search_dialog_get_parse_escapes (dialog);
+	if (!parse_escapes) {
+		search_entry_text = pluma_utils_escape_search_text(pluma_search_dialog_get_search_text (dialog));
+	} else {
+		search_entry_text = pluma_search_dialog_get_search_text (dialog);
+	}
 	g_return_if_fail ((search_entry_text) != NULL);
 	g_return_if_fail ((*search_entry_text) != '\0');
 
 	/* replace text may be "", we just delete all occurrencies */
-	replace_entry_text = pluma_utils_escape_search_text (pluma_search_dialog_get_replace_text (dialog));
+	if (!parse_escapes) {
+		replace_entry_text = pluma_utils_escape_search_text (pluma_search_dialog_get_replace_text (dialog));
+	} else {
+		replace_entry_text = pluma_search_dialog_get_replace_text (dialog);
+	}
 	g_return_if_fail ((replace_entry_text) != NULL);
 
 	match_case = pluma_search_dialog_get_match_case (dialog);
@@ -419,7 +450,11 @@ do_replace_all (PlumaSearchDialog *dialog,
 	}
 	else
 	{
-		text_not_found (window, pluma_utils_unescape_search_text (search_entry_text));
+		if (!parse_escapes) {
+			text_not_found (window, pluma_utils_unescape_search_text (search_entry_text));
+		} else {
+			text_not_found (window, search_entry_text);
+		}
 	}
 
 	gtk_dialog_set_response_sensitive (GTK_DIALOG (dialog),

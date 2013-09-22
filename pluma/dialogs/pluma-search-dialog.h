@@ -123,6 +123,11 @@ void		 pluma_search_dialog_set_wrap_around	(PlumaSearchDialog *dialog,
 							 gboolean           wrap_around);
 gboolean	 pluma_search_dialog_get_wrap_around	(PlumaSearchDialog *dialog);
    
+
+void		pluma_search_dialog_set_parse_escapes (PlumaSearchDialog *dialog,
+                                    		       gboolean           parse_escapes);
+gboolean	pluma_search_dialog_get_parse_escapes (PlumaSearchDialog *dialog);
+
 G_END_DECLS
 
 #endif  /* __PLUMA_SEARCH_DIALOG_H__  */

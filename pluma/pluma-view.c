@@ -1165,6 +1165,14 @@ match_case_menu_item_toggled (GtkCheckMenuItem *checkmenuitem,
 					 gtk_check_menu_item_get_active (checkmenuitem));
 }
 
+static void
+parse_escapes_menu_item_toggled (GtkCheckMenuItem *checkmenuitem,
+			         PlumaView        *view)
+{
+	PLUMA_SEARCH_SET_PARSE_ESCAPES (view->priv->search_flags,
+					gtk_check_menu_item_get_active (checkmenuitem));
+}
+
 static gboolean
 real_search_enable_popdown (gpointer data)
 {
@@ -1242,6 +1250,16 @@ search_entry_populate_popup (GtkEntry  *entry,
 	gtk_menu_shell_prepend (GTK_MENU_SHELL (menu), menu_item);
 	gtk_check_menu_item_set_active (GTK_CHECK_MENU_ITEM (menu_item),
 					PLUMA_SEARCH_IS_CASE_SENSITIVE (view->priv->search_flags));
+	gtk_widget_show (menu_item);
+
+	/* create "Parse escapes" menu item. */
+	menu_item = gtk_check_menu_item_new_with_mnemonic (_("_Parse escape sequences (e.g. \n)"));
+	g_signal_connect (G_OBJECT (menu_item), "toggled",
+			  G_CALLBACK (parse_escapes_menu_item_toggled), 
+			  view);
+	gtk_menu_shell_prepend (GTK_MENU_SHELL (menu), menu_item);
+	gtk_check_menu_item_set_active (GTK_CHECK_MENU_ITEM (menu_item),
+					PLUMA_SEARCH_IS_PARSE_ESCAPES (view->priv->search_flags));
 	gtk_widget_show (menu_item);
 }
 
