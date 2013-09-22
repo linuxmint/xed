@@ -546,7 +546,9 @@ _pluma_cmd_search_find (GtkAction   *action,
 	GtkWidget *search_dialog;
 	PlumaDocument *doc;
 	gboolean selection_exists;
+	gboolean parse_escapes;
 	gchar *find_text = NULL;
+	const gchar *search_text = NULL;
 	gint sel_len;
 
 	pluma_debug (DEBUG_COMMANDS);
@@ -578,8 +580,25 @@ _pluma_cmd_search_find (GtkAction   *action,
 
 	if (selection_exists && find_text != NULL && sel_len < 80)
 	{
-		pluma_search_dialog_set_search_text (PLUMA_SEARCH_DIALOG (search_dialog),
-						     find_text);
+		/*
+		 * Special case: if the currently selected text
+		 * is the same as the unescaped search text and
+		 * escape sequence parsing is activated, use the
+		 * same old search text. (Without this, if you e.g.
+		 * search for '\n' in escaped mode and then open
+		 * the search dialog again, you'll get an unprintable
+		 * single-character literal '\n' in the "search for"
+		 * box).
+		 */
+		parse_escapes = pluma_search_dialog_get_parse_escapes (PLUMA_SEARCH_DIALOG (search_dialog));
+		search_text = pluma_search_dialog_get_search_text (PLUMA_SEARCH_DIALOG (search_dialog));
+		if (!(search_text != NULL
+		      && !strcmp(pluma_utils_unescape_search_text(search_text), find_text)
+		      && parse_escapes)) {
+			/* General case */
+			pluma_search_dialog_set_search_text (PLUMA_SEARCH_DIALOG (search_dialog),
+							     find_text);
+		}
 		g_free (find_text);
 	}
 	else
@@ -601,7 +620,9 @@ _pluma_cmd_search_replace (GtkAction   *action,
 	GtkWidget *replace_dialog;
 	PlumaDocument *doc;
 	gboolean selection_exists;
+	gboolean parse_escapes;
 	gchar *find_text = NULL;
+	const gchar *search_text = NULL;
 	gint sel_len;
 
 	pluma_debug (DEBUG_COMMANDS);
@@ -633,8 +654,25 @@ _pluma_cmd_search_replace (GtkAction   *action,
 
 	if (selection_exists && find_text != NULL && sel_len < 80)
 	{
-		pluma_search_dialog_set_search_text (PLUMA_SEARCH_DIALOG (replace_dialog),
-						     find_text);
+		/*
+		 * Special case: if the currently selected text
+		 * is the same as the unescaped search text and
+		 * escape sequence parsing is activated, use the
+		 * same old search text. (Without this, if you e.g.
+		 * search for '\n' in escaped mode and then open
+		 * the search dialog again, you'll get an unprintable
+		 * single-character literal '\n' in the "search for"
+		 * box).
+		 */
+		parse_escapes = pluma_search_dialog_get_parse_escapes (PLUMA_SEARCH_DIALOG (replace_dialog));
+		search_text = pluma_search_dialog_get_search_text (PLUMA_SEARCH_DIALOG (replace_dialog));
+		if (!(search_text != NULL
+		      && !strcmp(pluma_utils_unescape_search_text(search_text), find_text)
+		      && parse_escapes)) {
+			/* General case */
+			pluma_search_dialog_set_search_text (PLUMA_SEARCH_DIALOG (replace_dialog),
+							     find_text);
+		}
 		g_free (find_text);
 	}
 	else
