@@ -2480,6 +2480,8 @@ set_virtual_root_from_node (PlumaFileBrowserStore * model,
 	GSList *copy;
 	GtkTreePath *empty = NULL;
 
+	g_assert (node != NULL);
+
 	prev = node;
 	next = prev->parent;
 

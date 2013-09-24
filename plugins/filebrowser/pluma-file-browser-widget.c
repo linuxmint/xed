@@ -1640,6 +1640,8 @@ jump_to_location (PlumaFileBrowserWidget * obj, GList * item,
 
 	obj->priv->changing_location = TRUE;
 
+	g_assert (obj->priv->current_location != NULL);
+
 	loc = (Location *) (obj->priv->current_location->data);
 
 	/* Set the new root + virtual root */
