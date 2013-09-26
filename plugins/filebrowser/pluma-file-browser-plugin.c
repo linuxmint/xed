@@ -306,6 +306,7 @@ on_confirm_trash_changed (GSettings *settings,
 	PlumaFileBrowserPluginData *data;
 	gboolean enable = FALSE;
 
+	data = (PlumaFileBrowserPluginData *)(user_data);
 	enable = g_settings_get_boolean (settings, key);
 
 	data->confirm_trash = enable;
