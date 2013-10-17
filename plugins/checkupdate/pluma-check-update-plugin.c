@@ -43,10 +43,10 @@
 #define VERSION_PLACE "<a href=\"[0-9]\\.[0-9]+/\">"
 
 #ifdef G_OS_WIN32
-#define PLUMA_URL "http://pub.mate-desktop.org/sources/mate-text-editor/"
+#define PLUMA_URL "http://pub.mate-desktop.org/sources/pluma/"
 #define FILE_REGEX "pluma\\-setup\\-[0-9]+\\.[0-9]+\\.[0-9]+(\\-[0-9]+)?\\.exe"
 #else
-#define PLUMA_URL "http://pub.mate-desktop.org/sources/mate-text-editor/"
+#define PLUMA_URL "http://pub.mate-desktop.org/sources/pluma/"
 #define FILE_REGEX "pluma\\-[0-9]+\\.[0-9]+\\.[0-9]+(\\-[0-9]+)?\\.dmg"
 #endif
 
