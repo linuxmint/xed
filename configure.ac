@@ -8,7 +8,7 @@ m4_define(pluma_micro_version, 0)
 m4_define(pluma_version, pluma_major_version.pluma_minor_version.pluma_micro_version)
 
 AC_INIT([pluma], [pluma_version],
-    [https://github.com/mate-desktop/mate-text-editor/issues],
+    [https://github.com/mate-desktop/pluma/issues],
     [pluma], [http://mate-desktop.org])
 
 AC_CONFIG_HEADERS(config.h)
@@ -589,7 +589,7 @@ it from:
 
 Or checkout the mate-${stable_version} branch of the pluma module from:
 
-  git://github.com/mate-desktop/mate-text-editor.git
+  git://github.com/mate-desktop/pluma.git
 
 Thanks,
 The pluma team
