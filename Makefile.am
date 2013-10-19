@@ -61,7 +61,7 @@ dist-hook:
 	then \
 		echo Creating ChangeLog && \
 		(GIT_DIR=$(top_srcdir)/.git \
-		  ./missing --run git log $(CHANGELOG_START)^^.. --stat -M -C --name-status  --date=short --no-color) | \
+		  ./missing --run git log --stat -M -C --name-status  --date=short --no-color) | \
 		  fmt --split-only > ChangeLog.tmp \
 		&& mv -f ChangeLog.tmp $(top_distdir)/ChangeLog \
 		|| ( rm -f ChangeLog.tmp ; \
