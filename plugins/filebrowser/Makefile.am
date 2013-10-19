@@ -76,7 +76,7 @@ gsettings_SCHEMAS = org.mate.pluma.plugins.filebrowser.gschema.xml
 EXTRA_DIST = \
 	$(ui_DATA)					\
 	$(plugin_in_files)				\
-	$(gsettings_SCHEMAS_in_in)		\
+	$(gsettings_SCHEMAS).in.in			\
 	pluma-file-browser-enum-types.h.template	\
 	pluma-file-browser-enum-types.c.template	\
 	pluma-file-browser-enum-register.c.template	\

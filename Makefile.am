@@ -10,13 +10,11 @@ endif
 distuninstallcheck_listfiles = find . -type f -print | grep -v scrollkeeper
 
 EXTRA_DIST = 			\
-	BUGS			\
-	ChangeLog-20011116	\
-	ChangeLog-20051212	\
-	ChangeLog-20090418	\
+	ChangeLog		\
 	HACKING			\
-	MAINTAINERS		\
-	pluma.doap		\
+	NEWS			\
+	NEWS.GNOME		\
+	README			\
 	xmldocs.make 		\
 	omf.make		\
 	intltool-extract.in 	\
@@ -57,8 +55,6 @@ MAINTAINERCLEANFILES = 		\
 	`find "$(srcdir)" -type f -name Makefile.in -print`
 
 DISTCHECK_CONFIGURE_FLAGS = --disable-scrollkeeper --enable-gtk-doc
-
-CHANGELOG_START = PLUMA_2_26_1
 
 dist-hook:
 	@if test -d "$(srcdir)/.git"; \
