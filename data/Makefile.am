@@ -27,7 +27,7 @@ bugreport_SCRIPTS = pluma-bugreport.sh
 
 EXTRA_DIST = 				\
 	$(desktop_in_files)		\
-	$(gsettings_SCHEMAS_in_in)	\
+	$(gsettings_SCHEMAS).in.in	\
 	$(convert_DATA)			\
 	$(man_MANS)			\
 	pluma.pc.in			\
