@@ -268,15 +268,34 @@ dnl ================================================================
 dnl Start of pkg-config checks
 dnl ================================================================
 
+AC_MSG_CHECKING([which gtk+ version to compile against])
+AC_ARG_WITH([gtk],
+  [AS_HELP_STRING([--with-gtk=2.0|3.0],[which gtk+ version to compile against (default: 2.0)])],
+  [case "$with_gtk" in
+     2.0|3.0) ;;
+     *) AC_MSG_ERROR([invalid gtk version specified]) ;;
+   esac],
+  [with_gtk=2.0])
+AC_MSG_RESULT([$with_gtk])
+
+case "$with_gtk" in
+  2.0) GTK_API_VERSION=2.0
+       GTK_REQUIRED=2.20.0
+       ;;
+  3.0) GTK_API_VERSION=3.0
+       GTK_REQUIRED=3.0.0
+       ;;
+esac
+
 PKG_CHECK_MODULES(GMODULE,gmodule-2.0,[GMODULE_ADD="gmodule-2.0"],[GMODULE_ADD=""])
 PKG_CHECK_MODULES(PLUMA, [
 	libxml-2.0 >= 2.5.0
 	glib-2.0 >= 2.22.0
-        $GMODULE_ADD
+	$GMODULE_ADD
 	gthread-2.0 >= 2.13.0
 	gio-2.0 >= 2.26.0
-	gtk+-2.0 >= 2.16.0
-	gtksourceview-2.0 >= 2.9.7
+	gtk+-$GTK_API_VERSION >= $GTK_REQUIRED
+	gtksourceview-$GTK_API_VERSION >= 2.9.7
 ])
 
 if test "$os_osx" = "no" &&
@@ -297,7 +316,7 @@ AC_SUBST(PLUMA_LIBS)
 
 dnl FIXME: Remove this when removing pluma-message-area
 
-if $PKG_CONFIG --atleast-version 2.17.1 gtk+-2.0; then
+if $PKG_CONFIG --atleast-version 2.17.1 gtk+-$GTK_API_VERSION; then
        gtkatleast=
 else
        gtkatleast=no
@@ -307,7 +326,7 @@ AM_CONDITIONAL(BUILD_MESSAGE_AREA, test "$gtkatleast" = "no")
 
 dnl FIXME: Remove this when removing pluma-spinner
 
-if $PKG_CONFIG --atleast-version 2.19.0 gtk+-2.0; then
+if $PKG_CONFIG --atleast-version 2.19.0 gtk+-$GTK_API_VERSION; then
        gtkatleast=
 else
        gtkatleast=no
@@ -565,6 +584,7 @@ Configuration:
 
 	Source code location:	${srcdir}
 	Compiler:		${CC}
+	GTK API version:	$GTK_API_VERSION
 	Python Plugins Support: $enable_python
 	Spell Plugin enabled:	$enable_enchant
 	Gvfs metadata enabled:	$enable_gvfs_metadata
