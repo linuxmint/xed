@@ -76,6 +76,15 @@ get_overwrite_mode_length (void)
 	return 2 + MAX (g_utf8_strlen (_("OVR"), -1), g_utf8_strlen (_("INS"), -1));
 }
 
+#if GTK_CHECK_VERSION (3, 0, 0)
+static void
+gtk_statusbar_set_has_resize_grip (GtkStatusbar *statusbar, gboolean state)
+{
+    /* nothing */
+    /* https://developer.gnome.org/gtk3/stable/ch24s02.html#id-1.6.3.4.17 */
+}
+#endif
+
 static void
 pluma_statusbar_notify (GObject    *object,
 			GParamSpec *pspec)
@@ -389,7 +398,11 @@ pluma_statusbar_flash_message (PlumaStatusbar *statusbar,
 								msg);
 
 	statusbar->priv->flash_timeout = g_timeout_add (flash_length,
+#if GTK_CHECK_VERSION (3, 0, 0)
+							(GSourceFunc) remove_message_timeout,
+#else
 							(GtkFunction) remove_message_timeout,
+#endif
 							statusbar);
 
 	g_free (msg);

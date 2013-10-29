@@ -34,6 +34,9 @@
 #include <gtk/gtk.h>
 #include <gdk/gdk.h>
 #include <gdk/gdkkeysyms.h>
+#if GTK_CHECK_VERSION (3, 0, 0)
+#include <gdk/gdkkeysyms-compat.h>
+#endif
 
 #include "pluma-close-button.h"
 #include "pluma-window.h"
@@ -271,6 +274,7 @@ set_gtk_image_from_gtk_image (GtkImage *image,
 	case GTK_IMAGE_EMPTY:
 		gtk_image_clear (image);
 		break;
+#if !GTK_CHECK_VERSION (3, 0, 0)
 	case GTK_IMAGE_PIXMAP:
 		{
 			GdkPixmap *pm;
@@ -289,6 +293,7 @@ set_gtk_image_from_gtk_image (GtkImage *image,
 			gtk_image_set_from_image (image, i, bm);
 		}
 		break;
+#endif
 	case GTK_IMAGE_PIXBUF:
 		{
 			GdkPixbuf *pb;
@@ -367,7 +372,11 @@ sync_title (PlumaPanel     *panel,
 
 static void
 notebook_page_changed (GtkNotebook     *notebook,
+#if GTK_CHECK_VERSION (3, 0, 0)
+                       GtkWidget       *page,
+#else
                        GtkNotebookPage *page,
+#endif
                        guint            page_num,
                        PlumaPanel      *panel)
 {
@@ -697,7 +706,11 @@ pluma_panel_add_item (PlumaPanel  *panel,
 	menu_label = gtk_label_new (name);
 	gtk_misc_set_alignment (GTK_MISC (menu_label), 0.0, 0.5);
 
+#if GTK_CHECK_VERSION (3, 0, 0)
+	if (!gtk_widget_get_visible (item))
+#else
 	if (!GTK_WIDGET_VISIBLE (item))
+#endif
 		gtk_widget_show (item);
 
 	gtk_notebook_append_page_menu (GTK_NOTEBOOK (panel->priv->notebook),

@@ -34,8 +34,11 @@
 #include <math.h>
 #include <stdlib.h>
 #include <glib/gi18n.h>
-#include <gdk/gdkkeysyms.h>
 #include <gtk/gtk.h>
+#include <gdk/gdkkeysyms.h>
+#if GTK_CHECK_VERSION (3, 0, 0)
+#include <gdk/gdkkeysyms-compat.h>
+#endif
 
 #include <cairo-pdf.h>
 
@@ -956,7 +959,11 @@ create_preview_layout (PlumaPrintPreview *preview)
 			       GDK_BUTTON_PRESS_MASK |
 			       GDK_KEY_PRESS_MASK);
 
+#if GTK_CHECK_VERSION (3, 0, 0)
+	gtk_widget_set_can_focus (priv->layout, TRUE);
+#else
 	GTK_WIDGET_SET_FLAGS (priv->layout, GTK_CAN_FOCUS);
+#endif
 
   	g_signal_connect (priv->layout,
 			  "key-press-event",

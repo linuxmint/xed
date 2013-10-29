@@ -30,6 +30,8 @@
  */
 
 #include <string.h>
+#include <gtk/gtk.h>
+#include <gtksourceview/gtksource.h>
 
 #include "pluma-language-manager.h"
 #include "pluma-prefs-manager.h"
@@ -76,7 +78,11 @@ pluma_language_manager_list_languages_sorted (GtkSourceLanguageManager *lm,
 		GtkSourceLanguage *lang;
 
 		lang = gtk_source_language_manager_get_language (lm, *ids);
+#if GTK_CHECK_VERSION (3, 0, 0)
+		g_return_val_if_fail (GTK_SOURCE_IS_LANGUAGE (lang), NULL);
+#else
 		g_return_val_if_fail (GTK_IS_SOURCE_LANGUAGE (lang), NULL);
+#endif
 		++ids;
 
 		if (include_hidden || !gtk_source_language_get_hidden (lang))

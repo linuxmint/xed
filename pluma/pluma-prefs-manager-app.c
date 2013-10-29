@@ -1207,7 +1207,11 @@ pluma_prefs_manager_syntax_hl_enable_changed (GSettings *settings,
 
 		while (l != NULL)
 		{
+#if GTK_CHECK_VERSION (3, 0, 0)
+			g_return_if_fail (GTK_SOURCE_IS_BUFFER (l->data));
+#else
 			g_return_if_fail (GTK_IS_SOURCE_BUFFER (l->data));
+#endif
 
 			gtk_source_buffer_set_highlight_syntax (GTK_SOURCE_BUFFER (l->data),
 								enable);
@@ -1313,7 +1317,11 @@ pluma_prefs_manager_source_style_scheme_changed (GSettings *settings,
 		docs = pluma_app_get_documents (pluma_app_get_default ());
 		for (l = docs; l != NULL; l = l->next)
 		{
+#if GTK_CHECK_VERSION (3, 0, 0)
+			g_return_if_fail (GTK_SOURCE_IS_BUFFER (l->data));
+#else
 			g_return_if_fail (GTK_IS_SOURCE_BUFFER (l->data));
+#endif
 
 			gtk_source_buffer_set_style_scheme (GTK_SOURCE_BUFFER (l->data),
 							    style);

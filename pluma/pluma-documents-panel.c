@@ -516,10 +516,17 @@ menu_position (GtkMenu             *menu,
 	GtkTreePath *path;
 	GdkRectangle rect;
 	gint wx, wy;
+	GtkAllocation allocation;
 	GtkRequisition requisition;
 	GtkWidget *w;
 
 	w = panel->priv->treeview;
+
+#if GTK_CHECK_VERSION (3, 0, 0)
+	gtk_widget_get_allocation(w, &allocation);
+#else
+	allocation = w->allocation;
+#endif
 
 	path = get_current_path (panel);
 
@@ -531,21 +538,25 @@ menu_position (GtkMenu             *menu,
 	wx = rect.x;
 	wy = rect.y;
 
+#if GTK_CHECK_VERSION (3, 0, 0)
+	gdk_window_get_origin (gtk_widget_get_window (w), x, y);
+#else
 	gdk_window_get_origin (w->window, x, y);
+#endif
 	
 	gtk_widget_size_request (GTK_WIDGET (menu), &requisition);
 
 	if (gtk_widget_get_direction (w) == GTK_TEXT_DIR_RTL)
 	{
-		*x += w->allocation.x + w->allocation.width - requisition.width - 10;
+		*x += allocation.x + allocation.width - requisition.width - 10;
 	}
 	else
 	{
-		*x += w->allocation.x + 10;
+		*x += allocation.x + 10;
 	}
 
 	wy = MAX (*y + 5, *y + wy + 5);
-	wy = MIN (wy, *y + w->allocation.height - requisition.height - 5);
+	wy = MIN (wy, *y + allocation.height - requisition.height - 5);
 	
 	*y = wy;
 

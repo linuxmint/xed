@@ -39,6 +39,7 @@
 
 #include <glib/gi18n.h>
 #include <gtk/gtk.h>
+#include <gtksourceview/gtksource.h>
 
 #include "pluma-file-chooser-dialog.h"
 #include "pluma-encodings-combo-box.h"
@@ -294,7 +295,11 @@ all_text_files_filter (const GtkFileFilterInfo *filter_info,
 			GtkSourceLanguage *lang;
 
 			lang = gtk_source_language_manager_get_language (lm, *languages);
+#if GTK_CHECK_VERSION (3, 0, 0)
+			g_return_val_if_fail (GTK_SOURCE_IS_LANGUAGE (lang), FALSE);
+#else
 			g_return_val_if_fail (GTK_IS_SOURCE_LANGUAGE (lang), FALSE);
+#endif
 			++languages;
 
 			mime_types = gtk_source_language_get_mime_types (lang);

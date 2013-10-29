@@ -54,6 +54,10 @@
 #include "dialogs/pluma-close-confirmation-dialog.h"
 #include "smclient/eggsmclient.h"
 
+#if GTK_CHECK_VERSION (3, 0, 0)
+#define GTK_WIDGET_VISIBLE gtk_widget_get_visible
+#endif
+
 /* The master client we use for SM */
 static EggSMClient *master_client = NULL;
 

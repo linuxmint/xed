@@ -397,7 +397,7 @@ on_message_received (const char *message,
 	 * terminal. We also need to make sure that the window
 	 * has been realized otherwise it will not work. lame.
 	 */
-	if (!GTK_WIDGET_REALIZED (window))
+	if (!gtk_widget_get_realized (window))
 		gtk_widget_realize (GTK_WIDGET (window));
 
 #ifdef GDK_WINDOWING_X11
@@ -556,10 +556,14 @@ main (int argc, char *argv[])
 	gchar *icon_dir;
 
 	/* Init type system as soon as possible */
+#if !GLIB_CHECK_VERSION (2, 36, 0)
 	g_type_init ();
+#endif
 
 	/* Init glib threads asap */
+#if !GLIB_CHECK_VERSION (2, 32, 0)
 	g_thread_init (NULL);
+#endif
 
 	/* Setup debugging */
 	pluma_debug_init ();

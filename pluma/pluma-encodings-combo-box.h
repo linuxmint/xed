@@ -32,7 +32,7 @@
 #ifndef __PLUMA_ENCODINGS_COMBO_BOX_H__
 #define __PLUMA_ENCODINGS_COMBO_BOX_H__
 
-#include <gtk/gtkoptionmenu.h>
+#include <gtk/gtk.h>
 #include <pluma/pluma-encodings.h>
 
 G_BEGIN_DECLS

@@ -37,7 +37,12 @@
 #include <string.h>
 #include <stdlib.h>
 
+#include <gtk/gtk.h>
 #include <gdk/gdkkeysyms.h>
+#if GTK_CHECK_VERSION (3, 0, 0)
+#include <gdk/gdkkeysyms-compat.h>
+#include <gtksourceview/gtksourceview.h>
+#endif
 
 #include <glib/gi18n.h>
 
@@ -48,6 +53,9 @@
 #include "pluma-marshal.h"
 #include "pluma-utils.h"
 
+#if GTK_CHECK_VERSION (3, 0, 0)
+#define GTK_WIDGET_VISIBLE gtk_widget_get_visible
+#endif
 
 #define PLUMA_VIEW_SCROLL_MARGIN 0.02
 #define PLUMA_VIEW_SEARCH_DIALOG_TIMEOUT (30*1000) /* 30 seconds */
@@ -100,7 +108,11 @@ struct _PlumaViewPrivate
 /* The search entry completion is shared among all the views */
 GtkListStore *search_completion_model = NULL;
 
+#if GTK_CHECK_VERSION (3, 0, 0)
+static void	pluma_view_dispose		(GObject          *object);
+#else
 static void	pluma_view_destroy		(GtkObject        *object);
+#endif
 static void	pluma_view_finalize		(GObject          *object);
 static gint     pluma_view_focus_out		(GtkWidget        *widget,
 						 GdkEventFocus    *event);
@@ -131,9 +143,13 @@ static gboolean reset_searched_text		(PlumaView        *view);
 static void	hide_search_window 		(PlumaView        *view,
 						 gboolean          cancel);
 
-
+#if GTK_CHECK_VERSION (3, 0, 0)
+static gboolean	pluma_view_draw		 	(GtkWidget        *widget,
+						 cairo_t          *cr);
+#else
 static gint	pluma_view_expose	 	(GtkWidget        *widget,
 						 GdkEventExpose   *event);
+#endif
 static void 	search_highlight_updated_cb	(PlumaDocument    *doc,
 						 GtkTextIter      *start,
 						 GtkTextIter      *end,
@@ -143,7 +159,11 @@ static void	pluma_view_delete_from_cursor 	(GtkTextView     *text_view,
 						 GtkDeleteType    type,
 						 gint             count);
 
+#if GTK_CHECK_VERSION (3, 0, 0)
+G_DEFINE_TYPE(PlumaView, pluma_view, GTK_SOURCE_TYPE_VIEW)
+#else
 G_DEFINE_TYPE(PlumaView, pluma_view, GTK_TYPE_SOURCE_VIEW)
+#endif
 
 /* Signals */
 enum
@@ -178,17 +198,27 @@ static void
 pluma_view_class_init (PlumaViewClass *klass)
 {
 	GObjectClass     *object_class = G_OBJECT_CLASS (klass);
+#if !GTK_CHECK_VERSION (3, 0, 0)
 	GtkObjectClass   *gtkobject_class = GTK_OBJECT_CLASS (klass);
+#endif
 	GtkWidgetClass   *widget_class = GTK_WIDGET_CLASS (klass);
 	GtkTextViewClass *text_view_class = GTK_TEXT_VIEW_CLASS (klass);
 	
 	GtkBindingSet    *binding_set;
 
+#if GTK_CHECK_VERSION (3, 0, 0)
+	object_class->dispose = pluma_view_dispose;
+#else
 	gtkobject_class->destroy = pluma_view_destroy;
+#endif
 	object_class->finalize = pluma_view_finalize;
 
 	widget_class->focus_out_event = pluma_view_focus_out;
+#if GTK_CHECK_VERSION (3, 0, 0)
+	widget_class->draw = pluma_view_draw;
+#else
 	widget_class->expose_event = pluma_view_expose;
+#endif
 	
 	/*
 	 * Override the gtk_text_view_drag_motion and drag_drop
@@ -389,7 +419,11 @@ pluma_view_init (PlumaView *view)
 }
 
 static void
+#if GTK_CHECK_VERSION (3, 0, 0)
+pluma_view_dispose (GObject *object)
+#else
 pluma_view_destroy (GtkObject *object)
+#endif
 {
 	PlumaView *view;
 
@@ -414,7 +448,11 @@ pluma_view_destroy (GtkObject *object)
 	current_buffer_removed (view);
 	g_signal_handlers_disconnect_by_func (view, on_notify_buffer_cb, NULL);
 	
+#if GTK_CHECK_VERSION (3, 0, 0)
+	(* G_OBJECT_CLASS (pluma_view_parent_class)->dispose) (object);
+#else
 	(* GTK_OBJECT_CLASS (pluma_view_parent_class)->destroy) (object);
+#endif
 }
 
 static void
@@ -900,14 +938,20 @@ send_focus_change (GtkWidget *widget,
 	GdkEvent *fevent = gdk_event_new (GDK_FOCUS_CHANGE);
 
 	g_object_ref (widget);
-   
+
+#if !GTK_CHECK_VERSION (2, 21, 0)
 	if (in)
 		GTK_WIDGET_SET_FLAGS (widget, GTK_HAS_FOCUS);
 	else
 		GTK_WIDGET_UNSET_FLAGS (widget, GTK_HAS_FOCUS);
+#endif
 
 	fevent->focus_change.type = GDK_FOCUS_CHANGE;
+#if GTK_CHECK_VERSION (3, 0, 0)
+	fevent->focus_change.window = g_object_ref (gtk_widget_get_window (widget));
+#else
 	fevent->focus_change.window = g_object_ref (widget->window);
+#endif
 	fevent->focus_change.in = in;
   
 	gtk_widget_event (widget, fevent);
@@ -974,7 +1018,11 @@ update_search_window_position (PlumaView *view)
 {
 	gint x, y;
 	gint view_x, view_y;
+#if GTK_CHECK_VERSION (3, 0, 0)
+	GdkWindow *view_window = gtk_widget_get_window (GTK_WIDGET (view));
+#else
 	GdkWindow *view_window = GTK_WIDGET (view)->window;
+#endif
 
 	gtk_widget_realize (view->priv->search_window);
 
@@ -1428,16 +1476,25 @@ ensure_search_window (PlumaView *view)
 	GtkWidget          *vbox;
 	GtkWidget          *toplevel;
 	GtkEntryCompletion *completion;
+	GtkWindowGroup     *group;
+	GtkWindowGroup     *search_group;
 	
 	toplevel = gtk_widget_get_toplevel (GTK_WIDGET (view));
+#if GTK_CHECK_VERSION (3, 0, 0)
+	group = gtk_window_get_group (GTK_WINDOW (toplevel));
+	search_group = gtk_window_get_group (GTK_WINDOW (toplevel));
+#else
+	group = GTK_WINDOW (toplevel)->group;
+	search_group = GTK_WINDOW (view->priv->search_window)->group;
+#endif
 
 	if (view->priv->search_window != NULL)
 	{
-		if (GTK_WINDOW (toplevel)->group)
-			gtk_window_group_add_window (GTK_WINDOW (toplevel)->group,
+		if (group)
+			gtk_window_group_add_window (group,
 						     GTK_WINDOW (view->priv->search_window));
-		else if (GTK_WINDOW (view->priv->search_window)->group)
-	 		gtk_window_group_remove_window (GTK_WINDOW (view->priv->search_window)->group,
+		else if (search_group)
+	 		gtk_window_group_remove_window (search_group,
 					 		GTK_WINDOW (view->priv->search_window));
 					 		
 		customize_for_search_mode (view);
@@ -1447,8 +1504,8 @@ ensure_search_window (PlumaView *view)
    
 	view->priv->search_window = gtk_window_new (GTK_WINDOW_POPUP);
 
-	if (GTK_WINDOW (toplevel)->group)
-		gtk_window_group_add_window (GTK_WINDOW (toplevel)->group,
+	if (group)
+		gtk_window_group_add_window (group,
 					     GTK_WINDOW (view->priv->search_window));
 					     
 	gtk_window_set_modal (GTK_WINDOW (view->priv->search_window), TRUE);
@@ -1746,7 +1803,11 @@ start_interactive_search_real (PlumaView *view)
 	    GTK_WIDGET_VISIBLE (view->priv->search_window))
 		return TRUE;
 
+#if GTK_CHECK_VERSION (3, 0, 0)
+	if (!gtk_widget_has_focus (view))
+#else
 	if (!GTK_WIDGET_HAS_FOCUS (view))
+#endif
 		return FALSE;
 
 	buffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (view));
@@ -1816,18 +1877,31 @@ start_interactive_goto_line (PlumaView *view)
 	return start_interactive_search_real (view);
 }
 
+#if GTK_CHECK_VERSION (3, 0, 0)
+static gboolean
+pluma_view_draw (GtkWidget      *widget,
+                 cairo_t        *cr)
+#else
 static gint
 pluma_view_expose (GtkWidget      *widget,
                    GdkEventExpose *event)
+#endif
 {
 	GtkTextView *text_view;
 	PlumaDocument *doc;
+#if GTK_CHECK_VERSION (3, 0, 0)
+	GdkWindow *window;
+#endif
 	
 	text_view = GTK_TEXT_VIEW (widget);
 	
 	doc = PLUMA_DOCUMENT (gtk_text_view_get_buffer (text_view));
-	
+#if GTK_CHECK_VERSION (3, 0, 0)
+	window = gtk_text_view_get_window (text_view, GTK_TEXT_WINDOW_TEXT);
+	if (gtk_cairo_should_draw_window (cr, window) &&
+#else
 	if ((event->window == gtk_text_view_get_window (text_view, GTK_TEXT_WINDOW_TEXT)) &&
+#endif
 	    pluma_document_get_enable_search_highlighting (doc))
 	{
 		GdkRectangle visible_rect;
@@ -1846,7 +1920,11 @@ pluma_view_expose (GtkWidget      *widget,
 					       &iter2);
 	}
 
+#if GTK_CHECK_VERSION (3, 0, 0)
+	return GTK_WIDGET_CLASS (pluma_view_parent_class)->draw (widget, cr);
+#else
 	return (* GTK_WIDGET_CLASS (pluma_view_parent_class)->expose_event)(widget, event);
+#endif
 }
 
 static GdkAtom
@@ -1882,7 +1960,13 @@ pluma_view_drag_motion (GtkWidget      *widget,
 	/* If this is a URL, deal with it here */
 	if (drag_get_uri_target (widget, context) != GDK_NONE) 
 	{
-		gdk_drag_status (context, context->suggested_action, timestamp);
+		gdk_drag_status (context,
+#if GTK_CHECK_VERSION (3, 0, 0)
+				 gdk_drag_context_get_suggested_action (context),
+#else
+				 context->suggested_action,
+#endif
+				 timestamp);
 		result = TRUE;
 	}
 
@@ -2062,6 +2146,7 @@ search_highlight_updated_cb (PlumaDocument *doc,
 	}
 }
 
+#if !GTK_CHECK_VERSION (3, 0, 0)
 /* There is no "official" way to reset the im context in GtkTextView */
 static void
 reset_im_context (GtkTextView *text_view)
@@ -2072,6 +2157,7 @@ reset_im_context (GtkTextView *text_view)
 		gtk_im_context_reset (text_view->im_context);
 	}
 }
+#endif
 
 static void
 delete_line (GtkTextView *text_view,
@@ -2083,7 +2169,11 @@ delete_line (GtkTextView *text_view,
 
 	buffer = gtk_text_view_get_buffer (text_view);
 
+#if GTK_CHECK_VERSION (3, 0, 0)
+	gtk_text_view_reset_im_context (text_view);
+#else
 	reset_im_context (text_view);
+#endif
 
 	/* If there is a selection delete the selected lines and
 	 * ignore count */

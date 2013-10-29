@@ -125,22 +125,29 @@ pluma_utils_menu_position_under_widget (GtkMenu  *menu,
 {
 	GtkWidget *widget;
 	GtkRequisition requisition;
+	GtkAllocation allocation;
 
 	widget = GTK_WIDGET (user_data);
 	widget_get_origin (widget, x, y);
 
 	gtk_widget_size_request (GTK_WIDGET (menu), &requisition);
 
+#if GTK_CHECK_VERSION (3, 0, 0)
+	gtk_widget_get_allocation (widget, &allocation);
+#else
+	allocation = widget->allocation;
+#endif
+
 	if (gtk_widget_get_direction (widget) == GTK_TEXT_DIR_RTL)
 	{
-		*x += widget->allocation.x + widget->allocation.width - requisition.width;
+		*x += allocation.x + allocation.width - requisition.width;
 	}
 	else
 	{
-		*x += widget->allocation.x;
+		*x += allocation.x;
 	}
 
-	*y += widget->allocation.y + widget->allocation.height;
+	*y += allocation.y + allocation.height;
 
 	*push_in = TRUE;
 }
@@ -234,7 +241,11 @@ pluma_dialog_add_button (GtkDialog   *dialog,
 	button = pluma_gtk_button_new_with_stock_icon (text, stock_id);
 	g_return_val_if_fail (button != NULL, NULL);
 
+#if GTK_CHECK_VERSION (3, 0, 0)
+	gtk_widget_set_can_default (button, TRUE);
+#else
 	GTK_WIDGET_SET_FLAGS (button, GTK_CAN_DEFAULT);
+#endif
 
 	gtk_widget_show (button);
 
@@ -900,10 +911,18 @@ pluma_utils_get_window_workspace (GtkWindow *gtkwindow)
 	guint ret = PLUMA_ALL_WORKSPACES;
 
 	g_return_val_if_fail (GTK_IS_WINDOW (gtkwindow), 0);
+#if GTK_CHECK_VERSION (3, 0, 0)
+	g_return_val_if_fail (gtk_widget_get_realized (GTK_WIDGET (gtkwindow)), 0);
+#else
 	g_return_val_if_fail (GTK_WIDGET_REALIZED (GTK_WIDGET (gtkwindow)), 0);
+#endif
 
 	window = gtk_widget_get_window (GTK_WIDGET (gtkwindow));
+#if GTK_CHECK_VERSION (3, 0, 0)
+	display = gdk_window_get_display (window);
+#else
 	display = gdk_drawable_get_display (window);
+#endif
 
 	gdk_error_trap_push ();
 	result = XGetWindowProperty (GDK_DISPLAY_XDISPLAY (display), GDK_WINDOW_XID (window),

@@ -173,18 +173,25 @@ menu_position_func (GtkMenu		*menu,
 		    PlumaStatusComboBox *combo)
 {
 	GtkRequisition request;
+	GtkAllocation allocation;
 	
 	*push_in = FALSE;
 	
 	gtk_widget_size_request (gtk_widget_get_toplevel (GTK_WIDGET (menu)), &request);
 	
 	/* get the origin... */
+#if GTK_CHECK_VERSION (3, 0, 0)
+	gdk_window_get_origin (gtk_widget_get_window (GTK_WIDGET (combo)), x, y);
+	gtk_widget_get_allocation (GTK_WIDGET (combo), &allocation);
+#else
 	gdk_window_get_origin (GTK_WIDGET (combo)->window, x, y);
+	allocation = GTK_WIDGET (combo)->allocation;
+#endif
 	
 	/* make the menu as wide as the widget */
-	if (request.width < GTK_WIDGET (combo)->allocation.width)
+	if (request.width < allocation.width)
 	{
-		gtk_widget_set_size_request (GTK_WIDGET (menu), GTK_WIDGET (combo)->allocation.width, -1);
+		gtk_widget_set_size_request (GTK_WIDGET (menu), allocation.width, -1);
 	}
 	
 	/* position it above the widget */
@@ -197,12 +204,18 @@ button_press_event (GtkWidget           *widget,
 		    PlumaStatusComboBox *combo)
 {
 	GtkRequisition request;
+	GtkAllocation allocation;
 	gint max_height;
 	
 	gtk_widget_size_request (combo->priv->menu, &request);
+#if GTK_CHECK_VERSION (3, 0, 0)
+	gtk_widget_get_allocation (GTK_WIDGET (combo), &allocation);
+#else
+	allocation = GTK_WIDGET (combo)->allocation;
+#endif
 
 	/* do something relative to our own height here, maybe we can do better */
-	max_height = GTK_WIDGET (combo)->allocation.height * 20;
+	max_height = allocation.height * 20;
 	
 	if (request.height > max_height)
 	{

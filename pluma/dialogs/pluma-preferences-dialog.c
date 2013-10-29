@@ -1085,7 +1085,9 @@ pluma_preferences_dialog_init (PlumaPreferencesDialog *dlg)
 
 	gtk_window_set_title (GTK_WINDOW (dlg), _("pluma Preferences"));
 	gtk_window_set_resizable (GTK_WINDOW (dlg), FALSE);
+#if !GTK_CHECK_VERSION (3, 0, 0)
 	gtk_dialog_set_has_separator (GTK_DIALOG (dlg), FALSE);
+#endif
 	gtk_window_set_destroy_with_parent (GTK_WINDOW (dlg), TRUE);
 
 	/* HIG defaults */

@@ -32,6 +32,7 @@
 #ifndef __PLUMA_LANGUAGES_MANAGER_H__
 #define __PLUMA_LANGUAGES_MANAGER_H__
 
+#include <glib-object.h>
 #include <gtksourceview/gtksourcelanguagemanager.h>
 
 G_BEGIN_DECLS
