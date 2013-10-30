@@ -450,7 +450,11 @@ get_time (const gchar* format)
 }
 
 static void
+#if GTK_CHECK_VERSION (3, 0, 0)
+dialog_disposed (GObject *obj, gpointer dialog_pointer)
+#else
 dialog_destroyed (GtkObject *obj, gpointer dialog_pointer)
+#endif
 {
 	pluma_debug (DEBUG_PLUGINS);
 
@@ -830,8 +834,13 @@ get_configure_dialog (PlumaTimePlugin *plugin)
 			  G_CALLBACK (configure_dialog_button_toggled),
 			  dialog);
 	g_signal_connect (dialog->dialog,
+#if GTK_CHECK_VERSION (3, 0, 0)
+			  "dispose",
+			  G_CALLBACK (dialog_disposed),
+#else
 			  "destroy",
 			  G_CALLBACK (dialog_destroyed),
+#endif
 			  dialog);
 	g_signal_connect (dialog->custom_entry,
 			  "changed",
@@ -993,8 +1002,13 @@ get_choose_format_dialog (GtkWindow                 *parent,
 			  G_CALLBACK (choose_format_dialog_button_toggled),
 			  dialog);
 	g_signal_connect (dialog->dialog,
+#if GTK_CHECK_VERSION (3, 0, 0)
+			  "dispose",
+			  G_CALLBACK (dialog_disposed),
+#else
 			  "destroy",
 			  G_CALLBACK (dialog_destroyed),
+#endif
 			  dialog);
 	g_signal_connect (dialog->custom_entry,
 			  "changed",

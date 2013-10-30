@@ -92,7 +92,11 @@ static const GtkActionEntry action_entries[] =
 };
 
 static void
+#if GTK_CHECK_VERSION (3, 0, 0)
+sort_dialog_dispose (GObject *obj,
+#else
 sort_dialog_destroy (GtkObject *obj,
+#endif
 		     gpointer  dialog_pointer)
 {
 	pluma_debug (DEBUG_PLUGINS);
@@ -194,8 +198,13 @@ get_sort_dialog (ActionData *action_data)
 					 GTK_RESPONSE_OK);
 
 	g_signal_connect (dialog->dialog,
+#if GTK_CHECK_VERSION (3, 0, 0)
+			  "dispose",
+			  G_CALLBACK (sort_dialog_dispose),
+#else
 			  "destroy",
 			  G_CALLBACK (sort_dialog_destroy),
+#endif
 			  dialog);
 
 	g_signal_connect (dialog->dialog,

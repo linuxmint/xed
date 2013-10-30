@@ -109,7 +109,11 @@ static guint signals [LAST_SIGNAL] = { 0 };
 G_DEFINE_TYPE(PlumaSpellCheckerDialog, pluma_spell_checker_dialog, GTK_TYPE_WINDOW)
 
 static void
+#if GTK_CHECK_VERSION (3, 0,0)
+pluma_spell_checker_dialog_dispose (GObject *object)
+#else
 pluma_spell_checker_dialog_destroy (GtkObject *object)
+#endif
 {
 	PlumaSpellCheckerDialog *dlg = PLUMA_SPELL_CHECKER_DIALOG (object);
 
@@ -125,7 +129,11 @@ pluma_spell_checker_dialog_destroy (GtkObject *object)
 		dlg->misspelled_word = NULL;
 	}
 
+#if GTK_CHECK_VERSION (3, 0,0)
+	G_OBJECT_CLASS (pluma_spell_checker_dialog_parent_class)->dispose (object);
+#else
 	GTK_OBJECT_CLASS (pluma_spell_checker_dialog_parent_class)->destroy (object);
+#endif
 }
 
 static void
@@ -135,7 +143,11 @@ pluma_spell_checker_dialog_class_init (PlumaSpellCheckerDialogClass * klass)
 
 	object_class = G_OBJECT_CLASS (klass);
 
+#if GTK_CHECK_VERSION (3, 0, 0)
+	object_class->dispose = pluma_spell_checker_dialog_dispose;
+#else
 	GTK_OBJECT_CLASS (object_class)->destroy = pluma_spell_checker_dialog_destroy;
+#endif
 
 	signals[IGNORE] = 
 		g_signal_new ("ignore",
@@ -291,7 +303,11 @@ create_dialog (PlumaSpellCheckerDialog *dlg,
 	gtk_tree_selection_set_mode (selection, GTK_SELECTION_SINGLE);
 
 	/* Set default button */
+#if GTK_CHECK_VERSION (3, 0, 0)
+	gtk_widget_set_can_default (dlg->change_button, TRUE);
+#else
 	GTK_WIDGET_SET_FLAGS (dlg->change_button, GTK_CAN_DEFAULT);
+#endif
 	gtk_widget_grab_default (dlg->change_button);
 
 	gtk_entry_set_activates_default (GTK_ENTRY (dlg->word_entry), TRUE);

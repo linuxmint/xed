@@ -41,7 +41,11 @@
 #include <pluma/pluma-debug.h>
 #include <pluma/pluma-plugin.h>
 
+#include <gtk/gtk.h>
 #include <gdk/gdkkeysyms.h>
+#if GTK_CHECK_VERSION (3, 0, 0)
+#include <gdk/gdkkeysyms-compat.h>
+#endif
 #include <glib/gi18n.h>
 
 #define PLUMA_TAGLIST_PLUGIN_PANEL_GET_PRIVATE(object)(G_TYPE_INSTANCE_GET_PRIVATE ((object), \

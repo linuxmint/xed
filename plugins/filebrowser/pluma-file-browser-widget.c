@@ -28,7 +28,11 @@
 #include <string.h>
 #include <glib.h>
 #include <glib/gi18n-lib.h>
+#include <gtk/gtk.h>
 #include <gdk/gdkkeysyms.h>
+#if GTK_CHECK_VERSION (3, 0, 0)
+#include <gdk/gdkkeysyms-compat.h>
+#endif
 #include <pluma/pluma-utils.h>
 #include <pluma/pluma-plugin.h>
 
