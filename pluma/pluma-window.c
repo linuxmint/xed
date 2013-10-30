@@ -38,7 +38,10 @@
 
 #include <glib/gi18n.h>
 #include <gio/gio.h>
+#include <gtk/gtk.h>
+#if GTK_CHECK_VERSION (3, 0, 0)
 #include <gtksourceview/gtksource.h>
+#endif
 
 #include "pluma-ui.h"
 #include "pluma-window.h"

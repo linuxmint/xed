@@ -31,8 +31,9 @@
 
 #include <string.h>
 #include <gtk/gtk.h>
+#if GTK_CHECK_VERSION (3, 0, 0)
 #include <gtksourceview/gtksource.h>
-
+#endif
 #include "pluma-language-manager.h"
 #include "pluma-prefs-manager.h"
 #include "pluma-utils.h"
