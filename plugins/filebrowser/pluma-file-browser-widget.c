@@ -997,7 +997,11 @@ create_toolbar (PlumaFileBrowserWidget * obj,
 					      "DirectoryPrevious");
 	g_object_set (action, "is_important", TRUE, "short_label",
 		      _("Previous location"), NULL);
+#if GTK_CHECK_VERSION (2, 16, 0)
+	gtk_activatable_set_related_action (GTK_ACTIVATABLE (widget), action);
+#else
 	gtk_action_connect_proxy (action, widget);
+#endif
 	gtk_toolbar_insert (GTK_TOOLBAR (toolbar), GTK_TOOL_ITEM (widget), 0);
 
 	/* Next directory menu tool item */
@@ -1018,7 +1022,11 @@ create_toolbar (PlumaFileBrowserWidget * obj,
 					      "DirectoryNext");
 	g_object_set (action, "is_important", TRUE, "short_label",
 		      _("Previous location"), NULL);
+#if GTK_CHECK_VERSION (2, 16, 0)
+	gtk_activatable_set_related_action (GTK_ACTIVATABLE (widget), action);
+#else
 	gtk_action_connect_proxy (action, widget);
+#endif
 	gtk_toolbar_insert (GTK_TOOLBAR (toolbar), GTK_TOOL_ITEM (widget), 1);
 
 	gtk_box_pack_start (GTK_BOX (obj), toolbar, FALSE, FALSE, 0);
