@@ -385,17 +385,27 @@ populate_tag_groups_combo (PlumaTaglistPluginPanel *panel)
 {
 	GList *l;
 	GtkComboBox *combo;
+#if GTK_CHECK_VERSION (3, 0, 0)
+	GtkComboBoxText *combotext;
+#endif
 
 	pluma_debug (DEBUG_PLUGINS);
 
 	combo = GTK_COMBO_BOX (panel->priv->tag_groups_combo);
+#if GTK_CHECK_VERSION (3, 0, 0)
+	combotext = GTK_COMBO_BOX_TEXT (panel->priv->tag_groups_combo);
+#endif
 
 	if (taglist == NULL)
 		return;
 
 	for (l = taglist->tag_groups; l != NULL; l = g_list_next (l))
 	{
+#if GTK_CHECK_VERSION (3, 0, 0)
+		gtk_combo_box_text_append_text (combotext,
+#else
 		gtk_combo_box_append_text (combo,
+#endif
 					   (gchar *)((TagGroup*)l->data)->name);
 	}
 
@@ -412,7 +422,11 @@ selected_group_changed (GtkComboBox             *combo,
 
 	pluma_debug (DEBUG_PLUGINS);
 
+#if GTK_CHECK_VERSION (3, 0, 0)
+	group_name = gtk_combo_box_text_get_active_text (GTK_COMBO_BOX_TEXT (combo));
+#else
 	group_name = gtk_combo_box_get_active_text (combo);
+#endif
 
 	if ((group_name == NULL) || (strlen (group_name) <= 0))
 	{
@@ -667,7 +681,11 @@ pluma_taglist_plugin_panel_init (PlumaTaglistPluginPanel *panel)
 	panel->priv->data_dir = NULL;
 
 	/* Build the window content */
+#if GTK_CHECK_VERSION (3, 0, 0)
+	panel->priv->tag_groups_combo = gtk_combo_box_text_new ();
+#else
 	panel->priv->tag_groups_combo = gtk_combo_box_new_text ();
+#endif
 	gtk_box_pack_start (GTK_BOX (panel),
 			    panel->priv->tag_groups_combo,
 			    FALSE,
