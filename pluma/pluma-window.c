@@ -3697,7 +3697,7 @@ bottom_panel_visibility_changed (PlumaPanel  *bottom_panel,
 	gboolean visible;
 	GtkAction *action;
 
-	visible = GTK_WIDGET_VISIBLE (bottom_panel);
+	visible = GTK_WIDGET_VISIBLE (GTK_WIDGET (bottom_panel));
 
 	if (pluma_prefs_manager_bottom_panel_visible_can_set ())
 		pluma_prefs_manager_set_bottom_panel_visible (visible);
@@ -4169,7 +4169,7 @@ pluma_window_create_tab (PlumaWindow *window,
 				-1,
 				jump_to);
 
-	if (!GTK_WIDGET_VISIBLE (window))
+	if (!GTK_WIDGET_VISIBLE (GTK_WIDGET (window)))
 	{
 		gtk_window_present (GTK_WINDOW (window));
 	}
@@ -4221,7 +4221,7 @@ pluma_window_create_tab_from_uri (PlumaWindow         *window,
 				jump_to);
 
 
-	if (!GTK_WIDGET_VISIBLE (window))
+	if (!GTK_WIDGET_VISIBLE (GTK_WIDGET (window)))
 	{
 		gtk_window_present (GTK_WINDOW (window));
 	}

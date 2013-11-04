@@ -770,7 +770,9 @@ get_configure_dialog (PlumaTimePlugin *plugin)
 	}
 
 	gtk_window_set_resizable (GTK_WINDOW (dialog->dialog), FALSE);
+#if !GTK_CHECK_VERSION (3, 0, 0)
 	gtk_dialog_set_has_separator (GTK_DIALOG (dialog->dialog), FALSE);
+#endif
 
 	sf = get_selected_format (plugin);
 	create_formats_list (dialog->list, sf, plugin);
@@ -934,7 +936,9 @@ get_choose_format_dialog (GtkWindow                 *parent,
 			gtk_window_group_add_window (wg, GTK_WINDOW (err_dialog));
 
 		gtk_window_set_resizable (GTK_WINDOW (err_dialog), FALSE);
+#if !GTK_CHECK_VERSION (3, 0, 0)
 		gtk_dialog_set_has_separator (GTK_DIALOG (err_dialog), FALSE);
+#endif
 		gtk_dialog_set_default_response (GTK_DIALOG (err_dialog), GTK_RESPONSE_OK);
 
 		gtk_container_add (GTK_CONTAINER (gtk_dialog_get_content_area (GTK_DIALOG (err_dialog))),

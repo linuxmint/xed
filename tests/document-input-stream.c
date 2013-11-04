@@ -140,7 +140,9 @@ test_consecutive_multibyte_big_read ()
 int main (int   argc,
           char *argv[])
 {
+#if !GLIB_CHECK_VERSION (2, 36, 0)
 	g_type_init ();
+#endif
 	g_test_init (&argc, &argv, NULL);
 
 	g_test_add_func ("/document-input-stream/empty", test_empty);

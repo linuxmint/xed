@@ -341,7 +341,9 @@ test_guessed ()
 int main (int   argc,
           char *argv[])
 {
+#if !GLIB_CHECK_VERSION (2, 36, 0)
 	g_type_init ();
+#endif
 	g_test_init (&argc, &argv, NULL);
 
 	g_test_add_func ("/smart-converter/utf8-utf8", test_utf8_utf8);
