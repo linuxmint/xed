@@ -592,8 +592,13 @@ tags_list_query_tooltip_cb (GtkWidget               *widget,
 }
 
 static gboolean
+#if GTK_CHECK_VERSION (3, 0, 0)
+draw_event_cb (GtkWidget      *panel,
+               cairo_t        *cr,
+#else
 expose_event_cb (GtkWidget      *panel,
                  GdkEventExpose *event,
+#endif
                  gpointer        user_data)
 {
 	PlumaTaglistPluginPanel *ppanel = PLUMA_TAGLIST_PLUGIN_PANEL (panel);
@@ -607,8 +612,13 @@ expose_event_cb (GtkWidget      *panel,
 	/* And populate combo box */
 	populate_tag_groups_combo (PLUMA_TAGLIST_PLUGIN_PANEL (panel));
 
+#if GTK_CHECK_VERSION (3, 0, 0)
+	/* We need to manage only the first draw -> disconnect */
+	g_signal_handlers_disconnect_by_func (panel, draw_event_cb, NULL);
+#else
 	/* We need to manage only the first expose event -> disconnect */
 	g_signal_handlers_disconnect_by_func (panel, expose_event_cb, NULL);
+#endif
 
 	return FALSE;
 }
@@ -775,8 +785,13 @@ pluma_taglist_plugin_panel_init (PlumaTaglistPluginPanel *panel)
 			  G_CALLBACK (selected_group_changed),
 			  panel);
 	g_signal_connect (panel,
+#if GTK_CHECK_VERSION (3, 0, 0)
+			  "draw",
+			  G_CALLBACK (draw_event_cb),
+#else
 			  "expose-event",
 			  G_CALLBACK (expose_event_cb),
+#endif
 			  NULL);
 }
 
