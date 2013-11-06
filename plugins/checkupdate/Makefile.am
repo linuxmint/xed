@@ -31,10 +31,10 @@ gsettings_SCHEMAS = org.mate.pluma.plugins.checkupdate.gschema.xml
 %.gschema.xml.in: %.gschema.xml.in.in Makefile
 	$(AM_V_GEN) $(SED) -e 's^\@GETTEXT_PACKAGE\@^$(GETTEXT_PACKAGE)^g' < $< > $@
 
-EXTRA_DIST = $(plugin_in_files) $(gsettings_SCHEMAS_in_in)
+EXTRA_DIST = $(plugin_in_files) $(gsettings_SCHEMAS).in.in
 
-CLEANFILES = $(plugin_DATA) $(gsettings_SCHEMAS_in) $(gsettings_SCHEMAS)
+CLEANFILES = $(plugin_DATA) $(gsettings_SCHEMAS).in $(gsettings_SCHEMAS)
 
-DISTCLEANFILES = $(plugin_DATA) $(gsettings_SCHEMAS_in) $(gsettings_SCHEMAS)
+DISTCLEANFILES = $(plugin_DATA) $(gsettings_SCHEMAS).in $(gsettings_SCHEMAS)
 
 -include $(top_srcdir)/git.mk
