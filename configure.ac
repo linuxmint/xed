@@ -607,7 +607,7 @@ it from:
 
   http://pub.mate-desktop.org/release/1.${stable_version}/
 
-Or checkout the mate-${stable_version} branch of the pluma module from:
+Or checkout the 1.${stable_version} branch of the pluma module from:
 
   git://github.com/mate-desktop/pluma.git
 
