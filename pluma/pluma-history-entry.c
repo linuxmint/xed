@@ -529,7 +529,12 @@ pluma_history_entry_new (const gchar *history_id,
 	ret = g_object_new (PLUMA_TYPE_HISTORY_ENTRY,
 			    "history-id", history_id,
 	                    "model", store,
+#if GTK_CHECK_VERSION (3, 0, 0)
+			    "has-entry", TRUE,
+			    "id-column", 0,
+#else
 			    "text-column", 0,
+#endif
 	                    NULL);
 
 	g_object_unref (store);
