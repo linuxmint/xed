@@ -66,19 +66,28 @@ enable python plugins support.
 
 Simple install procedure:
 
-  % gzip -cd mate-file-manager.tar.gz | tar xvf - 	# unpack the sources
-  % cd mate-file-manager			# change to the toplevel directory
-  % ./autogen.sh					# run the `configure' script
+  % gzip -cd mate-text-editor.tar.gz | tar xvf - 	# unpack the sources
+  % cd mate-text-editor				# change to the toplevel directory
+  % ./autogen.sh				# run the `configure' script
   % make					# build pluma
   [ Become root if necessary ]
   % make install				# install pluma
 
 
+Running Tests
+==================
+Pluma has several test that can be run after compilation. Run them by issueing "make check". However there are a couple of requirements that need to be satified before they will pass.
+
+* You need the gsettings schemas installed for some tests to be able to run.
+* You need to mount sftp://localhost/ with gvfs-mount for one test to pass.
+
+If test fail and you have setup the above correctly then please file a bug report as described below.
+
 How to report bugs
 ==================
 
 Bugs should be reported to the MATE bug tracking system.
-(http://bugzilla.gnome.org, product pluma). You will need to create an
+(https://github.com/mate-desktop/pluma/issues). You will need to create an
 account for yourself.
 
 You can also report bugs using the MATE program bug-buddy.
@@ -108,7 +117,7 @@ In the bug report please include:
 Patches
 =======
 
-Patches should also be submitted to bugzilla.gnome.org. If the patch
+Patches should also be submitted to github.com/mate-desktop/pluma. If the patch
 fixes an existing bug, add the patch as an attachment to that bug
 report.
 
