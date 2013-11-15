@@ -22,6 +22,10 @@
 #include <string.h>
 #include <stdlib.h>
 #include <stdio.h>
+#include <gtk/gtk.h>
+#if GTK_CHECK_VERSION (3, 0, 0)
+#include <gtksourceview/gtksource.h>
+#endif
 #include <pluma/pluma-language-manager.h>
 #include <pluma/pluma-prefs-manager.h>
 #include <pluma/pluma-debug.h>
