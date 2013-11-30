@@ -623,6 +623,7 @@ impl_activate (PlumaPlugin * plugin, PlumaWindow * window)
 	GdkPixbuf * pixbuf;
 	PlumaFileBrowserStore * store;
 	gchar *data_dir;
+	GSettingsSchemaSource *schema_source;
 
 	data = g_new0 (PlumaFileBrowserPluginData, 1);
 
@@ -632,7 +633,6 @@ impl_activate (PlumaPlugin * plugin, PlumaWindow * window)
 
 	data->settings = g_settings_new (FILE_BROWSER_SCHEMA);
 	data->onload_settings = g_settings_new (FILE_BROWSER_ONLOAD_SCHEMA);
-	data->caja_settings = g_settings_new (CAJA_SCHEMA);
 	data->terminal_settings = g_settings_new (TERMINAL_SCHEMA);
 
 	g_signal_connect (data->tree_widget,
@@ -689,7 +689,11 @@ impl_activate (PlumaPlugin * plugin, PlumaWindow * window)
 	restore_filter (data);
 
 	/* Install caja preferences */
-	install_caja_prefs (data);
+	schema_source = g_settings_schema_source_get_default();
+	if (g_settings_schema_source_lookup (schema_source, CAJA_SCHEMA, FALSE)) {
+		data->caja_settings = g_settings_new (CAJA_SCHEMA);
+		install_caja_prefs (data);
+	}
 
 	/* Connect signals to store the last visited location */
 	g_signal_connect (pluma_file_browser_widget_get_browser_view (data->tree_widget),
@@ -742,8 +746,10 @@ impl_deactivate (PlumaPlugin * plugin, PlumaWindow * window)
 
 	g_object_unref (data->settings);
 	g_object_unref (data->onload_settings);
-	g_object_unref (data->caja_settings);
 	g_object_unref (data->terminal_settings);
+
+	if (data->caja_settings)
+		g_object_unref (data->caja_settings);
 
 	remove_popup_ui (window);
 
