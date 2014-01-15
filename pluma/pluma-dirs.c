@@ -37,7 +37,6 @@ gchar* pluma_dirs_get_user_config_dir(void)
 
 	#ifndef G_OS_WIN32
 		const gchar* envvar;
-		const gchar* home;
 
 		/* Support old libmate env var */
 		envvar = g_getenv("MATE22_USER_DIR");
@@ -48,19 +47,10 @@ gchar* pluma_dirs_get_user_config_dir(void)
 		}
 		else
 		{
-			home = g_get_home_dir();
-
-			if (home != NULL)
-			{
-				config_dir = g_build_filename(home, ".config", "pluma", NULL);
-			}
+			config_dir = g_build_filename(g_get_user_config_dir(), "pluma", NULL);
 		}
 	#else
-		#if GLIB_CHECK_VERSION(2, 6, 0)
-			config_dir = g_build_filename(g_get_user_config_dir(), "pluma", NULL);
-		#else // glib version < 2.6.0
-			config_dir = g_build_filename(g_get_home_dir(), ".config", "pluma", NULL);
-		#endif
+		config_dir = g_build_filename(g_get_user_config_dir(), "pluma", NULL);
 	#endif
 
 	return config_dir;
@@ -94,7 +84,7 @@ gchar* pluma_dirs_get_user_accels_file(void)
 
 	#ifndef G_OS_WIN32
 		const gchar* envvar;
-		const gchar* home;
+		const gchar* config_dir;
 
 		/* on linux accels are stored in .config/accels
 		 * for historic reasons (backward compat with the
@@ -109,11 +99,11 @@ gchar* pluma_dirs_get_user_accels_file(void)
 		}
 		else
 		{
-			home = g_get_home_dir();
+			config_dir = pluma_dirs_get_user_config_dir();
 
-			if (home != NULL)
+			if (config_dir != NULL)
 			{
-				accels = g_build_filename(home, ".config", "accels", "pluma", NULL);
+				accels = g_build_filename(config_dir, "accels", "pluma", NULL);
 			}
 		}
 	#else
