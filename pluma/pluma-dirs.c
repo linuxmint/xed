@@ -67,13 +67,13 @@ gchar* pluma_dirs_get_user_cache_dir(void)
 
 gchar* pluma_dirs_get_user_plugins_dir(void)
 {
-	gchar* config_dir;
+	gchar* data_dir;
 	gchar* plugin_dir;
 
-	config_dir = pluma_dirs_get_user_config_dir();
+	data_dir = g_get_user_data_dir();
 
-	plugin_dir = g_build_filename(config_dir, "plugins", NULL);
-	g_free(config_dir);
+	plugin_dir = g_build_filename(data_dir, "pluma", "plugins", NULL);
+	g_free(data_dir);
 
 	return plugin_dir;
 }
