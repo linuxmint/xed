@@ -103,7 +103,7 @@ gchar* pluma_dirs_get_user_accels_file(void)
 
 			if (config_dir != NULL)
 			{
-				accels = g_build_filename(config_dir, "accels", "pluma", NULL);
+				accels = g_build_filename(config_dir, "accels", NULL);
 			}
 		}
 	#else
