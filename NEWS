@@ -1,3 +1,11 @@
+pluma 1.7.1
+===========
+
+  * Move user plugin dir from config_dir to data_dir. Plugins should have
+    never been installed in the config dir as they are not part of the
+    configuration. This means user will need to move the plugins directory
+    from: $HOME/.config/pluma/ to $HOME/.local/share/pluma/.
+
 pluma 1.5.0
 ===========
 
