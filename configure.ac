@@ -157,7 +157,6 @@ dnl ================================================================
 IT_PROG_INTLTOOL([0.40.0])
 GETTEXT_PACKAGE=pluma
 AC_SUBST([GETTEXT_PACKAGE])
-AM_GNU_GETTEXT_VERSION([0.17])
 AM_GLIB_GNU_GETTEXT
 AC_DEFINE_UNQUOTED(GETTEXT_PACKAGE, "$GETTEXT_PACKAGE", [Define to the Gettext package name])
 
