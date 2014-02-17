@@ -35,23 +35,7 @@ gchar* pluma_dirs_get_user_config_dir(void)
 {
 	gchar* config_dir = NULL;
 
-	#ifndef G_OS_WIN32
-		const gchar* envvar;
-
-		/* Support old libmate env var */
-		envvar = g_getenv("MATE22_USER_DIR");
-
-		if (envvar != NULL)
-		{
-			config_dir = g_build_filename(envvar, "pluma", NULL);
-		}
-		else
-		{
-			config_dir = g_build_filename(g_get_user_config_dir(), "pluma", NULL);
-		}
-	#else
-		config_dir = g_build_filename(g_get_user_config_dir(), "pluma", NULL);
-	#endif
+	config_dir = g_build_filename(g_get_user_config_dir(), "pluma", NULL);
 
 	return config_dir;
 }
