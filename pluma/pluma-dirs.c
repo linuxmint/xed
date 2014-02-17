@@ -65,41 +65,12 @@ gchar* pluma_dirs_get_user_plugins_dir(void)
 gchar* pluma_dirs_get_user_accels_file(void)
 {
 	gchar* accels = NULL;
+	gchar *config_dir = NULL;
 
-	#ifndef G_OS_WIN32
-		const gchar* envvar;
-		const gchar* config_dir;
+	config_dir = pluma_dirs_get_user_config_dir();
+	accels = g_build_filename(config_dir, "accels", NULL);
 
-		/* on linux accels are stored in .config/accels
-		 * for historic reasons (backward compat with the
-		 * old libmate that took care of saving them */
-
-		/* Support old libmate env var */
-		envvar = g_getenv("MATE22_USER_DIR");
-
-		if (envvar != NULL)
-		{
-			accels = g_build_filename(envvar, "accels", "pluma", NULL);
-		}
-		else
-		{
-			config_dir = pluma_dirs_get_user_config_dir();
-
-			if (config_dir != NULL)
-			{
-				accels = g_build_filename(config_dir, "accels", NULL);
-			}
-		}
-	#else
-
-		gchar *config_dir = NULL;
-
-		config_dir = pluma_dirs_get_user_config_dir();
-		accels = g_build_filename(config_dir, "accels", "pluma", NULL);
-
-		g_free(config_dir);
-
-	#endif
+	g_free(config_dir);
 
 	return accels;
 }
