@@ -38,6 +38,11 @@
 #include <glib/gi18n.h>
 #include <glib/gstdio.h>
 
+#include <gtk/gtk.h>
+#if GTK_CHECK_VERSION (3, 0, 0)
+#include <gtksourceview/gtksource.h>
+#endif
+
 #include "pluma-style-scheme-manager.h"
 #include "pluma-prefs-manager.h"
 #include "pluma-dirs.h"
