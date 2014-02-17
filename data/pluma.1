@@ -1,76 +1,88 @@
-.TH PLUMA 1 "24 Apr 2006"
-.SH NAME
-\fBpluma\fP \- text editor for the MATE Desktop
+.\" Man page for Pluma.
+.TH PLUMA 1 "29 January 2014" "MATE Desktop Environment"
+.\" Please adjust this date when revising the manpage.
+.\"
+.SH "NAME"
+Pluma \- The MATE Text Editor
+.SH "SYNOPSIS"
+.B pluma [OPTIONS...] [FILES...]
+.SH "DESCRIPTION"
+Pluma is the official text editor of the MATE desktop environment. While aiming at simplicity and ease of use, Pluma is a powerful general purpose text editor. It can be used to create and edit all sorts of text files.
+.PP
+Pluma features a flexible plugin system which can be used to dynamically add new advanced features to Pluma itself.
+.PP
+This manual page briefly documents the \fBpluma\fR command.
 
-.SH SYNOPSIS
-.B pluma
-[\fIOPTION\fR]... [\fIFILE\fR]...
-.SH DESCRIPTION
-.B pluma
-is the official text editor of the MATE desktop environment.
-
-While aiming at simplicity and ease of use,
-.B pluma
-is a powerful general purpose text editor.
-It can be used to create and edit all kinds of text files.
-
-.B pluma
-features a flexible plugin system which can be used to dynamically add 
-new advanced features to
-.B pluma
-itself.
-.LP
-.SH OPTIONS
-
+.SH "OPTIONS"
 .TP
-\fB\-\-help\fR
-Prints the command line options.
+\fBfilename(s)...\fR
+Specifies the file to open when \fBpluma\fR starts. If this is not specified, \fBpluma\fR will start a new, blank file with an "Unsaved Document" label. Multiple files can be loaded if they are separated by spaces. \fBpluma\fR also supports handling of remote files.
+.TP
+\fB\-\-display=DISPLAY\fR
+X display to use.
 .TP
 \fB\-\-encoding\fR
-Set the character encoding to be used for opening the files listed on the command line".
+Set the character encoding to be used for opening the files listed on the command line.
 .TP
 \fB\-\-new\-window\fR
-Create a new toplevel window in an existing instance of
-.B pluma.
+Create a new toplevel window in an existing instance of \fBpluma\fR.
 .TP
 \fB\-\-new\-document\fR
-Create a new document in an existing instance of
-.B pluma.
+Create a new document in an existing instance of \fBpluma\fR, on the last Pluma window that had focus.
 .TP
 \fB+[num]\fR
 For the first file, go to the line specified by "num" (do not insert a space between the "+" sign and the number).
 If "num" is missing, go to the last line.
-.TP
-\fBfilename(s)...\fR
-Specifies the file to open when 
-.B pluma
-starts. If this is not specified, 
-.B pluma
-will load a blank file with an "Unsaved Document" label. Multiple files can be loaded if they are
-separated by spaces.  
-.B pluma
-also supports handling of remote files.  For example, you can pass the location 
-of a webpage to
-.B pluma,
-like "http://www.gnome.org", or load a file from a FTP server,
-like "ftp://ftp.gnome.org/robots.txt".
 .TP
 \fB\-\-list-encodings\fR
 Display list of possible values for the encoding option and exit
 .TP
 \fB\-\-version\fR
 Output version information and exit
+.TP
+\fB\-?, \-h, \-\-help\fR
+Print standard command line options.
+.TP
+\fB\-\-help\-all\fR
+Print all command line options.
+.P
+This program also accepts the standard GTK options.
 
-.SH BUGS
-If you find a bug, please report it at http://bugzilla.gnome.org/enter_bug.cgi?product=pluma.
-.SH AUTHORS
-Paolo Maggi (paolo@gnome.org)
-.TP
-Paolo Borelli (pborelli@katamail.com)
-.TP
-James Willcox (jwillcox@gnome.org)
-.TP
-Federico Mena Quintero (federico@novell.com)
-.TP
+.SH "EXAMPLES"
+\fBpluma \-\-encoding WINDOWS-1252 ftp://ftp.kernel.org/pub/linux/kernel/README\fR
+.RS 4
+Open the Linux Kernel README file from kernel.org's FTP server using Windows-1252 character encoding.
+.RE
+.PP
+\fBpluma +156 http://mate-desktop.org/\fR
+.RS 4
+Open the main web page of mate-desktop.org and jump to line 156.
+.RE
+.PP
+\fBpluma \-\-new\-window ~/.bashrc ~/.bash_history\fR
+.RS 4
+Open the current users .bashrc and .bash_history files in a new Pluma window.
+
+.SH "BUGS"
+.SS Should you encounter any bugs, they may be reported at: 
+http://github.com/mate-desktop/pluma/issues
+.SH "NOTES"
+./" Obviously remove this if you modify this outside of Pluma. But why on earth would you do that, right?
+This version of the Pluma Manual Page was written with Pluma. =)
+.SH "AUTHORS"
+.SS This Man Page has been updated/re-written for the MATE Desktop Environment by:
+Adam Erdman <hekel@archlinux.info> (2014)
+.SH "HISTORY"
+.SS Some portions of this manual were originally written by Gedit's previous developers, to accompany it in the GNOME Desktop Environment by:
+.nf
+Paolo Maggi <paolo@gnome.org>
+Paolo Borelli <pborelli@katamail.com>
+James Willcox <jwillcox@gnome.org>
+Federico Mena Quintero <federico@novell.com>
 Chema Celorio
-
+(2000-2010)
+.fi
+.SH "SEE ALSO"
+.SS
+Pluma documentation can be found from the "Help" menu, or by pressing the F1 key. 
+Further information may also be available at: http://wiki.mate-desktop.org/docs
