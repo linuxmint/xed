@@ -3,17 +3,17 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
-# Ján Ďanovský <dagsoftware@yahoo.com>, 2013
+# Ján Ďanovský <dagsoftware@yahoo.com>, 2013-2014
 # SGOrava <sgd.orava@gmail.com>, 2013
 # SGOrava <sgd.orava@gmail.com>, 2013
-# Tibor Kaputa <tibbbi2@gmail.com>, 2014
+# tibbi <tibbbi2@gmail.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: MATE Desktop Environment\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-11-04 12:56+0100\n"
-"PO-Revision-Date: 2014-02-02 22:53+0000\n"
-"Last-Translator: tibbi <tibbi@centrum.sk>\n"
+"PO-Revision-Date: 2014-02-18 17:19+0000\n"
+"Last-Translator: Ján Ďanovský <dagsoftware@yahoo.com>\n"
 "Language-Team: Slovak (http://www.transifex.com/projects/p/MATE/language/sk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -198,13 +198,13 @@ msgstr "Určuje, ako sa bude kurzor pohybovať pri stlačení HOME a END. Pre st
 
 #: ../data/org.mate.pluma.gschema.xml.in.in.h:37
 msgid "Restore Previous Cursor Position"
-msgstr "Obnoviť predošlé umiestnenie kurzora"
+msgstr "Obnoviť predchádzajúce umiestnenie kurzora"
 
 #: ../data/org.mate.pluma.gschema.xml.in.in.h:38
 msgid ""
 "Whether pluma should restore the previous cursor position when a file is "
 "loaded."
-msgstr "Určuje, či by pluma mala obnoviť predošlé umiestnenie kurzora po načítaní súbora."
+msgstr "Určuje, či by pluma mala obnoviť predchádzajúce umiestnenie kurzora po načítaní súboru."
 
 #: ../data/org.mate.pluma.gschema.xml.in.in.h:39
 msgid "Enable Search Highlighting"
@@ -362,7 +362,7 @@ msgid ""
 "Sorted list of encodings used by pluma for automatically detecting the "
 "encoding of a file. \"CURRENT\" represents the current locale encoding. Only"
 " recognized encodings are used."
-msgstr "Triedený zoznam kódovaní použitých plumou pre automatické zistenie kódovania súbora. „CURRENT“ znamená súčasné kódovanie podľa miestneho nastavenia. Sú použité iba rozpoznané kódovania."
+msgstr "Triedený zoznam kódovaní použitých plumou pre automatické zistenie kódovania súboru. „CURRENT“ znamená súčasné kódovanie podľa miestneho nastavenia. Sú použité iba rozpoznané kódovania."
 
 #: ../data/org.mate.pluma.gschema.xml.in.in.h:71
 msgid "Encodings shown in menu"
@@ -608,11 +608,11 @@ msgstr "Nepodarilo sa odstrániť farebnú schému „%s“."
 
 #: ../pluma/dialogs/pluma-preferences-dialog.c:1090
 msgid "pluma Preferences"
-msgstr "Nastavenia pluma"
+msgstr "Predvlby pluma"
 
 #: ../pluma/dialogs/pluma-preferences-dialog.ui.h:1
 msgid "Preferences"
-msgstr "Nastavenia"
+msgstr "Predvoľby"
 
 #: ../pluma/dialogs/pluma-preferences-dialog.ui.h:2
 #: ../pluma/pluma-print-preferences.ui.h:9
@@ -693,11 +693,11 @@ msgstr "Vložiť _medzery miesto tabulátorov"
 
 #: ../pluma/dialogs/pluma-preferences-dialog.ui.h:19
 msgid "Automatic Indentation"
-msgstr "Automatické zarážky"
+msgstr "Automatické odsadenie"
 
 #: ../pluma/dialogs/pluma-preferences-dialog.ui.h:20
 msgid "_Enable automatic indentation"
-msgstr "_Povoliť automatické zarážky"
+msgstr "_Povoliť automatické odsadenie"
 
 #: ../pluma/dialogs/pluma-preferences-dialog.ui.h:21
 msgid "File Saving"
@@ -898,7 +898,7 @@ msgid ""
 msgid_plural ""
 "Changes made to the document in the last %ld seconds will be permanently "
 "lost."
-msgstr[0] "Zmeny v tomto dokumente za poslednú sekundu budú trvale stratené."
+msgstr[0] "Zmeny v tomto dokumente za poslednú %ld sekundu budú trvale stratené."
 msgstr[1] "Zmeny v tomto dokumente za posledné %ld sekundy budú trvale stratené."
 msgstr[2] "Zmeny v tomto dokumente za posledných %ld sekúnd budú trvale stratené."
 
@@ -927,7 +927,7 @@ msgid ""
 msgid_plural ""
 "Changes made to the document in the last %ld minutes will be permanently "
 "lost."
-msgstr[0] "Zmeny v tomto dokumente za poslednú minútu budú trvale stratené."
+msgstr[0] "Zmeny v tomto dokumente za poslednú %ld minútu budú trvale stratené."
 msgstr[1] "Zmeny v tomto dokumente za posledné %ld minúty budú trvale stratené."
 msgstr[2] "Zmeny v tomto dokumente za posledných %ld minút bude trvale stratených."
 
@@ -954,7 +954,7 @@ msgid ""
 "Changes made to the document in the last %d hour will be permanently lost."
 msgid_plural ""
 "Changes made to the document in the last %d hours will be permanently lost."
-msgstr[0] "Zmeny v tomto dokumente za poslednú hodinu budú trvale stratené."
+msgstr[0] "Zmeny v tomto dokumente za poslednú %d hodinu budú trvale stratené."
 msgstr[1] "Zmeny v tomto dokumente za posledné %d hodiny budú trvale stratené."
 msgstr[2] "Zmeny v tomto dokumente za posledných %d hodín budú trvale stratené."
 
@@ -1127,7 +1127,7 @@ msgstr "Automaticky zistené"
 #: ../pluma/pluma-encodings-combo-box.c:311
 #, c-format
 msgid "Current Locale (%s)"
-msgstr "Aktuálne miestne nastavenie (%s)"
+msgstr "Aktuálne národné nastavenie (%s)"
 
 #: ../pluma/pluma-encodings-combo-box.c:361
 msgid "Add or Remove..."
@@ -1191,11 +1191,11 @@ msgstr "pluma nedokáže spracovať toto umiestnenie."
 
 #: ../pluma/pluma-io-error-message-area.c:262
 msgid "The location of the file cannot be mounted."
-msgstr "Umiestnenie súbora sa nedá pripojiť."
+msgstr "Umiestnenie súboru sa nedá pripojiť."
 
 #: ../pluma/pluma-io-error-message-area.c:266
 msgid "The location of the file cannot be accessed because it is not mounted."
-msgstr "K umiestneniu súbora sa nedá pristúpiť, pretože nie je pripojené."
+msgstr "K umiestneniu súboru sa nedá pristúpiť, pretože nie je pripojené."
 
 #: ../pluma/pluma-io-error-message-area.c:270
 #, c-format
@@ -1246,7 +1246,7 @@ msgstr "pluma nemôže tento súbor nájsť. Možno bol nedávno odstránený."
 #: ../pluma/pluma-io-error-message-area.c:443
 #, c-format
 msgid "Could not revert the file %s."
-msgstr "Nepodarilo sa vrátiť obsah súbora %s."
+msgstr "Nepodarilo sa vrátiť obsah súboru %s."
 
 #: ../pluma/pluma-io-error-message-area.c:469
 msgid "Ch_aracter Encoding:"
@@ -1278,7 +1278,7 @@ msgstr "Počet sledovaných odkazov je obmedzený a aktuálny súbor sa v tomto 
 
 #: ../pluma/pluma-io-error-message-area.c:658
 msgid "You do not have the permissions necessary to open the file."
-msgstr "Nemáte potrebné oprávnenie na otvorenie tohto súbora."
+msgstr "Nemáte potrebné oprávnenie na otvorenie tohto súboru."
 
 #: ../pluma/pluma-io-error-message-area.c:664
 msgid "pluma has not been able to detect the character encoding."
@@ -1296,13 +1296,13 @@ msgstr "Vyberte z ponuky kódovanie znakov a skúste to znovu."
 #: ../pluma/pluma-io-error-message-area.c:673
 #, c-format
 msgid "There was a problem opening the file %s."
-msgstr "Došlo k problému pri otváraní súbora %s."
+msgstr "Došlo k problému pri otváraní súboru %s."
 
 #: ../pluma/pluma-io-error-message-area.c:675
 msgid ""
 "The file you opened has some invalid characters. If you continue editing "
 "this file you could make this document useless."
-msgstr "Súbor, ktorý ste otvorili, obsahuje neplatné znaky. Ak budete v úprave tohto súbora pokračovať, môžete ho spraviť nepoužiteľným."
+msgstr "Súbor, ktorý ste otvorili, obsahuje neplatné znaky. Ak budete v úprave tohto súboru pokračovať, môžete ho spraviť nepoužiteľným."
 
 #: ../pluma/pluma-io-error-message-area.c:678
 msgid "You can also choose another character encoding and try again."
@@ -1316,7 +1316,7 @@ msgstr "Nepodarilo sa otvoriť súbor %s použítím kódovania znakov %s."
 #: ../pluma/pluma-io-error-message-area.c:689
 #: ../pluma/pluma-io-error-message-area.c:764
 msgid "Select a different character encoding from the menu and try again."
-msgstr "Vyberte z ponuky iné kódovanie znakov a skúste znova."
+msgstr "Vyberte z ponuky iné kódovanie znakov a skúste znovu."
 
 #: ../pluma/pluma-io-error-message-area.c:699
 #, c-format
@@ -1377,19 +1377,19 @@ msgstr "Ak ho uložíte, všetky externé zmeny môžu byť stratené. Uložiť 
 #: ../pluma/pluma-io-error-message-area.c:1088
 #, c-format
 msgid "Could not create a backup file while saving %s"
-msgstr "Nepodarilo sa vytvoriť záložnú kópiu súbora počas ukladania %s"
+msgstr "Nepodarilo sa vytvoriť záložnú kópiu súboru počas ukladania %s"
 
 #: ../pluma/pluma-io-error-message-area.c:1091
 #, c-format
 msgid "Could not create a temporary backup file while saving %s"
-msgstr "Nepodarilo sa vytvoriť dočasnú záložnú kópiu súbora počas ukladania %s"
+msgstr "Nepodarilo sa vytvoriť dočasnú záložnú kópiu súboru počas ukladania %s"
 
 #: ../pluma/pluma-io-error-message-area.c:1111
 msgid ""
 "pluma could not back up the old copy of the file before saving the new one. "
 "You can ignore this warning and save the file anyway, but if an error occurs"
 " while saving, you could lose the old copy of the file. Save anyway?"
-msgstr "plume sa nepodarilo zálohovať starú kópiu súbora pred uložením novej. Môžete toto upozornenie ignorovať a uložiť súbor napriek tomu, ale ak sa počas ukladania vyskytne chyba, môžete prísť o starú kópiu súbora. Chcete súbor aj tak uložiť?"
+msgstr "plume sa nepodarilo zálohovať starú kópiu súboru pred uložením novej. Môžete toto upozornenie ignorovať a uložiť súbor napriek tomu, ale ak sa počas ukladania vyskytne chyba, môžete prísť o starú kópiu súboru. Chcete súbor aj tak uložiť?"
 
 #. Translators: %s is a URI scheme (like for example http:, ftp:, etc.)
 #: ../pluma/pluma-io-error-message-area.c:1175
@@ -1416,13 +1416,13 @@ msgstr "%s nie je platným umiestnením. Prosím, overte, či ste umiestnenie za
 msgid ""
 "You do not have the permissions necessary to save the file. Please check "
 "that you typed the location correctly and try again."
-msgstr "Nemáte dostatočné oprávnenie na uloženie tohto súbora. Prosím, overte, či ste zadali správne umiestnenie a skúste to znovu."
+msgstr "Nemáte dostatočné oprávnenia na uloženie tohto súboru. Prosím, overte, či ste zadali správne umiestnenie a skúste to znovu."
 
 #: ../pluma/pluma-io-error-message-area.c:1204
 msgid ""
 "There is not enough disk space to save the file. Please free some disk space"
 " and try again."
-msgstr "Na uloženie tohto súbora nie je na disku dostatok miesta. Prosím uvoľnite viac miesta a skúste to znovu."
+msgstr "Na uloženie tohto súboru nie je na disku dostatok miesta. Prosím uvoľnite viac miesta a skúste to znovu."
 
 #: ../pluma/pluma-io-error-message-area.c:1209
 msgid ""
@@ -1552,7 +1552,7 @@ msgstr "Tlačiť čí_sla riadkov"
 #. print preferences.
 #: ../pluma/pluma-print-preferences.ui.h:6
 msgid "_Number every"
-msgstr "Čís_la každých"
+msgstr "Čís_lo každých"
 
 #. 'lines' from 'Number every 3 lines' in the 'Text Editor' tab of the print
 #. preferences.
@@ -1590,7 +1590,7 @@ msgstr "_Obnoviť predvolené písma"
 
 #: ../pluma/pluma-print-preview.c:568
 msgid "Show the previous page"
-msgstr "Zobraziť predošlú stranu"
+msgstr "Zobraziť predchádzajúcu stranu"
 
 #: ../pluma/pluma-print-preview.c:580
 msgid "Show the next page"
@@ -1731,17 +1731,17 @@ msgstr "RO"
 #: ../pluma/pluma-tab.c:1720
 #, c-format
 msgid "Error opening file %s"
-msgstr "Chyba pri otváraní súbora %s"
+msgstr "Chyba pri otváraní súboru %s"
 
 #: ../pluma/pluma-tab.c:1725
 #, c-format
 msgid "Error reverting file %s"
-msgstr "Chyba pri vracaní súbora %s"
+msgstr "Chyba pri návrate súboru %s"
 
 #: ../pluma/pluma-tab.c:1730
 #, c-format
 msgid "Error saving file %s"
-msgstr "Chyba pri ukladaní súbora %s"
+msgstr "Chyba pri ukladaní súboru %s"
 
 #: ../pluma/pluma-tab.c:1751
 msgid "Unicode (UTF-8)"
@@ -1807,7 +1807,7 @@ msgstr "Otvoriť súbor"
 #. Edit menu
 #: ../pluma/pluma-ui.h:62
 msgid "Pr_eferences"
-msgstr "Nas_tavenia"
+msgstr "Pr_edvoľby"
 
 #: ../pluma/pluma-ui.h:63
 msgid "Configure the application"
@@ -1844,7 +1844,7 @@ msgstr "Uložiť aktuálny súbor pod iným menom"
 
 #: ../pluma/pluma-ui.h:85
 msgid "Revert to a saved version of the file"
-msgstr "Vrátiť sa k uloženej verzii súbora"
+msgstr "Vrátiť sa k uloženej verzii súboru"
 
 #: ../pluma/pluma-ui.h:87
 msgid "Page Set_up..."
@@ -1872,11 +1872,11 @@ msgstr "Vytlačiť aktuálnu stranu"
 
 #: ../pluma/pluma-ui.h:97
 msgid "Undo the last action"
-msgstr "Vrátiť poslednú akciu"
+msgstr "Vrátiť poslednú operáciu"
 
 #: ../pluma/pluma-ui.h:99
 msgid "Redo the last undone action"
-msgstr "Znovu vykonať poslednú vrátenú akciu"
+msgstr "Znovu vykonať poslednú vrátenú operáciu"
 
 #: ../pluma/pluma-ui.h:101
 msgid "Cut the selection"
@@ -1926,7 +1926,7 @@ msgstr "Hľadať rovnaký text vpred"
 
 #: ../pluma/pluma-ui.h:119
 msgid "Find Pre_vious"
-msgstr "Nájsť pre_došlý"
+msgstr "Nájsť pre_dchádzajúci"
 
 #: ../pluma/pluma-ui.h:120
 msgid "Search backwards for the same text"
@@ -1983,11 +1983,11 @@ msgstr "Zavrieť všetky otvorené súbory"
 
 #: ../pluma/pluma-ui.h:140
 msgid "_Previous Document"
-msgstr "_Predošlý dokument"
+msgstr "_Predchádzajúci dokument"
 
 #: ../pluma/pluma-ui.h:141
 msgid "Activate previous document"
-msgstr "Aktivovať predošlý dokument"
+msgstr "Aktivovať predchádzajúci dokument"
 
 #: ../pluma/pluma-ui.h:142
 msgid "_Next Document"
@@ -2197,7 +2197,7 @@ msgstr "Obrátiť veľkosť písmen v označenom texte"
 
 #: ../plugins/changecase/pluma-changecase-plugin.c:232
 msgid "_Title Case"
-msgstr "Veľkosť písma _nadpisu"
+msgstr "Veľkosť písma _titulku"
 
 #: ../plugins/changecase/pluma-changecase-plugin.c:233
 msgid "Capitalize the first letter of each selected word"
@@ -2233,11 +2233,11 @@ msgstr "Je k dispozícií nová verzia programu pluma"
 msgid ""
 "You can download the new version of pluma by clicking on the download button"
 " or ignore that version and wait for a new one"
-msgstr "Kliknutím na tlačidlo Stiahnuť si viete stiahnuť novú verziu programu pluma, alebo môžete túto verziu ignorovať a počkať na ďalšiu"
+msgstr "Kliknutím na tlačidlo Stiahnuť si viete stiahnuť novú verziu programu pluma, alebo môžete túto verziu ignorovať a počkať na nasledujúcu"
 
 #: ../plugins/checkupdate/org.mate.pluma.plugins.checkupdate.gschema.xml.in.in.h:1
 msgid "Version to ignore until the next version is released"
-msgstr "Verzia, ktorá má byť po vydanie ďalšej verzie ignorovaná"
+msgstr "Verzia, ktorá má byť po vydanie nasledujúcej verzie ignorovaná"
 
 #: ../plugins/docinfo/docinfo.pluma-plugin.desktop.in.h:1
 #: ../plugins/docinfo/docinfo.ui.h:1
@@ -2256,7 +2256,7 @@ msgstr "_Obnoviť"
 
 #: ../plugins/docinfo/docinfo.ui.h:3
 msgid "File Name"
-msgstr "Názov súbora"
+msgstr "Názov súboru"
 
 #: ../plugins/docinfo/docinfo.ui.h:5
 msgid "Bytes"
@@ -2371,7 +2371,7 @@ msgstr "Nový nástroj"
 #: ../plugins/externaltools/tools/manager.py:759
 #, python-format
 msgid "This accelerator is already bound to %s"
-msgstr "Táto klávesová skratka je už obsadená akciou %s"
+msgstr "Táto klávesová skratka je už obsadená operáciou %s"
 
 #: ../plugins/externaltools/tools/manager.py:810
 msgid "Type a new accelerator, or press Backspace to clear"
@@ -2444,15 +2444,15 @@ msgstr "Všetky dokumenty okrem nepomenovaných"
 
 #: ../plugins/externaltools/tools/tools.ui.h:15
 msgid "Local files only"
-msgstr "Len miestne súbory"
+msgstr "Iba lokálne súbory"
 
 #: ../plugins/externaltools/tools/tools.ui.h:16
 msgid "Remote files only"
-msgstr "Len vzdialené súbory"
+msgstr "Iba vzdialené súbory"
 
 #: ../plugins/externaltools/tools/tools.ui.h:17
 msgid "Untitled documents only"
-msgstr "Len nepomenované dokumenty"
+msgstr "Iba nepomenované dokumenty"
 
 #: ../plugins/externaltools/tools/tools.ui.h:18
 msgid "External Tools Manager"
@@ -2501,7 +2501,7 @@ msgstr "Odstrániť koncové medzery"
 
 #: ../plugins/externaltools/data/remove-trailing-spaces.desktop.in.h:2
 msgid "Remove useless trailing spaces in your file"
-msgstr "Odstrániť zo súbora nepotrebné koncové medzery"
+msgstr "Odstrániť zo súboru nepotrebné koncové medzery"
 
 #: ../plugins/externaltools/data/run-command.desktop.in.h:1
 msgid "Run command"
@@ -2573,24 +2573,24 @@ msgstr "Ak sa načíta modul prehliadača súborov, otvoriť namiesto zobrazenia
 
 #: ../plugins/filebrowser/org.mate.pluma.plugins.filebrowser.gschema.xml.in.in.h:9
 msgid "File Browser Root Directory"
-msgstr "Základný priečinok prehliadača súborov"
+msgstr "Koreňový priečinok prehliadača súborov"
 
 #: ../plugins/filebrowser/org.mate.pluma.plugins.filebrowser.gschema.xml.in.in.h:10
 msgid ""
 "The file browser root directory to use when loading the file browser plugin "
 "and onload/tree_view is TRUE."
-msgstr "Základný priečinok prehliadača súborov, ktorý má byť použitý pri načítaní modulu prehliadača ak je onload/tree_view TRUE."
+msgstr "Koreňový priečinok prehliadača súborov, ktorý má byť použitý pri načítaní modulu prehliadača ak je onload/tree_view TRUE."
 
 #: ../plugins/filebrowser/org.mate.pluma.plugins.filebrowser.gschema.xml.in.in.h:11
 msgid "File Browser Virtual Root Directory"
-msgstr "Základný virtuálny priečinok prehliadača súborov"
+msgstr "Virtuálny koreňový priečinok prehliadača súborov"
 
 #: ../plugins/filebrowser/org.mate.pluma.plugins.filebrowser.gschema.xml.in.in.h:12
 msgid ""
 "The file browser virtual root directory to use when loading the file browser"
 " plugin when onload/tree_view is TRUE. The virtual root must always be below"
 " the actual root."
-msgstr "Základný virtuálny priečinok, ktorý má byť použitý pri načítaní modulu prehliadača ak je onload/tree_view TRUE. Virtuálny základný priečinok musí stále byť pod skutočným základným priečinkom."
+msgstr "Virtuálny koreňový priečinok, ktorý má byť použitý pri načítaní modulu prehliadača ak je onload/tree_view TRUE. Virtuálny koreňový priečinok musí stále byť pod skutočným koreňovým priečinkom."
 
 #: ../plugins/filebrowser/org.mate.pluma.plugins.filebrowser.gschema.xml.in.in.h:13
 msgid "Enable Restore of Remote Locations"
@@ -2618,7 +2618,7 @@ msgstr "_Otvoriť terminál tu"
 
 #: ../plugins/filebrowser/pluma-file-browser-plugin.c:540
 msgid "Open a terminal at the currently opened directory"
-msgstr "Otvoriť terminál v aktuálne otvorenom adresári"
+msgstr "Otvoriť terminál v aktuálne otvorenom priečinku"
 
 #: ../plugins/filebrowser/pluma-file-browser-plugin.c:681
 msgid "File Browser"
@@ -2626,31 +2626,31 @@ msgstr "Prehliadač súborov"
 
 #: ../plugins/filebrowser/pluma-file-browser-plugin.c:803
 msgid "An error occurred while creating a new directory"
-msgstr "Nastala chyba počas vytvárania nového adresára"
+msgstr "Nastala chyba počas vytvárania nového priečinka"
 
 #: ../plugins/filebrowser/pluma-file-browser-plugin.c:806
 msgid "An error occurred while creating a new file"
-msgstr "Nastala chyba počas vytvárania nového súbora"
+msgstr "Nastala chyba počas vytvárania nového súboru"
 
 #: ../plugins/filebrowser/pluma-file-browser-plugin.c:811
 msgid "An error occurred while renaming a file or directory"
-msgstr "Nastala chyba počas premenúvania súbora alebo adresára"
+msgstr "Nastala chyba počas premenúvania súboru alebo priečinka"
 
 #: ../plugins/filebrowser/pluma-file-browser-plugin.c:816
 msgid "An error occurred while deleting a file or directory"
-msgstr "Nastala chyba počas odstraňovania súbora alebo adresára"
+msgstr "Nastala chyba počas odstraňovania súboru alebo priečinka"
 
 #: ../plugins/filebrowser/pluma-file-browser-plugin.c:821
 msgid "An error occurred while opening a directory in the file manager"
-msgstr "Nastala chyba počas otvárania adresára správcom súborov"
+msgstr "Nastala chyba počas otvárania priečinka správcom súborov"
 
 #: ../plugins/filebrowser/pluma-file-browser-plugin.c:825
 msgid "An error occurred while setting a root directory"
-msgstr "Nastala chyba počas nastavovania základného adresára"
+msgstr "Nastala chyba počas nastavovania koreňového priečinka"
 
 #: ../plugins/filebrowser/pluma-file-browser-plugin.c:829
 msgid "An error occurred while loading a directory"
-msgstr "Nastala chyba počas načítavania adresára"
+msgstr "Nastala chyba počas načítavania priečinka"
 
 #: ../plugins/filebrowser/pluma-file-browser-plugin.c:832
 msgid "An error occurred"
@@ -2710,13 +2710,13 @@ msgstr "Nový súbor je momentálne vyfiltrovaným. Pre jeho zviditeľnenie mus�
 #. file browser pane.
 #: ../plugins/filebrowser/pluma-file-browser-store.c:3599
 msgid "directory"
-msgstr "adresár"
+msgstr "priečinok"
 
 #: ../plugins/filebrowser/pluma-file-browser-store.c:3619
 msgid ""
 "The new directory is currently filtered out. You need to adjust your filter "
 "settings to make the directory visible"
-msgstr "Nový adresár je momentálne vyfiltrovaný. Pre jeho zviditeľnenie musíte upraviť nastavenia filtra"
+msgstr "Nový priečinok je momentálne vyfiltrovaný. Pre jeho zviditeľnenie musíte upraviť nastavenia filtra"
 
 #: ../plugins/filebrowser/pluma-file-browser-widget.c:713
 msgid "Bookmarks"
@@ -2780,11 +2780,11 @@ msgstr "Premenovať vybraný súbor alebo priečinok"
 
 #: ../plugins/filebrowser/pluma-file-browser-widget.c:838
 msgid "_Previous Location"
-msgstr "_Predošlé umiestnenie"
+msgstr "_Predchádzajúce umiestnenie"
 
 #: ../plugins/filebrowser/pluma-file-browser-widget.c:840
 msgid "Go to the previous visited location"
-msgstr "Prejsť na predošlé navštívené miesto"
+msgstr "Prejsť na predchádzajúce navštívené umiestnenie"
 
 #: ../plugins/filebrowser/pluma-file-browser-widget.c:842
 msgid "_Next Location"
@@ -2832,16 +2832,16 @@ msgstr "Zobraziť binárne súbory"
 #: ../plugins/filebrowser/pluma-file-browser-widget.c:999
 #: ../plugins/filebrowser/pluma-file-browser-widget.c:1024
 msgid "Previous location"
-msgstr "Predošlé umiestnenie"
+msgstr "Predchádzajúce umiestnenie"
 
 #: ../plugins/filebrowser/pluma-file-browser-widget.c:992
 msgid "Go to previous location"
-msgstr "Prejsť na predošlé umiestnenie"
+msgstr "Prejsť na predchádzajúce umiestnenie"
 
 #: ../plugins/filebrowser/pluma-file-browser-widget.c:994
 #: ../plugins/filebrowser/pluma-file-browser-widget.c:1019
 msgid "Go to a previously opened location"
-msgstr "Prejsť na predošlé otvorené umiestnenie"
+msgstr "Prejsť na predchádzajúce otvorené umiestnenie"
 
 #: ../plugins/filebrowser/pluma-file-browser-widget.c:1015
 msgid "Next location"
@@ -2853,7 +2853,7 @@ msgstr "Prejsť na nasledujúce umiestnenie"
 
 #: ../plugins/filebrowser/pluma-file-browser-widget.c:1233
 msgid "_Match Filename"
-msgstr "_Porovnať s názvom súbora"
+msgstr "_Porovnať s názvom súboru"
 
 #: ../plugins/filebrowser/pluma-file-browser-widget.c:2137
 #, c-format
@@ -3147,15 +3147,15 @@ msgstr "Roztriediť aktuálny dokument alebo výber"
 #: ../plugins/sort/sort.pluma-plugin.desktop.in.h:1
 #: ../plugins/sort/sort.ui.h:1
 msgid "Sort"
-msgstr "Roztriedenie"
+msgstr "Zoradenie"
 
 #: ../plugins/sort/sort.pluma-plugin.desktop.in.h:2
 msgid "Sorts a document or selected text."
-msgstr "Roztriedi dokument alebo vybraný text."
+msgstr "Zoradí dokument alebo vybraný text."
 
 #: ../plugins/sort/sort.ui.h:2
 msgid "_Sort"
-msgstr "Roz_triediť"
+msgstr "_Zoradiť"
 
 #: ../plugins/sort/sort.ui.h:3
 msgid "_Reverse order"
@@ -3418,7 +3418,7 @@ msgstr "Kotva"
 #. Deprecated since HTML 4.01, not supported in XHTML 1.0 Strict DTD.
 #: ../plugins/taglist/HTML.tags.xml.in.h:12
 msgid "Applet class file code (deprecated)"
-msgstr "Kód súbora triedy apletu (zastaralé)"
+msgstr "Kód súboru triedy apletu (zastaralé)"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:13
 msgid "Associated information"
@@ -3467,7 +3467,7 @@ msgstr "Rozsah riadku bunky"
 #. Deprecated since HTML 4.01, not supported in XHTML 1.0 Strict DTD.
 #: ../plugins/taglist/HTML.tags.xml.in.h:28
 msgid "Center (deprecated)"
-msgstr "Vycentrované (zastaralé)"
+msgstr "Zacentrované (zastaralé)"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:29
 msgid "Character encoding of linked resource"
@@ -3599,11 +3599,11 @@ msgstr "Hlavička dokumentu"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:67
 msgid "Element ID"
-msgstr "Identifikátor prvka"
+msgstr "Identifikátor prvku"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:68
 msgid "Document title"
-msgstr "Názov dokumentu"
+msgstr "Titulok dokumentu"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:69
 msgid "Document type"
@@ -3828,7 +3828,7 @@ msgstr "Položka zoznamu"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:127
 msgid "List of MIME types for file upload"
-msgstr "Zoznam typov MIME pre odoslanie súbora"
+msgstr "Zoznam typov MIME pre odoslanie súboru"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:128
 msgid "List of supported character sets"
@@ -3854,7 +3854,7 @@ msgstr "Výška okraja v pixloch"
 #. Supported in XHTML 1.0 Frameset DTD only.
 #: ../plugins/taglist/HTML.tags.xml.in.h:135
 msgid "Margin pixel width"
-msgstr "Šírka okraja v bodoch"
+msgstr "Šírka okraja v pixloch"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:136
 msgid "Maximum length of text field"
@@ -4004,11 +4004,11 @@ msgstr "Udalosť OnUnload"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:177
 msgid "Option group"
-msgstr "Skupina volieb"
+msgstr "Skupina možností"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:178
 msgid "Option selector"
-msgstr "Výber voľby"
+msgstr "Výber možnosti"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:179
 msgid "Ordered list"
@@ -4040,7 +4040,7 @@ msgstr "Tlačidlo"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:186
 msgid "ReadOnly text and password"
-msgstr "Text a heslo len na čítanie"
+msgstr "Text a heslo iba na čítanie"
 
 #. Deprecated since HTML 4.01, not supported in XHTML 1.0 Strict DTD.
 #: ../plugins/taglist/HTML.tags.xml.in.h:188
@@ -4082,7 +4082,7 @@ msgstr "Posuvná lišta"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:198
 msgid "Selectable option"
-msgstr "Označiteľná voľba"
+msgstr "Voliteľná možnosť"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:199
 msgid "Selected"
@@ -4226,7 +4226,7 @@ msgstr "Cieľ - vrch"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:237
 msgid "Teletype or monospace text style"
-msgstr "Štýl textu ďalekopisu alebo s rovnakým odstupom"
+msgstr "Štýl textu ďalekopisu alebo s pevnou šírkou"
 
 #. Deprecated since HTML 4.01, not supported in XHTML 1.0 Strict DTD.
 #: ../plugins/taglist/HTML.tags.xml.in.h:239
@@ -4293,7 +4293,7 @@ msgstr "Nad"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:256
 msgid "Applet class file code"
-msgstr "Kód súbora triedy apletu"
+msgstr "Kód súboru triedy apletu"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:257
 msgid "Array"
@@ -4321,7 +4321,7 @@ msgstr "Okraj"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:263
 msgid "Center"
-msgstr "Vycentrovať"
+msgstr "Zacentrovať"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:264
 msgid "Checked (state)"
@@ -4345,7 +4345,7 @@ msgstr "Smer"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:269
 msgid "Directory list"
-msgstr "Zoznam adresárov"
+msgstr "Zoznam priečinkov"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:270
 msgid "HTML version"
@@ -4817,7 +4817,7 @@ msgstr "Symbol hviezda"
 
 #: ../plugins/taglist/Latex.tags.xml.in.h:68
 msgid "Typeface bold"
-msgstr "Typ písma tučný"
+msgstr "Typ písma tučné"
 
 #: ../plugins/taglist/Latex.tags.xml.in.h:69
 msgid "Typeface type"
@@ -4829,7 +4829,7 @@ msgstr "Typ písma kurzíva"
 
 #: ../plugins/taglist/Latex.tags.xml.in.h:71
 msgid "Typeface slanted"
-msgstr "Typ písma šikmý"
+msgstr "Typ písma šikmé"
 
 #: ../plugins/taglist/Latex.tags.xml.in.h:73
 msgid "Unbreakable text"
