@@ -836,7 +836,7 @@ pluma_panel_activate_item (PlumaPanel *panel,
  * @panel: a #PlumaPanel
  * @item: a widget contained in #PlumaPanel
  *
- * Wheter @item is the one current active in @panel
+ * Whether @item is the one current active in @panel
  *
  * Returns: TRUE if the widget is active
  */
