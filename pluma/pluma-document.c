@@ -500,7 +500,7 @@ pluma_document_class_init (PlumaDocumentClass *klass)
 	g_object_class_install_property (object_class, PROP_CAN_SEARCH_AGAIN,
 					 g_param_spec_boolean ("can-search-again",
 							       "Can search again",
-							       "Wheter it's possible to search again in the document",
+							       "Whether it's possible to search again in the document",
 							       FALSE,
 							       G_PARAM_READABLE |
 							       G_PARAM_STATIC_STRINGS));
