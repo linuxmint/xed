@@ -58,7 +58,7 @@ typedef struct _PlumaTextRegionIteratorReal PlumaTextRegionIteratorReal;
 struct _PlumaTextRegionIteratorReal {
 	PlumaTextRegion *region;
 	guint32        region_time_stamp;
-	
+
 	GList         *subregions;
 };
 
@@ -79,17 +79,17 @@ find_nearest_subregion (PlumaTextRegion     *region,
 			gboolean           include_edges)
 {
 	GList *l, *retval;
-	
+
 	g_return_val_if_fail (region != NULL && iter != NULL, NULL);
 
 	if (!begin)
 		begin = region->subregions;
-	
+
 	if (begin)
 		retval = begin->prev;
 	else
 		retval = NULL;
-	
+
 	for (l = begin; l; l = l->next) {
 		GtkTextIter sr_iter;
 		Subregion *sr = l->data;
@@ -125,12 +125,12 @@ pluma_text_region_new (GtkTextBuffer *buffer)
 	PlumaTextRegion *region;
 
 	g_return_val_if_fail (buffer != NULL, NULL);
-	
+
 	region = g_new (PlumaTextRegion, 1);
 	region->buffer = buffer;
 	region->subregions = NULL;
 	region->time_stamp = 0;
-	
+
 	return region;
 }
 
@@ -151,7 +151,7 @@ pluma_text_region_destroy (PlumaTextRegion *region, gboolean delete_marks)
 	}
 	region->buffer = NULL;
 	region->time_stamp = 0;
-	
+
 	g_free (region);
 }
 
@@ -159,7 +159,7 @@ GtkTextBuffer *
 pluma_text_region_get_buffer (PlumaTextRegion *region)
 {
 	g_return_val_if_fail (region != NULL, NULL);
-	
+
 	return region->buffer;
 }
 
@@ -168,7 +168,7 @@ pluma_text_region_clear_zero_length_subregions (PlumaTextRegion *region)
 {
 	GtkTextIter start, end;
 	GList *node;
-	
+
 	g_return_if_fail (region != NULL);
 
 	for (node = region->subregions; node; ) {
@@ -185,7 +185,7 @@ pluma_text_region_clear_zero_length_subregions (PlumaTextRegion *region)
 				node = g_list_delete_link (node, node);
 
 			++region->time_stamp;
-			
+
 		} else {
 			node = node->next;
 		}
@@ -199,12 +199,12 @@ pluma_text_region_add (PlumaTextRegion     *region,
 {
 	GList *start_node, *end_node;
 	GtkTextIter start, end;
-	
+
 	g_return_if_fail (region != NULL && _start != NULL && _end != NULL);
-	
+
 	start = *_start;
 	end = *_end;
-	
+
 	DEBUG (g_print ("---\n"));
 	DEBUG (pluma_text_region_debug_print (region));
 	DEBUG (g_message ("region_add (%d, %d)",
@@ -212,7 +212,7 @@ pluma_text_region_add (PlumaTextRegion     *region,
 			  gtk_text_iter_get_offset (&end)));
 
 	gtk_text_iter_order (&start, &end);
-	
+
 	/* don't add zero-length regions */
 	if (gtk_text_iter_equal (&start, &end))
 		return;
@@ -226,11 +226,11 @@ pluma_text_region_add (PlumaTextRegion     *region,
 		Subregion *sr = g_new0 (Subregion, 1);
 		sr->start = gtk_text_buffer_create_mark (region->buffer, NULL, &start, TRUE);
 		sr->end = gtk_text_buffer_create_mark (region->buffer, NULL, &end, FALSE);
-		
+
 		if (start_node == NULL) {
 			/* append the new region */
 			region->subregions = g_list_append (region->subregions, sr);
-			
+
 		} else if (end_node == NULL) {
 			/* prepend the new region */
 			region->subregions = g_list_prepend (region->subregions, sr);
@@ -248,7 +248,7 @@ pluma_text_region_add (PlumaTextRegion     *region,
 			/* we need to merge some subregions */
 			GList *l = start_node->next;
 			Subregion *q;
-			
+
 			gtk_text_buffer_delete_mark (region->buffer, sr->end);
 			while (l != end_node) {
 				q = l->data;
@@ -290,18 +290,18 @@ pluma_text_region_subtract (PlumaTextRegion     *region,
 	GtkTextIter start, end;
 
 	g_return_if_fail (region != NULL && _start != NULL && _end != NULL);
-	
+
 	start = *_start;
 	end = *_end;
-	
+
 	DEBUG (g_print ("---\n"));
 	DEBUG (pluma_text_region_debug_print (region));
 	DEBUG (g_message ("region_substract (%d, %d)",
 			  gtk_text_iter_get_offset (&start),
 			  gtk_text_iter_get_offset (&end)));
-	
+
 	gtk_text_iter_order (&start, &end);
-	
+
 	/* find bounding subregions */
 	start_node = find_nearest_subregion (region, &start, NULL, FALSE, FALSE);
 	end_node = find_nearest_subregion (region, &end, start_node, TRUE, FALSE);
@@ -309,10 +309,10 @@ pluma_text_region_subtract (PlumaTextRegion     *region,
 	/* easy case first */
 	if (start_node == NULL || end_node == NULL || end_node == start_node->prev)
 		return;
-	
+
 	/* deal with the start point */
 	start_is_outside = end_is_outside = FALSE;
-	
+
 	sr = start_node->data;
 	gtk_text_buffer_get_iter_at_mark (region->buffer, &sr_start_iter, sr->start);
 	gtk_text_buffer_get_iter_at_mark (region->buffer, &sr_end_iter, sr->end);
@@ -335,7 +335,7 @@ pluma_text_region_subtract (PlumaTextRegion     *region,
 
 			/* no further processing needed */
 			DEBUG (g_message ("subregion splitted"));
-			
+
 			return;
 		} else {
 			/* the ending point is outside, so just move
@@ -346,17 +346,17 @@ pluma_text_region_subtract (PlumaTextRegion     *region,
 		/* the starting point is outside (and so to the left)
                    of the first subregion */
 		DEBUG (g_message ("start is outside"));
-			
+
 		start_is_outside = TRUE;
 	}
-	
+
 	/* deal with the end point */
 	if (start_node != end_node) {
 		sr = end_node->data;
 		gtk_text_buffer_get_iter_at_mark (region->buffer, &sr_start_iter, sr->start);
 		gtk_text_buffer_get_iter_at_mark (region->buffer, &sr_end_iter, sr->end);
 	}
-	
+
 	if (gtk_text_iter_in_range (&end, &sr_start_iter, &sr_end_iter) &&
 	    !gtk_text_iter_equal (&end, &sr_end_iter)) {
 		/* ending point is inside, move the start mark */
@@ -364,18 +364,18 @@ pluma_text_region_subtract (PlumaTextRegion     *region,
 	} else {
 		end_is_outside = TRUE;
 		DEBUG (g_message ("end is outside"));
-		
+
 	}
-	
+
 	/* finally remove any intermediate subregions */
 	done = FALSE;
 	node = start_node;
-	
+
 	while (!done) {
 		if (node == end_node)
 			/* we are done, exit in the next iteration */
 			done = TRUE;
-		
+
 		if ((node == start_node && !start_is_outside) ||
 		    (node == end_node && !end_is_outside)) {
 			/* skip starting or ending node */
@@ -417,7 +417,7 @@ pluma_text_region_nth_subregion (PlumaTextRegion *region,
 			       GtkTextIter   *end)
 {
 	Subregion *sr;
-	
+
 	g_return_val_if_fail (region != NULL, FALSE);
 
 	sr = g_list_nth_data (region->subregions, subregion);
@@ -443,14 +443,14 @@ pluma_text_region_intersect (PlumaTextRegion     *region,
 	gboolean done;
 	PlumaTextRegion *new_region;
 	GtkTextIter start, end;
-	
+
 	g_return_val_if_fail (region != NULL && _start != NULL && _end != NULL, NULL);
-	
+
 	start = *_start;
 	end = *_end;
-	
+
 	gtk_text_iter_order (&start, &end);
-	
+
 	/* find bounding subregions */
 	start_node = find_nearest_subregion (region, &start, NULL, FALSE, FALSE);
 	end_node = find_nearest_subregion (region, &end, start_node, TRUE, FALSE);
@@ -458,10 +458,10 @@ pluma_text_region_intersect (PlumaTextRegion     *region,
 	/* easy case first */
 	if (start_node == NULL || end_node == NULL || end_node == start_node->prev)
 		return NULL;
-	
+
 	new_region = pluma_text_region_new (region->buffer);
 	done = FALSE;
-	
+
 	sr = start_node->data;
 	gtk_text_buffer_get_iter_at_mark (region->buffer, &sr_start_iter, sr->start);
 	gtk_text_buffer_get_iter_at_mark (region->buffer, &sr_end_iter, sr->end);
@@ -500,7 +500,7 @@ pluma_text_region_intersect (PlumaTextRegion     *region,
 			gtk_text_buffer_get_iter_at_mark (region->buffer, &sr_start_iter,
 							  sr->start);
 			gtk_text_buffer_get_iter_at_mark (region->buffer, &sr_end_iter, sr->end);
-			
+
 			new_sr = g_new0 (Subregion, 1);
 			new_region->subregions = g_list_prepend (new_region->subregions, new_sr);
 			new_sr->start = gtk_text_buffer_create_mark (new_region->buffer, NULL,
@@ -515,10 +515,10 @@ pluma_text_region_intersect (PlumaTextRegion     *region,
 		sr = node->data;
 		gtk_text_buffer_get_iter_at_mark (region->buffer, &sr_start_iter, sr->start);
 		gtk_text_buffer_get_iter_at_mark (region->buffer, &sr_end_iter, sr->end);
-		
+
 		new_sr = g_new0 (Subregion, 1);
 		new_region->subregions = g_list_prepend (new_region->subregions, new_sr);
-		
+
 		new_sr->start = gtk_text_buffer_create_mark (new_region->buffer, NULL,
 							     &sr_start_iter, TRUE);
 
@@ -628,7 +628,7 @@ void
 pluma_text_region_debug_print (PlumaTextRegion *region)
 {
 	GList *l;
-	
+
 	g_return_if_fail (region != NULL);
 
 	g_print ("Subregions: ");
@@ -644,4 +644,3 @@ pluma_text_region_debug_print (PlumaTextRegion *region)
 	}
 	g_print ("\n");
 }
-
