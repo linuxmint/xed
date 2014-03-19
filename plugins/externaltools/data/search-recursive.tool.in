@@ -15,7 +15,7 @@
 # with this program; if not, write to the Free Software Foundation, Inc.,
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
 
-SEARCHTEXT=`matedialog --entry --title="Search text on files" --text="Text to search"`
+SEARCHTEXT=`zenity --entry --title="Search text on files" --text="Text to search"`
 
 if [ ! "${#SEARCHTEXT}" = 0 ]; then
 
