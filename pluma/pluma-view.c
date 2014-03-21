@@ -1500,10 +1500,12 @@ ensure_search_window (PlumaView *view)
 	toplevel = gtk_widget_get_toplevel (GTK_WIDGET (view));
 #if GTK_CHECK_VERSION (3, 0, 0)
 	group = gtk_window_get_group (GTK_WINDOW (toplevel));
-	search_group = gtk_window_get_group (GTK_WINDOW (toplevel));
+	if (view->priv->search_window != NULL)
+		search_group = gtk_window_get_group (GTK_WINDOW (view->priv->search_window));
 #else
 	group = GTK_WINDOW (toplevel)->group;
-	search_group = GTK_WINDOW (view->priv->search_window)->group;
+	if (view->priv->search_window != NULL)
+		search_group = GTK_WINDOW (view->priv->search_window)->group;
 #endif
 
 	if (view->priv->search_window != NULL)
