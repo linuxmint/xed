@@ -380,7 +380,9 @@ pluma_file_chooser_dialog_new_valist (const gchar          *title,
 
 	result = g_object_new (PLUMA_TYPE_FILE_CHOOSER_DIALOG,
 			       "title", title,
+#if !GTK_CHECK_VERSION (3, 0, 0)
 			       "file-system-backend", NULL,
+#endif
 			       "local-only", FALSE,
 			       "action", action,
 			       "select-multiple", action == GTK_FILE_CHOOSER_ACTION_OPEN,
