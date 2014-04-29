@@ -407,6 +407,9 @@ pluma_file_chooser_dialog_new_valist (const gchar          *title,
 	gtk_file_filter_set_name (filter, ALL_FILES);
 	gtk_file_filter_add_pattern (filter, "*");
 	gtk_file_chooser_add_filter (GTK_FILE_CHOOSER (result), filter);
+#if GTK_CHECK_VERSION (3, 0, 0)
+	gtk_file_chooser_set_action (GTK_FILE_CHOOSER (result), action);
+#endif
 
 	if (active_filter != 1)
 	{
