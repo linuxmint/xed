@@ -124,10 +124,6 @@ void		 pluma_utils_get_current_viewport	(GdkScreen    *screen,
 							 gint         *x,
 							 gint         *y);
 
-void		 pluma_utils_activate_url		(GtkAboutDialog *about,
-							 const gchar    *url,
-							 gpointer        data);
-
 gboolean	 pluma_utils_is_valid_uri		(const gchar *uri);
 
 gboolean	 pluma_utils_get_ui_objects		(const gchar  *filename,

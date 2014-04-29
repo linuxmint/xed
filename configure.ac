@@ -296,6 +296,7 @@ PKG_CHECK_MODULES(PLUMA, [
 	gio-2.0 >= 2.26.0
 	gtk+-$GTK_API_VERSION >= $GTK_REQUIRED
 	gtksourceview-$GTK_API_VERSION >= 2.9.7
+	mate-desktop-2.0 >= 1.9.0
 ])
 
 if test "$os_osx" = "no" &&

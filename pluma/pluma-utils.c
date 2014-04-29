@@ -1005,14 +1005,6 @@ pluma_utils_get_current_viewport (GdkScreen    *screen,
 #endif
 }
 
-void
-pluma_utils_activate_url (GtkAboutDialog *about,
-			  const gchar    *url,
-			  gpointer        data)
-{
-	gtk_show_uri (gtk_widget_get_screen (GTK_WIDGET (about)), url, GDK_CURRENT_TIME, NULL);
-}
-
 static gboolean
 is_valid_scheme_character (gchar c)
 {

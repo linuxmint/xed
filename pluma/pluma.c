@@ -694,9 +694,6 @@ main (int argc, char *argv[])
 	pluma_debug_message (DEBUG_APP, "Init plugins");
 	engine = pluma_plugins_engine_get_default ();
 
-	#if !GTK_CHECK_VERSION(3, 0, 0)
-		gtk_about_dialog_set_url_hook(pluma_utils_activate_url, NULL, NULL);
-	#endif
 	/* Initialize session management */
 	pluma_debug_message (DEBUG_APP, "Init session manager");
 	pluma_session_init ();
