@@ -642,11 +642,7 @@ key_press_event (GtkWidget   *widget,
 			handled = FALSE;
 			break;
 		}
-#if GTK_CHECK_VERSION (3, 0, 0)
 		if (!gtk_widget_has_focus (widget)) {
-#else
-		if (!GTK_WIDGET_HAS_FOCUS (widget)) {
-#endif
 			handled = FALSE;
 			break;
 		}

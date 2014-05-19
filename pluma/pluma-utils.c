@@ -241,11 +241,7 @@ pluma_dialog_add_button (GtkDialog   *dialog,
 	button = pluma_gtk_button_new_with_stock_icon (text, stock_id);
 	g_return_val_if_fail (button != NULL, NULL);
 
-#if GTK_CHECK_VERSION (3, 0, 0)
 	gtk_widget_set_can_default (button, TRUE);
-#else
-	GTK_WIDGET_SET_FLAGS (button, GTK_CAN_DEFAULT);
-#endif
 
 	gtk_widget_show (button);
 

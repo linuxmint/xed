@@ -706,11 +706,7 @@ pluma_panel_add_item (PlumaPanel  *panel,
 	menu_label = gtk_label_new (name);
 	gtk_misc_set_alignment (GTK_MISC (menu_label), 0.0, 0.5);
 
-#if GTK_CHECK_VERSION (3, 0, 0)
 	if (!gtk_widget_get_visible (item))
-#else
-	if (!GTK_WIDGET_VISIBLE (item))
-#endif
 		gtk_widget_show (item);
 
 	gtk_notebook_append_page_menu (GTK_NOTEBOOK (panel->priv->notebook),

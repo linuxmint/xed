@@ -170,11 +170,7 @@ pluma_file_browser_utils_confirmation_dialog (PlumaWindow * window,
 	button = gtk_button_new_from_stock (GTK_STOCK_CANCEL);
 	gtk_widget_show (button);
 
-#if GTK_CHECK_VERSION (3, 0, 0)
 	gtk_widget_set_can_default (button, TRUE);
-#else
-	GTK_WIDGET_SET_FLAGS (button, GTK_CAN_DEFAULT);
-#endif
 	gtk_dialog_add_action_widget (GTK_DIALOG (dlg),
                                       button,
                                       GTK_RESPONSE_CANCEL);
@@ -188,11 +184,7 @@ pluma_file_browser_utils_confirmation_dialog (PlumaWindow * window,
 	}
 	
 	gtk_widget_show (button);
-#if GTK_CHECK_VERSION (3, 0, 0)
 	gtk_widget_set_can_default (button, TRUE);
-#else
-	GTK_WIDGET_SET_FLAGS (button, GTK_CAN_DEFAULT);
-#endif
 	gtk_dialog_add_action_widget (GTK_DIALOG (dlg),
                                       button,
                                       GTK_RESPONSE_OK);

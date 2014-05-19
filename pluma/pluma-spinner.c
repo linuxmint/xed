@@ -616,7 +616,7 @@ pluma_spinner_init (PlumaSpinner *spinner)
 
 	priv = spinner->priv = PLUMA_SPINNER_GET_PRIVATE (spinner);
 
-	GTK_WIDGET_SET_FLAGS (GTK_WIDGET (spinner), GTK_NO_WINDOW);
+	gtk_widget_set_has_window (GTK_WIDGET (spinner), FALSE);
 
 	priv->cache = pluma_spinner_cache_ref ();
 	priv->size = GTK_ICON_SIZE_DIALOG;

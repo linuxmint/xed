@@ -382,7 +382,7 @@ pluma_message_area_add_button (PlumaMessageArea *message_area,
 
 	button = gtk_button_new_from_stock (button_text);
 
-	GTK_WIDGET_SET_FLAGS (button, GTK_CAN_DEFAULT);
+	gtk_widget_set_can_default (button, TRUE);
 
 	gtk_widget_show (button);
 
@@ -613,7 +613,7 @@ pluma_message_area_add_stock_button_with_text (PlumaMessageArea *message_area,
                               gtk_image_new_from_stock (stock_id,
                                                         GTK_ICON_SIZE_BUTTON));
 
-	GTK_WIDGET_SET_FLAGS (button, GTK_CAN_DEFAULT);
+	gtk_widget_set_can_default (button, TRUE);
 
 	gtk_widget_show (button);
 

@@ -291,11 +291,7 @@ create_dialog (PlumaSpellCheckerDialog *dlg,
 	gtk_tree_selection_set_mode (selection, GTK_SELECTION_SINGLE);
 
 	/* Set default button */
-#if GTK_CHECK_VERSION (3, 0, 0)
 	gtk_widget_set_can_default (dlg->change_button, TRUE);
-#else
-	GTK_WIDGET_SET_FLAGS (dlg->change_button, GTK_CAN_DEFAULT);
-#endif
 	gtk_widget_grab_default (dlg->change_button);
 
 	gtk_entry_set_activates_default (GTK_ENTRY (dlg->word_entry), TRUE);

@@ -959,11 +959,7 @@ create_preview_layout (PlumaPrintPreview *preview)
 			       GDK_BUTTON_PRESS_MASK |
 			       GDK_KEY_PRESS_MASK);
 
-#if GTK_CHECK_VERSION (3, 0, 0)
 	gtk_widget_set_can_focus (priv->layout, TRUE);
-#else
-	GTK_WIDGET_SET_FLAGS (priv->layout, GTK_CAN_FOCUS);
-#endif
 
   	g_signal_connect (priv->layout,
 			  "key-press-event",

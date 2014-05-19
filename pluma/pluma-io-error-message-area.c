@@ -144,11 +144,7 @@ set_message_area_text_and_icon (GtkWidget   *message_area,
 	gtk_label_set_use_markup (GTK_LABEL (primary_label), TRUE);
 	gtk_label_set_line_wrap (GTK_LABEL (primary_label), TRUE);
 	gtk_misc_set_alignment (GTK_MISC (primary_label), 0, 0.5);
-#if GTK_CHECK_VERSION (3, 0, 0)
 	gtk_widget_set_can_focus (primary_label, TRUE);
-#else
-	GTK_WIDGET_SET_FLAGS (primary_label, GTK_CAN_FOCUS);
-#endif
 	gtk_label_set_selectable (GTK_LABEL (primary_label), TRUE);
 
 	if (secondary_text != NULL)
@@ -158,11 +154,7 @@ set_message_area_text_and_icon (GtkWidget   *message_area,
 		secondary_label = gtk_label_new (secondary_markup);
 		g_free (secondary_markup);
 		gtk_box_pack_start (GTK_BOX (vbox), secondary_label, TRUE, TRUE, 0);
-#if GTK_CHECK_VERSION (3, 0, 0)
 		gtk_widget_set_can_focus (secondary_label, TRUE);
-#else
-		GTK_WIDGET_SET_FLAGS (secondary_label, GTK_CAN_FOCUS);
-#endif
 		gtk_label_set_use_markup (GTK_LABEL (secondary_label), TRUE);
 		gtk_label_set_line_wrap (GTK_LABEL (secondary_label), TRUE);
 		gtk_label_set_selectable (GTK_LABEL (secondary_label), TRUE);
@@ -578,11 +570,7 @@ create_conversion_error_message_area (const gchar *primary_text,
 	gtk_label_set_use_markup (GTK_LABEL (primary_label), TRUE);
 	gtk_label_set_line_wrap (GTK_LABEL (primary_label), TRUE);
 	gtk_misc_set_alignment (GTK_MISC (primary_label), 0, 0.5);
-#if GTK_CHECK_VERSION (3, 0, 0)
 	gtk_widget_set_can_focus (primary_label, TRUE);
-#else
-	GTK_WIDGET_SET_FLAGS (primary_label, GTK_CAN_FOCUS);
-#endif
 	gtk_label_set_selectable (GTK_LABEL (primary_label), TRUE);
 
 	if (secondary_text != NULL)
@@ -592,11 +580,7 @@ create_conversion_error_message_area (const gchar *primary_text,
 		secondary_label = gtk_label_new (secondary_markup);
 		g_free (secondary_markup);
 		gtk_box_pack_start (GTK_BOX (vbox), secondary_label, TRUE, TRUE, 0);
-#if GTK_CHECK_VERSION (3, 0, 0)
 		gtk_widget_set_can_focus (secondary_label, TRUE);
-#else
-		GTK_WIDGET_SET_FLAGS (secondary_label, GTK_CAN_FOCUS);
-#endif
 		gtk_label_set_use_markup (GTK_LABEL (secondary_label), TRUE);
 		gtk_label_set_line_wrap (GTK_LABEL (secondary_label), TRUE);
 		gtk_label_set_selectable (GTK_LABEL (secondary_label), TRUE);
@@ -869,11 +853,7 @@ pluma_file_already_open_warning_message_area_new (const gchar *uri)
 	gtk_label_set_use_markup (GTK_LABEL (primary_label), TRUE);
 	gtk_label_set_line_wrap (GTK_LABEL (primary_label), TRUE);
 	gtk_misc_set_alignment (GTK_MISC (primary_label), 0, 0.5);
-#if GTK_CHECK_VERSION (3, 0, 0)
 	gtk_widget_set_can_focus (primary_label, TRUE);
-#else
-	GTK_WIDGET_SET_FLAGS (primary_label, GTK_CAN_FOCUS);
-#endif
 	gtk_label_set_selectable (GTK_LABEL (primary_label), TRUE);
 
 	secondary_text = _("pluma opened this instance of the file in a non-editable way. "
@@ -883,11 +863,7 @@ pluma_file_already_open_warning_message_area_new (const gchar *uri)
 	secondary_label = gtk_label_new (secondary_markup);
 	g_free (secondary_markup);
 	gtk_box_pack_start (GTK_BOX (vbox), secondary_label, TRUE, TRUE, 0);
-#if GTK_CHECK_VERSION (3, 0, 0)
 	gtk_widget_set_can_focus (secondary_label, TRUE);
-#else
-	GTK_WIDGET_SET_FLAGS (secondary_label, GTK_CAN_FOCUS);
-#endif
 	gtk_label_set_use_markup (GTK_LABEL (secondary_label), TRUE);
 	gtk_label_set_line_wrap (GTK_LABEL (secondary_label), TRUE);
 	gtk_label_set_selectable (GTK_LABEL (secondary_label), TRUE);
@@ -983,11 +959,7 @@ pluma_externally_modified_saving_error_message_area_new (
 	gtk_label_set_use_markup (GTK_LABEL (primary_label), TRUE);
 	gtk_label_set_line_wrap (GTK_LABEL (primary_label), TRUE);
 	gtk_misc_set_alignment (GTK_MISC (primary_label), 0, 0.5);
-#if GTK_CHECK_VERSION (3, 0, 0)
 	gtk_widget_set_can_focus (primary_label, TRUE);
-#else
-	GTK_WIDGET_SET_FLAGS (primary_label, GTK_CAN_FOCUS);
-#endif
 	gtk_label_set_selectable (GTK_LABEL (primary_label), TRUE);
 
 	secondary_text = _("If you save it, all the external changes could be lost. Save it anyway?");
@@ -996,11 +968,7 @@ pluma_externally_modified_saving_error_message_area_new (
 	secondary_label = gtk_label_new (secondary_markup);
 	g_free (secondary_markup);
 	gtk_box_pack_start (GTK_BOX (vbox), secondary_label, TRUE, TRUE, 0);
-#if GTK_CHECK_VERSION (3, 0, 0)
 	gtk_widget_set_can_focus (secondary_label, TRUE);
-#else
-	GTK_WIDGET_SET_FLAGS (secondary_label, GTK_CAN_FOCUS);
-#endif
 	gtk_label_set_use_markup (GTK_LABEL (secondary_label), TRUE);
 	gtk_label_set_line_wrap (GTK_LABEL (secondary_label), TRUE);
 	gtk_label_set_selectable (GTK_LABEL (secondary_label), TRUE);
@@ -1101,11 +1069,7 @@ pluma_no_backup_saving_error_message_area_new (const gchar  *uri,
 	gtk_label_set_use_markup (GTK_LABEL (primary_label), TRUE);
 	gtk_label_set_line_wrap (GTK_LABEL (primary_label), TRUE);
 	gtk_misc_set_alignment (GTK_MISC (primary_label), 0, 0.5);
-#if GTK_CHECK_VERSION (3, 0, 0)
 	gtk_widget_set_can_focus (primary_label, TRUE);
-#else
-	GTK_WIDGET_SET_FLAGS (primary_label, GTK_CAN_FOCUS);
-#endif
 	gtk_label_set_selectable (GTK_LABEL (primary_label), TRUE);
 
 	secondary_text = _("pluma could not back up the old copy of the file before saving the new one. "
@@ -1116,11 +1080,7 @@ pluma_no_backup_saving_error_message_area_new (const gchar  *uri,
 	secondary_label = gtk_label_new (secondary_markup);
 	g_free (secondary_markup);
 	gtk_box_pack_start (GTK_BOX (vbox), secondary_label, TRUE, TRUE, 0);
-#if GTK_CHECK_VERSION (3, 0, 0)
 	gtk_widget_set_can_focus (secondary_label, TRUE);
-#else
-	GTK_WIDGET_SET_FLAGS (secondary_label, GTK_CAN_FOCUS);
-#endif
 	gtk_label_set_use_markup (GTK_LABEL (secondary_label), TRUE);
 	gtk_label_set_line_wrap (GTK_LABEL (secondary_label), TRUE);
 	gtk_label_set_selectable (GTK_LABEL (secondary_label), TRUE);

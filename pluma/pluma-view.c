@@ -53,10 +53,6 @@
 #include "pluma-marshal.h"
 #include "pluma-utils.h"
 
-#if GTK_CHECK_VERSION (3, 0, 0)
-#define GTK_WIDGET_VISIBLE gtk_widget_get_visible
-#endif
-
 #define PLUMA_VIEW_SCROLL_MARGIN 0.02
 #define PLUMA_VIEW_SEARCH_DIALOG_TIMEOUT (30*1000) /* 30 seconds */
 
@@ -1801,14 +1797,10 @@ start_interactive_search_real (PlumaView *view)
 	GtkTextBuffer *buffer;
 	
 	if ((view->priv->search_window != NULL) &&
-	    GTK_WIDGET_VISIBLE (view->priv->search_window))
+	    gtk_widget_get_visible (view->priv->search_window))
 		return TRUE;
 
-#if GTK_CHECK_VERSION (3, 0, 0)
 	if (!gtk_widget_has_focus (view))
-#else
-	if (!GTK_WIDGET_HAS_FOCUS (view))
-#endif
 		return FALSE;
 
 	buffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (view));

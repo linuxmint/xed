@@ -54,10 +54,6 @@
 #include "dialogs/pluma-close-confirmation-dialog.h"
 #include "smclient/eggsmclient.h"
 
-#if GTK_CHECK_VERSION (3, 0, 0)
-#define GTK_WIDGET_VISIBLE gtk_widget_get_visible
-#endif
-
 /* The master client we use for SM */
 static EggSMClient *master_client = NULL;
 
@@ -91,11 +87,11 @@ save_window_session (GKeyFile    *state_file,
 
 	panel = pluma_window_get_side_panel (window);
 	g_key_file_set_boolean (state_file, group_name, "side-panel-visible",
-				GTK_WIDGET_VISIBLE (panel));
+				gtk_widget_get_visible (panel));
 
 	panel = pluma_window_get_bottom_panel (window);
 	g_key_file_set_boolean (state_file, group_name, "bottom-panel-visible",
-				GTK_WIDGET_VISIBLE (panel));
+				gtk_widget_get_visible (panel));
 
 	active_document = pluma_window_get_active_document (window);
 	if (active_document)

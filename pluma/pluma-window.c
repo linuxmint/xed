@@ -65,10 +65,6 @@
 #include "osx/pluma-osx.h"
 #endif
 
-#if GTK_CHECK_VERSION (3, 0, 0)
-#define GTK_WIDGET_VISIBLE gtk_widget_get_visible
-#endif
-
 #define LANGUAGE_NONE (const gchar *)"LangNone"
 #define PLUMA_UIFILE "pluma-ui.xml"
 #define TAB_WIDTH_DATA "PlumaWindowTabWidthData"
@@ -581,7 +577,7 @@ set_toolbar_style (PlumaWindow *window,
 	if (origin == NULL)
 		visible = pluma_prefs_manager_get_toolbar_visible ();
 	else
-		visible = GTK_WIDGET_VISIBLE (origin->priv->toolbar);
+		visible = gtk_widget_get_visible (origin->priv->toolbar);
 	
 	/* Set visibility */
 	if (visible)
@@ -1406,7 +1402,7 @@ toolbar_visibility_changed (GtkWidget   *toolbar,
 	gboolean visible;
 	GtkAction *action;
 
-	visible = GTK_WIDGET_VISIBLE (toolbar);
+	visible = gtk_widget_get_visible (toolbar);
 
 	if (pluma_prefs_manager_toolbar_visible_can_set ())
 		pluma_prefs_manager_set_toolbar_visible (visible);
@@ -1826,7 +1822,7 @@ set_statusbar_style (PlumaWindow *window,
 	if (origin == NULL)
 		visible = pluma_prefs_manager_get_statusbar_visible ();
 	else
-		visible = GTK_WIDGET_VISIBLE (origin->priv->statusbar);
+		visible = gtk_widget_get_visible (origin->priv->statusbar);
 
 	if (visible)
 		gtk_widget_show (window->priv->statusbar);
@@ -1849,7 +1845,7 @@ statusbar_visibility_changed (GtkWidget   *statusbar,
 	gboolean visible;
 	GtkAction *action;
 
-	visible = GTK_WIDGET_VISIBLE (statusbar);
+	visible = gtk_widget_get_visible (statusbar);
 
 	if (pluma_prefs_manager_statusbar_visible_can_set ())
 		pluma_prefs_manager_set_statusbar_visible (visible);
@@ -2122,12 +2118,12 @@ clone_window (PlumaWindow *origin)
 	_pluma_panel_set_active_item_by_id (PLUMA_PANEL (window->priv->bottom_panel),
 					    panel_page);
 
-	if (GTK_WIDGET_VISIBLE (origin->priv->side_panel))
+	if (gtk_widget_get_visible (origin->priv->side_panel))
 		gtk_widget_show (window->priv->side_panel);
 	else
 		gtk_widget_hide (window->priv->side_panel);
 
-	if (GTK_WIDGET_VISIBLE (origin->priv->bottom_panel))
+	if (gtk_widget_get_visible (origin->priv->bottom_panel))
 		gtk_widget_show (window->priv->bottom_panel);
 	else
 		gtk_widget_hide (window->priv->bottom_panel);
@@ -3647,7 +3643,7 @@ side_panel_visibility_changed (GtkWidget   *side_panel,
 	gboolean visible;
 	GtkAction *action;
 
-	visible = GTK_WIDGET_VISIBLE (side_panel);
+	visible = gtk_widget_get_visible (side_panel);
 
 	if (pluma_prefs_manager_side_pane_visible_can_set ())
 		pluma_prefs_manager_set_side_pane_visible (visible);
@@ -3701,7 +3697,7 @@ bottom_panel_visibility_changed (PlumaPanel  *bottom_panel,
 	gboolean visible;
 	GtkAction *action;
 
-	visible = GTK_WIDGET_VISIBLE (GTK_WIDGET (bottom_panel));
+	visible = gtk_widget_get_visible (GTK_WIDGET (bottom_panel));
 
 	if (pluma_prefs_manager_bottom_panel_visible_can_set ())
 		pluma_prefs_manager_set_bottom_panel_visible (visible);
@@ -4173,7 +4169,7 @@ pluma_window_create_tab (PlumaWindow *window,
 				-1,
 				jump_to);
 
-	if (!GTK_WIDGET_VISIBLE (GTK_WIDGET (window)))
+	if (!gtk_widget_get_visible (GTK_WIDGET (window)))
 	{
 		gtk_window_present (GTK_WINDOW (window));
 	}
@@ -4225,7 +4221,7 @@ pluma_window_create_tab_from_uri (PlumaWindow         *window,
 				jump_to);
 
 
-	if (!GTK_WIDGET_VISIBLE (GTK_WIDGET (window)))
+	if (!gtk_widget_get_visible (GTK_WIDGET (window)))
 	{
 		gtk_window_present (GTK_WINDOW (window));
 	}
