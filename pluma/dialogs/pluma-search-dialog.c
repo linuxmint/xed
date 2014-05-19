@@ -334,9 +334,6 @@ pluma_search_dialog_init (PlumaSearchDialog *dlg)
 	dlg->priv = PLUMA_SEARCH_DIALOG_GET_PRIVATE (dlg);
 
 	gtk_window_set_resizable (GTK_WINDOW (dlg), FALSE);
-#if !GTK_CHECK_VERSION (3, 0, 0)
-	gtk_dialog_set_has_separator (GTK_DIALOG (dlg), FALSE);
-#endif
 	gtk_window_set_destroy_with_parent (GTK_WINDOW (dlg), TRUE);
 
 	gtk_dialog_add_buttons (GTK_DIALOG (dlg),

@@ -199,9 +199,6 @@ pluma_close_confirmation_dialog_init (PlumaCloseConfirmationDialog *dlg)
 	gtk_box_set_spacing (GTK_BOX (gtk_dialog_get_content_area (GTK_DIALOG (dlg))),
 			     14);
 	gtk_window_set_resizable (GTK_WINDOW (dlg), FALSE);
-#if !GTK_CHECK_VERSION (3, 0, 0)
-	gtk_dialog_set_has_separator (GTK_DIALOG (dlg), FALSE);
-#endif
 	gtk_window_set_skip_taskbar_hint (GTK_WINDOW (dlg), TRUE);
 	
 	gtk_window_set_title (GTK_WINDOW (dlg), "");
