@@ -917,11 +917,7 @@ send_focus_change (GtkWidget *widget,
 	g_object_ref (widget);
 
 	fevent->focus_change.type = GDK_FOCUS_CHANGE;
-#if GTK_CHECK_VERSION (3, 0, 0)
 	fevent->focus_change.window = g_object_ref (gtk_widget_get_window (widget));
-#else
-	fevent->focus_change.window = g_object_ref (widget->window);
-#endif
 	fevent->focus_change.in = in;
   
 	gtk_widget_event (widget, fevent);
@@ -988,11 +984,7 @@ update_search_window_position (PlumaView *view)
 {
 	gint x, y;
 	gint view_x, view_y;
-#if GTK_CHECK_VERSION (3, 0, 0)
 	GdkWindow *view_window = gtk_widget_get_window (GTK_WIDGET (view));
-#else
-	GdkWindow *view_window = GTK_WIDGET (view)->window;
-#endif
 
 	gtk_widget_realize (view->priv->search_window);
 
@@ -1468,15 +1460,9 @@ ensure_search_window (PlumaView *view)
 	GtkWindowGroup     *search_group;
 	
 	toplevel = gtk_widget_get_toplevel (GTK_WIDGET (view));
-#if GTK_CHECK_VERSION (3, 0, 0)
 	group = gtk_window_get_group (GTK_WINDOW (toplevel));
 	if (view->priv->search_window != NULL)
 		search_group = gtk_window_get_group (GTK_WINDOW (view->priv->search_window));
-#else
-	group = GTK_WINDOW (toplevel)->group;
-	if (view->priv->search_window != NULL)
-		search_group = GTK_WINDOW (view->priv->search_window)->group;
-#endif
 
 	if (view->priv->search_window != NULL)
 	{
@@ -1947,11 +1933,7 @@ pluma_view_drag_motion (GtkWidget      *widget,
 	if (drag_get_uri_target (widget, context) != GDK_NONE) 
 	{
 		gdk_drag_status (context,
-#if GTK_CHECK_VERSION (3, 0, 0)
 				 gdk_drag_context_get_suggested_action (context),
-#else
-				 context->suggested_action,
-#endif
 				 timestamp);
 		result = TRUE;
 	}
@@ -2155,11 +2137,7 @@ delete_line (GtkTextView *text_view,
 
 	buffer = gtk_text_view_get_buffer (text_view);
 
-#if GTK_CHECK_VERSION (3, 0, 0)
 	gtk_text_view_reset_im_context (text_view);
-#else
-	reset_im_context (text_view);
-#endif
 
 	/* If there is a selection delete the selected lines and
 	 * ignore count */

@@ -368,11 +368,7 @@ sync_title (PlumaPanel     *panel,
 
 static void
 notebook_page_changed (GtkNotebook     *notebook,
-#if GTK_CHECK_VERSION (3, 0, 0)
                        GtkWidget       *page,
-#else
-                       GtkNotebookPage *page,
-#endif
                        guint            page_num,
                        PlumaPanel      *panel)
 {

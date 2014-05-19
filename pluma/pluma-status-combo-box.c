@@ -180,13 +180,8 @@ menu_position_func (GtkMenu		*menu,
 	gtk_widget_size_request (gtk_widget_get_toplevel (GTK_WIDGET (menu)), &request);
 	
 	/* get the origin... */
-#if GTK_CHECK_VERSION (3, 0, 0)
 	gdk_window_get_origin (gtk_widget_get_window (GTK_WIDGET (combo)), x, y);
 	gtk_widget_get_allocation (GTK_WIDGET (combo), &allocation);
-#else
-	gdk_window_get_origin (GTK_WIDGET (combo)->window, x, y);
-	allocation = GTK_WIDGET (combo)->allocation;
-#endif
 	
 	/* make the menu as wide as the widget */
 	if (request.width < allocation.width)
@@ -208,11 +203,7 @@ button_press_event (GtkWidget           *widget,
 	gint max_height;
 	
 	gtk_widget_size_request (combo->priv->menu, &request);
-#if GTK_CHECK_VERSION (3, 0, 0)
 	gtk_widget_get_allocation (GTK_WIDGET (combo), &allocation);
-#else
-	allocation = GTK_WIDGET (combo)->allocation;
-#endif
 
 	/* do something relative to our own height here, maybe we can do better */
 	max_height = allocation.height * 20;

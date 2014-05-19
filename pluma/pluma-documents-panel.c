@@ -522,11 +522,7 @@ menu_position (GtkMenu             *menu,
 
 	w = panel->priv->treeview;
 
-#if GTK_CHECK_VERSION (3, 0, 0)
 	gtk_widget_get_allocation(w, &allocation);
-#else
-	allocation = w->allocation;
-#endif
 
 	path = get_current_path (panel);
 
@@ -538,11 +534,7 @@ menu_position (GtkMenu             *menu,
 	wx = rect.x;
 	wy = rect.y;
 
-#if GTK_CHECK_VERSION (3, 0, 0)
 	gdk_window_get_origin (gtk_widget_get_window (w), x, y);
-#else
-	gdk_window_get_origin (w->window, x, y);
-#endif
 	
 	gtk_widget_size_request (GTK_WIDGET (menu), &requisition);
 

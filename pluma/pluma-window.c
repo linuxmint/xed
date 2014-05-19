@@ -2419,11 +2419,7 @@ language_changed (GObject     *object,
 
 static void 
 notebook_switch_page (GtkNotebook     *book,
-#if GTK_CHECK_VERSION (3, 0, 0)
 		      GtkWidget       *pg,
-#else
-		      GtkNotebookPage *pg,
-#endif
 		      gint             page_num, 
 		      PlumaWindow     *window)
 {
@@ -3582,11 +3578,7 @@ vpaned_restore_position (GtkWidget   *widget,
 	GtkAllocation allocation;
 	gint pos;
 
-#if GTK_CHECK_VERSION (3, 0, 0)
 	gtk_widget_get_allocation (widget, &allocation);
-#else
-	allocation = widget->allocation;
-#endif
 
 	pluma_debug_message (DEBUG_WINDOW,
 			     "Restoring vpaned position: bottom panel size %d",

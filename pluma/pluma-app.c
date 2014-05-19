@@ -679,12 +679,8 @@ is_in_viewport (PlumaWindow  *window,
 	gdkwindow = gtk_widget_get_window (GTK_WIDGET (window));
 	gdk_window_get_position (gdkwindow, &x, &y);
 
-	#if GTK_CHECK_VERSION(3, 0, 0)
 		width = gdk_window_get_width(gdkwindow);
 		height = gdk_window_get_height(gdkwindow);
-	#else
-		gdk_drawable_get_size(gdkwindow, &width, &height);
-	#endif
 
 	pluma_utils_get_current_viewport (screen, &vp_x, &vp_y);
 	x += vp_x;

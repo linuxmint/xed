@@ -259,28 +259,16 @@ find_tab_num_at_pos (PlumaNotebook *notebook,
 		tab = gtk_notebook_get_tab_label (nb, page);
 		g_return_val_if_fail (tab != NULL, AFTER_ALL_TABS);
 
-#if GTK_CHECK_VERSION (3, 0, 0)
 		if (!gtk_widget_get_mapped (tab))
-#else
-		if (!GTK_WIDGET_MAPPED (GTK_WIDGET (tab)))
-#endif
 		{
 			++page_num;
 			continue;
 		}
 
-#if GTK_CHECK_VERSION (3, 0, 0)
 		gdk_window_get_origin (GDK_WINDOW (gtk_widget_get_window (tab)),
-#else
-		gdk_window_get_origin (GDK_WINDOW (tab->window),
-#endif
 				       &x_root, &y_root);
 
-#if GTK_CHECK_VERSION (3, 0, 0)
 		gtk_widget_get_allocation(tab, &allocation);
-#else
-		allocation = tab->allocation;
-#endif
 
 		max_x = x_root + allocation.x + allocation.width;
 		max_y = y_root + allocation.y + allocation.height;

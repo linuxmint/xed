@@ -208,11 +208,7 @@ add_or_remove (PlumaEncodingsComboBox *menu,
 			gtk_window_set_transient_for (GTK_WINDOW (dialog),
 						      GTK_WINDOW (toplevel));
 
-#if GTK_CHECK_VERSION (3, 0, 0)
 			wg = gtk_window_get_group (GTK_WINDOW (toplevel));
-#else
-			wg = GTK_WINDOW (toplevel)->group;
-#endif
 			if (wg == NULL)
 			{
 				wg = gtk_window_group_new ();
