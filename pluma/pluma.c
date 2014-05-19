@@ -555,15 +555,6 @@ main (int argc, char *argv[])
 	gchar *dir;
 	gchar *icon_dir;
 
-	/* Init type system as soon as possible */
-#if !GLIB_CHECK_VERSION (2, 36, 0)
-	g_type_init ();
-#endif
-
-	/* Init glib threads asap */
-#if !GLIB_CHECK_VERSION (2, 32, 0)
-	g_thread_init (NULL);
-#endif
 
 	/* Setup debugging */
 	pluma_debug_init ();
