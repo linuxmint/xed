@@ -100,11 +100,7 @@ enum
 static guint signals[LAST_SIGNAL] = { 0 };
 
 static void
-#if GTK_CHECK_VERSION (3, 0, 0)
 pluma_notebook_dispose (GObject *object)
-#else
-pluma_notebook_destroy (GtkObject *object)
-#endif
 {
 	PlumaNotebook *notebook = PLUMA_NOTEBOOK (object);
 
@@ -124,28 +120,17 @@ pluma_notebook_destroy (GtkObject *object)
 		notebook->priv->destroy_has_run = TRUE;
 	}
 
-#if GTK_CHECK_VERSION (3, 0, 0)
 	G_OBJECT_CLASS (pluma_notebook_parent_class)->dispose (object);
-#else
-	GTK_OBJECT_CLASS (pluma_notebook_parent_class)->destroy (object);
-#endif
 }
 
 static void
 pluma_notebook_class_init (PlumaNotebookClass *klass)
 {
 	GObjectClass *object_class = G_OBJECT_CLASS (klass);
-#if !GTK_CHECK_VERSION (3, 0, 0)
-	GtkObjectClass *gtkobject_class = GTK_OBJECT_CLASS (klass);
-#endif
 	GtkNotebookClass *notebook_class = GTK_NOTEBOOK_CLASS (klass);
 
 	object_class->finalize = pluma_notebook_finalize;
-#if GTK_CHECK_VERSION (3, 0, 0)
 	object_class->dispose = pluma_notebook_dispose;
-#else
-	gtkobject_class->destroy = pluma_notebook_destroy;
-#endif
 
 	notebook_class->change_current_page = pluma_notebook_change_current_page;
 
@@ -260,13 +245,6 @@ find_tab_num_at_pos (PlumaNotebook *notebook,
 	GtkWidget *page;
 
 	tab_pos = gtk_notebook_get_tab_pos (GTK_NOTEBOOK (notebook));
-
-#if !GTK_CHECK_VERSION (3, 0, 0)
-	if (GTK_NOTEBOOK (notebook)->first_tab == NULL)
-	{
-		return AFTER_ALL_TABS;
-	}
-#endif
 
 	/* For some reason unfullscreen + quick click can
 	   cause a wrong click event to be reported to the tab */
@@ -689,11 +667,7 @@ pluma_notebook_new (void)
 
 static void
 pluma_notebook_switch_page_cb (GtkNotebook     *notebook,
-#if GTK_CHECK_VERSION (3, 0, 0)
                                GtkWidget       *page,
-#else
-                               GtkNotebookPage *page,
-#endif
                                guint            page_num,
                                gpointer         data)
 {

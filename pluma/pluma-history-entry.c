@@ -120,20 +120,12 @@ pluma_history_entry_get_property (GObject    *object,
 }
 
 static void
-#if GTK_CHECK_VERSION (3, 0, 0)
 pluma_history_entry_dispose (GObject *object)
-#else
-pluma_history_entry_destroy (GtkObject *object)
-#endif
 {
 	pluma_history_entry_set_enable_completion (PLUMA_HISTORY_ENTRY (object),
 						   FALSE);
 
-#if GTK_CHECK_VERSION (3, 0, 0)
 	G_OBJECT_CLASS (pluma_history_entry_parent_class)->dispose (object);
-#else
-	GTK_OBJECT_CLASS (pluma_history_entry_parent_class)->destroy (object);
-#endif
 }
 
 static void
@@ -158,18 +150,11 @@ static void
 pluma_history_entry_class_init (PlumaHistoryEntryClass *klass)
 {
 	GObjectClass   *object_class = G_OBJECT_CLASS (klass);
-#if !GTK_CHECK_VERSION (3, 0, 0)
-	GtkObjectClass *gtkobject_class = GTK_OBJECT_CLASS (klass);
-#endif
 	
 	object_class->set_property = pluma_history_entry_set_property;
 	object_class->get_property = pluma_history_entry_get_property;
 	object_class->finalize = pluma_history_entry_finalize;
-#if GTK_CHECK_VERSION (3, 0, 0)
 	object_class->dispose = pluma_history_entry_dispose;
-#else
-	gtkobject_class->destroy = pluma_history_entry_destroy;
-#endif
 	
 	g_object_class_install_property (object_class,
 					 PROP_HISTORY_ID,

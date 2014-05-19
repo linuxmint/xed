@@ -108,11 +108,7 @@ struct _PlumaViewPrivate
 /* The search entry completion is shared among all the views */
 GtkListStore *search_completion_model = NULL;
 
-#if GTK_CHECK_VERSION (3, 0, 0)
 static void	pluma_view_dispose		(GObject          *object);
-#else
-static void	pluma_view_destroy		(GtkObject        *object);
-#endif
 static void	pluma_view_finalize		(GObject          *object);
 static gint     pluma_view_focus_out		(GtkWidget        *widget,
 						 GdkEventFocus    *event);
@@ -198,19 +194,12 @@ static void
 pluma_view_class_init (PlumaViewClass *klass)
 {
 	GObjectClass     *object_class = G_OBJECT_CLASS (klass);
-#if !GTK_CHECK_VERSION (3, 0, 0)
-	GtkObjectClass   *gtkobject_class = GTK_OBJECT_CLASS (klass);
-#endif
 	GtkWidgetClass   *widget_class = GTK_WIDGET_CLASS (klass);
 	GtkTextViewClass *text_view_class = GTK_TEXT_VIEW_CLASS (klass);
 	
 	GtkBindingSet    *binding_set;
 
-#if GTK_CHECK_VERSION (3, 0, 0)
 	object_class->dispose = pluma_view_dispose;
-#else
-	gtkobject_class->destroy = pluma_view_destroy;
-#endif
 	object_class->finalize = pluma_view_finalize;
 
 	widget_class->focus_out_event = pluma_view_focus_out;
@@ -419,11 +408,7 @@ pluma_view_init (PlumaView *view)
 }
 
 static void
-#if GTK_CHECK_VERSION (3, 0, 0)
 pluma_view_dispose (GObject *object)
-#else
-pluma_view_destroy (GtkObject *object)
-#endif
 {
 	PlumaView *view;
 
@@ -448,11 +433,7 @@ pluma_view_destroy (GtkObject *object)
 	current_buffer_removed (view);
 	g_signal_handlers_disconnect_by_func (view, on_notify_buffer_cb, NULL);
 	
-#if GTK_CHECK_VERSION (3, 0, 0)
 	(* G_OBJECT_CLASS (pluma_view_parent_class)->dispose) (object);
-#else
-	(* GTK_OBJECT_CLASS (pluma_view_parent_class)->destroy) (object);
-#endif
 }
 
 static void

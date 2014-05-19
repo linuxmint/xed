@@ -72,11 +72,7 @@ static void docinfo_dialog_response_cb (GtkDialog   *widget,
 					PlumaWindow *window);
 
 static void
-#if GTK_CHECK_VERSION (3, 0, 0)
-docinfo_dialog_dispose_cb (GObject  *obj,
-#else
-docinfo_dialog_destroy_cb (GtkObject  *obj,
-#endif
+docinfo_dialog_destroy_cb (GObject  *obj,
 			   WindowData *data)
 {
 	pluma_debug (DEBUG_PLUGINS);
@@ -146,14 +142,10 @@ get_docinfo_dialog (PlumaWindow *window,
 				      GTK_WINDOW (window));
 	
 	g_signal_connect (dialog->dialog,
-#if GTK_CHECK_VERSION (3, 0, 0)
-			  "dispose",
-			  G_CALLBACK (docinfo_dialog_dispose_cb),
-#else
 			  "destroy",
 			  G_CALLBACK (docinfo_dialog_destroy_cb),
-#endif
 			  data);
+
 	g_signal_connect (dialog->dialog,
 			  "response",
 			  G_CALLBACK (docinfo_dialog_response_cb),
