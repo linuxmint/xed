@@ -398,11 +398,7 @@ pluma_statusbar_flash_message (PlumaStatusbar *statusbar,
 								msg);
 
 	statusbar->priv->flash_timeout = g_timeout_add (flash_length,
-#if GTK_CHECK_VERSION (3, 0, 0)
 							(GSourceFunc) remove_message_timeout,
-#else
-							(GtkFunction) remove_message_timeout,
-#endif
 							statusbar);
 
 	g_free (msg);
