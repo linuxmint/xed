@@ -1574,30 +1574,6 @@ create_menu_bar_and_toolbar (PlumaWindow *window,
 	}
 	g_free (ui_file);
 
-#if !GTK_CHECK_VERSION (2, 17, 4)
-	/* merge page setup menu manually since we cannot have conditional
-	 * sections in pluma-ui.xml */
-	{
-		guint merge_id;
-		PlumaLockdownMask lockdown;
-
-		merge_id = gtk_ui_manager_new_merge_id (manager);
-		gtk_ui_manager_add_ui (manager,
-				       merge_id,
-				       "/MenuBar/FileMenu/FileOps_5",
-				       "FilePageSetupMenu",
-				       "FilePageSetup",
-				       GTK_UI_MANAGER_MENUITEM,
-				       FALSE);
-
-		lockdown = pluma_app_get_lockdown (pluma_app_get_default ());
-		action = gtk_action_group_get_action (window->priv->action_group,
-						      "FilePageSetup");
-		gtk_action_set_sensitive (action, 
-					  !(lockdown & PLUMA_LOCKDOWN_PRINT_SETUP));
-	}
-#endif
-
 	/* show tooltips in the statusbar */
 	g_signal_connect (manager,
 			  "connect_proxy",
@@ -2661,12 +2637,6 @@ _pluma_window_set_lockdown (PlumaWindow       *window,
 				  !(window->priv->state & PLUMA_WINDOW_STATE_PRINTING) &&
 				  !(lockdown & PLUMA_LOCKDOWN_SAVE_TO_DISK));
 
-#if !GTK_CHECK_VERSION (2, 17, 4)
-	action = gtk_action_group_get_action (window->priv->action_group,
-				              "FilePageSetup");
-	gtk_action_set_sensitive (action, 
-				  !(lockdown & PLUMA_LOCKDOWN_PRINT_SETUP));
-#endif
 }
 
 static void

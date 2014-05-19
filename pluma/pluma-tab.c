@@ -45,10 +45,6 @@
 #include "pluma-prefs-manager-app.h"
 #include "pluma-enum-types.h"
 
-#if !GTK_CHECK_VERSION (2, 17, 1)
-#include "pluma-message-area.h"
-#endif
-
 #define PLUMA_TAB_GET_PRIVATE(object)(G_TYPE_INSTANCE_GET_PRIVATE ((object), PLUMA_TYPE_TAB, PlumaTabPrivate))
 
 #define PLUMA_TAB_KEY "PLUMA_TAB_KEY"
@@ -947,13 +943,8 @@ document_loaded (PlumaDocument *document,
 			set_message_area (tab, emsg);
 		}
 
-#if !GTK_CHECK_VERSION (2, 17, 1)
-		pluma_message_area_set_default_response (PLUMA_MESSAGE_AREA (emsg),
-							 GTK_RESPONSE_CANCEL);
-#else
 		gtk_info_bar_set_default_response (GTK_INFO_BAR (emsg),
 						   GTK_RESPONSE_CANCEL);
-#endif
 
 		gtk_widget_show (emsg);
 
@@ -995,13 +986,8 @@ document_loaded (PlumaDocument *document,
 					  G_CALLBACK (io_loading_error_message_area_response),
 					  tab);
 
-#if !GTK_CHECK_VERSION (2, 17, 1)
-			pluma_message_area_set_default_response (PLUMA_MESSAGE_AREA (emsg),
-								 GTK_RESPONSE_CANCEL);
-#else
 			gtk_info_bar_set_default_response (GTK_INFO_BAR (emsg),
 							   GTK_RESPONSE_CANCEL);
-#endif
 
 			gtk_widget_show (emsg);
 		}
@@ -1035,13 +1021,8 @@ document_loaded (PlumaDocument *document,
 
 					set_message_area (tab, w);
 
-#if !GTK_CHECK_VERSION (2, 17, 1)
-					pluma_message_area_set_default_response (PLUMA_MESSAGE_AREA (w),
-										 GTK_RESPONSE_CANCEL);
-#else
 					gtk_info_bar_set_default_response (GTK_INFO_BAR (w),
 									   GTK_RESPONSE_CANCEL);
-#endif
 
 					gtk_widget_show (w);
 
@@ -1352,13 +1333,8 @@ document_saved (PlumaDocument *document,
 					  tab);
 		}
 
-#if !GTK_CHECK_VERSION (2, 17, 1)
-		pluma_message_area_set_default_response (PLUMA_MESSAGE_AREA (emsg),
-							 GTK_RESPONSE_CANCEL);
-#else
 		gtk_info_bar_set_default_response (GTK_INFO_BAR (emsg),
 						   GTK_RESPONSE_CANCEL);
-#endif
 
 		gtk_widget_show (emsg);
 	}
@@ -2517,52 +2493,6 @@ show_printing_message_area (PlumaTab *tab, gboolean preview)
 	  
 	set_message_area (tab, area);
 }
-
-#if !GTK_CHECK_VERSION (2, 17, 4)
-
-static void
-page_setup_done_cb (GtkPageSetup *setup,
-		    PlumaTab     *tab)
-{
-	if (setup != NULL)
-	{
-		PlumaDocument *doc;
-
-		doc = pluma_tab_get_document (tab);
-
-		/* remember it for this document */
-		g_object_set_data_full (G_OBJECT (doc),
-					PLUMA_PAGE_SETUP_KEY,
-					g_object_ref (setup),
-					(GDestroyNotify)g_object_unref);
-
-		/* make it the default */
-		_pluma_app_set_default_page_setup (pluma_app_get_default(),
-						   setup);
-	}
-}
-
-void 
-_pluma_tab_page_setup (PlumaTab *tab)
-{
-	GtkPageSetup *setup;
-	GtkPrintSettings *settings;
-
-	g_return_if_fail (PLUMA_IS_TAB (tab));
-
-	setup = get_page_setup (tab);
-	settings = get_print_settings (tab);
-
-	gtk_print_run_page_setup_dialog_async (GTK_WINDOW (gtk_widget_get_toplevel (GTK_WIDGET (tab))),
-		 			       setup,
-		 			       settings,
-					       (GtkPageSetupDoneFunc) page_setup_done_cb,
-					       tab);
-
-	/* CHECK: should we unref setup and settings? */
-}
-
-#endif
 
 static void
 pluma_tab_print_or_print_preview (PlumaTab                *tab,

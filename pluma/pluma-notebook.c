@@ -49,10 +49,6 @@
 #include "pluma-marshal.h"
 #include "pluma-window.h"
 
-#ifdef BUILD_SPINNER
-#include "pluma-spinner.h"
-#endif
-
 #define AFTER_ALL_TABS -1
 #define NOT_IN_APP_WINDOWS -2
 

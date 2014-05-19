@@ -31,11 +31,7 @@
 #ifndef __PLUMA_PROGRESS_MESSAGE_AREA_H__
 #define __PLUMA_PROGRESS_MESSAGE_AREA_H__
 
-#if !GTK_CHECK_VERSION (2, 17, 1)
-#include <pluma/pluma-message-area.h>
-#else
 #include <gtk/gtk.h>
-#endif
 
 G_BEGIN_DECLS
 
@@ -59,11 +55,7 @@ typedef struct _PlumaProgressMessageArea PlumaProgressMessageArea;
 
 struct _PlumaProgressMessageArea 
 {
-#if !GTK_CHECK_VERSION (2, 17, 1)
-	PlumaMessageArea parent;
-#else
 	GtkInfoBar parent;
-#endif
 
 	/*< private > */
 	PlumaProgressMessageAreaPrivate *priv;
@@ -76,11 +68,7 @@ typedef struct _PlumaProgressMessageAreaClass PlumaProgressMessageAreaClass;
 
 struct _PlumaProgressMessageAreaClass 
 {
-#if !GTK_CHECK_VERSION (2, 17, 1)
-	PlumaMessageAreaClass parent_class;
-#else
 	GtkInfoBarClass parent_class;
-#endif
 };
 
 /*

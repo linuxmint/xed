@@ -55,26 +55,16 @@ struct _PlumaProgressMessageAreaPrivate
 	GtkWidget *progress;
 };
 
-#if !GTK_CHECK_VERSION (2, 17, 1)
-G_DEFINE_TYPE(PlumaProgressMessageArea, pluma_progress_message_area, PLUMA_TYPE_MESSAGE_AREA)
-#else
 G_DEFINE_TYPE(PlumaProgressMessageArea, pluma_progress_message_area, GTK_TYPE_INFO_BAR)
-#endif
 
 static void
 pluma_progress_message_area_set_has_cancel_button (PlumaProgressMessageArea *area,
 						   gboolean                  has_button)
 {
 	if (has_button)
-#if !GTK_CHECK_VERSION (2, 17, 1)
-		pluma_message_area_add_button (PLUMA_MESSAGE_AREA (area),
-					       GTK_STOCK_CANCEL,
-					       GTK_RESPONSE_CANCEL);
-#else
 		gtk_info_bar_add_button (GTK_INFO_BAR (area),
 					 GTK_STOCK_CANCEL,
 					 GTK_RESPONSE_CANCEL);
-#endif
 
 	g_object_notify (G_OBJECT (area), "has-cancel-button");
 }
@@ -174,15 +164,10 @@ pluma_progress_message_area_init (PlumaProgressMessageArea *area)
 	gtk_box_pack_start (GTK_BOX (vbox), area->priv->progress, TRUE, FALSE, 0);
 	gtk_widget_set_size_request (area->priv->progress, -1, 15);
 
-#if !GTK_CHECK_VERSION (2, 17, 1)
-	pluma_message_area_set_contents (PLUMA_MESSAGE_AREA (area),
-					 vbox);
-#else
 	GtkWidget *content;
 	
 	content = gtk_info_bar_get_content_area (GTK_INFO_BAR (area));
 	gtk_container_add (GTK_CONTAINER (content), vbox);
-#endif
 }
 
 GtkWidget *

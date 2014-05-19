@@ -156,10 +156,6 @@ void		 _pluma_tab_mark_for_closing	(PlumaTab	     *tab);
 
 gboolean	 _pluma_tab_can_close		(PlumaTab	     *tab);
 
-#if !GTK_CHECK_VERSION (2, 17, 4)
-void		 _pluma_tab_page_setup		(PlumaTab            *tab);
-#endif
-
 G_END_DECLS
 
 #endif  /* __PLUMA_TAB_H__  */

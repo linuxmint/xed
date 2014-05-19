@@ -46,13 +46,11 @@ IGNORE_HFILES=		\
 	pluma-documents-panel.h			\
 	pluma-io-error-message-area.h		\
 	pluma-languages-manager.h		\
-	pluma-message-area.h			\
 	pluma-object-module.h			\
 	pluma-plugin-manager.h			\
 	pluma-plugins-engine.h			\
 	pluma-prefs-manager-private.h		\
 	pluma-session.h				\
-	pluma-spinner.h				\
 	pluma-ui.h				\
 	pluma-window-private.h			\
 	pluma-output-window.h			\

@@ -83,10 +83,6 @@ static const GtkActionEntry pluma_menu_entries[] =
 	  N_("Save the current file with a different name"), G_CALLBACK (_pluma_cmd_file_save_as) },
 	{ "FileRevert", GTK_STOCK_REVERT_TO_SAVED, NULL, NULL,
 	  N_("Revert to a saved version of the file"), G_CALLBACK (_pluma_cmd_file_revert) },
-#if !GTK_CHECK_VERSION (2, 17, 4)
-	{ "FilePageSetup", GTK_STOCK_PAGE_SETUP, N_("Page Set_up..."), NULL,
-	  N_("Set up the page settings"), G_CALLBACK (_pluma_cmd_file_page_setup) },
-#endif
 	{ "FilePrintPreview", GTK_STOCK_PRINT_PREVIEW, N_("Print Previe_w"),"<control><shift>P",
 	  N_("Print preview"), G_CALLBACK (_pluma_cmd_file_print_preview) },
 	 { "FilePrint", GTK_STOCK_PRINT, N_("_Print..."), "<control>P",

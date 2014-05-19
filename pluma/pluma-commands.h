@@ -154,13 +154,6 @@ void		_pluma_cmd_file_close_tab 		(PlumaTab    *tab,
 void		_pluma_cmd_file_save_documents_list	(PlumaWindow *window,
 							 GList       *docs);
 
-
-#if !GTK_CHECK_VERSION (2, 17, 4)
-void		_pluma_cmd_file_page_setup		(GtkAction   *action,
-							 PlumaWindow *window);
-#endif
-
-
 G_END_DECLS
 
 #endif /* __PLUMA_COMMANDS_H__ */ 

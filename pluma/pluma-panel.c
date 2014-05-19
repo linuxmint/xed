@@ -145,11 +145,7 @@ static void
 pluma_panel_focus_document (PlumaPanel *panel)
 {
 	GtkWidget *toplevel = gtk_widget_get_toplevel (GTK_WIDGET (panel));
-#if !GTK_CHECK_VERSION (2, 18, 0)
-	if (GTK_WIDGET_TOPLEVEL (toplevel) && PLUMA_IS_WINDOW (toplevel))
-#else
 	if (gtk_widget_is_toplevel (toplevel) && PLUMA_IS_WINDOW (toplevel))
-#endif
 	{
 		PlumaView *view;
 

@@ -280,7 +280,7 @@ AC_MSG_RESULT([$with_gtk])
 
 case "$with_gtk" in
   2.0) GTK_API_VERSION=2.0
-       GTK_REQUIRED=2.20.0
+       GTK_REQUIRED=2.24.0
        ;;
   3.0) GTK_API_VERSION=3.0
        GTK_REQUIRED=3.0.0
@@ -314,29 +314,6 @@ PLUMA_LIBS="$PLUMA_LIBS $X11_LIBS"
 
 AC_SUBST(PLUMA_CFLAGS)
 AC_SUBST(PLUMA_LIBS)
-
-dnl FIXME: Remove this when removing pluma-message-area
-
-if $PKG_CONFIG --atleast-version 2.17.1 gtk+-$GTK_API_VERSION; then
-       gtkatleast=
-else
-       gtkatleast=no
-fi
-
-AM_CONDITIONAL(BUILD_MESSAGE_AREA, test "$gtkatleast" = "no")
-
-dnl FIXME: Remove this when removing pluma-spinner
-
-if $PKG_CONFIG --atleast-version 2.19.0 gtk+-$GTK_API_VERSION; then
-       gtkatleast=
-else
-       gtkatleast=no
-fi
-
-AM_CONDITIONAL(BUILD_SPINNER, test "$gtkatleast" = "no")
-if test "$gtkatleast" = "no"; then
-	AC_DEFINE([BUILD_SPINNER],[1],[Whether to use PlumaSpinner instead of GtkSpinner])
-fi
 
 if test "$os_osx" = "no" &&
    test "$os_win32" = "no"; then

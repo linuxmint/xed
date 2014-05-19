@@ -761,9 +761,7 @@ pluma_print_job_print (PlumaPrintJob            *job,
 	gtk_print_operation_set_job_name (priv->operation, job_name);
 	g_free (job_name);
 
-#if GTK_CHECK_VERSION (2, 17, 4)
 	gtk_print_operation_set_embed_page_setup (priv->operation, TRUE);
-#endif
 
 	gtk_print_operation_set_custom_tab_label (priv->operation,
 						  _("Text Editor"));

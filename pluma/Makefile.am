@@ -238,14 +238,4 @@ else
 BACON_DIR=
 endif
 
-if BUILD_MESSAGE_AREA
-libpluma_la_SOURCES += pluma-message-area.c
-INST_H_FILES += pluma-message-area.h
-endif
-
-if BUILD_SPINNER
-libpluma_la_SOURCES += pluma-spinner.c
-NOINST_H_FILES += pluma-spinner.h
-endif
-
 -include $(top_srcdir)/git.mk

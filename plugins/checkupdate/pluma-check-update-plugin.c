@@ -31,10 +31,6 @@
 
 #include <gio/gio.h>
 
-#if !GTK_CHECK_VERSION(2, 17, 1)
-#include <pluma/pluma-message-area.h>
-#endif
-
 #define SETTINGS_SCHEMA           "org.mate.pluma.plugins.checkupdate"
 #define SETTINGS_IGNORE_VERSION   "ignore-version"
 
@@ -141,15 +137,10 @@ static void
 set_contents (GtkWidget *infobar,
 	      GtkWidget *contents)
 {
-#if !GTK_CHECK_VERSION (2, 17, 1)
-	pluma_message_area_set_contents (PLUMA_MESSAGE_AREA (infobar),
-					 contents);
-#else
 	GtkWidget *content_area;
 
 	content_area = gtk_info_bar_get_content_area (GTK_INFO_BAR (infobar));
 	gtk_container_add (GTK_CONTAINER (content_area), contents);
-#endif
 }
 
 static void
@@ -278,21 +269,6 @@ create_infobar (PlumaWindow *window,
 	GtkWidget *infobar;
 	gchar *message;
 
-#if !GTK_CHECK_VERSION (2, 17, 1)
-	infobar = pluma_message_area_new ();
-
-	pluma_message_area_add_stock_button_with_text (PLUMA_MESSAGE_AREA (infobar),
-						       _("_Download"),
-						       GTK_STOCK_SAVE,
-						       GTK_RESPONSE_YES);
-	pluma_message_area_add_stock_button_with_text (PLUMA_MESSAGE_AREA (infobar),
-						       _("_Ignore Version"),
-						       GTK_STOCK_DISCARD,
-						       GTK_RESPONSE_NO);
-	pluma_message_area_add_button (PLUMA_MESSAGE_AREA (infobar),
-				       GTK_STOCK_CANCEL,
-				       GTK_RESPONSE_CANCEL);
-#else
 	GtkWidget *button;
 
 	infobar = gtk_info_bar_new ();
@@ -319,7 +295,6 @@ create_infobar (PlumaWindow *window,
 
 	gtk_info_bar_set_message_type (GTK_INFO_BAR (infobar),
 				       GTK_MESSAGE_INFO);
-#endif
 
 	message = g_strdup_printf ("%s (%s)", _("There is a new version of pluma"), version);
 	set_message_area_text_and_icon (infobar,

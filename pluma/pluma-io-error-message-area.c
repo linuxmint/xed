@@ -48,10 +48,6 @@
 #include "pluma-prefs-manager.h"
 #include <pluma/pluma-encodings-combo-box.h>
 
-#if !GTK_CHECK_VERSION (2, 17, 1)
-#include "pluma-message-area.h"
-#endif
-
 #define MAX_URI_IN_DIALOG_LENGTH 50
 
 static gboolean
@@ -87,18 +83,12 @@ static void
 set_contents (GtkWidget *area,
 	      GtkWidget *contents)
 {
-#if !GTK_CHECK_VERSION (2, 17, 1)
-	pluma_message_area_set_contents (PLUMA_MESSAGE_AREA (area),
-					 contents);
-#else
 	GtkWidget *content_area;
 	
 	content_area = gtk_info_bar_get_content_area (GTK_INFO_BAR (area));
 	gtk_container_add (GTK_CONTAINER (content_area), contents);
-#endif
 }
 
-#if GTK_CHECK_VERSION (2, 17, 1)
 static void
 info_bar_add_stock_button_with_text (GtkInfoBar  *infobar,
 				     const gchar *text,
@@ -112,7 +102,6 @@ info_bar_add_stock_button_with_text (GtkInfoBar  *infobar,
 	image = gtk_image_new_from_stock (stock_id, GTK_ICON_SIZE_BUTTON);
 	gtk_button_set_image (GTK_BUTTON (button), image);
 }
-#endif
 
 static void
 set_message_area_text_and_icon (GtkWidget   *message_area,
@@ -172,17 +161,11 @@ create_io_loading_error_message_area (const gchar *primary_text,
 {
 	GtkWidget *message_area;
 
-#if !GTK_CHECK_VERSION (2, 17, 1)
-	message_area = pluma_message_area_new_with_buttons (
-					GTK_STOCK_CANCEL, GTK_RESPONSE_CANCEL,
-					NULL);
-#else
 	message_area = gtk_info_bar_new_with_buttons (
 					GTK_STOCK_CANCEL, GTK_RESPONSE_CANCEL,
 					NULL);
 	gtk_info_bar_set_message_type (GTK_INFO_BAR (message_area),
 				       GTK_MESSAGE_ERROR);
-#endif
 
 	set_message_area_text_and_icon (message_area,
 					"gtk-dialog-error",
@@ -191,17 +174,10 @@ create_io_loading_error_message_area (const gchar *primary_text,
 
 	if (recoverable_error)
 	{
-#if !GTK_CHECK_VERSION (2, 17, 1)
-		pluma_message_area_add_stock_button_with_text (PLUMA_MESSAGE_AREA (message_area),
-							       _("_Retry"),
-							       GTK_STOCK_REFRESH,
-							       GTK_RESPONSE_OK);
-#else
 		info_bar_add_stock_button_with_text (GTK_INFO_BAR (message_area),
 						     _("_Retry"),
 						     GTK_STOCK_REFRESH,
 						     GTK_RESPONSE_OK);
-#endif
 	}
 
 	return message_area;
@@ -498,30 +474,6 @@ create_conversion_error_message_area (const gchar *primary_text,
 	GtkWidget *primary_label;
 	GtkWidget *secondary_label;
 
-#if !GTK_CHECK_VERSION (2, 17, 1)
-	message_area = pluma_message_area_new ();
-
-	pluma_message_area_add_stock_button_with_text (PLUMA_MESSAGE_AREA (message_area),
-						       _("_Retry"),
-						       GTK_STOCK_REDO,
-						       GTK_RESPONSE_OK);
-
-	if (edit_anyway)
-	{
-		pluma_message_area_add_button (PLUMA_MESSAGE_AREA (message_area),
-					       _("Edit Any_way"),
-					       GTK_RESPONSE_YES);
-		pluma_message_area_add_button (PLUMA_MESSAGE_AREA (message_area),
-					       _("D_on't Edit"),
-					       GTK_RESPONSE_NO);
-	}
-	else
-	{
-		pluma_message_area_add_button (PLUMA_MESSAGE_AREA (message_area),
-					       GTK_STOCK_CANCEL,
-					       GTK_RESPONSE_CANCEL);
-	}
-#else
 	message_area = gtk_info_bar_new ();
 
 	info_bar_add_stock_button_with_text (GTK_INFO_BAR (message_area),
@@ -552,7 +504,6 @@ create_conversion_error_message_area (const gchar *primary_text,
 		gtk_info_bar_set_message_type (GTK_INFO_BAR (message_area),
 					       GTK_MESSAGE_ERROR);
 	}
-#endif
 
 	hbox_content = gtk_hbox_new (FALSE, 8);
 
@@ -765,11 +716,7 @@ pluma_conversion_error_message_area_get_encoding (GtkWidget *message_area)
 {
 	gpointer menu;
 
-#if !GTK_CHECK_VERSION (2, 17, 1)
-	g_return_val_if_fail (PLUMA_IS_MESSAGE_AREA (message_area), NULL);
-#else
 	g_return_val_if_fail (GTK_IS_INFO_BAR (message_area), NULL);
-#endif
 
 	menu = g_object_get_data (G_OBJECT (message_area), 
 				  "pluma-message-area-encoding-menu");	
@@ -809,15 +756,6 @@ pluma_file_already_open_warning_message_area_new (const gchar *uri)
 	uri_for_display = g_markup_printf_escaped ("<i>%s</i>", temp_uri_for_display);
 	g_free (temp_uri_for_display);
 
-#if !GTK_CHECK_VERSION (2, 17, 1)
-	message_area = pluma_message_area_new ();
-	pluma_message_area_add_button (PLUMA_MESSAGE_AREA (message_area),
-				       _("Edit Any_way"),
-				       GTK_RESPONSE_YES);
-	pluma_message_area_add_button (PLUMA_MESSAGE_AREA (message_area),
-				       _("D_on't Edit"),
-				       GTK_RESPONSE_CANCEL);
-#else
 	message_area = gtk_info_bar_new ();
 	gtk_info_bar_add_button (GTK_INFO_BAR (message_area),
 	/* Translators: the access key chosen for this string should be
@@ -831,7 +769,6 @@ pluma_file_already_open_warning_message_area_new (const gchar *uri)
 				 GTK_RESPONSE_CANCEL);
 	gtk_info_bar_set_message_type (GTK_INFO_BAR (message_area),
 				       GTK_MESSAGE_WARNING);
-#endif
 
 	hbox_content = gtk_hbox_new (FALSE, 8);
 
@@ -912,16 +849,6 @@ pluma_externally_modified_saving_error_message_area_new (
 	uri_for_display = g_markup_printf_escaped ("<i>%s</i>", temp_uri_for_display);
 	g_free (temp_uri_for_display);
 
-#if !GTK_CHECK_VERSION (2, 17, 1)
-	message_area = pluma_message_area_new ();
-	pluma_message_area_add_stock_button_with_text (PLUMA_MESSAGE_AREA (message_area),
-						       _("S_ave Anyway"),
-						       GTK_STOCK_SAVE,
-						       GTK_RESPONSE_YES);
-	pluma_message_area_add_button (PLUMA_MESSAGE_AREA (message_area),
-				       _("D_on't Save"),
-				       GTK_RESPONSE_CANCEL);
-#else
 	message_area = gtk_info_bar_new ();
 	
 	info_bar_add_stock_button_with_text (GTK_INFO_BAR (message_area),
@@ -933,7 +860,6 @@ pluma_externally_modified_saving_error_message_area_new (
 				 GTK_RESPONSE_CANCEL);
 	gtk_info_bar_set_message_type (GTK_INFO_BAR (message_area),
 				       GTK_MESSAGE_WARNING);
-#endif
 
 	hbox_content = gtk_hbox_new (FALSE, 8);
 
@@ -1018,16 +944,6 @@ pluma_no_backup_saving_error_message_area_new (const gchar  *uri,
 	uri_for_display = g_markup_printf_escaped ("<i>%s</i>", temp_uri_for_display);
 	g_free (temp_uri_for_display);
 
-#if !GTK_CHECK_VERSION (2, 17, 1)
-	message_area = pluma_message_area_new ();
-	pluma_message_area_add_stock_button_with_text (PLUMA_MESSAGE_AREA (message_area),
-						       _("S_ave Anyway"),
-						       GTK_STOCK_SAVE,
-						       GTK_RESPONSE_YES);
-	pluma_message_area_add_button (PLUMA_MESSAGE_AREA (message_area),
-				       _("D_on't Save"),
-				       GTK_RESPONSE_CANCEL);
-#else
 	message_area = gtk_info_bar_new ();
 	
 	info_bar_add_stock_button_with_text (GTK_INFO_BAR (message_area),
@@ -1039,7 +955,6 @@ pluma_no_backup_saving_error_message_area_new (const gchar  *uri,
 				 GTK_RESPONSE_CANCEL);
 	gtk_info_bar_set_message_type (GTK_INFO_BAR (message_area),
 				       GTK_MESSAGE_WARNING);
-#endif
 
 	hbox_content = gtk_hbox_new (FALSE, 8);
 
@@ -1253,18 +1168,6 @@ pluma_externally_modified_message_area_new (const gchar *uri,
 	else
 		secondary_text = _("Do you want to reload the file?");
 
-#if !GTK_CHECK_VERSION (2, 17, 1)
-	message_area = pluma_message_area_new ();
-	
-	pluma_message_area_add_stock_button_with_text (PLUMA_MESSAGE_AREA (message_area),
-						       _("_Reload"),
-						       GTK_STOCK_REFRESH,
-						       GTK_RESPONSE_OK);
-
-	pluma_message_area_add_button (PLUMA_MESSAGE_AREA (message_area),
-				       GTK_STOCK_CANCEL,
-				       GTK_RESPONSE_CANCEL);
-#else
 	message_area = gtk_info_bar_new ();
 	
 	info_bar_add_stock_button_with_text (GTK_INFO_BAR (message_area),
@@ -1276,7 +1179,6 @@ pluma_externally_modified_message_area_new (const gchar *uri,
 				 GTK_RESPONSE_CANCEL);
 	gtk_info_bar_set_message_type (GTK_INFO_BAR (message_area),
 				       GTK_MESSAGE_WARNING);
-#endif
 
 	set_message_area_text_and_icon (message_area,
 					"gtk-dialog-warning",

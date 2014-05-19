@@ -42,23 +42,6 @@
 #include "pluma-tab.h"
 #include "pluma-debug.h"
 
-#if !GTK_CHECK_VERSION (2, 17, 4)
-void
-_pluma_cmd_file_page_setup (GtkAction   *action,
-			    PlumaWindow *window)
-{
-	PlumaTab *tab;
-
-	pluma_debug (DEBUG_COMMANDS);
-
-	tab = pluma_window_get_active_tab (window);
-	if (tab == NULL)
-		return;
-
-	_pluma_tab_page_setup (tab);
-}
-#endif
-
 void
 _pluma_cmd_file_print_preview (GtkAction   *action,
 			       PlumaWindow *window)
