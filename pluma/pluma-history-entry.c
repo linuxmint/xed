@@ -64,11 +64,7 @@ struct _PlumaHistoryEntryPrivate
 	GSettings          *settings;
 };
 
-#if GTK_CHECK_VERSION (3, 0, 0)
 G_DEFINE_TYPE(PlumaHistoryEntry, pluma_history_entry, GTK_TYPE_COMBO_BOX_TEXT)
-#else
-G_DEFINE_TYPE(PlumaHistoryEntry, pluma_history_entry, GTK_TYPE_COMBO_BOX_ENTRY)
-#endif
 
 static void
 pluma_history_entry_set_property (GObject      *object,
@@ -514,12 +510,8 @@ pluma_history_entry_new (const gchar *history_id,
 	ret = g_object_new (PLUMA_TYPE_HISTORY_ENTRY,
 			    "history-id", history_id,
 	                    "model", store,
-#if GTK_CHECK_VERSION (3, 0, 0)
 			    "has-entry", TRUE,
-			    "id-column", 0,
-#else
-			    "text-column", 0,
-#endif
+			    "entry-text-column", 0,
 	                    NULL);
 
 	g_object_unref (store);

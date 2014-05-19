@@ -48,20 +48,12 @@ typedef struct _PlumaHistoryEntryPrivate PlumaHistoryEntryPrivate;
 
 struct _PlumaHistoryEntryClass
 {
-#if GTK_CHECK_VERSION (3, 0, 0)
 	GtkComboBoxTextClass parent_class;
-#else
-	GtkComboBoxEntryClass parent_class;
-#endif
 };
 
 struct _PlumaHistoryEntry
 {
-#if GTK_CHECK_VERSION (3, 0, 0)
 	GtkComboBoxText parent_instance;
-#else
-	GtkComboBoxEntry parent_instance;
-#endif
 
 	PlumaHistoryEntryPrivate *priv;
 };
