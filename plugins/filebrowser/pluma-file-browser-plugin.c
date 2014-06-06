@@ -624,6 +624,7 @@ impl_activate (PlumaPlugin * plugin, PlumaWindow * window)
 	PlumaFileBrowserStore * store;
 	gchar *data_dir;
 	GSettingsSchemaSource *schema_source;
+	GSettingsSchema *schema;
 
 	data = g_new0 (PlumaFileBrowserPluginData, 1);
 
@@ -690,9 +691,11 @@ impl_activate (PlumaPlugin * plugin, PlumaWindow * window)
 
 	/* Install caja preferences */
 	schema_source = g_settings_schema_source_get_default();
-	if (g_settings_schema_source_lookup (schema_source, CAJA_SCHEMA, FALSE)) {
+	schema = g_settings_schema_source_lookup (schema_source, CAJA_SCHEMA, FALSE);
+	if (schema != NULL) {
 		data->caja_settings = g_settings_new (CAJA_SCHEMA);
 		install_caja_prefs (data);
+		g_settings_schema_unref (schema);
 	}
 
 	/* Connect signals to store the last visited location */
