@@ -4,16 +4,16 @@
 # 
 # Translators:
 # negativezero <blackhole89@gmail.com>, 2014
-# desperateCoder <a.dawtjan@gmx.de>, 2013-2014
+# guyfawkes <a.dawtjan@gmx.de>, 2013-2014
 # qazwsxedc <qazwsxedc@gmx.net>, 2014
-# to_ba, 2014
+# Tobias Bannert, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: MATE Desktop Environment\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-02-21 20:38+0100\n"
-"PO-Revision-Date: 2014-02-21 23:46+0000\n"
-"Last-Translator: to_ba\n"
+"PO-Revision-Date: 2014-05-22 21:39+0000\n"
+"Last-Translator: Tobias Bannert\n"
 "Language-Team: German (http://www.transifex.com/projects/p/MATE/language/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -31,17 +31,17 @@ msgid ""
 "instead of a font specific to pluma. If this option is turned off, then the "
 "font named in the \"Editor Font\" option will be used instead of the system "
 "font."
-msgstr "Soll die standardmäßige dicktengleiche Schrift des Systems zum Bearbeiten von Text anstelle der in pluma angegeben Schrift verwendet werden? Falls diese Option deaktiviert ist, wird die unter »Editor-Schrift« angegeben Schrift anstelle der System-Schrift verwendet."
+msgstr "Soll die vorgegebene dicktengleiche Schrift des Systems zum Bearbeiten von Text, anstelle der in Pluma angegeben Schrift verwendet werden? Falls diese Option deaktiviert ist, wird die unter »Bearbeitungsschrift« angegeben Schrift anstelle der Systemschrift verwendet."
 
 #: ../data/org.mate.pluma.gschema.xml.in.in.h:3
 msgid "Editor Font"
-msgstr "Editor-Schrift"
+msgstr "Bearbeitungsschrift"
 
 #: ../data/org.mate.pluma.gschema.xml.in.in.h:4
 msgid ""
 "A custom font that will be used for the editing area. This will only take "
 "effect if the \"Use Default Font\" option is turned off."
-msgstr "Die für den Editorbereich zu verwendende benutzerdefinierte Schrift. Diese wird ausschließlich verwendet, falls die »Voreingestellte Schrift verwenden«-Option deaktiviert ist."
+msgstr "Die für den Bearbeitungsbereich zu verwendende benutzerdefinierte Schrift. Diese wird ausschließlich verwendet, falls die »Voreingestellte Schrift verwenden«-Option deaktiviert ist."
 
 #: ../data/org.mate.pluma.gschema.xml.in.in.h:5
 msgid "Style Scheme"
@@ -113,7 +113,7 @@ msgid ""
 "\"GTK_WRAP_CHAR\" for wrapping at individual character boundaries. Note that"
 " the values are case-sensitive, so make sure they appear exactly as "
 "mentioned here."
-msgstr "Gibt an, ab welcher Länge Zeilen im Editor-Bereich umgebrochen werden. Verwenden Sie »GTK_WRAP_NONE« für keinen Umbruch, »GTK_WRAP_WORD«, um den Zeilenumbruch an Wortgrenzen durchzufügen oder »GTK_WRAP_CHAR« für den Umbruch an einzelnen Zeichengrenzen. Hinweis: Bei den Werten wird zwischen Groß- und Kleinschreibung unterschieden. Verwenden Sie daher die Werte genau wie hier angegeben."
+msgstr "Gibt an, ab welcher Länge Zeilen im Bearbeitungsbereich umgebrochen werden. Verwenden Sie »GTK_WRAP_NONE« für keinen Umbruch, »GTK_WRAP_WORD«, um den Zeilenumbruch an Wortgrenzen durchzufügen oder »GTK_WRAP_CHAR« für den Umbruch an einzelnen Zeichengrenzen. Hinweis: Bei den Werten wird zwischen Groß- und Kleinschreibung unterschieden. Verwenden Sie daher bitte die Werte genau wie hier angegeben."
 
 #: ../data/org.mate.pluma.gschema.xml.in.in.h:19
 msgid "Tab Size"
@@ -147,7 +147,7 @@ msgstr "Zeilennummern anzeigen"
 
 #: ../data/org.mate.pluma.gschema.xml.in.in.h:26
 msgid "Whether pluma should display line numbers in the editing area."
-msgstr "Soll pluma Zeilennummern im Editor-Bereich anzeigen?"
+msgstr "Soll Pluma die Zeilennummern im Bearbeitungsbereich anzeigen?"
 
 #: ../data/org.mate.pluma.gschema.xml.in.in.h:27
 msgid "Highlight Current Line"
@@ -171,7 +171,7 @@ msgstr "Rechten Rand anzeigen"
 
 #: ../data/org.mate.pluma.gschema.xml.in.in.h:32
 msgid "Whether pluma should display the right margin in the editing area."
-msgstr "Soll pluma den rechten Rand im Editor-Bereich anzeigen?"
+msgstr "Soll Pluma den rechten Rand im Bearbeitungsbereich anzeigen?"
 
 #: ../data/org.mate.pluma.gschema.xml.in.in.h:33
 msgid "Right Margin Position"
@@ -392,13 +392,13 @@ msgstr "Liste der Einträge in der \"Ersetzen mit\" Textbox"
 
 #: ../data/org.mate.pluma.gschema.xml.in.in.h:77
 msgid "Active plugins"
-msgstr "Aktive Plugins"
+msgstr "Aktive Erweiterungen"
 
 #: ../data/org.mate.pluma.gschema.xml.in.in.h:78
 msgid ""
 "List of active plugins. It contains the \"Location\" of the active plugins. "
 "See the .pluma-plugin file for obtaining the \"Location\" of a given plugin."
-msgstr "Liste der aktiven Plugins. Sie enthält den Ort (»Location«) der aktiven Plugins. Schauen Sie in die Datei ».pluma-plugin«, um den Ort eines bestimmten Plugins zu erfahren."
+msgstr "Liste der aktiven Erweiterungen. Sie enthält den Ort (»Location«) der aktiven Erweiterungen. Die Datei ».pluma-plugin« ansehen, um den Ort einer bestimmten Erweiterungen zu erfahren."
 
 #: ../data/pluma.desktop.in.in.h:1
 msgid "Pluma"
@@ -406,7 +406,7 @@ msgstr "Pluma"
 
 #: ../data/pluma.desktop.in.in.h:2 ../pluma/pluma-print-job.c:769
 msgid "Text Editor"
-msgstr "Texteditor"
+msgstr "Textbearbeitung"
 
 #: ../data/pluma.desktop.in.in.h:3
 msgid "Edit text files"
@@ -414,7 +414,7 @@ msgstr "Textdateien bearbeiten"
 
 #: ../data/pluma.desktop.in.in.h:4
 msgid "pluma Text Editor"
-msgstr "pluma Texteditor"
+msgstr "Pluma-Textbearbeitung"
 
 #: ../pluma/dialogs/pluma-close-confirmation-dialog.c:140
 msgid "Log Out _without Saving"
@@ -566,7 +566,7 @@ msgstr "Im _Menü anzuzeigende Zeichenkodierungen:"
 
 #: ../pluma/dialogs/pluma-preferences-dialog.c:574
 msgid "Click on this button to select the font to be used by the editor"
-msgstr "Klicken Sie auf diesen Knopf, um die vom Editor zu verwendende Schrift auszuwählen"
+msgstr "Auf diesen Knopf klicken, um die vom Bearbeiter zu verwendende Schrift auszuwählen"
 
 #: ../pluma/dialogs/pluma-preferences-dialog.c:584
 #, c-format
@@ -710,7 +710,7 @@ msgstr "_Minuten"
 
 #: ../pluma/dialogs/pluma-preferences-dialog.ui.h:25
 msgid "Editor"
-msgstr "Editor"
+msgstr "Bearbeitung"
 
 #: ../pluma/dialogs/pluma-preferences-dialog.ui.h:26
 msgid "Font"
@@ -718,11 +718,11 @@ msgstr "Schrift"
 
 #: ../pluma/dialogs/pluma-preferences-dialog.ui.h:27
 msgid "Editor _font: "
-msgstr "Editor-_Schrift:"
+msgstr "Bearbeitungsschrift"
 
 #: ../pluma/dialogs/pluma-preferences-dialog.ui.h:28
 msgid "Pick the editor font"
-msgstr "Wählen Sie die Editorschrift"
+msgstr "Die Bearbeitungsschrift auswählen"
 
 #: ../pluma/dialogs/pluma-preferences-dialog.ui.h:29
 msgid "Color Scheme"
@@ -738,7 +738,7 @@ msgstr "Schrift und Farben"
 
 #: ../pluma/dialogs/pluma-preferences-dialog.ui.h:32
 msgid "Plugins"
-msgstr "Plugins"
+msgstr "Erweiterungen"
 
 #: ../pluma/dialogs/pluma-search-dialog.c:305
 #: ../pluma/dialogs/pluma-search-dialog.ui.h:1 ../pluma/pluma-window.c:1530
@@ -951,7 +951,7 @@ msgstr "_Zurücksetzen"
 
 #: ../pluma/pluma-commands-help.c:82
 msgid "pluma is a small and lightweight text editor for the MATE Desktop"
-msgstr "pluma ist ein kleiner und handlicher Texteditor für die MATE-Arbeitsumgebung"
+msgstr "Pluma ist eine kleiner und handlicher Textbearbeitung für die MATE-Arbeitsumgebung"
 
 #: ../pluma/pluma-commands-help.c:93
 msgid "translator-credits"
@@ -1471,7 +1471,7 @@ msgstr "Leiste verstecken"
 
 #: ../pluma/pluma-plugin-manager.c:54
 msgid "Plugin"
-msgstr "Plugin"
+msgstr "Erweiterung"
 
 #: ../pluma/pluma-plugin-manager.c:55
 msgid "Enabled"
@@ -1479,7 +1479,7 @@ msgstr "Aktiviert"
 
 #: ../pluma/pluma-plugin-manager.c:504
 msgid "_About"
-msgstr "_Info"
+msgstr "_Über"
 
 #: ../pluma/pluma-plugin-manager.c:512
 msgid "C_onfigure"
@@ -1499,15 +1499,15 @@ msgstr "Alle _deaktivieren"
 
 #: ../pluma/pluma-plugin-manager.c:800
 msgid "Active _Plugins:"
-msgstr "Aktive _Plugins:"
+msgstr "Aktive _Erweiterungen:"
 
 #: ../pluma/pluma-plugin-manager.c:825
 msgid "_About Plugin"
-msgstr "_Info zu Plugin"
+msgstr "_Über die Erweiterung"
 
 #: ../pluma/pluma-plugin-manager.c:829
 msgid "C_onfigure Plugin"
-msgstr "Plugin _konfigurieren"
+msgstr "Erweiterung _konfigurieren"
 
 #: ../pluma/pluma-print-job.c:551
 #, c-format
@@ -1809,7 +1809,7 @@ msgstr "Das pluma-Handbuch öffnen"
 
 #: ../pluma/pluma-ui.h:69
 msgid "About this application"
-msgstr "Info zu dieser Anwendung"
+msgstr "Über diese Anwendung"
 
 #: ../pluma/pluma-ui.h:73
 msgid "Leave fullscreen mode"
@@ -2142,7 +2142,7 @@ msgstr "Tabulatorbreite"
 
 #: ../pluma/pluma-window.c:3897
 msgid "About pluma"
-msgstr "Info zu pluma"
+msgstr "Über Pluma"
 
 #: ../plugins/changecase/changecase.pluma-plugin.desktop.in.h:1
 msgid "Change Case"
@@ -2233,7 +2233,7 @@ msgstr "Statistik zum Dokument"
 msgid ""
 "Analyzes the current document and reports the number of words, lines, "
 "characters and non-space characters in it."
-msgstr "Dieses Plugin analysiert das momentan geöffnete Dokument und ermittelt die Anzahl der darin enthaltenen Wörter, Zeilen, Zeichen sowie Nicht-Leerzeichen und zeigt das Ergebnis an."
+msgstr "Diese Erweiterung analysiert das momentan geöffnete Dokument und ermittelt die Anzahl der darin enthaltenen Wörter, Zeilen, Zeichen sowie Nicht-Leerzeichen und zeigt das Ergebnis an."
 
 #: ../plugins/docinfo/docinfo.ui.h:2
 msgid "_Update"
@@ -2522,7 +2522,7 @@ msgid ""
 "document given that the file browser hasn't been used yet. (Thus this "
 "generally applies to opening a document from the command line or opening it "
 "with Caja, etc.)"
-msgstr "Falls dieser Schlüssel auf »WAHR« gesetzt ist, dann öffnet das Plugin für die Dateiverwaltung den Ordner des zuerst geöffneten Dokuments, falls die Dateiverwaltung noch nicht verwendet wurde. (Das trifft allgemein dann zu, wenn eine Datei aus der Befehlszeile oder mit Caja etc. geöffnet wurde)"
+msgstr "Falls dieser Schlüssel auf »WAHR« gesetzt ist, dann öffnet die Erweiterung für die Dateiverwaltung den Ordner des zuerst geöffneten Dokumentes, falls die Dateiverwaltung noch nicht verwendet wurde. (Das trifft allgemein dann zu, wenn eine Datei aus der Befehlszeile oder mit Caja usw. geöffnet wurde)"
 
 #: ../plugins/filebrowser/org.mate.pluma.plugins.filebrowser.gschema.xml.in.in.h:3
 msgid "File Browser Filter Mode"
@@ -2554,7 +2554,7 @@ msgstr "In der Baumansicht öffnen"
 msgid ""
 "Open the tree view when the file browser plugin gets loaded instead of the "
 "bookmarks view"
-msgstr "Öffnet die Baumansicht, wenn das Dateiverwaltung-Plugin anstelle der Lesezeichenansicht geöffnet wurde"
+msgstr "Öffnet die Baumansicht, wenn die Dateiverwaltungerweiterung anstelle der Lesezeichenansicht geöffnet wurde"
 
 #: ../plugins/filebrowser/org.mate.pluma.plugins.filebrowser.gschema.xml.in.in.h:9
 msgid "File Browser Root Directory"
@@ -3411,7 +3411,7 @@ msgstr "Assoziierte Information"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:14
 msgid "Author info"
-msgstr "Autoren-Info"
+msgstr "Autoreninformation"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:15
 msgid "Axis related headers"
@@ -4017,11 +4017,11 @@ msgstr "Vorformatierter Text"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:184
 msgid "Profile metainfo dictionary"
-msgstr "Ordner für Meta-Informationen"
+msgstr "Ordner für Metainformationen"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:185
 msgid "Push button"
-msgstr "Klickbutton"
+msgstr "Druckknopf"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:186
 msgid "ReadOnly text and password"
@@ -4832,7 +4832,7 @@ msgstr "Floskelliste"
 msgid ""
 "Provides a method to easily insert commonly used tags/strings into a "
 "document without having to type them."
-msgstr "Dieses Plugin bietet die Möglichkeit, häufig verwendete Floskeln und Zeichenketten in ein Dokument einzufügen, ohne sie eingeben zu müssen."
+msgstr "Diese Erweiterung bietet die Möglichkeit, häufig verwendete Floskeln und Zeichenketten in ein Dokument einzufügen, ohne sie eingeben zu müssen."
 
 #: ../plugins/taglist/XSLT.tags.xml.in.h:1
 msgid "XSLT - Elements"
@@ -4928,7 +4928,7 @@ msgstr "Verfügbare Formate"
 
 #: ../plugins/time/pluma-time-plugin.c:721
 msgid "Configure insert date/time plugin..."
-msgstr "Das Plugin »Datum/Uhrzeit einfügen« konfigurieren …"
+msgstr "Die Erweiterung »Datum/Uhrzeit einfügen« konfigurieren …"
 
 #: ../plugins/time/time.pluma-plugin.desktop.in.h:1
 msgid "Insert Date/Time"
@@ -4972,7 +4972,7 @@ msgstr "01.11.2009, 17:52:00"
 
 #: ../plugins/time/pluma-time-setup-dialog.ui.h:1
 msgid "Configure date/time plugin"
-msgstr "Das Datums-/Uhrzeit-Plugin konfigurieren"
+msgstr "Die Datum/Uhrzeit-Erweiterung konfigurieren"
 
 #: ../plugins/time/pluma-time-setup-dialog.ui.h:2
 msgid "When inserting date/time..."
