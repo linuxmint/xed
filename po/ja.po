@@ -3,15 +3,15 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
-# uǝsıɯoʎ(読み専) <hallconnen2+transifex@gmail.com>, 2013
-# Shirayuki/しらゆき Shira <shirayuking@gmail.com>, 2014
+# ABE Tsunehiko, 2013-2014
+# Yuki Shira <shirayuking@gmail.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: MATE Desktop Environment\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-11-04 12:56+0100\n"
-"PO-Revision-Date: 2014-02-13 15:09+0000\n"
-"Last-Translator: Shirayuki/しらゆき Shira <shirayuking@gmail.com>\n"
+"POT-Creation-Date: 2014-02-21 20:38+0100\n"
+"PO-Revision-Date: 2014-09-21 01:15+0000\n"
+"Last-Translator: AWASHIRO Ikuya <ikunya@gmail.com>\n"
 "Language-Team: Japanese (http://www.transifex.com/projects/p/MATE/language/ja/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -378,7 +378,7 @@ msgstr "検索履歴"
 
 #: ../data/org.mate.pluma.gschema.xml.in.in.h:74
 msgid "List of entries in \"search for\" textbox."
-msgstr ""
+msgstr "検索する文字列に表示する項目のリスト。"
 
 #: ../data/org.mate.pluma.gschema.xml.in.in.h:75
 msgid "History for \"replace with\" entries"
@@ -386,7 +386,7 @@ msgstr "置換履歴"
 
 #: ../data/org.mate.pluma.gschema.xml.in.in.h:76
 msgid "List of entries in \"replace with\" textbox."
-msgstr ""
+msgstr "置換後の文字列に表示する項目のリスト。"
 
 #: ../data/org.mate.pluma.gschema.xml.in.in.h:77
 msgid "Active plugins"
@@ -779,7 +779,7 @@ msgstr "折り返しも対象にする(_W)"
 
 #: ../pluma/dialogs/pluma-search-dialog.ui.h:9
 msgid "_Parse escape sequences (e.g. \\n)"
-msgstr ""
+msgstr "エスケープシーケンス(\\nなど)を解釈する(_P)"
 
 #: ../pluma/pluma.c:126
 msgid "Show the application's version"
@@ -940,7 +940,7 @@ msgstr "pluma は MATE デスクトップ用に作られた小型軽量のテキ
 
 #: ../pluma/pluma-commands-help.c:93
 msgid "translator-credits"
-msgstr "相花 毅 <takeshi.aihana@gmail.com>\n佐藤 暁 <ss@mate.gr.jp>\nKAMAGASAKO Masatoshi <emerald@mate.gr.jp>\nAkira TAGOH <tagoh@mate.gr.jp>\nYukihiro Nakai <nakai@mate.gr.jp>\nYuusuke Tahara <tahara@mate.gr.jp>\nAkira Higuchi <a-higuti@math.sci.hokudai.ac.jp>\nやまね ひでき <henrich@debian.or.jp>\n日本MATEユーザー会 http://www.mate.gr.jp/"
+msgstr "相花 毅 <takeshi.aihana@gmail.com>\n佐藤 暁 <ss@gnome.gr.jp>\nKAMAGASAKO Masatoshi <emerald@gnome.gr.jp>\nAkira TAGOH <tagoh@gnome.gr.jp>\nYukihiro Nakai <nakai@gnome.gr.jp>\nYuusuke Tahara <tahara@gnome.gr.jp>\nAkira Higuchi <a-higuti@math.sci.hokudai.ac.jp>\nやまね ひでき <henrich@debian.or.jp>\n日本GNOMEユーザー会 http://www.gnome.gr.jp/"
 
 #: ../pluma/pluma-commands-search.c:116
 #, c-format
@@ -965,11 +965,11 @@ msgid "Unsaved Document %d"
 msgstr "編集中のドキュメント %d"
 
 #: ../pluma/pluma-documents-panel.c:97 ../pluma/pluma-documents-panel.c:111
-#: ../pluma/pluma-window.c:2279 ../pluma/pluma-window.c:2284
+#: ../pluma/pluma-window.c:2283 ../pluma/pluma-window.c:2288
 msgid "Read-Only"
 msgstr "読み取りのみ"
 
-#: ../pluma/pluma-documents-panel.c:791 ../pluma/pluma-window.c:3689
+#: ../pluma/pluma-documents-panel.c:791 ../pluma/pluma-window.c:3693
 msgid "Documents"
 msgstr "ドキュメントの一覧"
 
@@ -1650,7 +1650,7 @@ msgid "There is a tab with errors"
 msgid_plural "There are %d tabs with errors"
 msgstr[0] "エラーが発生したタブが %d 個あります"
 
-#: ../pluma/pluma-style-scheme-manager.c:215
+#: ../pluma/pluma-style-scheme-manager.c:220
 #, c-format
 msgid "Directory '%s' could not be created: g_mkdir_with_parents() failed: %s"
 msgstr "'%s' というフォルダを生成できませんでした: g_mkdir_with_parents() に失敗: %s"
@@ -2057,7 +2057,7 @@ msgstr "大/小文字を区別する(_M)"
 msgid ""
 "_Parse escape sequences (e.g. \n"
 ")"
-msgstr ""
+msgstr "エスケープシーケンス(\nなど)を解釈する(_P)"
 
 #: ../pluma/pluma-view.c:1418
 msgid "String you want to search for"
@@ -2075,7 +2075,7 @@ msgstr "%s 用の強調表示モードにします"
 #. add the "Plain Text" item before all the others
 #. Translators: "Plain Text" means that no highlight mode is selected in the
 #. * "View->Highlight Mode" submenu and so syntax highlighting is disabled
-#: ../pluma/pluma-window.c:1068 ../pluma/pluma-window.c:1980
+#: ../pluma/pluma-window.c:1068 ../pluma/pluma-window.c:1984
 #: ../plugins/externaltools/tools/manager.py:121
 #: ../plugins/externaltools/tools/manager.py:419
 #: ../plugins/externaltools/tools/manager.py:529
@@ -2110,20 +2110,20 @@ msgid "Print"
 msgstr "印刷"
 
 #. Translators: %s is a URI
-#: ../pluma/pluma-window.c:1705
+#: ../pluma/pluma-window.c:1709
 #, c-format
 msgid "Activate '%s'"
 msgstr "'%s' に切り替えます"
 
-#: ../pluma/pluma-window.c:1958
+#: ../pluma/pluma-window.c:1962
 msgid "Use Spaces"
 msgstr "空白にする"
 
-#: ../pluma/pluma-window.c:2029
+#: ../pluma/pluma-window.c:2033
 msgid "Tab Width"
 msgstr "タブの幅:"
 
-#: ../pluma/pluma-window.c:3893
+#: ../pluma/pluma-window.c:3897
 msgid "About pluma"
 msgstr "pluma について"
 
@@ -2485,7 +2485,7 @@ msgstr "検索"
 
 #: ../plugins/externaltools/data/switch-c.desktop.in.h:1
 msgid "Switch onto a file .c and .h"
-msgstr ""
+msgstr ".cファイルと.hファイルを切り替える"
 
 #: ../plugins/filebrowser/filebrowser.pluma-plugin.desktop.in.h:1
 msgid "File Browser Pane"
@@ -2592,63 +2592,63 @@ msgstr "このフォルダで端末を開きます"
 msgid "File Browser"
 msgstr "ファイル・ブラウザ"
 
-#: ../plugins/filebrowser/pluma-file-browser-plugin.c:803
+#: ../plugins/filebrowser/pluma-file-browser-plugin.c:809
 msgid "An error occurred while creating a new directory"
 msgstr "新しいフォルダを生成する際にエラーが発生しました"
 
-#: ../plugins/filebrowser/pluma-file-browser-plugin.c:806
+#: ../plugins/filebrowser/pluma-file-browser-plugin.c:812
 msgid "An error occurred while creating a new file"
 msgstr "新しいファイルを生成する際にエラーが発生しました"
 
-#: ../plugins/filebrowser/pluma-file-browser-plugin.c:811
+#: ../plugins/filebrowser/pluma-file-browser-plugin.c:817
 msgid "An error occurred while renaming a file or directory"
 msgstr "ファイルまたはフォルダの名前を変更する際にエラーが発生しました"
 
-#: ../plugins/filebrowser/pluma-file-browser-plugin.c:816
+#: ../plugins/filebrowser/pluma-file-browser-plugin.c:822
 msgid "An error occurred while deleting a file or directory"
 msgstr "ファイルまたはフォルダを削除する際にエラーが発生しました"
 
-#: ../plugins/filebrowser/pluma-file-browser-plugin.c:821
+#: ../plugins/filebrowser/pluma-file-browser-plugin.c:827
 msgid "An error occurred while opening a directory in the file manager"
 msgstr "ファイル参照ペインの中でフォルダを開く際にエラーが発生しました"
 
-#: ../plugins/filebrowser/pluma-file-browser-plugin.c:825
+#: ../plugins/filebrowser/pluma-file-browser-plugin.c:831
 msgid "An error occurred while setting a root directory"
 msgstr "ルート・フォルダを設定する際にエラーが発生しました"
 
-#: ../plugins/filebrowser/pluma-file-browser-plugin.c:829
+#: ../plugins/filebrowser/pluma-file-browser-plugin.c:835
 msgid "An error occurred while loading a directory"
 msgstr "フォルダを読み込む際にエラーが発生しました"
 
-#: ../plugins/filebrowser/pluma-file-browser-plugin.c:832
+#: ../plugins/filebrowser/pluma-file-browser-plugin.c:838
 msgid "An error occurred"
 msgstr "エラーが発生しました"
 
-#: ../plugins/filebrowser/pluma-file-browser-plugin.c:1063
+#: ../plugins/filebrowser/pluma-file-browser-plugin.c:1069
 msgid ""
 "Cannot move file to trash, do you\n"
 "want to delete permanently?"
 msgstr "ファイルをゴミ箱へ移動できません。\n今すぐファイルを削除しますか?"
 
-#: ../plugins/filebrowser/pluma-file-browser-plugin.c:1067
+#: ../plugins/filebrowser/pluma-file-browser-plugin.c:1073
 #, c-format
 msgid "The file \"%s\" cannot be moved to the trash."
 msgstr "ファイル \"%s\" をゴミ箱へ移動できません。"
 
-#: ../plugins/filebrowser/pluma-file-browser-plugin.c:1070
+#: ../plugins/filebrowser/pluma-file-browser-plugin.c:1076
 msgid "The selected files cannot be moved to the trash."
 msgstr "選択したファイルをゴミ箱へ移動できません。"
 
-#: ../plugins/filebrowser/pluma-file-browser-plugin.c:1103
+#: ../plugins/filebrowser/pluma-file-browser-plugin.c:1109
 #, c-format
 msgid "Are you sure you want to permanently delete \"%s\"?"
 msgstr "\"%s\" を完全に抹消してもよろしいですか?"
 
-#: ../plugins/filebrowser/pluma-file-browser-plugin.c:1106
+#: ../plugins/filebrowser/pluma-file-browser-plugin.c:1112
 msgid "Are you sure you want to permanently delete the selected files?"
 msgstr "選択したファイルを完全に削除してもよろしいですか?"
 
-#: ../plugins/filebrowser/pluma-file-browser-plugin.c:1109
+#: ../plugins/filebrowser/pluma-file-browser-plugin.c:1115
 msgid "If you delete an item, it is permanently lost."
 msgstr "削除すると、そのアイテムは完全に無くなります。"
 
@@ -3326,20 +3326,20 @@ msgid "Checks the spelling of the current document."
 msgstr "このドキュメントのスペルをチェックします。"
 
 #: ../plugins/taglist/pluma-taglist-plugin.c:98
-#: ../plugins/taglist/pluma-taglist-plugin-panel.c:716
-#: ../plugins/taglist/pluma-taglist-plugin-panel.c:732
+#: ../plugins/taglist/pluma-taglist-plugin-panel.c:726
+#: ../plugins/taglist/pluma-taglist-plugin-panel.c:742
 msgid "Tags"
 msgstr "タグ"
 
-#: ../plugins/taglist/pluma-taglist-plugin-panel.c:623
+#: ../plugins/taglist/pluma-taglist-plugin-panel.c:633
 msgid "Select the group of tags you want to use"
 msgstr "使用するタグのグループを選択してください"
 
-#: ../plugins/taglist/pluma-taglist-plugin-panel.c:642
+#: ../plugins/taglist/pluma-taglist-plugin-panel.c:652
 msgid "_Preview"
 msgstr "プレビュー(_P)"
 
-#: ../plugins/taglist/pluma-taglist-plugin-panel.c:713
+#: ../plugins/taglist/pluma-taglist-plugin-panel.c:723
 msgid "Available Tag Lists"
 msgstr "利用可能なタグの一覧"
 
@@ -3681,7 +3681,7 @@ msgstr "<SPAN>"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:96
 msgid "Header cell IDs"
-msgstr ""
+msgstr "ヘッダーセルID"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:97
 msgid "Heading 1"
@@ -4099,7 +4099,7 @@ msgstr "SPAN"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:211
 msgid "Standby load message"
-msgstr ""
+msgstr "読み込み準備完了メッセージ"
 
 #. Deprecated since HTML 4.01, not supported in XHTML 1.0 Strict DTD.
 #: ../plugins/taglist/HTML.tags.xml.in.h:213
@@ -4493,7 +4493,7 @@ msgstr "<TEXT>"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:314
 msgid "Top margin in pixels"
-msgstr ""
+msgstr "上マージンのピクセルサイズ"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:315
 msgid "URL"
