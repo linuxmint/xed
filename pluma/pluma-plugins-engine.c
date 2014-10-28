@@ -66,7 +66,7 @@ enum
 	LAST_SIGNAL
 };
 
-static guint signals[LAST_SIGNAL];
+static guint signals[LAST_SIGNAL] = { 0 };
 
 G_DEFINE_TYPE(PlumaPluginsEngine, pluma_plugins_engine, G_TYPE_OBJECT)
 

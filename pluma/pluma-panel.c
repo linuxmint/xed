@@ -81,7 +81,7 @@ enum {
 	LAST_SIGNAL
 };
 
-static guint signals[LAST_SIGNAL];
+static guint signals[LAST_SIGNAL] = { 0 };
 
 static GObject	*pluma_panel_constructor	(GType type,
 						 guint n_construct_properties,
