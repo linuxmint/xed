@@ -293,6 +293,8 @@ _pluma_style_scheme_manager_install_scheme (GtkSourceStyleSchemeManager *manager
 			g_message ("Cannot install style scheme:\n%s",
 				   error->message);
 
+			g_free (dirname);
+			g_free (styles_dir);
 			return NULL;
 		}
 

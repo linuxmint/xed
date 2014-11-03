@@ -107,6 +107,7 @@ pluma_debug_message (PlumaDebugSection  section,
 	{	
 #ifdef ENABLE_PROFILING
 		gdouble seconds;
+		g_return_if_fail (timer != NULL);
 #endif
 
 		va_list args;
@@ -119,8 +120,6 @@ pluma_debug_message (PlumaDebugSection  section,
 		va_end (args);
 
 #ifdef ENABLE_PROFILING
-		g_return_if_fail (timer != NULL);
-
 		seconds = g_timer_elapsed (timer, NULL);
 		g_print ("[%f (%f)] %s:%d (%s) %s\n", 
 			 seconds, seconds - last,  file, line, function, msg);

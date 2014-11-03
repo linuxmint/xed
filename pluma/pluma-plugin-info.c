@@ -169,6 +169,7 @@ _pluma_plugin_info_new (const gchar *file)
 	else
 	{
 		g_warning ("Could not find 'Module' in %s", file);
+		g_free (str);
 		goto error;
 	}
 
@@ -198,6 +199,7 @@ _pluma_plugin_info_new (const gchar *file)
 	{
 		/* default to the C loader */
 		info->loader = g_strdup("c");
+		g_free (str);
 	}
 
 	/* Get Name */

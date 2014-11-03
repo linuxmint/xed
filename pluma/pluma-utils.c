@@ -1380,6 +1380,8 @@ pluma_utils_drop_get_uris (GtkSelectionData *selection_data)
 			uri_list[p++] = uri;
 	}
 
+	g_strfreev (uris);
+
 	if (*uri_list == NULL)
 	{
 		g_free(uri_list);
