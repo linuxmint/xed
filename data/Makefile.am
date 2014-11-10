@@ -3,7 +3,11 @@ desktop_in_files = pluma.desktop.in
 desktop_DATA 	 = $(desktop_in_files:.desktop.in=.desktop)
 @INTLTOOL_DESKTOP_RULE@
 
-@INTLTOOL_XML_NOMERGE_RULE@
+@INTLTOOL_XML_RULE@
+appdatadir = $(datadir)/appdata
+appdata_in_files = pluma.appdata.xml.in
+appdata_DATA = $(appdata_in_files:.xml.in=.xml)
+
 gsettings_SCHEMAS = org.mate.pluma.gschema.xml
 @GSETTINGS_RULES@
 
@@ -26,6 +30,7 @@ bugreportdir = $(libexecdir)/pluma
 bugreport_SCRIPTS = pluma-bugreport.sh
 
 EXTRA_DIST = 				\
+	$(appdata_in_files)		\
 	$(desktop_in_files)		\
 	$(gsettings_SCHEMAS).in.in	\
 	$(convert_DATA)			\
@@ -35,9 +40,10 @@ EXTRA_DIST = 				\
 
 CLEANFILES =	 			\
 	$(desktop_DATA)			\
-	$(gsettings_SCHEMAS_in)	\
-	$(gsettings_SCHEMAS)	\
-	$(pkgconfig_DATA)
+	$(gsettings_SCHEMAS_in)		\
+	$(gsettings_SCHEMAS)		\
+	$(pkgconfig_DATA)		\
+	pluma.appdata.xml
 
 
 
