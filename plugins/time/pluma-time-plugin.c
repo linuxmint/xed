@@ -712,9 +712,7 @@ get_configure_dialog (PlumaTimePlugin *plugin)
 
 	pluma_debug (DEBUG_PLUGINS);
 
-	dialog = g_new0 (TimeConfigureDialog, 1);
-
-	dialog->dialog = gtk_dialog_new_with_buttons (_("Configure insert date/time plugin..."),
+	GtkWidget *dlg = gtk_dialog_new_with_buttons (_("Configure insert date/time plugin..."),
 						      NULL,
 						      GTK_DIALOG_DESTROY_WITH_PARENT,
 						      GTK_STOCK_CANCEL,
@@ -725,6 +723,11 @@ get_configure_dialog (PlumaTimePlugin *plugin)
 						      GTK_RESPONSE_HELP,
 						      NULL);
 
+	g_return_val_if_fail (dlg != NULL, NULL);
+
+	dialog = g_new0 (TimeConfigureDialog, 1);
+	dialog->dialog = dlg;
+
 	/* HIG defaults */
 	gtk_container_set_border_width (GTK_CONTAINER (GTK_DIALOG (dialog->dialog)), 5);
 	gtk_box_set_spacing (GTK_BOX (gtk_dialog_get_content_area (GTK_DIALOG (dialog->dialog))),
@@ -733,7 +736,6 @@ get_configure_dialog (PlumaTimePlugin *plugin)
 					5);
 	gtk_box_set_spacing (GTK_BOX (gtk_dialog_get_action_area (GTK_DIALOG (dialog->dialog))), 6);
 
-	g_return_val_if_fail (dialog->dialog != NULL, NULL);
 
 	data_dir = pluma_plugin_get_data_dir (PLUMA_PLUGIN (plugin));
 	ui_file = g_build_filename (data_dir, "pluma-time-setup-dialog.ui", NULL);

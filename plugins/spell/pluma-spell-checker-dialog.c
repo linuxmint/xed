@@ -636,15 +636,17 @@ ignore_all_button_clicked_handler (GtkButton *button, PlumaSpellCheckerDialog *d
 static void
 change_button_clicked_handler (GtkButton *button, PlumaSpellCheckerDialog *dlg)
 {
-	gchar *word;
+	const gchar *entry_text;
 	gchar *change;
+	gchar *word;
 
 	g_return_if_fail (PLUMA_IS_SPELL_CHECKER_DIALOG (dlg));
 	g_return_if_fail (dlg->misspelled_word != NULL);
 
-	change = g_strdup (gtk_entry_get_text (GTK_ENTRY (dlg->word_entry)));
-	g_return_if_fail (change != NULL);
-	g_return_if_fail (*change != '\0');
+	entry_text = gtk_entry_get_text (GTK_ENTRY (dlg->word_entry));
+	g_return_if_fail (entry_text != NULL);
+	g_return_if_fail (*entry_text != '\0');
+	change = g_strdup (entry_text);
 
 	pluma_spell_checker_set_correction (dlg->spell_checker, 
 					    dlg->misspelled_word, -1, 
@@ -673,15 +675,17 @@ suggestions_list_row_activated_handler (GtkTreeView *view,
 static void
 change_all_button_clicked_handler (GtkButton *button, PlumaSpellCheckerDialog *dlg)
 {
-	gchar *word;
+	const gchar *entry_text;
 	gchar *change;
+	gchar *word;
 		
 	g_return_if_fail (PLUMA_IS_SPELL_CHECKER_DIALOG (dlg));
 	g_return_if_fail (dlg->misspelled_word != NULL);
 
-	change = g_strdup (gtk_entry_get_text (GTK_ENTRY (dlg->word_entry)));
-	g_return_if_fail (change != NULL);
-	g_return_if_fail (*change != '\0');
+	entry_text = gtk_entry_get_text (GTK_ENTRY (dlg->word_entry));
+	g_return_if_fail (entry_text != NULL);
+	g_return_if_fail (*entry_text != '\0');
+	change = g_strdup (entry_text);
 
 	pluma_spell_checker_set_correction (dlg->spell_checker, 
 					    dlg->misspelled_word, -1,
