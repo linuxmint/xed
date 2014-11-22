@@ -184,7 +184,7 @@ get_sort_dialog (ActionData *action_data)
 		pluma_warning (GTK_WINDOW (action_data->window),
 			       "%s", err_message);
 
-		g_free (dialog);
+		g_slice_free (SortDialog, dialog);
 		gtk_widget_destroy (error_widget);
 
 		return NULL;
