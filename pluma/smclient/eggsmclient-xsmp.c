@@ -1152,6 +1152,7 @@ array_prop (const char *name, ...)
       pv.value = value;
       g_array_append_val (vals, pv);
     }
+  va_end (ap);
 
   prop->num_vals = vals->len;
   prop->vals = (SmPropValue *)vals->data;
