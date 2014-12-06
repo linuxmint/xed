@@ -7,7 +7,7 @@ if !OS_OSX
 SUBDIRS += help
 endif
 
-distuninstallcheck_listfiles = find . -type f -print | grep -v scrollkeeper
+distuninstallcheck_listfiles = find . -type f -print
 
 EXTRA_DIST = 			\
 	ChangeLog		\
@@ -54,7 +54,7 @@ MAINTAINERCLEANFILES = 		\
 	m4/lt~obsolete.m4	\
 	`find "$(srcdir)" -type f -name Makefile.in -print`
 
-DISTCHECK_CONFIGURE_FLAGS = --disable-scrollkeeper --enable-gtk-doc
+DISTCHECK_CONFIGURE_FLAGS = --enable-gtk-doc
 
 dist-hook:
 	@if test -d "$(srcdir)/.git"; \
