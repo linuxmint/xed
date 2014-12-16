@@ -238,9 +238,6 @@ test_begin_new_line_detection ()
 int main (int   argc,
           char *argv[])
 {
-#if !GLIB_CHECK_VERSION (2, 36, 0)
-	g_type_init ();
-#endif
 	g_test_init (&argc, &argv, NULL);
 
 	pluma_prefs_manager_app_init ();
