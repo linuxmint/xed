@@ -560,11 +560,6 @@ main (int argc, char *argv[])
 	g_type_init ();
 #endif
 
-	/* Init glib threads asap */
-#if !GLIB_CHECK_VERSION (2, 32, 0)
-	g_thread_init (NULL);
-#endif
-
 	/* Setup debugging */
 	pluma_debug_init ();
 	pluma_debug_message (DEBUG_APP, "Startup");
