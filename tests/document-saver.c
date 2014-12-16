@@ -687,6 +687,9 @@ int main (int   argc,
 	gboolean have_unowned;
 	gboolean have_unowned_group;
 
+#if !GLIB_CHECK_VERSION (2, 36, 0)
+	g_type_init ();
+#endif
 	g_test_init (&argc, &argv, NULL);
 
 	pluma_prefs_manager_app_init ();
