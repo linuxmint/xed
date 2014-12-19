@@ -286,6 +286,7 @@ case "$with_gtk" in
        GTK_REQUIRED=3.0.0
        ;;
 esac
+AC_SUBST(GTK_API_VERSION)
 
 PKG_CHECK_MODULES(GMODULE,gmodule-2.0,[GMODULE_ADD="gmodule-2.0"],[GMODULE_ADD=""])
 PKG_CHECK_MODULES(PLUMA, [

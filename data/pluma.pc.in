@@ -2,10 +2,11 @@ prefix=@prefix@
 exec_prefix=@exec_prefix@
 libdir=@libdir@
 includedir=@includedir@
+pluginsdir=@libdir@/pluma/plugins
 
 Name: pluma
 Description: pluma
-Requires: gtksourceview-2.0
+Requires: gtksourceview-@GTK_API_VERSION@
 Version: @VERSION@
 Cflags: -I${includedir}/pluma
 Libs: -L${libdir} @PLUMA_IMPLIB@
