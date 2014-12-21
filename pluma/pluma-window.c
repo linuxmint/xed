@@ -2757,6 +2757,7 @@ sync_name (PlumaTab    *tab,
 	action_name = g_strdup_printf ("Tab_%d", n);
 	action = gtk_action_group_get_action (window->priv->documents_list_action_group,
 					      action_name);
+	g_free (action_name);
 	g_return_if_fail (action != NULL);
 
 	tab_name = _pluma_tab_get_name (tab);
@@ -2766,7 +2767,6 @@ sync_name (PlumaTab    *tab,
 	g_object_set (action, "label", escaped_name, NULL);
 	g_object_set (action, "tooltip", tip, NULL);
 
-	g_free (action_name);
 	g_free (tab_name);
 	g_free (escaped_name);
 	g_free (tip);
