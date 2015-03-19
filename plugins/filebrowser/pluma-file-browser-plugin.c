@@ -312,6 +312,18 @@ on_confirm_trash_changed (GSettings *settings,
 	data->confirm_trash = enable;
 }
 
+static gboolean
+have_click_policy (void)
+{
+	GSettings *settings = g_settings_new (CAJA_SCHEMA);
+	gchar *pref = g_settings_get_string (settings, CAJA_CLICK_POLICY_KEY);
+	gboolean result = (pref != NULL);
+
+	g_free (pref);
+	g_object_unref (settings);
+	return result;
+}
+
 static void
 install_caja_prefs (PlumaFileBrowserPluginData *data)
 {
@@ -320,41 +332,35 @@ install_caja_prefs (PlumaFileBrowserPluginData *data)
 	PlumaFileBrowserViewClickPolicy policy;
 	PlumaFileBrowserView *view;
 
-	/* Get click_policy */
-	pref = g_settings_get_string (data->caja_settings, CAJA_CLICK_POLICY_KEY);
+	if (have_click_policy ()) {
+		g_signal_connect (data->caja_settings,
+		                  "changed::" CAJA_CLICK_POLICY_KEY,
+		                  G_CALLBACK (on_click_policy_changed),
+		                  data);
+	}
 
+	g_signal_connect (data->caja_settings,
+	                  "changed::" CAJA_ENABLE_DELETE_KEY,
+	                  G_CALLBACK (on_enable_delete_changed),
+	                  data);
+
+	g_signal_connect (data->caja_settings,
+	                  "changed::" CAJA_CONFIRM_TRASH_KEY,
+	                  G_CALLBACK (on_confirm_trash_changed),
+	                  data);
+
+	pref = g_settings_get_string (data->caja_settings, CAJA_CLICK_POLICY_KEY);
 	policy = click_policy_from_string (pref);
+	g_free (pref);
 
 	view = pluma_file_browser_widget_get_browser_view (data->tree_widget);
 	pluma_file_browser_view_set_click_policy (view, policy);
 
-	if (pref) {
-		g_signal_connect (data->caja_settings,
-						  "changed::" CAJA_CLICK_POLICY_KEY,
-						  G_CALLBACK (on_click_policy_changed),
-						  data);
-		g_free (pref);
-	}
-
-	/* Get enable_delete */
 	prefb = g_settings_get_boolean (data->caja_settings, CAJA_ENABLE_DELETE_KEY);
-
 	g_object_set (G_OBJECT (data->tree_widget), "enable-delete", prefb, NULL);
 
-	g_signal_connect (data->caja_settings,
-					  "changed::" CAJA_ENABLE_DELETE_KEY,
-					  G_CALLBACK (on_enable_delete_changed),
-					  data);
-
-	/* Get confirm_trash */
 	prefb = g_settings_get_boolean (data->caja_settings, CAJA_CONFIRM_TRASH_KEY);
-
 	data->confirm_trash = prefb;
-
-	g_signal_connect (data->caja_settings,
-					  "changed::" CAJA_CONFIRM_TRASH_KEY,
-					  G_CALLBACK (on_confirm_trash_changed),
-					  data);
 }
 
 static void
