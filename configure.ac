@@ -4,7 +4,7 @@ AC_PREREQ(2.63.2)
 
 m4_define(pluma_major_version, 1)
 m4_define(pluma_minor_version, 9)
-m4_define(pluma_micro_version, 1)
+m4_define(pluma_micro_version, 90)
 m4_define(pluma_version, pluma_major_version.pluma_minor_version.pluma_micro_version)
 
 AC_INIT([pluma], [pluma_version],
