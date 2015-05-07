@@ -4,13 +4,13 @@
 # 
 # Translators:
 # Carlos Moreira <crolidge@gmail.com>, 2013
-# Carlos Moreira <crolidge@gmail.com>, 2013-2014
+# Carlos Moreira <crolidge@gmail.com>, 2013-2015
 msgid ""
 msgstr ""
 "Project-Id-Version: MATE Desktop Environment\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-02-21 20:38+0100\n"
-"PO-Revision-Date: 2014-05-25 16:41+0000\n"
+"PO-Revision-Date: 2015-04-17 12:30+0000\n"
 "Last-Translator: Carlos Moreira <crolidge@gmail.com>\n"
 "Language-Team: Portuguese (http://www.transifex.com/projects/p/MATE/language/pt/)\n"
 "MIME-Version: 1.0\n"
@@ -29,7 +29,7 @@ msgid ""
 "instead of a font specific to pluma. If this option is turned off, then the "
 "font named in the \"Editor Font\" option will be used instead of the system "
 "font."
-msgstr "Se deverá ser utilizada o tipo de letra fixa pré-definida para editar texto em vez daquela que for indicada no pluma. Se esta opção estiver inativa, o tipo de letra indicado na opção \"Editor Font\" será utilizada."
+msgstr "Se deverá ser utilizada o tipo de letra fixa pré-definida para editar texto em vez daquela específica do pluma. Se esta opção estiver inativa, o tipo de letra indicado na opção \"Tipo de letra do editor\" será utilizada."
 
 #: ../data/org.mate.pluma.gschema.xml.in.in.h:3
 msgid "Editor Font"
@@ -202,7 +202,7 @@ msgstr "Restaurar a posição anterior do cursor"
 msgid ""
 "Whether pluma should restore the previous cursor position when a file is "
 "loaded."
-msgstr "Se o pluma deverá ou não repor a posição anterior do cursor ao ler um ficheiro."
+msgstr "Se o pluma deverá ou não repor a posição anterior do cursor ao carregar um ficheiro."
 
 #: ../data/org.mate.pluma.gschema.xml.in.in.h:39
 msgid "Enable Search Highlighting"
@@ -390,13 +390,13 @@ msgstr "Lista de entradas na caixa de texto \"substituir por\"."
 
 #: ../data/org.mate.pluma.gschema.xml.in.in.h:77
 msgid "Active plugins"
-msgstr "\"Plugins\" ativos"
+msgstr "Suplementos ativos"
 
 #: ../data/org.mate.pluma.gschema.xml.in.in.h:78
 msgid ""
 "List of active plugins. It contains the \"Location\" of the active plugins. "
 "See the .pluma-plugin file for obtaining the \"Location\" of a given plugin."
-msgstr "Lista dos \"plugins\" ativos. Contém a \"Location\" dos \"plugins\" ativos. Consulte o ficheiro .pluma-plugin para obter a \"Location\" de um dado \"plugin\"."
+msgstr "Lista dos suplementos ativos. Contém a \"Localização\" dos suplementos ativos. Consulte o ficheiro .pluma-plugin para obter a \"Localização\" de um dado suplemento."
 
 #: ../data/pluma.desktop.in.in.h:1
 msgid "Pluma"
@@ -420,7 +420,7 @@ msgstr "_Sair da sessão sem gravar"
 
 #: ../pluma/dialogs/pluma-close-confirmation-dialog.c:144
 msgid "_Cancel Logout"
-msgstr "_Cancelar a saída da sessão"
+msgstr "_Cancelar saída da sessão"
 
 #: ../pluma/dialogs/pluma-close-confirmation-dialog.c:151
 msgid "Close _without Saving"
@@ -736,7 +736,7 @@ msgstr "Tipo de letra e cores"
 
 #: ../pluma/dialogs/pluma-preferences-dialog.ui.h:32
 msgid "Plugins"
-msgstr "\"Plugins\""
+msgstr "Suplementos"
 
 #: ../pluma/dialogs/pluma-search-dialog.c:305
 #: ../pluma/dialogs/pluma-search-dialog.ui.h:1 ../pluma/pluma-window.c:1530
@@ -1469,7 +1469,7 @@ msgstr "Ocultar painel"
 
 #: ../pluma/pluma-plugin-manager.c:54
 msgid "Plugin"
-msgstr "Plugin"
+msgstr "Suplemento"
 
 #: ../pluma/pluma-plugin-manager.c:55
 msgid "Enabled"
@@ -1497,15 +1497,15 @@ msgstr "_Desativar todos"
 
 #: ../pluma/pluma-plugin-manager.c:800
 msgid "Active _Plugins:"
-msgstr "_Plugins ativos:"
+msgstr "_Suplementos ativos:"
 
 #: ../pluma/pluma-plugin-manager.c:825
 msgid "_About Plugin"
-msgstr "_Sobre o plugin"
+msgstr "_Sobre o suplemento"
 
 #: ../pluma/pluma-plugin-manager.c:829
 msgid "C_onfigure Plugin"
-msgstr "C_onfigurar plugin"
+msgstr "C_onfigurar suplemento"
 
 #: ../pluma/pluma-print-job.c:551
 #, c-format
@@ -2520,7 +2520,7 @@ msgid ""
 "document given that the file browser hasn't been used yet. (Thus this "
 "generally applies to opening a document from the command line or opening it "
 "with Caja, etc.)"
-msgstr "Se \"TRUE\" o plugin de navegador de ficheiros irá ver o diretório do primeiro documento aberto, uma vez que o navegador ainda não tinha sido utilizado. (Isto é aplicável à abertura de ficheiros pela linha de comandosm, pelo Caja, etc.)"
+msgstr "Se VERDADEIRO, o suplemento de navegador de ficheiros irá ver o diretório do primeiro documento aberto em que o navegador ainda não tenha sido utilizado. (Isto é aplicável à abertura de ficheiros pela linha de comandos, pelo Caja, etc.)"
 
 #: ../plugins/filebrowser/org.mate.pluma.plugins.filebrowser.gschema.xml.in.in.h:3
 msgid "File Browser Filter Mode"
@@ -2552,7 +2552,7 @@ msgstr "Abrir com vista de árvore"
 msgid ""
 "Open the tree view when the file browser plugin gets loaded instead of the "
 "bookmarks view"
-msgstr "Abrir o plugin de navegação de ficheiros em vista de árvore em vez de em vista de marcadores"
+msgstr "Abrir o suplemento de navegação de ficheiros em vista de árvore, em vez de em vista de marcadores"
 
 #: ../plugins/filebrowser/org.mate.pluma.plugins.filebrowser.gschema.xml.in.in.h:9
 msgid "File Browser Root Directory"
@@ -2562,7 +2562,7 @@ msgstr "Diretório raiz do navegador de ficheiros"
 msgid ""
 "The file browser root directory to use when loading the file browser plugin "
 "and onload/tree_view is TRUE."
-msgstr "O diretório raiz a utilizar pelo navegador de ficheiros ao iniciar o plugin e se onload/tree_view for TRUE."
+msgstr "O diretório raiz a utilizar pelo navegador de ficheiros ao iniciar o suplemento e se onload/tree_view for VERDADEIRO."
 
 #: ../plugins/filebrowser/org.mate.pluma.plugins.filebrowser.gschema.xml.in.in.h:11
 msgid "File Browser Virtual Root Directory"
@@ -2573,7 +2573,7 @@ msgid ""
 "The file browser virtual root directory to use when loading the file browser"
 " plugin when onload/tree_view is TRUE. The virtual root must always be below"
 " the actual root."
-msgstr "O diretório raiz virtual a utilizar pelo navegador de ficheiros ao iniciar o plugin e se onload/tree_view for TRUE. A raiz virtual tem de ser sempre abaixo da raiz atual."
+msgstr "O diretório raiz virtual a utilizar pelo navegador de ficheiros ao iniciar o suplemento e se onload/tree_view for VERDADEIRO. A raiz virtual deve estar sempre abaixo da raiz atual."
 
 #: ../plugins/filebrowser/org.mate.pluma.plugins.filebrowser.gschema.xml.in.in.h:13
 msgid "Enable Restore of Remote Locations"
@@ -4926,7 +4926,7 @@ msgstr "Formatos disponíveis"
 
 #: ../plugins/time/pluma-time-plugin.c:721
 msgid "Configure insert date/time plugin..."
-msgstr "Configurar plugin de inserção de data/hora..."
+msgstr "Configurar suplemento de inserção de data/hora..."
 
 #: ../plugins/time/time.pluma-plugin.desktop.in.h:1
 msgid "Insert Date/Time"
@@ -4970,7 +4970,7 @@ msgstr "01-11-2009 17:52:00"
 
 #: ../plugins/time/pluma-time-setup-dialog.ui.h:1
 msgid "Configure date/time plugin"
-msgstr "Configurar plugin de data/hora"
+msgstr "Configurar suplemento de data/hora"
 
 #: ../plugins/time/pluma-time-setup-dialog.ui.h:2
 msgid "When inserting date/time..."
