@@ -329,9 +329,6 @@ pluma_window_window_state_event (GtkWidget           *widget,
 
 		show = !(event->new_window_state &
 			(GDK_WINDOW_STATE_MAXIMIZED | GDK_WINDOW_STATE_FULLSCREEN));
-
-		_pluma_statusbar_set_has_resize_grip (PLUMA_STATUSBAR (window->priv->statusbar),
-						      show);
 	}
 
 	return FALSE;
