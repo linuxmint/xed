@@ -110,6 +110,11 @@ pluma_statusbar_init (PlumaStatusbar *statusbar)
 
 	statusbar->priv = PLUMA_STATUSBAR_GET_PRIVATE (statusbar);
 
+#if GTK_CHECK_VERSION (3, 0, 0)
+	gtk_widget_set_margin_top (GTK_WIDGET (statusbar), 0);
+	gtk_widget_set_margin_bottom (GTK_WIDGET (statusbar), 0);
+#endif
+
 	statusbar->priv->overwrite_mode_label = gtk_label_new (NULL);
 	gtk_label_set_width_chars (GTK_LABEL (statusbar->priv->overwrite_mode_label),
 							   get_overwrite_mode_length ());
