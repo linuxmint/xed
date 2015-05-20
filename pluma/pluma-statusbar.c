@@ -44,8 +44,8 @@
 
 struct _PlumaStatusbarPrivate
 {
-	GtkWidget     *overwrite_mode_statusbar;
-	GtkWidget     *cursor_position_statusbar;
+	GtkWidget     *overwrite_mode_label;
+	GtkWidget     *cursor_position_label;
 
 	GtkWidget     *state_frame;
 	GtkWidget     *load_image;
@@ -76,41 +76,18 @@ get_overwrite_mode_length (void)
 	return 2 + MAX (g_utf8_strlen (_("OVR"), -1), g_utf8_strlen (_("INS"), -1));
 }
 
-#if GTK_CHECK_VERSION (3, 0, 0)
 static void
-gtk_statusbar_set_has_resize_grip (GtkStatusbar *statusbar, gboolean state)
-{
-    /* nothing */
-    /* https://developer.gnome.org/gtk3/stable/ch24s02.html#id-1.6.3.4.17 */
-}
-#endif
-
-static void
-pluma_statusbar_notify (GObject    *object,
-			GParamSpec *pspec)
-{
-	/* don't allow gtk_statusbar_set_has_resize_grip to mess with us.
-	 * See _pluma_statusbar_set_has_resize_grip for an explanation.
-	 */
-	if (strcmp (g_param_spec_get_name (pspec), "has-resize-grip") == 0)
-	{
-		gtk_statusbar_set_has_resize_grip (GTK_STATUSBAR (object), FALSE);
-		return;
-	}
-
-	if (G_OBJECT_CLASS (pluma_statusbar_parent_class)->notify)
-		G_OBJECT_CLASS (pluma_statusbar_parent_class)->notify (object, pspec);
-}
-
-static void
-pluma_statusbar_finalize (GObject *object)
+pluma_statusbar_dispose (GObject *object)
 {
 	PlumaStatusbar *statusbar = PLUMA_STATUSBAR (object);
 
 	if (statusbar->priv->flash_timeout > 0)
+	{
 		g_source_remove (statusbar->priv->flash_timeout);
+		statusbar->priv->flash_timeout = 0;
+	}
 
-	G_OBJECT_CLASS (pluma_statusbar_parent_class)->finalize (object);
+	G_OBJECT_CLASS (pluma_statusbar_parent_class)->dispose (object);
 }
 
 static void
@@ -118,45 +95,12 @@ pluma_statusbar_class_init (PlumaStatusbarClass *klass)
 {
 	GObjectClass *object_class = G_OBJECT_CLASS (klass);
 
-	object_class->notify = pluma_statusbar_notify;
-	object_class->finalize = pluma_statusbar_finalize;
+	object_class->dispose = pluma_statusbar_dispose;
 
 	g_type_class_add_private (object_class, sizeof (PlumaStatusbarPrivate));
 }
 
-#define RESIZE_GRIP_EXTRA_WIDTH 30
-
-static void
-set_statusbar_width_chars (GtkWidget *statusbar,
-			   gint       n_chars,
-			   gboolean   has_resize_grip)
-{
-	PangoContext *context;
-	PangoFontMetrics *metrics;
-	gint char_width, digit_width, width;
-	GtkStyle *style;
-
-	context = gtk_widget_get_pango_context (statusbar);
-	style = gtk_widget_get_style (GTK_WIDGET (statusbar));
-	metrics = pango_context_get_metrics (context,
-					     style->font_desc,
-					     pango_context_get_language (context));
-
-	char_width = pango_font_metrics_get_approximate_digit_width (metrics);
-	digit_width = pango_font_metrics_get_approximate_char_width (metrics);
-
-	width = PANGO_PIXELS (MAX (char_width, digit_width) * n_chars);
-
-	pango_font_metrics_unref (metrics);
-
-	/* If there is a resize grip, allocate some extra width.
-	 * It would be nice to calculate the exact size programmatically
-	 * but I could not find out how to do it */
-	if (has_resize_grip)
-		width += RESIZE_GRIP_EXTRA_WIDTH;
-
-	gtk_widget_set_size_request (statusbar, width, -1);
-}
+#define CURSOR_POSITION_LABEL_WIDTH_CHARS 18
 
 static void
 pluma_statusbar_init (PlumaStatusbar *statusbar)
@@ -166,30 +110,30 @@ pluma_statusbar_init (PlumaStatusbar *statusbar)
 
 	statusbar->priv = PLUMA_STATUSBAR_GET_PRIVATE (statusbar);
 
-	gtk_statusbar_set_has_resize_grip (GTK_STATUSBAR (statusbar), FALSE);
+#if GTK_CHECK_VERSION (3, 0, 0)
+	gtk_widget_set_margin_top (GTK_WIDGET (statusbar), 0);
+	gtk_widget_set_margin_bottom (GTK_WIDGET (statusbar), 0);
+#endif
 
-	statusbar->priv->overwrite_mode_statusbar = gtk_statusbar_new ();
-	gtk_widget_show (statusbar->priv->overwrite_mode_statusbar);
-	gtk_statusbar_set_has_resize_grip (GTK_STATUSBAR (statusbar->priv->overwrite_mode_statusbar),
-					   TRUE);
-	set_statusbar_width_chars (statusbar->priv->overwrite_mode_statusbar,
-				   get_overwrite_mode_length (),
-				   TRUE);
+	statusbar->priv->overwrite_mode_label = gtk_label_new (NULL);
+	gtk_label_set_width_chars (GTK_LABEL (statusbar->priv->overwrite_mode_label),
+							   get_overwrite_mode_length ());
+	gtk_widget_show (statusbar->priv->overwrite_mode_label);
 	gtk_box_pack_end (GTK_BOX (statusbar),
-			  statusbar->priv->overwrite_mode_statusbar,
-			  FALSE, TRUE, 0);
+					  statusbar->priv->overwrite_mode_label,
+					  FALSE, TRUE, 0);
 
-	statusbar->priv->cursor_position_statusbar = gtk_statusbar_new ();
-	gtk_widget_show (statusbar->priv->cursor_position_statusbar);
-	gtk_statusbar_set_has_resize_grip (GTK_STATUSBAR (statusbar->priv->cursor_position_statusbar),
-					   FALSE);
-	set_statusbar_width_chars (statusbar->priv->cursor_position_statusbar, 18, FALSE);
+	statusbar->priv->cursor_position_label = gtk_label_new (NULL);
+	gtk_label_set_width_chars (GTK_LABEL (statusbar->priv->cursor_position_label),
+							   CURSOR_POSITION_LABEL_WIDTH_CHARS);
+	gtk_widget_show (statusbar->priv->cursor_position_label);
 	gtk_box_pack_end (GTK_BOX (statusbar),
-			  statusbar->priv->cursor_position_statusbar,
-			  FALSE, TRUE, 0);
+					  statusbar->priv->cursor_position_label,
+					  FALSE, TRUE, 0);
 
 	statusbar->priv->state_frame = gtk_frame_new (NULL);
-	gtk_frame_set_shadow_type (GTK_FRAME (statusbar->priv->state_frame), GTK_SHADOW_IN);
+	gtk_frame_set_shadow_type (GTK_FRAME (statusbar->priv->state_frame),
+							   GTK_SHADOW_IN);
 
 	hbox = gtk_hbox_new (FALSE, 0);
 	gtk_container_add (GTK_CONTAINER (statusbar->priv->state_frame), hbox);
@@ -254,35 +198,6 @@ pluma_statusbar_new (void)
 }
 
 /**
- * pluma_set_has_resize_grip:
- * @statusbar: a #PlumaStatusbar
- * @show: if the resize grip is shown
- *
- * Sets if a resize grip showld be shown.
- *
- **/
- /*
-  * I don't like this much, in a perfect world it would have been
-  * possible to override the parent property and use
-  * gtk_statusbar_set_has_resize_grip. Unfortunately this is not
-  * possible and it's not even possible to intercept the notify signal
-  * since the parent property should always be set to false thus when
-  * using set_resize_grip (FALSE) the property doesn't change and the
-  * notification is not emitted.
-  * For now just add this private method; if needed we can turn it into
-  * a property.
-  */
-void
-_pluma_statusbar_set_has_resize_grip (PlumaStatusbar *bar,
-				      gboolean        show)
-{
-	g_return_if_fail (PLUMA_IS_STATUSBAR (bar));
-
-	gtk_statusbar_set_has_resize_grip (GTK_STATUSBAR (bar->priv->overwrite_mode_statusbar),
-					   show);
-}
-
-/**
  * pluma_statusbar_set_overwrite:
  * @statusbar: a #PlumaStatusbar
  * @overwrite: if the overwrite mode is set
@@ -297,13 +212,11 @@ pluma_statusbar_set_overwrite (PlumaStatusbar *statusbar,
 
 	g_return_if_fail (PLUMA_IS_STATUSBAR (statusbar));
 
-	gtk_statusbar_pop (GTK_STATUSBAR (statusbar->priv->overwrite_mode_statusbar), 0);
-
 	msg = get_overwrite_mode_string (overwrite);
 
-	gtk_statusbar_push (GTK_STATUSBAR (statusbar->priv->overwrite_mode_statusbar), 0, msg);
+	gtk_label_set_text (GTK_LABEL (statusbar->priv->overwrite_mode_label), msg);
 
-      	g_free (msg);
+	g_free (msg);
 }
 
 void
@@ -311,7 +224,7 @@ pluma_statusbar_clear_overwrite (PlumaStatusbar *statusbar)
 {
 	g_return_if_fail (PLUMA_IS_STATUSBAR (statusbar));
 
-	gtk_statusbar_pop (GTK_STATUSBAR (statusbar->priv->overwrite_mode_statusbar), 0);
+	gtk_label_set_text (GTK_LABEL (statusbar->priv->overwrite_mode_label), NULL);
 }
 
 /**
@@ -327,22 +240,20 @@ pluma_statusbar_set_cursor_position (PlumaStatusbar *statusbar,
 				     gint            line,
 				     gint            col)
 {
-	gchar *msg;
+	gchar *msg = NULL;
 
 	g_return_if_fail (PLUMA_IS_STATUSBAR (statusbar));
 
-	gtk_statusbar_pop (GTK_STATUSBAR (statusbar->priv->cursor_position_statusbar), 0);
+	if ((line >= 0) || (col >= 0))
+	{
+		/* Translators: "Ln" is an abbreviation for "Line", Col is an abbreviation for "Column". Please,
+		use abbreviations if possible to avoid space problems. */
+		msg = g_strdup_printf (_("  Ln %d, Col %d"), line, col);
+	}
 
-	if ((line == -1) && (col == -1))
-		return;
+	gtk_label_set_text (GTK_LABEL (statusbar->priv->cursor_position_label), msg);
 
-	/* Translators: "Ln" is an abbreviation for "Line", Col is an abbreviation for "Column". Please,
-	use abbreviations if possible to avoid space problems. */
-	msg = g_strdup_printf (_("  Ln %d, Col %d"), line, col);
-
-	gtk_statusbar_push (GTK_STATUSBAR (statusbar->priv->cursor_position_statusbar), 0, msg);
-
-      	g_free (msg);
+	g_free (msg);
 }
 
 static gboolean

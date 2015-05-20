@@ -81,18 +81,6 @@ void		 pluma_statusbar_flash_message		(PlumaStatusbar   *statusbar,
 							 guint             context_id,
 							 const gchar      *format,
 							 ...) G_GNUC_PRINTF(3, 4);
-/* FIXME: these would be nice for plugins...
-void		 pluma_statusbar_add_widget		(PlumaStatusbar   *statusbar,
-							 GtkWidget        *widget);
-void		 pluma_statusbar_remove_widget		(PlumaStatusbar   *statusbar,
-							 GtkWidget        *widget);
-*/
-
-/*
- * Non exported functions
- */
-void		_pluma_statusbar_set_has_resize_grip	(PlumaStatusbar   *statusbar,
-							 gboolean          show);
 
 G_END_DECLS
 
