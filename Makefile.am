@@ -10,6 +10,7 @@ endif
 distuninstallcheck_listfiles = find . -type f -print
 
 EXTRA_DIST = 			\
+	autogen.sh		\
 	ChangeLog		\
 	HACKING			\
 	NEWS			\
