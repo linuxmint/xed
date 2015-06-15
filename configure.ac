@@ -154,7 +154,7 @@ dnl ================================================================
 dnl Gettext stuff.
 dnl ================================================================
 
-IT_PROG_INTLTOOL([0.40.0])
+IT_PROG_INTLTOOL([0.50.1])
 GETTEXT_PACKAGE=pluma
 AC_SUBST([GETTEXT_PACKAGE])
 AM_GLIB_GNU_GETTEXT
@@ -513,6 +513,7 @@ Makefile
 data/pluma.desktop.in
 data/pluma-bugreport.sh
 data/pluma.pc
+data/org.mate.pluma.gschema.xml
 data/Makefile
 docs/Makefile
 docs/reference/Makefile

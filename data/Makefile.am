@@ -11,13 +11,6 @@ appdata_DATA = $(appdata_in_files:.xml.in=.xml)
 gsettings_SCHEMAS = org.mate.pluma.gschema.xml
 @GSETTINGS_RULES@
 
-%.gschema.xml.in: %.gschema.xml.in.in Makefile
-	$(AM_V_GEN) $(SED) \
-		-e 's^\@GETTEXT_PACKAGE\@^$(GETTEXT_PACKAGE)^g' \
-		-e 's^\@ACTIVE_PLUGINS\@^$(ACTIVE_PLUGINS)^g' \
-		-e 's^\@TOOLBAR_STYLE\@^$(TOOLBAR_STYLE)^g' \
-		< $< > $@
-
 convertdir = $(datadir)/MateConf/gsettings
 convert_DATA = pluma.convert
 
@@ -29,21 +22,19 @@ pkgconfig_DATA = pluma.pc
 bugreportdir = $(libexecdir)/pluma
 bugreport_SCRIPTS = pluma-bugreport.sh
 
-EXTRA_DIST = 				\
-	$(appdata_in_files)		\
-	$(desktop_in_files)		\
-	$(gsettings_SCHEMAS).in.in	\
-	$(convert_DATA)			\
+EXTRA_DIST = 			\
+	$(appdata_in_files)	\
+	$(desktop_in_files)	\
+	$(convert_DATA)		\
 	$(man_MANS)			\
 	pluma.pc.in			\
 	pluma-bugreport.sh.in
 
 CLEANFILES =	 			\
 	$(desktop_DATA)			\
-	$(gsettings_SCHEMAS_in)		\
-	$(gsettings_SCHEMAS)		\
+	$(gsettings_SCHEMAS)	\
 	$(pkgconfig_DATA)		\
-	pluma.appdata.xml
+	$(appdata_DATA)
 
 
 
