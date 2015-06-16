@@ -39,7 +39,7 @@ GZIP_ENV = -9
 
 %.tags.gz: %.tags.xml.in $(INTLTOOL_MERGE) $(wildcard $(top_srcdir)/po/*.po)
 	LC_ALL=C $(INTLTOOL_MERGE) $(top_srcdir)/po $< $(@:.gz=) -x -u -c $(top_builddir)/po/.intltool-merge-cache
-	GZIP=$(GZIP_ENV) gzip -f $(@:.gz=)
+	GZIP=$(GZIP_ENV) gzip -n -f $(@:.gz=)
 
 plugin_DATA = $(plugin_in_files:.pluma-plugin.desktop.in=.pluma-plugin)
 
