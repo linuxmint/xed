@@ -1166,9 +1166,9 @@ configure_dialog_response_cb (GtkWidget           *widget,
 		{
 			pluma_debug_message (DEBUG_PLUGINS, "GTK_RESPONSE_HELP");
 
-			pluma_help_display (GTK_WINDOW (dialog),
+			pluma_help_display (GTK_WINDOW (widget),
 					    NULL,
-					    "pluma-date-time-configure");
+					    "pluma-insert-date-time-plugin#pluma-date-time-configure");
 			break;
 		}
 		case GTK_RESPONSE_OK:
