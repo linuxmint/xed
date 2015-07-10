@@ -1,15 +1,15 @@
 <?xml version="1.0"?>
 <!DOCTYPE article PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
 "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd" [
-  <!ENTITY appversion "2.16">
-  <!ENTITY manrevision "2.9">
-  <!ENTITY date "July 2006">
+  <!ENTITY appversion "1.10">
+  <!ENTITY manrevision "3.0">
+  <!ENTITY date "July 2015">
   <!ENTITY app "pluma">
 ]>
 <!--
       (Do not remove this comment block.)
   Maintained by the MATE Documentation Project
-  http://developer.MATE.org/projects/gdp
+  http://wiki.mate-desktop.org/dev-doc:doc-team-guide
   Template version: 2.0 beta
   Template last modified Jan 30, 2002
 
@@ -22,8 +22,11 @@
   <articleinfo>
 	 <title>Pluma Manual<!-- not using app entity because of lowercase ugliness --></title>
 	 <copyright>
-		<year>2007</year>
+		<year>2015</year>
 		<holder>MATE Documentation Project</holder> </copyright>
+	 <copyright>
+		<year>2007</year>
+		<holder>GNOME Documentation Project</holder> </copyright>
 	 <copyright>
 		<year>2002</year>
 		<year>2003</year>
@@ -44,19 +47,29 @@
 	 <publisher role="maintainer">
 		<publishername>MATE Documentation Project</publishername>
 	 </publisher>
+	 <publisher>
+		<publishername>GNOME Documentation Project</publishername>
+	 </publisher>
 
 	 <xi:include href="legal.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
 
 	 <authorgroup>
+		<author>
+		  <firstname>MATE Documentation Project</firstname>
+		  <surname></surname>
+		  <affiliation>
+			 <orgname>MATE Desktop</orgname>
+		  </affiliation>
+		</author>
            <author>
              <firstname>Joachim</firstname>
              <surname>Noreiko</surname>
            </author>
 		<author>
-		  <firstname>MATE Documentation Project</firstname>
+		  <firstname>GNOME Documentation Project</firstname>
 		  <surname></surname>
 		  <affiliation>
-			 <orgname>MATE</orgname>
+			 <orgname>GNOME</orgname>
 		  </affiliation>
 		</author>
 		<author>
@@ -76,7 +89,7 @@
 		  <firstname>Eric</firstname>
 		  <surname>Baudais</surname>
 		  <affiliation>
-			 <orgname>MATE Documentation Project</orgname>
+			 <orgname>GNOME Documentation Project</orgname>
 			 <address> <email>baudais@okstate.edu</email> </address>
 		  </affiliation>
 		</author>
@@ -117,7 +130,7 @@
 		  <revdescription>
 			 <para role="author">Eric Baudais <email>baudais@okstate.edu</email>
 				</para>
-			 <para role="publisher">MATE Documentation Project</para>
+			 <para role="publisher">GNOME Documentation Project</para>
 		  </revdescription>
 		</revision>
 		<revision>
@@ -125,7 +138,7 @@
 		  <date>March 2002</date>
 		  <revdescription>
 			 <para role="author">Sun GNOME Documentation Team</para>
-			 <para role="publisher">MATE Documentation Project</para>
+			 <para role="publisher">GNOME Documentation Project</para>
 		  </revdescription>
 		</revision>
 		<revision>
@@ -133,7 +146,7 @@
 		  <date>June 2002</date>
 		  <revdescription>
 			 <para role="author">Sun GNOME Documentation Team</para>
-			 <para role="publisher">MATE Documentation Project</para>
+			 <para role="publisher">GNOME Documentation Project</para>
 		  </revdescription>
 		</revision>
 		<revision>
@@ -141,7 +154,7 @@
 		  <date>August 2002</date>
 		  <revdescription>
 			 <para role="author">Sun GNOME Documentation Team</para>
-			 <para role="publisher">MATE Documentation Project</para>
+			 <para role="publisher">GNOME Documentation Project</para>
 		  </revdescription>
 		</revision>
 		<revision>
@@ -149,7 +162,7 @@
 		  <date>September 2002</date>
 		  <revdescription>
 			 <para role="author">Sun GNOME Documentation Team</para>
-			 <para role="publisher">MATE Documentation Project</para>
+			 <para role="publisher">GNOME Documentation Project</para>
 		  </revdescription>
 		</revision>
 		<revision>
@@ -157,7 +170,7 @@
 		  <date>January 2003</date>
 		  <revdescription>
 			 <para role="author">Sun GNOME Documentation Team</para>
-			 <para role="publisher">MATE Documentation Project</para>
+			 <para role="publisher">GNOME Documentation Project</para>
 		  </revdescription>
 		</revision>
 		<revision>
@@ -165,7 +178,7 @@
 		  <date>March 2003</date>
 		  <revdescription>
 			 <para role="author">Sun GNOME Documentation Team</para>
-			 <para role="publisher">MATE Documentation Project</para>
+			 <para role="publisher">GNOME Documentation Project</para>
 		  </revdescription>
 		</revision>
 		<revision>
@@ -173,7 +186,7 @@
 		  <date>September 2003</date>
 		  <revdescription>
 			 <para role="author">Sun GNOME Documentation Team</para>
-			 <para role="publisher">MATE Documentation Project</para>
+			 <para role="publisher">GNOME Documentation Project</para>
 		  </revdescription>
 		</revision>
 		<revision>
@@ -181,7 +194,7 @@
 		  <date>March 2004</date>
 		  <revdescription>
 			 <para role="author">Sun GNOME Documentation Team</para>
-			 <para role="publisher">MATE Documentation Project</para>
+			 <para role="publisher">GNOME Documentation Project</para>
 		  </revdescription>
 		</revision>
    	<revision>
@@ -189,7 +202,15 @@
 		  <date>&date;</date>
 		  <revdescription>
 			 <para role="author">Sun Java Desktop System Documentation Team</para>
-			 <para role="publisher">MATE Documentation Project</para>
+			 <para role="publisher">GNOME Documentation Project</para>
+		  </revdescription>
+		</revision>
+		<revision>
+		  <revnumber>&app; Manual V2.9;</revnumber>
+		  <date>July 2006;</date>
+		  <revdescription>
+			 <para role="author">GNOME Documentation Team</para>
+			 <para role="publisher">GNOME Documentation Project</para>
 		  </revdescription>
 		</revision>
    		<revision>
