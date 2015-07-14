@@ -749,30 +749,39 @@ pluma_utils_location_get_dirname_for_display (GFile *location)
 	if (mount != NULL)
 	{
 		gchar *mount_name;
-		gchar *path;
+		gchar *path = NULL;
+		gchar *dirname;
 
 		mount_name = g_mount_get_name (mount);
 		g_object_unref (mount);
 
-		/* obtain the "path" patrt of the uri */
-		if (pluma_utils_decode_uri (uri,
-					    NULL, NULL,
-					    NULL, NULL,
-					    &path))
-		{
-			gchar *dirname;
-			
-			dirname = pluma_utils_uri_get_dirname (path);
-			res = g_strdup_printf ("%s %s", mount_name, dirname);
+		/* obtain the "path" part of the uri */
+		pluma_utils_decode_uri (uri,
+					NULL, NULL,
+					NULL, NULL,
+					&path);
 
-			g_free (path);
-			g_free (dirname);
-			g_free (mount_name);
+		if (path == NULL)
+		{
+			dirname = pluma_utils_uri_get_dirname (uri);
 		}
 		else
 		{
+			dirname = pluma_utils_uri_get_dirname (path);
+		}
+
+		if (dirname == NULL || strcmp (dirname, ".") == 0)
+		{
 			res = mount_name;
 		}
+		else
+		{
+			res = g_strdup_printf ("%s %s", mount_name, dirname);
+			g_free (mount_name);
+		}
+
+		g_free (path);
+		g_free (dirname);
 	}
 	else
 	{
