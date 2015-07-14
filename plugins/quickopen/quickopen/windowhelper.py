@@ -88,23 +88,22 @@ class WindowHelper:
                         paths.append(gfile.get_parent())
 
                 # File browser root directory
-                if pluma.version[0] > 2 or (pluma.version[0] == 2 and (pluma.version[1] > 26 or (pluma.version[1] == 26 and pluma.version[2] >= 2))):
-                        bus = self._window.get_message_bus()
+                bus = self._window.get_message_bus()
 
-                        try:
-                                msg = bus.send_sync('/plugins/filebrowser', 'get_root')
+                try:
+                        msg = bus.send_sync('/plugins/filebrowser', 'get_root')
 
-                                if msg:
-                                        uri = msg.get_value('uri')
+                        if msg:
+                                uri = msg.get_value('uri')
 
-                                        if uri:
-                                                gfile = gio.File(uri)
+                                if uri:
+                                        gfile = gio.File(uri)
 
-                                                if gfile.is_native():
-                                                        paths.append(gfile)
+                                        if gfile.is_native():
+                                                paths.append(gfile)
 
-                        except StandardError:
-                                pass
+                except StandardError:
+                        pass
 
                 # Recent documents
                 paths.append(RecentDocumentsDirectory(screen=self._window.get_screen()))
