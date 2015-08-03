@@ -2110,19 +2110,6 @@ search_highlight_updated_cb (PlumaDocument *doc,
 	}
 }
 
-#if !GTK_CHECK_VERSION (3, 0, 0)
-/* There is no "official" way to reset the im context in GtkTextView */
-static void
-reset_im_context (GtkTextView *text_view)
-{
-	if (text_view->need_im_reset)
-	{
-		text_view->need_im_reset = FALSE;
-		gtk_im_context_reset (text_view->im_context);
-	}
-}
-#endif
-
 static void
 delete_line (GtkTextView *text_view,
 	     gint         count)
