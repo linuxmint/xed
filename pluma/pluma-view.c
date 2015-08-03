@@ -40,7 +40,6 @@
 #include <gtk/gtk.h>
 #include <gdk/gdkkeysyms.h>
 #if GTK_CHECK_VERSION (3, 0, 0)
-#include <gdk/gdkkeysyms-compat.h>
 #include <gtksourceview/gtksourceview.h>
 #endif
 
@@ -279,22 +278,22 @@ pluma_view_class_init (PlumaViewClass *klass)
 	binding_set = gtk_binding_set_by_class (klass);
 	
 	gtk_binding_entry_add_signal (binding_set,
-				      GDK_k,
+				      GDK_KEY_k,
 				      GDK_CONTROL_MASK,
 				      "start_interactive_search", 0);
 		
 	gtk_binding_entry_add_signal (binding_set,
-				      GDK_i,
+				      GDK_KEY_i,
 				      GDK_CONTROL_MASK,
 				      "start_interactive_goto_line", 0);
 	
 	gtk_binding_entry_add_signal (binding_set,
-				      GDK_k,
+				      GDK_KEY_k,
 				      GDK_CONTROL_MASK | GDK_SHIFT_MASK,
 				      "reset_searched_text", 0);
 
 	gtk_binding_entry_add_signal (binding_set, 
-				      GDK_d, 
+				      GDK_KEY_d,
 				      GDK_CONTROL_MASK,
 				      "delete_from_cursor", 2,
 				      G_TYPE_ENUM, GTK_DELETE_PARAGRAPHS,
@@ -1084,14 +1083,14 @@ search_window_key_press_event (GtkWidget   *widget,
 	modifiers = gtk_accelerator_get_default_mod_mask ();
 
 	/* Close window */
-	if (event->keyval == GDK_Tab)
+	if (event->keyval == GDK_KEY_Tab)
 	{
 		hide_search_window (view, FALSE);
 		retval = TRUE;
 	}
 
 	/* Close window and cancel the search */
-	if (event->keyval == GDK_Escape)
+	if (event->keyval == GDK_KEY_Escape)
 	{
 		if (view->priv->search_mode == SEARCH)
 		{
@@ -1115,28 +1114,28 @@ search_window_key_press_event (GtkWidget   *widget,
 	/* SEARCH mode */
 
 	/* select previous matching iter */
-	if (event->keyval == GDK_Up || event->keyval == GDK_KP_Up)
+	if (event->keyval == GDK_KEY_Up || event->keyval == GDK_KEY_KP_Up)
 	{
 		search_again (view, TRUE);
 		retval = TRUE;
 	}
 
 	if (((event->state & modifiers) == (GDK_CONTROL_MASK | GDK_SHIFT_MASK)) && 
-	    (event->keyval == GDK_g || event->keyval == GDK_G))
+	    (event->keyval == GDK_KEY_g || event->keyval == GDK_KEY_G))
 	{
 		search_again (view, TRUE);
 		retval = TRUE;
 	}
 
 	/* select next matching iter */
-	if (event->keyval == GDK_Down || event->keyval == GDK_KP_Down)
+	if (event->keyval == GDK_KEY_Down || event->keyval == GDK_KEY_KP_Down)
 	{
 		search_again (view, FALSE);
 		retval = TRUE;
 	}
 
 	if (((event->state & modifiers) == GDK_CONTROL_MASK) && 
-	    (event->keyval == GDK_g || event->keyval == GDK_G))
+	    (event->keyval == GDK_KEY_g || event->keyval == GDK_KEY_G))
 	{
 		search_again (view, FALSE);
 		retval = TRUE;

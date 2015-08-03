@@ -36,10 +36,6 @@
 #include <glib/gi18n.h>
 #include <gtk/gtk.h>
 #include <gdk/gdkkeysyms.h>
-#if GTK_CHECK_VERSION (3, 0, 0)
-#include <gdk/gdkkeysyms-compat.h>
-#endif
-
 #include <cairo-pdf.h>
 
 #include "pluma-print-preview.h"
@@ -819,49 +815,49 @@ preview_layout_key_press (GtkWidget         *widget,
 		break;
 	case '+':
 	case '=':
-	case GDK_KP_Add:
+	case GDK_KEY_KP_Add:
 		zoom_in (preview);
 		break;
 	case '-':
 	case '_':
-	case GDK_KP_Subtract:
+	case GDK_KEY_KP_Subtract:
 		zoom_out (preview);
 		break;
-	case GDK_KP_Right:
-	case GDK_Right:
+	case GDK_KEY_KP_Right:
+	case GDK_KEY_Right:
 		if (event->state & GDK_SHIFT_MASK)
 			x = hupper - hpage;
 		else
 			x = MIN (hupper - hpage, x + hstep);
 		domove = TRUE;
 		break;
-	case GDK_KP_Left:
-	case GDK_Left:
+	case GDK_KEY_KP_Left:
+	case GDK_KEY_Left:
 		if (event->state & GDK_SHIFT_MASK)
 			x = hlower;
 		else
 			x = MAX (hlower, x - hstep);
 		domove = TRUE;
 		break;
-	case GDK_KP_Up:
-	case GDK_Up:
+	case GDK_KEY_KP_Up:
+	case GDK_KEY_Up:
 		if (event->state & GDK_SHIFT_MASK)
 			goto page_up;
 		y = MAX (vlower, y - vstep);
 		domove = TRUE;
 		break;
-	case GDK_KP_Down:
-	case GDK_Down:
+	case GDK_KEY_KP_Down:
+	case GDK_KEY_Down:
 		if (event->state & GDK_SHIFT_MASK)
 			goto page_down;
 		y = MIN (vupper - vpage, y + vstep);
 		domove = TRUE;
 		break;
-	case GDK_KP_Page_Up:
-	case GDK_Page_Up:
-	case GDK_Delete:
-	case GDK_KP_Delete:
-	case GDK_BackSpace:
+	case GDK_KEY_KP_Page_Up:
+	case GDK_KEY_Page_Up:
+	case GDK_KEY_Delete:
+	case GDK_KEY_KP_Delete:
+	case GDK_KEY_BackSpace:
 	page_up:
 		if (y <= vlower)
 		{
@@ -877,8 +873,8 @@ preview_layout_key_press (GtkWidget         *widget,
 		}
 		domove = TRUE;
 		break;
-	case GDK_KP_Page_Down:
-	case GDK_Page_Down:
+	case GDK_KEY_KP_Page_Down:
+	case GDK_KEY_Page_Down:
 	case ' ':
 	page_down:
 		if (y >= (vupper - vpage))
@@ -895,19 +891,19 @@ preview_layout_key_press (GtkWidget         *widget,
 		}
 		domove = TRUE;
 		break;
-	case GDK_KP_Home:
-	case GDK_Home:
+	case GDK_KEY_KP_Home:
+	case GDK_KEY_Home:
 		goto_page (preview, 0);
 		y = 0;
 		domove = TRUE;
 		break;
-	case GDK_KP_End:
-	case GDK_End:
+	case GDK_KEY_KP_End:
+	case GDK_KEY_End:
 		goto_page (preview, preview->priv->n_pages - 1);
 		y = 0;
 		domove = TRUE;
 		break;
-	case GDK_Escape:
+	case GDK_KEY_Escape:
 		gtk_widget_destroy (GTK_WIDGET (preview));
 		break;
 	case 'c':

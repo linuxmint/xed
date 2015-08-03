@@ -43,9 +43,6 @@
 
 #include <gtk/gtk.h>
 #include <gdk/gdkkeysyms.h>
-#if GTK_CHECK_VERSION (3, 0, 0)
-#include <gdk/gdkkeysyms-compat.h>
-#endif
 #include <glib/gi18n.h>
 
 #define PLUMA_TAGLIST_PLUGIN_PANEL_GET_PRIVATE(object)(G_TYPE_INSTANCE_GET_PRIVATE ((object), \
@@ -277,7 +274,7 @@ tag_list_key_press_event_cb (GtkTreeView             *tag_list,
 
 	grab_focus = (event->state & GDK_CONTROL_MASK) != 0;
 
-	if (event->keyval == GDK_Return)
+	if (event->keyval == GDK_KEY_Return)
 	{
 		GtkTreeModel *model;
 		GtkTreeSelection *selection;

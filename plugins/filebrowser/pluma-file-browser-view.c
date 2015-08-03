@@ -24,9 +24,6 @@
 #include <pluma/pluma-plugin.h>
 #include <gtk/gtk.h>
 #include <gdk/gdkkeysyms.h>
-#if GTK_CHECK_VERSION (3, 0, 0)
-#include <gdk/gdkkeysyms-compat.h>
-#endif
 
 #include "pluma-file-browser-store.h"
 #include "pluma-file-bookmarks-store.h"
@@ -637,7 +634,7 @@ key_press_event (GtkWidget   *widget,
 	modifiers = gtk_accelerator_get_default_mod_mask ();
 
 	switch (event->keyval) {
-	case GDK_space:
+	case GDK_KEY_space:
 		if (event->state & GDK_CONTROL_MASK) {
 			handled = FALSE;
 			break;
@@ -651,13 +648,13 @@ key_press_event (GtkWidget   *widget,
 		handled = TRUE;
 		break;
 
-	case GDK_Return:
-	case GDK_KP_Enter:
+	case GDK_KEY_Return:
+	case GDK_KEY_KP_Enter:
 		activate_selected_items (view);
 		handled = TRUE;
 		break;
 
-	case GDK_h:
+	case GDK_KEY_h:
 		if ((event->state & modifiers) == GDK_CONTROL_MASK) {
 			toggle_hidden_filter (view);
 			handled = TRUE;

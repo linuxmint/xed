@@ -36,9 +36,6 @@
 #include <glib/gi18n.h>
 #include <gtk/gtk.h>
 #include <gdk/gdkkeysyms.h>
-#if GTK_CHECK_VERSION (3, 0, 0)
-#include <gdk/gdkkeysyms-compat.h>
-#endif
 
 #include "pluma-search-dialog.h"
 #include "pluma-history-entry.h"
@@ -182,8 +179,8 @@ pluma_search_dialog_class_init (PlumaSearchDialogClass *klass)
 	/* Note: we cannot use the keyval/modifier associated with the 
 	 * GTK_STOCK_FIND_AND_REPLACE stock item since MATE HIG suggests Ctrl+h
 	 * for Replace while gtk+ uses Ctrl+r */
-	gtk_binding_entry_add_signal (binding_set, GDK_h, GDK_CONTROL_MASK, "show_replace", 0);
-	gtk_binding_entry_add_signal (binding_set, GDK_H, GDK_CONTROL_MASK, "show_replace", 0);		
+	gtk_binding_entry_add_signal (binding_set, GDK_KEY_h, GDK_CONTROL_MASK, "show_replace", 0);
+	gtk_binding_entry_add_signal (binding_set, GDK_KEY_H, GDK_CONTROL_MASK, "show_replace", 0);
 }
 
 static void

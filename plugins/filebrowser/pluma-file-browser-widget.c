@@ -30,9 +30,7 @@
 #include <glib/gi18n-lib.h>
 #include <gtk/gtk.h>
 #include <gdk/gdkkeysyms.h>
-#if GTK_CHECK_VERSION (3, 0, 0)
-#include <gdk/gdkkeysyms-compat.h>
-#endif
+
 #include <pluma/pluma-utils.h>
 #include <pluma/pluma-plugin.h>
 
@@ -2756,7 +2754,7 @@ do_change_directory (PlumaFileBrowserWidget * obj,
 
 	if ((event->state & 
 	    (~GDK_CONTROL_MASK & ~GDK_SHIFT_MASK & ~GDK_MOD1_MASK)) == 
-	     event->state && event->keyval == GDK_BackSpace)
+	     event->state && event->keyval == GDK_KEY_BackSpace)
 		action = gtk_action_group_get_action (obj->priv->
 		                                      action_group_sensitive,
 		                                      "DirectoryPrevious");
@@ -2765,17 +2763,17 @@ do_change_directory (PlumaFileBrowserWidget * obj,
 		return FALSE;
 
 	switch (event->keyval) {
-		case GDK_Left:
+		case GDK_KEY_Left:
 			action = gtk_action_group_get_action (obj->priv->
 			                                      action_group_sensitive,
 			                                      "DirectoryPrevious");
 		break;
-		case GDK_Right:
+		case GDK_KEY_Right:
 			action = gtk_action_group_get_action (obj->priv->
 			                                      action_group_sensitive,
 			                                      "DirectoryNext");
 		break;
-		case GDK_Up:
+		case GDK_KEY_Up:
 			action = gtk_action_group_get_action (obj->priv->
 			                                      action_group,
 			                                      "DirectoryUp");
@@ -2808,8 +2806,8 @@ on_treeview_key_press_event (PlumaFileBrowserView * treeview,
 
 	modifiers = gtk_accelerator_get_default_mod_mask ();
 
-	if (event->keyval == GDK_Delete
-	    || event->keyval == GDK_KP_Delete) {
+	if (event->keyval == GDK_KEY_Delete
+	    || event->keyval == GDK_KEY_KP_Delete) {
 
 		if ((event->state & modifiers) == GDK_SHIFT_MASK) {
 			if (obj->priv->enable_delete) {
@@ -2822,7 +2820,7 @@ on_treeview_key_press_event (PlumaFileBrowserView * treeview,
 		}
 	}
 
-	if ((event->keyval == GDK_F2)
+	if ((event->keyval == GDK_KEY_F2)
 	    && (event->state & modifiers) == 0) {
 		rename_selected_file (obj);
 

@@ -34,9 +34,6 @@
 #include <gtk/gtk.h>
 #include <gdk/gdk.h>
 #include <gdk/gdkkeysyms.h>
-#if GTK_CHECK_VERSION (3, 0, 0)
-#include <gdk/gdkkeysyms-compat.h>
-#endif
 
 #include "pluma-close-button.h"
 #include "pluma-window.h"
@@ -244,15 +241,15 @@ pluma_panel_class_init (PlumaPanelClass *klass)
 			      G_TYPE_NONE, 0);					
 	binding_set = gtk_binding_set_by_class (klass);
 
-	gtk_binding_entry_add_signal (binding_set, 
-				      GDK_Escape, 
-				      0, 
-				      "close", 
+	gtk_binding_entry_add_signal (binding_set,
+				      GDK_KEY_Escape,
+				      0,
+				      "close",
 				      0);
-	gtk_binding_entry_add_signal (binding_set, 
-				      GDK_Return, 
-				      GDK_CONTROL_MASK, 
-				      "focus_document", 
+	gtk_binding_entry_add_signal (binding_set,
+				      GDK_KEY_Return,
+				      GDK_CONTROL_MASK,
+				      "focus_document",
 				      0);
 }
 

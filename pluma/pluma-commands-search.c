@@ -39,7 +39,6 @@
 #include <gtk/gtk.h>
 #include <gdk/gdkkeysyms.h>
 #if GTK_CHECK_VERSION (3, 0, 0)
-#include <gdk/gdkkeysyms-compat.h>
 #define GTK_OBJECT G_OBJECT
 #endif
 
@@ -765,7 +764,7 @@ _pluma_cmd_search_goto_line (GtkAction   *action,
 	 * the corrisponding binding.
 	 */
 	gtk_bindings_activate (GTK_OBJECT (active_view),
-			       GDK_i,
+			       GDK_KEY_i,
 			       GDK_CONTROL_MASK);
 }
 
@@ -789,6 +788,6 @@ _pluma_cmd_search_incremental_search (GtkAction   *action,
 	 * the corrisponding binding.
 	 */
 	gtk_bindings_activate (GTK_OBJECT (active_view),
-			       GDK_k,
+			       GDK_KEY_k,
 			       GDK_CONTROL_MASK);
 }
