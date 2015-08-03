@@ -21,9 +21,11 @@
  */
 
 #include "pluma-gio-document-loader.h"
+#include "pluma-prefs-manager-app.h"
 #include <gio/gio.h>
 #include <gtk/gtk.h>
 #include <glib.h>
+#include <glib/gprintf.h>
 #include <string.h>
 #include <sys/stat.h>
 

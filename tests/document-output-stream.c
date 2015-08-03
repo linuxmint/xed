@@ -22,6 +22,7 @@
 
 
 #include "pluma-document-output-stream.h"
+#include "pluma-prefs-manager-app.h"
 #include <gio/gio.h>
 #include <gtk/gtk.h>
 #include <glib.h>

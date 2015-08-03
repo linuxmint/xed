@@ -25,6 +25,7 @@
 #include "pluma-encodings.h"
 #include <gio/gio.h>
 #include <glib.h>
+#include <glib/gprintf.h>
 #include <string.h>
 
 #define TEXT_TO_CONVERT "this is some text to make the tests"
