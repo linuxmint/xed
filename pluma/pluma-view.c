@@ -39,9 +39,6 @@
 
 #include <gtk/gtk.h>
 #include <gdk/gdkkeysyms.h>
-#if GTK_CHECK_VERSION (3, 0, 0)
-#include <gtksourceview/gtksourceview.h>
-#endif
 
 #include <glib/gi18n.h>
 
