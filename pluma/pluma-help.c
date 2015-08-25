@@ -38,10 +38,6 @@
 #include <string.h>
 #include <gtk/gtk.h>
 
-#ifdef OS_OSX
-#include "osx/pluma-osx.h"
-#endif
-
 gboolean    
 pluma_help_display (GtkWindow   *parent,
 		    const gchar *name, /* "pluma" if NULL */
@@ -53,17 +49,6 @@ pluma_help_display (GtkWindow   *parent,
 	
 	g_return_val_if_fail ((parent == NULL) || GTK_IS_WINDOW (parent), FALSE);
 
-#ifdef OS_OSX
-	if (name == NULL || strcmp(name, "pluma.xml") == NULL || strcmp(name, "pluma") == 0)
-	{
-		return pluma_osx_show_help (link_id);
-	}
-	else
-	{
-		return FALSE;
-	}
-#endif
-
 	if (name == NULL)
 		name = "pluma";
 	else if (strcmp (name, "pluma.xml") == 0)
@@ -73,18 +58,10 @@ pluma_help_display (GtkWindow   *parent,
 		name = "pluma";
 	}
 
-#ifndef G_OS_WIN32
 	if (link_id)
 		link = g_strdup_printf ("help:%s/%s", name, link_id);
 	else
 		link = g_strdup_printf ("help:%s", name);
-#else
-	if (link_id)
-		link = g_strdup_printf ("http://library.gnome.org/users/pluma/stable/%s",
-					link_id);
-	else
-		link = g_strdup ("http://library.gnome.org/users/pluma/stable/");
-#endif
 
 	ret = gtk_show_uri (gtk_widget_get_screen (GTK_WIDGET (parent)),
 	                    link, 

@@ -35,10 +35,6 @@
 #include "pluma-prefs-manager.h"
 #include "pluma-message-bus.h"
 
-#ifdef OS_OSX
-#include <ige-mac-integration.h>
-#endif
-
 G_BEGIN_DECLS
 
 /* WindowPrivate is in a separate .h so that we can access it from pluma-commands */
@@ -110,10 +106,6 @@ struct _PlumaWindowPrivate
 	GtkWindowGroup *window_group;
 
 	GFile          *default_location;
-
-#ifdef OS_OSX
-	IgeMacMenuGroup *mac_menu_group;
-#endif
 
 	gboolean        removing_tabs : 1;
 	gboolean        dispose_has_run : 1;

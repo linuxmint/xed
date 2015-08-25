@@ -51,15 +51,9 @@ G_BEGIN_DECLS
 #define PLUMA_IS_DOCUMENT_CLASS(klass)   (G_TYPE_CHECK_CLASS_TYPE ((klass), PLUMA_TYPE_DOCUMENT))
 #define PLUMA_DOCUMENT_GET_CLASS(obj)    (G_TYPE_INSTANCE_GET_CLASS((obj), PLUMA_TYPE_DOCUMENT, PlumaDocumentClass))
 
-#ifdef G_OS_WIN32
-#define PLUMA_METADATA_ATTRIBUTE_POSITION "position"
-#define PLUMA_METADATA_ATTRIBUTE_ENCODING "encoding"
-#define PLUMA_METADATA_ATTRIBUTE_LANGUAGE "language"
-#else
 #define PLUMA_METADATA_ATTRIBUTE_POSITION "metadata::pluma-position"
 #define PLUMA_METADATA_ATTRIBUTE_ENCODING "metadata::pluma-encoding"
 #define PLUMA_METADATA_ATTRIBUTE_LANGUAGE "metadata::pluma-language"
-#endif
 
 typedef enum
 {
@@ -68,11 +62,7 @@ typedef enum
 	PLUMA_DOCUMENT_NEWLINE_TYPE_CR_LF
 } PlumaDocumentNewlineType;
 
-#ifdef G_OS_WIN32
-#define PLUMA_DOCUMENT_NEWLINE_TYPE_DEFAULT PLUMA_DOCUMENT_NEWLINE_TYPE_CR_LF
-#else
 #define PLUMA_DOCUMENT_NEWLINE_TYPE_DEFAULT PLUMA_DOCUMENT_NEWLINE_TYPE_LF
-#endif
 
 typedef enum
 {

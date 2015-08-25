@@ -61,10 +61,6 @@
 #include "pluma-dirs.h"
 #include "pluma-status-combo-box.h"
 
-#ifdef OS_OSX
-#include "osx/pluma-osx.h"
-#endif
-
 #define LANGUAGE_NONE (const gchar *)"LangNone"
 #define PLUMA_UIFILE "pluma-ui.xml"
 #define TAB_WIDTH_DATA "PlumaWindowTabWidthData"
@@ -159,58 +155,6 @@ save_panes_state (PlumaWindow *window)
 		pluma_prefs_manager_set_bottom_panel_active_page (pane_page);
 }
 
-#ifdef OS_OSX
-static GtkMenuItem *
-ui_manager_menu_item (GtkUIManager *uimanager,
-                      const gchar  *path)
-{
-	return GTK_MENU_ITEM (gtk_ui_manager_get_widget (uimanager, path));
-}
-
-static void
-add_mac_root_menu (PlumaWindow *window)
-{
-	if (window->priv->mac_menu_group != NULL)
-	{
-		return;
-	}
-	
-	window->priv->mac_menu_group = ige_mac_menu_add_app_menu_group ();
-
-	ige_mac_menu_add_app_menu_item (window->priv->mac_menu_group,
-	                                ui_manager_menu_item (window->priv->manager, "/ui/MenuBar/HelpMenu/HelpAboutMenu"),
-	                                NULL);
-}
-
-static void
-remove_mac_root_menu (PlumaWindow *window)
-{
-	if (window->priv->mac_menu_group == NULL)
-	{
-		return;
-	}
-	
-	ige_mac_menu_remove_app_menu_group (window->priv->mac_menu_group);
-	window->priv->mac_menu_group = NULL;
-}
-
-static gboolean
-pluma_window_focus_in_event (GtkWidget     *widget,
-                             GdkEventFocus *event)
-{
-	add_mac_root_menu (PLUMA_WINDOW (widget));
-	return GTK_WIDGET_CLASS (pluma_window_parent_class)->focus_in_event (widget, event);
-}
-
-static gboolean
-pluma_window_focus_out_event (GtkWidget     *widget,
-                              GdkEventFocus *event)
-{
-	remove_mac_root_menu (PLUMA_WINDOW (widget));
-	return GTK_WIDGET_CLASS (pluma_window_parent_class)->focus_out_event (widget, event);
-}
-#endif
-
 static void
 pluma_window_dispose (GObject *object)
 {
@@ -291,10 +235,6 @@ pluma_window_dispose (GObject *object)
 	 * force collection again.
 	 */
 	pluma_plugins_engine_garbage_collect (pluma_plugins_engine_get_default ());
-
-#ifdef OS_OSX
-	remove_mac_root_menu (window);
-#endif
 
 	G_OBJECT_CLASS (pluma_window_parent_class)->dispose (object);
 }
@@ -402,11 +342,6 @@ pluma_window_class_init (PlumaWindowClass *klass)
 	widget_class->window_state_event = pluma_window_window_state_event;
 	widget_class->configure_event = pluma_window_configure_event;
 	widget_class->key_press_event = pluma_window_key_press_event;
-
-#ifdef OS_OSX
-	widget_class->focus_in_event = pluma_window_focus_in_event;
-	widget_class->focus_out_event = pluma_window_focus_out_event;
-#endif
 
 	signals[TAB_ADDED] =
 		g_signal_new ("tab_added",
@@ -2183,11 +2118,7 @@ set_title (PlumaWindow *window)
 
 	if (window->priv->active_tab == NULL)
 	{
-#ifdef OS_OSX
-		pluma_osx_set_window_title (window, "pluma", NULL);
-#else
 		gtk_window_set_title (GTK_WINDOW (window), "pluma");
-#endif
 		return;
 	}
 
@@ -2267,11 +2198,7 @@ set_title (PlumaWindow *window)
 						 name);
 	}
 
-#ifdef OS_OSX
-	pluma_osx_set_window_title (window, title, doc);
-#else
 	gtk_window_set_title (GTK_WINDOW (window), title);
-#endif
 
 	g_free (dirname);
 	g_free (name);
@@ -2583,14 +2510,8 @@ set_sensitivity_according_to_window_state (PlumaWindow *window)
 							window->priv->num_tabs > 0);
 		if (!gtk_action_group_get_sensitive (window->priv->close_action_group))
 		{
-#ifdef OS_OSX
-			/* On OS X, File Close is always sensitive */
-			gtk_action_group_set_sensitive (window->priv->close_action_group,
-							TRUE);
-#else
 			gtk_action_group_set_sensitive (window->priv->close_action_group,
 							window->priv->num_tabs > 0);
-#endif
 		}
 	}
 }
@@ -3212,11 +3133,8 @@ update_sensitivity_according_to_open_tabs (PlumaWindow *window)
 	gtk_action_set_sensitive (action,
 				  window->priv->num_tabs > 1);
 
-	/* Do not set close action insensitive on OS X */
-#ifndef OS_OSX
 	gtk_action_group_set_sensitive (window->priv->close_action_group,
 	                                window->priv->num_tabs != 0);
-#endif
 }
 
 static void
@@ -3840,27 +3758,6 @@ check_window_is_active (PlumaWindow *window,
 	}
 }
 
-#ifdef OS_OSX
-static void
-setup_mac_menu (PlumaWindow *window)
-{
-	GtkAction *action;
-
-	gtk_widget_hide (window->priv->menubar);
-	action = gtk_ui_manager_get_action (window->priv->manager, "/ui/MenuBar/HelpMenu/HelpAboutMenu");
-
-	gtk_action_set_label (action, _("About pluma"));
-
-	ige_mac_menu_set_menu_bar (GTK_MENU_SHELL (window->priv->menubar));
-	ige_mac_menu_set_quit_menu_item (ui_manager_menu_item (window->priv->manager, "/ui/MenuBar/FileMenu/FileQuitMenu"));
-
-	ige_mac_menu_set_preferences_menu_item (ui_manager_menu_item (window->priv->manager, "/ui/MenuBar/EditMenu/EditPreferencesMenu"));
-	
-	add_mac_root_menu (window);
-	ige_mac_menu_connect_window_key_handler (GTK_WINDOW (window));
-}
-#endif
-
 static void
 connect_notebook_signals (PlumaWindow *window,
 			  GtkWidget   *notebook)
@@ -4041,10 +3938,6 @@ pluma_window_init (PlumaWindow *window)
 	init_panels_visibility (window);
 
 	update_sensitivity_according_to_open_tabs (window);
-
-#ifdef OS_OSX
-	setup_mac_menu (window);
-#endif
 
 	pluma_debug_message (DEBUG_WINDOW, "END");
 }

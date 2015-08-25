@@ -22,14 +22,10 @@
  */
 
 #ifdef HAVE_CONFIG_H
-	#include <config.h>
+#include <config.h>
 #endif
 
 #include "pluma-dirs.h"
-
-#ifdef OS_OSX
-	#include <ige-mac-bundle.h>
-#endif
 
 gchar* pluma_dirs_get_user_config_dir(void)
 {
@@ -73,102 +69,17 @@ gchar* pluma_dirs_get_user_accels_file(void)
 
 gchar* pluma_dirs_get_pluma_data_dir(void)
 {
-	gchar* data_dir;
-
-	#ifdef G_OS_WIN32
-		gchar* win32_dir;
-
-		win32_dir = g_win32_get_package_installation_directory_of_module(NULL);
-
-		data_dir = g_build_filename(win32_dir, "share", "pluma", NULL);
-
-		g_free(win32_dir);
-
-	#elif defined(OS_OSX)
-
-		IgeMacBundle* bundle = ige_mac_bundle_get_default();
-
-		if (ige_mac_bundle_get_is_app_bundle(bundle))
-		{
-			const gchar* bundle_data_dir = ige_mac_bundle_get_datadir(bundle);
-
-			data_dir = g_build_filename(bundle_data_dir, "pluma", NULL);
-		}
-		else
-		{
-			data_dir = g_build_filename(DATADIR, "pluma", NULL);
-		}
-	#else
-		data_dir = g_build_filename(DATADIR, "pluma", NULL);
-	#endif
-
-	return data_dir;
+	return g_build_filename(DATADIR, "pluma", NULL);
 }
 
 gchar* pluma_dirs_get_pluma_locale_dir(void)
 {
-	gchar* locale_dir;
-
-	#ifdef G_OS_WIN32
-
-		gchar* win32_dir;
-
-		win32_dir = g_win32_get_package_installation_directory_of_module(NULL);
-
-		locale_dir = g_build_filename(win32_dir, "share", "locale", NULL);
-
-		g_free(win32_dir);
-
-	#elif defined(OS_OSX)
-
-		IgeMacBundle *bundle = ige_mac_bundle_get_default();
-
-		if (ige_mac_bundle_get_is_app_bundle(bundle))
-		{
-			locale_dir = g_strdup(ige_mac_bundle_get_localedir(bundle));
-		}
-		else
-		{
-			locale_dir = g_build_filename(DATADIR, "locale", NULL);
-		}
-	#else
-		locale_dir = g_build_filename(DATADIR, "locale", NULL);
-	#endif
-
-	return locale_dir;
+	return g_build_filename(DATADIR, "locale", NULL);
 }
 
 gchar* pluma_dirs_get_pluma_lib_dir(void)
 {
-	gchar* lib_dir;
-
-	#ifdef G_OS_WIN32
-
-		gchar* win32_dir;
-
-		win32_dir = g_win32_get_package_installation_directory_of_module(NULL);
-
-		lib_dir = g_build_filename(win32_dir, "lib", "pluma", NULL);
-
-		g_free(win32_dir);
-
-	#elif defined(OS_OSX)
-		IgeMacBundle* bundle = ige_mac_bundle_get_default();
-
-		if (ige_mac_bundle_get_is_app_bundle(bundle))
-		{
-			const gchar* path = ige_mac_bundle_get_resourcesdir(bundle);
-			lib_dir = g_build_filename(path, "lib", "pluma", NULL);
-		}
-		else
-		{
-			lib_dir = g_build_filename(LIBDIR, "pluma", NULL);
-		}
-	#else
-		lib_dir = g_build_filename(LIBDIR, "pluma", NULL);
-	#endif
-
-	return lib_dir;
+	return g_build_filename(LIBDIR, "pluma", NULL);
 }
 
 gchar* pluma_dirs_get_pluma_plugins_dir(void)

@@ -1,18 +1,7 @@
-if OS_WIN32
-platform_sources = eggsmclient-win32.c
-platform_logout_test_ldflags = -mwindows
-else
-if OS_OSX
-platform_defines = -xobjective-c
-platform_ldflags = -framework Carbon
-platform_sources = eggsmclient-osx.c
-else
 platform_defines = -DEGG_SM_CLIENT_BACKEND_XSMP
 platform_libs = libeggdesktopfile.la
 platform_ltlibraries = libeggdesktopfile.la
 platform_sources = eggsmclient-xsmp.c
-endif
-endif
 
 AM_CPPFLAGS =                               \
 	-DG_LOG_DOMAIN=\""EggSMClient"\" \
@@ -45,8 +34,6 @@ libeggdesktopfile_la_SOURCES =           \
 	eggdesktopfile.h
 
 EXTRA_DIST =                             \
-	eggsmclient-osx.c                \
-	eggsmclient-win32.c              \
 	eggsmclient-xsmp.c
 
 -include $(top_srcdir)/git.mk

@@ -2,30 +2,13 @@ TOOL_MERGE=$(top_srcdir)/plugins/externaltools/scripts/pluma-tool-merge.pl
 
 tools_in_files = \
 	build.tool.in \
-	remove-trailing-spaces.tool.in
-
-tools_in_linux = \
 	open-terminal-here.tool.in \
+	remove-trailing-spaces.tool.in \
 	run-command.tool.in \
 	search-recursive.tool.in \
 	switch-c.tool.in
 
-tools_in_osx = \
-	open-terminal-here-osx.tool.in
-
-tools_in_win32 =
-
 install_tools_in_files = $(tools_in_files)
-
-if PLATFORM_OSX
-install_tools_in_files += $(tools_in_osx)
-else
-if PLATFORM_WIN32
-install_tools_in_files += $(tools_in_win32)
-else
-install_tools_in_files += $(tools_in_linux)
-endif
-endif
 
 desktop_in_files = $(install_tools_in_files:.tool.in=.desktop.in)
 desktop_files    = $(install_tools_in_files:.tool.in=.desktop)
@@ -34,10 +17,7 @@ tools_SCRIPTS = $(install_tools_in_files:.tool.in=)
 toolsdir = $(PLUMA_PLUGINS_DATA_DIR)/externaltools/tools
 
 all_tools_in_files = \
-	$(tools_in_files) \
-	$(tools_in_linux) \
-	$(tools_in_osx) \
-	$(tools_in_win32)
+	$(tools_in_files)
 
 all_desktop_in_files = $(all_tools_in_files:.tool.in=.desktop.in)
 all_desktop_files = $(all_tools_in_files:.tool.in=.desktop)
@@ -62,6 +42,5 @@ CLEANFILES = \
 DISTCLEANFILES = \
 	$(all_desktop_files) \
 	$(all_tools_files)
-
 
 -include $(top_srcdir)/git.mk

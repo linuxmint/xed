@@ -32,8 +32,6 @@ AC_PROG_INSTALL
 AC_PROG_MAKE_SET
 AC_SYS_LARGEFILE
 PKG_PROG_PKG_CONFIG
-# needed on osx
-AC_PROG_OBJC
 
 # Initialize libtool
 LT_PREREQ([2.2.6])
@@ -51,83 +49,9 @@ AC_CHECK_LIB(m, floor)
 dnl make sure we keep ACLOCAL_FLAGS around for maintainer builds to work
 AC_SUBST(ACLOCAL_AMFLAGS, "$ACLOCAL_FLAGS -I m4")
 
-dnl active plugins for GSettings schema
-ACTIVE_PLUGINS="'docinfo', 'modelines', 'filebrowser', 'spell', 'time'"
-AC_SUBST(ACTIVE_PLUGINS)
-
 dnl toolbar style for GSettings schemas
 TOOLBAR_STYLE="PLUMA_TOOLBAR_SYSTEM"
 AC_SUBST(TOOLBAR_STYLE)
-
-dnl check for win32 platform
-AC_MSG_CHECKING([for Win32 platform])
-case "$host" in
-  *-*-mingw*|*-*-cygwin*)
-    platform_win32=yes
-    TOOLBAR_STYLE="PLUMA_TOOLBAR_ICONS"
-    ;;
-  *)
-    platform_win32=no
-    ;;
-esac
-AC_MSG_RESULT([$platform_win32])
-AM_CONDITIONAL(PLATFORM_WIN32, test "$platform_win32" = "yes")
-
-AC_MSG_CHECKING([for native Win32])
-case "$host" in
-  *-*-mingw*)
-    os_win32=yes
-    AC_CHECK_TOOL(WINDRES, windres)
-    ACTIVE_PLUGINS="${ACTIVE_PLUGINS}, 'checkupdate'"
-    ;;
-  *)
-    os_win32=no
-    ;;
-esac
-AC_MSG_RESULT([$os_win32])
-AM_CONDITIONAL(OS_WIN32, test "$os_win32" = "yes")
-
-dnl check for osx platform
-AC_MSG_CHECKING([for Mac OS X platform])
-case "$host" in
-  *-*-darwin*)
-    platform_osx=yes
-    ;;
-  *)
-    platform_osx=no
-    ;;
-esac
-AC_MSG_RESULT([$platform_osx])
-AM_CONDITIONAL(PLATFORM_OSX, test "$platform_osx" = "yes")
-
-dnl check for native osx
-gdk_windowing=`$PKG_CONFIG --variable=target gdk-2.0`
-
-AC_MSG_CHECKING([for native Mac OS X])
-if test "$gdk_windowing" = "quartz"; then
-	os_osx=yes
-	ACTIVE_PLUGINS="${ACTIVE_PLUGINS}, 'checkupdate'"
-else
-	os_osx=no
-fi
-AC_MSG_RESULT([$os_osx])
-AM_CONDITIONAL(OS_OSX, test "$os_osx" = "yes")
-
-if test "$platform_osx" = "yes"; then
-	AC_DEFINE([PLATFORM_OSX],[1],[Defined if platform is Mac OSX])
-fi
-
-AC_SUBST(DEFAULT_FONT)
-AC_SUBST(DEFAULT_PRINT_FONT)
-
-if test "$os_osx" = "yes"; then
-	AC_DEFINE([OS_OSX],[1],[Defined if os is Mac OSX])
-
-	PKG_CHECK_MODULES(IGE_MAC, ige-mac-integration)
-
-	AC_SUBST(IGE_MAC_CFLAGS)
-	AC_SUBST(IGE_MAC_LIBS)
-fi
 
 dnl ===============================================================
 dnl Expanded dirs
@@ -164,52 +88,16 @@ dnl ================================================================
 dnl Use gvfs metadata or the old xml file store.
 dnl ================================================================
 
-if test "x$os_osx" != "xno" || test "x$os_win32" != "xno"; then
-	gvfs_metadata_default="no"
-else
-	gvfs_metadata_default="yes"
-fi
-
 AC_ARG_ENABLE([gvfs-metadata],
 	AS_HELP_STRING([--enable-gvfs-metadata], [Enable using gvfs to store metadata]),
 	[enable_gvfs_metadata=$enableval],
-	[enable_gvfs_metadata=$gvfs_metadata_default])
+	[enable_gvfs_metadata=yes])
 
 AM_CONDITIONAL(ENABLE_GVFS_METADATA, test "x$enable_gvfs_metadata" != "xno")
 
 if test "x$enable_gvfs_metadata" != "xno"; then
 	AC_DEFINE([ENABLE_GVFS_METADATA], [1], [Define to enable using gvfs metadata])
 fi
-
-dnl ================================================================
-dnl check update plugin
-dnl ================================================================
-
-AC_ARG_ENABLE([updater],
-	AS_HELP_STRING([--disable-updater],[Disable check update plugin (default: enabled)]),
-	[enable_updater=$enableval],
-	[enable_updater=yes])
-
-if test "x$enable_updater" != "xno"; then
-	PKG_CHECK_MODULES(LIBSOUP, \
-		libsoup-2.4,
-		have_libsoup=yes,
-		have_libsoup=no)
-
-	if test "x$have_libsoup" = "xyes"; then
-		if test "x$os_win32" = "xyes"; then
-			enable_updater=yes
-		elif test "x$os_osx" = "xyes"; then
-			enable_updater=yes
-		else
-			enable_updater=no
-		fi
-	else
-		enable_updater=no
-	fi
-fi
-
-AM_CONDITIONAL(ENABLE_UPDATER, test x"$enable_updater" = "xyes")
 
 dnl ================================================================
 dnl spell plugins checks: enchant and iso-codes
@@ -300,15 +188,7 @@ PKG_CHECK_MODULES(PLUMA, [
 	mate-desktop-2.0 >= 1.9.0
 ])
 
-if test "$os_osx" = "no" &&
-   test "$os_win32" = "no"; then
-	PKG_CHECK_MODULES(X11, [
-		x11
-	])
-else
-	X11_CFLAGS=
-	X11_LIBS=
-fi
+PKG_CHECK_MODULES(X11, [x11])
 
 PLUMA_CFLAGS="$PLUMA_CFLAGS $X11_CFLAGS"
 PLUMA_LIBS="$PLUMA_LIBS $X11_LIBS"
@@ -316,15 +196,7 @@ PLUMA_LIBS="$PLUMA_LIBS $X11_LIBS"
 AC_SUBST(PLUMA_CFLAGS)
 AC_SUBST(PLUMA_LIBS)
 
-if test "$os_osx" = "no" &&
-   test "$os_win32" = "no"; then
-	PKG_CHECK_MODULES(EGG_SMCLIENT, [
-		sm >= 1.0.0
-	])
-else
-	EGG_SMCLIENT_CFLAGS=
-	EGG_SMCLIENT_LIBS=
-fi
+PKG_CHECK_MODULES(EGG_SMCLIENT, [sm >= 1.0.0])
 
 AC_SUBST(EGG_SMCLIENT_CFLAGS)
 AC_SUBST(EGG_SMCLIENT_LIBS)
@@ -361,20 +233,14 @@ if test "x$have_python" != "xno"; then
 	PY_EXEC_PREFIX=`$PYTHON -c 'import sys ; print sys.exec_prefix'`
 	PYTHON_LIBS="-lpython$PYTHON_VERSION"
 
-	if test "$os_win32" = yes; then
-		PYTHON_LIBS=`echo $PYTHON_LIBS | sed 's/\.//g'`
-		PYTHON_LIB_LOC="-I$PY_EXEC_PREFIX/libs"
-		PYTHON_CFLAGS="-I$PY_EXEC_PREFIX/include"
-		PYTHON_EXTRA_LIBS=
-	else
-		PY_PREFIX=`$PYTHON -c 'import sys ; print sys.prefix'`
-		PYTHON_LIB_LOC="-L$libdir/python$PYTHON_VERSION/config"
-		PYTHON_CFLAGS="-I$PY_PREFIX/include/python$PYTHON_VERSION"
-		PYTHON_MAKEFILE="$libdir/python$PYTHON_VERSION/config/Makefile"
-		PYTHON_BASEMODLIBS=`sed -n -e 's/^BASEMODLIBS=\(.*\)/\1/p' $PYTHON_MAKEFILE`
-		PYTHON_OTHER_LIBS=`sed -n -e 's/^LIBS=\(.*\)/\1/p' $PYTHON_MAKEFILE`
-		PYTHON_EXTRA_LIBS="$PYTHON_BASEMODLIBS $PYTHON_OTHER_LIBS"
-	fi
+	PY_PREFIX=`$PYTHON -c 'import sys ; print sys.prefix'`
+	PYTHON_LIB_LOC="-L$libdir/python$PYTHON_VERSION/config"
+	PYTHON_CFLAGS="-I$PY_PREFIX/include/python$PYTHON_VERSION"
+	PYTHON_MAKEFILE="$libdir/python$PYTHON_VERSION/config/Makefile"
+	PYTHON_BASEMODLIBS=`sed -n -e 's/^BASEMODLIBS=\(.*\)/\1/p' $PYTHON_MAKEFILE`
+	PYTHON_OTHER_LIBS=`sed -n -e 's/^LIBS=\(.*\)/\1/p' $PYTHON_MAKEFILE`
+	PYTHON_EXTRA_LIBS="$PYTHON_BASEMODLIBS $PYTHON_OTHER_LIBS"
+
 	AC_SUBST([PYTHON_LIBS])
 	AC_SUBST([PYTHON_LIB_LOC])
 	AC_SUBST([PYTHON_CFLAGS])
@@ -481,22 +347,9 @@ if test "x$enable_deprecations" = "xyes"; then
    AC_SUBST(DISABLE_DEPRECATED_CFLAGS)
 fi
 
-# on win32 plugins must be able to resolve all symbols at link time
-# so we create a lib
-if test "$platform_win32" = yes; then
-	PLUMA_IMPLIB="-lpluma"
-	PLUGIN_LIBTOOL_FLAGS="-module -avoid-version -no-undefined -Wl,\$(top_builddir)/pluma/libpluma.a"
-	LOADER_LIBTOOL_FLAGS="-module -avoid-version -no-undefined -Wl,\$(top_builddir)/pluma/libpluma.a"
-	if test "$os_win32" = yes; then
-		PLUGIN_LIBTOOL_FLAGS="${PLUGIN_LIBTOOL_FLAGS} -mwindows"
-		LOADER_LIBTOOL_FLAGS="${LOADER_LIBTOOL_FLAGS} -mwindows"
-	fi
-else
-	PLUMA_IMPLIB=""
-	PLUGIN_LIBTOOL_FLAGS="-module -avoid-version"
-	LOADER_LIBTOOL_FLAGS="-module -avoid-version"
-fi
-AC_SUBST(PLUMA_IMPLIB)
+PLUGIN_LIBTOOL_FLAGS="-module -avoid-version"
+LOADER_LIBTOOL_FLAGS="-module -avoid-version"
+
 AC_SUBST(PLUGIN_LIBTOOL_FLAGS)
 AC_SUBST(LOADER_LIBTOOL_FLAGS)
 
@@ -519,7 +372,6 @@ docs/Makefile
 docs/reference/Makefile
 pluma/dialogs/Makefile
 pluma/smclient/Makefile
-pluma/osx/Makefile
 pluma/Makefile
 help/Makefile
 pixmaps/Makefile
@@ -529,7 +381,6 @@ plugin-loaders/python/Makefile
 plugin-loaders/python/bindings/Makefile
 plugins/Makefile
 plugins/changecase/Makefile
-plugins/checkupdate/Makefile
 plugins/docinfo/Makefile
 plugins/externaltools/data/Makefile
 plugins/externaltools/Makefile
@@ -551,10 +402,7 @@ plugins/taglist/Makefile
 plugins/time/Makefile
 po/Makefile.in
 tests/Makefile
-win32/pluma.iss
-win32/Makefile
-osx/Info.plist
-osx/Makefile])
+])
 
 AC_OUTPUT
 

@@ -1647,11 +1647,6 @@ close_confirmation_dialog_response_handler (PlumaCloseConfirmationDialog *dlg,
 					   PLUMA_IS_QUITTING,
 					   GBOOLEAN_TO_POINTER (FALSE));
 
-#ifdef OS_OSX
-			g_object_set_data (G_OBJECT (window),
-			                   PLUMA_IS_QUITTING_ALL,
-			                   GINT_TO_POINTER (FALSE));
-#endif
 			break;
 	}
 
@@ -1734,10 +1729,6 @@ _pluma_cmd_file_close (GtkAction   *action,
 
 	if (active_tab == NULL)
 	{
-#ifdef OS_OSX
-		/* Close the window on OS X */
-		gtk_widget_destroy (GTK_WIDGET (window));
-#endif
 		return;
 	}
 
@@ -1829,52 +1820,11 @@ _pluma_cmd_file_close_all (GtkAction   *action,
 	file_close_all (window, FALSE);
 }
 
-/* Quit */
-#ifdef OS_OSX
-static void
-quit_all ()
-{
-	GList *windows;
-	GList *item;
-	PlumaApp *app;
-
-	app = pluma_app_get_default ();
-	windows = g_list_copy ((GList *)pluma_app_get_windows (app));
-
-	for (item = windows; item; item = g_list_next (item))
-	{
-		PlumaWindow *window = PLUMA_WINDOW (item->data);
-	
-		g_object_set_data (G_OBJECT (window),
-		                   PLUMA_IS_QUITTING_ALL,
-		                   GINT_TO_POINTER (TRUE));
-
-		if (!(pluma_window_get_state (window) &
-		                    (PLUMA_WINDOW_STATE_SAVING |
-		                     PLUMA_WINDOW_STATE_PRINTING |
-		                     PLUMA_WINDOW_STATE_SAVING_SESSION)))
-		{
-			file_close_all (window, TRUE);
-		}
-	}
-
-	g_list_free (windows);
-}
-#endif
-
 void
 _pluma_cmd_file_quit (GtkAction   *action,
 		     PlumaWindow *window)
 {
 	pluma_debug (DEBUG_COMMANDS);
-
-#ifdef OS_OSX
-	if (action != NULL)
-	{
-		quit_all ();
-		return;
-	}
-#endif
 
 	g_return_if_fail (!(pluma_window_get_state (window) &
 	                    (PLUMA_WINDOW_STATE_SAVING |

@@ -1,6 +1,5 @@
 DIST_SUBDIRS =		\
 	changecase 	\
-	checkupdate	\
 	docinfo 	\
 	externaltools	\
 	filebrowser 	\
@@ -16,6 +15,7 @@ DIST_SUBDIRS =		\
 SUBDIRS = 		\
 	changecase	\
 	docinfo		\
+	externaltools \
 	filebrowser	\
 	modelines	\
 	sort		\
@@ -24,19 +24,10 @@ SUBDIRS = 		\
 
 if ENABLE_PYTHON
 SUBDIRS      += pythonconsole snippets quickopen
-
-if !OS_WIN32
-SUBDIRS      += externaltools
-endif
-
 endif
 
 if ENABLE_ENCHANT
 SUBDIRS      += spell
-endif
-
-if ENABLE_UPDATER
-SUBDIRS      += checkupdate
 endif
 
 -include $(top_srcdir)/git.mk

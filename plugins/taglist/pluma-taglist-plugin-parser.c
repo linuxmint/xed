@@ -31,7 +31,7 @@
 /* FIXME: we should rewrite the parser to avoid using DOM */
 
 #ifdef HAVE_CONFIG_H
-	#include <config.h>
+#include <config.h>
 #endif
 
 #include <string.h>
@@ -602,45 +602,38 @@ TagList* create_taglist(const gchar* data_dir)
 		return taglist;
 	}
 
-	#ifndef G_OS_WIN32
-		const gchar* home;
-		const gchar* envvar;
+	const gchar* home;
+	const gchar* envvar;
 
-		/* load user's taglists */
+	/* load user's taglists */
 
-		/* legacy dir */
-		home = g_get_home_dir ();
-		if (home != NULL)
-		{
-			pdir = g_build_filename (home,
-						 USER_PLUMA_TAGLIST_PLUGIN_LOCATION_LEGACY,
-						 NULL);
-			parse_taglist_dir (pdir);
-			g_free (pdir);
-		}
+	/* legacy dir */
+	home = g_get_home_dir ();
+	if (home != NULL)
+	{
+		pdir = g_build_filename (home,
+					 USER_PLUMA_TAGLIST_PLUGIN_LOCATION_LEGACY,
+					 NULL);
+		parse_taglist_dir (pdir);
+		g_free (pdir);
+	}
 
-		/* Support old libmate env var */
-		envvar = g_getenv ("MATE22_USER_DIR");
-		if (envvar != NULL)
-		{
-			pdir = g_build_filename (envvar,
-						 USER_PLUMA_TAGLIST_PLUGIN_LOCATION,
-						 NULL);
-			parse_taglist_dir (pdir);
-			g_free (pdir);
-		}
-		else if (home != NULL)
-		{
-			pdir = g_build_filename(home, ".config", USER_PLUMA_TAGLIST_PLUGIN_LOCATION, NULL);
-			parse_taglist_dir(pdir);
-			g_free (pdir);
-		}
-
-	#else
-		pdir = g_build_filename(g_get_user_config_dir(), "pluma", "taglist", NULL);
+	/* Support old libmate env var */
+	envvar = g_getenv ("MATE22_USER_DIR");
+	if (envvar != NULL)
+	{
+		pdir = g_build_filename (envvar,
+					 USER_PLUMA_TAGLIST_PLUGIN_LOCATION,
+					 NULL);
+		parse_taglist_dir (pdir);
+		g_free (pdir);
+	}
+	else if (home != NULL)
+	{
+		pdir = g_build_filename(home, ".config", USER_PLUMA_TAGLIST_PLUGIN_LOCATION, NULL);
 		parse_taglist_dir(pdir);
-		g_free(pdir);
-	#endif
+		g_free (pdir);
+	}
 
 	/* load system's taglists */
 	parse_taglist_dir(data_dir);

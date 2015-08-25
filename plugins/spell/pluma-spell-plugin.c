@@ -41,14 +41,8 @@
 #include "pluma-spell-language-dialog.h"
 #include "pluma-automatic-spell-checker.h"
 
-#ifdef G_OS_WIN32
-#include <pluma/pluma-metadata-manager.h>
-#define PLUMA_METADATA_ATTRIBUTE_SPELL_LANGUAGE "spell-language"
-#define PLUMA_METADATA_ATTRIBUTE_SPELL_ENABLED  "spell-enabled"
-#else
 #define PLUMA_METADATA_ATTRIBUTE_SPELL_LANGUAGE "metadata::pluma-spell-language"
 #define PLUMA_METADATA_ATTRIBUTE_SPELL_ENABLED  "metadata::pluma-spell-enabled"
-#endif
 
 #define WINDOW_DATA_KEY "PlumaSpellPluginWindowData"
 #define MENU_PATH "/MenuBar/ToolsMenu/ToolsOps_1"

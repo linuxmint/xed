@@ -33,22 +33,8 @@ void      egg_sm_client_quit_requested (EggSMClient *client);
 void      egg_sm_client_quit_cancelled (EggSMClient *client);
 void      egg_sm_client_quit           (EggSMClient *client);
 
-#if defined (GDK_WINDOWING_X11)
-# ifdef EGG_SM_CLIENT_BACKEND_XSMP
 GType        egg_sm_client_xsmp_get_type (void);
 EggSMClient *egg_sm_client_xsmp_new      (void);
-# endif
-# ifdef EGG_SM_CLIENT_BACKEND_DBUS
-GType        egg_sm_client_dbus_get_type (void);
-EggSMClient *egg_sm_client_dbus_new      (void);
-# endif
-#elif defined (GDK_WINDOWING_WIN32)
-GType        egg_sm_client_win32_get_type (void);
-EggSMClient *egg_sm_client_win32_new      (void);
-#elif defined (GDK_WINDOWING_QUARTZ)
-GType        egg_sm_client_osx_get_type (void);
-EggSMClient *egg_sm_client_osx_new      (void);
-#endif
 
 G_END_DECLS
 

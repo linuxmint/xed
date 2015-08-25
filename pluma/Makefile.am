@@ -1,10 +1,6 @@
 ## Process this file with automake to produce Makefile.in
 SUBDIRS = dialogs smclient
 
-if OS_OSX
-SUBDIRS += osx
-endif
-
 bin_PROGRAMS = pluma
 
 noinst_LTLIBRARIES = libpluma.la
@@ -14,7 +10,6 @@ AM_CPPFLAGS =								\
 	-I$(srcdir)							\
 	-I$(srcdir)/smclient						\
 	$(PLUMA_CFLAGS)							\
-	$(IGE_MAC_CFLAGS)						\
 	$(WARN_CFLAGS)							\
 	$(DISABLE_DEPRECATED_CFLAGS)					\
 	-DDATADIR=\""$(datadir)"\"					\
@@ -23,16 +18,9 @@ AM_CPPFLAGS =								\
 pluma_SOURCES = \
 	pluma.c
 
-pluma_LDADD = libpluma.la $(PLUMA_LIBS) $(IGE_MAC_LIBS) $(EGG_SMCLIENT_LIBS)
+pluma_LDADD = libpluma.la $(PLUMA_LIBS) $(EGG_SMCLIENT_LIBS)
 
-if PLATFORM_WIN32
-pluma_LDFLAGS = -Wl,--export-all-symbols -Wl,--out-implib,libpluma.a
-if OS_WIN32
-pluma_LDFLAGS += -mwindows
-endif
-else
 pluma_LDFLAGS = -export-dynamic -no-undefined -export-symbols-regex "^[[^_]].*"
-endif
 
 libpluma_la_LDFLAGS = -export-dynamic -no-undefined -export-symbols-regex "^[[^_]].*"
 
@@ -43,24 +31,12 @@ libpluma_la_LIBADD = \
 # PLUMA_LIBS must be the last to ensure correct order on some platforms
 libpluma_la_LIBADD += $(PLUMA_LIBS) -lICE
 
-if OS_OSX
-pluma_LDFLAGS += -framework Carbon
-
-libpluma_la_LIBADD += osx/libosx.la
-endif
-
 BUILT_SOURCES = 			\
 	pluma-enum-types.c		\
 	pluma-enum-types.h		\
 	pluma-marshal.c			\
 	pluma-marshal.h
 
-if OS_WIN32
-pluma-res.o: pluma.rc
-	$(WINDRES) -i pluma.rc --input-format=rc -o pluma-res.o -O coff
-
-pluma_LDADD += pluma-res.o
-endif
 
 NOINST_H_FILES =			\
 	pluma-close-button.h		\
@@ -222,20 +198,10 @@ CLEANFILES = $(BUILT_SOURCES)
 dist-hook:
 	cd $(distdir); rm -f $(BUILT_SOURCES)
 
-install-exec-hook:
-if PLATFORM_WIN32
-	$(mkinstalldirs) "$(DESTDIR)$(libdir)"
-	$(INSTALL_DATA) libpluma.a "$(DESTDIR)$(libdir)"
-endif
-
-if !OS_WIN32
 BACON_DIR=$(srcdir)/../../libbacon/src/
 BACON_FILES=bacon-message-connection.h bacon-message-connection.c
 
 regenerate-built-sources:
 	BACONFILES="$(BACON_FILES)" BACONDIR="$(BACON_DIR)" $(top_srcdir)/pluma/update-from-bacon.sh
-else
-BACON_DIR=
-endif
 
 -include $(top_srcdir)/git.mk

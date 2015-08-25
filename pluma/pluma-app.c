@@ -46,10 +46,6 @@
 #include "pluma-enum-types.h"
 #include "pluma-dirs.h"
 
-#ifdef OS_OSX
-#include <ige-mac-integration.h>
-#endif
-
 #define PLUMA_PAGE_SETUP_FILE		"pluma-page-setup"
 #define PLUMA_PRINT_SETTINGS_FILE	"pluma-print-settings"
 
@@ -440,14 +436,6 @@ window_destroy (PlumaWindow *window,
 */
 	if (app->priv->windows == NULL)
 	{
-#ifdef OS_OSX
-		if (!GPOINTER_TO_INT (g_object_get_data (G_OBJECT (window), "pluma-is-quitting-all")))
-		{
-			/* Create hidden proxy window on OS X to handle the menu */
-			pluma_app_create_window (app, NULL);
-			return;
-		}
-#endif
 		/* Last window is gone... save some settings and exit */
 		ensure_user_config_dir ();
 

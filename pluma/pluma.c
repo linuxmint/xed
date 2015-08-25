@@ -40,10 +40,7 @@
 #include <glib.h>
 #include <glib/gi18n.h>
 #include <gtk/gtk.h>
-
-#ifdef GDK_WINDOWING_X11
 #include <gdk/gdkx.h>
-#endif
 
 #include "pluma-app.h"
 #include "pluma-commands.h"
@@ -59,34 +56,15 @@
 #include "eggsmclient.h"
 #include "eggdesktopfile.h"
 
-#ifdef G_OS_WIN32
-#define SAVE_DATADIR DATADIR
-#undef DATADIR
-#include <io.h>
-#include <conio.h>
-#define _WIN32_WINNT 0x0500
-#include <windows.h>
-#define DATADIR SAVE_DATADIR
-#undef SAVE_DATADIR
-#endif
-
-#ifdef OS_OSX
-#include <ige-mac-dock.h>
-#include <ige-mac-integration.h>
-#include "osx/pluma-osx.h"
-#endif
-
 #ifndef ENABLE_GVFS_METADATA
 #include "pluma-metadata-manager.h"
 #endif
 
-static guint32 startup_timestamp = 0;
-
-#ifndef G_OS_WIN32
 #include "bacon-message-connection.h"
 
+static guint32 startup_timestamp = 0;
+
 static BaconMessageConnection *connection;
-#endif
 
 /* command line */
 static gint line_position = 0;
@@ -234,7 +212,6 @@ get_startup_timestamp (void)
 	return (retval > 0) ? retval : 0;
 }
 
-#ifndef G_OS_WIN32
 static GdkDisplay *
 display_open_if_needed (const gchar *name)
 {
@@ -400,13 +377,11 @@ on_message_received (const char *message,
 	if (!gtk_widget_get_realized (GTK_WIDGET (window)))
 		gtk_widget_realize (GTK_WIDGET (window));
 
-#ifdef GDK_WINDOWING_X11
 	if (startup_timestamp <= 0)
 		startup_timestamp = gdk_x11_get_server_time (gtk_widget_get_window (GTK_WIDGET (window)));
 
 	gdk_x11_window_set_user_time (gtk_widget_get_window (GTK_WIDGET (window)),
 				      startup_timestamp);
-#endif
 
 	gtk_window_present (GTK_WINDOW (window));
 
@@ -513,35 +488,6 @@ send_bacon_message (void)
 
 	g_string_free (command, TRUE);
 }
-#endif /* G_OS_WIN32 */
-
-#ifdef G_OS_WIN32
-static void
-setup_path (void)
-{
-	gchar *path;
-	gchar *installdir;
-	gchar *bin;
-
-	installdir = g_win32_get_package_installation_directory_of_module (NULL);
-
-	bin = g_build_filename (installdir,
-				"bin", NULL);
-	g_free (installdir);
-
-	/* Set PATH to include the pluma executable's folder */
-	path = g_build_path (";",
-			     bin,
-			     g_getenv ("PATH"),
-			     NULL);
-	g_free (bin);
-
-	if (!g_setenv ("PATH", path, TRUE))
-		g_warning ("Could not set PATH for pluma");
-
-	g_free (path);
-}
-#endif
 
 int
 main (int argc, char *argv[])
@@ -576,33 +522,6 @@ main (int argc, char *argv[])
 	g_option_context_add_group (context, gtk_get_option_group (FALSE));
 	g_option_context_add_group (context, egg_sm_client_get_option_group ());
 
-#ifdef G_OS_WIN32
-	setup_path ();
-
-	/* If we open pluma from a console get the stdout printing */
-	if (fileno (stdout) != -1 &&
-		_get_osfhandle (fileno (stdout)) != -1)
-	{
-		/* stdout is fine, presumably redirected to a file or pipe */
-	}
-	else
-	{
-		typedef BOOL (* WINAPI AttachConsole_t) (DWORD);
-
-		AttachConsole_t p_AttachConsole =
-			(AttachConsole_t) GetProcAddress (GetModuleHandle ("kernel32.dll"),
-							  "AttachConsole");
-
-		if (p_AttachConsole != NULL && p_AttachConsole (ATTACH_PARENT_PROCESS))
-		{
-			freopen ("CONOUT$", "w", stdout);
-			dup2 (fileno (stdout), 1);
-			freopen ("CONOUT$", "w", stderr);
-			dup2 (fileno (stderr), 2);
-		}
-	}
-#endif
-
 	gtk_init (&argc, &argv);
 
 	if (!g_option_context_parse (context, &argc, &argv, &error))
@@ -616,7 +535,6 @@ main (int argc, char *argv[])
 
 	g_option_context_free (context);
 
-#ifndef G_OS_WIN32
 	pluma_debug_message (DEBUG_APP, "Create bacon connection");
 
 	connection = bacon_message_connection_new ("pluma");
@@ -655,7 +573,6 @@ main (int argc, char *argv[])
 	{
 		g_warning ("Cannot create the 'pluma' connection.");
 	}
-#endif
 
 	pluma_debug_message (DEBUG_APP, "Set icon");
 
@@ -669,14 +586,8 @@ main (int argc, char *argv[])
 					   icon_dir);
 	g_free (icon_dir);
 
-#ifdef GDK_WINDOWING_X11
 	/* Set the associated .desktop file */
 	egg_set_desktop_file (DATADIR "/applications/pluma.desktop");
-#else
-	/* manually set name and icon */
-	g_set_application_name("Pluma");
-	gtk_window_set_default_icon_name ("accessories-text-editor");
-#endif
 
 	/* Load user preferences */
 	pluma_debug_message (DEBUG_APP, "Init prefs manager");
@@ -689,10 +600,6 @@ main (int argc, char *argv[])
 	/* Initialize session management */
 	pluma_debug_message (DEBUG_APP, "Init session manager");
 	pluma_session_init ();
-
-#ifdef OS_OSX
-	ige_mac_menu_set_global_key_handler_enabled (FALSE);
-#endif
 
 	if (pluma_session_is_restored ())
 		restored = pluma_session_load ();
@@ -735,14 +642,9 @@ main (int argc, char *argv[])
 
 	pluma_debug_message (DEBUG_APP, "Start gtk-main");
 
-#ifdef OS_OSX
-	pluma_osx_init(pluma_app_get_default ());
-#endif
 	gtk_main();
 
-#ifndef G_OS_WIN32
 	bacon_message_connection_free (connection);
-#endif
 
 	/* We kept the original engine reference here. So let's unref it to
 	 * finalize it properly.

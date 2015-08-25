@@ -114,13 +114,8 @@ static const GtkActionEntry pluma_menu_entries[] =
 	  N_("Search forwards for the same text"), G_CALLBACK (_pluma_cmd_search_find_next) },
 	{ "SearchFindPrevious", NULL, N_("Find Pre_vious"), "<shift><control>G",
 	  N_("Search backwards for the same text"), G_CALLBACK (_pluma_cmd_search_find_prev) },
-#ifndef OS_OSX
 	{ "SearchReplace", GTK_STOCK_FIND_AND_REPLACE, N_("_Replace..."), "<control>H",
 	  N_("Search for and replace text"), G_CALLBACK (_pluma_cmd_search_replace) },
-#else
-	{ "SearchReplace", GTK_STOCK_FIND_AND_REPLACE, N_("_Replace..."), "<control><alt>F",
-	  N_("Search for and replace text"), G_CALLBACK (_pluma_cmd_search_replace) },
-#endif
 	{ "SearchClearHighlight", NULL, N_("_Clear Highlight"), "<shift><control>K",
 	  N_("Clear highlighting of search matches"), G_CALLBACK (_pluma_cmd_search_clear_highlight) },
 	{ "SearchGoToLine", GTK_STOCK_JUMP_TO, N_("Go to _Line..."), "<control>I",
