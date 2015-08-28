@@ -10,7 +10,8 @@ DIST_SUBDIRS =		\
 	sort 		\
 	spell 		\
 	taglist 	\
-	time
+	time		\
+	trailsave
 
 SUBDIRS = 		\
 	changecase	\
@@ -20,7 +21,8 @@ SUBDIRS = 		\
 	modelines	\
 	sort		\
 	taglist		\
-	time
+	time		\
+	trailsave
 
 if ENABLE_PYTHON
 SUBDIRS      += pythonconsole snippets quickopen

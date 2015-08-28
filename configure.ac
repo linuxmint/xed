@@ -400,6 +400,7 @@ plugins/sort/Makefile
 plugins/spell/Makefile
 plugins/taglist/Makefile
 plugins/time/Makefile
+plugins/trailsave/Makefile
 po/Makefile.in
 tests/Makefile
 ])
