@@ -290,6 +290,7 @@ pluma_document_output_stream_write (GOutputStream            *stream,
 	gsize len;
 	gboolean freetext = FALSE;
 	const gchar *end;
+	gsize nvalid;
 	gboolean valid;
 
 	if (g_cancellable_set_error_if_cancelled (cancellable, error))
@@ -327,22 +328,16 @@ pluma_document_output_stream_write (GOutputStream            *stream,
 
 	/* validate */
 	valid = g_utf8_validate (text, len, &end);
-
-	/* Avoid keeping a CRLF across two buffers. */
-	if (valid && len > 1 && end[-1] == '\r') {
-		valid = FALSE;
-		end--;
-	}
+	nvalid = end - text;
 
 	if (!valid)
 	{
-		gsize nvalid = end - text;
-		gsize remainder = len - nvalid;
-		gunichar ch;
+		gsize remainder;
+
+		remainder = len - nvalid;
 
 		if ((remainder < MAX_UNICHAR_LEN) &&
-		    ((ch = g_utf8_get_char_validated (text + nvalid, remainder)) == (gunichar)-2 ||
-		     ch == (gunichar)'\r'))
+		    (g_utf8_get_char_validated (text + nvalid, remainder) == (gunichar)-2))
 		{
 			ostream->priv->buffer = g_strndup (end, remainder);
 			ostream->priv->buflen = remainder;
@@ -350,7 +345,7 @@ pluma_document_output_stream_write (GOutputStream            *stream,
 		}
 		else
 		{
-			/* TODO: we could escape invalid text and tag it in red
+			/* TODO: we cuould escape invalid text and tag it in red
 			 * and make the doc readonly.
 			 */
 			g_set_error (error, G_IO_ERROR, G_IO_ERROR_INVALID_DATA,
