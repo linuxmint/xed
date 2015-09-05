@@ -2650,7 +2650,7 @@ pluma_tab_get_auto_save_enabled	(PlumaTab *tab)
  **/
 void
 pluma_tab_set_auto_save_enabled	(PlumaTab *tab, 
-				 gboolean enable)
+				 gboolean  enable)
 {
 	PlumaDocument *doc = NULL;
 	PlumaLockdownMask lockdown;
@@ -2732,7 +2732,7 @@ pluma_tab_get_auto_save_interval (PlumaTab *tab)
  **/
 void 
 pluma_tab_set_auto_save_interval (PlumaTab *tab, 
-				  gint interval)
+				  gint      interval)
 {
 	PlumaDocument *doc = NULL;
 	

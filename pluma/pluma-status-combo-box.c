@@ -307,12 +307,22 @@ pluma_status_combo_box_init (PlumaStatusComboBox *self)
 }
 
 /* public functions */
+
+/**
+ * pluma_status_combo_box_new:
+ * @label: (allow-none):
+ */
 GtkWidget *
 pluma_status_combo_box_new (const gchar *label)
 {
 	return g_object_new (PLUMA_TYPE_STATUS_COMBO_BOX, "label", label, NULL);
 }
 
+/**
+ * pluma_status_combo_box_set_label:
+ * @combo:
+ * @label: (allow-none):
+ */
 void
 pluma_status_combo_box_set_label (PlumaStatusComboBox *combo, 
 				  const gchar         *label)
@@ -341,6 +351,12 @@ item_activated (GtkMenuItem         *item,
 	pluma_status_combo_box_set_item (combo, item);
 }
 
+/**
+ * pluma_status_combo_box_add_item:
+ * @combo:
+ * @item:
+ * @text: (allow-none):
+ */
 void
 pluma_status_combo_box_add_item (PlumaStatusComboBox *combo,
 				 GtkMenuItem         *item,
@@ -388,6 +404,12 @@ pluma_status_combo_box_get_item_text (PlumaStatusComboBox *combo,
 	return ret;
 }
 
+/**
+ * pluma_status_combo_box_set_item_text:
+ * @combo:
+ * @item:
+ * @text: (allow-none):
+ */
 void 
 pluma_status_combo_box_set_item_text (PlumaStatusComboBox *combo,
 				      GtkMenuItem	  *item,

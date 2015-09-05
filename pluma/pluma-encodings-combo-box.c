@@ -430,6 +430,11 @@ pluma_encodings_combo_box_get_selected_encoding (PlumaEncodingsComboBox *menu)
 	return NULL;
 }
 
+/**
+ * pluma_encodings_combo_box_set_selected_encoding:
+ * @menu:
+ * @encoding: (allow-none):
+ **/
 void
 pluma_encodings_combo_box_set_selected_encoding (PlumaEncodingsComboBox *menu,
 						 const PlumaEncoding    *encoding)

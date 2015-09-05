@@ -1003,6 +1003,11 @@ set_content_type (PlumaDocument *doc,
 	}
 }
 
+/**
+ * pluma_document_set_content_type:
+ * @doc:
+ * @content_type: (allow-none):
+ */
 void
 pluma_document_set_content_type (PlumaDocument *doc,
                                  const gchar   *content_type)
@@ -1070,7 +1075,12 @@ pluma_document_set_uri (PlumaDocument *doc,
 	set_content_type (doc, NULL);
 }
 
-/* Never returns NULL */
+/**
+ * pluma_document_get_uri_for_display:
+ * @doc:
+ *
+ * Note: this never returns %NULL.
+ **/
 gchar *
 pluma_document_get_uri_for_display (PlumaDocument *doc)
 {
@@ -1083,7 +1093,12 @@ pluma_document_get_uri_for_display (PlumaDocument *doc)
 		return pluma_utils_uri_for_display (doc->priv->uri);
 }
 
-/* Never returns NULL */
+/**
+ * pluma_document_get_short_name_for_display:
+ * @doc:
+ *
+ * Note: this never returns %NULL.
+ **/
 gchar *
 pluma_document_get_short_name_for_display (PlumaDocument *doc)
 {
@@ -1098,6 +1113,11 @@ pluma_document_get_short_name_for_display (PlumaDocument *doc)
 		return pluma_utils_basename_for_display (doc->priv->uri);
 }
 
+/**
+ * pluma_document_set_short_name_for_display:
+ * @doc:
+ * @short_name: (allow-none):
+ */
 void
 pluma_document_set_short_name_for_display (PlumaDocument *doc,
                                            const gchar   *short_name)
@@ -1118,7 +1138,12 @@ pluma_document_get_content_type (PlumaDocument *doc)
  	return g_strdup (doc->priv->content_type);
 }
 
-/* Never returns NULL */
+/**
+ * pluma_document_get_mime_type:
+ * @doc:
+ *
+ * Note: this never returns %NULL.
+ **/
 gchar *
 pluma_document_get_mime_type (PlumaDocument *doc)
 {
@@ -1760,6 +1785,12 @@ compute_num_of_lines (const gchar *text)
 	return n;
 }
 
+/**
+ * pluma_document_set_search_text"
+ * @doc:
+ * @text: (allow-none):
+ * @flags:
+ **/
 void
 pluma_document_set_search_text (PlumaDocument *doc,
 				const gchar   *text,
@@ -1822,6 +1853,11 @@ pluma_document_set_search_text (PlumaDocument *doc,
 		g_object_notify (G_OBJECT (doc), "can-search-again");
 }
 
+/**
+ * pluma_document_get_search_text:
+ * @doc:
+ * @flags: (allow-none):
+ */
 gchar *
 pluma_document_get_search_text (PlumaDocument *doc,
 				guint         *flags)
@@ -1843,6 +1879,14 @@ pluma_document_get_can_search_again (PlumaDocument *doc)
 	        (*doc->priv->search_text != '\0'));
 }
 
+/**
+ * pluma_document_search_forward:
+ * @doc:
+ * @start: (allow-none):
+ * @end: (allow-none):
+ * @match_start: (allow-none):
+ * @match_end: (allow=none):
+ **/
 gboolean
 pluma_document_search_forward (PlumaDocument     *doc,
 			       const GtkTextIter *start,
@@ -1927,7 +1971,15 @@ pluma_document_search_forward (PlumaDocument     *doc,
 	
 	return found;			    
 }
-						 
+
+/**
+ * pluma_document_search_backward:
+ * @doc:
+ * @start: (allow-none):
+ * @end: (allow-none):
+ * @match_start: (allow-none):
+ * @match_end: (allow=none):
+ **/
 gboolean
 pluma_document_search_backward (PlumaDocument     *doc,
 				const GtkTextIter *start,
@@ -2013,6 +2065,7 @@ pluma_document_search_backward (PlumaDocument     *doc,
 	return found;		      
 }
 
+/* FIXME this is an issue for introspection regardning @find */
 gint 
 pluma_document_replace_all (PlumaDocument       *doc,
 			    const gchar         *find, 
@@ -2146,6 +2199,11 @@ pluma_document_replace_all (PlumaDocument       *doc,
 	return cont;
 }
 
+/**
+ * pluma_document_set_language:
+ * @doc:
+ * @lang: (allow-none):
+ **/
 void
 pluma_document_set_language (PlumaDocument     *doc, 
 			     GtkSourceLanguage *lang)

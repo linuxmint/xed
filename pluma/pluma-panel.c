@@ -738,9 +738,9 @@ pluma_panel_add_item_with_stock_icon (PlumaPanel  *panel,
  * @item: the item to be removed from the panel
  *
  * Removes the widget @item from the panel if it is in the @panel and returns
- * TRUE if there was not any problem.
+ * %TRUE if there was not any problem.
  *
- * Returns: TRUE if it was well removed.
+ * Returns: %TRUE if it was well removed.
  */
 gboolean
 pluma_panel_remove_item (PlumaPanel *panel,
@@ -793,7 +793,7 @@ pluma_panel_remove_item (PlumaPanel *panel,
  *
  * Switches to the page that contains @item.
  *
- * Returns: TRUE if it was activated
+ * Returns: %TRUE if it was activated
  */
 gboolean
 pluma_panel_activate_item (PlumaPanel *panel,
@@ -819,11 +819,11 @@ pluma_panel_activate_item (PlumaPanel *panel,
 /**
  * pluma_panel_item_is_active:
  * @panel: a #PlumaPanel
- * @item: a widget contained in #PlumaPanel
+ * @item: a #GtkWidget
  *
- * Whether @item is the one current active in @panel
+ * Returns whether @item is the active widget in @panel
  *
- * Returns: TRUE if the widget is active
+ * Returns: %TRUE if @item is the active widget
  */
 gboolean
 pluma_panel_item_is_active (PlumaPanel *panel,

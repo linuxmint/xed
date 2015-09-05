@@ -60,6 +60,7 @@ typedef enum {
 } PlumaDebugSection;
 
 
+/* FIXME this is an issue for introspection */
 #define	DEBUG_VIEW	PLUMA_DEBUG_VIEW,    __FILE__, __LINE__, G_STRFUNC
 #define	DEBUG_SEARCH	PLUMA_DEBUG_SEARCH,  __FILE__, __LINE__, G_STRFUNC
 #define	DEBUG_PRINT	PLUMA_DEBUG_PRINT,   __FILE__, __LINE__, G_STRFUNC

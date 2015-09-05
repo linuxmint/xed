@@ -266,7 +266,7 @@ pluma_message_get_object_path (PlumaMessage *message)
 /**
  * pluma_message_set:
  * @message: the #PlumaMessage
- * @...: a NULL terminated variable list of key/value pairs
+ * @...: a %NULL terminated variable list of key/value pairs
  *
  * Set values of message arguments. The supplied @var_args should contain
  * pairs of keys and argument values.
@@ -288,7 +288,7 @@ pluma_message_set (PlumaMessage *message,
 /**
  * pluma_message_set_valist:
  * @message: the #PlumaMessage
- * @var_args: a NULL terminated variable list of key/value pairs
+ * @var_args: a %NULL terminated variable list of key/value pairs
  *
  * Set values of message arguments. The supplied @var_args should contain
  * pairs of keys and argument values.
@@ -338,7 +338,7 @@ pluma_message_set_valist (PlumaMessage *message,
  * pluma_message_set_value:
  * @message: the #PlumaMessage
  * @key: the argument key
- * @value: the argument value
+ * @value: (out): the argument value
  *
  * Set value of message argument @key to @value.
  *
@@ -367,8 +367,8 @@ pluma_message_set_value (PlumaMessage *message,
 /**
  * pluma_message_set_valuesv:
  * @message: the #PlumaMessage
- * @keys: keys to set values for
- * @values: values to set
+ * @keys: (array-length=n_values): keys to set values for
+ * @values: (array-length=n_values): values to set
  * @n_values: number of arguments to set values for
  *
  * Set message argument values.
@@ -390,10 +390,11 @@ pluma_message_set_valuesv (PlumaMessage	 *message,
 	}
 }
 
+/* FIXME this is an issue for introspection */
 /**
  * pluma_message_get:
  * @message: the #PlumaMessage
- * @...: a NULL variable argument list of key/value container pairs
+ * @...: a %NULL variable argument list of key/value container pairs
  *
  * Get values of message arguments. The supplied @var_args should contain
  * pairs of keys and pointers to variables which are set to the argument
@@ -416,7 +417,7 @@ pluma_message_get (PlumaMessage	*message,
 /**
  * pluma_message_get_valist:
  * @message: the #PlumaMessage
- * @var_args: a NULL variable argument list of key/value container pairs
+ * @var_args: a %NULL variable argument list of key/value container pairs
  *
  * Get values of message arguments. The supplied @var_args should contain
  * pairs of keys and pointers to variables which are set to the argument
@@ -470,7 +471,7 @@ pluma_message_get_valist (PlumaMessage *message,
  * pluma_message_get_value:
  * @message: the #PlumaMessage
  * @key: the argument key
- * @value: value return container
+ * @value: (out): value return container
  *
  * Get the value of a specific message argument. @value will be initialized
  * with the correct type.

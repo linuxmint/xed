@@ -463,7 +463,7 @@ pluma_view_focus_out (GtkWidget *widget, GdkEventFocus *event)
  * @doc: a #PlumaDocument
  * 
  * Creates a new #PlumaView object displaying the @doc document. 
- * @doc cannot be NULL.
+ * @doc cannot be %NULL.
  *
  * Return value: a new #PlumaView
  **/
@@ -649,6 +649,7 @@ pluma_view_scroll_to_cursor (PlumaView *view)
 				      0.0);
 }
 
+/* FIXME this is an issue for introspection */
 /**
  * pluma_view_set_font:
  * @view: a #PlumaView

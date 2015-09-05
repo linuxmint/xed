@@ -4115,7 +4115,8 @@ add_document (PlumaTab *tab, GList **res)
  * Gets a newly allocated list with all the documents in the window.
  * This list must be freed.
  *
- * Returns: a newly allocated list with all the documents in the window
+ * Returns: (element-type Pluma.Document) (transfer container): a newly
+ * allocated list with all the documents in the window
  */
 GList *
 pluma_window_get_documents (PlumaWindow *window)
@@ -4149,7 +4150,8 @@ add_view (PlumaTab *tab, GList **res)
  *
  * Gets a list with all the views in the window. This list must be freed.
  *
- * Returns: a newly allocated list with all the views in the window
+ * Returns: (element-type Pluma.View) (transfer container): a newly allocated
+ * list with all the views in the window
  */
 GList *
 pluma_window_get_views (PlumaWindow *window)
@@ -4210,7 +4212,7 @@ pluma_window_close_all_tabs (PlumaWindow *window)
 /**
  * pluma_window_close_tabs:
  * @window: a #PlumaWindow
- * @tabs: a list of #PlumaTab
+ * @tabs: (element-type Pluma.Tab): a list of #PlumaTab
  *
  * Closes all tabs specified by @tabs.
  */
@@ -4426,7 +4428,8 @@ _pluma_window_set_default_location (PlumaWindow *window,
  *
  * Gets the list of documents that need to be saved before closing the window.
  *
- * Returns: a list of #PlumaDocument that need to be saved before closing the window
+ * Returns: (element-type Pluma.Document) (transfer container): a list of
+ * #PlumaDocument that need to be saved before closing the window
  */
 GList *
 pluma_window_get_unsaved_documents (PlumaWindow *window)
@@ -4630,7 +4633,7 @@ pluma_window_get_tab_from_location (PlumaWindow *window,
  * Gets the #PlumaMessageBus associated with @window. The returned reference
  * is owned by the window and should not be unreffed.
  *
- * Return value: the #PlumaMessageBus associated with @window
+ * Return value: (transfer none): the #PlumaMessageBus associated with @window
  */
 PlumaMessageBus	*
 pluma_window_get_message_bus (PlumaWindow *window)

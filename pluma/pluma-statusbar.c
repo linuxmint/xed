@@ -268,6 +268,7 @@ remove_message_timeout (PlumaStatusbar *statusbar)
   	return FALSE;
 }
 
+/* FIXME this is an issue for introspection */
 /**
  * pluma_statusbar_flash_message:
  * @statusbar: a #PlumaStatusbar

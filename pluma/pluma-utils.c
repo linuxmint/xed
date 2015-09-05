@@ -61,7 +61,11 @@
 
 #define STDIN_DELAY_MICROSECONDS 100000
 
-/* Returns true if uri is a file: uri and is not a chained uri */
+/**
+ * pluma_utils_uris_has_file_scheme
+ *
+ * Returns: %TRUE if @uri is a file: uri and is not a chained uri
+ */
 gboolean
 pluma_utils_uri_has_file_scheme (const gchar *uri)
 {
@@ -288,11 +292,12 @@ finally_2:
 }
 
 /**
- * pluma_utils_set_atk_name_description
- * @widget : The Gtk widget for which name/description to be set
- * @name : Atk name string
- * @description : Atk description string
- * Description : This function sets up name and description
+ * pluma_utils_set_atk_name_description:
+ * @widget: The Gtk widget for which name/description to be set
+ * @name: Atk name string
+ * @description: Atk description string
+ *
+ * This function sets up name and description
  * for a specified gtk widget.
  */
 void
@@ -315,10 +320,12 @@ pluma_utils_set_atk_name_description (GtkWidget *widget,
 }
 
 /**
- * pluma_set_atk__relation
- * @obj1,@obj2 : specified widgets.
- * @rel_type : the type of relation to set up.
- * Description : This function establishes atk relation
+ * pluma_set_atk_relation:
+ * @obj1: specified widget.
+ * @obj2: specified widget.
+ * @rel_type: the type of relation to set up.
+ *
+ * This function establishes atk relation
  * between 2 specified widgets.
  */
 void
@@ -693,7 +700,11 @@ pluma_utils_make_valid_utf8 (const char *name)
 	return g_string_free (string, FALSE);
 }
 
-/* Note that this function replace home dir with ~ */
+/**
+ * pluma_utils_uri_get_dirname:
+ *
+ * Note: this function replace home dir with ~
+ */
 gchar *
 pluma_utils_uri_get_dirname (const gchar *uri)
 {
@@ -842,7 +853,9 @@ pluma_utils_replace_home_dir_with_tilde (const gchar *uri)
 /* the following two functions are courtesy of galeon */
 
 /**
- * pluma_utils_get_current_workspace: Get the current workspace
+ * pluma_utils_get_current_workspace:
+ *
+ * Get the current workspace
  *
  * Get the currently visible workspace for the #GdkScreen.
  *
@@ -891,7 +904,9 @@ pluma_utils_get_current_workspace (GdkScreen *screen)
 }
 
 /**
- * pluma_utils_get_window_workspace: Get the workspace the window is on
+ * pluma_utils_get_window_workspace:
+ *
+ * Get the workspace the window is on
  *
  * This function gets the workspace that the #GtkWindow is visible on,
  * it returns PLUMA_ALL_WORKSPACES if the window is sticky, or if
@@ -940,7 +955,9 @@ pluma_utils_get_window_workspace (GtkWindow *gtkwindow)
 }
 
 /**
- * pluma_utils_get_current_viewport: Get the current viewport origin
+ * pluma_utils_get_current_viewport:
+ *
+ * Get the current viewport origin
  *
  * Get the currently visible viewport origin for the #GdkScreen.
  *
@@ -1085,21 +1102,22 @@ handle_builder_error (const gchar *message, ...)
 	return label;
 }
 
+/* FIXME this is an issue for introspection */
 /**
  * pluma_utils_get_ui_objects:
  * @filename: the path to the gtk builder file
- * @root_objects: a NULL terminated list of root objects to load or NULL to
+ * @root_objects: a %NULL terminated list of root objects to load or NULL to
  *                load all objects
  * @error_widget: a pointer were a #GtkLabel
  * @object_name: the name of the first object
  * @...: a pointer were the first object is returned, followed by more
- *       name / object pairs and terminated by NULL.
+ *       name / object pairs and terminated by %NULL.
  *
  * This function gets the requested objects from a GtkBuilder ui file. In case
- * of error it returns FALSE and sets error_widget to a GtkLabel containing
+ * of error it returns %FALSE and sets error_widget to a GtkLabel containing
  * the error message to display.
  *
- * Returns FALSE if an error occurs, TRUE on success.
+ * Returns: %FALSE if an error occurs, %TRUE on success.
  */
 gboolean
 pluma_utils_get_ui_objects (const gchar  *filename,
@@ -1232,7 +1250,7 @@ pluma_utils_make_canonical_uri_from_shell_arg (const gchar *str)
  * pluma_utils_file_has_parent:
  * @gfile: the GFile to check the parent for
  *
- * Return TRUE if the specified gfile has a parent (is not the root), FALSE
+ * Return %TRUE if the specified gfile has a parent (is not the root), %FALSE
  * otherwise
  */
 gboolean
@@ -1359,11 +1377,10 @@ pluma_utils_uri_for_display (const gchar *uri)
 /**
  * pluma_utils_drop_get_uris:
  * @selection_data: the #GtkSelectionData from drag_data_received
- * @info: the info from drag_data_received
  *
  * Create a list of valid uri's from a uri-list drop.
  * 
- * Return value: a string array which will hold the uris or NULL if there 
+ * Return value: a string array which will hold the uris or %NULL if there
  *		 were no valid uris. g_strfreev should be used when the 
  *		 string array is no longer used
  */
@@ -1410,26 +1427,27 @@ null_ptr (gchar **ptr)
 /**
  * pluma_utils_decode_uri:
  * @uri: the uri to decode
- * @scheme: return value pointer for the uri's scheme (e.g. http, sftp, ...)
- * @user: return value pointer for the uri user info
- * @port: return value pointer for the uri port
- * @host: return value pointer for the uri host
- * @path: return value pointer for the uri path
+ * @scheme: (allow-none): return value pointer for the uri's
+ * scheme (e.g. http, sftp, ...), or %NULL
+ * @user: (allow-none): return value pointer for the uri user info, or %NULL
+ * @port: (allow-none): return value pointer for the uri port, or %NULL
+ * @host: (allow-none): return value pointer for the uri host, or %NULL
+ * @path: (allow-none): return value pointer for the uri path, or %NULL
  *
  * Parse and break an uri apart in its individual components like the uri
  * scheme, user info, port, host and path. The return value pointer can be
- * NULL to ignore certain parts of the uri. If the function returns TRUE, then
+ * %NULL to ignore certain parts of the uri. If the function returns %TRUE, then
  * all return value pointers should be freed using g_free
  * 
- * Return value: TRUE if the uri could be properly decoded, FALSE otherwise.
+ * Return value: %TRUE if the uri could be properly decoded, %FALSE otherwise.
  */
 gboolean
-pluma_utils_decode_uri (const gchar *uri,
-			gchar **scheme,
-			gchar **user,
-			gchar **host,
-			gchar **port,
-			gchar **path
+pluma_utils_decode_uri (const gchar  *uri,
+			gchar       **scheme,
+			gchar       **user,
+			gchar       **host,
+			gchar       **port,
+			gchar       **path
 )
 {
 	/* Largely copied from glib/gio/gdummyfile.c:_g_decode_uri. This 

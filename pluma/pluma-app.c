@@ -551,6 +551,7 @@ pluma_app_create_window_real (PlumaApp    *app,
 /**
  * pluma_app_create_window:
  * @app: the #PlumaApp
+ * @screen: (allow-none):
  *
  * Create a new #PlumaWindow part of @app.
  *
@@ -591,8 +592,8 @@ _pluma_app_restore_window (PlumaApp    *app,
  *
  * Returns all the windows currently present in #PlumaApp.
  *
- * Return value: the list of #PlumaWindows objects. The list
- * should not be freed
+ * Return value: (transfer none): the list of #PlumaWindows objects.
+ * The list should not be freed
  */
 const GList *
 pluma_app_get_windows (PlumaApp *app)
@@ -737,7 +738,8 @@ _pluma_app_get_window_in_viewport (PlumaApp  *app,
  *
  * Returns all the documents currently open in #PlumaApp.
  *
- * Return value: a newly allocated list of #PlumaDocument objects
+ * Return value: (element-type Pluma.Document) (transfer container):
+ * a newly allocated list of #PlumaDocument objects
  */
 GList *
 pluma_app_get_documents	(PlumaApp *app)
@@ -766,7 +768,8 @@ pluma_app_get_documents	(PlumaApp *app)
  *
  * Returns all the views currently present in #PlumaApp.
  *
- * Return value: a newly allocated list of #PlumaView objects
+ * Return value: (element-type Pluma.View) (transfer container):
+ * a newly allocated list of #PlumaView objects
  */
 GList *
 pluma_app_get_views (PlumaApp *app)
