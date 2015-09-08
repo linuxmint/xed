@@ -66,17 +66,14 @@ pluma-file-browser-marshal.c: pluma-file-browser-marshal.list $(GLIB_GENMARSHAL)
 plugin_DATA = $(plugin_in_files:.pluma-plugin.desktop.in=.pluma-plugin)
 
 @INTLTOOL_XML_NOMERGE_RULE@
-gsettings_SCHEMAS = org.mate.pluma.plugins.filebrowser.gschema.xml
+filebrowser_gschema_in = org.mate.pluma.plugins.filebrowser.gschema.xml.in
+gsettings_SCHEMAS = $(filebrowser_gschema_in:.xml.in=.xml)
 @GSETTINGS_RULES@
-
-%.gschema.xml.in: %.gschema.xml.in.in Makefile
-	$(AM_V_GEN) $(SED) -e 's^\@GETTEXT_PACKAGE\@^$(GETTEXT_PACKAGE)^g' < $< > $@
-
 
 EXTRA_DIST = \
 	$(ui_DATA)					\
 	$(plugin_in_files)				\
-	$(gsettings_SCHEMAS).in.in			\
+	$(filebrowser_gschema_in)			\
 	pluma-file-browser-enum-types.h.template	\
 	pluma-file-browser-enum-types.c.template	\
 	pluma-file-browser-enum-register.c.template	\

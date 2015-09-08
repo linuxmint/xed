@@ -387,6 +387,7 @@ plugins/externaltools/Makefile
 plugins/externaltools/scripts/Makefile
 plugins/externaltools/tools/Makefile
 plugins/filebrowser/Makefile
+plugins/filebrowser/org.mate.pluma.plugins.filebrowser.gschema.xml
 plugins/modelines/Makefile
 plugins/pythonconsole/Makefile
 plugins/pythonconsole/pythonconsole/Makefile
@@ -400,6 +401,7 @@ plugins/sort/Makefile
 plugins/spell/Makefile
 plugins/taglist/Makefile
 plugins/time/Makefile
+plugins/time/org.mate.pluma.plugins.time.gschema.xml
 plugins/trailsave/Makefile
 po/Makefile.in
 tests/Makefile

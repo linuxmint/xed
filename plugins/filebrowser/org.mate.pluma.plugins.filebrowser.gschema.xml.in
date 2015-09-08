@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<schemalist>
+  <schema id="org.mate.pluma.plugins.filebrowser" path="/org/mate/pluma/plugins/filebrowser/">
+    <key name="open-at-first-doc" type="b">
+      <default>true</default>
+      <summary>Set Location to First Document</summary>
+      <description>If TRUE the file browser plugin will view the directory of the first opened document given that the file browser hasn't been used yet. (Thus this generally applies to opening a document from the command line or opening it with Caja, etc.)</description>
+    </key>
+    <key name="filter-mode" type="s">
+      <default>'hidden_and_binary'</default>
+      <summary>File Browser Filter Mode</summary>
+      <description>This value determines what files get filtered from the file browser. Valid values are: none (filter nothing), hidden (filter hidden files), binary (filter binary files) and hidden_and_binary (filter both hidden and binary files).</description>
+    </key>
+    <key name="filter-pattern" type="s">
+      <default>''</default>
+      <summary>File Browser Filter Pattern</summary>
+      <description>The filter pattern to filter the file browser with. This filter works on top of the filter_mode.</description>
+    </key>
+    <child name="on-load" schema="org.mate.pluma.plugins.filebrowser.on-load"/>
+  </schema>
+  <schema id="org.mate.pluma.plugins.filebrowser.on-load" path="/org/mate/pluma/plugins/filebrowser/on-load/">
+    <key name="tree-view" type="b">
+      <default>true</default>
+      <summary>Open With Tree View</summary>
+      <description>Open the tree view when the file browser plugin gets loaded instead of the bookmarks view</description>
+    </key>
+    <key name="root" type="s">
+      <default>''</default>
+      <summary>File Browser Root Directory</summary>
+      <description>The file browser root directory to use when loading the file browser plugin and onload/tree_view is TRUE.</description>
+    </key>
+    <key name="virtual-root" type="s">
+      <default>''</default>
+      <summary>File Browser Virtual Root Directory</summary>
+      <description>The file browser virtual root directory to use when loading the file browser plugin when onload/tree_view is TRUE. The virtual root must always be below the actual root.</description>
+    </key>
+    <key name="enable-remote" type="b">
+      <default>false</default>
+      <summary>Enable Restore of Remote Locations</summary>
+      <description>Sets whether to enable restoring of remote locations.</description>
+    </key>
+  </schema>
+</schemalist>
