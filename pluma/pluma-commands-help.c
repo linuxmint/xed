@@ -81,7 +81,7 @@ void _pluma_cmd_help_about(GtkAction* action, PlumaWindow* window)
 		"Copyright \xc2\xa9 2012-2014 MATE developers";
 
 	static const gchar comments[] = \
-		N_("pluma is a small and lightweight text editor for the MATE Desktop");
+		N_("Pluma is a small and lightweight text editor for the MATE Desktop");
 
 	pluma_debug (DEBUG_COMMANDS);
 
