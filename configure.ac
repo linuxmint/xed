@@ -37,10 +37,6 @@ PKG_PROG_PKG_CONFIG
 LT_PREREQ([2.2.6])
 LT_INIT(disable-static)
 
-#unused (maybe)
-PLUMA_API_VERSION=2.20
-AC_SUBST(PLUMA_API_VERSION)
-
 GTK_DOC_CHECK([1.0],[--flavour=no-tmpl])
 
 AC_CHECK_FUNC(sigaction)
@@ -152,11 +148,6 @@ if test "x$enable_enchant" = "xyes" ; then
 fi
 
 AM_CONDITIONAL(ENABLE_ENCHANT, test x"$enable_enchant" = "xyes")
-
-dnl ================================================================
-dnl libsocket checks - needed for bacon-connection on solaris.
-dnl ================================================================
-AC_SEARCH_LIBS(bind, socket)
 
 dnl ================================================================
 dnl Start of pkg-config checks
