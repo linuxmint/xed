@@ -24,11 +24,11 @@ then
 	echo
 fi
 
-#echo "Active plugins:"
-#mateconftool-2 --get /apps/pluma/plugins/active-plugins			\
-#	| sed -r -e 's/^\[(.*)\]$/\1/' -e 's/,/\n/g'			\
-#	| sed -e 's/^.*$/  - \0/'
-#echo
+echo "Active plugins:"
+gsettings get org.mate.pluma active-plugins 				\
+	| sed -r -e 's/^\[(.*)\]$/\1/' -e 's/, /\n/g'			\
+	| sed -e 's/^.*$/  - \0/'
+echo
 
 # Manually installed plugins (in $HOME)
 if [ -d $HOME/.config/pluma/plugins ]
