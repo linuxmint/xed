@@ -2118,7 +2118,7 @@ set_title (PlumaWindow *window)
 
 	if (window->priv->active_tab == NULL)
 	{
-		gtk_window_set_title (GTK_WINDOW (window), "pluma");
+		gtk_window_set_title (GTK_WINDOW (window), "Pluma");
 		return;
 	}
 
@@ -2178,23 +2178,23 @@ set_title (PlumaWindow *window)
 	if (pluma_document_get_readonly (doc)) 
 	{
 		if (dirname != NULL)
-			title = g_strdup_printf ("%s [%s] (%s) - pluma", 
+			title = g_strdup_printf ("%s [%s] (%s) - Pluma",
 						 name, 
 						 _("Read-Only"), 
 						 dirname);
 		else
-			title = g_strdup_printf ("%s [%s] - pluma", 
+			title = g_strdup_printf ("%s [%s] - Pluma",
 						 name, 
 						 _("Read-Only"));
 	} 
 	else 
 	{
 		if (dirname != NULL)
-			title = g_strdup_printf ("%s (%s) - pluma", 
+			title = g_strdup_printf ("%s (%s) - Pluma",
 						 name, 
 						 dirname);
 		else
-			title = g_strdup_printf ("%s - pluma", 
+			title = g_strdup_printf ("%s - Pluma",
 						 name);
 	}
 
