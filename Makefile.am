@@ -1,7 +1,11 @@
 ## Process this file with automake to produce Makefile.in
 ACLOCAL_AMFLAGS = -I m4 ${ACLOCAL_FLAGS}
 
-SUBDIRS = pluma pixmaps po data plugin-loaders plugins docs tests help
+SUBDIRS = pluma pixmaps po data plugin-loaders plugins docs help
+
+if ENABLE_TESTS
+    SUBDIRS += tests
+endif
 
 distuninstallcheck_listfiles = find . -type f -print
 
@@ -51,7 +55,7 @@ MAINTAINERCLEANFILES = 		\
 	m4/lt~obsolete.m4	\
 	`find "$(srcdir)" -type f -name Makefile.in -print`
 
-DISTCHECK_CONFIGURE_FLAGS = --enable-gtk-doc
+DISTCHECK_CONFIGURE_FLAGS = --enable-gtk-doc --disable-tests
 
 dist-hook:
 	@if test -d "$(srcdir)/.git"; \

@@ -353,6 +353,13 @@ if test "x$enable_deprecations" = "xyes"; then
    AC_SUBST(DISABLE_DEPRECATED_CFLAGS)
 fi
 
+AC_ARG_ENABLE([tests],
+	AS_HELP_STRING([--enable-tests], [Enable the tests]),
+	[enable_tests=$enableval],
+	[enable_tests=yes])
+
+AM_CONDITIONAL(ENABLE_TESTS, test x$enable_tests = xyes)
+
 PLUGIN_LIBTOOL_FLAGS="-module -avoid-version"
 LOADER_LIBTOOL_FLAGS="-module -avoid-version"
 
@@ -425,6 +432,7 @@ Configuration:
 	Python Plugins Support: $enable_python
 	Spell Plugin enabled:	$enable_enchant
 	Gvfs metadata enabled:	$enable_gvfs_metadata
+	Tests enabled:		$enable_tests
 "
 
 if expr ${PLUMA_MINOR_VERSION} % 2 > /dev/null; then
