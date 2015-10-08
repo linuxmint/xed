@@ -57,6 +57,9 @@ test_consecutive_write (const gchar *inbuf,
 		n += w;
 	} while (w != 0);
 
+	g_assert(g_output_stream_flush (out, NULL, &err) == TRUE);
+	g_assert_no_error (err);
+
 	g_object_get (G_OBJECT (doc), "text", &b, NULL);
 
 	g_assert_cmpstr (inbuf, ==, b);
