@@ -66,6 +66,10 @@ static gssize	pluma_document_output_stream_write (GOutputStream            *stre
 						    GCancellable             *cancellable,
 						    GError                  **error);
 
+static gboolean pluma_document_output_stream_flush (GOutputStream *stream,
+                                                    GCancellable  *cancellable,
+                                                    GError        **error);
+
 static gboolean	pluma_document_output_stream_close (GOutputStream     *stream,
 						    GCancellable      *cancellable,
 						    GError           **error);
@@ -154,6 +158,7 @@ pluma_document_output_stream_class_init (PlumaDocumentOutputStreamClass *klass)
 	object_class->constructed = pluma_document_output_stream_constructed;
 
 	stream_class->write_fn = pluma_document_output_stream_write;
+	stream_class->flush = pluma_document_output_stream_flush;
 	stream_class->close_fn = pluma_document_output_stream_close;
 
 	g_object_class_install_property (object_class,
@@ -290,7 +295,6 @@ pluma_document_output_stream_write (GOutputStream            *stream,
 	gsize len;
 	gboolean freetext = FALSE;
 	const gchar *end;
-	gsize nvalid;
 	gboolean valid;
 
 	if (g_cancellable_set_error_if_cancelled (cancellable, error))
@@ -328,16 +332,23 @@ pluma_document_output_stream_write (GOutputStream            *stream,
 
 	/* validate */
 	valid = g_utf8_validate (text, len, &end);
-	nvalid = end - text;
+
+	/* Avoid keeping a CRLF across two buffers. */
+	if (valid && len > 1 && end[-1] == '\r')
+	{
+		valid = FALSE;
+		end--;
+	}
 
 	if (!valid)
 	{
-		gsize remainder;
-
-		remainder = len - nvalid;
+		gsize nvalid = end - text;
+		gsize remainder = len - nvalid;
+		gunichar ch;
 
 		if ((remainder < MAX_UNICHAR_LEN) &&
-		    (g_utf8_get_char_validated (text + nvalid, remainder) == (gunichar)-2))
+		    ((ch = g_utf8_get_char_validated (text + nvalid, remainder)) == (gunichar)-2 ||
+		     ch == (gunichar)'\r'))
 		{
 			ostream->priv->buffer = g_strndup (end, remainder);
 			ostream->priv->buflen = remainder;
@@ -345,7 +356,7 @@ pluma_document_output_stream_write (GOutputStream            *stream,
 		}
 		else
 		{
-			/* TODO: we cuould escape invalid text and tag it in red
+			/* TODO: we could escape invalid text and tag it in red
 			 * and make the doc readonly.
 			 */
 			g_set_error (error, G_IO_ERROR, G_IO_ERROR_INVALID_DATA,
@@ -365,6 +376,23 @@ pluma_document_output_stream_write (GOutputStream            *stream,
 		g_free (text);
 
 	return count;
+}
+
+static gboolean
+pluma_document_output_stream_flush (GOutputStream *stream,
+                                    GCancellable  *cancellable,
+                                    GError        **error)
+{
+	PlumaDocumentOutputStream *ostream = PLUMA_DOCUMENT_OUTPUT_STREAM (stream);
+
+	/* Flush deferred data if some. */
+	if (!ostream->priv->is_closed && ostream->priv->is_initialized &&
+	    ostream->priv->buflen > 0 &&
+	    pluma_document_output_stream_write (stream, "", 0, cancellable,
+						error) == -1)
+		return FALSE;
+
+	return TRUE;
 }
 
 static gboolean
