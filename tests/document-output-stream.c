@@ -91,22 +91,22 @@ test_empty ()
 static void
 test_consecutive ()
 {
-	test_consecutive_write ("hello\nhow\nare\nyou", "hello\nhow\nare\nyou", 2,
+	test_consecutive_write ("hello\nhow\nare\nyou", "hello\nhow\nare\nyou", 3,
 				PLUMA_DOCUMENT_NEWLINE_TYPE_LF);
-	test_consecutive_write ("hello\rhow\rare\ryou", "hello\rhow\rare\ryou", 2,
+	test_consecutive_write ("hello\rhow\rare\ryou", "hello\rhow\rare\ryou", 3,
 				PLUMA_DOCUMENT_NEWLINE_TYPE_CR);
-	test_consecutive_write ("hello\r\nhow\r\nare\r\nyou", "hello\r\nhow\r\nare\r\nyou", 2,
+	test_consecutive_write ("hello\r\nhow\r\nare\r\nyou", "hello\r\nhow\r\nare\r\nyou", 3,
 				PLUMA_DOCUMENT_NEWLINE_TYPE_CR_LF);
 }
 
 static void
 test_consecutive_tnewline ()
 {
-	test_consecutive_write ("hello\nhow\nare\nyou\n", "hello\nhow\nare\nyou", 2,
+	test_consecutive_write ("hello\nhow\nare\nyou\n", "hello\nhow\nare\nyou", 3,
 				PLUMA_DOCUMENT_NEWLINE_TYPE_LF);
-	test_consecutive_write ("hello\rhow\rare\ryou\r", "hello\rhow\rare\ryou", 2,
+	test_consecutive_write ("hello\rhow\rare\ryou\r", "hello\rhow\rare\ryou", 3,
 				PLUMA_DOCUMENT_NEWLINE_TYPE_CR);
-	test_consecutive_write ("hello\r\nhow\r\nare\r\nyou\r\n", "hello\r\nhow\r\nare\r\nyou", 2,
+	test_consecutive_write ("hello\r\nhow\r\nare\r\nyou\r\n", "hello\r\nhow\r\nare\r\nyou", 3,
 				PLUMA_DOCUMENT_NEWLINE_TYPE_CR_LF);
 }
 
