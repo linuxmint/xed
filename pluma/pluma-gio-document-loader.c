@@ -389,6 +389,10 @@ async_read_cb (GInputStream *stream,
 
 		loader = PLUMA_DOCUMENT_LOADER (gvloader);
 
+		g_output_stream_flush (gvloader->priv->output,
+				       NULL,
+				       &gvloader->priv->error);
+
 		loader->auto_detected_encoding =
 			pluma_smart_charset_converter_get_guessed (gvloader->priv->converter);
 
