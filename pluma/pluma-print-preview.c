@@ -1103,26 +1103,40 @@ draw_page (cairo_t           *cr,
 }
 
 static gboolean
+#if GTK_CHECK_VERSION (3, 0, 0)
+preview_draw (GtkWidget         *widget,
+		cairo_t *cr,
+#else
 preview_expose (GtkWidget         *widget,
 		GdkEventExpose    *event,
+#endif
 		PlumaPrintPreview *preview)
 {
 	PlumaPrintPreviewPrivate *priv;
 	GdkWindow *bin_window;
-	cairo_t *cr;
 	gint pg;
 	gint i, j;
 
 	priv = preview->priv;
 
 	bin_window = gtk_layout_get_bin_window (GTK_LAYOUT (priv->layout));
+
+#if GTK_CHECK_VERSION (3, 0, 0)
+	if (!gtk_cairo_should_draw_window (cr, bin_window))
+		return TRUE;
+
+	cairo_save (cr);
+
+	gtk_cairo_transform_to_window (cr, widget, bin_window);
+#else
 	if (event->window != bin_window)
 		return FALSE;
 
-	cr = gdk_cairo_create (bin_window);
+	cairo_t *cr = gdk_cairo_create (bin_window);
 
 	gdk_cairo_rectangle (cr, &event->area);
 	cairo_clip (cr);
+#endif
 
 	/* get the first page to display */
 	pg = get_first_page_displayed (preview);
@@ -1149,7 +1163,12 @@ preview_expose (GtkWidget         *widget,
 			++pg;
 		}
 	}
+
+#if GTK_CHECK_VERSION (3, 0, 0)
+	cairo_restore (cr);
+#else
 	cairo_destroy (cr);
+#endif
 
 	return TRUE;
 }
@@ -1205,8 +1224,13 @@ preview_ready (GtkPrintOperationPreview *gtk_preview,
 
 	/* let the default gtklayout handler clear the background */
 	g_signal_connect_after (preview->priv->layout,
+#if GTK_CHECK_VERSION (3, 0, 0)
+				"draw",
+				G_CALLBACK (preview_draw),
+#else
 				"expose-event",
 				G_CALLBACK (preview_expose),
+#endif
 				preview);
 
 	gtk_widget_queue_draw (preview->priv->layout);
