@@ -182,7 +182,6 @@ PKG_CHECK_MODULES(PLUMA, [
 	gio-2.0 >= 2.26.0
 	gtk+-$GTK_API_VERSION >= $GTK_REQUIRED
 	gtksourceview-$GTK_API_VERSION >= 2.9.7
-	mate-desktop-2.0 >= 1.9.0
 ])
 
 PKG_CHECK_MODULES(X11, [x11])
@@ -197,6 +196,25 @@ PKG_CHECK_MODULES(EGG_SMCLIENT, [sm >= 1.0.0])
 
 AC_SUBST(EGG_SMCLIENT_CFLAGS)
 AC_SUBST(EGG_SMCLIENT_LIBS)
+
+dnl ================================================================
+dnl Mate-desktop support
+dnl ================================================================
+
+MATEDESKTOP_REQUIRED=1.9.0
+
+AC_ARG_WITH(matedesktop,
+        [AS_HELP_STRING([--without-matedesktop],
+                        [Disable the use of matedesktop])],
+        [],
+        [with_matedesktop=yes])
+
+AM_CONDITIONAL([WITH_MATEDESKTOP],[test "$with_matedesktop" = "yes"])
+
+if test "$with_matedesktop" = "yes"; then
+        PKG_CHECK_MODULES([SHELL_CORE], mate-desktop-2.0 >= $MATEDESKTOP_REQUIRED)
+        AC_DEFINE([WITH_MATEDESKTOP],[1],[Define if mate-desktop support is enabled])
+fi
 
 dnl ================================================================
 dnl GSettings related settings
@@ -420,6 +438,7 @@ Configuration:
 	Source code location:	${srcdir}
 	Compiler:		${CC}
 	GTK API version:	$GTK_API_VERSION
+	MATE desktop Support:   $with_matedesktop
 	Python Plugins Support: $enable_python
 	Spell Plugin enabled:	$enable_enchant
 	Gvfs metadata enabled:	$enable_gvfs_metadata
