@@ -166,8 +166,15 @@ pluma_statusbar_init (PlumaStatusbar *statusbar)
 	gtk_frame_set_shadow_type (GTK_FRAME (statusbar->priv->error_frame), GTK_SHADOW_IN);
 
 	error_image = gtk_image_new_from_stock (GTK_STOCK_DIALOG_ERROR, GTK_ICON_SIZE_MENU);
+#if GTK_CHECK_VERSION (3, 14, 0)
+	gtk_widget_set_margin_start (error_image, 4);
+	gtk_widget_set_margin_end (error_image, 4);
+	gtk_widget_set_margin_top (error_image, 0);
+	gtk_widget_set_margin_bottom (error_image, 0);
+#else
 	gtk_misc_set_padding (GTK_MISC (error_image), 4, 0);
 	gtk_widget_show (error_image);
+#endif
 
 	statusbar->priv->error_event_box = gtk_event_box_new ();
 	gtk_event_box_set_visible_window  (GTK_EVENT_BOX (statusbar->priv->error_event_box),

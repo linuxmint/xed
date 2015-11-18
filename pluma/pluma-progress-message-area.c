@@ -153,14 +153,23 @@ pluma_progress_message_area_init (PlumaProgressMessageArea *area)
 	area->priv->image = gtk_image_new_from_icon_name (GTK_STOCK_MISSING_IMAGE, 
 							  GTK_ICON_SIZE_SMALL_TOOLBAR);
 	gtk_widget_show (area->priv->image);
+#if GTK_CHECK_VERSION (3, 14, 0)
+	gtk_widget_set_halign (area->priv->image, GTK_ALIGN_CENTER);
+	gtk_widget_set_valign (area->priv->image, GTK_ALIGN_CENTER);
+#else
 	gtk_misc_set_alignment (GTK_MISC (area->priv->image), 0.5, 0.5);
+#endif
 	gtk_box_pack_start (GTK_BOX (hbox), area->priv->image, FALSE, FALSE, 4);
 	
 	area->priv->label = gtk_label_new ("");
 	gtk_widget_show (area->priv->label);
 	gtk_box_pack_start (GTK_BOX (hbox), area->priv->label, TRUE, TRUE, 0);
 	gtk_label_set_use_markup (GTK_LABEL (area->priv->label), TRUE);
+#if GTK_CHECK_VERSION (3, 14, 0)
+	gtk_widget_set_halign (area->priv->label, GTK_ALIGN_START);
+#else
 	gtk_misc_set_alignment (GTK_MISC (area->priv->label), 0, 0.5);
+#endif
 	gtk_label_set_ellipsize (GTK_LABEL (area->priv->label), 
 				 PANGO_ELLIPSIZE_END);
 

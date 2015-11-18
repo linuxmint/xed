@@ -86,7 +86,11 @@ create_option_menu (PlumaFileChooserDialog *dialog)
 	GtkWidget *menu;
 
 	label = gtk_label_new_with_mnemonic (_("C_haracter Encoding:"));
+#if GTK_CHECK_VERSION (3, 14, 0)
+	gtk_widget_set_halign (label, GTK_ALIGN_START);
+#else
 	gtk_misc_set_alignment (GTK_MISC (label), 0, 0.5);
+#endif
 
 	menu = pluma_encodings_combo_box_new (
 		gtk_file_chooser_get_action (GTK_FILE_CHOOSER (dialog)) == GTK_FILE_CHOOSER_ACTION_SAVE);
@@ -151,7 +155,11 @@ create_newline_combo (PlumaFileChooserDialog *dialog)
 	GtkTreeIter iter;
 
 	label = gtk_label_new_with_mnemonic (_("L_ine Ending:"));
+#if GTK_CHECK_VERSION (3, 14, 0)
+	gtk_widget_set_halign (label, GTK_ALIGN_START);
+#else
 	gtk_misc_set_alignment (GTK_MISC (label), 0, 0.5);
+#endif
 
 	store = gtk_list_store_new (2, G_TYPE_STRING, PLUMA_TYPE_DOCUMENT_NEWLINE_TYPE);
 	combo = gtk_combo_box_new_with_model (GTK_TREE_MODEL (store));
