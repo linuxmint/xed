@@ -970,12 +970,16 @@ hide_search_window (PlumaView *view, gboolean cancel)
 static gboolean
 search_entry_flush_timeout (PlumaView *view)
 {
+#if !GTK_CHECK_VERSION (3, 0, 0)
 	GDK_THREADS_ENTER ();
+#endif
 
   	view->priv->typeselect_flush_timeout = 0;
 	hide_search_window (view, FALSE);
 
+#if !GTK_CHECK_VERSION (3, 0, 0)
 	GDK_THREADS_LEAVE ();
+#endif
 
 	return FALSE;
 }
@@ -1189,11 +1193,15 @@ real_search_enable_popdown (gpointer data)
 {
 	PlumaView *view = (PlumaView *)data;
 
+#if !GTK_CHECK_VERSION (3, 0, 0)
 	GDK_THREADS_ENTER ();
+#endif
 
 	view->priv->disable_popdown = FALSE;
 
+#if !GTK_CHECK_VERSION (3, 0, 0)
 	GDK_THREADS_LEAVE ();
+#endif
 
 	return FALSE;
 }

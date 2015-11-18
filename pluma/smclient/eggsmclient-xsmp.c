@@ -367,9 +367,13 @@ sm_client_xsmp_startup (EggSMClient *client,
       xsmp->client_id = g_strdup (ret_client_id);
       free (ret_client_id);
 
+#if !GTK_CHECK_VERSION (3, 0, 0)
       gdk_threads_enter ();
+#endif
       gdk_x11_set_sm_client_id (xsmp->client_id);
+#if !GTK_CHECK_VERSION (3, 0, 0)
       gdk_threads_leave ();
+#endif
 
       g_debug ("Got client ID \"%s\"", xsmp->client_id);
     }
@@ -537,7 +541,9 @@ idle_do_pending_events (gpointer data)
   EggSMClientXSMP *xsmp = data;
   EggSMClient *client = data;
 
+#if !GTK_CHECK_VERSION (3, 0, 0)
   gdk_threads_enter ();
+#endif
 
   xsmp->idle = 0;
 
@@ -562,7 +568,9 @@ idle_do_pending_events (gpointer data)
     }
 
  out:
+#if !GTK_CHECK_VERSION (3, 0, 0)
   gdk_threads_leave ();
+#endif
   return FALSE;
 }
 
@@ -1284,9 +1292,13 @@ process_ice_messages (IceConn ice_conn)
 {
   IceProcessMessagesStatus status;
 
+#if !GTK_CHECK_VERSION (3, 0, 0)
   gdk_threads_enter ();
+#endif
   status = IceProcessMessages (ice_conn, NULL, NULL);
+#if !GTK_CHECK_VERSION (3, 0, 0)
   gdk_threads_leave ();
+#endif
 
   switch (status)
     {
