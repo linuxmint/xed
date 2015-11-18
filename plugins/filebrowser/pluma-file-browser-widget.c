@@ -50,6 +50,10 @@
 #define XML_UI_FILE "pluma-file-browser-widget-ui.xml"
 #define LOCATION_DATA_KEY "pluma-file-browser-widget-location"
 
+#if GTK_CHECK_VERSION (3, 0, 0)
+#define gtk_vbox_new(X,Y) gtk_box_new(GTK_ORIENTATION_VERTICAL,Y)
+#endif
+
 enum 
 {
 	BOOKMARKS_ID,

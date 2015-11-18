@@ -48,6 +48,11 @@ enum {
 
 #define PLUMA_PROGRESS_MESSAGE_AREA_GET_PRIVATE(object)(G_TYPE_INSTANCE_GET_PRIVATE ((object), PLUMA_TYPE_PROGRESS_MESSAGE_AREA, PlumaProgressMessageAreaPrivate))
 
+#if GTK_CHECK_VERSION (3, 0, 0)
+#define gtk_hbox_new(X,Y) gtk_box_new(GTK_ORIENTATION_HORIZONTAL,Y)
+#define gtk_vbox_new(X,Y) gtk_box_new(GTK_ORIENTATION_VERTICAL,Y)
+#endif
+
 struct _PlumaProgressMessageAreaPrivate
 {
 	GtkWidget *image;

@@ -42,6 +42,10 @@
 
 #define PRINTER_DPI (72.)
 
+#if GTK_CHECK_VERSION (3, 0, 0)
+#define gtk_hbox_new(X,Y) gtk_box_new(GTK_ORIENTATION_HORIZONTAL,Y)
+#endif
+
 struct _PlumaPrintPreviewPrivate
 {
 	GtkPrintOperation *operation;

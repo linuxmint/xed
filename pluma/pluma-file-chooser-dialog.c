@@ -55,6 +55,10 @@
 #define ALL_FILES		_("All Files")
 #define ALL_TEXT_FILES		_("All Text Files")
 
+#if GTK_CHECK_VERSION (3, 0, 0)
+#define gtk_hbox_new(X,Y) gtk_box_new(GTK_ORIENTATION_HORIZONTAL,Y)
+#endif
+
 struct _PlumaFileChooserDialogPrivate
 {
 	GtkWidget *option_menu;

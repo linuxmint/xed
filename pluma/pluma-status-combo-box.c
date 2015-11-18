@@ -26,6 +26,10 @@
 
 #define PLUMA_STATUS_COMBO_BOX_GET_PRIVATE(object)(G_TYPE_INSTANCE_GET_PRIVATE((object), PLUMA_TYPE_STATUS_COMBO_BOX, PlumaStatusComboBoxPrivate))
 
+#if GTK_CHECK_VERSION (3, 0, 0)
+#define gtk_hbox_new(X,Y) gtk_box_new(GTK_ORIENTATION_HORIZONTAL,Y)
+#endif
+
 struct _PlumaStatusComboBoxPrivate
 {
 	GtkWidget *frame;
