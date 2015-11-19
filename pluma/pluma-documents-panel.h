@@ -57,7 +57,11 @@ typedef struct _PlumaDocumentsPanel PlumaDocumentsPanel;
 
 struct _PlumaDocumentsPanel 
 {
+#if GTK_CHECK_VERSION (3, 0, 0)
+	GtkBox vbox;
+#else
 	GtkVBox vbox;
+#endif
 
 	/*< private > */
 	PlumaDocumentsPanelPrivate *priv;
@@ -70,7 +74,11 @@ typedef struct _PlumaDocumentsPanelClass PlumaDocumentsPanelClass;
 
 struct _PlumaDocumentsPanelClass 
 {
+#if GTK_CHECK_VERSION (3, 0, 0)
+	GtkBoxClass parent_class;
+#else
 	GtkVBoxClass parent_class;
+#endif
 };
 
 /*

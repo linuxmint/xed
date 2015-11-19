@@ -69,7 +69,11 @@ struct _PlumaTaglistPluginPanelPrivate
 	gchar *data_dir;
 };
 
+#if GTK_CHECK_VERSION (3, 0, 0)
+PLUMA_PLUGIN_DEFINE_TYPE (PlumaTaglistPluginPanel, pluma_taglist_plugin_panel, GTK_TYPE_BOX)
+#else
 PLUMA_PLUGIN_DEFINE_TYPE (PlumaTaglistPluginPanel, pluma_taglist_plugin_panel, GTK_TYPE_VBOX)
+#endif
 
 enum
 {
@@ -674,6 +678,11 @@ pluma_taglist_plugin_panel_init (PlumaTaglistPluginPanel *panel)
 
 	panel->priv = PLUMA_TAGLIST_PLUGIN_PANEL_GET_PRIVATE (panel);
 	panel->priv->data_dir = NULL;
+
+#if GTK_CHECK_VERSION (3, 0, 0)
+	gtk_orientable_set_orientation (GTK_ORIENTABLE (panel),
+									GTK_ORIENTATION_VERTICAL);
+#endif
 
 	/* Build the window content */
 	panel->priv->tag_groups_combo = gtk_combo_box_text_new ();

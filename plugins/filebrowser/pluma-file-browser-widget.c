@@ -240,8 +240,13 @@ static void on_action_filter_binary            (GtkAction * action,
 static void on_action_bookmark_open            (GtkAction * action,
 						PlumaFileBrowserWidget * obj);
 
+#if GTK_CHECK_VERSION (3, 0, 0)
+PLUMA_PLUGIN_DEFINE_TYPE (PlumaFileBrowserWidget, pluma_file_browser_widget,
+	                  GTK_TYPE_BOX)
+#else
 PLUMA_PLUGIN_DEFINE_TYPE (PlumaFileBrowserWidget, pluma_file_browser_widget,
 	                  GTK_TYPE_VBOX)
+#endif
 
 static void
 free_name_icon (gpointer data)
@@ -1260,6 +1265,10 @@ pluma_file_browser_widget_init (PlumaFileBrowserWidget * obj)
 			                                   free_name_icon);
 
 	gtk_box_set_spacing (GTK_BOX (obj), 3);
+#if GTK_CHECK_VERSION (3, 0, 0)
+	gtk_orientable_set_orientation (GTK_ORIENTABLE (obj),
+	                                GTK_ORIENTATION_VERTICAL);
+#endif
 	
 	obj->priv->busy_cursor = gdk_cursor_new (GDK_WATCH);
 }

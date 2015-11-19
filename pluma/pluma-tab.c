@@ -82,7 +82,11 @@ struct _PlumaTabPrivate
 	gint                    ask_if_externally_modified : 1;
 };
 
+#if GTK_CHECK_VERSION (3, 0, 0)
+G_DEFINE_TYPE(PlumaTab, pluma_tab, GTK_TYPE_BOX)
+#else
 G_DEFINE_TYPE(PlumaTab, pluma_tab, GTK_TYPE_VBOX)
+#endif
 
 enum
 {
@@ -1481,6 +1485,11 @@ pluma_tab_init (PlumaTab *tab)
 	tab->priv->save_flags = 0;
 
 	tab->priv->ask_if_externally_modified = TRUE;
+
+#if GTK_CHECK_VERSION (3, 0, 0)
+	gtk_orientable_set_orientation (GTK_ORIENTABLE (tab),
+	                                GTK_ORIENTATION_VERTICAL);
+#endif
 	
 	/* Create the scrolled window */
 	sw = gtk_scrolled_window_new (NULL, NULL);

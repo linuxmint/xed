@@ -63,7 +63,11 @@ struct _PlumaTabLabelPrivate
 
 static guint signals[LAST_SIGNAL] = { 0 };
 
+#if GTK_CHECK_VERSION (3, 0, 0)
+G_DEFINE_TYPE (PlumaTabLabel, pluma_tab_label, GTK_TYPE_BOX)
+#else
 G_DEFINE_TYPE (PlumaTabLabel, pluma_tab_label, GTK_TYPE_HBOX)
+#endif
 
 static void
 pluma_tab_label_finalize (GObject *object)
@@ -265,6 +269,10 @@ pluma_tab_label_init (PlumaTabLabel *tab_label)
 
 	tab_label->priv->close_button_sensitive = TRUE;
 
+#if GTK_CHECK_VERSION (3, 0, 0)
+	gtk_orientable_set_orientation (GTK_ORIENTABLE (tab_label),
+	                                GTK_ORIENTATION_HORIZONTAL);
+#endif
 	ebox = gtk_event_box_new ();
 	gtk_event_box_set_visible_window (GTK_EVENT_BOX (ebox), FALSE);
 	gtk_box_pack_start (GTK_BOX (tab_label), ebox, TRUE, TRUE, 0);

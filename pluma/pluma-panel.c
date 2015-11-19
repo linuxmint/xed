@@ -90,7 +90,11 @@ static GObject	*pluma_panel_constructor	(GType type,
 						 GObjectConstructParam *construct_properties);
 
 
+#if GTK_CHECK_VERSION (3, 0, 0)
+G_DEFINE_TYPE(PlumaPanel, pluma_panel, GTK_TYPE_BOX)
+#else
 G_DEFINE_TYPE(PlumaPanel, pluma_panel, GTK_TYPE_VBOX)
+#endif
 
 static void
 pluma_panel_finalize (GObject *obj)
@@ -191,8 +195,13 @@ pluma_panel_class_init (PlumaPanelClass *klass)
 
 	g_object_class_install_property (object_class,
 					 PROP_ORIENTATION,
+#if GTK_CHECK_VERSION (3, 0, 0)
+					 g_param_spec_enum ("panel-orientation",
+							    "Panel Orientation",
+#else
 					 g_param_spec_enum ("orientation",
 							    "Orientation",
+#endif
 							    "The panel's orientation",
 							    GTK_TYPE_ORIENTATION,
 							    GTK_ORIENTATION_VERTICAL,
@@ -406,6 +415,11 @@ static void
 pluma_panel_init (PlumaPanel *panel)
 {
 	panel->priv = PLUMA_PANEL_GET_PRIVATE (panel);
+
+#if GTK_CHECK_VERSION (3, 0, 0)
+	gtk_orientable_set_orientation (GTK_ORIENTABLE (panel),
+									GTK_ORIENTATION_VERTICAL);
+#endif
 }
 
 static void

@@ -87,7 +87,11 @@ struct _PlumaPrintPreviewPrivate
 	guint cur_page;
 };
 
+#if GTK_CHECK_VERSION (3, 0, 0)
+G_DEFINE_TYPE (PlumaPrintPreview, pluma_print_preview, GTK_TYPE_BOX)
+#else
 G_DEFINE_TYPE (PlumaPrintPreview, pluma_print_preview, GTK_TYPE_VBOX)
+#endif
 
 static void 
 pluma_print_preview_get_property (GObject    *object,
@@ -1000,6 +1004,11 @@ pluma_print_preview_init (PlumaPrintPreview *preview)
 	priv->operation = NULL;
 	priv->context = NULL;
 	priv->gtk_preview = NULL;
+
+#if GTK_CHECK_VERSION (3, 0, 0)
+	gtk_orientable_set_orientation (GTK_ORIENTABLE (preview),
+	                                GTK_ORIENTATION_VERTICAL);
+#endif
 
 	create_bar (preview);
 	create_preview_layout (preview);

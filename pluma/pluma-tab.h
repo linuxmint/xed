@@ -77,7 +77,11 @@ typedef struct _PlumaTab PlumaTab;
 
 struct _PlumaTab 
 {
+#if GTK_CHECK_VERSION (3, 0, 0)
+	GtkBox vbox;
+#else
 	GtkVBox vbox;
+#endif
 
 	/*< private > */
 	PlumaTabPrivate *priv;
@@ -90,7 +94,11 @@ typedef struct _PlumaTabClass PlumaTabClass;
 
 struct _PlumaTabClass 
 {
+#if GTK_CHECK_VERSION (3, 0, 0)
+	GtkBoxClass parent_class;
+#else
 	GtkVBoxClass parent_class;
+#endif
 };
 
 /*

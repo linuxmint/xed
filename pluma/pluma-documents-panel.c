@@ -53,7 +53,11 @@ struct _PlumaDocumentsPanelPrivate
 	guint         is_reodering : 1;
 };
 
+#if GTK_CHECK_VERSION (3, 0, 0)
+G_DEFINE_TYPE(PlumaDocumentsPanel, pluma_documents_panel, GTK_TYPE_BOX)
+#else
 G_DEFINE_TYPE(PlumaDocumentsPanel, pluma_documents_panel, GTK_TYPE_VBOX)
+#endif
 
 enum
 {
@@ -749,6 +753,11 @@ pluma_documents_panel_init (PlumaDocumentsPanel *panel)
 	
 	panel->priv->adding_tab = FALSE;
 	panel->priv->is_reodering = FALSE;
+
+#if GTK_CHECK_VERSION (3, 0, 0)
+	gtk_orientable_set_orientation (GTK_ORIENTABLE (panel),
+	                                GTK_ORIENTATION_VERTICAL);
+#endif
 	
 	/* Create the scrolled window */
 	sw = gtk_scrolled_window_new (NULL, NULL);

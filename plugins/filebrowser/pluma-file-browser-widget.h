@@ -48,14 +48,22 @@ gboolean (*PlumaFileBrowserWidgetFilterFunc) (PlumaFileBrowserWidget * obj,
 
 struct _PlumaFileBrowserWidget 
 {
+#if GTK_CHECK_VERSION (3, 0, 0)
+	GtkBox parent;
+#else
 	GtkVBox parent;
+#endif
 
 	PlumaFileBrowserWidgetPrivate *priv;
 };
 
 struct _PlumaFileBrowserWidgetClass 
 {
+#if GTK_CHECK_VERSION (3, 0, 0)
+	GtkBoxClass parent_class;
+#else
 	GtkVBoxClass parent_class;
+#endif
 
 	/* Signals */
 	void (*uri_activated)        (PlumaFileBrowserWidget * widget,

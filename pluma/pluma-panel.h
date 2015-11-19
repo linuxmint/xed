@@ -55,7 +55,11 @@ typedef struct _PlumaPanel PlumaPanel;
 
 struct _PlumaPanel 
 {
+#if GTK_CHECK_VERSION (3, 0, 0)
+	GtkBox vbox;
+#else
 	GtkVBox vbox;
+#endif
 
 	/*< private > */
 	PlumaPanelPrivate *priv;
@@ -68,7 +72,11 @@ typedef struct _PlumaPanelClass PlumaPanelClass;
 
 struct _PlumaPanelClass 
 {
+#if GTK_CHECK_VERSION (3, 0, 0)
+	GtkBoxClass parent_class;
+#else
 	GtkVBoxClass parent_class;
+#endif
 
 	void (* item_added)     (PlumaPanel     *panel,
 				 GtkWidget      *item);

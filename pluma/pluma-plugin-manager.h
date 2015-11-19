@@ -55,7 +55,11 @@ typedef struct _PlumaPluginManager PlumaPluginManager;
 
 struct _PlumaPluginManager 
 {
+#if GTK_CHECK_VERSION (3, 0, 0)
+	GtkBox vbox;
+#else
 	GtkVBox vbox;
+#endif
 
 	/*< private > */
 	PlumaPluginManagerPrivate *priv;
@@ -68,7 +72,11 @@ typedef struct _PlumaPluginManagerClass PlumaPluginManagerClass;
 
 struct _PlumaPluginManagerClass 
 {
+#if GTK_CHECK_VERSION (3, 0, 0)
+	GtkBoxClass parent_class;
+#else
 	GtkVBoxClass parent_class;
+#endif
 };
 
 /*

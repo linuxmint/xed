@@ -41,13 +41,21 @@ typedef struct _PlumaTabLabelClass	PlumaTabLabelClass;
 typedef struct _PlumaTabLabelPrivate	PlumaTabLabelPrivate;
 
 struct _PlumaTabLabel {
+#if GTK_CHECK_VERSION (3, 0, 0)
+	GtkBox parent;
+#else
 	GtkHBox parent;
+#endif
 	
 	PlumaTabLabelPrivate *priv;
 };
 
 struct _PlumaTabLabelClass {
+#if GTK_CHECK_VERSION (3, 0, 0)
+	GtkBoxClass parent_class;
+#else
 	GtkHBoxClass parent_class;
+#endif
 
 	void (* close_clicked)  (PlumaTabLabel *tab_label);
 };
