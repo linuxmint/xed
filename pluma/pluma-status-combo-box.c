@@ -180,8 +180,12 @@ menu_position_func (GtkMenu		*menu,
 	GtkAllocation allocation;
 	
 	*push_in = FALSE;
-	
+
+#if GTK_CHECK_VERSION (3, 0, 0)
+	gtk_widget_get_preferred_size (gtk_widget_get_toplevel (GTK_WIDGET (menu)), NULL, &request);
+#else
 	gtk_widget_size_request (gtk_widget_get_toplevel (GTK_WIDGET (menu)), &request);
+#endif
 	
 	/* get the origin... */
 	gdk_window_get_origin (gtk_widget_get_window (GTK_WIDGET (combo)), x, y);
@@ -205,8 +209,12 @@ button_press_event (GtkWidget           *widget,
 	GtkRequisition request;
 	GtkAllocation allocation;
 	gint max_height;
-	
+
+#if GTK_CHECK_VERSION (3, 0, 0)
+	gtk_widget_get_preferred_size (combo->priv->menu, NULL, &request);
+#else
 	gtk_widget_size_request (combo->priv->menu, &request);
+#endif
 	gtk_widget_get_allocation (GTK_WIDGET (combo), &allocation);
 
 	/* do something relative to our own height here, maybe we can do better */

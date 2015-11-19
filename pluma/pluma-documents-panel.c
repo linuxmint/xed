@@ -539,8 +539,12 @@ menu_position (GtkMenu             *menu,
 	wy = rect.y;
 
 	gdk_window_get_origin (gtk_widget_get_window (w), x, y);
-	
+
+#if GTK_CHECK_VERSION (3, 0, 0)
+	gtk_widget_get_preferred_size (GTK_WIDGET (menu), NULL, &requisition);
+#else
 	gtk_widget_size_request (GTK_WIDGET (menu), &requisition);
+#endif
 
 	if (gtk_widget_get_direction (w) == GTK_TEXT_DIR_RTL)
 	{
