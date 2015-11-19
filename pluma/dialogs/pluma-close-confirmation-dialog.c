@@ -502,8 +502,13 @@ build_single_doc_dialog (PlumaCloseConfirmationDialog *dlg)
 	doc = PLUMA_DOCUMENT (dlg->priv->unsaved_documents->data);
 
 	/* Image */
+#if GTK_CHECK_VERSION (3, 10, 0)
+	image = gtk_image_new_from_icon_name ("dialog-warning",
+					  GTK_ICON_SIZE_DIALOG);
+#else
 	image = gtk_image_new_from_stock (GTK_STOCK_DIALOG_WARNING, 
 					  GTK_ICON_SIZE_DIALOG);
+#endif
 #if GTK_CHECK_VERSION (3, 14, 0)
 	gtk_widget_set_valign (image, GTK_ALIGN_START);
 #else
@@ -699,8 +704,13 @@ build_multiple_docs_dialog (PlumaCloseConfirmationDialog *dlg)
 			    hbox, TRUE, TRUE, 0);
 
 	/* Image */
+#if GTK_CHECK_VERSION (3, 10, 0)
+	image = gtk_image_new_from_icon_name ("dialog-warning",
+					  GTK_ICON_SIZE_DIALOG);
+#else
 	image = gtk_image_new_from_stock (GTK_STOCK_DIALOG_WARNING, 
 					  GTK_ICON_SIZE_DIALOG);
+#endif
 #if GTK_CHECK_VERSION (3, 14, 0)
 	gtk_widget_set_valign (image, GTK_ALIGN_START);
 #else
