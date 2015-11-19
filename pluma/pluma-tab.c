@@ -1868,10 +1868,14 @@ _pluma_tab_get_icon (PlumaTab *tab)
 	theme = gtk_icon_theme_get_for_screen (screen);
 	g_return_val_if_fail (theme != NULL, NULL);
 
+#if GTK_CHECK_VERSION (3, 10, 0)
+	gtk_icon_size_lookup (GTK_ICON_SIZE_MENU, NULL, &icon_size);
+#else
 	gtk_icon_size_lookup_for_settings (gtk_widget_get_settings (GTK_WIDGET (tab)),
 					   GTK_ICON_SIZE_MENU, 
 					   NULL,
 					   &icon_size);
+#endif
 
 	switch (tab->priv->state)
 	{
