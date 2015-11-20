@@ -359,8 +359,12 @@ pluma_file_browser_widget_finalize (GObject * object)
 	g_hash_table_destroy (obj->priv->bookmarks_hash);
 	
 	cancel_async_operation (obj);
-	
+
+#if GTK_CHECK_VERSION (3, 0, 0)
+	g_object_unref (obj->priv->busy_cursor);
+#else
 	gdk_cursor_unref (obj->priv->busy_cursor);
+#endif
 
 	G_OBJECT_CLASS (pluma_file_browser_widget_parent_class)->finalize (object);
 }
@@ -1248,6 +1252,9 @@ create_filter (PlumaFileBrowserWidget * obj)
 static void
 pluma_file_browser_widget_init (PlumaFileBrowserWidget * obj)
 {
+#if GTK_CHECK_VERSION (3, 16, 0)
+	GdkDisplay *display;
+#endif
 	obj->priv = PLUMA_FILE_BROWSER_WIDGET_GET_PRIVATE (obj);
 
 	obj->priv->bookmarks_hash = g_hash_table_new_full (g_file_hash,
@@ -1256,8 +1263,13 @@ pluma_file_browser_widget_init (PlumaFileBrowserWidget * obj)
 			                                   free_name_icon);
 
 	gtk_box_set_spacing (GTK_BOX (obj), 3);
-	
+
+#if GTK_CHECK_VERSION (3, 16, 0)
+	display = gtk_widget_get_display (GTK_WIDGET (obj));
+	obj->priv->busy_cursor = gdk_cursor_new_for_display (display, GDK_WATCH);
+#else
 	obj->priv->busy_cursor = gdk_cursor_new (GDK_WATCH);
+#endif
 }
 
 /* Private */
@@ -2088,7 +2100,6 @@ async_free (AsyncData *async)
 static void
 set_busy (PlumaFileBrowserWidget *obj, gboolean busy)
 {
-	GdkCursor *cursor;
 	GdkWindow *window;
 	
 	window = gtk_widget_get_window (GTK_WIDGET (obj->priv->treeview));
@@ -2098,9 +2109,23 @@ set_busy (PlumaFileBrowserWidget *obj, gboolean busy)
 
 	if (busy)
 	{
+#if GTK_CHECK_VERSION (3, 16, 0)
+		GdkDisplay *display;
+		GdkCursor *cursor;
+
+		display = gtk_widget_get_display (GTK_WIDGET (obj));
+		cursor = gdk_cursor_new_for_display (display, GDK_WATCH);
+#else
+		GdkCursor *cursor;
+
 		cursor = gdk_cursor_new (GDK_WATCH);
+#endif
 		gdk_window_set_cursor (window, cursor);
+#if GTK_CHECK_VERSION (3, 0, 0)
+		g_object_unref (obj->priv->busy_cursor);
+#else
 		gdk_cursor_unref (cursor);
+#endif
 	}
 	else
 	{
