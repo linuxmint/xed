@@ -212,9 +212,12 @@ AC_ARG_WITH(matedesktop,
 AM_CONDITIONAL([WITH_MATEDESKTOP],[test "$with_matedesktop" = "yes"])
 
 if test "$with_matedesktop" = "yes"; then
-        PKG_CHECK_MODULES([SHELL_CORE], mate-desktop-2.0 >= $MATEDESKTOP_REQUIRED)
+        PKG_CHECK_MODULES([MATE_DESKTOP], mate-desktop-2.0 >= $MATEDESKTOP_REQUIRED)
         AC_DEFINE([WITH_MATEDESKTOP],[1],[Define if mate-desktop support is enabled])
 fi
+
+AC_SUBST([MATE_DESKTOP_CFLAGS])
+AC_SUBST([MATE_DESKTOP_LIBS])
 
 dnl ================================================================
 dnl GSettings related settings
