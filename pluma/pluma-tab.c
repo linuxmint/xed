@@ -49,6 +49,10 @@
 
 #define PLUMA_TAB_KEY "PLUMA_TAB_KEY"
 
+#if GTK_CHECK_VERSION (3, 0, 0)
+#define gdk_cursor_unref(cursor) g_object_unref (cursor)
+#endif
+
 struct _PlumaTabPrivate
 {
 	PlumaTabState	        state;
