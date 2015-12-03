@@ -117,7 +117,7 @@ pluma_file_browser_view_finalize (GObject * object)
 #if GTK_CHECK_VERSION (3, 0, 0)
 		g_object_unref (obj->priv->hand_cursor);
 #else
-		gdk_cursor_unref (obj->priv->hand_cursor)
+		gdk_cursor_unref (obj->priv->hand_cursor);
 #endif
 
 	if (obj->priv->hover_path)
