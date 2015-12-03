@@ -35,7 +35,7 @@ libspell_la_LDFLAGS = $(PLUGIN_LIBTOOL_FLAGS)
 libspell_la_LIBADD  = $(PLUMA_LIBS) $(ENCHANT_LIBS)
 
 uidir = $(PLUMA_PLUGINS_DATA_DIR)/spell
-ui_DATA = spell-checker.ui languages-dialog.ui
+ui_DATA = spell-checker.ui languages-dialog.ui pluma-spell-setup-dialog.ui
 
 pluma-spell-marshal.h: pluma-spell-marshal.list $(GLIB_GENMARSHAL)
 	$(AM_V_GEN) $(GLIB_GENMARSHAL) $< --header --prefix=pluma_marshal > $@
@@ -50,12 +50,19 @@ plugin_in_files = spell.pluma-plugin.desktop.in
 
 plugin_DATA = $(plugin_in_files:.pluma-plugin.desktop.in=.pluma-plugin)
 
+@INTLTOOL_XML_NOMERGE_RULE@
+spell_gschema_in = org.mate.pluma.plugins.spell.gschema.xml.in
+gsettings_SCHEMAS = $(spell_gschema_in:.xml.in=.xml)
+@GSETTINGS_RULES@
+
+
 EXTRA_DIST = 					\
 	$(ui_DATA)				\
 	$(plugin_in_files)			\
-	pluma-spell-marshal.list 
+	pluma-spell-marshal.list    	        \
+	$(spell_gschema_in)
 
-CLEANFILES = $(BUILT_SOURCES) $(plugin_DATA)
+CLEANFILES = $(BUILT_SOURCES) $(plugin_DATA) $(gsettings_SCHEMAS)
 
 dist-hook:
 	cd $(distdir); rm -f $(BUILT_SOURCES)

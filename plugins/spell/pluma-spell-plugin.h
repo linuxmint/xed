@@ -50,6 +50,8 @@ typedef struct _PlumaSpellPlugin	PlumaSpellPlugin;
 struct _PlumaSpellPlugin
 {
 	PlumaPlugin parent_instance;
+
+	PlumaSpellPluginPrivate *priv;
 };
 
 /*
