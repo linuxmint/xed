@@ -2113,6 +2113,9 @@ async_free (AsyncData *async)
 static void
 set_busy (PlumaFileBrowserWidget *obj, gboolean busy)
 {
+#if !GTK_CHECK_VERSION (3, 16, 0)
+	GdkCursor *cursor;
+#endif
 	GdkWindow *window;
 	
 	window = gtk_widget_get_window (GTK_WIDGET (obj->priv->treeview));
