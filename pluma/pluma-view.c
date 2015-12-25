@@ -173,7 +173,7 @@ typedef enum
 {
 	PLUMA_SEARCH_ENTRY_NORMAL,
 	PLUMA_SEARCH_ENTRY_NOT_FOUND
-} PlumaSearchEntryBgColor;
+} PlumaSearchEntryState;
 
 static void
 document_read_only_notify_handler (PlumaDocument *document, 
@@ -760,10 +760,10 @@ add_search_completion_entry (const gchar *str)
 }
 
 static void
-set_entry_background (GtkWidget               *entry,
-		      PlumaSearchEntryBgColor  col)
+set_entry_state (GtkWidget             *entry,
+                 PlumaSearchEntryState  state)
 {
-	if (col == PLUMA_SEARCH_ENTRY_NOT_FOUND)
+	if (state == PLUMA_SEARCH_ENTRY_NOT_FOUND)
 	{
 		GdkColor red;
 		GdkColor white;
@@ -896,13 +896,13 @@ run_search (PlumaView        *view,
 	{				   
 		pluma_view_scroll_to_cursor (view);
 
-		set_entry_background (view->priv->search_entry,
-				      PLUMA_SEARCH_ENTRY_NORMAL);	
+		set_entry_state (view->priv->search_entry,
+		                 PLUMA_SEARCH_ENTRY_NORMAL);
 	}
 	else
 	{
-		set_entry_background (view->priv->search_entry,
-				      PLUMA_SEARCH_ENTRY_NOT_FOUND);
+		set_entry_state (view->priv->search_entry,
+		                 PLUMA_SEARCH_ENTRY_NOT_FOUND);
 	}
 
 	return found;
@@ -1764,11 +1764,11 @@ search_init (GtkWidget *entry,
 			pluma_view_scroll_to_cursor (view);
 
 			if (!moved || !moved_offset)
-				set_entry_background (view->priv->search_entry,
-						      PLUMA_SEARCH_ENTRY_NOT_FOUND);
+				set_entry_state (view->priv->search_entry,
+				                 PLUMA_SEARCH_ENTRY_NOT_FOUND);
 			else
-				set_entry_background (view->priv->search_entry,
-						      PLUMA_SEARCH_ENTRY_NORMAL);
+				set_entry_state (view->priv->search_entry,
+				                 PLUMA_SEARCH_ENTRY_NORMAL);
 		}
 	}
 }
