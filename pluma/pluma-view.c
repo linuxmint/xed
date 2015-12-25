@@ -1528,11 +1528,6 @@ ensure_search_window (PlumaView *view)
 	g_signal_connect (view->priv->search_entry, "activate", 
 			  G_CALLBACK (search_entry_activate),
 			  view);
-	/* CHECK: do we really need to connect to preedit too? -- Paolo
-	g_signal_connect (GTK_ENTRY (view->priv->search_entry)->im_context, "preedit-changed",
-			  G_CALLBACK (gtk_view_search_preedit_changed),
-			  view);
-	*/		
 	g_signal_connect (view->priv->search_entry, 
 			  "insert_text",
 			  G_CALLBACK (search_entry_insert_text), 
