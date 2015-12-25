@@ -1627,12 +1627,11 @@ init_search_entry (PlumaView *view)
 		guint     old_find_flags = 0;
 		gint      sel_len = 0;
 
-		g_free (view->priv->old_search_text);
-		
 		old_find_text = pluma_document_get_search_text (PLUMA_DOCUMENT (buffer), 
 								&old_find_flags);
 		if (old_find_text != NULL)
 		{
+			g_free (view->priv->old_search_text);
 			view->priv->old_search_text = old_find_text;
 			add_search_completion_entry (old_find_text);
 		}
