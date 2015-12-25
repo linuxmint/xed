@@ -763,8 +763,15 @@ static void
 set_entry_state (GtkWidget             *entry,
                  PlumaSearchEntryState  state)
 {
+#if GTK_CHECK_VERSION (3, 0 ,0)
+	GtkStyleContext *context = gtk_widget_get_style_context (GTK_WIDGET (entry));
+#endif
+
 	if (state == PLUMA_SEARCH_ENTRY_NOT_FOUND)
 	{
+#if GTK_CHECK_VERSION (3, 0 ,0)
+		gtk_style_context_add_class (context, GTK_STYLE_CLASS_ERROR);
+#else
 		GdkColor red;
 		GdkColor white;
 
@@ -779,15 +786,20 @@ set_entry_state (GtkWidget             *entry,
 		gtk_widget_modify_text (entry,
 				        GTK_STATE_NORMAL,
 				        &white);
+#endif
 	}
 	else /* reset */
 	{
+#if GTK_CHECK_VERSION (3, 0 ,0)
+		gtk_style_context_remove_class (context, GTK_STYLE_CLASS_ERROR);
+#else
 		gtk_widget_modify_base (entry,
 				        GTK_STATE_NORMAL,
 				        NULL);
 		gtk_widget_modify_text (entry,
 				        GTK_STATE_NORMAL,
 				        NULL);
+#endif
 	}
 }
 
