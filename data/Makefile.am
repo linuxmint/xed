@@ -11,9 +11,6 @@ appdata_DATA = $(appdata_in_files:.xml.in=.xml)
 gsettings_SCHEMAS = org.mate.pluma.gschema.xml
 @GSETTINGS_RULES@
 
-convertdir = $(datadir)/MateConf/gsettings
-convert_DATA = pluma.convert
-
 man_MANS = pluma.1
 
 pkgconfigdir = $(libdir)/pkgconfig
@@ -25,7 +22,6 @@ bugreport_SCRIPTS = pluma-bugreport.sh
 EXTRA_DIST = 			\
 	$(appdata_in_files)	\
 	$(desktop_in_files)	\
-	$(convert_DATA)		\
 	$(man_MANS)			\
 	pluma.pc.in			\
 	pluma-bugreport.sh.in
