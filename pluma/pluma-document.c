@@ -508,7 +508,7 @@ pluma_document_class_init (PlumaDocumentClass *klass)
 	g_object_class_install_property (object_class, PROP_ENABLE_SEARCH_HIGHLIGHTING,
 					 g_param_spec_boolean ("enable-search-highlighting",
 							       "Enable Search Highlighting",
-							       "Whether all the occurences of the searched string must be highlighted",
+							       "Whether all the occurrences of the searched string must be highlighted",
 							       FALSE,
 							       G_PARAM_READWRITE |
 							       G_PARAM_STATIC_STRINGS));

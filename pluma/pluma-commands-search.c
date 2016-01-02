@@ -103,7 +103,7 @@ last_search_data_store_position (PlumaSearchDialog *dlg)
 				 &data->y);
 }
 
-/* Use occurences only for Replace All */
+/* Use occurrences only for Replace All */
 static void
 text_found (PlumaWindow *window,
 	    gint         occurrences)
