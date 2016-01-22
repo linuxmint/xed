@@ -614,7 +614,7 @@ button_press_cb (PlumaNotebook  *notebook,
 					  NULL);
 	}
 	else if ((event->type == GDK_BUTTON_PRESS) && 
-		 (event->button == 3))
+		 (event->button == 3 || event->button == 2))
 	{
 		if (tab_clicked == -1)
 		{

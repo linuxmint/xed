@@ -3434,6 +3434,13 @@ notebook_button_press_event (GtkNotebook    *notebook,
 	{
 		return show_notebook_popup_menu (notebook, window, event);
 	}
+	else if (GDK_BUTTON_PRESS == event->type && 2 == event->button)
+	{
+		GtkWidget *tab;
+		tab = GTK_WIDGET (pluma_window_get_active_tab (window));
+		notebook_tab_close_request (notebook, tab, window);
+		return FALSE;
+	}
 
 	return FALSE;
 }
