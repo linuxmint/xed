@@ -547,8 +547,8 @@ build_vertical_panel (PlumaPanel *panel)
 			    0);	
 
 	panel->priv->title_label = gtk_label_new (_("Empty"));
-#if GTK_CHECK_VERSION (3, 14, 0)
-	gtk_widget_set_halign (panel->priv->title_label, GTK_ALIGN_START);
+#if GTK_CHECK_VERSION (3, 16, 0)
+	gtk_label_set_xalign (GTK_LABEL (panel->priv->title_label), 0.0);
 #else
 	gtk_misc_set_alignment (GTK_MISC (panel->priv->title_label), 0, 0.5);
 #endif
@@ -649,8 +649,8 @@ build_tab_label (PlumaPanel  *panel,
 
 	/* setup label */
         label = gtk_label_new (name);
-#if GTK_CHECK_VERSION (3, 14, 0)
-	gtk_widget_set_halign (label, GTK_ALIGN_START);
+#if GTK_CHECK_VERSION (3, 0, 0)
+	gtk_label_set_xalign (GTK_LABEL (label), 0.0);
 	gtk_widget_set_margin_start (label, 0);
 	gtk_widget_set_margin_end (label, 0);
 	gtk_widget_set_margin_top (label, 0);
@@ -724,7 +724,7 @@ pluma_panel_add_item (PlumaPanel  *panel,
 	tab_label = build_tab_label (panel, item, data->name, data->icon);
 
 	menu_label = gtk_label_new (name);
-#if GTK_CHECK_VERSION (3, 14, 0)
+#if GTK_CHECK_VERSION (3, 0, 0)
 	gtk_widget_set_halign (menu_label, GTK_ALIGN_START);
 #else
 	gtk_misc_set_alignment (GTK_MISC (menu_label), 0.0, 0.5);

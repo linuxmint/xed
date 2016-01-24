@@ -454,8 +454,8 @@ build_suggestion_menu (PlumaAutomaticSpellChecker *spell, const gchar *word)
 			
 			label = gtk_label_new (label_text);
 			gtk_label_set_use_markup (GTK_LABEL (label), TRUE);
-#if GTK_CHECK_VERSION (3, 14, 0)
-			gtk_widget_set_halign (label, GTK_ALIGN_START);
+#if GTK_CHECK_VERSION (3, 16, 0)
+			gtk_label_set_xalign (GTK_LABEL (label), 0.0);
 #else
 			gtk_misc_set_alignment (GTK_MISC (label), 0.0, 0.5);
 #endif

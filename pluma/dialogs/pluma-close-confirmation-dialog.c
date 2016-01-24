@@ -509,8 +509,9 @@ build_single_doc_dialog (PlumaCloseConfirmationDialog *dlg)
 	image = gtk_image_new_from_stock (GTK_STOCK_DIALOG_WARNING, 
 					  GTK_ICON_SIZE_DIALOG);
 #endif
-#if GTK_CHECK_VERSION (3, 14, 0)
-	gtk_widget_set_valign (image, GTK_ALIGN_START);
+#if GTK_CHECK_VERSION (3, 0, 0)
+	gtk_widget_set_halign (image, GTK_ALIGN_START);
+	gtk_widget_set_valign (image, GTK_ALIGN_END);
 #else
 	gtk_misc_set_alignment (GTK_MISC (image), 0.5, 0.0);
 #endif
@@ -519,8 +520,8 @@ build_single_doc_dialog (PlumaCloseConfirmationDialog *dlg)
 	primary_label = gtk_label_new (NULL);
 	gtk_label_set_line_wrap (GTK_LABEL (primary_label), TRUE);
 	gtk_label_set_use_markup (GTK_LABEL (primary_label), TRUE);
-#if GTK_CHECK_VERSION (3, 14, 0)
-	gtk_widget_set_halign (primary_label, GTK_ALIGN_START);
+#if GTK_CHECK_VERSION (3, 16, 0)
+	gtk_label_set_xalign (GTK_LABEL (primary_label), 0.0);
 #else
 	gtk_misc_set_alignment (GTK_MISC (primary_label), 0.0, 0.5);
 #endif
@@ -556,8 +557,8 @@ build_single_doc_dialog (PlumaCloseConfirmationDialog *dlg)
 	secondary_label = gtk_label_new (str);
 	g_free (str);
 	gtk_label_set_line_wrap (GTK_LABEL (secondary_label), TRUE);
-#if GTK_CHECK_VERSION (3, 14, 0)
-	gtk_widget_set_halign (secondary_label, GTK_ALIGN_START);
+#if GTK_CHECK_VERSION (3, 16, 0)
+	gtk_label_set_xalign (GTK_LABEL (secondary_label), 0.0);
 #else
 	gtk_misc_set_alignment (GTK_MISC (secondary_label), 0.0, 0.5);
 #endif
@@ -711,7 +712,8 @@ build_multiple_docs_dialog (PlumaCloseConfirmationDialog *dlg)
 	image = gtk_image_new_from_stock (GTK_STOCK_DIALOG_WARNING, 
 					  GTK_ICON_SIZE_DIALOG);
 #endif
-#if GTK_CHECK_VERSION (3, 14, 0)
+#if GTK_CHECK_VERSION (3, 0, 0)
+	gtk_widget_set_halign (image, GTK_ALIGN_CENTER);
 	gtk_widget_set_valign (image, GTK_ALIGN_START);
 #else
 	gtk_misc_set_alignment (GTK_MISC (image), 0.5, 0.0);
@@ -725,8 +727,8 @@ build_multiple_docs_dialog (PlumaCloseConfirmationDialog *dlg)
 	primary_label = gtk_label_new (NULL);
 	gtk_label_set_line_wrap (GTK_LABEL (primary_label), TRUE);
 	gtk_label_set_use_markup (GTK_LABEL (primary_label), TRUE);
-#if GTK_CHECK_VERSION (3, 14, 0)
-	gtk_widget_set_halign (primary_label, GTK_ALIGN_START);
+#if GTK_CHECK_VERSION (3, 16, 0)
+	gtk_label_set_xalign (GTK_LABEL (primary_label), 0.0);
 #else
 	gtk_misc_set_alignment (GTK_MISC (primary_label), 0.0, 0.5);
 #endif
@@ -764,8 +766,8 @@ build_multiple_docs_dialog (PlumaCloseConfirmationDialog *dlg)
 
 	gtk_box_pack_start (GTK_BOX (vbox2), select_label, FALSE, FALSE, 0);
 	gtk_label_set_line_wrap (GTK_LABEL (select_label), TRUE);
-#if GTK_CHECK_VERSION (3, 14, 0)
-	gtk_widget_set_halign (select_label, GTK_ALIGN_START);
+#if GTK_CHECK_VERSION (3, 16, 0)
+	gtk_label_set_xalign (GTK_LABEL (select_label), 0.0);
 #else
 	gtk_misc_set_alignment (GTK_MISC (select_label), 0.0, 0.5);
 #endif
@@ -790,10 +792,10 @@ build_multiple_docs_dialog (PlumaCloseConfirmationDialog *dlg)
 
 	gtk_box_pack_start (GTK_BOX (vbox2), secondary_label, FALSE, FALSE, 0);
 	gtk_label_set_line_wrap (GTK_LABEL (secondary_label), TRUE);
-#if GTK_CHECK_VERSION (3, 14, 0)
-	gtk_widget_set_halign (secondary_label, GTK_ALIGN_START);
+#if GTK_CHECK_VERSION (3, 16, 0)
+	gtk_label_set_xalign (GTK_LABEL (secondary_label), 0.0);
 #else
-	gtk_misc_set_alignment (GTK_MISC (secondary_label), 0, 0.5);
+	gtk_misc_set_alignment (GTK_MISC (secondary_label), 0.0, 0.5);
 #endif
 	gtk_label_set_selectable (GTK_LABEL (secondary_label), TRUE);
 

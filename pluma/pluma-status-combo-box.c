@@ -287,8 +287,8 @@ pluma_status_combo_box_init (PlumaStatusComboBox *self)
 	gtk_widget_show (self->priv->label);
 	
 	gtk_label_set_single_line_mode (GTK_LABEL (self->priv->label), TRUE);
-#if GTK_CHECK_VERSION (3, 14, 0)
-	gtk_widget_set_halign (self->priv->label, GTK_ALIGN_START);
+#if GTK_CHECK_VERSION (3, 16, 0)
+	gtk_label_set_xalign (GTK_LABEL (self->priv->label), 0.0);
 #else
 	gtk_misc_set_alignment (GTK_MISC (self->priv->label), 0.0, 0.5);
 #endif
@@ -299,7 +299,7 @@ pluma_status_combo_box_init (PlumaStatusComboBox *self)
 	gtk_widget_show (self->priv->item);
 	
 	gtk_label_set_single_line_mode (GTK_LABEL (self->priv->item), TRUE);
-#if GTK_CHECK_VERSION (3, 14, 0)
+#if GTK_CHECK_VERSION (3, 0, 0)
 	gtk_widget_set_halign (self->priv->item, GTK_ALIGN_START);
 #else
 	gtk_misc_set_alignment (GTK_MISC (self->priv->item), 0, 0.5);
@@ -309,7 +309,7 @@ pluma_status_combo_box_init (PlumaStatusComboBox *self)
 	
 	self->priv->arrow = gtk_arrow_new (GTK_ARROW_DOWN, GTK_SHADOW_NONE);
 	gtk_widget_show (self->priv->arrow);
-#if GTK_CHECK_VERSION (3, 14, 0)
+#if GTK_CHECK_VERSION (3, 0, 0)
 	gtk_widget_set_halign (self->priv->arrow, GTK_ALIGN_CENTER);
 	gtk_widget_set_valign (self->priv->arrow, GTK_ALIGN_CENTER);
 #else
