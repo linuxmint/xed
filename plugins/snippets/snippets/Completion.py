@@ -1,6 +1,6 @@
 import gtksourceview2 as gsv
 import gobject
-import pluma
+import xedit
 import gtk
 
 from Library import Library
@@ -102,7 +102,7 @@ class Provider(gobject.GObject, gsv.CompletionProvider):
         
         def do_get_info_widget(self, proposal):
                 if not self.info_widget:
-                        view = pluma.View(pluma.Document())
+                        view = xedit.View(xedit.Document())
                         manager = get_language_manager()
 
                         lang = manager.get_language('snippets')

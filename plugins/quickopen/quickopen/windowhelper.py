@@ -17,11 +17,11 @@
 #  Foundation, Inc., 51 Franklin St, Fifth Floor,
 #  Boston, MA 02110-1301, USA.
 
-import pluma
+import xedit
 import gtk
 from popup import Popup
 import os
-import pluma.commands
+import xedit.commands
 import gio
 import glib
 from virtualdirs import RecentDocumentsDirectory
@@ -64,7 +64,7 @@ class WindowHelper:
 
         def _install_menu(self):
                 manager = self._window.get_ui_manager()
-                self._action_group = gtk.ActionGroup("PlumaQuickOpenPluginActions")
+                self._action_group = gtk.ActionGroup("XeditQuickOpenPluginActions")
                 self._action_group.add_actions([
                         ("QuickOpen", gtk.STOCK_OPEN, _("Quick open"),
                          '<Ctrl><Alt>O', _("Quickly open documents"),
@@ -191,7 +191,7 @@ class WindowHelper:
                 self._popup = None
 
         def on_activated(self, gfile):
-                pluma.commands.load_uri(self._window, gfile.get_uri(), None, -1)
+                xedit.commands.load_uri(self._window, gfile.get_uri(), None, -1)
                 return True
 
 # ex:ts=8:et:

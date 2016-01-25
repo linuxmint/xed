@@ -1,7 +1,7 @@
 #!/bin/sh
 
 EHOME=`echo $HOME | sed "s/#/\#/"`
-DIR=$PLUMA_CURRENT_DOCUMENT_DIR
+DIR=$XEDIT_CURRENT_DOCUMENT_DIR
 while test "$DIR" != "/"; do
     for m in GNUmakefile makefile Makefile; do
         if [ -f "${DIR}/${m}" ]; then

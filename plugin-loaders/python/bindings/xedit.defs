@@ -1,0 +1,1461 @@
+;; -*- scheme -*-
+; object definitions ...
+(define-object App
+  (in-module "Xedit")
+  (parent "GObject")
+  (c-name "XeditApp")
+  (gtype-id "XEDIT_TYPE_APP")
+)
+
+(define-object Document
+  (in-module "Xedit")
+  (parent "GtkSourceBuffer")
+  (c-name "XeditDocument")
+  (gtype-id "XEDIT_TYPE_DOCUMENT")
+)
+
+(define-object Message
+  (in-module "Xedit")
+  (parent "GObject")
+  (c-name "XeditMessage")
+  (gtype-id "XEDIT_TYPE_MESSAGE")
+)
+
+(define-object MessageBus
+  (in-module "Xedit")
+  (parent "GObject")
+  (c-name "XeditMessageBus")
+  (gtype-id "XEDIT_TYPE_MESSAGE_BUS")
+)
+
+(define-object Panel
+  (in-module "Xedit")
+  (parent "GtkVBox")
+  (c-name "XeditPanel")
+  (gtype-id "XEDIT_TYPE_PANEL")
+)
+
+(define-object __Plugin
+  (in-module "Xedit")
+  (parent "GObject")
+  (c-name "XeditPlugin")
+  (gtype-id "XEDIT_TYPE_PLUGIN")
+)
+
+(define-object Plugin
+  (in-module "Xedit")
+  (parent "XeditPlugin")
+  (c-name "XeditPluginPython")
+  (gtype-id "XEDIT_TYPE_PLUGIN_PYTHON")
+)
+
+(define-object Statusbar
+  (in-module "Xedit")
+  (parent "GtkStatusbar")
+  (c-name "XeditStatusbar")
+  (gtype-id "XEDIT_TYPE_STATUSBAR")
+)
+
+(define-object Tab
+  (in-module "Xedit")
+  (parent "GtkVBox")
+  (c-name "XeditTab")
+  (gtype-id "XEDIT_TYPE_TAB")
+)
+
+(define-object View
+  (in-module "Xedit")
+  (parent "GtkSourceView")
+  (c-name "XeditView")
+  (gtype-id "XEDIT_TYPE_VIEW")
+)
+
+(define-object Window
+  (in-module "Xedit")
+  (parent "GtkWindow")
+  (c-name "XeditWindow")
+  (gtype-id "XEDIT_TYPE_WINDOW")
+)
+
+;; Enumerations and flags ...
+
+(define-flags LockdownMask
+  (in-module "Xedit")
+  (c-name "XeditLockdownMask")
+  (gtype-id "XEDIT_TYPE_LOCKDOWN_MASK")
+  (values
+    '("command-line" "XEDIT_LOCKDOWN_COMMAND_LINE")
+    '("printing" "XEDIT_LOCKDOWN_PRINTING")
+    '("print-setup" "XEDIT_LOCKDOWN_PRINT_SETUP")
+    '("save-to-disk" "XEDIT_LOCKDOWN_SAVE_TO_DISK")
+    '("all" "XEDIT_LOCKDOWN_ALL")
+  )
+)
+
+(define-flags SearchFlags
+  (in-module "Xedit")
+  (c-name "XeditSearchFlags")
+  (gtype-id "XEDIT_TYPE_SEARCH_FLAGS")
+  (values
+    '("dont-set-flags" "XEDIT_SEARCH_DONT_SET_FLAGS")
+    '("entire-word" "XEDIT_SEARCH_ENTIRE_WORD")
+    '("case-sensitive" "XEDIT_SEARCH_CASE_SENSITIVE")
+  )
+)
+
+(define-flags DocumentSaveFlags
+  (in-module "Xedit")
+  (c-name "XeditDocumentSaveFlags")
+  (gtype-id "XEDIT_TYPE_DOCUMENT_SAVE_FLAGS")
+  (values
+    '("ignore-mtime" "XEDIT_DOCUMENT_SAVE_IGNORE_MTIME")
+    '("ignore-backup" "XEDIT_DOCUMENT_SAVE_IGNORE_BACKUP")
+    '("preserve-backup" "XEDIT_DOCUMENT_SAVE_PRESERVE_BACKUP")
+  )
+)
+
+(define-enum TabState
+  (in-module "Xedit")
+  (c-name "XeditTabState")
+  (gtype-id "XEDIT_TYPE_TAB_STATE")
+  (values
+    '("normal" "XEDIT_TAB_STATE_NORMAL")
+    '("loading" "XEDIT_TAB_STATE_LOADING")
+    '("reverting" "XEDIT_TAB_STATE_REVERTING")
+    '("saving" "XEDIT_TAB_STATE_SAVING")
+    '("printing" "XEDIT_TAB_STATE_PRINTING")
+    '("print-previewing" "XEDIT_TAB_STATE_PRINT_PREVIEWING")
+    '("showing-print-preview" "XEDIT_TAB_STATE_SHOWING_PRINT_PREVIEW")
+    '("generic-not-editable" "XEDIT_TAB_STATE_GENERIC_NOT_EDITABLE")
+    '("loading-error" "XEDIT_TAB_STATE_LOADING_ERROR")
+    '("reverting-error" "XEDIT_TAB_STATE_REVERTING_ERROR")
+    '("saving-error" "XEDIT_TAB_STATE_SAVING_ERROR")
+    '("generic-error" "XEDIT_TAB_STATE_GENERIC_ERROR")
+    '("closing" "XEDIT_TAB_STATE_CLOSING")
+  )
+)
+
+(define-flags WindowState
+  (in-module "Xedit")
+  (c-name "XeditWindowState")
+  (gtype-id "XEDIT_TYPE_WINDOW_STATE")
+  (values
+    '("normal" "XEDIT_WINDOW_STATE_NORMAL")
+    '("saving" "XEDIT_WINDOW_STATE_SAVING")
+    '("printing" "XEDIT_WINDOW_STATE_PRINTING")
+    '("loading" "XEDIT_WINDOW_STATE_LOADING")
+    '("error" "XEDIT_WINDOW_STATE_ERROR")
+    '("saving-session" "XEDIT_WINDOW_STATE_SAVING_SESSION")    
+  )
+)
+
+;; Boxed types
+(define-boxed Encoding
+  (in-module "Xedit")
+  (c-name "XeditEncoding")
+  (gtype-id "XEDIT_TYPE_ENCODING")
+  (copy-func "xedit_encoding_copy")
+  (release-func "xedit_encoding_free")
+;;  (fields
+;;    '("gint" "index")
+;;    '("gchar*" "charset")
+;;    '("gchar*" "name")
+;;  )
+)
+
+(define-boxed MessageType
+  (in-module "Xedit")
+  (c-name "XeditMessageType")
+  (gtype-id "XEDIT_TYPE_MESSAGE_TYPE")
+  (copy-func "xedit_message_type_ref")
+  (release-func "xedit_message_type_unref")
+)
+
+
+;; From ../../xedit/xedit-app.h
+
+(define-function xedit_app_get_type
+  (c-name "xedit_app_get_type")
+  (return-type "GType")
+)
+
+(define-function app_get_default
+  (c-name "xedit_app_get_default")
+  (return-type "XeditApp*")
+)
+
+; deprecated version !
+(define-function xedit_app_get_default
+  (c-name "xedit_app_get_default_deprecated")
+  (return-type "XeditApp*")
+)
+
+(define-method create_window
+  (of-object "XeditApp")
+  (c-name "xedit_app_create_window")
+  (return-type "XeditWindow*")
+  (parameters
+    '("GdkScreen*" "screen")
+  )
+)
+
+(define-method get_windows
+  (of-object "XeditApp")
+  (c-name "xedit_app_get_windows")
+  (return-type "const-GList*")
+)
+
+(define-method get_active_window
+  (of-object "XeditApp")
+  (c-name "xedit_app_get_active_window")
+  (return-type "XeditWindow*")
+)
+
+(define-method get_documents
+  (of-object "XeditApp")
+  (c-name "xedit_app_get_documents")
+  (return-type "GList*")
+)
+
+(define-method get_views
+  (of-object "XeditApp")
+  (c-name "xedit_app_get_views")
+  (return-type "GList*")
+)
+
+(define-method get_lockdown
+  (of-object "XeditApp")
+  (c-name "xedit_app_get_lockdown")
+  (return-type "XeditLockdownMask")
+)
+
+
+;; From ../../xedit/xedit-document.h
+
+(define-function document_error_quark
+  (c-name "xedit_document_error_quark")
+  (return-type "GQuark")
+)
+
+(define-function xedit_document_get_type
+  (c-name "xedit_document_get_type")
+  (return-type "GType")
+)
+
+(define-function xedit_document_new
+  (c-name "xedit_document_new")
+  (is-constructor-of "XeditDocument")
+  (return-type "XeditDocument*")
+)
+
+(define-method get_location
+  (of-object "XeditDocument")
+  (c-name "xedit_document_get_location")
+  (return-type "GFile*")
+)
+
+(define-method get_uri
+  (of-object "XeditDocument")
+  (c-name "xedit_document_get_uri")
+  (return-type "gchar*")
+)
+
+(define-method set_uri
+  (of-object "XeditDocument")
+  (c-name "xedit_document_set_uri")
+  (return-type "none")
+  (parameters
+    '("const-gchar*" "uri")
+  )
+)
+
+(define-method get_uri_for_display
+  (of-object "XeditDocument")
+  (c-name "xedit_document_get_uri_for_display")
+  (return-type "gchar*")
+)
+
+(define-method get_short_name_for_display
+  (of-object "XeditDocument")
+  (c-name "xedit_document_get_short_name_for_display")
+  (return-type "gchar*")
+)
+
+(define-method get_content_type
+  (of-object "XeditDocument")
+  (c-name "xedit_document_get_content_type")
+  (return-type "gchar*")
+)
+
+(define-method get_mime_type
+  (of-object "XeditDocument")
+  (c-name "xedit_document_get_mime_type")
+  (return-type "gchar*")
+)
+
+(define-method get_readonly
+  (of-object "XeditDocument")
+  (c-name "xedit_document_get_readonly")
+  (return-type "gboolean")
+)
+
+(define-method load
+  (of-object "XeditDocument")
+  (c-name "xedit_document_load")
+  (return-type "none")
+  (parameters
+    '("const-gchar*" "uri")
+    '("const-XeditEncoding*" "encoding")
+    '("gint" "line_pos")
+    '("gboolean" "create")
+  )
+)
+
+(define-method insert_file
+  (of-object "XeditDocument")
+  (c-name "xedit_document_insert_file")
+  (return-type "gboolean")
+  (parameters
+    '("GtkTextIter*" "iter")
+    '("const-gchar*" "uri")
+    '("const-XeditEncoding*" "encoding")
+  )
+)
+
+(define-method load_cancel
+  (of-object "XeditDocument")
+  (c-name "xedit_document_load_cancel")
+  (return-type "gboolean")
+)
+
+(define-method save
+  (of-object "XeditDocument")
+  (c-name "xedit_document_save")
+  (parameters
+    '("XeditDocumentSaveFlags" "flags")
+  )
+  (return-type "none")
+)
+
+(define-method save_as
+  (of-object "XeditDocument")
+  (c-name "xedit_document_save_as")
+  (return-type "none")
+  (parameters
+    '("const-gchar*" "uri")
+    '("const-XeditEncoding*" "encoding")
+    '("XeditDocumentSaveFlags" "flags")
+  )
+)
+
+(define-method is_untouched
+  (of-object "XeditDocument")
+  (c-name "xedit_document_is_untouched")
+  (return-type "gboolean")
+)
+
+(define-method is_untitled
+  (of-object "XeditDocument")
+  (c-name "xedit_document_is_untitled")
+  (return-type "gboolean")
+)
+
+(define-method is_local
+  (of-object "XeditDocument")
+  (c-name "xedit_document_is_local")
+  (return-type "gboolean")
+)
+
+(define-method get_deleted
+  (of-object "XeditDocument")
+  (c-name "xedit_document_get_deleted")
+  (return-type "gboolean")
+)
+
+(define-method goto_line
+  (of-object "XeditDocument")
+  (c-name "xedit_document_goto_line")
+  (return-type "gboolean")
+  (parameters
+    '("gint" "line")
+  )
+)
+
+(define-method set_search_text
+  (of-object "XeditDocument")
+  (c-name "xedit_document_set_search_text")
+  (return-type "none")
+  (parameters
+    '("const-gchar*" "text")
+    '("guint" "flags")
+  )
+)
+
+(define-method get_search_text
+  (of-object "XeditDocument")
+  (c-name "xedit_document_get_search_text")
+  (return-type "gchar*")
+  (parameters
+    '("guint*" "flags")
+  )
+)
+
+(define-method get_can_search_again
+  (of-object "XeditDocument")
+  (c-name "xedit_document_get_can_search_again")
+  (return-type "gboolean")
+)
+
+(define-method search_forward
+  (of-object "XeditDocument")
+  (c-name "xedit_document_search_forward")
+  (return-type "gboolean")
+  (parameters
+    '("const-GtkTextIter*" "start")
+    '("const-GtkTextIter*" "end")
+    '("GtkTextIter*" "match_start")
+    '("GtkTextIter*" "match_end")
+  )
+)
+
+(define-method replace_all
+  (of-object "XeditDocument")
+  (c-name "xedit_document_replace_all")
+  (return-type "gint")
+  (parameters
+    '("const-gchar*" "find")
+    '("const-gchar*" "replace")
+    '("guint" "flags")
+  )
+)
+
+(define-method search_backward
+  (of-object "XeditDocument")
+  (c-name "xedit_document_search_backward")
+  (return-type "gboolean")
+  (parameters
+    '("const-GtkTextIter*" "start")
+    '("const-GtkTextIter*" "end")
+    '("GtkTextIter*" "match_start")
+    '("GtkTextIter*" "match_end")
+  )
+)
+
+(define-method set_language
+  (of-object "XeditDocument")
+  (c-name "xedit_document_set_language")
+  (return-type "none")
+  (parameters
+    '("GtkSourceLanguage*" "lang" (null-ok))
+  )
+)
+
+(define-method get_language
+  (of-object "XeditDocument")
+  (c-name "xedit_document_get_language")
+  (return-type "GtkSourceLanguage*")
+)
+
+(define-method get_encoding
+  (of-object "XeditDocument")
+  (c-name "xedit_document_get_encoding")
+  (return-type "const-XeditEncoding*")
+)
+
+(define-method set_enable_search_highlighting
+  (of-object "XeditDocument")
+  (c-name "xedit_document_set_enable_search_highlighting")
+  (return-type "none")
+  (parameters
+    '("gboolean" "enable")
+  )
+)
+
+(define-method get_enable_search_highlighting
+  (of-object "XeditDocument")
+  (c-name "xedit_document_get_enable_search_highlighting")
+  (return-type "gboolean")
+)
+
+;; From ../../xedit/xedit-encodings.h
+
+(define-function xedit_encoding_get_type
+  (c-name "xedit_encoding_get_type")
+  (return-type "GType")
+)
+
+(define-method copy
+  (of-object "XeditEncoding")
+  (c-name "xedit_encoding_copy")
+  (return-type "XeditEncoding*")
+)
+
+(define-method free
+  (of-object "XeditEncoding")
+  (c-name "xedit_encoding_free")
+  (return-type "none")
+)
+
+(define-function encoding_get_from_charset
+  (c-name "xedit_encoding_get_from_charset")
+  (return-type "const-XeditEncoding*")
+  (parameters
+    '("const-gchar*" "charset")
+  )
+)
+
+; Deprecated version !
+(define-function xedit_encoding_get_from_charset
+  (c-name "xedit_encoding_get_from_charset_deprecated")
+  (return-type "const-XeditEncoding*")
+  (parameters
+    '("const-gchar*" "charset")
+  )
+)
+
+(define-function encoding_get_from_index
+  (c-name "xedit_encoding_get_from_index")
+  (return-type "const-XeditEncoding*")
+  (parameters
+    '("gint" "index")
+  )
+)
+
+; Deprecated version !
+(define-function xedit_encoding_get_from_index
+  (c-name "xedit_encoding_get_from_index_deprecated")
+  (return-type "const-XeditEncoding*")
+  (parameters
+    '("gint" "index")
+  )
+)
+
+(define-method to_string
+  (of-object "XeditEncoding")
+  (c-name "xedit_encoding_to_string")
+  (return-type "gchar*")
+)
+
+(define-method get_name
+  (of-object "XeditEncoding")
+  (c-name "xedit_encoding_get_name")
+  (return-type "const-gchar*")
+)
+
+(define-method get_charset
+  (of-object "XeditEncoding")
+  (c-name "xedit_encoding_get_charset")
+  (return-type "const-gchar*")
+)
+
+(define-function encoding_get_utf8
+  (c-name "xedit_encoding_get_utf8")
+  (return-type "const-XeditEncoding*")
+)
+
+; Deprecated version !
+(define-function xedit_encoding_get_utf8
+  (c-name "xedit_encoding_get_utf8_deprecated")
+  (return-type "const-XeditEncoding*")
+)
+
+(define-function encoding_get_current
+  (c-name "xedit_encoding_get_current")
+  (return-type "const-XeditEncoding*")
+)
+
+; Deprecated version !
+(define-function xedit_encoding_get_current
+  (c-name "xedit_encoding_get_current_deprecated")
+  (return-type "const-XeditEncoding*")
+)
+
+;; From ../../xedit/xedit-help.h
+
+(define-function help_display
+  (c-name "xedit_help_display")
+  (return-type "gboolean")
+  (parameters
+    '("GtkWindow*" "parent")
+    '("const-gchar*" "name")
+    '("const-gchar*" "link_id")
+  )
+)
+
+
+
+;; From ../../xedit/xedit-panel.h
+
+(define-function xedit_panel_get_type
+  (c-name "xedit_panel_get_type")
+  (return-type "GType")
+)
+
+(define-function xedit_panel_new
+  (c-name "xedit_panel_new")
+  (is-constructor-of "XeditPanel")
+  (return-type "GtkWidget*")
+)
+
+(define-method add_item
+  (of-object "XeditPanel")
+  (c-name "xedit_panel_add_item")
+  (return-type "none")
+  (parameters
+    '("GtkWidget*" "item")
+    '("const-gchar*" "name")
+    '("GtkWidget*" "image")
+  )
+)
+
+(define-method add_item_with_stock_icon
+  (of-object "XeditPanel")
+  (c-name "xedit_panel_add_item_with_stock_icon")
+  (return-type "none")
+  (parameters
+    '("GtkWidget*" "item")
+    '("const-gchar*" "name")
+    '("const-gchar*" "stock_id")
+  )
+)
+
+(define-method remove_item
+  (of-object "XeditPanel")
+  (c-name "xedit_panel_remove_item")
+  (return-type "gboolean")
+  (parameters
+    '("GtkWidget*" "item")
+  )
+)
+
+(define-method activate_item
+  (of-object "XeditPanel")
+  (c-name "xedit_panel_activate_item")
+  (return-type "gboolean")
+  (parameters
+    '("GtkWidget*" "item")
+  )
+)
+
+(define-method item_is_active
+  (of-object "XeditPanel")
+  (c-name "xedit_panel_item_is_active")
+  (return-type "gboolean")
+  (parameters
+    '("GtkWidget*" "item")
+  )
+)
+
+(define-method get_orientation
+  (of-object "XeditPanel")
+  (c-name "xedit_panel_get_orientation")
+  (return-type "GtkOrientation")
+)
+
+(define-method get_n_items
+  (of-object "XeditPanel")
+  (c-name "xedit_panel_get_n_items")
+  (return-type "gint")
+)
+
+
+;; From ../../xedit/xedit-plugin.h
+
+(define-function xedit_plugin_get_type
+  (c-name "xedit_plugin_get_type")
+  (return-type "GType")
+)
+
+(define-method get_install_dir
+  (of-object "XeditPlugin")
+  (c-name "xedit_plugin_get_install_dir")
+  (return-type "gchar*")
+)
+
+(define-method get_data_dir
+  (of-object "XeditPlugin")
+  (c-name "xedit_plugin_get_data_dir")
+  (return-type "gchar*")
+)
+
+(define-method activate
+  (of-object "XeditPlugin")
+  (c-name "xedit_plugin_activate")
+  (return-type "none")
+  (parameters
+    '("XeditWindow*" "window")
+  )
+)
+
+(define-method deactivate
+  (of-object "XeditPlugin")
+  (c-name "xedit_plugin_deactivate")
+  (return-type "none")
+  (parameters
+    '("XeditWindow*" "window")
+  )
+)
+
+(define-method update_ui
+  (of-object "XeditPlugin")
+  (c-name "xedit_plugin_update_ui")
+  (return-type "none")
+  (parameters
+    '("XeditWindow*" "window")
+  )
+)
+
+(define-method is_configurable
+  (of-object "XeditPlugin")
+  (c-name "xedit_plugin_is_configurable")
+  (return-type "gboolean")
+)
+
+(define-method create_configure_dialog
+  (of-object "XeditPlugin")
+  (c-name "xedit_plugin_create_configure_dialog")
+  (return-type "GtkWidget*")
+)
+
+;; From ../xedit/xedit-plugin-python.h
+
+(define-function xedit_plugin_python_get_type
+  (c-name "xedit_plugin_python_get_type")
+  (return-type "GType")
+)
+
+(define-function xedit_plugin_python_new
+  (c-name "xedit_plugin_python_new")
+  (is-constructor-of "XeditPluginPython")
+  (return-type "XeditPluginPython*")
+)
+
+;; From ../../xedit/xedit-status-bar.h
+
+(define-method flash_message
+  (of-object "XeditStatusbar")
+  (c-name "xedit_statusbar_flash_message")
+  (return-type "none")
+  (parameters
+    '("int" "context_id")
+    '("const-gchar*" "message")
+  )
+ )
+
+;; From ../../xedit/xedit-tab.h
+
+(define-function xedit_tab_get_type
+  (c-name "xedit_tab_get_type")
+  (return-type "GType")
+)
+
+(define-method get_view
+  (of-object "XeditTab")
+  (c-name "xedit_tab_get_view")
+  (return-type "XeditView*")
+)
+
+(define-method get_document
+  (of-object "XeditTab")
+  (c-name "xedit_tab_get_document")
+  (return-type "XeditDocument*")
+)
+
+(define-function tab_get_from_document
+  (c-name "xedit_tab_get_from_document")
+  (return-type "XeditTab*")
+  (parameters
+    '("XeditDocument*" "doc")
+  )
+)
+
+; Deprecated version !
+(define-function xedit_tab_get_from_document
+  (c-name "xedit_tab_get_from_document_deprecated")
+  (return-type "XeditTab*")
+  (parameters
+    '("XeditDocument*" "doc")
+  )
+)
+
+(define-method get_state
+  (of-object "XeditTab")
+  (c-name "xedit_tab_get_state")
+  (return-type "XeditTabState")
+)
+
+(define-method set_auto_save_enabled
+  (of-object "XeditTab")
+  (c-name "xedit_tab_set_auto_save_enabled")
+  (return-type "none")
+  (parameters
+    '("gboolean" "enable")
+  )
+)
+
+(define-method get_auto_save_enabled
+  (of-object "XeditTab")
+  (c-name "xedit_tab_get_auto_save_enabled")
+  (return-type "gboolean")
+)
+
+(define-method set_auto_save_interval
+  (of-object "XeditTab")
+  (c-name "xedit_tab_set_auto_save_interval")
+  (return-type "none")
+  (parameters
+    '("gint" "interval")
+  )
+)
+
+(define-method get_auto_save_interval
+  (of-object "XeditTab")
+  (c-name "xedit_tab_get_auto_save_interval")
+  (return-type "gint")
+)
+
+;; From ../../xedit/xedit-view.h
+
+(define-function xedit_view_get_type
+  (c-name "xedit_view_get_type")
+  (return-type "GtkType")
+)
+
+(define-function xedit_view_new
+  (c-name "xedit_view_new")
+  (is-constructor-of "XeditView")
+  (return-type "GtkWidget*")
+  (parameters
+    '("XeditDocument*" "doc")
+  )
+)
+
+(define-method cut_clipboard
+  (of-object "XeditView")
+  (c-name "xedit_view_cut_clipboard")
+  (return-type "none")
+)
+
+(define-method copy_clipboard
+  (of-object "XeditView")
+  (c-name "xedit_view_copy_clipboard")
+  (return-type "none")
+)
+
+(define-method paste_clipboard
+  (of-object "XeditView")
+  (c-name "xedit_view_paste_clipboard")
+  (return-type "none")
+)
+
+(define-method delete_selection
+  (of-object "XeditView")
+  (c-name "xedit_view_delete_selection")
+  (return-type "none")
+)
+
+(define-method select_all
+  (of-object "XeditView")
+  (c-name "xedit_view_select_all")
+  (return-type "none")
+)
+
+(define-method scroll_to_cursor
+  (of-object "XeditView")
+  (c-name "xedit_view_scroll_to_cursor")
+  (return-type "none")
+)
+
+(define-method set_font
+  (of-object "XeditView")
+  (c-name "xedit_view_set_font")
+  (return-type "none")
+  (parameters
+    '("gboolean" "def")
+    '("const-gchar*" "font_name")
+  )
+)
+
+
+
+;; From ../../xedit/xedit-window.h
+
+(define-function xedit_window_get_type
+  (c-name "xedit_window_get_type")
+  (return-type "GType")
+)
+
+(define-method create_tab
+  (of-object "XeditWindow")
+  (c-name "xedit_window_create_tab")
+  (return-type "XeditTab*")
+  (parameters
+    '("gboolean" "jump_to")
+  )
+)
+
+(define-method create_tab_from_uri
+  (of-object "XeditWindow")
+  (c-name "xedit_window_create_tab_from_uri")
+  (return-type "XeditTab*")
+  (parameters
+    '("const-gchar*" "uri")
+    '("const-XeditEncoding*" "encoding" (null-ok))
+    '("gint" "line_pos")
+    '("gboolean" "create")
+    '("gboolean" "jump_to")
+  )
+)
+
+(define-method close_tab
+  (of-object "XeditWindow")
+  (c-name "xedit_window_close_tab")
+  (return-type "none")
+  (parameters
+    '("XeditTab*" "tab")
+  )
+)
+
+(define-method close_tabs
+  (of-object "XeditWindow")
+  (c-name "xedit_window_close_tabs")
+  (return-type "none")
+  (parameters
+    '("const-GList*" "tabs")
+  )
+)
+
+(define-method close_all_tabs
+  (of-object "XeditWindow")
+  (c-name "xedit_window_close_all_tabs")
+  (return-type "none")
+)
+
+(define-method get_active_tab
+  (of-object "XeditWindow")
+  (c-name "xedit_window_get_active_tab")
+  (return-type "XeditTab*")
+)
+
+(define-method set_active_tab
+  (of-object "XeditWindow")
+  (c-name "xedit_window_set_active_tab")
+  (return-type "none")
+  (parameters
+    '("XeditTab*" "tab")
+  )
+)
+
+(define-method get_active_view
+  (of-object "XeditWindow")
+  (c-name "xedit_window_get_active_view")
+  (return-type "XeditView*")
+)
+
+(define-method get_active_document
+  (of-object "XeditWindow")
+  (c-name "xedit_window_get_active_document")
+  (return-type "XeditDocument*")
+)
+
+(define-method get_documents
+  (of-object "XeditWindow")
+  (c-name "xedit_window_get_documents")
+  (return-type "GList*")
+)
+
+(define-method get_unsaved_documents
+  (of-object "XeditWindow")
+  (c-name "xedit_window_get_unsaved_documents")
+  (return-type "GList*")
+)
+
+(define-method get_views
+  (of-object "XeditWindow")
+  (c-name "xedit_window_get_views")
+  (return-type "GList*")
+)
+
+(define-method get_group
+  (of-object "XeditWindow")
+  (c-name "xedit_window_get_group")
+  (return-type "GtkWindowGroup*")
+)
+
+(define-method get_side_panel
+  (of-object "XeditWindow")
+  (c-name "xedit_window_get_side_panel")
+  (return-type "XeditPanel*")
+)
+
+(define-method get_bottom_panel
+  (of-object "XeditWindow")
+  (c-name "xedit_window_get_bottom_panel")
+  (return-type "XeditPanel*")
+)
+
+(define-method get_statusbar
+  (of-object "XeditWindow")
+  (c-name "xedit_window_get_statusbar")
+  (return-type "GtkWidget*")
+)
+
+(define-method get_ui_manager
+  (of-object "XeditWindow")
+  (c-name "xedit_window_get_ui_manager")
+  (return-type "GtkUIManager*")
+)
+
+(define-method get_state
+  (of-object "XeditWindow")
+  (c-name "xedit_window_get_state")
+  (return-type "XeditWindowState")
+)
+
+(define-method get_message_bus
+  (of-object "XeditWindow")
+  (c-name "xedit_window_get_message_bus")
+  (return-type "XeditMessageBus*")
+)
+
+(define-method get_tab_from_uri
+  (of-object "XeditWindow")
+  (c-name "xedit_window_get_tab_from_uri")
+  (return-type "XeditTab*")
+  (parameters
+    '("const-gchar*" "uri")
+  )
+)
+
+;; From xedit-language-manager.h
+
+(define-function get_language_manager
+  (c-name "xedit_get_language_manager")
+  (return-type "GtkSourceLanguageManager*")
+)
+
+(define-function language_manager_list_languages_sorted
+  (c-name "xedit_language_manager_list_languages_sorted")
+  (return-type "GSList*")
+  (parameters
+    '("GtkSourceLanguageManager*" "lm")
+    '("gboolean" "include_hidden")
+  )
+)
+
+
+;; From xedit-message-bus.h
+
+(define-function xedit_message_bus_get_type
+  (c-name "xedit_message_bus_get_type")
+  (return-type "GType")
+)
+
+(define-function message_bus_get_default
+  (c-name "xedit_message_bus_get_default")
+  (return-type "XeditMessageBus*")
+)
+
+(define-function xedit_message_bus_new
+  (c-name "xedit_message_bus_new")
+  (is-constructor-of "XeditMessageBus")
+  (return-type "XeditMessageBus*")
+)
+
+(define-method lookup
+  (of-object "XeditMessageBus")
+  (c-name "xedit_message_bus_lookup")
+  (return-type "XeditMessageType*")
+  (parameters
+    '("const-gchar*" "object_path")
+    '("const-gchar*" "method")
+  )
+)
+
+(define-method register
+  (of-object "XeditMessageBus")
+  (c-name "xedit_message_bus_register")
+  (return-type "XeditMessageType*")
+  (parameters
+    '("const-gchar*" "object_path")
+    '("const-gchar*" "method")
+    '("guint" "num_optional")
+  )
+  (varargs #t)
+)
+
+(define-method unregister
+  (of-object "XeditMessageBus")
+  (c-name "xedit_message_bus_unregister")
+  (return-type "none")
+  (parameters
+    '("XeditMessageType*" "message_type")
+  )
+)
+
+(define-method unregister_all
+  (of-object "XeditMessageBus")
+  (c-name "xedit_message_bus_unregister_all")
+  (return-type "none")
+  (parameters
+    '("const-gchar*" "object_path")
+  )
+)
+
+(define-method is_registered
+  (of-object "XeditMessageBus")
+  (c-name "xedit_message_bus_is_registered")
+  (return-type "gboolean")
+  (parameters
+    '("const-gchar*" "object_path")
+    '("const-gchar*" "method")
+  )
+)
+
+(define-method connect
+  (of-object "XeditMessageBus")
+  (c-name "xedit_message_bus_connect")
+  (return-type "guint")
+  (parameters
+    '("const-gchar*" "object_path")
+    '("const-gchar*" "method")
+    '("XeditMessageCallback" "callback")
+    '("gpointer" "userdata")
+    '("GDestroyNotify" "destroy_data")
+  )
+)
+
+(define-method disconnect
+  (of-object "XeditMessageBus")
+  (c-name "xedit_message_bus_disconnect")
+  (return-type "none")
+  (parameters
+    '("guint" "id")
+  )
+)
+
+(define-method disconnect_by_func
+  (of-object "XeditMessageBus")
+  (c-name "xedit_message_bus_disconnect_by_func")
+  (return-type "none")
+  (parameters
+    '("const-gchar*" "object_path")
+    '("const-gchar*" "method")
+    '("XeditMessageCallback" "callback")
+    '("gpointer" "userdata")
+  )
+)
+
+(define-method block
+  (of-object "XeditMessageBus")
+  (c-name "xedit_message_bus_block")
+  (return-type "none")
+  (parameters
+    '("guint" "id")
+  )
+)
+
+(define-method block_by_func
+  (of-object "XeditMessageBus")
+  (c-name "xedit_message_bus_block_by_func")
+  (return-type "none")
+  (parameters
+    '("const-gchar*" "object_path")
+    '("const-gchar*" "method")
+    '("XeditMessageCallback" "callback")
+    '("gpointer" "userdata")
+  )
+)
+
+(define-method unblock
+  (of-object "XeditMessageBus")
+  (c-name "xedit_message_bus_unblock")
+  (return-type "none")
+  (parameters
+    '("guint" "id")
+  )
+)
+
+(define-method unblock_by_func
+  (of-object "XeditMessageBus")
+  (c-name "xedit_message_bus_unblock_by_func")
+  (return-type "none")
+  (parameters
+    '("const-gchar*" "object_path")
+    '("const-gchar*" "method")
+    '("XeditMessageCallback" "callback")
+    '("gpointer" "userdata")
+  )
+)
+
+(define-method send_message
+  (of-object "XeditMessageBus")
+  (c-name "xedit_message_bus_send_message")
+  (return-type "none")
+  (parameters
+    '("XeditMessage*" "message")
+  )
+)
+
+(define-method send_message_sync
+  (of-object "XeditMessageBus")
+  (c-name "xedit_message_bus_send_message_sync")
+  (return-type "none")
+  (parameters
+    '("XeditMessage*" "message")
+  )
+)
+
+(define-method send
+  (of-object "XeditMessageBus")
+  (c-name "xedit_message_bus_send")
+  (return-type "none")
+  (parameters
+    '("const-gchar*" "object_path")
+    '("const-gchar*" "method")
+  )
+  (varargs #t)
+)
+
+(define-method send_sync
+  (of-object "XeditMessageBus")
+  (c-name "xedit_message_bus_send_sync")
+  (return-type "XeditMessage*")
+  (parameters
+    '("const-gchar*" "object_path")
+    '("const-gchar*" "method")
+  )
+  (varargs #t)
+)
+
+
+;; From xedit-message-type.h
+
+(define-function xedit_message_type_get_type
+  (c-name "xedit_message_type_get_type")
+  (return-type "GType")
+)
+
+(define-function xedit_message_type_is_supported
+  (c-name "xedit_message_type_is_supported")
+  (return-type "gboolean")
+  (parameters
+    '("GType" "type")
+  )
+)
+
+(define-function xedit_message_type_identifier
+  (c-name "xedit_message_type_identifier")
+  (return-type "gchar*")
+  (parameters
+    '("const-gchar*" "object_path")
+    '("const-gchar*" "method")
+  )
+)
+
+(define-function xedit_message_type_new
+  (c-name "xedit_message_type_new")
+  (is-constructor-of "XeditMessageType")
+  (return-type "XeditMessageType*")
+  (parameters
+    '("const-gchar*" "object_path")
+    '("const-gchar*" "method")
+    '("guint" "num_optional")
+  )
+  (varargs #t)
+)
+
+(define-function xedit_message_type_new_valist
+  (c-name "xedit_message_type_new_valist")
+  (return-type "XeditMessageType*")
+  (parameters
+    '("const-gchar*" "object_path")
+    '("const-gchar*" "method")
+    '("guint" "num_optional")
+    '("va_list" "va_args")
+  )
+)
+
+(define-method ref
+  (of-object "XeditMessageType")
+  (c-name "xedit_message_type_ref")
+  (return-type "XeditMessageType*")
+)
+
+(define-method unref
+  (of-object "XeditMessageType")
+  (c-name "xedit_message_type_unref")
+  (return-type "none")
+)
+
+(define-method instantiate_valist
+  (of-object "XeditMessageType")
+  (c-name "xedit_message_type_instantiate_valist")
+  (return-type "XeditMessage*")
+  (parameters
+    '("va_list" "va_args")
+  )
+)
+
+(define-method instantiate
+  (of-object "XeditMessageType")
+  (c-name "xedit_message_type_instantiate")
+  (return-type "XeditMessage*")
+  (parameters
+  )
+  (varargs #t)
+)
+
+(define-method get_object_path
+  (of-object "XeditMessageType")
+  (c-name "xedit_message_type_get_object_path")
+  (return-type "const-gchar*")
+)
+
+(define-method get_method
+  (of-object "XeditMessageType")
+  (c-name "xedit_message_type_get_method")
+  (return-type "const-gchar*")
+)
+
+(define-method lookup
+  (of-object "XeditMessageType")
+  (c-name "xedit_message_type_lookup")
+  (return-type "GType")
+  (parameters
+    '("const-gchar*" "key")
+  )
+)
+
+(define-method foreach
+  (of-object "XeditMessageType")
+  (c-name "xedit_message_type_foreach")
+  (return-type "none")
+  (parameters
+    '("XeditMessageTypeForeach" "func")
+    '("gpointer" "user_data")
+  )
+)
+
+
+;; From xedit-message.h
+
+(define-function xedit_message_get_type
+  (c-name "xedit_message_get_type")
+  (return-type "GType")
+)
+
+(define-method get
+  (of-object "XeditMessage")
+  (c-name "xedit_message_get")
+  (return-type "none")
+  (parameters
+  )
+  (varargs #t)
+)
+
+(define-method get_valist
+  (of-object "XeditMessage")
+  (c-name "xedit_message_get_valist")
+  (return-type "none")
+  (parameters
+    '("va_list" "var_args")
+  )
+)
+
+(define-method get_value
+  (of-object "XeditMessage")
+  (c-name "xedit_message_get_value")
+  (return-type "none")
+  (parameters
+    '("const-gchar*" "key")
+    '("GValue*" "value")
+  )
+)
+
+(define-method set
+  (of-object "XeditMessage")
+  (c-name "xedit_message_set")
+  (return-type "none")
+  (parameters
+  )
+  (varargs #t)
+)
+
+(define-method set_valist
+  (of-object "XeditMessage")
+  (c-name "xedit_message_set_valist")
+  (return-type "none")
+  (parameters
+    '("va_list" "var_args")
+  )
+)
+
+(define-method set_value
+  (of-object "XeditMessage")
+  (c-name "xedit_message_set_value")
+  (return-type "none")
+  (parameters
+    '("const-gchar*" "key")
+    '("GValue*" "value")
+  )
+)
+
+(define-method set_valuesv
+  (of-object "XeditMessage")
+  (c-name "xedit_message_set_valuesv")
+  (return-type "none")
+  (parameters
+    '("const-gchar**" "keys")
+    '("GValue*" "values")
+    '("gint" "n_values")
+  )
+)
+
+(define-method get_object_path
+  (of-object "XeditMessage")
+  (c-name "xedit_message_get_object_path")
+  (return-type "const-gchar*")
+)
+
+(define-method get_method
+  (of-object "XeditMessage")
+  (c-name "xedit_message_get_method")
+  (return-type "const-gchar*")
+)
+
+(define-method has_key
+  (of-object "XeditMessage")
+  (c-name "xedit_message_has_key")
+  (return-type "gboolean")
+  (parameters
+    '("const-gchar*" "key")
+  )
+)
+
+(define-method get_key_type
+  (of-object "XeditMessage")
+  (c-name "xedit_message_get_key_type")
+  (return-type "GType")
+  (parameters
+    '("const-gchar*" "key")
+  )
+)
+
+(define-method validate
+  (of-object "XeditMessage")
+  (c-name "xedit_message_validate")
+  (return-type "gboolean")
+)
+
+
+;; From ../../xedit/xedit-debug.h
+
+(define-function debug
+  (c-name "xedit_debug")
+  (parameters
+    '("const-gchar*" "message")
+  )
+  (return-type "none")
+)
+

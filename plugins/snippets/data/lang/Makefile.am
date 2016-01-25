@@ -2,7 +2,7 @@
 lang_DATA = \
 	snippets.lang
 
-langdir = $(PLUMA_PLUGINS_DATA_DIR)/snippets/lang
+langdir = $(XEDIT_PLUGINS_DATA_DIR)/snippets/lang
 
 EXTRA_DIST = $(lang_DATA)
 

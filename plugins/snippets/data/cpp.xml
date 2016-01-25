@@ -105,7 +105,7 @@ $0]]></text>
   </snippet>
   <snippet id="gpl">
     <text><![CDATA[/*
- * ${1:[$PLUMA_CURRENT_DOCUMENT_NAME,<filename>]}
+ * ${1:[$XEDIT_CURRENT_DOCUMENT_NAME,<filename>]}
  * This file is part of ${2:<program name>}
  *
  * Copyright (C) $<3: import datetime; return str(datetime.date.today().year)> - $<4:
@@ -137,7 +137,7 @@ except KeyError:
   </snippet>
   <snippet id="lgpl">
     <text><![CDATA[/*
- * ${1:[$PLUMA_CURRENT_DOCUMENT_NAME,<filename>]}
+ * ${1:[$XEDIT_CURRENT_DOCUMENT_NAME,<filename>]}
  * This file is part of ${2:<library name>} 
  *
  * Copyright (C) $<3: import datetime; return str(datetime.date.today().year)> - $<4:

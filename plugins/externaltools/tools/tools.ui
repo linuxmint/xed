@@ -122,7 +122,7 @@
       </row>
     </data>
   </object>
-  <object class="PlumaDocument" id="commands_buffer">
+  <object class="XeditDocument" id="commands_buffer">
   	<property name="highlight-matching-brackets">True</property>
   </object>
   <object class="GtkDialog" id="tool-manager-dialog">
@@ -516,7 +516,7 @@
                             <property name="vscrollbar_policy">automatic</property>
                             <property name="shadow_type">in</property>
                             <child>
-		                      <object class="PlumaView" id="commands">
+		                      <object class="XeditView" id="commands">
 		                        <property name="buffer">commands_buffer</property>
 		                        <property name="visible">True</property>
 		                        <property name="auto-indent">True</property>

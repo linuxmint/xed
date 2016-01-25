@@ -1,0 +1,12 @@
+prefix=@prefix@
+exec_prefix=@exec_prefix@
+libdir=@libdir@
+includedir=@includedir@
+pluginsdir=@libdir@/xedit/plugins
+
+Name: xedit
+Description: xedit
+Requires: gtksourceview-@GTK_API_VERSION@
+Version: @VERSION@
+Cflags: -I${includedir}/xedit
+Libs: -L${libdir}

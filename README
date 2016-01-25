@@ -1,24 +1,24 @@
 General Information
 ===================
 
-pluma is a small and lightweight UTF-8 text editor for the MATE
+xedit is a small and lightweight UTF-8 text editor for the MATE
 environment. Based on gedit, the text editor for the GNOME2 environment.
 
-pluma is part of MATE and uses the latest GTK+ and MATE libraries.
+xedit is part of MATE and uses the latest GTK+ and MATE libraries.
 Complete MATE integration is featured, with support for Drag and Drop (DnD)
 from Caja (the MATE file manager), the use of the MATE help system,
 the MATE Virtual File System and the MATE print framework.
 
-pluma uses a Multiple Document Interface (MDI), which lets you edit more than
+xedit uses a Multiple Document Interface (MDI), which lets you edit more than
 one document at the same time.
 
-pluma supports most standard editing features, plus several not found in your
+xedit supports most standard editing features, plus several not found in your
 average text editor (plugins being the most notable of these).
 
-pluma plugins may also be written in the python scripting language: to enable
+xedit plugins may also be written in the python scripting language: to enable
 python support you need the pygtk and mate-python-desktop bindings.
 
-Although new features are always under development, currently pluma has:
+Although new features are always under development, currently xedit has:
 
     * Complete support for UTF-8 text
     * Syntax highlighting
@@ -30,7 +30,7 @@ Although new features are always under development, currently pluma has:
     * Configurable Plugin system, with optional python support
 
 
-Some of the plugins, packaged and installed with pluma include, among others:
+Some of the plugins, packaged and installed with xedit include, among others:
 
     * Word count
     * Spell checker
@@ -45,7 +45,7 @@ Some of the plugins, packaged and installed with pluma include, among others:
 Other external plugins are also available.
 
 
-pluma is released under the GNU General Public License (GPL) version 2, see
+xedit is released under the GNU General Public License (GPL) version 2, see
 the file 'COPYING' for more information.
 
 
@@ -53,14 +53,14 @@ The official web site is:
 
     http://www.mate-desktop.org/
 
-You can download the latest pluma tarball from:
+You can download the latest xedit tarball from:
 
     https://pub.mate-desktop.org/releases/
 
 Installation
 ============
 
-pluma requires GTK+-2.16.x, GtkSourceView 2.4.x and MateConf libraries.
+xedit requires GTK+-2.16.x, GtkSourceView 2.4.x and MateConf libraries.
 PyGobject 2.12.x, PyGtk 2.12.x and PyGtkSourceView 2.4.x are required to
 enable python plugins support.
 
@@ -69,14 +69,14 @@ Simple install procedure:
   % gzip -cd mate-text-editor.tar.gz | tar xvf - 	# unpack the sources
   % cd mate-text-editor				# change to the toplevel directory
   % ./autogen.sh				# run the `configure' script
-  % make					# build pluma
+  % make					# build xedit
   [ Become root if necessary ]
-  % make install				# install pluma
+  % make install				# install xedit
 
 
 Running Tests
 ==================
-Pluma has several test that can be run after compilation. Run them by issueing "make check". However there are a couple of requirements that need to be satified before they will pass.
+Xedit has several test that can be run after compilation. Run them by issueing "make check". However there are a couple of requirements that need to be satified before they will pass.
 
 * You need the gsettings schemas installed for some tests to be able to run.
 * You need to mount sftp://localhost/ with gvfs-mount for one test to pass.
@@ -87,7 +87,7 @@ How to report bugs
 ==================
 
 Bugs should be reported to the MATE bug tracking system.
-(https://github.com/mate-desktop/pluma/issues). You will need to create an
+(https://github.com/mate-desktop/xedit/issues). You will need to create an
 account for yourself.
 
 You can also report bugs using the MATE program bug-buddy.
@@ -117,7 +117,7 @@ In the bug report please include:
 Patches
 =======
 
-Patches should also be submitted to github.com/mate-desktop/pluma. If the patch
+Patches should also be submitted to github.com/mate-desktop/xedit. If the patch
 fixes an existing bug, add the patch as an attachment to that bug
 report.
 
@@ -126,10 +126,10 @@ the patch to that bug report.
 
 Patches should be in unified diff form. (The -u option to GNU diff.)
 
-If you are interested in helping us to develop pluma, please see the
-file 'AUTHOR' for contact information and/or send a message to the pluma
+If you are interested in helping us to develop xedit, please see the
+file 'AUTHOR' for contact information and/or send a message to the xedit
 mailing list. See also the file 'HACKING' for more detailed information.
 
 
-  The pluma team.
+  The xedit team.
 

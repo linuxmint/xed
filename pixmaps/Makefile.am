@@ -1,8 +1,8 @@
-icondir = $(datadir)/pluma/icons
-icon_DATA = pluma-plugin.png
+icondir = $(datadir)/xedit/icons
+icon_DATA = xedit-plugin.png
 
 EXTRA_DIST = \
 	$(icon_DATA) \
-	pluma.ico
+	xedit.ico
 
 -include $(top_srcdir)/git.mk

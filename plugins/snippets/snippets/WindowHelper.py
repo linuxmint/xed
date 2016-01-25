@@ -1,4 +1,4 @@
-#    Pluma snippets plugin
+#    Xedit snippets plugin
 #    Copyright (C) 2005-2006  Jesse van den Kieboom <jesse@icecrew.nl>
 #
 #    This program is free software; you can redistribute it and/or modify
@@ -21,7 +21,7 @@ import gettext
 
 import gtk
 from gtk import gdk
-import pluma
+import xedit
 
 from Document import Document
 from Library import Library
@@ -46,7 +46,7 @@ class WindowHelper:
                 
                 # Add controllers to all the current views
                 for view in self.window.get_views():
-                        if isinstance(view, pluma.View) and not self.has_controller(view):
+                        if isinstance(view, xedit.View) and not self.has_controller(view):
                                 view._snippet_controller = Document(self, view)
                 
                 self.update()
@@ -61,7 +61,7 @@ class WindowHelper:
 
                 # Iterate over all the tabs and remove every controller
                 for view in self.window.get_views():
-                        if isinstance(view, pluma.View) and self.has_controller(view):
+                        if isinstance(view, xedit.View) and self.has_controller(view):
                                 view._snippet_controller.stop()
                                 view._snippet_controller = None
                 
@@ -72,8 +72,8 @@ class WindowHelper:
                 bus = self.window.get_message_bus()
                 
                 self.messages = {
-                        'activate': bus.register('/plugins/snippets', 'activate', ('view', 'iter'), trigger=str, view=pluma.View, iter=gtk.TextIter),
-                        'parse-and-activate': bus.register('/plugins/snippets', 'parse-and-activate', ('view', 'iter'), snippet=str, view=pluma.View, iter=gtk.TextIter)
+                        'activate': bus.register('/plugins/snippets', 'activate', ('view', 'iter'), trigger=str, view=xedit.View, iter=gtk.TextIter),
+                        'parse-and-activate': bus.register('/plugins/snippets', 'parse-and-activate', ('view', 'iter'), snippet=str, view=xedit.View, iter=gtk.TextIter)
                 }
                 
                 bus.connect('/plugins/snippets', 'activate', self.on_message_activate)
@@ -124,8 +124,8 @@ class WindowHelper:
         def insert_menu(self):
                 manager = self.window.get_ui_manager()
 
-                self.action_group = gtk.ActionGroup("PlumaSnippetPluginActions")
-                self.action_group.set_translation_domain('pluma')
+                self.action_group = gtk.ActionGroup("XeditSnippetPluginActions")
+                self.action_group.set_translation_domain('xedit')
                 self.action_group.add_actions([('ManageSnippets', None,
                                 _('Manage _Snippets...'), \
                                 None, _('Manage snippets'), \
@@ -192,10 +192,10 @@ class WindowHelper:
         # Callbacks
         
         def on_tab_added(self, window, tab):
-                # Create a new controller for this tab if it has a standard pluma view
+                # Create a new controller for this tab if it has a standard xedit view
                 view = tab.get_view()
                 
-                if isinstance(view, pluma.View) and not self.has_controller(view):
+                if isinstance(view, xedit.View) and not self.has_controller(view):
                         view._snippet_controller = Document(self, view)
 
                 self.update()

@@ -1,4 +1,4 @@
-EXTRA_DIST = pluma-tool-merge.pl
+EXTRA_DIST = xedit-tool-merge.pl
 
 
 -include $(top_srcdir)/git.mk

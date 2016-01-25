@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-#    Pluma External Tools plugin
+#    Xedit External Tools plugin
 #    Copyright (C) 2006  Steve Frécinaux <code@istique.net>
 #
 #    This program is free software; you can redistribute it and/or modify
@@ -41,19 +41,19 @@ class ToolLibrary(Singleton):
 
         if platform.platform() != 'Windows':
             for d in self.get_xdg_data_dirs():
-                self.locations.append(os.path.join(d, 'pluma', 'plugins', 'externaltools', 'tools'))
+                self.locations.append(os.path.join(d, 'xedit', 'plugins', 'externaltools', 'tools'))
 
         self.locations.append(datadir)
 
         # self.locations[0] is where we save the custom scripts
         if platform.platform() == 'Windows':
-            toolsdir = os.path.expanduser('~/pluma/tools')
+            toolsdir = os.path.expanduser('~/xedit/tools')
         else:
             userdir = os.getenv('MATE22_USER_DIR')
             if userdir:
-                toolsdir = os.path.join(userdir, 'pluma/tools')
+                toolsdir = os.path.join(userdir, 'xedit/tools')
             else:
-                toolsdir = os.path.expanduser('~/.config/pluma/tools')
+                toolsdir = os.path.expanduser('~/.config/xedit/tools')
 
         self.locations.insert(0, toolsdir);
 
@@ -80,9 +80,9 @@ class ToolLibrary(Singleton):
         import xml.etree.ElementTree as et
         userdir = os.getenv('MATE22_USER_DIR')
         if userdir:
-            filename = os.path.join(userdir, 'pluma/pluma-tools.xml')
+            filename = os.path.join(userdir, 'xedit/xedit-tools.xml')
         else:
-            filename = os.path.expanduser('~/.config/pluma/pluma-tools.xml')
+            filename = os.path.expanduser('~/.config/xedit/xedit-tools.xml')
 
         if not os.path.isfile(filename):
             return
@@ -250,7 +250,7 @@ class Tool(object):
 
         for line in fp:
             if not in_block:
-                in_block = line.startswith('# [Pluma Tool]')
+                in_block = line.startswith('# [Xedit Tool]')
                 continue
             if line.startswith('##') or line.startswith('# #'): continue
             if not line.startswith('# '): break
@@ -389,7 +389,7 @@ class Tool(object):
 
         # before entering the data block
         for line in fp:
-            if line.startswith('# [Pluma Tool]'):
+            if line.startswith('# [Xedit Tool]'):
                 break
             lines.append(line)
         # in the block:
@@ -407,7 +407,7 @@ class Tool(object):
         return lines
 
     def _dump_properties(self):
-        lines = ['# [Pluma Tool]']
+        lines = ['# [Xedit Tool]']
         for item in self._properties.iteritems():
             if item[0] in self._transform:
                 lines.append('# %s=%s' % (item[0], self._transform[item[0]][1](item[1])))

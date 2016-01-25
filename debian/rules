@@ -7,8 +7,8 @@ DHFLAGS=--parallel
 
 override_dh_install:
 	rm -f debian/tmp/usr/share/MateConf/gsettings/*.convert
-	rm -rfv debian/tmp/usr/lib/*/pluma/plugin-loaders/*.la
-	rm -rfv debian/tmp/usr/lib/*/pluma/plugins/*.la
+	rm -rfv debian/tmp/usr/lib/*/xedit/plugin-loaders/*.la
+	rm -rfv debian/tmp/usr/lib/*/xedit/plugins/*.la
 	dh_install --fail-missing
 
 override_dh_auto_configure:
@@ -28,7 +28,7 @@ override_dh_auto_test:
 	DEB_BUILD_OPTIONS=nocheck dh_auto_test
 
 override_dh_strip:
-	dh_strip --dbg-package=pluma-dbg
+	dh_strip --dbg-package=xedit-dbg
 
 get-orig-source:
 	uscan --noconf --force-download --rename --download-current-version --destdir=..

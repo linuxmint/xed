@@ -1,4 +1,4 @@
-#    Pluma snippets plugin
+#    Xedit snippets plugin
 #    Copyright (C) 2005-2006  Jesse van den Kieboom <jesse@icecrew.nl>
 #
 #    This program is free software; you can redistribute it and/or modify
@@ -62,7 +62,7 @@ def insert_with_indent(view, piter, text, indentfirst = True, context = None):
         text = spaces_instead_of_tabs(view, text)
         lines = text.split('\n')
 
-        view.get_buffer().set_data('PlumaSnippetsPluginContext', context)
+        view.get_buffer().set_data('XeditSnippetsPluginContext', context)
 
         if len(lines) == 1:
                 view.get_buffer().insert(piter, text)
@@ -79,10 +79,10 @@ def insert_with_indent(view, piter, text, indentfirst = True, context = None):
                 
                 view.get_buffer().insert(piter, text[:-1])
 
-        view.get_buffer().set_data('PlumaSnippetsPluginContext', None)
+        view.get_buffer().set_data('XeditSnippetsPluginContext', None)
 
 def get_buffer_context(buf):
-        return buf.get_data('PlumaSnippetsPluginContext')
+        return buf.get_data('XeditSnippetsPluginContext')
 
 def snippets_debug(*s):
         return

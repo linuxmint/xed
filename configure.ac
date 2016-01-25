@@ -2,25 +2,25 @@ dnl Process this file with autoconf to produce a configure script.
 
 AC_PREREQ(2.63.2)
 
-m4_define(pluma_major_version, 1)
-m4_define(pluma_minor_version, 13)
-m4_define(pluma_micro_version, 0)
-m4_define(pluma_version, pluma_major_version.pluma_minor_version.pluma_micro_version)
+m4_define(xedit_major_version, 1)
+m4_define(xedit_minor_version, 13)
+m4_define(xedit_micro_version, 0)
+m4_define(xedit_version, xedit_major_version.xedit_minor_version.xedit_micro_version)
 
-AC_INIT([pluma], [pluma_version],
-    [https://github.com/mate-desktop/pluma/issues],
-    [pluma], [http://mate-desktop.org])
+AC_INIT([xedit], [xedit_version],
+    [https://github.com/mate-desktop/xedit/issues],
+    [xedit], [http://mate-desktop.org])
 
 AC_CONFIG_HEADERS(config.h)
-AC_CONFIG_SRCDIR(pluma/pluma.c)
+AC_CONFIG_SRCDIR(xedit/xedit.c)
 AC_CONFIG_MACRO_DIR([m4])
 
-AC_DEFINE(PLUMA_MAJOR_VERSION, pluma_major_version, [Pluma major version])
-AC_SUBST(PLUMA_MAJOR_VERSION, pluma_major_version)
-AC_DEFINE(PLUMA_MINOR_VERSION, pluma_minor_version, [Pluma minor version])
-AC_SUBST(PLUMA_MINOR_VERSION, pluma_minor_version)
-AC_DEFINE(PLUMA_MICRO_VERSION, pluma_micro_version, [Pluma micro version])
-AC_SUBST(PLUMA_MICRO_VERSION, pluma_micro_version)
+AC_DEFINE(XEDIT_MAJOR_VERSION, xedit_major_version, [Xedit major version])
+AC_SUBST(XEDIT_MAJOR_VERSION, xedit_major_version)
+AC_DEFINE(XEDIT_MINOR_VERSION, xedit_minor_version, [Xedit minor version])
+AC_SUBST(XEDIT_MINOR_VERSION, xedit_minor_version)
+AC_DEFINE(XEDIT_MICRO_VERSION, xedit_micro_version, [Xedit micro version])
+AC_SUBST(XEDIT_MICRO_VERSION, xedit_micro_version)
 
 AM_INIT_AUTOMAKE([1.10 dist-xz no-dist-gzip -Wno-portability check-news])
 AM_MAINTAINER_MODE
@@ -46,7 +46,7 @@ dnl make sure we keep ACLOCAL_FLAGS around for maintainer builds to work
 AC_SUBST(ACLOCAL_AMFLAGS, "$ACLOCAL_FLAGS -I m4")
 
 dnl toolbar style for GSettings schemas
-TOOLBAR_STYLE="PLUMA_TOOLBAR_SYSTEM"
+TOOLBAR_STYLE="XEDIT_TOOLBAR_SYSTEM"
 AC_SUBST(TOOLBAR_STYLE)
 
 # GLib min/max required versions
@@ -62,7 +62,7 @@ dnl ===============================================================
 # This macro expands DIR and assigns it to RET.
 # If DIR is NONE, then it's replaced by DEFAULT.
 # Based on AC_DEFINE_DIR
-AC_DEFUN([PLUMA_FULLPATH], [
+AC_DEFUN([XEDIT_FULLPATH], [
   test "x$prefix" = xNONE && prefix="$ac_default_prefix"
   test "x$exec_prefix" = xNONE && exec_prefix='${prefix}'
   ac_expand=[$]$1
@@ -72,8 +72,8 @@ AC_DEFUN([PLUMA_FULLPATH], [
 ])
 
 dnl FULL_LIBEXECDIR is used for X-MATE-Bugzilla-ExtraInfoScript expansion
-dnl in data/pluma.desktop.in.in
-PLUMA_FULLPATH(libexecdir, NONE, FULL_LIBEXECDIR)
+dnl in data/xedit.desktop.in.in
+XEDIT_FULLPATH(libexecdir, NONE, FULL_LIBEXECDIR)
 AC_SUBST(FULL_LIBEXECDIR)
 
 dnl ================================================================
@@ -81,7 +81,7 @@ dnl Gettext stuff.
 dnl ================================================================
 
 IT_PROG_INTLTOOL([0.50.1])
-GETTEXT_PACKAGE=pluma
+GETTEXT_PACKAGE=xedit
 AC_SUBST([GETTEXT_PACKAGE])
 AM_GLIB_GNU_GETTEXT
 AC_DEFINE_UNQUOTED(GETTEXT_PACKAGE, "$GETTEXT_PACKAGE", [Define to the Gettext package name])
@@ -174,7 +174,7 @@ esac
 AC_SUBST(GTK_API_VERSION)
 
 PKG_CHECK_MODULES(GMODULE,gmodule-2.0,[GMODULE_ADD="gmodule-2.0"],[GMODULE_ADD=""])
-PKG_CHECK_MODULES(PLUMA, [
+PKG_CHECK_MODULES(XEDIT, [
 	libxml-2.0 >= 2.5.0
 	glib-2.0 >= 2.36.0
 	$GMODULE_ADD
@@ -186,11 +186,11 @@ PKG_CHECK_MODULES(PLUMA, [
 
 PKG_CHECK_MODULES(X11, [x11])
 
-PLUMA_CFLAGS="$PLUMA_CFLAGS $X11_CFLAGS"
-PLUMA_LIBS="$PLUMA_LIBS $X11_LIBS"
+XEDIT_CFLAGS="$XEDIT_CFLAGS $X11_CFLAGS"
+XEDIT_LIBS="$XEDIT_LIBS $X11_LIBS"
 
-AC_SUBST(PLUMA_CFLAGS)
-AC_SUBST(PLUMA_LIBS)
+AC_SUBST(XEDIT_CFLAGS)
+AC_SUBST(XEDIT_LIBS)
 
 PKG_CHECK_MODULES(EGG_SMCLIENT, [sm >= 1.0.0])
 
@@ -356,26 +356,26 @@ LOADER_LIBTOOL_FLAGS="-module -avoid-version"
 AC_SUBST(PLUGIN_LIBTOOL_FLAGS)
 AC_SUBST(LOADER_LIBTOOL_FLAGS)
 
-PLUMA_PLUGINS_DATA_DIR="$datadir/pluma/plugins"
-AC_SUBST(PLUMA_PLUGINS_DATA_DIR)
+XEDIT_PLUGINS_DATA_DIR="$datadir/xedit/plugins"
+AC_SUBST(XEDIT_PLUGINS_DATA_DIR)
 
-PLUMA_PLUGINS_LIBS_DIR="$libdir/pluma/plugins"
-AC_SUBST(PLUMA_PLUGINS_LIBS_DIR)
+XEDIT_PLUGINS_LIBS_DIR="$libdir/xedit/plugins"
+AC_SUBST(XEDIT_PLUGINS_LIBS_DIR)
 
 YELP_HELP_INIT
 
 AC_CONFIG_FILES([
 Makefile
-data/pluma.desktop.in
-data/pluma-bugreport.sh
-data/pluma.pc
-data/org.mate.pluma.gschema.xml
+data/xedit.desktop.in
+data/xedit-bugreport.sh
+data/xedit.pc
+data/org.x.editor.gschema.xml
 data/Makefile
 docs/Makefile
 docs/reference/Makefile
-pluma/dialogs/Makefile
-pluma/smclient/Makefile
-pluma/Makefile
+xedit/dialogs/Makefile
+xedit/smclient/Makefile
+xedit/Makefile
 help/Makefile
 pixmaps/Makefile
 plugin-loaders/Makefile
@@ -390,7 +390,7 @@ plugins/externaltools/Makefile
 plugins/externaltools/scripts/Makefile
 plugins/externaltools/tools/Makefile
 plugins/filebrowser/Makefile
-plugins/filebrowser/org.mate.pluma.plugins.filebrowser.gschema.xml
+plugins/filebrowser/org.x.editor.plugins.filebrowser.gschema.xml
 plugins/modelines/Makefile
 plugins/pythonconsole/Makefile
 plugins/pythonconsole/pythonconsole/Makefile
@@ -402,10 +402,10 @@ plugins/snippets/Makefile
 plugins/snippets/snippets/Makefile
 plugins/sort/Makefile
 plugins/spell/Makefile
-plugins/spell/org.mate.pluma.plugins.spell.gschema.xml
+plugins/spell/org.x.editor.plugins.spell.gschema.xml
 plugins/taglist/Makefile
 plugins/time/Makefile
-plugins/time/org.mate.pluma.plugins.time.gschema.xml
+plugins/time/org.x.editor.plugins.time.gschema.xml
 plugins/trailsave/Makefile
 po/Makefile.in
 tests/Makefile
@@ -426,29 +426,29 @@ Configuration:
 	Tests enabled:		$enable_tests
 "
 
-if expr ${PLUMA_MINOR_VERSION} % 2 > /dev/null; then
-	stable_version=`expr ${PLUMA_MINOR_VERSION} - 1`
+if expr ${XEDIT_MINOR_VERSION} % 2 > /dev/null; then
+	stable_version=`expr ${XEDIT_MINOR_VERSION} - 1`
 
 cat << EOF
  *** IMPORTANT ***
 
-This is an unstable version of pluma.
+This is an unstable version of xedit.
 It is for test purposes only.
 
 Please, DO NOT use it in a production environment.
 It will probably crash and you will lose your data.
 
-If you are looking for a stable release of pluma, either download
+If you are looking for a stable release of xedit, either download
 it from:
 
   http://pub.mate-desktop.org/release/1.${stable_version}/
 
-Or checkout the 1.${stable_version} branch of the pluma module from:
+Or checkout the 1.${stable_version} branch of the xedit module from:
 
-  git://github.com/mate-desktop/pluma.git
+  git://github.com/mate-desktop/xedit.git
 
 Thanks,
-The pluma team
+The xedit team
 
  *** END OF WARNING ***
 EOF

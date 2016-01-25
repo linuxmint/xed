@@ -1,0 +1,200 @@
+<?xml version="1.0"?>
+<schemalist gettext-domain="@GETTEXT_PACKAGE@">
+  <schema id="org.x.editor" path="/org.x.editor/">
+    <key name="use-default-font" type="b">
+      <default>true</default>
+      <summary>Use Default Font</summary>
+      <description>Whether to use the system's default fixed width font for editing text instead of a font specific to xedit.  If this option is turned off, then the font named in the "Editor Font" option will be used instead of the system font.</description>
+    </key>
+    <key name="editor-font" type="s">
+      <default context="editor-font" l10n="messages">'Monospace 12'</default>
+      <summary>Editor Font</summary>
+      <description>A custom font that will be used for the editing area. This will only take effect if the "Use Default Font" option is turned off.</description>
+    </key>
+    <key name="color-scheme" type="s">
+      <default>'tango'</default>
+      <summary>Style Scheme</summary>
+      <description>The ID of a GtkSourceView Style Scheme used to color the text.</description>
+    </key>
+    <key name="create-backup-copy" type="b">
+      <default>false</default>
+      <summary>Create Backup Copies</summary>
+      <description>Whether xedit should create backup copies for the files it saves.  You can set the backup file extension with the "Backup Copy Extension" option.</description>
+    </key>
+    <key name="auto-save" type="b">
+      <default>false</default>
+      <summary>Autosave</summary>
+      <description>Whether xedit should automatically save modified files after a time interval.  You can set the time interval with the "Autosave Interval" option.</description>
+    </key>
+    <key name="auto-save-interval" type="i">
+      <default>10</default>
+      <summary>Autosave Interval</summary>
+      <description>Number of minutes after which xedit will automatically save modified files.  This will only take effect if the "Autosave" option is turned on.</description>
+    </key>
+    <key name="writable-vfs-schemes" type="as">
+      <default>[ 'dav', 'davs', 'ftp', 'sftp', 'smb', 'ssh' ]</default>
+      <summary>Writable VFS schemes</summary>
+      <description>List of VFS schemes xedit supports in write mode. The 'file' scheme is writable by default.</description>
+    </key>
+    <key name="max-undo-actions" type="i">
+      <default>2000</default>
+      <summary>Maximum Number of Undo Actions</summary>
+      <description>Maximum number of actions that xedit will be able to undo or redo. Use "-1" for unlimited number of actions.</description>
+    </key>
+    <key name="wrap-mode" type="s">
+      <default>'GTK_WRAP_WORD'</default>
+      <summary>Line Wrapping Mode</summary>
+      <description>Specifies how to wrap long lines in the editing area. Use "GTK_WRAP_NONE" for no wrapping, "GTK_WRAP_WORD" for wrapping at word boundaries, and "GTK_WRAP_CHAR" for wrapping at individual character boundaries.  Note that the values are case-sensitive, so make sure they appear exactly as mentioned here.</description>
+    </key>
+    <key name="tabs-size" type="i">
+      <default>4</default>
+      <summary>Tab Size</summary>
+      <description>Specifies the number of spaces that should be displayed instead of Tab characters.</description>
+    </key>
+    <key name="insert-spaces" type="b">
+      <default>false</default>
+      <summary>Insert spaces</summary>
+      <description>Whether xedit should insert spaces instead of tabs.</description>
+    </key>
+    <key name="auto-indent" type="b">
+      <default>false</default>
+      <summary>Automatic indent</summary>
+      <description>Whether xedit should enable automatic indentation.</description>
+    </key>
+    <key name="display-line-numbers" type="b">
+      <default>false</default>
+      <summary>Display Line Numbers</summary>
+      <description>Whether xedit should display line numbers in the editing area.</description>
+    </key>
+    <key name="highlight-current-line" type="b">
+      <default>false</default>
+      <summary>Highlight Current Line</summary>
+      <description>Whether xedit should highlight the current line.</description>
+    </key>
+    <key name="bracket-matching" type="b">
+      <default>false</default>
+      <summary>Highlight Matching Bracket</summary>
+      <description>Whether xedit should highlight the bracket matching the selected one.</description>
+    </key>
+    <key name="display-right-margin" type="b">
+      <default>false</default>
+      <summary>Display Right Margin</summary>
+      <description>Whether xedit should display the right margin in the editing area.</description>
+    </key>
+    <key name="right-margin-position" type="i">
+      <default>80</default>
+      <summary>Right Margin Position</summary>
+      <description>Specifies the position of the right margin.</description>
+    </key>
+    <key name="smart-home-end" type="s">
+      <default>'after'</default>
+      <summary>Smart Home End</summary>
+      <description>Specifies how the cursor moves when the HOME and END keys are pressed. Use "DISABLED" to always move at the start/end of the line, "AFTER" to move to the start/end of the line the first time the keys are pressed and to the start/end of the text ignoring whitespaces the second time the keys are pressed, "BEFORE" to move to the start/end of the text before moving to the start/end of the line and "ALWAYS" to always move to the start/end of the text instead of the start/end of the line.</description>
+    </key>
+    <key name="restore-cursor-position" type="b">
+      <default>true</default>
+      <summary>Restore Previous Cursor Position</summary>
+      <description>Whether xedit should restore the previous cursor position when a file is loaded.</description>
+    </key>
+    <key name="enable-search-highlighting" type="b">
+      <default>true</default>
+      <summary>Enable Search Highlighting</summary>
+      <description>Whether xedit should highlight all the occurrences of the searched text.</description>
+    </key>
+    <key name="enable-syntax-highlighting" type="b">
+      <default>true</default>
+      <summary>Enable Syntax Highlighting</summary>
+      <description>Whether xedit should enable syntax highlighting.</description>
+    </key>
+    <key name="toolbar-visible" type="b">
+      <default>true</default>
+      <summary>Toolbar is Visible</summary>
+      <description>Whether the toolbar should be visible in editing windows.</description>
+    </key>
+    <key name="toolbar-buttons-style" type="s">
+      <default>'@TOOLBAR_STYLE@'</default>
+      <summary>Toolbar Buttons Style</summary>
+      <description>Style for the toolbar buttons.  Possible values are "XEDIT_TOOLBAR_SYSTEM" to use the system's default style, "XEDIT_TOOLBAR_ICONS" to display icons only, "XEDIT_TOOLBAR_ICONS_AND_TEXT" to display both icons and text, and "XEDIT_TOOLBAR_ICONS_BOTH_HORIZ" to display prioritized text beside icons. Note that the values are case-sensitive, so make sure they appear exactly as mentioned here.</description>
+    </key>
+    <key name="statusbar-visible" type="b">
+      <default>true</default>
+      <summary>Status Bar is Visible</summary>
+      <description>Whether the status bar at the bottom of editing windows should be visible.</description>
+    </key>
+    <key name="side-pane-visible" type="b">
+      <default>false</default>
+      <summary>Side Pane is Visible</summary>
+      <description>Whether the side pane at the left of editing windows should be visible.</description>
+    </key>
+    <key name="bottom-panel-visible" type="b">
+      <default>false</default>
+      <summary>Bottom Panel is Visible</summary>
+      <description>Whether the bottom panel at the bottom of editing windows should be visible.</description>
+    </key>
+    <key name="max-recents" type="i">
+      <default>5</default>
+      <summary>Maximum Recent Files</summary>
+      <description>Specifies the maximum number of recently opened files that will be displayed in the "Recent Files" submenu.</description>
+    </key>
+    <key name="print-syntax-highlighting" type="b">
+      <default>true</default>
+      <summary>Print Syntax Highlighting</summary>
+      <description>Whether xedit should print syntax highlighting when printing documents.</description>
+    </key>
+    <key name="print-header" type="b">
+      <default>true</default>
+      <summary>Print Header</summary>
+      <description>Whether xedit should include a document header when printing documents.</description>
+    </key>
+    <key name="print-wrap-mode" type="s">
+      <default>'GTK_WRAP_WORD'</default>
+      <summary>Printing Line Wrapping Mode</summary>
+      <description>Specifies how to wrap long lines for printing.  Use "GTK_WRAP_NONE" for no wrapping, "GTK_WRAP_WORD" for wrapping at word boundaries, and "GTK_WRAP_CHAR" for wrapping at individual character boundaries.  Note that the values are case-sensitive, so make sure they appear exactly as mentioned here.</description>
+    </key>
+    <key name="print-line-numbers" type="i">
+      <default>0</default>
+      <summary>Print Line Numbers</summary>
+      <description>If this value is 0, then no line numbers will be inserted when printing a document.  Otherwise, xedit will print line numbers every such number of lines.</description>
+    </key>
+    <key name="print-font-body-pango" type="s">
+      <default context="print-font-body-pango" l10n="messages">'Monospace 9'</default>
+      <summary>Body Font for Printing</summary>
+      <description>Specifies the font to use for a document's body when printing documents.</description>
+    </key>
+    <key name="print-font-header-pango" type="s">
+      <default context="print-font-header-pango" l10n="messages">'Sans 11'</default>
+      <summary>Header Font for Printing</summary>
+      <description>Specifies the font to use for page headers when printing a document. This will only take effect if the "Print Header" option is turned on.</description>
+    </key>
+    <key name="print-font-numbers-pango" type="s">
+      <default context="print-font-numbers-pango" l10n="messages">'Sans 8'</default>
+      <summary>Line Number Font for Printing</summary>
+      <description>Specifies the font to use for line numbers when printing.  This will only take effect if the "Print Line Numbers" option is non-zero.</description>
+    </key>
+    <key name="auto-detected-encodings" type="as">
+      <default context="auto-detected" l10n="messages">[ 'UTF-8', 'CURRENT', 'ISO-8859-15', 'UTF-16' ]</default>
+      <summary>Automatically Detected Encodings</summary>
+      <description>Sorted list of encodings used by xedit for automatically detecting the encoding of a file. "CURRENT" represents the current locale encoding. Only recognized encodings are used.</description>
+    </key>
+    <key name="shown-in-menu-encodings" type="as">
+      <default context="shown-in-menu" l10n="messages">[ 'ISO-8859-15' ]</default>
+      <summary>Encodings shown in menu</summary>
+      <description>List of encodings shown in the Character Encoding menu in open/save file selector. Only recognized encodings are used.</description>
+    </key>
+    <key name="history-search-for" type="as">
+      <default>[]</default>
+      <summary>History for "search for" entries</summary>
+      <description>List of entries in "search for" textbox.</description>
+    </key>
+    <key name="history-replace-with" type="as">
+      <default>[]</default>
+      <summary>History for "replace with" entries</summary>
+      <description>List of entries in "replace with" textbox.</description>
+    </key>
+    <key name="active-plugins" type="as">
+      <default>[ 'docinfo', 'modelines', 'filebrowser', 'spell', 'time' ]</default>
+      <summary>Active plugins</summary>
+      <description>List of active plugins. It contains the "Location" of the active plugins. See the .xedit-plugin file for obtaining the "Location" of a given plugin.</description>
+    </key>
+  </schema>
+</schemalist>

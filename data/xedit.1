@@ -1,0 +1,87 @@
+.\" Man page for Xedit.
+.TH XEDIT 1 "29 January 2014" "MATE Desktop Environment"
+.\" Please adjust this date when revising the manpage.
+.\"
+.SH "NAME"
+Xedit \- The MATE Text Editor
+.SH "SYNOPSIS"
+.B xedit [OPTIONS...] [FILES...]
+.SH "DESCRIPTION"
+Xedit is the official text editor of the MATE desktop environment. While aiming at simplicity and ease of use, Xedit is a powerful general purpose text editor. It can be used to create and edit all sorts of text files.
+.PP
+Xedit features a flexible plugin system which can be used to dynamically add new advanced features to Xedit itself.
+.PP
+This manual page briefly documents the \fBxedit\fR command.
+
+.SH "OPTIONS"
+.TP
+\fBfilename(s)...\fR
+Specifies the file to open when \fBxedit\fR starts. If this is not specified, \fBxedit\fR will start a new, blank file with an "Unsaved Document" label. Multiple files can be loaded if they are separated by spaces. \fBxedit\fR also supports handling of remote files.
+.TP
+\fB\-\-display=DISPLAY\fR
+X display to use.
+.TP
+\fB\-\-encoding\fR
+Set the character encoding to be used for opening the files listed on the command line.
+.TP
+\fB\-\-new\-window\fR
+Create a new toplevel window in an existing instance of \fBxedit\fR.
+.TP
+\fB\-\-new\-document\fR
+Create a new document in an existing instance of \fBxedit\fR, on the last Xedit window that had focus.
+.TP
+\fB+[num]\fR
+For the first file, go to the line specified by "num" (do not insert a space between the "+" sign and the number).
+If "num" is missing, go to the last line.
+.TP
+\fB\-\-list-encodings\fR
+Display list of possible values for the encoding option and exit
+.TP
+\fB\-\-version\fR
+Output version information and exit
+.TP
+\fB\-?, \-h, \-\-help\fR
+Print standard command line options.
+.TP
+\fB\-\-help\-all\fR
+Print all command line options.
+.P
+This program also accepts the standard GTK options.
+
+.SH "EXAMPLES"
+\fBxedit \-\-encoding WINDOWS-1252 ftp://ftp.kernel.org/pub/linux/kernel/README\fR
+.RS 4
+Open the Linux Kernel README file from kernel.org's FTP server using Windows-1252 character encoding.
+.RE
+.PP
+\fBxedit +156 http://mate-desktop.org/\fR
+.RS 4
+Open the main web page of mate-desktop.org and jump to line 156.
+.RE
+.PP
+\fBxedit \-\-new\-window ~/.bashrc ~/.bash_history\fR
+.RS 4
+Open the current users .bashrc and .bash_history files in a new Xedit window.
+
+.SH "BUGS"
+.SS Should you encounter any bugs, they may be reported at: 
+http://github.com/mate-desktop/xedit/issues
+.SH "NOTES"
+This version of the Xedit Manual Page was written with Xedit. =)
+.SH "AUTHORS"
+.SS This Man Page has been updated/re-written for the MATE Desktop Environment by:
+Adam Erdman <hekel@archlinux.info> (2014)
+.SH "HISTORY"
+.SS Some portions of this manual were originally written by Gedit's previous developers, to accompany it in the GNOME Desktop Environment by:
+.nf
+Paolo Maggi <paolo@gnome.org>
+Paolo Borelli <pborelli@katamail.com>
+James Willcox <jwillcox@gnome.org>
+Federico Mena Quintero <federico@novell.com>
+Chema Celorio
+(2000-2010)
+.fi
+.SH "SEE ALSO"
+.SS
+Xedit documentation can be found from the "Help" menu, or by pressing the F1 key. 
+Further information may also be available at: http://wiki.mate-desktop.org/docs

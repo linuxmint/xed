@@ -1,72 +1,72 @@
 # filebrowser
 
-plugindir = $(PLUMA_PLUGINS_LIBS_DIR)
+plugindir = $(XEDIT_PLUGINS_LIBS_DIR)
 
 AM_CPPFLAGS = \
 	-I$(top_srcdir) 						\
-	$(PLUMA_CFLAGS) 						\
+	$(XEDIT_CFLAGS) 						\
 	$(WARN_CFLAGS)							\
 	$(DISABLE_DEPRECATED_CFLAGS)
 
 BUILT_SOURCES = \
-	pluma-file-browser-enum-types.h		\
-	pluma-file-browser-enum-types.c		\
-	pluma-file-browser-marshal.h 		\
-	pluma-file-browser-marshal.c
+	xedit-file-browser-enum-types.h		\
+	xedit-file-browser-enum-types.c		\
+	xedit-file-browser-marshal.h 		\
+	xedit-file-browser-marshal.c
 
 plugin_LTLIBRARIES = libfilebrowser.la
 
 NOINST_H_FILES = \
-	pluma-file-bookmarks-store.h 		\
-	pluma-file-browser-store.h 		\
-	pluma-file-browser-view.h 		\
-	pluma-file-browser-widget.h 		\
-	pluma-file-browser-error.h		\
-	pluma-file-browser-utils.h		\
-	pluma-file-browser-plugin.h		\
-	pluma-file-browser-messages.h
+	xedit-file-bookmarks-store.h 		\
+	xedit-file-browser-store.h 		\
+	xedit-file-browser-view.h 		\
+	xedit-file-browser-widget.h 		\
+	xedit-file-browser-error.h		\
+	xedit-file-browser-utils.h		\
+	xedit-file-browser-plugin.h		\
+	xedit-file-browser-messages.h
 
 libfilebrowser_la_SOURCES = \
 	$(BUILT_SOURCES) 			\
-	pluma-file-bookmarks-store.c 		\
-	pluma-file-browser-store.c 		\
-	pluma-file-browser-view.c 		\
-	pluma-file-browser-widget.c 		\
-	pluma-file-browser-utils.c 		\
-	pluma-file-browser-plugin.c		\
-	pluma-file-browser-messages.c		\
+	xedit-file-bookmarks-store.c 		\
+	xedit-file-browser-store.c 		\
+	xedit-file-browser-view.c 		\
+	xedit-file-browser-widget.c 		\
+	xedit-file-browser-utils.c 		\
+	xedit-file-browser-plugin.c		\
+	xedit-file-browser-messages.c		\
 	$(NOINST_H_FILES)
 
 libfilebrowser_la_LDFLAGS = $(PLUGIN_LIBTOOL_FLAGS)
-libfilebrowser_la_LIBADD = $(PLUMA_LIBS)
+libfilebrowser_la_LIBADD = $(XEDIT_LIBS)
 
 # UI files (if you use ui for your plugin, list those files here)
-uidir = $(PLUMA_PLUGINS_DATA_DIR)/filebrowser
-ui_DATA = pluma-file-browser-widget-ui.xml
+uidir = $(XEDIT_PLUGINS_DATA_DIR)/filebrowser
+ui_DATA = xedit-file-browser-widget-ui.xml
 
-plugin_in_files = filebrowser.pluma-plugin.desktop.in
+plugin_in_files = filebrowser.xedit-plugin.desktop.in
 
-%.pluma-plugin: %.pluma-plugin.desktop.in $(INTLTOOL_MERGE) $(wildcard $(top_srcdir)/po/*po) ; $(INTLTOOL_MERGE) $(top_srcdir)/po $< $@ -d -u -c $(top_builddir)/po/.intltool-merge-cache
+%.xedit-plugin: %.xedit-plugin.desktop.in $(INTLTOOL_MERGE) $(wildcard $(top_srcdir)/po/*po) ; $(INTLTOOL_MERGE) $(top_srcdir)/po $< $@ -d -u -c $(top_builddir)/po/.intltool-merge-cache
 
-pluma-file-browser-enum-types.h: pluma-file-browser-enum-types.h.template $(NOINST_H_FILES) $(GLIB_MKENUMS)
-	(cd $(srcdir) && $(GLIB_MKENUMS) --template pluma-file-browser-enum-types.h.template $(NOINST_H_FILES)) > $@
+xedit-file-browser-enum-types.h: xedit-file-browser-enum-types.h.template $(NOINST_H_FILES) $(GLIB_MKENUMS)
+	(cd $(srcdir) && $(GLIB_MKENUMS) --template xedit-file-browser-enum-types.h.template $(NOINST_H_FILES)) > $@
 
-pluma-file-browser-enum-types.c: pluma-file-browser-enum-types.c.template pluma-file-browser-enum-register.c.template $(NOINST_H_FILES) $(GLIB_MKENUMS)
+xedit-file-browser-enum-types.c: xedit-file-browser-enum-types.c.template xedit-file-browser-enum-register.c.template $(NOINST_H_FILES) $(GLIB_MKENUMS)
 	$(AM_V_GEN) (cd $(srcdir) && \
-	$(GLIB_MKENUMS) --template pluma-file-browser-enum-types.c.template $(NOINST_H_FILES) && \
-	$(GLIB_MKENUMS) --template pluma-file-browser-enum-register.c.template $(NOINST_H_FILES)) > $@
+	$(GLIB_MKENUMS) --template xedit-file-browser-enum-types.c.template $(NOINST_H_FILES) && \
+	$(GLIB_MKENUMS) --template xedit-file-browser-enum-register.c.template $(NOINST_H_FILES)) > $@
 
-pluma-file-browser-marshal.h: pluma-file-browser-marshal.list $(GLIB_GENMARSHAL)
-	$(AM_V_GEN) $(GLIB_GENMARSHAL) $< --header --prefix=pluma_file_browser_marshal > $@
+xedit-file-browser-marshal.h: xedit-file-browser-marshal.list $(GLIB_GENMARSHAL)
+	$(AM_V_GEN) $(GLIB_GENMARSHAL) $< --header --prefix=xedit_file_browser_marshal > $@
 
-pluma-file-browser-marshal.c: pluma-file-browser-marshal.list $(GLIB_GENMARSHAL)
-	$(AM_V_GEN) echo "#include \"pluma-file-browser-marshal.h\"" > $@ && \
-	$(GLIB_GENMARSHAL) $< --body --prefix=pluma_file_browser_marshal >> $@
+xedit-file-browser-marshal.c: xedit-file-browser-marshal.list $(GLIB_GENMARSHAL)
+	$(AM_V_GEN) echo "#include \"xedit-file-browser-marshal.h\"" > $@ && \
+	$(GLIB_GENMARSHAL) $< --body --prefix=xedit_file_browser_marshal >> $@
 
-plugin_DATA = $(plugin_in_files:.pluma-plugin.desktop.in=.pluma-plugin)
+plugin_DATA = $(plugin_in_files:.xedit-plugin.desktop.in=.xedit-plugin)
 
 @INTLTOOL_XML_NOMERGE_RULE@
-filebrowser_gschema_in = org.mate.pluma.plugins.filebrowser.gschema.xml.in
+filebrowser_gschema_in = org.x.editor.plugins.filebrowser.gschema.xml.in
 gsettings_SCHEMAS = $(filebrowser_gschema_in:.xml.in=.xml)
 @GSETTINGS_RULES@
 
@@ -74,10 +74,10 @@ EXTRA_DIST = \
 	$(ui_DATA)					\
 	$(plugin_in_files)				\
 	$(filebrowser_gschema_in)			\
-	pluma-file-browser-enum-types.h.template	\
-	pluma-file-browser-enum-types.c.template	\
-	pluma-file-browser-enum-register.c.template	\
-	pluma-file-browser-marshal.list
+	xedit-file-browser-enum-types.h.template	\
+	xedit-file-browser-enum-types.c.template	\
+	xedit-file-browser-enum-register.c.template	\
+	xedit-file-browser-marshal.list
 
 CLEANFILES = \
 	$(plugin_DATA)		\

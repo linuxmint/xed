@@ -18,7 +18,7 @@
 
 import os
 import gio
-import pluma
+import xedit
 
 class FileLookup:
     """
@@ -110,7 +110,7 @@ class OpenDocumentRelPathFileLookupProvider(FileLookupProvider):
         if path.startswith('/'):
             return None
 
-        for doc in pluma.app_get_default().get_documents():
+        for doc in xedit.app_get_default().get_documents():
             if doc.is_local():
                 location = doc.get_location()
                 if location:
@@ -135,7 +135,7 @@ class OpenDocumentFileLookupProvider(FileLookupProvider):
         if path.startswith('/'):
             return None
 
-        for doc in pluma.app_get_default().get_documents():
+        for doc in xedit.app_get_default().get_documents():
             if doc.is_local():
                 location = doc.get_location()
                 if location and location.get_uri().endswith(path):

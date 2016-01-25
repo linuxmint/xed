@@ -17,9 +17,9 @@
 
 import os
 
-name = os.environ["PLUMA_CURRENT_DOCUMENT_NAME"]
+name = os.environ["XEDIT_CURRENT_DOCUMENT_NAME"]
 
 if name.endswith('.c'):
-	os.system("pluma %s.h" % ".".join(name.split('.')[:-1]))
+	os.system("xedit %s.h" % ".".join(name.split('.')[:-1]))
 if name.endswith('.h'):
-	os.system("pluma %s.c" % ".".join(name.split('.')[:-1]))
+	os.system("xedit %s.c" % ".".join(name.split('.')[:-1]))

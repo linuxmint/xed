@@ -17,12 +17,12 @@
 #  Foundation, Inc., 51 Franklin St, Fifth Floor,
 #  Boston, MA 02110-1301, USA.
 
-import pluma
+import xedit
 from windowhelper import WindowHelper
 
-class QuickOpenPlugin(pluma.Plugin):
+class QuickOpenPlugin(xedit.Plugin):
         def __init__(self):
-                pluma.Plugin.__init__(self)
+                xedit.Plugin.__init__(self)
 
                 self._popup_size = (450, 300)
                 self._helpers = {}

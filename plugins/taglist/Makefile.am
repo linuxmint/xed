@@ -1,7 +1,7 @@
 # Tag list plugin
-plugindir = $(PLUMA_PLUGINS_LIBS_DIR)
+plugindir = $(XEDIT_PLUGINS_LIBS_DIR)
 
-taglistdir = $(PLUMA_PLUGINS_DATA_DIR)/taglist
+taglistdir = $(XEDIT_PLUGINS_DATA_DIR)/taglist
 
 taglist_in_files = \
 	HTML.tags.xml.in	\
@@ -13,26 +13,26 @@ taglist_DATA = $(taglist_in_files:.tags.xml.in=.tags.gz)
 
 AM_CPPFLAGS = 							\
 	-I$(top_srcdir) 					\
-	$(PLUMA_CFLAGS) 					\
+	$(XEDIT_CFLAGS) 					\
 	$(WARN_CFLAGS)						\
 	$(DISABLE_DEPRECATED_CFLAGS)	
 
 plugin_LTLIBRARIES = libtaglist.la
 
 libtaglist_la_SOURCES = \
-	pluma-taglist-plugin-parser.c	\
-	pluma-taglist-plugin-parser.h	\
-	pluma-taglist-plugin-panel.c	\
-	pluma-taglist-plugin-panel.h	\
-	pluma-taglist-plugin.c		\
-	pluma-taglist-plugin.h
+	xedit-taglist-plugin-parser.c	\
+	xedit-taglist-plugin-parser.h	\
+	xedit-taglist-plugin-panel.c	\
+	xedit-taglist-plugin-panel.h	\
+	xedit-taglist-plugin.c		\
+	xedit-taglist-plugin.h
 
 libtaglist_la_LDFLAGS = $(PLUGIN_LIBTOOL_FLAGS)
-libtaglist_la_LIBADD  = $(PLUMA_LIBS)
+libtaglist_la_LIBADD  = $(XEDIT_LIBS)
 
-plugin_in_files = taglist.pluma-plugin.desktop.in
+plugin_in_files = taglist.xedit-plugin.desktop.in
 
-%.pluma-plugin: %.pluma-plugin.desktop.in $(INTLTOOL_MERGE) $(wildcard $(top_srcdir)/po/*po)
+%.xedit-plugin: %.xedit-plugin.desktop.in $(INTLTOOL_MERGE) $(wildcard $(top_srcdir)/po/*po)
 	$(INTLTOOL_MERGE) $(top_srcdir)/po $< $@ -d -u -c $(top_builddir)/po/.intltool-merge-cache
 
 GZIP_ENV = -9
@@ -41,7 +41,7 @@ GZIP_ENV = -9
 	LC_ALL=C $(INTLTOOL_MERGE) $(top_srcdir)/po $< $(@:.gz=) -x -u -c $(top_builddir)/po/.intltool-merge-cache
 	GZIP=$(GZIP_ENV) gzip -n -f $(@:.gz=)
 
-plugin_DATA = $(plugin_in_files:.pluma-plugin.desktop.in=.pluma-plugin)
+plugin_DATA = $(plugin_in_files:.xedit-plugin.desktop.in=.xedit-plugin)
 
 EXTRA_DIST = \
 	$(taglist_in_files) $(taglist_DATA)	\

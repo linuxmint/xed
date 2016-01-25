@@ -1,4 +1,4 @@
-#    Pluma snippets plugin
+#    Xedit snippets plugin
 #    Copyright (C) 2005-2006  Jesse van den Kieboom <jesse@icecrew.nl>
 #
 #    This program is free software; you can redistribute it and/or modify
@@ -21,7 +21,7 @@ import shutil
 
 import gtk
 from gtk import gdk
-import pluma
+import xedit
 import platform
 
 from WindowHelper import WindowHelper
@@ -29,9 +29,9 @@ from Library import Library
 from Manager import Manager
 from Snippet import Snippet
 
-class SnippetsPlugin(pluma.Plugin):
+class SnippetsPlugin(xedit.Plugin):
         def __init__(self):
-                pluma.Plugin.__init__(self)
+                xedit.Plugin.__init__(self)
 
                 self.dlg = None
 
@@ -39,13 +39,13 @@ class SnippetsPlugin(pluma.Plugin):
                 library.set_accelerator_callback(self.accelerator_activated)
 
                 if platform.platform() == 'Windows':
-                        snippetsdir = os.path.expanduser('~/pluma/snippets')
+                        snippetsdir = os.path.expanduser('~/xedit/snippets')
                 else:
                         userdir = os.getenv('MATE22_USER_DIR')
                         if userdir:
-                                snippetsdir = os.path.join(userdir, 'pluma/snippets')
+                                snippetsdir = os.path.join(userdir, 'xedit/snippets')
                         else:
-                                snippetsdir = os.path.expanduser('~/.config/pluma/snippets')
+                                snippetsdir = os.path.expanduser('~/.config/xedit/snippets')
 
                 library.set_dirs(snippetsdir, self.system_dirs())
 
@@ -59,7 +59,7 @@ class SnippetsPlugin(pluma.Plugin):
 		        dirs = []
 
 		        for d in datadirs.split(os.pathsep):
-		                d = os.path.join(d, 'pluma', 'plugins', 'snippets')
+		                d = os.path.join(d, 'xedit', 'plugins', 'snippets')
 
 		                if os.path.isdir(d):
 		                        dirs.append(d)
@@ -85,7 +85,7 @@ class SnippetsPlugin(pluma.Plugin):
                 else:
                         self.dlg.run()
 
-                window = pluma.app_get_default().get_active_window()
+                window = xedit.app_get_default().get_active_window()
 
                 if window:
                         self.dlg.dlg.set_transient_for(window)

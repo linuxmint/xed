@@ -1,28 +1,28 @@
 /*
  * smart-converter.c
- * This file is part of pluma
+ * This file is part of xedit
  *
  * Copyright (C) 2009 - Ignacio Casal Quinteiro
  *
- * pluma is free software; you can redistribute it and/or modify
+ * xedit is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
  * (at your option) any later version.
  *
- * pluma is distributed in the hope that it will be useful,
+ * xedit is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with pluma; if not, write to the Free Software
+ * along with xedit; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin St, Fifth Floor, 
  * Boston, MA  02110-1301  USA
  */
 
 
-#include "pluma-smart-charset-converter.h"
-#include "pluma-encodings.h"
+#include "xedit-smart-charset-converter.h"
+#include "xedit-encodings.h"
 #include <gio/gio.h>
 #include <glib.h>
 #include <glib/gprintf.h>
@@ -47,8 +47,8 @@ print_hex (gchar *ptr, gint len)
 static gchar *
 get_encoded_text (const gchar         *text,
                   gsize                nread,
-		  const PlumaEncoding *to,
-		  const PlumaEncoding *from,
+		  const XeditEncoding *to,
+		  const XeditEncoding *from,
 		  gsize               *bytes_written_aux,
 		  gboolean             care_about_error)
 {
@@ -59,8 +59,8 @@ get_encoded_text (const gchar         *text,
 	GConverterResult res;
 	GError *err;
 
-	converter = g_charset_converter_new (pluma_encoding_get_charset (to),
-					     pluma_encoding_get_charset (from),
+	converter = g_charset_converter_new (xedit_encoding_get_charset (to),
+					     xedit_encoding_get_charset (from),
 					     NULL);
 
 	out = g_malloc (200);
@@ -126,9 +126,9 @@ get_all_encodings ()
 
 	while (TRUE)
 	{
-		const PlumaEncoding *enc;
+		const XeditEncoding *enc;
 
-		enc = pluma_encoding_get_from_index (i);
+		enc = xedit_encoding_get_from_index (i);
 
 		if (enc == NULL)
 			break;
@@ -145,9 +145,9 @@ do_test (const gchar *test_in,
          const gchar *enc,
          GSList      *encodings,
          gsize        nread,
-         const PlumaEncoding **guessed)
+         const XeditEncoding **guessed)
 {
-	PlumaSmartCharsetConverter *converter;
+	XeditSmartCharsetConverter *converter;
 	gchar *out, *out_aux;
 	gsize bytes_read, bytes_read_aux;
 	gsize bytes_written, bytes_written_aux;
@@ -157,10 +157,10 @@ do_test (const gchar *test_in,
 	if (enc != NULL)
 	{
 		encodings = NULL;
-		encodings = g_slist_prepend (encodings, (gpointer)pluma_encoding_get_from_charset (enc));
+		encodings = g_slist_prepend (encodings, (gpointer)xedit_encoding_get_from_charset (enc));
 	}
 
-	converter = pluma_smart_charset_converter_new (encodings);
+	converter = xedit_smart_charset_converter_new (encodings);
 
 	out = g_malloc (200);
 	out_aux = g_malloc (200);
@@ -189,7 +189,7 @@ do_test (const gchar *test_in,
 	out[bytes_written_aux] = '\0';
 
 	if (guessed != NULL)
-		*guessed = pluma_smart_charset_converter_get_guessed (converter);
+		*guessed = xedit_smart_charset_converter_get_guessed (converter);
 
 	return out;
 }
@@ -201,7 +201,7 @@ do_test_roundtrip (const char *str, const char *charset)
 	gchar *buf, *p;
 	GInputStream *in, *tmp;
 	GCharsetConverter *c1;
-	PlumaSmartCharsetConverter *c2;
+	XeditSmartCharsetConverter *c2;
 	gsize n, tot;
 	GError *err;
 	GSList *enc = NULL;
@@ -218,8 +218,8 @@ do_test_roundtrip (const char *str, const char *charset)
 	g_object_unref (tmp);
 	g_object_unref (c1);
 
-	enc = g_slist_prepend (enc, (gpointer)pluma_encoding_get_from_charset (charset));
-	c2 = pluma_smart_charset_converter_new (enc);
+	enc = g_slist_prepend (enc, (gpointer)xedit_encoding_get_from_charset (charset));
+	c2 = xedit_smart_charset_converter_new (enc);
 	g_slist_free (enc);
 
 	tmp = in;
@@ -281,7 +281,7 @@ test_xxx_xxx ()
 	   are done ok */
 	for (l = encs; l != NULL; l = g_slist_next (l))
 	{
-		do_test_roundtrip (TEXT_TO_CONVERT, pluma_encoding_get_charset ((const PlumaEncoding *)l->data));
+		do_test_roundtrip (TEXT_TO_CONVERT, xedit_encoding_get_charset ((const XeditEncoding *)l->data));
 	}
 
 	g_slist_free (encs);
@@ -290,7 +290,7 @@ test_xxx_xxx ()
 static void
 test_empty ()
 {
-	const PlumaEncoding *guessed;
+	const XeditEncoding *guessed;
 	gchar *out;
 	GSList *encodings = NULL;
 
@@ -298,14 +298,14 @@ test_empty ()
 	   utf-8. In this case, the smart converter cannot determine the right
 	   encoding (because there is no input), but should still default to
 	   utf-8 for the detection */
-	encodings = g_slist_prepend (encodings, (gpointer)pluma_encoding_get_from_charset ("UTF-16"));
-	encodings = g_slist_prepend (encodings, (gpointer)pluma_encoding_get_from_charset ("ISO-8859-15"));
+	encodings = g_slist_prepend (encodings, (gpointer)xedit_encoding_get_from_charset ("UTF-16"));
+	encodings = g_slist_prepend (encodings, (gpointer)xedit_encoding_get_from_charset ("ISO-8859-15"));
 
 	out = do_test ("", NULL, encodings, 0, &guessed);
 
 	g_assert_cmpstr (out, ==, "");
 
-	g_assert (guessed == pluma_encoding_get_utf8 ());
+	g_assert (guessed == xedit_encoding_get_utf8 ());
 }
 
 static void
@@ -314,29 +314,29 @@ test_guessed ()
 	GSList *encs = NULL;
 	gchar *aux, *aux2, *fail;
 	gsize aux_len, fail_len;
-	const PlumaEncoding *guessed;
+	const XeditEncoding *guessed;
 
 	aux = get_encoded_text (TEXT_TO_GUESS, -1,
-	                        pluma_encoding_get_from_charset ("UTF-16"),
-	                        pluma_encoding_get_from_charset ("UTF-8"),
+	                        xedit_encoding_get_from_charset ("UTF-16"),
+	                        xedit_encoding_get_from_charset ("UTF-8"),
 	                        &aux_len,
 	                        TRUE);
 
 	fail = get_encoded_text (aux, aux_len,
-	                         pluma_encoding_get_from_charset ("UTF-8"),
-	                         pluma_encoding_get_from_charset ("ISO-8859-15"),
+	                         xedit_encoding_get_from_charset ("UTF-8"),
+	                         xedit_encoding_get_from_charset ("ISO-8859-15"),
 	                         &fail_len,
 	                         FALSE);
 
 	g_assert (fail == NULL);
 
 	/* ISO-8859-15 should fail */
-	encs = g_slist_append (encs, (gpointer)pluma_encoding_get_from_charset ("ISO-8859-15"));
-	encs = g_slist_append (encs, (gpointer)pluma_encoding_get_from_charset ("UTF-16"));
+	encs = g_slist_append (encs, (gpointer)xedit_encoding_get_from_charset ("ISO-8859-15"));
+	encs = g_slist_append (encs, (gpointer)xedit_encoding_get_from_charset ("UTF-16"));
 
 	aux2 = do_test (aux, NULL, encs, aux_len, &guessed);
 
-	g_assert (guessed == pluma_encoding_get_from_charset ("UTF-16"));
+	g_assert (guessed == xedit_encoding_get_from_charset ("UTF-16"));
 }
 
 int main (int   argc,

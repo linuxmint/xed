@@ -1,39 +1,39 @@
 ## Process this file with automake to produce Makefile.in
 
 noinst_LTLIBRARIES = \
-	pluma.la
+	xedit.la
 
-nodist_pluma_la_SOURCES = 	\
-	pluma.c			\
-	plumautils.c		\
-	plumacommands.c
+nodist_xedit_la_SOURCES = 	\
+	xedit.c			\
+	xeditutils.c		\
+	xeditcommands.c
 
-pluma_la_LDFLAGS = \
+xedit_la_LDFLAGS = \
 	-module -avoid-version
 
-pluma_la_LIBADD = \
+xedit_la_LIBADD = \
 	$(PYTHON_LIB_LOC)       \
 	$(PYTHON_LIBS)		\
 	$(PYTHON_EXTRA_LIBS)	\
 	$(PYGTK_LIBS)
 
-pluma_la_CFLAGS = \
+xedit_la_CFLAGS = \
 	-I$(top_srcdir)					\
 	-I$(top_builddir)				\
-	-I$(top_srcdir)/pluma				\
-	-I$(top_builddir)/pluma				\
+	-I$(top_srcdir)/xedit				\
+	-I$(top_builddir)/xedit				\
 	-I$(top_srcdir)/plugin-loaders/python		\
 	-I$(top_builddir)/plugin-loaders/python		\
-	$(PLUMA_CFLAGS)					\
+	$(XEDIT_CFLAGS)					\
 	$(NO_STRICT_ALIASING_CFLAGS)			\
 	$(PYGTK_CFLAGS)					\
 	$(PYTHON_CFLAGS)				\
 	$(AM_CFLAGS)
 
-$(top_builddir)/pluma/pluma-enum-types.h:
-	cd $(top_builddir)/pluma && $(MAKE) pluma-enum-types.h
+$(top_builddir)/xedit/xedit-enum-types.h:
+	cd $(top_builddir)/xedit && $(MAKE) xedit-enum-types.h
 
-pluma.c: pluma.defs pluma.override plumaplugin.override plumamessage.override $(top_builddir)/pluma/pluma-enum-types.h
+xedit.c: xedit.defs xedit.override xeditplugin.override xeditmessage.override $(top_builddir)/xedit/xedit-enum-types.h
 	( cd $(srcdir) && $(PYGTK_CODEGEN) \
 		--register $(PYGTK_DEFSDIR)/pango-types.defs \
 		--register $(PYGTK_DEFSDIR)/gdk-types.defs \
@@ -43,69 +43,69 @@ pluma.c: pluma.defs pluma.override plumaplugin.override plumamessage.override $(
 		--override $*.override \
 		--prefix py$* $(<F) ) > $@ 
 
-plumautils.c: plumautils.defs plumautils.override
+xeditutils.c: xeditutils.defs xeditutils.override
 	( cd $(srcdir) && $(PYGTK_CODEGEN) \
 		--override $*.override \
 		--prefix py$* $(<F) ) > $@ 
 
-plumacommands.c: plumacommands.defs plumacommands.override pluma.defs
+xeditcommands.c: xeditcommands.defs xeditcommands.override xedit.defs
 	( cd $(srcdir) && $(PYGTK_CODEGEN) \
-		--register pluma.defs \
+		--register xedit.defs \
 		--register $(PYGTK_DEFSDIR)/gtk-types.defs \
 		--override $*.override \
 		--prefix py$* $(<F) ) > $@ 
 
-BINDING_PLUMA_HEADERS_SRCDIR_IN = \
-	pluma/pluma-app.h		\
-	pluma/pluma-document.h		\
-	pluma/pluma-encodings.h		\
-	pluma/pluma-plugin.h		\
-	plugin-loaders/python/pluma-plugin-python.h \
-	pluma/pluma-view.h		\
-	pluma/pluma-statusbar.h		\
-	pluma/pluma-tab.h 		\
-	pluma/pluma-panel.h 		\
-	pluma/pluma-window.h 		\
-	pluma/pluma-help.h		\
-	pluma/pluma-debug.h		\
-	pluma/pluma-message-type.h	\
-	pluma/pluma-message.h		\
-	pluma/pluma-message-bus.h	\
-	pluma/pluma-language-manager.h
+BINDING_XEDIT_HEADERS_SRCDIR_IN = \
+	xedit/xedit-app.h		\
+	xedit/xedit-document.h		\
+	xedit/xedit-encodings.h		\
+	xedit/xedit-plugin.h		\
+	plugin-loaders/python/xedit-plugin-python.h \
+	xedit/xedit-view.h		\
+	xedit/xedit-statusbar.h		\
+	xedit/xedit-tab.h 		\
+	xedit/xedit-panel.h 		\
+	xedit/xedit-window.h 		\
+	xedit/xedit-help.h		\
+	xedit/xedit-debug.h		\
+	xedit/xedit-message-type.h	\
+	xedit/xedit-message.h		\
+	xedit/xedit-message-bus.h	\
+	xedit/xedit-language-manager.h
 
 BINDING_UTILS_HEADERS_SRCDIR_IN = \
-	pluma/pluma-utils.h
+	xedit/xedit-utils.h
 
 BINDING_COMMANDS_HEADERS_SRCDIR_IN = \
-	pluma/pluma-commands.h
+	xedit/xedit-commands.h
 
 BINDING_HEADERS_BUILDDIR_IN = 
 
-BINDING_PLUMA_HEADERS_SRCDIR	:= $(addprefix $(top_srcdir)/,$(BINDING_PLUMA_HEADERS_SRCDIR_IN))
+BINDING_XEDIT_HEADERS_SRCDIR	:= $(addprefix $(top_srcdir)/,$(BINDING_XEDIT_HEADERS_SRCDIR_IN))
 BINDING_UTILS_HEADERS_SRCDIR	:= $(addprefix $(top_srcdir)/,$(BINDING_UTILS_HEADERS_SRCDIR_IN))
 BINDING_COMMANDS_HEADERS_SRCDIR	:= $(addprefix $(top_srcdir)/,$(BINDING_COMMANDS_HEADERS_SRCDIR_IN))
 
 BINDING_HEADERS_BUILDDIR	:= $(addprefix $(top_builddir)/,$(BINDING_HEADERS_BUILDDIR_IN))
 
 regenerate-python-binding:
-	$(PYGTK_H2DEF) $(sort $(BINDING_PLUMA_HEADERS_SRCDIR) $(BINDING_HEADERS_BUILDDIR)) > pluma.defs.new
-	$(PYGTK_H2DEF) $(sort $(BINDING_UTILS_HEADERS_SRCDIR) $(BINDING_HEADERS_BUILDDIR)) > plumautils.defs.new
-	$(PYGTK_H2DEF) $(sort $(BINDING_COMMANDS_HEADERS_SRCDIR) $(BINDING_HEADERS_BUILDDIR)) > plumacommands.defs.new
+	$(PYGTK_H2DEF) $(sort $(BINDING_XEDIT_HEADERS_SRCDIR) $(BINDING_HEADERS_BUILDDIR)) > xedit.defs.new
+	$(PYGTK_H2DEF) $(sort $(BINDING_UTILS_HEADERS_SRCDIR) $(BINDING_HEADERS_BUILDDIR)) > xeditutils.defs.new
+	$(PYGTK_H2DEF) $(sort $(BINDING_COMMANDS_HEADERS_SRCDIR) $(BINDING_HEADERS_BUILDDIR)) > xeditcommands.defs.new
 
 BUILT_SOURCES = \
-	pluma.c		\
-	plumautils.c	\
-	plumacommands.c
+	xedit.c		\
+	xeditutils.c	\
+	xeditcommands.c
 
 EXTRA_DIST = \
-	pluma.override		\
-	pluma.defs		\
-	plumautils.override	\
-	plumautils.defs		\
-	plumacommands.override 	\
-	plumacommands.defs	\
-	plumamessage.override	\
-	plumaplugin.override
+	xedit.override		\
+	xedit.defs		\
+	xeditutils.override	\
+	xeditutils.defs		\
+	xeditcommands.override 	\
+	xeditcommands.defs	\
+	xeditmessage.override	\
+	xeditplugin.override
 
 CLEANFILES = $(BUILT_SOURCES)
 

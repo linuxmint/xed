@@ -1,4 +1,4 @@
-TOOL_MERGE=$(top_srcdir)/plugins/externaltools/scripts/pluma-tool-merge.pl
+TOOL_MERGE=$(top_srcdir)/plugins/externaltools/scripts/xedit-tool-merge.pl
 
 tools_in_files = \
 	build.tool.in \
@@ -14,7 +14,7 @@ desktop_in_files = $(install_tools_in_files:.tool.in=.desktop.in)
 desktop_files    = $(install_tools_in_files:.tool.in=.desktop)
 
 tools_SCRIPTS = $(install_tools_in_files:.tool.in=)
-toolsdir = $(PLUMA_PLUGINS_DATA_DIR)/externaltools/tools
+toolsdir = $(XEDIT_PLUGINS_DATA_DIR)/externaltools/tools
 
 all_tools_in_files = \
 	$(tools_in_files)

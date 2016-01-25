@@ -1,5 +1,5 @@
 # Python snippets plugin
-plugindir = $(PLUMA_PLUGINS_LIBS_DIR)/snippets
+plugindir = $(XEDIT_PLUGINS_LIBS_DIR)/snippets
 
 plugin_PYTHON = \
 	__init__.py \
@@ -17,7 +17,7 @@ plugin_PYTHON = \
 	LanguageManager.py \
 	Completion.py
 
-uidir = $(PLUMA_PLUGINS_DATA_DIR)/snippets/ui
+uidir = $(XEDIT_PLUGINS_DATA_DIR)/snippets/ui
 ui_DATA = snippets.ui
 
 EXTRA_DIST = $(ui_DATA)

@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-#    Pluma External Tools plugin
+#    Xedit External Tools plugin
 #    Copyright (C) 2005-2006  Steve Frécinaux <steve@istique.net>
 #
 #    This program is free software; you can redistribute it and/or modify
