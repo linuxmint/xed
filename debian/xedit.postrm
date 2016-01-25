@@ -1,0 +1,10 @@
+#!/bin/sh
+
+set -e
+
+if [ remove = "$1" -o abort-install = "$1" -o disappear = "$1" ]; then
+    dpkg-divert --package xedit --remove --rename --divert /usr/bin/x11edit /usr/bin/xedit
+    dpkg-divert --package xedit --remove --rename --divert /usr/share/man/man1/x11edit.1.gz /usr/share/man/man1/xedit.1.gz
+fi
+
+exit 0
