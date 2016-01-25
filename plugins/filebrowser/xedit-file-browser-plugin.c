@@ -62,7 +62,6 @@ typedef struct _XeditFileBrowserPluginData
 
 	GSettings *settings;
 	GSettings *onload_settings;
-	GSettings *terminal_settings;
 } XeditFileBrowserPluginData;
 
 static void on_uri_activated_cb          (XeditFileBrowserWidget * widget,
@@ -511,7 +510,6 @@ impl_activate (XeditPlugin * plugin, XeditWindow * window)
 
 	data->settings = g_settings_new (FILE_BROWSER_SCHEMA);
 	data->onload_settings = g_settings_new (FILE_BROWSER_ONLOAD_SCHEMA);
-	data->terminal_settings = g_settings_new (TERMINAL_SCHEMA);
 
 	g_signal_connect (data->tree_widget,
 			  "uri-activated",
@@ -617,7 +615,6 @@ impl_deactivate (XeditPlugin * plugin, XeditWindow * window)
 
 	g_object_unref (data->settings);
 	g_object_unref (data->onload_settings);
-	g_object_unref (data->terminal_settings);
 
 	remove_popup_ui (window);
 
