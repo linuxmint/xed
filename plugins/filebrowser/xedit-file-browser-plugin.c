@@ -43,8 +43,6 @@
 
 #define FILE_BROWSER_SCHEMA 		"org.x.editor.plugins.filebrowser"
 #define FILE_BROWSER_ONLOAD_SCHEMA 	"org.x.editor.plugins.filebrowser.on-load"
-#define TERMINAL_SCHEMA				"org.mate.applications-terminal"
-#define TERMINAL_EXEC_KEY			"exec"
 
 #define XEDIT_FILE_BROWSER_PLUGIN_GET_PRIVATE(object)	(G_TYPE_INSTANCE_GET_PRIVATE ((object), XEDIT_TYPE_FILE_BROWSER_PLUGIN, XeditFileBrowserPluginPrivate))
 
@@ -295,21 +293,8 @@ on_action_set_active_root (GtkAction * action,
 static gchar *
 get_terminal (XeditFileBrowserPluginData * data)
 {
-	gchar * terminal;
-
-	terminal = g_settings_get_string (data->terminal_settings,
-					    TERMINAL_EXEC_KEY);
-
-	if (terminal == NULL) {
-		const gchar *term = g_getenv ("TERM");
-
-		if (term != NULL)
-			terminal = g_strdup (term);
-		else
-			terminal = g_strdup ("xterm");
-	}
-
-	return terminal;
+	// TODO : Identify the DE, find the preferred terminal application (xterminal shouldn't be hardcoded here, it should be set as default in the DE prefs)
+	return g_strdup ("xterminal");
 }
 
 static void
