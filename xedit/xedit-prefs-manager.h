@@ -108,7 +108,7 @@
 #define GPM_ACTIVE_PLUGINS			"active-plugins"
 
 /* Global Interface keys */
-#define GPM_INTERFACE_SCHEMA		"org.mate.interface"
+#define GPM_INTERFACE_SCHEMA		"org.gnome.desktop.interface"
 #define GPM_SYSTEM_FONT				"monospace-font-name"
 
 /* Fallback default values. Keep in sync with org.x.editor.gschema.xml */
