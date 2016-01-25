@@ -143,7 +143,6 @@ xedit_prefs_manager_init (void)
 	{
 		xedit_prefs_manager = g_new0 (XeditPrefsManager, 1);
 		xedit_prefs_manager->settings = g_settings_new (XEDIT_SCHEMA);
-		xedit_prefs_manager->lockdown_settings = g_settings_new (GPM_LOCKDOWN_SCHEMA);
 		xedit_prefs_manager->interface_settings = g_settings_new (GPM_INTERFACE_SCHEMA);
 	}
 
@@ -159,8 +158,6 @@ xedit_prefs_manager_shutdown (void)
 
 	g_object_unref (xedit_prefs_manager->settings);
 	xedit_prefs_manager->settings = NULL;
-	g_object_unref (xedit_prefs_manager->lockdown_settings);
-	xedit_prefs_manager->lockdown_settings = NULL;
 	g_object_unref (xedit_prefs_manager->interface_settings);
 	xedit_prefs_manager->interface_settings = NULL;
 }
@@ -916,26 +913,4 @@ xedit_prefs_manager_active_plugins_can_set (void)
 	xedit_debug (DEBUG_PREFS);
 
 	return xedit_prefs_manager_key_is_writable (GPM_ACTIVE_PLUGINS);
-}
-
-/* Global Lockdown */
-
-XeditLockdownMask
-xedit_prefs_manager_get_lockdown (void)
-{
-	guint lockdown = 0;
-
-	if (g_settings_get_boolean (xedit_prefs_manager->lockdown_settings, GPM_LOCKDOWN_COMMAND_LINE))
-		lockdown |= XEDIT_LOCKDOWN_COMMAND_LINE;
-
-	if (g_settings_get_boolean (xedit_prefs_manager->lockdown_settings, GPM_LOCKDOWN_PRINTING))
-		lockdown |= XEDIT_LOCKDOWN_PRINTING;
-
-	if (g_settings_get_boolean (xedit_prefs_manager->lockdown_settings, GPM_LOCKDOWN_PRINT_SETUP))
-		lockdown |= XEDIT_LOCKDOWN_PRINT_SETUP;
-
-	if (g_settings_get_boolean (xedit_prefs_manager->lockdown_settings, GPM_LOCKDOWN_SAVE_TO_DISK))
-		lockdown |= XEDIT_LOCKDOWN_SAVE_TO_DISK;
-
-	return lockdown;
 }

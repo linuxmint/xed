@@ -55,16 +55,12 @@
 enum
 {
 	PROP_0,
-	PROP_LOCKDOWN
 };
 
 struct _XeditAppPrivate
 {
 	GList	          *windows;
 	XeditWindow       *active_window;
-
-	XeditLockdownMask  lockdown;
-
 	GtkPageSetup      *page_setup;
 	GtkPrintSettings  *print_settings;
 };
@@ -96,9 +92,6 @@ xedit_app_get_property (GObject    *object,
 
 	switch (prop_id)
 	{
-		case PROP_LOCKDOWN:
-			g_value_set_flags (value, xedit_app_get_lockdown (app));
-			break;
 		default:
 			G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
 			break;
@@ -112,16 +105,6 @@ xedit_app_class_init (XeditAppClass *klass)
 
 	object_class->finalize = xedit_app_finalize;
 	object_class->get_property = xedit_app_get_property;
-
-	g_object_class_install_property (object_class,
-					 PROP_LOCKDOWN,
-					 g_param_spec_flags ("lockdown",
-							     "Lockdown",
-							     "The lockdown mask",
-							     XEDIT_TYPE_LOCKDOWN_MASK,
-							     0,
-							     G_PARAM_READABLE |
-							     G_PARAM_STATIC_STRINGS));
 
 	g_type_class_add_private (object_class, sizeof(XeditAppPrivate));
 }
@@ -332,9 +315,6 @@ xedit_app_init (XeditApp *app)
 	app->priv = XEDIT_APP_GET_PRIVATE (app);
 
 	load_accels ();
-
-	/* initial lockdown state */
-	app->priv->lockdown = xedit_prefs_manager_get_lockdown ();
 }
 
 static void
@@ -790,60 +770,6 @@ xedit_app_get_views (XeditApp *app)
 	}
 
 	return res;
-}
-
-/**
- * xedit_app_get_lockdown:
- * @app: a #XeditApp
- *
- * Gets the lockdown mask (see #XeditLockdownMask) for the application.
- * The lockdown mask determines which functions are locked down using
- * the MATE-wise lockdown GSettings keys.
- **/
-XeditLockdownMask
-xedit_app_get_lockdown (XeditApp *app)
-{
-	g_return_val_if_fail (XEDIT_IS_APP (app), XEDIT_LOCKDOWN_ALL);
-
-	return app->priv->lockdown;
-}
-
-static void
-app_lockdown_changed (XeditApp *app)
-{
-	GList *l;
-
-	for (l = app->priv->windows; l != NULL; l = l->next)
-		_xedit_window_set_lockdown (XEDIT_WINDOW (l->data),
-					    app->priv->lockdown);
-
-	g_object_notify (G_OBJECT (app), "lockdown");
-}
-
-void
-_xedit_app_set_lockdown (XeditApp          *app,
-			 XeditLockdownMask  lockdown)
-{
-	g_return_if_fail (XEDIT_IS_APP (app));
-
-	app->priv->lockdown = lockdown;
-
-	app_lockdown_changed (app);
-}
-
-void
-_xedit_app_set_lockdown_bit (XeditApp          *app,
-			     XeditLockdownMask  bit,
-			     gboolean           value)
-{
-	g_return_if_fail (XEDIT_IS_APP (app));
-
-	if (value)
-		app->priv->lockdown |= bit;
-	else
-		app->priv->lockdown &= ~bit;
-
-	app_lockdown_changed (app);
 }
 
 /* Returns a copy */

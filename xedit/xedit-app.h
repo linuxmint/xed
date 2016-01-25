@@ -74,18 +74,6 @@ struct _XeditAppClass
 };
 
 /*
- * Lockdown mask definition
- */
-typedef enum
-{
-	XEDIT_LOCKDOWN_COMMAND_LINE	= 1 << 0,
-	XEDIT_LOCKDOWN_PRINTING		= 1 << 1,
-	XEDIT_LOCKDOWN_PRINT_SETUP	= 1 << 2,
-	XEDIT_LOCKDOWN_SAVE_TO_DISK	= 1 << 3,
-	XEDIT_LOCKDOWN_ALL		= 0xF
-} XeditLockdownMask;
-
-/*
  * Public methods
  */
 GType 		 xedit_app_get_type 			(void) G_GNUC_CONST;
@@ -104,9 +92,6 @@ GList		*xedit_app_get_documents		(XeditApp *app);
 /* Returns a newly allocated list with all the views */
 GList		*xedit_app_get_views			(XeditApp *app);
 
-/* Lockdown state */
-XeditLockdownMask xedit_app_get_lockdown		(XeditApp *app);
-
 /*
  * Non exported functions
  */
@@ -117,17 +102,6 @@ XeditWindow	*_xedit_app_get_window_in_viewport	(XeditApp     *app,
 							 gint          workspace,
 							 gint          viewport_x,
 							 gint          viewport_y);
-void		 _xedit_app_set_lockdown		(XeditApp          *app,
-							 XeditLockdownMask  lockdown);
-void		 _xedit_app_set_lockdown_bit		(XeditApp          *app,
-							 XeditLockdownMask  bit,
-							 gboolean           value);
-/*
- * This one is a xedit-window function, but we declare it here to avoid
- * #include headaches since it needs the XeditLockdownMask declaration.
- */
-void		 _xedit_window_set_lockdown		(XeditWindow         *window,
-							 XeditLockdownMask    lockdown);
 
 /* global print config */
 GtkPageSetup		*_xedit_app_get_default_page_setup	(XeditApp         *app);

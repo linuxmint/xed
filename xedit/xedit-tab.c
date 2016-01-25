@@ -1478,7 +1478,6 @@ xedit_tab_init (XeditTab *tab)
 {
 	GtkWidget *sw;
 	XeditDocument *doc;
-	XeditLockdownMask lockdown;
 
 	tab->priv = XEDIT_TAB_GET_PRIVATE (tab);
 
@@ -1504,9 +1503,7 @@ xedit_tab_init (XeditTab *tab)
 					GTK_POLICY_AUTOMATIC);
 
 	/* Manage auto save data */
-	lockdown = xedit_app_get_lockdown (xedit_app_get_default ());
-	tab->priv->auto_save = xedit_prefs_manager_get_auto_save () &&
-			       !(lockdown & XEDIT_LOCKDOWN_SAVE_TO_DISK);
+	tab->priv->auto_save = xedit_prefs_manager_get_auto_save ();
 	tab->priv->auto_save = (tab->priv->auto_save != FALSE);
 
 	tab->priv->auto_save_interval = xedit_prefs_manager_get_auto_save_interval ();
@@ -2670,17 +2667,10 @@ xedit_tab_set_auto_save_enabled	(XeditTab *tab,
 				 gboolean  enable)
 {
 	XeditDocument *doc = NULL;
-	XeditLockdownMask lockdown;
-	
 	xedit_debug (DEBUG_TAB);
 
 	g_return_if_fail (XEDIT_IS_TAB (tab));
 
-	/* Force disabling when lockdown is active */
-	lockdown = xedit_app_get_lockdown (xedit_app_get_default());
-	if (lockdown & XEDIT_LOCKDOWN_SAVE_TO_DISK)
-		enable = FALSE;
-	
 	doc = xedit_tab_get_document (tab);
 
 	if (tab->priv->auto_save == enable)

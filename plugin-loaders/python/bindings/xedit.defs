@@ -79,19 +79,6 @@
 
 ;; Enumerations and flags ...
 
-(define-flags LockdownMask
-  (in-module "Xedit")
-  (c-name "XeditLockdownMask")
-  (gtype-id "XEDIT_TYPE_LOCKDOWN_MASK")
-  (values
-    '("command-line" "XEDIT_LOCKDOWN_COMMAND_LINE")
-    '("printing" "XEDIT_LOCKDOWN_PRINTING")
-    '("print-setup" "XEDIT_LOCKDOWN_PRINT_SETUP")
-    '("save-to-disk" "XEDIT_LOCKDOWN_SAVE_TO_DISK")
-    '("all" "XEDIT_LOCKDOWN_ALL")
-  )
-)
-
 (define-flags SearchFlags
   (in-module "Xedit")
   (c-name "XeditSearchFlags")
@@ -221,12 +208,6 @@
   (of-object "XeditApp")
   (c-name "xedit_app_get_views")
   (return-type "GList*")
-)
-
-(define-method get_lockdown
-  (of-object "XeditApp")
-  (c-name "xedit_app_get_lockdown")
-  (return-type "XeditLockdownMask")
 )
 
 

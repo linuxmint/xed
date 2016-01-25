@@ -3,14 +3,12 @@
 XeditAppPrivate
 <TITLE>XeditApp</TITLE>
 XeditApp
-XeditLockdownMask
 xedit_app_get_default
 xedit_app_create_window
 xedit_app_get_windows
 xedit_app_get_active_window
 xedit_app_get_documents
 xedit_app_get_views
-xedit_app_get_lockdown
 <SUBSECTION Standard>
 XEDIT_APP
 XEDIT_IS_APP
@@ -579,11 +577,6 @@ GPM_SHOWN_IN_MENU_ENCODINGS
 GPM_SYNTAX_HL_DIR
 GPM_SYNTAX_HL_ENABLE
 GPM_WRITABLE_VFS_SCHEMES
-GPM_LOCKDOWN_DIR
-GPM_LOCKDOWN_COMMAND_LINE
-GPM_LOCKDOWN_PRINTING
-GPM_LOCKDOWN_PRINT_SETUP
-GPM_LOCKDOWN_SAVE_TO_DISK
 GPM_DEFAULT_USE_DEFAULT_FONT
 GPM_DEFAULT_EDITOR_FONT
 GPM_DEFAULT_USE_DEFAULT_COLORS
@@ -750,7 +743,6 @@ xedit_prefs_manager_get_restore_cursor_position
 xedit_prefs_manager_get_enable_search_highlighting
 xedit_prefs_manager_set_enable_search_highlighting
 xedit_prefs_manager_enable_search_highlighting_can_set
-xedit_prefs_manager_get_lockdown
 </SECTION>
 
 <SECTION>
@@ -789,8 +781,6 @@ xedit_utils_format_uri_for_display
 
 <SECTION>
 <FILE>xedit-enum-types</FILE>
-XEDIT_TYPE_LOCKDOWN_MASK
-xedit_lockdown_mask_get_type
 XEDIT_TYPE_CONVERT_ERROR
 xedit_convert_error_get_type
 XEDIT_TYPE_DEBUG_SECTION

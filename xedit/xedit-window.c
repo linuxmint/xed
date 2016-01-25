@@ -666,13 +666,10 @@ set_sensitivity_according_to_tab (XeditWindow *window,
 	gboolean       editable;
 	XeditTabState  state;
 	GtkClipboard  *clipboard;
-	XeditLockdownMask lockdown;
 
 	g_return_if_fail (XEDIT_TAB (tab));
 
 	xedit_debug (DEBUG_WINDOW);
-
-	lockdown = xedit_app_get_lockdown (xedit_app_get_default ());
 
 	state = xedit_tab_get_state (tab);
 	state_normal = (state == XEDIT_TAB_STATE_NORMAL);
@@ -691,8 +688,7 @@ set_sensitivity_according_to_tab (XeditWindow *window,
 				  (state_normal ||
 				   (state == XEDIT_TAB_STATE_EXTERNALLY_MODIFIED_NOTIFICATION) ||
 				   (state == XEDIT_TAB_STATE_SHOWING_PRINT_PREVIEW)) &&
-				  !xedit_document_get_readonly (doc) &&
-				  !(lockdown & XEDIT_LOCKDOWN_SAVE_TO_DISK));
+				  !xedit_document_get_readonly (doc));
 
 	action = gtk_action_group_get_action (window->priv->action_group,
 					      "FileSaveAs");
@@ -700,8 +696,7 @@ set_sensitivity_according_to_tab (XeditWindow *window,
 				  (state_normal ||
 				   (state == XEDIT_TAB_STATE_SAVING_ERROR) ||
 				   (state == XEDIT_TAB_STATE_EXTERNALLY_MODIFIED_NOTIFICATION) ||
-				   (state == XEDIT_TAB_STATE_SHOWING_PRINT_PREVIEW)) &&
-				  !(lockdown & XEDIT_LOCKDOWN_SAVE_TO_DISK));
+				   (state == XEDIT_TAB_STATE_SHOWING_PRINT_PREVIEW)));
 
 	action = gtk_action_group_get_action (window->priv->action_group,
 					      "FileRevert");
@@ -713,15 +708,13 @@ set_sensitivity_according_to_tab (XeditWindow *window,
 	action = gtk_action_group_get_action (window->priv->action_group,
 					      "FilePrintPreview");
 	gtk_action_set_sensitive (action,
-				  state_normal &&
-				  !(lockdown & XEDIT_LOCKDOWN_PRINTING));
+				  state_normal);
 
 	action = gtk_action_group_get_action (window->priv->action_group,
 					      "FilePrint");
 	gtk_action_set_sensitive (action,
 				  (state_normal ||
-				  (state == XEDIT_TAB_STATE_SHOWING_PRINT_PREVIEW)) &&
-				  !(lockdown & XEDIT_LOCKDOWN_PRINTING));
+				  (state == XEDIT_TAB_STATE_SHOWING_PRINT_PREVIEW)));
 				  
 	action = gtk_action_group_get_action (window->priv->close_action_group,
 					      "FileClose");
@@ -2445,9 +2438,6 @@ static void
 set_sensitivity_according_to_window_state (XeditWindow *window)
 {
 	GtkAction *action;
-	XeditLockdownMask lockdown;
-
-	lockdown = xedit_app_get_lockdown (xedit_app_get_default ());
 
 	/* We disable File->Quit/SaveAll/CloseAll while printing to avoid to have two
 	   operations (save and print/print preview) that uses the message area at
@@ -2467,8 +2457,7 @@ set_sensitivity_according_to_window_state (XeditWindow *window)
 	action = gtk_action_group_get_action (window->priv->action_group,
 				              "FileSaveAll");
 	gtk_action_set_sensitive (action, 
-				  !(window->priv->state & XEDIT_WINDOW_STATE_PRINTING) &&
-				  !(lockdown & XEDIT_LOCKDOWN_SAVE_TO_DISK));
+				  !(window->priv->state & XEDIT_WINDOW_STATE_PRINTING));
 			
 	action = gtk_action_group_get_action (window->priv->always_sensitive_action_group,
 					      "FileNew");
@@ -2528,33 +2517,6 @@ update_tab_autosave (GtkWidget *widget,
 	gboolean *enabled = (gboolean *) data;
 
 	xedit_tab_set_auto_save_enabled (tab, *enabled);
-}
-
-void
-_xedit_window_set_lockdown (XeditWindow       *window,
-			    XeditLockdownMask  lockdown)
-{
-	XeditTab *tab;
-	GtkAction *action;
-	gboolean autosave;
-
-	/* start/stop autosave in each existing tab */
-	autosave = xedit_prefs_manager_get_auto_save ();
-	gtk_container_foreach (GTK_CONTAINER (window->priv->notebook),
-			       update_tab_autosave,
-			       &autosave);
-
-	/* update menues wrt the current active tab */	
-	tab = xedit_window_get_active_tab (window);
-
-	set_sensitivity_according_to_tab (window, tab);
-
-	action = gtk_action_group_get_action (window->priv->action_group,
-				              "FileSaveAll");
-	gtk_action_set_sensitive (action, 
-				  !(window->priv->state & XEDIT_WINDOW_STATE_PRINTING) &&
-				  !(lockdown & XEDIT_LOCKDOWN_SAVE_TO_DISK));
-
 }
 
 static void

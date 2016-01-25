@@ -36,7 +36,6 @@ typedef struct _XeditPrefsManager 	XeditPrefsManager;
 
 struct _XeditPrefsManager {
 	GSettings *settings;
-	GSettings *lockdown_settings;
 	GSettings *interface_settings;
 };
 

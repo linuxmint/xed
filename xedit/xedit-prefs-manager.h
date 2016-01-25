@@ -111,13 +111,6 @@
 #define GPM_INTERFACE_SCHEMA		"org.mate.interface"
 #define GPM_SYSTEM_FONT				"monospace-font-name"
 
-/* Global Lockdown keys */
-#define GPM_LOCKDOWN_SCHEMA			"org.mate.lockdown"
-#define GPM_LOCKDOWN_COMMAND_LINE	"disable-command-line"
-#define GPM_LOCKDOWN_PRINTING		"disable-printing"
-#define GPM_LOCKDOWN_PRINT_SETUP	"disable-print-setup"
-#define GPM_LOCKDOWN_SAVE_TO_DISK	"disable-save-to-disk"
-
 /* Fallback default values. Keep in sync with org.x.editor.gschema.xml */
 #define GPM_DEFAULT_AUTO_SAVE_INTERVAL	10 /* minutes */
 #define GPM_DEFAULT_MAX_RECENTS			5
@@ -322,9 +315,6 @@ gboolean		 xedit_prefs_manager_source_style_scheme_can_set(void);
 GSList			*xedit_prefs_manager_get_active_plugins		(void);
 void			 xedit_prefs_manager_set_active_plugins		(const GSList *plugins);
 gboolean 		 xedit_prefs_manager_active_plugins_can_set	(void);
-
-/* Global lockdown */
-XeditLockdownMask	 xedit_prefs_manager_get_lockdown			(void);
 
 /* GSettings utilities */
 GSList*				 xedit_prefs_manager_get_gslist (GSettings *settings, const gchar *key);

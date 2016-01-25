@@ -116,10 +116,6 @@ static void xedit_prefs_manager_active_plugins_changed	(GSettings *settings,
 							 gchar       *key,
 							 gpointer     user_data);
 
-static void xedit_prefs_manager_lockdown_changed	(GSettings *settings,
-							 gchar       *key,
-							 gpointer     user_data);
-
 /* GUI state is serialized to a .desktop file, not in GSettings */
 
 #define XEDIT_STATE_DEFAULT_WINDOW_STATE	0
@@ -716,11 +712,6 @@ xedit_prefs_manager_app_init (void)
 		g_signal_connect (xedit_prefs_manager->settings,
 				"changed::" GPM_ACTIVE_PLUGINS,
 				G_CALLBACK (xedit_prefs_manager_active_plugins_changed),
-				NULL);
-
-		g_signal_connect (xedit_prefs_manager->lockdown_settings,
-				"changed",
-				G_CALLBACK (xedit_prefs_manager_lockdown_changed),
 				NULL);
 	}
 
@@ -1439,37 +1430,3 @@ xedit_prefs_manager_active_plugins_changed (GSettings *settings,
 	}
 }
 
-static void
-xedit_prefs_manager_lockdown_changed (GSettings *settings,
-				      gchar       *key,
-				      gpointer     user_data)
-{
-	XeditApp *app;
-	gboolean locked;
-
-	xedit_debug (DEBUG_PREFS);
-
-	locked = g_settings_get_boolean (settings, key);
-
-	app = xedit_app_get_default ();
-
-	if (strcmp (key, GPM_LOCKDOWN_COMMAND_LINE) == 0)
-		_xedit_app_set_lockdown_bit (app,
-					     XEDIT_LOCKDOWN_COMMAND_LINE,
-					     locked);
-
-	else if (strcmp (key, GPM_LOCKDOWN_PRINTING) == 0)
-		_xedit_app_set_lockdown_bit (app,
-					     XEDIT_LOCKDOWN_PRINTING,
-					     locked);
-
-	else if (strcmp (key, GPM_LOCKDOWN_PRINT_SETUP) == 0)
-		_xedit_app_set_lockdown_bit (app,
-					     XEDIT_LOCKDOWN_PRINT_SETUP,
-					     locked);
-
-	else if (strcmp (key, GPM_LOCKDOWN_SAVE_TO_DISK) == 0)
-		_xedit_app_set_lockdown_bit (app,
-					     XEDIT_LOCKDOWN_SAVE_TO_DISK,
-					     locked);
-}
