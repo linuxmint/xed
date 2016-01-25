@@ -645,7 +645,7 @@ add_preview_widget (PlumaTaglistPluginPanel *panel)
 
 	gtk_label_set_line_wrap	(GTK_LABEL (panel->priv->preview), TRUE);
 	gtk_label_set_use_markup (GTK_LABEL (panel->priv->preview), TRUE);
-#if GTK_CHECK_VERSION (3, 14, 0)
+#if GTK_CHECK_VERSION (3, 0, 0)
 	gtk_widget_set_halign (panel->priv->preview, GTK_ALIGN_START);
 	gtk_widget_set_valign (panel->priv->preview, GTK_ALIGN_START);
 	gtk_widget_set_margin_start (panel->priv->preview, 6);
