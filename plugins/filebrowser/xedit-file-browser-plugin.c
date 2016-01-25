@@ -43,10 +43,6 @@
 
 #define FILE_BROWSER_SCHEMA 		"org.x.editor.plugins.filebrowser"
 #define FILE_BROWSER_ONLOAD_SCHEMA 	"org.x.editor.plugins.filebrowser.on-load"
-#define CAJA_SCHEMA					"org.mate.caja.preferences"
-#define CAJA_CLICK_POLICY_KEY		"click-policy"
-#define CAJA_ENABLE_DELETE_KEY		"enable-delete"
-#define CAJA_CONFIRM_TRASH_KEY		"confirm-trash"
 #define TERMINAL_SCHEMA				"org.mate.applications-terminal"
 #define TERMINAL_EXEC_KEY			"exec"
 
@@ -65,11 +61,9 @@ typedef struct _XeditFileBrowserPluginData
 	GtkActionGroup	       * single_selection_action_group;
 	gboolean	         auto_root;
 	gulong                   end_loading_handle;
-	gboolean		 confirm_trash;
 
 	GSettings *settings;
 	GSettings *onload_settings;
-	GSettings *caja_settings;
 	GSettings *terminal_settings;
 } XeditFileBrowserPluginData;
 
@@ -253,114 +247,6 @@ restore_filter (XeditFileBrowserPluginData * data)
 
 	g_free (filter_mode);
 	g_free (pattern);
-}
-
-static XeditFileBrowserViewClickPolicy
-click_policy_from_string (gchar const *click_policy)
-{
-	if (click_policy && strcmp (click_policy, "single") == 0)
-		return XEDIT_FILE_BROWSER_VIEW_CLICK_POLICY_SINGLE;
-	else
-		return XEDIT_FILE_BROWSER_VIEW_CLICK_POLICY_DOUBLE;
-}
-
-static void
-on_click_policy_changed (GSettings *settings,
-			 gchar *key,
-			 gpointer user_data)
-{
-	XeditFileBrowserPluginData * data;
-	gchar *click_policy;
-	XeditFileBrowserViewClickPolicy policy = XEDIT_FILE_BROWSER_VIEW_CLICK_POLICY_DOUBLE;
-	XeditFileBrowserView *view;
-
-	data = (XeditFileBrowserPluginData *)(user_data);
-
-	click_policy = g_settings_get_string (settings, key);
-	policy = click_policy_from_string (click_policy);
-
-	view = xedit_file_browser_widget_get_browser_view (data->tree_widget);
-	xedit_file_browser_view_set_click_policy (view, policy);
-	g_free (click_policy);
-}
-
-static void
-on_enable_delete_changed (GSettings *settings,
-			  gchar *key,
-			  gpointer user_data)
-{
-	XeditFileBrowserPluginData *data;
-	gboolean enable = FALSE;
-
-	data = (XeditFileBrowserPluginData *)(user_data);
-	enable = g_settings_get_boolean (settings, key);
-
-	g_object_set (G_OBJECT (data->tree_widget), "enable-delete", enable, NULL);
-}
-
-static void
-on_confirm_trash_changed (GSettings *settings,
-		 	  gchar *key,
-			  gpointer user_data)
-{
-	XeditFileBrowserPluginData *data;
-	gboolean enable = FALSE;
-
-	data = (XeditFileBrowserPluginData *)(user_data);
-	enable = g_settings_get_boolean (settings, key);
-
-	data->confirm_trash = enable;
-}
-
-static gboolean
-have_click_policy (void)
-{
-	GSettings *settings = g_settings_new (CAJA_SCHEMA);
-	gchar *pref = g_settings_get_string (settings, CAJA_CLICK_POLICY_KEY);
-	gboolean result = (pref != NULL);
-
-	g_free (pref);
-	g_object_unref (settings);
-	return result;
-}
-
-static void
-install_caja_prefs (XeditFileBrowserPluginData *data)
-{
-	gchar *pref;
-	gboolean prefb;
-	XeditFileBrowserViewClickPolicy policy;
-	XeditFileBrowserView *view;
-
-	if (have_click_policy ()) {
-		g_signal_connect (data->caja_settings,
-		                  "changed::" CAJA_CLICK_POLICY_KEY,
-		                  G_CALLBACK (on_click_policy_changed),
-		                  data);
-	}
-
-	g_signal_connect (data->caja_settings,
-	                  "changed::" CAJA_ENABLE_DELETE_KEY,
-	                  G_CALLBACK (on_enable_delete_changed),
-	                  data);
-
-	g_signal_connect (data->caja_settings,
-	                  "changed::" CAJA_CONFIRM_TRASH_KEY,
-	                  G_CALLBACK (on_confirm_trash_changed),
-	                  data);
-
-	pref = g_settings_get_string (data->caja_settings, CAJA_CLICK_POLICY_KEY);
-	policy = click_policy_from_string (pref);
-	g_free (pref);
-
-	view = xedit_file_browser_widget_get_browser_view (data->tree_widget);
-	xedit_file_browser_view_set_click_policy (view, policy);
-
-	prefb = g_settings_get_boolean (data->caja_settings, CAJA_ENABLE_DELETE_KEY);
-	g_object_set (G_OBJECT (data->tree_widget), "enable-delete", prefb, NULL);
-
-	prefb = g_settings_get_boolean (data->caja_settings, CAJA_CONFIRM_TRASH_KEY);
-	data->confirm_trash = prefb;
 }
 
 static void
@@ -695,15 +581,6 @@ impl_activate (XeditPlugin * plugin, XeditWindow * window)
 	/* Restore filter options */
 	restore_filter (data);
 
-	/* Install caja preferences */
-	schema_source = g_settings_schema_source_get_default();
-	schema = g_settings_schema_source_lookup (schema_source, CAJA_SCHEMA, FALSE);
-	if (schema != NULL) {
-		data->caja_settings = g_settings_new (CAJA_SCHEMA);
-		install_caja_prefs (data);
-		g_settings_schema_unref (schema);
-	}
-
 	/* Connect signals to store the last visited location */
 	g_signal_connect (xedit_file_browser_widget_get_browser_view (data->tree_widget),
 	                  "notify::model",
@@ -756,9 +633,6 @@ impl_deactivate (XeditPlugin * plugin, XeditWindow * window)
 	g_object_unref (data->settings);
 	g_object_unref (data->onload_settings);
 	g_object_unref (data->terminal_settings);
-
-	if (data->caja_settings)
-		g_object_unref (data->caja_settings);
 
 	remove_popup_ui (window);
 
@@ -1109,9 +983,6 @@ on_confirm_delete_cb (XeditFileBrowserWidget *widget,
 	XeditFileBrowserPluginData *data;
 
 	data = get_plugin_data (window);
-
-	if (!data->confirm_trash)
-		return TRUE;
 
 	if (paths->next == NULL) {
 		normal = get_filename_from_path (GTK_TREE_MODEL (store), (GtkTreePath *)(paths->data));
