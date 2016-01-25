@@ -37,9 +37,6 @@
 
 #include <glib/gi18n.h>
 #include <gtk/gtk.h>
-#ifdef WITH_MATEDESKTOP
-#include <libmate-desktop/mate-aboutdialog.h>
-#endif
 
 #include "pluma-commands.h"
 #include "pluma-debug.h"
@@ -87,13 +84,8 @@ void _pluma_cmd_help_about(GtkAction* action, PlumaWindow* window)
 
 	pluma_debug (DEBUG_COMMANDS);
 
-#ifdef WITH_MATEDESKTOP
-	mate_show_about_dialog(GTK_WINDOW(window),
-#else
 	gtk_show_about_dialog(GTK_WINDOW(window),
-#endif
 		"program-name", "Pluma",
-
 		"authors", authors,
 		"comments", _(comments),
 		"copyright", copyright,

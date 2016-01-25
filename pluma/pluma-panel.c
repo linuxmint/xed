@@ -655,8 +655,8 @@ build_tab_label (PlumaPanel  *panel,
 	gtk_misc_set_alignment (GTK_MISC (label), 0.0, 0.5);
 #endif
 #if GTK_CHECK_VERSION (3, 0, 0)
-	gtk_widget_set_margin_start (label, 0);
-	gtk_widget_set_margin_end (label, 0);
+	gtk_widget_set_margin_left (label, 0);
+	gtk_widget_set_margin_right (label, 0);
 	gtk_widget_set_margin_top (label, 0);
 	gtk_widget_set_margin_bottom (label, 0);
 #else

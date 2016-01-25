@@ -1,0 +1,34 @@
+#!/usr/bin/make -f
+
+DHFLAGS=--parallel
+
+%:
+	dh $@ $(DHFLAGS)
+
+override_dh_install:
+	rm -f debian/tmp/usr/share/MateConf/gsettings/*.convert
+	rm -rfv debian/tmp/usr/lib/*/pluma/plugin-loaders/*.la
+	rm -rfv debian/tmp/usr/lib/*/pluma/plugins/*.la
+	dh_install --fail-missing
+
+override_dh_auto_configure:
+	# upstream tarball is without configure. autogen.sh will create it
+	NOCONFIGURE=1 ./autogen.sh
+	dh_auto_configure $(DHFLAGS) -- \
+		--disable-silent-rules \
+		--libexecdir=/usr/lib/ \
+		--disable-python \
+		--enable-gtk-doc \
+		--with-gtk=3.0
+
+override_dh_installchangelogs:
+	dh_installchangelogs NEWS
+
+override_dh_auto_test:
+	DEB_BUILD_OPTIONS=nocheck dh_auto_test
+
+override_dh_strip:
+	dh_strip --dbg-package=pluma-dbg
+
+get-orig-source:
+	uscan --noconf --force-download --rename --download-current-version --destdir=..
