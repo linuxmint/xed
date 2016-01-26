@@ -2175,23 +2175,23 @@ set_title (XeditWindow *window)
 	if (xedit_document_get_readonly (doc)) 
 	{
 		if (dirname != NULL)
-			title = g_strdup_printf ("%s [%s] (%s) - Xedit",
+			title = g_strdup_printf ("%s [%s] (%s)",
 						 name, 
 						 _("Read-Only"), 
 						 dirname);
 		else
-			title = g_strdup_printf ("%s [%s] - Xedit",
+			title = g_strdup_printf ("%s [%s]",
 						 name, 
 						 _("Read-Only"));
 	} 
 	else 
 	{
 		if (dirname != NULL)
-			title = g_strdup_printf ("%s (%s) - Xedit",
+			title = g_strdup_printf ("%s (%s)",
 						 name, 
 						 dirname);
 		else
-			title = g_strdup_printf ("%s - Xedit",
+			title = g_strdup_printf ("%s",
 						 name);
 	}
 
