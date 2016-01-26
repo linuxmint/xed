@@ -3,13 +3,13 @@ dnl Process this file with autoconf to produce a configure script.
 AC_PREREQ(2.63.2)
 
 m4_define(xedit_major_version, 1)
-m4_define(xedit_minor_version, 13)
+m4_define(xedit_minor_version, 0)
 m4_define(xedit_micro_version, 0)
 m4_define(xedit_version, xedit_major_version.xedit_minor_version.xedit_micro_version)
 
 AC_INIT([xedit], [xedit_version],
-    [https://github.com/mate-desktop/xedit/issues],
-    [xedit], [http://mate-desktop.org])
+    [https://github.com/linuxmint/xedit/issues],
+    [xedit], [http://github.com/linuxmint/xedit])
 
 AC_CONFIG_HEADERS(config.h)
 AC_CONFIG_SRCDIR(xedit/xedit.c)

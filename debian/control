@@ -1,11 +1,7 @@
 Source: xedit
 Section: x11
 Priority: optional
-Maintainer: Stefano Karapetsas <stefano@karapetsas.com>
-Uploaders: Mike Gabriel <sunweaver@debian.org>,
-           John Paul Adrian Glaubitz <glaubitz@physik.fu-berlin.de>,
-           Stefano Karapetsas <stefano@karapetsas.com>,
-           Vangelis Mouhtsis <vangelis@gnugr.org>,
+Maintainer: Linux Mint <root@linuxmint.com>
 Build-Depends: autotools-dev,
                debhelper (>= 9),
                gtk-doc-tools,
@@ -21,7 +17,6 @@ Build-Depends: autotools-dev,
                mate-common,
                yelp-tools,
 Standards-Version: 3.9.6
-Homepage: http://www.mate-desktop.org/
 
 Package: xedit
 Architecture: any
@@ -30,9 +25,9 @@ Depends: iso-codes,
          ${misc:Depends},
          ${python:Depends},
          ${shlibs:Depends},
-Recommends: zenity,
+         zenity
 XB-Python-Version: ${python:Versions}
-Description: official text editor of the MATE desktop environment
+Description: generic text editor
  Xedit is a text editor which supports most standard editor features,
  extending this basic functionality with other features not usually
  found in simple text editors. Xedit is a graphical application which
@@ -52,8 +47,7 @@ Package: xedit-common
 Architecture: all
 Depends: python,
          ${misc:Depends},
-Breaks: mate-text-editor (<< 1.5.0),
-Description: official text editor of the MATE desktop environment (common files)
+Description: generic text editor (common files)
  Xedit is a text editor which supports most standard editor features,
  extending this basic functionality with other features not usually
  found in simple text editors. Xedit is a graphical application which
@@ -76,8 +70,7 @@ Architecture: any
 Section: devel
 Depends: xedit (= ${binary:Version}),
          ${misc:Depends},
-Breaks: mate-text-editor (<< 1.5.0),
-Description: official text editor of the MATE desktop environment (development files)
+Description: generic text editor (development files)
  Xedit is a text editor which supports most standard editor features,
  extending this basic functionality with other features not usually
  found in simple text editors. Xedit is a graphical application which
@@ -101,7 +94,7 @@ Priority: extra
 Architecture: any
 Depends: xedit (= ${binary:Version}),
          ${misc:Depends},
-Description: official text editor of the MATE desktop environment (debugging symbols)
+Description: generic text editor (debugging symbols)
  Xedit is a text editor which supports most standard editor features,
  extending this basic functionality with other features not usually
  found in simple text editors. Xedit is a graphical application which
@@ -127,7 +120,7 @@ Package: xedit-doc
 Section: doc
 Architecture: all
 Depends: ${misc:Depends},
-Description: official text editor of the MATE desktop environment (documentation files)
+Description: generic text editor (documentation files)
  Xedit is a text editor which supports most standard editor features,
  extending this basic functionality with other features not usually
  found in simple text editors. Xedit is a graphical application which
