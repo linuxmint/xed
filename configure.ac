@@ -71,11 +71,6 @@ AC_DEFUN([XEDIT_FULLPATH], [
   $3=`eval echo [$]ac_expand`
 ])
 
-dnl FULL_LIBEXECDIR is used for X-MATE-Bugzilla-ExtraInfoScript expansion
-dnl in data/xedit.desktop.in.in
-XEDIT_FULLPATH(libexecdir, NONE, FULL_LIBEXECDIR)
-AC_SUBST(FULL_LIBEXECDIR)
-
 dnl ================================================================
 dnl Gettext stuff.
 dnl ================================================================
@@ -413,32 +408,3 @@ Configuration:
 	Gvfs metadata enabled:	$enable_gvfs_metadata
 	Tests enabled:		$enable_tests
 "
-
-if expr ${XEDIT_MINOR_VERSION} % 2 > /dev/null; then
-	stable_version=`expr ${XEDIT_MINOR_VERSION} - 1`
-
-cat << EOF
- *** IMPORTANT ***
-
-This is an unstable version of xedit.
-It is for test purposes only.
-
-Please, DO NOT use it in a production environment.
-It will probably crash and you will lose your data.
-
-If you are looking for a stable release of xedit, either download
-it from:
-
-  http://pub.mate-desktop.org/release/1.${stable_version}/
-
-Or checkout the 1.${stable_version} branch of the xedit module from:
-
-  git://github.com/mate-desktop/xedit.git
-
-Thanks,
-The xedit team
-
- *** END OF WARNING ***
-EOF
-
-fi

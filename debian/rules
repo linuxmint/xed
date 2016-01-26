@@ -6,7 +6,6 @@ DHFLAGS=--parallel
 	dh $@ $(DHFLAGS)
 
 override_dh_install:
-	rm -f debian/tmp/usr/share/MateConf/gsettings/*.convert
 	rm -rfv debian/tmp/usr/lib/*/xedit/plugin-loaders/*.la
 	rm -rfv debian/tmp/usr/lib/*/xedit/plugins/*.la
 	dh_install --fail-missing

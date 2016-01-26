@@ -15,11 +15,10 @@ Build-Depends: autotools-dev,
                libglib2.0-dev,
                libgtk-3-dev,
                libgtksourceview-3.0-dev,
-               libmate-desktop-dev (>= 1.12),
                libsm-dev,
                libx11-dev,
                libxml2-dev,
-               mate-common (>= 1.12),
+               mate-common,
                yelp-tools,
 Standards-Version: 3.9.6
 Homepage: http://www.mate-desktop.org/
@@ -27,15 +26,11 @@ Homepage: http://www.mate-desktop.org/
 Package: xedit
 Architecture: any
 Depends: iso-codes,
-         mate-desktop-common,
          xedit-common (= ${source:Version}),
          ${misc:Depends},
          ${python:Depends},
          ${shlibs:Depends},
 Recommends: zenity,
-Provides: mate-text-editor,
-Breaks: mate-text-editor (<< 1.5.0),
-Replaces: mate-text-editor (<< 1.5.0),
 XB-Python-Version: ${python:Versions}
 Description: official text editor of the MATE desktop environment
  Xedit is a text editor which supports most standard editor features,
