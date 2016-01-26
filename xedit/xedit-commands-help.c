@@ -52,47 +52,16 @@ void _xedit_cmd_help_contents(GtkAction* action, XeditWindow* window)
 
 void _xedit_cmd_help_about(GtkAction* action, XeditWindow* window)
 {
-	static const gchar* const authors[] = {
-		"Paolo Maggi <paolo@gnome.org>",
-		"Paolo Borelli <pborelli@katamail.com>",
-		"Steve Fr\303\251cinaux  <steve@istique.net>",
-		"Jesse van den Kieboom  <jessevdk@gnome.org>",
-		"Ignacio Casal Quinteiro <icq@gnome.org>",
-		"James Willcox <jwillcox@gnome.org>",
-		"Chema Celorio",
-		"Federico Mena Quintero <federico@novell.com>",
-		"Perberos <perberos@gmail.com>",
-		NULL
-	};
-
-	static const gchar* const documenters[] = {
-		"Sun GNOME Documentation Team <gdocteam@sun.com>",
-		"Eric Baudais <baudais@okstate.edu>",
-		NULL
-	};
-
-	static const gchar copyright[] = \
-		"Copyright \xc2\xa9 1998-2000 Evan Lawrence, Alex Robert\n"
-		"Copyright \xc2\xa9 2000-2002 Chema Celorio, Paolo Maggi\n"
-		"Copyright \xc2\xa9 2003-2006 Paolo Maggi\n"
-		"Copyright \xc2\xa9 2004-2010 Paolo Borelli, Jesse van den Kieboom\nSteve Fr\303\251cinaux, Ignacio Casal Quinteiro\n"
-		"Copyright \xc2\xa9 2011 Perberos\n"
-		"Copyright \xc2\xa9 2012-2014 MATE developers";
-
 	static const gchar comments[] = \
-		N_("Xedit is a small and lightweight text editor for the MATE Desktop");
+		N_("A small and lightweight text editor");
 
 	xedit_debug (DEBUG_COMMANDS);
 
 	gtk_show_about_dialog(GTK_WINDOW(window),
-		"program-name", "Xedit",
-		"authors", authors,
+		"program-name", "xedit",
 		"comments", _(comments),
-		"copyright", copyright,
-		"documenters", documenters,
 		"logo_icon_name", "accessories-text-editor",
-		"translator-credits", _("translator-credits"),
 		"version", VERSION,
-		"website", "http://mate-desktop.org",
+		"website", "http://github.com/linuxmint/xedit",
 		NULL);
 }
