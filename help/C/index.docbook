@@ -6,118 +6,16 @@
   <!ENTITY date "July 2015">
   <!ENTITY app "xedit">
 ]>
-<!--
-      (Do not remove this comment block.)
-  Maintained by the MATE Documentation Project
-  http://wiki.mate-desktop.org/dev-doc:doc-team-guide
-  Template version: 2.0 beta
-  Template last modified Jan 30, 2002
 
--->
 <!-- =============Document Header ============================= -->
 <?db.chunk.max_depth 2?>
 <article id="index" lang="en">
 <!-- please do not change the id; for translations, change lang to -->
 <!-- appropriate code -->
   <articleinfo>
-	 <title>Xedit Manual<!-- not using app entity because of lowercase ugliness --></title>
-	 <copyright>
-		<year>2015</year>
-		<holder>MATE Documentation Project</holder> </copyright>
-	 <copyright>
-		<year>2007</year>
-		<holder>GNOME Documentation Project</holder> </copyright>
-	 <copyright>
-		<year>2002</year>
-		<year>2003</year>
-		<year>2004</year>
-		<holder>Sun Microsystems</holder> </copyright>
-	 <copyright>
-		<year>2000</year>
-		<holder>Eric Baudais</holder> </copyright>
-
-<!-- translators: uncomment this:
-
-  <copyright>
-   <year>2003</year>
-   <holder>ME-THE-TRANSLATOR (Latin translation)</holder>
-  </copyright>
-
-   -->
-	 <publisher role="maintainer">
-		<publishername>MATE Documentation Project</publishername>
-	 </publisher>
-	 <publisher>
-		<publishername>GNOME Documentation Project</publishername>
-	 </publisher>
+	 <title>Text Editor</title>
 
 	 <xi:include href="legal.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
-
-	 <authorgroup>
-		<author>
-		  <firstname>MATE Documentation Project</firstname>
-		  <surname></surname>
-		  <affiliation>
-			 <orgname>MATE Desktop</orgname>
-		  </affiliation>
-		</author>
-           <author>
-             <firstname>Joachim</firstname>
-             <surname>Noreiko</surname>
-           </author>
-		<author>
-		  <firstname>GNOME Documentation Project</firstname>
-		  <surname></surname>
-		  <affiliation>
-			 <orgname>GNOME</orgname>
-		  </affiliation>
-		</author>
-		<author>
-			<firstname>Hal</firstname>
-			<surname>Canary</surname>
-			<contrib>Added the Shortcut Keys Table</contrib>
-		</author>
-		<author>
-		  <firstname>Sun Java Desktop System Documentation Team</firstname>
-		  <surname></surname>
-		  <affiliation>
-			 <orgname>Sun Microsystems</orgname>
-			 <address><email>gdocteam@sun.com</email></address>
-		  </affiliation>
-		</author>
-		<author>
-		  <firstname>Eric</firstname>
-		  <surname>Baudais</surname>
-		  <affiliation>
-			 <orgname>GNOME Documentation Project</orgname>
-			 <address> <email>baudais@okstate.edu</email> </address>
-		  </affiliation>
-		</author>
-		<othercredit role="reviewer">
-			<firstname>Baris</firstname>
-			<surname>Cicek provided information from earlier revisions of the xedit application.</surname>
-			<contrib>Acknowledgements</contrib>
-    </othercredit>
-		<othercredit role="reviewer">
-			<firstname>Ajit</firstname>
-			<surname>George provided information about plugins.</surname>
-			<contrib>Acknowledgements</contrib>
-    </othercredit>
-
-
-<!-- This is appropriate place for other contributors: translators,
-      maintainers,  etc. Commented out by default.
-       <othercredit role="translator">
-	<firstname>Latin</firstname>
-	<surname>Translator 1</surname>
-	<affiliation>
-	  <orgname>Latin Translation Team</orgname>
-	  <address> <email>translator@gnome.org</email> </address>
-	</affiliation>
-	<contrib>Latin translation</contrib>
-      </othercredit>
--->
-	 </authorgroup>
 
 <!-- According to GNU FDL, revision history is mandatory if you are -->
 <!-- modifying/reusing someone else's document.  If not, you can omit it. -->
@@ -224,17 +122,6 @@
 	 </revhistory>
 	 <releaseinfo> This manual describes version &appversion; of &app;.
 		</releaseinfo>
-	 <legalnotice>
-		<title>Feedback</title>
-		<para>To report a bug or make a suggestion regarding the <application>&app;</application> application or this manual, follow the directions in the <ulink url="help:mate-user-guide/feedback" type="help">MATE Feedback Page</ulink>.
-      </para>
-<!-- Translators may also add here feedback address for translations -->
-	 </legalnotice>
-    <abstract role="description">
-      <para>&app; is a text editor for the MATE Desktop featuring basic yet
-      robust capabilities such as printing, spell checking, find and replace,
-      and syntax highlighting. More advanced features are available as plugins.</para>
-    </abstract>
   </articleinfo>
   <indexterm><primary>xedit</primary></indexterm>
   <indexterm><primary>text editor</primary></indexterm>
@@ -333,14 +220,12 @@
 		  </varlistentry>
 		  <varlistentry> <term>Bottom Pane</term>
 			 <listitem>
-				<para>The bottom pane is used by programming tools such as the <application>Python Console</application> plugin to display output.</para>
 				<para>By default the bottom pane is not shown. To show it, choose <menuchoice><guimenu>View</guimenu><guimenuitem>Bottom Pane</guimenuitem></menuchoice>.</para>
 			 </listitem>
 		  </varlistentry>
 		</variablelist>
 		<para>When you right-click in the <application>&app;</application> window, the application displays a popup menu. The popup menu contains the most common text editing commands. </para>
 
-		<para>Like other MATE applications, actions in <application>&app;</application> can be performed in several ways: with the menu, with the toolbar, or with shortcut keys. Shortcuts keys common to all applications are listed in the <ulink type="help" url="help:mate-user-guide/shortcuts-apps">User Guide</ulink>.</para>
 	 </sect2>
 
 <!-- ============= To Open Multiple Files from the Command Line ========= -->
@@ -406,9 +291,8 @@
 		<para>Click <guibutton>Open</guibutton>.</para>
 		</listitem>
 		</orderedlist>
-		<para>Valid types of <replaceable>URI</replaceable> include <literal>http:</literal>, <literal>ftp:</literal>, <literal>file:</literal>, and all of the methods supported by <literal>mate-vfs</literal>.</para>
+		<para>Valid types of <replaceable>URI</replaceable> include <literal>http:</literal>, <literal>ftp:</literal>, <literal>file:</literal>, and all of the methods supported by <literal>gvfs</literal>.</para>
 		<para>Files from some types of URI are opened as read-only, and any changes you make must be saved to a different location. HTTP only allows files to be read. Files opened from FTP are read-only because because not all FTP servers may correctly work with saving remote files.</para>
-		<warning><para>Saving to FTP servers can be enabled with <ulink type="help" url="help:mateconf-editor"><application>Configuration Editor</application></ulink>, setting the key <systemitem>/apps/xedit/preferences/editor/save/writable_vfs_schemes</systemitem>, but this may cause errors.</para></warning>
 	 </sect2>
 
 <!-- ============= Working with tabs ======================== -->
@@ -874,7 +758,6 @@
 <sect1 id="xedit-shortcutkeys">
   <title>Shortcut Keys</title>
   <para>Use shortcut keys to perform common tasks more quickly than with the mouse and menus. The following tables list all of <application>&app;</application>'s shortcut keys.</para>
-  <para>For more on shortcut keys, see the <ulink type="help" url="help:mate-user-guide/keyboard-skills">Desktop User Guide</ulink>.</para>
 
   <!-- ============= Tabs ======================== -->
 	<bridgehead>Tabs</bridgehead>
@@ -1376,9 +1259,6 @@
   		    <para><application><link linkend="xedit-document-statistics-plugin">Document Statistics</link></application> shows the number of lines, words, and characters in the document. </para>
   		  </listitem>
   		  <listitem>
-  		    <para><application><link linkend="xedit-external-tools-plugin">External Tools</link></application> allows you to execute external commands from <application>&app;</application>.</para>
-  		  </listitem>
-  		  <listitem>
   		    <para><application><!-- <link linkend="xedit-file-browser-plugin">File Browser</link>-->File Browser</application> allows you to browse your files and folders in the side pane.</para>
   		  </listitem>
   		  <listitem>
@@ -1391,12 +1271,6 @@
   		    <para><application><link linkend="xedit-modelines-plugin">Modelines</link></application> allows you to set editing preferences for individual documents, and supports <application>Emacs</application>, <application>Kate</application> and <application>Vim</application>-style modelines.</para>
   		  </listitem>
   		  <listitem>
-  		    <para><application><link linkend="xedit-python-console-plugin">Python Console</link></application> allows you to run commands in the python programming language.</para>
-  		  </listitem>
-  		  <listitem>
-  		    <para><application><link linkend="xedit-snippets-plugin">Snippets</link></application> allows you to store frequently-used pieces of text and insert them quickly into a document.</para>
-  		  </listitem>
-  		  <listitem>
   		    <para><application><link linkend="xedit-sort-plugin">Sort</link></application> arranges selected lines of text into alphabetical order.</para>
   		  </listitem>
   		  <listitem>
@@ -1407,7 +1281,6 @@
   		  </listitem>
   		</itemizedlist>
 
-	<note><para>For more information on creating plugins, see the <ulink type="http" url="http://live.gnome.org/Xedit/Plugins"><application>&app;</application> website</ulink>.</para></note>
   	</sect2>
 
 <sect2 id="xedit-change-case-plugin">
@@ -1489,119 +1362,6 @@
                            </para>
 		  </listitem>
 		</orderedlist>
-</sect2>
-
-<sect2 id="xedit-external-tools-plugin">
-  <title>External Tools Plugin</title>
-  <para>The <application>External Tools</application> plugin allows you to execute external commands from <application>&app;</application>. You can pipe some content into a command and exploit its output (for example, <application>sed</application>), or launch a predefined command (for example, <application>make</application>).</para>
-  <para>Use the <guilabel>External Tools Manager</guilabel> to create and edit commands. To run an external command, choose it from the <guimenu>Tools</guimenu> menu.</para>
-
-  <sect3 id="xedit-external-tools-plugin-builtin">
-    <title>Built-in Commands</title>
-    <para>The following commands are provided with the <application>External Tools</application> plugin:</para>
-    <variablelist>
-      <varlistentry><term>Build</term>
-        <listitem>
-          <para>Runs <application>make</application> in the current document's directory.</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry><term>Directory Listing</term>
-        <listitem>
-          <para>Lists the contents of the current document's directory in a new document.</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry><term>Environment Variables</term>
-        <listitem>
-          <para>Displays the environment variables list in the bottom pane.</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry><term>Grep</term>
-        <listitem>
-          <para>Searches for a term in all files in the current document directory, using pattern matching. Results are shown in the bottom pane.</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry><term>Remove Trailing Spaces</term>
-        <listitem>
-          <para>Removes all spaces from the end of lines in the document.</para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-  </sect3>
-
-  <sect3 id="xedit-external-tools-plugin-define">
-    <title>Defining a Command</title>
-    <para>To add an external command, choose <menuchoice><guimenu>Tools</guimenu><guimenuitem>External Tools</guimenuitem></menuchoice>.</para>
-    <para>In the <guilabel>External Tools Manager</guilabel> window, click <guibutton>New</guibutton>. You can speficy the following details for the new command:</para>
-    <variablelist>
-      <varlistentry><term>Description</term>
-        <listitem>
-          <para>This description is shown in the statusbar when the menu command is chosen.</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry><term>Accelerator</term>
-        <listitem>
-          <para>Enter a keyboard shortcut for the command.</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry><term>Commands</term>
-        <listitem>
-          <para>The actual commands to be run. Several <application>&app;</application> environment variables can be used to pass content to these commands: see <xref linkend="xedit-external-tools-plugin-variables"/>.</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry><term>Input</term>
-        <listitem>
-          <para>The content to give to the commands (as <systemitem>stdin</systemitem>): the entire text of the current document, the current selection, line, or word.</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry><term>Output</term>
-        <listitem>
-          <para>What to do with the output of the commands: display in the bottom pane, put in a new document, or place in the current document, at the end, at the cursor position, or replacing the selection or the entire document.</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry><term>Applicability</term>
-        <listitem>
-          <para>Determines which sort of documents can be affected by the command, for example whether saved or not, and local or remote.</para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-
-  </sect3>
-
-  <sect3 id="xedit-external-tools-plugin-edit">
-    <title>Editing and Removing Tools</title>
-    <para>To edit a tool, select it in the list and make changes to its properties.</para>
-    <para>To rename a tool, click it again in the list.</para>
-    <para>To restore a built-in tool that you have changed, press <guilabel>Revert</guilabel>.</para>
-    <para>To remove a tool, select it in the list and press <guibutton>Remove</guibutton>. You can not remove built-in tools, only those you have created yourself.</para>
-  </sect3>
-
-  <sect3 id="xedit-external-tools-plugin-variables">
-    <title>Variables</title>
-    <para>You can use the following variables in the <guilabel>Commands</guilabel> field of the command definition:</para>
-    <itemizedlist>
-      <listitem>
-        <para>XEDIT_CURRENT_DOCUMENT_URI</para>
-      </listitem>
-      <listitem>
-        <para>XEDIT_CURRENT_DOCUMENT_NAME</para>
-      </listitem>
-      <listitem>
-        <para>XEDIT_CURRENT_DOCUMENT_SCHEME</para>
-      </listitem>
-      <listitem>
-        <para>XEDIT_CURRENT_DOCUMENT_PATH</para>
-      </listitem>
-      <listitem>
-        <para>XEDIT_CURRENT_DOCUMENT_DIR</para>
-      </listitem>
-      <listitem>
-        <para>XEDIT_DOCUMENTS_URI</para>
-      </listitem>
-      <listitem>
-        <para>XEDIT_DOCUMENTS_PATH</para>
-      </listitem>
-    </itemizedlist>
-  </sect3>
 </sect2>
 
 <sect2 id="xedit-file-browser-plugin">
@@ -1735,149 +1495,6 @@
       <para>The first and last three lines a document are scanned for <application>Vim</application> modelines.</para>
       <para>The <application>Vim</application> options for et, expandtab, ts, tabstop, sw, shiftwidth, wrap, and textwidth are supported. For more information, see the <ulink type="http" url="http://vimdoc.sourceforge.net/htmldoc/options.html#modeline">Vim website</ulink>.</para>
     </sect3>
-</sect2>
-
-<sect2 id="xedit-python-console-plugin">
-  <title>Python Console Plugin</title>
-  <para>The <application>Python Console</application> Plugin allows you to run commands in the python programming language from <application>&app;</application>. Enabling the plugin adds a tab to the bottom pane. This shows recent output and a command prompt field.</para>
-  <caution><para>Commands entered into the python console are not checked before they are run. It is therefore possible to hang <application>&app;</application>, for example by entering an infinite loop.</para></caution>
-</sect2>
-
-<sect2 id="xedit-snippets-plugin">
-<title>Snippets Plugin</title>
-  <para>The <application>Snippets</application> plugin allows you to store frequently-used pieces of text, called <firstterm>snippets</firstterm>, and insert them quickly into a document.</para>
-    <para>Snippets are specific to the language syntax of the current document. For example, when you are working with an HTML document, you can choose from a list of snippets that are useful for HTML. In addition, some snippets are global, and are available in all documents.</para>
-    <para>A number of built-in snippets are installed with <application>&app;</application>, which can be modified.</para>
-
-  <sect3 id="xedit-snippets-plugin-insert">
-    <title>Inserting Snippets</title>
-    <para>To insert a snippet into a document, type its <firstterm>tab trigger</firstterm> and press <keycap>Tab</keycap>. A snippet's tab trigger is usually the first few letters of the snippet, or something else that is short and easy to remember.</para>
-    <para>Alternatively, press <keycombo><keycap>Ctrl</keycap><keycap>Space</keycap></keycombo> to see a list of snippets you can insert.</para>
-  </sect3>
-
-  <sect3 id="xedit-snippets-plugin-add">
-    <title>Adding Snippets</title>
-    <para>To create a new snippet, do the following:</para>
-      <orderedlist>
-        <listitem>
-          <para>Choose <menuchoice><guimenu>Tools</guimenu><guimenuitem>Manage Snippets</guimenuitem></menuchoice>. The <guilabel>Snippets Manager</guilabel> window opens.</para>
-        </listitem>
-        <listitem>
-          <para>The list of snippets is grouped by language. Select the language you want to add a snippet to, or a snippet in that language group. To add a snippet for all languages, choose Global at the top of the list. The syntax of the document you are currently working with is shown by default.</para>
-        </listitem>
-        <listitem>
-          <para>Click <guibutton>New</guibutton>. A new snippet appears in the list.</para>
-        </listitem>
-        <listitem>
-          <para>Enter the following information for the new snippet:</para>
-          <variablelist>
-            <varlistentry><term>Name</term>
-              <listitem>
-                <para>Enter a name for the snippet in the text field within the snippet list. The name of a snippet serves only as a reminder of its purpose. You can change name of a snippet you create by clicking on it in the list.</para>
-              </listitem>
-            </varlistentry>
-            <varlistentry><term>Snippet text</term>
-              <listitem>
-                <para>Enter the text of the snippet in the <guilabel>Edit snippet</guilabel> text box. For special codes you can use, see <xref linkend="xedit-snippets-plugin-syntax"/>.</para>
-                <tip><para>You can switch back to the document window to copy text without closing the <guilabel>Snippets Manager</guilabel> window.</para></tip>
-              </listitem>
-            </varlistentry>
-            <varlistentry><term>Tab Trigger</term>
-              <listitem>
-                <para>Enter the tab trigger for the snippet. This is the text that you type before pressing <keycap>Tab</keycap> to insert the snippet.</para>
-                <para>The tag must be either a single word comprising only letters, or any single character. The <guilabel>Tab trigger</guilabel> will highlight in red if an invalid tab trigger is entered.</para>
-              </listitem>
-            </varlistentry>
-            <varlistentry><term>Shortcut key</term>
-              <listitem>
-                <para>Type a shortcut key to use for inserting the snippet.</para>
-              </listitem>
-            </varlistentry>
-          </variablelist>
-
-        </listitem>
-      </orderedlist>
-  </sect3>
-  <sect3 id="xedit-snippets-plugin-edit">
-    <title>Editing and Removing Snippets</title>
-    <para>To edit a snippet, select it in the list and make changes to its text and activation properties.</para>
-    <para>To rename a snippet, click it again in the list.</para>
-    <para>To restore a built-in snippet that you have changed, press <guilabel>Revert</guilabel>.</para>
-    <para>To remove a snippet, select it in the list and press <guibutton>Remove</guibutton>. You can not remove built-in snippets, only those you have created yourself.</para>
-  </sect3>
-
-  <sect3 id="xedit-snippets-plugin-syntax">
-    <title>Snippet Substitutions</title>
-    <para>In addition to inserting stored text, a snippet can include customizable text, or mark spaces where you can add text once the snippet is inserted in your document.</para>
-
-    <para></para>
-
-    <para>You can use the following placeholder codes in snippet text:</para>
-      <variablelist>
-        <varlistentry><term>Tab placeholders</term>
-          <listitem>
-            <para><literal>$<replaceable>n</replaceable></literal> defines a tab placeholder, where <literal>n</literal> is any number from 1 upwards. </para>
-            <para><literal>${<replaceable>n</replaceable>:<replaceable>default</replaceable>}</literal> defines a tab placeholder with a default value.</para>
-            <para>A tab placeholder marks a place in the snippet text where you can add extra text after the snippet is inserted.</para>
-            <para>To use tab placeholders, insert the snippet as normal. The cursor is placed at the first tab placeholder. Type text, and press <keycap>Tab</keycap> to advance to the next tab placeholder. The number in the placeholder code defines the order in which tab advances to each place in the text.</para>
-            <para>Press <keycombo><keycap>Shift</keycap><keycap>Tab</keycap></keycombo> to return to the previous tab placeholder. Pressing <keycap>Tab</keycap> when there are no more tab placeholders moves the cursor to the end of the snippet text, or to the end placeholder if it exists.</para>
-          </listitem>
-        </varlistentry>
-        <varlistentry><term>Mirror placeholders</term>
-          <listitem>
-            <para>A repeated tab placeholder will mirror the placeholder already defined. This allows you to type in text only once that you want to appear several times in the snippet.</para>
-          </listitem>
-        </varlistentry>
-        <varlistentry><term>End placeholder</term>
-          <listitem>
-            <para><literal>$0</literal> defines the end placeholder. This allows you to finish working with the snippet with the cursor at a point other than the end of the snippet text.</para>
-          </listitem>
-        </varlistentry>
-        <varlistentry><term>Environmental variables</term>
-          <listitem>
-            <para>Environmental variable such as <literal>$PATH</literal> and <literal>$HOME</literal> are substituted in snippet text. The following variables specific to <application>&app;</application> can also be used:</para>
-            <variablelist>
-              <varlistentry><term>$XEDIT_SELECTED_TEXT</term>
-                <listitem>
-                  <para>The currently selected text.</para>
-                </listitem>
-              </varlistentry>
-              <varlistentry><term>$XEDIT_FILENAME</term>
-                <listitem>
-                  <para>The full filename of the document, or an empty string if the document isn't saved yet.</para>
-                </listitem>
-              </varlistentry>
-              <varlistentry><term>$XEDIT_BASENAME</term>
-                <listitem>
-                  <para>The basename of the filename of the document, or an empty string if the document isn't saved yet.</para>
-                </listitem>
-              </varlistentry>
-              <varlistentry><term>$XEDIT_CURRENT_WORD</term>
-                <listitem>
-                  <para>The word at the cursor's location in the document. When this variable is used, the current word will be replaced by the snippet text.</para>
-                </listitem>
-              </varlistentry>
-
-            </variablelist>
-
-          </listitem>
-        </varlistentry>
-        <varlistentry><term>Shell placeholders</term>
-          <listitem>
-            <para><literal>$(<replaceable>cmd</replaceable>)</literal> is replaced by the result of executing <replaceable>cmd</replaceable> in a shell. </para>
-            <para><literal>$(<replaceable>n</replaceable>:<replaceable>cmd</replaceable>)</literal> allows you to give this placeholder a reference, where <replaceable>n</replaceable> is any number from 1 upwards. Use <literal>$<replaceable>n</replaceable></literal> to use the output from one shell placeholder as input in another.</para>
-          </listitem>
-        </varlistentry>
-        <varlistentry><term>Python placeholders</term>
-          <listitem>
-            <para><literal>$&lt;<replaceable>cmd</replaceable>&gt;</literal> is replaced by the result of evaluating <replaceable>cmd</replaceable> in the python interpreter.</para>
-            <para><literal>$&lt;<replaceable>a</replaceable>:<replaceable>cmd</replaceable>&gt;</literal> specifies another python placeholder as a dependency, where <replaceable>a</replaceable> gives its order in the snippet. This allows you to use python functions defined in another snippet. To specify several dependencies, separate the numbers with commas thus: <literal>$&lt;<replaceable>a</replaceable>,<replaceable>b</replaceable>:<replaceable>cmd</replaceable>&gt;</literal></para>
-            <para>To use a variable in all other python snippets, declare it as <literal>global</literal>.</para>
-          </listitem>
-        </varlistentry>
-      </variablelist>
-  </sect3>
-
 </sect2>
 
 <sect2 id="xedit-sort-plugin">
