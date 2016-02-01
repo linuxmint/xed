@@ -516,7 +516,7 @@ DEFINE_INT_PREF (print_line_numbers,
 DEFINE_STRING_PREF (print_font_body,
 		    GPM_PRINT_FONT_BODY)
 
-gchar *
+static gchar *
 xed_prefs_manager_get_default_string_value (const gchar *key)
 {
 	gchar *font = NULL;
