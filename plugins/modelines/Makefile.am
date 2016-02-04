@@ -1,31 +1,31 @@
 # Modelines Plugin
-plugindir = $(XEDIT_PLUGINS_LIBS_DIR)
+plugindir = $(XED_PLUGINS_LIBS_DIR)
 
 AM_CPPFLAGS = \
 	-I$(top_srcdir) 				\
-	$(XEDIT_CFLAGS) 				\
+	$(XED_CFLAGS) 				\
 	$(WARN_CFLAGS)					\
 	$(DISABLE_DEPRECATED_CFLAGS)
 
-modelinesdir = $(XEDIT_PLUGINS_DATA_DIR)/modelines
+modelinesdir = $(XED_PLUGINS_DATA_DIR)/modelines
 modelines_DATA = \
 	language-mappings
 
 plugin_LTLIBRARIES = libmodelines.la
 
 libmodelines_la_SOURCES = \
-	xedit-modeline-plugin.h				\
-	xedit-modeline-plugin.c				\
+	xed-modeline-plugin.h				\
+	xed-modeline-plugin.c				\
 	modeline-parser.h				\
 	modeline-parser.c
 
 libmodelines_la_LDFLAGS = $(PLUGIN_LIBTOOL_FLAGS)
-libmodelines_la_LIBADD  = $(XEDIT_LIBS)
+libmodelines_la_LIBADD  = $(XED_LIBS)
 
-plugin_in_files = modelines.xedit-plugin.desktop.in
-%.xedit-plugin: %.xedit-plugin.desktop.in $(INTLTOOL_MERGE) $(wildcard $(top_srcdir)/po/*po) ; $(INTLTOOL_MERGE) $(top_srcdir)/po $< $@ -d -u -c $(top_builddir)/po/.intltool-merge-cache
+plugin_in_files = modelines.xed-plugin.desktop.in
+%.xed-plugin: %.xed-plugin.desktop.in $(INTLTOOL_MERGE) $(wildcard $(top_srcdir)/po/*po) ; $(INTLTOOL_MERGE) $(top_srcdir)/po $< $@ -d -u -c $(top_builddir)/po/.intltool-merge-cache
 
-plugin_DATA = $(plugin_in_files:.xedit-plugin.desktop.in=.xedit-plugin)
+plugin_DATA = $(plugin_in_files:.xed-plugin.desktop.in=.xed-plugin)
 
 EXTRA_DIST = \
 	$(plugin_in_files)				\

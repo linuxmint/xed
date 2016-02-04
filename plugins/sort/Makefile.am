@@ -1,29 +1,29 @@
 # sort plugin
-plugindir = $(XEDIT_PLUGINS_LIBS_DIR)
+plugindir = $(XED_PLUGINS_LIBS_DIR)
 
 AM_CPPFLAGS = \
 	-I$(top_srcdir) 				\
-	$(XEDIT_CFLAGS) 				\
+	$(XED_CFLAGS) 				\
 	$(WARN_CFLAGS)					\
 	$(DISABLE_DEPRECATED_CFLAGS)	
 
 plugin_LTLIBRARIES = libsort.la
 
 libsort_la_SOURCES = \
-	xedit-sort-plugin.h	\
-	xedit-sort-plugin.c
+	xed-sort-plugin.h	\
+	xed-sort-plugin.c
 
 libsort_la_LDFLAGS = $(PLUGIN_LIBTOOL_FLAGS)
-libsort_la_LIBADD  = $(XEDIT_LIBS)
+libsort_la_LIBADD  = $(XED_LIBS)
 
-uidir = $(XEDIT_PLUGINS_DATA_DIR)/sort
+uidir = $(XED_PLUGINS_DATA_DIR)/sort
 ui_DATA = sort.ui
 
-plugin_in_files = sort.xedit-plugin.desktop.in
+plugin_in_files = sort.xed-plugin.desktop.in
 
-%.xedit-plugin: %.xedit-plugin.desktop.in $(INTLTOOL_MERGE) $(wildcard $(top_srcdir)/po/*po) ; $(INTLTOOL_MERGE) $(top_srcdir)/po $< $@ -d -u -c $(top_builddir)/po/.intltool-merge-cache
+%.xed-plugin: %.xed-plugin.desktop.in $(INTLTOOL_MERGE) $(wildcard $(top_srcdir)/po/*po) ; $(INTLTOOL_MERGE) $(top_srcdir)/po $< $@ -d -u -c $(top_builddir)/po/.intltool-merge-cache
 
-plugin_DATA = $(plugin_in_files:.xedit-plugin.desktop.in=.xedit-plugin)
+plugin_DATA = $(plugin_in_files:.xed-plugin.desktop.in=.xed-plugin)
 
 EXTRA_DIST = $(ui_DATA) $(plugin_in_files)
 

@@ -1,39 +1,39 @@
 ## Process this file with automake to produce Makefile.in
 
 noinst_LTLIBRARIES = \
-	xedit.la
+	xed.la
 
-nodist_xedit_la_SOURCES = 	\
-	xedit.c			\
-	xeditutils.c		\
-	xeditcommands.c
+nodist_xed_la_SOURCES = 	\
+	xed.c			\
+	xedutils.c		\
+	xedcommands.c
 
-xedit_la_LDFLAGS = \
+xed_la_LDFLAGS = \
 	-module -avoid-version
 
-xedit_la_LIBADD = \
+xed_la_LIBADD = \
 	$(PYTHON_LIB_LOC)       \
 	$(PYTHON_LIBS)		\
 	$(PYTHON_EXTRA_LIBS)	\
 	$(PYGTK_LIBS)
 
-xedit_la_CFLAGS = \
+xed_la_CFLAGS = \
 	-I$(top_srcdir)					\
 	-I$(top_builddir)				\
-	-I$(top_srcdir)/xedit				\
-	-I$(top_builddir)/xedit				\
+	-I$(top_srcdir)/xed				\
+	-I$(top_builddir)/xed				\
 	-I$(top_srcdir)/plugin-loaders/python		\
 	-I$(top_builddir)/plugin-loaders/python		\
-	$(XEDIT_CFLAGS)					\
+	$(XED_CFLAGS)					\
 	$(NO_STRICT_ALIASING_CFLAGS)			\
 	$(PYGTK_CFLAGS)					\
 	$(PYTHON_CFLAGS)				\
 	$(AM_CFLAGS)
 
-$(top_builddir)/xedit/xedit-enum-types.h:
-	cd $(top_builddir)/xedit && $(MAKE) xedit-enum-types.h
+$(top_builddir)/xed/xed-enum-types.h:
+	cd $(top_builddir)/xed && $(MAKE) xed-enum-types.h
 
-xedit.c: xedit.defs xedit.override xeditplugin.override xeditmessage.override $(top_builddir)/xedit/xedit-enum-types.h
+xed.c: xed.defs xed.override xedplugin.override xedmessage.override $(top_builddir)/xed/xed-enum-types.h
 	( cd $(srcdir) && $(PYGTK_CODEGEN) \
 		--register $(PYGTK_DEFSDIR)/pango-types.defs \
 		--register $(PYGTK_DEFSDIR)/gdk-types.defs \
@@ -43,69 +43,69 @@ xedit.c: xedit.defs xedit.override xeditplugin.override xeditmessage.override $(
 		--override $*.override \
 		--prefix py$* $(<F) ) > $@ 
 
-xeditutils.c: xeditutils.defs xeditutils.override
+xedutils.c: xedutils.defs xedutils.override
 	( cd $(srcdir) && $(PYGTK_CODEGEN) \
 		--override $*.override \
 		--prefix py$* $(<F) ) > $@ 
 
-xeditcommands.c: xeditcommands.defs xeditcommands.override xedit.defs
+xedcommands.c: xedcommands.defs xedcommands.override xed.defs
 	( cd $(srcdir) && $(PYGTK_CODEGEN) \
-		--register xedit.defs \
+		--register xed.defs \
 		--register $(PYGTK_DEFSDIR)/gtk-types.defs \
 		--override $*.override \
 		--prefix py$* $(<F) ) > $@ 
 
-BINDING_XEDIT_HEADERS_SRCDIR_IN = \
-	xedit/xedit-app.h		\
-	xedit/xedit-document.h		\
-	xedit/xedit-encodings.h		\
-	xedit/xedit-plugin.h		\
-	plugin-loaders/python/xedit-plugin-python.h \
-	xedit/xedit-view.h		\
-	xedit/xedit-statusbar.h		\
-	xedit/xedit-tab.h 		\
-	xedit/xedit-panel.h 		\
-	xedit/xedit-window.h 		\
-	xedit/xedit-help.h		\
-	xedit/xedit-debug.h		\
-	xedit/xedit-message-type.h	\
-	xedit/xedit-message.h		\
-	xedit/xedit-message-bus.h	\
-	xedit/xedit-language-manager.h
+BINDING_XED_HEADERS_SRCDIR_IN = \
+	xed/xed-app.h		\
+	xed/xed-document.h		\
+	xed/xed-encodings.h		\
+	xed/xed-plugin.h		\
+	plugin-loaders/python/xed-plugin-python.h \
+	xed/xed-view.h		\
+	xed/xed-statusbar.h		\
+	xed/xed-tab.h 		\
+	xed/xed-panel.h 		\
+	xed/xed-window.h 		\
+	xed/xed-help.h		\
+	xed/xed-debug.h		\
+	xed/xed-message-type.h	\
+	xed/xed-message.h		\
+	xed/xed-message-bus.h	\
+	xed/xed-language-manager.h
 
 BINDING_UTILS_HEADERS_SRCDIR_IN = \
-	xedit/xedit-utils.h
+	xed/xed-utils.h
 
 BINDING_COMMANDS_HEADERS_SRCDIR_IN = \
-	xedit/xedit-commands.h
+	xed/xed-commands.h
 
 BINDING_HEADERS_BUILDDIR_IN = 
 
-BINDING_XEDIT_HEADERS_SRCDIR	:= $(addprefix $(top_srcdir)/,$(BINDING_XEDIT_HEADERS_SRCDIR_IN))
+BINDING_XED_HEADERS_SRCDIR	:= $(addprefix $(top_srcdir)/,$(BINDING_XED_HEADERS_SRCDIR_IN))
 BINDING_UTILS_HEADERS_SRCDIR	:= $(addprefix $(top_srcdir)/,$(BINDING_UTILS_HEADERS_SRCDIR_IN))
 BINDING_COMMANDS_HEADERS_SRCDIR	:= $(addprefix $(top_srcdir)/,$(BINDING_COMMANDS_HEADERS_SRCDIR_IN))
 
 BINDING_HEADERS_BUILDDIR	:= $(addprefix $(top_builddir)/,$(BINDING_HEADERS_BUILDDIR_IN))
 
 regenerate-python-binding:
-	$(PYGTK_H2DEF) $(sort $(BINDING_XEDIT_HEADERS_SRCDIR) $(BINDING_HEADERS_BUILDDIR)) > xedit.defs.new
-	$(PYGTK_H2DEF) $(sort $(BINDING_UTILS_HEADERS_SRCDIR) $(BINDING_HEADERS_BUILDDIR)) > xeditutils.defs.new
-	$(PYGTK_H2DEF) $(sort $(BINDING_COMMANDS_HEADERS_SRCDIR) $(BINDING_HEADERS_BUILDDIR)) > xeditcommands.defs.new
+	$(PYGTK_H2DEF) $(sort $(BINDING_XED_HEADERS_SRCDIR) $(BINDING_HEADERS_BUILDDIR)) > xed.defs.new
+	$(PYGTK_H2DEF) $(sort $(BINDING_UTILS_HEADERS_SRCDIR) $(BINDING_HEADERS_BUILDDIR)) > xedutils.defs.new
+	$(PYGTK_H2DEF) $(sort $(BINDING_COMMANDS_HEADERS_SRCDIR) $(BINDING_HEADERS_BUILDDIR)) > xedcommands.defs.new
 
 BUILT_SOURCES = \
-	xedit.c		\
-	xeditutils.c	\
-	xeditcommands.c
+	xed.c		\
+	xedutils.c	\
+	xedcommands.c
 
 EXTRA_DIST = \
-	xedit.override		\
-	xedit.defs		\
-	xeditutils.override	\
-	xeditutils.defs		\
-	xeditcommands.override 	\
-	xeditcommands.defs	\
-	xeditmessage.override	\
-	xeditplugin.override
+	xed.override		\
+	xed.defs		\
+	xedutils.override	\
+	xedutils.defs		\
+	xedcommands.override 	\
+	xedcommands.defs	\
+	xedmessage.override	\
+	xedplugin.override
 
 CLEANFILES = $(BUILT_SOURCES)
 

@@ -1,8 +1,8 @@
-icondir = $(datadir)/xedit/icons
-icon_DATA = xedit-plugin.png
+icondir = $(datadir)/xed/icons
+icon_DATA = xed-plugin.png
 
 EXTRA_DIST = \
 	$(icon_DATA) \
-	xedit.ico
+	xed.ico
 
 -include $(top_srcdir)/git.mk

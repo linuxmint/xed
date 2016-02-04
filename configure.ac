@@ -2,25 +2,25 @@ dnl Process this file with autoconf to produce a configure script.
 
 AC_PREREQ(2.63.2)
 
-m4_define(xedit_major_version, 1)
-m4_define(xedit_minor_version, 0)
-m4_define(xedit_micro_version, 1)
-m4_define(xedit_version, xedit_major_version.xedit_minor_version.xedit_micro_version)
+m4_define(xed_major_version, 1)
+m4_define(xed_minor_version, 0)
+m4_define(xed_micro_version, 1)
+m4_define(xed_version, xed_major_version.xed_minor_version.xed_micro_version)
 
-AC_INIT([xedit], [xedit_version],
-    [https://github.com/linuxmint/xedit/issues],
-    [xedit], [http://github.com/linuxmint/xedit])
+AC_INIT([xed], [xed_version],
+    [https://github.com/linuxmint/xed/issues],
+    [xed], [http://github.com/linuxmint/xed])
 
 AC_CONFIG_HEADERS(config.h)
-AC_CONFIG_SRCDIR(xedit/xedit.c)
+AC_CONFIG_SRCDIR(xed/xed.c)
 AC_CONFIG_MACRO_DIR([m4])
 
-AC_DEFINE(XEDIT_MAJOR_VERSION, xedit_major_version, [Xedit major version])
-AC_SUBST(XEDIT_MAJOR_VERSION, xedit_major_version)
-AC_DEFINE(XEDIT_MINOR_VERSION, xedit_minor_version, [Xedit minor version])
-AC_SUBST(XEDIT_MINOR_VERSION, xedit_minor_version)
-AC_DEFINE(XEDIT_MICRO_VERSION, xedit_micro_version, [Xedit micro version])
-AC_SUBST(XEDIT_MICRO_VERSION, xedit_micro_version)
+AC_DEFINE(XED_MAJOR_VERSION, xed_major_version, [Xed major version])
+AC_SUBST(XED_MAJOR_VERSION, xed_major_version)
+AC_DEFINE(XED_MINOR_VERSION, xed_minor_version, [Xed minor version])
+AC_SUBST(XED_MINOR_VERSION, xed_minor_version)
+AC_DEFINE(XED_MICRO_VERSION, xed_micro_version, [Xed micro version])
+AC_SUBST(XED_MICRO_VERSION, xed_micro_version)
 
 AM_INIT_AUTOMAKE([1.10 dist-xz no-dist-gzip -Wno-portability check-news])
 AM_MAINTAINER_MODE
@@ -46,7 +46,7 @@ dnl make sure we keep ACLOCAL_FLAGS around for maintainer builds to work
 AC_SUBST(ACLOCAL_AMFLAGS, "$ACLOCAL_FLAGS -I m4")
 
 dnl toolbar style for GSettings schemas
-TOOLBAR_STYLE="XEDIT_TOOLBAR_SYSTEM"
+TOOLBAR_STYLE="XED_TOOLBAR_SYSTEM"
 AC_SUBST(TOOLBAR_STYLE)
 
 # GLib min/max required versions
@@ -62,7 +62,7 @@ dnl ===============================================================
 # This macro expands DIR and assigns it to RET.
 # If DIR is NONE, then it's replaced by DEFAULT.
 # Based on AC_DEFINE_DIR
-AC_DEFUN([XEDIT_FULLPATH], [
+AC_DEFUN([XED_FULLPATH], [
   test "x$prefix" = xNONE && prefix="$ac_default_prefix"
   test "x$exec_prefix" = xNONE && exec_prefix='${prefix}'
   ac_expand=[$]$1
@@ -76,7 +76,7 @@ dnl Gettext stuff.
 dnl ================================================================
 
 IT_PROG_INTLTOOL([0.50.1])
-GETTEXT_PACKAGE=xedit
+GETTEXT_PACKAGE=xed
 AC_SUBST([GETTEXT_PACKAGE])
 AM_GLIB_GNU_GETTEXT
 AC_DEFINE_UNQUOTED(GETTEXT_PACKAGE, "$GETTEXT_PACKAGE", [Define to the Gettext package name])
@@ -169,7 +169,7 @@ esac
 AC_SUBST(GTK_API_VERSION)
 
 PKG_CHECK_MODULES(GMODULE,gmodule-2.0,[GMODULE_ADD="gmodule-2.0"],[GMODULE_ADD=""])
-PKG_CHECK_MODULES(XEDIT, [
+PKG_CHECK_MODULES(XED, [
 	libxml-2.0 >= 2.5.0
 	glib-2.0 >= 2.36.0
 	$GMODULE_ADD
@@ -181,11 +181,11 @@ PKG_CHECK_MODULES(XEDIT, [
 
 PKG_CHECK_MODULES(X11, [x11])
 
-XEDIT_CFLAGS="$XEDIT_CFLAGS $X11_CFLAGS"
-XEDIT_LIBS="$XEDIT_LIBS $X11_LIBS"
+XED_CFLAGS="$XED_CFLAGS $X11_CFLAGS"
+XED_LIBS="$XED_LIBS $X11_LIBS"
 
-AC_SUBST(XEDIT_CFLAGS)
-AC_SUBST(XEDIT_LIBS)
+AC_SUBST(XED_CFLAGS)
+AC_SUBST(XED_LIBS)
 
 PKG_CHECK_MODULES(EGG_SMCLIENT, [sm >= 1.0.0])
 
@@ -351,26 +351,26 @@ LOADER_LIBTOOL_FLAGS="-module -avoid-version"
 AC_SUBST(PLUGIN_LIBTOOL_FLAGS)
 AC_SUBST(LOADER_LIBTOOL_FLAGS)
 
-XEDIT_PLUGINS_DATA_DIR="$datadir/xedit/plugins"
-AC_SUBST(XEDIT_PLUGINS_DATA_DIR)
+XED_PLUGINS_DATA_DIR="$datadir/xed/plugins"
+AC_SUBST(XED_PLUGINS_DATA_DIR)
 
-XEDIT_PLUGINS_LIBS_DIR="$libdir/xedit/plugins"
-AC_SUBST(XEDIT_PLUGINS_LIBS_DIR)
+XED_PLUGINS_LIBS_DIR="$libdir/xed/plugins"
+AC_SUBST(XED_PLUGINS_LIBS_DIR)
 
 YELP_HELP_INIT
 
 AC_CONFIG_FILES([
 Makefile
-data/xedit.desktop.in
-data/xedit-bugreport.sh
-data/xedit.pc
+data/xed.desktop.in
+data/xed-bugreport.sh
+data/xed.pc
 data/org.x.editor.gschema.xml
 data/Makefile
 docs/Makefile
 docs/reference/Makefile
-xedit/dialogs/Makefile
-xedit/smclient/Makefile
-xedit/Makefile
+xed/dialogs/Makefile
+xed/smclient/Makefile
+xed/Makefile
 help/Makefile
 pixmaps/Makefile
 plugin-loaders/Makefile

@@ -6,7 +6,7 @@
 AUTOMAKE_OPTIONS = 1.6
 
 # The name of the module, e.g. 'glib'.
-DOC_MODULE=xedit
+DOC_MODULE=xed
 
 # The top-level SGML file. You can change this if you want to.
 DOC_MAIN_SGML_FILE=$(DOC_MODULE)-docs.sgml
@@ -14,7 +14,7 @@ DOC_MAIN_SGML_FILE=$(DOC_MODULE)-docs.sgml
 # The directory containing the source code. Relative to $(srcdir).
 # gtk-doc will search all .c & .h files beneath here for inline comments
 # documenting the functions and macros.
-DOC_SOURCE_DIR=../../xedit
+DOC_SOURCE_DIR=../../xed
 
 # Extra options to pass to gtkdoc-scangobj. Not normally needed.
 SCANGOBJ_OPTIONS=
@@ -35,39 +35,39 @@ MKTMPL_OPTIONS=
 FIXXREF_OPTIONS=
 
 # Used for dependencies. The docs will be rebuilt if any of these change.
-HFILE_GLOB=$(top_srcdir)/xedit/*.h
-CFILE_GLOB=$(top_srcdir)/xedit/*.c
+HFILE_GLOB=$(top_srcdir)/xed/*.h
+CFILE_GLOB=$(top_srcdir)/xed/*.c
 
-# Header files to ignore when scanning (These are internal to xedit).
+# Header files to ignore when scanning (These are internal to xed).
 IGNORE_HFILES=		\
-	xedit-commands.h			\
-	xedit-document-loader.h			\
-	xedit-document-saver.h			\
-	xedit-documents-panel.h			\
-	xedit-io-error-message-area.h		\
-	xedit-languages-manager.h		\
-	xedit-object-module.h			\
-	xedit-plugin-manager.h			\
-	xedit-plugins-engine.h			\
-	xedit-prefs-manager-private.h		\
-	xedit-session.h				\
-	xedit-ui.h				\
-	xedit-window-private.h			\
-	xedit-output-window.h			\
-	xedit-close-confirmation-dialog.h	\
-	xedit-encodings-dialog.h		\
-	xedit-open-location-dialog.h		\
-	xedit-page-setup-dialog.h		\
-	xedit-preferences-dialog.h		\
-	xedit-search-dialog.h			\
-	xedit-marshal.h				\
-	xedit-enum-types.h
+	xed-commands.h			\
+	xed-document-loader.h			\
+	xed-document-saver.h			\
+	xed-documents-panel.h			\
+	xed-io-error-message-area.h		\
+	xed-languages-manager.h		\
+	xed-object-module.h			\
+	xed-plugin-manager.h			\
+	xed-plugins-engine.h			\
+	xed-prefs-manager-private.h		\
+	xed-session.h				\
+	xed-ui.h				\
+	xed-window-private.h			\
+	xed-output-window.h			\
+	xed-close-confirmation-dialog.h	\
+	xed-encodings-dialog.h		\
+	xed-open-location-dialog.h		\
+	xed-page-setup-dialog.h		\
+	xed-preferences-dialog.h		\
+	xed-search-dialog.h			\
+	xed-marshal.h				\
+	xed-enum-types.h
 
-# These files are not part of xedit but were copied into it for some reason.
+# These files are not part of xed but were copied into it for some reason.
 # Do not parse them to make the docs.
 IGNORE_HFILES +=	\
 	bacon-message-connection.h		\
-	xedittextregion.h			\
+	xedtextregion.h			\
 	sexy-icon-entry.h
 
 # Images to copy into HTML directory.
@@ -86,15 +86,15 @@ expand_content_files=
 # Only needed if you are using gtkdoc-scangobj to dynamically query widget
 # signals and properties.
 GTKDOC_CFLAGS=	\
-	-I$(top_srcdir)/xedit	\
-	-I$(top_builddir)/xedit \
+	-I$(top_srcdir)/xed	\
+	-I$(top_builddir)/xed \
 	-I$(top_srcdir)		\
 	-I$(top_builddir)	\
-	$(XEDIT_CFLAGS)
+	$(XED_CFLAGS)
 
 GTKDOC_LIBS=	\
-	$(top_builddir)/xedit/libxedit.la	\
-	$(XEDIT_LIBS)
+	$(top_builddir)/xed/libxed.la	\
+	$(XED_LIBS)
 
 if ENABLE_PYTHON
 GTKDOC_CFLAGS += \
@@ -103,7 +103,7 @@ GTKDOC_CFLAGS += \
         $(PYTHON_CFLAGS)                \
         $(AM_CFLAGS)
 GTKDOC_LIBS += \
-	$(top_builddir)/plugin-loaders/python/bindings/xedit.la
+	$(top_builddir)/plugin-loaders/python/bindings/xed.la
 endif
 
 # This includes the standard gtk-doc make rules, copied by gtkdocize.
@@ -113,7 +113,7 @@ include $(top_srcdir)/gtk-doc.make
 # e.g. EXTRA_DIST += version.xml.in
 
 regenerate-types:
-	grep _get_type $(DOC_SOURCE_DIR)/xedit-*.h | grep -oR '^.*\.h' | sort | uniq - | sed -r 's/^.*\.h$/#include "\0"/' > xedit.types
-	grep _get_type $(DOC_SOURCE_DIR)/xedit-*.h | grep -oR '^.*\.h' | sort | uniq - | sed -re 'y/-/_/' -e 's/^(.*)\.h$/\1_get_type/' >> xedit.types.new
+	grep _get_type $(DOC_SOURCE_DIR)/xed-*.h | grep -oR '^.*\.h' | sort | uniq - | sed -r 's/^.*\.h$/#include "\0"/' > xed.types
+	grep _get_type $(DOC_SOURCE_DIR)/xed-*.h | grep -oR '^.*\.h' | sort | uniq - | sed -re 'y/-/_/' -e 's/^(.*)\.h$/\1_get_type/' >> xed.types.new
 
 -include $(top_srcdir)/git.mk

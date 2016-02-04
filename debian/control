@@ -1,4 +1,4 @@
-Source: xedit
+Source: xed
 Section: x11
 Priority: optional
 Maintainer: Linux Mint <root@linuxmint.com>
@@ -18,121 +18,121 @@ Build-Depends: autotools-dev,
                yelp-tools,
 Standards-Version: 3.9.6
 
-Package: xedit
+Package: xed
 Architecture: any
 Depends: iso-codes,
-         xedit-common (= ${source:Version}),
+         xed-common (= ${source:Version}),
          ${misc:Depends},
          ${python:Depends},
          ${shlibs:Depends},
          zenity
 XB-Python-Version: ${python:Versions}
 Description: generic text editor
- Xedit is a text editor which supports most standard editor features,
+ Xed is a text editor which supports most standard editor features,
  extending this basic functionality with other features not usually
- found in simple text editors. Xedit is a graphical application which
+ found in simple text editors. Xed is a graphical application which
  supports editing multiple text files in one window (known sometimes as
  tabs or MDI).
  .
- Xedit fully supports international text through its use of the
+ Xed fully supports international text through its use of the
  Unicode UTF-8 encoding in edited files. Its core feature set includes syntax
  highlighting of source code, auto indentation and printing and print preview
  support.
  .
- Xedit is also extensible through its plugin system, which currently
+ Xed is also extensible through its plugin system, which currently
  includes support for spell checking, comparing files, viewing CVS
  ChangeLogs, and adjusting indentation levels.
 
-Package: xedit-common
+Package: xed-common
 Architecture: all
 Depends: python,
          ${misc:Depends},
 Description: generic text editor (common files)
- Xedit is a text editor which supports most standard editor features,
+ Xed is a text editor which supports most standard editor features,
  extending this basic functionality with other features not usually
- found in simple text editors. Xedit is a graphical application which
+ found in simple text editors. Xed is a graphical application which
  supports editing multiple text files in one window (known sometimes as
  tabs or MDI).
  .
- Xedit fully supports international text through its use of the
+ Xed fully supports international text through its use of the
  Unicode UTF-8 encoding in edited files. Its core feature set includes syntax
  highlighting of source code, auto indentation and printing and print preview
  support.
  .
- Xedit is also extensible through its plugin system, which currently
+ Xed is also extensible through its plugin system, which currently
  includes support for spell checking, comparing files, viewing CVS
  ChangeLogs, and adjusting indentation levels.
  .
  This package contains the architecture independent files.
 
-Package: xedit-dev
+Package: xed-dev
 Architecture: any
 Section: devel
-Depends: xedit (= ${binary:Version}),
+Depends: xed (= ${binary:Version}),
          ${misc:Depends},
 Description: generic text editor (development files)
- Xedit is a text editor which supports most standard editor features,
+ Xed is a text editor which supports most standard editor features,
  extending this basic functionality with other features not usually
- found in simple text editors. Xedit is a graphical application which
+ found in simple text editors. Xed is a graphical application which
  supports editing multiple text files in one window (known sometimes as
  tabs or MDI).
  .
- Xedit fully supports international text through its use of the
+ Xed fully supports international text through its use of the
  Unicode UTF-8 encoding in edited files. Its core feature set includes syntax
  highlighting of source code, auto indentation and printing and print preview
  support.
  .
- Xedit is also extensible through its plugin system, which currently
+ Xed is also extensible through its plugin system, which currently
  includes support for spell checking, comparing files, viewing CVS
  ChangeLogs, and adjusting indentation levels.
  .
- This package contains the development files for building Xedit plugins.
+ This package contains the development files for building Xed plugins.
 
-Package: xedit-dbg
+Package: xed-dbg
 Section: debug
 Priority: extra
 Architecture: any
-Depends: xedit (= ${binary:Version}),
+Depends: xed (= ${binary:Version}),
          ${misc:Depends},
 Description: generic text editor (debugging symbols)
- Xedit is a text editor which supports most standard editor features,
+ Xed is a text editor which supports most standard editor features,
  extending this basic functionality with other features not usually
- found in simple text editors. Xedit is a graphical application which
+ found in simple text editors. Xed is a graphical application which
  supports editing multiple text files in one window (known sometimes as
  tabs or MDI).
  .
- Xedit fully supports international text through its use of the
+ Xed fully supports international text through its use of the
  Unicode UTF-8 encoding in edited files. Its core feature set includes syntax
  highlighting of source code, auto indentation and printing and print preview
  support.
  .
- Xedit is also extensible through its plugin system, which currently
+ Xed is also extensible through its plugin system, which currently
  includes support for spell checking, comparing files, viewing CVS
  ChangeLogs, and adjusting indentation levels.
  .
- This package contains debugging symbols for Xedit. It is
+ This package contains debugging symbols for Xed. It is
  provided to help debugging problems.
  .
  The debugging symbols are installed in /usr/lib/debug and will
  automatically be used by gdb.
 
-Package: xedit-doc
+Package: xed-doc
 Section: doc
 Architecture: all
 Depends: ${misc:Depends},
 Description: generic text editor (documentation files)
- Xedit is a text editor which supports most standard editor features,
+ Xed is a text editor which supports most standard editor features,
  extending this basic functionality with other features not usually
- found in simple text editors. Xedit is a graphical application which
+ found in simple text editors. Xed is a graphical application which
  supports editing multiple text files in one window (known sometimes as
  tabs or MDI).
  .
- Xedit fully supports international text through its use of the
+ Xed fully supports international text through its use of the
  Unicode UTF-8 encoding in edited files. Its core feature set includes syntax
  highlighting of source code, auto indentation and printing and print preview
  support.
  .
- Xedit is also extensible through its plugin system, which currently
+ Xed is also extensible through its plugin system, which currently
  includes support for spell checking, comparing files, viewing CVS
  ChangeLogs, and adjusting indentation levels.
  .

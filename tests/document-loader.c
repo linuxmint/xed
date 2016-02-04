@@ -1,27 +1,27 @@
 /*
  * document-loader.c
- * This file is part of xedit
+ * This file is part of xed
  *
  * Copyright (C) 2010 - Jesse van den Kieboom
  *
- * xedit is free software; you can redistribute it and/or modify
+ * xed is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
  * (at your option) any later version.
  *
- * xedit is distributed in the hope that it will be useful,
+ * xed is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with xedit; if not, write to the Free Software
+ * along with xed; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin St, Fifth Floor, 
  * Boston, MA  02110-1301  USA
  */
 
-#include "xedit-gio-document-loader.h"
-#include "xedit-prefs-manager-app.h"
+#include "xed-gio-document-loader.h"
+#include "xed-prefs-manager-app.h"
 #include <gio/gio.h>
 #include <gtk/gtk.h>
 #include <glib.h>
@@ -41,7 +41,7 @@ create_document (const gchar *filename,
                  const gchar *contents)
 {
 	GError *error = NULL;
-	XeditDocument *document;
+	XedDocument *document;
 	gchar *uri;
 
 	if (!g_file_set_contents (filename, contents, -1, &error))
@@ -67,7 +67,7 @@ delete_document (GFile *location)
 }
 
 static void
-on_document_loaded (XeditDocument  *document,
+on_document_loaded (XedDocument  *document,
                     GError         *error,
                     LoaderTestData *data)
 {
@@ -89,7 +89,7 @@ on_document_loaded (XeditDocument  *document,
 
 	if (data->newline_type != -1)
 	{
-		g_assert_cmpint (xedit_document_get_newline_type (document),
+		g_assert_cmpint (xed_document_get_newline_type (document),
 		                 ==,
 		                 data->newline_type);
 	}
@@ -105,11 +105,11 @@ test_loader (const gchar *filename,
 {
 	GFile *file;
 	gchar *uri;
-	XeditDocument *document;
+	XedDocument *document;
 
 	file = create_document (filename, contents);
 
-	document = xedit_document_new ();
+	document = xed_document_new ();
 
 	LoaderTestData *data = g_slice_new (LoaderTestData);
 	data->in_buffer = in_buffer;
@@ -125,7 +125,7 @@ test_loader (const gchar *filename,
 
 	uri = g_file_get_uri (file);
 
-	xedit_document_load (document, uri, xedit_encoding_get_utf8 (), 0, FALSE);
+	xed_document_load (document, uri, xed_encoding_get_utf8 (), 0, FALSE);
 
 	g_free (uri);
 
@@ -204,17 +204,17 @@ test_end_new_line_detection ()
 	test_loader ("document-loader.txt",
 	             "hello world\n",
 	             NULL,
-	             XEDIT_DOCUMENT_NEWLINE_TYPE_LF);
+	             XED_DOCUMENT_NEWLINE_TYPE_LF);
 
 	test_loader ("document-loader.txt",
 	             "hello world\r\n",
 	             NULL,
-	             XEDIT_DOCUMENT_NEWLINE_TYPE_CR_LF);
+	             XED_DOCUMENT_NEWLINE_TYPE_CR_LF);
 
 	test_loader ("document-loader.txt",
 	             "hello world\r",
 	             NULL,
-	             XEDIT_DOCUMENT_NEWLINE_TYPE_CR);
+	             XED_DOCUMENT_NEWLINE_TYPE_CR);
 }
 
 static void
@@ -223,17 +223,17 @@ test_begin_new_line_detection ()
 	test_loader ("document-loader.txt",
 	             "\nhello world",
 	             NULL,
-	             XEDIT_DOCUMENT_NEWLINE_TYPE_LF);
+	             XED_DOCUMENT_NEWLINE_TYPE_LF);
 
 	test_loader ("document-loader.txt",
 	             "\r\nhello world",
 	             NULL,
-	             XEDIT_DOCUMENT_NEWLINE_TYPE_CR_LF);
+	             XED_DOCUMENT_NEWLINE_TYPE_CR_LF);
 
 	test_loader ("document-loader.txt",
 	             "\rhello world",
 	             NULL,
-	             XEDIT_DOCUMENT_NEWLINE_TYPE_CR);
+	             XED_DOCUMENT_NEWLINE_TYPE_CR);
 }
 
 int main (int   argc,
@@ -241,7 +241,7 @@ int main (int   argc,
 {
 	g_test_init (&argc, &argv, NULL);
 
-	xedit_prefs_manager_app_init ();
+	xed_prefs_manager_app_init ();
 
 	g_test_add_func ("/document-loader/end-line-stripping", test_end_line_stripping);
 	g_test_add_func ("/document-loader/end-new-line-detection", test_end_new_line_detection);

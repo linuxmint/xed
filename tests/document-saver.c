@@ -1,27 +1,27 @@
 /*
  * document-saver.c
- * This file is part of xedit
+ * This file is part of xed
  *
  * Copyright (C) 2010 - Jesse van den Kieboom
  *
- * xedit is free software; you can redistribute it and/or modify
+ * xed is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
  * (at your option) any later version.
  *
- * xedit is distributed in the hope that it will be useful,
+ * xed is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with xedit; if not, write to the Free Software
+ * along with xed; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin St, Fifth Floor, 
  * Boston, MA  02110-1301  USA
  */
 
-#include "xedit-gio-document-loader.h"
-#include "xedit-prefs-manager-app.h"
+#include "xed-gio-document-loader.h"
+#include "xed-prefs-manager-app.h"
 #include <gio/gio.h>
 #include <gtk/gtk.h>
 #include <glib.h>
@@ -29,19 +29,19 @@
 #include <string.h>
 #include <sys/stat.h>
 
-#define DEFAULT_LOCAL_URI "/tmp/xedit-document-saver-test.txt"
-#define DEFAULT_REMOTE_URI "sftp://localhost/tmp/xedit-document-saver-test.txt"
+#define DEFAULT_LOCAL_URI "/tmp/xed-document-saver-test.txt"
+#define DEFAULT_REMOTE_URI "sftp://localhost/tmp/xed-document-saver-test.txt"
 #define DEFAULT_CONTENT "hello world!"
 #define DEFAULT_CONTENT_RESULT "hello world!\n"
 
-#define UNOWNED_LOCAL_DIRECTORY "/tmp/xedit-document-saver-unowned"
-#define UNOWNED_LOCAL_URI "/tmp/xedit-document-saver-unowned/xedit-document-saver-test.txt"
+#define UNOWNED_LOCAL_DIRECTORY "/tmp/xed-document-saver-unowned"
+#define UNOWNED_LOCAL_URI "/tmp/xed-document-saver-unowned/xed-document-saver-test.txt"
 
-#define UNOWNED_REMOTE_DIRECTORY "sftp://localhost/tmp/xedit-document-saver-unowned"
-#define UNOWNED_REMOTE_URI "sftp://localhost/tmp/xedit-document-saver-unowned/xedit-document-saver-test.txt"
+#define UNOWNED_REMOTE_DIRECTORY "sftp://localhost/tmp/xed-document-saver-unowned"
+#define UNOWNED_REMOTE_URI "sftp://localhost/tmp/xed-document-saver-unowned/xed-document-saver-test.txt"
 
-#define UNOWNED_GROUP_LOCAL_URI "/tmp/xedit-document-saver-unowned-group.txt"
-#define UNOWNED_GROUP_REMOTE_URI "sftp://localhost/tmp/xedit-document-saver-unowned-group.txt"
+#define UNOWNED_GROUP_LOCAL_URI "/tmp/xed-document-saver-unowned-group.txt"
+#define UNOWNED_GROUP_REMOTE_URI "sftp://localhost/tmp/xed-document-saver-unowned-group.txt"
 
 static gboolean test_completed;
 static gboolean mount_completed;
@@ -78,17 +78,17 @@ saver_test_data_free (SaverTestData *data)
 	g_slice_free (SaverTestData, data);
 }
 
-static XeditDocument *
+static XedDocument *
 create_document (const gchar *contents)
 {
-	XeditDocument *document = xedit_document_new ();
+	XedDocument *document = xed_document_new ();
 
 	gtk_text_buffer_set_text (GTK_TEXT_BUFFER (document), contents, -1);
 	return document;
 }
 
 static void
-complete_test_error (XeditDocument *document,
+complete_test_error (XedDocument *document,
                      GError        *error,
                      SaverTestData *data)
 {
@@ -121,7 +121,7 @@ read_file (const gchar *uri)
 }
 
 static void
-complete_test (XeditDocument *document,
+complete_test (XedDocument *document,
                GError        *error,
                SaverTestData *data)
 {
@@ -191,18 +191,18 @@ ensure_mounted (GFile *file)
 static void
 test_saver (const gchar              *filename_or_uri,
             const gchar              *contents,
-            XeditDocumentNewlineType  newline_type,
-            XeditDocumentSaveFlags    save_flags,
+            XedDocumentNewlineType  newline_type,
+            XedDocumentSaveFlags    save_flags,
             GCallback                 saved_callback,
             SaverTestData            *data)
 {
 	GFile *file;
 	gchar *uri;
-	XeditDocument *document;
+	XedDocument *document;
 	gboolean existed;
 
 	document = create_document (contents);
-	xedit_document_set_newline_type (document, newline_type);
+	xed_document_set_newline_type (document, newline_type);
 
 	g_signal_connect (document, "saved", G_CALLBACK (complete_test_error), data);
 
@@ -221,7 +221,7 @@ test_saver (const gchar              *filename_or_uri,
 
 	ensure_mounted (file);
 
-	xedit_document_save_as (document, uri, xedit_encoding_get_utf8 (), save_flags);
+	xed_document_save_as (document, uri, xed_encoding_get_utf8 (), save_flags);
 
 	while (!test_completed)
 	{
@@ -241,45 +241,45 @@ test_saver (const gchar              *filename_or_uri,
 
 typedef struct
 {
-	XeditDocumentNewlineType type;
+	XedDocumentNewlineType type;
 	const gchar *text;
 	const gchar *result;
 } NewLineTestData;
 
 static NewLineTestData newline_test_data[] = {
-	{XEDIT_DOCUMENT_NEWLINE_TYPE_LF, "\nhello\nworld", "\nhello\nworld\n"},
-	{XEDIT_DOCUMENT_NEWLINE_TYPE_LF, "\nhello\nworld\n", "\nhello\nworld\n\n"},
-	{XEDIT_DOCUMENT_NEWLINE_TYPE_LF, "\nhello\nworld\n\n", "\nhello\nworld\n\n\n"},
-	{XEDIT_DOCUMENT_NEWLINE_TYPE_LF, "\r\nhello\r\nworld", "\nhello\nworld\n"},
-	{XEDIT_DOCUMENT_NEWLINE_TYPE_LF, "\r\nhello\r\nworld\r\n", "\nhello\nworld\n\n"},
-	{XEDIT_DOCUMENT_NEWLINE_TYPE_LF, "\rhello\rworld", "\nhello\nworld\n"},
-	{XEDIT_DOCUMENT_NEWLINE_TYPE_LF, "\rhello\rworld\r", "\nhello\nworld\n\n"},
-	{XEDIT_DOCUMENT_NEWLINE_TYPE_LF, "\nhello\r\nworld", "\nhello\nworld\n"},
-	{XEDIT_DOCUMENT_NEWLINE_TYPE_LF, "\nhello\r\nworld\r", "\nhello\nworld\n\n"},
+	{XED_DOCUMENT_NEWLINE_TYPE_LF, "\nhello\nworld", "\nhello\nworld\n"},
+	{XED_DOCUMENT_NEWLINE_TYPE_LF, "\nhello\nworld\n", "\nhello\nworld\n\n"},
+	{XED_DOCUMENT_NEWLINE_TYPE_LF, "\nhello\nworld\n\n", "\nhello\nworld\n\n\n"},
+	{XED_DOCUMENT_NEWLINE_TYPE_LF, "\r\nhello\r\nworld", "\nhello\nworld\n"},
+	{XED_DOCUMENT_NEWLINE_TYPE_LF, "\r\nhello\r\nworld\r\n", "\nhello\nworld\n\n"},
+	{XED_DOCUMENT_NEWLINE_TYPE_LF, "\rhello\rworld", "\nhello\nworld\n"},
+	{XED_DOCUMENT_NEWLINE_TYPE_LF, "\rhello\rworld\r", "\nhello\nworld\n\n"},
+	{XED_DOCUMENT_NEWLINE_TYPE_LF, "\nhello\r\nworld", "\nhello\nworld\n"},
+	{XED_DOCUMENT_NEWLINE_TYPE_LF, "\nhello\r\nworld\r", "\nhello\nworld\n\n"},
 
-	{XEDIT_DOCUMENT_NEWLINE_TYPE_CR_LF, "\nhello\nworld", "\r\nhello\r\nworld\r\n"},
-	{XEDIT_DOCUMENT_NEWLINE_TYPE_CR_LF, "\nhello\nworld\n", "\r\nhello\r\nworld\r\n\r\n"},
-	{XEDIT_DOCUMENT_NEWLINE_TYPE_CR_LF, "\nhello\nworld\n\n", "\r\nhello\r\nworld\r\n\r\n\r\n"},
-	{XEDIT_DOCUMENT_NEWLINE_TYPE_CR_LF, "\r\nhello\r\nworld", "\r\nhello\r\nworld\r\n"},
-	{XEDIT_DOCUMENT_NEWLINE_TYPE_CR_LF, "\r\nhello\r\nworld\r\n", "\r\nhello\r\nworld\r\n\r\n"},
-	{XEDIT_DOCUMENT_NEWLINE_TYPE_CR_LF, "\rhello\rworld", "\r\nhello\r\nworld\r\n"},
-	{XEDIT_DOCUMENT_NEWLINE_TYPE_CR_LF, "\rhello\rworld\r", "\r\nhello\r\nworld\r\n\r\n"},
-	{XEDIT_DOCUMENT_NEWLINE_TYPE_CR_LF, "\nhello\r\nworld", "\r\nhello\r\nworld\r\n"},
-	{XEDIT_DOCUMENT_NEWLINE_TYPE_CR_LF, "\nhello\r\nworld\r", "\r\nhello\r\nworld\r\n\r\n"},
+	{XED_DOCUMENT_NEWLINE_TYPE_CR_LF, "\nhello\nworld", "\r\nhello\r\nworld\r\n"},
+	{XED_DOCUMENT_NEWLINE_TYPE_CR_LF, "\nhello\nworld\n", "\r\nhello\r\nworld\r\n\r\n"},
+	{XED_DOCUMENT_NEWLINE_TYPE_CR_LF, "\nhello\nworld\n\n", "\r\nhello\r\nworld\r\n\r\n\r\n"},
+	{XED_DOCUMENT_NEWLINE_TYPE_CR_LF, "\r\nhello\r\nworld", "\r\nhello\r\nworld\r\n"},
+	{XED_DOCUMENT_NEWLINE_TYPE_CR_LF, "\r\nhello\r\nworld\r\n", "\r\nhello\r\nworld\r\n\r\n"},
+	{XED_DOCUMENT_NEWLINE_TYPE_CR_LF, "\rhello\rworld", "\r\nhello\r\nworld\r\n"},
+	{XED_DOCUMENT_NEWLINE_TYPE_CR_LF, "\rhello\rworld\r", "\r\nhello\r\nworld\r\n\r\n"},
+	{XED_DOCUMENT_NEWLINE_TYPE_CR_LF, "\nhello\r\nworld", "\r\nhello\r\nworld\r\n"},
+	{XED_DOCUMENT_NEWLINE_TYPE_CR_LF, "\nhello\r\nworld\r", "\r\nhello\r\nworld\r\n\r\n"},
 
-	{XEDIT_DOCUMENT_NEWLINE_TYPE_CR, "\nhello\nworld", "\rhello\rworld\r"},
-	{XEDIT_DOCUMENT_NEWLINE_TYPE_CR, "\nhello\nworld\n", "\rhello\rworld\r\r"},
-	{XEDIT_DOCUMENT_NEWLINE_TYPE_CR, "\nhello\nworld\n\n", "\rhello\rworld\r\r\r"},
-	{XEDIT_DOCUMENT_NEWLINE_TYPE_CR, "\r\nhello\r\nworld", "\rhello\rworld\r"},
-	{XEDIT_DOCUMENT_NEWLINE_TYPE_CR, "\r\nhello\r\nworld\r\n", "\rhello\rworld\r\r"},
-	{XEDIT_DOCUMENT_NEWLINE_TYPE_CR, "\rhello\rworld", "\rhello\rworld\r"},
-	{XEDIT_DOCUMENT_NEWLINE_TYPE_CR, "\rhello\rworld\r", "\rhello\rworld\r\r"},
-	{XEDIT_DOCUMENT_NEWLINE_TYPE_CR, "\nhello\r\nworld", "\rhello\rworld\r"},
-	{XEDIT_DOCUMENT_NEWLINE_TYPE_CR, "\nhello\r\nworld\r", "\rhello\rworld\r\r"}
+	{XED_DOCUMENT_NEWLINE_TYPE_CR, "\nhello\nworld", "\rhello\rworld\r"},
+	{XED_DOCUMENT_NEWLINE_TYPE_CR, "\nhello\nworld\n", "\rhello\rworld\r\r"},
+	{XED_DOCUMENT_NEWLINE_TYPE_CR, "\nhello\nworld\n\n", "\rhello\rworld\r\r\r"},
+	{XED_DOCUMENT_NEWLINE_TYPE_CR, "\r\nhello\r\nworld", "\rhello\rworld\r"},
+	{XED_DOCUMENT_NEWLINE_TYPE_CR, "\r\nhello\r\nworld\r\n", "\rhello\rworld\r\r"},
+	{XED_DOCUMENT_NEWLINE_TYPE_CR, "\rhello\rworld", "\rhello\rworld\r"},
+	{XED_DOCUMENT_NEWLINE_TYPE_CR, "\rhello\rworld\r", "\rhello\rworld\r\r"},
+	{XED_DOCUMENT_NEWLINE_TYPE_CR, "\nhello\r\nworld", "\rhello\rworld\r"},
+	{XED_DOCUMENT_NEWLINE_TYPE_CR, "\nhello\r\nworld\r", "\rhello\rworld\r\r"}
 };
 
 static void
-test_new_line (const gchar *filename, XeditDocumentSaveFlags save_flags)
+test_new_line (const gchar *filename, XedDocumentSaveFlags save_flags)
 {
 	gint i;
 	gint num = sizeof (newline_test_data) / sizeof (NewLineTestData);
@@ -308,21 +308,21 @@ test_local ()
 {
 	test_saver (DEFAULT_LOCAL_URI,
 	            "hello world",
-	            XEDIT_DOCUMENT_NEWLINE_TYPE_LF,
+	            XED_DOCUMENT_NEWLINE_TYPE_LF,
 	            0,
 	            NULL,
 	            saver_test_data_new (DEFAULT_LOCAL_URI, "hello world\n", NULL));
 
 	test_saver (DEFAULT_LOCAL_URI,
 	            "hello world\r\n",
-	            XEDIT_DOCUMENT_NEWLINE_TYPE_LF,
+	            XED_DOCUMENT_NEWLINE_TYPE_LF,
 	            0,
 	            NULL,
 	            saver_test_data_new (DEFAULT_LOCAL_URI, "hello world\n\n", NULL));
 
 	test_saver (DEFAULT_LOCAL_URI,
 	            "hello world\n",
-	            XEDIT_DOCUMENT_NEWLINE_TYPE_LF,
+	            XED_DOCUMENT_NEWLINE_TYPE_LF,
 	            0,
 	            NULL,
 	            saver_test_data_new (DEFAULT_LOCAL_URI, "hello world\n\n", NULL));
@@ -339,21 +339,21 @@ test_remote ()
 {
 	test_saver (DEFAULT_REMOTE_URI,
 	            "hello world",
-	            XEDIT_DOCUMENT_NEWLINE_TYPE_LF,
+	            XED_DOCUMENT_NEWLINE_TYPE_LF,
 	            0,
 	            NULL,
 	            saver_test_data_new (DEFAULT_REMOTE_URI, "hello world\n", NULL));
 
 	test_saver (DEFAULT_REMOTE_URI,
 	            "hello world\r\n",
-	            XEDIT_DOCUMENT_NEWLINE_TYPE_LF,
+	            XED_DOCUMENT_NEWLINE_TYPE_LF,
 	            0,
 	            NULL,
 	            saver_test_data_new (DEFAULT_REMOTE_URI, "hello world\n\n", NULL));
 
 	test_saver (DEFAULT_REMOTE_URI,
 	            "hello world\n",
-	            XEDIT_DOCUMENT_NEWLINE_TYPE_LF,
+	            XED_DOCUMENT_NEWLINE_TYPE_LF,
 	            0,
 	            NULL,
 	            saver_test_data_new (DEFAULT_REMOTE_URI, "hello world\n\n", NULL));
@@ -382,12 +382,12 @@ check_permissions (GFile *file,
 }
 
 static void
-check_permissions_saved (XeditDocument *document,
+check_permissions_saved (XedDocument *document,
                          GError        *error,
                          SaverTestData *data)
 {
 	guint permissions = (guint)GPOINTER_TO_INT (data->data);
-	GFile *file = xedit_document_get_location (document);
+	GFile *file = xed_document_get_location (document);
 
 	check_permissions (file, permissions);
 
@@ -435,7 +435,7 @@ test_permissions (const gchar *uri,
 
 	test_saver (uri,
 	            DEFAULT_CONTENT,
-	            XEDIT_DOCUMENT_NEWLINE_TYPE_LF,
+	            XED_DOCUMENT_NEWLINE_TYPE_LF,
 	            0,
 	            G_CALLBACK (check_permissions_saved),
 	            saver_test_data_new (uri,
@@ -460,7 +460,7 @@ test_local_unowned_directory ()
 {
 	test_saver (UNOWNED_LOCAL_URI,
 	            DEFAULT_CONTENT,
-	            XEDIT_DOCUMENT_NEWLINE_TYPE_LF,
+	            XED_DOCUMENT_NEWLINE_TYPE_LF,
 	            0,
 	            NULL,
 	            saver_test_data_new (UNOWNED_LOCAL_URI,
@@ -473,7 +473,7 @@ test_remote_unowned_directory ()
 {
 	test_saver (UNOWNED_REMOTE_URI,
 	            DEFAULT_CONTENT,
-	            XEDIT_DOCUMENT_NEWLINE_TYPE_LF,
+	            XED_DOCUMENT_NEWLINE_TYPE_LF,
 	            0,
 	            NULL,
 	            saver_test_data_new (UNOWNED_REMOTE_URI,
@@ -491,7 +491,7 @@ test_remote_permissions ()
 }
 
 static void
-test_unowned_group_permissions (XeditDocument *document,
+test_unowned_group_permissions (XedDocument *document,
                                 GError        *error,
                                 SaverTestData *data)
 {
@@ -525,7 +525,7 @@ test_unowned_group (const gchar *uri)
 {
 	test_saver (uri,
 	            DEFAULT_CONTENT,
-	            XEDIT_DOCUMENT_NEWLINE_TYPE_LF,
+	            XED_DOCUMENT_NEWLINE_TYPE_LF,
 	            0,
 	            G_CALLBACK (test_unowned_group_permissions),
 	            saver_test_data_new (uri,
@@ -684,7 +684,7 @@ int main (int   argc,
 
 	g_test_init (&argc, &argv, NULL);
 
-	xedit_prefs_manager_app_init ();
+	xed_prefs_manager_app_init ();
 
 	g_printf ("\n***\n");
 	have_unowned = check_unowned_directory ();

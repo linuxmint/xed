@@ -3,10 +3,10 @@
 # This script is used to setup some special directory structures, permissions
 # for the saver test
 
-UNOWNED_DIRECTORY="/tmp/xedit-document-saver-unowned"
-UNOWNED_FILE="/tmp/xedit-document-saver-unowned/xedit-document-saver-test.txt"
+UNOWNED_DIRECTORY="/tmp/xed-document-saver-unowned"
+UNOWNED_FILE="/tmp/xed-document-saver-unowned/xed-document-saver-test.txt"
 
-UNOWNED_GROUP="/tmp/xedit-document-saver-unowned-group.txt"
+UNOWNED_GROUP="/tmp/xed-document-saver-unowned-group.txt"
 
 if [ -f "$UNOWNED_FILE" ]; then
 	sudo rm "$UNOWNED_FILE"

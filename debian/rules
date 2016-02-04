@@ -6,8 +6,8 @@ DHFLAGS=--parallel
 	dh $@ $(DHFLAGS)
 
 override_dh_install:
-	rm -rfv debian/tmp/usr/lib/*/xedit/plugin-loaders/*.la
-	rm -rfv debian/tmp/usr/lib/*/xedit/plugins/*.la
+	rm -rfv debian/tmp/usr/lib/*/xed/plugin-loaders/*.la
+	rm -rfv debian/tmp/usr/lib/*/xed/plugins/*.la
 	dh_install --fail-missing
 
 override_dh_auto_configure:
@@ -27,7 +27,7 @@ override_dh_auto_test:
 	DEB_BUILD_OPTIONS=nocheck dh_auto_test
 
 override_dh_strip:
-	dh_strip --dbg-package=xedit-dbg
+	dh_strip --dbg-package=xed-dbg
 
 get-orig-source:
 	uscan --noconf --force-download --rename --download-current-version --destdir=..

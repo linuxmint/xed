@@ -25,7 +25,7 @@ msgstr "استخدم الخطّ الإفتراضي"
 #: ../data/org.x.editor.gschema.xml.in.in.h:2
 msgid ""
 "Whether to use the system's default fixed width font for editing text "
-"instead of a font specific to xedit. If this option is turned off, then the "
+"instead of a font specific to xed. If this option is turned off, then the "
 "font named in the \"Editor Font\" option will be used instead of the system "
 "font."
 msgstr "ما إذا وجب إستعمال الخط ثابت العرض الإفتراضي للنظام لتحرير النصوص على بدلا من خط خاص بـمحرر النصوص. إذا أغلق هذا الخيار، فإن الخطّ المختار في خيار \"Editor Font\" سيستعمل بدلا من خطّ النظام."
@@ -54,7 +54,7 @@ msgstr "أنشئ نسخًا احتياطية"
 
 #: ../data/org.x.editor.gschema.xml.in.in.h:8
 msgid ""
-"Whether xedit should create backup copies for the files it saves. You can "
+"Whether xed should create backup copies for the files it saves. You can "
 "set the backup file extension with the \"Backup Copy Extension\" option."
 msgstr "ما إذا وجب لمحرر النصوص إنشاء نسخ إحتياطيّة للملفات التي يحفظها.يمكنك تحديد امتداد الملف الإحتياطي بخيار \"Backup Copy Extension\"."
 
@@ -64,7 +64,7 @@ msgstr "حفظ آلي"
 
 #: ../data/org.x.editor.gschema.xml.in.in.h:10
 msgid ""
-"Whether xedit should automatically save modified files after a time "
+"Whether xed should automatically save modified files after a time "
 "interval. You can set the time interval with the \"Autosave Interval\" "
 "option."
 msgstr "ما إذا وجب لمحرر النصوص حفظ الملفات المغيَّرة آليا بعد فاصل زمني. يمكنك وضع الفاصل الزمني بخيار \"Auto Save Interval\"."
@@ -75,7 +75,7 @@ msgstr "فاصل الحفظ الآلي"
 
 #: ../data/org.x.editor.gschema.xml.in.in.h:12
 msgid ""
-"Number of minutes after which xedit will automatically save modified files. "
+"Number of minutes after which xed will automatically save modified files. "
 "This will only take effect if the \"Autosave\" option is turned on."
 msgstr "عدد الدقائق التي سيَحفِظ إثرها محرر النصوص \"قلم\" الملفات المعدلة.لن تظهر التأثيرات ما لم يفَعّل خيار \"الحفظ الآلي\"."
 
@@ -85,7 +85,7 @@ msgstr "مخططات VFS القابلة للكتابة."
 
 #: ../data/org.x.editor.gschema.xml.in.in.h:14
 msgid ""
-"List of VFS schemes xedit supports in write mode. The 'file' scheme is "
+"List of VFS schemes xed supports in write mode. The 'file' scheme is "
 "writable by default."
 msgstr "قائمة مخططات VFS المدعومة من قبل محرر النصوص \"قلم\" في نمط الكتابة. مخطط الملف قابل للكتابة افتراضيًا."
 
@@ -95,7 +95,7 @@ msgstr "العدد الأقصى من أفعال التراجع"
 
 #: ../data/org.x.editor.gschema.xml.in.in.h:16
 msgid ""
-"Maximum number of actions that xedit will be able to undo or redo. Use "
+"Maximum number of actions that xed will be able to undo or redo. Use "
 "\"-1\" for unlimited number of actions."
 msgstr "عدد العمليات الأقصى التي يمكن لمحرر النصوص \"قلم\" التراجع فيها أو إعادتها. استعمل \"-1\" لعدد غير محدود من الأفعال."
 
@@ -127,7 +127,7 @@ msgid "Insert spaces"
 msgstr "أدرج مسافات"
 
 #: ../data/org.x.editor.gschema.xml.in.in.h:22
-msgid "Whether xedit should insert spaces instead of tabs."
+msgid "Whether xed should insert spaces instead of tabs."
 msgstr "ما إذا وجب لمحرر النصوص إضافة مسافات عوض tabs."
 
 #: ../data/org.x.editor.gschema.xml.in.in.h:23
@@ -135,7 +135,7 @@ msgid "Automatic indent"
 msgstr "إزاحة آلية"
 
 #: ../data/org.x.editor.gschema.xml.in.in.h:24
-msgid "Whether xedit should enable automatic indentation."
+msgid "Whether xed should enable automatic indentation."
 msgstr "ما إذا وجب لمحرر النصوص تفعيل الإزاحة الآلية."
 
 #: ../data/org.x.editor.gschema.xml.in.in.h:25
@@ -143,7 +143,7 @@ msgid "Display Line Numbers"
 msgstr "أظهر أرقام السطور"
 
 #: ../data/org.x.editor.gschema.xml.in.in.h:26
-msgid "Whether xedit should display line numbers in the editing area."
+msgid "Whether xed should display line numbers in the editing area."
 msgstr "ما إذا وجب لمحرر النصوص عرض أرقام السطور في مساحة التحرير."
 
 #: ../data/org.x.editor.gschema.xml.in.in.h:27
@@ -151,7 +151,7 @@ msgid "Highlight Current Line"
 msgstr "ظَلِّل السطر الحالي"
 
 #: ../data/org.x.editor.gschema.xml.in.in.h:28
-msgid "Whether xedit should highlight the current line."
+msgid "Whether xed should highlight the current line."
 msgstr "فيما إذا وجب على محرر النصوص تظليل السطر الحالي."
 
 #: ../data/org.x.editor.gschema.xml.in.in.h:29
@@ -159,7 +159,7 @@ msgid "Highlight Matching Bracket"
 msgstr "ظَلِّل القوس الموافق"
 
 #: ../data/org.x.editor.gschema.xml.in.in.h:30
-msgid "Whether xedit should highlight the bracket matching the selected one."
+msgid "Whether xed should highlight the bracket matching the selected one."
 msgstr "فيما إذا وجب على محرر النصوص تظليل السطر الحالي."
 
 #: ../data/org.x.editor.gschema.xml.in.in.h:31
@@ -167,7 +167,7 @@ msgid "Display Right Margin"
 msgstr "اعرض الحاشية اليمنى"
 
 #: ../data/org.x.editor.gschema.xml.in.in.h:32
-msgid "Whether xedit should display the right margin in the editing area."
+msgid "Whether xed should display the right margin in the editing area."
 msgstr "فيما إذا وجب لمحرر النصوص عرض الحاشية اليمنى في مساحة التحرير."
 
 #: ../data/org.x.editor.gschema.xml.in.in.h:33
@@ -199,7 +199,7 @@ msgstr "استعِد الموضع السابق للمؤشّر"
 
 #: ../data/org.x.editor.gschema.xml.in.in.h:38
 msgid ""
-"Whether xedit should restore the previous cursor position when a file is "
+"Whether xed should restore the previous cursor position when a file is "
 "loaded."
 msgstr "فيما إذا وجب لمحرر النصوص استعاذة موضع المؤشّر السابق عند تحميل ملف."
 
@@ -209,7 +209,7 @@ msgstr "فعّل إبراز البحث"
 
 #: ../data/org.x.editor.gschema.xml.in.in.h:40
 msgid ""
-"Whether xedit should highlight all the occurrences of the searched text."
+"Whether xed should highlight all the occurrences of the searched text."
 msgstr "فيما إذا كان على محرر النصوص إبراز جميع حالات وجود النص المبحوث."
 
 #: ../data/org.x.editor.gschema.xml.in.in.h:41
@@ -217,7 +217,7 @@ msgid "Enable Syntax Highlighting"
 msgstr "فعّل إبراز بنية الجملة"
 
 #: ../data/org.x.editor.gschema.xml.in.in.h:42
-msgid "Whether xedit should enable syntax highlighting."
+msgid "Whether xed should enable syntax highlighting."
 msgstr "فيما إذا يتوجب على محرر النصوص تفعيل إبراز التركيب."
 
 #: ../data/org.x.editor.gschema.xml.in.in.h:43
@@ -234,13 +234,13 @@ msgstr "أسلوب أزرار شريط الأدوات"
 
 #: ../data/org.x.editor.gschema.xml.in.in.h:46
 msgid ""
-"Style for the toolbar buttons. Possible values are \"XEDIT_TOOLBAR_SYSTEM\" "
-"to use the system's default style, \"XEDIT_TOOLBAR_ICONS\" to display icons "
-"only, \"XEDIT_TOOLBAR_ICONS_AND_TEXT\" to display both icons and text, and "
-"\"XEDIT_TOOLBAR_ICONS_BOTH_HORIZ\" to display prioritized text beside icons."
+"Style for the toolbar buttons. Possible values are \"XED_TOOLBAR_SYSTEM\" "
+"to use the system's default style, \"XED_TOOLBAR_ICONS\" to display icons "
+"only, \"XED_TOOLBAR_ICONS_AND_TEXT\" to display both icons and text, and "
+"\"XED_TOOLBAR_ICONS_BOTH_HORIZ\" to display prioritized text beside icons."
 " Note that the values are case-sensitive, so make sure they appear exactly "
 "as mentioned here."
-msgstr "أسلوب أزرار شريط الأدوات. القيم الممكنة هي \"XEDIT_TOOLBAR_SYSTEM\"لإستعمال الإفتراضي للنظام و \"XEDIT_TOOLBAR_ICONS\" لعرض الأيقونات فقط و \"XEDIT_TOOLBAR_ICONS_AND_TEXT\" لعرض نص و أيقونات و \"XEDIT_TOOLBAR_ICONS_BOTH_HORIZ\" لعرض نص مهم بجانب الأيقونات.لاحظ أن القيم تتغير بحسب الحالة، حافظ بالتالي على كتابتها كيفما ذكرت هنا."
+msgstr "أسلوب أزرار شريط الأدوات. القيم الممكنة هي \"XED_TOOLBAR_SYSTEM\"لإستعمال الإفتراضي للنظام و \"XED_TOOLBAR_ICONS\" لعرض الأيقونات فقط و \"XED_TOOLBAR_ICONS_AND_TEXT\" لعرض نص و أيقونات و \"XED_TOOLBAR_ICONS_BOTH_HORIZ\" لعرض نص مهم بجانب الأيقونات.لاحظ أن القيم تتغير بحسب الحالة، حافظ بالتالي على كتابتها كيفما ذكرت هنا."
 
 #: ../data/org.x.editor.gschema.xml.in.in.h:47
 msgid "Status Bar is Visible"
@@ -285,7 +285,7 @@ msgstr "اطبع إبراز بنية الجملة"
 
 #: ../data/org.x.editor.gschema.xml.in.in.h:56
 msgid ""
-"Whether xedit should print syntax highlighting when printing documents."
+"Whether xed should print syntax highlighting when printing documents."
 msgstr "فيما إذا سيطبع محرر النصوص إبراز التراكيب عند طباعة المستندات."
 
 #: ../data/org.x.editor.gschema.xml.in.in.h:57
@@ -294,7 +294,7 @@ msgstr "اطبع الترويسة"
 
 #: ../data/org.x.editor.gschema.xml.in.in.h:58
 msgid ""
-"Whether xedit should include a document header when printing documents."
+"Whether xed should include a document header when printing documents."
 msgstr "ما إذا وجب لمحرر النصوص تضمّن ترويسة المستند عند طبع المستندات."
 
 #: ../data/org.x.editor.gschema.xml.in.in.h:59
@@ -317,7 +317,7 @@ msgstr "اطبع أرقام السطور"
 #: ../data/org.x.editor.gschema.xml.in.in.h:62
 msgid ""
 "If this value is 0, then no line numbers will be inserted when printing a "
-"document. Otherwise, xedit will print line numbers every such number of "
+"document. Otherwise, xed will print line numbers every such number of "
 "lines."
 msgstr "إذا كانت هذه القيمة 0، فلن تضاف أرقام السطور عند طباعة مستند.أو أن محرر النصوص سيطبع أرقام السطور عند كل رقم سطر."
 
@@ -356,7 +356,7 @@ msgstr "ترميزات مُكتشفة آليا"
 
 #: ../data/org.x.editor.gschema.xml.in.in.h:70
 msgid ""
-"Sorted list of encodings used by xedit for automatically detecting the "
+"Sorted list of encodings used by xed for automatically detecting the "
 "encoding of a file. \"CURRENT\" represents the current locale encoding. Only"
 " recognized encodings are used."
 msgstr "قائمة مرتّبة بالترميزات المستعملة من قبل محرر النصوص للكشف الآلي لترميز الملف.  \"CURRENT\" هو ترميز المحلّية الحالي. لا يستخدم إلا الترميزات المتعرّف عليها."
@@ -394,42 +394,42 @@ msgstr "المُلحقات النشِطة"
 #: ../data/org.x.editor.gschema.xml.in.in.h:78
 msgid ""
 "List of active plugins. It contains the \"Location\" of the active plugins. "
-"See the .xedit-plugin file for obtaining the \"Location\" of a given plugin."
-msgstr "قائمة الملحقات النشطة. تضم \"Location\" الملحقات النشطة. انظر الملف .xedit-plugin، للحصول على\"Location\"  ملحق معين."
+"See the .xed-plugin file for obtaining the \"Location\" of a given plugin."
+msgstr "قائمة الملحقات النشطة. تضم \"Location\" الملحقات النشطة. انظر الملف .xed-plugin، للحصول على\"Location\"  ملحق معين."
 
-#: ../data/xedit.desktop.in.in.h:1
-msgid "Xedit"
+#: ../data/xed.desktop.in.in.h:1
+msgid "Xed"
 msgstr "قلم"
 
-#: ../data/xedit.desktop.in.in.h:2 ../xedit/xedit-print-job.c:769
+#: ../data/xed.desktop.in.in.h:2 ../xed/xed-print-job.c:769
 msgid "Text Editor"
 msgstr "مُحرّر نصوص"
 
-#: ../data/xedit.desktop.in.in.h:3
+#: ../data/xed.desktop.in.in.h:3
 msgid "Edit text files"
 msgstr "تحرير الملفات النّصية"
 
-#: ../data/xedit.desktop.in.in.h:4
-msgid "xedit Text Editor"
+#: ../data/xed.desktop.in.in.h:4
+msgid "xed Text Editor"
 msgstr "محرّر النّصوص \"قلم\""
 
-#: ../xedit/dialogs/xedit-close-confirmation-dialog.c:140
+#: ../xed/dialogs/xed-close-confirmation-dialog.c:140
 msgid "Log Out _without Saving"
 msgstr "اخرج _دون حفظ"
 
-#: ../xedit/dialogs/xedit-close-confirmation-dialog.c:144
+#: ../xed/dialogs/xed-close-confirmation-dialog.c:144
 msgid "_Cancel Logout"
 msgstr "أ_لغِ الخروج"
 
-#: ../xedit/dialogs/xedit-close-confirmation-dialog.c:151
+#: ../xed/dialogs/xed-close-confirmation-dialog.c:151
 msgid "Close _without Saving"
 msgstr "أغلق _دون حفظ"
 
-#: ../xedit/dialogs/xedit-close-confirmation-dialog.c:214
+#: ../xed/dialogs/xed-close-confirmation-dialog.c:214
 msgid "Question"
 msgstr "سؤال"
 
-#: ../xedit/dialogs/xedit-close-confirmation-dialog.c:414
+#: ../xed/dialogs/xed-close-confirmation-dialog.c:414
 #, c-format
 msgid ""
 "If you don't save, changes from the last %ld second will be permanently "
@@ -444,12 +444,12 @@ msgstr[3] "ستضيع تغييرات ال%Ild ثوان الأخيرة نهائي
 msgstr[4] "ستضيع تغييرات ال%Ild ثانية الأخيرة نهائيًّا إذا لم تحفظ."
 msgstr[5] "ستضيع تغييرات ال%Ild ثانية الأخيرة نهائيًّا إذا لم تحفظ."
 
-#: ../xedit/dialogs/xedit-close-confirmation-dialog.c:423
+#: ../xed/dialogs/xed-close-confirmation-dialog.c:423
 msgid ""
 "If you don't save, changes from the last minute will be permanently lost."
 msgstr "ستضيع تغييرات الدّقيقة الأخيرة نهائيًّا إذا لم تحفظ."
 
-#: ../xedit/dialogs/xedit-close-confirmation-dialog.c:429
+#: ../xed/dialogs/xed-close-confirmation-dialog.c:429
 #, c-format
 msgid ""
 "If you don't save, changes from the last minute and %ld second will be "
@@ -464,7 +464,7 @@ msgstr[3] "ستضيع تغييرات الدّقيقة و %Ild ثوان الأخ�
 msgstr[4] "ستضيع تغييرات الدّقيقة و %Ild ثانية الأخيرة نهائيًّا إذا لم تحفظ."
 msgstr[5] "ستضيع تغييرات الدّقيقة و %Ild ثانية الأخيرة نهائيًّا إذا لم تحفظ."
 
-#: ../xedit/dialogs/xedit-close-confirmation-dialog.c:439
+#: ../xed/dialogs/xed-close-confirmation-dialog.c:439
 #, c-format
 msgid ""
 "If you don't save, changes from the last %ld minute will be permanently "
@@ -479,12 +479,12 @@ msgstr[3] "ستضيع تغييرات الدقائق ال%Ild الأخيرة نه
 msgstr[4] "ستضيع تغييرات الـ%Ild دقيقة الأخيرة نهائيًّا إذا لم تحفظ."
 msgstr[5] "ستضيع تغييرات الـ%Ild دقيقة الأخيرة نهائيًّا إذا لم تحفظ."
 
-#: ../xedit/dialogs/xedit-close-confirmation-dialog.c:454
+#: ../xed/dialogs/xed-close-confirmation-dialog.c:454
 msgid ""
 "If you don't save, changes from the last hour will be permanently lost."
 msgstr "ستضيع تغييرات الساعة الأخيرة نهائيًّا إذا لم تحفظ."
 
-#: ../xedit/dialogs/xedit-close-confirmation-dialog.c:460
+#: ../xed/dialogs/xed-close-confirmation-dialog.c:460
 #, c-format
 msgid ""
 "If you don't save, changes from the last hour and %d minute will be "
@@ -499,7 +499,7 @@ msgstr[3] "ستضيع تغييرات السّاعة و الدقائق %Id الأ
 msgstr[4] "ستضيع تغييرات السّاعة و الدقائق %Id الأخيرة نهائيًّا إذا لم تحفظ."
 msgstr[5] "ستضيع تغييرات السّاعة و الدقائق %Id الأخيرة نهائيًّا إذا لم تحفظ."
 
-#: ../xedit/dialogs/xedit-close-confirmation-dialog.c:475
+#: ../xed/dialogs/xed-close-confirmation-dialog.c:475
 #, c-format
 msgid ""
 "If you don't save, changes from the last %d hour will be permanently lost."
@@ -512,22 +512,22 @@ msgstr[3] "ستضيع تغييرات ال%Id ساعات الأخيرة نهائ�
 msgstr[4] "ستضيع تغييرات ال%Id ساعة الأخيرة نهائيًّا إذا لم تحفظ."
 msgstr[5] "ستضيع تغييرات ال%Id ساعة الأخيرة نهائيًّا إذا لم تحفظ."
 
-#: ../xedit/dialogs/xedit-close-confirmation-dialog.c:518
+#: ../xed/dialogs/xed-close-confirmation-dialog.c:518
 #, c-format
 msgid "Changes to document \"%s\" will be permanently lost."
 msgstr "ستضيع التّغييرات المحدثة على المستند \"%s\" نهائيًّا."
 
-#: ../xedit/dialogs/xedit-close-confirmation-dialog.c:523
+#: ../xed/dialogs/xed-close-confirmation-dialog.c:523
 #, c-format
 msgid "Save changes to document \"%s\" before closing?"
 msgstr "أأحفظ التّغييرات في المستند \"%s\" قبل غلقه؟"
 
-#: ../xedit/dialogs/xedit-close-confirmation-dialog.c:537
-#: ../xedit/dialogs/xedit-close-confirmation-dialog.c:748
+#: ../xed/dialogs/xed-close-confirmation-dialog.c:537
+#: ../xed/dialogs/xed-close-confirmation-dialog.c:748
 msgid "Saving has been disabled by the system administrator."
 msgstr "عُطّل الحفظ من قبل مدير النظام."
 
-#: ../xedit/dialogs/xedit-close-confirmation-dialog.c:703
+#: ../xed/dialogs/xed-close-confirmation-dialog.c:703
 #, c-format
 msgid "Changes to %d document will be permanently lost."
 msgid_plural "Changes to %d documents will be permanently lost."
@@ -538,7 +538,7 @@ msgstr[3] "ستضيع التّغييرات المحدثة على %Id مستند�
 msgstr[4] "ستضيع التّغييرات المحدثة على %Id مستندا نهائيًّا."
 msgstr[5] "ستضيع التّغييرات المحدثة على %Id مستند نهائيًّا."
 
-#: ../xedit/dialogs/xedit-close-confirmation-dialog.c:709
+#: ../xed/dialogs/xed-close-confirmation-dialog.c:709
 #, c-format
 msgid ""
 "There is %d document with unsaved changes. Save changes before closing?"
@@ -551,323 +551,323 @@ msgstr[3] "هناك %Id مستنداتٍ بتغييراتٍ غير محفوظة.
 msgstr[4] "هناك %Id مستندًا بتغييراتٍ غير محفوظة. هل تريد حفظ التّغييرات قبل الغلق؟"
 msgstr[5] "هناك %Id مستند بتغييراتٍ غير محفوظة. هل تريد حفظ التّغييرات قبل الغلق؟"
 
-#: ../xedit/dialogs/xedit-close-confirmation-dialog.c:727
+#: ../xed/dialogs/xed-close-confirmation-dialog.c:727
 msgid "Docum_ents with unsaved changes:"
 msgstr "مست_ندات بتغييرات غير محفوظة:"
 
-#: ../xedit/dialogs/xedit-close-confirmation-dialog.c:729
+#: ../xed/dialogs/xed-close-confirmation-dialog.c:729
 msgid "S_elect the documents you want to save:"
 msgstr "ا_ختر المستندات التي تريد حفظها:"
 
-#: ../xedit/dialogs/xedit-close-confirmation-dialog.c:750
+#: ../xed/dialogs/xed-close-confirmation-dialog.c:750
 msgid "If you don't save, all your changes will be permanently lost."
 msgstr "ستضيع جميع التّغييرات للأبد إذا لم تحفظ."
 
-#: ../xedit/dialogs/xedit-encodings-dialog.c:321
+#: ../xed/dialogs/xed-encodings-dialog.c:321
 msgid "Character Encodings"
 msgstr "ترميزات المحارف"
 
-#: ../xedit/dialogs/xedit-encodings-dialog.c:387
-#: ../xedit/dialogs/xedit-encodings-dialog.c:448
+#: ../xed/dialogs/xed-encodings-dialog.c:387
+#: ../xed/dialogs/xed-encodings-dialog.c:448
 msgid "_Description"
 msgstr "ال_وصف"
 
-#: ../xedit/dialogs/xedit-encodings-dialog.c:396
-#: ../xedit/dialogs/xedit-encodings-dialog.c:457
+#: ../xed/dialogs/xed-encodings-dialog.c:396
+#: ../xed/dialogs/xed-encodings-dialog.c:457
 msgid "_Encoding"
 msgstr "ال_ترميز"
 
-#: ../xedit/dialogs/xedit-encodings-dialog.ui.h:1
+#: ../xed/dialogs/xed-encodings-dialog.ui.h:1
 msgid "Character encodings"
 msgstr "ترميزات المحارف"
 
-#: ../xedit/dialogs/xedit-encodings-dialog.ui.h:2
+#: ../xed/dialogs/xed-encodings-dialog.ui.h:2
 msgid "A_vailable encodings:"
 msgstr "التّرميزات ال_متوفرة:"
 
-#: ../xedit/dialogs/xedit-encodings-dialog.ui.h:3
+#: ../xed/dialogs/xed-encodings-dialog.ui.h:3
 msgid "E_ncodings shown in menu:"
 msgstr "التّرميزات المعروضة في القائمة:"
 
-#: ../xedit/dialogs/xedit-preferences-dialog.c:574
+#: ../xed/dialogs/xed-preferences-dialog.c:574
 msgid "Click on this button to select the font to be used by the editor"
 msgstr "انقر هذا الزر لاختيار الخط المراد استخدامه في المحرر"
 
-#: ../xedit/dialogs/xedit-preferences-dialog.c:584
+#: ../xed/dialogs/xed-preferences-dialog.c:584
 #, c-format
 msgid "_Use the system fixed width font (%s)"
 msgstr "ا_ستخد خط النظام ثابت العرض (%s)"
 
-#: ../xedit/dialogs/xedit-preferences-dialog.c:787
+#: ../xed/dialogs/xed-preferences-dialog.c:787
 msgid "The selected color scheme cannot be installed."
 msgstr "لا يمكن تثبيت مخطط الألوان المختار"
 
-#: ../xedit/dialogs/xedit-preferences-dialog.c:812
+#: ../xed/dialogs/xed-preferences-dialog.c:812
 msgid "Add Scheme"
 msgstr "أضف مخططًا"
 
-#: ../xedit/dialogs/xedit-preferences-dialog.c:819
+#: ../xed/dialogs/xed-preferences-dialog.c:819
 msgid "A_dd Scheme"
 msgstr "أ_ضف مخططًا"
 
-#: ../xedit/dialogs/xedit-preferences-dialog.c:827
+#: ../xed/dialogs/xed-preferences-dialog.c:827
 msgid "Color Scheme Files"
 msgstr "ملفات مخططات الألوان"
 
-#: ../xedit/dialogs/xedit-preferences-dialog.c:834
-#: ../xedit/xedit-file-chooser-dialog.c:55
+#: ../xed/dialogs/xed-preferences-dialog.c:834
+#: ../xed/xed-file-chooser-dialog.c:55
 msgid "All Files"
 msgstr "جميع الملفات"
 
-#: ../xedit/dialogs/xedit-preferences-dialog.c:879
+#: ../xed/dialogs/xed-preferences-dialog.c:879
 #, c-format
 msgid "Could not remove color scheme \"%s\"."
 msgstr "لا يمكن حذف مخطط الألوان %s."
 
-#: ../xedit/dialogs/xedit-preferences-dialog.c:1090
-msgid "xedit Preferences"
+#: ../xed/dialogs/xed-preferences-dialog.c:1090
+msgid "xed Preferences"
 msgstr "تفضيلات محرر النصوص \"قلم\""
 
-#: ../xedit/dialogs/xedit-preferences-dialog.ui.h:1
+#: ../xed/dialogs/xed-preferences-dialog.ui.h:1
 msgid "Preferences"
 msgstr "التّفضيلات"
 
-#: ../xedit/dialogs/xedit-preferences-dialog.ui.h:2
-#: ../xedit/xedit-print-preferences.ui.h:9
+#: ../xed/dialogs/xed-preferences-dialog.ui.h:2
+#: ../xed/xed-print-preferences.ui.h:9
 msgid "Text Wrapping"
 msgstr "لف النص"
 
-#: ../xedit/dialogs/xedit-preferences-dialog.ui.h:3
+#: ../xed/dialogs/xed-preferences-dialog.ui.h:3
 #: ../plugins/docinfo/docinfo.ui.h:4
 #: ../plugins/externaltools/tools/tools.ui.h:21
 #: ../plugins/snippets/snippets/snippets.ui.h:9
-#: ../plugins/time/xedit-time-dialog.ui.h:4
-#: ../plugins/time/xedit-time-setup-dialog.ui.h:3
+#: ../plugins/time/xed-time-dialog.ui.h:4
+#: ../plugins/time/xed-time-setup-dialog.ui.h:3
 msgid "    "
 msgstr "    "
 
-#: ../xedit/dialogs/xedit-preferences-dialog.ui.h:4
-#: ../xedit/xedit-print-preferences.ui.h:10
+#: ../xed/dialogs/xed-preferences-dialog.ui.h:4
+#: ../xed/xed-print-preferences.ui.h:10
 msgid "Enable text _wrapping"
 msgstr "فعّل _لفّ النص"
 
-#: ../xedit/dialogs/xedit-preferences-dialog.ui.h:5
-#: ../xedit/xedit-print-preferences.ui.h:11
+#: ../xed/dialogs/xed-preferences-dialog.ui.h:5
+#: ../xed/xed-print-preferences.ui.h:11
 msgid "Do not _split words over two lines"
 msgstr "لا ت_شقّ الكلمات على سطرين"
 
-#: ../xedit/dialogs/xedit-preferences-dialog.ui.h:6
-#: ../xedit/xedit-print-preferences.ui.h:3
+#: ../xed/dialogs/xed-preferences-dialog.ui.h:6
+#: ../xed/xed-print-preferences.ui.h:3
 msgid "Line Numbers"
 msgstr "أرقام السطور:"
 
-#: ../xedit/dialogs/xedit-preferences-dialog.ui.h:7 ../xedit/xedit-view.c:2070
+#: ../xed/dialogs/xed-preferences-dialog.ui.h:7 ../xed/xed-view.c:2070
 msgid "_Display line numbers"
 msgstr "ا_عرض أرقام السطور"
 
-#: ../xedit/dialogs/xedit-preferences-dialog.ui.h:8
+#: ../xed/dialogs/xed-preferences-dialog.ui.h:8
 msgid "Current Line"
 msgstr "السّطر الحالي"
 
-#: ../xedit/dialogs/xedit-preferences-dialog.ui.h:9
+#: ../xed/dialogs/xed-preferences-dialog.ui.h:9
 msgid "Highlight current _line"
 msgstr "إبراز السطر الحالي"
 
-#: ../xedit/dialogs/xedit-preferences-dialog.ui.h:10
+#: ../xed/dialogs/xed-preferences-dialog.ui.h:10
 msgid "Right Margin"
 msgstr "الحاشية اليمنى"
 
-#: ../xedit/dialogs/xedit-preferences-dialog.ui.h:11
+#: ../xed/dialogs/xed-preferences-dialog.ui.h:11
 msgid "Display right _margin"
 msgstr "اعرض الحاشية اليُ_منى"
 
-#: ../xedit/dialogs/xedit-preferences-dialog.ui.h:12
+#: ../xed/dialogs/xed-preferences-dialog.ui.h:12
 msgid "_Right margin at column:"
 msgstr "ال_حاشية اليمنى ابتداء من العمود:"
 
-#: ../xedit/dialogs/xedit-preferences-dialog.ui.h:13
+#: ../xed/dialogs/xed-preferences-dialog.ui.h:13
 msgid "Bracket Matching"
 msgstr "موافقة الأقواس"
 
-#: ../xedit/dialogs/xedit-preferences-dialog.ui.h:14
+#: ../xed/dialogs/xed-preferences-dialog.ui.h:14
 msgid "Highlight matching _bracket"
 msgstr "إبراز الأ_قواس المتوافقة"
 
-#: ../xedit/dialogs/xedit-preferences-dialog.ui.h:15
+#: ../xed/dialogs/xed-preferences-dialog.ui.h:15
 msgid "View"
 msgstr "اعرض"
 
-#: ../xedit/dialogs/xedit-preferences-dialog.ui.h:16
+#: ../xed/dialogs/xed-preferences-dialog.ui.h:16
 msgid "Tab Stops"
 msgstr "حدود Tab"
 
-#: ../xedit/dialogs/xedit-preferences-dialog.ui.h:17
+#: ../xed/dialogs/xed-preferences-dialog.ui.h:17
 msgid "_Tab width:"
 msgstr "ع_رض Tab:"
 
-#: ../xedit/dialogs/xedit-preferences-dialog.ui.h:18
+#: ../xed/dialogs/xed-preferences-dialog.ui.h:18
 msgid "Insert _spaces instead of tabs"
 msgstr "أدرج _مسافات بدل tabs"
 
-#: ../xedit/dialogs/xedit-preferences-dialog.ui.h:19
+#: ../xed/dialogs/xed-preferences-dialog.ui.h:19
 msgid "Automatic Indentation"
 msgstr "إزاحة تلقائية"
 
-#: ../xedit/dialogs/xedit-preferences-dialog.ui.h:20
+#: ../xed/dialogs/xed-preferences-dialog.ui.h:20
 msgid "_Enable automatic indentation"
 msgstr "_فعّل الإزاحة الآلية"
 
-#: ../xedit/dialogs/xedit-preferences-dialog.ui.h:21
+#: ../xed/dialogs/xed-preferences-dialog.ui.h:21
 msgid "File Saving"
 msgstr "حفظ الملف"
 
-#: ../xedit/dialogs/xedit-preferences-dialog.ui.h:22
+#: ../xed/dialogs/xed-preferences-dialog.ui.h:22
 msgid "Create a _backup copy of files before saving"
 msgstr "أنشئ نسخة ا_حتياطية من الملفات قبل الحفظ"
 
-#: ../xedit/dialogs/xedit-preferences-dialog.ui.h:23
+#: ../xed/dialogs/xed-preferences-dialog.ui.h:23
 msgid "_Autosave files every"
 msgstr "ا_حفظ الملفات آليّا كلّ"
 
-#: ../xedit/dialogs/xedit-preferences-dialog.ui.h:24
+#: ../xed/dialogs/xed-preferences-dialog.ui.h:24
 msgid "_minutes"
 msgstr "_دقائق"
 
-#: ../xedit/dialogs/xedit-preferences-dialog.ui.h:25
+#: ../xed/dialogs/xed-preferences-dialog.ui.h:25
 msgid "Editor"
 msgstr "المحرر"
 
-#: ../xedit/dialogs/xedit-preferences-dialog.ui.h:26
+#: ../xed/dialogs/xed-preferences-dialog.ui.h:26
 msgid "Font"
 msgstr "الخط"
 
-#: ../xedit/dialogs/xedit-preferences-dialog.ui.h:27
+#: ../xed/dialogs/xed-preferences-dialog.ui.h:27
 msgid "Editor _font: "
 msgstr "خ_ط المحرر:"
 
-#: ../xedit/dialogs/xedit-preferences-dialog.ui.h:28
+#: ../xed/dialogs/xed-preferences-dialog.ui.h:28
 msgid "Pick the editor font"
 msgstr "انتق لون المحرر"
 
-#: ../xedit/dialogs/xedit-preferences-dialog.ui.h:29
+#: ../xed/dialogs/xed-preferences-dialog.ui.h:29
 msgid "Color Scheme"
 msgstr "مخطط اللون"
 
-#: ../xedit/dialogs/xedit-preferences-dialog.ui.h:30
+#: ../xed/dialogs/xed-preferences-dialog.ui.h:30
 msgid "_Add..."
 msgstr "أ_ضف..."
 
-#: ../xedit/dialogs/xedit-preferences-dialog.ui.h:31
+#: ../xed/dialogs/xed-preferences-dialog.ui.h:31
 msgid "Font & Colors"
 msgstr "الخط والألوان"
 
-#: ../xedit/dialogs/xedit-preferences-dialog.ui.h:32
+#: ../xed/dialogs/xed-preferences-dialog.ui.h:32
 msgid "Plugins"
 msgstr "المُلحقات"
 
-#: ../xedit/dialogs/xedit-search-dialog.c:305
-#: ../xedit/dialogs/xedit-search-dialog.ui.h:1 ../xedit/xedit-window.c:1530
+#: ../xed/dialogs/xed-search-dialog.c:305
+#: ../xed/dialogs/xed-search-dialog.ui.h:1 ../xed/xed-window.c:1530
 msgid "Replace"
 msgstr "استبدل"
 
-#: ../xedit/dialogs/xedit-search-dialog.c:316 ../xedit/xedit-window.c:1528
+#: ../xed/dialogs/xed-search-dialog.c:316 ../xed/xed-window.c:1528
 msgid "Find"
 msgstr "ابحث"
 
-#: ../xedit/dialogs/xedit-search-dialog.c:423
+#: ../xed/dialogs/xed-search-dialog.c:423
 msgid "Replace _All"
 msgstr "استبدل الك_ل"
 
-#: ../xedit/dialogs/xedit-search-dialog.c:424
-#: ../xedit/xedit-commands-file.c:577
+#: ../xed/dialogs/xed-search-dialog.c:424
+#: ../xed/xed-commands-file.c:577
 msgid "_Replace"
 msgstr "است_بدل"
 
-#: ../xedit/dialogs/xedit-search-dialog.ui.h:2
+#: ../xed/dialogs/xed-search-dialog.ui.h:2
 msgid "Replace All"
 msgstr "استبدّل الكل"
 
-#: ../xedit/dialogs/xedit-search-dialog.ui.h:3
+#: ../xed/dialogs/xed-search-dialog.ui.h:3
 msgid "_Search for: "
 msgstr "ا_بحث عن:"
 
-#: ../xedit/dialogs/xedit-search-dialog.ui.h:4
+#: ../xed/dialogs/xed-search-dialog.ui.h:4
 msgid "Replace _with: "
 msgstr "استبدّل _ب‍: "
 
-#: ../xedit/dialogs/xedit-search-dialog.ui.h:5
+#: ../xed/dialogs/xed-search-dialog.ui.h:5
 msgid "_Match case"
 msgstr "_طابِق الحالة"
 
-#: ../xedit/dialogs/xedit-search-dialog.ui.h:6
+#: ../xed/dialogs/xed-search-dialog.ui.h:6
 msgid "Match _entire word only"
 msgstr "طابِق ك_امل الكلمة فقط"
 
-#: ../xedit/dialogs/xedit-search-dialog.ui.h:7
+#: ../xed/dialogs/xed-search-dialog.ui.h:7
 msgid "Search _backwards"
 msgstr "ابحث إلى ال_خلف"
 
-#: ../xedit/dialogs/xedit-search-dialog.ui.h:8
+#: ../xed/dialogs/xed-search-dialog.ui.h:8
 msgid "_Wrap around"
 msgstr "_لف حول"
 
-#: ../xedit/dialogs/xedit-search-dialog.ui.h:9
+#: ../xed/dialogs/xed-search-dialog.ui.h:9
 msgid "_Parse escape sequences (e.g. \\n)"
 msgstr "_حلّل المحارف (مثال \\n)"
 
-#: ../xedit/xedit.c:126
+#: ../xed/xed.c:126
 msgid "Show the application's version"
 msgstr "أظهر نسخة التّطبيق"
 
-#: ../xedit/xedit.c:129
+#: ../xed/xed.c:129
 msgid ""
 "Set the character encoding to be used to open the files listed on the "
 "command line"
 msgstr "عيّن التّرميز الذي سيستخدم لفتح الملفّات المسردة على سطر الأوامر"
 
-#: ../xedit/xedit.c:129
+#: ../xed/xed.c:129
 msgid "ENCODING"
 msgstr "الترميز"
 
-#: ../xedit/xedit.c:132
+#: ../xed/xed.c:132
 msgid "Display list of possible values for the encoding option"
 msgstr "اعرض قائمة بالقيم الممكنة لخيار الترميز"
 
-#: ../xedit/xedit.c:135
-msgid "Create a new top-level window in an existing instance of xedit"
+#: ../xed/xed.c:135
+msgid "Create a new top-level window in an existing instance of xed"
 msgstr "أنشئ نافذة مستوى أعلى جديدة في سيرورة موجودة من محرر النصوص \"قلم\""
 
-#: ../xedit/xedit.c:138
-msgid "Create a new document in an existing instance of xedit"
+#: ../xed/xed.c:138
+msgid "Create a new document in an existing instance of xed"
 msgstr "أنشئ مستندًا جديدًا في سيرورة موجودة من محرر النصوص \"قلم\""
 
-#: ../xedit/xedit.c:141
+#: ../xed/xed.c:141
 msgid "[FILE...]"
 msgstr "[ملف...]"
 
-#: ../xedit/xedit.c:196
+#: ../xed/xed.c:196
 #, c-format
 msgid "%s: invalid encoding.\n"
 msgstr "‏%s: ترميز غير سليم. \n"
 
 #. Setup command line options
-#: ../xedit/xedit.c:583
+#: ../xed/xed.c:583
 msgid "- Edit text files"
 msgstr "- حرّر الملفات النصية"
 
-#: ../xedit/xedit.c:619
+#: ../xed/xed.c:619
 #, c-format
 msgid ""
 "%s\n"
 "Run '%s --help' to see a full list of available command line options.\n"
 msgstr "%s\nنفّذ '%s --help' لتحصل على قائمة كاملة بخيارات سطر الأوامر المتاحة.\n"
 
-#: ../xedit/xedit-commands-file.c:250
+#: ../xed/xed-commands-file.c:250
 #, c-format
 msgid "Loading file '%s'…"
 msgstr "يجري تحميل الملف '%s'…"
 
-#: ../xedit/xedit-commands-file.c:259
+#: ../xed/xed-commands-file.c:259
 #, c-format
 msgid "Loading %d file…"
 msgid_plural "Loading %d files…"
@@ -879,39 +879,39 @@ msgstr[4] "يجري تحميل %Id ملفا…"
 msgstr[5] "يجري تحميل %Id ملف…"
 
 #. Translators: "Open Files" is the title of the file chooser window
-#: ../xedit/xedit-commands-file.c:453
+#: ../xed/xed-commands-file.c:453
 msgid "Open Files"
 msgstr "افتح الملفّات"
 
-#: ../xedit/xedit-commands-file.c:564
+#: ../xed/xed-commands-file.c:564
 #, c-format
 msgid "The file \"%s\" is read-only."
 msgstr "الملف \"%s\" للقراءة فقط."
 
-#: ../xedit/xedit-commands-file.c:569
+#: ../xed/xed-commands-file.c:569
 msgid "Do you want to try to replace it with the one you are saving?"
 msgstr "هل تريد استبداله بالملف الذي أنت بصدد حفظه؟"
 
-#: ../xedit/xedit-commands-file.c:638 ../xedit/xedit-commands-file.c:861
+#: ../xed/xed-commands-file.c:638 ../xed/xed-commands-file.c:861
 #, c-format
 msgid "Saving file '%s'…"
 msgstr "يجري حفظ الملف \"%s\"..."
 
-#: ../xedit/xedit-commands-file.c:746
+#: ../xed/xed-commands-file.c:746
 msgid "Save As…"
 msgstr "احفظ كـ..."
 
-#: ../xedit/xedit-commands-file.c:1075
+#: ../xed/xed-commands-file.c:1075
 #, c-format
 msgid "Reverting the document '%s'…"
 msgstr "يجري استرجاع المستند '%s'..."
 
-#: ../xedit/xedit-commands-file.c:1120
+#: ../xed/xed-commands-file.c:1120
 #, c-format
 msgid "Revert unsaved changes to document '%s'?"
 msgstr "أأعكس التغييرات غير المحفوظة في المستند '%s'؟"
 
-#: ../xedit/xedit-commands-file.c:1129
+#: ../xed/xed-commands-file.c:1129
 #, c-format
 msgid ""
 "Changes made to the document in the last %ld second will be permanently "
@@ -926,12 +926,12 @@ msgstr[3] "ستضيع التّغييرات المحدثة على المستند 
 msgstr[4] "ستضيع التّغييرات المحدثة على المستند في الـ%Ild ثانية الأخيرة نهائيًّا."
 msgstr[5] "ستضيع التّغييرات المحدثة على المستند في الـ%Ild ثانية الأخيرة نهائيًّا."
 
-#: ../xedit/xedit-commands-file.c:1138
+#: ../xed/xed-commands-file.c:1138
 msgid ""
 "Changes made to the document in the last minute will be permanently lost."
 msgstr "ستضيع التّغييرات المحدثة على المستند في الدّقيقة الأخيرة نهائيًّا."
 
-#: ../xedit/xedit-commands-file.c:1144
+#: ../xed/xed-commands-file.c:1144
 #, c-format
 msgid ""
 "Changes made to the document in the last minute and %ld second will be "
@@ -946,7 +946,7 @@ msgstr[3] "ستضيع التّغييرات المحدثة على المستند 
 msgstr[4] "ستضيع التّغييرات المحدثة على المستند في الدّقيقة و الـ%Ild ثانية الأخيرة نهائيًّا."
 msgstr[5] "ستضيع التّغييرات المحدثة على المستند في الدّقيقة و الـ%Ild ثانية الأخيرة نهائيًّا."
 
-#: ../xedit/xedit-commands-file.c:1154
+#: ../xed/xed-commands-file.c:1154
 #, c-format
 msgid ""
 "Changes made to the document in the last %ld minute will be permanently "
@@ -961,12 +961,12 @@ msgstr[3] "ستضيع التّغييرات المحدثة على المستند 
 msgstr[4] "ستضيع التّغييرات المحدثة على المستند في الـ%Ild دقيقة الأخيرة نهائيًّا."
 msgstr[5] "ستضيع التّغييرات المحدثة على المستند في الـ%Ild دقيقة الأخيرة نهائيًّا."
 
-#: ../xedit/xedit-commands-file.c:1169
+#: ../xed/xed-commands-file.c:1169
 msgid ""
 "Changes made to the document in the last hour will be permanently lost."
 msgstr "ستضيع التّغييرات المحدثة على المستند في السّاعة الأخيرة نهائيًّا."
 
-#: ../xedit/xedit-commands-file.c:1175
+#: ../xed/xed-commands-file.c:1175
 #, c-format
 msgid ""
 "Changes made to the document in the last hour and %d minute will be "
@@ -981,7 +981,7 @@ msgstr[3] "ستضيع التّغييرات المحدثة على المستند 
 msgstr[4] "ستضيع التّغييرات المحدثة على المستند في السّاعة و الـ%Id دقيقة الأخيرة نهائيًّا."
 msgstr[5] "ستضيع التّغييرات المحدثة على المستند في السّاعة و الـ%Id دقيقة الأخيرة نهائيًّا."
 
-#: ../xedit/xedit-commands-file.c:1190
+#: ../xed/xed-commands-file.c:1190
 #, c-format
 msgid ""
 "Changes made to the document in the last %d hour will be permanently lost."
@@ -994,19 +994,19 @@ msgstr[3] "ستضيع التّغييرات المحدثة على المستند 
 msgstr[4] "ستضيع التّغييرات المحدثة على المستند في الـ%Id ساعة الأخيرة نهائيًّا."
 msgstr[5] "ستضيع التّغييرات المحدثة على المستند في الـ%Id ساعة الأخيرة نهائيًّا."
 
-#: ../xedit/xedit-commands-file.c:1216
+#: ../xed/xed-commands-file.c:1216
 msgid "_Revert"
 msgstr "ا_عكس"
 
-#: ../xedit/xedit-commands-help.c:82
-msgid "xedit is a small and lightweight text editor for the MATE Desktop"
+#: ../xed/xed-commands-help.c:82
+msgid "xed is a small and lightweight text editor for the MATE Desktop"
 msgstr "\"قلم\" هو محرّر نصوص صغير و خفيف لسطح المكتب متّة"
 
-#: ../xedit/xedit-commands-help.c:93
+#: ../xed/xed-commands-help.c:93
 msgid "translator-credits"
 msgstr "فريق عيون العرب للترجمة http://www.arabeyes.org :\nعصام بيازيدي\t\t<bayazidi@arabeyes.org>\nسيد جعفر الموسوي\t<mosawi@arabeyes.org>\nعرفات المديني\t\t<lumina@silverpen.de>\nحسن عابدين\t\t<abdin@arabeyes.org>\nعبد العزيز العرفج\t<alarfaj0@yahoo.com>\nيوسف الشهيبي\t\t<chahibi@gmail.com>\nجهاد عفيفي\t\t<djihed@gmail.com>\nخالد حسني\t\t<khaledhosny@eglug.org>\nصهيب عفيفي\t\t<sohaibafifi@gmail.com>\nأنس عفيف عماد\t\t<anas.e87@gmail.com>\nمصعب الزعبي\t<moceap@hotmail.com>\n\nمراجعة و إتمام بواسطة عيون العرب http://arabeyes.org و مجتمع لينكس العربي http://linuxac.org عام 1434 بإشراف مصعب الزعبي moceap@hotmail.com"
 
-#: ../xedit/xedit-commands-search.c:116
+#: ../xed/xed-commands-search.c:116
 #, c-format
 msgid "Found and replaced %d occurrence"
 msgid_plural "Found and replaced %d occurrences"
@@ -1017,384 +1017,384 @@ msgstr[3] "تمّ إيجاد و استبدال %Id أحداث."
 msgstr[4] "تمّ إيجاد و استبدال %Id حدوثًا."
 msgstr[5] "تمّ إيجاد و استبدال %Id حدوث."
 
-#: ../xedit/xedit-commands-search.c:126
+#: ../xed/xed-commands-search.c:126
 msgid "Found and replaced one occurrence"
 msgstr "تمّ إيجاد و استبدال حدوث واحد"
 
 #. Translators: %s is replaced by the text
 #. entered by the user in the search box
-#: ../xedit/xedit-commands-search.c:147
+#: ../xed/xed-commands-search.c:147
 #, c-format
 msgid "\"%s\" not found"
 msgstr "‏\"%s\" غير موجود"
 
-#: ../xedit/xedit-document.c:1080 ../xedit/xedit-document.c:1095
+#: ../xed/xed-document.c:1080 ../xed/xed-document.c:1095
 #, c-format
 msgid "Unsaved Document %d"
 msgstr "مستند غير محفوظ %Id"
 
-#: ../xedit/xedit-documents-panel.c:97 ../xedit/xedit-documents-panel.c:111
-#: ../xedit/xedit-window.c:2283 ../xedit/xedit-window.c:2288
+#: ../xed/xed-documents-panel.c:97 ../xed/xed-documents-panel.c:111
+#: ../xed/xed-window.c:2283 ../xed/xed-window.c:2288
 msgid "Read-Only"
 msgstr "للقراءة فقط"
 
-#: ../xedit/xedit-documents-panel.c:791 ../xedit/xedit-window.c:3693
+#: ../xed/xed-documents-panel.c:791 ../xed/xed-window.c:3693
 msgid "Documents"
 msgstr "مستندات"
 
-#: ../xedit/xedit-encodings.c:138 ../xedit/xedit-encodings.c:180
-#: ../xedit/xedit-encodings.c:182 ../xedit/xedit-encodings.c:184
-#: ../xedit/xedit-encodings.c:186 ../xedit/xedit-encodings.c:188
-#: ../xedit/xedit-encodings.c:190 ../xedit/xedit-encodings.c:192
+#: ../xed/xed-encodings.c:138 ../xed/xed-encodings.c:180
+#: ../xed/xed-encodings.c:182 ../xed/xed-encodings.c:184
+#: ../xed/xed-encodings.c:186 ../xed/xed-encodings.c:188
+#: ../xed/xed-encodings.c:190 ../xed/xed-encodings.c:192
 msgid "Unicode"
 msgstr "عالمي"
 
-#: ../xedit/xedit-encodings.c:151 ../xedit/xedit-encodings.c:175
-#: ../xedit/xedit-encodings.c:225 ../xedit/xedit-encodings.c:268
+#: ../xed/xed-encodings.c:151 ../xed/xed-encodings.c:175
+#: ../xed/xed-encodings.c:225 ../xed/xed-encodings.c:268
 msgid "Western"
 msgstr "غربي"
 
-#: ../xedit/xedit-encodings.c:153 ../xedit/xedit-encodings.c:227
-#: ../xedit/xedit-encodings.c:264
+#: ../xed/xed-encodings.c:153 ../xed/xed-encodings.c:227
+#: ../xed/xed-encodings.c:264
 msgid "Central European"
 msgstr "وسط أوروبي"
 
-#: ../xedit/xedit-encodings.c:155
+#: ../xed/xed-encodings.c:155
 msgid "South European"
 msgstr "جنوب أوروبي"
 
-#: ../xedit/xedit-encodings.c:157 ../xedit/xedit-encodings.c:171
-#: ../xedit/xedit-encodings.c:278
+#: ../xed/xed-encodings.c:157 ../xed/xed-encodings.c:171
+#: ../xed/xed-encodings.c:278
 msgid "Baltic"
 msgstr "بلطيقي"
 
-#: ../xedit/xedit-encodings.c:159 ../xedit/xedit-encodings.c:229
-#: ../xedit/xedit-encodings.c:242 ../xedit/xedit-encodings.c:246
-#: ../xedit/xedit-encodings.c:248 ../xedit/xedit-encodings.c:266
+#: ../xed/xed-encodings.c:159 ../xed/xed-encodings.c:229
+#: ../xed/xed-encodings.c:242 ../xed/xed-encodings.c:246
+#: ../xed/xed-encodings.c:248 ../xed/xed-encodings.c:266
 msgid "Cyrillic"
 msgstr "سريلي"
 
-#: ../xedit/xedit-encodings.c:161 ../xedit/xedit-encodings.c:235
-#: ../xedit/xedit-encodings.c:276
+#: ../xed/xed-encodings.c:161 ../xed/xed-encodings.c:235
+#: ../xed/xed-encodings.c:276
 msgid "Arabic"
 msgstr "عربي"
 
-#: ../xedit/xedit-encodings.c:163 ../xedit/xedit-encodings.c:270
+#: ../xed/xed-encodings.c:163 ../xed/xed-encodings.c:270
 msgid "Greek"
 msgstr "يوناني"
 
-#: ../xedit/xedit-encodings.c:165
+#: ../xed/xed-encodings.c:165
 msgid "Hebrew Visual"
 msgstr "عبري مرئي"
 
-#: ../xedit/xedit-encodings.c:167 ../xedit/xedit-encodings.c:231
-#: ../xedit/xedit-encodings.c:272
+#: ../xed/xed-encodings.c:167 ../xed/xed-encodings.c:231
+#: ../xed/xed-encodings.c:272
 msgid "Turkish"
 msgstr "تركي"
 
-#: ../xedit/xedit-encodings.c:169
+#: ../xed/xed-encodings.c:169
 msgid "Nordic"
 msgstr "شمالي"
 
-#: ../xedit/xedit-encodings.c:173
+#: ../xed/xed-encodings.c:173
 msgid "Celtic"
 msgstr "كلتي"
 
-#: ../xedit/xedit-encodings.c:177
+#: ../xed/xed-encodings.c:177
 msgid "Romanian"
 msgstr "روماني"
 
-#: ../xedit/xedit-encodings.c:195
+#: ../xed/xed-encodings.c:195
 msgid "Armenian"
 msgstr "أرميني"
 
-#: ../xedit/xedit-encodings.c:197 ../xedit/xedit-encodings.c:199
-#: ../xedit/xedit-encodings.c:213
+#: ../xed/xed-encodings.c:197 ../xed/xed-encodings.c:199
+#: ../xed/xed-encodings.c:213
 msgid "Chinese Traditional"
 msgstr "صيني تقليدي"
 
-#: ../xedit/xedit-encodings.c:201
+#: ../xed/xed-encodings.c:201
 msgid "Cyrillic/Russian"
 msgstr "سريلي/روسي"
 
-#: ../xedit/xedit-encodings.c:204 ../xedit/xedit-encodings.c:206
-#: ../xedit/xedit-encodings.c:208 ../xedit/xedit-encodings.c:238
-#: ../xedit/xedit-encodings.c:253
+#: ../xed/xed-encodings.c:204 ../xed/xed-encodings.c:206
+#: ../xed/xed-encodings.c:208 ../xed/xed-encodings.c:238
+#: ../xed/xed-encodings.c:253
 msgid "Japanese"
 msgstr "ياباني"
 
-#: ../xedit/xedit-encodings.c:211 ../xedit/xedit-encodings.c:240
-#: ../xedit/xedit-encodings.c:244 ../xedit/xedit-encodings.c:259
+#: ../xed/xed-encodings.c:211 ../xed/xed-encodings.c:240
+#: ../xed/xed-encodings.c:244 ../xed/xed-encodings.c:259
 msgid "Korean"
 msgstr "كوري"
 
-#: ../xedit/xedit-encodings.c:216 ../xedit/xedit-encodings.c:218
-#: ../xedit/xedit-encodings.c:220
+#: ../xed/xed-encodings.c:216 ../xed/xed-encodings.c:218
+#: ../xed/xed-encodings.c:220
 msgid "Chinese Simplified"
 msgstr "صيني مبسّط"
 
-#: ../xedit/xedit-encodings.c:222
+#: ../xed/xed-encodings.c:222
 msgid "Georgian"
 msgstr "جورجي"
 
-#: ../xedit/xedit-encodings.c:233 ../xedit/xedit-encodings.c:274
+#: ../xed/xed-encodings.c:233 ../xed/xed-encodings.c:274
 msgid "Hebrew"
 msgstr "عبري"
 
-#: ../xedit/xedit-encodings.c:250
+#: ../xed/xed-encodings.c:250
 msgid "Cyrillic/Ukrainian"
 msgstr "سريلي/أكراني"
 
-#: ../xedit/xedit-encodings.c:255 ../xedit/xedit-encodings.c:261
-#: ../xedit/xedit-encodings.c:280
+#: ../xed/xed-encodings.c:255 ../xed/xed-encodings.c:261
+#: ../xed/xed-encodings.c:280
 msgid "Vietnamese"
 msgstr "فيتنامي"
 
-#: ../xedit/xedit-encodings.c:257
+#: ../xed/xed-encodings.c:257
 msgid "Thai"
 msgstr "تايلندي"
 
-#: ../xedit/xedit-encodings.c:431
+#: ../xed/xed-encodings.c:431
 msgid "Unknown"
 msgstr "مجهول"
 
-#: ../xedit/xedit-encodings-combo-box.c:280
+#: ../xed/xed-encodings-combo-box.c:280
 msgid "Automatically Detected"
 msgstr "مكشوف آليًا"
 
-#: ../xedit/xedit-encodings-combo-box.c:296
-#: ../xedit/xedit-encodings-combo-box.c:311
+#: ../xed/xed-encodings-combo-box.c:296
+#: ../xed/xed-encodings-combo-box.c:311
 #, c-format
 msgid "Current Locale (%s)"
 msgstr "المحلّية الحالية (%s)"
 
-#: ../xedit/xedit-encodings-combo-box.c:361
+#: ../xed/xed-encodings-combo-box.c:361
 msgid "Add or Remove..."
 msgstr "أضِف أو احذف..."
 
-#: ../xedit/xedit-file-chooser-dialog.c:56
+#: ../xed/xed-file-chooser-dialog.c:56
 msgid "All Text Files"
 msgstr "كل الملفات النصية"
 
-#: ../xedit/xedit-file-chooser-dialog.c:84
+#: ../xed/xed-file-chooser-dialog.c:84
 msgid "C_haracter Encoding:"
 msgstr "ترميز الم_حارف:"
 
-#: ../xedit/xedit-file-chooser-dialog.c:149
+#: ../xed/xed-file-chooser-dialog.c:149
 msgid "L_ine Ending:"
 msgstr "_نهايات السطور:"
 
-#: ../xedit/xedit-file-chooser-dialog.c:168
+#: ../xed/xed-file-chooser-dialog.c:168
 msgid "Unix/Linux"
 msgstr "يونكس\\لينكس"
 
-#: ../xedit/xedit-file-chooser-dialog.c:174
+#: ../xed/xed-file-chooser-dialog.c:174
 msgid "Mac OS Classic"
 msgstr "ماك التقليدي"
 
-#: ../xedit/xedit-file-chooser-dialog.c:180
+#: ../xed/xed-file-chooser-dialog.c:180
 msgid "Windows"
 msgstr "وندوز"
 
-#: ../xedit/xedit-help.c:104
+#: ../xed/xed-help.c:104
 msgid "There was an error displaying the help."
 msgstr "حدث خطأ عند عرض المساعدة."
 
-#: ../xedit/xedit-io-error-message-area.c:204
-#: ../xedit/xedit-io-error-message-area.c:209
-#: ../xedit/xedit-io-error-message-area.c:513
-#: ../xedit/xedit-io-error-message-area.c:536
+#: ../xed/xed-io-error-message-area.c:204
+#: ../xed/xed-io-error-message-area.c:209
+#: ../xed/xed-io-error-message-area.c:513
+#: ../xed/xed-io-error-message-area.c:536
 msgid "_Retry"
 msgstr "أ_عد المحاولة"
 
-#: ../xedit/xedit-io-error-message-area.c:231
+#: ../xed/xed-io-error-message-area.c:231
 #, c-format
 msgid "Could not find the file %s."
 msgstr "تعذّر العثور على الملف %s."
 
-#: ../xedit/xedit-io-error-message-area.c:233
-#: ../xedit/xedit-io-error-message-area.c:272
-#: ../xedit/xedit-io-error-message-area.c:279
+#: ../xed/xed-io-error-message-area.c:233
+#: ../xed/xed-io-error-message-area.c:272
+#: ../xed/xed-io-error-message-area.c:279
 msgid "Please check that you typed the location correctly and try again."
 msgstr "تأكد من كتابة الموقع بشكل صحيح ثم حاول مجددا."
 
 #. Translators: %s is a URI scheme (like for example http:, ftp:, etc.)
-#: ../xedit/xedit-io-error-message-area.c:248
+#: ../xed/xed-io-error-message-area.c:248
 #, c-format
-msgid "xedit cannot handle %s locations."
+msgid "xed cannot handle %s locations."
 msgstr "لا يستطيع محرر النصوص \"قلم\" معالجة المواقع %s."
 
-#: ../xedit/xedit-io-error-message-area.c:254
-msgid "xedit cannot handle this location."
+#: ../xed/xed-io-error-message-area.c:254
+msgid "xed cannot handle this location."
 msgstr "لا يستطيع محرر النصوص \"قلم\" معالجة هذا الموقع."
 
-#: ../xedit/xedit-io-error-message-area.c:262
+#: ../xed/xed-io-error-message-area.c:262
 msgid "The location of the file cannot be mounted."
 msgstr "لا يمكن وصل موقع الملف."
 
-#: ../xedit/xedit-io-error-message-area.c:266
+#: ../xed/xed-io-error-message-area.c:266
 msgid "The location of the file cannot be accessed because it is not mounted."
 msgstr "لا يمكن الوصول إلى موقع الملف لأنه غير موصول."
 
-#: ../xedit/xedit-io-error-message-area.c:270
+#: ../xed/xed-io-error-message-area.c:270
 #, c-format
 msgid "%s is a directory."
 msgstr "يُمثّل %s دليلًا"
 
-#: ../xedit/xedit-io-error-message-area.c:277
+#: ../xed/xed-io-error-message-area.c:277
 #, c-format
 msgid "%s is not a valid location."
 msgstr "ليس %s موقعًا سليمًا."
 
-#: ../xedit/xedit-io-error-message-area.c:307
+#: ../xed/xed-io-error-message-area.c:307
 #, c-format
 msgid ""
 "Host %s could not be found. Please check that your proxy settings are "
 "correct and try again."
 msgstr "تعذّر العثور على المستضيف %s. تأكد من صحّة إعدادات المُلقّم وحاول مجدّدًا."
 
-#: ../xedit/xedit-io-error-message-area.c:320
+#: ../xed/xed-io-error-message-area.c:320
 #, c-format
 msgid ""
 "Hostname was invalid. Please check that you typed the location correctly and"
 " try again."
 msgstr "اسم المستضيف غير صحيح. تأكّد من صحة الموقع المكتوب و حاول مُجدّدًا."
 
-#: ../xedit/xedit-io-error-message-area.c:328
+#: ../xed/xed-io-error-message-area.c:328
 #, c-format
 msgid "%s is not a regular file."
 msgstr "‏%s ليس ملفًا عاديًا"
 
-#: ../xedit/xedit-io-error-message-area.c:333
+#: ../xed/xed-io-error-message-area.c:333
 msgid "Connection timed out. Please try again."
 msgstr "انتهت مهلة الاتصال. أعِد المحاولة."
 
-#: ../xedit/xedit-io-error-message-area.c:356
+#: ../xed/xed-io-error-message-area.c:356
 msgid "The file is too big."
 msgstr "الملف كبيرٌ جدًا."
 
-#: ../xedit/xedit-io-error-message-area.c:397
+#: ../xed/xed-io-error-message-area.c:397
 #, c-format
 msgid "Unexpected error: %s"
 msgstr "خطأ غير متوقع: %s"
 
-#: ../xedit/xedit-io-error-message-area.c:433
-msgid "xedit cannot find the file. Perhaps it has recently been deleted."
+#: ../xed/xed-io-error-message-area.c:433
+msgid "xed cannot find the file. Perhaps it has recently been deleted."
 msgstr "لم يستطيع محرر النصوص \"قلم\" إيجاد الملف. ربما يكون قد حُذفَ مؤخرًا."
 
-#: ../xedit/xedit-io-error-message-area.c:443
+#: ../xed/xed-io-error-message-area.c:443
 #, c-format
 msgid "Could not revert the file %s."
 msgstr "لا يمكن استعادة الملف %s."
 
-#: ../xedit/xedit-io-error-message-area.c:469
+#: ../xed/xed-io-error-message-area.c:469
 msgid "Ch_aracter Encoding:"
 msgstr "ترميز الم_حارف:"
 
 #. Translators: the access key chosen for this string should be
 #. different from other main menu access keys (Open, Edit, View...)
-#: ../xedit/xedit-io-error-message-area.c:520
-#: ../xedit/xedit-io-error-message-area.c:545
-#: ../xedit/xedit-io-error-message-area.c:831
-#: ../xedit/xedit-io-error-message-area.c:841
+#: ../xed/xed-io-error-message-area.c:520
+#: ../xed/xed-io-error-message-area.c:545
+#: ../xed/xed-io-error-message-area.c:831
+#: ../xed/xed-io-error-message-area.c:841
 msgid "Edit Any_way"
 msgstr "_حرّر على أي حال"
 
 #. Translators: the access key chosen for this string should be
 #. different from other main menu access keys (Open, Edit, View...)
-#: ../xedit/xedit-io-error-message-area.c:523
-#: ../xedit/xedit-io-error-message-area.c:550
-#: ../xedit/xedit-io-error-message-area.c:834
-#: ../xedit/xedit-io-error-message-area.c:846
+#: ../xed/xed-io-error-message-area.c:523
+#: ../xed/xed-io-error-message-area.c:550
+#: ../xed/xed-io-error-message-area.c:834
+#: ../xed/xed-io-error-message-area.c:846
 msgid "D_on't Edit"
 msgstr "لا _تُحرّر"
 
-#: ../xedit/xedit-io-error-message-area.c:654
+#: ../xed/xed-io-error-message-area.c:654
 msgid ""
 "The number of followed links is limited and the actual file could not be "
 "found within this limit."
 msgstr "إن عدد الارتباطات المتبوعة محدود ولم يتم العثور على الملف الفعلي ضمن هذه الحدود."
 
-#: ../xedit/xedit-io-error-message-area.c:658
+#: ../xed/xed-io-error-message-area.c:658
 msgid "You do not have the permissions necessary to open the file."
 msgstr "لا تملك الصّلاحيات المطلوبة لفتح هذا الملف."
 
-#: ../xedit/xedit-io-error-message-area.c:664
-msgid "xedit has not been able to detect the character encoding."
+#: ../xed/xed-io-error-message-area.c:664
+msgid "xed has not been able to detect the character encoding."
 msgstr "لم يتمكن محرر النصوص \"قلم\" من كشف ترميز المحارف."
 
-#: ../xedit/xedit-io-error-message-area.c:666
-#: ../xedit/xedit-io-error-message-area.c:688
+#: ../xed/xed-io-error-message-area.c:666
+#: ../xed/xed-io-error-message-area.c:688
 msgid "Please check that you are not trying to open a binary file."
 msgstr "رجاء تأكد من أنك لا تحاول فتح ملف ثنائي."
 
-#: ../xedit/xedit-io-error-message-area.c:667
+#: ../xed/xed-io-error-message-area.c:667
 msgid "Select a character encoding from the menu and try again."
 msgstr "اختر ترميز محارف من القائمة وحاول مجددًا."
 
-#: ../xedit/xedit-io-error-message-area.c:673
+#: ../xed/xed-io-error-message-area.c:673
 #, c-format
 msgid "There was a problem opening the file %s."
 msgstr "حدثت مشكلة في فتح الملف %s."
 
-#: ../xedit/xedit-io-error-message-area.c:675
+#: ../xed/xed-io-error-message-area.c:675
 msgid ""
 "The file you opened has some invalid characters. If you continue editing "
 "this file you could make this document useless."
 msgstr "يحتوي الملف الذي فتحته على بعض المحارف غير السليمة. قد يتلف هذا الملف إذا واصلت تحريره."
 
-#: ../xedit/xedit-io-error-message-area.c:678
+#: ../xed/xed-io-error-message-area.c:678
 msgid "You can also choose another character encoding and try again."
 msgstr "يمكنك أيضًا اختيار ترميز محارف آخر ثم إعادة المحاولة"
 
-#: ../xedit/xedit-io-error-message-area.c:685
+#: ../xed/xed-io-error-message-area.c:685
 #, c-format
 msgid "Could not open the file %s using the %s character encoding."
 msgstr "لا يمكن فتح الملف %s بترميز المحارف %s."
 
-#: ../xedit/xedit-io-error-message-area.c:689
-#: ../xedit/xedit-io-error-message-area.c:764
+#: ../xed/xed-io-error-message-area.c:689
+#: ../xed/xed-io-error-message-area.c:764
 msgid "Select a different character encoding from the menu and try again."
 msgstr "اختر ترميز محارف مختلف من القائمة وحاول مجددًا."
 
-#: ../xedit/xedit-io-error-message-area.c:699
+#: ../xed/xed-io-error-message-area.c:699
 #, c-format
 msgid "Could not open the file %s."
 msgstr "تعذّر فتح الملف %s."
 
-#: ../xedit/xedit-io-error-message-area.c:759
+#: ../xed/xed-io-error-message-area.c:759
 #, c-format
 msgid "Could not save the file %s using the %s character encoding."
 msgstr "تعذّر حفظ الملف %s بترميز المحارف %s."
 
-#: ../xedit/xedit-io-error-message-area.c:762
+#: ../xed/xed-io-error-message-area.c:762
 msgid ""
 "The document contains one or more characters that cannot be encoded using "
 "the specified character encoding."
 msgstr "يحوي المستند محرفًا أو محارف لا يمكن ترميزها بترميز المحارف المحدد."
 
-#: ../xedit/xedit-io-error-message-area.c:861
+#: ../xed/xed-io-error-message-area.c:861
 #, c-format
-msgid "This file (%s) is already open in another xedit window."
+msgid "This file (%s) is already open in another xed window."
 msgstr "هذا الملف (%s) مفتوح مسبقا في نافذة أخرى من محرر النّصوص \"قلم\"."
 
-#: ../xedit/xedit-io-error-message-area.c:879
+#: ../xed/xed-io-error-message-area.c:879
 msgid ""
-"xedit opened this instance of the file in a non-editable way. Do you want to"
+"xed opened this instance of the file in a non-editable way. Do you want to"
 " edit it anyway?"
 msgstr "فتح محرر النصوص \"قلم\" سيرورة الملف هذه بشكل غير قابل للتحرير. هل تريد أن تحرره على أي حال؟"
 
-#: ../xedit/xedit-io-error-message-area.c:942
-#: ../xedit/xedit-io-error-message-area.c:952
-#: ../xedit/xedit-io-error-message-area.c:1056
-#: ../xedit/xedit-io-error-message-area.c:1066
+#: ../xed/xed-io-error-message-area.c:942
+#: ../xed/xed-io-error-message-area.c:952
+#: ../xed/xed-io-error-message-area.c:1056
+#: ../xed/xed-io-error-message-area.c:1066
 msgid "S_ave Anyway"
 msgstr "احفظ على أي حال"
 
-#: ../xedit/xedit-io-error-message-area.c:946
-#: ../xedit/xedit-io-error-message-area.c:956
-#: ../xedit/xedit-io-error-message-area.c:1060
-#: ../xedit/xedit-io-error-message-area.c:1070
+#: ../xed/xed-io-error-message-area.c:946
+#: ../xed/xed-io-error-message-area.c:956
+#: ../xed/xed-io-error-message-area.c:1060
+#: ../xed/xed-io-error-message-area.c:1070
 msgid "D_on't Save"
 msgstr "لا تحفظ"
 
@@ -1403,90 +1403,90 @@ msgstr "لا تحفظ"
 #. could be interpreted as the changes he made in the document. beside
 #. "reading" is
 #. not accurate (since last load/save)
-#: ../xedit/xedit-io-error-message-area.c:974
+#: ../xed/xed-io-error-message-area.c:974
 #, c-format
 msgid "The file %s has been modified since reading it."
 msgstr "تم تعديل الملف %s منذ قراءته."
 
-#: ../xedit/xedit-io-error-message-area.c:993
+#: ../xed/xed-io-error-message-area.c:993
 msgid ""
 "If you save it, all the external changes could be lost. Save it anyway?"
 msgstr "إذا حفظت، ستضيع كل التغييرات الخارجية. أأحفظ رغم ذلك؟"
 
-#: ../xedit/xedit-io-error-message-area.c:1088
+#: ../xed/xed-io-error-message-area.c:1088
 #, c-format
 msgid "Could not create a backup file while saving %s"
 msgstr "تعذّر إنشاء ملف احتياطي عند حفظ %s"
 
-#: ../xedit/xedit-io-error-message-area.c:1091
+#: ../xed/xed-io-error-message-area.c:1091
 #, c-format
 msgid "Could not create a temporary backup file while saving %s"
 msgstr "تعذّر إنشاء ملف احتياطي مؤقت عند حفظ %s"
 
-#: ../xedit/xedit-io-error-message-area.c:1111
+#: ../xed/xed-io-error-message-area.c:1111
 msgid ""
-"xedit could not back up the old copy of the file before saving the new one. "
+"xed could not back up the old copy of the file before saving the new one. "
 "You can ignore this warning and save the file anyway, but if an error occurs"
 " while saving, you could lose the old copy of the file. Save anyway?"
 msgstr "لم يتمكن محرر النصوص \"قلم\" من حفظ نسخة قديمة للملف كاحتياط قبل حفظ الحالي. يمكنك تجاهل رسالة التحذير هذه وحفظ الملف رغمها، لكن إذا حدث خطأ عند الحفظ قد تفقد النسخة القديمة للملف. أأحفظ على أي حال؟"
 
 #. Translators: %s is a URI scheme (like for example http:, ftp:, etc.)
-#: ../xedit/xedit-io-error-message-area.c:1175
+#: ../xed/xed-io-error-message-area.c:1175
 #, c-format
 msgid ""
-"xedit cannot handle %s locations in write mode. Please check that you typed "
+"xed cannot handle %s locations in write mode. Please check that you typed "
 "the location correctly and try again."
 msgstr "لا يمكن لمحرر النصوص \"قلم\" التعامل مع مواقع %s في نمط الكتابة. تأكد من صحة كتابتك الموقع وحاول مجددًا."
 
-#: ../xedit/xedit-io-error-message-area.c:1183
+#: ../xed/xed-io-error-message-area.c:1183
 msgid ""
-"xedit cannot handle this location in write mode. Please check that you typed"
+"xed cannot handle this location in write mode. Please check that you typed"
 " the location correctly and try again."
 msgstr "لا يمكن لمحرر النصوص \"قلم\" التعامل مع هذا الموقع في نمط الكتابة. رجاء، تأكد من صحة كتابتك الموقع وحاول مجددًا."
 
-#: ../xedit/xedit-io-error-message-area.c:1192
+#: ../xed/xed-io-error-message-area.c:1192
 #, c-format
 msgid ""
 "%s is not a valid location. Please check that you typed the location "
 "correctly and try again."
 msgstr "‏%s موقع غير سليم. تأكد من صحة كتابتك الموقع وحاول مجددًا."
 
-#: ../xedit/xedit-io-error-message-area.c:1198
+#: ../xed/xed-io-error-message-area.c:1198
 msgid ""
 "You do not have the permissions necessary to save the file. Please check "
 "that you typed the location correctly and try again."
 msgstr "ليس لديك الصلاحيات اللازمة لحفظ الملف. تأكد من صحة كتابتك الموقع وحاول مجددًا."
 
-#: ../xedit/xedit-io-error-message-area.c:1204
+#: ../xed/xed-io-error-message-area.c:1204
 msgid ""
 "There is not enough disk space to save the file. Please free some disk space"
 " and try again."
 msgstr "لا يوجد حيز قرص كاف لحفظ الملف. أخل بعض الحيز من القرص وحاول مجددًا."
 
-#: ../xedit/xedit-io-error-message-area.c:1209
+#: ../xed/xed-io-error-message-area.c:1209
 msgid ""
 "You are trying to save the file on a read-only disk. Please check that you "
 "typed the location correctly and try again."
 msgstr "تحاول حفظ الملف في قرص للقراءة فقط. تأكد من صحة كتابتك الموقع وحاول مجددًا."
 
-#: ../xedit/xedit-io-error-message-area.c:1215
+#: ../xed/xed-io-error-message-area.c:1215
 msgid "A file with the same name already exists. Please use a different name."
 msgstr "يوجد ملف له نفس الاسم. استعمل اسمًا مختلفًا."
 
-#: ../xedit/xedit-io-error-message-area.c:1220
+#: ../xed/xed-io-error-message-area.c:1220
 msgid ""
 "The disk where you are trying to save the file has a limitation on length of"
 " the file names. Please use a shorter name."
 msgstr "القرص الذي تحاول حفظ الملف فيه له يحدد طول أسماء الملفات. استعمل اسمًا أقصر."
 
-#: ../xedit/xedit-io-error-message-area.c:1227
+#: ../xed/xed-io-error-message-area.c:1227
 msgid ""
 "The disk where you are trying to save the file has a limitation on file "
 "sizes. Please try saving a smaller file or saving it to a disk that does not"
 " have this limitation."
 msgstr "القرص الذي تحاول حفظ الملف فيه له قيود على أحجام الملفات. رجاء حاول حفظ ملف أصغر أو احفظ الملف في قرص لا توجد به هذه القيود."
 
-#: ../xedit/xedit-io-error-message-area.c:1243
+#: ../xed/xed-io-error-message-area.c:1243
 #, c-format
 msgid "Could not save the file %s."
 msgstr "لا يمكن حفظ الملف %s."
@@ -1496,224 +1496,224 @@ msgstr "لا يمكن حفظ الملف %s."
 #. could be interpreted as the changes he made in the document. beside
 #. "reading" is
 #. not accurate (since last load/save)
-#: ../xedit/xedit-io-error-message-area.c:1287
+#: ../xed/xed-io-error-message-area.c:1287
 #, c-format
 msgid "The file %s changed on disk."
 msgstr "لقد تغيَّر الملف %s على القرص."
 
-#: ../xedit/xedit-io-error-message-area.c:1292
+#: ../xed/xed-io-error-message-area.c:1292
 msgid "Do you want to drop your changes and reload the file?"
 msgstr "أتريد إلغاء تعديلاتك وإعادة تحميل الملف؟"
 
-#: ../xedit/xedit-io-error-message-area.c:1294
+#: ../xed/xed-io-error-message-area.c:1294
 msgid "Do you want to reload the file?"
 msgstr "أترغب بإعادة تحميل لملف؟"
 
-#: ../xedit/xedit-io-error-message-area.c:1300
-#: ../xedit/xedit-io-error-message-area.c:1311
+#: ../xed/xed-io-error-message-area.c:1300
+#: ../xed/xed-io-error-message-area.c:1311
 msgid "_Reload"
 msgstr "أعِد ال_تحميل"
 
-#: ../xedit/xedit-panel.c:365 ../xedit/xedit-panel.c:541
+#: ../xed/xed-panel.c:365 ../xed/xed-panel.c:541
 msgid "Empty"
 msgstr "فارغ"
 
-#: ../xedit/xedit-panel.c:431
+#: ../xed/xed-panel.c:431
 msgid "Hide panel"
 msgstr "اخف اللوحة"
 
-#: ../xedit/xedit-plugin-manager.c:54
+#: ../xed/xed-plugin-manager.c:54
 msgid "Plugin"
 msgstr "ملحق"
 
-#: ../xedit/xedit-plugin-manager.c:55
+#: ../xed/xed-plugin-manager.c:55
 msgid "Enabled"
 msgstr "مفعّل"
 
-#: ../xedit/xedit-plugin-manager.c:504
+#: ../xed/xed-plugin-manager.c:504
 msgid "_About"
 msgstr "_عنْ"
 
-#: ../xedit/xedit-plugin-manager.c:512
+#: ../xed/xed-plugin-manager.c:512
 msgid "C_onfigure"
 msgstr "ا_ضبط"
 
-#: ../xedit/xedit-plugin-manager.c:521
+#: ../xed/xed-plugin-manager.c:521
 msgid "A_ctivate"
 msgstr "_نشّط"
 
-#: ../xedit/xedit-plugin-manager.c:532
+#: ../xed/xed-plugin-manager.c:532
 msgid "Ac_tivate All"
 msgstr "ن_شط الكل"
 
-#: ../xedit/xedit-plugin-manager.c:537
+#: ../xed/xed-plugin-manager.c:537
 msgid "_Deactivate All"
 msgstr "_عطّل الكل"
 
-#: ../xedit/xedit-plugin-manager.c:800
+#: ../xed/xed-plugin-manager.c:800
 msgid "Active _Plugins:"
 msgstr "الملحقات ال_نشِطة"
 
-#: ../xedit/xedit-plugin-manager.c:825
+#: ../xed/xed-plugin-manager.c:825
 msgid "_About Plugin"
 msgstr "_عنْ الملحق"
 
-#: ../xedit/xedit-plugin-manager.c:829
+#: ../xed/xed-plugin-manager.c:829
 msgid "C_onfigure Plugin"
 msgstr "ا_ضبط الملحق"
 
-#: ../xedit/xedit-print-job.c:551
+#: ../xed/xed-print-job.c:551
 #, c-format
 msgid "File: %s"
 msgstr "الملف: %s"
 
-#: ../xedit/xedit-print-job.c:560
+#: ../xed/xed-print-job.c:560
 msgid "Page %N of %Q"
 msgstr "الصفحة %N من %Q"
 
-#: ../xedit/xedit-print-job.c:819
+#: ../xed/xed-print-job.c:819
 msgid "Preparing..."
 msgstr "يجري التحضير..."
 
-#: ../xedit/xedit-print-preferences.ui.h:1
+#: ../xed/xed-print-preferences.ui.h:1
 msgid "Syntax Highlighting"
 msgstr "اطبع إبراز بنية الجملة"
 
-#: ../xedit/xedit-print-preferences.ui.h:2
+#: ../xed/xed-print-preferences.ui.h:2
 msgid "Print synta_x highlighting"
 msgstr "اطبع إبراز البُنية"
 
-#: ../xedit/xedit-print-preferences.ui.h:4
+#: ../xed/xed-print-preferences.ui.h:4
 msgid "Print line nu_mbers"
 msgstr "اطبع _أرقام السطور"
 
 #. 'Number every' from 'Number every 3 lines' in the 'Text Editor' tab of the
 #. print preferences.
-#: ../xedit/xedit-print-preferences.ui.h:6
+#: ../xed/xed-print-preferences.ui.h:6
 msgid "_Number every"
 msgstr "_رقم عند كل"
 
 #. 'lines' from 'Number every 3 lines' in the 'Text Editor' tab of the print
 #. preferences.
-#: ../xedit/xedit-print-preferences.ui.h:8
+#: ../xed/xed-print-preferences.ui.h:8
 msgid "lines"
 msgstr "سطور"
 
-#: ../xedit/xedit-print-preferences.ui.h:12
+#: ../xed/xed-print-preferences.ui.h:12
 msgid "Page header"
 msgstr "ترويسة الصفحة"
 
-#: ../xedit/xedit-print-preferences.ui.h:13
+#: ../xed/xed-print-preferences.ui.h:13
 msgid "Print page _headers"
 msgstr "ا_طبع ترويسات الصفحات"
 
-#: ../xedit/xedit-print-preferences.ui.h:14
+#: ../xed/xed-print-preferences.ui.h:14
 msgid "Fonts"
 msgstr "الخطوط"
 
-#: ../xedit/xedit-print-preferences.ui.h:15
+#: ../xed/xed-print-preferences.ui.h:15
 msgid "_Body:"
 msgstr "_المتن:"
 
-#: ../xedit/xedit-print-preferences.ui.h:16
+#: ../xed/xed-print-preferences.ui.h:16
 msgid "_Line numbers:"
 msgstr "_أرقام السطور:"
 
-#: ../xedit/xedit-print-preferences.ui.h:17
+#: ../xed/xed-print-preferences.ui.h:17
 msgid "He_aders and footers:"
 msgstr "الت_رويسات و التذييلات:"
 
-#: ../xedit/xedit-print-preferences.ui.h:18
+#: ../xed/xed-print-preferences.ui.h:18
 msgid "_Restore Default Fonts"
 msgstr "اس_ترجع الخطوط المبدئية"
 
-#: ../xedit/xedit-print-preview.c:568
+#: ../xed/xed-print-preview.c:568
 msgid "Show the previous page"
 msgstr "أظهر الصفحة السابقة"
 
-#: ../xedit/xedit-print-preview.c:580
+#: ../xed/xed-print-preview.c:580
 msgid "Show the next page"
 msgstr "أظهر الصفحة التالية"
 
-#: ../xedit/xedit-print-preview.c:596
+#: ../xed/xed-print-preview.c:596
 msgid "Current page (Alt+P)"
 msgstr "الصفحة الحالية (Alt+P)"
 
 #. Translators: the "of" from "1 of 19" in print preview.
-#: ../xedit/xedit-print-preview.c:619
+#: ../xed/xed-print-preview.c:619
 msgid "of"
 msgstr "مِن"
 
-#: ../xedit/xedit-print-preview.c:627
+#: ../xed/xed-print-preview.c:627
 msgid "Page total"
 msgstr "مجموع الصفحات"
 
-#: ../xedit/xedit-print-preview.c:628
+#: ../xed/xed-print-preview.c:628
 msgid "The total number of pages in the document"
 msgstr "مجموع الصفحات في المستند"
 
-#: ../xedit/xedit-print-preview.c:645
+#: ../xed/xed-print-preview.c:645
 msgid "Show multiple pages"
 msgstr "أظهر صفحات متعددة"
 
-#: ../xedit/xedit-print-preview.c:658
+#: ../xed/xed-print-preview.c:658
 msgid "Zoom 1:1"
 msgstr "تقريب 1:1"
 
-#: ../xedit/xedit-print-preview.c:667
+#: ../xed/xed-print-preview.c:667
 msgid "Zoom to fit the whole page"
 msgstr "اضبط الحجم لملائمة الصفحة بكاملها"
 
-#: ../xedit/xedit-print-preview.c:676
+#: ../xed/xed-print-preview.c:676
 msgid "Zoom the page in"
 msgstr "قرّب الصفحة"
 
-#: ../xedit/xedit-print-preview.c:685
+#: ../xed/xed-print-preview.c:685
 msgid "Zoom the page out"
 msgstr "بعّد الصفحة"
 
-#: ../xedit/xedit-print-preview.c:697
+#: ../xed/xed-print-preview.c:697
 msgid "_Close Preview"
 msgstr "أ_غلق المعاينة"
 
-#: ../xedit/xedit-print-preview.c:700
+#: ../xed/xed-print-preview.c:700
 msgid "Close print preview"
 msgstr "أغلق مُعاينة الطباعة"
 
-#: ../xedit/xedit-print-preview.c:770
+#: ../xed/xed-print-preview.c:770
 #, c-format
 msgid "Page %d of %d"
 msgstr "الصفحة %Id من %Id"
 
-#: ../xedit/xedit-print-preview.c:954
+#: ../xed/xed-print-preview.c:954
 msgid "Page Preview"
 msgstr "معاينة الصفحة"
 
-#: ../xedit/xedit-print-preview.c:955
+#: ../xed/xed-print-preview.c:955
 msgid "The preview of a page in the document to be printed"
 msgstr "معاينة صفحة من المستند الذي ستتم طباعته"
 
-#: ../xedit/xedit-smart-charset-converter.c:319
+#: ../xed/xed-smart-charset-converter.c:319
 msgid "It is not possible to detect the encoding automatically"
 msgstr "يتعذّر التعرف على الترميز تلقائيًا"
 
-#: ../xedit/xedit-statusbar.c:70 ../xedit/xedit-statusbar.c:76
+#: ../xed/xed-statusbar.c:70 ../xed/xed-statusbar.c:76
 msgid "OVR"
 msgstr "استبدال"
 
-#: ../xedit/xedit-statusbar.c:70 ../xedit/xedit-statusbar.c:76
+#: ../xed/xed-statusbar.c:70 ../xed/xed-statusbar.c:76
 msgid "INS"
 msgstr "إضافة"
 
 #. Translators: "Ln" is an abbreviation for "Line", Col is an abbreviation for
 #. "Column". Please,
 #. use abbreviations if possible to avoid space problems.
-#: ../xedit/xedit-statusbar.c:341
+#: ../xed/xed-statusbar.c:341
 #, c-format
 msgid "  Ln %d, Col %d"
 msgstr "  سطر %Id، عمود %Id"
 
-#: ../xedit/xedit-statusbar.c:444
+#: ../xed/xed-statusbar.c:444
 #, c-format
 msgid "There is a tab with errors"
 msgid_plural "There are %d tabs with errors"
@@ -1724,424 +1724,424 @@ msgstr[3] "توجد %Id ألسنة بها أخطاء"
 msgstr[4] "يوجد %Id لسانا بها أخطاء"
 msgstr[5] "يوجد %Id لسان بها أخطاء"
 
-#: ../xedit/xedit-style-scheme-manager.c:220
+#: ../xed/xed-style-scheme-manager.c:220
 #, c-format
 msgid "Directory '%s' could not be created: g_mkdir_with_parents() failed: %s"
 msgstr "تعذر إنشاء المجلد '%s' : فشل ‭g_mkdir_with_parents()‬‏ : %s"
 
 #. Translators: the first %s is a file name (e.g. test.txt) the second one
 #. is a directory (e.g. ssh://master.gnome.org/home/users/paolo)
-#: ../xedit/xedit-tab.c:660
+#: ../xed/xed-tab.c:660
 #, c-format
 msgid "Reverting %s from %s"
 msgstr "استرجاع %s من %s"
 
-#: ../xedit/xedit-tab.c:667
+#: ../xed/xed-tab.c:667
 #, c-format
 msgid "Reverting %s"
 msgstr "استرجاع %s"
 
 #. Translators: the first %s is a file name (e.g. test.txt) the second one
 #. is a directory (e.g. ssh://master.gnome.org/home/users/paolo)
-#: ../xedit/xedit-tab.c:683
+#: ../xed/xed-tab.c:683
 #, c-format
 msgid "Loading %s from %s"
 msgstr "يجري تحميل %s من %s"
 
-#: ../xedit/xedit-tab.c:690
+#: ../xed/xed-tab.c:690
 #, c-format
 msgid "Loading %s"
 msgstr "يجري تحميل %s "
 
 #. Translators: the first %s is a file name (e.g. test.txt) the second one
 #. is a directory (e.g. ssh://master.gnome.org/home/users/paolo)
-#: ../xedit/xedit-tab.c:773
+#: ../xed/xed-tab.c:773
 #, c-format
 msgid "Saving %s to %s"
 msgstr "يجري حفظ %s إلى %s"
 
-#: ../xedit/xedit-tab.c:780
+#: ../xed/xed-tab.c:780
 #, c-format
 msgid "Saving %s"
 msgstr "يجري حفظ %s"
 
 #. Read only
-#: ../xedit/xedit-tab.c:1673
+#: ../xed/xed-tab.c:1673
 msgid "RO"
 msgstr "قراءة فقط"
 
-#: ../xedit/xedit-tab.c:1720
+#: ../xed/xed-tab.c:1720
 #, c-format
 msgid "Error opening file %s"
 msgstr "خطأ أثناء فتح الملف %s"
 
-#: ../xedit/xedit-tab.c:1725
+#: ../xed/xed-tab.c:1725
 #, c-format
 msgid "Error reverting file %s"
 msgstr "خطأ أثناء استرجاع الملف %s"
 
-#: ../xedit/xedit-tab.c:1730
+#: ../xed/xed-tab.c:1730
 #, c-format
 msgid "Error saving file %s"
 msgstr "خطأ أثناء حفظ الملف %s"
 
-#: ../xedit/xedit-tab.c:1751
+#: ../xed/xed-tab.c:1751
 msgid "Unicode (UTF-8)"
 msgstr "عالمي (UTF-8)"
 
-#: ../xedit/xedit-tab.c:1758
+#: ../xed/xed-tab.c:1758
 msgid "Name:"
 msgstr "الاسم:"
 
-#: ../xedit/xedit-tab.c:1759
+#: ../xed/xed-tab.c:1759
 msgid "MIME Type:"
 msgstr "نوع المايم:"
 
-#: ../xedit/xedit-tab.c:1760
+#: ../xed/xed-tab.c:1760
 msgid "Encoding:"
 msgstr "الترميز:"
 
-#: ../xedit/xedit-tab-label.c:285
+#: ../xed/xed-tab-label.c:285
 msgid "Close document"
 msgstr "أغلق المستند"
 
 #. Toplevel
-#: ../xedit/xedit-ui.h:47
+#: ../xed/xed-ui.h:47
 msgid "_File"
 msgstr "_ملف"
 
-#: ../xedit/xedit-ui.h:48
+#: ../xed/xed-ui.h:48
 msgid "_Edit"
 msgstr "ت_حرير"
 
-#: ../xedit/xedit-ui.h:49
+#: ../xed/xed-ui.h:49
 msgid "_View"
 msgstr "_عرض"
 
-#: ../xedit/xedit-ui.h:50
+#: ../xed/xed-ui.h:50
 msgid "_Search"
 msgstr "_بحث"
 
-#: ../xedit/xedit-ui.h:51
+#: ../xed/xed-ui.h:51
 msgid "_Tools"
 msgstr "أد_وات"
 
-#: ../xedit/xedit-ui.h:52
+#: ../xed/xed-ui.h:52
 msgid "_Documents"
 msgstr "_مستندات"
 
-#: ../xedit/xedit-ui.h:53
+#: ../xed/xed-ui.h:53
 msgid "_Help"
 msgstr "_مساعدة"
 
-#: ../xedit/xedit-ui.h:57
+#: ../xed/xed-ui.h:57
 msgid "Create a new document"
 msgstr "أنشئ مستندًا جديدًا"
 
-#: ../xedit/xedit-ui.h:58
+#: ../xed/xed-ui.h:58
 msgid "_Open..."
 msgstr "ا_فتح..."
 
-#: ../xedit/xedit-ui.h:59 ../xedit/xedit-window.c:1458
+#: ../xed/xed-ui.h:59 ../xed/xed-window.c:1458
 msgid "Open a file"
 msgstr "افتح ملفًا"
 
 #. Edit menu
-#: ../xedit/xedit-ui.h:62
+#: ../xed/xed-ui.h:62
 msgid "Pr_eferences"
 msgstr "التّفض_يلات"
 
-#: ../xedit/xedit-ui.h:63
+#: ../xed/xed-ui.h:63
 msgid "Configure the application"
 msgstr "اضبط التّطبيق"
 
 #. Help menu
-#: ../xedit/xedit-ui.h:66
+#: ../xed/xed-ui.h:66
 msgid "_Contents"
 msgstr "الم_حتويات"
 
-#: ../xedit/xedit-ui.h:67
-msgid "Open the xedit manual"
+#: ../xed/xed-ui.h:67
+msgid "Open the xed manual"
 msgstr "افتح كتيّب محرر النصوص \"قلم\""
 
-#: ../xedit/xedit-ui.h:69
+#: ../xed/xed-ui.h:69
 msgid "About this application"
 msgstr "عنْ هذا البرنامج"
 
-#: ../xedit/xedit-ui.h:73
+#: ../xed/xed-ui.h:73
 msgid "Leave fullscreen mode"
 msgstr "غادر وضع ملء الشّاشة"
 
-#: ../xedit/xedit-ui.h:81
+#: ../xed/xed-ui.h:81
 msgid "Save the current file"
 msgstr "احفظ الملف الحالي"
 
-#: ../xedit/xedit-ui.h:82
+#: ../xed/xed-ui.h:82
 msgid "Save _As..."
 msgstr "احفظ با_سم..."
 
-#: ../xedit/xedit-ui.h:83
+#: ../xed/xed-ui.h:83
 msgid "Save the current file with a different name"
 msgstr "احفظ الملف الحالي باسم مختلف"
 
-#: ../xedit/xedit-ui.h:85
+#: ../xed/xed-ui.h:85
 msgid "Revert to a saved version of the file"
 msgstr "استرجع نسخة محفوظة من الملف"
 
-#: ../xedit/xedit-ui.h:87
+#: ../xed/xed-ui.h:87
 msgid "Page Set_up..."
 msgstr "إ_عداد الصفحة..."
 
-#: ../xedit/xedit-ui.h:88
+#: ../xed/xed-ui.h:88
 msgid "Set up the page settings"
 msgstr "اضبط إعدادات الصفحة"
 
-#: ../xedit/xedit-ui.h:90
+#: ../xed/xed-ui.h:90
 msgid "Print Previe_w"
 msgstr "م_عاينة الطّباعة"
 
-#: ../xedit/xedit-ui.h:91
+#: ../xed/xed-ui.h:91
 msgid "Print preview"
 msgstr "معاينة الطباعة"
 
-#: ../xedit/xedit-ui.h:92
+#: ../xed/xed-ui.h:92
 msgid "_Print..."
 msgstr "ا_طبع..."
 
-#: ../xedit/xedit-ui.h:93
+#: ../xed/xed-ui.h:93
 msgid "Print the current page"
 msgstr "اطبع الصفحة الحالية"
 
-#: ../xedit/xedit-ui.h:97
+#: ../xed/xed-ui.h:97
 msgid "Undo the last action"
 msgstr "تراجع عن العملية الأخيرة"
 
-#: ../xedit/xedit-ui.h:99
+#: ../xed/xed-ui.h:99
 msgid "Redo the last undone action"
 msgstr "أعِد آخر عملية متراجع عنها"
 
-#: ../xedit/xedit-ui.h:101
+#: ../xed/xed-ui.h:101
 msgid "Cut the selection"
 msgstr "قص المُحدّد"
 
-#: ../xedit/xedit-ui.h:103
+#: ../xed/xed-ui.h:103
 msgid "Copy the selection"
 msgstr "انسخ المُحدّد"
 
-#: ../xedit/xedit-ui.h:105
+#: ../xed/xed-ui.h:105
 msgid "Paste the clipboard"
 msgstr "الصق محتويات الحافظة"
 
-#: ../xedit/xedit-ui.h:107
+#: ../xed/xed-ui.h:107
 msgid "Delete the selected text"
 msgstr "احذف النصّ المحدد"
 
-#: ../xedit/xedit-ui.h:108
+#: ../xed/xed-ui.h:108
 msgid "Select _All"
 msgstr "اختر الك_ل"
 
-#: ../xedit/xedit-ui.h:109
+#: ../xed/xed-ui.h:109
 msgid "Select the entire document"
 msgstr "اختر كل المستند"
 
 #. View menu
-#: ../xedit/xedit-ui.h:112
+#: ../xed/xed-ui.h:112
 msgid "_Highlight Mode"
 msgstr "_نمط الإبراز"
 
 #. Search menu
-#: ../xedit/xedit-ui.h:115
+#: ../xed/xed-ui.h:115
 msgid "_Find..."
 msgstr "ا_بحث..."
 
-#: ../xedit/xedit-ui.h:116
+#: ../xed/xed-ui.h:116
 msgid "Search for text"
 msgstr "ابحث عن نص"
 
-#: ../xedit/xedit-ui.h:117
+#: ../xed/xed-ui.h:117
 msgid "Find Ne_xt"
 msgstr "ابحث عن الت_الي"
 
-#: ../xedit/xedit-ui.h:118
+#: ../xed/xed-ui.h:118
 msgid "Search forwards for the same text"
 msgstr "ابحث للأمام عن نفس النص"
 
-#: ../xedit/xedit-ui.h:119
+#: ../xed/xed-ui.h:119
 msgid "Find Pre_vious"
 msgstr "ابحث عن ال_سابق"
 
-#: ../xedit/xedit-ui.h:120
+#: ../xed/xed-ui.h:120
 msgid "Search backwards for the same text"
 msgstr "ابحث للخلف عن نفس النص"
 
-#: ../xedit/xedit-ui.h:122 ../xedit/xedit-ui.h:125
+#: ../xed/xed-ui.h:122 ../xed/xed-ui.h:125
 msgid "_Replace..."
 msgstr "ا_ستبدل..."
 
-#: ../xedit/xedit-ui.h:123 ../xedit/xedit-ui.h:126
+#: ../xed/xed-ui.h:123 ../xed/xed-ui.h:126
 msgid "Search for and replace text"
 msgstr "ابحث و استبدل نص"
 
-#: ../xedit/xedit-ui.h:128
+#: ../xed/xed-ui.h:128
 msgid "_Clear Highlight"
 msgstr "ا_مسح الإبراز"
 
-#: ../xedit/xedit-ui.h:129
+#: ../xed/xed-ui.h:129
 msgid "Clear highlighting of search matches"
 msgstr "امسح إبراز موافقات البحث"
 
-#: ../xedit/xedit-ui.h:130
+#: ../xed/xed-ui.h:130
 msgid "Go to _Line..."
 msgstr "اذهب إلى الس_طر..."
 
-#: ../xedit/xedit-ui.h:131
+#: ../xed/xed-ui.h:131
 msgid "Go to a specific line"
 msgstr "اذهب إلى سطر معيّن"
 
-#: ../xedit/xedit-ui.h:132
+#: ../xed/xed-ui.h:132
 msgid "_Incremental Search..."
 msgstr "بحث _تزايدي..."
 
-#: ../xedit/xedit-ui.h:133
+#: ../xed/xed-ui.h:133
 msgid "Incrementally search for text"
 msgstr "ابحث عن النص تزايديًا"
 
 #. Documents menu
-#: ../xedit/xedit-ui.h:136
+#: ../xed/xed-ui.h:136
 msgid "_Save All"
 msgstr "ا_حفظ الكل"
 
-#: ../xedit/xedit-ui.h:137
+#: ../xed/xed-ui.h:137
 msgid "Save all open files"
 msgstr "احفظ جميع الملفات المفتوحة"
 
-#: ../xedit/xedit-ui.h:138
+#: ../xed/xed-ui.h:138
 msgid "_Close All"
 msgstr "أ_غلق الكلّ"
 
-#: ../xedit/xedit-ui.h:139
+#: ../xed/xed-ui.h:139
 msgid "Close all open files"
 msgstr "أغلق جميع الملفات المفتوحة"
 
-#: ../xedit/xedit-ui.h:140
+#: ../xed/xed-ui.h:140
 msgid "_Previous Document"
 msgstr "ال_مستند السابق"
 
-#: ../xedit/xedit-ui.h:141
+#: ../xed/xed-ui.h:141
 msgid "Activate previous document"
 msgstr "نشّط المستند السابق"
 
-#: ../xedit/xedit-ui.h:142
+#: ../xed/xed-ui.h:142
 msgid "_Next Document"
 msgstr "المستند ال_تالي"
 
-#: ../xedit/xedit-ui.h:143
+#: ../xed/xed-ui.h:143
 msgid "Activate next document"
 msgstr "نشّط المستند التالي"
 
-#: ../xedit/xedit-ui.h:144
+#: ../xed/xed-ui.h:144
 msgid "_Move to New Window"
 msgstr "ان_قل إلى نافذةٍ جديدة"
 
-#: ../xedit/xedit-ui.h:145
+#: ../xed/xed-ui.h:145
 msgid "Move the current document to a new window"
 msgstr "انقل المستند الحالي إلى نافذة جديدة"
 
-#: ../xedit/xedit-ui.h:152
+#: ../xed/xed-ui.h:152
 msgid "Close the current file"
 msgstr "أغلق الملف الحالي"
 
-#: ../xedit/xedit-ui.h:159
+#: ../xed/xed-ui.h:159
 msgid "Quit the program"
 msgstr "أغلِق البرنامج"
 
-#: ../xedit/xedit-ui.h:164
+#: ../xed/xed-ui.h:164
 msgid "_Toolbar"
 msgstr "_شريط الأدوات"
 
-#: ../xedit/xedit-ui.h:165
+#: ../xed/xed-ui.h:165
 msgid "Show or hide the toolbar in the current window"
 msgstr "أظهر أو اخف شريط الأدوات في النافذة الحالية "
 
-#: ../xedit/xedit-ui.h:167
+#: ../xed/xed-ui.h:167
 msgid "_Statusbar"
 msgstr "_شريط الحالة"
 
-#: ../xedit/xedit-ui.h:168
+#: ../xed/xed-ui.h:168
 msgid "Show or hide the statusbar in the current window"
 msgstr "أظهر أو اخف شريط الحالة في النافذة الحالية"
 
-#: ../xedit/xedit-ui.h:171
+#: ../xed/xed-ui.h:171
 msgid "Edit text in fullscreen"
 msgstr "حرّر الملفات بملء الشاشة"
 
-#: ../xedit/xedit-ui.h:178
+#: ../xed/xed-ui.h:178
 msgid "Side _Pane"
 msgstr "ال_لوحة الجانبية"
 
-#: ../xedit/xedit-ui.h:179
+#: ../xed/xed-ui.h:179
 msgid "Show or hide the side pane in the current window"
 msgstr "أظهر أو اخف اللوحة الجانبية في النافذة الحالية "
 
-#: ../xedit/xedit-ui.h:181
+#: ../xed/xed-ui.h:181
 msgid "_Bottom Pane"
 msgstr "اللوحة ال_سفلية"
 
-#: ../xedit/xedit-ui.h:182
+#: ../xed/xed-ui.h:182
 msgid "Show or hide the bottom pane in the current window"
 msgstr "أظهر أو اخف اللوحة السفلية في النافذة الحالية "
 
-#: ../xedit/xedit-utils.c:1090
+#: ../xed/xed-utils.c:1090
 msgid "Please check your installation."
 msgstr "تأكد رجاءً من تثبيتك."
 
-#: ../xedit/xedit-utils.c:1159
+#: ../xed/xed-utils.c:1159
 #, c-format
 msgid "Unable to open UI file %s. Error: %s"
 msgstr "غير قادر على فتح ملف الواجهة %s. خطأ: %s"
 
-#: ../xedit/xedit-utils.c:1179
+#: ../xed/xed-utils.c:1179
 #, c-format
 msgid "Unable to find the object '%s' inside file %s."
 msgstr "غير قادر على إيجاد الكائن '%s' ضمن الملف %s."
 
 #. Translators: '/ on <remote-share>'
-#: ../xedit/xedit-utils.c:1339
+#: ../xed/xed-utils.c:1339
 #, c-format
 msgid "/ on %s"
 msgstr "/ على %s"
 
 #. create "Wrap Around" menu item.
-#: ../xedit/xedit-view.c:1274
+#: ../xed/xed-view.c:1274
 msgid "_Wrap Around"
 msgstr "_لف حول"
 
 #. create "Match Entire Word Only" menu item.
-#: ../xedit/xedit-view.c:1284
+#: ../xed/xed-view.c:1284
 msgid "Match _Entire Word Only"
 msgstr "طابِق _كل الكلمة فقط"
 
 #. create "Match Case" menu item.
-#: ../xedit/xedit-view.c:1294
+#: ../xed/xed-view.c:1294
 msgid "_Match Case"
 msgstr "_طابِق الحالة"
 
 #. create "Parse escapes" menu item.
-#: ../xedit/xedit-view.c:1304
+#: ../xed/xed-view.c:1304
 msgid ""
 "_Parse escape sequences (e.g. \n"
 ")"
 msgstr "_حلّل المحارف (مثال. \n)"
 
-#: ../xedit/xedit-view.c:1418
+#: ../xed/xed-view.c:1418
 msgid "String you want to search for"
 msgstr "السلسة التي تريد البحث عنها"
 
-#: ../xedit/xedit-view.c:1427
+#: ../xed/xed-view.c:1427
 msgid "Line you want to move the cursor to"
 msgstr "السطر الذي تريد تحريك المؤشّر إليه"
 
-#: ../xedit/xedit-window.c:1011
+#: ../xed/xed-window.c:1011
 #, c-format
 msgid "Use %s highlight mode"
 msgstr "استخدم نمط الإبراز %s"
@@ -2149,7 +2149,7 @@ msgstr "استخدم نمط الإبراز %s"
 #. add the "Plain Text" item before all the others
 #. Translators: "Plain Text" means that no highlight mode is selected in the
 #. * "View->Highlight Mode" submenu and so syntax highlighting is disabled
-#: ../xedit/xedit-window.c:1068 ../xedit/xedit-window.c:1984
+#: ../xed/xed-window.c:1068 ../xed/xed-window.c:1984
 #: ../plugins/externaltools/tools/manager.py:121
 #: ../plugins/externaltools/tools/manager.py:419
 #: ../plugins/externaltools/tools/manager.py:529
@@ -2157,123 +2157,123 @@ msgstr "استخدم نمط الإبراز %s"
 msgid "Plain Text"
 msgstr "نص صِرف"
 
-#: ../xedit/xedit-window.c:1069
+#: ../xed/xed-window.c:1069
 msgid "Disable syntax highlighting"
 msgstr "عطّل إبراز البُنية"
 
 #. Translators: %s is a URI
-#: ../xedit/xedit-window.c:1355
+#: ../xed/xed-window.c:1355
 #, c-format
 msgid "Open '%s'"
 msgstr "افتح '%s'"
 
-#: ../xedit/xedit-window.c:1460
+#: ../xed/xed-window.c:1460
 msgid "Open a recently used file"
 msgstr "افتح ملفًا مُستخدمٍ مؤخرًا"
 
-#: ../xedit/xedit-window.c:1466
+#: ../xed/xed-window.c:1466
 msgid "Open"
 msgstr "افتح"
 
-#: ../xedit/xedit-window.c:1524
+#: ../xed/xed-window.c:1524
 msgid "Save"
 msgstr "احفظ"
 
-#: ../xedit/xedit-window.c:1526
+#: ../xed/xed-window.c:1526
 msgid "Print"
 msgstr "اطبع"
 
 #. Translators: %s is a URI
-#: ../xedit/xedit-window.c:1709
+#: ../xed/xed-window.c:1709
 #, c-format
 msgid "Activate '%s'"
 msgstr "نشّط '%s'"
 
-#: ../xedit/xedit-window.c:1962
+#: ../xed/xed-window.c:1962
 msgid "Use Spaces"
 msgstr "استخدم المسافات"
 
-#: ../xedit/xedit-window.c:2033
+#: ../xed/xed-window.c:2033
 msgid "Tab Width"
 msgstr "عرض Tab"
 
-#: ../xedit/xedit-window.c:3897
-msgid "About xedit"
+#: ../xed/xed-window.c:3897
+msgid "About xed"
 msgstr "عن محرّر النّصوص \"قلم\""
 
-#: ../plugins/changecase/changecase.xedit-plugin.desktop.in.h:1
+#: ../plugins/changecase/changecase.xed-plugin.desktop.in.h:1
 msgid "Change Case"
 msgstr "غيّر الحالة"
 
-#: ../plugins/changecase/changecase.xedit-plugin.desktop.in.h:2
+#: ../plugins/changecase/changecase.xed-plugin.desktop.in.h:2
 msgid "Changes the case of selected text."
 msgstr "يغيّر حالة النص المحدّد."
 
-#: ../plugins/changecase/xedit-changecase-plugin.c:222
+#: ../plugins/changecase/xed-changecase-plugin.c:222
 msgid "C_hange Case"
 msgstr "غ_يّر الحالة"
 
-#: ../plugins/changecase/xedit-changecase-plugin.c:223
+#: ../plugins/changecase/xed-changecase-plugin.c:223
 msgid "All _Upper Case"
 msgstr "كل الأحرف _كبيرة"
 
-#: ../plugins/changecase/xedit-changecase-plugin.c:224
+#: ../plugins/changecase/xed-changecase-plugin.c:224
 msgid "Change selected text to upper case"
 msgstr "حوّل النّص المحدد إلى الأحرف كبيرة"
 
-#: ../plugins/changecase/xedit-changecase-plugin.c:226
+#: ../plugins/changecase/xed-changecase-plugin.c:226
 msgid "All _Lower Case"
 msgstr "كل الأحرف _صغيرة"
 
-#: ../plugins/changecase/xedit-changecase-plugin.c:227
+#: ../plugins/changecase/xed-changecase-plugin.c:227
 msgid "Change selected text to lower case"
 msgstr "حوّل النّص المحدد إلى الأحرف الصّغيرة"
 
-#: ../plugins/changecase/xedit-changecase-plugin.c:229
+#: ../plugins/changecase/xed-changecase-plugin.c:229
 msgid "_Invert Case"
 msgstr "ا_عكس الحالة"
 
-#: ../plugins/changecase/xedit-changecase-plugin.c:230
+#: ../plugins/changecase/xed-changecase-plugin.c:230
 msgid "Invert the case of selected text"
 msgstr "اعكس حالة النّص المحدد"
 
-#: ../plugins/changecase/xedit-changecase-plugin.c:232
+#: ../plugins/changecase/xed-changecase-plugin.c:232
 msgid "_Title Case"
 msgstr "حالة ال_عنوان"
 
-#: ../plugins/changecase/xedit-changecase-plugin.c:233
+#: ../plugins/changecase/xed-changecase-plugin.c:233
 msgid "Capitalize the first letter of each selected word"
 msgstr "كبّر أوّل حرف من كلّ كلمةٍ محددة"
 
-#: ../plugins/checkupdate/checkupdate.xedit-plugin.desktop.in.h:1
+#: ../plugins/checkupdate/checkupdate.xed-plugin.desktop.in.h:1
 msgid "Check update"
 msgstr "التمس التحديثات"
 
-#: ../plugins/checkupdate/checkupdate.xedit-plugin.desktop.in.h:2
-msgid "Check for latest version of xedit"
+#: ../plugins/checkupdate/checkupdate.xed-plugin.desktop.in.h:2
+msgid "Check for latest version of xed"
 msgstr "التمس آخر إصدارة من محرر النصوص \"قلم\""
 
-#: ../plugins/checkupdate/xedit-check-update-plugin.c:239
+#: ../plugins/checkupdate/xed-check-update-plugin.c:239
 msgid "There was an error displaying the URI."
 msgstr "حدث خطأ عند عرض المسار."
 
-#: ../plugins/checkupdate/xedit-check-update-plugin.c:285
-#: ../plugins/checkupdate/xedit-check-update-plugin.c:300
+#: ../plugins/checkupdate/xed-check-update-plugin.c:285
+#: ../plugins/checkupdate/xed-check-update-plugin.c:300
 msgid "_Download"
 msgstr "_نزّل"
 
-#: ../plugins/checkupdate/xedit-check-update-plugin.c:289
-#: ../plugins/checkupdate/xedit-check-update-plugin.c:308
+#: ../plugins/checkupdate/xed-check-update-plugin.c:289
+#: ../plugins/checkupdate/xed-check-update-plugin.c:308
 msgid "_Ignore Version"
 msgstr "تج_اهل الإصدارة"
 
-#: ../plugins/checkupdate/xedit-check-update-plugin.c:324
-msgid "There is a new version of xedit"
+#: ../plugins/checkupdate/xed-check-update-plugin.c:324
+msgid "There is a new version of xed"
 msgstr "توجد إصدارة جديدة من محرر النصوص \"قلم\""
 
-#: ../plugins/checkupdate/xedit-check-update-plugin.c:328
+#: ../plugins/checkupdate/xed-check-update-plugin.c:328
 msgid ""
-"You can download the new version of xedit by clicking on the download button"
+"You can download the new version of xed by clicking on the download button"
 " or ignore that version and wait for a new one"
 msgstr "يمكنك تنزيل الإصدارة الأخيرة من محرر النصوص \"قلم\" بالضغط على زر التنزيل، أو تجاهل هذه الإصدارة وانتظار واحدة جديدة"
 
@@ -2281,12 +2281,12 @@ msgstr "يمكنك تنزيل الإصدارة الأخيرة من محرر ال
 msgid "Version to ignore until the next version is released"
 msgstr "الإصدارة المُتجاهلة حتى صدور إصدارة جديدة"
 
-#: ../plugins/docinfo/docinfo.xedit-plugin.desktop.in.h:1
+#: ../plugins/docinfo/docinfo.xed-plugin.desktop.in.h:1
 #: ../plugins/docinfo/docinfo.ui.h:1
 msgid "Document Statistics"
 msgstr "إحصائيات المستند"
 
-#: ../plugins/docinfo/docinfo.xedit-plugin.desktop.in.h:2
+#: ../plugins/docinfo/docinfo.xed-plugin.desktop.in.h:2
 msgid ""
 "Analyzes the current document and reports the number of words, lines, "
 "characters and non-space characters in it."
@@ -2328,11 +2328,11 @@ msgstr "مستند"
 msgid "Selection"
 msgstr "التحديد"
 
-#: ../plugins/docinfo/xedit-docinfo-plugin.c:431
+#: ../plugins/docinfo/xed-docinfo-plugin.c:431
 msgid "_Document Statistics"
 msgstr "إحصائيات ال_مستند"
 
-#: ../plugins/docinfo/xedit-docinfo-plugin.c:433
+#: ../plugins/docinfo/xed-docinfo-plugin.c:433
 msgid "Get statistical information on the current document"
 msgstr "كوّن معلومات إحصائية عن المستند الحالي"
 
@@ -2346,11 +2346,11 @@ msgstr "افتح طرفية هنا"
 msgid "Open a terminal in the document location"
 msgstr "افتح طرفية عند موقع المستند"
 
-#: ../plugins/externaltools/externaltools.xedit-plugin.desktop.in.h:1
+#: ../plugins/externaltools/externaltools.xed-plugin.desktop.in.h:1
 msgid "External Tools"
 msgstr "الأدوات الخارجية"
 
-#: ../plugins/externaltools/externaltools.xedit-plugin.desktop.in.h:2
+#: ../plugins/externaltools/externaltools.xed-plugin.desktop.in.h:2
 msgid "Execute external commands and shell scripts."
 msgstr "نفّذ أوامر خارجية ومخطوطات صدفة."
 
@@ -2561,11 +2561,11 @@ msgstr "ابحث"
 msgid "Switch onto a file .c and .h"
 msgstr "حوّل إلى ملفات .c و .h"
 
-#: ../plugins/filebrowser/filebrowser.xedit-plugin.desktop.in.h:1
+#: ../plugins/filebrowser/filebrowser.xed-plugin.desktop.in.h:1
 msgid "File Browser Pane"
 msgstr "لوح متصفح الملفات"
 
-#: ../plugins/filebrowser/filebrowser.xedit-plugin.desktop.in.h:2
+#: ../plugins/filebrowser/filebrowser.xed-plugin.desktop.in.h:2
 msgid "Easy file access from the side pane"
 msgstr "نفاذٌ سهل للملفات من اللوحة الجانبية."
 
@@ -2642,95 +2642,95 @@ msgstr "فعّل استرجاع الأمكنة البعيدة"
 msgid "Sets whether to enable restoring of remote locations."
 msgstr "يحدّد ما إذا يتم تفعيل استعادة الأماكن البعيدة."
 
-#: ../plugins/filebrowser/xedit-file-bookmarks-store.c:235
+#: ../plugins/filebrowser/xed-file-bookmarks-store.c:235
 msgid "File System"
 msgstr "نظام الملفات"
 
-#: ../plugins/filebrowser/xedit-file-browser-plugin.c:531
+#: ../plugins/filebrowser/xed-file-browser-plugin.c:531
 msgid "_Set root to active document"
 msgstr "_حدد جذر المستند النشِط"
 
-#: ../plugins/filebrowser/xedit-file-browser-plugin.c:533
+#: ../plugins/filebrowser/xed-file-browser-plugin.c:533
 msgid "Set the root to the active document location"
 msgstr "حدد جذر موقع المستند النشِط"
 
-#: ../plugins/filebrowser/xedit-file-browser-plugin.c:538
+#: ../plugins/filebrowser/xed-file-browser-plugin.c:538
 msgid "_Open terminal here"
 msgstr "ا_فتح طرفية هنا"
 
-#: ../plugins/filebrowser/xedit-file-browser-plugin.c:540
+#: ../plugins/filebrowser/xed-file-browser-plugin.c:540
 msgid "Open a terminal at the currently opened directory"
 msgstr "افتح طرفية عند الدّليل المفتوح حاليًا"
 
-#: ../plugins/filebrowser/xedit-file-browser-plugin.c:681
+#: ../plugins/filebrowser/xed-file-browser-plugin.c:681
 msgid "File Browser"
 msgstr "متصفح الملفات"
 
-#: ../plugins/filebrowser/xedit-file-browser-plugin.c:809
+#: ../plugins/filebrowser/xed-file-browser-plugin.c:809
 msgid "An error occurred while creating a new directory"
 msgstr "حدث خطأ أثناء إنشاء دليل جديد"
 
-#: ../plugins/filebrowser/xedit-file-browser-plugin.c:812
+#: ../plugins/filebrowser/xed-file-browser-plugin.c:812
 msgid "An error occurred while creating a new file"
 msgstr "حدث خطأ أثناء إنشاء ملف جديد"
 
-#: ../plugins/filebrowser/xedit-file-browser-plugin.c:817
+#: ../plugins/filebrowser/xed-file-browser-plugin.c:817
 msgid "An error occurred while renaming a file or directory"
 msgstr "حدث خطأ أثناء تغيير اسم دليل أو ملف"
 
-#: ../plugins/filebrowser/xedit-file-browser-plugin.c:822
+#: ../plugins/filebrowser/xed-file-browser-plugin.c:822
 msgid "An error occurred while deleting a file or directory"
 msgstr "حدث خطأ أثناء حذف دليل أو ملف"
 
-#: ../plugins/filebrowser/xedit-file-browser-plugin.c:827
+#: ../plugins/filebrowser/xed-file-browser-plugin.c:827
 msgid "An error occurred while opening a directory in the file manager"
 msgstr "حدث خطأ أثناء فتح دليل في مدير الملفات"
 
-#: ../plugins/filebrowser/xedit-file-browser-plugin.c:831
+#: ../plugins/filebrowser/xed-file-browser-plugin.c:831
 msgid "An error occurred while setting a root directory"
 msgstr "حدث خطأ أثناء تحديد الدليل الجذر"
 
-#: ../plugins/filebrowser/xedit-file-browser-plugin.c:835
+#: ../plugins/filebrowser/xed-file-browser-plugin.c:835
 msgid "An error occurred while loading a directory"
 msgstr "حدث خطأ أثناء تحميل دليل"
 
-#: ../plugins/filebrowser/xedit-file-browser-plugin.c:838
+#: ../plugins/filebrowser/xed-file-browser-plugin.c:838
 msgid "An error occurred"
 msgstr "حدث خطأ"
 
-#: ../plugins/filebrowser/xedit-file-browser-plugin.c:1069
+#: ../plugins/filebrowser/xed-file-browser-plugin.c:1069
 msgid ""
 "Cannot move file to trash, do you\n"
 "want to delete permanently?"
 msgstr "لا يمكن نقل الملف إلى المهملات،\nأتريد حذفه نهائيًا؟"
 
-#: ../plugins/filebrowser/xedit-file-browser-plugin.c:1073
+#: ../plugins/filebrowser/xed-file-browser-plugin.c:1073
 #, c-format
 msgid "The file \"%s\" cannot be moved to the trash."
 msgstr "لا يمكن نقل الملف \"%s\" إلى سلة المهملات."
 
-#: ../plugins/filebrowser/xedit-file-browser-plugin.c:1076
+#: ../plugins/filebrowser/xed-file-browser-plugin.c:1076
 msgid "The selected files cannot be moved to the trash."
 msgstr "لا يمكن نقل الملف المختار إلى المهملات."
 
-#: ../plugins/filebrowser/xedit-file-browser-plugin.c:1109
+#: ../plugins/filebrowser/xed-file-browser-plugin.c:1109
 #, c-format
 msgid "Are you sure you want to permanently delete \"%s\"?"
 msgstr "أمتأكّدٌ أنّك تريد حذف \"%s\" نهائيًا؟"
 
-#: ../plugins/filebrowser/xedit-file-browser-plugin.c:1112
+#: ../plugins/filebrowser/xed-file-browser-plugin.c:1112
 msgid "Are you sure you want to permanently delete the selected files?"
 msgstr "أمتأكّدٌ أنّك تريد حذف الملفات المختارة نهائيًا؟"
 
-#: ../plugins/filebrowser/xedit-file-browser-plugin.c:1115
+#: ../plugins/filebrowser/xed-file-browser-plugin.c:1115
 msgid "If you delete an item, it is permanently lost."
 msgstr "سيضيع كل عنصر تحذفه نهائيًا."
 
-#: ../plugins/filebrowser/xedit-file-browser-store.c:1667
+#: ../plugins/filebrowser/xed-file-browser-store.c:1667
 msgid "(Empty)"
 msgstr "(فارغ)"
 
-#: ../plugins/filebrowser/xedit-file-browser-store.c:3307
+#: ../plugins/filebrowser/xed-file-browser-store.c:3307
 msgid ""
 "The renamed file is currently filtered out. You need to adjust your filter "
 "settings to make the file visible"
@@ -2738,11 +2738,11 @@ msgstr "الملف المغيّر اسمه لا يظهر حاليًا بسبب �
 
 #. Translators: This is the default name of new files created by the file
 #. browser pane.
-#: ../plugins/filebrowser/xedit-file-browser-store.c:3546
+#: ../plugins/filebrowser/xed-file-browser-store.c:3546
 msgid "file"
 msgstr "ملفّ"
 
-#: ../plugins/filebrowser/xedit-file-browser-store.c:3570
+#: ../plugins/filebrowser/xed-file-browser-store.c:3570
 msgid ""
 "The new file is currently filtered out. You need to adjust your filter "
 "settings to make the file visible"
@@ -2750,183 +2750,183 @@ msgstr "الملف الجديد يتم ترشيحه حاليًا. يجب تغي�
 
 #. Translators: This is the default name of new directories created by the
 #. file browser pane.
-#: ../plugins/filebrowser/xedit-file-browser-store.c:3599
+#: ../plugins/filebrowser/xed-file-browser-store.c:3599
 msgid "directory"
 msgstr "دليل"
 
-#: ../plugins/filebrowser/xedit-file-browser-store.c:3619
+#: ../plugins/filebrowser/xed-file-browser-store.c:3619
 msgid ""
 "The new directory is currently filtered out. You need to adjust your filter "
 "settings to make the directory visible"
 msgstr "المجلد الجديد لا يظهر حاليًا بسبب الترشيح. يجب تغيير إعدادات الترشيح لإظهار الملف"
 
-#: ../plugins/filebrowser/xedit-file-browser-widget.c:713
+#: ../plugins/filebrowser/xed-file-browser-widget.c:713
 msgid "Bookmarks"
 msgstr "العلامات"
 
-#: ../plugins/filebrowser/xedit-file-browser-widget.c:794
+#: ../plugins/filebrowser/xed-file-browser-widget.c:794
 msgid "_Filter"
 msgstr "_مرشّح"
 
-#: ../plugins/filebrowser/xedit-file-browser-widget.c:799
+#: ../plugins/filebrowser/xed-file-browser-widget.c:799
 msgid "_Move to Trash"
 msgstr "ان_قل إلى المهملات"
 
-#: ../plugins/filebrowser/xedit-file-browser-widget.c:800
+#: ../plugins/filebrowser/xed-file-browser-widget.c:800
 msgid "Move selected file or folder to trash"
 msgstr "انقل الملف أو الدليل المختار إلى سلة المهملات"
 
-#: ../plugins/filebrowser/xedit-file-browser-widget.c:802
+#: ../plugins/filebrowser/xed-file-browser-widget.c:802
 msgid "_Delete"
 msgstr "اح_ذف"
 
-#: ../plugins/filebrowser/xedit-file-browser-widget.c:803
+#: ../plugins/filebrowser/xed-file-browser-widget.c:803
 msgid "Delete selected file or folder"
 msgstr "احذف الملف أو المجلد المختار"
 
-#: ../plugins/filebrowser/xedit-file-browser-widget.c:810
+#: ../plugins/filebrowser/xed-file-browser-widget.c:810
 msgid "Open selected file"
 msgstr "افتح الملف المختار"
 
-#: ../plugins/filebrowser/xedit-file-browser-widget.c:816
+#: ../plugins/filebrowser/xed-file-browser-widget.c:816
 msgid "Up"
 msgstr "أعلى"
 
-#: ../plugins/filebrowser/xedit-file-browser-widget.c:817
+#: ../plugins/filebrowser/xed-file-browser-widget.c:817
 msgid "Open the parent folder"
 msgstr "افتح المجلد الأب"
 
-#: ../plugins/filebrowser/xedit-file-browser-widget.c:822
+#: ../plugins/filebrowser/xed-file-browser-widget.c:822
 msgid "_New Folder"
 msgstr "مجلّد جديد"
 
-#: ../plugins/filebrowser/xedit-file-browser-widget.c:823
+#: ../plugins/filebrowser/xed-file-browser-widget.c:823
 msgid "Add new empty folder"
 msgstr "أضف مجلّدًا جديدًا فارغًا"
 
-#: ../plugins/filebrowser/xedit-file-browser-widget.c:825
+#: ../plugins/filebrowser/xed-file-browser-widget.c:825
 msgid "New F_ile"
 msgstr "م_لف جديد"
 
-#: ../plugins/filebrowser/xedit-file-browser-widget.c:826
+#: ../plugins/filebrowser/xed-file-browser-widget.c:826
 msgid "Add new empty file"
 msgstr "أضف ملفًا جديدًا فارغًا"
 
-#: ../plugins/filebrowser/xedit-file-browser-widget.c:831
+#: ../plugins/filebrowser/xed-file-browser-widget.c:831
 msgid "_Rename"
 msgstr "_غيّر الاسم"
 
-#: ../plugins/filebrowser/xedit-file-browser-widget.c:832
+#: ../plugins/filebrowser/xed-file-browser-widget.c:832
 msgid "Rename selected file or folder"
 msgstr "غيّر اسم الملف أو المجلد المختار"
 
-#: ../plugins/filebrowser/xedit-file-browser-widget.c:838
+#: ../plugins/filebrowser/xed-file-browser-widget.c:838
 msgid "_Previous Location"
 msgstr "الموقع ال_سابق"
 
-#: ../plugins/filebrowser/xedit-file-browser-widget.c:840
+#: ../plugins/filebrowser/xed-file-browser-widget.c:840
 msgid "Go to the previous visited location"
 msgstr "اذهب إلى الموقع المزار سابقًا"
 
-#: ../plugins/filebrowser/xedit-file-browser-widget.c:842
+#: ../plugins/filebrowser/xed-file-browser-widget.c:842
 msgid "_Next Location"
 msgstr "الموق_ع التالي"
 
-#: ../plugins/filebrowser/xedit-file-browser-widget.c:843
+#: ../plugins/filebrowser/xed-file-browser-widget.c:843
 msgid "Go to the next visited location"
 msgstr "اذهب إلى الموقع المزار تاليًا"
 
-#: ../plugins/filebrowser/xedit-file-browser-widget.c:844
+#: ../plugins/filebrowser/xed-file-browser-widget.c:844
 msgid "Re_fresh View"
 msgstr "حدّث المظهر"
 
-#: ../plugins/filebrowser/xedit-file-browser-widget.c:845
+#: ../plugins/filebrowser/xed-file-browser-widget.c:845
 msgid "Refresh the view"
 msgstr "حدّث المظهر"
 
-#: ../plugins/filebrowser/xedit-file-browser-widget.c:846
-#: ../plugins/filebrowser/xedit-file-browser-widget.c:864
+#: ../plugins/filebrowser/xed-file-browser-widget.c:846
+#: ../plugins/filebrowser/xed-file-browser-widget.c:864
 msgid "_View Folder"
 msgstr "ا_عرض المجلد"
 
-#: ../plugins/filebrowser/xedit-file-browser-widget.c:847
-#: ../plugins/filebrowser/xedit-file-browser-widget.c:865
+#: ../plugins/filebrowser/xed-file-browser-widget.c:847
+#: ../plugins/filebrowser/xed-file-browser-widget.c:865
 msgid "View folder in file manager"
 msgstr "اعرض المجلد في مدير الملفات"
 
-#: ../plugins/filebrowser/xedit-file-browser-widget.c:854
+#: ../plugins/filebrowser/xed-file-browser-widget.c:854
 msgid "Show _Hidden"
 msgstr "أظهر ال_مخفي"
 
-#: ../plugins/filebrowser/xedit-file-browser-widget.c:855
+#: ../plugins/filebrowser/xed-file-browser-widget.c:855
 msgid "Show hidden files and folders"
 msgstr "أظهر الملفّات والمجلّدات المخفية"
 
-#: ../plugins/filebrowser/xedit-file-browser-widget.c:857
+#: ../plugins/filebrowser/xed-file-browser-widget.c:857
 msgid "Show _Binary"
 msgstr "أظهر الملفات ال_ثنائية"
 
-#: ../plugins/filebrowser/xedit-file-browser-widget.c:858
+#: ../plugins/filebrowser/xed-file-browser-widget.c:858
 msgid "Show binary files"
 msgstr "أظهر الملفات ال_ثنائية"
 
-#: ../plugins/filebrowser/xedit-file-browser-widget.c:990
-#: ../plugins/filebrowser/xedit-file-browser-widget.c:999
-#: ../plugins/filebrowser/xedit-file-browser-widget.c:1024
+#: ../plugins/filebrowser/xed-file-browser-widget.c:990
+#: ../plugins/filebrowser/xed-file-browser-widget.c:999
+#: ../plugins/filebrowser/xed-file-browser-widget.c:1024
 msgid "Previous location"
 msgstr "الموقع السابق"
 
-#: ../plugins/filebrowser/xedit-file-browser-widget.c:992
+#: ../plugins/filebrowser/xed-file-browser-widget.c:992
 msgid "Go to previous location"
 msgstr "اذهب إلى الموقع السابق"
 
-#: ../plugins/filebrowser/xedit-file-browser-widget.c:994
-#: ../plugins/filebrowser/xedit-file-browser-widget.c:1019
+#: ../plugins/filebrowser/xed-file-browser-widget.c:994
+#: ../plugins/filebrowser/xed-file-browser-widget.c:1019
 msgid "Go to a previously opened location"
 msgstr "اذهب إلى الموقع المفتوح سابقًا"
 
-#: ../plugins/filebrowser/xedit-file-browser-widget.c:1015
+#: ../plugins/filebrowser/xed-file-browser-widget.c:1015
 msgid "Next location"
 msgstr "الموقع التالي"
 
-#: ../plugins/filebrowser/xedit-file-browser-widget.c:1017
+#: ../plugins/filebrowser/xed-file-browser-widget.c:1017
 msgid "Go to next location"
 msgstr "اذهب إلى الموقع التالي"
 
-#: ../plugins/filebrowser/xedit-file-browser-widget.c:1233
+#: ../plugins/filebrowser/xed-file-browser-widget.c:1233
 msgid "_Match Filename"
 msgstr "_طابِق اسم الملف"
 
-#: ../plugins/filebrowser/xedit-file-browser-widget.c:2137
+#: ../plugins/filebrowser/xed-file-browser-widget.c:2137
 #, c-format
 msgid "No mount object for mounted volume: %s"
 msgstr "لا يوجد كائن وصل للقرص الموصول: %s"
 
-#: ../plugins/filebrowser/xedit-file-browser-widget.c:2217
+#: ../plugins/filebrowser/xed-file-browser-widget.c:2217
 #, c-format
 msgid "Could not open media: %s"
 msgstr "تعذّر فتح الوسيط: %s"
 
-#: ../plugins/filebrowser/xedit-file-browser-widget.c:2264
+#: ../plugins/filebrowser/xed-file-browser-widget.c:2264
 #, c-format
 msgid "Could not mount volume: %s"
 msgstr "تعذّر وصل القرص: %s"
 
 #. ex:ts=8:noet:
-#: ../plugins/modelines/modelines.xedit-plugin.desktop.in.h:1
+#: ../plugins/modelines/modelines.xed-plugin.desktop.in.h:1
 msgid "Modelines"
 msgstr "أسطر نمطية"
 
-#: ../plugins/modelines/modelines.xedit-plugin.desktop.in.h:2
-msgid "Emacs, Kate and Vim-style modelines support for xedit."
+#: ../plugins/modelines/modelines.xed-plugin.desktop.in.h:2
+msgid "Emacs, Kate and Vim-style modelines support for xed."
 msgstr "دعم الأسطر النمطية من نوع Vim و Kate و Emacs لمحرر النصوص \"قلم\"."
 
-#: ../plugins/pythonconsole/pythonconsole.xedit-plugin.desktop.in.h:1
+#: ../plugins/pythonconsole/pythonconsole.xed-plugin.desktop.in.h:1
 #: ../plugins/pythonconsole/pythonconsole/__init__.py:50
 msgid "Python Console"
 msgstr "طرفية بيثون"
 
-#: ../plugins/pythonconsole/pythonconsole.xedit-plugin.desktop.in.h:2
+#: ../plugins/pythonconsole/pythonconsole.xed-plugin.desktop.in.h:2
 msgid "Interactive Python console standing in the bottom panel"
 msgstr "معراض بيثون تفاعلي قائم في اللوحة السفلية"
 
@@ -2941,7 +2941,7 @@ msgstr "لون ال_خطأ:"
 
 #. ex:ts=8:et:
 #: ../plugins/quickopen/quickopen/popup.py:35
-#: ../plugins/quickopen/quickopen.xedit-plugin.desktop.in.h:1
+#: ../plugins/quickopen/quickopen.xed-plugin.desktop.in.h:1
 msgid "Quick Open"
 msgstr "فتح سريع"
 
@@ -2953,16 +2953,16 @@ msgstr "فتح سريع"
 msgid "Quickly open documents"
 msgstr "يفتح المستندات بسرعة"
 
-#: ../plugins/quickopen/quickopen.xedit-plugin.desktop.in.h:2
+#: ../plugins/quickopen/quickopen.xed-plugin.desktop.in.h:2
 msgid "Quickly open files"
 msgstr "يفتح الملفات بسرعة"
 
-#: ../plugins/snippets/snippets.xedit-plugin.desktop.in.h:1
+#: ../plugins/snippets/snippets.xed-plugin.desktop.in.h:1
 #: ../plugins/snippets/snippets/Document.py:58
 msgid "Snippets"
 msgstr "قصاصات"
 
-#: ../plugins/snippets/snippets.xedit-plugin.desktop.in.h:2
+#: ../plugins/snippets/snippets.xed-plugin.desktop.in.h:2
 msgid "Insert often-used pieces of text in a fast way"
 msgstr "أدرج مقاطع نصية شائعة الاستخدام بسرعة"
 
@@ -3178,20 +3178,20 @@ msgstr "تنفيذ أمر بيثون (%s) تعدّى الوقت الأقصى. أ
 msgid "Execution of the Python command (%s) failed: %s"
 msgstr "فشل تنفيذ أمر بيثون (%s)‏ : %s"
 
-#: ../plugins/sort/xedit-sort-plugin.c:88
+#: ../plugins/sort/xed-sort-plugin.c:88
 msgid "S_ort..."
 msgstr "ر_تب..."
 
-#: ../plugins/sort/xedit-sort-plugin.c:90
+#: ../plugins/sort/xed-sort-plugin.c:90
 msgid "Sort the current document or selection"
 msgstr "رتّب المستند أو التحديد الحالي"
 
-#: ../plugins/sort/sort.xedit-plugin.desktop.in.h:1
+#: ../plugins/sort/sort.xed-plugin.desktop.in.h:1
 #: ../plugins/sort/sort.ui.h:1
 msgid "Sort"
 msgstr "رتّب"
 
-#: ../plugins/sort/sort.xedit-plugin.desktop.in.h:2
+#: ../plugins/sort/sort.xed-plugin.desktop.in.h:2
 msgid "Sorts a document or selected text."
 msgstr "رتّب مستند أو النص المحدد."
 
@@ -3224,52 +3224,52 @@ msgstr "لا يمكنك التراجع عن عملية ترتيب"
 #. Translators: Displayed in the "Check Spelling" dialog if there are no
 #. suggestions
 #. * for the current misspelled word
-#: ../plugins/spell/xedit-automatic-spell-checker.c:420
-#: ../plugins/spell/xedit-spell-checker-dialog.c:471
+#: ../plugins/spell/xed-automatic-spell-checker.c:420
+#: ../plugins/spell/xed-spell-checker-dialog.c:471
 msgid "(no suggested words)"
 msgstr "(لا كلمات مقترحة)"
 
-#: ../plugins/spell/xedit-automatic-spell-checker.c:444
+#: ../plugins/spell/xed-automatic-spell-checker.c:444
 msgid "_More..."
 msgstr "أ_كثر..."
 
 #. Ignore all
-#: ../plugins/spell/xedit-automatic-spell-checker.c:499
+#: ../plugins/spell/xed-automatic-spell-checker.c:499
 msgid "_Ignore All"
 msgstr "ت_جاهل الكل"
 
 #. + Add to Dictionary
-#: ../plugins/spell/xedit-automatic-spell-checker.c:514
+#: ../plugins/spell/xed-automatic-spell-checker.c:514
 msgid "_Add"
 msgstr "أ_ضف"
 
-#: ../plugins/spell/xedit-automatic-spell-checker.c:553
+#: ../plugins/spell/xed-automatic-spell-checker.c:553
 msgid "_Spelling Suggestions..."
 msgstr "ا_قتراحات الإملاء..."
 
-#: ../plugins/spell/xedit-spell-checker-dialog.c:282
+#: ../plugins/spell/xed-spell-checker-dialog.c:282
 msgid "Check Spelling"
 msgstr "دقق الإملاء"
 
-#: ../plugins/spell/xedit-spell-checker-dialog.c:293
+#: ../plugins/spell/xed-spell-checker-dialog.c:293
 msgid "Suggestions"
 msgstr "الاقتراحات"
 
 #. Translators: Displayed in the "Check Spelling" dialog if the current word
 #. isn't misspelled
-#: ../plugins/spell/xedit-spell-checker-dialog.c:578
+#: ../plugins/spell/xed-spell-checker-dialog.c:578
 msgid "(correct spelling)"
 msgstr "(إملاء سليم)"
 
-#: ../plugins/spell/xedit-spell-checker-dialog.c:721
+#: ../plugins/spell/xed-spell-checker-dialog.c:721
 msgid "Completed spell checking"
 msgstr "تمّ التدقيق الإملائي"
 
 #. Translators: the first %s is the language name, and
 #. * the second %s is the locale name. Example:
 #. * "French (France)"
-#: ../plugins/spell/xedit-spell-checker-language.c:285
-#: ../plugins/spell/xedit-spell-checker-language.c:291
+#: ../plugins/spell/xed-spell-checker-language.c:285
+#: ../plugins/spell/xed-spell-checker-language.c:291
 #, c-format
 msgctxt "language"
 msgid "%s (%s)"
@@ -3277,7 +3277,7 @@ msgstr "‏%s‏ (%s)"
 
 #. Translators: this refers to an unknown language code
 #. * (one which isn't in our built-in list).
-#: ../plugins/spell/xedit-spell-checker-language.c:300
+#: ../plugins/spell/xed-spell-checker-language.c:300
 #, c-format
 msgctxt "language"
 msgid "Unknown (%s)"
@@ -3285,49 +3285,49 @@ msgstr "مجهولة (%s)"
 
 #. Translators: this refers the Default language used by the
 #. * spell checker
-#: ../plugins/spell/xedit-spell-checker-language.c:406
+#: ../plugins/spell/xed-spell-checker-language.c:406
 msgctxt "language"
 msgid "Default"
 msgstr "الافتراضية"
 
-#: ../plugins/spell/xedit-spell-language-dialog.c:141
+#: ../plugins/spell/xed-spell-language-dialog.c:141
 #: ../plugins/spell/languages-dialog.ui.h:1
 msgid "Set language"
 msgstr "حدّد اللغة"
 
-#: ../plugins/spell/xedit-spell-language-dialog.c:198
+#: ../plugins/spell/xed-spell-language-dialog.c:198
 msgid "Languages"
 msgstr "اللغات"
 
-#: ../plugins/spell/xedit-spell-plugin.c:86
+#: ../plugins/spell/xed-spell-plugin.c:86
 msgid "_Check Spelling..."
 msgstr "_دقق الإملاء..."
 
-#: ../plugins/spell/xedit-spell-plugin.c:88
+#: ../plugins/spell/xed-spell-plugin.c:88
 msgid "Check the current document for incorrect spelling"
 msgstr "دقق إملاء المستند الحالي"
 
-#: ../plugins/spell/xedit-spell-plugin.c:94
+#: ../plugins/spell/xed-spell-plugin.c:94
 msgid "Set _Language..."
 msgstr "حدّد الل_غة..."
 
-#: ../plugins/spell/xedit-spell-plugin.c:96
+#: ../plugins/spell/xed-spell-plugin.c:96
 msgid "Set the language of the current document"
 msgstr "حدّد لغة المستند الحالي"
 
-#: ../plugins/spell/xedit-spell-plugin.c:105
+#: ../plugins/spell/xed-spell-plugin.c:105
 msgid "_Autocheck Spelling"
 msgstr "_دقق الإملاء آليًا"
 
-#: ../plugins/spell/xedit-spell-plugin.c:107
+#: ../plugins/spell/xed-spell-plugin.c:107
 msgid "Automatically spell-check the current document"
 msgstr "دقق الإملاء آليًا في المستند الحالي"
 
-#: ../plugins/spell/xedit-spell-plugin.c:752
+#: ../plugins/spell/xed-spell-plugin.c:752
 msgid "The document is empty."
 msgstr "المستند فارغ."
 
-#: ../plugins/spell/xedit-spell-plugin.c:782
+#: ../plugins/spell/xed-spell-plugin.c:782
 msgid "No misspelled words"
 msgstr "لا يوجد أخطاء إملائية"
 
@@ -3391,29 +3391,29 @@ msgstr "اللغة:"
 msgid "Language"
 msgstr "اللغة"
 
-#: ../plugins/spell/spell.xedit-plugin.desktop.in.h:1
+#: ../plugins/spell/spell.xed-plugin.desktop.in.h:1
 msgid "Spell Checker"
 msgstr "المدقق الإملائي"
 
-#: ../plugins/spell/spell.xedit-plugin.desktop.in.h:2
+#: ../plugins/spell/spell.xed-plugin.desktop.in.h:2
 msgid "Checks the spelling of the current document."
 msgstr "يدقق إملاء المستند الحالي."
 
-#: ../plugins/taglist/xedit-taglist-plugin.c:98
-#: ../plugins/taglist/xedit-taglist-plugin-panel.c:726
-#: ../plugins/taglist/xedit-taglist-plugin-panel.c:742
+#: ../plugins/taglist/xed-taglist-plugin.c:98
+#: ../plugins/taglist/xed-taglist-plugin-panel.c:726
+#: ../plugins/taglist/xed-taglist-plugin-panel.c:742
 msgid "Tags"
 msgstr "وسوم"
 
-#: ../plugins/taglist/xedit-taglist-plugin-panel.c:633
+#: ../plugins/taglist/xed-taglist-plugin-panel.c:633
 msgid "Select the group of tags you want to use"
 msgstr "اختر مجموعة الوسوم التي تريد استعمالها"
 
-#: ../plugins/taglist/xedit-taglist-plugin-panel.c:652
+#: ../plugins/taglist/xed-taglist-plugin-panel.c:652
 msgid "_Preview"
 msgstr "م_عاينة"
 
-#: ../plugins/taglist/xedit-taglist-plugin-panel.c:723
+#: ../plugins/taglist/xed-taglist-plugin-panel.c:723
 msgid "Available Tag Lists"
 msgstr "قوائم العلامة المتوفرة"
 
@@ -4881,11 +4881,11 @@ msgstr "نص لا يكسر"
 msgid "Footnote"
 msgstr "حاشية سفلية"
 
-#: ../plugins/taglist/taglist.xedit-plugin.desktop.in.h:1
+#: ../plugins/taglist/taglist.xed-plugin.desktop.in.h:1
 msgid "Tag list"
 msgstr "قائمة العلامات"
 
-#: ../plugins/taglist/taglist.xedit-plugin.desktop.in.h:2
+#: ../plugins/taglist/taglist.xed-plugin.desktop.in.h:2
 msgid ""
 "Provides a method to easily insert commonly used tags/strings into a "
 "document without having to type them."
@@ -4971,70 +4971,70 @@ msgstr "صيغة مُختارة"
 msgid "Custom format"
 msgstr "صيغة مخصصّة"
 
-#: ../plugins/time/xedit-time-plugin.c:181
+#: ../plugins/time/xed-time-plugin.c:181
 msgid "In_sert Date and Time..."
 msgstr "أد_رج التاريخ و الوقت..."
 
-#: ../plugins/time/xedit-time-plugin.c:183
+#: ../plugins/time/xed-time-plugin.c:183
 msgid "Insert current date and time at the cursor position"
 msgstr "أدرج التاريخ و الوقت الحالي عند موقع المؤشر"
 
-#: ../plugins/time/xedit-time-plugin.c:568
+#: ../plugins/time/xed-time-plugin.c:568
 msgid "Available formats"
 msgstr "الصّيغ المتوفّرة"
 
-#: ../plugins/time/xedit-time-plugin.c:721
+#: ../plugins/time/xed-time-plugin.c:721
 msgid "Configure insert date/time plugin..."
 msgstr "اضبط ملحق أدرج التاريخ/الوقت..."
 
-#: ../plugins/time/time.xedit-plugin.desktop.in.h:1
+#: ../plugins/time/time.xed-plugin.desktop.in.h:1
 msgid "Insert Date/Time"
 msgstr "أدرج التاريخ/الوقت"
 
-#: ../plugins/time/time.xedit-plugin.desktop.in.h:2
+#: ../plugins/time/time.xed-plugin.desktop.in.h:2
 msgid "Inserts current date and time at the cursor position."
 msgstr "أدرج التاريخ و الوقت الحاليين عند موقع المؤشر"
 
-#: ../plugins/time/xedit-time-dialog.ui.h:1
+#: ../plugins/time/xed-time-dialog.ui.h:1
 msgid "Insert Date and Time"
 msgstr "أدرج التاريخ و الوقت"
 
-#: ../plugins/time/xedit-time-dialog.ui.h:2
+#: ../plugins/time/xed-time-dialog.ui.h:2
 msgid "_Insert"
 msgstr "أ_درج"
 
-#: ../plugins/time/xedit-time-dialog.ui.h:3
-#: ../plugins/time/xedit-time-setup-dialog.ui.h:5
+#: ../plugins/time/xed-time-dialog.ui.h:3
+#: ../plugins/time/xed-time-setup-dialog.ui.h:5
 msgid "Use the _selected format"
 msgstr "استعمل التنسيق المخ_تار"
 
-#: ../plugins/time/xedit-time-dialog.ui.h:5
-#: ../plugins/time/xedit-time-setup-dialog.ui.h:6
+#: ../plugins/time/xed-time-dialog.ui.h:5
+#: ../plugins/time/xed-time-setup-dialog.ui.h:6
 msgid "_Use custom format"
 msgstr "اس_تعمل تنسيقًا مخصّصًا"
 
 #. Translators: Use the more common date format in your locale
-#: ../plugins/time/xedit-time-dialog.ui.h:7
-#: ../plugins/time/xedit-time-setup-dialog.ui.h:9
+#: ../plugins/time/xed-time-dialog.ui.h:7
+#: ../plugins/time/xed-time-setup-dialog.ui.h:9
 #, no-c-format
 msgid "%d/%m/%Y %H:%M:%S"
 msgstr "%d/%m/%Y %H:%M:%S"
 
 #. Translators: This example should follow the date format defined in the
 #. entry above
-#: ../plugins/time/xedit-time-dialog.ui.h:8
-#: ../plugins/time/xedit-time-setup-dialog.ui.h:11
+#: ../plugins/time/xed-time-dialog.ui.h:8
+#: ../plugins/time/xed-time-setup-dialog.ui.h:11
 msgid "01/11/2009 17:52:00"
 msgstr "01/11/2009 17:52:00"
 
-#: ../plugins/time/xedit-time-setup-dialog.ui.h:1
+#: ../plugins/time/xed-time-setup-dialog.ui.h:1
 msgid "Configure date/time plugin"
 msgstr "اضبط ملحق التاريخ/الوقت"
 
-#: ../plugins/time/xedit-time-setup-dialog.ui.h:2
+#: ../plugins/time/xed-time-setup-dialog.ui.h:2
 msgid "When inserting date/time..."
 msgstr "عند إدراج التاريخ/الوقت..."
 
-#: ../plugins/time/xedit-time-setup-dialog.ui.h:4
+#: ../plugins/time/xed-time-setup-dialog.ui.h:4
 msgid "_Prompt for a format"
 msgstr "ا_سأل عن التنسيق"

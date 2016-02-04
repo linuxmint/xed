@@ -1,7 +1,7 @@
-AM_CPPFLAGS = -g -I$(top_srcdir) -I$(top_srcdir)/xedit $(XEDIT_DEBUG_FLAGS) $(XEDIT_CFLAGS)
+AM_CPPFLAGS = -g -I$(top_srcdir) -I$(top_srcdir)/xed $(XED_DEBUG_FLAGS) $(XED_CFLAGS)
 
 noinst_PROGRAMS = $(TEST_PROGS)
-progs_ldadd     = $(top_builddir)/xedit/libxedit.la
+progs_ldadd     = $(top_builddir)/xed/libxed.la
 
 TEST_PROGS			= smart-converter
 smart_converter_SOURCES		= smart-converter.c
