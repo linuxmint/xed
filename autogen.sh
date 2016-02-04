@@ -12,21 +12,21 @@ PKG_NAME="xedit"
     exit 1
 }
 
-which mate-autogen || {
-    echo "You need to install mate-common"
+which gnome-autogen.sh || {
+    echo "You need to install gnome-common"
     exit 1
 }
 
 
 which yelp-build || {
-    echo "You need to install yelp-tools" 
+    echo "You need to install yelp-tools"
     exit 1
 }
 
 REQUIRED_AUTOMAKE_VERSION=1.9
 REQUIRED_MACROS=python.m4
-MATE_DATADIR="$mate_datadir"
+GNOME_DATADIR="$gnome_datadir"
 USE_COMMON_DOC_BUILD=yes
 
-. mate-autogen
+. gnome-autogen.sh
 
