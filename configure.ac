@@ -321,7 +321,7 @@ dnl ================================================================
 AC_PATH_PROG(GLIB_GENMARSHAL, glib-genmarshal)
 AC_PATH_PROG(GLIB_MKENUMS, glib-mkenums)
 
-MATE_COMPILE_WARNINGS(yes)
+GNOME_COMPILE_WARNINGS(yes)
 
 AC_ARG_ENABLE(deprecations,
               [AS_HELP_STRING([--enable-deprecations],
@@ -334,7 +334,7 @@ if test "x$enable_deprecations" = "xyes"; then
 -DGDK_DISABLE_DEPRECATED \
 -DGTK_DISABLE_DEPRECATED \
 -DGDK_PIXBUF_DISABLE_DEPRECATED \
--DMATE_DISABLE_DEPRECATED"
+-DGNOME_DISABLE_DEPRECATED"
    AC_SUBST(DISABLE_DEPRECATED_CFLAGS)
 fi
 
