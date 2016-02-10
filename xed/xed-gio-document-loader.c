@@ -288,10 +288,6 @@ close_input_stream_ready_cb (GInputStream *stream,
 static void
 write_complete (AsyncData *async)
 {
-	XedDocumentLoader *loader;
-
-	loader = XED_DOCUMENT_LOADER (async->loader);
-
 	if (async->loader->priv->stream)
 		g_input_stream_close_async (G_INPUT_STREAM (async->loader->priv->stream),
 					    G_PRIORITY_HIGH,

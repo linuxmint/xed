@@ -1794,7 +1794,7 @@ start_interactive_search_real (XedView *view)
 	    gtk_widget_get_visible (view->priv->search_window))
 		return TRUE;
 
-	if (!gtk_widget_has_focus (view))
+	if (!gtk_widget_has_focus (GTK_WIDGET (view)))
 		return FALSE;
 
 	buffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (view));

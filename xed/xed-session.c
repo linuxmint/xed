@@ -87,11 +87,11 @@ save_window_session (GKeyFile    *state_file,
 
 	panel = xed_window_get_side_panel (window);
 	g_key_file_set_boolean (state_file, group_name, "side-panel-visible",
-				gtk_widget_get_visible (panel));
+				gtk_widget_get_visible (GTK_WIDGET (panel)));
 
 	panel = xed_window_get_bottom_panel (window);
 	g_key_file_set_boolean (state_file, group_name, "bottom-panel-visible",
-				gtk_widget_get_visible (panel));
+				gtk_widget_get_visible (GTK_WIDGET (panel)));
 
 	active_document = xed_window_get_active_document (window);
 	if (active_document)
