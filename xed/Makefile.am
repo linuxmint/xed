@@ -10,7 +10,6 @@ AM_CPPFLAGS =								\
 	-I$(srcdir)							\
 	-I$(srcdir)/smclient						\
 	$(XED_CFLAGS)							\
-	$(MATE_DESKTOP_CFLAGS)						\
 	$(WARN_CFLAGS)							\
 	$(DISABLE_DEPRECATED_CFLAGS)					\
 	-DDATADIR=\""$(datadir)"\"					\
@@ -27,8 +26,7 @@ libxed_la_LDFLAGS = -export-dynamic -no-undefined -export-symbols-regex "^[[^_]]
 
 libxed_la_LIBADD = \
 	dialogs/libdialogs.la		\
-	smclient/libeggsmclient.la	\
-	$(MATE_DESKTOP_LIBS)
+	smclient/libeggsmclient.la
 
 # XED_LIBS must be the last to ensure correct order on some platforms
 libxed_la_LIBADD += $(XED_LIBS) -lICE
