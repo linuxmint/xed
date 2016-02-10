@@ -161,15 +161,10 @@ xed_statusbar_init (XedStatusbar *statusbar)
 
     error_image = gtk_image_new_from_icon_name ("dialog-error", GTK_ICON_SIZE_MENU);
 
-#if GTK_CHECK_VERSION (3, 14, 0)
-    gtk_widget_set_margin_start (error_image, 4);
-    gtk_widget_set_margin_end (error_image, 4);
+    gtk_widget_set_margin_left (error_image, 4);
+    gtk_widget_set_margin_right (error_image, 4);
     gtk_widget_set_margin_top (error_image, 0);
     gtk_widget_set_margin_bottom (error_image, 0);
-#else
-    gtk_misc_set_padding (GTK_MISC (error_image), 4, 0);
-    gtk_widget_show (error_image);
-#endif
 
     statusbar->priv->error_event_box = gtk_event_box_new ();
     gtk_event_box_set_visible_window  (GTK_EVENT_BOX (statusbar->priv->error_event_box),

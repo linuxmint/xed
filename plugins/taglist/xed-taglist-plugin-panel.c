@@ -645,17 +645,14 @@ add_preview_widget (XedTaglistPluginPanel *panel)
 
 	gtk_label_set_line_wrap	(GTK_LABEL (panel->priv->preview), TRUE);
 	gtk_label_set_use_markup (GTK_LABEL (panel->priv->preview), TRUE);
-#if GTK_CHECK_VERSION (3, 0, 0)
+
 	gtk_widget_set_halign (panel->priv->preview, GTK_ALIGN_START);
 	gtk_widget_set_valign (panel->priv->preview, GTK_ALIGN_START);
-	gtk_widget_set_margin_start (panel->priv->preview, 6);
-	gtk_widget_set_margin_end (panel->priv->preview, 6);
+	gtk_widget_set_margin_left (panel->priv->preview, 6);
+	gtk_widget_set_margin_right (panel->priv->preview, 6);
 	gtk_widget_set_margin_top (panel->priv->preview, 6);
 	gtk_widget_set_margin_bottom (panel->priv->preview, 6);
-#else
-	gtk_misc_set_alignment (GTK_MISC (panel->priv->preview), 0, 0);
-	gtk_misc_set_padding (GTK_MISC (panel->priv->preview), 6, 6);
-#endif
+
 	gtk_label_set_selectable (GTK_LABEL (panel->priv->preview), TRUE);
 	gtk_label_set_selectable (GTK_LABEL (panel->priv->preview), TRUE);
 	gtk_label_set_ellipsize  (GTK_LABEL (panel->priv->preview),
