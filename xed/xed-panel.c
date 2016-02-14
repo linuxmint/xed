@@ -85,11 +85,7 @@ static GObject	*xed_panel_constructor	(GType type,
 						 GObjectConstructParam *construct_properties);
 
 
-#if GTK_CHECK_VERSION (3, 0, 0)
 G_DEFINE_TYPE(XedPanel, xed_panel, GTK_TYPE_BOX)
-#else
-G_DEFINE_TYPE(XedPanel, xed_panel, GTK_TYPE_VBOX)
-#endif
 
 static void
 xed_panel_finalize (GObject *obj)
@@ -190,13 +186,8 @@ xed_panel_class_init (XedPanelClass *klass)
 
 	g_object_class_install_property (object_class,
 					 PROP_ORIENTATION,
-#if GTK_CHECK_VERSION (3, 0, 0)
 					 g_param_spec_enum ("panel-orientation",
 							    "Panel Orientation",
-#else
-					 g_param_spec_enum ("orientation",
-							    "Orientation",
-#endif
 							    "The panel's orientation",
 							    GTK_TYPE_ORIENTATION,
 							    GTK_ORIENTATION_VERTICAL,
@@ -276,26 +267,6 @@ set_gtk_image_from_gtk_image (GtkImage *image,
 	case GTK_IMAGE_EMPTY:
 		gtk_image_clear (image);
 		break;
-#if !GTK_CHECK_VERSION (3, 0, 0)
-	case GTK_IMAGE_PIXMAP:
-		{
-			GdkPixmap *pm;
-			GdkBitmap *bm;
-
-			gtk_image_get_pixmap (source, &pm, &bm);
-			gtk_image_set_from_pixmap (image, pm, bm);
-		}
-		break;
-	case GTK_IMAGE_IMAGE:
-		{
-			GdkImage *i;
-			GdkBitmap *bm;
-
-			gtk_image_get_image (source, &i, &bm);
-			gtk_image_set_from_image (image, i, bm);
-		}
-		break;
-#endif
 	case GTK_IMAGE_PIXBUF:
 		{
 			GdkPixbuf *pb;
@@ -411,10 +382,8 @@ xed_panel_init (XedPanel *panel)
 {
 	panel->priv = XED_PANEL_GET_PRIVATE (panel);
 
-#if GTK_CHECK_VERSION (3, 0, 0)
 	gtk_orientable_set_orientation (GTK_ORIENTABLE (panel),
 									GTK_ORIENTATION_VERTICAL);
-#endif
 }
 
 static void
@@ -542,11 +511,8 @@ build_vertical_panel (XedPanel *panel)
 			    0);	
 
 	panel->priv->title_label = gtk_label_new (_("Empty"));
-#if GTK_CHECK_VERSION (3, 16, 0)
-	gtk_label_set_xalign (GTK_LABEL (panel->priv->title_label), 0.0);
-#else
+
 	gtk_misc_set_alignment (GTK_MISC (panel->priv->title_label), 0, 0.5);
-#endif
 	gtk_label_set_ellipsize(GTK_LABEL (panel->priv->title_label), PANGO_ELLIPSIZE_END);
 
 	gtk_box_pack_start (GTK_BOX (icon_name_hbox),
@@ -643,20 +609,14 @@ build_tab_label (XedPanel  *panel,
 	gtk_box_pack_start (GTK_BOX (label_hbox), icon, FALSE, FALSE, 0);
 
 	/* setup label */
-        label = gtk_label_new (name);
-#if GTK_CHECK_VERSION (3, 16, 0)
-	gtk_label_set_xalign (GTK_LABEL (label), 0.0);
-#else
+    label = gtk_label_new (name);
+
 	gtk_misc_set_alignment (GTK_MISC (label), 0.0, 0.5);
-#endif
-#if GTK_CHECK_VERSION (3, 0, 0)
 	gtk_widget_set_margin_left (label, 0);
 	gtk_widget_set_margin_right (label, 0);
 	gtk_widget_set_margin_top (label, 0);
 	gtk_widget_set_margin_bottom (label, 0);
-#else
-	gtk_misc_set_padding (GTK_MISC (label), 0, 0);
-#endif
+
 	gtk_box_pack_start (GTK_BOX (label_hbox), label, TRUE, TRUE, 0);
 
 	gtk_widget_set_tooltip_text (label_ebox, name);
@@ -722,11 +682,8 @@ xed_panel_add_item (XedPanel  *panel,
 	tab_label = build_tab_label (panel, item, data->name, data->icon);
 
 	menu_label = gtk_label_new (name);
-#if GTK_CHECK_VERSION (3, 16, 0)
-	gtk_label_set_xalign (GTK_LABEL (menu_label), 0.0);
-#else
+
 	gtk_misc_set_alignment (GTK_MISC (menu_label), 0.0, 0.5);
-#endif
 
 	if (!gtk_widget_get_visible (item))
 		gtk_widget_show (item);
