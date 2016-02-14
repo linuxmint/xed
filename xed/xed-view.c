@@ -56,10 +56,6 @@
 
 #define XED_VIEW_GET_PRIVATE(object)(G_TYPE_INSTANCE_GET_PRIVATE ((object), XED_TYPE_VIEW, XedViewPrivate))
 
-#if GTK_CHECK_VERSION (3, 0, 0)
-#define gtk_vbox_new(X,Y) gtk_box_new(GTK_ORIENTATION_VERTICAL,Y)
-#endif
-
 typedef enum
 {
 	GOTO_LINE,
@@ -1525,7 +1521,7 @@ ensure_search_window (XedView *view)
 	gtk_widget_show (frame);
 	gtk_container_add (GTK_CONTAINER (view->priv->search_window), frame);
 
-	vbox = gtk_vbox_new (FALSE, 0);
+	vbox = gtk_box_new (GTK_ORIENTATION_VERTICAL, 0);
 	gtk_widget_show (vbox);
 	gtk_container_add (GTK_CONTAINER (frame), vbox);
 	gtk_container_set_border_width (GTK_CONTAINER (vbox), 3);

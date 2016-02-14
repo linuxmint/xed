@@ -55,10 +55,6 @@
 #define ALL_FILES		_("All Files")
 #define ALL_TEXT_FILES		_("All Text Files")
 
-#if GTK_CHECK_VERSION (3, 0, 0)
-#define gtk_hbox_new(X,Y) gtk_box_new(GTK_ORIENTATION_HORIZONTAL,Y)
-#endif
-
 struct _XedFileChooserDialogPrivate
 {
 	GtkWidget *option_menu;
@@ -216,7 +212,7 @@ create_newline_combo (XedFileChooserDialog *dialog)
 static void
 create_extra_widget (XedFileChooserDialog *dialog)
 {
-	dialog->priv->extra_widget = gtk_hbox_new (FALSE, 6);
+	dialog->priv->extra_widget = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 6);
 
 	gtk_widget_show (dialog->priv->extra_widget);
 
