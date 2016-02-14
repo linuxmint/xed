@@ -42,10 +42,6 @@
 
 #define PRINTER_DPI (72.)
 
-#if GTK_CHECK_VERSION (3, 0, 0)
-#define gtk_hbox_new(X,Y) gtk_box_new(GTK_ORIENTATION_HORIZONTAL,Y)
-#endif
-
 struct _XedPrintPreviewPrivate
 {
 	GtkPrintOperation *operation;
@@ -593,7 +589,7 @@ create_bar (XedPrintPreview *preview)
 	gtk_widget_show (GTK_WIDGET (i));
 	gtk_toolbar_insert (GTK_TOOLBAR (toolbar), i, -1);
 
-	status = gtk_hbox_new (FALSE, 4);
+	status = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 4);
 	priv->page_entry = gtk_entry_new ();
 	gtk_entry_set_width_chars (GTK_ENTRY (priv->page_entry), 3);
 	gtk_entry_set_max_length (GTK_ENTRY (priv->page_entry), 6);

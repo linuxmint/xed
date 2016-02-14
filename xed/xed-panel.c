@@ -43,11 +43,6 @@
 
 #define XED_PANEL_GET_PRIVATE(object)(G_TYPE_INSTANCE_GET_PRIVATE ((object), XED_TYPE_PANEL, XedPanelPrivate))
 
-#if GTK_CHECK_VERSION (3, 0, 0)
-#define gtk_hbox_new(X,Y) gtk_box_new(GTK_ORIENTATION_HORIZONTAL,Y)
-#define gtk_vbox_new(X,Y) gtk_box_new(GTK_ORIENTATION_VERTICAL,Y)
-#endif
-
 struct _XedPanelPrivate 
 {
 	GtkOrientation orientation;
@@ -473,7 +468,7 @@ build_horizontal_panel (XedPanel *panel)
 	GtkWidget *sidebar;
 	GtkWidget *close_button;
 
-	box = gtk_hbox_new(FALSE, 0);
+	box = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 0);
 
 	gtk_box_pack_start (GTK_BOX (box), 
 			    panel->priv->notebook, 
@@ -482,7 +477,7 @@ build_horizontal_panel (XedPanel *panel)
 			    0);
 
 	/* Toolbar, close button and first separator */
-	sidebar = gtk_vbox_new(FALSE, 6);
+	sidebar = gtk_box_new(GTK_ORIENTATION_VERTICAL, 6);
 	gtk_container_set_border_width (GTK_CONTAINER (sidebar), 4);
 
 	gtk_box_pack_start (GTK_BOX (box),
@@ -517,12 +512,12 @@ build_vertical_panel (XedPanel *panel)
 	GtkWidget *dummy_label;
 
 	/* Create title hbox */
-	title_hbox = gtk_hbox_new (FALSE, 6);
+	title_hbox = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 6);
 	gtk_container_set_border_width (GTK_CONTAINER (title_hbox), 5);
 					
 	gtk_box_pack_start (GTK_BOX (panel), title_hbox, FALSE, FALSE, 0);
 	
-	icon_name_hbox = gtk_hbox_new (FALSE, 0);
+	icon_name_hbox = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 0);
 	gtk_box_pack_start (GTK_BOX (title_hbox), 
 			    icon_name_hbox, 
 			    TRUE, 
@@ -635,13 +630,13 @@ build_tab_label (XedPanel  *panel,
 
 	/* set hbox spacing and label padding (see below) so that there's an
 	 * equal amount of space around the label */
-	hbox = gtk_hbox_new (FALSE, 4);
+	hbox = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 4);
 
 	label_ebox = gtk_event_box_new ();
 	gtk_event_box_set_visible_window (GTK_EVENT_BOX (label_ebox), FALSE);
 	gtk_box_pack_start (GTK_BOX (hbox), label_ebox, TRUE, TRUE, 0);
 
-	label_hbox = gtk_hbox_new (FALSE, 4);
+	label_hbox = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 4);
 	gtk_container_add (GTK_CONTAINER (label_ebox), label_hbox);
 
 	/* setup icon */

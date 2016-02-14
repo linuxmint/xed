@@ -50,10 +50,6 @@
 #define XML_UI_FILE "xed-file-browser-widget-ui.xml"
 #define LOCATION_DATA_KEY "xed-file-browser-widget-location"
 
-#if GTK_CHECK_VERSION (3, 0, 0)
-#define gtk_vbox_new(X,Y) gtk_box_new(GTK_ORIENTATION_VERTICAL,Y)
-#endif
-
 enum 
 {
 	BOOKMARKS_ID,
@@ -1237,7 +1233,7 @@ create_filter (XedFileBrowserWidget * obj)
 	gtk_widget_show (expander);
 	gtk_box_pack_start (GTK_BOX (obj), expander, FALSE, FALSE, 0);
 
-	vbox = gtk_vbox_new (FALSE, 3);
+	vbox = gtk_box_new (GTK_ORIENTATION_VERTICAL, 3);
 	gtk_widget_show (vbox);
 
 	obj->priv->filter_expander = expander;
