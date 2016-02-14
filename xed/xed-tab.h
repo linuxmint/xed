@@ -77,11 +77,7 @@ typedef struct _XedTab XedTab;
 
 struct _XedTab 
 {
-#if GTK_CHECK_VERSION (3, 0, 0)
 	GtkBox vbox;
-#else
-	GtkVBox vbox;
-#endif
 
 	/*< private > */
 	XedTabPrivate *priv;
@@ -94,11 +90,8 @@ typedef struct _XedTabClass XedTabClass;
 
 struct _XedTabClass 
 {
-#if GTK_CHECK_VERSION (3, 0, 0)
 	GtkBoxClass parent_class;
-#else
-	GtkVBoxClass parent_class;
-#endif
+
 };
 
 /*

@@ -49,10 +49,6 @@
 
 #define XED_TAB_KEY "XED_TAB_KEY"
 
-#if GTK_CHECK_VERSION (3, 0, 0)
-#define gdk_cursor_unref(cursor) g_object_unref (cursor)
-#endif
-
 struct _XedTabPrivate
 {
 	XedTabState	        state;
@@ -86,11 +82,7 @@ struct _XedTabPrivate
 	gint                    ask_if_externally_modified : 1;
 };
 
-#if GTK_CHECK_VERSION (3, 0, 0)
 G_DEFINE_TYPE(XedTab, xed_tab, GTK_TYPE_BOX)
-#else
-G_DEFINE_TYPE(XedTab, xed_tab, GTK_TYPE_VBOX)
-#endif
 
 enum
 {
@@ -338,7 +330,7 @@ set_cursor_according_to_state (GtkTextView   *view,
 		if (left_window != NULL)
 			gdk_window_set_cursor (left_window, cursor);
 
-		gdk_cursor_unref (cursor);
+		g_object_unref (cursor);
 	}
 	else
 	{
@@ -351,7 +343,7 @@ set_cursor_according_to_state (GtkTextView   *view,
 		if (left_window != NULL)
 			gdk_window_set_cursor (left_window, NULL);
 
-		gdk_cursor_unref (cursor);
+		g_object_unref (cursor);
 	}
 }
 
@@ -1489,10 +1481,8 @@ xed_tab_init (XedTab *tab)
 
 	tab->priv->ask_if_externally_modified = TRUE;
 
-#if GTK_CHECK_VERSION (3, 0, 0)
 	gtk_orientable_set_orientation (GTK_ORIENTABLE (tab),
 	                                GTK_ORIENTATION_VERTICAL);
-#endif
 	
 	/* Create the scrolled window */
 	sw = gtk_scrolled_window_new (NULL, NULL);
@@ -1869,14 +1859,7 @@ _xed_tab_get_icon (XedTab *tab)
 	theme = gtk_icon_theme_get_for_screen (screen);
 	g_return_val_if_fail (theme != NULL, NULL);
 
-#if GTK_CHECK_VERSION (3, 10, 0)
 	gtk_icon_size_lookup (GTK_ICON_SIZE_MENU, NULL, &icon_size);
-#else
-	gtk_icon_size_lookup_for_settings (gtk_widget_get_settings (GTK_WIDGET (tab)),
-					   GTK_ICON_SIZE_MENU, 
-					   NULL,
-					   &icon_size);
-#endif
 
 	switch (tab->priv->state)
 	{
