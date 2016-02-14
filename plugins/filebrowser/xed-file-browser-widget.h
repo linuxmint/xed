@@ -48,22 +48,14 @@ gboolean (*XedFileBrowserWidgetFilterFunc) (XedFileBrowserWidget * obj,
 
 struct _XedFileBrowserWidget 
 {
-#if GTK_CHECK_VERSION (3, 0, 0)
 	GtkBox parent;
-#else
-	GtkVBox parent;
-#endif
 
 	XedFileBrowserWidgetPrivate *priv;
 };
 
 struct _XedFileBrowserWidgetClass 
 {
-#if GTK_CHECK_VERSION (3, 0, 0)
 	GtkBoxClass parent_class;
-#else
-	GtkVBoxClass parent_class;
-#endif
 
 	/* Signals */
 	void (*uri_activated)        (XedFileBrowserWidget * widget,

@@ -55,11 +55,7 @@ typedef struct _XedPanel XedPanel;
 
 struct _XedPanel 
 {
-#if GTK_CHECK_VERSION (3, 0, 0)
 	GtkBox vbox;
-#else
-	GtkVBox vbox;
-#endif
 
 	/*< private > */
 	XedPanelPrivate *priv;
@@ -72,11 +68,7 @@ typedef struct _XedPanelClass XedPanelClass;
 
 struct _XedPanelClass 
 {
-#if GTK_CHECK_VERSION (3, 0, 0)
 	GtkBoxClass parent_class;
-#else
-	GtkVBoxClass parent_class;
-#endif
 
 	void (* item_added)     (XedPanel     *panel,
 				 GtkWidget      *item);

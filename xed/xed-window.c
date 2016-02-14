@@ -39,9 +39,7 @@
 #include <glib/gi18n.h>
 #include <gio/gio.h>
 #include <gtk/gtk.h>
-#if GTK_CHECK_VERSION (3, 0, 0)
 #include <gtksourceview/gtksource.h>
-#endif
 
 #include "xed-ui.h"
 #include "xed-window.h"
@@ -70,10 +68,6 @@
 #define XED_WINDOW_GET_PRIVATE(object)(G_TYPE_INSTANCE_GET_PRIVATE ((object),\
 					 XED_TYPE_WINDOW,                    \
 					 XedWindowPrivate))
-
-#if GTK_CHECK_VERSION (3, 0, 0)
-#define gtk_vbox_new(X,Y) gtk_box_new(GTK_ORIENTATION_VERTICAL,Y)
-#endif
 
 /* Signals */
 enum
@@ -1550,10 +1544,8 @@ create_menu_bar_and_toolbar (XedWindow *window,
 			    0);
 
 	window->priv->toolbar = gtk_ui_manager_get_widget (manager, "/ToolBar");
-#if GTK_CHECK_VERSION(3, 0, 0)
 	gtk_style_context_add_class (gtk_widget_get_style_context (window->priv->toolbar),
 		GTK_STYLE_CLASS_PRIMARY_TOOLBAR);
-#endif
 	gtk_box_pack_start (GTK_BOX (main_box),
 			    window->priv->toolbar,
 			    FALSE,
@@ -3805,7 +3797,7 @@ xed_window_init (XedWindow *window)
 	window->priv->window_group = gtk_window_group_new ();
 	gtk_window_group_add_window (window->priv->window_group, GTK_WINDOW (window));
 
-	main_box = gtk_vbox_new (FALSE, 0);
+	main_box = gtk_box_new (GTK_ORIENTATION_VERTICAL, 0);
 	gtk_container_add (GTK_CONTAINER (window), main_box);
 	gtk_widget_show (main_box);
 

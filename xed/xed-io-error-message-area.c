@@ -50,11 +50,6 @@
 
 #define MAX_URI_IN_DIALOG_LENGTH 50
 
-#if GTK_CHECK_VERSION (3, 0, 0)
-#define gtk_hbox_new(X,Y) gtk_box_new(GTK_ORIENTATION_HORIZONTAL,Y)
-#define gtk_vbox_new(X,Y) gtk_box_new(GTK_ORIENTATION_VERTICAL,Y)
-#endif
-
 static gboolean
 is_recoverable_error (const GError *error)
 {
@@ -122,18 +117,14 @@ set_message_area_text_and_icon (GtkWidget   *message_area,
 	GtkWidget *primary_label;
 	GtkWidget *secondary_label;
 
-	hbox_content = gtk_hbox_new (FALSE, 8);
+	hbox_content = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 8);
 
 	image = gtk_image_new_from_stock (icon_stock_id, GTK_ICON_SIZE_DIALOG);
 	gtk_box_pack_start (GTK_BOX (hbox_content), image, FALSE, FALSE, 0);
-#if GTK_CHECK_VERSION (3, 0, 0)
 	gtk_widget_set_halign (image, GTK_ALIGN_CENTER);
 	gtk_widget_set_valign (image, GTK_ALIGN_START);
-#else
-	gtk_misc_set_alignment (GTK_MISC (image), 0.5, 0.0);
-#endif
 
-	vbox = gtk_vbox_new (FALSE, 6);
+	vbox = gtk_box_new (GTK_ORIENTATION_VERTICAL, 6);
 	gtk_box_pack_start (GTK_BOX (hbox_content), vbox, TRUE, TRUE, 0);
 
 	primary_markup = g_strdup_printf ("<b>%s</b>", primary_text);
@@ -142,11 +133,7 @@ set_message_area_text_and_icon (GtkWidget   *message_area,
 	gtk_box_pack_start (GTK_BOX (vbox), primary_label, TRUE, TRUE, 0);
 	gtk_label_set_use_markup (GTK_LABEL (primary_label), TRUE);
 	gtk_label_set_line_wrap (GTK_LABEL (primary_label), TRUE);
-#if GTK_CHECK_VERSION (3, 16, 0)
-	gtk_label_set_xalign (GTK_LABEL (primary_label), 0.0);
-#else
 	gtk_misc_set_alignment (GTK_MISC (primary_label), 0.0, 0.5);
-#endif
 	gtk_widget_set_can_focus (primary_label, TRUE);
 	gtk_label_set_selectable (GTK_LABEL (primary_label), TRUE);
 
@@ -161,11 +148,7 @@ set_message_area_text_and_icon (GtkWidget   *message_area,
 		gtk_label_set_use_markup (GTK_LABEL (secondary_label), TRUE);
 		gtk_label_set_line_wrap (GTK_LABEL (secondary_label), TRUE);
 		gtk_label_set_selectable (GTK_LABEL (secondary_label), TRUE);
-#if GTK_CHECK_VERSION (3, 16, 0)
-		gtk_label_set_xalign (GTK_LABEL (secondary_label), 0.0);
-#else
 		gtk_misc_set_alignment (GTK_MISC (secondary_label), 0.0, 0.5);
-#endif
 	}
 
 	gtk_widget_show_all (hbox_content);
@@ -449,7 +432,7 @@ create_combo_box (GtkWidget *message_area, GtkWidget *vbox)
 	GtkWidget *menu;
 	gchar *label_markup;
 
-	hbox = gtk_hbox_new (FALSE, 6);
+	hbox = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 6);
 
 	label_markup = g_strdup_printf ("<small>%s</small>",
 					_("Ch_aracter Encoding:"));
@@ -523,18 +506,14 @@ create_conversion_error_message_area (const gchar *primary_text,
 					       GTK_MESSAGE_ERROR);
 	}
 
-	hbox_content = gtk_hbox_new (FALSE, 8);
+	hbox_content = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 8);
 
 	image = gtk_image_new_from_stock ("gtk-dialog-error", GTK_ICON_SIZE_DIALOG);
 	gtk_box_pack_start (GTK_BOX (hbox_content), image, FALSE, FALSE, 0);
-#if GTK_CHECK_VERSION (3, 0, 0)
 	gtk_widget_set_halign (image, GTK_ALIGN_CENTER);
 	gtk_widget_set_valign (image, GTK_ALIGN_START);
-#else
-	gtk_misc_set_alignment (GTK_MISC (image), 0.5, 0.0);
-#endif
-  
-	vbox = gtk_vbox_new (FALSE, 6);
+
+	vbox = gtk_box_new (GTK_ORIENTATION_VERTICAL, 6);
 	gtk_box_pack_start (GTK_BOX (hbox_content), vbox, TRUE, TRUE, 0);
 	
 	primary_markup = g_strdup_printf ("<b>%s</b>", primary_text);
@@ -543,11 +522,7 @@ create_conversion_error_message_area (const gchar *primary_text,
 	gtk_box_pack_start (GTK_BOX (vbox), primary_label, TRUE, TRUE, 0);
 	gtk_label_set_use_markup (GTK_LABEL (primary_label), TRUE);
 	gtk_label_set_line_wrap (GTK_LABEL (primary_label), TRUE);
-#if GTK_CHECK_VERSION (3, 16, 0)
-	gtk_label_set_xalign (GTK_LABEL (primary_label), 0.0);
-#else
 	gtk_misc_set_alignment (GTK_MISC (primary_label), 0.0, 0.5);
-#endif
 	gtk_widget_set_can_focus (primary_label, TRUE);
 	gtk_label_set_selectable (GTK_LABEL (primary_label), TRUE);
 
@@ -562,11 +537,7 @@ create_conversion_error_message_area (const gchar *primary_text,
 		gtk_label_set_use_markup (GTK_LABEL (secondary_label), TRUE);
 		gtk_label_set_line_wrap (GTK_LABEL (secondary_label), TRUE);
 		gtk_label_set_selectable (GTK_LABEL (secondary_label), TRUE);
-#if GTK_CHECK_VERSION (3, 16, 0)
-		gtk_label_set_xalign (GTK_LABEL (secondary_label), 0.0);
-#else
 		gtk_misc_set_alignment (GTK_MISC (secondary_label), 0.0, 0.5);
-#endif
 	}
 
 	create_combo_box (message_area, vbox);
@@ -801,18 +772,14 @@ xed_file_already_open_warning_message_area_new (const gchar *uri)
 	gtk_info_bar_set_message_type (GTK_INFO_BAR (message_area),
 				       GTK_MESSAGE_WARNING);
 
-	hbox_content = gtk_hbox_new (FALSE, 8);
+	hbox_content = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 8);
 
 	image = gtk_image_new_from_stock ("gtk-dialog-warning", GTK_ICON_SIZE_DIALOG);
 	gtk_box_pack_start (GTK_BOX (hbox_content), image, FALSE, FALSE, 0);
-#if GTK_CHECK_VERSION (3, 0, 0)
 	gtk_widget_set_halign (image, GTK_ALIGN_CENTER);
 	gtk_widget_set_valign (image, GTK_ALIGN_START);
-#else
-	gtk_misc_set_alignment (GTK_MISC (image), 0.5, 0.0);
-#endif
 
-	vbox = gtk_vbox_new (FALSE, 6);
+	vbox = gtk_box_new (GTK_ORIENTATION_VERTICAL, 6);
 	gtk_box_pack_start (GTK_BOX (hbox_content), vbox, TRUE, TRUE, 0);
 
 	primary_text = g_strdup_printf (_("This file (%s) is already open in another xed window."), uri_for_display);
@@ -825,11 +792,7 @@ xed_file_already_open_warning_message_area_new (const gchar *uri)
 	gtk_box_pack_start (GTK_BOX (vbox), primary_label, TRUE, TRUE, 0);
 	gtk_label_set_use_markup (GTK_LABEL (primary_label), TRUE);
 	gtk_label_set_line_wrap (GTK_LABEL (primary_label), TRUE);
-#if GTK_CHECK_VERSION (3, 16, 0)
-	gtk_label_set_xalign (GTK_LABEL (primary_label), 0.0);
-#else
 	gtk_misc_set_alignment (GTK_MISC (primary_label), 0.0, 0.5);
-#endif
 	gtk_widget_set_can_focus (primary_label, TRUE);
 	gtk_label_set_selectable (GTK_LABEL (primary_label), TRUE);
 
@@ -844,11 +807,7 @@ xed_file_already_open_warning_message_area_new (const gchar *uri)
 	gtk_label_set_use_markup (GTK_LABEL (secondary_label), TRUE);
 	gtk_label_set_line_wrap (GTK_LABEL (secondary_label), TRUE);
 	gtk_label_set_selectable (GTK_LABEL (secondary_label), TRUE);
-#if GTK_CHECK_VERSION (3, 16, 0)
-	gtk_label_set_xalign (GTK_LABEL (secondary_label), 0.0);
-#else
 	gtk_misc_set_alignment (GTK_MISC (secondary_label), 0.0, 0.5);
-#endif
 
 	gtk_widget_show_all (hbox_content);
 	set_contents (message_area, hbox_content);
@@ -905,18 +864,14 @@ xed_externally_modified_saving_error_message_area_new (
 	gtk_info_bar_set_message_type (GTK_INFO_BAR (message_area),
 				       GTK_MESSAGE_WARNING);
 
-	hbox_content = gtk_hbox_new (FALSE, 8);
+	hbox_content = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 8);
 
 	image = gtk_image_new_from_stock ("gtk-dialog-warning", GTK_ICON_SIZE_DIALOG);
 	gtk_box_pack_start (GTK_BOX (hbox_content), image, FALSE, FALSE, 0);
-#if GTK_CHECK_VERSION (3, 0, 0)
 	gtk_widget_set_halign (image, GTK_ALIGN_CENTER);
 	gtk_widget_set_valign (image, GTK_ALIGN_START);
-#else
-	gtk_misc_set_alignment (GTK_MISC (image), 0.5, 0.0);
-#endif
 
-	vbox = gtk_vbox_new (FALSE, 6);
+	vbox = gtk_box_new (GTK_ORIENTATION_VERTICAL, 6);
 	gtk_box_pack_start (GTK_BOX (hbox_content), vbox, TRUE, TRUE, 0);
 
 	// FIXME: review this message, it's not clear since for the user the "modification"
@@ -933,11 +888,7 @@ xed_externally_modified_saving_error_message_area_new (
 	gtk_box_pack_start (GTK_BOX (vbox), primary_label, TRUE, TRUE, 0);
 	gtk_label_set_use_markup (GTK_LABEL (primary_label), TRUE);
 	gtk_label_set_line_wrap (GTK_LABEL (primary_label), TRUE);
-#if GTK_CHECK_VERSION (3, 16, 0)
-	gtk_label_set_xalign (GTK_LABEL (primary_label), 0.0);
-#else
 	gtk_misc_set_alignment (GTK_MISC (primary_label), 0.0, 0.5);
-#endif
 	gtk_widget_set_can_focus (primary_label, TRUE);
 	gtk_label_set_selectable (GTK_LABEL (primary_label), TRUE);
 
@@ -951,11 +902,7 @@ xed_externally_modified_saving_error_message_area_new (
 	gtk_label_set_use_markup (GTK_LABEL (secondary_label), TRUE);
 	gtk_label_set_line_wrap (GTK_LABEL (secondary_label), TRUE);
 	gtk_label_set_selectable (GTK_LABEL (secondary_label), TRUE);
-#if GTK_CHECK_VERSION (3, 16, 0)
-	gtk_label_set_xalign (GTK_LABEL (secondary_label), 0.0);
-#else
 	gtk_misc_set_alignment (GTK_MISC (secondary_label), 0.0, 0.5);
-#endif
 
 	gtk_widget_show_all (hbox_content);
 	set_contents (message_area, hbox_content);
@@ -1013,18 +960,14 @@ xed_no_backup_saving_error_message_area_new (const gchar  *uri,
 	gtk_info_bar_set_message_type (GTK_INFO_BAR (message_area),
 				       GTK_MESSAGE_WARNING);
 
-	hbox_content = gtk_hbox_new (FALSE, 8);
+	hbox_content = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 8);
 
 	image = gtk_image_new_from_stock ("gtk-dialog-warning", GTK_ICON_SIZE_DIALOG);
 	gtk_box_pack_start (GTK_BOX (hbox_content), image, FALSE, FALSE, 0);
-#if GTK_CHECK_VERSION (3, 0, 0)
 	gtk_widget_set_halign (image, GTK_ALIGN_CENTER);
 	gtk_widget_set_valign (image, GTK_ALIGN_START);
-#else
-	gtk_misc_set_alignment (GTK_MISC (image), 0.5, 0.0);
-#endif
 
-	vbox = gtk_vbox_new (FALSE, 6);
+	vbox = gtk_box_new (GTK_ORIENTATION_VERTICAL, 6);
 	gtk_box_pack_start (GTK_BOX (hbox_content), vbox, TRUE, TRUE, 0);
 
 	// FIXME: review this messages
@@ -1045,11 +988,7 @@ xed_no_backup_saving_error_message_area_new (const gchar  *uri,
 	gtk_box_pack_start (GTK_BOX (vbox), primary_label, TRUE, TRUE, 0);
 	gtk_label_set_use_markup (GTK_LABEL (primary_label), TRUE);
 	gtk_label_set_line_wrap (GTK_LABEL (primary_label), TRUE);
-#if GTK_CHECK_VERSION (3, 16, 0)
-	gtk_label_set_xalign (GTK_LABEL (primary_label), 0.0);
-#else
 	gtk_misc_set_alignment (GTK_MISC (primary_label), 0.0, 0.5);
-#endif
 	gtk_widget_set_can_focus (primary_label, TRUE);
 	gtk_label_set_selectable (GTK_LABEL (primary_label), TRUE);
 
@@ -1065,11 +1004,7 @@ xed_no_backup_saving_error_message_area_new (const gchar  *uri,
 	gtk_label_set_use_markup (GTK_LABEL (secondary_label), TRUE);
 	gtk_label_set_line_wrap (GTK_LABEL (secondary_label), TRUE);
 	gtk_label_set_selectable (GTK_LABEL (secondary_label), TRUE);
-#if GTK_CHECK_VERSION (3, 16, 0)
-	gtk_label_set_xalign (GTK_LABEL (secondary_label), 0.0);
-#else
 	gtk_misc_set_alignment (GTK_MISC (secondary_label), 0.0, 0.5);
-#endif
 
 	gtk_widget_show_all (hbox_content);
 	set_contents (message_area, hbox_content);

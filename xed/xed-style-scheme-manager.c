@@ -39,9 +39,7 @@
 #include <glib/gstdio.h>
 
 #include <gtk/gtk.h>
-#if GTK_CHECK_VERSION (3, 0, 0)
 #include <gtksourceview/gtksource.h>
-#endif
 
 #include "xed-style-scheme-manager.h"
 #include "xed-prefs-manager.h"
@@ -112,11 +110,7 @@ xed_style_scheme_manager_list_schemes_sorted (GtkSourceStyleSchemeManager *manag
 	const gchar * const * scheme_ids;
 	GSList *schemes = NULL;
 
-#if GTK_CHECK_VERSION (3, 0, 0)
 	g_return_val_if_fail (GTK_SOURCE_IS_STYLE_SCHEME_MANAGER (manager), NULL);
-#else
-	g_return_val_if_fail (GTK_IS_SOURCE_STYLE_SCHEME_MANAGER (manager), NULL);
-#endif
 
 	scheme_ids = gtk_source_style_scheme_manager_get_scheme_ids (manager);
 	
@@ -267,11 +261,7 @@ _xed_style_scheme_manager_install_scheme (GtkSourceStyleSchemeManager *manager,
 
 	const gchar* const *ids;
 
-#if GTK_CHECK_VERSION (3, 0, 0)
 	g_return_val_if_fail (GTK_SOURCE_IS_STYLE_SCHEME_MANAGER (manager), NULL);
-#else
-	g_return_val_if_fail (GTK_IS_SOURCE_STYLE_SCHEME_MANAGER (manager), NULL);
-#endif
 	g_return_val_if_fail (fname != NULL, NULL);
 
 	dirname = g_path_get_dirname (fname);
@@ -362,11 +352,7 @@ _xed_style_scheme_manager_uninstall_scheme (GtkSourceStyleSchemeManager *manager
 	GtkSourceStyleScheme *scheme;
 	const gchar *filename;
 
-#if GTK_CHECK_VERSION (3, 0, 0)
 	g_return_val_if_fail (GTK_SOURCE_IS_STYLE_SCHEME_MANAGER (manager), FALSE);
-#else
-	g_return_val_if_fail (GTK_IS_SOURCE_STYLE_SCHEME_MANAGER (manager), FALSE);
-#endif
 	g_return_val_if_fail (id != NULL, FALSE);
 
 	scheme = gtk_source_style_scheme_manager_get_scheme (manager, id);

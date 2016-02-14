@@ -69,11 +69,7 @@ struct _XedTaglistPluginPanelPrivate
 	gchar *data_dir;
 };
 
-#if GTK_CHECK_VERSION (3, 0, 0)
 XED_PLUGIN_DEFINE_TYPE (XedTaglistPluginPanel, xed_taglist_plugin_panel, GTK_TYPE_BOX)
-#else
-XED_PLUGIN_DEFINE_TYPE (XedTaglistPluginPanel, xed_taglist_plugin_panel, GTK_TYPE_VBOX)
-#endif
 
 enum
 {
@@ -581,13 +577,8 @@ tags_list_query_tooltip_cb (GtkWidget               *widget,
 }
 
 static gboolean
-#if GTK_CHECK_VERSION (3, 0, 0)
 draw_event_cb (GtkWidget      *panel,
                cairo_t        *cr,
-#else
-expose_event_cb (GtkWidget      *panel,
-                 GdkEventExpose *event,
-#endif
                  gpointer        user_data)
 {
 	XedTaglistPluginPanel *ppanel = XED_TAGLIST_PLUGIN_PANEL (panel);
@@ -601,13 +592,8 @@ expose_event_cb (GtkWidget      *panel,
 	/* And populate combo box */
 	populate_tag_groups_combo (XED_TAGLIST_PLUGIN_PANEL (panel));
 
-#if GTK_CHECK_VERSION (3, 0, 0)
 	/* We need to manage only the first draw -> disconnect */
 	g_signal_handlers_disconnect_by_func (panel, draw_event_cb, NULL);
-#else
-	/* We need to manage only the first expose event -> disconnect */
-	g_signal_handlers_disconnect_by_func (panel, expose_event_cb, NULL);
-#endif
 
 	return FALSE;
 }
@@ -685,10 +671,8 @@ xed_taglist_plugin_panel_init (XedTaglistPluginPanel *panel)
 	panel->priv = XED_TAGLIST_PLUGIN_PANEL_GET_PRIVATE (panel);
 	panel->priv->data_dir = NULL;
 
-#if GTK_CHECK_VERSION (3, 0, 0)
 	gtk_orientable_set_orientation (GTK_ORIENTABLE (panel),
 									GTK_ORIENTATION_VERTICAL);
-#endif
 
 	/* Build the window content */
 	panel->priv->tag_groups_combo = gtk_combo_box_text_new ();
@@ -781,13 +765,8 @@ xed_taglist_plugin_panel_init (XedTaglistPluginPanel *panel)
 			  G_CALLBACK (selected_group_changed),
 			  panel);
 	g_signal_connect (panel,
-#if GTK_CHECK_VERSION (3, 0, 0)
 			  "draw",
 			  G_CALLBACK (draw_event_cb),
-#else
-			  "expose-event",
-			  G_CALLBACK (expose_event_cb),
-#endif
 			  NULL);
 }
 

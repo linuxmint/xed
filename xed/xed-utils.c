@@ -134,11 +134,7 @@ xed_utils_menu_position_under_widget (GtkMenu  *menu,
 	widget = GTK_WIDGET (user_data);
 	widget_get_origin (widget, x, y);
 
-#if GTK_CHECK_VERSION (3, 0, 0)
 	gtk_widget_get_preferred_size (GTK_WIDGET (menu), NULL, &requisition);
-#else
-	gtk_widget_size_request (GTK_WIDGET (menu), &requisition);
-#endif
 
 	gtk_widget_get_allocation (widget, &allocation);
 
@@ -193,11 +189,8 @@ xed_utils_menu_position_under_tree_view (GtkMenu  *menu,
 		if (gtk_widget_get_direction (GTK_WIDGET (tree)) == GTK_TEXT_DIR_RTL)
 		{
 			GtkRequisition requisition;
-#if GTK_CHECK_VERSION (3, 0, 0)
 			gtk_widget_get_preferred_size (GTK_WIDGET (menu), NULL, &requisition);
-#else
-			gtk_widget_size_request (GTK_WIDGET (menu), &requisition);
-#endif
+
 			*x += rect.width - requisition.width;
 		}
 	}

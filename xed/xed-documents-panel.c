@@ -53,11 +53,7 @@ struct _XedDocumentsPanelPrivate
 	guint         is_reodering : 1;
 };
 
-#if GTK_CHECK_VERSION (3, 0, 0)
 G_DEFINE_TYPE(XedDocumentsPanel, xed_documents_panel, GTK_TYPE_BOX)
-#else
-G_DEFINE_TYPE(XedDocumentsPanel, xed_documents_panel, GTK_TYPE_VBOX)
-#endif
 
 enum
 {
@@ -540,11 +536,7 @@ menu_position (GtkMenu             *menu,
 
 	gdk_window_get_origin (gtk_widget_get_window (w), x, y);
 
-#if GTK_CHECK_VERSION (3, 0, 0)
 	gtk_widget_get_preferred_size (GTK_WIDGET (menu), NULL, &requisition);
-#else
-	gtk_widget_size_request (GTK_WIDGET (menu), &requisition);
-#endif
 
 	if (gtk_widget_get_direction (w) == GTK_TEXT_DIR_RTL)
 	{
@@ -758,10 +750,8 @@ xed_documents_panel_init (XedDocumentsPanel *panel)
 	panel->priv->adding_tab = FALSE;
 	panel->priv->is_reodering = FALSE;
 
-#if GTK_CHECK_VERSION (3, 0, 0)
 	gtk_orientable_set_orientation (GTK_ORIENTABLE (panel),
 	                                GTK_ORIENTATION_VERTICAL);
-#endif
 	
 	/* Create the scrolled window */
 	sw = gtk_scrolled_window_new (NULL, NULL);

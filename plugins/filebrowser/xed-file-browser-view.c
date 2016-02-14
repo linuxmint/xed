@@ -114,11 +114,7 @@ xed_file_browser_view_finalize (GObject * object)
 	XedFileBrowserView *obj = XED_FILE_BROWSER_VIEW(object);
 	
 	if (obj->priv->hand_cursor)
-#if GTK_CHECK_VERSION (3, 0, 0)
 		g_object_unref (obj->priv->hand_cursor);
-#else
-		gdk_cursor_unref (obj->priv->hand_cursor);
-#endif
 
 	if (obj->priv->hover_path)
 		gtk_tree_path_free (obj->priv->hover_path);
@@ -129,11 +125,7 @@ xed_file_browser_view_finalize (GObject * object)
 		obj->priv->expand_state = NULL;
 	}
 
-#if GTK_CHECK_VERSION (3, 0, 0)
 	g_object_unref (obj->priv->busy_cursor);
-#else
-	gdk_cursor_unref (obj->priv->busy_cursor);
-#endif
 
 	G_OBJECT_CLASS (xed_file_browser_view_parent_class)->
 	    finalize (object);
@@ -316,12 +308,7 @@ set_click_policy_property (XedFileBrowserView            *obj,
 
 	if (click_policy == XED_FILE_BROWSER_VIEW_CLICK_POLICY_SINGLE) {
 		if (obj->priv->hand_cursor == NULL)
-#if GTK_CHECK_VERSION (3, 16, 0)
-			display = gtk_widget_get_display (GTK_WIDGET (obj));
-			obj->priv->hand_cursor = gdk_cursor_new_for_display (display, GDK_HAND2);
-#else
 			obj->priv->hand_cursor = gdk_cursor_new(GDK_HAND2);
-#endif
 	} else if (click_policy == XED_FILE_BROWSER_VIEW_CLICK_POLICY_DOUBLE) {
 		if (obj->priv->hover_path != NULL) {
 			if (gtk_tree_model_get_iter (GTK_TREE_MODEL (obj->priv->model),
@@ -344,11 +331,7 @@ set_click_policy_property (XedFileBrowserView            *obj,
 		}
 
 		if (obj->priv->hand_cursor) {
-#if GTK_CHECK_VERSION (3, 0, 0)
 			g_object_unref (obj->priv->hand_cursor);
-#else
-			gdk_cursor_unref (obj->priv->hand_cursor);
-#endif
 			obj->priv->hand_cursor = NULL;
 		}
 	}
@@ -962,9 +945,6 @@ cell_data_cb (GtkTreeViewColumn * tree_column, GtkCellRenderer * cell,
 static void
 xed_file_browser_view_init (XedFileBrowserView * obj)
 {
-#if GTK_CHECK_VERSION (3, 16, 0)
-	GdkDisplay *display;
-#endif
 	obj->priv = XED_FILE_BROWSER_VIEW_GET_PRIVATE (obj);
 
 	obj->priv->column = gtk_tree_view_column_new ();
@@ -999,12 +979,7 @@ xed_file_browser_view_init (XedFileBrowserView * obj)
 						G_N_ELEMENTS (drag_source_targets),
 						GDK_ACTION_COPY);
 
-#if GTK_CHECK_VERSION (3, 16, 0)
-	display = gtk_widget_get_display (GTK_WIDGET (obj));
-	obj->priv->busy_cursor = gdk_cursor_new_for_display (display, GDK_WATCH);
-#else
 	obj->priv->busy_cursor = gdk_cursor_new (GDK_WATCH);
-#endif
 }
 
 static gboolean

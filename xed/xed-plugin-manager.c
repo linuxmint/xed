@@ -70,11 +70,7 @@ struct _XedPluginManagerPrivate
 	GtkWidget	*popup_menu;
 };
 
-#if GTK_CHECK_VERSION (3, 0, 0)
 G_DEFINE_TYPE(XedPluginManager, xed_plugin_manager, GTK_TYPE_BOX)
-#else
-G_DEFINE_TYPE(XedPluginManager, xed_plugin_manager, GTK_TYPE_VBOX)
-#endif
 
 static XedPluginInfo *plugin_manager_get_selected_plugin (XedPluginManager *pm); 
 static void plugin_manager_toggle_active (XedPluginManager *pm, GtkTreeIter *iter, GtkTreeModel *model);
@@ -794,10 +790,8 @@ xed_plugin_manager_init (XedPluginManager *pm)
 
 	pm->priv = XED_PLUGIN_MANAGER_GET_PRIVATE (pm);
 
-#if GTK_CHECK_VERSION (3, 0, 0)
 	gtk_orientable_set_orientation (GTK_ORIENTABLE (pm),
 	                                GTK_ORIENTATION_VERTICAL);
-#endif
 
 	/*
 	 * Always we create the manager, firstly we rescan the plugins directory
@@ -808,11 +802,7 @@ xed_plugin_manager_init (XedPluginManager *pm)
 
 	label = gtk_label_new_with_mnemonic (_("Active _Plugins:"));
 	gtk_label_set_justify (GTK_LABEL (label), GTK_JUSTIFY_LEFT);
-#if GTK_CHECK_VERSION (3, 16, 0)
-	gtk_label_set_xalign (GTK_LABEL (label), 0.0);
-#else
 	gtk_misc_set_alignment (GTK_MISC (label), 0.0, 0.5);
-#endif
 	
 	gtk_box_pack_start (GTK_BOX (pm), label, FALSE, TRUE, 0);
 	
@@ -830,11 +820,8 @@ xed_plugin_manager_init (XedPluginManager *pm)
 
 	gtk_label_set_mnemonic_widget (GTK_LABEL (label), pm->priv->tree);
 
-#if GTK_CHECK_VERSION (3, 0, 0)
 	hbuttonbox = gtk_button_box_new (GTK_ORIENTATION_HORIZONTAL);
-#else
-	hbuttonbox = gtk_hbutton_box_new ();
-#endif
+
 	gtk_box_pack_start (GTK_BOX (pm), hbuttonbox, FALSE, FALSE, 0);
 	gtk_button_box_set_layout (GTK_BUTTON_BOX (hbuttonbox), GTK_BUTTONBOX_END);
 	gtk_box_set_spacing (GTK_BOX (hbuttonbox), 8);

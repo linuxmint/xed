@@ -42,10 +42,6 @@
 
 #define PRINTER_DPI (72.)
 
-#if GTK_CHECK_VERSION (3, 0, 0)
-#define gtk_hbox_new(X,Y) gtk_box_new(GTK_ORIENTATION_HORIZONTAL,Y)
-#endif
-
 struct _XedPrintPreviewPrivate
 {
 	GtkPrintOperation *operation;
@@ -87,11 +83,7 @@ struct _XedPrintPreviewPrivate
 	guint cur_page;
 };
 
-#if GTK_CHECK_VERSION (3, 0, 0)
 G_DEFINE_TYPE (XedPrintPreview, xed_print_preview, GTK_TYPE_BOX)
-#else
-G_DEFINE_TYPE (XedPrintPreview, xed_print_preview, GTK_TYPE_VBOX)
-#endif
 
 static void 
 xed_print_preview_get_property (GObject    *object,
@@ -593,7 +585,7 @@ create_bar (XedPrintPreview *preview)
 	gtk_widget_show (GTK_WIDGET (i));
 	gtk_toolbar_insert (GTK_TOOLBAR (toolbar), i, -1);
 
-	status = gtk_hbox_new (FALSE, 4);
+	status = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 4);
 	priv->page_entry = gtk_entry_new ();
 	gtk_entry_set_width_chars (GTK_ENTRY (priv->page_entry), 3);
 	gtk_entry_set_max_length (GTK_ENTRY (priv->page_entry), 6);
@@ -1005,10 +997,8 @@ xed_print_preview_init (XedPrintPreview *preview)
 	priv->context = NULL;
 	priv->gtk_preview = NULL;
 
-#if GTK_CHECK_VERSION (3, 0, 0)
 	gtk_orientable_set_orientation (GTK_ORIENTABLE (preview),
 	                                GTK_ORIENTATION_VERTICAL);
-#endif
 
 	create_bar (preview);
 	create_preview_layout (preview);
@@ -1116,13 +1106,8 @@ draw_page (cairo_t           *cr,
 }
 
 static gboolean
-#if GTK_CHECK_VERSION (3, 0, 0)
 preview_draw (GtkWidget         *widget,
 		cairo_t *cr,
-#else
-preview_expose (GtkWidget         *widget,
-		GdkEventExpose    *event,
-#endif
 		XedPrintPreview *preview)
 {
 	XedPrintPreviewPrivate *priv;
@@ -1134,22 +1119,12 @@ preview_expose (GtkWidget         *widget,
 
 	bin_window = gtk_layout_get_bin_window (GTK_LAYOUT (priv->layout));
 
-#if GTK_CHECK_VERSION (3, 0, 0)
 	if (!gtk_cairo_should_draw_window (cr, bin_window))
 		return TRUE;
 
 	cairo_save (cr);
 
 	gtk_cairo_transform_to_window (cr, widget, bin_window);
-#else
-	if (event->window != bin_window)
-		return FALSE;
-
-	cairo_t *cr = gdk_cairo_create (bin_window);
-
-	gdk_cairo_rectangle (cr, &event->area);
-	cairo_clip (cr);
-#endif
 
 	/* get the first page to display */
 	pg = get_first_page_displayed (preview);
@@ -1177,11 +1152,7 @@ preview_expose (GtkWidget         *widget,
 		}
 	}
 
-#if GTK_CHECK_VERSION (3, 0, 0)
 	cairo_restore (cr);
-#else
-	cairo_destroy (cr);
-#endif
 
 	return TRUE;
 }
@@ -1237,13 +1208,8 @@ preview_ready (GtkPrintOperationPreview *gtk_preview,
 
 	/* let the default gtklayout handler clear the background */
 	g_signal_connect_after (preview->priv->layout,
-#if GTK_CHECK_VERSION (3, 0, 0)
 				"draw",
 				G_CALLBACK (preview_draw),
-#else
-				"expose-event",
-				G_CALLBACK (preview_expose),
-#endif
 				preview);
 
 	gtk_widget_queue_draw (preview->priv->layout);

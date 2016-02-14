@@ -30,13 +30,7 @@ xed_close_button_style_set (GtkWidget *button,
 {
 	gint h, w;
 
-#if GTK_CHECK_VERSION (3, 10, 0)
 	gtk_icon_size_lookup (GTK_ICON_SIZE_MENU, &w, &h);
-#else
-	gtk_icon_size_lookup_for_settings (gtk_widget_get_settings (button),
-					   GTK_ICON_SIZE_MENU, &w, &h);
-#endif
-
 	gtk_widget_set_size_request (button, w + 2, h + 2);
 
 	GTK_WIDGET_CLASS (xed_close_button_parent_class)->style_set (button, previous_style);

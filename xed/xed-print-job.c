@@ -517,11 +517,7 @@ create_compositor (XedPrintJob *job)
 	print_font_numbers = xed_prefs_manager_get_print_font_numbers ();
 	
 	job->priv->compositor = GTK_SOURCE_PRINT_COMPOSITOR (
-#if GTK_CHECK_VERSION (3, 0, 0)
 					g_object_new (GTK_SOURCE_TYPE_PRINT_COMPOSITOR,
-#else
-					g_object_new (GTK_TYPE_SOURCE_PRINT_COMPOSITOR,
-#endif
 						     "buffer", GTK_SOURCE_BUFFER (job->priv->doc),
 						     "tab-width", gtk_source_view_get_tab_width (GTK_SOURCE_VIEW (job->priv->view)),
 						     "highlight-syntax", gtk_source_buffer_get_highlight_syntax (GTK_SOURCE_BUFFER (job->priv->doc)) &&

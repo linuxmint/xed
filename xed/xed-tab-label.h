@@ -41,21 +41,13 @@ typedef struct _XedTabLabelClass	XedTabLabelClass;
 typedef struct _XedTabLabelPrivate	XedTabLabelPrivate;
 
 struct _XedTabLabel {
-#if GTK_CHECK_VERSION (3, 0, 0)
 	GtkBox parent;
-#else
-	GtkHBox parent;
-#endif
-	
+
 	XedTabLabelPrivate *priv;
 };
 
 struct _XedTabLabelClass {
-#if GTK_CHECK_VERSION (3, 0, 0)
 	GtkBoxClass parent_class;
-#else
-	GtkHBoxClass parent_class;
-#endif
 
 	void (* close_clicked)  (XedTabLabel *tab_label);
 };
