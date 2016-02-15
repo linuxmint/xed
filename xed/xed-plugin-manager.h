@@ -55,11 +55,7 @@ typedef struct _XedPluginManager XedPluginManager;
 
 struct _XedPluginManager 
 {
-#if GTK_CHECK_VERSION (3, 0, 0)
 	GtkBox vbox;
-#else
-	GtkVBox vbox;
-#endif
 
 	/*< private > */
 	XedPluginManagerPrivate *priv;
@@ -72,11 +68,7 @@ typedef struct _XedPluginManagerClass XedPluginManagerClass;
 
 struct _XedPluginManagerClass 
 {
-#if GTK_CHECK_VERSION (3, 0, 0)
 	GtkBoxClass parent_class;
-#else
-	GtkVBoxClass parent_class;
-#endif
 };
 
 /*

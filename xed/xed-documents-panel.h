@@ -57,11 +57,7 @@ typedef struct _XedDocumentsPanel XedDocumentsPanel;
 
 struct _XedDocumentsPanel 
 {
-#if GTK_CHECK_VERSION (3, 0, 0)
 	GtkBox vbox;
-#else
-	GtkVBox vbox;
-#endif
 
 	/*< private > */
 	XedDocumentsPanelPrivate *priv;
@@ -74,11 +70,7 @@ typedef struct _XedDocumentsPanelClass XedDocumentsPanelClass;
 
 struct _XedDocumentsPanelClass 
 {
-#if GTK_CHECK_VERSION (3, 0, 0)
 	GtkBoxClass parent_class;
-#else
-	GtkVBoxClass parent_class;
-#endif
 };
 
 /*

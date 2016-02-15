@@ -38,9 +38,7 @@
 
 #include <glib/gi18n.h>
 #include <gtk/gtk.h>
-#if GTK_CHECK_VERSION (3, 0, 0)
 #include <gtksourceview/gtksource.h>
-#endif
 
 #include <xed/xed-prefs-manager.h>
 

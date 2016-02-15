@@ -50,10 +50,6 @@
 #define XML_UI_FILE "xed-file-browser-widget-ui.xml"
 #define LOCATION_DATA_KEY "xed-file-browser-widget-location"
 
-#if GTK_CHECK_VERSION (3, 0, 0)
-#define gtk_vbox_new(X,Y) gtk_box_new(GTK_ORIENTATION_VERTICAL,Y)
-#endif
-
 enum 
 {
 	BOOKMARKS_ID,
@@ -240,13 +236,8 @@ static void on_action_filter_binary            (GtkAction * action,
 static void on_action_bookmark_open            (GtkAction * action,
 						XedFileBrowserWidget * obj);
 
-#if GTK_CHECK_VERSION (3, 0, 0)
 XED_PLUGIN_DEFINE_TYPE (XedFileBrowserWidget, xed_file_browser_widget,
 	                  GTK_TYPE_BOX)
-#else
-XED_PLUGIN_DEFINE_TYPE (XedFileBrowserWidget, xed_file_browser_widget,
-	                  GTK_TYPE_VBOX)
-#endif
 
 static void
 free_name_icon (gpointer data)
@@ -369,11 +360,7 @@ xed_file_browser_widget_finalize (GObject * object)
 	
 	cancel_async_operation (obj);
 
-#if GTK_CHECK_VERSION (3, 0, 0)
 	g_object_unref (obj->priv->busy_cursor);
-#else
-	gdk_cursor_unref (obj->priv->busy_cursor);
-#endif
 
 	G_OBJECT_CLASS (xed_file_browser_widget_parent_class)->finalize (object);
 }
@@ -1237,7 +1224,7 @@ create_filter (XedFileBrowserWidget * obj)
 	gtk_widget_show (expander);
 	gtk_box_pack_start (GTK_BOX (obj), expander, FALSE, FALSE, 0);
 
-	vbox = gtk_vbox_new (FALSE, 3);
+	vbox = gtk_box_new (GTK_ORIENTATION_VERTICAL, 3);
 	gtk_widget_show (vbox);
 
 	obj->priv->filter_expander = expander;
@@ -1261,9 +1248,6 @@ create_filter (XedFileBrowserWidget * obj)
 static void
 xed_file_browser_widget_init (XedFileBrowserWidget * obj)
 {
-#if GTK_CHECK_VERSION (3, 16, 0)
-	GdkDisplay *display;
-#endif
 	obj->priv = XED_FILE_BROWSER_WIDGET_GET_PRIVATE (obj);
 
 	obj->priv->bookmarks_hash = g_hash_table_new_full (g_file_hash,
@@ -1272,17 +1256,10 @@ xed_file_browser_widget_init (XedFileBrowserWidget * obj)
 			                                   free_name_icon);
 
 	gtk_box_set_spacing (GTK_BOX (obj), 3);
-#if GTK_CHECK_VERSION (3, 0, 0)
 	gtk_orientable_set_orientation (GTK_ORIENTABLE (obj),
 	                                GTK_ORIENTATION_VERTICAL);
-#endif
 	
-#if GTK_CHECK_VERSION (3, 16, 0)
-	display = gtk_widget_get_display (GTK_WIDGET (obj));
-	obj->priv->busy_cursor = gdk_cursor_new_for_display (display, GDK_WATCH);
-#else
 	obj->priv->busy_cursor = gdk_cursor_new (GDK_WATCH);
-#endif
 }
 
 /* Private */
@@ -2122,23 +2099,11 @@ set_busy (XedFileBrowserWidget *obj, gboolean busy)
 
 	if (busy)
 	{
-#if GTK_CHECK_VERSION (3, 16, 0)
-		GdkDisplay *display;
-		GdkCursor *cursor;
-
-		display = gtk_widget_get_display (GTK_WIDGET (obj));
-		cursor = gdk_cursor_new_for_display (display, GDK_WATCH);
-#else
 		GdkCursor *cursor;
 
 		cursor = gdk_cursor_new (GDK_WATCH);
-#endif
 		gdk_window_set_cursor (window, cursor);
-#if GTK_CHECK_VERSION (3, 0, 0)
 		g_object_unref (obj->priv->busy_cursor);
-#else
-		gdk_cursor_unref (cursor);
-#endif
 	}
 	else
 	{

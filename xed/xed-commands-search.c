@@ -38,9 +38,6 @@
 #include <glib/gi18n.h>
 #include <gtk/gtk.h>
 #include <gdk/gdkkeysyms.h>
-#if GTK_CHECK_VERSION (3, 0, 0)
-#define GTK_OBJECT G_OBJECT
-#endif
 
 #include "xed-commands.h"
 #include "xed-debug.h"
@@ -763,7 +760,7 @@ _xed_cmd_search_goto_line (GtkAction   *action,
 	/* goto line is builtin in XedView, just activate
 	 * the corrisponding binding.
 	 */
-	gtk_bindings_activate (GTK_OBJECT (active_view),
+	gtk_bindings_activate (G_OBJECT (active_view),
 			       GDK_KEY_i,
 			       GDK_CONTROL_MASK);
 }
@@ -787,7 +784,7 @@ _xed_cmd_search_incremental_search (GtkAction   *action,
 	/* incremental search is builtin in XedView, just activate
 	 * the corrisponding binding.
 	 */
-	gtk_bindings_activate (GTK_OBJECT (active_view),
+	gtk_bindings_activate (G_OBJECT (active_view),
 			       GDK_KEY_k,
 			       GDK_CONTROL_MASK);
 }

@@ -58,11 +58,7 @@ typedef struct _XedTaglistPluginPanel XedTaglistPluginPanel;
 
 struct _XedTaglistPluginPanel 
 {
-#if GTK_CHECK_VERSION (3, 0, 0)
 	GtkBox vbox;
-#else
-	GtkVBox vbox;
-#endif
 
 	/*< private > */
 	XedTaglistPluginPanelPrivate *priv;
@@ -75,11 +71,7 @@ typedef struct _XedTaglistPluginPanelClass XedTaglistPluginPanelClass;
 
 struct _XedTaglistPluginPanelClass 
 {
-#if GTK_CHECK_VERSION (3, 0, 0)
 	GtkBoxClass parent_class;
-#else
-	GtkVBoxClass parent_class;
-#endif
 };
 
 /*

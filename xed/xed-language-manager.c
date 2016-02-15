@@ -31,9 +31,7 @@
 
 #include <string.h>
 #include <gtk/gtk.h>
-#if GTK_CHECK_VERSION (3, 0, 0)
 #include <gtksourceview/gtksource.h>
-#endif
 #include "xed-language-manager.h"
 #include "xed-prefs-manager.h"
 #include "xed-utils.h"
@@ -79,11 +77,7 @@ xed_language_manager_list_languages_sorted (GtkSourceLanguageManager *lm,
 		GtkSourceLanguage *lang;
 
 		lang = gtk_source_language_manager_get_language (lm, *ids);
-#if GTK_CHECK_VERSION (3, 0, 0)
 		g_return_val_if_fail (GTK_SOURCE_IS_LANGUAGE (lang), NULL);
-#else
-		g_return_val_if_fail (GTK_IS_SOURCE_LANGUAGE (lang), NULL);
-#endif
 		++ids;
 
 		if (include_hidden || !gtk_source_language_get_hidden (lang))

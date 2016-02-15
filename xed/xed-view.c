@@ -56,10 +56,6 @@
 
 #define XED_VIEW_GET_PRIVATE(object)(G_TYPE_INSTANCE_GET_PRIVATE ((object), XED_TYPE_VIEW, XedViewPrivate))
 
-#if GTK_CHECK_VERSION (3, 0, 0)
-#define gtk_vbox_new(X,Y) gtk_box_new(GTK_ORIENTATION_VERTICAL,Y)
-#endif
-
 typedef enum
 {
 	GOTO_LINE,
@@ -135,13 +131,9 @@ static gboolean reset_searched_text		(XedView        *view);
 static void	hide_search_window 		(XedView        *view,
 						 gboolean          cancel);
 
-#if GTK_CHECK_VERSION (3, 0, 0)
 static gboolean	xed_view_draw		 	(GtkWidget        *widget,
 						 cairo_t          *cr);
-#else
-static gint	xed_view_expose	 	(GtkWidget        *widget,
-						 GdkEventExpose   *event);
-#endif
+
 static void 	search_highlight_updated_cb	(XedDocument    *doc,
 						 GtkTextIter      *start,
 						 GtkTextIter      *end,
@@ -151,11 +143,7 @@ static void	xed_view_delete_from_cursor 	(GtkTextView     *text_view,
 						 GtkDeleteType    type,
 						 gint             count);
 
-#if GTK_CHECK_VERSION (3, 0, 0)
 G_DEFINE_TYPE(XedView, xed_view, GTK_SOURCE_TYPE_VIEW)
-#else
-G_DEFINE_TYPE(XedView, xed_view, GTK_TYPE_SOURCE_VIEW)
-#endif
 
 /* Signals */
 enum
@@ -199,12 +187,8 @@ xed_view_class_init (XedViewClass *klass)
 	object_class->finalize = xed_view_finalize;
 
 	widget_class->focus_out_event = xed_view_focus_out;
-#if GTK_CHECK_VERSION (3, 0, 0)
 	widget_class->draw = xed_view_draw;
-#else
-	widget_class->expose_event = xed_view_expose;
-#endif
-	
+
 	/*
 	 * Override the gtk_text_view_drag_motion and drag_drop
 	 * functions to get URIs
@@ -763,43 +747,15 @@ static void
 set_entry_state (GtkWidget             *entry,
                  XedSearchEntryState  state)
 {
-#if GTK_CHECK_VERSION (3, 0 ,0)
 	GtkStyleContext *context = gtk_widget_get_style_context (GTK_WIDGET (entry));
-#endif
 
 	if (state == XED_SEARCH_ENTRY_NOT_FOUND)
 	{
-#if GTK_CHECK_VERSION (3, 0 ,0)
 		gtk_style_context_add_class (context, GTK_STYLE_CLASS_ERROR);
-#else
-		GdkColor red;
-		GdkColor white;
-
-		/* FIXME: a11y and theme */
-
-		gdk_color_parse ("#FF6666", &red);
-		gdk_color_parse ("white", &white);
-
-		gtk_widget_modify_base (entry,
-				        GTK_STATE_NORMAL,
-				        &red);
-		gtk_widget_modify_text (entry,
-				        GTK_STATE_NORMAL,
-				        &white);
-#endif
 	}
 	else /* reset */
 	{
-#if GTK_CHECK_VERSION (3, 0 ,0)
 		gtk_style_context_remove_class (context, GTK_STYLE_CLASS_ERROR);
-#else
-		gtk_widget_modify_base (entry,
-				        GTK_STATE_NORMAL,
-				        NULL);
-		gtk_widget_modify_text (entry,
-				        GTK_STATE_NORMAL,
-				        NULL);
-#endif
 	}
 }
 
@@ -982,16 +938,8 @@ hide_search_window (XedView *view, gboolean cancel)
 static gboolean
 search_entry_flush_timeout (XedView *view)
 {
-#if !GTK_CHECK_VERSION (3, 0, 0)
-	GDK_THREADS_ENTER ();
-#endif
-
   	view->priv->typeselect_flush_timeout = 0;
 	hide_search_window (view, FALSE);
-
-#if !GTK_CHECK_VERSION (3, 0, 0)
-	GDK_THREADS_LEAVE ();
-#endif
 
 	return FALSE;
 }
@@ -1205,15 +1153,7 @@ real_search_enable_popdown (gpointer data)
 {
 	XedView *view = (XedView *)data;
 
-#if !GTK_CHECK_VERSION (3, 0, 0)
-	GDK_THREADS_ENTER ();
-#endif
-
 	view->priv->disable_popdown = FALSE;
-
-#if !GTK_CHECK_VERSION (3, 0, 0)
-	GDK_THREADS_LEAVE ();
-#endif
 
 	return FALSE;
 }
@@ -1525,7 +1465,7 @@ ensure_search_window (XedView *view)
 	gtk_widget_show (frame);
 	gtk_container_add (GTK_CONTAINER (view->priv->search_window), frame);
 
-	vbox = gtk_vbox_new (FALSE, 0);
+	vbox = gtk_box_new (GTK_ORIENTATION_VERTICAL, 0);
 	gtk_widget_show (vbox);
 	gtk_container_add (GTK_CONTAINER (frame), vbox);
 	gtk_container_set_border_width (GTK_CONTAINER (vbox), 3);
@@ -1864,31 +1804,19 @@ start_interactive_goto_line (XedView *view)
 	return start_interactive_search_real (view);
 }
 
-#if GTK_CHECK_VERSION (3, 0, 0)
 static gboolean
 xed_view_draw (GtkWidget      *widget,
                  cairo_t        *cr)
-#else
-static gint
-xed_view_expose (GtkWidget      *widget,
-                   GdkEventExpose *event)
-#endif
 {
 	GtkTextView *text_view;
 	XedDocument *doc;
-#if GTK_CHECK_VERSION (3, 0, 0)
 	GdkWindow *window;
-#endif
 	
 	text_view = GTK_TEXT_VIEW (widget);
 	
 	doc = XED_DOCUMENT (gtk_text_view_get_buffer (text_view));
-#if GTK_CHECK_VERSION (3, 0, 0)
 	window = gtk_text_view_get_window (text_view, GTK_TEXT_WINDOW_TEXT);
 	if (gtk_cairo_should_draw_window (cr, window) &&
-#else
-	if ((event->window == gtk_text_view_get_window (text_view, GTK_TEXT_WINDOW_TEXT)) &&
-#endif
 	    xed_document_get_enable_search_highlighting (doc))
 	{
 		GdkRectangle visible_rect;
@@ -1907,11 +1835,7 @@ xed_view_expose (GtkWidget      *widget,
 					       &iter2);
 	}
 
-#if GTK_CHECK_VERSION (3, 0, 0)
 	return GTK_WIDGET_CLASS (xed_view_parent_class)->draw (widget, cr);
-#else
-	return (* GTK_WIDGET_CLASS (xed_view_parent_class)->expose_event)(widget, event);
-#endif
 }
 
 static GdkAtom

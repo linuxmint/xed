@@ -23,9 +23,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <gtk/gtk.h>
-#if GTK_CHECK_VERSION (3, 0, 0)
 #include <gtksourceview/gtksource.h>
-#endif
 #include <xed/xed-language-manager.h>
 #include <xed/xed-prefs-manager.h>
 #include <xed/xed-debug.h>

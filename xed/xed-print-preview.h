@@ -48,21 +48,14 @@ typedef struct _XedPrintPreviewClass   XedPrintPreviewClass;
 
 struct _XedPrintPreview
 {
-#if GTK_CHECK_VERSION (3, 0, 0)
 	GtkBox parent;
-#else
-	GtkVBox parent;
-#endif
+
 	XedPrintPreviewPrivate *priv;
 };
 
 struct _XedPrintPreviewClass
 {
-#if GTK_CHECK_VERSION (3, 0, 0)
 	GtkBoxClass parent_class;
-#else
-	GtkVBoxClass parent_class;
-#endif
 
 	void (* close)		(XedPrintPreview          *preview);
 };
