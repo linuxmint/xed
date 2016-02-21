@@ -704,6 +704,7 @@ build_multiple_docs_dialog (XedCloseConfirmationDialog *dlg)
 					GTK_POLICY_AUTOMATIC);
 	gtk_scrolled_window_set_shadow_type (GTK_SCROLLED_WINDOW (scrolledwindow), 
 					     GTK_SHADOW_IN);
+	gtk_scrolled_window_set_min_content_height (GTK_SCROLLED_WINDOW (scrolledwindow), 60);
 
 	treeview = create_treeview (priv);
 	gtk_container_add (GTK_CONTAINER (scrolledwindow), treeview);
@@ -752,3 +753,4 @@ xed_close_confirmation_dialog_get_unsaved_documents (XedCloseConfirmationDialog 
 
 	return dlg->priv->unsaved_documents;
 }
+
