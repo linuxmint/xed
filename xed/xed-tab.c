@@ -1515,8 +1515,6 @@ xed_tab_init (XedTab *tab)
 
 	gtk_box_pack_end (GTK_BOX (tab), sw, TRUE, TRUE, 0);
 	gtk_container_add (GTK_CONTAINER (sw), tab->priv->view);
-	gtk_scrolled_window_set_shadow_type (GTK_SCROLLED_WINDOW (sw),
-					     GTK_SHADOW_IN);	
 	gtk_widget_show (sw);
 
 	g_signal_connect (doc,
