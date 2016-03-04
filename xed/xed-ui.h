@@ -91,7 +91,7 @@ static const GtkActionEntry xed_menu_entries[] =
 	/* Edit menu */
 	{ "EditUndo", GTK_STOCK_UNDO, NULL, "<control>Z",
 	  N_("Undo the last action"), G_CALLBACK (_xed_cmd_edit_undo) },
-	{ "EditRedo", GTK_STOCK_REDO, NULL, "<shift><control>Z",
+	{ "EditRedo", GTK_STOCK_REDO, NULL, "<control>Y",
 	  N_("Redo the last undone action"), G_CALLBACK (_xed_cmd_edit_redo) },
 	{ "EditCut", GTK_STOCK_CUT, NULL, "<control>X",
 	  N_("Cut the selection"), G_CALLBACK (_xed_cmd_edit_cut) },
