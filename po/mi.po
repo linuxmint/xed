@@ -1,313 +1,113 @@
-# Māori translation of xed.
+# Māori translation of xedit.
 # Copyright (C) 2004 Free Software Foundation, Inc.
-# This file is distributed under the same license as the xed package.
+# This file is distributed under the same license as the xedit package.
 # John C Barstow <jbowtie@amathaine.com>, 2004.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: xed 2.3.3\n"
+"Project-Id-Version: xedit 2.3.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-09-26 17:36+0200\n"
-"PO-Revision-Date: 2004-01-27 08:00+1300\n"
-"Last-Translator: John C Barstow <jbowtie@amathaine.com>\n"
+"POT-Creation-Date: 2016-01-27 11:07+0000\n"
+"PO-Revision-Date: 2016-01-26 17:31+0000\n"
+"Last-Translator: John C Barstow <jbowtie@gmail.com>\n"
 "Language-Team: MATE Māori Team <maori@nzlinux.org.nz>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Launchpad-Export-Date: 2016-04-27 13:24+0000\n"
+"X-Generator: Launchpad (build 17995)\n"
 
-#: ../data/MATE_Xed.server.in.in.h:1
-msgid "Xed View"
+#: ../data/org.x.editor.gschema.xml.in.h:1
+msgid "Use Default Font"
 msgstr ""
 
-#: ../data/MATE_Xed.server.in.in.h:2
-msgid "Xed View."
+#: ../data/org.x.editor.gschema.xml.in.h:2
+msgid ""
+"Whether to use the system's default fixed width font for editing text "
+"instead of a font specific to xed. If this option is turned off, then the "
+"font named in the \"Editor Font\" option will be used instead of the system "
+"font."
 msgstr ""
 
-#: ../data/MATE_Xed.server.in.in.h:3
-msgid "Xed viewer factory"
+#: ../data/org.x.editor.gschema.xml.in.h:3
+msgctxt "editor-font"
+msgid "'Monospace 12'"
 msgstr ""
 
-#: ../data/MATE_Xed.server.in.in.h:4
-#: ../plugins/taglist/HTML.tags.xml.in.h:214
-msgid "Source"
+#: ../data/org.x.editor.gschema.xml.in.h:4
+msgid "Editor Font"
 msgstr ""
 
-#: ../data/MATE_Xed.server.in.in.h:5
-msgid "xed application"
-msgstr ""
-
-#: ../data/MATE_Xed.server.in.in.h:6
-msgid "xed automation factory"
-msgstr ""
-
-#: ../data/xed.desktop.in.in.h:1
-msgid "Edit text files"
-msgstr ""
-
-#: ../data/xed.desktop.in.in.h:2 ../xed/xed2.c:365
-msgid "Text Editor"
-msgstr ""
-
-#: ../data/xed.schemas.in.h:1
+#: ../data/org.x.editor.gschema.xml.in.h:5
 msgid ""
 "A custom font that will be used for the editing area. This will only take "
 "effect if the \"Use Default Font\" option is turned off."
 msgstr ""
 
-#: ../data/xed.schemas.in.h:2
-msgid "Active plugins"
+#: ../data/org.x.editor.gschema.xml.in.h:6
+msgid "Style Scheme"
 msgstr ""
 
-#: ../data/xed.schemas.in.h:3
-msgid "Auto Detected Encodings"
+#: ../data/org.x.editor.gschema.xml.in.h:7
+msgid "The ID of a GtkSourceView Style Scheme used to color the text."
 msgstr ""
 
-#: ../data/xed.schemas.in.h:4
-#, fuzzy
-msgid "Auto Save"
-msgstr "Pupuri"
-
-#: ../data/xed.schemas.in.h:5
-msgid "Auto Save Interval"
-msgstr ""
-
-#: ../data/xed.schemas.in.h:6
-msgid "Auto indent"
-msgstr ""
-
-#: ../data/xed.schemas.in.h:7
-msgid "Background Color"
-msgstr ""
-
-#: ../data/xed.schemas.in.h:8
-msgid ""
-"Background color for selected text in the editing area. This will only take "
-"effect if the \"Use Default Colors\" option is turned off."
-msgstr ""
-
-#: ../data/xed.schemas.in.h:9
-msgid ""
-"Background color for unselected text in the editing area. This will only "
-"take effect if the \"Use Default Colors\" option is turned off."
-msgstr ""
-
-#: ../data/xed.schemas.in.h:10
-msgid "Backup Copy Extension"
-msgstr ""
-
-#: ../data/xed.schemas.in.h:11
-msgid "Body Font for Printing"
-msgstr ""
-
-#: ../data/xed.schemas.in.h:12
+#: ../data/org.x.editor.gschema.xml.in.h:8
 msgid "Create Backup Copies"
 msgstr ""
 
-#: ../data/xed.schemas.in.h:13
-msgid "Display Line Numbers"
-msgstr ""
-
-#: ../data/xed.schemas.in.h:14
-msgid "Display Right Margin"
-msgstr ""
-
-#: ../data/xed.schemas.in.h:15
-msgid "Editor Font"
-msgstr ""
-
-#: ../data/xed.schemas.in.h:16
-msgid "Enable Syntax Highlighting"
-msgstr ""
-
-#: ../data/xed.schemas.in.h:17
-msgid "Encodings shown in menu"
-msgstr ""
-
-#: ../data/xed.schemas.in.h:18
+#: ../data/org.x.editor.gschema.xml.in.h:9
 msgid ""
-"Extension or suffix to use for backup file names. This will only take effect "
-"if the \"Create Backup Copies\" option is turned on."
+"Whether xed should create backup copies for the files it saves. You can set "
+"the backup file extension with the \"Backup Copy Extension\" option."
 msgstr ""
 
-#: ../data/xed.schemas.in.h:19
+#: ../data/org.x.editor.gschema.xml.in.h:10
+msgid "Autosave"
+msgstr ""
+
+#: ../data/org.x.editor.gschema.xml.in.h:11
 msgid ""
-"Foreground color for selected text in the editing area. This will only take "
-"effect if the \"Use Default Colors\" option is turned off."
+"Whether xed should automatically save modified files after a time interval. "
+"You can set the time interval with the \"Autosave Interval\" option."
 msgstr ""
 
-#: ../data/xed.schemas.in.h:20
+#: ../data/org.x.editor.gschema.xml.in.h:12
+msgid "Autosave Interval"
+msgstr ""
+
+#: ../data/org.x.editor.gschema.xml.in.h:13
 msgid ""
-"Foreground color for the unselected text in the editing area. This will only "
-"take effect if the \"Use Default Colors\" option is turned off."
+"Number of minutes after which xed will automatically save modified files. "
+"This will only take effect if the \"Autosave\" option is turned on."
 msgstr ""
 
-#: ../data/xed.schemas.in.h:21
-msgid "Header Font for Printing"
+#: ../data/org.x.editor.gschema.xml.in.h:14
+msgid "Writable VFS schemes"
 msgstr ""
 
-#: ../data/xed.schemas.in.h:22
-msgid "Highlight Current Line"
-msgstr ""
-
-#: ../data/xed.schemas.in.h:23
-msgid "Highlight Matching Bracket"
-msgstr ""
-
-#: ../data/xed.schemas.in.h:24
+#: ../data/org.x.editor.gschema.xml.in.h:15
 msgid ""
-"If this value is 0, then no line numbers will be inserted when printing a "
-"document. Otherwise, xed will print line numbers every such number of "
-"lines."
+"List of VFS schemes xed supports in write mode. The 'file' scheme is "
+"writable by default."
 msgstr ""
 
-#: ../data/xed.schemas.in.h:25
-#, fuzzy
-msgid "Insert spaces"
-msgstr "_Kuhu"
-
-#: ../data/xed.schemas.in.h:26
-msgid "Line Number Font for Printing"
+#: ../data/org.x.editor.gschema.xml.in.h:16
+msgid "Maximum Number of Undo Actions"
 msgstr ""
 
-#: ../data/xed.schemas.in.h:27
+#: ../data/org.x.editor.gschema.xml.in.h:17
+msgid ""
+"Maximum number of actions that xed will be able to undo or redo. Use \"-1\" "
+"for unlimited number of actions."
+msgstr ""
+
+#: ../data/org.x.editor.gschema.xml.in.h:18
 msgid "Line Wrapping Mode"
 msgstr ""
 
-#: ../data/xed.schemas.in.h:28
-msgid ""
-"List of active plugins. It contains the \"Location\" of the active plugins. "
-"See the .xed-plugin file for obtaining the \"Location\" of a given plugin."
-msgstr ""
-
-#: ../data/xed.schemas.in.h:29
-msgid ""
-"List of encodings shown in Character Coding menu in open/save file selector. "
-"Only recognized encodings are used."
-msgstr ""
-
-#: ../data/xed.schemas.in.h:30
-msgid "Max Number of Undo Actions"
-msgstr ""
-
-#: ../data/xed.schemas.in.h:31
-msgid "Maximum Recent Files"
-msgstr ""
-
-#: ../data/xed.schemas.in.h:32
-msgid ""
-"Maximum number of actions that xed will be able to undo or redo. Use \"-1"
-"\" for unlimited number of actions."
-msgstr ""
-
-#: ../data/xed.schemas.in.h:33
-msgid ""
-"Maximum number of actions that xed will be able to undo or redo. Use \"-1"
-"\" for unlimited number of actions. Deprecated since 2.12.0"
-msgstr ""
-
-#. Translators: This is the Editor Font.
-#. This is a Pango font
-#: ../data/xed.schemas.in.h:36
-msgid "Monospace 12"
-msgstr ""
-
-#. Translators: This is the Body font for printing.
-#. This is a Pango font.
-#: ../data/xed.schemas.in.h:39
-#, fuzzy
-msgid "Monospace 9"
-msgstr "Sans 12"
-
-#. Translators: This is the Body font for printing.
-#. This is a mate-print font name and is replaced by
-#. print_font_body_pango.
-#: ../data/xed.schemas.in.h:43
-#, fuzzy
-msgid "Monospace Regular 9"
-msgstr "Sans 12"
-
-#: ../data/xed.schemas.in.h:44
-msgid ""
-"Number of minutes after which xed will automatically save modified files. "
-"This will only take effect if the \"Auto Save\" option is turned on."
-msgstr ""
-
-#: ../data/xed.schemas.in.h:45
-#, fuzzy
-msgid "Print Header"
-msgstr "Tiro tānga"
-
-#: ../data/xed.schemas.in.h:46
-msgid "Print Line Numbers"
-msgstr ""
-
-#: ../data/xed.schemas.in.h:47
-msgid "Print Syntax Highlighting"
-msgstr ""
-
-#: ../data/xed.schemas.in.h:48
-msgid "Printing Line Wrapping Mode"
-msgstr ""
-
-#: ../data/xed.schemas.in.h:49
-msgid "Right Margin Position"
-msgstr ""
-
-#. Translators: This is the Header font for printing.
-#. This is a Pango font.
-#: ../data/xed.schemas.in.h:52
-#, fuzzy
-msgid "Sans 11"
-msgstr "Sans 12"
-
-#. Translators: This is the Line Number font for printing.
-#. This is a Pango font.
-#: ../data/xed.schemas.in.h:55
-#, fuzzy
-msgid "Sans 8"
-msgstr "Sans 12"
-
-#. Translators: This is the Header font for printing.
-#. This is a mate-print font name and replaced by
-#. print_font_header_pango.
-#: ../data/xed.schemas.in.h:59
-#, fuzzy
-msgid "Sans Regular 11"
-msgstr "Sans 12"
-
-#. Translators: This is the Line Number font for printing.
-#. This is a mate-print font name and replaced by
-#. print_font_numbers_pango.
-#: ../data/xed.schemas.in.h:63
-#, fuzzy
-msgid "Sans Regular 8"
-msgstr "Sans 12"
-
-#: ../data/xed.schemas.in.h:64
-msgid "Selected Text Color"
-msgstr ""
-
-#: ../data/xed.schemas.in.h:65
-msgid "Selection Color"
-msgstr ""
-
-#: ../data/xed.schemas.in.h:66
-msgid ""
-"Sorted list of encodings used by xed for auto-detecting the encoding of a "
-"file. \"CURRENT\" is the current locale encoding. Only recognized encodings "
-"are used."
-msgstr ""
-
-#: ../data/xed.schemas.in.h:67
-msgid ""
-"Specifies how to wrap long lines for printing. Use \"GTK_WRAP_NONE\" for no "
-"wrapping, \"GTK_WRAP_WORD\" for wrapping at word boundaries, and "
-"\"GTK_WRAP_CHAR\" for wrapping at individual character boundaries. Note that "
-"the values are case-sensitive, so make sure they appear exactly as mentioned "
-"here."
-msgstr ""
-
-#: ../data/xed.schemas.in.h:68
+#: ../data/org.x.editor.gschema.xml.in.h:19
 msgid ""
 "Specifies how to wrap long lines in the editing area. Use \"GTK_WRAP_NONE\" "
 "for no wrapping, \"GTK_WRAP_WORD\" for wrapping at word boundaries, and "
@@ -316,203 +116,353 @@ msgid ""
 "here."
 msgstr ""
 
-#: ../data/xed.schemas.in.h:69
-msgid ""
-"Specifies the font to use for a document's body when printing documents."
+#: ../data/org.x.editor.gschema.xml.in.h:20
+msgid "Tab Size"
 msgstr ""
 
-#: ../data/xed.schemas.in.h:70
-msgid ""
-"Specifies the font to use for a document's body when printing documents. "
-"This is a mate-print font name and replaced by print_font_body_pango."
-msgstr ""
-
-#: ../data/xed.schemas.in.h:71
-msgid ""
-"Specifies the font to use for line numbers when printing. This will only "
-"take effect if the \"Print Line Numbers\" option is non-zero."
-msgstr ""
-
-#: ../data/xed.schemas.in.h:72
-msgid ""
-"Specifies the font to use for line numbers when printing. This will only "
-"take effect if the \"Print Line Numbers\" option is non-zero. This is a "
-"mate-print font name and replaced by print_font_numbers_pango."
-msgstr ""
-
-#: ../data/xed.schemas.in.h:73
-msgid ""
-"Specifies the font to use for page headers when printing a document. This "
-"will only take effect if the \"Print Header\" option is turned on."
-msgstr ""
-
-#: ../data/xed.schemas.in.h:74
-msgid ""
-"Specifies the font to use for page headers when printing a document. This "
-"will only take effect if the \"Print Header\" option is turned on. This is a "
-"mate-print font name and replaced by print_font_header_pango."
-msgstr ""
-
-#: ../data/xed.schemas.in.h:75
-msgid ""
-"Specifies the maximum number of recently opened files that will be displayed "
-"in the \"Recent Files\" submenu."
-msgstr ""
-
-#: ../data/xed.schemas.in.h:76
+#: ../data/org.x.editor.gschema.xml.in.h:21
 msgid ""
 "Specifies the number of spaces that should be displayed instead of Tab "
 "characters."
 msgstr ""
 
-#: ../data/xed.schemas.in.h:77
+#: ../data/org.x.editor.gschema.xml.in.h:22
+msgid "Insert spaces"
+msgstr ""
+
+#: ../data/org.x.editor.gschema.xml.in.h:23
+msgid "Whether xed should insert spaces instead of tabs."
+msgstr ""
+
+#: ../data/org.x.editor.gschema.xml.in.h:24
+msgid "Automatic indent"
+msgstr ""
+
+#: ../data/org.x.editor.gschema.xml.in.h:25
+msgid "Whether xed should enable automatic indentation."
+msgstr ""
+
+#: ../data/org.x.editor.gschema.xml.in.h:26
+msgid "Display Line Numbers"
+msgstr ""
+
+#: ../data/org.x.editor.gschema.xml.in.h:27
+msgid "Whether xed should display line numbers in the editing area."
+msgstr ""
+
+#: ../data/org.x.editor.gschema.xml.in.h:28
+msgid "Highlight Current Line"
+msgstr ""
+
+#: ../data/org.x.editor.gschema.xml.in.h:29
+msgid "Whether xed should highlight the current line."
+msgstr ""
+
+#: ../data/org.x.editor.gschema.xml.in.h:30
+msgid "Highlight Matching Bracket"
+msgstr ""
+
+#: ../data/org.x.editor.gschema.xml.in.h:31
+msgid "Whether xed should highlight the bracket matching the selected one."
+msgstr ""
+
+#: ../data/org.x.editor.gschema.xml.in.h:32
+msgid "Display Right Margin"
+msgstr ""
+
+#: ../data/org.x.editor.gschema.xml.in.h:33
+msgid "Whether xed should display the right margin in the editing area."
+msgstr ""
+
+#: ../data/org.x.editor.gschema.xml.in.h:34
+msgid "Right Margin Position"
+msgstr ""
+
+#: ../data/org.x.editor.gschema.xml.in.h:35
 msgid "Specifies the position of the right margin."
 msgstr ""
 
-#: ../data/xed.schemas.in.h:78
-msgid "Status Bar is Visible"
+#: ../data/org.x.editor.gschema.xml.in.h:36
+msgid "Smart Home End"
 msgstr ""
 
-#: ../data/xed.schemas.in.h:79
+#: ../data/org.x.editor.gschema.xml.in.h:37
 msgid ""
-"Style for the toolbar buttons. Possible values are \"XED_TOOLBAR_SYSTEM\" "
-"to use the system's default style, \"XED_TOOLBAR_ICONS\" to display icons "
-"only, \"XED_TOOLBAR_ICONS_AND_TEXT\" to display both icons and text, and "
+"Specifies how the cursor moves when the HOME and END keys are pressed. Use "
+"\"DISABLED\" to always move at the start/end of the line, \"AFTER\" to move "
+"to the start/end of the line the first time the keys are pressed and to the "
+"start/end of the text ignoring whitespaces the second time the keys are "
+"pressed, \"BEFORE\" to move to the start/end of the text before moving to "
+"the start/end of the line and \"ALWAYS\" to always move to the start/end of "
+"the text instead of the start/end of the line."
+msgstr ""
+
+#: ../data/org.x.editor.gschema.xml.in.h:38
+msgid "Restore Previous Cursor Position"
+msgstr ""
+
+#: ../data/org.x.editor.gschema.xml.in.h:39
+msgid ""
+"Whether xed should restore the previous cursor position when a file is "
+"loaded."
+msgstr ""
+
+#: ../data/org.x.editor.gschema.xml.in.h:40
+msgid "Enable Search Highlighting"
+msgstr ""
+
+#: ../data/org.x.editor.gschema.xml.in.h:41
+msgid ""
+"Whether xed should highlight all the occurrences of the searched text."
+msgstr ""
+
+#: ../data/org.x.editor.gschema.xml.in.h:42
+msgid "Enable Syntax Highlighting"
+msgstr ""
+
+#: ../data/org.x.editor.gschema.xml.in.h:43
+msgid "Whether xed should enable syntax highlighting."
+msgstr ""
+
+#: ../data/org.x.editor.gschema.xml.in.h:44
+msgid "Toolbar is Visible"
+msgstr ""
+
+#: ../data/org.x.editor.gschema.xml.in.h:45
+msgid "Whether the toolbar should be visible in editing windows."
+msgstr ""
+
+#: ../data/org.x.editor.gschema.xml.in.h:46
+msgid "Toolbar Buttons Style"
+msgstr ""
+
+#: ../data/org.x.editor.gschema.xml.in.h:47
+msgid ""
+"Style for the toolbar buttons. Possible values are \"XED_TOOLBAR_SYSTEM\" to "
+"use the system's default style, \"XED_TOOLBAR_ICONS\" to display icons only, "
+"\"XED_TOOLBAR_ICONS_AND_TEXT\" to display both icons and text, and "
 "\"XED_TOOLBAR_ICONS_BOTH_HORIZ\" to display prioritized text beside icons. "
 "Note that the values are case-sensitive, so make sure they appear exactly as "
 "mentioned here."
 msgstr ""
 
-#: ../data/xed.schemas.in.h:80
-msgid "Tab Size"
+#: ../data/org.x.editor.gschema.xml.in.h:48
+msgid "Status Bar is Visible"
 msgstr ""
 
-#: ../data/xed.schemas.in.h:81
-#, fuzzy
-msgid "Text Color"
-msgstr "_Kano"
-
-#: ../data/xed.schemas.in.h:82
-msgid "Toolbar Buttons Style"
-msgstr ""
-
-#: ../data/xed.schemas.in.h:83
-msgid "Toolbar is Visible"
-msgstr ""
-
-#: ../data/xed.schemas.in.h:84
-msgid "Undo Actions Limit (DEPRECATED)"
-msgstr ""
-
-#: ../data/xed.schemas.in.h:85
-msgid "Use Default Colors"
-msgstr ""
-
-#: ../data/xed.schemas.in.h:86
-msgid "Use Default Font"
-msgstr ""
-
-#: ../data/xed.schemas.in.h:87
-msgid ""
-"Whether xed should automatically save modified files after a time "
-"interval. You can set the time interval with the \"Auto Save Interval\" "
-"option."
-msgstr ""
-
-#: ../data/xed.schemas.in.h:88
-msgid ""
-"Whether xed should create backup copies for the files it saves. You can "
-"set the backup file extension with the \"Backup Copy Extension\" option."
-msgstr ""
-
-#: ../data/xed.schemas.in.h:89
-msgid "Whether xed should display line numbers in the editing area."
-msgstr ""
-
-#: ../data/xed.schemas.in.h:90
-msgid "Whether xed should display the right margin in the editing area."
-msgstr ""
-
-#: ../data/xed.schemas.in.h:91
-msgid "Whether xed should enable auto indentation."
-msgstr ""
-
-#: ../data/xed.schemas.in.h:92
-msgid "Whether xed should enable syntax highlighting."
-msgstr ""
-
-#: ../data/xed.schemas.in.h:93
-msgid "Whether xed should highlight matching bracket."
-msgstr ""
-
-#: ../data/xed.schemas.in.h:94
-msgid "Whether xed should highlight the current line."
-msgstr ""
-
-#: ../data/xed.schemas.in.h:95
-msgid "Whether xed should include a document header when printing documents."
-msgstr ""
-
-#: ../data/xed.schemas.in.h:96
-msgid "Whether xed should insert spaces instead of tabs."
-msgstr ""
-
-#: ../data/xed.schemas.in.h:97
-msgid "Whether xed should print syntax highlighting when printing documents."
-msgstr ""
-
-#: ../data/xed.schemas.in.h:98
+#: ../data/org.x.editor.gschema.xml.in.h:49
 msgid ""
 "Whether the status bar at the bottom of editing windows should be visible."
 msgstr ""
 
-#: ../data/xed.schemas.in.h:99
-msgid "Whether the toolbar should be visible in editing windows."
+#: ../data/org.x.editor.gschema.xml.in.h:50
+msgid "Side Pane is Visible"
 msgstr ""
 
-#: ../data/xed.schemas.in.h:100
+#: ../data/org.x.editor.gschema.xml.in.h:51
 msgid ""
-"Whether to use the system's default colors for the editing area. If this "
-"option is turned off, then the colors of the editing area will be those "
-"specified in the \"Background Color\", \"Text Color\", \"Selected Text Color"
-"\", and \"Selection Color\" options."
+"Whether the side pane at the left of editing windows should be visible."
 msgstr ""
 
-#: ../data/xed.schemas.in.h:101
+#: ../data/org.x.editor.gschema.xml.in.h:52
+msgid "Bottom Panel is Visible"
+msgstr ""
+
+#: ../data/org.x.editor.gschema.xml.in.h:53
 msgid ""
-"Whether to use the system's default font for editing text instead of a font "
-"specific to xed. If this option is turned off, then the font named in the "
-"\"Editor Font\" option will be used instead of the system font."
+"Whether the bottom panel at the bottom of editing windows should be visible."
 msgstr ""
 
-#. Translators: This is the list of encodings shown by default in the Character Coding
-#. menu in open/save file selector. Only recognized encodings are displayed.
-#: ../data/xed.schemas.in.h:104
-msgid "[ISO-8859-15]"
+#: ../data/org.x.editor.gschema.xml.in.h:54
+msgid "Maximum Recent Files"
 msgstr ""
 
-#. Translators: This is the sorted list of encodings used by xed
-#. for auto-detecting the encoding of a file. "CURRENT" is the current locale encoding.
-#. Only recognized encodings are used.
-#: ../data/xed.schemas.in.h:108
-msgid "[UTF-8,CURRENT,ISO-8859-15]"
+#: ../data/org.x.editor.gschema.xml.in.h:55
+msgid ""
+"Specifies the maximum number of recently opened files that will be displayed "
+"in the \"Recent Files\" submenu."
 msgstr ""
 
-#: ../xed/matecomponent-mdi.c:548 ../xed/matecomponent-mdi.c:2099
-#, c-format
-msgid "Activate %s"
+#: ../data/org.x.editor.gschema.xml.in.h:56
+msgid "Print Syntax Highlighting"
 msgstr ""
 
-#: ../xed/dialogs/xed-close-confirmation-dialog.c:142
+#: ../data/org.x.editor.gschema.xml.in.h:57
+msgid "Whether xed should print syntax highlighting when printing documents."
+msgstr ""
+
+#: ../data/org.x.editor.gschema.xml.in.h:58
+msgid "Print Header"
+msgstr ""
+
+#: ../data/org.x.editor.gschema.xml.in.h:59
+msgid "Whether xed should include a document header when printing documents."
+msgstr ""
+
+#: ../data/org.x.editor.gschema.xml.in.h:60
+msgid "Printing Line Wrapping Mode"
+msgstr ""
+
+#: ../data/org.x.editor.gschema.xml.in.h:61
+msgid ""
+"Specifies how to wrap long lines for printing. Use \"GTK_WRAP_NONE\" for no "
+"wrapping, \"GTK_WRAP_WORD\" for wrapping at word boundaries, and "
+"\"GTK_WRAP_CHAR\" for wrapping at individual character boundaries. Note that "
+"the values are case-sensitive, so make sure they appear exactly as mentioned "
+"here."
+msgstr ""
+
+#: ../data/org.x.editor.gschema.xml.in.h:62
+msgid "Print Line Numbers"
+msgstr ""
+
+#: ../data/org.x.editor.gschema.xml.in.h:63
+msgid ""
+"If this value is 0, then no line numbers will be inserted when printing a "
+"document. Otherwise, xed will print line numbers every such number of lines."
+msgstr ""
+
+#: ../data/org.x.editor.gschema.xml.in.h:64
+msgctxt "print-font-body-pango"
+msgid "'Monospace 9'"
+msgstr ""
+
+#: ../data/org.x.editor.gschema.xml.in.h:65
+msgid "Body Font for Printing"
+msgstr ""
+
+#: ../data/org.x.editor.gschema.xml.in.h:66
+msgid ""
+"Specifies the font to use for a document's body when printing documents."
+msgstr ""
+
+#: ../data/org.x.editor.gschema.xml.in.h:67
+msgctxt "print-font-header-pango"
+msgid "'Sans 11'"
+msgstr ""
+
+#: ../data/org.x.editor.gschema.xml.in.h:68
+msgid "Header Font for Printing"
+msgstr ""
+
+#: ../data/org.x.editor.gschema.xml.in.h:69
+msgid ""
+"Specifies the font to use for page headers when printing a document. This "
+"will only take effect if the \"Print Header\" option is turned on."
+msgstr ""
+
+#: ../data/org.x.editor.gschema.xml.in.h:70
+msgctxt "print-font-numbers-pango"
+msgid "'Sans 8'"
+msgstr ""
+
+#: ../data/org.x.editor.gschema.xml.in.h:71
+msgid "Line Number Font for Printing"
+msgstr ""
+
+#: ../data/org.x.editor.gschema.xml.in.h:72
+msgid ""
+"Specifies the font to use for line numbers when printing. This will only "
+"take effect if the \"Print Line Numbers\" option is non-zero."
+msgstr ""
+
+#: ../data/org.x.editor.gschema.xml.in.h:73
+msgctxt "auto-detected"
+msgid "[ 'UTF-8', 'CURRENT', 'ISO-8859-15', 'UTF-16' ]"
+msgstr ""
+
+#: ../data/org.x.editor.gschema.xml.in.h:74
+msgid "Automatically Detected Encodings"
+msgstr ""
+
+#: ../data/org.x.editor.gschema.xml.in.h:75
+msgid ""
+"Sorted list of encodings used by xed for automatically detecting the "
+"encoding of a file. \"CURRENT\" represents the current locale encoding. Only "
+"recognized encodings are used."
+msgstr ""
+
+#: ../data/org.x.editor.gschema.xml.in.h:76
+msgctxt "shown-in-menu"
+msgid "[ 'ISO-8859-15' ]"
+msgstr ""
+
+#: ../data/org.x.editor.gschema.xml.in.h:77
+msgid "Encodings shown in menu"
+msgstr ""
+
+#: ../data/org.x.editor.gschema.xml.in.h:78
+msgid ""
+"List of encodings shown in the Character Encoding menu in open/save file "
+"selector. Only recognized encodings are used."
+msgstr ""
+
+#: ../data/org.x.editor.gschema.xml.in.h:79
+msgid "History for \"search for\" entries"
+msgstr ""
+
+#: ../data/org.x.editor.gschema.xml.in.h:80
+msgid "List of entries in \"search for\" textbox."
+msgstr ""
+
+#: ../data/org.x.editor.gschema.xml.in.h:81
+msgid "History for \"replace with\" entries"
+msgstr ""
+
+#: ../data/org.x.editor.gschema.xml.in.h:82
+msgid "List of entries in \"replace with\" textbox."
+msgstr ""
+
+#: ../data/org.x.editor.gschema.xml.in.h:83
+msgid "Active plugins"
+msgstr ""
+
+#: ../data/org.x.editor.gschema.xml.in.h:84
+msgid ""
+"List of active plugins. It contains the \"Location\" of the active plugins. "
+"See the .xed-plugin file for obtaining the \"Location\" of a given plugin."
+msgstr ""
+
+#: ../data/xed.appdata.xml.in.h:1
+msgid "A Text Editor"
+msgstr ""
+
+#: ../data/xed.appdata.xml.in.h:2
+msgid ""
+"<p> Xed is a small, but powerful text editor. It has most standard text "
+"editor functions and fully supports international text in Unicode. Advanced "
+"features include syntax highlighting and automatic indentation of source "
+"code, printing and editing of multiple documents in one window. </p> <p> Xed "
+"is extensible through a plugin system, which currently includes support for "
+"spell checking, comparing files, viewing CVS ChangeLogs, and adjusting "
+"indentation levels. </p>"
+msgstr ""
+
+#: ../data/xed.desktop.in.in.h:1 ../xed/xed-print-job.c:767
+msgid "Text Editor"
+msgstr ""
+
+#: ../data/xed.desktop.in.in.h:2
+msgid "Edit text files"
+msgstr ""
+
+#: ../xed/dialogs/xed-close-confirmation-dialog.c:144
+msgid "Log Out _without Saving"
+msgstr ""
+
+#: ../xed/dialogs/xed-close-confirmation-dialog.c:148
+msgid "_Cancel Logout"
+msgstr ""
+
+#: ../xed/dialogs/xed-close-confirmation-dialog.c:155
 msgid "Close _without Saving"
 msgstr ""
 
-#: ../xed/dialogs/xed-close-confirmation-dialog.c:152
-#, fuzzy
+#: ../xed/dialogs/xed-close-confirmation-dialog.c:204
 msgid "Question"
-msgstr "Pātai"
+msgstr ""
 
-#: ../xed/dialogs/xed-close-confirmation-dialog.c:367
+#: ../xed/dialogs/xed-close-confirmation-dialog.c:404
 #, c-format
 msgid ""
 "If you don't save, changes from the last %ld second will be permanently lost."
@@ -522,12 +472,12 @@ msgid_plural ""
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../xed/dialogs/xed-close-confirmation-dialog.c:376
+#: ../xed/dialogs/xed-close-confirmation-dialog.c:413
 msgid ""
 "If you don't save, changes from the last minute will be permanently lost."
 msgstr ""
 
-#: ../xed/dialogs/xed-close-confirmation-dialog.c:382
+#: ../xed/dialogs/xed-close-confirmation-dialog.c:419
 #, c-format
 msgid ""
 "If you don't save, changes from the last minute and %ld second will be "
@@ -538,7 +488,7 @@ msgid_plural ""
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../xed/dialogs/xed-close-confirmation-dialog.c:392
+#: ../xed/dialogs/xed-close-confirmation-dialog.c:429
 #, c-format
 msgid ""
 "If you don't save, changes from the last %ld minute will be permanently lost."
@@ -548,16 +498,12 @@ msgid_plural ""
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../xed/dialogs/xed-close-confirmation-dialog.c:407
-#: ../xed/dialogs/xed-close-confirmation-dialog.c:428
-#, c-format
-msgid "If you don't save, changes from the last hour will be permanently lost."
-msgid_plural ""
-"If you don't save, changes from the last %d hours will be permanently lost."
-msgstr[0] ""
-msgstr[1] ""
+#: ../xed/dialogs/xed-close-confirmation-dialog.c:444
+msgid ""
+"If you don't save, changes from the last hour will be permanently lost."
+msgstr ""
 
-#: ../xed/dialogs/xed-close-confirmation-dialog.c:413
+#: ../xed/dialogs/xed-close-confirmation-dialog.c:450
 #, c-format
 msgid ""
 "If you don't save, changes from the last hour and %d minute will be "
@@ -568,800 +514,380 @@ msgid_plural ""
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../xed/dialogs/xed-close-confirmation-dialog.c:472
+#: ../xed/dialogs/xed-close-confirmation-dialog.c:465
 #, c-format
-msgid "Save the changes to document \"%s\" before closing?"
+msgid ""
+"If you don't save, changes from the last %d hour will be permanently lost."
+msgid_plural ""
+"If you don't save, changes from the last %d hours will be permanently lost."
+msgstr[0] ""
+msgstr[1] ""
+
+#: ../xed/dialogs/xed-close-confirmation-dialog.c:521
+#, c-format
+msgid "Save changes to document \"%s\" before closing?"
 msgstr ""
 
-#: ../xed/dialogs/xed-close-confirmation-dialog.c:645
+#: ../xed/dialogs/xed-close-confirmation-dialog.c:712
 #, c-format
-msgid "There is %d document with unsaved changes. Save changes before closing?"
+msgid ""
+"There is %d document with unsaved changes. Save changes before closing?"
 msgid_plural ""
 "There are %d documents with unsaved changes. Save changes before closing?"
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../xed/dialogs/xed-close-confirmation-dialog.c:662
+#: ../xed/dialogs/xed-close-confirmation-dialog.c:729
 msgid "S_elect the documents you want to save:"
 msgstr ""
 
 #. Secondary label
-#: ../xed/dialogs/xed-close-confirmation-dialog.c:679
+#: ../xed/dialogs/xed-close-confirmation-dialog.c:751
 msgid "If you don't save, all your changes will be permanently lost."
 msgstr ""
 
-#: ../xed/dialogs/xed-dialog-goto-line.c:184
-msgid "Go to Line"
+#: ../xed/dialogs/xed-encodings-dialog.c:321
+msgid "Character Encodings"
 msgstr ""
 
-#: ../xed/dialogs/xed-dialog-goto-line.c:197
-msgid "_Go to Line"
-msgstr ""
-
-#: ../xed/dialogs/xed-dialog-replace.c:136
-#: ../xed/dialogs/xed-dialog-replace.c:1140 ../xed/xed-commands.c:383
-#, c-format
-msgid "The text \"%s\" was not found."
-msgstr ""
-
-#: ../xed/dialogs/xed-dialog-replace.c:269
-#: ../xed/dialogs/replace.glade2.h:4 ../xed/xed-ui.xml.h:46
-msgid "Replace"
-msgstr "Whakakapia"
-
-#: ../xed/dialogs/xed-dialog-replace.c:282
-#, fuzzy
-msgid "Replace _All"
-msgstr "Whakakapia"
-
-#: ../xed/dialogs/xed-dialog-replace.c:285
-#: ../xed/xed-file-selector-util.c:114 ../plugins/savecopy/savecopy.c:369
-msgid "_Replace"
-msgstr "_Whakakapia"
-
-#: ../xed/dialogs/xed-dialog-replace.c:402 ../xed/xed-ui.xml.h:17
-msgid "Find"
-msgstr "Kitea"
-
-#: ../xed/dialogs/xed-dialog-replace.c:1149
-#, c-format
-msgid "Found and replaced %d occurrence."
-msgid_plural "Found and replaced %d occurrences."
-msgstr[0] ""
-msgstr[1] ""
-
-#: ../xed/dialogs/xed-dialog-uri.c:91
-msgid "Open Location"
-msgstr ""
-
-#: ../xed/dialogs/xed-encodings-dialog.c:72
-#, c-format
-msgid "There was an error displaying help: %s"
-msgstr ""
-
-#: ../xed/dialogs/xed-encodings-dialog.c:355
-#: ../xed/dialogs/xed-encodings-dialog.c:423
-#, fuzzy
+#: ../xed/dialogs/xed-encodings-dialog.c:384
+#: ../xed/dialogs/xed-encodings-dialog.c:445
 msgid "_Description"
-msgstr "Pātai"
+msgstr ""
 
-#: ../xed/dialogs/xed-encodings-dialog.c:364
-#: ../xed/dialogs/xed-encodings-dialog.c:432
+#: ../xed/dialogs/xed-encodings-dialog.c:393
+#: ../xed/dialogs/xed-encodings-dialog.c:454
 msgid "_Encoding"
 msgstr ""
 
-#: ../xed/dialogs/xed-encodings-dialog.glade2.h:1
+#: ../xed/dialogs/xed-encodings-dialog.ui.h:1
+msgid "Character encodings"
+msgstr ""
+
+#: ../xed/dialogs/xed-encodings-dialog.ui.h:2
 msgid "A_vailable encodings:"
 msgstr ""
 
-#: ../xed/dialogs/xed-encodings-dialog.glade2.h:2
-msgid "Character codings"
-msgstr ""
-
-#: ../xed/dialogs/xed-encodings-dialog.glade2.h:3
+#: ../xed/dialogs/xed-encodings-dialog.ui.h:3
 msgid "E_ncodings shown in menu:"
 msgstr ""
 
-#: ../xed/dialogs/xed-plugin-manager.c:55
-msgid "Plugin"
+#: ../xed/dialogs/xed-preferences-dialog.c:574
+msgid "Click on this button to select the font to be used by the editor"
 msgstr ""
 
-#: ../xed/dialogs/xed-plugin-manager.c:56
-msgid "Enabled"
-msgstr ""
-
-#: ../xed/dialogs/xed-plugin-program-location-dialog.c:86
-#: ../xed/dialogs/program-location-dialog.glade2.h:2
-msgid "Set program location..."
-msgstr ""
-
-#: ../xed/dialogs/xed-plugin-program-location-dialog.c:116
+#: ../xed/dialogs/xed-preferences-dialog.c:584
 #, c-format
-msgid ""
-"The %s plugin uses an external program, called <tt>%s</tt>, to perform its "
-"task.\n"
-"\n"
-"Please, specify the location of the <tt>%s</tt> program."
+msgid "_Use the system fixed width font (%s)"
 msgstr ""
 
-#: ../xed/dialogs/xed-plugin-program-location-dialog.c:169
-msgid "The selected file is not executable."
+#: ../xed/dialogs/xed-preferences-dialog.c:787
+msgid "The selected color scheme cannot be installed."
 msgstr ""
 
-#: ../xed/dialogs/xed-preferences-dialog.c:649
-msgid "Push this button to select the font to be used by the editor"
+#: ../xed/dialogs/xed-preferences-dialog.c:812
+msgid "Add Scheme"
 msgstr ""
 
-#: ../xed/dialogs/xed-preferences-dialog.c:651
-msgid "Push this button to configure text color"
+#: ../xed/dialogs/xed-preferences-dialog.c:819
+msgid "A_dd Scheme"
 msgstr ""
 
-#: ../xed/dialogs/xed-preferences-dialog.c:653
-msgid "Push this button to configure background color"
+#: ../xed/dialogs/xed-preferences-dialog.c:827
+msgid "Color Scheme Files"
 msgstr ""
 
-#: ../xed/dialogs/xed-preferences-dialog.c:655
-msgid ""
-"Push this button to configure the color in which the selected text should "
-"appear"
-msgstr ""
-
-#: ../xed/dialogs/xed-preferences-dialog.c:658
-msgid ""
-"Push this button to configure the color in which the selected text should be "
-"marked"
-msgstr ""
-
-#: ../xed/dialogs/xed-preferences-dialog.c:1111
-msgid "Elements"
-msgstr ""
-
-#: ../xed/dialogs/xed-preferences.glade2.h:1
-#: ../xed/dialogs/page-setup-dialog.glade2.h:1
-#: ../plugins/docinfo/docinfo.glade2.h:1 ../plugins/time/time.glade2.h:1
-msgid "    "
-msgstr ""
-
-#: ../xed/dialogs/xed-preferences.glade2.h:2
-msgid "<b>Automatic Indentation</b>"
-msgstr ""
-
-#: ../xed/dialogs/xed-preferences.glade2.h:3
-msgid "<b>Bracket Matching</b>"
-msgstr ""
-
-#: ../xed/dialogs/xed-preferences.glade2.h:4
-msgid "<b>Current Line</b>"
-msgstr ""
-
-#: ../xed/dialogs/xed-preferences.glade2.h:5
-msgid "<b>Elements</b>"
-msgstr ""
-
-#: ../xed/dialogs/xed-preferences.glade2.h:6
-msgid "<b>File Saving</b>"
-msgstr ""
-
-#: ../xed/dialogs/xed-preferences.glade2.h:7
-msgid "<b>Font</b>"
-msgstr ""
-
-#: ../xed/dialogs/xed-preferences.glade2.h:8
-#: ../xed/dialogs/page-setup-dialog.glade2.h:2
-msgid "<b>Line Numbers</b>"
-msgstr ""
-
-#: ../xed/dialogs/xed-preferences.glade2.h:9
-msgid "<b>Right Margin</b>"
-msgstr ""
-
-#: ../xed/dialogs/xed-preferences.glade2.h:10
-msgid "<b>Tab Stops</b>"
-msgstr ""
-
-#: ../xed/dialogs/xed-preferences.glade2.h:11
-#: ../xed/dialogs/page-setup-dialog.glade2.h:3
-msgid "<b>Text Wrapping</b>"
-msgstr ""
-
-#: ../xed/dialogs/xed-preferences.glade2.h:12
-msgid "<span weight=\"bold\">Colors</span>"
-msgstr ""
-
-#: ../xed/dialogs/xed-preferences.glade2.h:13
-#: ../plugins/taglist/HTML.tags.xml.in.h:23
-#, fuzzy
-msgid "Bold"
-msgstr "_Miramira"
-
-#: ../xed/dialogs/xed-preferences.glade2.h:14
-msgid "Create a _backup copy of files before saving"
-msgstr ""
-
-#: ../xed/dialogs/xed-preferences.glade2.h:15
-msgid "Display right _margin"
-msgstr ""
-
-#: ../xed/dialogs/xed-preferences.glade2.h:16
-#: ../xed/dialogs/page-setup-dialog.glade2.h:4
-msgid "Do not _split words over two lines"
-msgstr ""
-
-#: ../xed/dialogs/xed-preferences.glade2.h:17
-#, fuzzy
-msgid "Editor"
-msgstr "_Whakatika"
-
-#: ../xed/dialogs/xed-preferences.glade2.h:18
-msgid "Editor _font: "
-msgstr ""
-
-#: ../xed/dialogs/xed-preferences.glade2.h:19
-#: ../xed/dialogs/page-setup-dialog.glade2.h:5
-msgid "Enable text _wrapping"
-msgstr ""
-
-#: ../xed/dialogs/xed-preferences.glade2.h:20
-msgid "Font & Colors"
-msgstr ""
-
-#: ../xed/dialogs/xed-preferences.glade2.h:21
-msgid "Hi_ghlight current line"
-msgstr ""
-
-#: ../xed/dialogs/xed-preferences.glade2.h:22
-msgid "Highlight _mode:"
-msgstr ""
-
-#: ../xed/dialogs/xed-preferences.glade2.h:23
-msgid "Highlight matching _bracket"
-msgstr ""
-
-#: ../xed/dialogs/xed-preferences.glade2.h:24
-msgid "Insert _spaces instead of tabs"
-msgstr ""
-
-#: ../xed/dialogs/xed-preferences.glade2.h:25
-#, fuzzy
-msgid "Italic"
-msgstr "_Tītaha"
-
-#: ../xed/dialogs/xed-preferences.glade2.h:26
-msgid "Normal _text color:"
-msgstr ""
-
-#: ../xed/dialogs/xed-preferences.glade2.h:27
-msgid "Pick a color"
-msgstr ""
-
-#: ../xed/dialogs/xed-preferences.glade2.h:28
-msgid "Pick the background color"
-msgstr ""
-
-#: ../xed/dialogs/xed-preferences.glade2.h:29
-msgid "Pick the editor font"
-msgstr ""
-
-#: ../xed/dialogs/xed-preferences.glade2.h:30
-msgid "Pick the normal text color"
-msgstr ""
-
-#: ../xed/dialogs/xed-preferences.glade2.h:31
-msgid "Pick the selected text color"
-msgstr ""
-
-#: ../xed/dialogs/xed-preferences.glade2.h:32
-#, fuzzy
-msgid "Pick the selection color"
-msgstr "Kotia te whiringa"
-
-#: ../xed/dialogs/xed-preferences.glade2.h:33
-msgid "Plugins"
-msgstr ""
-
-#: ../xed/dialogs/xed-preferences.glade2.h:34
-msgid "Preferences"
-msgstr "Ngā tina hiahia"
-
-#: ../xed/dialogs/xed-preferences.glade2.h:35
-msgid "Se_lection color:"
-msgstr ""
-
-#: ../xed/dialogs/xed-preferences.glade2.h:36
-msgid "Selecte_d text color:"
-msgstr ""
-
-#: ../xed/dialogs/xed-preferences.glade2.h:37
-msgid "Strikethrough"
-msgstr "Tāroto"
-
-#: ../xed/dialogs/xed-preferences.glade2.h:38
-msgid "Syntax Highlighting"
-msgstr ""
-
-#: ../xed/dialogs/xed-preferences.glade2.h:39
-msgid "U_se default theme colors"
-msgstr ""
-
-#: ../xed/dialogs/xed-preferences.glade2.h:40
-msgid "Underline"
-msgstr "Rūritia"
-
-#: ../xed/dialogs/xed-preferences.glade2.h:41
-msgid "View"
-msgstr "Titiro"
-
-#: ../xed/dialogs/xed-preferences.glade2.h:42
-msgid "_Autosave files every"
-msgstr ""
-
-#: ../xed/dialogs/xed-preferences.glade2.h:43
-msgid "_Background color:"
-msgstr ""
-
-#: ../xed/dialogs/xed-preferences.glade2.h:44
-msgid "_Background:"
-msgstr ""
-
-#: ../xed/dialogs/xed-preferences.glade2.h:45
-msgid "_Display line numbers"
-msgstr ""
-
-#: ../xed/dialogs/xed-preferences.glade2.h:46
-msgid "_Enable automatic indentation"
-msgstr ""
-
-#: ../xed/dialogs/xed-preferences.glade2.h:47
-msgid "_Enable syntax highlighting"
-msgstr ""
-
-#: ../xed/dialogs/xed-preferences.glade2.h:48
-#, fuzzy
-msgid "_Foreground:"
-msgstr "_Whakamua"
-
-#: ../xed/dialogs/xed-preferences.glade2.h:49
-msgid "_Reset to Default "
-msgstr ""
-
-#: ../xed/dialogs/xed-preferences.glade2.h:50
-msgid "_Right margin at column:"
-msgstr ""
-
-#: ../xed/dialogs/xed-preferences.glade2.h:51
-msgid "_Tab width:"
-msgstr ""
-
-#: ../xed/dialogs/xed-preferences.glade2.h:52
-msgid "_Use default theme font"
-msgstr ""
-
-#: ../xed/dialogs/xed-preferences.glade2.h:53
-msgid "_minutes"
-msgstr ""
-
-#: ../xed/dialogs/goto-line.glade2.h:1
-msgid "Goto Line"
-msgstr ""
-
-#: ../xed/dialogs/goto-line.glade2.h:2
-msgid "_Line number:"
-msgstr ""
-
-#: ../xed/dialogs/page-setup-dialog.glade2.h:6
-#, fuzzy
-msgid "Fonts"
-msgstr "Momotuhi"
-
-#: ../xed/dialogs/page-setup-dialog.glade2.h:7
-msgid "General"
-msgstr ""
-
-#: ../xed/dialogs/page-setup-dialog.glade2.h:8
-msgid "He_aders and footers:"
-msgstr ""
-
-#: ../xed/dialogs/page-setup-dialog.glade2.h:9
-#, fuzzy
-msgid "Page Setup"
-msgstr "Whārangi %u"
-
-#: ../xed/dialogs/page-setup-dialog.glade2.h:10
-msgid "Print _line numbers"
-msgstr ""
-
-#: ../xed/dialogs/page-setup-dialog.glade2.h:11
-msgid "Print s_yntax highlighting"
-msgstr ""
-
-#: ../xed/dialogs/page-setup-dialog.glade2.h:12
-#, fuzzy
-msgid "_Body:"
-msgstr "_Miramira"
-
-#: ../xed/dialogs/page-setup-dialog.glade2.h:13
-msgid "_Line numbers:"
-msgstr ""
-
-#: ../xed/dialogs/page-setup-dialog.glade2.h:14
-msgid "_Number every"
-msgstr ""
-
-#: ../xed/dialogs/page-setup-dialog.glade2.h:15
-msgid "_Print page headers"
-msgstr ""
-
-#: ../xed/dialogs/page-setup-dialog.glade2.h:16
-msgid "_Restore Default Fonts"
-msgstr ""
-
-#: ../xed/dialogs/page-setup-dialog.glade2.h:17
-#, fuzzy
-msgid "lines"
-msgstr "Ngā Kōnae"
-
-#: ../xed/dialogs/plugin-manager.glade2.h:1
-msgid "C_onfigure Plugin"
-msgstr ""
-
-#: ../xed/dialogs/plugin-manager.glade2.h:2
-#, fuzzy
-msgid "_About Plugin"
-msgstr "_Mo"
-
-#: ../xed/dialogs/plugin-manager.glade2.h:3
-msgid "button1"
-msgstr ""
-
-#: ../xed/dialogs/plugin-manager.glade2.h:4
-msgid "dialog1"
-msgstr ""
-
-#: ../xed/dialogs/program-location-dialog.glade2.h:1
-msgid "Browse for program location..."
-msgstr ""
-
-#: ../xed/dialogs/program-location-dialog.glade2.h:3
-msgid "_Location to search for:"
-msgstr ""
-
-#: ../xed/dialogs/program-location-dialog.glade2.h:4
-msgid "label"
-msgstr ""
-
-#: ../xed/dialogs/replace.glade2.h:1 ../xed/dialogs/uri.glade2.h:1
-#: ../plugins/shell_output/shell_output.glade2.h:1
-#: ../plugins/spell/spell-checker.glade2.h:1 ../plugins/time/time.glade2.h:2
-msgid "*"
-msgstr ""
-
-#: ../xed/dialogs/replace.glade2.h:2 ../xed/xed-ui.xml.h:19
-#, fuzzy
-msgid "Find Next"
-msgstr "Kitea"
-
-#: ../xed/dialogs/replace.glade2.h:3
-msgid "Match _entire word only"
-msgstr ""
-
-#: ../xed/dialogs/replace.glade2.h:5
-#, fuzzy
-msgid "Replace All"
-msgstr "Whakakapia"
-
-#: ../xed/dialogs/replace.glade2.h:6
-#, fuzzy
-msgid "Replace _with: "
-msgstr "Whakakapia"
-
-#: ../xed/dialogs/replace.glade2.h:7
-msgid "Search _backwards"
-msgstr ""
-
-#: ../xed/dialogs/replace.glade2.h:8
-msgid "_Match case"
-msgstr ""
-
-#: ../xed/dialogs/replace.glade2.h:9
-msgid "_Search for: "
-msgstr ""
-
-#: ../xed/dialogs/replace.glade2.h:10
-msgid "_Wrap around"
-msgstr ""
-
-#: ../xed/dialogs/uri.glade2.h:2
-msgid "Ch_aracter coding:"
-msgstr ""
-
-#: ../xed/dialogs/uri.glade2.h:3
-msgid "Enter the _location (URI) of the file you would like to open:"
-msgstr ""
-
-#: ../xed/dialogs/uri.glade2.h:4
-msgid "Open from URI"
-msgstr ""
-
-#: ../xed/xed-commands.c:551
-msgid "xed is a small and lightweight text editor for the MATE Desktop"
-msgstr ""
-
-#. Translators: This is a special message that shouldn't be translated
-#. literally. It is used in the about box to give credits to
-#. the translators.
-#. Thus, you should translate it to your name and email address.
-#. You can also include other translators who have contributed to
-#. this translation; in that case, please write them on separate
-#. lines seperated by newlines (\n).
-#: ../xed/xed-commands.c:560
-msgid "translator-credits"
-msgstr ""
-
-#: ../xed/xed-commands.c:579
-#, fuzzy
-msgid "xed"
-msgstr "_Whakatika"
-
-#: ../xed/xed-document.c:384
-#, c-format
-msgid "%s %d"
-msgstr ""
-
-#: ../xed/xed-document.c:384
-#, fuzzy
-msgid "Unsaved Document"
-msgstr "_Tuhinga"
-
-#: ../xed/xed-document.c:934 ../xed/xed-document.c:1488
-#, fuzzy
-msgid "Invalid UTF-8 data"
-msgstr "UTF-8 koremana"
-
-#: ../xed/xed-document.c:1750
-#, c-format
-msgid "Could not read symbolic link information for %s"
-msgstr ""
-
-#: ../xed/xed-document.c:1796
-msgid "The file has too many symbolic links."
-msgstr ""
-
-#: ../xed/xed-document.c:1880
-#, c-format
-msgid "xed cannot handle %s: locations in write mode."
-msgstr ""
-
-#: ../xed/xed-document.c:1887
-msgid "xed cannot handle this kind of location in write mode."
-msgstr ""
-
-#: ../xed/xed-document.c:1900
-msgid "Invalid filename."
-msgstr ""
-
-#: ../xed/xed-document.c:2051
-msgid ""
-"There is not enough disk space to save the file.\n"
-"Please free some disk space and try again."
-msgstr ""
-
-#: ../xed/xed-document.c:2056
-msgid ""
-"The disk where you are trying to save the file has a limitation on file "
-"sizes.  Please try saving a smaller file or saving it to a disk that does "
-"not have this limitation."
-msgstr ""
-
-#: ../xed/xed-document.c:2100
-msgid "Could not create a backup file."
-msgstr ""
-
-#: ../xed/xed-encodings-option-menu.c:204
-msgid "Auto Detected"
-msgstr ""
-
-#: ../xed/xed-encodings-option-menu.c:224
-#: ../xed/xed-encodings-option-menu.c:246
-#, c-format
-msgid "Current Locale (%s)"
-msgstr ""
-
-#: ../xed/xed-encodings-option-menu.c:307
-msgid "Add or _Remove..."
-msgstr ""
-
-#: ../xed/xed-encodings.c:136 ../xed/xed-encodings.c:181
-#: ../xed/xed-encodings.c:183 ../xed/xed-encodings.c:185
-#: ../xed/xed-encodings.c:187
-msgid "Unicode"
-msgstr ""
-
-#: ../xed/xed-encodings.c:150 ../xed/xed-encodings.c:176
-#: ../xed/xed-encodings.c:222 ../xed/xed-encodings.c:265
-#, fuzzy
-msgid "Western"
-msgstr "Nanahi"
-
-#: ../xed/xed-encodings.c:152 ../xed/xed-encodings.c:224
-#: ../xed/xed-encodings.c:261
-msgid "Central European"
-msgstr ""
-
-#: ../xed/xed-encodings.c:154
-msgid "South European"
-msgstr ""
-
-#: ../xed/xed-encodings.c:156 ../xed/xed-encodings.c:172
-#: ../xed/xed-encodings.c:275
-#, fuzzy
-msgid "Baltic"
-msgstr "_Tītaha"
-
-#: ../xed/xed-encodings.c:158 ../xed/xed-encodings.c:226
-#: ../xed/xed-encodings.c:239 ../xed/xed-encodings.c:243
-#: ../xed/xed-encodings.c:245 ../xed/xed-encodings.c:263
-msgid "Cyrillic"
-msgstr ""
-
-#: ../xed/xed-encodings.c:160 ../xed/xed-encodings.c:232
-#: ../xed/xed-encodings.c:273
-msgid "Arabic"
-msgstr ""
-
-#: ../xed/xed-encodings.c:162 ../xed/xed-encodings.c:267
-#: ../plugins/spell/xed-spell-checker.c:93
-msgid "Greek"
-msgstr ""
-
-#: ../xed/xed-encodings.c:164
-msgid "Hebrew Visual"
-msgstr ""
-
-#: ../xed/xed-encodings.c:166 ../xed/xed-encodings.c:230
-#: ../xed/xed-encodings.c:271 ../plugins/spell/xed-spell-checker.c:109
-msgid "Hebrew"
-msgstr ""
-
-#: ../xed/xed-encodings.c:168 ../xed/xed-encodings.c:228
-#: ../xed/xed-encodings.c:269 ../plugins/spell/xed-spell-checker.c:150
-msgid "Turkish"
-msgstr ""
-
-#: ../xed/xed-encodings.c:170
-msgid "Nordic"
-msgstr ""
-
-#: ../xed/xed-encodings.c:174
-msgid "Celtic"
-msgstr ""
-
-#: ../xed/xed-encodings.c:178 ../plugins/spell/xed-spell-checker.c:138
-msgid "Romanian"
-msgstr ""
-
-#: ../xed/xed-encodings.c:190
-msgid "Armenian"
-msgstr ""
-
-#: ../xed/xed-encodings.c:192 ../xed/xed-encodings.c:194
-#: ../xed/xed-encodings.c:208
-msgid "Chinese Traditional"
-msgstr ""
-
-#: ../xed/xed-encodings.c:196
-msgid "Cyrillic/Russian"
-msgstr ""
-
-#: ../xed/xed-encodings.c:199 ../xed/xed-encodings.c:201
-#: ../xed/xed-encodings.c:203 ../xed/xed-encodings.c:235
-#: ../xed/xed-encodings.c:250
-msgid "Japanese"
-msgstr ""
-
-#: ../xed/xed-encodings.c:206 ../xed/xed-encodings.c:237
-#: ../xed/xed-encodings.c:241 ../xed/xed-encodings.c:256
-msgid "Korean"
-msgstr ""
-
-#: ../xed/xed-encodings.c:211 ../xed/xed-encodings.c:213
-#: ../xed/xed-encodings.c:215 ../xed/xed-encodings.c:219
-msgid "Chinese Simplified"
-msgstr ""
-
-#: ../xed/xed-encodings.c:217
-msgid "Georgian"
-msgstr ""
-
-#: ../xed/xed-encodings.c:247
-msgid "Cyrillic/Ukrainian"
-msgstr ""
-
-#: ../xed/xed-encodings.c:252 ../xed/xed-encodings.c:258
-#: ../xed/xed-encodings.c:277 ../plugins/spell/xed-spell-checker.c:153
-msgid "Vietnamese"
-msgstr ""
-
-#: ../xed/xed-encodings.c:254
-msgid "Thai"
-msgstr ""
-
-#: ../xed/xed-encodings.c:441
-msgid "Unknown"
-msgstr ""
-
-#: ../xed/xed-file-selector-util.c:132 ../plugins/savecopy/savecopy.c:356
-#, c-format
-msgid "A file named \"%s\" already exists.\n"
-msgstr ""
-
-#: ../xed/xed-file-selector-util.c:133 ../plugins/savecopy/savecopy.c:360
-msgid "Do you want to replace it with the one you are saving?"
-msgstr ""
-
-#: ../xed/xed-file-selector-util.c:142
-#, c-format
-msgid "The file \"%s\" is read-only.\n"
-msgstr ""
-
-#: ../xed/xed-file-selector-util.c:143
-msgid "Do you want to try to replace it with the one you are saving?"
-msgstr ""
-
-#: ../xed/xed-file-selector-util.c:338 ../plugins/savecopy/savecopy.c:584
+#: ../xed/dialogs/xed-preferences-dialog.c:834
+#: ../xed/xed-file-chooser-dialog.c:55
 msgid "All Files"
 msgstr ""
 
-#: ../xed/xed-file-selector-util.c:346 ../plugins/savecopy/savecopy.c:592
-msgid "All Text Files"
-msgstr ""
-
-#: ../xed/xed-file-selector-util.c:364 ../plugins/savecopy/savecopy.c:603
-msgid "_Character Coding:"
-msgstr ""
-
-#: ../xed/xed-file-selector-util.c:498
-msgid "Select a file to open"
-msgstr ""
-
-#: ../xed/xed-file-selector-util.c:523
-msgid "Select files to open"
-msgstr ""
-
-#: ../xed/xed-file-selector-util.c:559
-msgid "Select a filename to save"
-msgstr ""
-
-#: ../xed/xed-file.c:194
-#, fuzzy
-msgid "Open File..."
-msgstr "_Huaki..."
-
-#: ../xed/xed-file.c:250 ../xed/xed-file.c:390
+#: ../xed/dialogs/xed-preferences-dialog.c:879
 #, c-format
-msgid "Saving document \"%s\"..."
+msgid "Could not remove color scheme \"%s\"."
 msgstr ""
 
-#: ../xed/xed-file.c:279 ../xed/xed-file.c:408
+#: ../xed/dialogs/xed-preferences-dialog.c:1090
+msgid "Xed Preferences"
+msgstr ""
+
+#: ../xed/dialogs/xed-preferences-dialog.ui.h:1
+msgid "Preferences"
+msgstr "Ngā tina hiahia"
+
+#: ../xed/dialogs/xed-preferences-dialog.ui.h:2
+#: ../xed/xed-print-preferences.ui.h:9
+msgid "Text Wrapping"
+msgstr ""
+
+#: ../xed/dialogs/xed-preferences-dialog.ui.h:3
+#: ../plugins/docinfo/docinfo.ui.h:4 ../plugins/time/xed-time-dialog.ui.h:4
+#: ../plugins/time/xed-time-setup-dialog.ui.h:3
+msgid "    "
+msgstr ""
+
+#: ../xed/dialogs/xed-preferences-dialog.ui.h:4
+#: ../xed/xed-print-preferences.ui.h:10
+msgid "Enable text _wrapping"
+msgstr ""
+
+#: ../xed/dialogs/xed-preferences-dialog.ui.h:5
+#: ../xed/xed-print-preferences.ui.h:11
+msgid "Do not _split words over two lines"
+msgstr ""
+
+#: ../xed/dialogs/xed-preferences-dialog.ui.h:6
+#: ../xed/xed-print-preferences.ui.h:3
+msgid "Line Numbers"
+msgstr ""
+
+#: ../xed/dialogs/xed-preferences-dialog.ui.h:7 ../xed/xed-view.c:2035
+msgid "_Display line numbers"
+msgstr ""
+
+#: ../xed/dialogs/xed-preferences-dialog.ui.h:8
+msgid "Current Line"
+msgstr ""
+
+#: ../xed/dialogs/xed-preferences-dialog.ui.h:9
+msgid "Highlight current _line"
+msgstr ""
+
+#: ../xed/dialogs/xed-preferences-dialog.ui.h:10
+msgid "Right Margin"
+msgstr ""
+
+#: ../xed/dialogs/xed-preferences-dialog.ui.h:11
+msgid "Display right _margin"
+msgstr ""
+
+#: ../xed/dialogs/xed-preferences-dialog.ui.h:12
+msgid "_Right margin at column:"
+msgstr ""
+
+#: ../xed/dialogs/xed-preferences-dialog.ui.h:13
+msgid "Bracket Matching"
+msgstr ""
+
+#: ../xed/dialogs/xed-preferences-dialog.ui.h:14
+msgid "Highlight matching _bracket"
+msgstr ""
+
+#: ../xed/dialogs/xed-preferences-dialog.ui.h:15
+msgid "View"
+msgstr "Titiro"
+
+#: ../xed/dialogs/xed-preferences-dialog.ui.h:16
+msgid "Tab Stops"
+msgstr ""
+
+#: ../xed/dialogs/xed-preferences-dialog.ui.h:17
+msgid "_Tab width:"
+msgstr ""
+
+#: ../xed/dialogs/xed-preferences-dialog.ui.h:18
+msgid "Insert _spaces instead of tabs"
+msgstr ""
+
+#: ../xed/dialogs/xed-preferences-dialog.ui.h:19
+msgid "Automatic Indentation"
+msgstr ""
+
+#: ../xed/dialogs/xed-preferences-dialog.ui.h:20
+msgid "_Enable automatic indentation"
+msgstr ""
+
+#: ../xed/dialogs/xed-preferences-dialog.ui.h:21
+msgid "File Saving"
+msgstr ""
+
+#: ../xed/dialogs/xed-preferences-dialog.ui.h:22
+msgid "Create a _backup copy of files before saving"
+msgstr ""
+
+#: ../xed/dialogs/xed-preferences-dialog.ui.h:23
+msgid "_Autosave files every"
+msgstr ""
+
+#: ../xed/dialogs/xed-preferences-dialog.ui.h:24
+msgid "_minutes"
+msgstr ""
+
+#: ../xed/dialogs/xed-preferences-dialog.ui.h:25
+msgid "Editor"
+msgstr ""
+
+#: ../xed/dialogs/xed-preferences-dialog.ui.h:26
+msgid "Font"
+msgstr ""
+
+#: ../xed/dialogs/xed-preferences-dialog.ui.h:27
+msgid "Editor _font: "
+msgstr ""
+
+#: ../xed/dialogs/xed-preferences-dialog.ui.h:28
+msgid "Pick the editor font"
+msgstr ""
+
+#: ../xed/dialogs/xed-preferences-dialog.ui.h:29
+msgid "Color Scheme"
+msgstr ""
+
+#: ../xed/dialogs/xed-preferences-dialog.ui.h:30
+msgid "_Add..."
+msgstr ""
+
+#: ../xed/dialogs/xed-preferences-dialog.ui.h:31
+msgid "Font & Colors"
+msgstr ""
+
+#: ../xed/dialogs/xed-preferences-dialog.ui.h:32
+msgid "Plugins"
+msgstr ""
+
+#: ../xed/dialogs/xed-search-dialog.c:302
+#: ../xed/dialogs/xed-search-dialog.ui.h:1 ../xed/xed-window.c:1455
+msgid "Replace"
+msgstr "Whakakapia"
+
+#: ../xed/dialogs/xed-search-dialog.c:313 ../xed/xed-window.c:1453
+msgid "Find"
+msgstr "Kitea"
+
+#: ../xed/dialogs/xed-search-dialog.c:417
+msgid "Replace _All"
+msgstr ""
+
+#: ../xed/dialogs/xed-search-dialog.c:418
+#: ../xed/xed-commands-file.c:589
+msgid "_Replace"
+msgstr "_Whakakapia"
+
+#: ../xed/dialogs/xed-search-dialog.ui.h:2
+msgid "Replace All"
+msgstr ""
+
+#: ../xed/dialogs/xed-search-dialog.ui.h:3
+msgid "_Search for: "
+msgstr ""
+
+#: ../xed/dialogs/xed-search-dialog.ui.h:4
+msgid "Replace _with: "
+msgstr ""
+
+#: ../xed/dialogs/xed-search-dialog.ui.h:5
+msgid "_Match case"
+msgstr ""
+
+#: ../xed/dialogs/xed-search-dialog.ui.h:6
+msgid "Match _entire word only"
+msgstr ""
+
+#: ../xed/dialogs/xed-search-dialog.ui.h:7
+msgid "Search _backwards"
+msgstr ""
+
+#: ../xed/dialogs/xed-search-dialog.ui.h:8
+msgid "_Wrap around"
+msgstr ""
+
+#: ../xed/dialogs/xed-search-dialog.ui.h:9
+msgid "_Parse escape sequences (e.g. \\n)"
+msgstr ""
+
+#: ../xed/xed.c:104
+msgid "Show the application's version"
+msgstr ""
+
+#: ../xed/xed.c:107
+msgid ""
+"Set the character encoding to be used to open the files listed on the "
+"command line"
+msgstr ""
+
+#: ../xed/xed.c:107
+msgid "ENCODING"
+msgstr ""
+
+#: ../xed/xed.c:110
+msgid "Display list of possible values for the encoding option"
+msgstr ""
+
+#: ../xed/xed.c:113
+msgid "Create a new top-level window in an existing instance of xed"
+msgstr ""
+
+#: ../xed/xed.c:116
+msgid "Create a new document in an existing instance of xed"
+msgstr ""
+
+#: ../xed/xed.c:119
+msgid "[FILE...]"
+msgstr ""
+
+#: ../xed/xed.c:174
 #, c-format
-msgid "The document \"%s\" has not been saved."
+msgid "%s: invalid encoding.\n"
 msgstr ""
 
-#: ../xed/xed-file.c:287 ../xed/xed-file.c:421
+#. Setup command line options
+#: ../xed/xed.c:520
+msgid "- Edit text files"
+msgstr ""
+
+#: ../xed/xed.c:529
 #, c-format
-msgid "The document \"%s\" has been saved."
+msgid ""
+"%s\n"
+"Run '%s --help' to see a full list of available command line options.\n"
 msgstr ""
 
-#: ../xed/xed-file.c:372
-#, fuzzy
-msgid "Save as..."
-msgstr "P_urihia Pēneitia..."
-
-#: ../xed/xed-file.c:526
+#: ../xed/xed-commands-file.c:250
 #, c-format
-msgid "Revert unsaved changes to document \"%s\"?"
+msgid "Loading file '%s'…"
 msgstr ""
 
-#: ../xed/xed-file.c:535
+#: ../xed/xed-commands-file.c:259
+#, c-format
+msgid "Loading %d file…"
+msgid_plural "Loading %d files…"
+msgstr[0] ""
+msgstr[1] ""
+
+#. Translators: "Open Files" is the title of the file chooser window
+#: ../xed/xed-commands-file.c:465
+msgid "Open Files"
+msgstr ""
+
+#: ../xed/xed-commands-file.c:576
+#, c-format
+msgid "The file \"%s\" is read-only."
+msgstr ""
+
+#: ../xed/xed-commands-file.c:581
+msgid "Do you want to try to replace it with the one you are saving?"
+msgstr ""
+
+#: ../xed/xed-commands-file.c:650 ../xed/xed-commands-file.c:873
+#, c-format
+msgid "Saving file '%s'…"
+msgstr ""
+
+#: ../xed/xed-commands-file.c:758
+msgid "Save As…"
+msgstr ""
+
+#: ../xed/xed-commands-file.c:1087
+#, c-format
+msgid "Reverting the document '%s'…"
+msgstr ""
+
+#: ../xed/xed-commands-file.c:1132
+#, c-format
+msgid "Revert unsaved changes to document '%s'?"
+msgstr ""
+
+#: ../xed/xed-commands-file.c:1141
 #, c-format
 msgid ""
 "Changes made to the document in the last %ld second will be permanently lost."
@@ -1371,12 +897,12 @@ msgid_plural ""
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../xed/xed-file.c:544
+#: ../xed/xed-commands-file.c:1150
 msgid ""
 "Changes made to the document in the last minute will be permanently lost."
 msgstr ""
 
-#: ../xed/xed-file.c:550
+#: ../xed/xed-commands-file.c:1156
 #, c-format
 msgid ""
 "Changes made to the document in the last minute and %ld second will be "
@@ -1387,7 +913,7 @@ msgid_plural ""
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../xed/xed-file.c:560
+#: ../xed/xed-commands-file.c:1166
 #, c-format
 msgid ""
 "Changes made to the document in the last %ld minute will be permanently lost."
@@ -1397,15 +923,12 @@ msgid_plural ""
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../xed/xed-file.c:575 ../xed/xed-file.c:596
-#, c-format
-msgid "Changes made to the document in the last hour will be permanently lost."
-msgid_plural ""
-"Changes made to the document in the last %d hours will be permanently lost."
-msgstr[0] ""
-msgstr[1] ""
+#: ../xed/xed-commands-file.c:1181
+msgid ""
+"Changes made to the document in the last hour will be permanently lost."
+msgstr ""
 
-#: ../xed/xed-file.c:581
+#: ../xed/xed-commands-file.c:1187
 #, c-format
 msgid ""
 "Changes made to the document in the last hour and %d minute will be "
@@ -1416,1147 +939,1646 @@ msgid_plural ""
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../xed/xed-file.c:617 ../xed/xed-ui.xml.h:94
+#: ../xed/xed-commands-file.c:1202
+#, c-format
+msgid ""
+"Changes made to the document in the last %d hour will be permanently lost."
+msgid_plural ""
+"Changes made to the document in the last %d hours will be permanently lost."
+msgstr[0] ""
+msgstr[1] ""
+
+#: ../xed/xed-commands-file.c:1228
 msgid "_Revert"
 msgstr "_Whakakāhoretia"
 
-#: ../xed/xed-file.c:662
+#: ../xed/xed-commands-help.c:56
+msgid "A small and lightweight text editor"
+msgstr ""
+
+#: ../xed/xed-commands-search.c:115
 #, c-format
-msgid "Error reverting the document \"%s\"."
-msgstr ""
-
-#: ../xed/xed-file.c:670
-#, c-format
-msgid "The document \"%s\" has not been reverted."
-msgstr ""
-
-#: ../xed/xed-file.c:674
-#, c-format
-msgid "The document \"%s\" has been reverted."
-msgstr ""
-
-#: ../xed/xed-file.c:702
-#, c-format
-msgid "Reverting the document \"%s\"..."
-msgstr ""
-
-#: ../xed/xed-file.c:825
-msgid "Could not read data from stdin."
-msgstr ""
-
-#: ../xed/xed-file.c:912
-msgid "Reverting file:"
-msgstr ""
-
-#: ../xed/xed-file.c:912
-msgid "Loading file:"
-msgstr ""
-
-#: ../xed/xed-file.c:1092 ../xed/xed-file.c:1333
-#, c-format
-msgid "Error loading file \"%s\""
-msgstr ""
-
-#: ../xed/xed-file.c:1113
-#, c-format
-msgid "Loaded file \"%s\""
-msgstr ""
-
-#: ../xed/xed-file.c:1225
-#, c-format
-msgid "Loaded %d file"
-msgid_plural "Loaded %d files"
+msgid "Found and replaced %d occurrence"
+msgid_plural "Found and replaced %d occurrences"
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../xed/xed-file.c:1286
+#: ../xed/xed-commands-search.c:125
+msgid "Found and replaced one occurrence"
+msgstr ""
+
+#. Translators: %s is replaced by the text
+#. entered by the user in the search box
+#: ../xed/xed-commands-search.c:146
 #, c-format
-msgid "Created file \"%s\""
+msgid "\"%s\" not found"
 msgstr ""
 
-#: ../xed/xed-file.c:1304
+#: ../xed/xed-document.c:1090 ../xed/xed-document.c:1110
 #, c-format
-msgid "Loading file \"%s\"..."
+msgid "Unsaved Document %d"
 msgstr ""
 
-#: ../xed/xed-file.c:1469
+#: ../xed/xed-documents-panel.c:101 ../xed/xed-documents-panel.c:115
+#: ../xed/xed-window.c:2180 ../xed/xed-window.c:2185
+msgid "Read-Only"
+msgstr ""
+
+#: ../xed/xed-documents-panel.c:796 ../xed/xed-window.c:3539
+msgid "Documents"
+msgstr ""
+
+#: ../xed/xed-encodings.c:138 ../xed/xed-encodings.c:180
+#: ../xed/xed-encodings.c:182 ../xed/xed-encodings.c:184
+#: ../xed/xed-encodings.c:186 ../xed/xed-encodings.c:188
+#: ../xed/xed-encodings.c:190 ../xed/xed-encodings.c:192
+msgid "Unicode"
+msgstr ""
+
+#: ../xed/xed-encodings.c:151 ../xed/xed-encodings.c:175
+#: ../xed/xed-encodings.c:225 ../xed/xed-encodings.c:268
+msgid "Western"
+msgstr ""
+
+#: ../xed/xed-encodings.c:153 ../xed/xed-encodings.c:227
+#: ../xed/xed-encodings.c:264
+msgid "Central European"
+msgstr ""
+
+#: ../xed/xed-encodings.c:155
+msgid "South European"
+msgstr ""
+
+#: ../xed/xed-encodings.c:157 ../xed/xed-encodings.c:171
+#: ../xed/xed-encodings.c:278
+msgid "Baltic"
+msgstr ""
+
+#: ../xed/xed-encodings.c:159 ../xed/xed-encodings.c:229
+#: ../xed/xed-encodings.c:242 ../xed/xed-encodings.c:246
+#: ../xed/xed-encodings.c:248 ../xed/xed-encodings.c:266
+msgid "Cyrillic"
+msgstr ""
+
+#: ../xed/xed-encodings.c:161 ../xed/xed-encodings.c:235
+#: ../xed/xed-encodings.c:276
+msgid "Arabic"
+msgstr ""
+
+#: ../xed/xed-encodings.c:163 ../xed/xed-encodings.c:270
+msgid "Greek"
+msgstr ""
+
+#: ../xed/xed-encodings.c:165
+msgid "Hebrew Visual"
+msgstr ""
+
+#: ../xed/xed-encodings.c:167 ../xed/xed-encodings.c:231
+#: ../xed/xed-encodings.c:272
+msgid "Turkish"
+msgstr ""
+
+#: ../xed/xed-encodings.c:169
+msgid "Nordic"
+msgstr ""
+
+#: ../xed/xed-encodings.c:173
+msgid "Celtic"
+msgstr ""
+
+#: ../xed/xed-encodings.c:177
+msgid "Romanian"
+msgstr ""
+
+#: ../xed/xed-encodings.c:195
+msgid "Armenian"
+msgstr ""
+
+#: ../xed/xed-encodings.c:197 ../xed/xed-encodings.c:199
+#: ../xed/xed-encodings.c:213
+msgid "Chinese Traditional"
+msgstr ""
+
+#: ../xed/xed-encodings.c:201
+msgid "Cyrillic/Russian"
+msgstr ""
+
+#: ../xed/xed-encodings.c:204 ../xed/xed-encodings.c:206
+#: ../xed/xed-encodings.c:208 ../xed/xed-encodings.c:238
+#: ../xed/xed-encodings.c:253
+msgid "Japanese"
+msgstr ""
+
+#: ../xed/xed-encodings.c:211 ../xed/xed-encodings.c:240
+#: ../xed/xed-encodings.c:244 ../xed/xed-encodings.c:259
+msgid "Korean"
+msgstr ""
+
+#: ../xed/xed-encodings.c:216 ../xed/xed-encodings.c:218
+#: ../xed/xed-encodings.c:220
+msgid "Chinese Simplified"
+msgstr ""
+
+#: ../xed/xed-encodings.c:222
+msgid "Georgian"
+msgstr ""
+
+#: ../xed/xed-encodings.c:233 ../xed/xed-encodings.c:274
+msgid "Hebrew"
+msgstr ""
+
+#: ../xed/xed-encodings.c:250
+msgid "Cyrillic/Ukrainian"
+msgstr ""
+
+#: ../xed/xed-encodings.c:255 ../xed/xed-encodings.c:261
+#: ../xed/xed-encodings.c:280
+msgid "Vietnamese"
+msgstr ""
+
+#: ../xed/xed-encodings.c:257
+msgid "Thai"
+msgstr ""
+
+#: ../xed/xed-encodings.c:431
+msgid "Unknown"
+msgstr ""
+
+#: ../xed/xed-encodings-combo-box.c:272
+msgid "Automatically Detected"
+msgstr ""
+
+#: ../xed/xed-encodings-combo-box.c:288
+#: ../xed/xed-encodings-combo-box.c:303
 #, c-format
-msgid "Loading %d file..."
-msgid_plural "Loading %d files..."
-msgstr[0] ""
-msgstr[1] ""
+msgid "Current Locale (%s)"
+msgstr ""
 
-#: ../xed/xed-io-error-dialogs.c:84
+#: ../xed/xed-encodings-combo-box.c:353
+msgid "Add or Remove..."
+msgstr ""
+
+#: ../xed/xed-file-chooser-dialog.c:56
+msgid "All Text Files"
+msgstr ""
+
+#: ../xed/xed-file-chooser-dialog.c:88
+msgid "C_haracter Encoding:"
+msgstr ""
+
+#: ../xed/xed-file-chooser-dialog.c:157
+msgid "L_ine Ending:"
+msgstr ""
+
+#: ../xed/xed-file-chooser-dialog.c:180
+msgid "Unix/Linux"
+msgstr ""
+
+#: ../xed/xed-file-chooser-dialog.c:186
+msgid "Mac OS Classic"
+msgstr ""
+
+#: ../xed/xed-file-chooser-dialog.c:192
+msgid "Windows"
+msgstr ""
+
+#: ../xed/xed-help.c:81
+msgid "There was an error displaying the help."
+msgstr ""
+
+#: ../xed/xed-io-error-message-area.c:196
+#: ../xed/xed-io-error-message-area.c:498
+msgid "_Retry"
+msgstr ""
+
+#: ../xed/xed-io-error-message-area.c:217
 #, c-format
-msgid "Could not find the file \"%s\""
+msgid "Could not find the file %s."
 msgstr ""
 
-#: ../xed/xed-io-error-dialogs.c:86 ../xed/xed-io-error-dialogs.c:130
-#: ../xed/xed-io-error-dialogs.c:150
-msgid "Please, check that you typed the location correctly and try again."
+#: ../xed/xed-io-error-message-area.c:219
+#: ../xed/xed-io-error-message-area.c:258
+#: ../xed/xed-io-error-message-area.c:265
+msgid "Please check that you typed the location correctly and try again."
 msgstr ""
 
-#: ../xed/xed-io-error-dialogs.c:91 ../xed/xed-io-error-dialogs.c:99
-#: ../xed/xed-io-error-dialogs.c:116 ../xed/xed-io-error-dialogs.c:122
-#: ../xed/xed-io-error-dialogs.c:135 ../xed/xed-io-error-dialogs.c:141
-#: ../xed/xed-io-error-dialogs.c:155 ../xed/xed-io-error-dialogs.c:171
-#: ../xed/xed-io-error-dialogs.c:215 ../xed/xed-io-error-dialogs.c:223
-#: ../xed/xed-io-error-dialogs.c:231 ../xed/xed-io-error-dialogs.c:239
-#: ../xed/xed-io-error-dialogs.c:246 ../xed/xed-io-error-dialogs.c:252
-#: ../xed/xed-io-error-dialogs.c:292 ../xed/xed-io-error-dialogs.c:313
-#: ../xed/xed-io-error-dialogs.c:341
+#. Translators: %s is a URI scheme (like for example http:, ftp:, etc.)
+#: ../xed/xed-io-error-message-area.c:234
 #, c-format
-msgid "Could not open the file \"%s\""
+msgid "xed cannot handle %s locations."
 msgstr ""
 
-#: ../xed/xed-io-error-dialogs.c:93 ../xed/xed-io-error-dialogs.c:406
-msgid "The file contains corrupted data."
-msgstr ""
-
-#: ../xed/xed-io-error-dialogs.c:104 ../xed/xed-io-error-dialogs.c:417
-#, c-format
-msgid "xed cannot handle %s: locations."
-msgstr ""
-
-#: ../xed/xed-io-error-dialogs.c:109 ../xed/xed-io-error-dialogs.c:422
+#: ../xed/xed-io-error-message-area.c:240
 msgid "xed cannot handle this location."
 msgstr ""
 
-#: ../xed/xed-io-error-dialogs.c:118 ../xed/xed-io-error-dialogs.c:431
-msgid "The file contains data in an invalid format."
+#: ../xed/xed-io-error-message-area.c:248
+msgid "The location of the file cannot be mounted."
 msgstr ""
 
-#: ../xed/xed-io-error-dialogs.c:124 ../xed/xed-io-error-dialogs.c:437
-msgid "The file is too big."
-msgstr ""
-
-#: ../xed/xed-io-error-dialogs.c:128
-#, c-format
-msgid "\"%s\" is not a valid location"
-msgstr ""
-
-#: ../xed/xed-io-error-dialogs.c:137 ../xed/xed-io-error-dialogs.c:443
-msgid "Access was denied."
-msgstr ""
-
-#: ../xed/xed-io-error-dialogs.c:143
+#: ../xed/xed-io-error-message-area.c:252
 msgid ""
-"there are too many open files. Please, close some open files and try again."
+"The location of the file cannot be accessed because it is not mounted."
 msgstr ""
 
-#: ../xed/xed-io-error-dialogs.c:148 ../xed/xed-io-error-dialogs.c:661
+#: ../xed/xed-io-error-message-area.c:256
 #, c-format
-msgid "\"%s\" is a directory"
+msgid "%s is a directory."
 msgstr ""
 
-#: ../xed/xed-io-error-dialogs.c:157
-msgid ""
-"Not enough available memory to open the file. Please, close some running "
-"applications and try again."
+#: ../xed/xed-io-error-message-area.c:263
+#, c-format
+msgid "%s is not a valid location."
 msgstr ""
 
-#: ../xed/xed-io-error-dialogs.c:185 ../xed/xed-io-error-dialogs.c:483
+#: ../xed/xed-io-error-message-area.c:293
 #, c-format
 msgid ""
-"Host \"%s\" could not be found. Please, check that your proxy settings are "
+"Host %s could not be found. Please check that your proxy settings are "
 "correct and try again."
 msgstr ""
 
-#: ../xed/xed-io-error-dialogs.c:196 ../xed/xed-io-error-dialogs.c:207
-#: ../xed/xed-io-error-dialogs.c:217
+#: ../xed/xed-io-error-message-area.c:306
+#, c-format
 msgid ""
-"Host name was invalid. Please, check that you typed the location correctly "
-"and try again."
-msgstr ""
-
-#: ../xed/xed-io-error-dialogs.c:225
-msgid ""
-"Host name was empty. Please, check that your proxy settings are correct and "
+"Hostname was invalid. Please check that you typed the location correctly and "
 "try again."
 msgstr ""
 
-#: ../xed/xed-io-error-dialogs.c:233
+#: ../xed/xed-io-error-message-area.c:314
+#, c-format
+msgid "%s is not a regular file."
+msgstr ""
+
+#: ../xed/xed-io-error-message-area.c:319
+msgid "Connection timed out. Please try again."
+msgstr ""
+
+#: ../xed/xed-io-error-message-area.c:342
+msgid "The file is too big."
+msgstr ""
+
+#: ../xed/xed-io-error-message-area.c:383
+#, c-format
+msgid "Unexpected error: %s"
+msgstr ""
+
+#: ../xed/xed-io-error-message-area.c:419
+msgid "xed cannot find the file. Perhaps it has recently been deleted."
+msgstr ""
+
+#: ../xed/xed-io-error-message-area.c:429
+#, c-format
+msgid "Could not revert the file %s."
+msgstr ""
+
+#: ../xed/xed-io-error-message-area.c:455
+msgid "Ch_aracter Encoding:"
+msgstr ""
+
+#. Translators: the access key chosen for this string should be
+#. different from other main menu access keys (Open, Edit, View...)
+#: ../xed/xed-io-error-message-area.c:507
+#: ../xed/xed-io-error-message-area.c:794
+msgid "Edit Any_way"
+msgstr ""
+
+#. Translators: the access key chosen for this string should be
+#. different from other main menu access keys (Open, Edit, View...)
+#: ../xed/xed-io-error-message-area.c:512
+#: ../xed/xed-io-error-message-area.c:799
+msgid "D_on't Edit"
+msgstr ""
+
+#: ../xed/xed-io-error-message-area.c:620
 msgid ""
-"Attempt to log in failed. Please, check that you typed the location "
+"The number of followed links is limited and the actual file could not be "
+"found within this limit."
+msgstr ""
+
+#: ../xed/xed-io-error-message-area.c:624
+msgid "You do not have the permissions necessary to open the file."
+msgstr ""
+
+#: ../xed/xed-io-error-message-area.c:630
+msgid "xed has not been able to detect the character encoding."
+msgstr ""
+
+#: ../xed/xed-io-error-message-area.c:632
+#: ../xed/xed-io-error-message-area.c:654
+msgid "Please check that you are not trying to open a binary file."
+msgstr ""
+
+#: ../xed/xed-io-error-message-area.c:633
+msgid "Select a character encoding from the menu and try again."
+msgstr ""
+
+#: ../xed/xed-io-error-message-area.c:639
+#, c-format
+msgid "There was a problem opening the file %s."
+msgstr ""
+
+#: ../xed/xed-io-error-message-area.c:641
+msgid ""
+"The file you opened has some invalid characters. If you continue editing "
+"this file you could make this document useless."
+msgstr ""
+
+#: ../xed/xed-io-error-message-area.c:644
+msgid "You can also choose another character encoding and try again."
+msgstr ""
+
+#: ../xed/xed-io-error-message-area.c:651
+#, c-format
+msgid "Could not open the file %s using the %s character encoding."
+msgstr ""
+
+#: ../xed/xed-io-error-message-area.c:655
+#: ../xed/xed-io-error-message-area.c:730
+msgid "Select a different character encoding from the menu and try again."
+msgstr ""
+
+#: ../xed/xed-io-error-message-area.c:665
+#, c-format
+msgid "Could not open the file %s."
+msgstr ""
+
+#: ../xed/xed-io-error-message-area.c:725
+#, c-format
+msgid "Could not save the file %s using the %s character encoding."
+msgstr ""
+
+#: ../xed/xed-io-error-message-area.c:728
+msgid ""
+"The document contains one or more characters that cannot be encoded using "
+"the specified character encoding."
+msgstr ""
+
+#: ../xed/xed-io-error-message-area.c:818
+#, c-format
+msgid "This file (%s) is already open in another xed window."
+msgstr ""
+
+#: ../xed/xed-io-error-message-area.c:836
+msgid ""
+"xed opened this instance of the file in a non-editable way. Do you want to "
+"edit it anyway?"
+msgstr ""
+
+#: ../xed/xed-io-error-message-area.c:899
+#: ../xed/xed-io-error-message-area.c:1007
+msgid "S_ave Anyway"
+msgstr ""
+
+#: ../xed/xed-io-error-message-area.c:903
+#: ../xed/xed-io-error-message-area.c:1011
+msgid "D_on't Save"
+msgstr ""
+
+#. FIXME: review this message, it's not clear since for the user the "modification"
+#. could be interpreted as the changes he made in the document. beside "reading" is
+#. not accurate (since last load/save)
+#: ../xed/xed-io-error-message-area.c:925
+#, c-format
+msgid "The file %s has been modified since reading it."
+msgstr ""
+
+#: ../xed/xed-io-error-message-area.c:944
+msgid ""
+"If you save it, all the external changes could be lost. Save it anyway?"
+msgstr ""
+
+#: ../xed/xed-io-error-message-area.c:1033
+#, c-format
+msgid "Could not create a backup file while saving %s"
+msgstr ""
+
+#: ../xed/xed-io-error-message-area.c:1036
+#, c-format
+msgid "Could not create a temporary backup file while saving %s"
+msgstr ""
+
+#: ../xed/xed-io-error-message-area.c:1056
+msgid ""
+"xed could not back up the old copy of the file before saving the new one. "
+"You can ignore this warning and save the file anyway, but if an error occurs "
+"while saving, you could lose the old copy of the file. Save anyway?"
+msgstr ""
+
+#. Translators: %s is a URI scheme (like for example http:, ftp:, etc.)
+#: ../xed/xed-io-error-message-area.c:1120
+#, c-format
+msgid ""
+"xed cannot handle %s locations in write mode. Please check that you typed "
+"the location correctly and try again."
+msgstr ""
+
+#: ../xed/xed-io-error-message-area.c:1128
+msgid ""
+"xed cannot handle this location in write mode. Please check that you typed "
+"the location correctly and try again."
+msgstr ""
+
+#: ../xed/xed-io-error-message-area.c:1137
+#, c-format
+msgid ""
+"%s is not a valid location. Please check that you typed the location "
 "correctly and try again."
 msgstr ""
 
-#: ../xed/xed-io-error-dialogs.c:241
+#: ../xed/xed-io-error-message-area.c:1143
 msgid ""
-"The file contains invalid data. Probably, you are trying to open a binary "
-"file."
+"You do not have the permissions necessary to save the file. Please check "
+"that you typed the location correctly and try again."
 msgstr ""
 
-#: ../xed/xed-io-error-dialogs.c:248
-msgid "The file you are trying to open is not a regular file."
-msgstr ""
-
-#: ../xed/xed-io-error-dialogs.c:294
+#: ../xed/xed-io-error-message-area.c:1149
 msgid ""
-"xed was not able to automatically detect the character coding. Please, "
-"check that you are not trying to open a binary file and try again selecting "
-"a character coding in the 'Open File...' (or 'Open Location') dialog."
-msgstr ""
-
-#: ../xed/xed-io-error-dialogs.c:302 ../xed/xed-io-error-dialogs.c:328
-#, c-format
-msgid "Could not open the file \"%s\" using the %s character coding"
-msgstr ""
-
-#: ../xed/xed-io-error-dialogs.c:305 ../xed/xed-io-error-dialogs.c:331
-msgid ""
-"Please, check that you are not trying to open a binary file and that you "
-"selected the right character coding in the 'Open File... ' (or 'Open "
-"Location') dialog and try again."
-msgstr ""
-
-#: ../xed/xed-io-error-dialogs.c:315
-msgid ""
-"The file contains data in an invalid format. Probably, you are trying to "
-"open a binary file."
-msgstr ""
-
-#: ../xed/xed-io-error-dialogs.c:397 ../xed/xed-io-error-dialogs.c:404
-#: ../xed/xed-io-error-dialogs.c:410 ../xed/xed-io-error-dialogs.c:429
-#: ../xed/xed-io-error-dialogs.c:435 ../xed/xed-io-error-dialogs.c:441
-#: ../xed/xed-io-error-dialogs.c:447 ../xed/xed-io-error-dialogs.c:454
-#: ../xed/xed-io-error-dialogs.c:469 ../xed/xed-io-error-dialogs.c:497
-#: ../xed/xed-io-error-dialogs.c:505 ../xed/xed-io-error-dialogs.c:511
-#: ../xed/xed-io-error-dialogs.c:518 ../xed/xed-io-error-dialogs.c:557
-#, c-format
-msgid "Could not revert the file \"%s\""
-msgstr ""
-
-#: ../xed/xed-io-error-dialogs.c:399
-msgid "xed cannot find it. Perhaps, it has recently been deleted."
-msgstr ""
-
-#: ../xed/xed-io-error-dialogs.c:449
-msgid ""
-"There are too many open files. Please, close some open files and try again."
-msgstr ""
-
-#: ../xed/xed-io-error-dialogs.c:456
-msgid ""
-"Not enough available memory. Please, close some running applications and try "
-"again."
-msgstr ""
-
-#: ../xed/xed-io-error-dialogs.c:499
-msgid ""
-"The host name was empty. Please, check that your proxy settings are correct "
+"There is not enough disk space to save the file. Please free some disk space "
 "and try again."
 msgstr ""
 
-#: ../xed/xed-io-error-dialogs.c:507
-msgid "Attempt to log in failed."
-msgstr ""
-
-#: ../xed/xed-io-error-dialogs.c:513
+#: ../xed/xed-io-error-message-area.c:1154
 msgid ""
-"The file contains invalid UTF-8 data. Probably, you are trying to revert a "
-"binary file."
+"You are trying to save the file on a read-only disk. Please check that you "
+"typed the location correctly and try again."
 msgstr ""
 
-#: ../xed/xed-io-error-dialogs.c:520
-msgid "It is not possible to revert an Untitled document."
-msgstr ""
-
-#: ../xed/xed-io-error-dialogs.c:607
-#, c-format
-msgid "Could not save the file \"%s\""
-msgstr ""
-
-#: ../xed/xed-io-error-dialogs.c:656
-#, c-format
-msgid "The file \"%s\" already exists"
-msgstr ""
-
-#: ../xed/xed-io-error-dialogs.c:662
-msgid "Please, check that you typed the location correctly."
-msgstr ""
-
-#: ../xed/xed-io-error-dialogs.c:668 ../xed/xed-io-error-dialogs.c:674
-#: ../xed/xed-io-error-dialogs.c:680 ../xed/xed-io-error-dialogs.c:687
-#: ../xed/xed-io-error-dialogs.c:694
-#, c-format
-msgid "Could not create the file \"%s\""
-msgstr ""
-
-#: ../xed/xed-io-error-dialogs.c:670
-msgid "Make sure you have the appropriate write permissions."
-msgstr ""
-
-#: ../xed/xed-io-error-dialogs.c:676
-msgid "The file name is too long."
-msgstr ""
-
-#: ../xed/xed-io-error-dialogs.c:682
+#: ../xed/xed-io-error-message-area.c:1160
 msgid ""
-"A directory component in the file name does not exist or is a dangling "
-"symbolic link."
+"A file with the same name already exists. Please use a different name."
 msgstr ""
 
-#: ../xed/xed-io-error-dialogs.c:689
+#: ../xed/xed-io-error-message-area.c:1165
 msgid ""
-"There is not enough disk space to create the file. Please free some disk "
-"space and try again."
+"The disk where you are trying to save the file has a limitation on length of "
+"the file names. Please use a shorter name."
 msgstr ""
 
-#. Read only
-#: ../xed/xed-mdi-child.c:249
-msgid "RO"
-msgstr ""
-
-#. Add the detach tab button
-#: ../xed/xed-mdi-child.c:650 ../xed/xed-ui.xml.h:85
-msgid "_Move to New Window"
-msgstr ""
-
-#: ../xed/xed-mdi-child.c:803
-#, fuzzy
-msgid "Unicode (UTF-8)"
-msgstr "UTF-8 koremana"
-
-#: ../xed/xed-mdi-child.c:813
-msgid "Name:"
-msgstr ""
-
-#: ../xed/xed-mdi-child.c:814
-msgid "MIME Type:"
-msgstr ""
-
-#: ../xed/xed-mdi-child.c:815
-msgid "Encoding:"
-msgstr ""
-
-#. Translators: %s is a URI
-#: ../xed/xed-mdi.c:260 ../xed/xed-mdi.c:463
-#, fuzzy, c-format
-msgid "Open '%s'"
-msgstr "Huaki"
-
-#: ../xed/xed-mdi.c:538
-#, fuzzy
-msgid "Open a recently used file"
-msgstr "Huaki he kōnae"
-
-#: ../xed/xed-mdi.c:1477 ../xed/xed-mdi.c:1479
-msgid "Read Only"
-msgstr ""
-
-#: ../xed/xed-mdi.c:2103
-msgid "Normal"
-msgstr ""
-
-#: ../xed/xed-mdi.c:2104
-msgid "Use Normal highlight mode"
-msgstr ""
-
-#: ../xed/xed-mdi.c:2180
-#, c-format
-msgid "Use %s highlight mode"
-msgstr ""
-
-#: ../xed/xed-output-window.c:378
-msgid "Close the output window"
-msgstr ""
-
-#: ../xed/xed-output-window.c:416
-#, fuzzy
-msgid "Copy selected lines"
-msgstr "Tārua te whiringa"
-
-#: ../xed/xed-output-window.c:436
-msgid "Clear the output window"
-msgstr ""
-
-#: ../xed/xed-output-window.c:476
-msgid "Output Lines"
-msgstr ""
-
-#: ../xed/xed-prefs-manager.c:175
-msgid "Cannot initialize preferences manager."
-msgstr ""
-
-#: ../xed/xed-prefs-manager.c:1326
-#, c-format
-msgid "Expected `%s' got `%s' for key %s"
-msgstr ""
-
-#: ../xed/xed-print.c:219 ../xed/xed-ui.xml.h:37
-msgid "Print"
-msgstr "Tā"
-
-#: ../xed/xed-print.c:228 ../plugins/docinfo/docinfo.glade2.h:7
-#, fuzzy
-msgid "Lines"
-msgstr "Ngā Kōnae"
-
-#: ../xed/xed-print.c:330
-msgid "Preparing pages..."
-msgstr ""
-
-#: ../xed/xed-print.c:357
-#, c-format
-msgid "Rendering page %d of %d..."
-msgstr ""
-
-#: ../xed/xed-print.c:359
-#, c-format
-msgid "Printing page %d of %d..."
-msgstr ""
-
-#: ../xed/xed-print.c:381 ../xed/xed-ui.xml.h:40
-msgid "Print preview"
-msgstr "Tiro tānga"
-
-#: ../xed/xed-print.c:551
-#, fuzzy, c-format
-msgid "File: %s"
-msgstr "Ngā Kōnae"
-
-#: ../xed/xed-print.c:557
-#, fuzzy
-msgid "Page %N of %Q"
-msgstr "Whārangi %u"
-
-#: ../xed/xed-ui.xml.h:1
-#, fuzzy
-msgid "About this application"
-msgstr "Kotia te whiringa"
-
-#: ../xed/xed-ui.xml.h:2
-msgid "Change the visibility of the output window in the current window"
-msgstr ""
-
-#: ../xed/xed-ui.xml.h:3
-msgid "Change the visibility of the statusbar in the current window"
-msgstr ""
-
-#: ../xed/xed-ui.xml.h:4
-msgid "Change the visibility of the toolbar in the current window"
-msgstr ""
-
-#: ../xed/xed-ui.xml.h:5
-msgid "Close"
-msgstr "Kati"
-
-#: ../xed/xed-ui.xml.h:6
-msgid "Close all open files"
-msgstr ""
-
-#: ../xed/xed-ui.xml.h:7
-msgid "Close the current file"
-msgstr ""
-
-#: ../xed/xed-ui.xml.h:8
-#, fuzzy
-msgid "Configure the application"
-msgstr "Kotia te whiringa"
-
-#: ../xed/xed-ui.xml.h:9
-msgid "Copy"
-msgstr "Tārua"
-
-#: ../xed/xed-ui.xml.h:10
-msgid "Copy the selection"
-msgstr "Tārua te whiringa"
-
-#: ../xed/xed-ui.xml.h:11
-msgid "Create a new document"
-msgstr ""
-
-#: ../xed/xed-ui.xml.h:12
-msgid "Cu_t"
-msgstr "K_otia"
-
-#: ../xed/xed-ui.xml.h:13
-msgid "Cut"
-msgstr "Kotia"
-
-#: ../xed/xed-ui.xml.h:14
-msgid "Cut the selection"
-msgstr "Kotia te whiringa"
-
-#: ../xed/xed-ui.xml.h:15
-msgid "Delete"
-msgstr "Porowhiu"
-
-#: ../xed/xed-ui.xml.h:16
-msgid "Delete the selected text"
-msgstr ""
-
-#: ../xed/xed-ui.xml.h:18
-msgid "Find Ne_xt"
-msgstr ""
-
-#: ../xed/xed-ui.xml.h:20
-#, fuzzy
-msgid "Find Pre_vious"
-msgstr "T_iro Tānga"
-
-#: ../xed/xed-ui.xml.h:21
-#, fuzzy
-msgid "Find Previous"
-msgstr "Tiro Tānga"
-
-#: ../xed/xed-ui.xml.h:22
-msgid "Go to _Line..."
-msgstr ""
-
-#: ../xed/xed-ui.xml.h:23
-msgid "Go to a specific line"
-msgstr ""
-
-#: ../xed/xed-ui.xml.h:24
-msgid "Main toolbar"
-msgstr ""
-
-#: ../xed/xed-ui.xml.h:25
-msgid "Move the current document to a new window"
-msgstr ""
-
-#: ../xed/xed-ui.xml.h:26
-msgid "New"
-msgstr "Hou"
-
-#: ../xed/xed-ui.xml.h:27
-msgid "Open"
-msgstr "Huaki"
-
-#: ../xed/xed-ui.xml.h:28
-msgid "Open Location..."
-msgstr ""
-
-#: ../xed/xed-ui.xml.h:29
-msgid "Open _Location..."
-msgstr ""
-
-#: ../xed/xed-ui.xml.h:30
-msgid "Open a file"
-msgstr "Huaki he kōnae"
-
-#: ../xed/xed-ui.xml.h:31
-msgid "Open a file from a specified location"
-msgstr ""
-
-#: ../xed/xed-ui.xml.h:32
-msgid "Open the xed manual"
-msgstr ""
-
-#: ../xed/xed-ui.xml.h:33
-#, fuzzy
-msgid "Page Set_up"
-msgstr "Whārangi %u"
-
-#: ../xed/xed-ui.xml.h:34
-msgid "Paste"
-msgstr "Whakapiri"
-
-#: ../xed/xed-ui.xml.h:35
-msgid "Paste the clipboard"
-msgstr ""
-
-#: ../xed/xed-ui.xml.h:36
-msgid "Pr_eferences"
-msgstr "Ngā _Tina Hiahia"
-
-#: ../xed/xed-ui.xml.h:38
-msgid "Print Previe_w..."
-msgstr "T_iro Tānga..."
-
-#: ../xed/xed-ui.xml.h:39
-msgid "Print Preview"
-msgstr "Tiro Tānga"
-
-#: ../xed/xed-ui.xml.h:41
-msgid "Print the current file"
-msgstr ""
-
-#: ../xed/xed-ui.xml.h:42
-msgid "Quit"
-msgstr "Whakamutu"
-
-#: ../xed/xed-ui.xml.h:43
-msgid "Quit the program"
-msgstr ""
-
-#: ../xed/xed-ui.xml.h:44
-msgid "Redo"
-msgstr "Mahi Anō"
-
-#: ../xed/xed-ui.xml.h:45
-#, fuzzy
-msgid "Redo the undone action"
-msgstr "Whakakore te mahi toenga"
-
-#: ../xed/xed-ui.xml.h:47
-#, fuzzy
-msgid "Revert"
-msgstr "_Whakakāhoretia"
-
-#: ../xed/xed-ui.xml.h:48
-msgid "Revert to a saved version of the file"
-msgstr ""
-
-#: ../xed/xed-ui.xml.h:49
-msgid "Save"
-msgstr "Pupuri"
-
-#: ../xed/xed-ui.xml.h:50
-msgid "Save As"
-msgstr "P_urihia Pēneitia"
-
-#: ../xed/xed-ui.xml.h:51
-msgid "Save _As..."
-msgstr "P_urihia Pēneitia..."
-
-#: ../xed/xed-ui.xml.h:52
-msgid "Save all open files"
-msgstr ""
-
-#: ../xed/xed-ui.xml.h:53
-msgid "Save the current file"
-msgstr ""
-
-#: ../xed/xed-ui.xml.h:54
-msgid "Save the current file with a different name"
-msgstr ""
-
-#: ../xed/xed-ui.xml.h:55
-msgid "Search backwards for the same text"
-msgstr ""
-
-#: ../xed/xed-ui.xml.h:56
-msgid "Search for and replace text"
-msgstr ""
-
-#: ../xed/xed-ui.xml.h:57
-msgid "Search for text"
-msgstr ""
-
-#: ../xed/xed-ui.xml.h:58
-msgid "Search forwards for the same text"
-msgstr ""
-
-#: ../xed/xed-ui.xml.h:59
-msgid "Select All"
-msgstr ""
-
-#: ../xed/xed-ui.xml.h:60
-msgid "Select _All"
-msgstr ""
-
-#: ../xed/xed-ui.xml.h:61
-msgid "Select the entire document"
-msgstr ""
-
-#: ../xed/xed-ui.xml.h:62
+#: ../xed/xed-io-error-message-area.c:1172
 msgid ""
-"Set toolbar button style according to desktop Menu and Toolbar Preferences"
+"The disk where you are trying to save the file has a limitation on file "
+"sizes. Please try saving a smaller file or saving it to a disk that does not "
+"have this limitation."
 msgstr ""
 
-#: ../xed/xed-ui.xml.h:63
-msgid "Setup the page settings"
+#: ../xed/xed-io-error-message-area.c:1188
+#, c-format
+msgid "Could not save the file %s."
 msgstr ""
 
-#: ../xed/xed-ui.xml.h:64
-msgid "Show only icons in the toolbar"
+#. FIXME: review this message, it's not clear since for the user the "modification"
+#. could be interpreted as the changes he made in the document. beside "reading" is
+#. not accurate (since last load/save)
+#: ../xed/xed-io-error-message-area.c:1232
+#, c-format
+msgid "The file %s changed on disk."
 msgstr ""
 
-#: ../xed/xed-ui.xml.h:65
-msgid "Show text below every icon in the toolbar"
+#: ../xed/xed-io-error-message-area.c:1237
+msgid "Do you want to drop your changes and reload the file?"
 msgstr ""
 
-#: ../xed/xed-ui.xml.h:66
-msgid "Show text only beside important icons in the toolbar"
+#: ../xed/xed-io-error-message-area.c:1239
+msgid "Do you want to reload the file?"
 msgstr ""
 
-#: ../xed/xed-ui.xml.h:67
-msgid "T_ext for Important Icons"
+#: ../xed/xed-io-error-message-area.c:1244
+msgid "_Reload"
 msgstr ""
 
-#: ../xed/xed-ui.xml.h:68
-msgid "Undo"
-msgstr "Whakakore"
+#: ../xed/xed-panel.c:372 ../xed/xed-panel.c:549
+msgid "Empty"
+msgstr ""
 
-#: ../xed/xed-ui.xml.h:69
-msgid "Undo the last action"
-msgstr "Whakakore te mahi toenga"
+#: ../xed/xed-panel.c:439
+msgid "Hide panel"
+msgstr ""
 
-#: ../xed/xed-ui.xml.h:70
+#: ../xed/xed-plugin-manager.c:54
+msgid "Plugin"
+msgstr ""
+
+#: ../xed/xed-plugin-manager.c:55
+msgid "Enabled"
+msgstr ""
+
+#: ../xed/xed-plugin-manager.c:508
 msgid "_About"
 msgstr "_Mo"
 
-#: ../xed/xed-ui.xml.h:71
-msgid "_Close"
-msgstr "_Kati"
-
-#: ../xed/xed-ui.xml.h:72
-#, fuzzy
-msgid "_Close All"
-msgstr "_Kati"
-
-#: ../xed/xed-ui.xml.h:73
-#, fuzzy
-msgid "_Contents"
-msgstr "_Huri"
-
-#: ../xed/xed-ui.xml.h:74
-msgid "_Copy"
-msgstr "_Tārua"
-
-#: ../xed/xed-ui.xml.h:75
-msgid "_Customize Toolbar"
+#: ../xed/xed-plugin-manager.c:516
+msgid "C_onfigure"
 msgstr ""
 
-#: ../xed/xed-ui.xml.h:76
-msgid "_Delete"
-msgstr "_Porowhiu"
-
-#: ../xed/xed-ui.xml.h:77
-msgid "_Desktop Default"
+#: ../xed/xed-plugin-manager.c:525
+msgid "A_ctivate"
 msgstr ""
 
-#: ../xed/xed-ui.xml.h:78
-msgid "_Documents"
-msgstr "_Tuhinga"
-
-#: ../xed/xed-ui.xml.h:79
-msgid "_Edit"
-msgstr "_Whakatika"
-
-#: ../xed/xed-ui.xml.h:80
-msgid "_File"
-msgstr "_Kōnae"
-
-#: ../xed/xed-ui.xml.h:81
-msgid "_Find..."
-msgstr "_Kitea..."
-
-#: ../xed/xed-ui.xml.h:82
-msgid "_Help"
-msgstr "_Āwhina"
-
-#: ../xed/xed-ui.xml.h:83
-msgid "_Highlight Mode"
+#: ../xed/xed-plugin-manager.c:536
+msgid "Ac_tivate All"
 msgstr ""
 
-#: ../xed/xed-ui.xml.h:84
-msgid "_Icons Only"
+#: ../xed/xed-plugin-manager.c:541
+msgid "_Deactivate All"
 msgstr ""
 
-#: ../xed/xed-ui.xml.h:86
-msgid "_New"
-msgstr "_Hou"
-
-#: ../xed/xed-ui.xml.h:87
-msgid "_Open..."
-msgstr "_Huaki..."
-
-#: ../xed/xed-ui.xml.h:88
-#, fuzzy
-msgid "_Output Window"
-msgstr "Matapihi"
-
-#: ../xed/xed-ui.xml.h:89
-msgid "_Paste"
-msgstr "_Whakapiri"
-
-#: ../xed/xed-ui.xml.h:90
-msgid "_Print..."
-msgstr "_Tā..."
-
-#: ../xed/xed-ui.xml.h:91
-msgid "_Quit"
-msgstr "_Whakamutu"
-
-#: ../xed/xed-ui.xml.h:92
-msgid "_Redo"
-msgstr "_Mahi Anō"
-
-#: ../xed/xed-ui.xml.h:93
-msgid "_Replace..."
-msgstr "_Whakakapia..."
-
-#: ../xed/xed-ui.xml.h:95
-msgid "_Save"
-msgstr "_Pupuri"
-
-#: ../xed/xed-ui.xml.h:96
-#, fuzzy
-msgid "_Save All"
-msgstr "P_urihia Pēneitia"
-
-#: ../xed/xed-ui.xml.h:97
-#, fuzzy
-msgid "_Search"
-msgstr "_Whakawātea"
-
-#: ../xed/xed-ui.xml.h:98
-msgid "_Statusbar"
+#: ../xed/xed-plugin-manager.c:809
+msgid "Active _Plugins:"
 msgstr ""
 
-#: ../xed/xed-ui.xml.h:99
-msgid "_Text for All Icons"
+#: ../xed/xed-plugin-manager.c:842
+msgid "_About Plugin"
 msgstr ""
 
-#: ../xed/xed-ui.xml.h:100
-msgid "_Toolbar"
+#: ../xed/xed-plugin-manager.c:846
+msgid "C_onfigure Plugin"
 msgstr ""
 
-#: ../xed/xed-ui.xml.h:101
-#, fuzzy
-msgid "_Tools"
-msgstr "_Tihi"
-
-#: ../xed/xed-ui.xml.h:102
-msgid "_Undo"
-msgstr "_Whakakore"
-
-#: ../xed/xed-ui.xml.h:103
-msgid "_View"
-msgstr "_Titiro"
-
-#: ../xed/xed-utils.c:686
-msgid " (invalid Unicode)"
+#: ../xed/xed-print-job.c:551
+#, c-format
+msgid "File: %s"
 msgstr ""
 
-#.
-#. if (col == chars)
-#. msg = g_strdup_printf (_("  Ln %d, Col %d"), row + 1, col + 1);
-#. else
-#. msg = g_strdup_printf (_("  Ln %d, Col %d-%d"), row + 1, chars + 1, col + 1);
-#.
+#: ../xed/xed-print-job.c:560
+msgid "Page %N of %Q"
+msgstr ""
+
+#: ../xed/xed-print-job.c:817
+msgid "Preparing..."
+msgstr ""
+
+#: ../xed/xed-print-preferences.ui.h:1
+msgid "Syntax Highlighting"
+msgstr ""
+
+#: ../xed/xed-print-preferences.ui.h:2
+msgid "Print synta_x highlighting"
+msgstr ""
+
+#: ../xed/xed-print-preferences.ui.h:4
+msgid "Print line nu_mbers"
+msgstr ""
+
+#. 'Number every' from 'Number every 3 lines' in the 'Text Editor' tab of the print preferences.
+#: ../xed/xed-print-preferences.ui.h:6
+msgid "_Number every"
+msgstr ""
+
+#. 'lines' from 'Number every 3 lines' in the 'Text Editor' tab of the print preferences.
+#: ../xed/xed-print-preferences.ui.h:8
+msgid "lines"
+msgstr ""
+
+#: ../xed/xed-print-preferences.ui.h:12
+msgid "Page header"
+msgstr ""
+
+#: ../xed/xed-print-preferences.ui.h:13
+msgid "Print page _headers"
+msgstr ""
+
+#: ../xed/xed-print-preferences.ui.h:14
+msgid "Fonts"
+msgstr ""
+
+#: ../xed/xed-print-preferences.ui.h:15
+msgid "_Body:"
+msgstr ""
+
+#: ../xed/xed-print-preferences.ui.h:16
+msgid "_Line numbers:"
+msgstr ""
+
+#: ../xed/xed-print-preferences.ui.h:17
+msgid "He_aders and footers:"
+msgstr ""
+
+#: ../xed/xed-print-preferences.ui.h:18
+msgid "_Restore Default Fonts"
+msgstr ""
+
+#: ../xed/xed-print-preview.c:572
+msgid "Show the previous page"
+msgstr ""
+
+#: ../xed/xed-print-preview.c:584
+msgid "Show the next page"
+msgstr ""
+
+#: ../xed/xed-print-preview.c:600
+msgid "Current page (Alt+P)"
+msgstr ""
+
+#. Translators: the "of" from "1 of 19" in print preview.
+#: ../xed/xed-print-preview.c:623
+msgid "of"
+msgstr ""
+
+#: ../xed/xed-print-preview.c:631
+msgid "Page total"
+msgstr ""
+
+#: ../xed/xed-print-preview.c:632
+msgid "The total number of pages in the document"
+msgstr ""
+
+#: ../xed/xed-print-preview.c:649
+msgid "Show multiple pages"
+msgstr ""
+
+#: ../xed/xed-print-preview.c:662
+msgid "Zoom 1:1"
+msgstr ""
+
+#: ../xed/xed-print-preview.c:671
+msgid "Zoom to fit the whole page"
+msgstr ""
+
+#: ../xed/xed-print-preview.c:680
+msgid "Zoom the page in"
+msgstr ""
+
+#: ../xed/xed-print-preview.c:689
+msgid "Zoom the page out"
+msgstr ""
+
+#: ../xed/xed-print-preview.c:701
+msgid "_Close Preview"
+msgstr ""
+
+#: ../xed/xed-print-preview.c:704
+msgid "Close print preview"
+msgstr ""
+
+#: ../xed/xed-print-preview.c:774
+#, c-format
+msgid "Page %d of %d"
+msgstr ""
+
+#: ../xed/xed-print-preview.c:958
+msgid "Page Preview"
+msgstr ""
+
+#: ../xed/xed-print-preview.c:959
+msgid "The preview of a page in the document to be printed"
+msgstr ""
+
+#: ../xed/xed-smart-charset-converter.c:319
+msgid "It is not possible to detect the encoding automatically"
+msgstr ""
+
+#: ../xed/xed-statusbar.c:74 ../xed/xed-statusbar.c:80
+msgid "OVR"
+msgstr ""
+
+#: ../xed/xed-statusbar.c:74 ../xed/xed-statusbar.c:80
+msgid "INS"
+msgstr ""
+
 #. Translators: "Ln" is an abbreviation for "Line", Col is an abbreviation for "Column". Please,
 #. use abbreviations if possible to avoid space problems.
-#: ../xed/xed-view.c:879
+#: ../xed/xed-statusbar.c:266
 #, c-format
 msgid "  Ln %d, Col %d"
 msgstr ""
 
-#: ../xed/xed-view.c:915
-msgid "  OVR"
-msgstr ""
-
-#: ../xed/xed-view.c:917
-msgid "  INS"
-msgstr ""
-
-#: ../xed/xed2.c:83
-msgid ""
-"Set the character encoding to be used to open the files listed on the "
-"command line"
-msgstr ""
-
-#: ../xed/xed2.c:86
-msgid "Quit an existing instance of xed"
-msgstr ""
-
-#: ../xed/xed2.c:89
-msgid "Create a new toplevel window in an existing instance of xed"
-msgstr ""
-
-#: ../xed/xed2.c:92
-msgid "Create a new document in an existing instance of xed"
-msgstr ""
-
-#: ../xed/xed2.c:168
+#: ../xed/xed-statusbar.c:367
 #, c-format
-msgid "The specified encoding \"%s\" is not valid\n"
-msgstr ""
+msgid "There is a tab with errors"
+msgid_plural "There are %d tabs with errors"
+msgstr[0] ""
+msgstr[1] ""
 
-#: ../xed/xed-convert.c:91
-msgid "The file you are trying to open contains an invalid byte sequence."
-msgstr ""
-
-#: ../xed/xed-convert.c:160 ../xed/xed-convert.c:204
+#: ../xed/xed-style-scheme-manager.c:220
+#, c-format
 msgid ""
-"xed was not able to automatically determine the encoding of the file you "
-"want to open."
+"Directory '%s' could not be created: g_mkdir_with_parents() failed: %s"
 msgstr ""
 
-#: ../plugins/changecase/changecase.c:43
-#, fuzzy
-msgid "C_hange Case"
-msgstr "_Kuhu"
-
-#: ../plugins/changecase/changecase.c:49
-msgid "All _Upper Case"
+#. Translators: the first %s is a file name (e.g. test.txt) the second one
+#. is a directory (e.g. ssh://master.gnome.org/home/users/paolo)
+#: ../xed/xed-tab.c:664
+#, c-format
+msgid "Reverting %s from %s"
 msgstr ""
 
-#: ../plugins/changecase/changecase.c:50
-msgid "All _Lower Case"
+#: ../xed/xed-tab.c:671
+#, c-format
+msgid "Reverting %s"
 msgstr ""
 
-#: ../plugins/changecase/changecase.c:51
-#, fuzzy
-msgid "_Invert Case"
-msgstr "_Kuhu"
-
-#: ../plugins/changecase/changecase.c:52
-#, fuzzy
-msgid "_Title Case"
-msgstr "Ngā Kōnae"
-
-#: ../plugins/changecase/changecase.c:54
-msgid "Change selected text to upper case"
+#. Translators: the first %s is a file name (e.g. test.txt) the second one
+#. is a directory (e.g. ssh://master.gnome.org/home/users/paolo)
+#: ../xed/xed-tab.c:687
+#, c-format
+msgid "Loading %s from %s"
 msgstr ""
 
-#: ../plugins/changecase/changecase.c:55
-msgid "Change selected text to lower case"
+#: ../xed/xed-tab.c:694
+#, c-format
+msgid "Loading %s"
 msgstr ""
 
-#: ../plugins/changecase/changecase.c:56
-msgid "Invert the case of selected text"
+#. Translators: the first %s is a file name (e.g. test.txt) the second one
+#. is a directory (e.g. ssh://master.gnome.org/home/users/paolo)
+#: ../xed/xed-tab.c:777
+#, c-format
+msgid "Saving %s to %s"
 msgstr ""
 
-#: ../plugins/changecase/changecase.c:57
-msgid "Capitalize the first letter of each selected word"
+#: ../xed/xed-tab.c:784
+#, c-format
+msgid "Saving %s"
+msgstr ""
+
+#. Read only
+#: ../xed/xed-tab.c:1659
+msgid "RO"
+msgstr ""
+
+#: ../xed/xed-tab.c:1706
+#, c-format
+msgid "Error opening file %s"
+msgstr ""
+
+#: ../xed/xed-tab.c:1711
+#, c-format
+msgid "Error reverting file %s"
+msgstr ""
+
+#: ../xed/xed-tab.c:1716
+#, c-format
+msgid "Error saving file %s"
+msgstr ""
+
+#: ../xed/xed-tab.c:1737
+msgid "Unicode (UTF-8)"
+msgstr ""
+
+#: ../xed/xed-tab.c:1744
+msgid "Name:"
+msgstr ""
+
+#: ../xed/xed-tab.c:1745
+msgid "MIME Type:"
+msgstr ""
+
+#: ../xed/xed-tab.c:1746
+msgid "Encoding:"
+msgstr ""
+
+#: ../xed/xed-tab-label.c:285
+msgid "Close document"
+msgstr ""
+
+#. Toplevel
+#: ../xed/xed-ui.h:47
+msgid "_File"
+msgstr "_Kōnae"
+
+#: ../xed/xed-ui.h:48
+msgid "_Edit"
+msgstr "_Whakatika"
+
+#: ../xed/xed-ui.h:49
+msgid "_View"
+msgstr "_Titiro"
+
+#: ../xed/xed-ui.h:50
+msgid "_Search"
+msgstr ""
+
+#: ../xed/xed-ui.h:51
+msgid "_Tools"
+msgstr ""
+
+#: ../xed/xed-ui.h:52
+msgid "_Documents"
+msgstr "_Tuhinga"
+
+#: ../xed/xed-ui.h:53
+msgid "_Help"
+msgstr "_Āwhina"
+
+#: ../xed/xed-ui.h:57
+msgid "Create a new document"
+msgstr ""
+
+#: ../xed/xed-ui.h:58
+msgid "_Open..."
+msgstr "_Huaki..."
+
+#: ../xed/xed-ui.h:59 ../xed/xed-window.c:1383
+msgid "Open a file"
+msgstr "Huaki he kōnae"
+
+#. Edit menu
+#: ../xed/xed-ui.h:62
+msgid "Pr_eferences"
+msgstr "Ngā _Tina Hiahia"
+
+#: ../xed/xed-ui.h:63
+msgid "Configure the application"
+msgstr ""
+
+#. Help menu
+#: ../xed/xed-ui.h:66
+msgid "_Contents"
+msgstr ""
+
+#: ../xed/xed-ui.h:67
+msgid "Open the xed manual"
+msgstr ""
+
+#: ../xed/xed-ui.h:69
+msgid "About this application"
+msgstr ""
+
+#: ../xed/xed-ui.h:73
+msgid "Leave fullscreen mode"
+msgstr ""
+
+#: ../xed/xed-ui.h:81
+msgid "Save the current file"
+msgstr ""
+
+#: ../xed/xed-ui.h:82
+msgid "Save _As..."
+msgstr "P_urihia Pēneitia..."
+
+#: ../xed/xed-ui.h:83
+msgid "Save the current file with a different name"
+msgstr ""
+
+#: ../xed/xed-ui.h:85
+msgid "Revert to a saved version of the file"
+msgstr ""
+
+#: ../xed/xed-ui.h:86
+msgid "Print Previe_w"
+msgstr ""
+
+#: ../xed/xed-ui.h:87
+msgid "Print preview"
+msgstr "Tiro tānga"
+
+#: ../xed/xed-ui.h:88
+msgid "_Print..."
+msgstr "_Tā..."
+
+#: ../xed/xed-ui.h:89
+msgid "Print the current page"
+msgstr ""
+
+#: ../xed/xed-ui.h:93
+msgid "Undo the last action"
+msgstr "Whakakore te mahi toenga"
+
+#: ../xed/xed-ui.h:95
+msgid "Redo the last undone action"
+msgstr ""
+
+#: ../xed/xed-ui.h:97
+msgid "Cut the selection"
+msgstr "Kotia te whiringa"
+
+#: ../xed/xed-ui.h:99
+msgid "Copy the selection"
+msgstr "Tārua te whiringa"
+
+#: ../xed/xed-ui.h:101
+msgid "Paste the clipboard"
+msgstr ""
+
+#: ../xed/xed-ui.h:103
+msgid "Delete the selected text"
+msgstr ""
+
+#: ../xed/xed-ui.h:104
+msgid "Select _All"
+msgstr ""
+
+#: ../xed/xed-ui.h:105
+msgid "Select the entire document"
+msgstr ""
+
+#. View menu
+#: ../xed/xed-ui.h:108
+msgid "_Highlight Mode"
+msgstr ""
+
+#. Search menu
+#: ../xed/xed-ui.h:111
+msgid "_Find..."
+msgstr "_Kitea..."
+
+#: ../xed/xed-ui.h:112
+msgid "Search for text"
+msgstr ""
+
+#: ../xed/xed-ui.h:113
+msgid "Find Ne_xt"
+msgstr ""
+
+#: ../xed/xed-ui.h:114
+msgid "Search forwards for the same text"
+msgstr ""
+
+#: ../xed/xed-ui.h:115
+msgid "Find Pre_vious"
+msgstr ""
+
+#: ../xed/xed-ui.h:116
+msgid "Search backwards for the same text"
+msgstr ""
+
+#: ../xed/xed-ui.h:117
+msgid "_Replace..."
+msgstr "_Whakakapia..."
+
+#: ../xed/xed-ui.h:118
+msgid "Search for and replace text"
+msgstr ""
+
+#: ../xed/xed-ui.h:119
+msgid "_Clear Highlight"
+msgstr ""
+
+#: ../xed/xed-ui.h:120
+msgid "Clear highlighting of search matches"
+msgstr ""
+
+#: ../xed/xed-ui.h:121
+msgid "Go to _Line..."
+msgstr ""
+
+#: ../xed/xed-ui.h:122
+msgid "Go to a specific line"
+msgstr ""
+
+#: ../xed/xed-ui.h:123
+msgid "_Incremental Search..."
+msgstr ""
+
+#: ../xed/xed-ui.h:124
+msgid "Incrementally search for text"
+msgstr ""
+
+#. Documents menu
+#: ../xed/xed-ui.h:127
+msgid "_Save All"
+msgstr ""
+
+#: ../xed/xed-ui.h:128
+msgid "Save all open files"
+msgstr ""
+
+#: ../xed/xed-ui.h:129
+msgid "_Close All"
+msgstr ""
+
+#: ../xed/xed-ui.h:130
+msgid "Close all open files"
+msgstr ""
+
+#: ../xed/xed-ui.h:131
+msgid "_Previous Document"
+msgstr ""
+
+#: ../xed/xed-ui.h:132
+msgid "Activate previous document"
+msgstr ""
+
+#: ../xed/xed-ui.h:133
+msgid "_Next Document"
+msgstr ""
+
+#: ../xed/xed-ui.h:134
+msgid "Activate next document"
+msgstr ""
+
+#: ../xed/xed-ui.h:135
+msgid "_Move to New Window"
+msgstr ""
+
+#: ../xed/xed-ui.h:136
+msgid "Move the current document to a new window"
+msgstr ""
+
+#: ../xed/xed-ui.h:143
+msgid "Close the current file"
+msgstr ""
+
+#: ../xed/xed-ui.h:150
+msgid "Quit the program"
+msgstr ""
+
+#: ../xed/xed-ui.h:155
+msgid "_Toolbar"
+msgstr ""
+
+#: ../xed/xed-ui.h:156
+msgid "Show or hide the toolbar in the current window"
+msgstr ""
+
+#: ../xed/xed-ui.h:158
+msgid "_Statusbar"
+msgstr ""
+
+#: ../xed/xed-ui.h:159
+msgid "Show or hide the statusbar in the current window"
+msgstr ""
+
+#: ../xed/xed-ui.h:162
+msgid "Edit text in fullscreen"
+msgstr ""
+
+#: ../xed/xed-ui.h:169
+msgid "Side _Pane"
+msgstr ""
+
+#: ../xed/xed-ui.h:170
+msgid "Show or hide the side pane in the current window"
+msgstr ""
+
+#: ../xed/xed-ui.h:172
+msgid "_Bottom Pane"
+msgstr ""
+
+#: ../xed/xed-ui.h:173
+msgid "Show or hide the bottom pane in the current window"
+msgstr ""
+
+#: ../xed/xed-utils.c:1100
+msgid "Please check your installation."
+msgstr ""
+
+#: ../xed/xed-utils.c:1177
+#, c-format
+msgid "Unable to open UI file %s. Error: %s"
+msgstr ""
+
+#: ../xed/xed-utils.c:1197
+#, c-format
+msgid "Unable to find the object '%s' inside file %s."
+msgstr ""
+
+#. Translators: '/ on <remote-share>'
+#: ../xed/xed-utils.c:1357
+#, c-format
+msgid "/ on %s"
+msgstr ""
+
+#. create "Wrap Around" menu item.
+#: ../xed/xed-view.c:1257
+msgid "_Wrap Around"
+msgstr ""
+
+#. create "Match Entire Word Only" menu item.
+#: ../xed/xed-view.c:1267
+msgid "Match _Entire Word Only"
+msgstr ""
+
+#. create "Match Case" menu item.
+#: ../xed/xed-view.c:1277
+msgid "_Match Case"
+msgstr ""
+
+#. create "Parse escapes" menu item.
+#: ../xed/xed-view.c:1287
+msgid ""
+"_Parse escape sequences (e.g. \n"
+")"
+msgstr ""
+
+#: ../xed/xed-view.c:1401
+msgid "String you want to search for"
+msgstr ""
+
+#: ../xed/xed-view.c:1410
+msgid "Line you want to move the cursor to"
+msgstr ""
+
+#: ../xed/xed-window.c:936
+#, c-format
+msgid "Use %s highlight mode"
+msgstr ""
+
+#. add the "Plain Text" item before all the others
+#. Translators: "Plain Text" means that no highlight mode is selected in the
+#. * "View->Highlight Mode" submenu and so syntax highlighting is disabled
+#: ../xed/xed-window.c:993 ../xed/xed-window.c:1885
+msgid "Plain Text"
+msgstr ""
+
+#: ../xed/xed-window.c:994
+msgid "Disable syntax highlighting"
+msgstr ""
+
+#. Translators: %s is a URI
+#: ../xed/xed-window.c:1280
+#, c-format
+msgid "Open '%s'"
+msgstr ""
+
+#: ../xed/xed-window.c:1385
+msgid "Open a recently used file"
+msgstr ""
+
+#: ../xed/xed-window.c:1391
+msgid "Open"
+msgstr "Huaki"
+
+#: ../xed/xed-window.c:1449
+msgid "Save"
+msgstr "Pupuri"
+
+#: ../xed/xed-window.c:1451
+msgid "Print"
+msgstr "Tā"
+
+#. Translators: %s is a URI
+#: ../xed/xed-window.c:1610
+#, c-format
+msgid "Activate '%s'"
+msgstr ""
+
+#: ../xed/xed-window.c:1863
+msgid "Use Spaces"
+msgstr ""
+
+#: ../xed/xed-window.c:1934
+msgid "Tab Width"
 msgstr ""
 
 #: ../plugins/changecase/changecase.xed-plugin.desktop.in.h:1
-#, fuzzy
 msgid "Change Case"
-msgstr "_Kuhu"
+msgstr ""
 
 #: ../plugins/changecase/changecase.xed-plugin.desktop.in.h:2
 msgid "Changes the case of selected text."
 msgstr ""
 
-#: ../plugins/docinfo/docinfo.c:45
-#, fuzzy
-msgid "_Document Statistics"
-msgstr "_Tuhinga"
-
-#: ../plugins/docinfo/docinfo.c:48
-msgid "Get statistic info on current document"
+#: ../plugins/changecase/xed-changecase-plugin.c:222
+msgid "C_hange Case"
 msgstr ""
 
-#: ../plugins/docinfo/docinfo.c:139
-#: ../plugins/docinfo/docinfo.xed-plugin.desktop.in.h:2
-#, fuzzy
-msgid "Document Statistics"
-msgstr "_Tuhinga"
+#: ../plugins/changecase/xed-changecase-plugin.c:223
+msgid "All _Upper Case"
+msgstr ""
 
-#: ../plugins/docinfo/docinfo.c:153
-#, fuzzy
-msgid "_Update"
-msgstr "_Whakapiri"
+#: ../plugins/changecase/xed-changecase-plugin.c:224
+msgid "Change selected text to upper case"
+msgstr ""
+
+#: ../plugins/changecase/xed-changecase-plugin.c:226
+msgid "All _Lower Case"
+msgstr ""
+
+#: ../plugins/changecase/xed-changecase-plugin.c:227
+msgid "Change selected text to lower case"
+msgstr ""
+
+#: ../plugins/changecase/xed-changecase-plugin.c:229
+msgid "_Invert Case"
+msgstr ""
+
+#: ../plugins/changecase/xed-changecase-plugin.c:230
+msgid "Invert the case of selected text"
+msgstr ""
+
+#: ../plugins/changecase/xed-changecase-plugin.c:232
+msgid "_Title Case"
+msgstr ""
+
+#: ../plugins/changecase/xed-changecase-plugin.c:233
+msgid "Capitalize the first letter of each selected word"
+msgstr ""
 
 #: ../plugins/docinfo/docinfo.xed-plugin.desktop.in.h:1
+#: ../plugins/docinfo/docinfo.ui.h:1
+msgid "Document Statistics"
+msgstr ""
+
+#: ../plugins/docinfo/docinfo.xed-plugin.desktop.in.h:2
 msgid ""
 "Analyzes the current document and reports the number of words, lines, "
 "characters and non-space characters in it."
 msgstr ""
 
-#: ../plugins/docinfo/docinfo.glade2.h:2
-msgid "0"
-msgstr "0"
-
-#: ../plugins/docinfo/docinfo.glade2.h:3
-msgid "<span weight=\"bold\">File Name</span>"
+#: ../plugins/docinfo/docinfo.ui.h:2
+msgid "_Update"
 msgstr ""
 
-#: ../plugins/docinfo/docinfo.glade2.h:4
+#: ../plugins/docinfo/docinfo.ui.h:3
+msgid "File Name"
+msgstr ""
+
+#: ../plugins/docinfo/docinfo.ui.h:5
 msgid "Bytes"
 msgstr ""
 
-#: ../plugins/docinfo/docinfo.glade2.h:5
+#: ../plugins/docinfo/docinfo.ui.h:6
 msgid "Characters (no spaces)"
 msgstr ""
 
-#: ../plugins/docinfo/docinfo.glade2.h:6
+#: ../plugins/docinfo/docinfo.ui.h:7
 msgid "Characters (with spaces)"
 msgstr ""
 
-#: ../plugins/docinfo/docinfo.glade2.h:8
-msgid "Update"
-msgstr ""
-
-#: ../plugins/docinfo/docinfo.glade2.h:9
+#: ../plugins/docinfo/docinfo.ui.h:8
 msgid "Words"
 msgstr ""
 
-#: ../plugins/docinfo/docinfo.glade2.h:10
-msgid "xed: Document Info plugin"
+#: ../plugins/docinfo/docinfo.ui.h:9
+msgid "Lines"
 msgstr ""
 
-#: ../plugins/indent/indent.c:45
-msgid "_Indent"
-msgstr "_Nuku"
-
-#: ../plugins/indent/indent.c:47
-msgid "Indent selected lines"
+#: ../plugins/docinfo/docinfo.ui.h:10
+msgid "Document"
 msgstr ""
 
-#: ../plugins/indent/indent.c:49
-#, fuzzy
-msgid "U_nindent"
-msgstr "_Nuku"
-
-#: ../plugins/indent/indent.c:51
-msgid "Unindent selected lines"
+#: ../plugins/docinfo/docinfo.ui.h:11
+msgid "Selection"
 msgstr ""
 
-#: ../plugins/indent/indent.xed-plugin.desktop.in.h:1
-#, fuzzy
-msgid "Indent lines"
-msgstr "Rūritia"
-
-#: ../plugins/indent/indent.xed-plugin.desktop.in.h:2
-msgid "Indents or un-indents selected lines."
+#: ../plugins/docinfo/xed-docinfo-plugin.c:423
+msgid "_Document Statistics"
 msgstr ""
 
-#: ../plugins/sample/sample.c:43
-msgid "Insert User Na_me"
+#: ../plugins/docinfo/xed-docinfo-plugin.c:425
+msgid "Get statistical information on the current document"
 msgstr ""
 
-#: ../plugins/sample/sample.c:46
-msgid "Insert the user name at the cursor position"
+#: ../plugins/filebrowser/filebrowser.xed-plugin.desktop.in.h:1
+msgid "File Browser Pane"
 msgstr ""
 
-#: ../plugins/sample/sample.xed-plugin.desktop.in.h:1
-msgid "Inserts the user name at the cursor position."
+#: ../plugins/filebrowser/filebrowser.xed-plugin.desktop.in.h:2
+msgid "Easy file access from the side pane"
 msgstr ""
 
-#: ../plugins/sample/sample.xed-plugin.desktop.in.h:2
-msgid "User name"
+#: ../plugins/filebrowser/org.x.editor.plugins.filebrowser.gschema.xml.in.h:1
+msgid "Set Location to First Document"
 msgstr ""
 
-#: ../plugins/savecopy/savecopy.c:49
-#, fuzzy
-msgid "Sa_ve Copy..."
-msgstr "_Tārua"
-
-#: ../plugins/savecopy/savecopy.c:52
-msgid "Save a copy of the current document"
+#: ../plugins/filebrowser/org.x.editor.plugins.filebrowser.gschema.xml.in.h:2
+msgid ""
+"If TRUE the file browser plugin will view the directory of the first opened "
+"document given that the file browser hasn't been used yet. (Thus this "
+"generally applies to opening a document from the command line or opening it "
+"with Caja, etc.)"
 msgstr ""
 
-#: ../plugins/savecopy/savecopy.c:315
+#: ../plugins/filebrowser/org.x.editor.plugins.filebrowser.gschema.xml.in.h:3
+msgid "File Browser Filter Mode"
+msgstr ""
+
+#: ../plugins/filebrowser/org.x.editor.plugins.filebrowser.gschema.xml.in.h:4
+msgid ""
+"This value determines what files get filtered from the file browser. Valid "
+"values are: none (filter nothing), hidden (filter hidden files), binary "
+"(filter binary files) and hidden_and_binary (filter both hidden and binary "
+"files)."
+msgstr ""
+
+#: ../plugins/filebrowser/org.x.editor.plugins.filebrowser.gschema.xml.in.h:5
+msgid "File Browser Filter Pattern"
+msgstr ""
+
+#: ../plugins/filebrowser/org.x.editor.plugins.filebrowser.gschema.xml.in.h:6
+msgid ""
+"The filter pattern to filter the file browser with. This filter works on top "
+"of the filter_mode."
+msgstr ""
+
+#: ../plugins/filebrowser/org.x.editor.plugins.filebrowser.gschema.xml.in.h:7
+msgid "Open With Tree View"
+msgstr ""
+
+#: ../plugins/filebrowser/org.x.editor.plugins.filebrowser.gschema.xml.in.h:8
+msgid ""
+"Open the tree view when the file browser plugin gets loaded instead of the "
+"bookmarks view"
+msgstr ""
+
+#: ../plugins/filebrowser/org.x.editor.plugins.filebrowser.gschema.xml.in.h:9
+msgid "File Browser Root Directory"
+msgstr ""
+
+#: ../plugins/filebrowser/org.x.editor.plugins.filebrowser.gschema.xml.in.h:10
+msgid ""
+"The file browser root directory to use when loading the file browser plugin "
+"and onload/tree_view is TRUE."
+msgstr ""
+
+#: ../plugins/filebrowser/org.x.editor.plugins.filebrowser.gschema.xml.in.h:11
+msgid "File Browser Virtual Root Directory"
+msgstr ""
+
+#: ../plugins/filebrowser/org.x.editor.plugins.filebrowser.gschema.xml.in.h:12
+msgid ""
+"The file browser virtual root directory to use when loading the file browser "
+"plugin when onload/tree_view is TRUE. The virtual root must always be below "
+"the actual root."
+msgstr ""
+
+#: ../plugins/filebrowser/org.x.editor.plugins.filebrowser.gschema.xml.in.h:13
+msgid "Enable Restore of Remote Locations"
+msgstr ""
+
+#: ../plugins/filebrowser/org.x.editor.plugins.filebrowser.gschema.xml.in.h:14
+msgid "Sets whether to enable restoring of remote locations."
+msgstr ""
+
+#: ../plugins/filebrowser/xed-file-bookmarks-store.c:235
+msgid "File System"
+msgstr ""
+
+#: ../plugins/filebrowser/xed-file-browser-plugin.c:407
+msgid "_Set root to active document"
+msgstr ""
+
+#: ../plugins/filebrowser/xed-file-browser-plugin.c:409
+msgid "Set the root to the active document location"
+msgstr ""
+
+#: ../plugins/filebrowser/xed-file-browser-plugin.c:414
+msgid "_Open terminal here"
+msgstr ""
+
+#: ../plugins/filebrowser/xed-file-browser-plugin.c:416
+msgid "Open a terminal at the currently opened directory"
+msgstr ""
+
+#: ../plugins/filebrowser/xed-file-browser-plugin.c:557
+msgid "File Browser"
+msgstr ""
+
+#: ../plugins/filebrowser/xed-file-browser-plugin.c:674
+msgid "An error occurred while creating a new directory"
+msgstr ""
+
+#: ../plugins/filebrowser/xed-file-browser-plugin.c:677
+msgid "An error occurred while creating a new file"
+msgstr ""
+
+#: ../plugins/filebrowser/xed-file-browser-plugin.c:682
+msgid "An error occurred while renaming a file or directory"
+msgstr ""
+
+#: ../plugins/filebrowser/xed-file-browser-plugin.c:687
+msgid "An error occurred while deleting a file or directory"
+msgstr ""
+
+#: ../plugins/filebrowser/xed-file-browser-plugin.c:692
+msgid "An error occurred while opening a directory in the file manager"
+msgstr ""
+
+#: ../plugins/filebrowser/xed-file-browser-plugin.c:696
+msgid "An error occurred while setting a root directory"
+msgstr ""
+
+#: ../plugins/filebrowser/xed-file-browser-plugin.c:700
+msgid "An error occurred while loading a directory"
+msgstr ""
+
+#: ../plugins/filebrowser/xed-file-browser-plugin.c:703
+msgid "An error occurred"
+msgstr ""
+
+#: ../plugins/filebrowser/xed-file-browser-plugin.c:934
+msgid ""
+"Cannot move file to trash, do you\n"
+"want to delete permanently?"
+msgstr ""
+
+#: ../plugins/filebrowser/xed-file-browser-plugin.c:938
 #, c-format
-msgid "Could not save a copy of the file to \"%s\""
+msgid "The file \"%s\" cannot be moved to the trash."
 msgstr ""
 
-#: ../plugins/savecopy/savecopy.c:414
-msgid "You are trying to overwrite the original file"
+#: ../plugins/filebrowser/xed-file-browser-plugin.c:941
+msgid "The selected files cannot be moved to the trash."
 msgstr ""
 
-#: ../plugins/savecopy/savecopy.c:523
-#, fuzzy
-msgid "Save Copy..."
-msgstr "P_urihia pēneitia"
-
-#. translators: %s is a filename
-#: ../plugins/savecopy/savecopy.c:555 ../plugins/savecopy/savecopy.c:565
+#: ../plugins/filebrowser/xed-file-browser-plugin.c:971
 #, c-format
-msgid "%s (copy)"
+msgid "Are you sure you want to permanently delete \"%s\"?"
 msgstr ""
 
-#: ../plugins/savecopy/savecopy.xed-plugin.desktop.in.h:1
-msgid "Save a Copy"
+#: ../plugins/filebrowser/xed-file-browser-plugin.c:974
+msgid "Are you sure you want to permanently delete the selected files?"
 msgstr ""
 
-#: ../plugins/savecopy/savecopy.xed-plugin.desktop.in.h:2
-msgid "Saves a copy of the current document to a local or remote location."
+#: ../plugins/filebrowser/xed-file-browser-plugin.c:977
+msgid "If you delete an item, it is permanently lost."
 msgstr ""
 
-#: ../plugins/shell_output/shell_output.c:56
-msgid "_Run Command..."
+#: ../plugins/filebrowser/xed-file-browser-store.c:1667
+msgid "(Empty)"
 msgstr ""
 
-#: ../plugins/shell_output/shell_output.c:59
-msgid "Run a command"
-msgstr ""
-
-#: ../plugins/shell_output/shell_output.c:156
-#: ../plugins/shell_output/shell_output.c:576
-#, fuzzy
-msgid "Stopped"
-msgstr "Whaka_mutua"
-
-#: ../plugins/shell_output/shell_output.c:355
-msgid "Run Command"
-msgstr ""
-
-#: ../plugins/shell_output/shell_output.c:374
-msgid "_Run"
-msgstr ""
-
-#: ../plugins/shell_output/shell_output.c:582
-#, fuzzy
-msgid "Done"
-msgstr "kaore tētahi"
-
-#: ../plugins/shell_output/shell_output.c:584
-#, fuzzy
-msgid "Failed"
-msgstr "_Kōnae"
-
-#: ../plugins/shell_output/shell_output.c:754
+#: ../plugins/filebrowser/xed-file-browser-store.c:3305
 msgid ""
-"The shell command entry is empty.\n"
-"\n"
-"Please, insert a valid shell command."
+"The renamed file is currently filtered out. You need to adjust your filter "
+"settings to make the file visible"
 msgstr ""
 
-#: ../plugins/shell_output/shell_output.c:776
+#. Translators: This is the default name of new files created by the file browser pane.
+#: ../plugins/filebrowser/xed-file-browser-store.c:3544
+msgid "file"
+msgstr ""
+
+#: ../plugins/filebrowser/xed-file-browser-store.c:3568
 msgid ""
-"Error parsing the shell command.\n"
-"\n"
-"Please, insert a valid shell command."
+"The new file is currently filtered out. You need to adjust your filter "
+"settings to make the file visible"
 msgstr ""
 
-#: ../plugins/shell_output/shell_output.c:854
-msgid "Executing command"
+#. Translators: This is the default name of new directories created by the file browser pane.
+#: ../plugins/filebrowser/xed-file-browser-store.c:3597
+msgid "directory"
 msgstr ""
 
-#: ../plugins/shell_output/shell_output.c:919
-msgid "An error occurred while running the selected command."
-msgstr ""
-
-#: ../plugins/shell_output/shell_output.xed-plugin.desktop.in.h:1
+#: ../plugins/filebrowser/xed-file-browser-store.c:3617
 msgid ""
-"Executes an external program and, if required, displays its output in the "
-"output window."
+"The new directory is currently filtered out. You need to adjust your filter "
+"settings to make the directory visible"
 msgstr ""
 
-#: ../plugins/shell_output/shell_output.xed-plugin.desktop.in.h:2
-msgid "Shell command"
+#: ../plugins/filebrowser/xed-file-browser-widget.c:724
+msgid "Bookmarks"
 msgstr ""
 
-#: ../plugins/shell_output/shell_output.glade2.h:2
-msgid "Co_mmand:"
+#: ../plugins/filebrowser/xed-file-browser-widget.c:805
+msgid "_Filter"
 msgstr ""
 
-#: ../plugins/shell_output/shell_output.glade2.h:3
-msgid "Select the working directory..."
+#: ../plugins/filebrowser/xed-file-browser-widget.c:810
+msgid "_Move to Trash"
 msgstr ""
 
-#: ../plugins/shell_output/shell_output.glade2.h:4
-msgid "_Show results in Output Window"
+#: ../plugins/filebrowser/xed-file-browser-widget.c:811
+msgid "Move selected file or folder to trash"
 msgstr ""
 
-#: ../plugins/shell_output/shell_output.glade2.h:5
-msgid "_Working directory:"
+#: ../plugins/filebrowser/xed-file-browser-widget.c:813
+msgid "_Delete"
+msgstr "_Porowhiu"
+
+#: ../plugins/filebrowser/xed-file-browser-widget.c:814
+msgid "Delete selected file or folder"
 msgstr ""
 
-#: ../plugins/shell_output/shell_output.glade2.h:6
-msgid "xed: Shell Output plugin"
+#: ../plugins/filebrowser/xed-file-browser-widget.c:821
+msgid "Open selected file"
 msgstr ""
 
-#: ../plugins/sort/sort.c:29
-#, fuzzy
+#: ../plugins/filebrowser/xed-file-browser-widget.c:827
+msgid "Up"
+msgstr ""
+
+#: ../plugins/filebrowser/xed-file-browser-widget.c:828
+msgid "Open the parent folder"
+msgstr ""
+
+#: ../plugins/filebrowser/xed-file-browser-widget.c:833
+msgid "_New Folder"
+msgstr ""
+
+#: ../plugins/filebrowser/xed-file-browser-widget.c:834
+msgid "Add new empty folder"
+msgstr ""
+
+#: ../plugins/filebrowser/xed-file-browser-widget.c:836
+msgid "New F_ile"
+msgstr ""
+
+#: ../plugins/filebrowser/xed-file-browser-widget.c:837
+msgid "Add new empty file"
+msgstr ""
+
+#: ../plugins/filebrowser/xed-file-browser-widget.c:842
+msgid "_Rename"
+msgstr ""
+
+#: ../plugins/filebrowser/xed-file-browser-widget.c:843
+msgid "Rename selected file or folder"
+msgstr ""
+
+#: ../plugins/filebrowser/xed-file-browser-widget.c:849
+msgid "_Previous Location"
+msgstr ""
+
+#: ../plugins/filebrowser/xed-file-browser-widget.c:851
+msgid "Go to the previous visited location"
+msgstr ""
+
+#: ../plugins/filebrowser/xed-file-browser-widget.c:853
+msgid "_Next Location"
+msgstr ""
+
+#: ../plugins/filebrowser/xed-file-browser-widget.c:854
+msgid "Go to the next visited location"
+msgstr ""
+
+#: ../plugins/filebrowser/xed-file-browser-widget.c:855
+msgid "Re_fresh View"
+msgstr ""
+
+#: ../plugins/filebrowser/xed-file-browser-widget.c:856
+msgid "Refresh the view"
+msgstr ""
+
+#: ../plugins/filebrowser/xed-file-browser-widget.c:857
+#: ../plugins/filebrowser/xed-file-browser-widget.c:875
+msgid "_View Folder"
+msgstr ""
+
+#: ../plugins/filebrowser/xed-file-browser-widget.c:858
+#: ../plugins/filebrowser/xed-file-browser-widget.c:876
+msgid "View folder in file manager"
+msgstr ""
+
+#: ../plugins/filebrowser/xed-file-browser-widget.c:865
+msgid "Show _Hidden"
+msgstr ""
+
+#: ../plugins/filebrowser/xed-file-browser-widget.c:866
+msgid "Show hidden files and folders"
+msgstr ""
+
+#: ../plugins/filebrowser/xed-file-browser-widget.c:868
+msgid "Show _Binary"
+msgstr ""
+
+#: ../plugins/filebrowser/xed-file-browser-widget.c:869
+msgid "Show binary files"
+msgstr ""
+
+#: ../plugins/filebrowser/xed-file-browser-widget.c:1001
+#: ../plugins/filebrowser/xed-file-browser-widget.c:1010
+#: ../plugins/filebrowser/xed-file-browser-widget.c:1031
+msgid "Previous location"
+msgstr ""
+
+#: ../plugins/filebrowser/xed-file-browser-widget.c:1003
+msgid "Go to previous location"
+msgstr ""
+
+#: ../plugins/filebrowser/xed-file-browser-widget.c:1005
+#: ../plugins/filebrowser/xed-file-browser-widget.c:1026
+msgid "Go to a previously opened location"
+msgstr ""
+
+#: ../plugins/filebrowser/xed-file-browser-widget.c:1022
+msgid "Next location"
+msgstr ""
+
+#: ../plugins/filebrowser/xed-file-browser-widget.c:1024
+msgid "Go to next location"
+msgstr ""
+
+#: ../plugins/filebrowser/xed-file-browser-widget.c:1236
+msgid "_Match Filename"
+msgstr ""
+
+#: ../plugins/filebrowser/xed-file-browser-widget.c:2168
+#, c-format
+msgid "No mount object for mounted volume: %s"
+msgstr ""
+
+#: ../plugins/filebrowser/xed-file-browser-widget.c:2248
+#, c-format
+msgid "Could not open media: %s"
+msgstr ""
+
+#: ../plugins/filebrowser/xed-file-browser-widget.c:2295
+#, c-format
+msgid "Could not mount volume: %s"
+msgstr ""
+
+#. ex:ts=8:noet:
+#: ../plugins/modelines/modelines.xed-plugin.desktop.in.h:1
+msgid "Modelines"
+msgstr ""
+
+#: ../plugins/modelines/modelines.xed-plugin.desktop.in.h:2
+msgid "Emacs, Kate and Vim-style modelines support for xed."
+msgstr ""
+
+#: ../plugins/sort/xed-sort-plugin.c:88
 msgid "S_ort..."
-msgstr "_Tā..."
+msgstr ""
 
-#: ../plugins/sort/sort.c:32
-msgid "Sort the current document or selection."
+#: ../plugins/sort/xed-sort-plugin.c:90
+msgid "Sort the current document or selection"
 msgstr ""
 
 #: ../plugins/sort/sort.xed-plugin.desktop.in.h:1
-#: ../plugins/sort/sort.glade2.h:3
+#: ../plugins/sort/sort.ui.h:1
 msgid "Sort"
 msgstr ""
 
@@ -2564,507 +2586,266 @@ msgstr ""
 msgid "Sorts a document or selected text."
 msgstr ""
 
-#: ../plugins/sort/sort.glade2.h:1
-msgid "R_emove duplicates"
+#: ../plugins/sort/sort.ui.h:2
+msgid "_Sort"
 msgstr ""
 
-#: ../plugins/sort/sort.glade2.h:2
-msgid "S_tart at column:"
-msgstr ""
-
-#: ../plugins/sort/sort.glade2.h:4
-msgid "You cannot undo a sort operation"
-msgstr ""
-
-#: ../plugins/sort/sort.glade2.h:5
-msgid "_Ignore case"
-msgstr ""
-
-#: ../plugins/sort/sort.glade2.h:6
+#: ../plugins/sort/sort.ui.h:3
 msgid "_Reverse order"
 msgstr ""
 
-#: ../plugins/sort/sort.glade2.h:7
-#, fuzzy
-msgid "_Sort"
-msgstr "_Huri"
+#: ../plugins/sort/sort.ui.h:4
+msgid "R_emove duplicates"
+msgstr ""
 
-#: ../plugins/spell/xed-automatic-spell-checker.c:419
-#: ../plugins/spell/xed-spell-checker-dialog.c:511
+#: ../plugins/sort/sort.ui.h:5
+msgid "_Ignore case"
+msgstr ""
+
+#: ../plugins/sort/sort.ui.h:6
+msgid "S_tart at column:"
+msgstr ""
+
+#: ../plugins/sort/sort.ui.h:7
+msgid "You cannot undo a sort operation"
+msgstr ""
+
+#: ../plugins/spell/org.x.editor.plugins.spell.gschema.xml.in.h:1
+msgid "Autocheck Type"
+msgstr ""
+
+#. Translators: Displayed in the "Check Spelling" dialog if there are no suggestions for the current misspelled word
+#. Translators: Displayed in the "Check Spelling" dialog if there are no suggestions
+#. * for the current misspelled word
+#: ../plugins/spell/xed-automatic-spell-checker.c:420
+#: ../plugins/spell/xed-spell-checker-dialog.c:455
 msgid "(no suggested words)"
 msgstr ""
 
-#: ../plugins/spell/xed-automatic-spell-checker.c:443
-#, fuzzy
+#: ../plugins/spell/xed-automatic-spell-checker.c:444
 msgid "_More..."
-msgstr "_Huaki..."
+msgstr ""
 
 #. Ignore all
-#: ../plugins/spell/xed-automatic-spell-checker.c:496
+#: ../plugins/spell/xed-automatic-spell-checker.c:503
 msgid "_Ignore All"
 msgstr ""
 
 #. + Add to Dictionary
-#: ../plugins/spell/xed-automatic-spell-checker.c:509
+#: ../plugins/spell/xed-automatic-spell-checker.c:518
 msgid "_Add"
 msgstr "_Tāpiri"
 
-#: ../plugins/spell/xed-automatic-spell-checker.c:546
+#: ../plugins/spell/xed-automatic-spell-checker.c:557
 msgid "_Spelling Suggestions..."
 msgstr ""
 
-#: ../plugins/spell/xed-spell-checker-dialog.c:289
+#: ../plugins/spell/xed-spell-checker-dialog.c:270
 msgid "Check Spelling"
 msgstr ""
 
-#: ../plugins/spell/xed-spell-checker-dialog.c:300
-#, fuzzy
+#: ../plugins/spell/xed-spell-checker-dialog.c:281
 msgid "Suggestions"
-msgstr "Pātai"
+msgstr ""
 
-#: ../plugins/spell/xed-spell-checker-dialog.c:615
+#. Translators: Displayed in the "Check Spelling" dialog if the current word isn't misspelled
+#: ../plugins/spell/xed-spell-checker-dialog.c:562
 msgid "(correct spelling)"
 msgstr ""
 
-#: ../plugins/spell/xed-spell-checker-dialog.c:800
-#, fuzzy
+#: ../plugins/spell/xed-spell-checker-dialog.c:709
 msgid "Completed spell checking"
-msgstr "Tārua te whiringa"
-
-#: ../plugins/spell/xed-spell-checker.c:79
-msgid "Afrikaans"
-msgstr ""
-
-#: ../plugins/spell/xed-spell-checker.c:80
-msgid "Amharic"
-msgstr ""
-
-#: ../plugins/spell/xed-spell-checker.c:81
-msgid "Azerbaijani"
-msgstr ""
-
-#: ../plugins/spell/xed-spell-checker.c:82
-msgid "Belarusian"
-msgstr ""
-
-#: ../plugins/spell/xed-spell-checker.c:83
-msgid "Bulgarian"
-msgstr ""
-
-#: ../plugins/spell/xed-spell-checker.c:84
-#, fuzzy
-msgid "Bengali"
-msgstr "_Tītaha"
-
-#: ../plugins/spell/xed-spell-checker.c:85
-msgid "Breton"
-msgstr ""
-
-#: ../plugins/spell/xed-spell-checker.c:86
-msgid "Catalan"
-msgstr ""
-
-#: ../plugins/spell/xed-spell-checker.c:87
-msgid "Czech"
-msgstr ""
-
-#: ../plugins/spell/xed-spell-checker.c:88
-msgid "Welsh"
-msgstr ""
-
-#: ../plugins/spell/xed-spell-checker.c:89
-msgid "Danish"
-msgstr ""
-
-#: ../plugins/spell/xed-spell-checker.c:90
-msgid "German (Austria)"
-msgstr ""
-
-#: ../plugins/spell/xed-spell-checker.c:91
-msgid "German (Germany)"
-msgstr ""
-
-#: ../plugins/spell/xed-spell-checker.c:92
-msgid "German (Swiss)"
-msgstr ""
-
-#: ../plugins/spell/xed-spell-checker.c:94
-msgid "English (American)"
-msgstr ""
-
-#: ../plugins/spell/xed-spell-checker.c:95
-msgid "English (British)"
-msgstr ""
-
-#: ../plugins/spell/xed-spell-checker.c:96
-msgid "English (Canadian)"
-msgstr ""
-
-#: ../plugins/spell/xed-spell-checker.c:97
-msgid "Esperanto"
-msgstr ""
-
-#: ../plugins/spell/xed-spell-checker.c:98
-msgid "Spanish"
-msgstr ""
-
-#: ../plugins/spell/xed-spell-checker.c:99
-msgid "Estonian"
-msgstr ""
-
-#: ../plugins/spell/xed-spell-checker.c:100
-#, fuzzy
-msgid "Persian"
-msgstr "Tā"
-
-#: ../plugins/spell/xed-spell-checker.c:101
-msgid "Finnish"
-msgstr ""
-
-#: ../plugins/spell/xed-spell-checker.c:102
-msgid "Faroese"
-msgstr ""
-
-#: ../plugins/spell/xed-spell-checker.c:103
-msgid "French (France)"
-msgstr ""
-
-#: ../plugins/spell/xed-spell-checker.c:104
-msgid "French (Swiss)"
-msgstr ""
-
-#: ../plugins/spell/xed-spell-checker.c:105
-msgid "Irish"
-msgstr ""
-
-#: ../plugins/spell/xed-spell-checker.c:106
-msgid "Scottish Gaelic"
-msgstr ""
-
-#: ../plugins/spell/xed-spell-checker.c:107
-msgid "Gallegan"
-msgstr ""
-
-#: ../plugins/spell/xed-spell-checker.c:108
-msgid "Manx Gaelic"
-msgstr ""
-
-#: ../plugins/spell/xed-spell-checker.c:110
-#, fuzzy
-msgid "Hindi"
-msgstr "Kitea"
-
-#: ../plugins/spell/xed-spell-checker.c:111
-msgid "Croatian"
-msgstr ""
-
-#: ../plugins/spell/xed-spell-checker.c:112
-msgid "Upper Sorbian"
-msgstr ""
-
-#: ../plugins/spell/xed-spell-checker.c:113
-msgid "Hungarian"
-msgstr ""
-
-#: ../plugins/spell/xed-spell-checker.c:114
-msgid "Interlingua (IALA)"
-msgstr ""
-
-#: ../plugins/spell/xed-spell-checker.c:115
-msgid "Indonesian"
-msgstr ""
-
-#: ../plugins/spell/xed-spell-checker.c:116
-msgid "Icelandic"
-msgstr ""
-
-#: ../plugins/spell/xed-spell-checker.c:117
-#, fuzzy
-msgid "Italian"
-msgstr "_Tītaha"
-
-#: ../plugins/spell/xed-spell-checker.c:118
-msgid "Kurdish"
-msgstr ""
-
-#: ../plugins/spell/xed-spell-checker.c:119
-#, fuzzy
-msgid "Latin"
-msgstr "Ngā Kōnae"
-
-#: ../plugins/spell/xed-spell-checker.c:120
-msgid "Lithuanian"
-msgstr ""
-
-#: ../plugins/spell/xed-spell-checker.c:121
-msgid "Latvian"
-msgstr ""
-
-#: ../plugins/spell/xed-spell-checker.c:122
-msgid "Malagasy"
-msgstr ""
-
-#: ../plugins/spell/xed-spell-checker.c:123
-msgid "Maori"
-msgstr ""
-
-#: ../plugins/spell/xed-spell-checker.c:124
-#, fuzzy
-msgid "Macedonian"
-msgstr "_Whakatika"
-
-#: ../plugins/spell/xed-spell-checker.c:125
-msgid "Mongolian"
-msgstr ""
-
-#: ../plugins/spell/xed-spell-checker.c:126
-msgid "Marathi"
-msgstr ""
-
-#: ../plugins/spell/xed-spell-checker.c:127
-msgid "Malay"
-msgstr ""
-
-#: ../plugins/spell/xed-spell-checker.c:128
-msgid "Maltese"
-msgstr ""
-
-#: ../plugins/spell/xed-spell-checker.c:129
-msgid "Norwegian Bokmal"
-msgstr ""
-
-#: ../plugins/spell/xed-spell-checker.c:130
-msgid "Dutch"
-msgstr ""
-
-#: ../plugins/spell/xed-spell-checker.c:131
-msgid "Norwegian Nynorsk"
-msgstr ""
-
-#: ../plugins/spell/xed-spell-checker.c:132
-msgid "Norwegian"
-msgstr ""
-
-#: ../plugins/spell/xed-spell-checker.c:133
-msgid "Nyanja"
-msgstr ""
-
-#: ../plugins/spell/xed-spell-checker.c:134
-msgid "Polish"
-msgstr ""
-
-#: ../plugins/spell/xed-spell-checker.c:135
-msgid "Portuguese (Portugal)"
-msgstr ""
-
-#: ../plugins/spell/xed-spell-checker.c:136
-msgid "Portuguese (Brazilian)"
-msgstr ""
-
-#: ../plugins/spell/xed-spell-checker.c:137
-msgid "Quechua"
-msgstr ""
-
-#: ../plugins/spell/xed-spell-checker.c:139
-msgid "Russian"
-msgstr ""
-
-#: ../plugins/spell/xed-spell-checker.c:140
-msgid "Kinyarwanda"
-msgstr ""
-
-#: ../plugins/spell/xed-spell-checker.c:141
-msgid "Sardinian"
-msgstr ""
-
-#: ../plugins/spell/xed-spell-checker.c:142
-msgid "Slovak"
-msgstr ""
-
-#: ../plugins/spell/xed-spell-checker.c:143
-msgid "Slovenian"
-msgstr ""
-
-#: ../plugins/spell/xed-spell-checker.c:144
-msgid "Swedish"
-msgstr ""
-
-#: ../plugins/spell/xed-spell-checker.c:145
-msgid "Swahili"
 msgstr ""
-
-#: ../plugins/spell/xed-spell-checker.c:146
-#, fuzzy
-msgid "Tamil"
-msgstr "Ngā Kōnae"
-
-#: ../plugins/spell/xed-spell-checker.c:147
-msgid "Tetum"
-msgstr ""
-
-#: ../plugins/spell/xed-spell-checker.c:148
-msgid "Tagalog"
-msgstr ""
-
-#: ../plugins/spell/xed-spell-checker.c:149
-msgid "Tswana"
-msgstr ""
-
-#: ../plugins/spell/xed-spell-checker.c:151
-msgid "Ukrainian"
-msgstr ""
-
-#: ../plugins/spell/xed-spell-checker.c:152
-msgid "Uzbek"
-msgstr ""
-
-#: ../plugins/spell/xed-spell-checker.c:154
-msgid "Walloon"
-msgstr ""
-
-#: ../plugins/spell/xed-spell-checker.c:155
-msgid "Yiddish"
-msgstr ""
-
-#: ../plugins/spell/xed-spell-checker.c:156
-msgid "Zulu"
-msgstr ""
-
-#: ../plugins/spell/xed-spell-checker.c:828
-#, fuzzy
-msgid "Default"
-msgstr "Porowhiu"
 
-#: ../plugins/spell/xed-spell-language-dialog.c:239
+#. Translators: the first %s is the language name, and
+#. * the second %s is the locale name. Example:
+#. * "French (France)"
+#. 
+#: ../plugins/spell/xed-spell-checker-language.c:285
+#: ../plugins/spell/xed-spell-checker-language.c:291
 #, c-format
-msgid "Could not find the required widgets inside %s."
+msgctxt "language"
+msgid "%s (%s)"
 msgstr ""
 
-#: ../plugins/spell/xed-spell-language-dialog.c:258
-msgid "Languages"
+#. Translators: this refers to an unknown language code
+#. * (one which isn't in our built-in list).
+#. 
+#: ../plugins/spell/xed-spell-checker-language.c:300
+#, c-format
+msgctxt "language"
+msgid "Unknown (%s)"
 msgstr ""
 
-#: ../plugins/spell/languages-dialog.glade2.h:1
-msgid "Select the _language of the current document."
+#. Translators: this refers the Default language used by the
+#. * spell checker
+#. 
+#: ../plugins/spell/xed-spell-checker-language.c:406
+msgctxt "language"
+msgid "Default"
 msgstr ""
 
-#: ../plugins/spell/languages-dialog.glade2.h:2
+#: ../plugins/spell/xed-spell-language-dialog.c:141
+#: ../plugins/spell/languages-dialog.ui.h:1
 msgid "Set language"
 msgstr ""
 
-#: ../plugins/spell/spell-checker.glade2.h:2
-msgid "<b>Language</b>"
+#: ../plugins/spell/xed-spell-language-dialog.c:195
+msgid "Languages"
 msgstr ""
 
-#: ../plugins/spell/spell-checker.glade2.h:3
-msgid "<b>word</b>"
+#: ../plugins/spell/xed-spell-plugin.c:92
+msgid "_Check Spelling..."
 msgstr ""
 
-#: ../plugins/spell/spell-checker.glade2.h:4
-msgid "Add w_ord"
-msgstr ""
-
-#: ../plugins/spell/spell-checker.glade2.h:5
-msgid "Cha_nge"
-msgstr ""
-
-#: ../plugins/spell/spell-checker.glade2.h:6
-msgid "Change A_ll"
-msgstr ""
-
-#: ../plugins/spell/spell-checker.glade2.h:7
-msgid "Change _to:"
-msgstr ""
-
-#: ../plugins/spell/spell-checker.glade2.h:8
-msgid "Check _Word"
-msgstr ""
-
-#: ../plugins/spell/spell-checker.glade2.h:9
-msgid "Check spelling"
-msgstr ""
-
-#: ../plugins/spell/spell-checker.glade2.h:10
-msgid "Ignore _All"
-msgstr ""
-
-#: ../plugins/spell/spell-checker.glade2.h:11
-msgid "Language:"
-msgstr ""
-
-#: ../plugins/spell/spell-checker.glade2.h:12
-msgid "Misspelled word:"
-msgstr ""
-
-#: ../plugins/spell/spell-checker.glade2.h:13
-msgid "User dictionary:"
-msgstr ""
-
-#: ../plugins/spell/spell-checker.glade2.h:14
-#, fuzzy
-msgid "_Ignore"
-msgstr "_Kuputohu"
-
-#: ../plugins/spell/spell-checker.glade2.h:15
-#, fuzzy
-msgid "_Suggestions:"
-msgstr "Pātai"
-
-#: ../plugins/spell/spell.c:52
-msgid "_Check Spelling"
-msgstr ""
-
-#: ../plugins/spell/spell.c:55
+#: ../plugins/spell/xed-spell-plugin.c:94
 msgid "Check the current document for incorrect spelling"
 msgstr ""
 
-#: ../plugins/spell/spell.c:57
-msgid "_Autocheck Spelling"
+#: ../plugins/spell/xed-spell-plugin.c:100
+msgid "Set _Language..."
 msgstr ""
 
-#: ../plugins/spell/spell.c:60
-msgid "Automatically spell-check the current document"
-msgstr ""
-
-#: ../plugins/spell/spell.c:62
-msgid "Set _Language"
-msgstr ""
-
-#: ../plugins/spell/spell.c:65
+#: ../plugins/spell/xed-spell-plugin.c:102
 msgid "Set the language of the current document"
 msgstr ""
 
-#: ../plugins/spell/spell.c:625
+#: ../plugins/spell/xed-spell-plugin.c:111
+msgid "_Autocheck Spelling"
+msgstr ""
+
+#: ../plugins/spell/xed-spell-plugin.c:113
+msgid "Automatically spell-check the current document"
+msgstr ""
+
+#: ../plugins/spell/xed-spell-plugin.c:753
+msgid "Configure Spell Checker plugin..."
+msgstr ""
+
+#: ../plugins/spell/xed-spell-plugin.c:962
 msgid "The document is empty."
 msgstr ""
 
-#: ../plugins/spell/spell.c:643
-msgid "The selected text does not contain misspelled words."
+#: ../plugins/spell/xed-spell-plugin.c:992
+msgid "No misspelled words"
 msgstr ""
 
-#: ../plugins/spell/spell.c:644
-msgid "The document does not contain misspelled words."
+#: ../plugins/spell/languages-dialog.ui.h:2
+msgid "Select the _language of the current document."
+msgstr ""
+
+#: ../plugins/spell/spell-checker.ui.h:1
+msgid "Check spelling"
+msgstr ""
+
+#: ../plugins/spell/spell-checker.ui.h:2
+msgid "Misspelled word:"
+msgstr ""
+
+#: ../plugins/spell/spell-checker.ui.h:3
+msgid "word"
+msgstr ""
+
+#: ../plugins/spell/spell-checker.ui.h:4
+msgid "Change _to:"
+msgstr ""
+
+#: ../plugins/spell/spell-checker.ui.h:5
+msgid "Check _Word"
+msgstr ""
+
+#: ../plugins/spell/spell-checker.ui.h:6
+msgid "_Suggestions:"
+msgstr ""
+
+#: ../plugins/spell/spell-checker.ui.h:7
+msgid "_Ignore"
+msgstr ""
+
+#: ../plugins/spell/spell-checker.ui.h:8
+msgid "Cha_nge"
+msgstr ""
+
+#: ../plugins/spell/spell-checker.ui.h:9
+msgid "Ignore _All"
+msgstr ""
+
+#: ../plugins/spell/spell-checker.ui.h:10
+msgid "Change A_ll"
+msgstr ""
+
+#: ../plugins/spell/spell-checker.ui.h:11
+msgid "User dictionary:"
+msgstr ""
+
+#: ../plugins/spell/spell-checker.ui.h:12
+msgid "Add w_ord"
+msgstr ""
+
+#: ../plugins/spell/spell-checker.ui.h:13
+msgid "Language:"
+msgstr ""
+
+#: ../plugins/spell/spell-checker.ui.h:14
+msgid "Language"
+msgstr ""
+
+#: ../plugins/spell/xed-spell-setup-dialog.ui.h:1
+msgid "_Configure Spell Checker plugin..."
+msgstr ""
+
+#: ../plugins/spell/xed-spell-setup-dialog.ui.h:2
+msgid "Autocheck spelling on document load..."
+msgstr ""
+
+#: ../plugins/spell/xed-spell-setup-dialog.ui.h:3
+msgid "_Never autocheck"
+msgstr ""
+
+#: ../plugins/spell/xed-spell-setup-dialog.ui.h:4
+msgid "_Remember autocheck by document"
+msgstr ""
+
+#: ../plugins/spell/xed-spell-setup-dialog.ui.h:5
+msgid "_Always autocheck"
 msgstr ""
 
 #: ../plugins/spell/spell.xed-plugin.desktop.in.h:1
-msgid "Checks the spelling of the current document."
+msgid "Spell Checker"
 msgstr ""
 
 #: ../plugins/spell/spell.xed-plugin.desktop.in.h:2
-#, fuzzy
-msgid "Spell checker"
-msgstr "Pūmanawa tātaki kupu"
+msgid "Checks the spelling of the current document."
+msgstr ""
+
+#: ../plugins/taglist/xed-taglist-plugin.c:98
+#: ../plugins/taglist/xed-taglist-plugin-panel.c:725
+#: ../plugins/taglist/xed-taglist-plugin-panel.c:741
+msgid "Tags"
+msgstr ""
+
+#: ../plugins/taglist/xed-taglist-plugin-panel.c:622
+msgid "Select the group of tags you want to use"
+msgstr ""
+
+#: ../plugins/taglist/xed-taglist-plugin-panel.c:641
+msgid "_Preview"
+msgstr ""
+
+#: ../plugins/taglist/xed-taglist-plugin-panel.c:722
+msgid "Available Tag Lists"
+msgstr ""
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:1
-msgid "Abbreviated form"
+msgid "XHTML 1.0 - Tags"
 msgstr ""
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:2
-msgid "Abbreviation"
+msgid "Abbreviated form"
 msgstr ""
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:3
-msgid "Above"
+msgid "Abbreviation"
 msgstr ""
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:4
@@ -3076,9 +2857,8 @@ msgid "Acronym"
 msgstr ""
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:6
-#, fuzzy
 msgid "Align"
-msgstr "Ngā Kōnae"
+msgstr ""
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:7
 msgid "Alignment character"
@@ -3089,19 +2869,16 @@ msgid "Alternative"
 msgstr ""
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:9
-msgid "Anchor"
-msgstr ""
-
-#: ../plugins/taglist/HTML.tags.xml.in.h:10
 msgid "Anchor URI"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:11
-msgid "Applet class file code"
+#: ../plugins/taglist/HTML.tags.xml.in.h:10
+msgid "Anchor"
 msgstr ""
 
+#. Deprecated since HTML 4.01, not supported in XHTML 1.0 Strict DTD.
 #: ../plugins/taglist/HTML.tags.xml.in.h:12
-msgid "Array"
+msgid "Applet class file code (deprecated)"
 msgstr ""
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:13
@@ -3116,62 +2893,49 @@ msgstr ""
 msgid "Axis related headers"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:16
-msgid "BGSound"
-msgstr ""
-
+#. Deprecated since HTML 4.01, not supported in XHTML 1.0 Strict DTD.
 #: ../plugins/taglist/HTML.tags.xml.in.h:17
-msgid "Background color"
+msgid "Background color (deprecated)"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:18
-msgid "Background texture tile"
-msgstr ""
-
+#. Deprecated since HTML 4.01, not supported in XHTML 1.0 Strict DTD.
 #: ../plugins/taglist/HTML.tags.xml.in.h:19
-msgid "Base URI"
+msgid "Background texture tile (deprecated)"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:20
-msgid "Base font"
-msgstr ""
-
+#. Deprecated since HTML 4.01, not supported in XHTML 1.0 Strict DTD.
 #: ../plugins/taglist/HTML.tags.xml.in.h:21
-msgid "Behavior"
+msgid "Base font (deprecated)"
 msgstr ""
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:22
-msgid "Blinking text"
+msgid "Base URI"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:24
-#, fuzzy
-msgid "Border"
-msgstr "_Miramira"
+#: ../plugins/taglist/HTML.tags.xml.in.h:23
+msgid "Bold"
+msgstr ""
 
+#. Deprecated since HTML 4.01, not supported in XHTML 1.0 Strict DTD.
 #: ../plugins/taglist/HTML.tags.xml.in.h:25
-msgid "Border color"
+msgid "Border (deprecated)"
 msgstr ""
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:26
-msgid "Box"
-msgstr ""
-
-#: ../plugins/taglist/HTML.tags.xml.in.h:27
 msgid "Cell rowspan"
 msgstr ""
 
+#. Deprecated since HTML 4.01, not supported in XHTML 1.0 Strict DTD.
 #: ../plugins/taglist/HTML.tags.xml.in.h:28
-#, fuzzy
-msgid "Center"
-msgstr "Nanahi"
+msgid "Center (deprecated)"
+msgstr ""
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:29
 msgid "Character encoding of linked resource"
 msgstr ""
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:30
-msgid "Checked (state)"
+msgid "Checked state"
 msgstr ""
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:31
@@ -3198,179 +2962,146 @@ msgstr ""
 msgid "Code content type"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:37
-#, fuzzy
-msgid "Color of selected links"
-msgstr "Tārua te whiringa"
-
+#. Deprecated since HTML 4.01, not supported in XHTML 1.0 Strict DTD.
 #: ../plugins/taglist/HTML.tags.xml.in.h:38
-msgid "Column span"
+msgid "Color of selected links (deprecated)"
 msgstr ""
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:39
-msgid "Columns"
+msgid "Column span"
 msgstr ""
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:40
-#, fuzzy
-msgid "Comment"
-msgstr "_Huri"
+msgid "Columns"
+msgstr ""
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:41
-msgid "Computer code fragment"
+msgid "Comment"
 msgstr ""
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:42
-#, fuzzy
-msgid "Content scheme"
-msgstr "_Huri"
+msgid "Computer code fragment"
+msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:43
-#, fuzzy
-msgid "Content type"
-msgstr "_Huri"
-
-#: ../plugins/taglist/HTML.tags.xml.in.h:44
-#, fuzzy
-msgid "Coordinates"
-msgstr "_Huri"
-
+#. The "type" attribute is deprecated for the "ol" tag only,
+#. since HTML 4.01, not supported in XHTML 1.0 Strict DTD.
 #: ../plugins/taglist/HTML.tags.xml.in.h:45
-msgid "DIV Style container"
+msgid "Content type (deprecated)"
 msgstr ""
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:46
-msgid "DIV container"
+msgid "Coordinates"
 msgstr ""
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:47
 msgid "Date and time of change"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:48
+#. NOTE: used in "object" tag
+#: ../plugins/taglist/HTML.tags.xml.in.h:49
 msgid "Declare flag"
 msgstr ""
 
 #. Translators: DEFER is an optional attribute of the <script> tag.
 #. It indicates that the script is not going to generate any document
 #. content. The browser can continue parsing and drawing the page.
-#: ../plugins/taglist/HTML.tags.xml.in.h:52
+#: ../plugins/taglist/HTML.tags.xml.in.h:53
 msgid "Defer attribute"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:53
-#, fuzzy
-msgid "Definition description"
-msgstr "Pātai"
-
 #: ../plugins/taglist/HTML.tags.xml.in.h:54
-msgid "Definition list"
+msgid "Definition description"
 msgstr ""
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:55
-msgid "Definition term"
+msgid "Definition list"
 msgstr ""
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:56
-#, fuzzy
-msgid "Deleted text"
-msgstr "Porowhiu"
+msgid "Definition term"
+msgstr ""
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:57
-#, fuzzy
-msgid "Direction"
-msgstr "Pātai"
+msgid "Deleted text"
+msgstr ""
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:58
 msgid "Directionality"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:59
-msgid "Directory list"
-msgstr ""
-
+#. Deprecated since HTML 4.01, not supported in XHTML 1.0 Strict DTD.
 #: ../plugins/taglist/HTML.tags.xml.in.h:60
-msgid "Disabled"
+msgid "Directionality (deprecated)"
 msgstr ""
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:61
-#, fuzzy
-msgid "Document base"
-msgstr "_Tuhinga"
+msgid "Disabled"
+msgstr ""
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:62
-#, fuzzy
-msgid "Document body"
-msgstr "_Tuhinga"
+msgid "DIV container"
+msgstr ""
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:63
-#, fuzzy
-msgid "Document head"
-msgstr "_Tuhinga"
+msgid "DIV Style container"
+msgstr ""
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:64
-#, fuzzy
-msgid "Document title"
-msgstr "_Tuhinga"
+msgid "Document base"
+msgstr ""
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:65
-#, fuzzy
-msgid "Document type"
-msgstr "_Tuhinga"
+msgid "Document body"
+msgstr ""
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:66
-#, fuzzy
-msgid "Element ID"
-msgstr "_Tuhinga"
+msgid "Document head"
+msgstr ""
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:67
-msgid "Embedded object"
+msgid "Element ID"
 msgstr ""
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:68
-#: ../plugins/taglist/Latex.tags.xml.in.h:9
-msgid "Emphasis"
+msgid "Document title"
 msgstr ""
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:69
-msgid "Encode type"
+msgid "Document type"
 msgstr ""
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:70
-msgid "Figure"
+#: ../plugins/taglist/Latex.tags.xml.in.h:72
+msgid "Emphasis"
 msgstr ""
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:71
-#, fuzzy
-msgid "Font face"
-msgstr "Momotuhi"
-
-#: ../plugins/taglist/HTML.tags.xml.in.h:72
-msgid "For label"
+msgid "Encode type"
 msgstr ""
 
+#. Deprecated since HTML 4.01, not supported in XHTML 1.0 Strict DTD.
 #: ../plugins/taglist/HTML.tags.xml.in.h:73
-msgid "Forced line break"
+msgid "Font face (deprecated)"
 msgstr ""
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:74
-msgid "Form"
+msgid "For label"
 msgstr ""
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:75
-msgid "Form action handler"
+msgid "Forced line break"
 msgstr ""
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:76
-msgid "Form control group"
+msgid "Form action handler"
 msgstr ""
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:77
-msgid "Form field label text"
+msgid "Form control group"
 msgstr ""
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:78
-msgid "Form input"
+msgid "Form field label text"
 msgstr ""
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:79
@@ -3378,135 +3109,132 @@ msgid "Form input type"
 msgstr ""
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:80
-msgid "Form method"
+msgid "Form input"
 msgstr ""
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:81
-msgid "Forward link"
+msgid "Form method"
 msgstr ""
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:82
-msgid "Frame"
+msgid "Form"
 msgstr ""
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:83
-msgid "Frame render parts"
+msgid "Forward link"
 msgstr ""
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:84
-msgid "Frame source"
+msgid "Frame render parts"
 msgstr ""
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:85
-msgid "Frame target"
+msgid "Frame source"
 msgstr ""
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:86
-msgid "Frameborder"
+msgid "Frame target"
 msgstr ""
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:87
-msgid "Frameset"
+msgid "Frame"
 msgstr ""
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:88
-msgid "Frameset columns"
+msgid "Frame border"
 msgstr ""
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:89
-msgid "Frameset rows"
+msgid "Frameset columns"
 msgstr ""
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:90
-msgid "Framespacing"
+msgid "Frameset rows"
 msgstr ""
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:91
-msgid "Generic embedded object"
+msgid "Frameset"
 msgstr ""
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:92
-msgid "Generic metainformation"
+msgid "Frame spacing"
 msgstr ""
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:93
-msgid "Generic span"
+msgid "Generic embedded object"
 msgstr ""
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:94
-msgid "HREF URI"
+msgid "Generic metainformation"
 msgstr ""
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:95
-msgid "HTML - Special Characters"
+msgid "Generic span"
 msgstr ""
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:96
-msgid "HTML - Tags"
+msgid "Header cell IDs"
 msgstr ""
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:97
-msgid "HTML root element"
-msgstr ""
-
-#: ../plugins/taglist/HTML.tags.xml.in.h:98
-msgid "HTML version"
-msgstr ""
-
-#: ../plugins/taglist/HTML.tags.xml.in.h:99
-msgid "HTTP header name"
-msgstr ""
-
-#: ../plugins/taglist/HTML.tags.xml.in.h:100
-msgid "Header cell ID's"
-msgstr ""
-
-#: ../plugins/taglist/HTML.tags.xml.in.h:101
-msgid "Heading"
-msgstr ""
-
-#: ../plugins/taglist/HTML.tags.xml.in.h:102
 msgid "Heading 1"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:103
+#: ../plugins/taglist/HTML.tags.xml.in.h:98
 msgid "Heading 2"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:104
+#: ../plugins/taglist/HTML.tags.xml.in.h:99
 msgid "Heading 3"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:105
+#: ../plugins/taglist/HTML.tags.xml.in.h:100
 msgid "Heading 4"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:106
+#: ../plugins/taglist/HTML.tags.xml.in.h:101
 msgid "Heading 5"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:107
+#: ../plugins/taglist/HTML.tags.xml.in.h:102
 msgid "Heading 6"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:108
+#: ../plugins/taglist/HTML.tags.xml.in.h:103
 msgid "Height"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:109
+#: ../plugins/taglist/HTML.tags.xml.in.h:104
 msgid "Horizontal rule"
 msgstr ""
 
+#. Deprecated since HTML 4.01, not supported in XHTML 1.0 Strict DTD.
+#: ../plugins/taglist/HTML.tags.xml.in.h:106
+msgid "Horizontal space (deprecated)"
+msgstr ""
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:107
+msgid "HREF URI"
+msgstr ""
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:108
+msgid "HTML root element"
+msgstr ""
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:109
+msgid "HTTP header name"
+msgstr ""
+
 #: ../plugins/taglist/HTML.tags.xml.in.h:110
-msgid "Horizontal space"
+msgid "I18N BiDi override"
 msgstr ""
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:111
-msgid "I18N BiDi over-ride"
+msgid "Image map area"
 msgstr ""
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:112
-msgid "Image"
+msgid "Image map name"
 msgstr ""
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:113
@@ -3514,127 +3242,102 @@ msgid "Image map"
 msgstr ""
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:114
-msgid "Image map area"
+msgid "Image"
 msgstr ""
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:115
-msgid "Image map name"
-msgstr ""
-
-#: ../plugins/taglist/HTML.tags.xml.in.h:116
-msgid "Image source"
-msgstr ""
-
-#: ../plugins/taglist/HTML.tags.xml.in.h:117
 msgid "Inline frame"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:118
-msgid "Inline layer"
+#: ../plugins/taglist/HTML.tags.xml.in.h:116
+msgid "Inserted text"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:119
-#, fuzzy
-msgid "Inserted text"
-msgstr "_Kuhu"
-
-#: ../plugins/taglist/HTML.tags.xml.in.h:120
+#: ../plugins/taglist/HTML.tags.xml.in.h:117
 msgid "Instance definition"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:121
-#, fuzzy
+#: ../plugins/taglist/HTML.tags.xml.in.h:118
 msgid "Italic text"
-msgstr "_Tītaha"
-
-#: ../plugins/taglist/HTML.tags.xml.in.h:122
-msgid "Java applet"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:123
+#. Deprecated since HTML 4.01, not supported in XHTML 1.0 Strict DTD.
+#: ../plugins/taglist/HTML.tags.xml.in.h:120
+msgid "Java applet (deprecated)"
+msgstr ""
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:121
 msgid "Label"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:124
+#: ../plugins/taglist/HTML.tags.xml.in.h:122
 msgid "Language code"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:125
+#: ../plugins/taglist/HTML.tags.xml.in.h:123
 msgid "Large text style"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:126
-msgid "Layer"
+#. Deprecated since HTML 4.01, not supported in XHTML 1.0 Strict DTD.
+#: ../plugins/taglist/HTML.tags.xml.in.h:125
+msgid "Link color (deprecated)"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:127
-#, fuzzy
-msgid "Link color"
-msgstr "Kotia te whiringa"
-
-#: ../plugins/taglist/HTML.tags.xml.in.h:128
+#: ../plugins/taglist/HTML.tags.xml.in.h:126
 msgid "List item"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:129
+#: ../plugins/taglist/HTML.tags.xml.in.h:127
 msgid "List of MIME types for file upload"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:130
+#: ../plugins/taglist/HTML.tags.xml.in.h:128
 msgid "List of supported character sets"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:131
-msgid "Listing"
-msgstr ""
-
-#: ../plugins/taglist/HTML.tags.xml.in.h:132
+#: ../plugins/taglist/HTML.tags.xml.in.h:129
 msgid "Local change to font"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:133
-#, fuzzy
+#: ../plugins/taglist/HTML.tags.xml.in.h:130
 msgid "Long description link"
-msgstr "Pātai"
+msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:134
+#: ../plugins/taglist/HTML.tags.xml.in.h:131
 msgid "Long quotation"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:135
-msgid "Mail link"
-msgstr ""
-
-#: ../plugins/taglist/HTML.tags.xml.in.h:136
+#. Supported in XHTML 1.0 Frameset DTD only.
+#: ../plugins/taglist/HTML.tags.xml.in.h:133
 msgid "Margin pixel height"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:137
+#. Supported in XHTML 1.0 Frameset DTD only.
+#: ../plugins/taglist/HTML.tags.xml.in.h:135
 msgid "Margin pixel width"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:138
-msgid "Marquee"
-msgstr ""
-
-#: ../plugins/taglist/HTML.tags.xml.in.h:139
+#: ../plugins/taglist/HTML.tags.xml.in.h:136
 msgid "Maximum length of text field"
 msgstr ""
 
+#: ../plugins/taglist/HTML.tags.xml.in.h:137
+msgid "Output media"
+msgstr ""
+
+#. Here I take some liberties: There's no mandatory attributes,
+#. but those are most common, and will likely be used.
 #: ../plugins/taglist/HTML.tags.xml.in.h:140
 msgid "Media-independent link"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:141
-msgid "Menu list"
-msgstr ""
-
+#. Deprecated since HTML 4.01, not supported in XHTML 1.0 Strict DTD.
 #: ../plugins/taglist/HTML.tags.xml.in.h:142
-msgid "Multi-line text field"
+msgid "Menu list (deprecated)"
 msgstr ""
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:143
-msgid "Multicolumn"
+msgid "Multi-line text field"
 msgstr ""
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:144
@@ -3650,507 +3353,683 @@ msgid "Named property value"
 msgstr ""
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:147
-msgid "Next ID"
-msgstr ""
-
-#: ../plugins/taglist/HTML.tags.xml.in.h:148
-msgid "No URI"
-msgstr ""
-
-#: ../plugins/taglist/HTML.tags.xml.in.h:149
-msgid "No embedded objects"
-msgstr ""
-
-#: ../plugins/taglist/HTML.tags.xml.in.h:150
 msgid "No frames"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:151
-msgid "No layers"
-msgstr ""
-
-#: ../plugins/taglist/HTML.tags.xml.in.h:152
-msgid "No line break"
-msgstr ""
-
-#: ../plugins/taglist/HTML.tags.xml.in.h:153
+#: ../plugins/taglist/HTML.tags.xml.in.h:148
 msgid "No resize"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:154
+#: ../plugins/taglist/HTML.tags.xml.in.h:149
 msgid "No script"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:155
-msgid "No shade"
+#. Deprecated since HTML 4.01, not supported in XHTML 1.0 Strict DTD.
+#: ../plugins/taglist/HTML.tags.xml.in.h:151
+msgid "No shade (deprecated)"
 msgstr ""
 
+#: ../plugins/taglist/HTML.tags.xml.in.h:152
+msgid "No URI"
+msgstr ""
+
+#. Deprecated since HTML 4.01, not supported in XHTML 1.0 Strict DTD.
+#: ../plugins/taglist/HTML.tags.xml.in.h:154
+msgid "No word wrap (deprecated)"
+msgstr ""
+
+#. Deprecated since HTML 4.01, not supported in XHTML 1.0 Strict DTD.
 #: ../plugins/taglist/HTML.tags.xml.in.h:156
-msgid "No word wrap"
+msgid "Object applet file (deprecated)"
 msgstr ""
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:157
-msgid "Note"
-msgstr ""
-
-#: ../plugins/taglist/HTML.tags.xml.in.h:158
-#, fuzzy
-msgid "Object applet file"
-msgstr "Huaki he kōnae"
-
-#: ../plugins/taglist/HTML.tags.xml.in.h:159
 msgid "Object data reference"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:160
+#: ../plugins/taglist/HTML.tags.xml.in.h:158
 msgid "Offset for alignment character"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:161
+#: ../plugins/taglist/HTML.tags.xml.in.h:159
 msgid "OnBlur event"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:162
-#, fuzzy
+#: ../plugins/taglist/HTML.tags.xml.in.h:160
 msgid "OnChange event"
-msgstr "_Kuhu"
+msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:163
+#: ../plugins/taglist/HTML.tags.xml.in.h:161
 msgid "OnClick event"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:164
+#: ../plugins/taglist/HTML.tags.xml.in.h:162
 msgid "OnDblClick event"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:165
+#: ../plugins/taglist/HTML.tags.xml.in.h:163
 msgid "OnFocus event"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:166
+#: ../plugins/taglist/HTML.tags.xml.in.h:164
 msgid "OnKeyDown event"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:167
+#: ../plugins/taglist/HTML.tags.xml.in.h:165
 msgid "OnKeyPress event"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:168
+#: ../plugins/taglist/HTML.tags.xml.in.h:166
 msgid "OnKeyUp event"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:169
+#: ../plugins/taglist/HTML.tags.xml.in.h:167
 msgid "OnLoad event"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:170
+#: ../plugins/taglist/HTML.tags.xml.in.h:168
 msgid "OnMouseDown event"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:171
+#: ../plugins/taglist/HTML.tags.xml.in.h:169
 msgid "OnMouseMove event"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:172
+#: ../plugins/taglist/HTML.tags.xml.in.h:170
 msgid "OnMouseOut event"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:173
+#: ../plugins/taglist/HTML.tags.xml.in.h:171
 msgid "OnMouseOver event"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:174
+#: ../plugins/taglist/HTML.tags.xml.in.h:172
 msgid "OnMouseUp event"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:175
+#: ../plugins/taglist/HTML.tags.xml.in.h:173
 msgid "OnReset event"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:176
+#: ../plugins/taglist/HTML.tags.xml.in.h:174
 msgid "OnSelect event"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:177
+#: ../plugins/taglist/HTML.tags.xml.in.h:175
 msgid "OnSubmit event"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:178
+#: ../plugins/taglist/HTML.tags.xml.in.h:176
 msgid "OnUnload event"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:179
+#: ../plugins/taglist/HTML.tags.xml.in.h:177
 msgid "Option group"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:180
-#, fuzzy
+#: ../plugins/taglist/HTML.tags.xml.in.h:178
 msgid "Option selector"
-msgstr "Tārua te whiringa"
+msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:181
+#: ../plugins/taglist/HTML.tags.xml.in.h:179
 msgid "Ordered list"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:182
-#, fuzzy
-msgid "Output media"
-msgstr "Matapihi"
-
-#: ../plugins/taglist/HTML.tags.xml.in.h:183
-msgid "Paragraph"
-msgstr ""
-
-#: ../plugins/taglist/HTML.tags.xml.in.h:184
+#: ../plugins/taglist/HTML.tags.xml.in.h:180
 msgid "Paragraph class"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:185
+#: ../plugins/taglist/HTML.tags.xml.in.h:181
 msgid "Paragraph style"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:186
-msgid "Preformatted listing"
+#: ../plugins/taglist/HTML.tags.xml.in.h:182
+msgid "Paragraph"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:187
+#: ../plugins/taglist/HTML.tags.xml.in.h:183
 msgid "Preformatted text"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:188
+#: ../plugins/taglist/HTML.tags.xml.in.h:184
 msgid "Profile metainfo dictionary"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:189
-msgid "Prompt message"
-msgstr ""
-
-#: ../plugins/taglist/HTML.tags.xml.in.h:190
+#: ../plugins/taglist/HTML.tags.xml.in.h:185
 msgid "Push button"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:191
-#, fuzzy
-msgid "Quote"
-msgstr "Whakamutu"
-
-#: ../plugins/taglist/HTML.tags.xml.in.h:192
-msgid "Range"
-msgstr ""
-
-#: ../plugins/taglist/HTML.tags.xml.in.h:193
+#: ../plugins/taglist/HTML.tags.xml.in.h:186
 msgid "ReadOnly text and password"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:194
-msgid "Reduced spacing"
+#. Deprecated since HTML 4.01, not supported in XHTML 1.0 Strict DTD.
+#: ../plugins/taglist/HTML.tags.xml.in.h:188
+msgid "Reduced spacing (deprecated)"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:195
+#: ../plugins/taglist/HTML.tags.xml.in.h:189
 msgid "Reverse link"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:196
-msgid "Root"
-msgstr ""
-
-#: ../plugins/taglist/HTML.tags.xml.in.h:197
+#: ../plugins/taglist/HTML.tags.xml.in.h:190
 msgid "Rows"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:198
+#: ../plugins/taglist/HTML.tags.xml.in.h:191
 msgid "Rulings between rows and columns"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:199
+#: ../plugins/taglist/HTML.tags.xml.in.h:192
 msgid "Sample program output, scripts"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:200
+#: ../plugins/taglist/HTML.tags.xml.in.h:193
 msgid "Scope covered by header cells"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:201
+#. Deprecated since HTML 4.01, not supported in XHTML 1.0 Strict DTD.
+#: ../plugins/taglist/HTML.tags.xml.in.h:195
 msgid "Script language name"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:202
-msgid "Script statments"
+#: ../plugins/taglist/HTML.tags.xml.in.h:196
+msgid "Script statements"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:203
+#: ../plugins/taglist/HTML.tags.xml.in.h:197
 msgid "Scrollbar"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:204
+#: ../plugins/taglist/HTML.tags.xml.in.h:198
 msgid "Selectable option"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:205
-#, fuzzy
+#: ../plugins/taglist/HTML.tags.xml.in.h:199
 msgid "Selected"
-msgstr "Porowhiu"
+msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:206
+#: ../plugins/taglist/HTML.tags.xml.in.h:200
 msgid "Server-side image map"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:207
-#, fuzzy
+#: ../plugins/taglist/HTML.tags.xml.in.h:201
 msgid "Shape"
-msgstr "Pupuri"
+msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:208
+#: ../plugins/taglist/HTML.tags.xml.in.h:202
 msgid "Short inline quotation"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:209
-msgid "Single line prompt"
+#. Deprecated since HTML 4.01, not supported in XHTML 1.0 Strict DTD.
+#: ../plugins/taglist/HTML.tags.xml.in.h:204
+msgid "Size (deprecated)"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:210
-msgid "Size"
-msgstr ""
-
-#: ../plugins/taglist/HTML.tags.xml.in.h:211
+#: ../plugins/taglist/HTML.tags.xml.in.h:205
 msgid "Small text style"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:212
-msgid "Soft line break"
+#: ../plugins/taglist/HTML.tags.xml.in.h:206
+msgid "Source"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:213
-msgid "Sound"
+#: ../plugins/taglist/HTML.tags.xml.in.h:207
+msgid "Space-separated archive list"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:215
-#, fuzzy
-msgid "Space"
-msgstr "Pupuri"
-
-#: ../plugins/taglist/HTML.tags.xml.in.h:216
-msgid "Space separated archive list"
-msgstr ""
-
-#: ../plugins/taglist/HTML.tags.xml.in.h:217
-#, fuzzy
-msgid "Spacer"
-msgstr "Whakakapia"
-
-#: ../plugins/taglist/HTML.tags.xml.in.h:218
+#: ../plugins/taglist/HTML.tags.xml.in.h:208
 msgid "Spacing between cells"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:219
+#: ../plugins/taglist/HTML.tags.xml.in.h:209
 msgid "Spacing within cells"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:220
-#, fuzzy
+#: ../plugins/taglist/HTML.tags.xml.in.h:210
 msgid "Span"
-msgstr "Sans 12"
-
-#: ../plugins/taglist/HTML.tags.xml.in.h:221
-msgid "Square root"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:222
-msgid "Standby load msg"
+#: ../plugins/taglist/HTML.tags.xml.in.h:211
+msgid "Standby load message"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:223
-msgid "Starting sequence number"
+#. Deprecated since HTML 4.01, not supported in XHTML 1.0 Strict DTD.
+#: ../plugins/taglist/HTML.tags.xml.in.h:213
+msgid "Starting sequence number (deprecated)"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:224
-#, fuzzy
-msgid "Strike-through text"
-msgstr "Tāroto"
+#. Deprecated since HTML 4.01, not supported in XHTML 1.0 Strict DTD.
+#: ../plugins/taglist/HTML.tags.xml.in.h:215
+msgid "Strike-through text style (deprecated)"
+msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:225
-#, fuzzy
-msgid "Strike-through text style"
-msgstr "Tāroto"
+#. Deprecated since HTML 4.01, not supported in XHTML 1.0 Strict DTD.
+#: ../plugins/taglist/HTML.tags.xml.in.h:217
+msgid "Strike-through text (deprecated)"
+msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:226
+#: ../plugins/taglist/HTML.tags.xml.in.h:218
 msgid "Strong emphasis"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:227
+#: ../plugins/taglist/HTML.tags.xml.in.h:219
 msgid "Style info"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:228
+#: ../plugins/taglist/HTML.tags.xml.in.h:220
 msgid "Subscript"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:229
-#, fuzzy
+#: ../plugins/taglist/HTML.tags.xml.in.h:221
 msgid "Superscript"
-msgstr "Pātai"
-
-#: ../plugins/taglist/HTML.tags.xml.in.h:230
-msgid "Tab order position"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:231
-#, fuzzy
-msgid "Table"
-msgstr "Ngā Kōnae"
-
-#: ../plugins/taglist/HTML.tags.xml.in.h:232
+#: ../plugins/taglist/HTML.tags.xml.in.h:222
 msgid "Table body"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:233
+#: ../plugins/taglist/HTML.tags.xml.in.h:223
 msgid "Table caption"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:234
+#: ../plugins/taglist/HTML.tags.xml.in.h:224
 msgid "Table column group properties"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:235
+#: ../plugins/taglist/HTML.tags.xml.in.h:225
 msgid "Table column properties"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:236
+#: ../plugins/taglist/HTML.tags.xml.in.h:226
 msgid "Table data cell"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:237
+#: ../plugins/taglist/HTML.tags.xml.in.h:227
 msgid "Table footer"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:238
-msgid "Table header"
-msgstr ""
-
-#: ../plugins/taglist/HTML.tags.xml.in.h:239
+#: ../plugins/taglist/HTML.tags.xml.in.h:228
 msgid "Table header cell"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:240
+#: ../plugins/taglist/HTML.tags.xml.in.h:229
+msgid "Table header"
+msgstr ""
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:230
 msgid "Table row"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:241
+#: ../plugins/taglist/HTML.tags.xml.in.h:231
 msgid "Table summary"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:242
+#: ../plugins/taglist/HTML.tags.xml.in.h:232
+msgid "Table"
+msgstr ""
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:233
 msgid "Target - Blank"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:243
+#: ../plugins/taglist/HTML.tags.xml.in.h:234
 msgid "Target - Parent"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:244
+#: ../plugins/taglist/HTML.tags.xml.in.h:235
 msgid "Target - Self"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:245
+#: ../plugins/taglist/HTML.tags.xml.in.h:236
 msgid "Target - Top"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:246
+#: ../plugins/taglist/HTML.tags.xml.in.h:237
 msgid "Teletype or monospace text style"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:247
-msgid "Text"
+#. Deprecated since HTML 4.01, not supported in XHTML 1.0 Strict DTD.
+#: ../plugins/taglist/HTML.tags.xml.in.h:239
+msgid "Text color (deprecated)"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:248
-#, fuzzy
-msgid "Text color"
-msgstr "_Kano"
-
-#: ../plugins/taglist/HTML.tags.xml.in.h:249
+#: ../plugins/taglist/HTML.tags.xml.in.h:240
 msgid "Text entered by user"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:250
-#, fuzzy
+#: ../plugins/taglist/HTML.tags.xml.in.h:241
 msgid "Title"
-msgstr "Ngā Kōnae"
-
-#: ../plugins/taglist/HTML.tags.xml.in.h:251
-msgid "Topmargin in pixels"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:252
-msgid "URL"
-msgstr ""
-
-#: ../plugins/taglist/HTML.tags.xml.in.h:253
-#, fuzzy
+#: ../plugins/taglist/HTML.tags.xml.in.h:242
 msgid "Underlined text style"
-msgstr "Rūritia"
+msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:254
-#, fuzzy
+#: ../plugins/taglist/HTML.tags.xml.in.h:243
 msgid "Unordered list"
-msgstr "Rūritia"
+msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:255
+#: ../plugins/taglist/HTML.tags.xml.in.h:244
 msgid "Use image map"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:256
-msgid "Value"
-msgstr ""
-
-#: ../plugins/taglist/HTML.tags.xml.in.h:257
+#: ../plugins/taglist/HTML.tags.xml.in.h:245
 msgid "Value interpretation"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:258
+#: ../plugins/taglist/HTML.tags.xml.in.h:246
+msgid "Value"
+msgstr ""
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:247
 msgid "Variable or program argument"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:259
+#: ../plugins/taglist/HTML.tags.xml.in.h:248
 msgid "Vertical cell alignment"
 msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:260
-#, fuzzy
-msgid "Vertical space"
-msgstr "_Kuhu"
+#. Deprecated since HTML 4.01, not supported in XHTML 1.0 Strict DTD.
+#: ../plugins/taglist/HTML.tags.xml.in.h:250
+msgid "Vertical space (deprecated)"
+msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:261
-#, fuzzy
-msgid "Visited link color"
-msgstr "Kotia te whiringa"
+#. Deprecated since HTML 4.01, not supported in XHTML 1.0 Strict DTD.
+#: ../plugins/taglist/HTML.tags.xml.in.h:252
+msgid "Visited link color (deprecated)"
+msgstr ""
 
-#: ../plugins/taglist/HTML.tags.xml.in.h:262
+#: ../plugins/taglist/HTML.tags.xml.in.h:253
 msgid "Width"
 msgstr ""
 
+#: ../plugins/taglist/HTML.tags.xml.in.h:254
+msgid "HTML - Tags"
+msgstr ""
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:255
+msgid "Above"
+msgstr ""
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:256
+msgid "Applet class file code"
+msgstr ""
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:257
+msgid "Array"
+msgstr ""
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:258
+msgid "Background color"
+msgstr ""
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:259
+msgid "Background texture tile"
+msgstr ""
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:260
+msgid "Base font"
+msgstr ""
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:261
+msgid "Border color"
+msgstr ""
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:262
+msgid "Border"
+msgstr ""
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:263
+msgid "Center"
+msgstr ""
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:264
+msgid "Checked (state)"
+msgstr ""
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:265
+msgid "Color of selected links"
+msgstr ""
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:266
+msgid "Content scheme"
+msgstr ""
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:267
+msgid "Content type"
+msgstr ""
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:268
+msgid "Direction"
+msgstr ""
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:269
+msgid "Directory list"
+msgstr ""
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:270
+msgid "HTML version"
+msgstr ""
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:271
+msgid "Embedded object"
+msgstr ""
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:272
+msgid "Figure"
+msgstr ""
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:273
+msgid "Font face"
+msgstr ""
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:274
+msgid "Frameborder"
+msgstr ""
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:275
+msgid "Framespacing"
+msgstr ""
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:276
+msgid "Heading"
+msgstr ""
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:277
+msgid "Horizontal space"
+msgstr ""
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:278
+msgid "Image source"
+msgstr ""
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:279
+msgid "Inline layer"
+msgstr ""
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:280
+msgid "Java applet"
+msgstr ""
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:281
+msgid "Layer"
+msgstr ""
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:282
+msgid "Link color"
+msgstr ""
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:283
+msgid "Listing"
+msgstr ""
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:284
+msgid "Mail link"
+msgstr ""
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:285
+msgid "Marquee"
+msgstr ""
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:286
+msgid "Menu list"
+msgstr ""
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:287
+msgid "Multicolumn"
+msgstr ""
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:288
+msgid "Next ID"
+msgstr ""
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:289
+msgid "No embedded objects"
+msgstr ""
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:290
+msgid "No layers"
+msgstr ""
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:291
+msgid "No line break"
+msgstr ""
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:292
+msgid "No shade"
+msgstr ""
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:293
+msgid "No word wrap"
+msgstr ""
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:294
+msgid "Note"
+msgstr ""
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:295
+msgid "Object applet file"
+msgstr ""
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:296
+msgid "Preformatted listing"
+msgstr ""
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:297
+msgid "Prompt message"
+msgstr ""
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:298
+msgid "Quote"
+msgstr ""
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:299
+msgid "Range"
+msgstr ""
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:300
+msgid "Reduced spacing"
+msgstr ""
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:301
+msgid "Root"
+msgstr ""
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:302
+msgid "Single line prompt"
+msgstr ""
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:303
+msgid "Size"
+msgstr ""
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:304
+msgid "Soft line break"
+msgstr ""
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:305
+msgid "Sound"
+msgstr ""
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:306
+msgid "Spacer"
+msgstr ""
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:307
+msgid "Square root"
+msgstr ""
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:308
+msgid "Starting sequence number"
+msgstr ""
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:309
+msgid "Strike-through text style"
+msgstr ""
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:310
+msgid "Strike-through text"
+msgstr ""
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:311
+msgid "Tab order position"
+msgstr ""
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:312
+msgid "Text color"
+msgstr ""
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:313
+msgid "Text"
+msgstr ""
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:314
+msgid "Top margin in pixels"
+msgstr ""
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:315
+msgid "URL"
+msgstr ""
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:316
+msgid "Vertical space"
+msgstr ""
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:317
+msgid "Visited link color"
+msgstr ""
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:318
+msgid "HTML - Special Characters"
+msgstr ""
+
+#: ../plugins/taglist/HTML.tags.xml.in.h:319
+msgid "Non-breaking space"
+msgstr ""
+
 #: ../plugins/taglist/Latex.tags.xml.in.h:1
-msgid "Bibliography (cite)"
+msgid "Latex - Tags"
 msgstr ""
 
 #: ../plugins/taglist/Latex.tags.xml.in.h:2
-msgid "Bibliography (item)"
+msgid "Bibliography (cite)"
 msgstr ""
 
 #: ../plugins/taglist/Latex.tags.xml.in.h:3
-msgid "Bibliography (shortcite)"
+msgid "Bibliography (item)"
 msgstr ""
 
 #: ../plugins/taglist/Latex.tags.xml.in.h:4
-msgid "Bibliography (thebibliography)"
+msgid "Bibliography (shortcite)"
 msgstr ""
 
 #: ../plugins/taglist/Latex.tags.xml.in.h:5
-msgid "Brackets ()"
+msgid "Bibliography (thebibliography)"
 msgstr ""
 
 #: ../plugins/taglist/Latex.tags.xml.in.h:6
-msgid "Brackets <>"
+msgid "Brackets ()"
 msgstr ""
 
 #: ../plugins/taglist/Latex.tags.xml.in.h:7
@@ -4161,192 +4040,192 @@ msgstr ""
 msgid "Brackets {}"
 msgstr ""
 
+#: ../plugins/taglist/Latex.tags.xml.in.h:9
+msgid "Brackets <>"
+msgstr ""
+
 #: ../plugins/taglist/Latex.tags.xml.in.h:10
 msgid "File input"
 msgstr ""
 
 #: ../plugins/taglist/Latex.tags.xml.in.h:11
-#, fuzzy
-msgid "Footnote"
-msgstr "Momotuhi"
-
-#: ../plugins/taglist/Latex.tags.xml.in.h:12
-msgid "Function cosin"
+msgid "Function cosine"
 msgstr ""
 
-#: ../plugins/taglist/Latex.tags.xml.in.h:13
+#: ../plugins/taglist/Latex.tags.xml.in.h:12
 msgid "Function e^"
 msgstr ""
 
-#: ../plugins/taglist/Latex.tags.xml.in.h:14
+#: ../plugins/taglist/Latex.tags.xml.in.h:13
 msgid "Function exp"
 msgstr ""
 
-#: ../plugins/taglist/Latex.tags.xml.in.h:15
+#: ../plugins/taglist/Latex.tags.xml.in.h:14
 msgid "Function log"
 msgstr ""
 
-#: ../plugins/taglist/Latex.tags.xml.in.h:16
+#: ../plugins/taglist/Latex.tags.xml.in.h:15
 msgid "Function log10"
 msgstr ""
 
-#: ../plugins/taglist/Latex.tags.xml.in.h:17
+#: ../plugins/taglist/Latex.tags.xml.in.h:16
 msgid "Function sine"
 msgstr ""
 
-#: ../plugins/taglist/Latex.tags.xml.in.h:18
+#: ../plugins/taglist/Latex.tags.xml.in.h:17
 msgid "Greek alpha"
 msgstr ""
 
-#: ../plugins/taglist/Latex.tags.xml.in.h:19
+#: ../plugins/taglist/Latex.tags.xml.in.h:18
 msgid "Greek beta"
 msgstr ""
 
-#: ../plugins/taglist/Latex.tags.xml.in.h:20
+#: ../plugins/taglist/Latex.tags.xml.in.h:19
 msgid "Greek epsilon"
 msgstr ""
 
-#: ../plugins/taglist/Latex.tags.xml.in.h:21
+#: ../plugins/taglist/Latex.tags.xml.in.h:20
 msgid "Greek gamma"
 msgstr ""
 
-#: ../plugins/taglist/Latex.tags.xml.in.h:22
+#: ../plugins/taglist/Latex.tags.xml.in.h:21
 msgid "Greek lambda"
 msgstr ""
 
-#: ../plugins/taglist/Latex.tags.xml.in.h:23
+#: ../plugins/taglist/Latex.tags.xml.in.h:22
 msgid "Greek rho"
 msgstr ""
 
-#: ../plugins/taglist/Latex.tags.xml.in.h:24
+#: ../plugins/taglist/Latex.tags.xml.in.h:23
 msgid "Greek tau"
 msgstr ""
 
-#: ../plugins/taglist/Latex.tags.xml.in.h:25
+#: ../plugins/taglist/Latex.tags.xml.in.h:24
 msgid "Header 0 (chapter)"
 msgstr ""
 
-#: ../plugins/taglist/Latex.tags.xml.in.h:26
+#: ../plugins/taglist/Latex.tags.xml.in.h:25
 msgid "Header 0 (chapter*)"
 msgstr ""
 
-#: ../plugins/taglist/Latex.tags.xml.in.h:27
+#: ../plugins/taglist/Latex.tags.xml.in.h:26
 msgid "Header 1 (section)"
 msgstr ""
 
-#: ../plugins/taglist/Latex.tags.xml.in.h:28
+#: ../plugins/taglist/Latex.tags.xml.in.h:27
 msgid "Header 1 (section*)"
 msgstr ""
 
-#: ../plugins/taglist/Latex.tags.xml.in.h:29
+#: ../plugins/taglist/Latex.tags.xml.in.h:28
 msgid "Header 2 (subsection)"
 msgstr ""
 
-#: ../plugins/taglist/Latex.tags.xml.in.h:30
+#: ../plugins/taglist/Latex.tags.xml.in.h:29
 msgid "Header 2 (subsection*)"
 msgstr ""
 
-#: ../plugins/taglist/Latex.tags.xml.in.h:31
+#: ../plugins/taglist/Latex.tags.xml.in.h:30
 msgid "Header 3 (subsubsection)"
 msgstr ""
 
-#: ../plugins/taglist/Latex.tags.xml.in.h:32
+#: ../plugins/taglist/Latex.tags.xml.in.h:31
 msgid "Header 3 (subsubsection*)"
 msgstr ""
 
-#: ../plugins/taglist/Latex.tags.xml.in.h:33
+#: ../plugins/taglist/Latex.tags.xml.in.h:32
 msgid "Header 4 (paragraph)"
 msgstr ""
 
-#: ../plugins/taglist/Latex.tags.xml.in.h:34
+#: ../plugins/taglist/Latex.tags.xml.in.h:33
 msgid "Header appendix"
 msgstr ""
 
-#: ../plugins/taglist/Latex.tags.xml.in.h:35
-msgid "Item"
-msgstr ""
-
-#: ../plugins/taglist/Latex.tags.xml.in.h:36
-msgid "Item with label"
-msgstr ""
-
-#: ../plugins/taglist/Latex.tags.xml.in.h:37
-msgid "Latex - Tags"
-msgstr ""
-
-#: ../plugins/taglist/Latex.tags.xml.in.h:38
-#, fuzzy
+#: ../plugins/taglist/Latex.tags.xml.in.h:34
 msgid "List description"
-msgstr "Pātai"
+msgstr ""
 
-#: ../plugins/taglist/Latex.tags.xml.in.h:39
+#: ../plugins/taglist/Latex.tags.xml.in.h:35
 msgid "List enumerate"
 msgstr ""
 
-#: ../plugins/taglist/Latex.tags.xml.in.h:40
+#: ../plugins/taglist/Latex.tags.xml.in.h:36
 msgid "List itemize"
 msgstr ""
 
-#: ../plugins/taglist/Latex.tags.xml.in.h:41
+#: ../plugins/taglist/Latex.tags.xml.in.h:37
+msgid "Item with label"
+msgstr ""
+
+#: ../plugins/taglist/Latex.tags.xml.in.h:38
+msgid "Item"
+msgstr ""
+
+#: ../plugins/taglist/Latex.tags.xml.in.h:39
 msgid "Maths (display)"
 msgstr ""
 
-#: ../plugins/taglist/Latex.tags.xml.in.h:42
+#: ../plugins/taglist/Latex.tags.xml.in.h:40
 msgid "Maths (inline)"
 msgstr ""
 
-#: ../plugins/taglist/Latex.tags.xml.in.h:43
+#: ../plugins/taglist/Latex.tags.xml.in.h:41
 msgid "Operator fraction"
 msgstr ""
 
-#: ../plugins/taglist/Latex.tags.xml.in.h:44
+#: ../plugins/taglist/Latex.tags.xml.in.h:42
 msgid "Operator integral (display)"
 msgstr ""
 
-#: ../plugins/taglist/Latex.tags.xml.in.h:45
+#: ../plugins/taglist/Latex.tags.xml.in.h:43
 msgid "Operator integral (inline)"
 msgstr ""
 
-#: ../plugins/taglist/Latex.tags.xml.in.h:46
+#: ../plugins/taglist/Latex.tags.xml.in.h:44
 msgid "Operator sum (display)"
 msgstr ""
 
-#: ../plugins/taglist/Latex.tags.xml.in.h:47
+#: ../plugins/taglist/Latex.tags.xml.in.h:45
 msgid "Operator sum (inline)"
 msgstr ""
 
-#: ../plugins/taglist/Latex.tags.xml.in.h:48
-#, fuzzy
+#: ../plugins/taglist/Latex.tags.xml.in.h:46
 msgid "Reference label"
-msgstr "Ngā tina hiahia"
+msgstr ""
 
-#: ../plugins/taglist/Latex.tags.xml.in.h:49
-#, fuzzy
+#: ../plugins/taglist/Latex.tags.xml.in.h:47
 msgid "Reference ref"
-msgstr "Ngā tina hiahia"
+msgstr ""
 
-#: ../plugins/taglist/Latex.tags.xml.in.h:50
+#: ../plugins/taglist/Latex.tags.xml.in.h:48
 msgid "Symbol <<"
 msgstr ""
 
-#: ../plugins/taglist/Latex.tags.xml.in.h:51
+#: ../plugins/taglist/Latex.tags.xml.in.h:49
 msgid "Symbol <="
 msgstr ""
 
-#: ../plugins/taglist/Latex.tags.xml.in.h:52
+#: ../plugins/taglist/Latex.tags.xml.in.h:50
 msgid "Symbol >="
 msgstr ""
 
-#: ../plugins/taglist/Latex.tags.xml.in.h:53
+#: ../plugins/taglist/Latex.tags.xml.in.h:51
 msgid "Symbol >>"
 msgstr ""
 
-#: ../plugins/taglist/Latex.tags.xml.in.h:54
+#: ../plugins/taglist/Latex.tags.xml.in.h:52
 msgid "Symbol and"
 msgstr ""
 
-#: ../plugins/taglist/Latex.tags.xml.in.h:55
+#: ../plugins/taglist/Latex.tags.xml.in.h:53
 msgid "Symbol const"
+msgstr ""
+
+#: ../plugins/taglist/Latex.tags.xml.in.h:54
+msgid "Symbol d2-by-dt2-partial"
+msgstr ""
+
+#: ../plugins/taglist/Latex.tags.xml.in.h:55
+msgid "Symbol dagger"
 msgstr ""
 
 #: ../plugins/taglist/Latex.tags.xml.in.h:56
@@ -4358,83 +4237,89 @@ msgid "Symbol d-by-dt-partial"
 msgstr ""
 
 #: ../plugins/taglist/Latex.tags.xml.in.h:58
-msgid "Symbol d2-by-dt2-partial"
-msgstr ""
-
-#: ../plugins/taglist/Latex.tags.xml.in.h:59
-msgid "Symbol dagger"
-msgstr ""
-
-#: ../plugins/taglist/Latex.tags.xml.in.h:60
 msgid "Symbol equiv"
 msgstr ""
 
+#: ../plugins/taglist/Latex.tags.xml.in.h:59
+msgid "Symbol en-dash --"
+msgstr ""
+
+#: ../plugins/taglist/Latex.tags.xml.in.h:60
+msgid "Symbol em-dash ---"
+msgstr ""
+
 #: ../plugins/taglist/Latex.tags.xml.in.h:61
-msgid "Symbol hyphen --"
-msgstr ""
-
-#: ../plugins/taglist/Latex.tags.xml.in.h:62
-msgid "Symbol hyphen ---"
-msgstr ""
-
-#: ../plugins/taglist/Latex.tags.xml.in.h:63
 msgid "Symbol infinity"
 msgstr ""
 
-#: ../plugins/taglist/Latex.tags.xml.in.h:64
+#: ../plugins/taglist/Latex.tags.xml.in.h:62
 msgid "Symbol mathspace ,"
 msgstr ""
 
-#: ../plugins/taglist/Latex.tags.xml.in.h:65
+#: ../plugins/taglist/Latex.tags.xml.in.h:63
 msgid "Symbol mathspace ."
 msgstr ""
 
-#: ../plugins/taglist/Latex.tags.xml.in.h:66
+#: ../plugins/taglist/Latex.tags.xml.in.h:64
 msgid "Symbol mathspace _"
 msgstr ""
 
-#: ../plugins/taglist/Latex.tags.xml.in.h:67
+#: ../plugins/taglist/Latex.tags.xml.in.h:65
 msgid "Symbol mathspace __"
 msgstr ""
 
-#: ../plugins/taglist/Latex.tags.xml.in.h:68
+#: ../plugins/taglist/Latex.tags.xml.in.h:66
 msgid "Symbol simeq"
 msgstr ""
 
-#: ../plugins/taglist/Latex.tags.xml.in.h:69
+#: ../plugins/taglist/Latex.tags.xml.in.h:67
 msgid "Symbol star"
 msgstr ""
 
-#: ../plugins/taglist/Latex.tags.xml.in.h:70
+#: ../plugins/taglist/Latex.tags.xml.in.h:68
 msgid "Typeface bold"
 msgstr ""
 
-#: ../plugins/taglist/Latex.tags.xml.in.h:71
+#: ../plugins/taglist/Latex.tags.xml.in.h:69
+msgid "Typeface type"
+msgstr ""
+
+#: ../plugins/taglist/Latex.tags.xml.in.h:70
 msgid "Typeface italic"
 msgstr ""
 
-#: ../plugins/taglist/Latex.tags.xml.in.h:72
+#: ../plugins/taglist/Latex.tags.xml.in.h:71
 msgid "Typeface slanted"
 msgstr ""
 
 #: ../plugins/taglist/Latex.tags.xml.in.h:73
-msgid "Typeface type"
-msgstr ""
-
-#: ../plugins/taglist/Latex.tags.xml.in.h:74
 msgid "Unbreakable text"
 msgstr ""
 
-#: ../plugins/taglist/XSLT.tags.xml.in.h:1
-msgid "XSLT - Axes"
+#: ../plugins/taglist/Latex.tags.xml.in.h:74
+msgid "Footnote"
 msgstr ""
 
-#: ../plugins/taglist/XSLT.tags.xml.in.h:2
+#: ../plugins/taglist/taglist.xed-plugin.desktop.in.h:1
+msgid "Tag list"
+msgstr ""
+
+#: ../plugins/taglist/taglist.xed-plugin.desktop.in.h:2
+msgid ""
+"Provides a method to easily insert commonly used tags/strings into a "
+"document without having to type them."
+msgstr ""
+
+#: ../plugins/taglist/XSLT.tags.xml.in.h:1
 msgid "XSLT - Elements"
 msgstr ""
 
-#: ../plugins/taglist/XSLT.tags.xml.in.h:3
+#: ../plugins/taglist/XSLT.tags.xml.in.h:2
 msgid "XSLT - Functions"
+msgstr ""
+
+#: ../plugins/taglist/XSLT.tags.xml.in.h:3
+msgid "XSLT - Axes"
 msgstr ""
 
 #: ../plugins/taglist/XSLT.tags.xml.in.h:4
@@ -4470,14 +4355,12 @@ msgid "following-sibling"
 msgstr ""
 
 #: ../plugins/taglist/XSLT.tags.xml.in.h:12
-#, fuzzy
 msgid "namespace"
-msgstr "_Kuhu"
+msgstr ""
 
 #: ../plugins/taglist/XSLT.tags.xml.in.h:13
-#, fuzzy
 msgid "parent"
-msgstr "Huaki"
+msgstr ""
 
 #: ../plugins/taglist/XSLT.tags.xml.in.h:14
 msgid "preceding"
@@ -4491,61 +4374,35 @@ msgstr ""
 msgid "self"
 msgstr ""
 
-#: ../plugins/taglist/xed-taglist-plugin-window.c:146
-msgid "Tag list plugin"
+#: ../plugins/taglist/XUL.tags.xml.in.h:1
+msgid "XUL - Tags"
 msgstr ""
 
-#: ../plugins/taglist/xed-taglist-plugin-window.c:167
-msgid "Select the group of tags you want to use"
+#: ../plugins/time/org.x.editor.plugins.time.gschema.xml.in.h:1
+msgid "Prompt type"
 msgstr ""
 
-#: ../plugins/taglist/xed-taglist-plugin-window.c:189
-msgid "Available Tag Lists"
+#: ../plugins/time/org.x.editor.plugins.time.gschema.xml.in.h:2
+msgid "Selected format"
 msgstr ""
 
-#: ../plugins/taglist/xed-taglist-plugin-window.c:191
-#: ../plugins/taglist/xed-taglist-plugin-window.c:212
-msgid "Tags"
+#: ../plugins/time/org.x.editor.plugins.time.gschema.xml.in.h:3
+msgid "Custom format"
 msgstr ""
 
-#: ../plugins/taglist/xed-taglist-plugin-window.c:201
-msgid "Double-click on a tag to insert it in the current document"
-msgstr ""
-
-#: ../plugins/taglist/xed-taglist-plugin.c:46
-msgid "Tag _List"
-msgstr ""
-
-#.
-#. #define MENU_ITEM_NAME		"TagList"
-#.
-#: ../plugins/taglist/xed-taglist-plugin.c:51
-msgid "Show the tag list window"
-msgstr ""
-
-#: ../plugins/taglist/taglist.xed-plugin.desktop.in.h:1
-msgid ""
-"Provides a method to easily insert into a document commonly used tags/"
-"strings without having to type them."
-msgstr ""
-
-#: ../plugins/taglist/taglist.xed-plugin.desktop.in.h:2
-msgid "Tag list"
-msgstr ""
-
-#: ../plugins/time/time.c:49
+#: ../plugins/time/xed-time-plugin.c:179
 msgid "In_sert Date and Time..."
 msgstr ""
 
-#: ../plugins/time/time.c:52
+#: ../plugins/time/xed-time-plugin.c:181
 msgid "Insert current date and time at the cursor position"
 msgstr ""
 
-#: ../plugins/time/time.c:457
+#: ../plugins/time/xed-time-plugin.c:562
 msgid "Available formats"
 msgstr ""
 
-#: ../plugins/time/time.c:565
+#: ../plugins/time/xed-time-plugin.c:713
 msgid "Configure insert date/time plugin..."
 msgstr ""
 
@@ -4557,34 +4414,53 @@ msgstr ""
 msgid "Inserts current date and time at the cursor position."
 msgstr ""
 
-#: ../plugins/time/time.glade2.h:3
-msgid "<span size=\"small\">01/11/2002 17:52:00</span>"
+#: ../plugins/trailsave/trailsave.xed-plugin.desktop.in.h:1
+msgid "Save Without Trailing Spaces"
 msgstr ""
 
-#: ../plugins/time/time.glade2.h:4
-msgid "<span weight=\"bold\"> When inserting date/time...</span>"
+#: ../plugins/trailsave/trailsave.xed-plugin.desktop.in.h:2
+msgid "Removes trailing spaces from lines before saving."
 msgstr ""
 
-#: ../plugins/time/time.glade2.h:5
-msgid "Configure date/time plugin"
-msgstr ""
-
-#: ../plugins/time/time.glade2.h:6
+#: ../plugins/time/xed-time-dialog.ui.h:1
 msgid "Insert Date and Time"
 msgstr ""
 
-#: ../plugins/time/time.glade2.h:7
-msgid "Use the _selected format"
-msgstr ""
-
-#: ../plugins/time/time.glade2.h:8
+#: ../plugins/time/xed-time-dialog.ui.h:2
 msgid "_Insert"
 msgstr "_Kuhu"
 
-#: ../plugins/time/time.glade2.h:9
-msgid "_Prompt for a format"
+#: ../plugins/time/xed-time-dialog.ui.h:3
+#: ../plugins/time/xed-time-setup-dialog.ui.h:5
+msgid "Use the _selected format"
 msgstr ""
 
-#: ../plugins/time/time.glade2.h:10
+#: ../plugins/time/xed-time-dialog.ui.h:5
+#: ../plugins/time/xed-time-setup-dialog.ui.h:6
 msgid "_Use custom format"
+msgstr ""
+
+#. Translators: Use the more common date format in your locale
+#: ../plugins/time/xed-time-dialog.ui.h:7
+#: ../plugins/time/xed-time-setup-dialog.ui.h:9
+#, no-c-format
+msgid "%d/%m/%Y %H:%M:%S"
+msgstr ""
+
+#. Translators: This example should follow the date format defined in the entry above
+#: ../plugins/time/xed-time-dialog.ui.h:8
+#: ../plugins/time/xed-time-setup-dialog.ui.h:11
+msgid "01/11/2009 17:52:00"
+msgstr ""
+
+#: ../plugins/time/xed-time-setup-dialog.ui.h:1
+msgid "Configure date/time plugin"
+msgstr ""
+
+#: ../plugins/time/xed-time-setup-dialog.ui.h:2
+msgid "When inserting date/time..."
+msgstr ""
+
+#: ../plugins/time/xed-time-setup-dialog.ui.h:4
+msgid "_Prompt for a format"
 msgstr ""
