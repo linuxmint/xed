@@ -14,7 +14,7 @@ msgstr ""
 "Project-Id-Version: MATE Desktop Environment\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-01-27 11:07+0000\n"
-"PO-Revision-Date: 2016-04-26 14:29+0000\n"
+"PO-Revision-Date: 2016-05-07 18:59+0000\n"
 "Last-Translator: Микола Ткач <Stuartlittle1970@gmail.com>\n"
 "Language-Team: Ukrainian "
 "(http://www.transifex.com/projects/p/MATE/language/uk/)\n"
@@ -23,8 +23,8 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Launchpad-Export-Date: 2016-04-27 13:24+0000\n"
-"X-Generator: Launchpad (build 17995)\n"
+"X-Launchpad-Export-Date: 2016-05-24 09:36+0000\n"
+"X-Generator: Launchpad (build 18053)\n"
 "Language: uk\n"
 
 #: ../data/org.x.editor.gschema.xml.in.h:1
@@ -38,6 +38,10 @@ msgid ""
 "font named in the \"Editor Font\" option will be used instead of the system "
 "font."
 msgstr ""
+"Використовувати для редагування тексту шрифт фіксованої ширини замість "
+"шрифту, встановленого типовим в xed. Якщо вимкнути цю опцію, то замість "
+"системного шрифту буде використано шрифт, вказаний у опції \"Шрифт вікна "
+"редагування\"."
 
 #: ../data/org.x.editor.gschema.xml.in.h:3
 msgctxt "editor-font"
@@ -113,6 +117,8 @@ msgid ""
 "List of VFS schemes xed supports in write mode. The 'file' scheme is "
 "writable by default."
 msgstr ""
+"Перелік схем VFS, які підтримує xed у режимі запису. Схема \"файл\" "
+"використовується типово."
 
 #: ../data/org.x.editor.gschema.xml.in.h:16
 msgid "Maximum Number of Undo Actions"
@@ -283,6 +289,12 @@ msgid ""
 "Note that the values are case-sensitive, so make sure they appear exactly as "
 "mentioned here."
 msgstr ""
+"Стиль кнопок панелі знарядь. Можливі значення: \"XED_TOOLBAR_SYSTEM\" для "
+"типового стилю, \"XED_TOOLBAR_ICONS\" для відображення лише піктограм, "
+"\"XED_TOOLBAR_ICONS_AND_TEXT\" для відображення піктограм і тексту й "
+"\"XED_TOOLBAR_ICONS_BOTH_HORIZ\" – для пріоритетного тексту поряд з "
+"піктограмами. Зверніть увагу, значення чутливі до регістру, переконайтеся що "
+"вони уведені саме так, як вказано тут."
 
 #: ../data/org.x.editor.gschema.xml.in.h:48
 msgid "Status Bar is Visible"
@@ -332,6 +344,7 @@ msgstr "Друкувати виділення синтаксису"
 #: ../data/org.x.editor.gschema.xml.in.h:57
 msgid "Whether xed should print syntax highlighting when printing documents."
 msgstr ""
+"Чи xed повинен друкувати підсвічування синтаксису при друку документів."
 
 #: ../data/org.x.editor.gschema.xml.in.h:58
 msgid "Print Header"
@@ -339,7 +352,7 @@ msgstr "Друкувати заголовки сторінок"
 
 #: ../data/org.x.editor.gschema.xml.in.h:59
 msgid "Whether xed should include a document header when printing documents."
-msgstr ""
+msgstr "Друкувати заголовок при друку документу"
 
 #: ../data/org.x.editor.gschema.xml.in.h:60
 msgid "Printing Line Wrapping Mode"
@@ -368,6 +381,8 @@ msgid ""
 "If this value is 0, then no line numbers will be inserted when printing a "
 "document. Otherwise, xed will print line numbers every such number of lines."
 msgstr ""
+"Якщо це значення дорівнює 0, номери рядків не будуть вставлятися при "
+"друкуванні документу. В іншому випадку, xed буде друкувати номери рядків."
 
 #: ../data/org.x.editor.gschema.xml.in.h:64
 msgctxt "print-font-body-pango"
@@ -432,6 +447,9 @@ msgid ""
 "encoding of a file. \"CURRENT\" represents the current locale encoding. Only "
 "recognized encodings are used."
 msgstr ""
+"Впорядкований перелік кодувань, що використовуються xed для автоматичного "
+"визначення кодування файлу. \"ПОТОЧНИЙ\" являє cобою кодування, що "
+"використовується. Використовується лише розпізнане кодування."
 
 #: ../data/org.x.editor.gschema.xml.in.h:76
 msgctxt "shown-in-menu"
@@ -475,6 +493,8 @@ msgid ""
 "List of active plugins. It contains the \"Location\" of the active plugins. "
 "See the .xed-plugin file for obtaining the \"Location\" of a given plugin."
 msgstr ""
+"Перелік активних втулок. Він містить місцерозташування активних втулок. "
+"Дивіться файл .xed-plugin для отримання місцерозташування необхідної втулки."
 
 #: ../data/xed.appdata.xml.in.h:1
 msgid "A Text Editor"
@@ -490,6 +510,12 @@ msgid ""
 "spell checking, comparing files, viewing CVS ChangeLogs, and adjusting "
 "indentation levels. </p>"
 msgstr ""
+"Xed - невеликий, але потужний текстовий редактор. Він має більшість "
+"стандартних функцій й повністю підтримує Юнікод. Додаткові функції включають "
+"підсвічування синтаксису та автоматичне визначення джерельного коду, друк і "
+"редагування декількох документів у одному вікні. Xed розширюваний за "
+"допомогою втулок, які на дану мить включають перевірку орфографії, "
+"порівняння файлів, перегляд логів змін CVS та коригування рівнів відступу."
 
 #: ../data/xed.desktop.in.in.h:1 ../xed/xed-print-job.c:767
 msgid "Text Editor"
@@ -901,11 +927,11 @@ msgstr "Показати перелік можливих значень пара
 
 #: ../xed/xed.c:113
 msgid "Create a new top-level window in an existing instance of xed"
-msgstr ""
+msgstr "Створити нове вікно вищого рівню у існуючому примірнику xed"
 
 #: ../xed/xed.c:116
 msgid "Create a new document in an existing instance of xed"
-msgstr ""
+msgstr "Створити новий документ в існуючому примірнику xed"
 
 #: ../xed/xed.c:119
 msgid "[FILE...]"
@@ -1448,7 +1474,7 @@ msgstr ""
 #: ../xed/xed-io-error-message-area.c:818
 #, c-format
 msgid "This file (%s) is already open in another xed window."
-msgstr ""
+msgstr "Цей файл (%s) вже відкрито в іншому вікні xed."
 
 #: ../xed/xed-io-error-message-area.c:836
 msgid ""
@@ -1511,12 +1537,16 @@ msgid ""
 "xed cannot handle %s locations in write mode. Please check that you typed "
 "the location correctly and try again."
 msgstr ""
+"Xed не може опрацювати розташування у режимі запису %s. Будь ласка, "
+"перевірте, що Ви увели розташування правильно і спробуйте ще раз."
 
 #: ../xed/xed-io-error-message-area.c:1128
 msgid ""
 "xed cannot handle this location in write mode. Please check that you typed "
 "the location correctly and try again."
 msgstr ""
+"Xed не може опрацювати це розташування у режимі запису. Будь ласка, "
+"перевірте, що Ви увели розташування правильно і спробуйте ще раз."
 
 #: ../xed/xed-io-error-message-area.c:1137
 #, c-format
@@ -2748,7 +2778,7 @@ msgstr "Рядки режимів"
 
 #: ../plugins/modelines/modelines.xed-plugin.desktop.in.h:2
 msgid "Emacs, Kate and Vim-style modelines support for xed."
-msgstr ""
+msgstr "Підтримка модлайнів формату Emacs, Kate і Vim для xed."
 
 #: ../plugins/sort/xed-sort-plugin.c:88
 msgid "S_ort..."

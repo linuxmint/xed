@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: MATE Desktop Environment\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-01-27 11:07+0000\n"
-"PO-Revision-Date: 2016-04-26 12:11+0000\n"
+"PO-Revision-Date: 2016-05-19 14:51+0000\n"
 "Last-Translator: jema <jerker.malm@gmail.com>\n"
 "Language-Team: Swedish "
 "(http://www.transifex.com/projects/p/MATE/language/sv/)\n"
@@ -17,8 +17,8 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2016-04-27 13:25+0000\n"
-"X-Generator: Launchpad (build 17995)\n"
+"X-Launchpad-Export-Date: 2016-05-24 09:37+0000\n"
+"X-Generator: Launchpad (build 18053)\n"
 "Language: sv\n"
 
 #: ../data/org.x.editor.gschema.xml.in.h:1
@@ -32,6 +32,10 @@ msgid ""
 "font named in the \"Editor Font\" option will be used instead of the system "
 "font."
 msgstr ""
+"Om xed skall använda systemets förvalda typsnitt med fixerad bredd istället "
+"för ett som är specifikt för xed. Om denna inställning inaktiveras kommer "
+"det typsnitt som namnges i \"Redigerings typsnitt\" att användas istället "
+"för systemets typsnitt."
 
 #: ../data/org.x.editor.gschema.xml.in.h:3
 msgctxt "editor-font"
@@ -68,6 +72,8 @@ msgid ""
 "Whether xed should create backup copies for the files it saves. You can set "
 "the backup file extension with the \"Backup Copy Extension\" option."
 msgstr ""
+"Om xed skall skapa säkerhetskopior när det sparar. Du kan välja filändelse "
+"på säkerhetskopiorna med inställningen \"Filändelse för säkerhetskopior\"."
 
 #: ../data/org.x.editor.gschema.xml.in.h:10
 msgid "Autosave"
@@ -78,6 +84,9 @@ msgid ""
 "Whether xed should automatically save modified files after a time interval. "
 "You can set the time interval with the \"Autosave Interval\" option."
 msgstr ""
+"Om xed skall spara ändrade filer efter en angiven tidsperiod. Du kan ställa "
+"in önskat intervall i inställningen \"Tidsintervall för automatisk "
+"sparning\"."
 
 #: ../data/org.x.editor.gschema.xml.in.h:12
 msgid "Autosave Interval"
@@ -88,6 +97,8 @@ msgid ""
 "Number of minutes after which xed will automatically save modified files. "
 "This will only take effect if the \"Autosave\" option is turned on."
 msgstr ""
+"Antalet minuter innan xed automatiskt sparar ändrade filer.  Detta kommer "
+"endast att ha effekt om alternativet \"Spara automatiskt\" är påslaget."
 
 #: ../data/org.x.editor.gschema.xml.in.h:14
 msgid "Writable VFS schemes"
@@ -98,6 +109,8 @@ msgid ""
 "List of VFS schemes xed supports in write mode. The 'file' scheme is "
 "writable by default."
 msgstr ""
+"En lista med VFS scheman som xed stödjer i skrivläge. Som standard är "
+"\"fil\" schemat skrivbart."
 
 #: ../data/org.x.editor.gschema.xml.in.h:16
 msgid "Maximum Number of Undo Actions"
@@ -108,6 +121,8 @@ msgid ""
 "Maximum number of actions that xed will be able to undo or redo. Use \"-1\" "
 "for unlimited number of actions."
 msgstr ""
+"Det maximala antalet åtgärder xed ska kunna ångra eller göra om. Använd \"-"
+"1\" för oändligt antal."
 
 #: ../data/org.x.editor.gschema.xml.in.h:18
 msgid "Line Wrapping Mode"
@@ -143,7 +158,7 @@ msgstr "Infoga blanksteg"
 
 #: ../data/org.x.editor.gschema.xml.in.h:23
 msgid "Whether xed should insert spaces instead of tabs."
-msgstr ""
+msgstr "Om xed skall ersätta tab med mellanslag."
 
 #: ../data/org.x.editor.gschema.xml.in.h:24
 msgid "Automatic indent"
@@ -151,7 +166,7 @@ msgstr "Automatisk indentering"
 
 #: ../data/org.x.editor.gschema.xml.in.h:25
 msgid "Whether xed should enable automatic indentation."
-msgstr ""
+msgstr "Om xed skall använda automatisk indention."
 
 #: ../data/org.x.editor.gschema.xml.in.h:26
 msgid "Display Line Numbers"
@@ -159,7 +174,7 @@ msgstr "Visa radnummer"
 
 #: ../data/org.x.editor.gschema.xml.in.h:27
 msgid "Whether xed should display line numbers in the editing area."
-msgstr ""
+msgstr "Om xed skall visa radnummer i redigeringsfönstret."
 
 #: ../data/org.x.editor.gschema.xml.in.h:28
 msgid "Highlight Current Line"
@@ -167,7 +182,7 @@ msgstr "Färgmarkera aktuell rad"
 
 #: ../data/org.x.editor.gschema.xml.in.h:29
 msgid "Whether xed should highlight the current line."
-msgstr ""
+msgstr "Om xed skall markera den aktiva raden."
 
 #: ../data/org.x.editor.gschema.xml.in.h:30
 msgid "Highlight Matching Bracket"
@@ -175,7 +190,7 @@ msgstr "Färgmarkera matchande klammer"
 
 #: ../data/org.x.editor.gschema.xml.in.h:31
 msgid "Whether xed should highlight the bracket matching the selected one."
-msgstr ""
+msgstr "Om xed skall markera matchande parenteser."
 
 #: ../data/org.x.editor.gschema.xml.in.h:32
 msgid "Display Right Margin"
@@ -183,7 +198,7 @@ msgstr "Visa högermarginal"
 
 #: ../data/org.x.editor.gschema.xml.in.h:33
 msgid "Whether xed should display the right margin in the editing area."
-msgstr ""
+msgstr "Om xed skall visa den högra marginalen i redigeringsfönstret."
 
 #: ../data/org.x.editor.gschema.xml.in.h:34
 msgid "Right Margin Position"
@@ -223,7 +238,7 @@ msgstr "Återställ tidigare markörposition"
 msgid ""
 "Whether xed should restore the previous cursor position when a file is "
 "loaded."
-msgstr ""
+msgstr "Om xed skall återställa markörens position när en fil laddas."
 
 #: ../data/org.x.editor.gschema.xml.in.h:40
 msgid "Enable Search Highlighting"
@@ -232,7 +247,7 @@ msgstr "Aktivera färgmarkering vid sökning"
 #: ../data/org.x.editor.gschema.xml.in.h:41
 msgid ""
 "Whether xed should highlight all the occurrences of the searched text."
-msgstr ""
+msgstr "Om xed skall markera alla förekomster av eftersökt text."
 
 #: ../data/org.x.editor.gschema.xml.in.h:42
 msgid "Enable Syntax Highlighting"
@@ -240,7 +255,7 @@ msgstr "Aktivera syntaxmarkering"
 
 #: ../data/org.x.editor.gschema.xml.in.h:43
 msgid "Whether xed should enable syntax highlighting."
-msgstr ""
+msgstr "Om xed skall använda syntaxmarkering."
 
 #: ../data/org.x.editor.gschema.xml.in.h:44
 msgid "Toolbar is Visible"
@@ -263,6 +278,13 @@ msgid ""
 "Note that the values are case-sensitive, so make sure they appear exactly as "
 "mentioned here."
 msgstr ""
+"Utseende för knappar på verktygsraden. Alternativen är: "
+"\"XED_TOOLBAR_SYSTEM\" använder systemets förvalda utseende, "
+"\"XED_TOOLBAR_ICONS\" för att bara visa ikoner, "
+"\"XED_TOOLBAR_ICONS_AND_TEXT\" för att visa ikoner och text, samt "
+"\"XED_TOOLBAR_ICONS_BOTH_HORIZ\" för att visa prioriterad text bredvid "
+"ikoner. Notera att alternativen är skriftlägeskänsliga och måste användas "
+"precis som dom står här."
 
 #: ../data/org.x.editor.gschema.xml.in.h:48
 msgid "Status Bar is Visible"
@@ -312,7 +334,7 @@ msgstr "Skriv ut syntaxmarkering"
 
 #: ../data/org.x.editor.gschema.xml.in.h:57
 msgid "Whether xed should print syntax highlighting when printing documents."
-msgstr ""
+msgstr "Om xed skall ta med syntaxmarkeringar vid utskrift."
 
 #: ../data/org.x.editor.gschema.xml.in.h:58
 msgid "Print Header"
@@ -320,7 +342,7 @@ msgstr "Skriv ut sidhuvud"
 
 #: ../data/org.x.editor.gschema.xml.in.h:59
 msgid "Whether xed should include a document header when printing documents."
-msgstr ""
+msgstr "Om xed skall ta med dokumenthuvudet vid utskrift."
 
 #: ../data/org.x.editor.gschema.xml.in.h:60
 msgid "Printing Line Wrapping Mode"
@@ -349,6 +371,9 @@ msgid ""
 "If this value is 0, then no line numbers will be inserted when printing a "
 "document. Otherwise, xed will print line numbers every such number of lines."
 msgstr ""
+"Om detta värde är 0 så kommer inga radnummer att flikas in när dokumentet "
+"skrivs ut. Om värdet inte är 0 kommer xed att flika in aktuellt radnummer "
+"varje angivet antal rader."
 
 #: ../data/org.x.editor.gschema.xml.in.h:64
 msgctxt "print-font-body-pango"
@@ -416,6 +441,10 @@ msgid ""
 "encoding of a file. \"CURRENT\" represents the current locale encoding. Only "
 "recognized encodings are used."
 msgstr ""
+"En sorterad lista med de teckenkodningar som xed använder för att automatisk "
+"identifiera teckenkodningen i en fil. Texten \"Aktuell\" visar den "
+"teckenkodning som gäller för de aktuella formatinställningarna. Bara "
+"igenkända teckenkodningar används."
 
 #: ../data/org.x.editor.gschema.xml.in.h:76
 msgctxt "shown-in-menu"
@@ -459,6 +488,8 @@ msgid ""
 "List of active plugins. It contains the \"Location\" of the active plugins. "
 "See the .xed-plugin file for obtaining the \"Location\" of a given plugin."
 msgstr ""
+"Lista över aktiva insticksprogram med programmens \"plats\". Se filen .xed-"
+"plugin för att se ett insticksprograms \"plats\"."
 
 #: ../data/xed.appdata.xml.in.h:1
 msgid "A Text Editor"
@@ -474,6 +505,14 @@ msgid ""
 "spell checking, comparing files, viewing CVS ChangeLogs, and adjusting "
 "indentation levels. </p>"
 msgstr ""
+"<p>Xed är en liten men kraftfull textredigerare. Den har de flesta "
+"standardfunktioner för textredigerare och tack vare unicode fullt stöd för "
+"dokument med olika språk. Bland de avancerade funktionerna finns "
+"syntaxmarkering, automatisk indentering av källkod, utskrift och redigering "
+"av flera dokument i ett och samma fönster.</p><p>Xed kan byggas ut med hjälp "
+"av insticksprogram. Bland dessa finns funktioner för rättstavning, jämföra "
+"filer, läsa ändringsloggar i CVS format och inställningar för "
+"indentering.</p>"
 
 #: ../data/xed.desktop.in.in.h:1 ../xed/xed-print-job.c:767
 msgid "Text Editor"
@@ -677,7 +716,7 @@ msgstr "Kunde inte ta bort färgschemat \"%s\"."
 
 #: ../xed/dialogs/xed-preferences-dialog.c:1090
 msgid "Xed Preferences"
-msgstr ""
+msgstr "Xed inställningar."
 
 #: ../xed/dialogs/xed-preferences-dialog.ui.h:1
 msgid "Preferences"
@@ -885,11 +924,11 @@ msgstr "Visa en lista över möjliga värden för kodningsalternativet"
 
 #: ../xed/xed.c:113
 msgid "Create a new top-level window in an existing instance of xed"
-msgstr ""
+msgstr "Skapa ett nytt huvudfönster i xed"
 
 #: ../xed/xed.c:116
 msgid "Create a new document in an existing instance of xed"
-msgstr ""
+msgstr "Skapa ett nytt dokument i xed"
 
 #: ../xed/xed.c:119
 msgid "[FILE...]"
@@ -1263,11 +1302,11 @@ msgstr "Kontrollera att du angav platsen korrekt och försök igen."
 #: ../xed/xed-io-error-message-area.c:234
 #, c-format
 msgid "xed cannot handle %s locations."
-msgstr ""
+msgstr "xed kan inte hantera %s platser."
 
 #: ../xed/xed-io-error-message-area.c:240
 msgid "xed cannot handle this location."
-msgstr ""
+msgstr "xed kan inte använda denna plats."
 
 #: ../xed/xed-io-error-message-area.c:248
 msgid "The location of the file cannot be mounted."
@@ -1327,7 +1366,7 @@ msgstr "Oväntat fel: %s"
 
 #: ../xed/xed-io-error-message-area.c:419
 msgid "xed cannot find the file. Perhaps it has recently been deleted."
-msgstr ""
+msgstr "xed kan inte hitta filen. Kan den vara borttagen?"
 
 #: ../xed/xed-io-error-message-area.c:429
 #, c-format
@@ -1366,7 +1405,7 @@ msgstr "Du har inte tillräckliga rättigheter för att öppna filen."
 
 #: ../xed/xed-io-error-message-area.c:630
 msgid "xed has not been able to detect the character encoding."
-msgstr ""
+msgstr "xed har inte kunnat identifiera teckenkodningen"
 
 #: ../xed/xed-io-error-message-area.c:632
 #: ../xed/xed-io-error-message-area.c:654
@@ -1425,13 +1464,13 @@ msgstr ""
 #: ../xed/xed-io-error-message-area.c:818
 #, c-format
 msgid "This file (%s) is already open in another xed window."
-msgstr ""
+msgstr "Filen (%s) är redan öppen i ett annat xed fönster."
 
 #: ../xed/xed-io-error-message-area.c:836
 msgid ""
 "xed opened this instance of the file in a non-editable way. Do you want to "
 "edit it anyway?"
-msgstr ""
+msgstr "xed öppnade filen i skrivskyddat läge, vill du ändra i den ändå?"
 
 #: ../xed/xed-io-error-message-area.c:899
 #: ../xed/xed-io-error-message-area.c:1007
@@ -1473,6 +1512,10 @@ msgid ""
 "You can ignore this warning and save the file anyway, but if an error occurs "
 "while saving, you could lose the old copy of the file. Save anyway?"
 msgstr ""
+"xed kunde inte säkerhetskopiera den tidigare versionen av filen innan den "
+"nya sparas. Om du förbiser denna varning sparas filen ändå men om något "
+"skulle gå fel när filen sparas kan du förlora den tidigare versionen. Vill "
+"du spara ändå?"
 
 #. Translators: %s is a URI scheme (like for example http:, ftp:, etc.)
 #: ../xed/xed-io-error-message-area.c:1120
@@ -1481,12 +1524,16 @@ msgid ""
 "xed cannot handle %s locations in write mode. Please check that you typed "
 "the location correctly and try again."
 msgstr ""
+"I skrivläge kan xed inte använda %s platser. Kontrollera att du angett "
+"platsen korrekt och vänligen prova igen."
 
 #: ../xed/xed-io-error-message-area.c:1128
 msgid ""
 "xed cannot handle this location in write mode. Please check that you typed "
 "the location correctly and try again."
 msgstr ""
+"I skrivläge kan xed inte använda denna plats. Kontrollera att du angett "
+"platsen korrekt och vänligen prova igen."
 
 #: ../xed/xed-io-error-message-area.c:1137
 #, c-format
@@ -1912,7 +1959,7 @@ msgstr "_Innehåll"
 
 #: ../xed/xed-ui.h:67
 msgid "Open the xed manual"
-msgstr ""
+msgstr "Öppna manulen för xed."
 
 #: ../xed/xed-ui.h:69
 msgid "About this application"
@@ -2719,7 +2766,7 @@ msgstr "Lägesrader"
 
 #: ../plugins/modelines/modelines.xed-plugin.desktop.in.h:2
 msgid "Emacs, Kate and Vim-style modelines support for xed."
-msgstr ""
+msgstr "Lägesrader liknande Emacs, Kate och Vim för xed"
 
 #: ../plugins/sort/xed-sort-plugin.c:88
 msgid "S_ort..."
@@ -2956,7 +3003,7 @@ msgstr "_Kontrollera aldrig automatiskt"
 
 #: ../plugins/spell/xed-spell-setup-dialog.ui.h:4
 msgid "_Remember autocheck by document"
-msgstr ""
+msgstr "_Spara automatisk kontroll per dokument"
 
 #: ../plugins/spell/xed-spell-setup-dialog.ui.h:5
 msgid "_Always autocheck"

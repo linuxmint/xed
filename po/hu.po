@@ -1,26 +1,26 @@
-# SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 #
 # Translators:
-# i_sty <szollosi.istv4n@gmail.com>, 2014
-# Rezső Páder <rezso@rezso.net>, 2013
+# i_sty <szollosi.istv4n@gmail.com>, 2014.
+# Rezső Páder <rezso@rezso.net>, 2013.
+# Kálmán "KAMI" Szalai <kami911@gmail.com>, 2016.
 msgid ""
 msgstr ""
 "Project-Id-Version: MATE Desktop Environment\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-01-27 11:07+0000\n"
-"PO-Revision-Date: 2016-02-14 17:34+0000\n"
+"PO-Revision-Date: 2016-05-10 06:31+0000\n"
 "Last-Translator: KAMI <kami911@gmail.com>\n"
-"Language-Team: Hungarian "
-"(http://www.transifex.com/projects/p/MATE/language/hu/)\n"
+"Language-Team: Hungarian <kde-i18n-doc@kde.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2016-04-27 13:25+0000\n"
-"X-Generator: Launchpad (build 17995)\n"
+"X-Launchpad-Export-Date: 2016-05-24 09:36+0000\n"
+"X-Generator: Launchpad (build 18053)\n"
 "Language: hu\n"
+"(http: //www.transifex.com/projects/p/MATE/language/hu/)\n"
 
 #: ../data/org.x.editor.gschema.xml.in.h:1
 msgid "Use Default Font"
@@ -33,6 +33,10 @@ msgid ""
 "font named in the \"Editor Font\" option will be used instead of the system "
 "font."
 msgstr ""
+"A rendszer alapértelmezett rögzített szélességű betűkészletének használata "
+"szövegszerkesztésre az xed szövegszerkesztőben beállított betűkészlet "
+"helyett Ha ez a beállítás ki van kapcsolva, a „Szerkesztő betűkészlete” "
+"beállítás lesz felhasználva a rendszer betűkészlete helyett."
 
 #: ../data/org.x.editor.gschema.xml.in.h:3
 msgctxt "editor-font"
@@ -68,6 +72,8 @@ msgid ""
 "Whether xed should create backup copies for the files it saves. You can set "
 "the backup file extension with the \"Backup Copy Extension\" option."
 msgstr ""
+"A biztonsági mentések ki/bekapcsolása. A biztonsági mentés kiterjesztését "
+"beállíthatja a „Biztonsági mentés kiterjesztése” beállításnál."
 
 #: ../data/org.x.editor.gschema.xml.in.h:10
 msgid "Autosave"
@@ -78,6 +84,8 @@ msgid ""
 "Whether xed should automatically save modified files after a time interval. "
 "You can set the time interval with the \"Autosave Interval\" option."
 msgstr ""
+"A módosított fájlok automatikus mentésének ki/bekapcsolása. Az automatikus "
+"mentés időközét beállíthatja az „Automatikus mentés időköze” beállítással."
 
 #: ../data/org.x.editor.gschema.xml.in.h:12
 msgid "Autosave Interval"
@@ -88,6 +96,8 @@ msgid ""
 "Number of minutes after which xed will automatically save modified files. "
 "This will only take effect if the \"Autosave\" option is turned on."
 msgstr ""
+"Az automatikus mentés időközének megadása (percekben). Csak akkor lép "
+"érvénybe ha az „Automatikus mentés” beállítás be van kapcsolva."
 
 #: ../data/org.x.editor.gschema.xml.in.h:14
 msgid "Writable VFS schemes"
@@ -98,6 +108,8 @@ msgid ""
 "List of VFS schemes xed supports in write mode. The 'file' scheme is "
 "writable by default."
 msgstr ""
+"Az xed szövegszerkesztő által írás módban támogatott VFS sémák felsorolása. "
+"A 'file' séma alapértelmezetten írható."
 
 #: ../data/org.x.editor.gschema.xml.in.h:16
 msgid "Maximum Number of Undo Actions"
@@ -108,6 +120,9 @@ msgid ""
 "Maximum number of actions that xed will be able to undo or redo. Use \"-1\" "
 "for unlimited number of actions."
 msgstr ""
+"Az xed szövegszerkesztő által visszavonható/mégis elvégezhető műveletek "
+"maximális száma. Végtelen műveletszám engedélyezéséhez használja a „-1” "
+"értéket."
 
 #: ../data/org.x.editor.gschema.xml.in.h:18
 msgid "Line Wrapping Mode"
@@ -143,7 +158,7 @@ msgstr "Szóközök beszúrása"
 
 #: ../data/org.x.editor.gschema.xml.in.h:23
 msgid "Whether xed should insert spaces instead of tabs."
-msgstr ""
+msgstr "Tabulátor helyett szóköz használatának ki/bekapcsolása."
 
 #: ../data/org.x.editor.gschema.xml.in.h:24
 msgid "Automatic indent"
@@ -151,7 +166,7 @@ msgstr "Automatikus behúzás"
 
 #: ../data/org.x.editor.gschema.xml.in.h:25
 msgid "Whether xed should enable automatic indentation."
-msgstr ""
+msgstr "Automatikus behúzás engedélyezése."
 
 #: ../data/org.x.editor.gschema.xml.in.h:26
 msgid "Display Line Numbers"
@@ -159,7 +174,7 @@ msgstr "Sorok számának megjelenítése"
 
 #: ../data/org.x.editor.gschema.xml.in.h:27
 msgid "Whether xed should display line numbers in the editing area."
-msgstr ""
+msgstr "A sorok számának megjelenítése a szerkesztő területen."
 
 #: ../data/org.x.editor.gschema.xml.in.h:28
 msgid "Highlight Current Line"
@@ -167,7 +182,7 @@ msgstr "Jelenlegi sor kiemelése"
 
 #: ../data/org.x.editor.gschema.xml.in.h:29
 msgid "Whether xed should highlight the current line."
-msgstr ""
+msgstr "Az xed szövegszerkesztő kiemelje-e a jelenlegi sort?"
 
 #: ../data/org.x.editor.gschema.xml.in.h:30
 msgid "Highlight Matching Bracket"
@@ -175,7 +190,7 @@ msgstr "Zárójel párjának kiemelése"
 
 #: ../data/org.x.editor.gschema.xml.in.h:31
 msgid "Whether xed should highlight the bracket matching the selected one."
-msgstr ""
+msgstr "Az xed szövegszerkesztő kiemelje-e a kijelölt zárójel párját?"
 
 #: ../data/org.x.editor.gschema.xml.in.h:32
 msgid "Display Right Margin"
@@ -183,7 +198,7 @@ msgstr "Jobb oldali margó megjelenítése"
 
 #: ../data/org.x.editor.gschema.xml.in.h:33
 msgid "Whether xed should display the right margin in the editing area."
-msgstr ""
+msgstr "A jobb oldali margó megjelenítése a szerkesztő területen."
 
 #: ../data/org.x.editor.gschema.xml.in.h:34
 msgid "Right Margin Position"
@@ -223,7 +238,7 @@ msgstr "Kurzor előző helyének helyreállítása"
 msgid ""
 "Whether xed should restore the previous cursor position when a file is "
 "loaded."
-msgstr ""
+msgstr "Az utolsó kurzorpozíció visszaállítás egy fájl betöltésekor."
 
 #: ../data/org.x.editor.gschema.xml.in.h:40
 msgid "Enable Search Highlighting"
@@ -233,6 +248,7 @@ msgstr "Találatok kiemelésének engedélyezése"
 msgid ""
 "Whether xed should highlight all the occurrences of the searched text."
 msgstr ""
+"Az xed szövegszerkesztő kiemelje-e a keresett szöveg összes előfordulását."
 
 #: ../data/org.x.editor.gschema.xml.in.h:42
 msgid "Enable Syntax Highlighting"
@@ -240,7 +256,7 @@ msgstr "Szintaxiskiemelés engedélyezése"
 
 #: ../data/org.x.editor.gschema.xml.in.h:43
 msgid "Whether xed should enable syntax highlighting."
-msgstr ""
+msgstr "Szintaxiskiemelés engedélyezésének ki/bekapcsolása."
 
 #: ../data/org.x.editor.gschema.xml.in.h:44
 msgid "Toolbar is Visible"
@@ -264,6 +280,13 @@ msgid ""
 "Note that the values are case-sensitive, so make sure they appear exactly as "
 "mentioned here."
 msgstr ""
+"Az eszköztárgombok stílusa. A lehetséges értékek: „XED_TOOLBAR_SYSTEM” a "
+"rendszer alapértelmezett stílusának használatához, „XED_TOOLBAR_ICONS” csak "
+"az ikonok megjelenítéséhez, „XED_TOOLBAR_ICONS_AND_TEXT” az ikonok és szöveg "
+"megjelenítéséhez és „XED_TOOLBAR_ICONS_BOTH_HORIZ” csak a kiemelt ikonok "
+"szövegének megjelenítése az ikonok mellett. Ne feledje, hogy az értékek kis- "
+"és nagybetű érzékenyek, ezért győződjön meg róla, hogy pontosan az itt lévő "
+"értékek vannak beállítva."
 
 #: ../data/org.x.editor.gschema.xml.in.h:48
 msgid "Status Bar is Visible"
@@ -309,7 +332,7 @@ msgstr "Szintaxiskiemelés nyomtatása"
 
 #: ../data/org.x.editor.gschema.xml.in.h:57
 msgid "Whether xed should print syntax highlighting when printing documents."
-msgstr ""
+msgstr "Nyomtatáskor a szintaxiskiemelés ki/bekapcsolása."
 
 #: ../data/org.x.editor.gschema.xml.in.h:58
 msgid "Print Header"
@@ -317,7 +340,7 @@ msgstr "Fejléc nyomtatása"
 
 #: ../data/org.x.editor.gschema.xml.in.h:59
 msgid "Whether xed should include a document header when printing documents."
-msgstr ""
+msgstr "Nyomtatáskor a dokumentumok fejlécének ki/bekapcsolása."
 
 #: ../data/org.x.editor.gschema.xml.in.h:60
 msgid "Printing Line Wrapping Mode"
@@ -346,6 +369,8 @@ msgid ""
 "If this value is 0, then no line numbers will be inserted when printing a "
 "document. Otherwise, xed will print line numbers every such number of lines."
 msgstr ""
+"Ha ez az érték 0, a sorok száma nem kerül beillesztésre nyomtatáskor. Egyéb "
+"esetben az xed szövegszerkesztő ennyi soronként nyomtatja a sorok számát."
 
 #: ../data/org.x.editor.gschema.xml.in.h:64
 msgctxt "print-font-body-pango"
@@ -411,6 +436,9 @@ msgid ""
 "encoding of a file. \"CURRENT\" represents the current locale encoding. Only "
 "recognized encodings are used."
 msgstr ""
+"Az xed szövegszerkesztő által fájlok kódolásának automatikus felismerésére "
+"használt kódolások rendezett listája. A „CURRENT” jelenti a jelenlegi locale "
+"kódolását. Csak a felismert kódolások kerülnek felhasználásra."
 
 #: ../data/org.x.editor.gschema.xml.in.h:76
 msgctxt "shown-in-menu"
@@ -454,6 +482,9 @@ msgid ""
 "List of active plugins. It contains the \"Location\" of the active plugins. "
 "See the .xed-plugin file for obtaining the \"Location\" of a given plugin."
 msgstr ""
+"Az aktív bővítmények listája. Az aktív bővítmények helyét („Location”) "
+"tartalmazza. Lásd a .xed-plugin fájlt az adott bővítményhez tartozó "
+"„Location” értékért."
 
 #: ../data/xed.appdata.xml.in.h:1
 msgid "A Text Editor"
@@ -469,6 +500,15 @@ msgid ""
 "spell checking, comparing files, viewing CVS ChangeLogs, and adjusting "
 "indentation levels. </p>"
 msgstr ""
+"<p> Azxed szövegszerkesztő egy kicsi de hatékony szövegszerkesztő. "
+"Rendelkezik a legtöbb általánosan használt szerkesztési funkcióval és teljes "
+"mértékben támogatja a nemzetközi szövegek kezelését az Unicode segítségével. "
+"Olyan haladó szolgáltatásokat is nyújt, mint a szintaxis kiemelés, "
+"automatikus behúzások kezelése a forráskód fájlokban, a nyomtatást és a több "
+"dokumentum egyablakos szerkesztését.</p> <p>Az Xed rugalmas bővítménykezelő "
+"rendszerének hála helyesírás-ellenőrzés, fájl-összehasonlítás, CVS "
+"változtatási naplók olvasása és a behúzási szintek megváltoztatása "
+"képességekkel is felruházható.</p>"
 
 #: ../data/xed.desktop.in.in.h:1 ../xed/xed-print-job.c:767
 msgid "Text Editor"
@@ -667,7 +707,7 @@ msgstr "Nem távolítható el a(z) „%s” színséma."
 
 #: ../xed/dialogs/xed-preferences-dialog.c:1090
 msgid "Xed Preferences"
-msgstr ""
+msgstr "Beállítások"
 
 #: ../xed/dialogs/xed-preferences-dialog.ui.h:1
 msgid "Preferences"
@@ -876,10 +916,13 @@ msgstr "A kódolás beállításhoz használható értékek listájának megjele
 #: ../xed/xed.c:113
 msgid "Create a new top-level window in an existing instance of xed"
 msgstr ""
+"Új felső szintű ablak létrehozása az xed szövegszerkesztő egy már futó "
+"példányában"
 
 #: ../xed/xed.c:116
 msgid "Create a new document in an existing instance of xed"
 msgstr ""
+"Új dokumentum létrehozása egy már megnyitott xed szövegszerkesztő példányban"
 
 #: ../xed/xed.c:119
 msgid "[FILE...]"
@@ -1243,11 +1286,11 @@ msgstr "Ellenőrizze, hogy pontosan írta-e be a helyet, és próbálja újra."
 #: ../xed/xed-io-error-message-area.c:234
 #, c-format
 msgid "xed cannot handle %s locations."
-msgstr ""
+msgstr "Az xed szövegszerkesztő nem tudja kezelni a(z) „%s” helyeket."
 
 #: ../xed/xed-io-error-message-area.c:240
 msgid "xed cannot handle this location."
-msgstr ""
+msgstr "Az xed szövegszerkesztő nem tudja ezt a helyet kezelni."
 
 #: ../xed/xed-io-error-message-area.c:248
 msgid "The location of the file cannot be mounted."
@@ -1307,6 +1350,8 @@ msgstr "Váratlan hiba: %s"
 #: ../xed/xed-io-error-message-area.c:419
 msgid "xed cannot find the file. Perhaps it has recently been deleted."
 msgstr ""
+"Az xed szövegszerkesztő nem találja a fájlt. Lehet, hogy nemrég le lett "
+"törölve."
 
 #: ../xed/xed-io-error-message-area.c:429
 #, c-format
@@ -1346,6 +1391,7 @@ msgstr "Nincs jogosultsága a fájl megnyitásához."
 #: ../xed/xed-io-error-message-area.c:630
 msgid "xed has not been able to detect the character encoding."
 msgstr ""
+"Az xed szövegszerkesztő nem volt képes megállapítani a karakterkódolást."
 
 #: ../xed/xed-io-error-message-area.c:632
 #: ../xed/xed-io-error-message-area.c:654
@@ -1405,12 +1451,15 @@ msgstr ""
 #, c-format
 msgid "This file (%s) is already open in another xed window."
 msgstr ""
+"Ez a fájl „%s” már meg van nyitva egy másik xed szövegszerkesztő ablakban."
 
 #: ../xed/xed-io-error-message-area.c:836
 msgid ""
 "xed opened this instance of the file in a non-editable way. Do you want to "
 "edit it anyway?"
 msgstr ""
+"Azxed szövegszerkesztő ezt a fájlt csak olvasható módban nyitotta meg. "
+"Mindenképpen szerkeszti?"
 
 #: ../xed/xed-io-error-message-area.c:899
 #: ../xed/xed-io-error-message-area.c:1007
@@ -1453,6 +1502,10 @@ msgid ""
 "You can ignore this warning and save the file anyway, but if an error occurs "
 "while saving, you could lose the old copy of the file. Save anyway?"
 msgstr ""
+"Nem sikerült elkészíteni a régi másolat biztonsági mentését az új mentése "
+"előtt. Figyelmen kívül hagyhatja ezt a figyelmeztetést, és mentheti a fájlt, "
+"de ha hiba lép fel a mentésnél, elvesztheti a fájl régi másolatát. "
+"Mindenképp menti?"
 
 #. Translators: %s is a URI scheme (like for example http:, ftp:, etc.)
 #: ../xed/xed-io-error-message-area.c:1120
@@ -1461,12 +1514,16 @@ msgid ""
 "xed cannot handle %s locations in write mode. Please check that you typed "
 "the location correctly and try again."
 msgstr ""
+"Nem lehet kezelni a(z) „%s:” típusú helyeket írás módban. Ellenőrizze, hogy "
+"pontosan írta-e be a helyet, és próbálja újra."
 
 #: ../xed/xed-io-error-message-area.c:1128
 msgid ""
 "xed cannot handle this location in write mode. Please check that you typed "
 "the location correctly and try again."
 msgstr ""
+"Nem lehet ezt a helyet írás módban kezelni. Ellenőrizze, hogy pontosan írta-"
+"e be a helyet, és próbálja újra."
 
 #: ../xed/xed-io-error-message-area.c:1137
 #, c-format
@@ -1893,7 +1950,7 @@ msgstr "_Tartalom"
 
 #: ../xed/xed-ui.h:67
 msgid "Open the xed manual"
-msgstr ""
+msgstr "A kézikönyv megnyitása"
 
 #: ../xed/xed-ui.h:69
 msgid "About this application"
@@ -2700,6 +2757,7 @@ msgstr "Módsorok"
 #: ../plugins/modelines/modelines.xed-plugin.desktop.in.h:2
 msgid "Emacs, Kate and Vim-style modelines support for xed."
 msgstr ""
+"Emacs, Kate és Vim-stílusú módsorok támogatása az xed szövegszerkesztő."
 
 #: ../plugins/sort/xed-sort-plugin.c:88
 msgid "S_ort..."

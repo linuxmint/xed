@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: MATE Desktop Environment\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-01-27 11:07+0000\n"
-"PO-Revision-Date: 2016-04-26 14:07+0000\n"
+"PO-Revision-Date: 2016-05-07 12:14+0000\n"
 "Last-Translator: Владимир <vovan_kireev@mail.ru>\n"
 "Language-Team: Russian "
 "(http://www.transifex.com/projects/p/MATE/language/ru/)\n"
@@ -19,8 +19,8 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Launchpad-Export-Date: 2016-04-27 13:25+0000\n"
-"X-Generator: Launchpad (build 17995)\n"
+"X-Launchpad-Export-Date: 2016-05-24 09:37+0000\n"
+"X-Generator: Launchpad (build 18053)\n"
 "Language: ru\n"
 
 #: ../data/org.x.editor.gschema.xml.in.h:1
@@ -34,6 +34,10 @@ msgid ""
 "font named in the \"Editor Font\" option will be used instead of the system "
 "font."
 msgstr ""
+"Использовать для редактирования текста шрифт фиксированной ширины вместо "
+"шрифта, установленного по умолчению в xed. Если выключить эту опцию, то "
+"вместо системного шрифта будет использован шрифт,  указанный в опции \"Шрифт "
+"окна редактирования\"."
 
 #: ../data/org.x.editor.gschema.xml.in.h:3
 msgctxt "editor-font"
@@ -106,6 +110,8 @@ msgid ""
 "List of VFS schemes xed supports in write mode. The 'file' scheme is "
 "writable by default."
 msgstr ""
+"Список схем VFS, поддерживаемых xed в режиме записи. Схема \"файл\" "
+"используется по умолчанию."
 
 #: ../data/org.x.editor.gschema.xml.in.h:16
 msgid "Maximum Number of Undo Actions"
@@ -250,7 +256,7 @@ msgstr "Выделять xed все найденные значения иско
 
 #: ../data/org.x.editor.gschema.xml.in.h:42
 msgid "Enable Syntax Highlighting"
-msgstr "Включить подсветку синтаксиса"
+msgstr "Выделять синтаксис"
 
 #: ../data/org.x.editor.gschema.xml.in.h:43
 msgid "Whether xed should enable syntax highlighting."
@@ -277,6 +283,12 @@ msgid ""
 "Note that the values are case-sensitive, so make sure they appear exactly as "
 "mentioned here."
 msgstr ""
+"Стиль кнопок панели инструментов. Возможные значения:  "
+"\"XED_TOOLBAR_SYSTEM\" для стиля по умолчанию, \"XED_TOOLBAR_ICONS\" для "
+"отображения только значков, \"XED_TOOLBAR_ICONS_AND_TEXT\" для отображения "
+"значков и текста и \"XED_TOOLBAR_ICONS_BOTH_HORIZ\" – для приоритетного "
+"текста рядом со значками. Обратите внимание, значения чувствительны к "
+"регистру, убедитесь что они введены именно так, как указано здесь."
 
 #: ../data/org.x.editor.gschema.xml.in.h:48
 msgid "Status Bar is Visible"
@@ -326,6 +338,7 @@ msgstr "Печатать подсветку синтаксиса"
 #: ../data/org.x.editor.gschema.xml.in.h:57
 msgid "Whether xed should print syntax highlighting when printing documents."
 msgstr ""
+"Следует ли xed отображать подсветку синтаксиса на печатаемых документах."
 
 #: ../data/org.x.editor.gschema.xml.in.h:58
 msgid "Print Header"
@@ -333,7 +346,7 @@ msgstr "Печатать заголовки страниц"
 
 #: ../data/org.x.editor.gschema.xml.in.h:59
 msgid "Whether xed should include a document header when printing documents."
-msgstr ""
+msgstr "Печатать заголовок при печати документа"
 
 #: ../data/org.x.editor.gschema.xml.in.h:60
 msgid "Printing Line Wrapping Mode"
@@ -361,6 +374,9 @@ msgid ""
 "If this value is 0, then no line numbers will be inserted when printing a "
 "document. Otherwise, xed will print line numbers every such number of lines."
 msgstr ""
+"Если это значение равно 0, номера строк не будут указаны при печати "
+"документа. В противном случае, xed будет выводить на печать номер каждой "
+"строки."
 
 #: ../data/org.x.editor.gschema.xml.in.h:64
 msgctxt "print-font-body-pango"
@@ -425,6 +441,9 @@ msgid ""
 "encoding of a file. \"CURRENT\" represents the current locale encoding. Only "
 "recognized encodings are used."
 msgstr ""
+"Упорядоченный список кодировок, используемых xed для автоматического "
+"определения кодировки файла. \"ТЕКУЩИЙ\" представляет cобой используемую "
+"кодировку. Используется только опознанная кодировка."
 
 #: ../data/org.x.editor.gschema.xml.in.h:76
 msgctxt "shown-in-menu"
@@ -457,7 +476,7 @@ msgstr "История записей в \"заменить на\""
 
 #: ../data/org.x.editor.gschema.xml.in.h:82
 msgid "List of entries in \"replace with\" textbox."
-msgstr "Список записей в текстовом поле \"заменить на\"."
+msgstr "Список записей в \"заменить на\""
 
 #: ../data/org.x.editor.gschema.xml.in.h:83
 msgid "Active plugins"
@@ -468,6 +487,9 @@ msgid ""
 "List of active plugins. It contains the \"Location\" of the active plugins. "
 "See the .xed-plugin file for obtaining the \"Location\" of a given plugin."
 msgstr ""
+"Список активных плагинов. Он содержит месторасположение активных плагинов. "
+"Смотрите файл .xed-plugin для получения месторасположения необходимого "
+"плагина."
 
 #: ../data/xed.appdata.xml.in.h:1
 msgid "A Text Editor"
@@ -483,6 +505,13 @@ msgid ""
 "spell checking, comparing files, viewing CVS ChangeLogs, and adjusting "
 "indentation levels. </p>"
 msgstr ""
+"Xed - небольшой, но мощный текстовый редактор. Он обладает большинством "
+"стандартных функций и полностью поддерживает Юникод. Дополнительные функции "
+"включают подсветку синтаксиса и автоматическое определение исходного кода, "
+"печать и редактирование нескольких документов в одном окне. Xed расширяем с "
+"помощью плагинов, которые на данный момент включают проверку орфографии, "
+"сравнение файлов, просмотр логов изменений CVS и корректировку уровней "
+"отступа."
 
 #: ../data/xed.desktop.in.in.h:1 ../xed/xed-print-job.c:767
 msgid "Text Editor"
@@ -516,7 +545,7 @@ msgid_plural ""
 "If you don't save, changes from the last %ld seconds will be permanently "
 "lost."
 msgstr[0] ""
-"Если вы не сохраните, изменения за последнюю %ld секунду будут безвозвратно "
+"Если вы не сохраните, изменения за последнюю %ld секунд будут безвозвратно "
 "утрачены."
 msgstr[1] ""
 "Если вы не сохраните, изменения за последние %ld секунды будут безвозвратно "
@@ -529,8 +558,7 @@ msgstr[2] ""
 msgid ""
 "If you don't save, changes from the last minute will be permanently lost."
 msgstr ""
-"Если вы не сохраните, изменения за последнюю минуту будут безвозвратно "
-"утрачены."
+"Не сохраненные за последнюю минуту изменения  будут безвозвратно утеряны."
 
 #: ../xed/dialogs/xed-close-confirmation-dialog.c:419
 #, c-format
@@ -541,7 +569,7 @@ msgid_plural ""
 "If you don't save, changes from the last minute and %ld seconds will be "
 "permanently lost."
 msgstr[0] ""
-"Если вы не сохраните, изменения за последнюю минуту и %ld секунду будут "
+"Если вы не сохраните, изменения за последнюю минуту и %ld секунд будут "
 "безвозвратно утрачены."
 msgstr[1] ""
 "Если вы не сохраните, изменения за последнюю минуту и %ld секунды будут "
@@ -570,8 +598,7 @@ msgstr[2] ""
 #: ../xed/dialogs/xed-close-confirmation-dialog.c:444
 msgid ""
 "If you don't save, changes from the last hour will be permanently lost."
-msgstr ""
-"Если вы не сохраните, изменения за последний час будут безвозвратно утрачены."
+msgstr "Не сохраненные за последний час изменения будут безвозвратно утеряны"
 
 #: ../xed/dialogs/xed-close-confirmation-dialog.c:450
 #, c-format
@@ -600,11 +627,10 @@ msgid_plural ""
 msgstr[0] ""
 "Если вы не сохраните, изменения за %d час будут безвозвратно утрачены."
 msgstr[1] ""
-"Если вы не сохраните, изменения за последние %d часа будут безвозвратно "
-"утрачены."
+"Если не сохранить, изменения за последние %d часа будут безвозвратно утеряны."
 msgstr[2] ""
-"Если вы не сохраните, изменения за последние %d часов будут безвозвратно "
-"утрачены."
+"Если не сохранить, изменения за последние %d часов будут безвозвратно "
+"утеряны."
 
 #: ../xed/dialogs/xed-close-confirmation-dialog.c:521
 #, c-format
@@ -699,7 +725,7 @@ msgstr "Не удалось удалить цветовую схему «%s»."
 
 #: ../xed/dialogs/xed-preferences-dialog.c:1090
 msgid "Xed Preferences"
-msgstr ""
+msgstr "Настройки Xed"
 
 #: ../xed/dialogs/xed-preferences-dialog.ui.h:1
 msgid "Preferences"
@@ -907,11 +933,11 @@ msgstr "Показывать список возможных значений д
 
 #: ../xed/xed.c:113
 msgid "Create a new top-level window in an existing instance of xed"
-msgstr ""
+msgstr "Создать новое окно верхнего уровня в существующем экземпляре в xed"
 
 #: ../xed/xed.c:116
 msgid "Create a new document in an existing instance of xed"
-msgstr ""
+msgstr "Создать новый документ в существующем экземпляре в xed"
 
 #: ../xed/xed.c:119
 msgid "[FILE...]"
@@ -1462,7 +1488,7 @@ msgstr ""
 #: ../xed/xed-io-error-message-area.c:818
 #, c-format
 msgid "This file (%s) is already open in another xed window."
-msgstr ""
+msgstr "Этот файл (%s) уже открыт в другом окне xen."
 
 #: ../xed/xed-io-error-message-area.c:836
 msgid ""
@@ -1525,12 +1551,16 @@ msgid ""
 "xed cannot handle %s locations in write mode. Please check that you typed "
 "the location correctly and try again."
 msgstr ""
+"xed не может работать с месторасположением %s  в режиме записи. Убедитесь, "
+"что вы правильно ввели адрес и попытайтесь снова."
 
 #: ../xed/xed-io-error-message-area.c:1128
 msgid ""
 "xed cannot handle this location in write mode. Please check that you typed "
 "the location correctly and try again."
 msgstr ""
+"xed не может работать с этим месторасположением в режиме записи. Убедитесь, "
+"что вы ввели адрес корректно и попытайтесь снова."
 
 #: ../xed/xed-io-error-message-area.c:1137
 #, c-format
@@ -2765,7 +2795,7 @@ msgstr "Строки режимов"
 
 #: ../plugins/modelines/modelines.xed-plugin.desktop.in.h:2
 msgid "Emacs, Kate and Vim-style modelines support for xed."
-msgstr ""
+msgstr "Поддержка модлайнов формата Emacs, Kate и Vim для xed."
 
 #: ../plugins/sort/xed-sort-plugin.c:88
 msgid "S_ort..."

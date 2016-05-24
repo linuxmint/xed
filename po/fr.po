@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: MATE Desktop Environment\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-01-27 11:07+0000\n"
-"PO-Revision-Date: 2016-04-25 09:12+0000\n"
+"PO-Revision-Date: 2016-05-23 11:59+0000\n"
 "Last-Translator: Phan Hoang <phahoatho@gmail.com>\n"
 "Language-Team: French "
 "(http://www.transifex.com/projects/p/MATE/language/fr/)\n"
@@ -18,8 +18,8 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Launchpad-Export-Date: 2016-04-27 13:24+0000\n"
-"X-Generator: Launchpad (build 17995)\n"
+"X-Launchpad-Export-Date: 2016-05-24 09:36+0000\n"
+"X-Generator: Launchpad (build 18053)\n"
 "Language: fr\n"
 
 #: ../data/org.x.editor.gschema.xml.in.h:1
@@ -33,6 +33,10 @@ msgid ""
 "font named in the \"Editor Font\" option will be used instead of the system "
 "font."
 msgstr ""
+"Indique s'il faut utiliser la taille de police de caractères par défaut dans "
+"le système pour éditer des textes à la place de la police spécifique à xed. "
+"Si cette option est activée, alors la police sélectionnée dans l'option "
+"\"Police de l'éditeur\" va être utilisée à la place de la police du système."
 
 #: ../data/org.x.editor.gschema.xml.in.h:3
 msgctxt "editor-font"
@@ -71,6 +75,9 @@ msgid ""
 "Whether xed should create backup copies for the files it saves. You can set "
 "the backup file extension with the \"Backup Copy Extension\" option."
 msgstr ""
+"Indique s'il faut que xed doit créer des copies de sauvegarde pour les "
+"fichiers sauvegardés. Vous pouvez définir l'extension du fichier de "
+"sauvegarde avec l'option \"Extension de Copie de Sauvegarde\"."
 
 #: ../data/org.x.editor.gschema.xml.in.h:10
 msgid "Autosave"
@@ -81,6 +88,9 @@ msgid ""
 "Whether xed should automatically save modified files after a time interval. "
 "You can set the time interval with the \"Autosave Interval\" option."
 msgstr ""
+"Indique s'il faut que xed enregistre automatiquement les fichiers modifiés "
+"après un intervalle de temps. Vous pouvez définir l'intervalle de temps avec "
+"l'option \"Intervalle pour l'enregistrement automatique\"."
 
 #: ../data/org.x.editor.gschema.xml.in.h:12
 msgid "Autosave Interval"
@@ -91,6 +101,9 @@ msgid ""
 "Number of minutes after which xed will automatically save modified files. "
 "This will only take effect if the \"Autosave\" option is turned on."
 msgstr ""
+"Nombre de minutes après lesquelles xed enregistrera automatiquement les "
+"fichiers modifiés. Cela ne prendra effet que si l'option \"Enregistrement "
+"automatique\" est activée."
 
 #: ../data/org.x.editor.gschema.xml.in.h:14
 msgid "Writable VFS schemes"
@@ -101,6 +114,8 @@ msgid ""
 "List of VFS schemes xed supports in write mode. The 'file' scheme is "
 "writable by default."
 msgstr ""
+"Liste des schémas VFS que xed prend en charge en mode écriture. Le schéma "
+"«fichier» est accessible en écriture par défaut."
 
 #: ../data/org.x.editor.gschema.xml.in.h:16
 msgid "Maximum Number of Undo Actions"
@@ -111,6 +126,8 @@ msgid ""
 "Maximum number of actions that xed will be able to undo or redo. Use \"-1\" "
 "for unlimited number of actions."
 msgstr ""
+"Nombre maximal d'actions que xed sera en mesure d'annuler ou de rétablir. "
+"Utilisez \"-1\" pour un nombre illimité d'actions."
 
 #: ../data/org.x.editor.gschema.xml.in.h:18
 msgid "Line Wrapping Mode"
@@ -184,6 +201,8 @@ msgstr "Surligner les parenthèses correspondantes"
 #: ../data/org.x.editor.gschema.xml.in.h:31
 msgid "Whether xed should highlight the bracket matching the selected one."
 msgstr ""
+"Indique s'il faut que xed doit surligner les parenthèses correspondantes à "
+"celle sélectionnée."
 
 #: ../data/org.x.editor.gschema.xml.in.h:32
 msgid "Display Right Margin"
@@ -192,6 +211,8 @@ msgstr "Afficher la marge de droite"
 #: ../data/org.x.editor.gschema.xml.in.h:33
 msgid "Whether xed should display the right margin in the editing area."
 msgstr ""
+"Indique s'il faut que xed doit afficher la marge de droite dans la zone "
+"d’édition."
 
 #: ../data/org.x.editor.gschema.xml.in.h:34
 msgid "Right Margin Position"
@@ -233,6 +254,8 @@ msgid ""
 "Whether xed should restore the previous cursor position when a file is "
 "loaded."
 msgstr ""
+"Indique s'il faut que xed doit rétablir la position précédente du curseur "
+"lorsqu'un fichier est chargé."
 
 #: ../data/org.x.editor.gschema.xml.in.h:40
 msgid "Enable Search Highlighting"
@@ -242,6 +265,7 @@ msgstr "Activer la coloration de recherche"
 msgid ""
 "Whether xed should highlight all the occurrences of the searched text."
 msgstr ""
+"Indique s'il faut que xed surligne toutes les occurrences du texte recherché."
 
 #: ../data/org.x.editor.gschema.xml.in.h:42
 msgid "Enable Syntax Highlighting"
@@ -249,7 +273,7 @@ msgstr "Activer la coloration syntaxique"
 
 #: ../data/org.x.editor.gschema.xml.in.h:43
 msgid "Whether xed should enable syntax highlighting."
-msgstr ""
+msgstr "Indique s'il faut que xed active  la coloration syntaxique."
 
 #: ../data/org.x.editor.gschema.xml.in.h:44
 msgid "Toolbar is Visible"
@@ -273,6 +297,13 @@ msgid ""
 "Note that the values are case-sensitive, so make sure they appear exactly as "
 "mentioned here."
 msgstr ""
+"Style des boutons de la barre d'outils. Les arguments possibles sont "
+"\"XED_TOOLBAR_SYSTEM\" pour utiliser le style par défaut du système, "
+"\"XED_TOOLBAR_ICONS\" pour afficher les icônes seulement, "
+"\"XED_TOOLBAR_ICONS_AND_TEXT\" pour afficher à la fois les icônes et le "
+"texte, et \"XED_TOOLBAR_ICONS_BOTH_HORIZ\" pour afficher le texte à côté des "
+"icônes. Notez que ces arguments sont sensibles à la casse, donc soyez sûrs "
+"qu'ils apparaissent exactement comme mentionnés ci-dessus."
 
 #: ../data/org.x.editor.gschema.xml.in.h:48
 msgid "Status Bar is Visible"
@@ -325,6 +356,8 @@ msgstr "Imprimer la coloration syntaxique"
 #: ../data/org.x.editor.gschema.xml.in.h:57
 msgid "Whether xed should print syntax highlighting when printing documents."
 msgstr ""
+"Indique s'il faut que xed affiche la coloration syntaxique à l'impression "
+"des documents."
 
 #: ../data/org.x.editor.gschema.xml.in.h:58
 msgid "Print Header"
@@ -333,6 +366,8 @@ msgstr "Imprimer l'en-tête"
 #: ../data/org.x.editor.gschema.xml.in.h:59
 msgid "Whether xed should include a document header when printing documents."
 msgstr ""
+"Indique s'il faut que xed doit inclure un en-tête de document lors de "
+"l’impression des documents."
 
 #: ../data/org.x.editor.gschema.xml.in.h:60
 msgid "Printing Line Wrapping Mode"
@@ -362,6 +397,9 @@ msgid ""
 "If this value is 0, then no line numbers will be inserted when printing a "
 "document. Otherwise, xed will print line numbers every such number of lines."
 msgstr ""
+"Si cette valeur est à 0, alors aucuns numéros de ligne ne seront insérés "
+"lors de l'impression d'un document. Sinon, xed imprimera les numéros de "
+"ligne à chaque numéros de lignes."
 
 #: ../data/org.x.editor.gschema.xml.in.h:64
 msgctxt "print-font-body-pango"
@@ -430,6 +468,9 @@ msgid ""
 "encoding of a file. \"CURRENT\" represents the current locale encoding. Only "
 "recognized encodings are used."
 msgstr ""
+"Liste triée des encodages utilisés par xed pour détecter automatiquement le "
+"codage d'un fichier. \"ACTUELLE\" représente l'encodage des paramètres "
+"régionaux en cours. Les encodages reconnus sont uniquement utilisés."
 
 #: ../data/org.x.editor.gschema.xml.in.h:76
 msgctxt "shown-in-menu"
@@ -474,6 +515,9 @@ msgid ""
 "List of active plugins. It contains the \"Location\" of the active plugins. "
 "See the .xed-plugin file for obtaining the \"Location\" of a given plugin."
 msgstr ""
+"Liste des Greffons actifs. Il contient l' \"emplacement\" des Greffons "
+"actifs. Consultez le fichier .xed-plugin pour l’obtention de l' "
+"\"emplacement\" du greffon donné."
 
 #: ../data/xed.appdata.xml.in.h:1
 msgid "A Text Editor"
@@ -489,6 +533,15 @@ msgid ""
 "spell checking, comparing files, viewing CVS ChangeLogs, and adjusting "
 "indentation levels. </p>"
 msgstr ""
+"<p> Xed est un éditeur de texte petit mais puissant. Il possède la plupart "
+"des fonctionnalités standards d'un éditeur de texte et supporte totalement "
+"les textes internationaux en Unicode. Les fonctionnalités avancées incluent "
+"la coloration et l'indentation automatique de la syntaxe du code source, "
+"l'impression et l'édition de documents multiples en une seule fenêtre. </p> "
+"<p> Xed est extensible grâce à un système de modules, qui inclue "
+"actuellement le support de la vérification orthographique, de la comparaison "
+"de fichiers, du visionnage des ChangeLogs CVS, et de l'ajustement des "
+"niveaux d'intendation. </p>"
 
 #: ../data/xed.desktop.in.in.h:1 ../xed/xed-print-job.c:767
 msgid "Text Editor"
@@ -694,7 +747,7 @@ msgstr "Impossible de supprimer le jeu de couleurs « %s »."
 
 #: ../xed/dialogs/xed-preferences-dialog.c:1090
 msgid "Xed Preferences"
-msgstr ""
+msgstr "Préférences de Xed"
 
 #: ../xed/dialogs/xed-preferences-dialog.ui.h:1
 msgid "Preferences"
@@ -903,10 +956,11 @@ msgstr "Affiche la liste des valeurs possibles pour l'option de codage"
 #: ../xed/xed.c:113
 msgid "Create a new top-level window in an existing instance of xed"
 msgstr ""
+"Créer une nouvelle fenêtre supérieure dans une instance existante de xed"
 
 #: ../xed/xed.c:116
 msgid "Create a new document in an existing instance of xed"
-msgstr ""
+msgstr "Créer un nouveau document dans une instance existante de xed"
 
 #: ../xed/xed.c:119
 msgid "[FILE...]"
@@ -1280,11 +1334,11 @@ msgstr "Vérifiez avoir correctement saisi l'emplacement et réessayez."
 #: ../xed/xed-io-error-message-area.c:234
 #, c-format
 msgid "xed cannot handle %s locations."
-msgstr ""
+msgstr "xed ne peut pas gérer les emplacements de %s."
 
 #: ../xed/xed-io-error-message-area.c:240
 msgid "xed cannot handle this location."
-msgstr ""
+msgstr "xed ne peut pas gérer cet emplacement."
 
 #: ../xed/xed-io-error-message-area.c:248
 msgid "The location of the file cannot be mounted."
@@ -1343,7 +1397,7 @@ msgstr "Erreur inattendue : %s"
 
 #: ../xed/xed-io-error-message-area.c:419
 msgid "xed cannot find the file. Perhaps it has recently been deleted."
-msgstr ""
+msgstr "xed ne trouve pas le fichier. Peut-être il a récemment été supprimé."
 
 #: ../xed/xed-io-error-message-area.c:429
 #, c-format
@@ -1382,7 +1436,7 @@ msgstr "Vous n'avez pas les droits nécessaires à l'ouverture du fichier."
 
 #: ../xed/xed-io-error-message-area.c:630
 msgid "xed has not been able to detect the character encoding."
-msgstr ""
+msgstr "xed n'a pas été en mesure de détecter le codage de caractères."
 
 #: ../xed/xed-io-error-message-area.c:632
 #: ../xed/xed-io-error-message-area.c:654
@@ -1444,13 +1498,15 @@ msgstr ""
 #: ../xed/xed-io-error-message-area.c:818
 #, c-format
 msgid "This file (%s) is already open in another xed window."
-msgstr ""
+msgstr "Ce fichier (%s) est déjà ouvert dans une autre fenêtre de xed."
 
 #: ../xed/xed-io-error-message-area.c:836
 msgid ""
 "xed opened this instance of the file in a non-editable way. Do you want to "
 "edit it anyway?"
 msgstr ""
+"xed a ouvert cette instance du fichier dans un mode non éditable. Voulez-"
+"vous l'éditer quand même ?"
 
 #: ../xed/xed-io-error-message-area.c:899
 #: ../xed/xed-io-error-message-area.c:1007
@@ -1496,6 +1552,10 @@ msgid ""
 "You can ignore this warning and save the file anyway, but if an error occurs "
 "while saving, you could lose the old copy of the file. Save anyway?"
 msgstr ""
+"xed n'a pas pu sauvegarder l'ancienne copie du fichier avant d'enregistrer "
+"la nouvelle. Vous pouvez ignorer cet avertissement et enregistrer le fichier "
+"malgré tout, mais si une erreur se produit lors de l'enregistrement, vous "
+"risquez de perdre l'ancienne copie du fichier. Enregistrer malgré tout ?"
 
 #. Translators: %s is a URI scheme (like for example http:, ftp:, etc.)
 #: ../xed/xed-io-error-message-area.c:1120
@@ -1504,12 +1564,16 @@ msgid ""
 "xed cannot handle %s locations in write mode. Please check that you typed "
 "the location correctly and try again."
 msgstr ""
+"xed ne peut pas gérer ces adresses %s en mode écriture. Veuillez vérifier "
+"que vous avez tapé correctement l'adresse et réessayer."
 
 #: ../xed/xed-io-error-message-area.c:1128
 msgid ""
 "xed cannot handle this location in write mode. Please check that you typed "
 "the location correctly and try again."
 msgstr ""
+"xed ne peut pas gérer cette adresse en mode écriture. Veuillez vérifier que "
+"vous avez tapé correctement l'adresse et réessayer."
 
 #: ../xed/xed-io-error-message-area.c:1137
 #, c-format
@@ -1937,7 +2001,7 @@ msgstr "_Sommaire"
 
 #: ../xed/xed-ui.h:67
 msgid "Open the xed manual"
-msgstr ""
+msgstr "Ouvrir le manuel de xed"
 
 #: ../xed/xed-ui.h:69
 msgid "About this application"
@@ -2753,7 +2817,7 @@ msgstr "Modificateurs"
 
 #: ../plugins/modelines/modelines.xed-plugin.desktop.in.h:2
 msgid "Emacs, Kate and Vim-style modelines support for xed."
-msgstr ""
+msgstr "Prise en charge des modes Emacs, Kate et Vim."
 
 #: ../plugins/sort/xed-sort-plugin.c:88
 msgid "S_ort..."

@@ -7,15 +7,15 @@ msgstr ""
 "Project-Id-Version: xedit\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-01-27 11:07+0000\n"
-"PO-Revision-Date: 2016-04-22 18:48+0000\n"
+"PO-Revision-Date: 2016-05-05 01:07+0000\n"
 "Last-Translator: Sveinn í Felli <sv1@fellsnet.is>\n"
 "Language-Team: Icelandic <translation-team-is@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2016-04-27 13:26+0000\n"
-"X-Generator: Launchpad (build 17995)\n"
+"X-Launchpad-Export-Date: 2016-05-24 09:36+0000\n"
+"X-Generator: Launchpad (build 18053)\n"
 "Language: is\n"
 
 #: ../data/org.x.editor.gschema.xml.in.h:1
@@ -64,6 +64,8 @@ msgid ""
 "Whether xed should create backup copies for the files it saves. You can set "
 "the backup file extension with the \"Backup Copy Extension\" option."
 msgstr ""
+"Hvort gera eigi öryggisafrit af skjölum sem eru vistuð. Þú getur stillt "
+"skráarendinguna með valkostinum \"Skráarending öryggisafrita\"."
 
 #: ../data/org.x.editor.gschema.xml.in.h:10
 msgid "Autosave"
@@ -74,6 +76,9 @@ msgid ""
 "Whether xed should automatically save modified files after a time interval. "
 "You can set the time interval with the \"Autosave Interval\" option."
 msgstr ""
+"Hvort eigi að vista sjálfkrafa breyttar skrár eftir einhvern ákveðinn tíma. "
+"Þú getur valið tímalengdina með valmöguleikanum \"Tími milli sjálfvirkrar "
+"vistunar\"."
 
 #: ../data/org.x.editor.gschema.xml.in.h:12
 msgid "Autosave Interval"
@@ -84,6 +89,8 @@ msgid ""
 "Number of minutes after which xed will automatically save modified files. "
 "This will only take effect if the \"Autosave\" option is turned on."
 msgstr ""
+"Mínútur þar til xed vistar sjálfvirkt breytt skjöl. Þetta hefur einungis "
+"áhrif ef \"Vista sjálfvirkt\" er valið."
 
 #: ../data/org.x.editor.gschema.xml.in.h:14
 msgid "Writable VFS schemes"
@@ -104,6 +111,8 @@ msgid ""
 "Maximum number of actions that xed will be able to undo or redo. Use \"-1\" "
 "for unlimited number of actions."
 msgstr ""
+"Hámarksfjöldi aðgerða sem ritillinn getur afturkallað eða endurgert. Notaðu "
+"\"-1\" fyrir óendanlegan fjölda."
 
 #: ../data/org.x.editor.gschema.xml.in.h:18
 msgid "Line Wrapping Mode"
@@ -138,7 +147,7 @@ msgstr "Bæta inn bilum"
 
 #: ../data/org.x.editor.gschema.xml.in.h:23
 msgid "Whether xed should insert spaces instead of tabs."
-msgstr ""
+msgstr "Hvort skipta eigi út inndráttarmerkjum fyrir stafbil."
 
 #: ../data/org.x.editor.gschema.xml.in.h:24
 msgid "Automatic indent"
@@ -146,7 +155,7 @@ msgstr "Sjálfvirkur inndráttur"
 
 #: ../data/org.x.editor.gschema.xml.in.h:25
 msgid "Whether xed should enable automatic indentation."
-msgstr ""
+msgstr "Hvort draga eigi línur sjálfvirkt inn."
 
 #: ../data/org.x.editor.gschema.xml.in.h:26
 msgid "Display Line Numbers"
@@ -154,7 +163,7 @@ msgstr "Birta línunúmer"
 
 #: ../data/org.x.editor.gschema.xml.in.h:27
 msgid "Whether xed should display line numbers in the editing area."
-msgstr ""
+msgstr "Hvort birta eigi línunúmer í ritilsglugga."
 
 #: ../data/org.x.editor.gschema.xml.in.h:28
 msgid "Highlight Current Line"
@@ -162,7 +171,7 @@ msgstr "Lýsa upp núverandi línu"
 
 #: ../data/org.x.editor.gschema.xml.in.h:29
 msgid "Whether xed should highlight the current line."
-msgstr ""
+msgstr "Hvort lýsa eigi upp línu bendils."
 
 #: ../data/org.x.editor.gschema.xml.in.h:30
 msgid "Highlight Matching Bracket"
@@ -171,6 +180,7 @@ msgstr "Lýsa upp svigapör"
 #: ../data/org.x.editor.gschema.xml.in.h:31
 msgid "Whether xed should highlight the bracket matching the selected one."
 msgstr ""
+"Hvort lýsa eigi upp svigann sem tilheyrir þeim sem valinn er af svigaparinu."
 
 #: ../data/org.x.editor.gschema.xml.in.h:32
 msgid "Display Right Margin"
@@ -178,7 +188,7 @@ msgstr "Sýna hægri spássíu"
 
 #: ../data/org.x.editor.gschema.xml.in.h:33
 msgid "Whether xed should display the right margin in the editing area."
-msgstr ""
+msgstr "Hvort birta eigi hægri spássíu í ritilsglugganum."
 
 #: ../data/org.x.editor.gschema.xml.in.h:34
 msgid "Right Margin Position"
@@ -211,7 +221,7 @@ msgstr "Endursetja fyrri stöðu bendils"
 msgid ""
 "Whether xed should restore the previous cursor position when a file is "
 "loaded."
-msgstr ""
+msgstr "Hvort endurvekja eigi fyrri stöðu bendils þegar skjal er opnað."
 
 #: ../data/org.x.editor.gschema.xml.in.h:40
 msgid "Enable Search Highlighting"
@@ -220,7 +230,7 @@ msgstr "Virkja litun leitarorða"
 #: ../data/org.x.editor.gschema.xml.in.h:41
 msgid ""
 "Whether xed should highlight all the occurrences of the searched text."
-msgstr ""
+msgstr "Hvort lýsa eigi upp öll tilfelli leitarstrengs."
 
 #: ../data/org.x.editor.gschema.xml.in.h:42
 msgid "Enable Syntax Highlighting"
@@ -228,7 +238,7 @@ msgstr "Virkja litun skipanna"
 
 #: ../data/org.x.editor.gschema.xml.in.h:43
 msgid "Whether xed should enable syntax highlighting."
-msgstr ""
+msgstr "Hvort lýsa eigi upp málskipan."
 
 #: ../data/org.x.editor.gschema.xml.in.h:44
 msgid "Toolbar is Visible"
@@ -297,7 +307,7 @@ msgstr "Prenta upplýsingu málskipunar"
 
 #: ../data/org.x.editor.gschema.xml.in.h:57
 msgid "Whether xed should print syntax highlighting when printing documents."
-msgstr ""
+msgstr "Hvort prenta eigi upplýsingu málskipunar þegar skjöl eru prentuð."
 
 #: ../data/org.x.editor.gschema.xml.in.h:58
 msgid "Print Header"
@@ -305,7 +315,7 @@ msgstr "Prenta haus"
 
 #: ../data/org.x.editor.gschema.xml.in.h:59
 msgid "Whether xed should include a document header when printing documents."
-msgstr ""
+msgstr "Hvort prenta eigi haus skjals þegar skjöl eru prentuð."
 
 #: ../data/org.x.editor.gschema.xml.in.h:60
 msgid "Printing Line Wrapping Mode"
@@ -333,6 +343,8 @@ msgid ""
 "If this value is 0, then no line numbers will be inserted when printing a "
 "document. Otherwise, xed will print line numbers every such number of lines."
 msgstr ""
+"Ef þetta gildi er 0, þá munu engin línunúmer sjást þegar skjalið er prentað. "
+"Annars verða línunúmer prentuð með tilgreindu millibili."
 
 #: ../data/org.x.editor.gschema.xml.in.h:64
 msgctxt "print-font-body-pango"
@@ -438,6 +450,9 @@ msgid ""
 "List of active plugins. It contains the \"Location\" of the active plugins. "
 "See the .xed-plugin file for obtaining the \"Location\" of a given plugin."
 msgstr ""
+"Listi yfir virkar viðbætur. Listinn inniheldur \"staðsetningu\" virku "
+"viðbótanna. Sjá skrána .xed-plugin til að finna \"staðsetningu\" tiltekinnar "
+"viðbótar."
 
 #: ../data/xed.appdata.xml.in.h:1
 msgid "A Text Editor"
@@ -640,7 +655,7 @@ msgstr "Gat ekki fjarlægt litastefið \"%s\"."
 
 #: ../xed/dialogs/xed-preferences-dialog.c:1090
 msgid "Xed Preferences"
-msgstr ""
+msgstr "Stillingar Xed"
 
 #: ../xed/dialogs/xed-preferences-dialog.ui.h:1
 msgid "Preferences"
@@ -846,11 +861,11 @@ msgstr "Birta lista yfir möguleg gildi fyrir stafakóðun"
 
 #: ../xed/xed.c:113
 msgid "Create a new top-level window in an existing instance of xed"
-msgstr ""
+msgstr "Búa til nýjan efstastigs glugga í þegar opnu tilviki af xed"
 
 #: ../xed/xed.c:116
 msgid "Create a new document in an existing instance of xed"
-msgstr ""
+msgstr "Búa til nýtt skjal í þegar opnu tilviki af xed"
 
 #: ../xed/xed.c:119
 msgid "[FILE...]"
@@ -1224,11 +1239,11 @@ msgstr ""
 #: ../xed/xed-io-error-message-area.c:234
 #, c-format
 msgid "xed cannot handle %s locations."
-msgstr ""
+msgstr "xed getur ekki meðhöndlað %s staðsetningar."
 
 #: ../xed/xed-io-error-message-area.c:240
 msgid "xed cannot handle this location."
-msgstr ""
+msgstr "xed er ekki fært um að sýna þessa staðsetningu."
 
 #: ../xed/xed-io-error-message-area.c:248
 msgid "The location of the file cannot be mounted."
@@ -1290,6 +1305,7 @@ msgstr "Óvænt villa: %s"
 #: ../xed/xed-io-error-message-area.c:419
 msgid "xed cannot find the file. Perhaps it has recently been deleted."
 msgstr ""
+"xed fann ekki skrána. Það er hugsanlegt að henni hafi verið eytt nýlega."
 
 #: ../xed/xed-io-error-message-area.c:429
 #, c-format
@@ -1326,7 +1342,7 @@ msgstr "Þú hefur ekki leyfi til að opna þessa skrá."
 
 #: ../xed/xed-io-error-message-area.c:630
 msgid "xed has not been able to detect the character encoding."
-msgstr ""
+msgstr "Það tókst ekki að finna út rétta stafatöflu."
 
 #: ../xed/xed-io-error-message-area.c:632
 #: ../xed/xed-io-error-message-area.c:654
@@ -1386,13 +1402,15 @@ msgstr ""
 #: ../xed/xed-io-error-message-area.c:818
 #, c-format
 msgid "This file (%s) is already open in another xed window."
-msgstr ""
+msgstr "Þessi skrá (“(%s) er þegar opin í öðrum glugga."
 
 #: ../xed/xed-io-error-message-area.c:836
 msgid ""
 "xed opened this instance of the file in a non-editable way. Do you want to "
 "edit it anyway?"
 msgstr ""
+"xed opnaði þetta tilvik af skránni í skrifvörðum ham. Viltu samt breyta "
+"henni?"
 
 #: ../xed/xed-io-error-message-area.c:899
 #: ../xed/xed-io-error-message-area.c:1007
@@ -1442,12 +1460,16 @@ msgid ""
 "xed cannot handle %s locations in write mode. Please check that you typed "
 "the location correctly and try again."
 msgstr ""
+"Get ekki meðhöndlað %s staðsetningar í skrifham. Athugaðu hvort þú skrifaðir "
+"staðsetninguna rétt og prófaðu svo aftur."
 
 #: ../xed/xed-io-error-message-area.c:1128
 msgid ""
 "xed cannot handle this location in write mode. Please check that you typed "
 "the location correctly and try again."
 msgstr ""
+"Get ekki meðhöndlað þessa staðsetningu í skrifham. Athugaðu hvort þú "
+"skrifaðir staðsetninguna rétt og prófaðu svo aftur."
 
 #: ../xed/xed-io-error-message-area.c:1137
 #, c-format
@@ -1868,7 +1890,7 @@ msgstr "Efn_i"
 
 #: ../xed/xed-ui.h:67
 msgid "Open the xed manual"
-msgstr ""
+msgstr "Opna xed handbókina"
 
 #: ../xed/xed-ui.h:69
 msgid "About this application"
@@ -2374,7 +2396,7 @@ msgstr "Virkja endurheimtingu frá fjartengdum stöðum"
 
 #: ../plugins/filebrowser/org.x.editor.plugins.filebrowser.gschema.xml.in.h:14
 msgid "Sets whether to enable restoring of remote locations."
-msgstr ""
+msgstr "Stillir hvort virkja eigi endurheimtingu frá fjartengdum stöðum."
 
 #: ../plugins/filebrowser/xed-file-bookmarks-store.c:235
 msgid "File System"
@@ -2654,6 +2676,8 @@ msgstr "Upplýsingalínur (modelines)"
 #: ../plugins/modelines/modelines.xed-plugin.desktop.in.h:2
 msgid "Emacs, Kate and Vim-style modelines support for xed."
 msgstr ""
+"Stuðningur xedit við upplýsingalínur (modelines) eins og í Emacs, Kate og "
+"Vim."
 
 #: ../plugins/sort/xed-sort-plugin.c:88
 msgid "S_ort..."
@@ -2938,7 +2962,7 @@ msgstr "Skammstöfun"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:4
 msgid "Accessibility key character"
-msgstr ""
+msgstr "Stafur fyrir auðveldað aðgengi"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:5
 msgid "Acronym"
@@ -2950,7 +2974,7 @@ msgstr "Jafna"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:7
 msgid "Alignment character"
-msgstr ""
+msgstr "Jöfnunarstafur"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:8
 msgid "Alternative"

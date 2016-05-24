@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: MATE Desktop Environment\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-01-27 11:07+0000\n"
-"PO-Revision-Date: 2016-04-25 19:01+0000\n"
+"PO-Revision-Date: 2016-05-14 09:34+0000\n"
 "Last-Translator: tomoe_musashi <hkg.musashi@gmail.com>\n"
 "Language-Team: Chinese (Hong Kong) "
 "(http://www.transifex.com/projects/p/MATE/language/zh_HK/)\n"
@@ -17,8 +17,8 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Launchpad-Export-Date: 2016-04-27 13:24+0000\n"
-"X-Generator: Launchpad (build 17995)\n"
+"X-Launchpad-Export-Date: 2016-05-24 09:36+0000\n"
+"X-Generator: Launchpad (build 18053)\n"
 "Language: zh_HK\n"
 
 #: ../data/org.x.editor.gschema.xml.in.h:1
@@ -32,6 +32,7 @@ msgid ""
 "font named in the \"Editor Font\" option will be used instead of the system "
 "font."
 msgstr ""
+"xed 是否使用系統預設的固定闊度字型作文字編輯，而非 xed 指定的字型。如果關閉本選項，則會使用「編輯器字型」選項中的字型，而非系統字型。"
 
 #: ../data/org.x.editor.gschema.xml.in.h:3
 msgctxt "editor-font"
@@ -64,7 +65,7 @@ msgstr "建立備份副本"
 msgid ""
 "Whether xed should create backup copies for the files it saves. You can set "
 "the backup file extension with the \"Backup Copy Extension\" option."
-msgstr ""
+msgstr "xed 應否在儲存檔案時製作備份。你可以在「備份檔延伸檔名」中指定備份檔的延伸檔名。"
 
 #: ../data/org.x.editor.gschema.xml.in.h:10
 msgid "Autosave"
@@ -74,7 +75,7 @@ msgstr "自動儲存"
 msgid ""
 "Whether xed should automatically save modified files after a time interval. "
 "You can set the time interval with the \"Autosave Interval\" option."
-msgstr ""
+msgstr "xed 是否應每隔某段時間自動儲存修改過的檔案。你可以在「自動儲存相隔時間」選項中指定時間。"
 
 #: ../data/org.x.editor.gschema.xml.in.h:12
 msgid "Autosave Interval"
@@ -84,7 +85,7 @@ msgstr "自動儲存週期"
 msgid ""
 "Number of minutes after which xed will automatically save modified files. "
 "This will only take effect if the \"Autosave\" option is turned on."
-msgstr ""
+msgstr "xed 會在多少分鐘後自動儲存修改過的檔案。本選項只有在「自動儲存」選項開啟後方會生效。"
 
 #: ../data/org.x.editor.gschema.xml.in.h:14
 msgid "Writable VFS schemes"
@@ -94,7 +95,7 @@ msgstr "可寫入 VFS schemes"
 msgid ""
 "List of VFS schemes xed supports in write mode. The 'file' scheme is "
 "writable by default."
-msgstr ""
+msgstr "xed 於寫入模式所支援的 VFS scheme 清單。預設 ‘file’ scheme 為可寫入。"
 
 #: ../data/org.x.editor.gschema.xml.in.h:16
 msgid "Maximum Number of Undo Actions"
@@ -104,7 +105,7 @@ msgstr "復原動作次數上限"
 msgid ""
 "Maximum number of actions that xed will be able to undo or redo. Use \"-1\" "
 "for unlimited number of actions."
-msgstr ""
+msgstr "xed 中復原或取消復原次數的上限。設為「-1」則為無次數上限。"
 
 #: ../data/org.x.editor.gschema.xml.in.h:18
 msgid "Line Wrapping Mode"
@@ -137,7 +138,7 @@ msgstr "插入空格"
 
 #: ../data/org.x.editor.gschema.xml.in.h:23
 msgid "Whether xed should insert spaces instead of tabs."
-msgstr ""
+msgstr "xed 應否插入空格，而非定位點 (Tab)。"
 
 #: ../data/org.x.editor.gschema.xml.in.h:24
 msgid "Automatic indent"
@@ -145,7 +146,7 @@ msgstr "自動縮排"
 
 #: ../data/org.x.editor.gschema.xml.in.h:25
 msgid "Whether xed should enable automatic indentation."
-msgstr ""
+msgstr "xed 應否啟用自動縮排。"
 
 #: ../data/org.x.editor.gschema.xml.in.h:26
 msgid "Display Line Numbers"
@@ -153,7 +154,7 @@ msgstr "顯示行號"
 
 #: ../data/org.x.editor.gschema.xml.in.h:27
 msgid "Whether xed should display line numbers in the editing area."
-msgstr ""
+msgstr "xed 應否在編輯區域中顯示行號。"
 
 #: ../data/org.x.editor.gschema.xml.in.h:28
 msgid "Highlight Current Line"
@@ -161,7 +162,7 @@ msgstr "標示目前的行"
 
 #: ../data/org.x.editor.gschema.xml.in.h:29
 msgid "Whether xed should highlight the current line."
-msgstr ""
+msgstr "xed 應否在目前的行上啟用色彩標示。"
 
 #: ../data/org.x.editor.gschema.xml.in.h:30
 msgid "Highlight Matching Bracket"
@@ -169,7 +170,7 @@ msgstr "標示對稱的括號"
 
 #: ../data/org.x.editor.gschema.xml.in.h:31
 msgid "Whether xed should highlight the bracket matching the selected one."
-msgstr ""
+msgstr "xed 應否色彩標示與目前選取的成對的弧號。"
 
 #: ../data/org.x.editor.gschema.xml.in.h:32
 msgid "Display Right Margin"
@@ -177,7 +178,7 @@ msgstr "顯示右邊邊界"
 
 #: ../data/org.x.editor.gschema.xml.in.h:33
 msgid "Whether xed should display the right margin in the editing area."
-msgstr ""
+msgstr "xed 應否在編輯區域中顯示右邊邊界。"
 
 #: ../data/org.x.editor.gschema.xml.in.h:34
 msgid "Right Margin Position"
@@ -214,7 +215,7 @@ msgstr "還原先前的游標位置"
 msgid ""
 "Whether xed should restore the previous cursor position when a file is "
 "loaded."
-msgstr ""
+msgstr "xed 載入檔案後應否還原先前的游標位置。"
 
 #: ../data/org.x.editor.gschema.xml.in.h:40
 msgid "Enable Search Highlighting"
@@ -223,7 +224,7 @@ msgstr "啟用搜尋標示"
 #: ../data/org.x.editor.gschema.xml.in.h:41
 msgid ""
 "Whether xed should highlight all the occurrences of the searched text."
-msgstr ""
+msgstr "xed 應否在搜尋後色彩標示匹配的字串。"
 
 #: ../data/org.x.editor.gschema.xml.in.h:42
 msgid "Enable Syntax Highlighting"
@@ -231,7 +232,7 @@ msgstr "啟用語法色彩標示"
 
 #: ../data/org.x.editor.gschema.xml.in.h:43
 msgid "Whether xed should enable syntax highlighting."
-msgstr ""
+msgstr "xed 應否啟用語法色彩標示。"
 
 #: ../data/org.x.editor.gschema.xml.in.h:44
 msgid "Toolbar is Visible"
@@ -254,6 +255,9 @@ msgid ""
 "Note that the values are case-sensitive, so make sure they appear exactly as "
 "mentioned here."
 msgstr ""
+"工具列按鈕的樣式。可接受的值為：「XED_TOOLBAR_SYSTEM」以使用系統預設的樣式，「XED_TOOLBAR_ICONS」以只顯示圖示，「XED"
+"_TOOLBAR_ICONS_AND_TEXT」以同時顯示圖示及文字，和「XED_TOOLBAR_ICONS_BOTH_HORIZ」以在部分的圖示旁邊顯示"
+"文字。請注意，設定值會分辨大細階，所以請確保設定值和上面所列出的完全一致。"
 
 #: ../data/org.x.editor.gschema.xml.in.h:48
 msgid "Status Bar is Visible"
@@ -298,7 +302,7 @@ msgstr "列印時標示語法色彩"
 
 #: ../data/org.x.editor.gschema.xml.in.h:57
 msgid "Whether xed should print syntax highlighting when printing documents."
-msgstr ""
+msgstr "xed 應否在列印文件時列印語法色彩標示。"
 
 #: ../data/org.x.editor.gschema.xml.in.h:58
 msgid "Print Header"
@@ -306,7 +310,7 @@ msgstr "列印頁首"
 
 #: ../data/org.x.editor.gschema.xml.in.h:59
 msgid "Whether xed should include a document header when printing documents."
-msgstr ""
+msgstr "xed 應否在列印文件時加上頁首。"
 
 #: ../data/org.x.editor.gschema.xml.in.h:60
 msgid "Printing Line Wrapping Mode"
@@ -331,7 +335,7 @@ msgstr "列印行號"
 msgid ""
 "If this value is 0, then no line numbers will be inserted when printing a "
 "document. Otherwise, xed will print line numbers every such number of lines."
-msgstr ""
+msgstr "若此值為 0，則列印文件時不會列印行號。否則，xed 會每隔指定的行數列印行號。"
 
 #: ../data/org.x.editor.gschema.xml.in.h:64
 msgctxt "print-font-body-pango"
@@ -392,6 +396,7 @@ msgid ""
 "encoding of a file. \"CURRENT\" represents the current locale encoding. Only "
 "recognized encodings are used."
 msgstr ""
+"這裏是一系列已排序的編碼，xed 會根據此清單自動偵測檔案的字符編碼。「CURRENT」表示使用目前地區設定的編碼。只會使用能識別的編碼。"
 
 #: ../data/org.x.editor.gschema.xml.in.h:76
 msgctxt "shown-in-menu"
@@ -432,7 +437,7 @@ msgstr "啟用外掛程式"
 msgid ""
 "List of active plugins. It contains the \"Location\" of the active plugins. "
 "See the .xed-plugin file for obtaining the \"Location\" of a given plugin."
-msgstr ""
+msgstr "可用的外掛程式的清單。這包括可用的外掛程式之「位置」。參閱 .xed-plugin 檔來取得特定的外掛程式之「位置」。"
 
 #: ../data/xed.appdata.xml.in.h:1
 msgid "A Text Editor"
@@ -614,7 +619,7 @@ msgstr "無法移除色彩配置「%s」。"
 
 #: ../xed/dialogs/xed-preferences-dialog.c:1090
 msgid "Xed Preferences"
-msgstr ""
+msgstr "Xed 喜好設定"
 
 #: ../xed/dialogs/xed-preferences-dialog.ui.h:1
 msgid "Preferences"
@@ -1166,11 +1171,11 @@ msgstr "檢查所輸入的位置是否正確後再試一次。"
 #: ../xed/xed-io-error-message-area.c:234
 #, c-format
 msgid "xed cannot handle %s locations."
-msgstr ""
+msgstr "xed 無法處理 %s 位置。"
 
 #: ../xed/xed-io-error-message-area.c:240
 msgid "xed cannot handle this location."
-msgstr ""
+msgstr "xed 無法處理此位置。"
 
 #: ../xed/xed-io-error-message-area.c:248
 msgid "The location of the file cannot be mounted."
@@ -1225,7 +1230,7 @@ msgstr "無法預期錯誤：%s"
 
 #: ../xed/xed-io-error-message-area.c:419
 msgid "xed cannot find the file. Perhaps it has recently been deleted."
-msgstr ""
+msgstr "xed 找不到該檔案。可能其已被刪除。"
 
 #: ../xed/xed-io-error-message-area.c:429
 #, c-format
@@ -1262,7 +1267,7 @@ msgstr "你沒有足夠的權限來開啟檔案。"
 
 #: ../xed/xed-io-error-message-area.c:630
 msgid "xed has not been able to detect the character encoding."
-msgstr ""
+msgstr "xed 無法偵測字符編碼。"
 
 #: ../xed/xed-io-error-message-area.c:632
 #: ../xed/xed-io-error-message-area.c:654
@@ -1317,7 +1322,7 @@ msgstr "文件中包含了一個或更多無法使用指定編碼來儲存的字
 #: ../xed/xed-io-error-message-area.c:818
 #, c-format
 msgid "This file (%s) is already open in another xed window."
-msgstr ""
+msgstr "此檔案 (%s) 已在另一個 xed 視窗中開啟。"
 
 #: ../xed/xed-io-error-message-area.c:836
 msgid ""
@@ -1364,6 +1369,7 @@ msgid ""
 "You can ignore this warning and save the file anyway, but if an error occurs "
 "while saving, you could lose the old copy of the file. Save anyway?"
 msgstr ""
+"在儲存新的檔案前，xed 無法備份舊的檔案。你可以忽略此警告訊息，然後繼續儲存；但如果儲存時發生錯誤，你將會失去檔案的舊版本。是否仍要儲存？"
 
 #. Translators: %s is a URI scheme (like for example http:, ftp:, etc.)
 #: ../xed/xed-io-error-message-area.c:1120
@@ -1371,13 +1377,13 @@ msgstr ""
 msgid ""
 "xed cannot handle %s locations in write mode. Please check that you typed "
 "the location correctly and try again."
-msgstr ""
+msgstr "xed 無法以寫入模式處理 %s 位置。請檢查你所輸入的位置為正確後再試。"
 
 #: ../xed/xed-io-error-message-area.c:1128
 msgid ""
 "xed cannot handle this location in write mode. Please check that you typed "
 "the location correctly and try again."
-msgstr ""
+msgstr "xed 無法以寫入模式處理此位置。請檢查你所輸入的位置為正確後再試。"
 
 #: ../xed/xed-io-error-message-area.c:1137
 #, c-format
@@ -1788,7 +1794,7 @@ msgstr "內容(_C)"
 
 #: ../xed/xed-ui.h:67
 msgid "Open the xed manual"
-msgstr ""
+msgstr "開啟 xed 手冊"
 
 #: ../xed/xed-ui.h:69
 msgid "About this application"
@@ -2576,7 +2582,7 @@ msgstr "Modelines"
 
 #: ../plugins/modelines/modelines.xed-plugin.desktop.in.h:2
 msgid "Emacs, Kate and Vim-style modelines support for xed."
-msgstr ""
+msgstr "xed 的 Emacs、Kate 和 Vim 風格的 modeline 支援"
 
 #: ../plugins/sort/xed-sort-plugin.c:88
 msgid "S_ort..."

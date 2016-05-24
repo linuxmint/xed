@@ -10,16 +10,16 @@ msgstr ""
 "Project-Id-Version: MATE Desktop Environment\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-01-27 11:07+0000\n"
-"PO-Revision-Date: 2016-04-26 09:50+0000\n"
-"Last-Translator: Qiuyu ZHANG <VDerGoW@hotmail.com>\n"
+"PO-Revision-Date: 2016-05-07 14:19+0000\n"
+"Last-Translator: 张琦 <Unknown>\n"
 "Language-Team: Chinese (China) "
 "(http://www.transifex.com/projects/p/MATE/language/zh_CN/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Launchpad-Export-Date: 2016-04-27 13:24+0000\n"
-"X-Generator: Launchpad (build 17995)\n"
+"X-Launchpad-Export-Date: 2016-05-24 09:36+0000\n"
+"X-Generator: Launchpad (build 18053)\n"
 "Language: zh_CN\n"
 
 #: ../data/org.x.editor.gschema.xml.in.h:1
@@ -32,7 +32,7 @@ msgid ""
 "instead of a font specific to xed. If this option is turned off, then the "
 "font named in the \"Editor Font\" option will be used instead of the system "
 "font."
-msgstr "是否使用系统默认的等宽字体代替xed的特定字体。如果该选项被关闭，将会使用“编辑器字体”栏中所示的字体替换系统字体。"
+msgstr "是否以系统默认等宽字体代替为xed指定的字体。如果关闭此选项，xed将会使用“编辑器字体”选项中指定的字体，而非系统默认字体。"
 
 #: ../data/org.x.editor.gschema.xml.in.h:3
 msgctxt "editor-font"
@@ -95,7 +95,7 @@ msgstr "可写入的 VFS 大纲"
 msgid ""
 "List of VFS schemes xed supports in write mode. The 'file' scheme is "
 "writable by default."
-msgstr ""
+msgstr "Xed 在写入模式下支持以下的 VSD 大纲。其中 file 大纲默认是可写的。"
 
 #: ../data/org.x.editor.gschema.xml.in.h:16
 msgid "Maximum Number of Undo Actions"
@@ -105,7 +105,7 @@ msgstr "撤消操作的最多数量"
 msgid ""
 "Maximum number of actions that xed will be able to undo or redo. Use \"-1\" "
 "for unlimited number of actions."
-msgstr ""
+msgstr "Xed可以撤销或重做动作的最大次数。使用“-1”表示不限次数。"
 
 #: ../data/org.x.editor.gschema.xml.in.h:18
 msgid "Line Wrapping Mode"
@@ -254,6 +254,12 @@ msgid ""
 "Note that the values are case-sensitive, so make sure they appear exactly as "
 "mentioned here."
 msgstr ""
+"工具栏按钮的风格。允许以下的值：\r\n"
+"  \"XED_TOOLBAR_SYSTEM\"——使用系统默认的风格；\r\n"
+"  \"XED_TOOLBAR_ICONS\"——只显示图标；\r\n"
+"  \"XED_TOOLBAR_ICONS_AND_TEXT\"——文字在图标下方；\r\n"
+"  \"XED_TOOLBAR_ICONS_BOTH_HORIZ\"——文字在图标旁边。\r\n"
+"注意这些值是大小写敏感的，请确保您输入的内容与这里提到的完全一致。"
 
 #: ../data/org.x.editor.gschema.xml.in.h:48
 msgid "Status Bar is Visible"
@@ -298,15 +304,15 @@ msgstr "打印语法突出显示"
 
 #: ../data/org.x.editor.gschema.xml.in.h:57
 msgid "Whether xed should print syntax highlighting when printing documents."
-msgstr ""
+msgstr "是否允许xed在打印文档时打印语法高亮。"
 
 #: ../data/org.x.editor.gschema.xml.in.h:58
 msgid "Print Header"
-msgstr "打印页眉"
+msgstr "打印文件头"
 
 #: ../data/org.x.editor.gschema.xml.in.h:59
 msgid "Whether xed should include a document header when printing documents."
-msgstr ""
+msgstr "是否允许xed在打印文档时包含文件头。"
 
 #: ../data/org.x.editor.gschema.xml.in.h:60
 msgid "Printing Line Wrapping Mode"
@@ -331,7 +337,7 @@ msgstr "打印行号"
 msgid ""
 "If this value is 0, then no line numbers will be inserted when printing a "
 "document. Otherwise, xed will print line numbers every such number of lines."
-msgstr ""
+msgstr "如果该值为0，那么打印文档时将不会插入行号。否则，xed会在每行前插入行号。"
 
 #: ../data/org.x.editor.gschema.xml.in.h:64
 msgctxt "print-font-body-pango"
@@ -391,7 +397,7 @@ msgid ""
 "Sorted list of encodings used by xed for automatically detecting the "
 "encoding of a file. \"CURRENT\" represents the current locale encoding. Only "
 "recognized encodings are used."
-msgstr ""
+msgstr "Xed用于自动检测文件编码方式的优先级列表。\"CURRENT\"表示使用当前本地编码方式。只使用推荐的编码方式。"
 
 #: ../data/org.x.editor.gschema.xml.in.h:76
 msgctxt "shown-in-menu"
@@ -1170,11 +1176,11 @@ msgstr "请检查键入的位置是否正确，然后重试。"
 #: ../xed/xed-io-error-message-area.c:234
 #, c-format
 msgid "xed cannot handle %s locations."
-msgstr ""
+msgstr "Xed无法处理位置 %s 。"
 
 #: ../xed/xed-io-error-message-area.c:240
 msgid "xed cannot handle this location."
-msgstr ""
+msgstr "Xed无法处理此位置。"
 
 #: ../xed/xed-io-error-message-area.c:248
 msgid "The location of the file cannot be mounted."
@@ -1377,13 +1383,13 @@ msgstr ""
 msgid ""
 "xed cannot handle %s locations in write mode. Please check that you typed "
 "the location correctly and try again."
-msgstr ""
+msgstr "Xed无法在写入模式下处理位置 %s 。请您检查是否输入了正确的位置并重新尝试。"
 
 #: ../xed/xed-io-error-message-area.c:1128
 msgid ""
 "xed cannot handle this location in write mode. Please check that you typed "
 "the location correctly and try again."
-msgstr ""
+msgstr "Xed无法在写入模式下处理该位置。请您检查是否输入了正确的位置并重新尝试。"
 
 #: ../xed/xed-io-error-message-area.c:1137
 #, c-format
@@ -2578,7 +2584,7 @@ msgstr "模式行"
 
 #: ../plugins/modelines/modelines.xed-plugin.desktop.in.h:2
 msgid "Emacs, Kate and Vim-style modelines support for xed."
-msgstr ""
+msgstr "Xed对Emacs、Kate和Vim-style的modeline支持。"
 
 #: ../plugins/sort/xed-sort-plugin.c:88
 msgid "S_ort..."

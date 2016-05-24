@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: MATE Desktop Environment\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-01-27 11:07+0000\n"
-"PO-Revision-Date: 2016-04-22 20:01+0000\n"
+"PO-Revision-Date: 2016-05-02 11:42+0000\n"
 "Last-Translator: kelebek333 <Unknown>\n"
 "Language-Team: Turkish "
 "(http://www.transifex.com/projects/p/MATE/language/tr/)\n"
@@ -20,8 +20,8 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2016-04-27 13:25+0000\n"
-"X-Generator: Launchpad (build 17995)\n"
+"X-Launchpad-Export-Date: 2016-05-24 09:37+0000\n"
+"X-Generator: Launchpad (build 18053)\n"
 "Language: tr\n"
 
 #: ../data/org.x.editor.gschema.xml.in.h:1
@@ -35,6 +35,9 @@ msgid ""
 "font named in the \"Editor Font\" option will be used instead of the system "
 "font."
 msgstr ""
+"Metin düzenleme için sistemin öntanımlı yazıtipi yerine xed için belirtilen "
+"yazıtipinin kullanılması. Bu seçenek kapalı ise, sistem yazıtipi yerine "
+"\"Düzenleyici yazıtipi\" seçeneğinde belirlenmiş olan yazıtipini kullanılır."
 
 #: ../data/org.x.editor.gschema.xml.in.h:3
 msgctxt "editor-font"
@@ -72,6 +75,8 @@ msgid ""
 "Whether xed should create backup copies for the files it saves. You can set "
 "the backup file extension with the \"Backup Copy Extension\" option."
 msgstr ""
+"Xed kaydettiği dosyalar için yedek kopyalar oluşturur. Yedek dosya "
+"uzantısını \"Yedek Kopya Uzantısı\" seçeneğiyle ayarlayabilirsiniz."
 
 #: ../data/org.x.editor.gschema.xml.in.h:10
 msgid "Autosave"
@@ -82,6 +87,9 @@ msgid ""
 "Whether xed should automatically save modified files after a time interval. "
 "You can set the time interval with the \"Autosave Interval\" option."
 msgstr ""
+"Xed'in değiştirilen dosyaları belli süre aralıklarıyla kendiliğinden "
+"kaydedip kaydetmeyeceğini belirler. Süreyi \"Otomatik Kayıt Aralığı\" "
+"seçeneğiyle belirleyebilirsiniz."
 
 #: ../data/org.x.editor.gschema.xml.in.h:12
 msgid "Autosave Interval"
@@ -92,6 +100,8 @@ msgid ""
 "Number of minutes after which xed will automatically save modified files. "
 "This will only take effect if the \"Autosave\" option is turned on."
 msgstr ""
+"Xed'in değiştirilen dosyaları otomatik olarak kaydetmesi için geçecek dakika "
+"sayısı. Bu sadece \"Otomatik Kayıt\" seçeneği etkinleştirildiyse etki eder."
 
 #: ../data/org.x.editor.gschema.xml.in.h:14
 msgid "Writable VFS schemes"
@@ -102,6 +112,8 @@ msgid ""
 "List of VFS schemes xed supports in write mode. The 'file' scheme is "
 "writable by default."
 msgstr ""
+"Yazma kipinde xed'in desteklediği VFS şemaları listesi. 'file' şeması "
+"öntanımlı olarak yazılabilirdir."
 
 #: ../data/org.x.editor.gschema.xml.in.h:16
 msgid "Maximum Number of Undo Actions"
@@ -112,6 +124,8 @@ msgid ""
 "Maximum number of actions that xed will be able to undo or redo. Use \"-1\" "
 "for unlimited number of actions."
 msgstr ""
+"Xed'in geri ya da ileri alabileceği azami işlem miktarının sayısı. Sınırsız "
+"sayıda işlem için \"-1\" kullanın."
 
 #: ../data/org.x.editor.gschema.xml.in.h:18
 msgid "Line Wrapping Mode"
@@ -181,6 +195,8 @@ msgstr "Eşleşen Parantezleri Vurgula"
 #: ../data/org.x.editor.gschema.xml.in.h:31
 msgid "Whether xed should highlight the bracket matching the selected one."
 msgstr ""
+"Xed'in seçilen parantezlerle eşleşenleri vurgulayıp vurgulamayacağını "
+"belirler."
 
 #: ../data/org.x.editor.gschema.xml.in.h:32
 msgid "Display Right Margin"
@@ -188,7 +204,7 @@ msgstr "Sağ Kenar Boşluğunu Göster"
 
 #: ../data/org.x.editor.gschema.xml.in.h:33
 msgid "Whether xed should display the right margin in the editing area."
-msgstr ""
+msgstr "Xed'in düzenleme alanında sağ kenar boşluğunu göstermesi."
 
 #: ../data/org.x.editor.gschema.xml.in.h:34
 msgid "Right Margin Position"
@@ -229,6 +245,7 @@ msgid ""
 "Whether xed should restore the previous cursor position when a file is "
 "loaded."
 msgstr ""
+"Xed'e bir dosya yüklendiği zaman, imlecin önceki konumuna geri getirilmesi."
 
 #: ../data/org.x.editor.gschema.xml.in.h:40
 msgid "Enable Search Highlighting"
@@ -237,7 +254,7 @@ msgstr "Arama Vurgulamayı Etkinleştir"
 #: ../data/org.x.editor.gschema.xml.in.h:41
 msgid ""
 "Whether xed should highlight all the occurrences of the searched text."
-msgstr ""
+msgstr "Xed'in arama metinde geçen tüm tekrarları vurgulaması."
 
 #: ../data/org.x.editor.gschema.xml.in.h:42
 msgid "Enable Syntax Highlighting"
@@ -245,7 +262,7 @@ msgstr "Sözdizimi Vurgulamayı Etkinleştir"
 
 #: ../data/org.x.editor.gschema.xml.in.h:43
 msgid "Whether xed should enable syntax highlighting."
-msgstr ""
+msgstr "Xed'in sözdizimi renklendirmesini etkinleştirmesi."
 
 #: ../data/org.x.editor.gschema.xml.in.h:44
 msgid "Toolbar is Visible"
@@ -268,6 +285,12 @@ msgid ""
 "Note that the values are case-sensitive, so make sure they appear exactly as "
 "mentioned here."
 msgstr ""
+"Araç çubuğu düğmeleri stili. Geçerli değerler, sistemin geçerli stili için "
+"\"PLUMA_TOOLBAR_SYSTEM\", sadece simgeleri görüntülemek için "
+"\"PLUMA_TOOLBAR_ICONS\", hem simge hem metin görüntülemek için "
+"\"PLUMA_TOOLBAR_ICONS_AND_TEXT\", hem simge hem de metni yan yana "
+"görüntülemek için \"PLUMA_TOOLBAR_ICONS_BOTH_HORIZ\" olabilir. Değerler "
+"büyük/küçük harfe duyarlıdır, tam olarak burada yer aldığı gibi kullanınız."
 
 #: ../data/org.x.editor.gschema.xml.in.h:48
 msgid "Status Bar is Visible"
@@ -318,6 +341,7 @@ msgstr "Vurgulanan Sözdizimlerini Yazdır"
 #: ../data/org.x.editor.gschema.xml.in.h:57
 msgid "Whether xed should print syntax highlighting when printing documents."
 msgstr ""
+"Xed'in belge yazdırmada sözdizimi reklendirmesi yazdırmasını kullanması."
 
 #: ../data/org.x.editor.gschema.xml.in.h:58
 msgid "Print Header"
@@ -325,7 +349,7 @@ msgstr "Sayfa Başlıklarını Yazdır"
 
 #: ../data/org.x.editor.gschema.xml.in.h:59
 msgid "Whether xed should include a document header when printing documents."
-msgstr ""
+msgstr "Xed'in belgeleri yazdırırken bir belge başlığı eklemesi."
 
 #: ../data/org.x.editor.gschema.xml.in.h:60
 msgid "Printing Line Wrapping Mode"
@@ -353,7 +377,7 @@ msgstr "Satır Sayılarını Yazdır"
 msgid ""
 "If this value is 0, then no line numbers will be inserted when printing a "
 "document. Otherwise, xed will print line numbers every such number of lines."
-msgstr ""
+msgstr "Xed'in sözdizimi renklendirmesini etkinleştirmesi."
 
 #: ../data/org.x.editor.gschema.xml.in.h:64
 msgctxt "print-font-body-pango"
@@ -421,6 +445,9 @@ msgid ""
 "encoding of a file. \"CURRENT\" represents the current locale encoding. Only "
 "recognized encodings are used."
 msgstr ""
+"Bir dosyanın kodlamasını otomatik olarak algılamak için, xed tarafından "
+"kullanılan kodlamaların sıralanmış listesi. \"CURRENT\" geçerli yerel "
+"kodlamayı temsil eder. Sadece tanınan kodlamalar kullanılır."
 
 #: ../data/org.x.editor.gschema.xml.in.h:76
 msgctxt "shown-in-menu"
@@ -464,6 +491,8 @@ msgid ""
 "List of active plugins. It contains the \"Location\" of the active plugins. "
 "See the .xed-plugin file for obtaining the \"Location\" of a given plugin."
 msgstr ""
+"Etkin eklentilerin listesi. Etkin eklentilerin \"Konumu\"nu içerir. "
+"Eklentilerin \"Konumu\" için .xed-plugin dosyasına bakınız."
 
 #: ../data/xed.appdata.xml.in.h:1
 msgid "A Text Editor"
@@ -479,6 +508,14 @@ msgid ""
 "spell checking, comparing files, viewing CVS ChangeLogs, and adjusting "
 "indentation levels. </p>"
 msgstr ""
+"<p> Xed küçük ama  güçlü metin düzenleyicisidir. Çoğu standart metin "
+"düzenleyici işlevlerine sahiptir ve Unicode uluslarası metinleri için tam "
+"desteği vardır. Dizim renklendirme ve kaynak kod için otomatik girinti gibi "
+"gelişmiş özellikler ile tek pencere içindeki çoklu belgeleri düzenleme ve "
+"yazdırmayı destekler. </p> <p> Xed bir eklenti sistemi yardımıyla "
+"genişletilebilir, hali hazırda yazım denetimi, dosya karşılaştırma, CVS "
+"değişim günlüğügörüntüleme ve girinti düzylerini ayarlama özeliklerini "
+"içerir. </p>"
 
 #: ../data/xed.desktop.in.in.h:1 ../xed/xed-print-job.c:767
 msgid "Text Editor"
@@ -683,7 +720,7 @@ msgstr "\"%s\" renk şeması silinemedi."
 
 #: ../xed/dialogs/xed-preferences-dialog.c:1090
 msgid "Xed Preferences"
-msgstr ""
+msgstr "Xed Tercihleri"
 
 #: ../xed/dialogs/xed-preferences-dialog.ui.h:1
 msgid "Preferences"
@@ -890,10 +927,11 @@ msgstr "Kodlama seçeneği için geçerli değerlerin listesini göster"
 #: ../xed/xed.c:113
 msgid "Create a new top-level window in an existing instance of xed"
 msgstr ""
+"Xed'in bir mevcut örneği olması durumunda yeni bir üst-düzey pencere oluştur"
 
 #: ../xed/xed.c:116
 msgid "Create a new document in an existing instance of xed"
-msgstr ""
+msgstr "Xed'in mevcut durumuna yeni bir belge oluştur"
 
 #: ../xed/xed.c:119
 msgid "[FILE...]"
@@ -1259,11 +1297,11 @@ msgstr "Lütfen konumu doğru yazdığınıza emin olun ve tekrar deneyin."
 #: ../xed/xed-io-error-message-area.c:234
 #, c-format
 msgid "xed cannot handle %s locations."
-msgstr ""
+msgstr "xed %s konumlarını işleyemiyor."
 
 #: ../xed/xed-io-error-message-area.c:240
 msgid "xed cannot handle this location."
-msgstr ""
+msgstr "xed bu konumu işleyemiyor."
 
 #: ../xed/xed-io-error-message-area.c:248
 msgid "The location of the file cannot be mounted."
@@ -1322,7 +1360,7 @@ msgstr "Beklenmeyen hata: %s"
 
 #: ../xed/xed-io-error-message-area.c:419
 msgid "xed cannot find the file. Perhaps it has recently been deleted."
-msgstr ""
+msgstr "xed dosyayı bulamıyor. Dosya yakın bir zamanda silinmiş olabilir."
 
 #: ../xed/xed-io-error-message-area.c:429
 #, c-format
@@ -1361,7 +1399,7 @@ msgstr "Dosyayı açmak için gerekli izinlere sahip değilsiniz."
 
 #: ../xed/xed-io-error-message-area.c:630
 msgid "xed has not been able to detect the character encoding."
-msgstr ""
+msgstr "xed karakter kodlamasını tespit edemedi."
 
 #: ../xed/xed-io-error-message-area.c:632
 #: ../xed/xed-io-error-message-area.c:654
@@ -1420,13 +1458,15 @@ msgstr ""
 #: ../xed/xed-io-error-message-area.c:818
 #, c-format
 msgid "This file (%s) is already open in another xed window."
-msgstr ""
+msgstr "Bu dosya (%s) zaten başka bir xed penceresinde açık."
 
 #: ../xed/xed-io-error-message-area.c:836
 msgid ""
 "xed opened this instance of the file in a non-editable way. Do you want to "
 "edit it anyway?"
 msgstr ""
+"xed, bu dosya örneğini düzenlenemeyecek bir yolda açtı. Buna rağmen dosyayı "
+"düzenlemek istiyor musunuz?"
 
 #: ../xed/xed-io-error-message-area.c:899
 #: ../xed/xed-io-error-message-area.c:1007
@@ -1469,6 +1509,10 @@ msgid ""
 "You can ignore this warning and save the file anyway, but if an error occurs "
 "while saving, you could lose the old copy of the file. Save anyway?"
 msgstr ""
+"xed dosyanın yeni kopyasını kaydetmeden önce eski kopyayı yedekleyemedi. Bu "
+"uyarıyı görmezden gelip dosyayı kaydedebilirsiniz, fakat kayıt sırasında bir "
+"hata oluşursa dosyanın eski kopyasını kaybedebilirsiniz. Buna rağmen "
+"kaydetmek ister misiniz?"
 
 #. Translators: %s is a URI scheme (like for example http:, ftp:, etc.)
 #: ../xed/xed-io-error-message-area.c:1120
@@ -1477,12 +1521,16 @@ msgid ""
 "xed cannot handle %s locations in write mode. Please check that you typed "
 "the location correctly and try again."
 msgstr ""
+"xed yazma kipinde %s konumlarını işleyemez. Lütfen konumu doğru yazdığınıza "
+"emin olun ve tekrar deneyin."
 
 #: ../xed/xed-io-error-message-area.c:1128
 msgid ""
 "xed cannot handle this location in write mode. Please check that you typed "
 "the location correctly and try again."
 msgstr ""
+"xed yazma kipinde bu konumu işleyemez. Lütfen konumu doğru yazdığınıza emin "
+"olun ve tekrar deneyin."
 
 #: ../xed/xed-io-error-message-area.c:1137
 #, c-format
@@ -1908,7 +1956,7 @@ msgstr "_İçindekiler"
 
 #: ../xed/xed-ui.h:67
 msgid "Open the xed manual"
-msgstr ""
+msgstr "Xed rehberini aç"
 
 #: ../xed/xed-ui.h:69
 msgid "About this application"
@@ -2715,7 +2763,7 @@ msgstr "Kip Satırları"
 
 #: ../plugins/modelines/modelines.xed-plugin.desktop.in.h:2
 msgid "Emacs, Kate and Vim-style modelines support for xed."
-msgstr ""
+msgstr "Xed için Emacs, Kate ve Vim-style kip satırları desteği."
 
 #: ../plugins/sort/xed-sort-plugin.c:88
 msgid "S_ort..."
