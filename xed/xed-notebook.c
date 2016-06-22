@@ -253,6 +253,7 @@ find_tab_num_at_pos (XedNotebook *notebook,
 	{
 		GtkAllocation allocation;
 		GtkWidget *tab;
+        gint min_x, min_y;
 		gint max_x, max_y;
 		gint x_root, y_root;
 
@@ -270,21 +271,27 @@ find_tab_num_at_pos (XedNotebook *notebook,
 
 		gtk_widget_get_allocation(tab, &allocation);
 
-		max_x = x_root + allocation.x + allocation.width;
-		max_y = y_root + allocation.y + allocation.height;
+        min_x = x_root + allocation.x;
+        max_x = x_root + allocation.x + allocation.width;
+        min_y = y_root + allocation.y;
+        max_y = y_root + allocation.y + allocation.height;
 
-		if (((tab_pos == GTK_POS_TOP) || 
-		     (tab_pos == GTK_POS_BOTTOM)) &&
-		    (abs_x <= max_x))
-		{
-			return page_num;
-		}
-		else if (((tab_pos == GTK_POS_LEFT) || 
-		          (tab_pos == GTK_POS_RIGHT)) && 
-		         (abs_y <= max_y))
-		{
-			return page_num;
-		}
+        if (((tab_pos == GTK_POS_TOP) ||
+             (tab_pos == GTK_POS_BOTTOM)) &&
+            (abs_x <= max_x) &&
+            (abs_y >= min_y) &&
+            (abs_y <= max_y))
+        {
+            return page_num;
+        }
+        else if (((tab_pos == GTK_POS_LEFT) ||
+                  (tab_pos == GTK_POS_RIGHT)) &&
+                 (abs_y <= max_y) &&
+                 (abs_x >= min_x) &&
+                 (abs_x <= max_x))
+        {
+            return page_num;
+        }
 
 		++page_num;
 	}
