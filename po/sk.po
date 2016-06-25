@@ -12,16 +12,16 @@ msgstr ""
 "Project-Id-Version: MATE Desktop Environment\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-01-27 11:07+0000\n"
-"PO-Revision-Date: 2016-04-21 11:08+0000\n"
-"Last-Translator: mr99_9 <Unknown>\n"
+"PO-Revision-Date: 2016-06-08 10:42+0000\n"
+"Last-Translator: redhawk <sido.miroslav@yandex.com>\n"
 "Language-Team: Slovak "
 "(http://www.transifex.com/projects/p/MATE/language/sk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 1 : (n>=2 && n<=4) ? 2 : 0;\n"
-"X-Launchpad-Export-Date: 2016-05-24 09:36+0000\n"
-"X-Generator: Launchpad (build 18053)\n"
+"X-Launchpad-Export-Date: 2016-06-25 09:31+0000\n"
+"X-Generator: Launchpad (build 18111)\n"
 "Language: sk\n"
 
 #: ../data/org.x.editor.gschema.xml.in.h:1
@@ -35,6 +35,10 @@ msgid ""
 "font named in the \"Editor Font\" option will be used instead of the system "
 "font."
 msgstr ""
+"Či sa má použiť predvolené písmo s pevnou šírkou systému pre editáciu textu "
+"miesto písma špecifického pre fixné. Ak je táto voľba vypnutá, potom je "
+"písmo pomenované v položke \"Editor font\" bude použitý namiesto systémového "
+"písma."
 
 #: ../data/org.x.editor.gschema.xml.in.h:3
 msgctxt "editor-font"
@@ -71,6 +75,8 @@ msgid ""
 "Whether xed should create backup copies for the files it saves. You can set "
 "the backup file extension with the \"Backup Copy Extension\" option."
 msgstr ""
+"Či xed má vytvoriť záložné kópie pre ukladané súbory. Môžete nastaviť "
+"záložný súbor príponu s voľbou \"záložné kópie príponou\"."
 
 #: ../data/org.x.editor.gschema.xml.in.h:10
 msgid "Autosave"
@@ -81,6 +87,9 @@ msgid ""
 "Whether xed should automatically save modified files after a time interval. "
 "You can set the time interval with the \"Autosave Interval\" option."
 msgstr ""
+"či by xed mal automaticky ukladať zmenené súbory po časovom intervale. "
+"Môžete nastaviť časový interval s možnosťou automatického ukladania "
+"\"Interval\"."
 
 #: ../data/org.x.editor.gschema.xml.in.h:12
 msgid "Autosave Interval"
@@ -91,6 +100,8 @@ msgid ""
 "Number of minutes after which xed will automatically save modified files. "
 "This will only take effect if the \"Autosave\" option is turned on."
 msgstr ""
+"Počet minút, po ktorých xed automaticky uloží zmenené súbory. To bude mať "
+"vplyv iba v prípade, že je voľba \"Automatické ukladanie\" zapnuté."
 
 #: ../data/org.x.editor.gschema.xml.in.h:14
 msgid "Writable VFS schemes"
@@ -101,6 +112,8 @@ msgid ""
 "List of VFS schemes xed supports in write mode. The 'file' scheme is "
 "writable by default."
 msgstr ""
+"Zoznam schém VFS, ktoré xed podporuje v režime zápisu. Ďalej len \"Súbor\" "
+"schéma je zapisovať v predvolenom nastavení."
 
 #: ../data/org.x.editor.gschema.xml.in.h:16
 msgid "Maximum Number of Undo Actions"
@@ -111,6 +124,8 @@ msgid ""
 "Maximum number of actions that xed will be able to undo or redo. Use \"-1\" "
 "for unlimited number of actions."
 msgstr ""
+"Maximálny počet akcií, ktoré xed bude môcť vrátiť späť alebo opakovať. "
+"Použite \"-1\" pre neobmedzený počet akcií."
 
 #: ../data/org.x.editor.gschema.xml.in.h:18
 msgid "Line Wrapping Mode"
@@ -146,7 +161,7 @@ msgstr "Vložiť medzery"
 
 #: ../data/org.x.editor.gschema.xml.in.h:23
 msgid "Whether xed should insert spaces instead of tabs."
-msgstr ""
+msgstr "Či xed má vložiť medzery miesto tab."
 
 #: ../data/org.x.editor.gschema.xml.in.h:24
 msgid "Automatic indent"
@@ -154,7 +169,7 @@ msgstr "Automatické zarážky"
 
 #: ../data/org.x.editor.gschema.xml.in.h:25
 msgid "Whether xed should enable automatic indentation."
-msgstr ""
+msgstr "Či xed má zapnúť automatické dosádzanie"
 
 #: ../data/org.x.editor.gschema.xml.in.h:26
 msgid "Display Line Numbers"
@@ -162,7 +177,7 @@ msgstr "Zobraziť čísla riadkov"
 
 #: ../data/org.x.editor.gschema.xml.in.h:27
 msgid "Whether xed should display line numbers in the editing area."
-msgstr ""
+msgstr "Či xed má zobrazovať čísla riadkov v editovanej oblasti"
 
 #: ../data/org.x.editor.gschema.xml.in.h:28
 msgid "Highlight Current Line"
@@ -170,7 +185,7 @@ msgstr "Zvýrazniť aktuálny riadok"
 
 #: ../data/org.x.editor.gschema.xml.in.h:29
 msgid "Whether xed should highlight the current line."
-msgstr ""
+msgstr "Či xed má zvýrazniť súčastný riadok"
 
 #: ../data/org.x.editor.gschema.xml.in.h:30
 msgid "Highlight Matching Bracket"
@@ -178,7 +193,7 @@ msgstr "Zvýrazniť zodpovedajúcu zátvorku"
 
 #: ../data/org.x.editor.gschema.xml.in.h:31
 msgid "Whether xed should highlight the bracket matching the selected one."
-msgstr ""
+msgstr "Či xed má zvýrazniť zátvorku pri výbere"
 
 #: ../data/org.x.editor.gschema.xml.in.h:32
 msgid "Display Right Margin"
@@ -186,7 +201,7 @@ msgstr "Zobrazovať pravý okraj"
 
 #: ../data/org.x.editor.gschema.xml.in.h:33
 msgid "Whether xed should display the right margin in the editing area."
-msgstr ""
+msgstr "Či xed má zobraziť pravý okraj editovanej zóny"
 
 #: ../data/org.x.editor.gschema.xml.in.h:34
 msgid "Right Margin Position"
@@ -226,7 +241,7 @@ msgstr "Obnoviť predchádzajúce umiestnenie kurzora"
 msgid ""
 "Whether xed should restore the previous cursor position when a file is "
 "loaded."
-msgstr ""
+msgstr "Či xed má obnoviť predošlú pozíciu pri znovuotvorení súboru"
 
 #: ../data/org.x.editor.gschema.xml.in.h:40
 msgid "Enable Search Highlighting"
@@ -235,7 +250,7 @@ msgstr "Povoliť zvýrazňovanie vyhľadávania"
 #: ../data/org.x.editor.gschema.xml.in.h:41
 msgid ""
 "Whether xed should highlight all the occurrences of the searched text."
-msgstr ""
+msgstr "Či xed má zvýrazniť všetky nájdené časti vyhľadávaného textu"
 
 #: ../data/org.x.editor.gschema.xml.in.h:42
 msgid "Enable Syntax Highlighting"
@@ -243,7 +258,7 @@ msgstr "Povoliť zvýrazňovanie syntaxe"
 
 #: ../data/org.x.editor.gschema.xml.in.h:43
 msgid "Whether xed should enable syntax highlighting."
-msgstr ""
+msgstr "Či xed má zvýrazniť syntax"
 
 #: ../data/org.x.editor.gschema.xml.in.h:44
 msgid "Toolbar is Visible"
@@ -266,6 +281,12 @@ msgid ""
 "Note that the values are case-sensitive, so make sure they appear exactly as "
 "mentioned here."
 msgstr ""
+"Štýl pre tlačidlá panela nástrojov. Možné hodnoty sú \"XED_TOOLBAR_SYSTEM\" "
+"pre predvolený štýl, \"XED_TOOLBAR_ICONS\" pre zobrazenie ikon, "
+"\"XED_TOOLBAR_ICONS_AND_TEXT\" pre zobrazenie textu a ikon, "
+"\"XED_TOOLBAR_ICONS_BOTH_HORIZ\" Pre prednostnené zobrazenie textu vedľa "
+"ikon. Všimnite si, že hodnoty sú citlivé na veľkosť písmen, takže sa uistite "
+"že ich zapisujete presne tak, ako je uvedené tu."
 
 #: ../data/org.x.editor.gschema.xml.in.h:48
 msgid "Status Bar is Visible"
@@ -314,7 +335,7 @@ msgstr "Tlačiť zvýrazňovanie syntaxe"
 
 #: ../data/org.x.editor.gschema.xml.in.h:57
 msgid "Whether xed should print syntax highlighting when printing documents."
-msgstr ""
+msgstr "Či xed má tlačiť zvýraznený syntax pri tlači dokumentu"
 
 #: ../data/org.x.editor.gschema.xml.in.h:58
 msgid "Print Header"
@@ -322,7 +343,7 @@ msgstr "Tlačiť hlavičku"
 
 #: ../data/org.x.editor.gschema.xml.in.h:59
 msgid "Whether xed should include a document header when printing documents."
-msgstr ""
+msgstr "Či xed má vložiť hlavičku dokumentu pri tlači dokumentu"
 
 #: ../data/org.x.editor.gschema.xml.in.h:60
 msgid "Printing Line Wrapping Mode"
@@ -350,6 +371,9 @@ msgid ""
 "If this value is 0, then no line numbers will be inserted when printing a "
 "document. Otherwise, xed will print line numbers every such number of lines."
 msgstr ""
+"Ak je táto hodnota 0, potom žiadne čísla riadkov nebudú vložené pri tlači "
+"dokumentu. V opačnom prípade dlhodobého bude tlačiť čísla riadkov pri každom "
+"riadku."
 
 #: ../data/org.x.editor.gschema.xml.in.h:64
 msgctxt "print-font-body-pango"
@@ -402,7 +426,7 @@ msgstr ""
 #: ../data/org.x.editor.gschema.xml.in.h:73
 msgctxt "auto-detected"
 msgid "[ 'UTF-8', 'CURRENT', 'ISO-8859-15', 'UTF-16' ]"
-msgstr ""
+msgstr "[ 'UTF-8', 'CURRENT', 'ISO-8859-15', 'UTF-16' ]"
 
 #: ../data/org.x.editor.gschema.xml.in.h:74
 msgid "Automatically Detected Encodings"
@@ -414,6 +438,9 @@ msgid ""
 "encoding of a file. \"CURRENT\" represents the current locale encoding. Only "
 "recognized encodings are used."
 msgstr ""
+"Triedený zoznam kódovania používan xed pre automatickú detekciu kódovanie "
+"súboru. \"CURRENT\" predstavuje aktuálne lokálne kódovanie. používajú sa len "
+"rozpoznané kódovania."
 
 #: ../data/org.x.editor.gschema.xml.in.h:76
 msgctxt "shown-in-menu"
@@ -457,6 +484,8 @@ msgid ""
 "List of active plugins. It contains the \"Location\" of the active plugins. "
 "See the .xed-plugin file for obtaining the \"Location\" of a given plugin."
 msgstr ""
+"Zoznam aktívnych pluginov. Obsahuje \"umiestnenie\" aktívnych pluginov. "
+"Zobraz súbor .xed-plugin pre nájdenie \"umiestnenia\" pluginov"
 
 #: ../data/xed.appdata.xml.in.h:1
 msgid "A Text Editor"
@@ -472,6 +501,13 @@ msgid ""
 "spell checking, comparing files, viewing CVS ChangeLogs, and adjusting "
 "indentation levels. </p>"
 msgstr ""
+"<p> Xed je malý, ale výkonný textový editor. Má väčšinu funkcií štandardných "
+"textový editorov a plne podporuje medzinárodné kódovanie v Unicode. Medzi "
+"pokročilé funkcie patrí zvýraznenie syntaxu a automatické odsadzovanie "
+"zdrojového kódu, tlač a editáciu viacerých dokumentov v jednom okne </p> <p> "
+"Xed je rozšíriteľný pomocou zásuvných modulov systému, ktorý v súčasnosti "
+"zahŕňa podporu pre kontrolu pravopisu, porovnávanie súborov, prezeranie CVS "
+"zozname zmien, a nastavenie úrovní odsadenia.</p>"
 
 #: ../data/xed.desktop.in.in.h:1 ../xed/xed-print-job.c:767
 msgid "Text Editor"
@@ -675,7 +711,7 @@ msgstr "Nepodarilo sa odstrániť farebnú schému „%s“."
 
 #: ../xed/dialogs/xed-preferences-dialog.c:1090
 msgid "Xed Preferences"
-msgstr ""
+msgstr "Nastavenia XED"
 
 #: ../xed/dialogs/xed-preferences-dialog.ui.h:1
 msgid "Preferences"
@@ -883,11 +919,11 @@ msgstr "Zobraziť zoznam možných hodnôt pre možnosť kódovania"
 
 #: ../xed/xed.c:113
 msgid "Create a new top-level window in an existing instance of xed"
-msgstr ""
+msgstr "Vytvor nové nadradené okno v súčasnom xede"
 
 #: ../xed/xed.c:116
 msgid "Create a new document in an existing instance of xed"
-msgstr ""
+msgstr "Vytvor nový dokument v súčasnom xede"
 
 #: ../xed/xed.c:119
 msgid "[FILE...]"
@@ -1262,11 +1298,11 @@ msgstr "Prosím overte, či ste polohu zapísali správne a skúste znova."
 #: ../xed/xed-io-error-message-area.c:234
 #, c-format
 msgid "xed cannot handle %s locations."
-msgstr ""
+msgstr "xed nenašiel %s umiestnenie."
 
 #: ../xed/xed-io-error-message-area.c:240
 msgid "xed cannot handle this location."
-msgstr ""
+msgstr "xed nemôže použiť toto umiestnenie"
 
 #: ../xed/xed-io-error-message-area.c:248
 msgid "The location of the file cannot be mounted."
@@ -1325,7 +1361,7 @@ msgstr "Neočakávaná chyba: %s"
 
 #: ../xed/xed-io-error-message-area.c:419
 msgid "xed cannot find the file. Perhaps it has recently been deleted."
-msgstr ""
+msgstr "xed nenašiel súbor. Možno bol zmazaný"
 
 #: ../xed/xed-io-error-message-area.c:429
 #, c-format
@@ -1364,7 +1400,7 @@ msgstr "Nemáte potrebné oprávnenie na otvorenie tohto súboru."
 
 #: ../xed/xed-io-error-message-area.c:630
 msgid "xed has not been able to detect the character encoding."
-msgstr ""
+msgstr "xed nemôže nájsť kódovanie"
 
 #: ../xed/xed-io-error-message-area.c:632
 #: ../xed/xed-io-error-message-area.c:654
@@ -1423,13 +1459,13 @@ msgstr ""
 #: ../xed/xed-io-error-message-area.c:818
 #, c-format
 msgid "This file (%s) is already open in another xed window."
-msgstr ""
+msgstr "Súbor (%s) je otvorený xedom v inom okne."
 
 #: ../xed/xed-io-error-message-area.c:836
 msgid ""
 "xed opened this instance of the file in a non-editable way. Do you want to "
 "edit it anyway?"
-msgstr ""
+msgstr "xed otvoril súboro v režime bez editácie. Chcete ho editovať?"
 
 #: ../xed/xed-io-error-message-area.c:899
 #: ../xed/xed-io-error-message-area.c:1007
@@ -1473,6 +1509,9 @@ msgid ""
 "You can ignore this warning and save the file anyway, but if an error occurs "
 "while saving, you could lose the old copy of the file. Save anyway?"
 msgstr ""
+"xed nemohol zálohovať starú kópiu súboru pred uložením novej. Toto "
+"upozornenie môžete ignorovať a uložte súbor rovnako, ale ak dôjde k chybe "
+"pri ukladaní, mohli by ste prísť o starú kópiu súboru. Uložiť?"
 
 #. Translators: %s is a URI scheme (like for example http:, ftp:, etc.)
 #: ../xed/xed-io-error-message-area.c:1120
@@ -1481,12 +1520,16 @@ msgid ""
 "xed cannot handle %s locations in write mode. Please check that you typed "
 "the location correctly and try again."
 msgstr ""
+"xed nemôže otvoriť %s umiestnenie v zapisovacom móde. Prosím skontrolujte "
+"správnosť umiestnenia a skúste to opäť."
 
 #: ../xed/xed-io-error-message-area.c:1128
 msgid ""
 "xed cannot handle this location in write mode. Please check that you typed "
 "the location correctly and try again."
 msgstr ""
+"xed nemôže otvoriť umiestnenie v zapisovacom móde. Prosím skontrolujte "
+"správnosť umiestnenia a skúste to opäť."
 
 #: ../xed/xed-io-error-message-area.c:1137
 #, c-format
@@ -1913,7 +1956,7 @@ msgstr "_Obsah"
 
 #: ../xed/xed-ui.h:67
 msgid "Open the xed manual"
-msgstr ""
+msgstr "Otvoriť návod pre xed"
 
 #: ../xed/xed-ui.h:69
 msgid "About this application"
@@ -2720,7 +2763,7 @@ msgstr "Riadky s režimom"
 
 #: ../plugins/modelines/modelines.xed-plugin.desktop.in.h:2
 msgid "Emacs, Kate and Vim-style modelines support for xed."
-msgstr ""
+msgstr "xed podporuje Emacs, Kate a Vim"
 
 #: ../plugins/sort/xed-sort-plugin.c:88
 msgid "S_ort..."
@@ -2873,7 +2916,7 @@ msgstr "Automaticky kontrolovať pravopis pre aktuálny dokument"
 
 #: ../plugins/spell/xed-spell-plugin.c:753
 msgid "Configure Spell Checker plugin..."
-msgstr ""
+msgstr "Nastavte plugin pre kontrolu pravopisu..."
 
 #: ../plugins/spell/xed-spell-plugin.c:962
 msgid "The document is empty."
@@ -2949,7 +2992,7 @@ msgstr "_Nastaviť zásuvný modul kontroly pravopisu..."
 
 #: ../plugins/spell/xed-spell-setup-dialog.ui.h:2
 msgid "Autocheck spelling on document load..."
-msgstr ""
+msgstr "Automatická kontrola pravopisu pri otvorení..."
 
 #: ../plugins/spell/xed-spell-setup-dialog.ui.h:3
 msgid "_Never autocheck"
@@ -4571,11 +4614,11 @@ msgstr "Vloží aktuálny dátum a čas na pozíciu kurzora."
 
 #: ../plugins/trailsave/trailsave.xed-plugin.desktop.in.h:1
 msgid "Save Without Trailing Spaces"
-msgstr ""
+msgstr "Uložiť bez medzier"
 
 #: ../plugins/trailsave/trailsave.xed-plugin.desktop.in.h:2
 msgid "Removes trailing spaces from lines before saving."
-msgstr ""
+msgstr "Odstrániť medzery na konci riadkov pred uložením"
 
 #: ../plugins/time/xed-time-dialog.ui.h:1
 msgid "Insert Date and Time"

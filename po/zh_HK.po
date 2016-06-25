@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: MATE Desktop Environment\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-01-27 11:07+0000\n"
-"PO-Revision-Date: 2016-05-14 09:34+0000\n"
+"PO-Revision-Date: 2016-06-12 15:59+0000\n"
 "Last-Translator: tomoe_musashi <hkg.musashi@gmail.com>\n"
 "Language-Team: Chinese (Hong Kong) "
 "(http://www.transifex.com/projects/p/MATE/language/zh_HK/)\n"
@@ -17,8 +17,8 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Launchpad-Export-Date: 2016-05-24 09:36+0000\n"
-"X-Generator: Launchpad (build 18053)\n"
+"X-Launchpad-Export-Date: 2016-06-25 09:31+0000\n"
+"X-Generator: Launchpad (build 18111)\n"
 "Language: zh_HK\n"
 
 #: ../data/org.x.editor.gschema.xml.in.h:1
@@ -32,7 +32,7 @@ msgid ""
 "font named in the \"Editor Font\" option will be used instead of the system "
 "font."
 msgstr ""
-"xed 是否使用系統預設的固定闊度字型作文字編輯，而非 xed 指定的字型。如果關閉本選項，則會使用「編輯器字型」選項中的字型，而非系統字型。"
+"xed 是否使用系統預設的固定闊度字型作文字編輯，而非 xed 所指定的字型。如果關閉本選項，則會使用「編輯器字型」選項中的字型，而非系統字型。"
 
 #: ../data/org.x.editor.gschema.xml.in.h:3
 msgctxt "editor-font"
@@ -162,7 +162,7 @@ msgstr "標示目前的行"
 
 #: ../data/org.x.editor.gschema.xml.in.h:29
 msgid "Whether xed should highlight the current line."
-msgstr "xed 應否在目前的行上啟用色彩標示。"
+msgstr "xed 應否以色彩標示目前的行。"
 
 #: ../data/org.x.editor.gschema.xml.in.h:30
 msgid "Highlight Matching Bracket"
@@ -437,7 +437,7 @@ msgstr "啟用外掛程式"
 msgid ""
 "List of active plugins. It contains the \"Location\" of the active plugins. "
 "See the .xed-plugin file for obtaining the \"Location\" of a given plugin."
-msgstr "可用的外掛程式的清單。這包括可用的外掛程式之「位置」。參閱 .xed-plugin 檔來取得特定的外掛程式之「位置」。"
+msgstr "可用外掛程式的清單。這包括可用的外掛程式之「位置」。參閱 .xed-plugin 檔來取得特定的外掛程式之「位置」。"
 
 #: ../data/xed.appdata.xml.in.h:1
 msgid "A Text Editor"
@@ -453,6 +453,9 @@ msgid ""
 "spell checking, comparing files, viewing CVS ChangeLogs, and adjusting "
 "indentation levels. </p>"
 msgstr ""
+"<p> Xed 是一個細小但強大的文字編輯器。它具備大多數標準文字編輯器功能並以 Unicode "
+"完全支援國際文字。進階功能包括語法色彩標示與源始碼自動縮排、在單一視窗裏列印和編輯多個文件。</p> <p> Xed "
+"可透過外掛程式系統作功能擴充，目前包括支援拼字檢查、比對檔案、檢視 CVS 變更記錄和調整縮排層級。</p>"
 
 #: ../data/xed.desktop.in.in.h:1 ../xed/xed-print-job.c:767
 msgid "Text Editor"
@@ -825,11 +828,11 @@ msgstr "顯示編碼選項可用數值的清單"
 
 #: ../xed/xed.c:113
 msgid "Create a new top-level window in an existing instance of xed"
-msgstr ""
+msgstr "建立一個新頂層視窗於現存的 xed 實體"
 
 #: ../xed/xed.c:116
 msgid "Create a new document in an existing instance of xed"
-msgstr ""
+msgstr "建立一個新文件於現存的 xed 實體"
 
 #: ../xed/xed.c:119
 msgid "[FILE...]"
@@ -1328,7 +1331,7 @@ msgstr "此檔案 (%s) 已在另一個 xed 視窗中開啟。"
 msgid ""
 "xed opened this instance of the file in a non-editable way. Do you want to "
 "edit it anyway?"
-msgstr ""
+msgstr "xed 已以「不能編輯」的方式開啟此檔案之實體。你是否仍然要編輯它？"
 
 #: ../xed/xed-io-error-message-area.c:899
 #: ../xed/xed-io-error-message-area.c:1007
@@ -1802,7 +1805,7 @@ msgstr "關於此程式"
 
 #: ../xed/xed-ui.h:73
 msgid "Leave fullscreen mode"
-msgstr "離開全螢幕模式"
+msgstr "離開全熒幕模式"
 
 #: ../xed/xed-ui.h:81
 msgid "Save the current file"
@@ -1997,7 +2000,7 @@ msgstr "在目前的視窗中顯示或隱藏狀態列"
 
 #: ../xed/xed-ui.h:162
 msgid "Edit text in fullscreen"
-msgstr "在全螢幕模式編輯文字檔"
+msgstr "在全熒幕模式編輯文字檔"
 
 #: ../xed/xed-ui.h:169
 msgid "Side _Pane"
@@ -2582,7 +2585,7 @@ msgstr "Modelines"
 
 #: ../plugins/modelines/modelines.xed-plugin.desktop.in.h:2
 msgid "Emacs, Kate and Vim-style modelines support for xed."
-msgstr "xed 的 Emacs、Kate 和 Vim 風格的 modeline 支援"
+msgstr "xed 的 Emacs、Kate 和 Vim 風格的 modeline 支援。"
 
 #: ../plugins/sort/xed-sort-plugin.c:88
 msgid "S_ort..."

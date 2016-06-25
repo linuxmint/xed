@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: MATE Desktop Environment\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-01-27 11:07+0000\n"
-"PO-Revision-Date: 2016-04-29 14:32+0000\n"
+"PO-Revision-Date: 2016-06-04 17:38+0000\n"
 "Last-Translator: Moo <hazap@hotmail.com>\n"
 "Language-Team: Lithuanian "
 "(http://www.transifex.com/projects/p/MATE/language/lt/)\n"
@@ -19,8 +19,8 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "(n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Launchpad-Export-Date: 2016-05-24 09:36+0000\n"
-"X-Generator: Launchpad (build 18053)\n"
+"X-Launchpad-Export-Date: 2016-06-25 09:31+0000\n"
+"X-Generator: Launchpad (build 18111)\n"
 "Language: lt\n"
 
 #: ../data/org.x.editor.gschema.xml.in.h:1
@@ -73,26 +73,33 @@ msgid ""
 "Whether xed should create backup copies for the files it saves. You can set "
 "the backup file extension with the \"Backup Copy Extension\" option."
 msgstr ""
+"Ar programa xed turėtų kurti atsargines kopijas tų failų, kuriuos ji įrašo. "
+"Jūs galite nustatyti atsarginės kopijos failo plėtinį per \"Atsarginės "
+"kopijos plėtinio\" parinktį."
 
 #: ../data/org.x.editor.gschema.xml.in.h:10
 msgid "Autosave"
-msgstr "Automatinis saugojimas"
+msgstr "Automatinis įrašymas"
 
 #: ../data/org.x.editor.gschema.xml.in.h:11
 msgid ""
 "Whether xed should automatically save modified files after a time interval. "
 "You can set the time interval with the \"Autosave Interval\" option."
 msgstr ""
+"Ar xed turėtų periodiškai automatiškai įrašinėti pakeistus failus. Periodą "
+"galima nustatyti \"Automatinis įrašymas\" parametre."
 
 #: ../data/org.x.editor.gschema.xml.in.h:12
 msgid "Autosave Interval"
-msgstr "Automatinio išsaugojimo intervalas"
+msgstr "Automatinio įrašymo intervalas"
 
 #: ../data/org.x.editor.gschema.xml.in.h:13
 msgid ""
 "Number of minutes after which xed will automatically save modified files. "
 "This will only take effect if the \"Autosave\" option is turned on."
 msgstr ""
+"Minučių skaičius, po kurio xed automatiškai įrašys modifikuotus failus. Tai "
+"veiks tik tuo atveju, jeigu bus įjungta \"Automatinio įrašymo\" parinktis."
 
 #: ../data/org.x.editor.gschema.xml.in.h:14
 msgid "Writable VFS schemes"
@@ -103,6 +110,8 @@ msgid ""
 "List of VFS schemes xed supports in write mode. The 'file' scheme is "
 "writable by default."
 msgstr ""
+"VFS schemų, kurias xed palaiko įrašymo veiksenoje, sąrašas. Schema \"file\" "
+"yra įrašoma pagal numatymą."
 
 #: ../data/org.x.editor.gschema.xml.in.h:16
 msgid "Maximum Number of Undo Actions"
@@ -113,6 +122,8 @@ msgid ""
 "Maximum number of actions that xed will be able to undo or redo. Use \"-1\" "
 "for unlimited number of actions."
 msgstr ""
+"Maksimalus veiksmų skaičius, kuriuos xed galės atšaukti arba pakartoti iš "
+"naujo. Neribotam veiksmų skaičiui naudokite „-1“."
 
 #: ../data/org.x.editor.gschema.xml.in.h:18
 msgid "Line Wrapping Mode"
@@ -180,7 +191,7 @@ msgstr "Paryškinti atitinkantį skliaustelį"
 
 #: ../data/org.x.editor.gschema.xml.in.h:31
 msgid "Whether xed should highlight the bracket matching the selected one."
-msgstr ""
+msgstr "Ar xed turėtų paryškinti skliaustelį, kuris atitinka pažymėtąjį."
 
 #: ../data/org.x.editor.gschema.xml.in.h:32
 msgid "Display Right Margin"
@@ -188,7 +199,7 @@ msgstr "Rodyti dešinę paraštę"
 
 #: ../data/org.x.editor.gschema.xml.in.h:33
 msgid "Whether xed should display the right margin in the editing area."
-msgstr ""
+msgstr "Ar xed turėtų rodyti dešinę paraštę redagavimo srityje."
 
 #: ../data/org.x.editor.gschema.xml.in.h:34
 msgid "Right Margin Position"
@@ -228,7 +239,7 @@ msgstr "Perkelti kursorių į ankstesnę poziciją"
 msgid ""
 "Whether xed should restore the previous cursor position when a file is "
 "loaded."
-msgstr ""
+msgstr "Ar xed įkėlus failą turėtų perkelti žymeklį į buvusią poziciją."
 
 #: ../data/org.x.editor.gschema.xml.in.h:40
 msgid "Enable Search Highlighting"
@@ -237,7 +248,7 @@ msgstr "Įjungti paieškos paryškinimus"
 #: ../data/org.x.editor.gschema.xml.in.h:41
 msgid ""
 "Whether xed should highlight all the occurrences of the searched text."
-msgstr ""
+msgstr "Ar xed turėtų paryškinti visus ieškomo teksto pasikartojimus."
 
 #: ../data/org.x.editor.gschema.xml.in.h:42
 msgid "Enable Syntax Highlighting"
@@ -268,6 +279,14 @@ msgid ""
 "Note that the values are case-sensitive, so make sure they appear exactly as "
 "mentioned here."
 msgstr ""
+"Įrankių juostos mygtukų stilius. Galimos reikšmės yra "
+"\"XED_TOOLBAR_SYSTEM\", kad būtų naudojamas sistemos numatytasis stilius, "
+"\"XED_TOOLBAR_ICONS\", kad būtų rodomos tik piktogramos, "
+"\"XED_TOOLBAR_ICONS_AND_TEXT\", kad būtų rodomos ir piktogramos, ir tekstas, "
+"ir \"XED_TOOLBAR_ICONS_BOTH_HORIZ\", kad šalia piktogramų būtų rodomas pagal "
+"svarbą išdėstytas tekstas. Turėkite omenyje, kad yra skirtumas ar reikšmės "
+"rašomos mažosiomis, ar didžiosiomis raidėmis, todėl užtikrinkite, kad jos "
+"atrodytų būtent taip kaip paminėta čia."
 
 #: ../data/org.x.editor.gschema.xml.in.h:48
 msgid "Status Bar is Visible"
@@ -352,6 +371,8 @@ msgid ""
 "If this value is 0, then no line numbers will be inserted when printing a "
 "document. Otherwise, xed will print line numbers every such number of lines."
 msgstr ""
+"Jei ši reikšmė yra 0, tai spausdinant nebus įterptas nė vienas eilutės "
+"numeris. Kitu atveju, xed spausdins eilučių numerius kas tiek eilučių."
 
 #: ../data/org.x.editor.gschema.xml.in.h:64
 msgctxt "print-font-body-pango"
@@ -416,6 +437,9 @@ msgid ""
 "encoding of a file. \"CURRENT\" represents the current locale encoding. Only "
 "recognized encodings are used."
 msgstr ""
+"Surikiuotas koduočių sąrašas, kurį xed naudoja nustatydama failo koduotę. "
+"\"CURRENT\" yra dabartinės lokalės koduotė. Yra naudojamos tik atpažįstamos "
+"koduotės."
 
 #: ../data/org.x.editor.gschema.xml.in.h:76
 msgctxt "shown-in-menu"
@@ -459,6 +483,8 @@ msgid ""
 "List of active plugins. It contains the \"Location\" of the active plugins. "
 "See the .xed-plugin file for obtaining the \"Location\" of a given plugin."
 msgstr ""
+"Aktyvių įskiepių sąrašas. Jame yra aktyvių įskiepių „Vietos“. Žiūrėkite .xed-"
+"plugin failą, norėdami rasti nurodyto įskiepio „Vietą“."
 
 #: ../data/xed.appdata.xml.in.h:1
 msgid "A Text Editor"
@@ -474,6 +500,14 @@ msgid ""
 "spell checking, comparing files, viewing CVS ChangeLogs, and adjusting "
 "indentation levels. </p>"
 msgstr ""
+"<p> Xed yra mažas, tačiau galingas tekstų redaktorius. Jame yra daugelis "
+"standartinio teksto redaktoriaus funkcijų ir jis pilnai palaiko "
+"tarptautinius tekstus Unicode pavidalu. Prie išplėstinių ypatybių galima "
+"priskirti sintaksės paryškinimą ir automatines šaltinio kodo įtraukas, kelių "
+"dokumentų spausdinimą ir redagavimą viename lange. </p> <p> Xed yra "
+"išplečiamas per įskiepių sistemą, į kurią šiuo metu įeina rašybos "
+"tikrinimas, failų palyginimas, CVS keitimų žurnalų rodymas bei įtraukos "
+"lygių reguliavimas. </p>"
 
 #: ../data/xed.desktop.in.in.h:1 ../xed/xed-print-job.c:767
 msgid "Text Editor"
@@ -507,20 +541,20 @@ msgid_plural ""
 "If you don't save, changes from the last %ld seconds will be permanently "
 "lost."
 msgstr[0] ""
-"Jeigu neišsaugosite, pakeitimai, atlikti per paskutinę %ld sekundę, bus "
+"Jeigu neįrašysite, pakeitimai, atlikti per paskutinę %ld sekundę, bus "
 "prarasti."
 msgstr[1] ""
-"Jeigu neišsaugosite, pakeitimai, atlikti per paskutines %ld sekundes, bus "
+"Jeigu neįrašysite, pakeitimai, atlikti per paskutines %ld sekundes, bus "
 "prarasti."
 msgstr[2] ""
-"Jeigu neišsaugosite, pakeitimai, atlikti per paskutines %ld sekundžių, bus "
+"Jeigu neįrašysite, pakeitimai, atlikti per paskutines %ld sekundžių, bus "
 "prarasti."
 
 #: ../xed/dialogs/xed-close-confirmation-dialog.c:413
 msgid ""
 "If you don't save, changes from the last minute will be permanently lost."
 msgstr ""
-"Jeigu neišsaugosite, pakeitimai, atlikti per paskutinę minutę, bus prarasti."
+"Jeigu neįrašysite, pakeitimai, atlikti per paskutinę minutę, bus prarasti."
 
 #: ../xed/dialogs/xed-close-confirmation-dialog.c:419
 #, c-format
@@ -531,13 +565,13 @@ msgid_plural ""
 "If you don't save, changes from the last minute and %ld seconds will be "
 "permanently lost."
 msgstr[0] ""
-"Jeigu neišsaugosite, pakeitimai padaryti per paskutinę minutę ir %ld sekundę "
+"Jeigu neįrašysite, pakeitimai padaryti per paskutinę minutę ir %ld sekundę "
 "bus prarasti."
 msgstr[1] ""
-"Jeigu neišsaugosite, pakeitimai padaryti per paskutinę minutę ir %ld "
-"sekundes bus prarasti."
+"Jeigu neįrašysite, pakeitimai padaryti per paskutinę minutę ir %ld sekundes "
+"bus prarasti."
 msgstr[2] ""
-"Jeigu neišsaugosite, pakeitimai padaryti per paskutinę minutę ir %ld "
+"Jeigu neįrašysite, pakeitimai, padaryti per paskutinę minutę ir %ld "
 "sekundžių bus prarasti."
 
 #: ../xed/dialogs/xed-close-confirmation-dialog.c:429
@@ -548,21 +582,20 @@ msgid_plural ""
 "If you don't save, changes from the last %ld minutes will be permanently "
 "lost."
 msgstr[0] ""
-"Jeigu neišsaugosite, pakeitimai, atlikti per paskutinę %ld minutę, bus "
+"Jeigu neįrašysite, pakeitimai, atlikti per paskutinę %ld minutę, bus "
 "prarasti."
 msgstr[1] ""
-"Jeigu neišsaugosite, pakeitimai, atlikti per paskutines %ld minutes, bus "
+"Jeigu neįrašysite, pakeitimai, atlikti per paskutines %ld minutes, bus "
 "prarasti."
 msgstr[2] ""
-"Jeigu neišsaugosite, pakeitimai, atlikti per paskutines %ld minučių, bus "
+"Jeigu neįrašysite, pakeitimai, atlikti per paskutines %ld minučių, bus "
 "prarasti."
 
 #: ../xed/dialogs/xed-close-confirmation-dialog.c:444
 msgid ""
 "If you don't save, changes from the last hour will be permanently lost."
 msgstr ""
-"Jeigu neišsaugosite, pakeitimai, atlikti per paskutinę valandą, bus "
-"negrįžtamai prarasti."
+"Jeigu neįrašysite, pakeitimai, atlikti per paskutinę valandą, bus prarasti."
 
 #: ../xed/dialogs/xed-close-confirmation-dialog.c:450
 #, c-format
@@ -573,13 +606,13 @@ msgid_plural ""
 "If you don't save, changes from the last hour and %d minutes will be "
 "permanently lost."
 msgstr[0] ""
-"Jeigu neišsaugosite, pakeitimai padaryti per paskutinę valandą ir %d minutę "
+"Jeigu neįrašysite, pakeitimai, padaryti per paskutinę valandą ir %d minutę "
 "bus prarasti."
 msgstr[1] ""
-"Jeigu neišsaugosite, pakeitimai padaryti per paskutinę valandą ir %d minutes "
+"Jeigu neįrašysite, pakeitimai, padaryti per paskutinę valandą ir %d minutes "
 "bus prarasti."
 msgstr[2] ""
-"Jeigu neišsaugosite, pakeitimai padaryti per paskutinę valandą ir %d minučių "
+"Jeigu neįrašysite, pakeitimai, padaryti per paskutinę valandą ir %d minučių "
 "bus prarasti."
 
 #: ../xed/dialogs/xed-close-confirmation-dialog.c:465
@@ -589,13 +622,13 @@ msgid ""
 msgid_plural ""
 "If you don't save, changes from the last %d hours will be permanently lost."
 msgstr[0] ""
-"Jeigu neišsaugosite, pakeitimai, atlikti per paskutines %d valandas, bus "
+"Jeigu neįrašysite, pakeitimai, atlikti per paskutinę %d valandą, bus "
 "prarasti."
 msgstr[1] ""
-"Jeigu neišsaugosite, pakeitimai, atlikti per paskutines %d valandas, bus "
+"Jeigu neįrašysite, pakeitimai, atlikti per paskutines %d valandas, bus "
 "prarasti."
 msgstr[2] ""
-"Jeigu neišsaugosite, pakeitimai, atlikti per %d paskutinių valandų, bus "
+"Jeigu neįrašysite, pakeitimai, atlikti per %d paskutinių valandų, bus "
 "prarasti."
 
 #: ../xed/dialogs/xed-close-confirmation-dialog.c:521
@@ -610,20 +643,20 @@ msgid ""
 msgid_plural ""
 "There are %d documents with unsaved changes. Save changes before closing?"
 msgstr[0] ""
-"Yra %d dokumentas su neišsaugotais pakeitimais. Išsaugoti prieš uždarant?"
+"Yra %d dokumentas su neįrašytais pakeitimais. Įrašyti prieš užveriant?"
 msgstr[1] ""
-"Yra %d dokumentai su neišsaugotais pakeitimais. Išsaugoti prieš uždarant?"
+"Yra %d dokumentai su neįrašytais pakeitimais. Įrašyti prieš užveriant?"
 msgstr[2] ""
-"Yra %d dokumentų su neišsaugotais pakeitimais. Išsaugoti prieš uždarant?"
+"Yra %d dokumentų su neįrašytais pakeitimais. Įrašyti prieš užveriant?"
 
 #: ../xed/dialogs/xed-close-confirmation-dialog.c:729
 msgid "S_elect the documents you want to save:"
-msgstr "Pasi_rinkite norimus išsaugoti dokumentus:"
+msgstr "Pasi_rinkite norimus įrašyti dokumentus:"
 
 #. Secondary label
 #: ../xed/dialogs/xed-close-confirmation-dialog.c:751
 msgid "If you don't save, all your changes will be permanently lost."
-msgstr "Jeigu neišsaugosite, visi Jūsų pakeitimai bus prarasti."
+msgstr "Jeigu neįrašysite, visi jūsų pakeitimai bus negrįžtamai prarasti."
 
 #: ../xed/dialogs/xed-encodings-dialog.c:321
 msgid "Character Encodings"
@@ -896,11 +929,11 @@ msgstr "Parodyti koduotės parinkties galimų reikšmių sąrašą"
 
 #: ../xed/xed.c:113
 msgid "Create a new top-level window in an existing instance of xed"
-msgstr ""
+msgstr "Sukurti naują viršutinį langą esamame xed programos egzemplioriuje"
 
 #: ../xed/xed.c:116
 msgid "Create a new document in an existing instance of xed"
-msgstr ""
+msgstr "Sukurti naują dokumentą esamame xed programos egzemplioriuje"
 
 #: ../xed/xed.c:119
 msgid "[FILE...]"
@@ -959,7 +992,7 @@ msgstr "Saugomas failas „%s“…"
 
 #: ../xed/xed-commands-file.c:758
 msgid "Save As…"
-msgstr "Išsaugoti kaip…"
+msgstr "Įrašyti kaip..."
 
 #: ../xed/xed-commands-file.c:1087
 #, c-format
@@ -969,7 +1002,7 @@ msgstr "Atkuriamas dokumentas „%s“…"
 #: ../xed/xed-commands-file.c:1132
 #, c-format
 msgid "Revert unsaved changes to document '%s'?"
-msgstr "Atkurti neišsaugotus pakeitimus dokumente „%s“?"
+msgstr "Atkurti neįrašytus pakeitimus dokumente „%s“?"
 
 #: ../xed/xed-commands-file.c:1141
 #, c-format
@@ -1073,7 +1106,7 @@ msgstr "„%s“ nerasta"
 #: ../xed/xed-document.c:1090 ../xed/xed-document.c:1110
 #, c-format
 msgid "Unsaved Document %d"
-msgstr "Neišsaugotas dokumentas %d"
+msgstr "Neįrašytas dokumentas %d"
 
 #: ../xed/xed-documents-panel.c:101 ../xed/xed-documents-panel.c:115
 #: ../xed/xed-window.c:2180 ../xed/xed-window.c:2185
@@ -1413,7 +1446,7 @@ msgstr "Nepavyko atverti failo „%s“."
 #: ../xed/xed-io-error-message-area.c:725
 #, c-format
 msgid "Could not save the file %s using the %s character encoding."
-msgstr "Nepavyko išsaugoti failo %s naudojant %s simbolių koduotę."
+msgstr "Nepavyko įrašyti failo %s, naudojant %s simbolių koduotę."
 
 #: ../xed/xed-io-error-message-area.c:728
 msgid ""
@@ -1433,6 +1466,8 @@ msgid ""
 "xed opened this instance of the file in a non-editable way. Do you want to "
 "edit it anyway?"
 msgstr ""
+"xed atvėrė šio failo egzempliorių neredaguojamu būdu. Ar vis tiek norite jį "
+"redaguoti?"
 
 #: ../xed/xed-io-error-message-area.c:899
 #: ../xed/xed-io-error-message-area.c:1007
@@ -1442,7 +1477,7 @@ msgstr "_Vis tiek išsaugoti"
 #: ../xed/xed-io-error-message-area.c:903
 #: ../xed/xed-io-error-message-area.c:1011
 msgid "D_on't Save"
-msgstr "_Nesaugoti"
+msgstr "_Neįrašyti"
 
 #. FIXME: review this message, it's not clear since for the user the "modification"
 #. could be interpreted as the changes he made in the document. beside "reading" is
@@ -1456,8 +1491,7 @@ msgstr "Failas %s nuo jo perskaitymo buvo pakeistas."
 msgid ""
 "If you save it, all the external changes could be lost. Save it anyway?"
 msgstr ""
-"Jeigu jį išsaugosite, visi išoriniai pakeitimai bus prarasti. Vis tiek "
-"išsaugoti?"
+"Jeigu jį įrašysite, visi išoriniai pakeitimai bus prarasti. Vis tiek įrašyti?"
 
 #: ../xed/xed-io-error-message-area.c:1033
 #, c-format
@@ -1475,6 +1509,10 @@ msgid ""
 "You can ignore this warning and save the file anyway, but if an error occurs "
 "while saving, you could lose the old copy of the file. Save anyway?"
 msgstr ""
+"Programai xed nepavyko padaryti atsarginės seno failo kopijos prieš įrašant "
+"naują. Galite nepaisyti šio įspėjimo ir vis tiek įrašyti failą, bet jeigu "
+"įrašant įvyks klaida, tuomet galite prarasti senojo failo kopiją. Vis tiek "
+"įrašyti?"
 
 #. Translators: %s is a URI scheme (like for example http:, ftp:, etc.)
 #: ../xed/xed-io-error-message-area.c:1120
@@ -1483,12 +1521,16 @@ msgid ""
 "xed cannot handle %s locations in write mode. Please check that you typed "
 "the location correctly and try again."
 msgstr ""
+"Programai xed nepavyko apdoroti %s vietų rašymo veiksenoje. Patikrinkite, ar "
+"teisingai nurodėte vietą ir bandykite dar kartą."
 
 #: ../xed/xed-io-error-message-area.c:1128
 msgid ""
 "xed cannot handle this location in write mode. Please check that you typed "
 "the location correctly and try again."
 msgstr ""
+"Programai xed nepavyko apdoroti šios vietos rašymo veiksenoje. Patikrinkite, "
+"ar teisingai nurodėte vietą, ir bandykite dar kartą."
 
 #: ../xed/xed-io-error-message-area.c:1137
 #, c-format
@@ -1512,7 +1554,7 @@ msgid ""
 "There is not enough disk space to save the file. Please free some disk space "
 "and try again."
 msgstr ""
-"Išsaugoti failui nepakanka laisvos vietos diske. Atlaisvinkite šiek tiek "
+"Įrašyti failui nepakanka laisvos vietos diske. Atlaisvinkite šiek tiek "
 "vietos diske ir bandykite iš naujo."
 
 #: ../xed/xed-io-error-message-area.c:1154
@@ -1520,8 +1562,8 @@ msgid ""
 "You are trying to save the file on a read-only disk. Please check that you "
 "typed the location correctly and try again."
 msgstr ""
-"Bandote išsaugoti failą tik skaitymui skirtame diske. Patikrinkite, ar "
-"teisingai nurodėte vietą, ir bandykite dar kartą."
+"Bandote įrašyti failą tik skaitymui skirtame diske. Patikrinkite, ar "
+"teisingai nurodėte vietą ir bandykite dar kartą."
 
 #: ../xed/xed-io-error-message-area.c:1160
 msgid ""
@@ -1542,14 +1584,14 @@ msgid ""
 "sizes. Please try saving a smaller file or saving it to a disk that does not "
 "have this limitation."
 msgstr ""
-"Diske, į kurį norite išsaugoti failą, yra apribojimai failų dydžiams. "
-"Pabandykite išsaugoti mažesnį failą, arba saugokite į diską, kuriame tokių "
+"Diske, į kurį norite įrašyti failą, yra apribojimai failų dydžiams. "
+"Pabandykite įrašyti mažesnį failą, arba rašykite į diską, kuriame tokių "
 "apribojimų nėra."
 
 #: ../xed/xed-io-error-message-area.c:1188
 #, c-format
 msgid "Could not save the file %s."
-msgstr "Nepavyko išsaugoti failo %s."
+msgstr "Nepavyko įrašyti failo %s."
 
 #. FIXME: review this message, it's not clear since for the user the "modification"
 #. could be interpreted as the changes he made in the document. beside "reading" is
@@ -1927,19 +1969,19 @@ msgstr "Išeiti iš viso ekrano veiksenos"
 
 #: ../xed/xed-ui.h:81
 msgid "Save the current file"
-msgstr "Išsaugoti esamą failą"
+msgstr "Įrašyti esamą failą"
 
 #: ../xed/xed-ui.h:82
 msgid "Save _As..."
-msgstr "Išsaugoti k_aip..."
+msgstr "Įrašyti _kaip..."
 
 #: ../xed/xed-ui.h:83
 msgid "Save the current file with a different name"
-msgstr "Išsaugoti esamą failą kitu vardu"
+msgstr "Įrašyti esamą failą kitu pavadinimu"
 
 #: ../xed/xed-ui.h:85
 msgid "Revert to a saved version of the file"
-msgstr "Atstatyti iki išsaugotos failo versijos"
+msgstr "Atkurti iki įrašytos failo versijos"
 
 #: ../xed/xed-ui.h:86
 msgid "Print Previe_w"
@@ -2054,11 +2096,11 @@ msgstr "Didėjanti teksto paieška"
 #. Documents menu
 #: ../xed/xed-ui.h:127
 msgid "_Save All"
-msgstr "_Išsaugoti visus"
+msgstr "Įrašyti _visus"
 
 #: ../xed/xed-ui.h:128
 msgid "Save all open files"
-msgstr "Išsaugoti visus atvertus failus"
+msgstr "Įrašyti visus atvertus failus"
 
 #: ../xed/xed-ui.h:129
 msgid "_Close All"
@@ -2220,7 +2262,7 @@ msgstr "Atverti"
 
 #: ../xed/xed-window.c:1449
 msgid "Save"
-msgstr "Išsaugoti"
+msgstr "Įrašyti"
 
 #: ../xed/xed-window.c:1451
 msgid "Print"
@@ -2414,7 +2456,7 @@ msgid ""
 "The file browser root directory to use when loading the file browser plugin "
 "and onload/tree_view is TRUE."
 msgstr ""
-"failų naršyklės šakninis aplankas naudojamas įkeliant failų naršyklės "
+"Failų naršyklės šakninis aplankas naudojamas įkeliant failų naršyklės "
 "įskiepį ir esant onload/tree_view TEIGIAMOMS reikšmėms."
 
 #: ../plugins/filebrowser/org.x.editor.plugins.filebrowser.gschema.xml.in.h:11
@@ -2427,7 +2469,7 @@ msgid ""
 "plugin when onload/tree_view is TRUE. The virtual root must always be below "
 "the actual root."
 msgstr ""
-"failų naršyklės virtualus šakninis aplankas naudojamas įkeliant failų "
+"Failų naršyklės virtualus šakninis aplankas naudojamas įkeliant failų "
 "naršyklės įskiepį ir esant onload/tree_view TEIGIAMOMS reikšmėms. Virtualus "
 "šakninis aplankas visada turi būti žemiau tikrojo šakninio."
 
@@ -2722,7 +2764,7 @@ msgstr "Veiksenų eilutės"
 
 #: ../plugins/modelines/modelines.xed-plugin.desktop.in.h:2
 msgid "Emacs, Kate and Vim-style modelines support for xed."
-msgstr ""
+msgstr "Emacs, Kate ir Vim stiliaus veiksenų eilučių palaikymas skirtas xed."
 
 #: ../plugins/sort/xed-sort-plugin.c:88
 msgid "S_ort..."
@@ -4561,7 +4603,7 @@ msgstr "Galimi formatai"
 
 #: ../plugins/time/xed-time-plugin.c:713
 msgid "Configure insert date/time plugin..."
-msgstr "Konfigūruoti datos/laiko įterpimo įrankį..."
+msgstr "Konfigūruoti datos/laiko įterpimo įskiepį..."
 
 #: ../plugins/time/time.xed-plugin.desktop.in.h:1
 msgid "Insert Date/Time"
@@ -4573,7 +4615,7 @@ msgstr "Žymeklio vietoje įterpia esamą datą ir laiką"
 
 #: ../plugins/trailsave/trailsave.xed-plugin.desktop.in.h:1
 msgid "Save Without Trailing Spaces"
-msgstr "Išsaugoti be tarpų eilučių pabaigoje"
+msgstr "Įrašyti be tarpų eilučių pabaigoje"
 
 #: ../plugins/trailsave/trailsave.xed-plugin.desktop.in.h:2
 msgid "Removes trailing spaces from lines before saving."
@@ -4612,7 +4654,7 @@ msgstr "2009-11-01 07:52:00"
 
 #: ../plugins/time/xed-time-setup-dialog.ui.h:1
 msgid "Configure date/time plugin"
-msgstr "Konfigūruoti datos/laiko įrankį"
+msgstr "Konfigūruoti datos/laiko įskiepį"
 
 #: ../plugins/time/xed-time-setup-dialog.ui.h:2
 msgid "When inserting date/time..."
