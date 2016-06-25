@@ -1,3 +1,14 @@
+xed (1.0.6) sarah; urgency=medium
+
+  [ Michael Webster ]
+  * xed-notebook.c: check vertical mouse position when determining whether a tab is being manipulated.  We were just checking horizontal position, which meant that depending on where you start a drag-and-drop, it might think you're trying to drag a tab instead, causing undesirable behavior.
+
+  [ Clement Lefebvre ]
+  * Updated translations
+  * Added new translations to po/LINGUAS
+
+ -- Clement Lefebvre <root@linuxmint.com>  Sat, 25 Jun 2016 11:38:33 +0100
+
 xed (1.0.5) sarah; urgency=medium
 
   * Updated translations
