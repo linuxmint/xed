@@ -148,26 +148,6 @@ dnl ================================================================
 dnl Start of pkg-config checks
 dnl ================================================================
 
-AC_MSG_CHECKING([which gtk+ version to compile against])
-AC_ARG_WITH([gtk],
-  [AS_HELP_STRING([--with-gtk=2.0|3.0],[which gtk+ version to compile against (default: 2.0)])],
-  [case "$with_gtk" in
-     2.0|3.0) ;;
-     *) AC_MSG_ERROR([invalid gtk version specified]) ;;
-   esac],
-  [with_gtk=2.0])
-AC_MSG_RESULT([$with_gtk])
-
-case "$with_gtk" in
-  2.0) GTK_API_VERSION=2.0
-       GTK_REQUIRED=2.24.0
-       ;;
-  3.0) GTK_API_VERSION=3.0
-       GTK_REQUIRED=3.0.0
-       ;;
-esac
-AC_SUBST(GTK_API_VERSION)
-
 PKG_CHECK_MODULES(GMODULE,gmodule-2.0,[GMODULE_ADD="gmodule-2.0"],[GMODULE_ADD=""])
 PKG_CHECK_MODULES(XED, [
 	libxml-2.0 >= 2.5.0
@@ -175,8 +155,8 @@ PKG_CHECK_MODULES(XED, [
 	$GMODULE_ADD
 	gthread-2.0 >= 2.13.0
 	gio-2.0 >= 2.26.0
-	gtk+-$GTK_API_VERSION >= $GTK_REQUIRED
-	gtksourceview-$GTK_API_VERSION >= 2.9.7
+	gtk+-3.0 >= 3.10.0
+	gtksourceview-3.0 >= 2.9.7
 ])
 
 PKG_CHECK_MODULES(X11, [x11])
@@ -402,7 +382,6 @@ Configuration:
 
 	Source code location:	${srcdir}
 	Compiler:		${CC}
-	GTK API version:	$GTK_API_VERSION
 	Python Plugins Support: $enable_python
 	Spell Plugin enabled:	$enable_enchant
 	Gvfs metadata enabled:	$enable_gvfs_metadata
