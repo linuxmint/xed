@@ -53,7 +53,7 @@ static const GtkActionEntry xed_always_sensitive_menu_entries[] =
 	{ "Help", NULL, N_("_Help") },
 
 	/* File menu */
-	{ "FileNew", GTK_STOCK_NEW, NULL, "<control>N",
+	{ "FileNew", GTK_STOCK_NEW, N_("_New"), "<control>N",
 	  N_("Create a new document"), G_CALLBACK (_xed_cmd_file_new) },
 	{ "FileOpen", GTK_STOCK_OPEN, N_("_Open..."), "<control>O",
 	  N_("Open a file"), G_CALLBACK (_xed_cmd_file_open) },
@@ -65,11 +65,11 @@ static const GtkActionEntry xed_always_sensitive_menu_entries[] =
 	/* Help menu */
 	{"HelpContents", GTK_STOCK_HELP, N_("_Contents"), "F1",
 	 N_("Open the xed manual"), G_CALLBACK (_xed_cmd_help_contents) },
-	{ "HelpAbout", GTK_STOCK_ABOUT, NULL, NULL,
+	{ "HelpAbout", GTK_STOCK_ABOUT, N_("_About"), NULL,
 	 N_("About this application"), G_CALLBACK (_xed_cmd_help_about) },
 	
 	/* Fullscreen toolbar */
-	{ "LeaveFullscreen", GTK_STOCK_LEAVE_FULLSCREEN, NULL,
+	{ "LeaveFullscreen", GTK_STOCK_LEAVE_FULLSCREEN, N_("Leave fullscreen"),
 	  NULL, N_("Leave fullscreen mode"),
 	  G_CALLBACK (_xed_cmd_view_leave_fullscreen_mode) }
 };
@@ -77,11 +77,11 @@ static const GtkActionEntry xed_always_sensitive_menu_entries[] =
 static const GtkActionEntry xed_menu_entries[] =
 {
 	/* File menu */
-	{ "FileSave", GTK_STOCK_SAVE, NULL, "<control>S",
+	{ "FileSave", GTK_STOCK_SAVE, N_("_Save"), "<control>S",
 	  N_("Save the current file"), G_CALLBACK (_xed_cmd_file_save) },
 	{ "FileSaveAs", GTK_STOCK_SAVE_AS, N_("Save _As..."), "<shift><control>S",
 	  N_("Save the current file with a different name"), G_CALLBACK (_xed_cmd_file_save_as) },
-	{ "FileRevert", GTK_STOCK_REVERT_TO_SAVED, NULL, NULL,
+	{ "FileRevert", GTK_STOCK_REVERT_TO_SAVED, N_("_Revert"), NULL,
 	  N_("Revert to a saved version of the file"), G_CALLBACK (_xed_cmd_file_revert) },
 	{ "FilePrintPreview", GTK_STOCK_PRINT_PREVIEW, N_("Print Previe_w"),"<control><shift>P",
 	  N_("Print preview"), G_CALLBACK (_xed_cmd_file_print_preview) },
@@ -89,17 +89,17 @@ static const GtkActionEntry xed_menu_entries[] =
 	  N_("Print the current page"), G_CALLBACK (_xed_cmd_file_print) },
 
 	/* Edit menu */
-	{ "EditUndo", GTK_STOCK_UNDO, NULL, "<control>Z",
+	{ "EditUndo", GTK_STOCK_UNDO, N_("_Undo"), "<control>Z",
 	  N_("Undo the last action"), G_CALLBACK (_xed_cmd_edit_undo) },
-	{ "EditRedo", GTK_STOCK_REDO, NULL, "<control>Y",
+	{ "EditRedo", GTK_STOCK_REDO, N_("_Redo"), "<control>Y",
 	  N_("Redo the last undone action"), G_CALLBACK (_xed_cmd_edit_redo) },
-	{ "EditCut", GTK_STOCK_CUT, NULL, "<control>X",
+	{ "EditCut", GTK_STOCK_CUT, N_("Cu_t"), "<control>X",
 	  N_("Cut the selection"), G_CALLBACK (_xed_cmd_edit_cut) },
-	{ "EditCopy", GTK_STOCK_COPY, NULL, "<control>C",
+	{ "EditCopy", GTK_STOCK_COPY, N_("Copy"), "<control>C",
 	  N_("Copy the selection"), G_CALLBACK (_xed_cmd_edit_copy) },
-	{ "EditPaste", GTK_STOCK_PASTE, NULL, "<control>V",
+	{ "EditPaste", GTK_STOCK_PASTE, N_("_Paste"), "<control>V",
 	  N_("Paste the clipboard"), G_CALLBACK (_xed_cmd_edit_paste) },
-	{ "EditDelete", GTK_STOCK_DELETE, NULL, NULL,
+	{ "EditDelete", GTK_STOCK_DELETE, N_("_Delete"), NULL,
 	  N_("Delete the selected text"), G_CALLBACK (_xed_cmd_edit_delete) },
 	{ "EditSelectAll", GTK_STOCK_SELECT_ALL, N_("Select _All"), "<control>A",
 	  N_("Select the entire document"), G_CALLBACK (_xed_cmd_edit_select_all) },
@@ -139,14 +139,14 @@ static const GtkActionEntry xed_menu_entries[] =
 /* separate group, needs to be sensitive on OS X even when there are no tabs */
 static const GtkActionEntry xed_close_menu_entries[] =
 {
-	{ "FileClose", GTK_STOCK_CLOSE, NULL, "<control>W",
+	{ "FileClose", GTK_STOCK_CLOSE, N_("_Close"), "<control>W",
 	  N_("Close the current file"), G_CALLBACK (_xed_cmd_file_close) }
 };
 
 /* separate group, should be sensitive even when there are no tabs */
 static const GtkActionEntry xed_quit_menu_entries[] =
 {
-	{ "FileQuit", GTK_STOCK_QUIT, NULL, "<control>Q",
+	{ "FileQuit", GTK_STOCK_QUIT, N_("_Quit"), "<control>Q",
 	  N_("Quit the program"), G_CALLBACK (_xed_cmd_file_quit) }
 };
 
@@ -158,7 +158,7 @@ static const GtkToggleActionEntry xed_always_sensitive_toggle_menu_entries[] =
 	{ "ViewStatusbar", NULL, N_("_Statusbar"), NULL,
 	  N_("Show or hide the statusbar in the current window"),
 	  G_CALLBACK (_xed_cmd_view_show_statusbar), TRUE },
-	{ "ViewFullscreen", GTK_STOCK_FULLSCREEN, NULL, "F11",
+	{ "ViewFullscreen", GTK_STOCK_FULLSCREEN, N_("_Fullscreen"), "F11",
 	  N_("Edit text in fullscreen"),
 	  G_CALLBACK (_xed_cmd_view_toggle_fullscreen_mode), FALSE }
 };
