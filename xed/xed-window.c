@@ -3804,6 +3804,18 @@ xed_window_init (XedWindow *window)
 	/* Add menu bar and toolbar bar */
 	create_menu_bar_and_toolbar (window, main_box);
 
+	/* If we're running as root, add and infobar to warn about elevated privileges */
+	if (geteuid() == 0) {
+		GtkWidget *root_bar = gtk_info_bar_new ();
+		gtk_info_bar_set_message_type (GTK_INFO_BAR (root_bar), GTK_MESSAGE_ERROR);
+		GtkWidget *content_area = gtk_info_bar_get_content_area (GTK_INFO_BAR (root_bar));
+		GtkWidget *label = gtk_label_new (_("Elevated Privileges"));
+		gtk_widget_show (label);
+		gtk_container_add (GTK_CONTAINER (content_area), label);
+		gtk_box_pack_start (GTK_BOX (main_box), root_bar, FALSE, FALSE, 0);
+		gtk_widget_set_visible (root_bar, TRUE);
+	}
+
 	/* Add status bar */
 	create_statusbar (window, main_box);
 
