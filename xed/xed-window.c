@@ -1381,7 +1381,6 @@ setup_toolbar_open_button (XedWindow *window,
 	action = gtk_action_group_get_action (window->priv->always_sensitive_action_group,
 					      "FileOpen");
 	g_object_set (action,
-		      "is_important", TRUE,
 		      "short_label", _("Open"),
 		      NULL);
 	gtk_activatable_set_related_action (GTK_ACTIVATABLE (open_button),
@@ -1447,12 +1446,6 @@ create_menu_bar_and_toolbar (XedWindow *window,
 	g_object_set (action, "short_label", _("Find"), NULL);
 	action = gtk_action_group_get_action (action_group, "SearchReplace");
 	g_object_set (action, "short_label", _("Replace"), NULL);
-
-	/* set which actions should have priority on the toolbar */
-	action = gtk_action_group_get_action (action_group, "FileSave");
-	g_object_set (action, "is_important", TRUE, NULL);
-	action = gtk_action_group_get_action (action_group, "EditUndo");
-	g_object_set (action, "is_important", TRUE, NULL);
 
 	action_group = gtk_action_group_new ("XedQuitWindowActions");
 	gtk_action_group_set_translation_domain (action_group, NULL);
