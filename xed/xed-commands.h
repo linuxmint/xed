@@ -123,6 +123,7 @@ void		_xed_cmd_view_leave_fullscreen_mode	(GtkAction   *action,
 
 void		_xed_cmd_search_find			(GtkAction   *action,
 							 XedWindow *window);
+
 void		_xed_cmd_search_find_next		(GtkAction   *action,
 							 XedWindow *window);
 void		_xed_cmd_search_find_prev		(GtkAction   *action,

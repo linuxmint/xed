@@ -47,6 +47,7 @@
 #include "xed-app.h"
 #include "xed-notebook.h"
 #include "xed-statusbar.h"
+#include "xed-searchbar.h"
 #include "xed-utils.h"
 #include "xed-commands.h"
 #include "xed-debug.h"
@@ -151,6 +152,17 @@ save_panes_state (XedWindow *window)
 	if (pane_page != 0 &&
 	    xed_prefs_manager_bottom_panel_active_page_can_set ())
 		xed_prefs_manager_set_bottom_panel_active_page (pane_page);
+}
+
+static gint
+on_key_pressed (GtkWidget *widget, GdkEventKey *event, XedWindow *window)
+{
+	gint handled = FALSE;
+	if (event->keyval == GDK_KEY_Escape) {
+		xed_searchbar_hide (window->priv->searchbar);
+		handled = TRUE;
+	}
+	return handled;
 }
 
 static void
@@ -1904,6 +1916,7 @@ create_statusbar (XedWindow *window,
 	xed_debug (DEBUG_WINDOW);
 
 	window->priv->statusbar = xed_statusbar_new ();
+	window->priv->searchbar = xed_searchbar_new (window, TRUE);
 
 	window->priv->generic_message_cid = gtk_statusbar_get_context_id
 		(GTK_STATUSBAR (window->priv->statusbar), "generic_message");
@@ -1956,6 +1969,9 @@ create_statusbar (XedWindow *window,
 				window);
 
 	set_statusbar_style (window, NULL);
+
+	gtk_box_pack_end (GTK_BOX (main_box), window->priv->searchbar, FALSE, FALSE, 0);
+
 }
 
 static XedWindow *
@@ -3898,8 +3914,10 @@ xed_window_init (XedWindow *window)
 			  G_CALLBACK (check_window_is_active),
 			  NULL);
 
+	g_signal_connect (GTK_WIDGET (window), "key-press-event", G_CALLBACK (on_key_pressed), window);
+
 	xed_debug_message (DEBUG_WINDOW, "Update plugins ui");
-	
+
 	xed_plugins_engine_activate_plugins (xed_plugins_engine_get_default (),
 					        window);
 
@@ -4347,6 +4365,22 @@ xed_window_get_statusbar (XedWindow *window)
 	g_return_val_if_fail (XED_IS_WINDOW (window), 0);
 
 	return window->priv->statusbar;
+}
+
+/**
+ * xed_window_get_searchbar:
+ * @window: a #XedWindow
+ *
+ * Gets the #XedSearchDialog of the @window.
+ *
+ * Returns: the #XedSearchDialog of the @window.
+ */
+GtkWidget *
+xed_window_get_searchbar (XedWindow *window)
+{
+	g_return_val_if_fail (XED_IS_WINDOW (window), 0);
+
+	return window->priv->searchbar;
 }
 
 /**

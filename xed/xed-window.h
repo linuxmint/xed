@@ -147,6 +147,8 @@ XedPanel	*xed_window_get_bottom_panel		(XedWindow         *window);
 
 GtkWidget	*xed_window_get_statusbar		(XedWindow         *window);
 
+GtkWidget	*xed_window_get_searchbar		(XedWindow         *window);
+
 GtkUIManager	*xed_window_get_ui_manager		(XedWindow         *window);
 
 XedWindowState xed_window_get_state 		(XedWindow         *window);
