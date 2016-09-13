@@ -17,14 +17,11 @@ libdialogs_la_SOURCES = 			\
 	xed-close-confirmation-dialog.c 	\
 	xed-close-confirmation-dialog.h 	\
 	xed-encodings-dialog.c		\
-	xed-encodings-dialog.h		\
-	xed-search-dialog.h			\
-	xed-search-dialog.c
+	xed-encodings-dialog.h
 
 ui_DATA =					\
 	xed-encodings-dialog.ui		\
-	xed-preferences-dialog.ui		\
-	xed-search-dialog.ui
+	xed-preferences-dialog.ui
 
 EXTRA_DIST = $(ui_DATA)
 

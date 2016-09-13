@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-08-18 20:07+0100\n"
+"POT-Creation-Date: 2016-09-20 16:32+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -637,7 +637,7 @@ msgstr ""
 msgid "Line Numbers"
 msgstr ""
 
-#: ../xed/dialogs/xed-preferences-dialog.ui.h:7 ../xed/xed-view.c:1959
+#: ../xed/dialogs/xed-preferences-dialog.ui.h:7 ../xed/xed-view.c:1011
 msgid "_Display line numbers"
 msgstr ""
 
@@ -741,55 +741,6 @@ msgstr ""
 msgid "Plugins"
 msgstr ""
 
-#: ../xed/dialogs/xed-search-dialog.c:302
-#: ../xed/dialogs/xed-search-dialog.ui.h:1 ../xed/xed-window.c:1449
-msgid "Replace"
-msgstr ""
-
-#: ../xed/dialogs/xed-search-dialog.c:313 ../xed/xed-window.c:1447
-msgid "Find"
-msgstr ""
-
-#: ../xed/dialogs/xed-search-dialog.c:417
-msgid "Replace _All"
-msgstr ""
-
-#: ../xed/dialogs/xed-search-dialog.c:418 ../xed/xed-commands-file.c:589
-msgid "_Replace"
-msgstr ""
-
-#: ../xed/dialogs/xed-search-dialog.ui.h:2
-msgid "Replace All"
-msgstr ""
-
-#: ../xed/dialogs/xed-search-dialog.ui.h:3
-msgid "_Search for: "
-msgstr ""
-
-#: ../xed/dialogs/xed-search-dialog.ui.h:4
-msgid "Replace _with: "
-msgstr ""
-
-#: ../xed/dialogs/xed-search-dialog.ui.h:5
-msgid "_Match case"
-msgstr ""
-
-#: ../xed/dialogs/xed-search-dialog.ui.h:6
-msgid "Match _entire word only"
-msgstr ""
-
-#: ../xed/dialogs/xed-search-dialog.ui.h:7
-msgid "Search _backwards"
-msgstr ""
-
-#: ../xed/dialogs/xed-search-dialog.ui.h:8
-msgid "_Wrap around"
-msgstr ""
-
-#: ../xed/dialogs/xed-search-dialog.ui.h:9
-msgid "_Parse escape sequences (e.g. \\n)"
-msgstr ""
-
 #: ../xed/xed.c:104
 msgid "Show the application's version"
 msgstr ""
@@ -861,6 +812,10 @@ msgstr ""
 
 #: ../xed/xed-commands-file.c:581
 msgid "Do you want to try to replace it with the one you are saving?"
+msgstr ""
+
+#: ../xed/xed-commands-file.c:589
+msgid "_Replace"
 msgstr ""
 
 #: ../xed/xed-commands-file.c:650 ../xed/xed-commands-file.c:873
@@ -950,35 +905,17 @@ msgstr ""
 msgid "A small and lightweight text editor"
 msgstr ""
 
-#: ../xed/xed-commands-search.c:112
-#, c-format
-msgid "Found and replaced %d occurrence"
-msgid_plural "Found and replaced %d occurrences"
-msgstr[0] ""
-msgstr[1] ""
-
-#: ../xed/xed-commands-search.c:122
-msgid "Found and replaced one occurrence"
-msgstr ""
-
-#. Translators: %s is replaced by the text
-#. entered by the user in the search box
-#: ../xed/xed-commands-search.c:143
-#, c-format
-msgid "\"%s\" not found"
-msgstr ""
-
 #: ../xed/xed-document.c:1082 ../xed/xed-document.c:1102
 #, c-format
 msgid "Unsaved Document %d"
 msgstr ""
 
 #: ../xed/xed-documents-panel.c:97 ../xed/xed-documents-panel.c:111
-#: ../xed/xed-window.c:2172 ../xed/xed-window.c:2177
+#: ../xed/xed-window.c:1747 ../xed/xed-window.c:1750
 msgid "Read-Only"
 msgstr ""
 
-#: ../xed/xed-documents-panel.c:784 ../xed/xed-window.c:3531
+#: ../xed/xed-documents-panel.c:784 ../xed/xed-window.c:2792
 msgid "Documents"
 msgstr ""
 
@@ -1548,6 +1485,42 @@ msgstr ""
 msgid "_Restore Default Fonts"
 msgstr ""
 
+#: ../xed/xed-searchbar.ui.h:1
+msgid "Replace All"
+msgstr ""
+
+#: ../xed/xed-searchbar.ui.h:2 ../xed/xed-window.c:1139
+msgid "Replace"
+msgstr ""
+
+#: ../xed/xed-searchbar.ui.h:3
+msgid "_Search for: "
+msgstr ""
+
+#: ../xed/xed-searchbar.ui.h:4
+msgid "Replace _with: "
+msgstr ""
+
+#: ../xed/xed-searchbar.ui.h:5 ../xed/xed-window.c:1137
+msgid "Find"
+msgstr ""
+
+#: ../xed/xed-searchbar.ui.h:6
+msgid "Find Prev"
+msgstr ""
+
+#: ../xed/xed-searchbar.ui.h:7
+msgid "Case sensitive"
+msgstr ""
+
+#: ../xed/xed-searchbar.ui.h:8
+msgid "Whole word"
+msgstr ""
+
+#: ../xed/xed-searchbar.ui.h:9
+msgid "Wrap"
+msgstr ""
+
 #: ../xed/xed-print-preview.c:564
 msgid "Show the previous page"
 msgstr ""
@@ -1616,6 +1589,22 @@ msgstr ""
 
 #: ../xed/xed-smart-charset-converter.c:319
 msgid "It is not possible to detect the encoding automatically"
+msgstr ""
+
+#: ../xed/xed-searchbar.c:70
+#, c-format
+msgid "Found and replaced %d occurrence"
+msgid_plural "Found and replaced %d occurrences"
+msgstr[0] ""
+msgstr[1] ""
+
+#: ../xed/xed-searchbar.c:80
+msgid "Found and replaced one occurrence"
+msgstr ""
+
+#: ../xed/xed-searchbar.c:98
+#, c-format
+msgid "\"%s\" not found"
 msgstr ""
 
 #: ../xed/xed-statusbar.c:70 ../xed/xed-statusbar.c:76
@@ -1758,7 +1747,7 @@ msgstr ""
 msgid "_Open..."
 msgstr ""
 
-#: ../xed/xed-ui.h:59 ../xed/xed-window.c:1377
+#: ../xed/xed-ui.h:59 ../xed/xed-window.c:1084
 msgid "Open a file"
 msgstr ""
 
@@ -1891,111 +1880,95 @@ msgid "Search for and replace text"
 msgstr ""
 
 #: ../xed/xed-ui.h:119
-msgid "_Clear Highlight"
-msgstr ""
-
-#: ../xed/xed-ui.h:120
-msgid "Clear highlighting of search matches"
-msgstr ""
-
-#: ../xed/xed-ui.h:121
 msgid "Go to _Line..."
 msgstr ""
 
-#: ../xed/xed-ui.h:122
+#: ../xed/xed-ui.h:120
 msgid "Go to a specific line"
 msgstr ""
 
-#: ../xed/xed-ui.h:123
-msgid "_Incremental Search..."
-msgstr ""
-
-#: ../xed/xed-ui.h:124
-msgid "Incrementally search for text"
-msgstr ""
-
 #. Documents menu
-#: ../xed/xed-ui.h:127
+#: ../xed/xed-ui.h:123
 msgid "_Save All"
 msgstr ""
 
-#: ../xed/xed-ui.h:128
+#: ../xed/xed-ui.h:124
 msgid "Save all open files"
 msgstr ""
 
-#: ../xed/xed-ui.h:129
+#: ../xed/xed-ui.h:125
 msgid "_Close All"
 msgstr ""
 
-#: ../xed/xed-ui.h:130
+#: ../xed/xed-ui.h:126
 msgid "Close all open files"
 msgstr ""
 
-#: ../xed/xed-ui.h:131
+#: ../xed/xed-ui.h:127
 msgid "_Previous Document"
 msgstr ""
 
-#: ../xed/xed-ui.h:132
+#: ../xed/xed-ui.h:128
 msgid "Activate previous document"
 msgstr ""
 
-#: ../xed/xed-ui.h:133
+#: ../xed/xed-ui.h:129
 msgid "_Next Document"
 msgstr ""
 
-#: ../xed/xed-ui.h:134
+#: ../xed/xed-ui.h:130
 msgid "Activate next document"
 msgstr ""
 
-#: ../xed/xed-ui.h:135
+#: ../xed/xed-ui.h:131
 msgid "_Move to New Window"
 msgstr ""
 
-#: ../xed/xed-ui.h:136
+#: ../xed/xed-ui.h:132
 msgid "Move the current document to a new window"
 msgstr ""
 
-#: ../xed/xed-ui.h:143
+#: ../xed/xed-ui.h:139
 msgid "Close the current file"
 msgstr ""
 
-#: ../xed/xed-ui.h:150
+#: ../xed/xed-ui.h:146
 msgid "Quit the program"
 msgstr ""
 
-#: ../xed/xed-ui.h:155
+#: ../xed/xed-ui.h:151
 msgid "_Toolbar"
 msgstr ""
 
-#: ../xed/xed-ui.h:156
+#: ../xed/xed-ui.h:152
 msgid "Show or hide the toolbar in the current window"
 msgstr ""
 
-#: ../xed/xed-ui.h:158
+#: ../xed/xed-ui.h:154
 msgid "_Statusbar"
 msgstr ""
 
-#: ../xed/xed-ui.h:159
+#: ../xed/xed-ui.h:155
 msgid "Show or hide the statusbar in the current window"
 msgstr ""
 
-#: ../xed/xed-ui.h:162
+#: ../xed/xed-ui.h:158
 msgid "Edit text in fullscreen"
 msgstr ""
 
-#: ../xed/xed-ui.h:169
+#: ../xed/xed-ui.h:165
 msgid "Side _Pane"
 msgstr ""
 
-#: ../xed/xed-ui.h:170
+#: ../xed/xed-ui.h:166
 msgid "Show or hide the side pane in the current window"
 msgstr ""
 
-#: ../xed/xed-ui.h:172
+#: ../xed/xed-ui.h:168
 msgid "_Bottom Pane"
 msgstr ""
 
-#: ../xed/xed-ui.h:173
+#: ../xed/xed-ui.h:169
 msgid "Show or hide the bottom pane in the current window"
 msgstr ""
 
@@ -2019,37 +1992,11 @@ msgstr ""
 msgid "/ on %s"
 msgstr ""
 
-#. create "Wrap Around" menu item.
-#: ../xed/xed-view.c:1197
-msgid "_Wrap Around"
-msgstr ""
-
-#. create "Match Entire Word Only" menu item.
-#: ../xed/xed-view.c:1207
-msgid "Match _Entire Word Only"
-msgstr ""
-
-#. create "Match Case" menu item.
-#: ../xed/xed-view.c:1217
-msgid "_Match Case"
-msgstr ""
-
-#. create "Parse escapes" menu item.
-#: ../xed/xed-view.c:1227
-msgid ""
-"_Parse escape sequences (e.g. \n"
-")"
-msgstr ""
-
-#: ../xed/xed-view.c:1341
-msgid "String you want to search for"
-msgstr ""
-
-#: ../xed/xed-view.c:1350
+#: ../xed/xed-view.c:672
 msgid "Line you want to move the cursor to"
 msgstr ""
 
-#: ../xed/xed-window.c:930
+#: ../xed/xed-window.c:719
 #, c-format
 msgid "Use %s highlight mode"
 msgstr ""
@@ -2057,51 +2004,51 @@ msgstr ""
 #. add the "Plain Text" item before all the others
 #. Translators: "Plain Text" means that no highlight mode is selected in the
 #. * "View->Highlight Mode" submenu and so syntax highlighting is disabled
-#: ../xed/xed-window.c:987 ../xed/xed-window.c:1877
+#: ../xed/xed-window.c:759 ../xed/xed-window.c:1500
 msgid "Plain Text"
 msgstr ""
 
-#: ../xed/xed-window.c:988
+#: ../xed/xed-window.c:759
 msgid "Disable syntax highlighting"
 msgstr ""
 
 #. Translators: %s is a URI
-#: ../xed/xed-window.c:1274
+#: ../xed/xed-window.c:1003
 #, c-format
 msgid "Open '%s'"
 msgstr ""
 
-#: ../xed/xed-window.c:1379
+#: ../xed/xed-window.c:1085
 msgid "Open a recently used file"
 msgstr ""
 
-#: ../xed/xed-window.c:1385
+#: ../xed/xed-window.c:1088
 msgid "Open"
 msgstr ""
 
-#: ../xed/xed-window.c:1443
+#: ../xed/xed-window.c:1133
 msgid "Save"
 msgstr ""
 
-#: ../xed/xed-window.c:1445
+#: ../xed/xed-window.c:1135
 msgid "Print"
 msgstr ""
 
 #. Translators: %s is a URI
-#: ../xed/xed-window.c:1602
+#: ../xed/xed-window.c:1249
 #, c-format
 msgid "Activate '%s'"
 msgstr ""
 
-#: ../xed/xed-window.c:1855
+#: ../xed/xed-window.c:1481
 msgid "Use Spaces"
 msgstr ""
 
-#: ../xed/xed-window.c:1926
+#: ../xed/xed-window.c:1538
 msgid "Tab Width"
 msgstr ""
 
-#: ../xed/xed-window.c:3812
+#: ../xed/xed-window.c:2985
 msgid "Elevated Privileges"
 msgstr ""
 

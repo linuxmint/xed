@@ -61,6 +61,7 @@ struct _XedWindowPrivate
 
 	/* statusbar and context ids for statusbar messages */
 	GtkWidget      *statusbar;	
+	GtkWidget      *searchbar;	
 	guint           generic_message_cid;
 	guint           tip_message_cid;
 	guint 		tab_width_id;

@@ -116,12 +116,8 @@ static const GtkActionEntry xed_menu_entries[] =
 	  N_("Search backwards for the same text"), G_CALLBACK (_xed_cmd_search_find_prev) },
 	{ "SearchReplace", GTK_STOCK_FIND_AND_REPLACE, N_("_Replace..."), "<control>H",
 	  N_("Search for and replace text"), G_CALLBACK (_xed_cmd_search_replace) },
-	{ "SearchClearHighlight", NULL, N_("_Clear Highlight"), "<shift><control>K",
-	  N_("Clear highlighting of search matches"), G_CALLBACK (_xed_cmd_search_clear_highlight) },
 	{ "SearchGoToLine", GTK_STOCK_JUMP_TO, N_("Go to _Line..."), "<control>I",
 	  N_("Go to a specific line"), G_CALLBACK (_xed_cmd_search_goto_line) },
-	{ "SearchIncrementalSearch", GTK_STOCK_FIND, N_("_Incremental Search..."), "<control>K",
-	  N_("Incrementally search for text"), G_CALLBACK (_xed_cmd_search_incremental_search) },
 
 	/* Documents menu */
 	{ "FileSaveAll", GTK_STOCK_SAVE, N_("_Save All"), "<shift><control>L",

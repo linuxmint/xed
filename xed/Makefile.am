@@ -86,6 +86,7 @@ INST_H_FILES =				\
 	xed-prefs-manager-app.h	\
 	xed-prefs-manager.h		\
 	xed-progress-message-area.h	\
+	xed-searchbar.h		\
 	xed-statusbar.h		\
 	xed-status-combo-box.h	\
 	xed-tab.h 			\
@@ -152,6 +153,7 @@ libxed_la_SOURCES = 			\
 	xed-progress-message-area.c	\
 	xed-session.c			\
 	xed-smart-charset-converter.c	\
+	xed-searchbar.c		\
 	xed-statusbar.c		\
 	xed-status-combo-box.c	\
 	xed-style-scheme-manager.c	\
@@ -184,6 +186,7 @@ xed-marshal.c: xed-marshal.list $(GLIB_GENMARSHAL)
 uidir = $(datadir)/xed/ui/
 ui_DATA = 				\
 	xed-ui.xml			\
+	xed-searchbar.ui    \
 	xed-print-preferences.ui
 
 EXTRA_DIST = 				\
