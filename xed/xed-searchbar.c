@@ -272,6 +272,15 @@ xed_searchbar_find_again (XedSearchbar *searchbar,
 		    backward);
 }
 
+static void
+search_buttons_set_sensitive (XedSearchbar *searchbar, gboolean sensitive)
+{
+	gtk_widget_set_sensitive (searchbar->priv->find_button, sensitive);
+	gtk_widget_set_sensitive (searchbar->priv->find_prev_button, sensitive);
+	gtk_widget_set_sensitive (searchbar->priv->replace_button, sensitive);
+	gtk_widget_set_sensitive (searchbar->priv->replace_all_button, sensitive);
+}
+
 /* FIXME: move in xed-document.c and share it with xed-view */
 static gboolean
 get_selected_text (GtkTextBuffer  *doc,
@@ -488,14 +497,15 @@ search_text_entry_changed (GtkEditable *editable, XedSearchbar *searchbar)
 	search_string = gtk_entry_get_text (GTK_ENTRY (editable));
 	g_return_if_fail (search_string != NULL);
 
+
 	if (*search_string != '\0')
 	{
-		gtk_widget_set_sensitive (searchbar->priv->find_button, TRUE);
+		search_buttons_set_sensitive(searchbar, TRUE);
 		do_find (searchbar, searchbar->window, FALSE);
 	}
 	else
 	{
-		gtk_widget_set_sensitive (searchbar->priv->find_button, FALSE);
+		search_buttons_set_sensitive(searchbar, FALSE);
 	}
 }
 
@@ -614,9 +624,7 @@ xed_searchbar_init (XedSearchbar *searchbar)
 	gtk_label_set_mnemonic_widget (GTK_LABEL (searchbar->priv->replace_label), searchbar->priv->replace_entry);
 
 	/* insensitive by default */
-	gtk_widget_set_sensitive (searchbar->priv->find_button, FALSE);
-	gtk_widget_set_sensitive (searchbar->priv->replace_button, FALSE);
-	gtk_widget_set_sensitive (searchbar->priv->replace_all_button, FALSE);
+	search_buttons_set_sensitive(searchbar, FALSE);
 
 	xed_searchbar_hide (searchbar);
 
@@ -722,8 +730,7 @@ xed_searchbar_set_search_text (XedSearchbar *searchbar, const gchar *text)
 
 	gtk_entry_set_text (GTK_ENTRY (searchbar->priv->search_text_entry), text);
 
-	gtk_widget_set_sensitive (searchbar->priv->find_button, (text != '\0'));
-	gtk_widget_set_sensitive (searchbar->priv->replace_all_button, (text != '\0'));
+	search_buttons_set_sensitive(searchbar, (text != '\0'));
 }
 
 /*
