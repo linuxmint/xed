@@ -28,7 +28,7 @@ typedef struct _XedSearchbar XedSearchbar;
 struct _XedSearchbar 
 {
 	GtkStatusbar parent;
-	GtkWidget *window;
+	XedWindow *window;
 
 	/*< private > */
 	XedSearchbarPrivate *priv;
