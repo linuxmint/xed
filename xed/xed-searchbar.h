@@ -4,6 +4,8 @@
 
 #include <gtk/gtk.h>
 
+#include <xed/xed-window.h>
+
 G_BEGIN_DECLS
 
 /*
