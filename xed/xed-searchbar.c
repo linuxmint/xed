@@ -188,7 +188,6 @@ run_search (XedView   *view,
 
 static void
 do_find (XedSearchbar *searchbar,
-	 XedWindow       *window,
 	 gboolean search_backwards)
 {
 	XedView *active_view;
@@ -205,7 +204,7 @@ do_find (XedSearchbar *searchbar,
 
 	/* TODO: make the searchbar insensitive when all the tabs are closed
 	 * and assert here that the view is not NULL */
-	active_view = xed_window_get_active_view (window);
+	active_view = xed_window_get_active_view (searchbar->window);
 	if (active_view == NULL)
 		return;
 
@@ -241,12 +240,12 @@ do_find (XedSearchbar *searchbar,
 			    search_backwards);
 
 	if (found)
-		text_found (window, 0);
+		text_found (searchbar->window, 0);
 	else {
 		if (!parse_escapes) {
-			text_not_found (window, xed_utils_unescape_search_text (entry_text));
+			text_not_found (searchbar->window, xed_utils_unescape_search_text (entry_text));
 		} else {
-			text_not_found (window, entry_text);
+			text_not_found (searchbar->window, entry_text);
 		}
 	}
 }
@@ -325,8 +324,7 @@ replace_selected_text (GtkTextBuffer *buffer,
 }
 
 static void
-do_replace (XedSearchbar *searchbar,
-	    XedWindow       *window)
+do_replace (XedSearchbar *searchbar)
 {
 	XedDocument *doc;
 	const gchar *search_entry_text;
@@ -337,7 +335,7 @@ do_replace (XedSearchbar *searchbar,
 	gboolean match_case;
 	gboolean parse_escapes;
 
-	doc = xed_window_get_active_document (window);
+	doc = xed_window_get_active_document (searchbar->window);
 	if (doc == NULL)
 		return;
 
@@ -373,7 +371,7 @@ do_replace (XedSearchbar *searchbar,
 						    strlen (selected_text),
 						    strlen (unescaped_search_text)) != 0))
 	{
-		do_find (searchbar, window, FALSE);
+		do_find (searchbar, FALSE);
 		g_free (unescaped_search_text);
 		g_free (selected_text);
 
@@ -387,12 +385,11 @@ do_replace (XedSearchbar *searchbar,
 	g_free (selected_text);
 	g_free (unescaped_replace_text);
 
-	do_find (searchbar, window, FALSE);
+	do_find (searchbar, FALSE);
 }
 
 static void
-do_replace_all (XedSearchbar *searchbar,
-		XedWindow       *window)
+do_replace_all (XedSearchbar *searchbar)
 {
 	XedView *active_view;
 	XedDocument *doc;
@@ -404,7 +401,7 @@ do_replace_all (XedSearchbar *searchbar,
 	guint flags = 0;
 	gint count;
 
-	active_view = xed_window_get_active_view (window);
+	active_view = xed_window_get_active_view (searchbar->window);
 	if (active_view == NULL)
 		return;
 
@@ -419,7 +416,7 @@ do_replace_all (XedSearchbar *searchbar,
 	g_return_if_fail ((search_entry_text) != NULL);
 	g_return_if_fail ((*search_entry_text) != '\0');
 
-	/* replace text may be "", we just delete all occurrencies */
+	/* replace text may be "", we just delete all occurrences */
 	if (!parse_escapes) {
 		replace_entry_text = xed_utils_escape_search_text (xed_searchbar_get_replace_text (searchbar));
 	} else {
@@ -440,14 +437,14 @@ do_replace_all (XedSearchbar *searchbar,
 
 	if (count > 0)
 	{
-		text_found (window, count);
+		text_found (searchbar->window, count);
 	}
 	else
 	{
 		if (!parse_escapes) {
-			text_not_found (window, xed_utils_unescape_search_text (search_entry_text));
+			text_not_found (searchbar->window, xed_utils_unescape_search_text (search_entry_text));
 		} else {
-			text_not_found (window, search_entry_text);
+			text_not_found (searchbar->window, search_entry_text);
 		}
 	}
 
@@ -501,7 +498,7 @@ search_text_entry_changed (GtkEditable *editable, XedSearchbar *searchbar)
 	if (*search_string != '\0')
 	{
 		search_buttons_set_sensitive(searchbar, TRUE);
-		do_find (searchbar, searchbar->window, FALSE);
+		do_find (searchbar, FALSE);
 	}
 	else
 	{
@@ -510,7 +507,7 @@ search_text_entry_changed (GtkEditable *editable, XedSearchbar *searchbar)
 }
 
 static void
-remember_entry_and_find (XedSearchbar *searchbar, gboolean search_backwards)
+remember_search_entry (XedSearchbar *searchbar)
 {
 	const gchar *str;
 	str = gtk_entry_get_text (GTK_ENTRY (searchbar->priv->search_text_entry));
@@ -521,53 +518,57 @@ remember_entry_and_find (XedSearchbar *searchbar, gboolean search_backwards)
 		xed_history_entry_prepend_text (XED_HISTORY_ENTRY (searchbar->priv->search_entry), text);
 		g_free (text);
 	}
-	do_find (searchbar, searchbar->window, search_backwards);
+}
+
+static void
+remember_replace_entry (XedSearchbar *searchbar)
+{
+	const gchar *str;
+	str = gtk_entry_get_text (GTK_ENTRY (searchbar->priv->replace_text_entry));
+	if (*str != '\0')
+	{
+		gchar *text;
+		text = xed_utils_unescape_search_text (str);
+		xed_history_entry_prepend_text (XED_HISTORY_ENTRY (searchbar->priv->replace_entry), text);
+		g_free (text);
+	}
 }
 
 static void
 find_button_clicked_callback (GtkWidget *button, XedSearchbar *searchbar)
 {
-	remember_entry_and_find (searchbar, FALSE);
+	remember_search_entry (searchbar);
+	do_find (searchbar, FALSE);
 }
 
 static void
 find_prev_button_clicked_callback (GtkWidget *button, XedSearchbar *searchbar)
 {
-	remember_entry_and_find (searchbar, TRUE);
+	remember_search_entry (searchbar);
+	do_find (searchbar, TRUE);
 }
 
 static void
 replace_button_clicked_callback (GtkWidget *button, XedSearchbar *searchbar)
 {
-	const gchar *str;
-	str = gtk_entry_get_text (GTK_ENTRY (searchbar->priv->replace_text_entry));
-	if (*str != '\0')
-	{
-		gchar *text;
-		text = xed_utils_unescape_search_text (str);
-		xed_history_entry_prepend_text (XED_HISTORY_ENTRY (searchbar->priv->replace_entry), text);
-		g_free (text);
-	}
+	remember_search_entry (searchbar);
+	remember_replace_entry (searchbar);
+	do_replace (searchbar);
 }
 
 static void
 replace_all_button_clicked_callback (GtkWidget *button, XedSearchbar *searchbar)
 {
-	const gchar *str;
-	str = gtk_entry_get_text (GTK_ENTRY (searchbar->priv->replace_text_entry));
-	if (*str != '\0')
-	{
-		gchar *text;
-		text = xed_utils_unescape_search_text (str);
-		xed_history_entry_prepend_text (XED_HISTORY_ENTRY (searchbar->priv->replace_entry), text);
-		g_free (text);
-	}
+	remember_search_entry (searchbar);
+	remember_replace_entry (searchbar);
+	do_replace_all (searchbar);
 }
 
 static void
 on_search_text_entry_activated (GtkEntry *widget, XedSearchbar *searchbar)
 {
-	remember_entry_and_find (searchbar, FALSE);
+	remember_search_entry (searchbar);
+	do_find (searchbar, FALSE);
 }
 
 static void

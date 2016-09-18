@@ -3,6 +3,7 @@
 #define __XED_SEARCHBAR_H__
 
 #include <gtk/gtk.h>
+#include "xed-window.h"
 
 G_BEGIN_DECLS
 
