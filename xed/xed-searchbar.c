@@ -1,4 +1,3 @@
-
 #ifdef HAVE_CONFIG_H
 #include <config.h>
 #endif
@@ -22,13 +21,12 @@
 /* Signals */
 enum
 {
-    SHOW_REPLACE,
-    LAST_SIGNAL
+    SHOW_REPLACE, LAST_SIGNAL
 };
 
 struct _XedSearchbarPrivate
 {
-    gboolean   show_replace;
+    gboolean show_replace;
     GtkWidget *revealer;
     GtkWidget *grid;
     GtkWidget *search_label;
@@ -51,9 +49,9 @@ G_DEFINE_TYPE(XedSearchbar, xed_searchbar, GTK_TYPE_BOX)
 static void
 xed_searchbar_class_init (XedSearchbarClass *klass)
 {
-    GObjectClass *object_class = G_OBJECT_CLASS (klass);
+    GObjectClass *object_class = G_OBJECT_CLASS(klass);
     GtkBindingSet *binding_set;
-    g_type_class_add_private (object_class, sizeof (XedSearchbarPrivate));
+    g_type_class_add_private (object_class, sizeof(XedSearchbarPrivate));
     binding_set = gtk_binding_set_by_class (klass);
 }
 
@@ -62,45 +60,46 @@ xed_searchbar_class_init (XedSearchbarClass *klass)
 
 /* Use occurrences only for Replace All */
 static void
-text_found (XedWindow *window, gint occurrences)
+text_found (XedWindow *window,
+            gint occurrences)
 {
-    if (occurrences > 1) {
-        xed_statusbar_flash_message (XED_STATUSBAR (window->priv->statusbar),
-                                     window->priv->generic_message_cid,
-                                     ngettext("Found and replaced %d occurrence",
-                                              "Found and replaced %d occurrences",
-                                              occurrences),
-                                     occurrences);
+    if (occurrences > 1)
+    {
+        xed_statusbar_flash_message (XED_STATUSBAR(window->priv->statusbar), window->priv->generic_message_cid,
+                        ngettext ("Found and replaced %d occurrence", "Found and replaced %d occurrences", occurrences),
+                        occurrences);
     }
     else
     {
-        if (occurrences == 1) {
-            xed_statusbar_flash_message (XED_STATUSBAR (window->priv->statusbar),
-                                         window->priv->generic_message_cid,
+        if (occurrences == 1)
+        {
+            xed_statusbar_flash_message (XED_STATUSBAR(window->priv->statusbar), window->priv->generic_message_cid,
                                          _("Found and replaced one occurrence"));
         }
-        else {
-            xed_statusbar_flash_message (XED_STATUSBAR (window->priv->statusbar),
-                                         window->priv->generic_message_cid,
+        else
+        {
+            xed_statusbar_flash_message (XED_STATUSBAR(window->priv->statusbar), window->priv->generic_message_cid,
                                          " ");
         }
     }
 }
 
 static void
-text_not_found (XedWindow *window, const gchar *text)
+text_not_found (XedWindow *window,
+                const gchar *text)
 {
     gchar *searched;
 
     searched = xed_utils_str_end_truncate (text, MAX_MSG_LENGTH);
-    xed_statusbar_flash_message (XED_STATUSBAR (window->priv->statusbar),
-                                 window->priv->generic_message_cid,
+    xed_statusbar_flash_message (XED_STATUSBAR(window->priv->statusbar), window->priv->generic_message_cid,
                                  _("\"%s\" not found"), searched);
     g_free (searched);
 }
 
 static gboolean
-run_search (XedView *view, gboolean wrap_around, gboolean search_backwards)
+run_search (XedView *view,
+            gboolean wrap_around,
+            gboolean search_backwards)
 {
     XedDocument *doc;
     GtkTextIter start_iter;
@@ -108,42 +107,50 @@ run_search (XedView *view, gboolean wrap_around, gboolean search_backwards)
     GtkTextIter match_end;
     gboolean found = FALSE;
 
-    doc = XED_DOCUMENT (gtk_text_view_get_buffer (GTK_TEXT_VIEW (view)));
+    doc = XED_DOCUMENT(gtk_text_view_get_buffer (GTK_TEXT_VIEW (view)));
 
-    if (!search_backwards) {
-        gtk_text_buffer_get_selection_bounds (GTK_TEXT_BUFFER (doc), NULL, &start_iter);
+    if (!search_backwards)
+    {
+        gtk_text_buffer_get_selection_bounds (GTK_TEXT_BUFFER(doc), NULL, &start_iter);
         found = xed_document_search_forward (doc, &start_iter, NULL, &match_start, &match_end);
     }
-    else {
-        gtk_text_buffer_get_selection_bounds (GTK_TEXT_BUFFER (doc), &start_iter, NULL);
+    else
+    {
+        gtk_text_buffer_get_selection_bounds (GTK_TEXT_BUFFER(doc), &start_iter, NULL);
         found = xed_document_search_backward (doc, NULL, &start_iter, &match_start, &match_end);
     }
 
-    if (!found && wrap_around) {
-        if (!search_backwards) {
-            found = xed_document_search_forward (doc, NULL, NULL, /* FIXME: set the end_inter */
-                                                 &match_start, &match_end);
+    if (!found && wrap_around)
+    {
+        if (!search_backwards)
+        {
+            /* FIXME: set the end_inter */
+            found = xed_document_search_forward (doc, NULL, NULL, &match_start, &match_end);
         }
-        else {
-            found = xed_document_search_backward (doc, NULL, /* FIXME: set the start_inter */ NULL,
-                                                  &match_start, &match_end);
+        else
+        {
+            /* FIXME: set the start_inter */
+            found = xed_document_search_backward (doc, NULL, NULL, &match_start, &match_end);
         }
     }
 
-    if (found) {
-        gtk_text_buffer_place_cursor (GTK_TEXT_BUFFER (doc), &match_start);
-        gtk_text_buffer_move_mark_by_name (GTK_TEXT_BUFFER (doc), "selection_bound", &match_end);
+    if (found)
+    {
+        gtk_text_buffer_place_cursor (GTK_TEXT_BUFFER(doc), &match_start);
+        gtk_text_buffer_move_mark_by_name (GTK_TEXT_BUFFER(doc), "selection_bound", &match_end);
         xed_view_scroll_to_cursor (view);
     }
-    else {
-        gtk_text_buffer_place_cursor (GTK_TEXT_BUFFER (doc), &start_iter);
+    else
+    {
+        gtk_text_buffer_place_cursor (GTK_TEXT_BUFFER(doc), &start_iter);
     }
 
     return found;
 }
 
 static void
-do_find (XedSearchbar *searchbar, gboolean search_backwards)
+do_find (XedSearchbar *searchbar,
+         gboolean search_backwards)
 {
     XedView *active_view;
     XedDocument *doc;
@@ -159,23 +166,25 @@ do_find (XedSearchbar *searchbar, gboolean search_backwards)
     /* TODO: make the searchbar insensitive when all the tabs are closed
      * and assert here that the view is not NULL */
     active_view = xed_window_get_active_view (searchbar->window);
-    if (active_view == NULL) {
+    if (active_view == NULL)
+    {
         return;
     }
 
-    doc = XED_DOCUMENT (gtk_text_view_get_buffer (GTK_TEXT_VIEW (active_view)));
+    doc = XED_DOCUMENT(gtk_text_view_get_buffer (GTK_TEXT_VIEW (active_view)));
 
     match_case = xed_searchbar_get_match_case (searchbar);
     entire_word = xed_searchbar_get_entire_word (searchbar);
     wrap_around = xed_searchbar_get_wrap_around (searchbar);
     entry_text = xed_searchbar_get_search_text (searchbar);
 
-    XED_SEARCH_SET_CASE_SENSITIVE (flags, match_case);
-    XED_SEARCH_SET_ENTIRE_WORD (flags, entire_word);
+    XED_SEARCH_SET_CASE_SENSITIVE(flags, match_case);
+    XED_SEARCH_SET_ENTIRE_WORD(flags, entire_word);
 
     search_text = xed_document_get_search_text (doc, &old_flags);
 
-    if ((search_text == NULL) || (strcmp (search_text, entry_text) != 0) || (flags != old_flags)) {
+    if ((search_text == NULL) || (strcmp (search_text, entry_text) != 0) || (flags != old_flags))
+    {
         xed_document_set_search_text (doc, entry_text, flags);
     }
 
@@ -183,35 +192,40 @@ do_find (XedSearchbar *searchbar, gboolean search_backwards)
 
     found = run_search (active_view, wrap_around, search_backwards);
 
-    if (found) {
+    if (found)
+    {
         text_found (searchbar->window, 0);
     }
-    else {
+    else
+    {
         text_not_found (searchbar->window, entry_text);
     }
 }
 
 void
-xed_searchbar_find_again (XedSearchbar *searchbar, gboolean backward)
+xed_searchbar_find_again (XedSearchbar *searchbar,
+                          gboolean backward)
 {
     XedView *active_view;
     gboolean wrap_around = TRUE;
     gpointer data;
 
     active_view = xed_window_get_active_view (searchbar->window);
-    g_return_if_fail (active_view != NULL);
+    g_return_if_fail(active_view != NULL);
 
-    data = g_object_get_data (G_OBJECT (searchbar->window), XED_SEARCHBAR_KEY);
+    data = g_object_get_data (G_OBJECT(searchbar->window), XED_SEARCHBAR_KEY);
 
-    if (data != NULL) {
-        wrap_around = xed_searchbar_get_wrap_around (XED_SEARCHBAR (data));
+    if (data != NULL)
+    {
+        wrap_around = xed_searchbar_get_wrap_around (XED_SEARCHBAR(data));
     }
 
     run_search (active_view, wrap_around, backward);
 }
 
 static void
-search_buttons_set_sensitive (XedSearchbar *searchbar, gboolean sensitive)
+search_buttons_set_sensitive (XedSearchbar *searchbar,
+                              gboolean sensitive)
 {
     gtk_widget_set_sensitive (searchbar->priv->find_button, sensitive);
     gtk_widget_set_sensitive (searchbar->priv->find_prev_button, sensitive);
@@ -221,15 +235,19 @@ search_buttons_set_sensitive (XedSearchbar *searchbar, gboolean sensitive)
 
 /* FIXME: move in xed-document.c and share it with xed-view */
 static gboolean
-get_selected_text (GtkTextBuffer *doc, gchar **selected_text, gint *len)
+get_selected_text (GtkTextBuffer *doc,
+                   gchar **selected_text,
+                   gint *len)
 {
     GtkTextIter start, end;
 
-    g_return_val_if_fail (selected_text != NULL, FALSE);
-    g_return_val_if_fail (*selected_text == NULL, FALSE);
+    g_return_val_if_fail(selected_text != NULL, FALSE);
+    g_return_val_if_fail(*selected_text == NULL, FALSE);
 
-    if (!gtk_text_buffer_get_selection_bounds (doc, &start, &end)) {
-        if (len != NULL) {
+    if (!gtk_text_buffer_get_selection_bounds (doc, &start, &end))
+    {
+        if (len != NULL)
+        {
             len = 0;
         }
         return FALSE;
@@ -237,7 +255,8 @@ get_selected_text (GtkTextBuffer *doc, gchar **selected_text, gint *len)
 
     *selected_text = gtk_text_buffer_get_slice (doc, &start, &end, TRUE);
 
-    if (len != NULL) {
+    if (len != NULL)
+    {
         *len = g_utf8_strlen (*selected_text, -1);
     }
 
@@ -245,10 +264,11 @@ get_selected_text (GtkTextBuffer *doc, gchar **selected_text, gint *len)
 }
 
 static void
-replace_selected_text (GtkTextBuffer *buffer, const gchar *replace)
+replace_selected_text (GtkTextBuffer *buffer,
+                       const gchar *replace)
 {
-    g_return_if_fail (gtk_text_buffer_get_selection_bounds (buffer, NULL, NULL));
-    g_return_if_fail (replace != NULL);
+    g_return_if_fail(gtk_text_buffer_get_selection_bounds (buffer, NULL, NULL));
+    g_return_if_fail(replace != NULL);
 
     gtk_text_buffer_begin_user_action (buffer);
     gtk_text_buffer_delete_selection (buffer, FALSE, TRUE);
@@ -268,30 +288,32 @@ do_replace (XedSearchbar *searchbar)
     gboolean match_case;
 
     doc = xed_window_get_active_document (searchbar->window);
-    if (doc == NULL) {
+    if (doc == NULL)
+    {
         return;
     }
 
     search_entry_text = xed_searchbar_get_search_text (searchbar);
-    g_return_if_fail ((search_entry_text) != NULL);
-    g_return_if_fail ((*search_entry_text) != '\0');
+    g_return_if_fail((search_entry_text) != NULL);
+    g_return_if_fail((*search_entry_text) != '\0');
 
     /* replace text may be "", we just delete */
     replace_entry_text = xed_searchbar_get_replace_text (searchbar);
-    g_return_if_fail ((replace_entry_text) != NULL);
+    g_return_if_fail((replace_entry_text) != NULL);
 
     unescaped_search_text = xed_utils_unescape_search_text (search_entry_text);
 
-    get_selected_text (GTK_TEXT_BUFFER (doc), &selected_text, NULL);
+    get_selected_text (GTK_TEXT_BUFFER(doc), &selected_text, NULL);
 
     match_case = xed_searchbar_get_match_case (searchbar);
 
-    if ((selected_text == NULL) ||
-            (match_case && (strcmp (selected_text, unescaped_search_text) != 0)) ||
-            (!match_case && !g_utf8_caselessnmatch (selected_text,
-                                                    unescaped_search_text,
-                                                    strlen (selected_text),
-                                                    strlen (unescaped_search_text)) != 0)) {
+    if ((selected_text == NULL)
+        || (match_case && (strcmp (selected_text, unescaped_search_text) != 0))
+        || (!match_case && !g_utf8_caselessnmatch (selected_text,
+                                   unescaped_search_text,
+                                   strlen (selected_text),
+                                   strlen (unescaped_search_text)) != 0))
+    {
         do_find (searchbar, FALSE);
         g_free (unescaped_search_text);
         g_free (selected_text);
@@ -300,7 +322,7 @@ do_replace (XedSearchbar *searchbar)
     }
 
     unescaped_replace_text = xed_utils_unescape_search_text (replace_entry_text);
-    replace_selected_text (GTK_TEXT_BUFFER (doc), unescaped_replace_text);
+    replace_selected_text (GTK_TEXT_BUFFER(doc), unescaped_replace_text);
 
     g_free (unescaped_search_text);
     g_free (selected_text);
@@ -322,46 +344,54 @@ do_replace_all (XedSearchbar *searchbar)
     gint count;
 
     active_view = xed_window_get_active_view (searchbar->window);
-    if (active_view == NULL) {
+    if (active_view == NULL)
+    {
         return;
     }
 
-    doc = XED_DOCUMENT (gtk_text_view_get_buffer (GTK_TEXT_VIEW (active_view)));
+    doc = XED_DOCUMENT(gtk_text_view_get_buffer (GTK_TEXT_VIEW (active_view)));
 
     search_entry_text = xed_searchbar_get_search_text (searchbar);
-    g_return_if_fail ((search_entry_text) != NULL);
-    g_return_if_fail ((*search_entry_text) != '\0');
+    g_return_if_fail((search_entry_text) != NULL);
+    g_return_if_fail((*search_entry_text) != '\0');
 
     /* replace text may be "", we just delete all occurrences */
     replace_entry_text = xed_searchbar_get_replace_text (searchbar);
-    g_return_if_fail ((replace_entry_text) != NULL);
+    g_return_if_fail((replace_entry_text) != NULL);
 
     match_case = xed_searchbar_get_match_case (searchbar);
     entire_word = xed_searchbar_get_entire_word (searchbar);
 
-    XED_SEARCH_SET_CASE_SENSITIVE (flags, match_case);
-    XED_SEARCH_SET_ENTIRE_WORD (flags, entire_word);
+    XED_SEARCH_SET_CASE_SENSITIVE(flags, match_case);
+    XED_SEARCH_SET_ENTIRE_WORD(flags, entire_word);
 
     count = xed_document_replace_all (doc, search_entry_text, replace_entry_text, flags);
 
-    if (count > 0) {
+    if (count > 0)
+    {
         text_found (searchbar->window, count);
     }
-    else {
+    else
+    {
         text_not_found (searchbar->window, search_entry_text);
     }
 
 }
 
 static void
-insert_text_handler (GtkEditable *editable, const gchar *text, gint length, gint *position, gpointer data)
+insert_text_handler (GtkEditable *editable,
+                     const gchar *text,
+                     gint length,
+                     gint *position,
+                     gpointer data)
 {
     static gboolean insert_text = FALSE;
     gchar *escaped_text;
     gint new_len;
 
     /* To avoid recursive behavior */
-    if (insert_text) {
+    if (insert_text)
+    {
         return;
     }
 
@@ -369,7 +399,8 @@ insert_text_handler (GtkEditable *editable, const gchar *text, gint length, gint
 
     new_len = strlen (escaped_text);
 
-    if (new_len == length) {
+    if (new_len == length)
+    {
         g_free (escaped_text);
         return;
     }
@@ -386,19 +417,22 @@ insert_text_handler (GtkEditable *editable, const gchar *text, gint length, gint
 }
 
 static void
-search_text_entry_changed (GtkEditable *editable, XedSearchbar *searchbar)
+search_text_entry_changed (GtkEditable *editable,
+                           XedSearchbar *searchbar)
 {
     const gchar *search_string;
 
-    search_string = gtk_entry_get_text (GTK_ENTRY (editable));
-    g_return_if_fail (search_string != NULL);
+    search_string = gtk_entry_get_text (GTK_ENTRY(editable));
+    g_return_if_fail(search_string != NULL);
 
-    if (*search_string != '\0') {
-        search_buttons_set_sensitive(searchbar, TRUE);
+    if (*search_string != '\0')
+    {
+        search_buttons_set_sensitive (searchbar, TRUE);
         do_find (searchbar, FALSE);
     }
-    else {
-        search_buttons_set_sensitive(searchbar, FALSE);
+    else
+    {
+        search_buttons_set_sensitive (searchbar, FALSE);
     }
 }
 
@@ -406,11 +440,12 @@ static void
 remember_search_entry (XedSearchbar *searchbar)
 {
     const gchar *str;
-    str = gtk_entry_get_text (GTK_ENTRY (searchbar->priv->search_text_entry));
-    if (*str != '\0') {
+    str = gtk_entry_get_text (GTK_ENTRY(searchbar->priv->search_text_entry));
+    if (*str != '\0')
+    {
         gchar *text;
         text = xed_utils_unescape_search_text (str);
-        xed_history_entry_prepend_text (XED_HISTORY_ENTRY (searchbar->priv->search_entry), text);
+        xed_history_entry_prepend_text (XED_HISTORY_ENTRY(searchbar->priv->search_entry), text);
         g_free (text);
     }
 }
@@ -419,31 +454,35 @@ static void
 remember_replace_entry (XedSearchbar *searchbar)
 {
     const gchar *str;
-    str = gtk_entry_get_text (GTK_ENTRY (searchbar->priv->replace_text_entry));
-    if (*str != '\0') {
+    str = gtk_entry_get_text (GTK_ENTRY(searchbar->priv->replace_text_entry));
+    if (*str != '\0')
+    {
         gchar *text;
         text = xed_utils_unescape_search_text (str);
-        xed_history_entry_prepend_text (XED_HISTORY_ENTRY (searchbar->priv->replace_entry), text);
+        xed_history_entry_prepend_text (XED_HISTORY_ENTRY(searchbar->priv->replace_entry), text);
         g_free (text);
     }
 }
 
 static void
-find_button_clicked_callback (GtkWidget *button, XedSearchbar *searchbar)
+find_button_clicked_callback (GtkWidget *button,
+                              XedSearchbar *searchbar)
 {
     remember_search_entry (searchbar);
     do_find (searchbar, FALSE);
 }
 
 static void
-find_prev_button_clicked_callback (GtkWidget *button, XedSearchbar *searchbar)
+find_prev_button_clicked_callback (GtkWidget *button,
+                                   XedSearchbar *searchbar)
 {
     remember_search_entry (searchbar);
     do_find (searchbar, TRUE);
 }
 
 static void
-replace_button_clicked_callback (GtkWidget *button, XedSearchbar *searchbar)
+replace_button_clicked_callback (GtkWidget *button,
+                                 XedSearchbar *searchbar)
 {
     remember_search_entry (searchbar);
     remember_replace_entry (searchbar);
@@ -451,7 +490,8 @@ replace_button_clicked_callback (GtkWidget *button, XedSearchbar *searchbar)
 }
 
 static void
-replace_all_button_clicked_callback (GtkWidget *button, XedSearchbar *searchbar)
+replace_all_button_clicked_callback (GtkWidget *button,
+                                     XedSearchbar *searchbar)
 {
     remember_search_entry (searchbar);
     remember_replace_entry (searchbar);
@@ -459,7 +499,8 @@ replace_all_button_clicked_callback (GtkWidget *button, XedSearchbar *searchbar)
 }
 
 static void
-on_search_text_entry_activated (GtkEntry *widget, XedSearchbar *searchbar)
+on_search_text_entry_activated (GtkEntry *widget,
+                                XedSearchbar *searchbar)
 {
     remember_search_entry (searchbar);
     do_find (searchbar, FALSE);
@@ -472,9 +513,9 @@ xed_searchbar_init (XedSearchbar *searchbar)
     GtkSizeGroup *size_group;
     GtkWidget *error_widget;
     gchar *file;
-    gchar *root_objects[] = {"searchbar_content", NULL};
+    gchar *root_objects[] = { "searchbar_content", NULL };
 
-    searchbar->priv = XED_SEARCHBAR_GET_PRIVATE (searchbar);
+    searchbar->priv = XED_SEARCHBAR_GET_PRIVATE(searchbar);
 
     file = xed_dirs_get_ui_file ("xed-searchbar.ui");
     xed_utils_get_ui_objects (file,
@@ -497,83 +538,83 @@ xed_searchbar_init (XedSearchbar *searchbar)
 
     searchbar->priv->search_entry = xed_history_entry_new ("history-search-for", TRUE);
     gtk_widget_set_hexpand (searchbar->priv->search_entry, TRUE);
-    xed_history_entry_set_escape_func (
-                XED_HISTORY_ENTRY (searchbar->priv->search_entry),
-                (XedHistoryEntryEscapeFunc) xed_utils_escape_search_text);
+    xed_history_entry_set_escape_func (XED_HISTORY_ENTRY(searchbar->priv->search_entry),
+                                       (XedHistoryEntryEscapeFunc) xed_utils_escape_search_text);
 
-    searchbar->priv->search_text_entry = xed_history_entry_get_entry (
-                XED_HISTORY_ENTRY (searchbar->priv->search_entry));
-    gtk_entry_set_activates_default (GTK_ENTRY (searchbar->priv->search_text_entry), TRUE);
+    searchbar->priv->search_text_entry = xed_history_entry_get_entry (XED_HISTORY_ENTRY(searchbar->priv->search_entry));
+    gtk_entry_set_activates_default (GTK_ENTRY(searchbar->priv->search_text_entry), TRUE);
 
     gtk_widget_show (searchbar->priv->search_entry);
-    gtk_grid_attach (GTK_GRID (searchbar->priv->grid), searchbar->priv->search_entry, 2, 0, 1, 1);
+    gtk_grid_attach (GTK_GRID(searchbar->priv->grid), searchbar->priv->search_entry, 2, 0, 1, 1);
 
     searchbar->priv->replace_entry = xed_history_entry_new ("history-replace-with", TRUE);
-    xed_history_entry_set_escape_func (
-                XED_HISTORY_ENTRY (searchbar->priv->replace_entry),
-                (XedHistoryEntryEscapeFunc) xed_utils_escape_search_text);
+    xed_history_entry_set_escape_func (XED_HISTORY_ENTRY(searchbar->priv->replace_entry),
+                                       (XedHistoryEntryEscapeFunc) xed_utils_escape_search_text);
 
     searchbar->priv->replace_text_entry = xed_history_entry_get_entry (
-                XED_HISTORY_ENTRY (searchbar->priv->replace_entry));
-    gtk_entry_set_activates_default (GTK_ENTRY (searchbar->priv->replace_text_entry), TRUE);
+                    XED_HISTORY_ENTRY(searchbar->priv->replace_entry));
+    gtk_entry_set_activates_default (GTK_ENTRY(searchbar->priv->replace_text_entry), TRUE);
 
     gtk_widget_show (searchbar->priv->replace_entry);
-    gtk_grid_attach (GTK_GRID (searchbar->priv->grid), searchbar->priv->replace_entry, 2, 1, 1, 1);
+    gtk_grid_attach (GTK_GRID(searchbar->priv->grid), searchbar->priv->replace_entry, 2, 1, 1, 1);
 
-    gtk_label_set_mnemonic_widget (GTK_LABEL (searchbar->priv->search_label), searchbar->priv->search_entry);
-    gtk_label_set_mnemonic_widget (GTK_LABEL (searchbar->priv->replace_label), searchbar->priv->replace_entry);
+    gtk_label_set_mnemonic_widget (GTK_LABEL(searchbar->priv->search_label), searchbar->priv->search_entry);
+    gtk_label_set_mnemonic_widget (GTK_LABEL(searchbar->priv->replace_label), searchbar->priv->replace_entry);
 
     size_group = gtk_size_group_new (GTK_SIZE_GROUP_HORIZONTAL);
-    gtk_size_group_add_widget (size_group, GTK_WIDGET (searchbar->priv->find_button));
-    gtk_size_group_add_widget (size_group, GTK_WIDGET (searchbar->priv->find_prev_button));
-    gtk_size_group_add_widget (size_group, GTK_WIDGET (searchbar->priv->replace_button));
-    gtk_size_group_add_widget (size_group, GTK_WIDGET (searchbar->priv->replace_all_button));
+    gtk_size_group_add_widget (size_group, GTK_WIDGET(searchbar->priv->find_button));
+    gtk_size_group_add_widget (size_group, GTK_WIDGET(searchbar->priv->find_prev_button));
+    gtk_size_group_add_widget (size_group, GTK_WIDGET(searchbar->priv->replace_button));
+    gtk_size_group_add_widget (size_group, GTK_WIDGET(searchbar->priv->replace_all_button));
 
     /* insensitive by default */
-    search_buttons_set_sensitive(searchbar, FALSE);
+    search_buttons_set_sensitive (searchbar, FALSE);
 
     xed_searchbar_hide (searchbar);
 
-    gtk_box_pack_start (GTK_BOX (searchbar), content, TRUE, TRUE, 0);
-    gtk_widget_show (GTK_WIDGET (searchbar));
+    gtk_box_pack_start (GTK_BOX(searchbar), content, TRUE, TRUE, 0);
+    gtk_widget_show (GTK_WIDGET(searchbar));
 
     g_object_unref (content);
 
-    g_signal_connect (searchbar->priv->search_text_entry, "insert_text",
-                      G_CALLBACK (insert_text_handler), NULL);
+    g_signal_connect(searchbar->priv->search_text_entry, "insert_text",
+                     G_CALLBACK (insert_text_handler), NULL);
 
-    g_signal_connect (searchbar->priv->replace_text_entry, "insert_text",
-                      G_CALLBACK (insert_text_handler), NULL);
+    g_signal_connect(searchbar->priv->replace_text_entry, "insert_text",
+                     G_CALLBACK (insert_text_handler), NULL);
 
-    g_signal_connect (searchbar->priv->search_text_entry, "changed",
-                      G_CALLBACK (search_text_entry_changed), searchbar);
+    g_signal_connect(searchbar->priv->search_text_entry, "changed",
+                     G_CALLBACK (search_text_entry_changed), searchbar);
 
-    g_signal_connect (searchbar->priv->search_text_entry, "activate",
-                      G_CALLBACK (on_search_text_entry_activated), searchbar);
+    g_signal_connect(searchbar->priv->search_text_entry, "activate",
+                     G_CALLBACK (on_search_text_entry_activated), searchbar);
 
-    g_signal_connect (searchbar->priv->find_button, "clicked",
-                      G_CALLBACK (find_button_clicked_callback), searchbar);
+    g_signal_connect(searchbar->priv->find_button, "clicked",
+                     G_CALLBACK (find_button_clicked_callback), searchbar);
 
-    g_signal_connect (searchbar->priv->find_prev_button, "clicked",
-                      G_CALLBACK (find_prev_button_clicked_callback), searchbar);
+    g_signal_connect(searchbar->priv->find_prev_button, "clicked",
+                     G_CALLBACK (find_prev_button_clicked_callback), searchbar);
 
-    g_signal_connect (searchbar->priv->replace_button, "clicked",
-                      G_CALLBACK (replace_button_clicked_callback), searchbar);
+    g_signal_connect(searchbar->priv->replace_button, "clicked",
+                     G_CALLBACK (replace_button_clicked_callback), searchbar);
 
-    g_signal_connect (searchbar->priv->replace_all_button, "clicked",
-                      G_CALLBACK (replace_all_button_clicked_callback), searchbar);
+    g_signal_connect(searchbar->priv->replace_all_button, "clicked",
+                     G_CALLBACK (replace_all_button_clicked_callback), searchbar);
 }
 
 GtkWidget *
-xed_searchbar_new (GtkWindow *parent, gboolean show_replace)
+xed_searchbar_new (GtkWindow *parent,
+                   gboolean show_replace)
 {
     XedSearchbar *searchbar;
     searchbar = g_object_new (XED_TYPE_SEARCHBAR, NULL);
     searchbar->window = parent;
-    return GTK_WIDGET (searchbar);
+    return GTK_WIDGET(searchbar);
 }
 
-void xed_searchbar_show (XedSearchbar *searchbar, gboolean show_replace)
+void
+xed_searchbar_show (XedSearchbar *searchbar,
+                    gboolean show_replace)
 {
     XedDocument *doc;
     gboolean selection_exists;
@@ -582,11 +623,12 @@ void xed_searchbar_show (XedSearchbar *searchbar, gboolean show_replace)
     gint sel_len;
 
     doc = xed_window_get_active_document (searchbar->window);
-    g_return_if_fail (doc != NULL);
+    g_return_if_fail(doc != NULL);
 
-    selection_exists = get_selected_text (GTK_TEXT_BUFFER (doc), &find_text, &sel_len);
+    selection_exists = get_selected_text (GTK_TEXT_BUFFER(doc), &find_text, &sel_len);
 
-    if (selection_exists && find_text != NULL && sel_len < 80) {
+    if (selection_exists && find_text != NULL && sel_len < 80)
+    {
         /*
          * Special case: if the currently selected text
          * is the same as the unescaped search text, use the
@@ -594,47 +636,52 @@ void xed_searchbar_show (XedSearchbar *searchbar, gboolean show_replace)
          * search for '\n' and then open the search searchbar again,
          * you'll get an unprintable single-character literal '\n' in the "search for" box).
          */
-        search_text = xed_searchbar_get_search_text (XED_SEARCHBAR (searchbar));
-        if (!(search_text != NULL && !strcmp(xed_utils_unescape_search_text(search_text), find_text))) {
+        search_text = xed_searchbar_get_search_text (XED_SEARCHBAR(searchbar));
+        if (!(search_text != NULL && !strcmp (xed_utils_unescape_search_text (search_text), find_text)))
+        {
             /* General case */
-            xed_searchbar_set_search_text (XED_SEARCHBAR (searchbar), find_text);
+            xed_searchbar_set_search_text (XED_SEARCHBAR(searchbar), find_text);
         }
         g_free (find_text);
     }
-    else {
+    else
+    {
         g_free (find_text);
     }
-    gtk_revealer_set_transition_type (GTK_REVEALER (searchbar->priv->revealer), GTK_REVEALER_TRANSITION_TYPE_SLIDE_UP);
-    gtk_revealer_set_reveal_child (GTK_REVEALER (searchbar->priv->revealer), TRUE);
-    if (show_replace) {
+    gtk_revealer_set_transition_type (GTK_REVEALER(searchbar->priv->revealer), GTK_REVEALER_TRANSITION_TYPE_SLIDE_UP);
+    gtk_revealer_set_reveal_child (GTK_REVEALER(searchbar->priv->revealer), TRUE);
+    if (show_replace)
+    {
         gtk_widget_show (searchbar->priv->replace_label);
         gtk_widget_show (searchbar->priv->replace_entry);
         gtk_widget_show (searchbar->priv->replace_all_button);
         gtk_widget_show (searchbar->priv->replace_button);
-        gtk_grid_set_row_spacing (GTK_GRID (searchbar->priv->grid), 10);
+        gtk_grid_set_row_spacing (GTK_GRID(searchbar->priv->grid), 10);
     }
-    else {
+    else
+    {
         gtk_widget_hide (searchbar->priv->replace_label);
         gtk_widget_hide (searchbar->priv->replace_entry);
         gtk_widget_hide (searchbar->priv->replace_all_button);
         gtk_widget_hide (searchbar->priv->replace_button);
-        gtk_grid_set_row_spacing (GTK_GRID (searchbar->priv->grid), 0);
+        gtk_grid_set_row_spacing (GTK_GRID(searchbar->priv->grid), 0);
     }
 
     gtk_widget_show (searchbar->priv->find_button);
     gtk_widget_grab_focus (searchbar->priv->search_text_entry);
 }
 
-void xed_searchbar_hide (XedSearchbar *searchbar)
+void
+xed_searchbar_hide (XedSearchbar *searchbar)
 {
-    gtk_revealer_set_transition_type (GTK_REVEALER (searchbar->priv->revealer),
-                                      GTK_REVEALER_TRANSITION_TYPE_SLIDE_DOWN);
-    gtk_revealer_set_reveal_child (GTK_REVEALER (searchbar->priv->revealer), FALSE);
+    gtk_revealer_set_transition_type (GTK_REVEALER(searchbar->priv->revealer), GTK_REVEALER_TRANSITION_TYPE_SLIDE_DOWN);
+    gtk_revealer_set_reveal_child (GTK_REVEALER(searchbar->priv->revealer), FALSE);
 
     // focus document
     XedView *active_view = xed_window_get_active_view (searchbar->window);
-    if (active_view != NULL) {
-        gtk_widget_grab_focus (GTK_WIDGET (active_view));
+    if (active_view != NULL)
+    {
+        gtk_widget_grab_focus (GTK_WIDGET(active_view));
     }
 
     // remove highlighting
@@ -642,12 +689,13 @@ void xed_searchbar_hide (XedSearchbar *searchbar)
 }
 
 void
-xed_searchbar_set_search_text (XedSearchbar *searchbar, const gchar *text)
+xed_searchbar_set_search_text (XedSearchbar *searchbar,
+                               const gchar *text)
 {
-    g_return_if_fail (XED_IS_SEARCHBAR (searchbar));
-    g_return_if_fail (text != NULL);
-    gtk_entry_set_text (GTK_ENTRY (searchbar->priv->search_text_entry), text);
-    search_buttons_set_sensitive(searchbar, (text != '\0'));
+    g_return_if_fail(XED_IS_SEARCHBAR (searchbar));
+    g_return_if_fail(text != NULL);
+    gtk_entry_set_text (GTK_ENTRY(searchbar->priv->search_text_entry), text);
+    search_buttons_set_sensitive (searchbar, (text != '\0'));
 }
 
 /*
@@ -656,64 +704,68 @@ xed_searchbar_set_search_text (XedSearchbar *searchbar, const gchar *text)
 const gchar *
 xed_searchbar_get_search_text (XedSearchbar *searchbar)
 {
-    g_return_val_if_fail (XED_IS_SEARCHBAR (searchbar), NULL);
-    return gtk_entry_get_text (GTK_ENTRY (searchbar->priv->search_text_entry));
+    g_return_val_if_fail(XED_IS_SEARCHBAR (searchbar), NULL);
+    return gtk_entry_get_text (GTK_ENTRY(searchbar->priv->search_text_entry));
 }
 
 void
-xed_searchbar_set_replace_text (XedSearchbar *searchbar, const gchar *text)
+xed_searchbar_set_replace_text (XedSearchbar *searchbar,
+                                const gchar *text)
 {
-    g_return_if_fail (XED_IS_SEARCHBAR (searchbar));
-    g_return_if_fail (text != NULL);
+    g_return_if_fail(XED_IS_SEARCHBAR (searchbar));
+    g_return_if_fail(text != NULL);
 
-    gtk_entry_set_text (GTK_ENTRY (searchbar->priv->replace_text_entry), text);
+    gtk_entry_set_text (GTK_ENTRY(searchbar->priv->replace_text_entry), text);
 }
 
 const gchar *
 xed_searchbar_get_replace_text (XedSearchbar *searchbar)
 {
-    g_return_val_if_fail (XED_IS_SEARCHBAR (searchbar), NULL);
-    return gtk_entry_get_text (GTK_ENTRY (searchbar->priv->replace_text_entry));
+    g_return_val_if_fail(XED_IS_SEARCHBAR (searchbar), NULL);
+    return gtk_entry_get_text (GTK_ENTRY(searchbar->priv->replace_text_entry));
 }
 
 void
-xed_searchbar_set_match_case (XedSearchbar *searchbar, gboolean match_case)
+xed_searchbar_set_match_case (XedSearchbar *searchbar,
+                              gboolean match_case)
 {
-    g_return_if_fail (XED_IS_SEARCHBAR (searchbar));
-    gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (searchbar->priv->match_case_checkbutton), match_case);
+    g_return_if_fail(XED_IS_SEARCHBAR (searchbar));
+    gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON(searchbar->priv->match_case_checkbutton), match_case);
 }
 
 gboolean
 xed_searchbar_get_match_case (XedSearchbar *searchbar)
 {
-    g_return_val_if_fail (XED_IS_SEARCHBAR (searchbar), FALSE);
-    return gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (searchbar->priv->match_case_checkbutton));
+    g_return_val_if_fail(XED_IS_SEARCHBAR (searchbar), FALSE);
+    return gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON(searchbar->priv->match_case_checkbutton));
 }
 
 void
-xed_searchbar_set_entire_word (XedSearchbar *searchbar, gboolean entire_word)
+xed_searchbar_set_entire_word (XedSearchbar *searchbar,
+                               gboolean entire_word)
 {
-    g_return_if_fail (XED_IS_SEARCHBAR (searchbar));
-    gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (searchbar->priv->entire_word_checkbutton), entire_word);
+    g_return_if_fail(XED_IS_SEARCHBAR (searchbar));
+    gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON(searchbar->priv->entire_word_checkbutton), entire_word);
 }
 
 gboolean
 xed_searchbar_get_entire_word (XedSearchbar *searchbar)
 {
-    g_return_val_if_fail (XED_IS_SEARCHBAR (searchbar), FALSE);
-    return gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (searchbar->priv->entire_word_checkbutton));
+    g_return_val_if_fail(XED_IS_SEARCHBAR (searchbar), FALSE);
+    return gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON(searchbar->priv->entire_word_checkbutton));
 }
 
 void
-xed_searchbar_set_wrap_around (XedSearchbar *searchbar, gboolean wrap_around)
+xed_searchbar_set_wrap_around (XedSearchbar *searchbar,
+                               gboolean wrap_around)
 {
-    g_return_if_fail (XED_IS_SEARCHBAR (searchbar));
-    gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (searchbar->priv->wrap_around_checkbutton), wrap_around);
+    g_return_if_fail(XED_IS_SEARCHBAR (searchbar));
+    gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON(searchbar->priv->wrap_around_checkbutton), wrap_around);
 }
 
 gboolean
 xed_searchbar_get_wrap_around (XedSearchbar *searchbar)
 {
-    g_return_val_if_fail (XED_IS_SEARCHBAR (searchbar), FALSE);
-    return gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (searchbar->priv->wrap_around_checkbutton));
+    g_return_val_if_fail(XED_IS_SEARCHBAR (searchbar), FALSE);
+    return gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON(searchbar->priv->wrap_around_checkbutton));
 }
