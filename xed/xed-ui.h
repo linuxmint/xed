@@ -53,9 +53,9 @@ static const GtkActionEntry xed_always_sensitive_menu_entries[] =
 	{ "Help", NULL, N_("_Help") },
 
 	/* File menu */
-	{ "FileNew", GTK_STOCK_NEW, NULL, "<control>N",
+	{ "FileNew", "document-new-symbolic", N_("_New"), "<control>N",
 	  N_("Create a new document"), G_CALLBACK (_xed_cmd_file_new) },
-	{ "FileOpen", GTK_STOCK_OPEN, N_("_Open..."), "<control>O",
+	{ "FileOpen", "document-open-symbolic", N_("_Open..."), "<control>O",
 	  N_("Open a file"), G_CALLBACK (_xed_cmd_file_open) },
 
 	/* Edit menu */
@@ -69,7 +69,7 @@ static const GtkActionEntry xed_always_sensitive_menu_entries[] =
 	 N_("About this application"), G_CALLBACK (_xed_cmd_help_about) },
 	
 	/* Fullscreen toolbar */
-	{ "LeaveFullscreen", GTK_STOCK_LEAVE_FULLSCREEN, NULL,
+	{ "LeaveFullscreen", "view-restore-symbolic", NULL,
 	  NULL, N_("Leave fullscreen mode"),
 	  G_CALLBACK (_xed_cmd_view_leave_fullscreen_mode) }
 };
@@ -77,7 +77,7 @@ static const GtkActionEntry xed_always_sensitive_menu_entries[] =
 static const GtkActionEntry xed_menu_entries[] =
 {
 	/* File menu */
-	{ "FileSave", GTK_STOCK_SAVE, NULL, "<control>S",
+	{ "FileSave", "document-save-symbolic", N_("_Save"), "<control>S",
 	  N_("Save the current file"), G_CALLBACK (_xed_cmd_file_save) },
 	{ "FileSaveAs", GTK_STOCK_SAVE_AS, N_("Save _As..."), "<shift><control>S",
 	  N_("Save the current file with a different name"), G_CALLBACK (_xed_cmd_file_save_as) },
@@ -89,15 +89,15 @@ static const GtkActionEntry xed_menu_entries[] =
 	  N_("Print the current page"), G_CALLBACK (_xed_cmd_file_print) },
 
 	/* Edit menu */
-	{ "EditUndo", GTK_STOCK_UNDO, NULL, "<control>Z",
+	{ "EditUndo", "edit-undo-symbolic", N_("Undo"), "<control>Z",
 	  N_("Undo the last action"), G_CALLBACK (_xed_cmd_edit_undo) },
-	{ "EditRedo", GTK_STOCK_REDO, NULL, "<control>Y",
+	{ "EditRedo", "edit-redo-symbolic", N_("Redo"), "<control>Y",
 	  N_("Redo the last undone action"), G_CALLBACK (_xed_cmd_edit_redo) },
-	{ "EditCut", GTK_STOCK_CUT, NULL, "<control>X",
+	{ "EditCut", "edit-cut-symbolic", N_("Cut"), "<control>X",
 	  N_("Cut the selection"), G_CALLBACK (_xed_cmd_edit_cut) },
-	{ "EditCopy", GTK_STOCK_COPY, NULL, "<control>C",
+	{ "EditCopy", "edit-copy-symbolic", N_("Copy"), "<control>C",
 	  N_("Copy the selection"), G_CALLBACK (_xed_cmd_edit_copy) },
-	{ "EditPaste", GTK_STOCK_PASTE, NULL, "<control>V",
+	{ "EditPaste", "edit-paste-symbolic", N_("Paste"), "<control>V",
 	  N_("Paste the clipboard"), G_CALLBACK (_xed_cmd_edit_paste) },
 	{ "EditDelete", GTK_STOCK_DELETE, NULL, NULL,
 	  N_("Delete the selected text"), G_CALLBACK (_xed_cmd_edit_delete) },
@@ -108,13 +108,13 @@ static const GtkActionEntry xed_menu_entries[] =
 	{ "ViewHighlightMode", NULL, N_("_Highlight Mode") },
 
 	/* Search menu */
-	{ "SearchFind", GTK_STOCK_FIND, N_("_Find..."), "<control>F",
+	{ "SearchFind", "edit-find-symbolic", N_("_Find"), "<control>F",
 	  N_("Search for text"), G_CALLBACK (_xed_cmd_search_find) },
 	{ "SearchFindNext", NULL, N_("Find Ne_xt"), "<control>G",
 	  N_("Search forwards for the same text"), G_CALLBACK (_xed_cmd_search_find_next) },
 	{ "SearchFindPrevious", NULL, N_("Find Pre_vious"), "<shift><control>G",
 	  N_("Search backwards for the same text"), G_CALLBACK (_xed_cmd_search_find_prev) },
-	{ "SearchReplace", GTK_STOCK_FIND_AND_REPLACE, N_("_Replace..."), "<control>H",
+	{ "SearchReplace", "edit-find-replace-symbolic", N_("_Replace"), "<control>H",
 	  N_("Search for and replace text"), G_CALLBACK (_xed_cmd_search_replace) },
 	{ "SearchGoToLine", GTK_STOCK_JUMP_TO, N_("Go to _Line..."), "<control>I",
 	  N_("Go to a specific line"), G_CALLBACK (_xed_cmd_search_goto_line) },

@@ -393,34 +393,6 @@ disconnect_proxy_cb (GtkUIManager *manager,
     }
 }
 
-static void
-apply_toolbar_style (XedWindow *window,
-                     GtkWidget *toolbar)
-{
-    switch (window->priv->toolbar_style)
-    {
-        case XED_TOOLBAR_SYSTEM:
-            xed_debug_message (DEBUG_WINDOW, "XED: SYSTEM");
-            gtk_toolbar_unset_style (GTK_TOOLBAR(toolbar));
-            break;
-
-        case XED_TOOLBAR_ICONS:
-            xed_debug_message (DEBUG_WINDOW, "XED: ICONS");
-            gtk_toolbar_set_style (GTK_TOOLBAR(toolbar), GTK_TOOLBAR_ICONS);
-            break;
-
-        case XED_TOOLBAR_ICONS_AND_TEXT:
-            xed_debug_message (DEBUG_WINDOW, "XED: ICONS_AND_TEXT");
-            gtk_toolbar_set_style (GTK_TOOLBAR(toolbar), GTK_TOOLBAR_BOTH);
-            break;
-
-        case XED_TOOLBAR_ICONS_BOTH_HORIZ:
-            xed_debug_message (DEBUG_WINDOW, "XED: ICONS_BOTH_HORIZ");
-            gtk_toolbar_set_style (GTK_TOOLBAR(toolbar), GTK_TOOLBAR_BOTH_HORIZ);
-            break;
-    }
-}
-
 /* Returns TRUE if toolbar is visible */
 static gboolean
 set_toolbar_style (XedWindow *window,
@@ -455,20 +427,6 @@ set_toolbar_style (XedWindow *window,
     {
         gtk_toggle_action_set_active (GTK_TOGGLE_ACTION(action), visible);
     }
-
-    /* Set style */
-    if (origin == NULL)
-    {
-        style = xed_prefs_manager_get_toolbar_buttons_style ();
-    }
-    else
-    {
-        style = origin->priv->toolbar_style;
-    }
-
-    window->priv->toolbar_style = style;
-
-    apply_toolbar_style (window, window->priv->toolbar);
 
     return visible;
 }
@@ -951,19 +909,6 @@ open_recent_file (const gchar *uri,
 }
 
 static void
-recent_chooser_item_activated (GtkRecentChooser *chooser,
-                               XedWindow *window)
-{
-    gchar *uri;
-
-    uri = gtk_recent_chooser_get_current_uri (chooser);
-
-    open_recent_file (uri, window);
-
-    g_free (uri);
-}
-
-static void
 recents_menu_activate (GtkAction *action,
                        XedWindow *window)
 {
@@ -1117,13 +1062,6 @@ update_recent_files_menu (XedWindow *window)
 }
 
 static void
-set_non_homogeneus (GtkWidget *widget,
-                    gpointer data)
-{
-    gtk_tool_item_set_homogeneous (GTK_TOOL_ITEM(widget), FALSE);
-}
-
-static void
 toolbar_visibility_changed (GtkWidget *toolbar,
                             XedWindow *window)
 {
@@ -1146,45 +1084,21 @@ toolbar_visibility_changed (GtkWidget *toolbar,
 }
 
 static GtkWidget *
-setup_toolbar_open_button (XedWindow *window,
-                           GtkWidget *toolbar)
+create_toolbar_button (GtkAction *action)
 {
-    GtkRecentManager *recent_manager;
-    GtkRecentFilter *filter;
-    GtkWidget *toolbar_recent_menu;
-    GtkToolItem *open_button;
-    GtkAction *action;
+    GtkWidget *button;
+    GtkWidget *image;
 
-    recent_manager = gtk_recent_manager_get_default ();
+    button = gtk_button_new ();
+    image = gtk_image_new ();
 
-    /* recent files menu tool button */
-    toolbar_recent_menu = gtk_recent_chooser_menu_new_for_manager (recent_manager);
+    gtk_button_set_image (GTK_BUTTON (button), image);
+    gtk_style_context_add_class (gtk_widget_get_style_context (button), "flat");
+    gtk_activatable_set_related_action (GTK_ACTIVATABLE (button), action);
+    gtk_button_set_label (GTK_BUTTON (button), NULL);
+    gtk_widget_set_tooltip_text (button, gtk_action_get_tooltip (action));
 
-    gtk_recent_chooser_set_local_only (GTK_RECENT_CHOOSER(toolbar_recent_menu),
-    FALSE);
-    gtk_recent_chooser_set_sort_type (GTK_RECENT_CHOOSER(toolbar_recent_menu), GTK_RECENT_SORT_MRU);
-    gtk_recent_chooser_set_limit (GTK_RECENT_CHOOSER(toolbar_recent_menu), xed_prefs_manager_get_max_recents ());
-
-    filter = gtk_recent_filter_new ();
-    gtk_recent_filter_add_group (filter, "xed");
-    gtk_recent_chooser_set_filter (GTK_RECENT_CHOOSER(toolbar_recent_menu), filter);
-
-    g_signal_connect(toolbar_recent_menu, "item_activated", G_CALLBACK (recent_chooser_item_activated), window);
-
-    /* add the custom Open button to the toolbar */
-    open_button = gtk_menu_tool_button_new_from_stock (GTK_STOCK_OPEN);
-    gtk_menu_tool_button_set_menu (GTK_MENU_TOOL_BUTTON(open_button), toolbar_recent_menu);
-
-    gtk_tool_item_set_tooltip_text (open_button, _("Open a file"));
-    gtk_menu_tool_button_set_arrow_tooltip_text (GTK_MENU_TOOL_BUTTON(open_button), _("Open a recently used file"));
-
-    action = gtk_action_group_get_action (window->priv->always_sensitive_action_group, "FileOpen");
-    g_object_set (action, "short_label", _("Open"), NULL);
-    gtk_activatable_set_related_action (GTK_ACTIVATABLE(open_button), action);
-
-    gtk_toolbar_insert (GTK_TOOLBAR(toolbar), open_button, 1);
-
-    return toolbar_recent_menu;
+    return button;
 }
 
 static void
@@ -1197,6 +1111,11 @@ create_menu_bar_and_toolbar (XedWindow *window,
     GtkRecentManager *recent_manager;
     GError *error = NULL;
     gchar *ui_file;
+    GtkWidget *tool_item;
+    GtkWidget *tool_box;
+    GtkWidget *box;
+    GtkWidget *separator;
+    GtkWidget *button;
 
     xed_debug (DEBUG_WINDOW);
 
@@ -1222,16 +1141,6 @@ create_menu_bar_and_toolbar (XedWindow *window,
     gtk_ui_manager_insert_action_group (manager, action_group, 0);
     g_object_unref (action_group);
     window->priv->action_group = action_group;
-
-    /* set short labels to use in the toolbar */
-    action = gtk_action_group_get_action (action_group, "FileSave");
-    g_object_set (action, "short_label", _("Save"), NULL);
-    action = gtk_action_group_get_action (action_group, "FilePrint");
-    g_object_set (action, "short_label", _("Print"), NULL);
-    action = gtk_action_group_get_action (action_group, "SearchFind");
-    g_object_set (action, "short_label", _("Find"), NULL);
-    action = gtk_action_group_get_action (action_group, "SearchReplace");
-    g_object_set (action, "short_label", _("Replace"), NULL);
 
     action_group = gtk_action_group_new ("XedQuitWindowActions");
     gtk_action_group_set_translation_domain (action_group, NULL);
@@ -1302,16 +1211,81 @@ create_menu_bar_and_toolbar (XedWindow *window,
     window->priv->menubar = gtk_ui_manager_get_widget (manager, "/MenuBar");
     gtk_box_pack_start (GTK_BOX(main_box), window->priv->menubar, FALSE, FALSE, 0);
 
-    window->priv->toolbar = gtk_ui_manager_get_widget (manager, "/ToolBar");
-    gtk_style_context_add_class (gtk_widget_get_style_context (window->priv->toolbar),
-    GTK_STYLE_CLASS_PRIMARY_TOOLBAR);
+    window->priv->toolbar = gtk_toolbar_new ();
+    gtk_style_context_add_class (gtk_widget_get_style_context (window->priv->toolbar), GTK_STYLE_CLASS_PRIMARY_TOOLBAR);
     gtk_box_pack_start (GTK_BOX(main_box), window->priv->toolbar, FALSE, FALSE, 0);
 
+    tool_item = gtk_tool_item_new ();
+    gtk_tool_item_set_expand (GTK_TOOL_ITEM (tool_item), TRUE);
+    gtk_toolbar_insert (GTK_TOOLBAR (window->priv->toolbar), GTK_TOOL_ITEM (tool_item), 0);
+
+    tool_box = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 6);
+    gtk_container_add (GTK_CONTAINER (tool_item), tool_box);
+
+    box = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 0);
+    gtk_box_pack_start (GTK_BOX (tool_box), box, FALSE, FALSE, 0);
+
+    action = gtk_action_group_get_action (window->priv->always_sensitive_action_group, "FileNew");
+    button = create_toolbar_button (action);
+    gtk_box_pack_start (GTK_BOX (box), button, FALSE, FALSE, 0);
+
+    action = gtk_action_group_get_action (window->priv->always_sensitive_action_group, "FileOpen");
+    button = create_toolbar_button (action);
+    gtk_box_pack_start (GTK_BOX (box), button, FALSE, FALSE, 0);
+
+    action = gtk_action_group_get_action (window->priv->action_group, "FileSave");
+    button = create_toolbar_button (action);
+    gtk_box_pack_start (GTK_BOX (box), button, FALSE, FALSE, 0);
+
+    separator = gtk_separator_new (GTK_ORIENTATION_VERTICAL);
+    gtk_box_pack_start (GTK_BOX (tool_box), separator, FALSE, FALSE, 0);
+
+    box = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 0);
+    gtk_box_pack_start (GTK_BOX (tool_box), box, FALSE, FALSE, 0);
+
+    action = gtk_action_group_get_action (window->priv->action_group, "EditUndo");
+    button = create_toolbar_button (action);
+    gtk_box_pack_start (GTK_BOX (box), button, FALSE, FALSE, 0);
+
+    action = gtk_action_group_get_action (window->priv->action_group, "EditRedo");
+    button = create_toolbar_button (action);
+    gtk_box_pack_start (GTK_BOX (box), button, FALSE, FALSE, 0);
+
+    separator = gtk_separator_new (GTK_ORIENTATION_VERTICAL);
+    gtk_box_pack_start (GTK_BOX (tool_box), separator, FALSE, FALSE, 0);
+
+    box = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 0);
+    gtk_box_pack_start (GTK_BOX (tool_box), box, FALSE, FALSE, 0);
+
+    action = gtk_action_group_get_action (window->priv->action_group, "EditCut");
+    button = create_toolbar_button (action);
+    gtk_box_pack_start (GTK_BOX (box), button, FALSE, FALSE, 0);
+
+    action = gtk_action_group_get_action (window->priv->action_group, "EditCopy");
+    button = create_toolbar_button (action);
+    gtk_box_pack_start (GTK_BOX (box), button, FALSE, FALSE, 0);
+
+    action = gtk_action_group_get_action (window->priv->action_group, "EditPaste");
+    button = create_toolbar_button (action);
+    gtk_box_pack_start (GTK_BOX (box), button, FALSE, FALSE, 0);
+
+    separator = gtk_separator_new (GTK_ORIENTATION_VERTICAL);
+    gtk_box_pack_start (GTK_BOX (tool_box), separator, FALSE, FALSE, 0);
+
+    box = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 0);
+    gtk_box_pack_start (GTK_BOX (tool_box), box, FALSE, FALSE, 0);
+
+    action = gtk_action_group_get_action (window->priv->action_group, "SearchFind");
+    button = create_toolbar_button (action);
+    gtk_box_pack_start (GTK_BOX (box), button, FALSE, FALSE, 0);
+
+    action = gtk_action_group_get_action (window->priv->action_group, "SearchReplace");
+    button = create_toolbar_button (action);
+    gtk_box_pack_start (GTK_BOX (box), button, FALSE, FALSE, 0);
+
+    gtk_widget_show_all (GTK_WIDGET (window->priv->toolbar));
+
     set_toolbar_style (window, NULL);
-
-    window->priv->toolbar_recent_menu = setup_toolbar_open_button (window, window->priv->toolbar);
-
-    gtk_container_foreach (GTK_CONTAINER(window->priv->toolbar), (GtkCallback) set_non_homogeneus, NULL);
 
     g_signal_connect_after(G_OBJECT (window->priv->toolbar), "show", G_CALLBACK (toolbar_visibility_changed), window);
     g_signal_connect_after(G_OBJECT (window->priv->toolbar), "hide", G_CALLBACK (toolbar_visibility_changed), window);
@@ -2404,16 +2378,16 @@ fullscreen_controls_show (XedWindow *window)
 {
     GdkScreen *screen;
     GdkRectangle fs_rect;
-    gint w, h;
+    gint min_h, nat_h;
 
-    screen = gtk_window_get_screen (GTK_WINDOW(window));
+    screen = gtk_window_get_screen (GTK_WINDOW (window));
     gdk_screen_get_monitor_geometry (
                     screen, gdk_screen_get_monitor_at_window (screen, gtk_widget_get_window (GTK_WIDGET(window))),
                     &fs_rect);
 
-    gtk_window_get_size (GTK_WINDOW(window->priv->fullscreen_controls), &w, &h);
-    gtk_window_resize (GTK_WINDOW(window->priv->fullscreen_controls), fs_rect.width, h);
-    gtk_window_move (GTK_WINDOW(window->priv->fullscreen_controls), fs_rect.x, fs_rect.y - h + 1);
+    gtk_widget_get_preferred_height (window->priv->fullscreen_controls_container, &min_h, &nat_h);
+    gtk_window_resize (GTK_WINDOW (window->priv->fullscreen_controls), fs_rect.width, nat_h);
+    gtk_window_move (GTK_WINDOW (window->priv->fullscreen_controls), fs_rect.x, fs_rect.y - nat_h + 1);
 
     gtk_widget_show_all (window->priv->fullscreen_controls);
 }
@@ -2544,9 +2518,11 @@ static void
 fullscreen_controls_build (XedWindow *window)
 {
     XedWindowPrivate *priv = window->priv;
-    GtkWidget *toolbar;
-    GtkWidget *toolbar_recent_menu;
     GtkAction *action;
+    GtkWidget *box;
+    GtkWidget *fullscreen_btn;
+    GtkWidget *separator;
+    GtkWidget *button;
 
     if (priv->fullscreen_controls != NULL)
     {
@@ -2557,19 +2533,69 @@ fullscreen_controls_build (XedWindow *window)
 
     gtk_window_set_transient_for (GTK_WINDOW(priv->fullscreen_controls), &window->window);
 
-    /* popup toolbar */
-    toolbar = gtk_ui_manager_get_widget (priv->manager, "/FullscreenToolBar");
-    gtk_container_add (GTK_CONTAINER(priv->fullscreen_controls), toolbar);
+    window->priv->fullscreen_controls_container = gtk_box_new (GTK_ORIENTATION_VERTICAL, 0);
+    gtk_container_set_border_width (GTK_CONTAINER (window->priv->fullscreen_controls_container), 6);
+    gtk_container_add (GTK_CONTAINER (priv->fullscreen_controls), window->priv->fullscreen_controls_container);
+
+    box = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 0);
+    gtk_widget_set_vexpand (box, FALSE);
+    gtk_box_pack_start (GTK_BOX (window->priv->fullscreen_controls_container), box, FALSE, FALSE, 0);
+
+    action = gtk_action_group_get_action (window->priv->always_sensitive_action_group, "FileNew");
+    button = create_toolbar_button (action);
+    gtk_box_pack_start (GTK_BOX (box), button, FALSE, FALSE, 0);
+
+    action = gtk_action_group_get_action (window->priv->always_sensitive_action_group, "FileOpen");
+    button = create_toolbar_button (action);
+    gtk_box_pack_start (GTK_BOX (box), button, FALSE, FALSE, 0);
+
+    action = gtk_action_group_get_action (window->priv->action_group, "FileSave");
+    button = create_toolbar_button (action);
+    gtk_box_pack_start (GTK_BOX (box), button, FALSE, FALSE, 0);
+
+    separator = gtk_separator_new (GTK_ORIENTATION_VERTICAL);
+    gtk_box_pack_start (GTK_BOX (box), separator, FALSE, FALSE, 6);
+
+    action = gtk_action_group_get_action (window->priv->action_group, "EditUndo");
+    button = create_toolbar_button (action);
+    gtk_box_pack_start (GTK_BOX (box), button, FALSE, FALSE, 0);
+
+    action = gtk_action_group_get_action (window->priv->action_group, "EditRedo");
+    button = create_toolbar_button (action);
+    gtk_box_pack_start (GTK_BOX (box), button, FALSE, FALSE, 0);
+
+    separator = gtk_separator_new (GTK_ORIENTATION_VERTICAL);
+    gtk_box_pack_start (GTK_BOX (box), separator, FALSE, FALSE, 6);
+
+    action = gtk_action_group_get_action (window->priv->action_group, "EditCut");
+    button = create_toolbar_button (action);
+    gtk_box_pack_start (GTK_BOX (box), button, FALSE, FALSE, 0);
+
+    action = gtk_action_group_get_action (window->priv->action_group, "EditCopy");
+    button = create_toolbar_button (action);
+    gtk_box_pack_start (GTK_BOX (box), button, FALSE, FALSE, 0);
+
+    action = gtk_action_group_get_action (window->priv->action_group, "EditPaste");
+    button = create_toolbar_button (action);
+    gtk_box_pack_start (GTK_BOX (box), button, FALSE, FALSE, 0);
+
+    separator = gtk_separator_new (GTK_ORIENTATION_VERTICAL);
+    gtk_box_pack_start (GTK_BOX (box), separator, FALSE, FALSE, 6);
+
+    action = gtk_action_group_get_action (window->priv->action_group, "SearchFind");
+    button = create_toolbar_button (action);
+    gtk_box_pack_start (GTK_BOX (box), button, FALSE, FALSE, 0);
+
+    action = gtk_action_group_get_action (window->priv->action_group, "SearchReplace");
+    button = create_toolbar_button (action);
+    gtk_box_pack_start (GTK_BOX (box), button, FALSE, FALSE, 0);
 
     action = gtk_action_group_get_action (priv->always_sensitive_action_group, "LeaveFullscreen");
     g_object_set (action, "is-important", TRUE, NULL);
+    fullscreen_btn = create_toolbar_button (action);
+    gtk_box_pack_end (GTK_BOX (box), fullscreen_btn, FALSE, FALSE, 0);
 
-    toolbar_recent_menu = setup_toolbar_open_button (window, toolbar);
-
-    gtk_container_foreach (GTK_CONTAINER(toolbar), (GtkCallback) set_non_homogeneus, NULL);
-
-    /* Set the toolbar style */
-    gtk_toolbar_set_style (GTK_TOOLBAR(toolbar), GTK_TOOLBAR_BOTH_HORIZ);
+    gtk_widget_show_all (window->priv->fullscreen_controls_container);
 
     g_signal_connect(priv->fullscreen_controls, "enter-notify-event",
                      G_CALLBACK (on_fullscreen_controls_enter_notify_event), window);
