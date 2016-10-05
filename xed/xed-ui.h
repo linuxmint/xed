@@ -59,13 +59,13 @@ static const GtkActionEntry xed_always_sensitive_menu_entries[] =
 	  N_("Open a file"), G_CALLBACK (_xed_cmd_file_open) },
 
 	/* Edit menu */
-	{ "EditPreferences", GTK_STOCK_PREFERENCES, N_("Pr_eferences"), NULL,
+	{ "EditPreferences", "preferences-other-symbolic", N_("Pr_eferences"), NULL,
 	  N_("Configure the application"), G_CALLBACK (_xed_cmd_edit_preferences) },
 
 	/* Help menu */
-	{"HelpContents", GTK_STOCK_HELP, N_("_Contents"), "F1",
+	{"HelpContents", "help-contents-symbolic", N_("_Contents"), "F1",
 	 N_("Open the xed manual"), G_CALLBACK (_xed_cmd_help_contents) },
-	{ "HelpAbout", GTK_STOCK_ABOUT, NULL, NULL,
+	{ "HelpAbout", "help-about-symbolic", N_("About"), NULL,
 	 N_("About this application"), G_CALLBACK (_xed_cmd_help_about) },
 	
 	/* Fullscreen toolbar */
@@ -79,13 +79,13 @@ static const GtkActionEntry xed_menu_entries[] =
 	/* File menu */
 	{ "FileSave", "document-save-symbolic", N_("_Save"), "<control>S",
 	  N_("Save the current file"), G_CALLBACK (_xed_cmd_file_save) },
-	{ "FileSaveAs", GTK_STOCK_SAVE_AS, N_("Save _As..."), "<shift><control>S",
+	{ "FileSaveAs", "document-save-as-symbolic", N_("Save _As..."), "<shift><control>S",
 	  N_("Save the current file with a different name"), G_CALLBACK (_xed_cmd_file_save_as) },
-	{ "FileRevert", GTK_STOCK_REVERT_TO_SAVED, NULL, NULL,
+	{ "FileRevert", "document-revert-symbolic", N_("Revert"), NULL,
 	  N_("Revert to a saved version of the file"), G_CALLBACK (_xed_cmd_file_revert) },
-	{ "FilePrintPreview", GTK_STOCK_PRINT_PREVIEW, N_("Print Previe_w"),"<control><shift>P",
+	{ "FilePrintPreview", "document-print-preview-symbolic", N_("Print Previe_w"),"<control><shift>P",
 	  N_("Print preview"), G_CALLBACK (_xed_cmd_file_print_preview) },
-	 { "FilePrint", GTK_STOCK_PRINT, N_("_Print..."), "<control>P",
+	 { "FilePrint", "document-print-symbolic", N_("_Print..."), "<control>P",
 	  N_("Print the current page"), G_CALLBACK (_xed_cmd_file_print) },
 
 	/* Edit menu */
@@ -99,9 +99,9 @@ static const GtkActionEntry xed_menu_entries[] =
 	  N_("Copy the selection"), G_CALLBACK (_xed_cmd_edit_copy) },
 	{ "EditPaste", "edit-paste-symbolic", N_("Paste"), "<control>V",
 	  N_("Paste the clipboard"), G_CALLBACK (_xed_cmd_edit_paste) },
-	{ "EditDelete", GTK_STOCK_DELETE, NULL, NULL,
+	{ "EditDelete", "edit-delete-symbolic", N_("Delete"), NULL,
 	  N_("Delete the selected text"), G_CALLBACK (_xed_cmd_edit_delete) },
-	{ "EditSelectAll", GTK_STOCK_SELECT_ALL, N_("Select _All"), "<control>A",
+	{ "EditSelectAll", "edit-select-all-symbolic", N_("Select _All"), "<control>A",
 	  N_("Select the entire document"), G_CALLBACK (_xed_cmd_edit_select_all) },
 
 	/* View menu */
@@ -116,13 +116,13 @@ static const GtkActionEntry xed_menu_entries[] =
 	  N_("Search backwards for the same text"), G_CALLBACK (_xed_cmd_search_find_prev) },
 	{ "SearchReplace", "edit-find-replace-symbolic", N_("_Replace"), "<control>H",
 	  N_("Search for and replace text"), G_CALLBACK (_xed_cmd_search_replace) },
-	{ "SearchGoToLine", GTK_STOCK_JUMP_TO, N_("Go to _Line..."), "<control>I",
+	{ "SearchGoToLine", "go-jump-symbolic", N_("Go to _Line..."), "<control>I",
 	  N_("Go to a specific line"), G_CALLBACK (_xed_cmd_search_goto_line) },
 
 	/* Documents menu */
-	{ "FileSaveAll", GTK_STOCK_SAVE, N_("_Save All"), "<shift><control>L",
+	{ "FileSaveAll", "document-save-symbolic", N_("_Save All"), "<shift><control>L",
 	  N_("Save all open files"), G_CALLBACK (_xed_cmd_file_save_all) },
-	{ "FileCloseAll", GTK_STOCK_CLOSE, N_("_Close All"), "<shift><control>W",
+	{ "FileCloseAll", "window-close-symbolic", N_("_Close All"), "<shift><control>W",
 	  N_("Close all open files"), G_CALLBACK (_xed_cmd_file_close_all) },
 	{ "DocumentsPreviousDocument", NULL, N_("_Previous Document"), "<alt><control>Page_Up",
 	  N_("Activate previous document"), G_CALLBACK (_xed_cmd_documents_previous_document) },
@@ -135,14 +135,14 @@ static const GtkActionEntry xed_menu_entries[] =
 /* separate group, needs to be sensitive on OS X even when there are no tabs */
 static const GtkActionEntry xed_close_menu_entries[] =
 {
-	{ "FileClose", GTK_STOCK_CLOSE, NULL, "<control>W",
+	{ "FileClose", "window-close-symbolic", N_("_Close"), "<control>W",
 	  N_("Close the current file"), G_CALLBACK (_xed_cmd_file_close) }
 };
 
 /* separate group, should be sensitive even when there are no tabs */
 static const GtkActionEntry xed_quit_menu_entries[] =
 {
-	{ "FileQuit", GTK_STOCK_QUIT, NULL, "<control>Q",
+	{ "FileQuit", "application-exit-symbolic", N_("_Quit"), "<control>Q",
 	  N_("Quit the program"), G_CALLBACK (_xed_cmd_file_quit) }
 };
 
