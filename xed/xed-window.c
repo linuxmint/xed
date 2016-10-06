@@ -399,7 +399,6 @@ set_toolbar_style (XedWindow *window,
                    XedWindow *origin)
 {
     gboolean visible;
-    XedToolbarSetting style;
     GtkAction *action;
 
     if (origin == NULL)

@@ -74,7 +74,6 @@
 
 /* UI */
 #define GPM_TOOLBAR_VISIBLE			"toolbar-visible"
-#define GPM_TOOLBAR_BUTTONS_STYLE	"toolbar-buttons-style"
 
 #define GPM_STATUSBAR_VISIBLE		"statusbar-visible"
 
@@ -114,13 +113,6 @@
 /* Fallback default values. Keep in sync with org.x.editor.gschema.xml */
 #define GPM_DEFAULT_AUTO_SAVE_INTERVAL	10 /* minutes */
 #define GPM_DEFAULT_MAX_RECENTS			5
-
-typedef enum {
-	XED_TOOLBAR_SYSTEM = 0,
-	XED_TOOLBAR_ICONS,
-	XED_TOOLBAR_ICONS_AND_TEXT,
-	XED_TOOLBAR_ICONS_BOTH_HORIZ
-} XedToolbarSetting;
 
 /** LIFE CYCLE MANAGEMENT FUNCTIONS **/
 
@@ -194,11 +186,6 @@ gboolean		 xed_prefs_manager_display_line_numbers_can_set (void);
 gboolean		 xed_prefs_manager_get_toolbar_visible	(void);
 void			 xed_prefs_manager_set_toolbar_visible	(gboolean tv);
 gboolean		 xed_prefs_manager_toolbar_visible_can_set	(void);
-
-/* Toolbar buttons style */
-XedToolbarSetting 	 xed_prefs_manager_get_toolbar_buttons_style	(void);
-void 			 xed_prefs_manager_set_toolbar_buttons_style	(XedToolbarSetting tbs);
-gboolean		 xed_prefs_manager_toolbar_buttons_style_can_set (void);
 
 /* Statusbar visible */
 gboolean		 xed_prefs_manager_get_statusbar_visible	(void);
