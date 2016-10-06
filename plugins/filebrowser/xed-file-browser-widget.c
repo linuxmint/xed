@@ -794,33 +794,33 @@ static GtkActionEntry toplevel_actions[] =
 
 static const GtkActionEntry tree_actions_selection[] =
 {
-    {"FileMoveToTrash", "mate-stock-trash", N_("_Move to Trash"), NULL,
+    {"FileMoveToTrash", "user-trash", N_("_Move to Trash"), NULL,
      N_("Move selected file or folder to trash"),
      G_CALLBACK (on_action_file_move_to_trash)},
-    {"FileDelete", GTK_STOCK_DELETE, N_("_Delete"), NULL,
+    {"FileDelete", "edit-delete-symbolic", N_("_Delete"), NULL,
      N_("Delete selected file or folder"),
      G_CALLBACK (on_action_file_delete)}
 };
 
 static const GtkActionEntry tree_actions_file_selection[] =
 {
-    {"FileOpen", GTK_STOCK_OPEN, NULL, NULL,
+    {"FileOpen", "document-open-symbolic", N_("Open"), NULL,
      N_("Open selected file"),
      G_CALLBACK (on_action_file_open)}
 };
 
 static const GtkActionEntry tree_actions[] =
 {
-    {"DirectoryUp", GTK_STOCK_GO_UP, N_("Up"), NULL,
+    {"DirectoryUp", "go-up-symbolic", N_("Up"), NULL,
      N_("Open the parent folder"), G_CALLBACK (on_action_directory_up)}
 };
 
 static const GtkActionEntry tree_actions_single_most_selection[] =
 {
-    {"DirectoryNew", GTK_STOCK_ADD, N_("_New Folder"), NULL,
+    {"DirectoryNew", "folder-new-symbolic", N_("_New Folder"), NULL,
      N_("Add new empty folder"),
      G_CALLBACK (on_action_directory_new)},
-    {"FileNew", GTK_STOCK_NEW, N_("New F_ile"), NULL,
+    {"FileNew", "document-new-symbolic", N_("New F_ile"), NULL,
      N_("Add new empty file"), G_CALLBACK (on_action_file_new)}
 };
 
@@ -833,15 +833,14 @@ static const GtkActionEntry tree_actions_single_selection[] =
 
 static const GtkActionEntry tree_actions_sensitive[] =
 {
-    {"DirectoryPrevious", GTK_STOCK_GO_BACK, N_("_Previous Location"),
-     NULL,
+    {"DirectoryPrevious", "go-previous-symbolic", N_("_Previous Location"), NULL,
      N_("Go to the previous visited location"),
      G_CALLBACK (on_action_directory_previous)},
-    {"DirectoryNext", GTK_STOCK_GO_FORWARD, N_("_Next Location"), NULL,
+    {"DirectoryNext", "go-next-symbolic", N_("_Next Location"), NULL,
      N_("Go to the next visited location"), G_CALLBACK (on_action_directory_next)},
-    {"DirectoryRefresh", GTK_STOCK_REFRESH, N_("Re_fresh View"), NULL,
+    {"DirectoryRefresh", "view-refresh-symbolic", N_("Re_fresh View"), NULL,
      N_("Refresh the view"), G_CALLBACK (on_action_directory_refresh)},
-    {"DirectoryOpen", GTK_STOCK_OPEN, N_("_View Folder"), NULL,
+    {"DirectoryOpen", "folder-open-symbolic", N_("_View Folder"), NULL,
      N_("View folder in file manager"),
      G_CALLBACK (on_action_directory_open)}
 };
@@ -859,7 +858,7 @@ static const GtkToggleActionEntry tree_actions_toggle[] =
 
 static const GtkActionEntry bookmark_actions[] =
 {
-    {"BookmarkOpen", GTK_STOCK_OPEN, N_("_View Folder"), NULL,
+    {"BookmarkOpen", "folder-open-symbolic", N_("_View Folder"), NULL,
      N_("View folder in file manager"), G_CALLBACK (on_action_bookmark_open)}
 };
 
