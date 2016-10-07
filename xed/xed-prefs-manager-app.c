@@ -1316,8 +1316,8 @@ xed_prefs_manager_source_style_scheme_changed (GSettings *settings,
 
 static void
 xed_prefs_manager_max_recents_changed (GSettings *settings,
-					 gchar       *key,
-					 gpointer     user_data)
+                                       gchar     *key,
+                                       gpointer   user_data)
 {
 	xed_debug (DEBUG_PREFS);
 
@@ -1328,19 +1328,9 @@ xed_prefs_manager_max_recents_changed (GSettings *settings,
 
 		max = g_settings_get_int (settings, key);
 
-		if (max < 0) {
+		if (max < 0)
+        {
 			max = GPM_DEFAULT_MAX_RECENTS;
-		}
-
-		windows = xed_app_get_windows (xed_app_get_default ());
-		while (windows != NULL)
-		{
-			XedWindow *w = windows->data;
-
-			gtk_recent_chooser_set_limit (GTK_RECENT_CHOOSER (w->priv->toolbar_recent_menu),
-						      max);
-
-			windows = g_list_next (windows);
 		}
 
 		/* FIXME: we have no way at the moment to trigger the

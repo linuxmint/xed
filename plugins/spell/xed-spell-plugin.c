@@ -88,7 +88,7 @@ static void	auto_spell_cb	(GtkAction *action, XedWindow *window);
 static const GtkActionEntry action_entries[] =
 {
 	{ "CheckSpell",
-	  GTK_STOCK_SPELL_CHECK,
+	  "tools-check-spelling-symbolic",
 	  N_("_Check Spelling..."),
 	  "<shift>F7",
 	  N_("Check the current document for incorrect spelling"),

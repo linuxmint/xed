@@ -56,6 +56,7 @@ struct _XedWindowPrivate
 
 	/* Widgets for fullscreen mode */
 	GtkWidget      *fullscreen_controls;
+    GtkWidget      *fullscreen_controls_container;
 	guint           fullscreen_animation_timeout_id;
 	gboolean        fullscreen_animation_enter;
 
@@ -79,9 +80,7 @@ struct _XedWindowPrivate
 	GtkActionGroup *documents_list_action_group;
 	guint           documents_list_menu_ui_id;
 	GtkWidget      *toolbar;
-	GtkWidget      *toolbar_recent_menu;
 	GtkWidget      *menubar;
-	XedToolbarSetting toolbar_style;
 
 	/* recent files */
 	GtkActionGroup *recents_action_group;
