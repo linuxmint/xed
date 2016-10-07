@@ -47,17 +47,9 @@ xed_close_button_class_init (XedCloseButtonClass *klass)
 static void
 xed_close_button_init (XedCloseButton *button)
 {
-	GtkRcStyle *rcstyle;
 	GtkWidget *image;
 
-	/* make it as small as possible */
-	rcstyle = gtk_rc_style_new ();
-	rcstyle->xthickness = rcstyle->ythickness = 0;
-	gtk_widget_modify_style (GTK_WIDGET (button), rcstyle);
-	g_object_unref (rcstyle);
-
-	image = gtk_image_new_from_stock (GTK_STOCK_CLOSE,
-					  GTK_ICON_SIZE_MENU);
+	image = gtk_image_new_from_icon_name ("window-close-symbolic", GTK_ICON_SIZE_MENU);
 	gtk_widget_show (image);
 
 	gtk_container_add (GTK_CONTAINER (button), image);
