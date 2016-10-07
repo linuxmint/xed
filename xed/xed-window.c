@@ -3945,7 +3945,7 @@ hide_notebook_tabs_on_fullscreen (GtkNotebook *notebook,
 void
 _xed_window_fullscreen (XedWindow *window)
 {
-    g_return_if_fail(XED_IS_WINDOW (window));
+    g_return_if_fail (XED_IS_WINDOW (window));
 
     if (_xed_window_is_fullscreen (window))
     {
@@ -3954,16 +3954,13 @@ _xed_window_fullscreen (XedWindow *window)
 
     /* Go to fullscreen mode and hide bars */
     gtk_window_fullscreen (&window->window);
-    gtk_notebook_set_show_tabs (GTK_NOTEBOOK(window->priv->notebook), FALSE);
-    g_signal_connect(window->priv->notebook, "notify::show-tabs",
-                G_CALLBACK (hide_notebook_tabs_on_fullscreen), window);
 
     gtk_widget_hide (window->priv->menubar);
 
-    g_signal_handlers_block_by_func(window->priv->toolbar, toolbar_visibility_changed, window);
+    g_signal_handlers_block_by_func (window->priv->toolbar, toolbar_visibility_changed, window);
     gtk_widget_hide (window->priv->toolbar);
 
-    g_signal_handlers_block_by_func(window->priv->statusbar, statusbar_visibility_changed, window);
+    g_signal_handlers_block_by_func (window->priv->statusbar, statusbar_visibility_changed, window);
     gtk_widget_hide (window->priv->statusbar);
 
     fullscreen_controls_build (window);
@@ -3976,7 +3973,7 @@ _xed_window_unfullscreen (XedWindow *window)
     gboolean visible;
     GtkAction *action;
 
-    g_return_if_fail(XED_IS_WINDOW (window));
+    g_return_if_fail (XED_IS_WINDOW (window));
 
     if (!_xed_window_is_fullscreen (window))
     {
@@ -3985,25 +3982,24 @@ _xed_window_unfullscreen (XedWindow *window)
 
     /* Unfullscreen and show bars */
     gtk_window_unfullscreen (&window->window);
-    g_signal_handlers_disconnect_by_func(window->priv->notebook, hide_notebook_tabs_on_fullscreen, window);
-    gtk_notebook_set_show_tabs (GTK_NOTEBOOK(window->priv->notebook), TRUE);
+    g_signal_handlers_disconnect_by_func (window->priv->notebook, hide_notebook_tabs_on_fullscreen, window);
     gtk_widget_show (window->priv->menubar);
 
     action = gtk_action_group_get_action (window->priv->always_sensitive_action_group, "ViewToolbar");
-    visible = gtk_toggle_action_get_active (GTK_TOGGLE_ACTION(action));
+    visible = gtk_toggle_action_get_active (GTK_TOGGLE_ACTION (action));
     if (visible)
     {
         gtk_widget_show (window->priv->toolbar);
     }
-    g_signal_handlers_unblock_by_func(window->priv->toolbar, toolbar_visibility_changed, window);
+    g_signal_handlers_unblock_by_func (window->priv->toolbar, toolbar_visibility_changed, window);
 
     action = gtk_action_group_get_action (window->priv->always_sensitive_action_group, "ViewStatusbar");
-    visible = gtk_toggle_action_get_active (GTK_TOGGLE_ACTION(action));
+    visible = gtk_toggle_action_get_active (GTK_TOGGLE_ACTION (action));
     if (visible)
     {
         gtk_widget_show (window->priv->statusbar);
     }
-    g_signal_handlers_unblock_by_func(window->priv->statusbar, statusbar_visibility_changed, window);
+    g_signal_handlers_unblock_by_func (window->priv->statusbar, statusbar_visibility_changed, window);
 
     gtk_widget_hide (window->priv->fullscreen_controls);
 }
