@@ -65,7 +65,7 @@ static const GtkActionEntry xed_always_sensitive_menu_entries[] =
 	/* Help menu */
 	{"HelpContents", "help-contents-symbolic", N_("_Contents"), "F1",
 	 N_("Open the xed manual"), G_CALLBACK (_xed_cmd_help_contents) },
-	{ "HelpAbout", "help-about-symbolic", N_("About"), NULL,
+	{ "HelpAbout", "help-about-symbolic", N_("_About"), NULL,
 	 N_("About this application"), G_CALLBACK (_xed_cmd_help_about) },
 	
 	/* Fullscreen toolbar */
@@ -89,17 +89,17 @@ static const GtkActionEntry xed_menu_entries[] =
 	  N_("Print the current page"), G_CALLBACK (_xed_cmd_file_print) },
 
 	/* Edit menu */
-	{ "EditUndo", "edit-undo-symbolic", N_("Undo"), "<control>Z",
+	{ "EditUndo", "edit-undo-symbolic", N_("_Undo"), "<control>Z",
 	  N_("Undo the last action"), G_CALLBACK (_xed_cmd_edit_undo) },
-	{ "EditRedo", "edit-redo-symbolic", N_("Redo"), "<control>Y",
+	{ "EditRedo", "edit-redo-symbolic", N_("_Redo"), "<control>Y",
 	  N_("Redo the last undone action"), G_CALLBACK (_xed_cmd_edit_redo) },
-	{ "EditCut", "edit-cut-symbolic", N_("Cut"), "<control>X",
+	{ "EditCut", "edit-cut-symbolic", N_("C_ut"), "<control>X",
 	  N_("Cut the selection"), G_CALLBACK (_xed_cmd_edit_cut) },
-	{ "EditCopy", "edit-copy-symbolic", N_("Copy"), "<control>C",
+	{ "EditCopy", "edit-copy-symbolic", N_("_Copy"), "<control>C",
 	  N_("Copy the selection"), G_CALLBACK (_xed_cmd_edit_copy) },
-	{ "EditPaste", "edit-paste-symbolic", N_("Paste"), "<control>V",
+	{ "EditPaste", "edit-paste-symbolic", N_("_Paste"), "<control>V",
 	  N_("Paste the clipboard"), G_CALLBACK (_xed_cmd_edit_paste) },
-	{ "EditDelete", "edit-delete-symbolic", N_("Delete"), NULL,
+	{ "EditDelete", "edit-delete-symbolic", N_("_Delete"), NULL,
 	  N_("Delete the selected text"), G_CALLBACK (_xed_cmd_edit_delete) },
 	{ "EditSelectAll", "edit-select-all-symbolic", N_("Select _All"), "<control>A",
 	  N_("Select the entire document"), G_CALLBACK (_xed_cmd_edit_select_all) },
