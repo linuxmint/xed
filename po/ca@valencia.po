@@ -7,17 +7,17 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MATE Desktop Environment\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-01-27 11:07+0000\n"
-"PO-Revision-Date: 2016-01-26 16:31+0000\n"
-"Last-Translator: Stefano Karapetsas <stefano@karapetsas.com>\n"
+"POT-Creation-Date: 2016-11-02 18:13+0000\n"
+"PO-Revision-Date: 2016-07-08 18:21+0000\n"
+"Last-Translator: smauleon <smauleon@gmail.com>\n"
 "Language-Team: Catalan (Valencian) "
 "(http://www.transifex.com/projects/p/MATE/language/ca@valencia/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2016-06-25 09:31+0000\n"
-"X-Generator: Launchpad (build 18111)\n"
+"X-Launchpad-Export-Date: 2016-11-09 17:15+0000\n"
+"X-Generator: Launchpad (build 18255)\n"
 "Language: ca@valencia\n"
 
 #: ../data/org.x.editor.gschema.xml.in.h:1
@@ -31,11 +31,15 @@ msgid ""
 "font named in the \"Editor Font\" option will be used instead of the system "
 "font."
 msgstr ""
+"Determina si per editar text s'usarà la lletra d'amplada fixa del sistema, "
+"en lloc d'una lletra específica de xed. Si desactiveu aquesta opció, "
+"aleshores es farà servir la lletra indicada a l'opció \"Lletra de "
+"l'Editor\", i no la lletra del sistema."
 
 #: ../data/org.x.editor.gschema.xml.in.h:3
 msgctxt "editor-font"
 msgid "'Monospace 12'"
-msgstr ""
+msgstr "'Monospace 12'"
 
 #: ../data/org.x.editor.gschema.xml.in.h:4
 msgid "Editor Font"
@@ -69,16 +73,22 @@ msgid ""
 "Whether xed should create backup copies for the files it saves. You can set "
 "the backup file extension with the \"Backup Copy Extension\" option."
 msgstr ""
+"Determina si xed ha de crear còpies de seguretat dels fitxers que desa. "
+"Podeu indicar l'extensió del fitxer de còpia de seguretat amb l'opció "
+"\"Extensió de la Còpia de Seguretat\"."
 
 #: ../data/org.x.editor.gschema.xml.in.h:10
 msgid "Autosave"
-msgstr "Alça automàticament"
+msgstr "Autodesat"
 
 #: ../data/org.x.editor.gschema.xml.in.h:11
 msgid ""
 "Whether xed should automatically save modified files after a time interval. "
 "You can set the time interval with the \"Autosave Interval\" option."
 msgstr ""
+"Determina si xed ha de desar automàticament els fitxers modificats passat un "
+"interval de temps. Podeu indicar l'interval de temps amb l'opció \"Interval "
+"d'Autodesat\"."
 
 #: ../data/org.x.editor.gschema.xml.in.h:12
 msgid "Autosave Interval"
@@ -89,6 +99,8 @@ msgid ""
 "Number of minutes after which xed will automatically save modified files. "
 "This will only take effect if the \"Autosave\" option is turned on."
 msgstr ""
+"Nombre de minuts passats els quals xed desarà automàticament els documents "
+"modificats. Només té efecte amb l'opció \"Autodesat\" activada."
 
 #: ../data/org.x.editor.gschema.xml.in.h:14
 msgid "Writable VFS schemes"
@@ -99,6 +111,8 @@ msgid ""
 "List of VFS schemes xed supports in write mode. The 'file' scheme is "
 "writable by default."
 msgstr ""
+"Llista d'esquemes VFS que xed suporta en mode d'escriptura. L'esquema "
+"'arxiu' és d'escriptura per defecte."
 
 #: ../data/org.x.editor.gschema.xml.in.h:16
 msgid "Maximum Number of Undo Actions"
@@ -109,6 +123,8 @@ msgid ""
 "Maximum number of actions that xed will be able to undo or redo. Use \"-1\" "
 "for unlimited number of actions."
 msgstr ""
+"Màxim nombre d'accions que xed podrà desfer o refer. Useu \"-1\" per un "
+"nombre il·limitat d'accions"
 
 #: ../data/org.x.editor.gschema.xml.in.h:18
 msgid "Line Wrapping Mode"
@@ -147,7 +163,7 @@ msgstr "Insereix espais"
 
 #: ../data/org.x.editor.gschema.xml.in.h:23
 msgid "Whether xed should insert spaces instead of tabs."
-msgstr ""
+msgstr "Activa la inserció d'espais en lloc de tabulacions"
 
 #: ../data/org.x.editor.gschema.xml.in.h:24
 msgid "Automatic indent"
@@ -155,7 +171,7 @@ msgstr "Sagna automàticament"
 
 #: ../data/org.x.editor.gschema.xml.in.h:25
 msgid "Whether xed should enable automatic indentation."
-msgstr ""
+msgstr "Activa la indentació automàtica"
 
 #: ../data/org.x.editor.gschema.xml.in.h:26
 msgid "Display Line Numbers"
@@ -163,7 +179,7 @@ msgstr "Mostra els números de línia"
 
 #: ../data/org.x.editor.gschema.xml.in.h:27
 msgid "Whether xed should display line numbers in the editing area."
-msgstr ""
+msgstr "Indica si xed ha de mostrar números de línia en l'àrea d'edició."
 
 #: ../data/org.x.editor.gschema.xml.in.h:28
 msgid "Highlight Current Line"
@@ -171,7 +187,7 @@ msgstr "Ressalta la línia actual"
 
 #: ../data/org.x.editor.gschema.xml.in.h:29
 msgid "Whether xed should highlight the current line."
-msgstr ""
+msgstr "Indica si xed ha de destacar la línia actual."
 
 #: ../data/org.x.editor.gschema.xml.in.h:30
 msgid "Highlight Matching Bracket"
@@ -180,6 +196,7 @@ msgstr "Ressalta el claudàtor concordant"
 #: ../data/org.x.editor.gschema.xml.in.h:31
 msgid "Whether xed should highlight the bracket matching the selected one."
 msgstr ""
+"Indica si xed ha de destacar el claudàtor corresponent al seleccionat."
 
 #: ../data/org.x.editor.gschema.xml.in.h:32
 msgid "Display Right Margin"
@@ -187,7 +204,7 @@ msgstr "Mostra el marge dret"
 
 #: ../data/org.x.editor.gschema.xml.in.h:33
 msgid "Whether xed should display the right margin in the editing area."
-msgstr ""
+msgstr "Indica si xed ha de mostrar el marge dret en l'àrea d'edició."
 
 #: ../data/org.x.editor.gschema.xml.in.h:34
 msgid "Right Margin Position"
@@ -229,6 +246,8 @@ msgid ""
 "Whether xed should restore the previous cursor position when a file is "
 "loaded."
 msgstr ""
+"Indica si xed ha de restaurar la posició anterior del cursor en carregar un "
+"fitxer."
 
 #: ../data/org.x.editor.gschema.xml.in.h:40
 msgid "Enable Search Highlighting"
@@ -237,7 +256,7 @@ msgstr "Habilita el ressaltat de la cerca"
 #: ../data/org.x.editor.gschema.xml.in.h:41
 msgid ""
 "Whether xed should highlight all the occurrences of the searched text."
-msgstr ""
+msgstr "Indica si xed ha de destacar totes les ocurrències del text buscat."
 
 #: ../data/org.x.editor.gschema.xml.in.h:42
 msgid "Enable Syntax Highlighting"
@@ -245,7 +264,7 @@ msgstr "Habilita el ressaltat de la sintaxi"
 
 #: ../data/org.x.editor.gschema.xml.in.h:43
 msgid "Whether xed should enable syntax highlighting."
-msgstr ""
+msgstr "Indica si xed ha d'activar el ressaltat de sintaxi."
 
 #: ../data/org.x.editor.gschema.xml.in.h:44
 msgid "Toolbar is Visible"
@@ -256,55 +275,41 @@ msgid "Whether the toolbar should be visible in editing windows."
 msgstr "Si la barra d'eines hauria de ser visible en les finestres d'edició."
 
 #: ../data/org.x.editor.gschema.xml.in.h:46
-msgid "Toolbar Buttons Style"
-msgstr "Estil dels botons de la barra d'eines"
-
-#: ../data/org.x.editor.gschema.xml.in.h:47
-msgid ""
-"Style for the toolbar buttons. Possible values are \"XED_TOOLBAR_SYSTEM\" to "
-"use the system's default style, \"XED_TOOLBAR_ICONS\" to display icons only, "
-"\"XED_TOOLBAR_ICONS_AND_TEXT\" to display both icons and text, and "
-"\"XED_TOOLBAR_ICONS_BOTH_HORIZ\" to display prioritized text beside icons. "
-"Note that the values are case-sensitive, so make sure they appear exactly as "
-"mentioned here."
-msgstr ""
-
-#: ../data/org.x.editor.gschema.xml.in.h:48
 msgid "Status Bar is Visible"
 msgstr "La barra d'estat és visible"
 
-#: ../data/org.x.editor.gschema.xml.in.h:49
+#: ../data/org.x.editor.gschema.xml.in.h:47
 msgid ""
 "Whether the status bar at the bottom of editing windows should be visible."
 msgstr ""
 "Si la barra d'estat a la part inferior de les finestres d'edició hauria de "
 "ser visible."
 
-#: ../data/org.x.editor.gschema.xml.in.h:50
+#: ../data/org.x.editor.gschema.xml.in.h:48
 msgid "Side Pane is Visible"
 msgstr "El quadre del costat és visible"
 
-#: ../data/org.x.editor.gschema.xml.in.h:51
+#: ../data/org.x.editor.gschema.xml.in.h:49
 msgid ""
 "Whether the side pane at the left of editing windows should be visible."
 msgstr ""
 "Si hauria de ser visible el quadre lateral de l'esquerra de la finestra "
 "d'edició."
 
-#: ../data/org.x.editor.gschema.xml.in.h:52
+#: ../data/org.x.editor.gschema.xml.in.h:50
 msgid "Bottom Panel is Visible"
 msgstr "El quadre inferior és visible"
 
-#: ../data/org.x.editor.gschema.xml.in.h:53
+#: ../data/org.x.editor.gschema.xml.in.h:51
 msgid ""
 "Whether the bottom panel at the bottom of editing windows should be visible."
 msgstr "Si el quadre inferior de la finestra d'edició hauria de ser visible."
 
-#: ../data/org.x.editor.gschema.xml.in.h:54
+#: ../data/org.x.editor.gschema.xml.in.h:52
 msgid "Maximum Recent Files"
 msgstr "Màxim de fitxers recents"
 
-#: ../data/org.x.editor.gschema.xml.in.h:55
+#: ../data/org.x.editor.gschema.xml.in.h:53
 msgid ""
 "Specifies the maximum number of recently opened files that will be displayed "
 "in the \"Recent Files\" submenu."
@@ -312,27 +317,27 @@ msgstr ""
 "Especifica el número màxim de fitxers recentment oberts que es mostraran en "
 "el submenú «Fitxers recents»."
 
-#: ../data/org.x.editor.gschema.xml.in.h:56
+#: ../data/org.x.editor.gschema.xml.in.h:54
 msgid "Print Syntax Highlighting"
 msgstr "Imprimeix el ressaltat de sintaxi"
 
-#: ../data/org.x.editor.gschema.xml.in.h:57
+#: ../data/org.x.editor.gschema.xml.in.h:55
 msgid "Whether xed should print syntax highlighting when printing documents."
-msgstr ""
+msgstr "Indica si xed ha d'imprimir els documents destacant la sintaxi."
 
-#: ../data/org.x.editor.gschema.xml.in.h:58
+#: ../data/org.x.editor.gschema.xml.in.h:56
 msgid "Print Header"
 msgstr "Imprimeix la capçalera"
 
-#: ../data/org.x.editor.gschema.xml.in.h:59
+#: ../data/org.x.editor.gschema.xml.in.h:57
 msgid "Whether xed should include a document header when printing documents."
-msgstr ""
+msgstr "Indica si xed ha d'incloure una capçalera en imprimir documents."
 
-#: ../data/org.x.editor.gschema.xml.in.h:60
+#: ../data/org.x.editor.gschema.xml.in.h:58
 msgid "Printing Line Wrapping Mode"
 msgstr "Mode d'ajustament de línia en la impressió"
 
-#: ../data/org.x.editor.gschema.xml.in.h:61
+#: ../data/org.x.editor.gschema.xml.in.h:59
 msgid ""
 "Specifies how to wrap long lines for printing. Use \"GTK_WRAP_NONE\" for no "
 "wrapping, \"GTK_WRAP_WORD\" for wrapping at word boundaries, and "
@@ -346,42 +351,45 @@ msgstr ""
 "individuals. Recordeu que els valors són sensibles a majúscules i "
 "minúscules, assegureu-vos que apareixen exactament com es mencionen ací."
 
-#: ../data/org.x.editor.gschema.xml.in.h:62
+#: ../data/org.x.editor.gschema.xml.in.h:60
 msgid "Print Line Numbers"
 msgstr "Imprimeix els números de línia"
 
-#: ../data/org.x.editor.gschema.xml.in.h:63
+#: ../data/org.x.editor.gschema.xml.in.h:61
 msgid ""
 "If this value is 0, then no line numbers will be inserted when printing a "
 "document. Otherwise, xed will print line numbers every such number of lines."
 msgstr ""
+"Si aquest valor és 0, no s'insereixen números de línia en imprimir "
+"documents. En cas contrari, xed imprimirà el número de línia cada X línies, "
+"on X és el valor indicat."
 
-#: ../data/org.x.editor.gschema.xml.in.h:64
+#: ../data/org.x.editor.gschema.xml.in.h:62
 msgctxt "print-font-body-pango"
 msgid "'Monospace 9'"
-msgstr ""
+msgstr "'Monospace 9'"
 
-#: ../data/org.x.editor.gschema.xml.in.h:65
+#: ../data/org.x.editor.gschema.xml.in.h:63
 msgid "Body Font for Printing"
 msgstr "Tipus de lletra del cos per imprimir"
 
-#: ../data/org.x.editor.gschema.xml.in.h:66
+#: ../data/org.x.editor.gschema.xml.in.h:64
 msgid ""
 "Specifies the font to use for a document's body when printing documents."
 msgstr ""
 "Especifica el tipus de lletra a utilitzar pel cos d'un document en imprimir "
 "documents."
 
-#: ../data/org.x.editor.gschema.xml.in.h:67
+#: ../data/org.x.editor.gschema.xml.in.h:65
 msgctxt "print-font-header-pango"
 msgid "'Sans 11'"
-msgstr ""
+msgstr "'Sans 11'"
 
-#: ../data/org.x.editor.gschema.xml.in.h:68
+#: ../data/org.x.editor.gschema.xml.in.h:66
 msgid "Header Font for Printing"
 msgstr "Tipus de lletra de les capçaleres per imprimir"
 
-#: ../data/org.x.editor.gschema.xml.in.h:69
+#: ../data/org.x.editor.gschema.xml.in.h:67
 msgid ""
 "Specifies the font to use for page headers when printing a document. This "
 "will only take effect if the \"Print Header\" option is turned on."
@@ -390,16 +398,16 @@ msgstr ""
 "imprimir un document. Només afectarà si l'opció «Imprimeix capçaleres» està "
 "habilitada."
 
-#: ../data/org.x.editor.gschema.xml.in.h:70
+#: ../data/org.x.editor.gschema.xml.in.h:68
 msgctxt "print-font-numbers-pango"
 msgid "'Sans 8'"
-msgstr ""
+msgstr "'Sans 8'"
 
-#: ../data/org.x.editor.gschema.xml.in.h:71
+#: ../data/org.x.editor.gschema.xml.in.h:69
 msgid "Line Number Font for Printing"
 msgstr "Tipus de lletra dels números de línia per imprimir"
 
-#: ../data/org.x.editor.gschema.xml.in.h:72
+#: ../data/org.x.editor.gschema.xml.in.h:70
 msgid ""
 "Specifies the font to use for line numbers when printing. This will only "
 "take effect if the \"Print Line Numbers\" option is non-zero."
@@ -407,32 +415,36 @@ msgstr ""
 "Especifica el tipus de lletra dels números de línia en imprimir. Només "
 "afectarà si l'opció «Imprimeix els números de línia» no equival a zero."
 
-#: ../data/org.x.editor.gschema.xml.in.h:73
+#: ../data/org.x.editor.gschema.xml.in.h:71
 msgctxt "auto-detected"
 msgid "[ 'UTF-8', 'CURRENT', 'ISO-8859-15', 'UTF-16' ]"
-msgstr ""
+msgstr "[ 'UTF-8', 'CURRENT', 'ISO-8859-15', 'UTF-16' ]"
 
-#: ../data/org.x.editor.gschema.xml.in.h:74
+#: ../data/org.x.editor.gschema.xml.in.h:72
 msgid "Automatically Detected Encodings"
 msgstr "Codificacions detectades automàticament"
 
-#: ../data/org.x.editor.gschema.xml.in.h:75
+#: ../data/org.x.editor.gschema.xml.in.h:73
 msgid ""
 "Sorted list of encodings used by xed for automatically detecting the "
 "encoding of a file. \"CURRENT\" represents the current locale encoding. Only "
 "recognized encodings are used."
 msgstr ""
+"Llista ordenada de les codificacions usades per xed per detectar "
+"automàticament la codificació d'un fitxer. \"ACTUAL\" representa la "
+"codificació regional actual. Només es fan servir les codificacions "
+"reconegudes."
 
-#: ../data/org.x.editor.gschema.xml.in.h:76
+#: ../data/org.x.editor.gschema.xml.in.h:74
 msgctxt "shown-in-menu"
 msgid "[ 'ISO-8859-15' ]"
-msgstr ""
+msgstr "[ 'ISO-8859-15' ]"
 
-#: ../data/org.x.editor.gschema.xml.in.h:77
+#: ../data/org.x.editor.gschema.xml.in.h:75
 msgid "Encodings shown in menu"
 msgstr "Codificacions mostrades al menú"
 
-#: ../data/org.x.editor.gschema.xml.in.h:78
+#: ../data/org.x.editor.gschema.xml.in.h:76
 msgid ""
 "List of encodings shown in the Character Encoding menu in open/save file "
 "selector. Only recognized encodings are used."
@@ -440,35 +452,37 @@ msgstr ""
 "Llista de les codificacions mostrades al menú de codificació de caràcters al "
 "diàleg obri/alça de fitxer. Només s'utilitzen codificacions reconegudes."
 
-#: ../data/org.x.editor.gschema.xml.in.h:79
+#: ../data/org.x.editor.gschema.xml.in.h:77
 msgid "History for \"search for\" entries"
-msgstr ""
+msgstr "Historial de les entrades \"buscar\""
+
+#: ../data/org.x.editor.gschema.xml.in.h:78
+msgid "List of entries in \"search for\" textbox."
+msgstr "Llista d'entrades a la caixa de text \"buscar\""
+
+#: ../data/org.x.editor.gschema.xml.in.h:79
+msgid "History for \"replace with\" entries"
+msgstr "Historial de les entrades «substituir per»"
 
 #: ../data/org.x.editor.gschema.xml.in.h:80
-msgid "List of entries in \"search for\" textbox."
-msgstr ""
+msgid "List of entries in \"replace with\" textbox."
+msgstr "Llista de les entrades a la caixa de text «substituir per»."
 
 #: ../data/org.x.editor.gschema.xml.in.h:81
-msgid "History for \"replace with\" entries"
-msgstr ""
-
-#: ../data/org.x.editor.gschema.xml.in.h:82
-msgid "List of entries in \"replace with\" textbox."
-msgstr ""
-
-#: ../data/org.x.editor.gschema.xml.in.h:83
 msgid "Active plugins"
 msgstr "Activa els connectors"
 
-#: ../data/org.x.editor.gschema.xml.in.h:84
+#: ../data/org.x.editor.gschema.xml.in.h:82
 msgid ""
 "List of active plugins. It contains the \"Location\" of the active plugins. "
 "See the .xed-plugin file for obtaining the \"Location\" of a given plugin."
 msgstr ""
+"Llista de connectors actius. Conté la \"ubicació\" dels plugins actius. "
+"Veieu el fitxer .xed-plugin per obtenir la \"ubicació\" d'un connector donat."
 
 #: ../data/xed.appdata.xml.in.h:1
 msgid "A Text Editor"
-msgstr ""
+msgstr "Un editor de text"
 
 #: ../data/xed.appdata.xml.in.h:2
 msgid ""
@@ -480,8 +494,16 @@ msgid ""
 "spell checking, comparing files, viewing CVS ChangeLogs, and adjusting "
 "indentation levels. </p>"
 msgstr ""
+"<p>Xed és un editor de text petit, però potent. Ofereix la majoria de les "
+"funcions estàndar d'edició i és totalment compatible amb el text "
+"internacional en Unicode. Les funcions avançades inclouen el ressaltat de "
+"sintaxi i el sagnat automàtica del codi font, impressió, i l'edició de "
+"diversos documents en una sola finestra.</p><p>Xed és extensible mitjançant "
+"un sistema de connectors, inclosos el suport de la correcció ortogràfica, la "
+"comparació de fitxers, la vista de registres de canvis CVS, i l'ajustament "
+"de nivells de sagnat.</p>"
 
-#: ../data/xed.desktop.in.in.h:1 ../xed/xed-print-job.c:767
+#: ../data/xed.desktop.in.in.h:1 ../xed/xed-print-job.c:763
 msgid "Text Editor"
 msgstr "Editor de text"
 
@@ -489,23 +511,23 @@ msgstr "Editor de text"
 msgid "Edit text files"
 msgstr "Editeu fitxers de text"
 
-#: ../xed/dialogs/xed-close-confirmation-dialog.c:144
+#: ../xed/dialogs/xed-close-confirmation-dialog.c:139
 msgid "Log Out _without Saving"
 msgstr "Ix se_nse alçar"
 
-#: ../xed/dialogs/xed-close-confirmation-dialog.c:148
+#: ../xed/dialogs/xed-close-confirmation-dialog.c:143
 msgid "_Cancel Logout"
 msgstr "_Cancel·la l'eixida"
 
-#: ../xed/dialogs/xed-close-confirmation-dialog.c:155
+#: ../xed/dialogs/xed-close-confirmation-dialog.c:150
 msgid "Close _without Saving"
 msgstr "_Tanca sense alçar"
 
-#: ../xed/dialogs/xed-close-confirmation-dialog.c:204
+#: ../xed/dialogs/xed-close-confirmation-dialog.c:199
 msgid "Question"
 msgstr "Pregunta"
 
-#: ../xed/dialogs/xed-close-confirmation-dialog.c:404
+#: ../xed/dialogs/xed-close-confirmation-dialog.c:399
 #, c-format
 msgid ""
 "If you don't save, changes from the last %ld second will be permanently lost."
@@ -518,13 +540,13 @@ msgstr[1] ""
 "Si no ho alceu, es perdran permanentment els canvis fets en els darrers %ld "
 "segons."
 
-#: ../xed/dialogs/xed-close-confirmation-dialog.c:413
+#: ../xed/dialogs/xed-close-confirmation-dialog.c:408
 msgid ""
 "If you don't save, changes from the last minute will be permanently lost."
 msgstr ""
 "Si no ho alceu, es perdran permanentment els cavis fets en el darrer minut."
 
-#: ../xed/dialogs/xed-close-confirmation-dialog.c:419
+#: ../xed/dialogs/xed-close-confirmation-dialog.c:414
 #, c-format
 msgid ""
 "If you don't save, changes from the last minute and %ld second will be "
@@ -539,7 +561,7 @@ msgstr[1] ""
 "Si no ho alceu, es perdran permanentment els canvis fets en el darrer minut "
 "i %ld segons."
 
-#: ../xed/dialogs/xed-close-confirmation-dialog.c:429
+#: ../xed/dialogs/xed-close-confirmation-dialog.c:424
 #, c-format
 msgid ""
 "If you don't save, changes from the last %ld minute will be permanently lost."
@@ -552,13 +574,13 @@ msgstr[1] ""
 "Si no ho alceu, es perdran permanentment els canvis fets els darrers %ld "
 "minuts."
 
-#: ../xed/dialogs/xed-close-confirmation-dialog.c:444
+#: ../xed/dialogs/xed-close-confirmation-dialog.c:439
 msgid ""
 "If you don't save, changes from the last hour will be permanently lost."
 msgstr ""
 "Si no ho alceu, es perdran per sempre els canvis fets la darrera hora."
 
-#: ../xed/dialogs/xed-close-confirmation-dialog.c:450
+#: ../xed/dialogs/xed-close-confirmation-dialog.c:445
 #, c-format
 msgid ""
 "If you don't save, changes from the last hour and %d minute will be "
@@ -573,7 +595,7 @@ msgstr[1] ""
 "Si no ho alceu, es perdran permanentment els canvis fets la darrera hora i "
 "%d minuts."
 
-#: ../xed/dialogs/xed-close-confirmation-dialog.c:465
+#: ../xed/dialogs/xed-close-confirmation-dialog.c:460
 #, c-format
 msgid ""
 "If you don't save, changes from the last %d hour will be permanently lost."
@@ -584,12 +606,12 @@ msgstr[0] ""
 msgstr[1] ""
 "Si no ho alceu, es perdran per sempre els canvis fets les darreres %d hores."
 
-#: ../xed/dialogs/xed-close-confirmation-dialog.c:521
+#: ../xed/dialogs/xed-close-confirmation-dialog.c:503
 #, c-format
 msgid "Save changes to document \"%s\" before closing?"
 msgstr "Voleu alçar els canvis del document «%s» abans de tancar?"
 
-#: ../xed/dialogs/xed-close-confirmation-dialog.c:712
+#: ../xed/dialogs/xed-close-confirmation-dialog.c:677
 #, c-format
 msgid ""
 "There is %d document with unsaved changes. Save changes before closing?"
@@ -602,12 +624,12 @@ msgstr[1] ""
 "Hi ha %d documents amb canvis sense alçar. Voleu alçar els canvis abans de "
 "tancar?"
 
-#: ../xed/dialogs/xed-close-confirmation-dialog.c:729
+#: ../xed/dialogs/xed-close-confirmation-dialog.c:694
 msgid "S_elect the documents you want to save:"
 msgstr "S_eleccioneu els documents que voleu alçar:"
 
 #. Secondary label
-#: ../xed/dialogs/xed-close-confirmation-dialog.c:751
+#: ../xed/dialogs/xed-close-confirmation-dialog.c:713
 msgid "If you don't save, all your changes will be permanently lost."
 msgstr "Si no ho alceu es perdran permanentment tots els canvis."
 
@@ -637,46 +659,46 @@ msgstr "Codi_ficacions disponibles:"
 msgid "E_ncodings shown in menu:"
 msgstr "Codificacio_ns mostrades al menú:"
 
-#: ../xed/dialogs/xed-preferences-dialog.c:574
+#: ../xed/dialogs/xed-preferences-dialog.c:572
 msgid "Click on this button to select the font to be used by the editor"
 msgstr ""
 "Feu clic en este botó per seleccionar el tipus de lletra a utilitzar per "
 "l'editor"
 
-#: ../xed/dialogs/xed-preferences-dialog.c:584
+#: ../xed/dialogs/xed-preferences-dialog.c:582
 #, c-format
 msgid "_Use the system fixed width font (%s)"
 msgstr "_Empra el tipus de lletra d'amplada fixa del sistema (%s)"
 
-#: ../xed/dialogs/xed-preferences-dialog.c:787
+#: ../xed/dialogs/xed-preferences-dialog.c:785
 msgid "The selected color scheme cannot be installed."
 msgstr "No s'ha pogut instal·lar l'esquema de colors seleccionat."
 
-#: ../xed/dialogs/xed-preferences-dialog.c:812
+#: ../xed/dialogs/xed-preferences-dialog.c:810
 msgid "Add Scheme"
 msgstr "Afig un esquema"
 
-#: ../xed/dialogs/xed-preferences-dialog.c:819
+#: ../xed/dialogs/xed-preferences-dialog.c:817
 msgid "A_dd Scheme"
 msgstr "A_fig un esquema"
 
-#: ../xed/dialogs/xed-preferences-dialog.c:827
+#: ../xed/dialogs/xed-preferences-dialog.c:825
 msgid "Color Scheme Files"
 msgstr "Fitxers d'esquema de colors"
 
-#: ../xed/dialogs/xed-preferences-dialog.c:834
-#: ../xed/xed-file-chooser-dialog.c:55
+#: ../xed/dialogs/xed-preferences-dialog.c:832
+#: ../xed/xed-file-chooser-dialog.c:53
 msgid "All Files"
 msgstr "Tots els fitxers"
 
-#: ../xed/dialogs/xed-preferences-dialog.c:879
+#: ../xed/dialogs/xed-preferences-dialog.c:877
 #, c-format
 msgid "Could not remove color scheme \"%s\"."
 msgstr "No s'ha pogut suprimir l'esquema de colors «%s»."
 
-#: ../xed/dialogs/xed-preferences-dialog.c:1090
+#: ../xed/dialogs/xed-preferences-dialog.c:1088
 msgid "Xed Preferences"
-msgstr ""
+msgstr "Preferències de Xed"
 
 #: ../xed/dialogs/xed-preferences-dialog.ui.h:1
 msgid "Preferences"
@@ -708,7 +730,7 @@ msgstr "No _separis les paraules en dues línies"
 msgid "Line Numbers"
 msgstr "Números de línia"
 
-#: ../xed/dialogs/xed-preferences-dialog.ui.h:7 ../xed/xed-view.c:2035
+#: ../xed/dialogs/xed-preferences-dialog.ui.h:7 ../xed/xed-view.c:1106
 msgid "_Display line numbers"
 msgstr "Mostra els _números de línia"
 
@@ -812,56 +834,6 @@ msgstr "Tipus de lletra i colors"
 msgid "Plugins"
 msgstr "Connectors"
 
-#: ../xed/dialogs/xed-search-dialog.c:302
-#: ../xed/dialogs/xed-search-dialog.ui.h:1 ../xed/xed-window.c:1455
-msgid "Replace"
-msgstr "Reemplaça"
-
-#: ../xed/dialogs/xed-search-dialog.c:313 ../xed/xed-window.c:1453
-msgid "Find"
-msgstr "Cerca"
-
-#: ../xed/dialogs/xed-search-dialog.c:417
-msgid "Replace _All"
-msgstr "Reempl_aça-ho tot"
-
-#: ../xed/dialogs/xed-search-dialog.c:418
-#: ../xed/xed-commands-file.c:589
-msgid "_Replace"
-msgstr "_Reemplaça"
-
-#: ../xed/dialogs/xed-search-dialog.ui.h:2
-msgid "Replace All"
-msgstr "Reemplaça-ho tot"
-
-#: ../xed/dialogs/xed-search-dialog.ui.h:3
-msgid "_Search for: "
-msgstr "_Cerca: "
-
-#: ../xed/dialogs/xed-search-dialog.ui.h:4
-msgid "Replace _with: "
-msgstr "Reemplaça _per: "
-
-#: ../xed/dialogs/xed-search-dialog.ui.h:5
-msgid "_Match case"
-msgstr "Coi_ncidència de majúscules i minúscules"
-
-#: ../xed/dialogs/xed-search-dialog.ui.h:6
-msgid "Match _entire word only"
-msgstr "Només coincid_eix la paraula sencera"
-
-#: ../xed/dialogs/xed-search-dialog.ui.h:7
-msgid "Search _backwards"
-msgstr "Cerca cap en_rere"
-
-#: ../xed/dialogs/xed-search-dialog.ui.h:8
-msgid "_Wrap around"
-msgstr "Continua des de l'_inici"
-
-#: ../xed/dialogs/xed-search-dialog.ui.h:9
-msgid "_Parse escape sequences (e.g. \\n)"
-msgstr ""
-
 #: ../xed/xed.c:104
 msgid "Show the application's version"
 msgstr "Mostra la versió de l'aplicació"
@@ -885,10 +857,11 @@ msgstr "Mostra una llista dels valors possibles per a la codificació"
 #: ../xed/xed.c:113
 msgid "Create a new top-level window in an existing instance of xed"
 msgstr ""
+"Crea una nova finestra de nivell superior en una instància existent de xed"
 
 #: ../xed/xed.c:116
 msgid "Create a new document in an existing instance of xed"
-msgstr ""
+msgstr "Crea un nou document en una instància existent de xed"
 
 #: ../xed/xed.c:119
 msgid "[FILE...]"
@@ -939,6 +912,10 @@ msgstr "El fitxer «%s» és de només de lectura."
 #: ../xed/xed-commands-file.c:581
 msgid "Do you want to try to replace it with the one you are saving?"
 msgstr "Voleu intentar reemplaçar-lo pel que esteu desant?"
+
+#: ../xed/xed-commands-file.c:589 ../xed/xed-ui.h:117
+msgid "_Replace"
+msgstr "_Reemplaça"
 
 #: ../xed/xed-commands-file.c:650 ../xed/xed-commands-file.c:873
 #, c-format
@@ -1043,37 +1020,19 @@ msgstr "_Recupera"
 
 #: ../xed/xed-commands-help.c:56
 msgid "A small and lightweight text editor"
-msgstr ""
+msgstr "Un editor de text senzill i lleuger"
 
-#: ../xed/xed-commands-search.c:115
-#, c-format
-msgid "Found and replaced %d occurrence"
-msgid_plural "Found and replaced %d occurrences"
-msgstr[0] "S'ha trobat i reemplaçat %d cadena coincident"
-msgstr[1] "S'han trobat i reemplaçat %d cadenes coincidents"
-
-#: ../xed/xed-commands-search.c:125
-msgid "Found and replaced one occurrence"
-msgstr "S'ha trobat i reemplaçat una cadena coincident"
-
-#. Translators: %s is replaced by the text
-#. entered by the user in the search box
-#: ../xed/xed-commands-search.c:146
-#, c-format
-msgid "\"%s\" not found"
-msgstr "No s'ha trobat «%s»"
-
-#: ../xed/xed-document.c:1090 ../xed/xed-document.c:1110
+#: ../xed/xed-document.c:1082 ../xed/xed-document.c:1102
 #, c-format
 msgid "Unsaved Document %d"
 msgstr "Document sense alçar %d"
 
-#: ../xed/xed-documents-panel.c:101 ../xed/xed-documents-panel.c:115
-#: ../xed/xed-window.c:2180 ../xed/xed-window.c:2185
+#: ../xed/xed-documents-panel.c:97 ../xed/xed-documents-panel.c:111
+#: ../xed/xed-window.c:1860 ../xed/xed-window.c:1864
 msgid "Read-Only"
 msgstr "Només de lectura"
 
-#: ../xed/xed-documents-panel.c:796 ../xed/xed-window.c:3539
+#: ../xed/xed-documents-panel.c:784 ../xed/xed-window.c:3089
 msgid "Documents"
 msgstr "Documents"
 
@@ -1197,8 +1156,7 @@ msgstr "Desconegut"
 msgid "Automatically Detected"
 msgstr "Detectat automàticament"
 
-#: ../xed/xed-encodings-combo-box.c:288
-#: ../xed/xed-encodings-combo-box.c:303
+#: ../xed/xed-encodings-combo-box.c:288 ../xed/xed-encodings-combo-box.c:303
 #, c-format
 msgid "Current Locale (%s)"
 msgstr "Localització actual (%s)"
@@ -1207,27 +1165,27 @@ msgstr "Localització actual (%s)"
 msgid "Add or Remove..."
 msgstr "Afig o suprimeix..."
 
-#: ../xed/xed-file-chooser-dialog.c:56
+#: ../xed/xed-file-chooser-dialog.c:54
 msgid "All Text Files"
 msgstr "Tots els fitxers de text"
 
-#: ../xed/xed-file-chooser-dialog.c:88
+#: ../xed/xed-file-chooser-dialog.c:82
 msgid "C_haracter Encoding:"
 msgstr "C_odificació de caràcters:"
 
-#: ../xed/xed-file-chooser-dialog.c:157
+#: ../xed/xed-file-chooser-dialog.c:147
 msgid "L_ine Ending:"
 msgstr "Final de _línia:"
 
-#: ../xed/xed-file-chooser-dialog.c:180
+#: ../xed/xed-file-chooser-dialog.c:166
 msgid "Unix/Linux"
 msgstr "Unix/Linux"
 
-#: ../xed/xed-file-chooser-dialog.c:186
+#: ../xed/xed-file-chooser-dialog.c:172
 msgid "Mac OS Classic"
 msgstr "Mac OS Clàssic"
 
-#: ../xed/xed-file-chooser-dialog.c:192
+#: ../xed/xed-file-chooser-dialog.c:178
 msgid "Windows"
 msgstr "Windows"
 
@@ -1235,52 +1193,52 @@ msgstr "Windows"
 msgid "There was an error displaying the help."
 msgstr "S'ha produït un error en mostrar l'ajuda."
 
-#: ../xed/xed-io-error-message-area.c:196
-#: ../xed/xed-io-error-message-area.c:498
+#: ../xed/xed-io-error-message-area.c:179
+#: ../xed/xed-io-error-message-area.c:481
 msgid "_Retry"
 msgstr "_Intenta de nou"
 
-#: ../xed/xed-io-error-message-area.c:217
+#: ../xed/xed-io-error-message-area.c:200
 #, c-format
 msgid "Could not find the file %s."
 msgstr "No s'ha pogut trobar el fitxer %s."
 
-#: ../xed/xed-io-error-message-area.c:219
-#: ../xed/xed-io-error-message-area.c:258
-#: ../xed/xed-io-error-message-area.c:265
+#: ../xed/xed-io-error-message-area.c:202
+#: ../xed/xed-io-error-message-area.c:241
+#: ../xed/xed-io-error-message-area.c:248
 msgid "Please check that you typed the location correctly and try again."
 msgstr "Comproveu que la ubicació estiga ben escrita i torneu-ho a intentar."
 
 #. Translators: %s is a URI scheme (like for example http:, ftp:, etc.)
-#: ../xed/xed-io-error-message-area.c:234
+#: ../xed/xed-io-error-message-area.c:217
 #, c-format
 msgid "xed cannot handle %s locations."
-msgstr ""
+msgstr "xed no pot gestionar ubicacions %s."
 
-#: ../xed/xed-io-error-message-area.c:240
+#: ../xed/xed-io-error-message-area.c:223
 msgid "xed cannot handle this location."
-msgstr ""
+msgstr "xed no pot gestionar aquesta ubicació."
 
-#: ../xed/xed-io-error-message-area.c:248
+#: ../xed/xed-io-error-message-area.c:231
 msgid "The location of the file cannot be mounted."
 msgstr "No s'ha pogut muntar la ubicació del fitxer."
 
-#: ../xed/xed-io-error-message-area.c:252
+#: ../xed/xed-io-error-message-area.c:235
 msgid ""
 "The location of the file cannot be accessed because it is not mounted."
 msgstr "No es pot accedir a la ubicació del fitxer perquè no està muntat."
 
-#: ../xed/xed-io-error-message-area.c:256
+#: ../xed/xed-io-error-message-area.c:239
 #, c-format
 msgid "%s is a directory."
 msgstr "%s és un directori."
 
-#: ../xed/xed-io-error-message-area.c:263
+#: ../xed/xed-io-error-message-area.c:246
 #, c-format
 msgid "%s is not a valid location."
 msgstr "%s no és una ubicació vàlida."
 
-#: ../xed/xed-io-error-message-area.c:293
+#: ../xed/xed-io-error-message-area.c:276
 #, c-format
 msgid ""
 "Host %s could not be found. Please check that your proxy settings are "
@@ -1289,7 +1247,7 @@ msgstr ""
 "No s'ha pogut trobar l'ordinador %s. Comproveu que els paràmetres del "
 "servidor intermediari siguen correctes i torneu-ho a intentar."
 
-#: ../xed/xed-io-error-message-area.c:306
+#: ../xed/xed-io-error-message-area.c:289
 #, c-format
 msgid ""
 "Hostname was invalid. Please check that you typed the location correctly and "
@@ -1298,52 +1256,52 @@ msgstr ""
 "El nom de l'ordinador no és vàlid. Comproveu que hàgeu escrit la ubicació "
 "correctament i torneu-ho a intentar."
 
-#: ../xed/xed-io-error-message-area.c:314
+#: ../xed/xed-io-error-message-area.c:297
 #, c-format
 msgid "%s is not a regular file."
 msgstr "%s no és un fitxer normal."
 
-#: ../xed/xed-io-error-message-area.c:319
+#: ../xed/xed-io-error-message-area.c:302
 msgid "Connection timed out. Please try again."
 msgstr "La connexió ha expirat, torneu-ho a intentar."
 
-#: ../xed/xed-io-error-message-area.c:342
+#: ../xed/xed-io-error-message-area.c:325
 msgid "The file is too big."
 msgstr "El fitxer és massa gran."
 
-#: ../xed/xed-io-error-message-area.c:383
+#: ../xed/xed-io-error-message-area.c:366
 #, c-format
 msgid "Unexpected error: %s"
 msgstr "S'ha produït un error inesperat: %s"
 
-#: ../xed/xed-io-error-message-area.c:419
+#: ../xed/xed-io-error-message-area.c:402
 msgid "xed cannot find the file. Perhaps it has recently been deleted."
-msgstr ""
+msgstr "xed no pot trobar el fitxer. Potser ha estat esborrat recentment."
 
-#: ../xed/xed-io-error-message-area.c:429
+#: ../xed/xed-io-error-message-area.c:412
 #, c-format
 msgid "Could not revert the file %s."
 msgstr "No s'ha pogut recuperar el fitxer %s."
 
-#: ../xed/xed-io-error-message-area.c:455
+#: ../xed/xed-io-error-message-area.c:438
 msgid "Ch_aracter Encoding:"
 msgstr "Codificació de c_aràcter:"
 
 #. Translators: the access key chosen for this string should be
 #. different from other main menu access keys (Open, Edit, View...)
-#: ../xed/xed-io-error-message-area.c:507
-#: ../xed/xed-io-error-message-area.c:794
+#: ../xed/xed-io-error-message-area.c:490
+#: ../xed/xed-io-error-message-area.c:765
 msgid "Edit Any_way"
 msgstr "Edita de _totes maneres"
 
 #. Translators: the access key chosen for this string should be
 #. different from other main menu access keys (Open, Edit, View...)
-#: ../xed/xed-io-error-message-area.c:512
-#: ../xed/xed-io-error-message-area.c:799
+#: ../xed/xed-io-error-message-area.c:495
+#: ../xed/xed-io-error-message-area.c:770
 msgid "D_on't Edit"
 msgstr "_No l'editis"
 
-#: ../xed/xed-io-error-message-area.c:620
+#: ../xed/xed-io-error-message-area.c:591
 msgid ""
 "The number of followed links is limited and the actual file could not be "
 "found within this limit."
@@ -1351,30 +1309,30 @@ msgstr ""
 "El nombre d'enllaços a seguir és limitat i el fitxer actual no s'ha pogut "
 "trobar dins d'este límit."
 
-#: ../xed/xed-io-error-message-area.c:624
+#: ../xed/xed-io-error-message-area.c:595
 msgid "You do not have the permissions necessary to open the file."
 msgstr "No teniu el permís necessari per poder obrir este fitxer."
 
-#: ../xed/xed-io-error-message-area.c:630
+#: ../xed/xed-io-error-message-area.c:601
 msgid "xed has not been able to detect the character encoding."
-msgstr ""
+msgstr "xed no ha pogut detectar la codificació de caràcters."
 
-#: ../xed/xed-io-error-message-area.c:632
-#: ../xed/xed-io-error-message-area.c:654
+#: ../xed/xed-io-error-message-area.c:603
+#: ../xed/xed-io-error-message-area.c:625
 msgid "Please check that you are not trying to open a binary file."
 msgstr "Comproveu que no estigueu intentant obrir un fitxer binari."
 
-#: ../xed/xed-io-error-message-area.c:633
+#: ../xed/xed-io-error-message-area.c:604
 msgid "Select a character encoding from the menu and try again."
 msgstr ""
 "Seleccioneu una codificació de caràcters del menú i torneu-ho a intentar."
 
-#: ../xed/xed-io-error-message-area.c:639
+#: ../xed/xed-io-error-message-area.c:610
 #, c-format
 msgid "There was a problem opening the file %s."
 msgstr "S'ha produït un error en obrir el fitxer %s."
 
-#: ../xed/xed-io-error-message-area.c:641
+#: ../xed/xed-io-error-message-area.c:612
 msgid ""
 "The file you opened has some invalid characters. If you continue editing "
 "this file you could make this document useless."
@@ -1382,34 +1340,34 @@ msgstr ""
 "El fitxer que heu obert conté alguns caràcters no vàlids. Si l'editeu "
 "podríeu acabar amb un document no usable."
 
-#: ../xed/xed-io-error-message-area.c:644
+#: ../xed/xed-io-error-message-area.c:615
 msgid "You can also choose another character encoding and try again."
 msgstr ""
 "Podeu seleccionar una altra codificació de caràcters i tornar-ho a intentar."
 
-#: ../xed/xed-io-error-message-area.c:651
+#: ../xed/xed-io-error-message-area.c:622
 #, c-format
 msgid "Could not open the file %s using the %s character encoding."
 msgstr "No s'ha pogut obrir el fitxer %s amb la codificació de caràcters %s."
 
-#: ../xed/xed-io-error-message-area.c:655
-#: ../xed/xed-io-error-message-area.c:730
+#: ../xed/xed-io-error-message-area.c:626
+#: ../xed/xed-io-error-message-area.c:701
 msgid "Select a different character encoding from the menu and try again."
 msgstr ""
 "Seleccioneu una codificació de caràcters diferent del menú i torneu-ho a "
 "intentar."
 
-#: ../xed/xed-io-error-message-area.c:665
+#: ../xed/xed-io-error-message-area.c:636
 #, c-format
 msgid "Could not open the file %s."
 msgstr "No s'ha pogut obrir el fitxer %s."
 
-#: ../xed/xed-io-error-message-area.c:725
+#: ../xed/xed-io-error-message-area.c:696
 #, c-format
 msgid "Could not save the file %s using the %s character encoding."
 msgstr "No s'ha pogut alçar el fitxer %s amb la codificació de caràcters %s."
 
-#: ../xed/xed-io-error-message-area.c:728
+#: ../xed/xed-io-error-message-area.c:699
 msgid ""
 "The document contains one or more characters that cannot be encoded using "
 "the specified character encoding."
@@ -1417,75 +1375,85 @@ msgstr ""
 "El document conté un o més caràcters que no es poden codificar amb la "
 "codificació de caràcters especificada."
 
-#: ../xed/xed-io-error-message-area.c:818
+#: ../xed/xed-io-error-message-area.c:785
 #, c-format
 msgid "This file (%s) is already open in another xed window."
-msgstr ""
+msgstr "Aquest fitxer (%s) ja està obert en una altra finestra de xed."
 
-#: ../xed/xed-io-error-message-area.c:836
+#: ../xed/xed-io-error-message-area.c:799
 msgid ""
 "xed opened this instance of the file in a non-editable way. Do you want to "
 "edit it anyway?"
 msgstr ""
+"xed ha obert aquesta instància del fitxer de forma no editable. Voleu editar-"
+"la igualment?"
 
-#: ../xed/xed-io-error-message-area.c:899
-#: ../xed/xed-io-error-message-area.c:1007
+#: ../xed/xed-io-error-message-area.c:858
+#: ../xed/xed-io-error-message-area.c:954
 msgid "S_ave Anyway"
 msgstr "Al_ça igualment"
 
-#: ../xed/xed-io-error-message-area.c:903
-#: ../xed/xed-io-error-message-area.c:1011
+#: ../xed/xed-io-error-message-area.c:862
+#: ../xed/xed-io-error-message-area.c:958
 msgid "D_on't Save"
 msgstr "_No alces"
 
 #. FIXME: review this message, it's not clear since for the user the "modification"
 #. could be interpreted as the changes he made in the document. beside "reading" is
 #. not accurate (since last load/save)
-#: ../xed/xed-io-error-message-area.c:925
+#: ../xed/xed-io-error-message-area.c:880
 #, c-format
 msgid "The file %s has been modified since reading it."
 msgstr "El fitxer %s s'ha modificat des que s'ha llegit."
 
-#: ../xed/xed-io-error-message-area.c:944
+#: ../xed/xed-io-error-message-area.c:895
 msgid ""
 "If you save it, all the external changes could be lost. Save it anyway?"
 msgstr ""
 "Si l'alceu, tots els canvis externs fets es poden perdre. Voleu alçar-lo "
 "igualment?"
 
-#: ../xed/xed-io-error-message-area.c:1033
+#: ../xed/xed-io-error-message-area.c:976
 #, c-format
 msgid "Could not create a backup file while saving %s"
 msgstr "No s'ha pogut crear una còpia de seguretat en alçar el fitxer %s"
 
-#: ../xed/xed-io-error-message-area.c:1036
+#: ../xed/xed-io-error-message-area.c:979
 #, c-format
 msgid "Could not create a temporary backup file while saving %s"
 msgstr ""
 "No s'ha pogut crear una còpia de seguretat temporal en alçar el fitxer %s"
 
-#: ../xed/xed-io-error-message-area.c:1056
+#: ../xed/xed-io-error-message-area.c:995
 msgid ""
 "xed could not back up the old copy of the file before saving the new one. "
 "You can ignore this warning and save the file anyway, but if an error occurs "
 "while saving, you could lose the old copy of the file. Save anyway?"
 msgstr ""
+"xed no ha pogut fer una còpia de seguretat de la versió antiga de l'arxiu "
+"abans de desar la nova. Podeu passar per alt aquesta advertència i desar "
+"l'arxiu, però si es produeix un error, podríeu perdre la còpia antiga de "
+"l'arxiu. Voleu desar de totes maneres?"
 
 #. Translators: %s is a URI scheme (like for example http:, ftp:, etc.)
-#: ../xed/xed-io-error-message-area.c:1120
+#: ../xed/xed-io-error-message-area.c:1055
 #, c-format
 msgid ""
 "xed cannot handle %s locations in write mode. Please check that you typed "
 "the location correctly and try again."
 msgstr ""
+"xed no pot gestionar ubicacions %s en mode d'escriptura. Comproveu que heu "
+"teclejat la ubicació correctament i torneu a provar-ho."
 
-#: ../xed/xed-io-error-message-area.c:1128
+#: ../xed/xed-io-error-message-area.c:1063
 msgid ""
 "xed cannot handle this location in write mode. Please check that you typed "
 "the location correctly and try again."
 msgstr ""
+"xed no pot gestionar aquesta ubicació en mode d'escriptura. Comproveu que "
+"heu teclejat la ubicació correctament i torneu a provar-ho."
 
-#: ../xed/xed-io-error-message-area.c:1137
+#: ../xed/xed-io-error-message-area.c:1072
 #, c-format
 msgid ""
 "%s is not a valid location. Please check that you typed the location "
@@ -1494,7 +1462,7 @@ msgstr ""
 "%s no és una ubicació vàlida. Comproveu que l'hàgeu escrit correctament i "
 "torneu-ho a intentar."
 
-#: ../xed/xed-io-error-message-area.c:1143
+#: ../xed/xed-io-error-message-area.c:1078
 msgid ""
 "You do not have the permissions necessary to save the file. Please check "
 "that you typed the location correctly and try again."
@@ -1502,7 +1470,7 @@ msgstr ""
 "No teniu el permís necessari per poder alçar este fitxer. Comproveu que la "
 "ubicació estiga ben escrita i torneu-ho a intentar."
 
-#: ../xed/xed-io-error-message-area.c:1149
+#: ../xed/xed-io-error-message-area.c:1084
 msgid ""
 "There is not enough disk space to save the file. Please free some disk space "
 "and try again."
@@ -1510,7 +1478,7 @@ msgstr ""
 "No hi ha suficient espai al disc per alçar el fitxer. Allibereu espai de "
 "disc i torneu-ho a intentar."
 
-#: ../xed/xed-io-error-message-area.c:1154
+#: ../xed/xed-io-error-message-area.c:1089
 msgid ""
 "You are trying to save the file on a read-only disk. Please check that you "
 "typed the location correctly and try again."
@@ -1518,12 +1486,12 @@ msgstr ""
 "Esteu intentant alçar el fitxer en un disc de només lectura. Comproveu que "
 "la ubicació estiga ben escrita i torneu-ho a intentar."
 
-#: ../xed/xed-io-error-message-area.c:1160
+#: ../xed/xed-io-error-message-area.c:1095
 msgid ""
 "A file with the same name already exists. Please use a different name."
 msgstr "Ja existeix un fitxer amb este mateix nom, utilitzeu-ne un altre."
 
-#: ../xed/xed-io-error-message-area.c:1165
+#: ../xed/xed-io-error-message-area.c:1100
 msgid ""
 "The disk where you are trying to save the file has a limitation on length of "
 "the file names. Please use a shorter name."
@@ -1531,7 +1499,7 @@ msgstr ""
 "El disc on esteu intentant alçar el fitxer té una limitació quan a la "
 "longitud dels noms dels fitxers, utilitzeu un nom més curt."
 
-#: ../xed/xed-io-error-message-area.c:1172
+#: ../xed/xed-io-error-message-area.c:1107
 msgid ""
 "The disk where you are trying to save the file has a limitation on file "
 "sizes. Please try saving a smaller file or saving it to a disk that does not "
@@ -1541,7 +1509,7 @@ msgstr ""
 "fitxers. Intenteu alçar un fitxer més petit o alçar-ho en un disc que no "
 "tinga esta limitació."
 
-#: ../xed/xed-io-error-message-area.c:1188
+#: ../xed/xed-io-error-message-area.c:1123
 #, c-format
 msgid "Could not save the file %s."
 msgstr "No s'ha pogut alçar el fitxer %s."
@@ -1549,28 +1517,28 @@ msgstr "No s'ha pogut alçar el fitxer %s."
 #. FIXME: review this message, it's not clear since for the user the "modification"
 #. could be interpreted as the changes he made in the document. beside "reading" is
 #. not accurate (since last load/save)
-#: ../xed/xed-io-error-message-area.c:1232
+#: ../xed/xed-io-error-message-area.c:1167
 #, c-format
 msgid "The file %s changed on disk."
 msgstr "El fitxer %s ha canviat al disc."
 
-#: ../xed/xed-io-error-message-area.c:1237
+#: ../xed/xed-io-error-message-area.c:1172
 msgid "Do you want to drop your changes and reload the file?"
 msgstr "Voleu descartar els canvis i carregar de nou el fitxer?"
 
-#: ../xed/xed-io-error-message-area.c:1239
+#: ../xed/xed-io-error-message-area.c:1174
 msgid "Do you want to reload the file?"
 msgstr "Voleu carregar de nou el fitxer?"
 
-#: ../xed/xed-io-error-message-area.c:1244
+#: ../xed/xed-io-error-message-area.c:1179
 msgid "_Reload"
 msgstr "Carrega de _nou"
 
-#: ../xed/xed-panel.c:372 ../xed/xed-panel.c:549
+#: ../xed/xed-panel.c:338 ../xed/xed-panel.c:513
 msgid "Empty"
 msgstr "Buit"
 
-#: ../xed/xed-panel.c:439
+#: ../xed/xed-panel.c:403
 msgid "Hide panel"
 msgstr "Amaga el quadre"
 
@@ -1582,48 +1550,48 @@ msgstr "Connector"
 msgid "Enabled"
 msgstr "Habilitat"
 
-#: ../xed/xed-plugin-manager.c:508
+#: ../xed/xed-plugin-manager.c:504 ../xed/xed-ui.h:68
 msgid "_About"
 msgstr "_Quant a"
 
-#: ../xed/xed-plugin-manager.c:516
+#: ../xed/xed-plugin-manager.c:512
 msgid "C_onfigure"
 msgstr "_Configura"
 
-#: ../xed/xed-plugin-manager.c:525
+#: ../xed/xed-plugin-manager.c:521
 msgid "A_ctivate"
 msgstr "A_ctiva"
 
-#: ../xed/xed-plugin-manager.c:536
+#: ../xed/xed-plugin-manager.c:532
 msgid "Ac_tivate All"
 msgstr "Activa's _tots"
 
-#: ../xed/xed-plugin-manager.c:541
+#: ../xed/xed-plugin-manager.c:537
 msgid "_Deactivate All"
 msgstr "_Desactiva'ls tots"
 
-#: ../xed/xed-plugin-manager.c:809
+#: ../xed/xed-plugin-manager.c:803
 msgid "Active _Plugins:"
 msgstr "_Connectors actius:"
 
-#: ../xed/xed-plugin-manager.c:842
+#: ../xed/xed-plugin-manager.c:829
 msgid "_About Plugin"
 msgstr "_Quant al connector"
 
-#: ../xed/xed-plugin-manager.c:846
+#: ../xed/xed-plugin-manager.c:833
 msgid "C_onfigure Plugin"
 msgstr "_Configura el connector"
 
-#: ../xed/xed-print-job.c:551
+#: ../xed/xed-print-job.c:547
 #, c-format
 msgid "File: %s"
 msgstr "Fitxer: %s"
 
-#: ../xed/xed-print-job.c:560
+#: ../xed/xed-print-job.c:556
 msgid "Page %N of %Q"
 msgstr "Pàgina %N de %Q"
 
-#: ../xed/xed-print-job.c:817
+#: ../xed/xed-print-job.c:813
 msgid "Preparing..."
 msgstr "S'està preparant..."
 
@@ -1639,12 +1607,12 @@ msgstr "Imprimeix el ressaltat de la s_intaxi"
 msgid "Print line nu_mbers"
 msgstr "Imprimeix els números de _línia"
 
-#. 'Number every' from 'Number every 3 lines' in the 'Text Editor' tab of the print preferences.
+#. 
 #: ../xed/xed-print-preferences.ui.h:6
 msgid "_Number every"
 msgstr "_Número cada"
 
-#. 'lines' from 'Number every 3 lines' in the 'Text Editor' tab of the print preferences.
+#. 
 #: ../xed/xed-print-preferences.ui.h:8
 msgid "lines"
 msgstr "línies"
@@ -1677,69 +1645,105 @@ msgstr "C_apçaleres i peus de pàgina:"
 msgid "_Restore Default Fonts"
 msgstr "_Restaura els tipus de lletra predeterminats"
 
-#: ../xed/xed-print-preview.c:572
+#: ../xed/xed-searchbar.ui.h:1
+msgid "Replace All"
+msgstr "Reemplaça-ho tot"
+
+#: ../xed/xed-searchbar.ui.h:2
+msgid "Replace"
+msgstr "Reemplaça"
+
+#: ../xed/xed-searchbar.ui.h:3
+msgid "_Search for: "
+msgstr "_Cerca: "
+
+#: ../xed/xed-searchbar.ui.h:4
+msgid "Replace _with: "
+msgstr "Reemplaça _per: "
+
+#: ../xed/xed-searchbar.ui.h:5
+msgid "Next"
+msgstr ""
+
+#: ../xed/xed-searchbar.ui.h:6
+msgid "Previous"
+msgstr ""
+
+#: ../xed/xed-searchbar.ui.h:7
+msgid "Case sensitive"
+msgstr ""
+
+#: ../xed/xed-searchbar.ui.h:8
+msgid "Whole word"
+msgstr ""
+
+#: ../xed/xed-searchbar.ui.h:9
+msgid "Wrap"
+msgstr ""
+
+#: ../xed/xed-print-preview.c:564
 msgid "Show the previous page"
 msgstr "Mostra la pàgina anterior"
 
-#: ../xed/xed-print-preview.c:584
+#: ../xed/xed-print-preview.c:576
 msgid "Show the next page"
 msgstr "Mostra la pàgina següent"
 
-#: ../xed/xed-print-preview.c:600
+#: ../xed/xed-print-preview.c:592
 msgid "Current page (Alt+P)"
 msgstr "Pàgina actual (Alt+P)"
 
 #. Translators: the "of" from "1 of 19" in print preview.
-#: ../xed/xed-print-preview.c:623
+#: ../xed/xed-print-preview.c:615
 msgid "of"
 msgstr "de"
 
-#: ../xed/xed-print-preview.c:631
+#: ../xed/xed-print-preview.c:623
 msgid "Page total"
 msgstr "Total pàgines"
 
-#: ../xed/xed-print-preview.c:632
+#: ../xed/xed-print-preview.c:624
 msgid "The total number of pages in the document"
 msgstr "El nombre de pàgines total del document"
 
-#: ../xed/xed-print-preview.c:649
+#: ../xed/xed-print-preview.c:641
 msgid "Show multiple pages"
 msgstr "Mostra múltiples pàgines"
 
-#: ../xed/xed-print-preview.c:662
+#: ../xed/xed-print-preview.c:654
 msgid "Zoom 1:1"
 msgstr "Zoom 1:1"
 
-#: ../xed/xed-print-preview.c:671
+#: ../xed/xed-print-preview.c:663
 msgid "Zoom to fit the whole page"
 msgstr "Millor ajust"
 
-#: ../xed/xed-print-preview.c:680
+#: ../xed/xed-print-preview.c:672
 msgid "Zoom the page in"
 msgstr "Apropa a la pàgina"
 
-#: ../xed/xed-print-preview.c:689
+#: ../xed/xed-print-preview.c:681
 msgid "Zoom the page out"
 msgstr "Allunya de la pàgina"
 
-#: ../xed/xed-print-preview.c:701
+#: ../xed/xed-print-preview.c:693
 msgid "_Close Preview"
 msgstr "_Tanca la previsualització"
 
-#: ../xed/xed-print-preview.c:704
+#: ../xed/xed-print-preview.c:696
 msgid "Close print preview"
 msgstr "Tanca la visualització prèvia de la impressió"
 
-#: ../xed/xed-print-preview.c:774
+#: ../xed/xed-print-preview.c:766
 #, c-format
 msgid "Page %d of %d"
 msgstr "Pàgina %d de %d"
 
-#: ../xed/xed-print-preview.c:958
+#: ../xed/xed-print-preview.c:950
 msgid "Page Preview"
 msgstr "Visualització prèvia de la pàgina"
 
-#: ../xed/xed-print-preview.c:959
+#: ../xed/xed-print-preview.c:951
 msgid "The preview of a page in the document to be printed"
 msgstr "La visualització prèvia de la pàgina del document a imprimir"
 
@@ -1747,29 +1751,45 @@ msgstr "La visualització prèvia de la pàgina del document a imprimir"
 msgid "It is not possible to detect the encoding automatically"
 msgstr "No es pot detectar automàticament la codificació"
 
-#: ../xed/xed-statusbar.c:74 ../xed/xed-statusbar.c:80
+#: ../xed/xed-searchbar.c:69
+#, c-format
+msgid "Found and replaced %d occurrence"
+msgid_plural "Found and replaced %d occurrences"
+msgstr[0] "S'ha trobat i reemplaçat %d cadena coincident"
+msgstr[1] "S'han trobat i reemplaçat %d cadenes coincidents"
+
+#: ../xed/xed-searchbar.c:77
+msgid "Found and replaced one occurrence"
+msgstr "S'ha trobat i reemplaçat una cadena coincident"
+
+#: ../xed/xed-searchbar.c:95
+#, c-format
+msgid "\"%s\" not found"
+msgstr "No s'ha trobat «%s»"
+
+#: ../xed/xed-statusbar.c:70 ../xed/xed-statusbar.c:76
 msgid "OVR"
 msgstr "SOBR"
 
-#: ../xed/xed-statusbar.c:74 ../xed/xed-statusbar.c:80
+#: ../xed/xed-statusbar.c:70 ../xed/xed-statusbar.c:76
 msgid "INS"
 msgstr "INSER"
 
 #. Translators: "Ln" is an abbreviation for "Line", Col is an abbreviation for "Column". Please,
 #. use abbreviations if possible to avoid space problems.
-#: ../xed/xed-statusbar.c:266
+#: ../xed/xed-statusbar.c:252
 #, c-format
 msgid "  Ln %d, Col %d"
 msgstr "  Ln %d, Col. %d"
 
-#: ../xed/xed-statusbar.c:367
+#: ../xed/xed-statusbar.c:353
 #, c-format
 msgid "There is a tab with errors"
 msgid_plural "There are %d tabs with errors"
 msgstr[0] "Hi ha una tabulació amb errors"
 msgstr[1] "Hi ha %d tabulacions amb errors"
 
-#: ../xed/xed-style-scheme-manager.c:220
+#: ../xed/xed-style-scheme-manager.c:214
 #, c-format
 msgid ""
 "Directory '%s' could not be created: g_mkdir_with_parents() failed: %s"
@@ -1778,77 +1798,77 @@ msgstr ""
 
 #. Translators: the first %s is a file name (e.g. test.txt) the second one
 #. is a directory (e.g. ssh://master.gnome.org/home/users/paolo)
-#: ../xed/xed-tab.c:664
+#: ../xed/xed-tab.c:656
 #, c-format
 msgid "Reverting %s from %s"
 msgstr "S'està recuperant %s de %s"
 
-#: ../xed/xed-tab.c:671
+#: ../xed/xed-tab.c:663
 #, c-format
 msgid "Reverting %s"
 msgstr "S'està recuperant %s"
 
 #. Translators: the first %s is a file name (e.g. test.txt) the second one
 #. is a directory (e.g. ssh://master.gnome.org/home/users/paolo)
-#: ../xed/xed-tab.c:687
+#: ../xed/xed-tab.c:679
 #, c-format
 msgid "Loading %s from %s"
 msgstr "S'està carregant %s de %s"
 
-#: ../xed/xed-tab.c:694
+#: ../xed/xed-tab.c:686
 #, c-format
 msgid "Loading %s"
 msgstr "S'està carregant %s"
 
 #. Translators: the first %s is a file name (e.g. test.txt) the second one
 #. is a directory (e.g. ssh://master.gnome.org/home/users/paolo)
-#: ../xed/xed-tab.c:777
+#: ../xed/xed-tab.c:769
 #, c-format
 msgid "Saving %s to %s"
 msgstr "S'està desant %s a %s"
 
-#: ../xed/xed-tab.c:784
+#: ../xed/xed-tab.c:776
 #, c-format
 msgid "Saving %s"
 msgstr "S'està desant %s"
 
 #. Read only
-#: ../xed/xed-tab.c:1659
+#: ../xed/xed-tab.c:1647
 msgid "RO"
 msgstr "RO"
 
-#: ../xed/xed-tab.c:1706
+#: ../xed/xed-tab.c:1694
 #, c-format
 msgid "Error opening file %s"
 msgstr "S'ha produït un error en obrir el fitxer %s"
 
-#: ../xed/xed-tab.c:1711
+#: ../xed/xed-tab.c:1699
 #, c-format
 msgid "Error reverting file %s"
 msgstr "S'ha produït un error en recuperar el document %s"
 
-#: ../xed/xed-tab.c:1716
+#: ../xed/xed-tab.c:1704
 #, c-format
 msgid "Error saving file %s"
 msgstr "S'ha produït un error en alçar el fitxer %s"
 
-#: ../xed/xed-tab.c:1737
+#: ../xed/xed-tab.c:1725
 msgid "Unicode (UTF-8)"
 msgstr "Unicode (UTF-8)"
 
-#: ../xed/xed-tab.c:1744
+#: ../xed/xed-tab.c:1732
 msgid "Name:"
 msgstr "Nom:"
 
-#: ../xed/xed-tab.c:1745
+#: ../xed/xed-tab.c:1733
 msgid "MIME Type:"
 msgstr "Tipus de MIME:"
 
-#: ../xed/xed-tab.c:1746
+#: ../xed/xed-tab.c:1734
 msgid "Encoding:"
 msgstr "Codificació:"
 
-#: ../xed/xed-tab-label.c:285
+#: ../xed/xed-tab-label.c:275
 msgid "Close document"
 msgstr "Tanca el document"
 
@@ -1881,6 +1901,11 @@ msgstr "_Documents"
 msgid "_Help"
 msgstr "A_juda"
 
+#. File menu
+#: ../xed/xed-ui.h:56
+msgid "_New"
+msgstr ""
+
 #: ../xed/xed-ui.h:57
 msgid "Create a new document"
 msgstr "Crea un document nou"
@@ -1889,7 +1914,7 @@ msgstr "Crea un document nou"
 msgid "_Open..."
 msgstr "_Obri..."
 
-#: ../xed/xed-ui.h:59 ../xed/xed-window.c:1383
+#: ../xed/xed-ui.h:59
 msgid "Open a file"
 msgstr "Obri un fitxer"
 
@@ -1909,7 +1934,7 @@ msgstr "_Continguts"
 
 #: ../xed/xed-ui.h:67
 msgid "Open the xed manual"
-msgstr ""
+msgstr "Obre el manual de xed"
 
 #: ../xed/xed-ui.h:69
 msgid "About this application"
@@ -1918,6 +1943,11 @@ msgstr "Quant a l'aplicació"
 #: ../xed/xed-ui.h:73
 msgid "Leave fullscreen mode"
 msgstr "Ix del mode de pantalla completa"
+
+#. File menu
+#: ../xed/xed-ui.h:80
+msgid "_Save"
+msgstr ""
 
 #: ../xed/xed-ui.h:81
 msgid "Save the current file"
@@ -1930,6 +1960,10 @@ msgstr "_Anomena i alça..."
 #: ../xed/xed-ui.h:83
 msgid "Save the current file with a different name"
 msgstr "Alça el fitxer amb un altre nom"
+
+#: ../xed/xed-ui.h:84
+msgid "Revert"
+msgstr ""
 
 #: ../xed/xed-ui.h:85
 msgid "Revert to a saved version of the file"
@@ -1951,25 +1985,50 @@ msgstr "_Imprimeix..."
 msgid "Print the current page"
 msgstr "Imprimeix la pàgina actual"
 
+#. Edit menu
+#: ../xed/xed-ui.h:92
+msgid "_Undo"
+msgstr ""
+
 #: ../xed/xed-ui.h:93
 msgid "Undo the last action"
 msgstr "Desfés la darrera acció"
+
+#: ../xed/xed-ui.h:94
+msgid "_Redo"
+msgstr ""
 
 #: ../xed/xed-ui.h:95
 msgid "Redo the last undone action"
 msgstr "Refés la darrera acció desfeta"
 
+#: ../xed/xed-ui.h:96
+msgid "C_ut"
+msgstr ""
+
 #: ../xed/xed-ui.h:97
 msgid "Cut the selection"
 msgstr "Retalla la selecció"
+
+#: ../xed/xed-ui.h:98
+msgid "_Copy"
+msgstr ""
 
 #: ../xed/xed-ui.h:99
 msgid "Copy the selection"
 msgstr "Copia la selecció"
 
+#: ../xed/xed-ui.h:100
+msgid "_Paste"
+msgstr ""
+
 #: ../xed/xed-ui.h:101
 msgid "Paste the clipboard"
 msgstr "Enganxa el porta-retalls"
+
+#: ../xed/xed-ui.h:102 ../plugins/filebrowser/xed-file-browser-widget.c:800
+msgid "_Delete"
+msgstr "_Suprimeix"
 
 #: ../xed/xed-ui.h:103
 msgid "Delete the selected text"
@@ -1990,8 +2049,8 @@ msgstr "Mode de _ressaltat"
 
 #. Search menu
 #: ../xed/xed-ui.h:111
-msgid "_Find..."
-msgstr "_Cerca..."
+msgid "_Find"
+msgstr ""
 
 #: ../xed/xed-ui.h:112
 msgid "Search for text"
@@ -2013,174 +2072,136 @@ msgstr "Cerca l'_anterior"
 msgid "Search backwards for the same text"
 msgstr "Cerca la mateixa cadena cap arrere"
 
-#: ../xed/xed-ui.h:117
-msgid "_Replace..."
-msgstr "_Reemplaça..."
-
 #: ../xed/xed-ui.h:118
 msgid "Search for and replace text"
 msgstr "Cerca i reemplaça el text"
 
 #: ../xed/xed-ui.h:119
-msgid "_Clear Highlight"
-msgstr "_Neteja el ressaltat"
-
-#: ../xed/xed-ui.h:120
-msgid "Clear highlighting of search matches"
-msgstr "Neteja el ressaltat de les coincidències amb la cerca"
-
-#: ../xed/xed-ui.h:121
 msgid "Go to _Line..."
 msgstr "Vés a la _línia..."
 
-#: ../xed/xed-ui.h:122
+#: ../xed/xed-ui.h:120
 msgid "Go to a specific line"
 msgstr "Vés a una línia específica"
 
-#: ../xed/xed-ui.h:123
-msgid "_Incremental Search..."
-msgstr "Cerca _incremental..."
-
-#: ../xed/xed-ui.h:124
-msgid "Incrementally search for text"
-msgstr "Cerca text de manera incremental"
-
 #. Documents menu
-#: ../xed/xed-ui.h:127
+#: ../xed/xed-ui.h:123
 msgid "_Save All"
 msgstr "Al_ça-ho tot"
 
-#: ../xed/xed-ui.h:128
+#: ../xed/xed-ui.h:124
 msgid "Save all open files"
 msgstr "Alça tots els fitxers oberts"
 
-#: ../xed/xed-ui.h:129
+#: ../xed/xed-ui.h:125
 msgid "_Close All"
 msgstr "Tan_ca-ho tot"
 
-#: ../xed/xed-ui.h:130
+#: ../xed/xed-ui.h:126
 msgid "Close all open files"
 msgstr "Tanca tots els fitxers oberts"
 
-#: ../xed/xed-ui.h:131
+#: ../xed/xed-ui.h:127
 msgid "_Previous Document"
 msgstr "Document _anterior"
 
-#: ../xed/xed-ui.h:132
+#: ../xed/xed-ui.h:128
 msgid "Activate previous document"
 msgstr "Activa el document anterior"
 
-#: ../xed/xed-ui.h:133
+#: ../xed/xed-ui.h:129
 msgid "_Next Document"
 msgstr "Document _següent"
 
-#: ../xed/xed-ui.h:134
+#: ../xed/xed-ui.h:130
 msgid "Activate next document"
 msgstr "Activa el document següent"
 
-#: ../xed/xed-ui.h:135
+#: ../xed/xed-ui.h:131
 msgid "_Move to New Window"
 msgstr "_Mou a una finestra nova"
 
-#: ../xed/xed-ui.h:136
+#: ../xed/xed-ui.h:132
 msgid "Move the current document to a new window"
 msgstr "Mou el document actual a una finestra nova"
 
-#: ../xed/xed-ui.h:143
+#: ../xed/xed-ui.h:138
+msgid "_Close"
+msgstr ""
+
+#: ../xed/xed-ui.h:139
 msgid "Close the current file"
 msgstr "Tanca el fitxer actual"
 
-#: ../xed/xed-ui.h:150
+#: ../xed/xed-ui.h:145
+msgid "_Quit"
+msgstr ""
+
+#: ../xed/xed-ui.h:146
 msgid "Quit the program"
 msgstr "Ix del programa"
 
-#: ../xed/xed-ui.h:155
+#: ../xed/xed-ui.h:151
 msgid "_Toolbar"
 msgstr "_Barra d'eines"
 
-#: ../xed/xed-ui.h:156
+#: ../xed/xed-ui.h:152
 msgid "Show or hide the toolbar in the current window"
 msgstr "Mostra o amaga la barra d'eines de la finestra actual"
 
-#: ../xed/xed-ui.h:158
+#: ../xed/xed-ui.h:154
 msgid "_Statusbar"
 msgstr "Barra d'e_stat"
 
-#: ../xed/xed-ui.h:159
+#: ../xed/xed-ui.h:155
 msgid "Show or hide the statusbar in the current window"
 msgstr "Mosta o amaga la barra d'estat de la finestra actual"
 
-#: ../xed/xed-ui.h:162
+#: ../xed/xed-ui.h:158
 msgid "Edit text in fullscreen"
 msgstr "Editeu text a pantalla completa"
 
-#: ../xed/xed-ui.h:169
+#: ../xed/xed-ui.h:165
 msgid "Side _Pane"
 msgstr "Subfinestra _lateral"
 
-#: ../xed/xed-ui.h:170
+#: ../xed/xed-ui.h:166
 msgid "Show or hide the side pane in the current window"
 msgstr "Mostra o amaga la subfinestra lateral de la finestra actual"
 
-#: ../xed/xed-ui.h:172
+#: ../xed/xed-ui.h:168
 msgid "_Bottom Pane"
 msgstr "Subfinestra _inferior"
 
-#: ../xed/xed-ui.h:173
+#: ../xed/xed-ui.h:169
 msgid "Show or hide the bottom pane in the current window"
 msgstr "Mostra o amaga la subfinestra inferior de la finestra actual"
 
-#: ../xed/xed-utils.c:1100
+#: ../xed/xed-utils.c:1093
 msgid "Please check your installation."
 msgstr "Comproveu la instal·lació."
 
-#: ../xed/xed-utils.c:1177
+#: ../xed/xed-utils.c:1166
 #, c-format
 msgid "Unable to open UI file %s. Error: %s"
 msgstr "No s'ha pogut obrir el fitxer d'interfície d'usuari %s. Error: %s"
 
-#: ../xed/xed-utils.c:1197
+#: ../xed/xed-utils.c:1186
 #, c-format
 msgid "Unable to find the object '%s' inside file %s."
 msgstr "No s'ha trobat l'objecte «%s» dins del fitxer %s."
 
 #. Translators: '/ on <remote-share>'
-#: ../xed/xed-utils.c:1357
+#: ../xed/xed-utils.c:1346
 #, c-format
 msgid "/ on %s"
 msgstr "/ a %s"
 
-#. create "Wrap Around" menu item.
-#: ../xed/xed-view.c:1257
-msgid "_Wrap Around"
-msgstr "Cont_inua des de l'inici"
-
-#. create "Match Entire Word Only" menu item.
-#: ../xed/xed-view.c:1267
-msgid "Match _Entire Word Only"
-msgstr "Coincidència només amb la paraula s_encera"
-
-#. create "Match Case" menu item.
-#: ../xed/xed-view.c:1277
-msgid "_Match Case"
-msgstr "Coi_ncidència de majúscules i minúscules"
-
-#. create "Parse escapes" menu item.
-#: ../xed/xed-view.c:1287
-msgid ""
-"_Parse escape sequences (e.g. \n"
-")"
-msgstr ""
-
-#: ../xed/xed-view.c:1401
-msgid "String you want to search for"
-msgstr "Cadena que vulgueu cercar"
-
-#: ../xed/xed-view.c:1410
+#: ../xed/xed-view.c:719
 msgid "Line you want to move the cursor to"
 msgstr "Línia on vulgueu moure el cursor"
 
-#: ../xed/xed-window.c:936
+#: ../xed/xed-window.c:742
 #, c-format
 msgid "Use %s highlight mode"
 msgstr "Utilitza el mode de ressaltat %s"
@@ -2188,49 +2209,37 @@ msgstr "Utilitza el mode de ressaltat %s"
 #. add the "Plain Text" item before all the others
 #. Translators: "Plain Text" means that no highlight mode is selected in the
 #. * "View->Highlight Mode" submenu and so syntax highlighting is disabled
-#: ../xed/xed-window.c:993 ../xed/xed-window.c:1885
+#: ../xed/xed-window.c:782 ../xed/xed-window.c:1591
 msgid "Plain Text"
 msgstr "Text pla"
 
-#: ../xed/xed-window.c:994
+#: ../xed/xed-window.c:782
 msgid "Disable syntax highlighting"
 msgstr "Inhabilita el ressaltat de la sintaxi"
 
 #. Translators: %s is a URI
-#: ../xed/xed-window.c:1280
+#: ../xed/xed-window.c:1036
 #, c-format
 msgid "Open '%s'"
 msgstr "Obri «%s»"
 
-#: ../xed/xed-window.c:1385
-msgid "Open a recently used file"
-msgstr "Obri un fitxer utilitzat recentment"
-
-#: ../xed/xed-window.c:1391
-msgid "Open"
-msgstr "Obri"
-
-#: ../xed/xed-window.c:1449
-msgid "Save"
-msgstr "Alça"
-
-#: ../xed/xed-window.c:1451
-msgid "Print"
-msgstr "Imprimeix"
-
 #. Translators: %s is a URI
-#: ../xed/xed-window.c:1610
+#: ../xed/xed-window.c:1321
 #, c-format
 msgid "Activate '%s'"
 msgstr "Activa «%s»"
 
-#: ../xed/xed-window.c:1863
+#: ../xed/xed-window.c:1572
 msgid "Use Spaces"
 msgstr "Utilitza espais"
 
-#: ../xed/xed-window.c:1934
+#: ../xed/xed-window.c:1629
 msgid "Tab Width"
 msgstr "Amplada de la tabulació"
+
+#: ../xed/xed-window.c:3310
+msgid "Elevated Privileges"
+msgstr ""
 
 #: ../plugins/changecase/changecase.xed-plugin.desktop.in.h:1
 msgid "Change Case"
@@ -2558,154 +2567,154 @@ msgstr ""
 "El directori nou està filtrat. Heu de canviar les preferències del filtre "
 "per fer-lo visible"
 
-#: ../plugins/filebrowser/xed-file-browser-widget.c:724
+#: ../plugins/filebrowser/xed-file-browser-widget.c:711
 msgid "Bookmarks"
 msgstr "Adreces d'interés"
 
-#: ../plugins/filebrowser/xed-file-browser-widget.c:805
+#: ../plugins/filebrowser/xed-file-browser-widget.c:792
 msgid "_Filter"
 msgstr "_Filtre"
 
-#: ../plugins/filebrowser/xed-file-browser-widget.c:810
+#: ../plugins/filebrowser/xed-file-browser-widget.c:797
 msgid "_Move to Trash"
 msgstr "_Mou a la paperera"
 
-#: ../plugins/filebrowser/xed-file-browser-widget.c:811
+#: ../plugins/filebrowser/xed-file-browser-widget.c:798
 msgid "Move selected file or folder to trash"
 msgstr "Mou el fitxer o carpeta seleccionades a la paperera"
 
-#: ../plugins/filebrowser/xed-file-browser-widget.c:813
-msgid "_Delete"
-msgstr "_Suprimeix"
-
-#: ../plugins/filebrowser/xed-file-browser-widget.c:814
+#: ../plugins/filebrowser/xed-file-browser-widget.c:801
 msgid "Delete selected file or folder"
 msgstr "Suprimeix el fitxer o carpeta seleccionades"
 
-#: ../plugins/filebrowser/xed-file-browser-widget.c:821
+#: ../plugins/filebrowser/xed-file-browser-widget.c:807
+msgid "Open"
+msgstr "Obri"
+
+#: ../plugins/filebrowser/xed-file-browser-widget.c:808
 msgid "Open selected file"
 msgstr "Obri el fitxer seleccionat"
 
-#: ../plugins/filebrowser/xed-file-browser-widget.c:827
+#: ../plugins/filebrowser/xed-file-browser-widget.c:814
 msgid "Up"
 msgstr "Amunt"
 
-#: ../plugins/filebrowser/xed-file-browser-widget.c:828
+#: ../plugins/filebrowser/xed-file-browser-widget.c:815
 msgid "Open the parent folder"
 msgstr "Obri la carpeta mare"
 
-#: ../plugins/filebrowser/xed-file-browser-widget.c:833
+#: ../plugins/filebrowser/xed-file-browser-widget.c:820
 msgid "_New Folder"
 msgstr "Nova _carpeta"
 
-#: ../plugins/filebrowser/xed-file-browser-widget.c:834
+#: ../plugins/filebrowser/xed-file-browser-widget.c:821
 msgid "Add new empty folder"
 msgstr "Afig una carpeta buida"
 
-#: ../plugins/filebrowser/xed-file-browser-widget.c:836
+#: ../plugins/filebrowser/xed-file-browser-widget.c:823
 msgid "New F_ile"
 msgstr "F_itxer nou"
 
-#: ../plugins/filebrowser/xed-file-browser-widget.c:837
+#: ../plugins/filebrowser/xed-file-browser-widget.c:824
 msgid "Add new empty file"
 msgstr "Afig un fitxer nou buit"
 
-#: ../plugins/filebrowser/xed-file-browser-widget.c:842
+#: ../plugins/filebrowser/xed-file-browser-widget.c:829
 msgid "_Rename"
 msgstr "_Canvia el nom"
 
-#: ../plugins/filebrowser/xed-file-browser-widget.c:843
+#: ../plugins/filebrowser/xed-file-browser-widget.c:830
 msgid "Rename selected file or folder"
 msgstr "Canvia el nom del fitxer o carpeta seleccionades"
 
-#: ../plugins/filebrowser/xed-file-browser-widget.c:849
+#: ../plugins/filebrowser/xed-file-browser-widget.c:836
 msgid "_Previous Location"
 msgstr "Ubicació _anterior"
 
-#: ../plugins/filebrowser/xed-file-browser-widget.c:851
+#: ../plugins/filebrowser/xed-file-browser-widget.c:837
 msgid "Go to the previous visited location"
 msgstr "Vés a l'anterior ubicació visitada"
 
-#: ../plugins/filebrowser/xed-file-browser-widget.c:853
+#: ../plugins/filebrowser/xed-file-browser-widget.c:839
 msgid "_Next Location"
 msgstr "Ubicació _següent"
 
-#: ../plugins/filebrowser/xed-file-browser-widget.c:854
+#: ../plugins/filebrowser/xed-file-browser-widget.c:840
 msgid "Go to the next visited location"
 msgstr "Vés a la següent ubicació visitada"
 
-#: ../plugins/filebrowser/xed-file-browser-widget.c:855
+#: ../plugins/filebrowser/xed-file-browser-widget.c:841
 msgid "Re_fresh View"
 msgstr "Re_fresca la vista"
 
-#: ../plugins/filebrowser/xed-file-browser-widget.c:856
+#: ../plugins/filebrowser/xed-file-browser-widget.c:842
 msgid "Refresh the view"
 msgstr "Refresca la vista"
 
-#: ../plugins/filebrowser/xed-file-browser-widget.c:857
-#: ../plugins/filebrowser/xed-file-browser-widget.c:875
+#: ../plugins/filebrowser/xed-file-browser-widget.c:843
+#: ../plugins/filebrowser/xed-file-browser-widget.c:861
 msgid "_View Folder"
 msgstr "Visualitza la _carpeta"
 
-#: ../plugins/filebrowser/xed-file-browser-widget.c:858
-#: ../plugins/filebrowser/xed-file-browser-widget.c:876
+#: ../plugins/filebrowser/xed-file-browser-widget.c:844
+#: ../plugins/filebrowser/xed-file-browser-widget.c:862
 msgid "View folder in file manager"
 msgstr "Visualitza la carpeta al gestor de fitxers"
 
-#: ../plugins/filebrowser/xed-file-browser-widget.c:865
+#: ../plugins/filebrowser/xed-file-browser-widget.c:851
 msgid "Show _Hidden"
 msgstr "Mostra els _ocults"
 
-#: ../plugins/filebrowser/xed-file-browser-widget.c:866
+#: ../plugins/filebrowser/xed-file-browser-widget.c:852
 msgid "Show hidden files and folders"
 msgstr "Mostra els fitxers i les carpetes ocultes"
 
-#: ../plugins/filebrowser/xed-file-browser-widget.c:868
+#: ../plugins/filebrowser/xed-file-browser-widget.c:854
 msgid "Show _Binary"
 msgstr "Mostra els _binaris"
 
-#: ../plugins/filebrowser/xed-file-browser-widget.c:869
+#: ../plugins/filebrowser/xed-file-browser-widget.c:855
 msgid "Show binary files"
 msgstr "Mostra els fitxers binaris"
 
-#: ../plugins/filebrowser/xed-file-browser-widget.c:1001
-#: ../plugins/filebrowser/xed-file-browser-widget.c:1010
-#: ../plugins/filebrowser/xed-file-browser-widget.c:1031
+#: ../plugins/filebrowser/xed-file-browser-widget.c:987
+#: ../plugins/filebrowser/xed-file-browser-widget.c:996
+#: ../plugins/filebrowser/xed-file-browser-widget.c:1017
 msgid "Previous location"
 msgstr "Ubicació anterior"
 
-#: ../plugins/filebrowser/xed-file-browser-widget.c:1003
+#: ../plugins/filebrowser/xed-file-browser-widget.c:989
 msgid "Go to previous location"
 msgstr "Vés a la ubicació anterior"
 
-#: ../plugins/filebrowser/xed-file-browser-widget.c:1005
-#: ../plugins/filebrowser/xed-file-browser-widget.c:1026
+#: ../plugins/filebrowser/xed-file-browser-widget.c:991
+#: ../plugins/filebrowser/xed-file-browser-widget.c:1012
 msgid "Go to a previously opened location"
 msgstr "Vés a la ubicació oberta anteriorment"
 
-#: ../plugins/filebrowser/xed-file-browser-widget.c:1022
+#: ../plugins/filebrowser/xed-file-browser-widget.c:1008
 msgid "Next location"
 msgstr "Ubicació següent"
 
-#: ../plugins/filebrowser/xed-file-browser-widget.c:1024
+#: ../plugins/filebrowser/xed-file-browser-widget.c:1010
 msgid "Go to next location"
 msgstr "Vés a la següent ubicació"
 
-#: ../plugins/filebrowser/xed-file-browser-widget.c:1236
+#: ../plugins/filebrowser/xed-file-browser-widget.c:1222
 msgid "_Match Filename"
 msgstr "Coi_ncidència del nom de fitxer"
 
-#: ../plugins/filebrowser/xed-file-browser-widget.c:2168
+#: ../plugins/filebrowser/xed-file-browser-widget.c:2129
 #, c-format
 msgid "No mount object for mounted volume: %s"
 msgstr "No hi ha cap objecte de muntatge per al volum muntat: %s"
 
-#: ../plugins/filebrowser/xed-file-browser-widget.c:2248
+#: ../plugins/filebrowser/xed-file-browser-widget.c:2209
 #, c-format
 msgid "Could not open media: %s"
 msgstr "No s'ha pogut obrir el suport: %s"
 
-#: ../plugins/filebrowser/xed-file-browser-widget.c:2295
+#: ../plugins/filebrowser/xed-file-browser-widget.c:2256
 #, c-format
 msgid "Could not mount volume: %s"
 msgstr "No s'ha pogut muntar el volum: %s"
@@ -2717,7 +2726,7 @@ msgstr "Modes de línia"
 
 #: ../plugins/modelines/modelines.xed-plugin.desktop.in.h:2
 msgid "Emacs, Kate and Vim-style modelines support for xed."
-msgstr ""
+msgstr "Suport per a xed de 'modelines' a l'estil d'Emacs, Kate i Vim."
 
 #: ../plugins/sort/xed-sort-plugin.c:88
 msgid "S_ort..."
@@ -2727,8 +2736,7 @@ msgstr "_Ordena..."
 msgid "Sort the current document or selection"
 msgstr "Ordena el document o la selecció actuals"
 
-#: ../plugins/sort/sort.xed-plugin.desktop.in.h:1
-#: ../plugins/sort/sort.ui.h:1
+#: ../plugins/sort/sort.xed-plugin.desktop.in.h:1 ../plugins/sort/sort.ui.h:1
 msgid "Sort"
 msgstr "Ordena"
 
@@ -2762,7 +2770,7 @@ msgstr "No es pot desfer una operació d'ordenació"
 
 #: ../plugins/spell/org.x.editor.plugins.spell.gschema.xml.in.h:1
 msgid "Autocheck Type"
-msgstr ""
+msgstr "Tipus de revisió automática"
 
 #. Translators: Displayed in the "Check Spelling" dialog if there are no suggestions for the current misspelled word
 #. Translators: Displayed in the "Check Spelling" dialog if there are no suggestions
@@ -2777,16 +2785,16 @@ msgid "_More..."
 msgstr "_Més..."
 
 #. Ignore all
-#: ../plugins/spell/xed-automatic-spell-checker.c:503
+#: ../plugins/spell/xed-automatic-spell-checker.c:499
 msgid "_Ignore All"
 msgstr "_Ignora-ho tot"
 
 #. + Add to Dictionary
-#: ../plugins/spell/xed-automatic-spell-checker.c:518
+#: ../plugins/spell/xed-automatic-spell-checker.c:514
 msgid "_Add"
 msgstr "_Afig"
 
-#: ../plugins/spell/xed-automatic-spell-checker.c:557
+#: ../plugins/spell/xed-automatic-spell-checker.c:553
 msgid "_Spelling Suggestions..."
 msgstr "_Suggeriments d'ortografia..."
 
@@ -2870,7 +2878,7 @@ msgstr "Comprova l'ortografia del document actual automàticament"
 
 #: ../plugins/spell/xed-spell-plugin.c:753
 msgid "Configure Spell Checker plugin..."
-msgstr ""
+msgstr "Configura el Connector de Correcció Ortogràfica..."
 
 #: ../plugins/spell/xed-spell-plugin.c:962
 msgid "The document is empty."
@@ -2942,23 +2950,23 @@ msgstr "Llengua"
 
 #: ../plugins/spell/xed-spell-setup-dialog.ui.h:1
 msgid "_Configure Spell Checker plugin..."
-msgstr ""
+msgstr "_Configura el connector de correcció ortogràfica..."
 
 #: ../plugins/spell/xed-spell-setup-dialog.ui.h:2
 msgid "Autocheck spelling on document load..."
-msgstr ""
+msgstr "Revisió ortogràfica automática en carregar el document..."
 
 #: ../plugins/spell/xed-spell-setup-dialog.ui.h:3
 msgid "_Never autocheck"
-msgstr ""
+msgstr "_No revisar mai automàticament"
 
 #: ../plugins/spell/xed-spell-setup-dialog.ui.h:4
 msgid "_Remember autocheck by document"
-msgstr ""
+msgstr "_Recordar revisió automàtica per document"
 
 #: ../plugins/spell/xed-spell-setup-dialog.ui.h:5
 msgid "_Always autocheck"
-msgstr ""
+msgstr "_Sempre revisar automàticament"
 
 #: ../plugins/spell/spell.xed-plugin.desktop.in.h:1
 msgid "Spell Checker"
@@ -2969,20 +2977,20 @@ msgid "Checks the spelling of the current document."
 msgstr "Comprova l'ortografia del document actual."
 
 #: ../plugins/taglist/xed-taglist-plugin.c:98
-#: ../plugins/taglist/xed-taglist-plugin-panel.c:725
-#: ../plugins/taglist/xed-taglist-plugin-panel.c:741
+#: ../plugins/taglist/xed-taglist-plugin-panel.c:706
+#: ../plugins/taglist/xed-taglist-plugin-panel.c:722
 msgid "Tags"
 msgstr "Marcadors"
 
-#: ../plugins/taglist/xed-taglist-plugin-panel.c:622
+#: ../plugins/taglist/xed-taglist-plugin-panel.c:608
 msgid "Select the group of tags you want to use"
 msgstr "Selecciona el grup de marcadors que vulgueu utilitzar"
 
-#: ../plugins/taglist/xed-taglist-plugin-panel.c:641
+#: ../plugins/taglist/xed-taglist-plugin-panel.c:627
 msgid "_Preview"
 msgstr "_Previsualització"
 
-#: ../plugins/taglist/xed-taglist-plugin-panel.c:722
+#: ../plugins/taglist/xed-taglist-plugin-panel.c:703
 msgid "Available Tag Lists"
 msgstr "Llistes dels marcadors disponibles"
 
@@ -4532,15 +4540,15 @@ msgstr "XUL - Marcadors"
 
 #: ../plugins/time/org.x.editor.plugins.time.gschema.xml.in.h:1
 msgid "Prompt type"
-msgstr ""
+msgstr "Tipus de l'indicador"
 
 #: ../plugins/time/org.x.editor.plugins.time.gschema.xml.in.h:2
 msgid "Selected format"
-msgstr ""
+msgstr "Format seleccionat"
 
 #: ../plugins/time/org.x.editor.plugins.time.gschema.xml.in.h:3
 msgid "Custom format"
-msgstr ""
+msgstr "Format personalitzat"
 
 #: ../plugins/time/xed-time-plugin.c:179
 msgid "In_sert Date and Time..."
@@ -4568,11 +4576,11 @@ msgstr "Insereix la data i hora actual a la posició del cursor."
 
 #: ../plugins/trailsave/trailsave.xed-plugin.desktop.in.h:1
 msgid "Save Without Trailing Spaces"
-msgstr ""
+msgstr "Desar sense espais finals"
 
 #: ../plugins/trailsave/trailsave.xed-plugin.desktop.in.h:2
 msgid "Removes trailing spaces from lines before saving."
-msgstr ""
+msgstr "Treu els espais finals de línia abans de desar."
 
 #: ../plugins/time/xed-time-dialog.ui.h:1
 msgid "Insert Date and Time"
