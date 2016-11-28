@@ -42,6 +42,7 @@ struct _XedSearchbarPrivate
     GtkWidget *find_prev_button;
     GtkWidget *replace_button;
     GtkWidget *replace_all_button;
+    GtkWidget *close_button;
 };
 
 G_DEFINE_TYPE(XedSearchbar, xed_searchbar, GTK_TYPE_BOX)
@@ -507,15 +508,25 @@ on_search_text_entry_activated (GtkEntry *widget,
 }
 
 static void
+close_button_clicked_callback (GtkWidget *button,
+                               XedSearchbar *searchbar)
+{
+    xed_searchbar_hide (searchbar);
+}
+
+static void
 xed_searchbar_init (XedSearchbar *searchbar)
 {
     GtkWidget *content;
     GtkSizeGroup *size_group;
     GtkWidget *error_widget;
+    GtkStyleContext *context;
+    GtkCssProvider *provider;
     gchar *file;
     gchar *root_objects[] = { "searchbar_content", NULL };
+    const gchar *data = ".button {padding: 0;}";
 
-    searchbar->priv = XED_SEARCHBAR_GET_PRIVATE(searchbar);
+    searchbar->priv = XED_SEARCHBAR_GET_PRIVATE (searchbar);
 
     file = xed_dirs_get_ui_file ("xed-searchbar.ui");
     xed_utils_get_ui_objects (file,
@@ -533,73 +544,82 @@ xed_searchbar_init (XedSearchbar *searchbar)
                               "find_prev_button", &searchbar->priv->find_prev_button,
                               "replace_button", &searchbar->priv->replace_button,
                               "replace_all_button", &searchbar->priv->replace_all_button,
+                              "close_button", &searchbar->priv->close_button,
                               NULL);
     g_free (file);
 
     searchbar->priv->search_entry = xed_history_entry_new ("history-search-for", TRUE);
     gtk_widget_set_hexpand (searchbar->priv->search_entry, TRUE);
-    xed_history_entry_set_escape_func (XED_HISTORY_ENTRY(searchbar->priv->search_entry),
+    xed_history_entry_set_escape_func (XED_HISTORY_ENTRY (searchbar->priv->search_entry),
                                        (XedHistoryEntryEscapeFunc) xed_utils_escape_search_text);
 
-    searchbar->priv->search_text_entry = xed_history_entry_get_entry (XED_HISTORY_ENTRY(searchbar->priv->search_entry));
-    gtk_entry_set_activates_default (GTK_ENTRY(searchbar->priv->search_text_entry), TRUE);
+    searchbar->priv->search_text_entry = xed_history_entry_get_entry (XED_HISTORY_ENTRY (searchbar->priv->search_entry));
+    gtk_entry_set_activates_default (GTK_ENTRY (searchbar->priv->search_text_entry), TRUE);
 
     gtk_widget_show (searchbar->priv->search_entry);
-    gtk_grid_attach (GTK_GRID(searchbar->priv->grid), searchbar->priv->search_entry, 2, 0, 1, 1);
+    gtk_grid_attach (GTK_GRID (searchbar->priv->grid), searchbar->priv->search_entry, 2, 0, 1, 1);
 
     searchbar->priv->replace_entry = xed_history_entry_new ("history-replace-with", TRUE);
     xed_history_entry_set_escape_func (XED_HISTORY_ENTRY(searchbar->priv->replace_entry),
                                        (XedHistoryEntryEscapeFunc) xed_utils_escape_search_text);
 
     searchbar->priv->replace_text_entry = xed_history_entry_get_entry (
-                    XED_HISTORY_ENTRY(searchbar->priv->replace_entry));
-    gtk_entry_set_activates_default (GTK_ENTRY(searchbar->priv->replace_text_entry), TRUE);
+                    XED_HISTORY_ENTRY (searchbar->priv->replace_entry));
+    gtk_entry_set_activates_default (GTK_ENTRY (searchbar->priv->replace_text_entry), TRUE);
 
     gtk_widget_show (searchbar->priv->replace_entry);
-    gtk_grid_attach (GTK_GRID(searchbar->priv->grid), searchbar->priv->replace_entry, 2, 1, 1, 1);
+    gtk_grid_attach (GTK_GRID (searchbar->priv->grid), searchbar->priv->replace_entry, 2, 1, 1, 1);
 
-    gtk_label_set_mnemonic_widget (GTK_LABEL(searchbar->priv->search_label), searchbar->priv->search_entry);
-    gtk_label_set_mnemonic_widget (GTK_LABEL(searchbar->priv->replace_label), searchbar->priv->replace_entry);
+    gtk_label_set_mnemonic_widget (GTK_LABEL (searchbar->priv->search_label), searchbar->priv->search_entry);
+    gtk_label_set_mnemonic_widget (GTK_LABEL (searchbar->priv->replace_label), searchbar->priv->replace_entry);
+
+    provider = gtk_css_provider_new ();
+    context = gtk_widget_get_style_context (searchbar->priv->close_button);
+    gtk_css_provider_load_from_data (provider, data, -1, NULL);
+    gtk_style_context_add_provider (context, GTK_STYLE_PROVIDER (provider), GTK_STYLE_PROVIDER_PRIORITY_APPLICATION);
 
     size_group = gtk_size_group_new (GTK_SIZE_GROUP_HORIZONTAL);
-    gtk_size_group_add_widget (size_group, GTK_WIDGET(searchbar->priv->find_button));
-    gtk_size_group_add_widget (size_group, GTK_WIDGET(searchbar->priv->find_prev_button));
-    gtk_size_group_add_widget (size_group, GTK_WIDGET(searchbar->priv->replace_button));
-    gtk_size_group_add_widget (size_group, GTK_WIDGET(searchbar->priv->replace_all_button));
+    gtk_size_group_add_widget (size_group, GTK_WIDGET (searchbar->priv->find_button));
+    gtk_size_group_add_widget (size_group, GTK_WIDGET (searchbar->priv->find_prev_button));
+    gtk_size_group_add_widget (size_group, GTK_WIDGET (searchbar->priv->replace_button));
+    gtk_size_group_add_widget (size_group, GTK_WIDGET (searchbar->priv->replace_all_button));
 
     /* insensitive by default */
     search_buttons_set_sensitive (searchbar, FALSE);
 
     xed_searchbar_hide (searchbar);
 
-    gtk_box_pack_start (GTK_BOX(searchbar), content, TRUE, TRUE, 0);
-    gtk_widget_show (GTK_WIDGET(searchbar));
+    gtk_box_pack_start (GTK_BOX (searchbar), content, TRUE, TRUE, 0);
+    gtk_widget_show (GTK_WIDGET (searchbar));
 
     g_object_unref (content);
 
-    g_signal_connect(searchbar->priv->search_text_entry, "insert_text",
-                     G_CALLBACK (insert_text_handler), NULL);
+    g_signal_connect (searchbar->priv->search_text_entry, "insert_text",
+                      G_CALLBACK (insert_text_handler), NULL);
 
-    g_signal_connect(searchbar->priv->replace_text_entry, "insert_text",
-                     G_CALLBACK (insert_text_handler), NULL);
+    g_signal_connect (searchbar->priv->replace_text_entry, "insert_text",
+                      G_CALLBACK (insert_text_handler), NULL);
 
-    g_signal_connect(searchbar->priv->search_text_entry, "changed",
-                     G_CALLBACK (search_text_entry_changed), searchbar);
+    g_signal_connect (searchbar->priv->search_text_entry, "changed",
+                      G_CALLBACK (search_text_entry_changed), searchbar);
 
-    g_signal_connect(searchbar->priv->search_text_entry, "activate",
-                     G_CALLBACK (on_search_text_entry_activated), searchbar);
+    g_signal_connect (searchbar->priv->search_text_entry, "activate",
+                      G_CALLBACK (on_search_text_entry_activated), searchbar);
 
-    g_signal_connect(searchbar->priv->find_button, "clicked",
-                     G_CALLBACK (find_button_clicked_callback), searchbar);
+    g_signal_connect (searchbar->priv->find_button, "clicked",
+                      G_CALLBACK (find_button_clicked_callback), searchbar);
 
-    g_signal_connect(searchbar->priv->find_prev_button, "clicked",
-                     G_CALLBACK (find_prev_button_clicked_callback), searchbar);
+    g_signal_connect (searchbar->priv->find_prev_button, "clicked",
+                      G_CALLBACK (find_prev_button_clicked_callback), searchbar);
 
-    g_signal_connect(searchbar->priv->replace_button, "clicked",
-                     G_CALLBACK (replace_button_clicked_callback), searchbar);
+    g_signal_connect (searchbar->priv->replace_button, "clicked",
+                      G_CALLBACK (replace_button_clicked_callback), searchbar);
 
-    g_signal_connect(searchbar->priv->replace_all_button, "clicked",
-                     G_CALLBACK (replace_all_button_clicked_callback), searchbar);
+    g_signal_connect (searchbar->priv->replace_all_button, "clicked",
+                      G_CALLBACK (replace_all_button_clicked_callback), searchbar);
+
+    g_signal_connect (searchbar->priv->close_button, "clicked",
+                      G_CALLBACK (close_button_clicked_callback), searchbar);
 }
 
 GtkWidget *
