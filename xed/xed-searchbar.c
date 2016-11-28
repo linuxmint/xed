@@ -418,13 +418,13 @@ insert_text_handler (GtkEditable *editable,
 }
 
 static void
-search_text_entry_changed (GtkEditable *editable,
+search_text_entry_changed (GtkEditable  *editable,
                            XedSearchbar *searchbar)
 {
     const gchar *search_string;
 
-    search_string = gtk_entry_get_text (GTK_ENTRY(editable));
-    g_return_if_fail(search_string != NULL);
+    search_string = gtk_entry_get_text (GTK_ENTRY (editable));
+    g_return_if_fail (search_string != NULL);
 
     if (*search_string != '\0')
     {
@@ -434,6 +434,7 @@ search_text_entry_changed (GtkEditable *editable,
     else
     {
         search_buttons_set_sensitive (searchbar, FALSE);
+        do_find (searchbar, FALSE);
     }
 }
 
