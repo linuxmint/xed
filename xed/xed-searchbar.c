@@ -100,24 +100,30 @@ text_not_found (XedWindow *window,
 static gboolean
 run_search (XedView *view,
             gboolean wrap_around,
-            gboolean search_backwards)
+            gboolean search_backwards,
+            gboolean jump_to_next_result)
 {
     XedDocument *doc;
     GtkTextIter start_iter;
+    GtkTextIter end_iter;
     GtkTextIter match_start;
     GtkTextIter match_end;
     gboolean found = FALSE;
 
     doc = XED_DOCUMENT(gtk_text_view_get_buffer (GTK_TEXT_VIEW (view)));
+    gtk_text_buffer_get_selection_bounds (GTK_TEXT_BUFFER(doc), &start_iter, &end_iter);
 
     if (!search_backwards)
     {
-        gtk_text_buffer_get_selection_bounds (GTK_TEXT_BUFFER(doc), NULL, &start_iter);
-        found = xed_document_search_forward (doc, &start_iter, NULL, &match_start, &match_end);
+        if (jump_to_next_result) {
+            found = xed_document_search_forward (doc, &end_iter, NULL, &match_start, &match_end);
+        }
+        else {
+            found = xed_document_search_forward (doc, &start_iter, NULL, &match_start, &match_end);
+        }
     }
     else
     {
-        gtk_text_buffer_get_selection_bounds (GTK_TEXT_BUFFER(doc), &start_iter, NULL);
         found = xed_document_search_backward (doc, NULL, &start_iter, &match_start, &match_end);
     }
 
@@ -151,7 +157,8 @@ run_search (XedView *view,
 
 static void
 do_find (XedSearchbar *searchbar,
-         gboolean search_backwards)
+         gboolean search_backwards,
+         gboolean jump_to_next_result)
 {
     XedView *active_view;
     XedDocument *doc;
@@ -191,7 +198,7 @@ do_find (XedSearchbar *searchbar,
 
     g_free (search_text);
 
-    found = run_search (active_view, wrap_around, search_backwards);
+    found = run_search (active_view, wrap_around, search_backwards, jump_to_next_result);
 
     if (found)
     {
@@ -221,7 +228,7 @@ xed_searchbar_find_again (XedSearchbar *searchbar,
         wrap_around = xed_searchbar_get_wrap_around (XED_SEARCHBAR(data));
     }
 
-    run_search (active_view, wrap_around, backward);
+    run_search (active_view, wrap_around, backward, TRUE);
 }
 
 static void
@@ -315,7 +322,7 @@ do_replace (XedSearchbar *searchbar)
                                    strlen (selected_text),
                                    strlen (unescaped_search_text)) != 0))
     {
-        do_find (searchbar, FALSE);
+        do_find (searchbar, FALSE, TRUE );
         g_free (unescaped_search_text);
         g_free (selected_text);
 
@@ -329,7 +336,7 @@ do_replace (XedSearchbar *searchbar)
     g_free (selected_text);
     g_free (unescaped_replace_text);
 
-    do_find (searchbar, FALSE);
+    do_find (searchbar, FALSE, TRUE);
 }
 
 static void
@@ -429,12 +436,12 @@ search_text_entry_changed (GtkEditable  *editable,
     if (*search_string != '\0')
     {
         search_buttons_set_sensitive (searchbar, TRUE);
-        do_find (searchbar, FALSE);
+        do_find (searchbar, FALSE, FALSE);
     }
     else
     {
         search_buttons_set_sensitive (searchbar, FALSE);
-        do_find (searchbar, FALSE);
+        do_find (searchbar, FALSE, FALSE);
     }
 }
 
@@ -471,7 +478,7 @@ find_button_clicked_callback (GtkWidget *button,
                               XedSearchbar *searchbar)
 {
     remember_search_entry (searchbar);
-    do_find (searchbar, FALSE);
+    do_find (searchbar, FALSE, TRUE);
 }
 
 static void
@@ -479,7 +486,7 @@ find_prev_button_clicked_callback (GtkWidget *button,
                                    XedSearchbar *searchbar)
 {
     remember_search_entry (searchbar);
-    do_find (searchbar, TRUE);
+    do_find (searchbar, TRUE, TRUE);
 }
 
 static void
@@ -505,7 +512,7 @@ on_search_text_entry_activated (GtkEntry *widget,
                                 XedSearchbar *searchbar)
 {
     remember_search_entry (searchbar);
-    do_find (searchbar, FALSE);
+    do_find (searchbar, FALSE, TRUE);
 }
 
 static void
