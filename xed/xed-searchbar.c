@@ -628,6 +628,13 @@ xed_searchbar_init (XedSearchbar *searchbar)
 
     g_signal_connect (searchbar->priv->close_button, "clicked",
                       G_CALLBACK (close_button_clicked_callback), searchbar);
+
+    // Start a search when match-case or entire-word buttons are clicked
+    g_signal_connect (searchbar->priv->entire_word_checkbutton, "clicked",
+                      G_CALLBACK (find_button_clicked_callback), searchbar);
+
+    g_signal_connect (searchbar->priv->match_case_checkbutton, "clicked",
+                      G_CALLBACK (find_button_clicked_callback), searchbar);
 }
 
 GtkWidget *
