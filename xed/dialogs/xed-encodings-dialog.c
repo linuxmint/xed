@@ -296,9 +296,9 @@ xed_encodings_dialog_init (XedEncodingsDialog *dlg)
     dlg->priv = XED_ENCODINGS_DIALOG_GET_PRIVATE (dlg);
 
     gtk_dialog_add_buttons (GTK_DIALOG (dlg),
-                            GTK_STOCK_CANCEL, GTK_RESPONSE_CANCEL,
-                            GTK_STOCK_OK, GTK_RESPONSE_OK,
-                            GTK_STOCK_HELP, GTK_RESPONSE_HELP,
+                            _("_Cancel"), GTK_RESPONSE_CANCEL,
+                            _("_OK"), GTK_RESPONSE_OK,
+                            _("_Help"), GTK_RESPONSE_HELP,
                             NULL);
 
     gtk_window_set_title (GTK_WINDOW (dlg), _("Character Encodings"));
@@ -307,8 +307,6 @@ xed_encodings_dialog_init (XedEncodingsDialog *dlg)
     /* HIG defaults */
     gtk_container_set_border_width (GTK_CONTAINER (dlg), 5);
     gtk_box_set_spacing (GTK_BOX (gtk_dialog_get_content_area (GTK_DIALOG (dlg))), 2); /* 2 * 5 + 2 = 12 */
-    gtk_container_set_border_width (GTK_CONTAINER (gtk_dialog_get_action_area (GTK_DIALOG (dlg))), 5);
-    gtk_box_set_spacing (GTK_BOX (gtk_dialog_get_action_area (GTK_DIALOG (dlg))), 6);
 
     gtk_dialog_set_default_response (GTK_DIALOG (dlg), GTK_RESPONSE_OK);
 
