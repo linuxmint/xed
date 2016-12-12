@@ -131,16 +131,16 @@ set_logout_mode (XedCloseConfirmationDialog *dlg,
     if (logout_mode)
     {
         gtk_dialog_add_button (GTK_DIALOG (dlg), _("Log Out _without Saving"), GTK_RESPONSE_NO);
-        xed_dialog_add_button (GTK_DIALOG (dlg), _("_Cancel Logout"), GTK_STOCK_CANCEL, GTK_RESPONSE_CANCEL);
+        gtk_dialog_add_button (GTK_DIALOG (dlg), _("_Cancel Logout"), GTK_RESPONSE_CANCEL);
     }
     else
     {
         gtk_dialog_add_button (GTK_DIALOG (dlg), _("Close _without Saving"), GTK_RESPONSE_NO);
-        gtk_dialog_add_button (GTK_DIALOG (dlg), GTK_STOCK_CANCEL, GTK_RESPONSE_CANCEL);
+        gtk_dialog_add_button (GTK_DIALOG (dlg), _("_Cancel"), GTK_RESPONSE_CANCEL);
     }
 
 
-    const gchar *stock_id = GTK_STOCK_SAVE;
+    gboolean save_as = FALSE;
 
     if (GET_MODE (dlg->priv) == SINGLE_DOC_MODE)
     {
@@ -150,11 +150,19 @@ set_logout_mode (XedCloseConfirmationDialog *dlg,
 
         if (xed_document_get_readonly (doc) || xed_document_is_untitled (doc))
         {
-            stock_id = GTK_STOCK_SAVE_AS;
+            save_as = TRUE;
         }
     }
 
-    gtk_dialog_add_button (GTK_DIALOG (dlg), stock_id, GTK_RESPONSE_YES);
+    if (save_as)
+    {
+        gtk_dialog_add_button (GTK_DIALOG (dlg), _("_Save As..."), GTK_RESPONSE_YES);
+    }
+    else
+    {
+        gtk_dialog_add_button (GTK_DIALOG (dlg), _("_Save"), GTK_RESPONSE_YES);
+    }
+
     gtk_dialog_set_default_response (GTK_DIALOG (dlg), GTK_RESPONSE_YES);
 }
 
@@ -484,7 +492,6 @@ build_single_doc_dialog (XedCloseConfirmationDialog *dlg)
     secondary_label = gtk_label_new (str);
     g_free (str);
     gtk_label_set_line_wrap (GTK_LABEL (secondary_label), TRUE);
-    gtk_misc_set_alignment (GTK_MISC (secondary_label), 0.0, 0.5);
     gtk_label_set_selectable (GTK_LABEL (secondary_label), TRUE);
     gtk_widget_set_can_focus (GTK_WIDGET (secondary_label), FALSE);
 
@@ -631,6 +638,7 @@ build_multiple_docs_dialog (XedCloseConfirmationDialog *dlg)
     primary_label = gtk_label_new (NULL);
     gtk_label_set_line_wrap (GTK_LABEL (primary_label), TRUE);
     gtk_label_set_use_markup (GTK_LABEL (primary_label), TRUE);
+    gtk_widget_set_halign (GTK_WIDGET (primary_label), GTK_ALIGN_START);
     gtk_misc_set_alignment (GTK_MISC (primary_label), 0.0, 0.5);
     gtk_label_set_selectable (GTK_LABEL (primary_label), TRUE);
 
@@ -672,7 +680,6 @@ build_multiple_docs_dialog (XedCloseConfirmationDialog *dlg)
 
     gtk_box_pack_start (GTK_BOX (vbox2), secondary_label, FALSE, FALSE, 0);
     gtk_label_set_line_wrap (GTK_LABEL (secondary_label), TRUE);
-    gtk_misc_set_alignment (GTK_MISC (secondary_label), 0.0, 0.5);
     gtk_label_set_selectable (GTK_LABEL (secondary_label), TRUE);
 
     gtk_label_set_mnemonic_widget (GTK_LABEL (select_label), treeview);
