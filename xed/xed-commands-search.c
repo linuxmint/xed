@@ -17,14 +17,14 @@ void
 _xed_cmd_search_find (GtkAction *action,
                       XedWindow *window)
 {
-    xed_searchbar_show (xed_window_get_searchbar (window), FALSE);
+    xed_searchbar_show (XED_SEARCHBAR (xed_window_get_searchbar (window)), FALSE);
 }
 
 void
 _xed_cmd_search_replace (GtkAction *action,
                          XedWindow *window)
 {
-    xed_searchbar_show (xed_window_get_searchbar (window), TRUE);
+    xed_searchbar_show (XED_SEARCHBAR (xed_window_get_searchbar (window)), TRUE);
 }
 
 void
@@ -32,7 +32,7 @@ _xed_cmd_search_find_next (GtkAction *action,
                            XedWindow *window)
 {
     xed_debug (DEBUG_COMMANDS);
-    xed_searchbar_find_again (xed_window_get_searchbar (window), FALSE);
+    xed_searchbar_find_again (XED_SEARCHBAR (xed_window_get_searchbar (window)), FALSE);
 }
 
 void
@@ -40,7 +40,7 @@ _xed_cmd_search_find_prev (GtkAction *action,
                            XedWindow *window)
 {
     xed_debug (DEBUG_COMMANDS);
-    xed_searchbar_find_again (xed_window_get_searchbar (window), TRUE);
+    xed_searchbar_find_again (XED_SEARCHBAR (xed_window_get_searchbar (window)), TRUE);
 }
 
 void
