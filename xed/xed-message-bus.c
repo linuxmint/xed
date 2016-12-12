@@ -627,7 +627,6 @@ xed_message_bus_register (XedMessageBus *bus,
                                          ...)
 {
     gchar *identifier;
-    gpointer data;
     va_list var_args;
     XedMessageType *message_type;
 
@@ -641,7 +640,6 @@ xed_message_bus_register (XedMessageBus *bus,
     }
 
     identifier = xed_message_type_identifier (object_path, method);
-    data = g_hash_table_lookup (bus->priv->types, identifier);
 
     va_start (var_args, num_optional);
     message_type = xed_message_type_new_valist (object_path, method, num_optional, var_args);
