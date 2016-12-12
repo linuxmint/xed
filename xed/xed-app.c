@@ -93,8 +93,6 @@ xed_app_get_property (GObject    *object,
                       GValue     *value,
                       GParamSpec *pspec)
 {
-    XedApp *app = XED_APP (object);
-
     switch (prop_id)
     {
         default:
