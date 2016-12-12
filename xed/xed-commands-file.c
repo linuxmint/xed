@@ -461,8 +461,8 @@ _xed_cmd_file_open (GtkAction *action,
                                                GTK_WINDOW (window),
                                                GTK_FILE_CHOOSER_ACTION_OPEN,
                                                NULL,
-                                               GTK_STOCK_CANCEL, GTK_RESPONSE_CANCEL,
-                                               GTK_STOCK_OPEN, GTK_RESPONSE_OK,
+                                               _("_Cancel"), GTK_RESPONSE_CANCEL,
+                                               _("_Open"), GTK_RESPONSE_OK,
                                                NULL);
 
     g_object_set_data (G_OBJECT (window), XED_OPEN_DIALOG_KEY, open_dialog);
@@ -569,9 +569,8 @@ replace_read_only_file (GtkWindow *parent,
                                               _("Do you want to try to replace it "
                                               "with the one you are saving?"));
 
-    gtk_dialog_add_button (GTK_DIALOG (dialog), GTK_STOCK_CANCEL, GTK_RESPONSE_CANCEL);
-
-    xed_dialog_add_button (GTK_DIALOG (dialog), _("_Replace"), GTK_STOCK_SAVE_AS, GTK_RESPONSE_YES);
+    gtk_dialog_add_button (GTK_DIALOG (dialog), _("_Cancel"), GTK_RESPONSE_CANCEL);
+    gtk_dialog_add_button (GTK_DIALOG (dialog), _("_Replace"), GTK_RESPONSE_YES);
 
     gtk_dialog_set_default_response (GTK_DIALOG (dialog), GTK_RESPONSE_CANCEL);
 
@@ -736,8 +735,8 @@ file_save_as (XedTab    *tab,
                                                GTK_WINDOW (window),
                                                GTK_FILE_CHOOSER_ACTION_SAVE,
                                                NULL,
-                                               GTK_STOCK_CANCEL, GTK_RESPONSE_CANCEL,
-                                               GTK_STOCK_SAVE, GTK_RESPONSE_OK,
+                                               _("_Cancel"), GTK_RESPONSE_CANCEL,
+                                               _("_Save"), GTK_RESPONSE_OK,
                                                NULL);
 
     gtk_file_chooser_set_do_overwrite_confirmation (GTK_FILE_CHOOSER (save_dialog), TRUE);
@@ -1177,10 +1176,8 @@ revert_dialog (XedWindow   *window,
 
     gtk_window_set_resizable (GTK_WINDOW (dialog), FALSE);
 
-    gtk_dialog_add_button (GTK_DIALOG (dialog), GTK_STOCK_CANCEL, GTK_RESPONSE_CANCEL);
-
-    xed_dialog_add_button (GTK_DIALOG (dialog), _("_Revert"), GTK_STOCK_REVERT_TO_SAVED, GTK_RESPONSE_OK);
-
+    gtk_dialog_add_button (GTK_DIALOG (dialog), _("_Cancel"), GTK_RESPONSE_CANCEL);
+    gtk_dialog_add_button (GTK_DIALOG (dialog), _("_Revert"), GTK_RESPONSE_OK);
     gtk_dialog_set_default_response (GTK_DIALOG (dialog), GTK_RESPONSE_CANCEL);
 
     return dialog;
