@@ -2163,9 +2163,9 @@ _xed_document_get_seconds_since_last_save_or_load (XedDocument *doc)
 static void
 get_search_match_colors (XedDocument *doc,
                          gboolean    *foreground_set,
-                         GdkColor    *foreground,
+                         GdkRGBA     *foreground,
                          gboolean    *background_set,
-                         GdkColor    *background)
+                         GdkRGBA     *background)
 {
     GtkSourceStyleScheme *style_scheme;
     GtkSourceStyle *style;
@@ -2193,7 +2193,7 @@ get_search_match_colors (XedDocument *doc,
 
     if (*foreground_set)
     {
-        if (fg == NULL || !gdk_color_parse (fg, foreground))
+        if (fg == NULL || !gdk_rgba_parse (foreground, fg))
         {
             *foreground_set = FALSE;
         }
@@ -2201,7 +2201,7 @@ get_search_match_colors (XedDocument *doc,
 
     if (*background_set)
     {
-        if (bg == NULL || !gdk_color_parse (bg, background))
+        if (bg == NULL || !gdk_rgba_parse (background, bg))
         {
             *background_set = FALSE;
         }
@@ -2217,7 +2217,7 @@ get_search_match_colors (XedDocument *doc,
                        "Falling back to hard-coded colors "
                        "for the \"found\" text tag.");
 
-    gdk_color_parse ("#FFFF78", background);
+    gdk_rgba_parse (background, "#FFFF78");
     *background_set = TRUE;
     *foreground_set = FALSE;
 
@@ -2229,8 +2229,8 @@ sync_found_tag (XedDocument *doc,
                 GParamSpec  *pspec,
                 gpointer     data)
 {
-    GdkColor fg;
-    GdkColor bg;
+    GdkRGBA fg;
+    GdkRGBA bg;
     gboolean fg_set;
     gboolean bg_set;
 
@@ -2240,8 +2240,8 @@ sync_found_tag (XedDocument *doc,
 
     get_search_match_colors (doc, &fg_set, &fg, &bg_set, &bg);
 
-    g_object_set (doc->priv->found_tag, "foreground-gdk", fg_set ? &fg : NULL, NULL);
-    g_object_set (doc->priv->found_tag, "background-gdk", bg_set ? &bg : NULL, NULL);
+    g_object_set (doc->priv->found_tag, "foreground-rgba", fg_set ? &fg : NULL, NULL);
+    g_object_set (doc->priv->found_tag, "background-rgba", bg_set ? &bg : NULL, NULL);
 }
 
 static void
