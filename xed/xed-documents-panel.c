@@ -482,7 +482,7 @@ menu_position (GtkMenu           *menu,
 {
     GtkTreePath *path;
     GdkRectangle rect;
-    gint wx, wy;
+    gint wy;
     GtkAllocation allocation;
     GtkRequisition requisition;
     GtkWidget *w;
@@ -495,7 +495,6 @@ menu_position (GtkMenu           *menu,
 
     gtk_tree_view_get_cell_area (GTK_TREE_VIEW (w), path, NULL, &rect);
 
-    wx = rect.x;
     wy = rect.y;
 
     gdk_window_get_origin (gtk_widget_get_window (w), x, y);
