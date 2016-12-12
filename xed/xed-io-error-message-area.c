@@ -91,22 +91,22 @@ set_contents (GtkWidget *area,
 }
 
 static void
-info_bar_add_stock_button_with_text (GtkInfoBar  *infobar,
-                                     const gchar *text,
-                                     const gchar *stock_id,
-                                     gint         response_id)
+info_bar_add_button_with_text (GtkInfoBar  *infobar,
+                               const gchar *text,
+                               const gchar *icon_name,
+                               gint         response_id)
 {
     GtkWidget *button;
     GtkWidget *image;
 
     button = gtk_info_bar_add_button (infobar, text, response_id);
-    image = gtk_image_new_from_stock (stock_id, GTK_ICON_SIZE_BUTTON);
+    image = gtk_image_new_from_icon_name (icon_name, GTK_ICON_SIZE_BUTTON);
     gtk_button_set_image (GTK_BUTTON (button), image);
 }
 
 static void
 set_message_area_text_and_icon (GtkWidget   *message_area,
-                                const gchar *icon_stock_id,
+                                const gchar *icon_name,
                                 const gchar *primary_text,
                                 const gchar *secondary_text)
 {
@@ -120,7 +120,7 @@ set_message_area_text_and_icon (GtkWidget   *message_area,
 
     hbox_content = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 8);
 
-    image = gtk_image_new_from_stock (icon_stock_id, GTK_ICON_SIZE_DIALOG);
+    image = gtk_image_new_from_icon_name (icon_name, GTK_ICON_SIZE_DIALOG);
     gtk_box_pack_start (GTK_BOX (hbox_content), image, FALSE, FALSE, 0);
     gtk_widget_set_halign (image, GTK_ALIGN_CENTER);
     gtk_widget_set_valign (image, GTK_ALIGN_START);
@@ -162,15 +162,15 @@ create_io_loading_error_message_area (const gchar *primary_text,
 {
     GtkWidget *message_area;
 
-    message_area = gtk_info_bar_new_with_buttons (GTK_STOCK_CANCEL, GTK_RESPONSE_CANCEL, NULL);
+    message_area = gtk_info_bar_new_with_buttons (_("_Cancel"), GTK_RESPONSE_CANCEL, NULL);
     gtk_info_bar_set_message_type (GTK_INFO_BAR (message_area), GTK_MESSAGE_ERROR);
 
-    set_message_area_text_and_icon (message_area, "gtk-dialog-error", primary_text, secondary_text);
+    set_message_area_text_and_icon (message_area, "dialog-error-symbolic", primary_text, secondary_text);
 
     if (recoverable_error)
     {
-        info_bar_add_stock_button_with_text (GTK_INFO_BAR (message_area), _("_Retry"),
-                                             GTK_STOCK_REFRESH, GTK_RESPONSE_OK);
+        info_bar_add_button_with_text (GTK_INFO_BAR (message_area), _("_Retry"),
+                                       "view-refresh-symbolic", GTK_RESPONSE_OK);
     }
 
     return message_area;
@@ -427,8 +427,8 @@ create_conversion_error_message_area (const gchar *primary_text,
 
     message_area = gtk_info_bar_new ();
 
-    info_bar_add_stock_button_with_text (GTK_INFO_BAR (message_area), _("_Retry"),
-                                         GTK_STOCK_REDO, GTK_RESPONSE_OK);
+    info_bar_add_button_with_text (GTK_INFO_BAR (message_area), _("_Retry"),
+                                   "edit-redo-symbolic", GTK_RESPONSE_OK);
 
     if (edit_anyway)
     {
@@ -446,13 +446,13 @@ create_conversion_error_message_area (const gchar *primary_text,
     }
     else
     {
-        gtk_info_bar_add_button (GTK_INFO_BAR (message_area), GTK_STOCK_CANCEL, GTK_RESPONSE_CANCEL);
+        gtk_info_bar_add_button (GTK_INFO_BAR (message_area), _("_Cancel"), GTK_RESPONSE_CANCEL);
         gtk_info_bar_set_message_type (GTK_INFO_BAR (message_area), GTK_MESSAGE_ERROR);
     }
 
     hbox_content = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 8);
 
-    image = gtk_image_new_from_stock ("gtk-dialog-error", GTK_ICON_SIZE_DIALOG);
+    image = gtk_image_new_from_icon_name ("dialog-error-symbolic", GTK_ICON_SIZE_DIALOG);
     gtk_box_pack_start (GTK_BOX (hbox_content), image, FALSE, FALSE, 0);
     gtk_widget_set_halign (image, GTK_ALIGN_CENTER);
     gtk_widget_set_valign (image, GTK_ALIGN_START);
@@ -706,7 +706,7 @@ xed_file_already_open_warning_message_area_new (const gchar *uri)
 
     hbox_content = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 8);
 
-    image = gtk_image_new_from_stock ("gtk-dialog-warning", GTK_ICON_SIZE_DIALOG);
+    image = gtk_image_new_from_icon_name ("dialog-warning-symbolic", GTK_ICON_SIZE_DIALOG);
     gtk_box_pack_start (GTK_BOX (hbox_content), image, FALSE, FALSE, 0);
     gtk_widget_set_halign (image, GTK_ALIGN_CENTER);
     gtk_widget_set_valign (image, GTK_ALIGN_START);
@@ -783,14 +783,14 @@ xed_externally_modified_saving_error_message_area_new (const gchar  *uri,
 
     message_area = gtk_info_bar_new ();
 
-    info_bar_add_stock_button_with_text (GTK_INFO_BAR (message_area), _("S_ave Anyway"),
-                                         GTK_STOCK_SAVE, GTK_RESPONSE_YES);
+    info_bar_add_button_with_text (GTK_INFO_BAR (message_area), _("S_ave Anyway"),
+                                   "document-save-symbolic", GTK_RESPONSE_YES);
     gtk_info_bar_add_button (GTK_INFO_BAR (message_area), _("D_on't Save"), GTK_RESPONSE_CANCEL);
     gtk_info_bar_set_message_type (GTK_INFO_BAR (message_area), GTK_MESSAGE_WARNING);
 
     hbox_content = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 8);
 
-    image = gtk_image_new_from_stock ("gtk-dialog-warning", GTK_ICON_SIZE_DIALOG);
+    image = gtk_image_new_from_icon_name ("dialog-warning-symbolic", GTK_ICON_SIZE_DIALOG);
     gtk_box_pack_start (GTK_BOX (hbox_content), image, FALSE, FALSE, 0);
     gtk_widget_set_halign (image, GTK_ALIGN_CENTER);
     gtk_widget_set_valign (image, GTK_ALIGN_START);
@@ -871,14 +871,14 @@ xed_no_backup_saving_error_message_area_new (const gchar  *uri,
 
     message_area = gtk_info_bar_new ();
 
-    info_bar_add_stock_button_with_text (GTK_INFO_BAR (message_area), _("S_ave Anyway"),
-                                         GTK_STOCK_SAVE, GTK_RESPONSE_YES);
+    info_bar_add_button_with_text (GTK_INFO_BAR (message_area), _("S_ave Anyway"),
+                                   "document-save-symbolic", GTK_RESPONSE_YES);
     gtk_info_bar_add_button (GTK_INFO_BAR (message_area), _("D_on't Save"), GTK_RESPONSE_CANCEL);
     gtk_info_bar_set_message_type (GTK_INFO_BAR (message_area), GTK_MESSAGE_WARNING);
 
     hbox_content = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 8);
 
-    image = gtk_image_new_from_stock ("gtk-dialog-warning", GTK_ICON_SIZE_DIALOG);
+    image = gtk_image_new_from_icon_name ("dialog-warning-symbolic", GTK_ICON_SIZE_DIALOG);
     gtk_box_pack_start (GTK_BOX (hbox_content), image, FALSE, FALSE, 0);
     gtk_widget_set_halign (image, GTK_ALIGN_CENTER);
     gtk_widget_set_valign (image, GTK_ALIGN_START);
@@ -1084,12 +1084,12 @@ xed_externally_modified_message_area_new (const gchar *uri,
 
     message_area = gtk_info_bar_new ();
 
-    info_bar_add_stock_button_with_text (GTK_INFO_BAR (message_area), _("_Reload"),
-                                         GTK_STOCK_REFRESH, GTK_RESPONSE_OK);
-    gtk_info_bar_add_button (GTK_INFO_BAR (message_area), GTK_STOCK_CANCEL, GTK_RESPONSE_CANCEL);
+    info_bar_add_button_with_text (GTK_INFO_BAR (message_area), _("_Reload"),
+                                   "view-refresh-symbolic", GTK_RESPONSE_OK);
+    gtk_info_bar_add_button (GTK_INFO_BAR (message_area), _("_Cancel"), GTK_RESPONSE_CANCEL);
     gtk_info_bar_set_message_type (GTK_INFO_BAR (message_area), GTK_MESSAGE_WARNING);
 
-    set_message_area_text_and_icon (message_area, "gtk-dialog-warning", primary_text, secondary_text);
+    set_message_area_text_and_icon (message_area, "dialog-warning-symbolic", primary_text, secondary_text);
 
     return message_area;
 }
