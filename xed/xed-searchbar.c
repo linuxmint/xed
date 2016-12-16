@@ -482,6 +482,14 @@ find_button_clicked_callback (GtkWidget *button,
 }
 
 static void
+toggle_button_clicked_callback (GtkWidget *button,
+                              XedSearchbar *searchbar)
+{
+    remember_search_entry (searchbar);
+    do_find (searchbar, FALSE, FALSE);
+}
+
+static void
 find_prev_button_clicked_callback (GtkWidget *button,
                                    XedSearchbar *searchbar)
 {
@@ -631,10 +639,10 @@ xed_searchbar_init (XedSearchbar *searchbar)
 
     // Start a search when match-case or entire-word buttons are clicked
     g_signal_connect (searchbar->priv->entire_word_checkbutton, "clicked",
-                      G_CALLBACK (find_button_clicked_callback), searchbar);
+                      G_CALLBACK (toggle_button_clicked_callback), searchbar);
 
     g_signal_connect (searchbar->priv->match_case_checkbutton, "clicked",
-                      G_CALLBACK (find_button_clicked_callback), searchbar);
+                      G_CALLBACK (toggle_button_clicked_callback), searchbar);
 }
 
 GtkWidget *
