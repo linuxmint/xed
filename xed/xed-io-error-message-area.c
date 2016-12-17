@@ -2,7 +2,7 @@
  * xed-io-error-message-area.c
  * This file is part of xed
  *
- * Copyright (C) 2005 - Paolo Maggi 
+ * Copyright (C) 2005 - Paolo Maggi
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,18 +16,18 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
- * Foundation, Inc., 51 Franklin St, Fifth Floor, 
+ * Foundation, Inc., 51 Franklin St, Fifth Floor,
  * Boston, MA 02110-1301, USA.
  */
- 
+
 /*
- * Modified by the xed Team, 2005. See the AUTHORS file for a 
- * list of people on the xed Team.  
- * See the ChangeLog files for a list of changes. 
+ * Modified by the xed Team, 2005. See the AUTHORS file for a
+ * list of people on the xed Team.
+ * See the ChangeLog files for a list of changes.
  *
  * $Id$
  */
- 
+
 /*
  * Verbose error reporting for file I/O operations (load, save, revert, create)
  */
@@ -53,1143 +53,1044 @@
 static gboolean
 is_recoverable_error (const GError *error)
 {
-	gboolean is_recoverable = FALSE;
+    gboolean is_recoverable = FALSE;
 
-	if (error->domain == G_IO_ERROR)
-	{
-		switch (error->code) {
-		case G_IO_ERROR_PERMISSION_DENIED:
-		case G_IO_ERROR_NOT_FOUND:
-		case G_IO_ERROR_HOST_NOT_FOUND:
-		case G_IO_ERROR_TIMED_OUT:
-		case G_IO_ERROR_NOT_MOUNTABLE_FILE:
-		case G_IO_ERROR_NOT_MOUNTED:
-		case G_IO_ERROR_BUSY:
-			is_recoverable = TRUE;
-		}
-	}
+    if (error->domain == G_IO_ERROR)
+    {
+        switch (error->code)
+        {
+            case G_IO_ERROR_PERMISSION_DENIED:
+            case G_IO_ERROR_NOT_FOUND:
+            case G_IO_ERROR_HOST_NOT_FOUND:
+            case G_IO_ERROR_TIMED_OUT:
+            case G_IO_ERROR_NOT_MOUNTABLE_FILE:
+            case G_IO_ERROR_NOT_MOUNTED:
+            case G_IO_ERROR_BUSY:
+                is_recoverable = TRUE;
+        }
+    }
 
-	return is_recoverable;
+    return is_recoverable;
 }
 
 static gboolean
 is_gio_error (const GError *error,
-	      gint          code)
+              gint          code)
 {
-	return error->domain == G_IO_ERROR && error->code == code;
+    return error->domain == G_IO_ERROR && error->code == code;
 }
 
 static void
 set_contents (GtkWidget *area,
-	      GtkWidget *contents)
+              GtkWidget *contents)
 {
-	GtkWidget *content_area;
-	
-	content_area = gtk_info_bar_get_content_area (GTK_INFO_BAR (area));
-	gtk_container_add (GTK_CONTAINER (content_area), contents);
+    GtkWidget *content_area;
+
+    content_area = gtk_info_bar_get_content_area (GTK_INFO_BAR (area));
+    gtk_container_add (GTK_CONTAINER (content_area), contents);
 }
 
 static void
-info_bar_add_stock_button_with_text (GtkInfoBar  *infobar,
-				     const gchar *text,
-				     const gchar *stock_id,
-				     gint         response_id)
+info_bar_add_button_with_text (GtkInfoBar  *infobar,
+                               const gchar *text,
+                               const gchar *icon_name,
+                               gint         response_id)
 {
-	GtkWidget *button;
-	GtkWidget *image;
+    GtkWidget *button;
+    GtkWidget *image;
 
-	button = gtk_info_bar_add_button (infobar, text, response_id);
-	image = gtk_image_new_from_stock (stock_id, GTK_ICON_SIZE_BUTTON);
-	gtk_button_set_image (GTK_BUTTON (button), image);
+    button = gtk_info_bar_add_button (infobar, text, response_id);
+    image = gtk_image_new_from_icon_name (icon_name, GTK_ICON_SIZE_BUTTON);
+    gtk_button_set_image (GTK_BUTTON (button), image);
 }
 
 static void
 set_message_area_text_and_icon (GtkWidget   *message_area,
-				const gchar *icon_stock_id,
-				const gchar *primary_text,
-				const gchar *secondary_text)
+                                const gchar *icon_name,
+                                const gchar *primary_text,
+                                const gchar *secondary_text)
 {
-	GtkWidget *hbox_content;
-	GtkWidget *image;
-	GtkWidget *vbox;
-	gchar *primary_markup;
-	gchar *secondary_markup;
-	GtkWidget *primary_label;
-	GtkWidget *secondary_label;
+    GtkWidget *hbox_content;
+    GtkWidget *image;
+    GtkWidget *vbox;
+    gchar *primary_markup;
+    gchar *secondary_markup;
+    GtkWidget *primary_label;
+    GtkWidget *secondary_label;
 
-	hbox_content = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 8);
+    hbox_content = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 8);
 
-	image = gtk_image_new_from_stock (icon_stock_id, GTK_ICON_SIZE_DIALOG);
-	gtk_box_pack_start (GTK_BOX (hbox_content), image, FALSE, FALSE, 0);
-	gtk_widget_set_halign (image, GTK_ALIGN_CENTER);
-	gtk_widget_set_valign (image, GTK_ALIGN_START);
+    image = gtk_image_new_from_icon_name (icon_name, GTK_ICON_SIZE_DIALOG);
+    gtk_box_pack_start (GTK_BOX (hbox_content), image, FALSE, FALSE, 0);
+    gtk_widget_set_halign (image, GTK_ALIGN_CENTER);
+    gtk_widget_set_valign (image, GTK_ALIGN_START);
 
-	vbox = gtk_box_new (GTK_ORIENTATION_VERTICAL, 6);
-	gtk_box_pack_start (GTK_BOX (hbox_content), vbox, TRUE, TRUE, 0);
+    vbox = gtk_box_new (GTK_ORIENTATION_VERTICAL, 6);
+    gtk_box_pack_start (GTK_BOX (hbox_content), vbox, TRUE, TRUE, 0);
 
-	primary_markup = g_strdup_printf ("<b>%s</b>", primary_text);
-	primary_label = gtk_label_new (primary_markup);
-	g_free (primary_markup);
-	gtk_box_pack_start (GTK_BOX (vbox), primary_label, TRUE, TRUE, 0);
-	gtk_label_set_use_markup (GTK_LABEL (primary_label), TRUE);
-	gtk_label_set_line_wrap (GTK_LABEL (primary_label), TRUE);
-	gtk_misc_set_alignment (GTK_MISC (primary_label), 0.0, 0.5);
-	gtk_widget_set_can_focus (primary_label, TRUE);
-	gtk_label_set_selectable (GTK_LABEL (primary_label), TRUE);
+    primary_markup = g_strdup_printf ("<b>%s</b>", primary_text);
+    primary_label = gtk_label_new (primary_markup);
+    g_free (primary_markup);
+    gtk_box_pack_start (GTK_BOX (vbox), primary_label, TRUE, TRUE, 0);
+    gtk_label_set_use_markup (GTK_LABEL (primary_label), TRUE);
+    gtk_label_set_line_wrap (GTK_LABEL (primary_label), TRUE);
+    gtk_misc_set_alignment (GTK_MISC (primary_label), 0.0, 0.5);
+    gtk_widget_set_can_focus (primary_label, TRUE);
+    gtk_label_set_selectable (GTK_LABEL (primary_label), TRUE);
 
-	if (secondary_text != NULL)
-	{
-		secondary_markup = g_strdup_printf ("<small>%s</small>",
-						    secondary_text);
-		secondary_label = gtk_label_new (secondary_markup);
-		g_free (secondary_markup);
-		gtk_box_pack_start (GTK_BOX (vbox), secondary_label, TRUE, TRUE, 0);
-		gtk_widget_set_can_focus (secondary_label, TRUE);
-		gtk_label_set_use_markup (GTK_LABEL (secondary_label), TRUE);
-		gtk_label_set_line_wrap (GTK_LABEL (secondary_label), TRUE);
-		gtk_label_set_selectable (GTK_LABEL (secondary_label), TRUE);
-		gtk_misc_set_alignment (GTK_MISC (secondary_label), 0.0, 0.5);
-	}
+    if (secondary_text != NULL)
+    {
+        secondary_markup = g_strdup_printf ("<small>%s</small>", secondary_text);
+        secondary_label = gtk_label_new (secondary_markup);
+        g_free (secondary_markup);
+        gtk_box_pack_start (GTK_BOX (vbox), secondary_label, TRUE, TRUE, 0);
+        gtk_widget_set_can_focus (secondary_label, TRUE);
+        gtk_label_set_use_markup (GTK_LABEL (secondary_label), TRUE);
+        gtk_label_set_line_wrap (GTK_LABEL (secondary_label), TRUE);
+        gtk_label_set_selectable (GTK_LABEL (secondary_label), TRUE);
+        gtk_misc_set_alignment (GTK_MISC (secondary_label), 0.0, 0.5);
+    }
 
-	gtk_widget_show_all (hbox_content);
-	set_contents (message_area, hbox_content);
+    gtk_widget_show_all (hbox_content);
+    set_contents (message_area, hbox_content);
 }
 
 static GtkWidget *
 create_io_loading_error_message_area (const gchar *primary_text,
-				      const gchar *secondary_text,
-				      gboolean     recoverable_error)
+                                      const gchar *secondary_text,
+                                      gboolean     recoverable_error)
 {
-	GtkWidget *message_area;
+    GtkWidget *message_area;
 
-	message_area = gtk_info_bar_new_with_buttons (
-					GTK_STOCK_CANCEL, GTK_RESPONSE_CANCEL,
-					NULL);
-	gtk_info_bar_set_message_type (GTK_INFO_BAR (message_area),
-				       GTK_MESSAGE_ERROR);
+    message_area = gtk_info_bar_new_with_buttons (_("_Cancel"), GTK_RESPONSE_CANCEL, NULL);
+    gtk_info_bar_set_message_type (GTK_INFO_BAR (message_area), GTK_MESSAGE_ERROR);
 
-	set_message_area_text_and_icon (message_area,
-					"gtk-dialog-error",
-					primary_text,
-					secondary_text);
+    set_message_area_text_and_icon (message_area, "dialog-error-symbolic", primary_text, secondary_text);
 
-	if (recoverable_error)
-	{
-		info_bar_add_stock_button_with_text (GTK_INFO_BAR (message_area),
-						     _("_Retry"),
-						     GTK_STOCK_REFRESH,
-						     GTK_RESPONSE_OK);
-	}
+    if (recoverable_error)
+    {
+        info_bar_add_button_with_text (GTK_INFO_BAR (message_area), _("_Retry"),
+                                       "view-refresh-symbolic", GTK_RESPONSE_OK);
+    }
 
-	return message_area;
+    return message_area;
 }
 
 static gboolean
 parse_gio_error (gint          code,
-	         gchar       **error_message, 
-	         gchar       **message_details, 
-	         const gchar  *uri, 
-	         const gchar  *uri_for_display)
+                 gchar       **error_message,
+                 gchar       **message_details,
+                 const gchar  *uri,
+                 const gchar  *uri_for_display)
 {
-	gboolean ret = TRUE;
+    gboolean ret = TRUE;
 
-	switch (code)
-	{
-	case G_IO_ERROR_NOT_FOUND:
-	case G_IO_ERROR_NOT_DIRECTORY:
-		*error_message = g_strdup_printf (_("Could not find the file %s."),
-						  uri_for_display);
-		*message_details = g_strdup (_("Please check that you typed the "
-				      	       "location correctly and try again."));
-		break;
-	case G_IO_ERROR_NOT_SUPPORTED:
-		{
-			gchar *scheme_string;
-			gchar *scheme_markup;
-			
-			scheme_string = g_uri_parse_scheme (uri);
+    switch (code)
+    {
+        case G_IO_ERROR_NOT_FOUND:
+        case G_IO_ERROR_NOT_DIRECTORY:
+            *error_message = g_strdup_printf (_("Could not find the file %s."), uri_for_display);
+            *message_details = g_strdup (_("Please check that you typed the "
+                                         "location correctly and try again."));
+            break;
+        case G_IO_ERROR_NOT_SUPPORTED:
+            {
+                gchar *scheme_string;
+                gchar *scheme_markup;
 
-			if ((scheme_string != NULL) && g_utf8_validate (scheme_string, -1, NULL))
-			{
-				scheme_markup = g_markup_printf_escaped ("<i>%s:</i>", scheme_string);
+                scheme_string = g_uri_parse_scheme (uri);
 
-				/* Translators: %s is a URI scheme (like for example http:, ftp:, etc.) */
-				*message_details = g_strdup_printf (_("xed cannot handle %s locations."),
-								   scheme_markup);
-				g_free (scheme_markup);
-			}
-			else
-			{
-				*message_details = g_strdup (_("xed cannot handle this location."));
-			}	
+                if ((scheme_string != NULL) && g_utf8_validate (scheme_string, -1, NULL))
+                {
+                    scheme_markup = g_markup_printf_escaped ("<i>%s:</i>", scheme_string);
 
-			g_free (scheme_string);
-		}
-		break;
+                    /* Translators: %s is a URI scheme (like for example http:, ftp:, etc.) */
+                    *message_details = g_strdup_printf (_("xed cannot handle %s locations."), scheme_markup);
+                    g_free (scheme_markup);
+                }
+                else
+                {
+                    *message_details = g_strdup (_("xed cannot handle this location."));
+                }
 
-	case G_IO_ERROR_NOT_MOUNTABLE_FILE:
-		*message_details = g_strdup (_("The location of the file cannot be mounted."));
-		break;
-	
-	case G_IO_ERROR_NOT_MOUNTED:
-		*message_details = g_strdup( _("The location of the file cannot be accessed because it is not mounted."));
+                g_free (scheme_string);
+            }
+            break;
+        case G_IO_ERROR_NOT_MOUNTABLE_FILE:
+            *message_details = g_strdup (_("The location of the file cannot be mounted."));
+            break;
+        case G_IO_ERROR_NOT_MOUNTED:
+            *message_details = g_strdup( _("The location of the file cannot be accessed because it is not mounted."));
+            break;
+        case G_IO_ERROR_IS_DIRECTORY:
+            *error_message = g_strdup_printf (_("%s is a directory."), uri_for_display);
+            *message_details = g_strdup (_("Please check that you typed the "
+                                         "location correctly and try again."));
+            break;
+        case G_IO_ERROR_INVALID_FILENAME:
+            *error_message = g_strdup_printf (_("%s is not a valid location."), uri_for_display);
+            *message_details = g_strdup (_("Please check that you typed the "
+                                         "location correctly and try again."));
+            break;
+        case G_IO_ERROR_HOST_NOT_FOUND:
+            /* This case can be hit for user-typed strings like "foo" due to
+             * the code that guesses web addresses when there's no initial "/".
+             * But this case is also hit for legitimate web addresses when
+             * the proxy is set up wrong.
+             */
+            {
+                gchar *hn = NULL;
 
-		break;	
-	case G_IO_ERROR_IS_DIRECTORY:
-		*error_message = g_strdup_printf (_("%s is a directory."),
-						 uri_for_display);
-		*message_details = g_strdup (_("Please check that you typed the "
-					      "location correctly and try again."));
-		break;
-		
-	case G_IO_ERROR_INVALID_FILENAME:
-		*error_message = g_strdup_printf (_("%s is not a valid location."),
-						 uri_for_display);
-		*message_details = g_strdup (_("Please check that you typed the "
-					      "location correctly and try again."));
-		break;
-		
-	case G_IO_ERROR_HOST_NOT_FOUND:
-		/* This case can be hit for user-typed strings like "foo" due to
-		 * the code that guesses web addresses when there's no initial "/".
-		 * But this case is also hit for legitimate web addresses when
-		 * the proxy is set up wrong.
-		 */
-		{
-			gchar *hn = NULL;
+                if (xed_utils_decode_uri (uri, NULL, NULL, &hn, NULL, NULL))
+                {
+                    if (hn != NULL)
+                    {
+                        gchar *host_markup;
+                        gchar *host_name;
 
-			if (xed_utils_decode_uri (uri, NULL, NULL, &hn, NULL, NULL))
-			{
-				if (hn != NULL)
-				{
-					gchar *host_markup;
-					gchar *host_name;
+                        host_name = xed_utils_make_valid_utf8 (hn);
+                        g_free (hn);
 
-					host_name = xed_utils_make_valid_utf8 (hn);
-					g_free (hn);
+                        host_markup = g_markup_printf_escaped ("<i>%s</i>", host_name);
+                        g_free (host_name);
 
-					host_markup = g_markup_printf_escaped ("<i>%s</i>", host_name);
-					g_free (host_name);
+                        /* Translators: %s is a host name */
+                        *message_details = g_strdup_printf (_("Host %s could not be found. "
+                                                            "Please check that your proxy settings "
+                                                            "are correct and try again."),
+                                                            host_markup);
 
-					/* Translators: %s is a host name */
-					*message_details = g_strdup_printf (
-						_("Host %s could not be found. "
-						"Please check that your proxy settings "
-						"are correct and try again."),
-						host_markup);
+                        g_free (host_markup);
+                    }
+                }
 
-					g_free (host_markup);
-				}
-			}
-			
-			if (!*message_details)
-			{
-				/* use the same string as INVALID_HOST */
-				*message_details = g_strdup_printf (
-					_("Hostname was invalid. "
-					  "Please check that you typed the location "
-					  "correctly and try again."));
-			}
-		}
-		break;
+                if (!*message_details)
+                {
+                    /* use the same string as INVALID_HOST */
+                    *message_details = g_strdup_printf (_("Hostname was invalid. "
+                                                        "Please check that you typed the location "
+                                                        "correctly and try again."));
+                }
+            }
+            break;
+        case G_IO_ERROR_NOT_REGULAR_FILE:
+            *message_details = g_strdup_printf (_("%s is not a regular file."), uri_for_display);
+            break;
+        case G_IO_ERROR_TIMED_OUT:
+            *message_details = g_strdup (_("Connection timed out. Please try again."));
+            break;
+        default:
+            ret = FALSE;
+            break;
+    }
 
-	case G_IO_ERROR_NOT_REGULAR_FILE:
-		*message_details = g_strdup_printf (_("%s is not a regular file."),
-						   uri_for_display);
-		break;
-
-	case G_IO_ERROR_TIMED_OUT:
-		*message_details = g_strdup (_("Connection timed out. Please try again."));
-		break;
-
-	default:
-		ret = FALSE;
-		break;
-	}
-
-	return ret;
+    return ret;
 }
 
 static gboolean
 parse_xed_error (gint          code,
-	           gchar       **error_message, 
-	           gchar       **message_details, 
-	           const gchar  *uri, 
-	           const gchar  *uri_for_display)
+                 gchar       **error_message,
+                 gchar       **message_details,
+                 const gchar  *uri,
+                 const gchar  *uri_for_display)
 {
-	gboolean ret = TRUE;
+    gboolean ret = TRUE;
 
-	switch (code)
-	{
-	case XED_DOCUMENT_ERROR_TOO_BIG:
-		*message_details = g_strdup (_("The file is too big."));
-		break;
+    switch (code)
+    {
+        case XED_DOCUMENT_ERROR_TOO_BIG:
+            *message_details = g_strdup (_("The file is too big."));
+            break;
+        default:
+            ret = FALSE;
+            break;
+    }
 
-	default:
-		ret = FALSE;
-		break;
-	}
-
-	return ret;
+    return ret;
 }
 
 static void
-parse_error (const GError *error, 
-	     gchar       **error_message, 
-	     gchar       **message_details, 
-	     const gchar  *uri, 
-	     const gchar  *uri_for_display)
+parse_error (const GError *error,
+             gchar       **error_message,
+             gchar       **message_details,
+             const gchar  *uri,
+             const gchar  *uri_for_display)
 {
-	gboolean ret = FALSE;
+    gboolean ret = FALSE;
 
-	if (error->domain == G_IO_ERROR)
-	{
-		ret = parse_gio_error (error->code,
-				       error_message,
-				       message_details,
-				       uri,
-				       uri_for_display);
-	}
-	else if (error->domain == XED_DOCUMENT_ERROR)
-	{
-		ret = parse_xed_error (error->code,
-					 error_message,
-					 message_details,
-					 uri,
-					 uri_for_display);
-	}
-	
-	if (!ret)
-	{
-		g_warning ("Hit unhandled case %d (%s) in %s.", 
-			   error->code, error->message, G_STRFUNC);	
-		*message_details = g_strdup_printf (_("Unexpected error: %s"), 
-						   error->message);
-	}
+    if (error->domain == G_IO_ERROR)
+    {
+        ret = parse_gio_error (error->code, error_message, message_details, uri, uri_for_display);
+    }
+    else if (error->domain == XED_DOCUMENT_ERROR)
+    {
+        ret = parse_xed_error (error->code, error_message, message_details, uri, uri_for_display);
+    }
+
+    if (!ret)
+    {
+        g_warning ("Hit unhandled case %d (%s) in %s.", error->code, error->message, G_STRFUNC);
+        *message_details = g_strdup_printf (_("Unexpected error: %s"), error->message);
+    }
 }
 
 GtkWidget *
 xed_unrecoverable_reverting_error_message_area_new (const gchar  *uri,
-						      const GError *error)
+                                                    const GError *error)
 {
-	gchar *error_message = NULL;
-	gchar *message_details = NULL;
-	gchar *full_formatted_uri;
-	gchar *uri_for_display;
-	gchar *temp_uri_for_display;
-	GtkWidget *message_area;
+    gchar *error_message = NULL;
+    gchar *message_details = NULL;
+    gchar *full_formatted_uri;
+    gchar *uri_for_display;
+    gchar *temp_uri_for_display;
+    GtkWidget *message_area;
 
-	g_return_val_if_fail (uri != NULL, NULL);
-	g_return_val_if_fail (error != NULL, NULL);
-	g_return_val_if_fail ((error->domain == XED_DOCUMENT_ERROR) || 
-			      (error->domain == G_IO_ERROR), NULL);
+    g_return_val_if_fail (uri != NULL, NULL);
+    g_return_val_if_fail (error != NULL, NULL);
+    g_return_val_if_fail ((error->domain == XED_DOCUMENT_ERROR) || (error->domain == G_IO_ERROR), NULL);
 
-	full_formatted_uri = xed_utils_uri_for_display (uri);
+    full_formatted_uri = xed_utils_uri_for_display (uri);
 
-	/* Truncate the URI so it doesn't get insanely wide. Note that even
-	 * though the dialog uses wrapped text, if the URI doesn't contain
-	 * white space then the text-wrapping code is too stupid to wrap it.
-	 */
-	temp_uri_for_display = xed_utils_str_middle_truncate (full_formatted_uri, 
-								MAX_URI_IN_DIALOG_LENGTH);								
-	g_free (full_formatted_uri);
+    /* Truncate the URI so it doesn't get insanely wide. Note that even
+     * though the dialog uses wrapped text, if the URI doesn't contain
+     * white space then the text-wrapping code is too stupid to wrap it.
+     */
+    temp_uri_for_display = xed_utils_str_middle_truncate (full_formatted_uri, MAX_URI_IN_DIALOG_LENGTH);
+    g_free (full_formatted_uri);
 
-	uri_for_display = g_markup_printf_escaped ("<i>%s</i>", temp_uri_for_display);
-	g_free (temp_uri_for_display);
+    uri_for_display = g_markup_printf_escaped ("<i>%s</i>", temp_uri_for_display);
+    g_free (temp_uri_for_display);
 
-	if (is_gio_error (error, G_IO_ERROR_NOT_FOUND))
-	{
-		message_details = g_strdup (_("xed cannot find the file. "
-					      "Perhaps it has recently been deleted."));
-	}
-	else
-	{
-		parse_error (error, &error_message, &message_details, uri, uri_for_display);
-	}
+    if (is_gio_error (error, G_IO_ERROR_NOT_FOUND))
+    {
+        message_details = g_strdup (_("xed cannot find the file. "
+                                    "Perhaps it has recently been deleted."));
+    }
+    else
+    {
+        parse_error (error, &error_message, &message_details, uri, uri_for_display);
+    }
 
-	if (error_message == NULL)
-	{
-		error_message = g_strdup_printf (_("Could not revert the file %s."),
-						 uri_for_display);
-	}
+    if (error_message == NULL)
+    {
+        error_message = g_strdup_printf (_("Could not revert the file %s."), uri_for_display);
+    }
 
-	message_area = create_io_loading_error_message_area (error_message,
-							     message_details,
-							     FALSE);
+    message_area = create_io_loading_error_message_area (error_message, message_details, FALSE);
 
-	g_free (uri_for_display);
-	g_free (error_message);
-	g_free (message_details);
+    g_free (uri_for_display);
+    g_free (error_message);
+    g_free (message_details);
 
-	return message_area;
+    return message_area;
 }
 
 static void
-create_combo_box (GtkWidget *message_area, GtkWidget *vbox)
+create_combo_box (GtkWidget *message_area,
+                  GtkWidget *vbox)
 {
-	GtkWidget *hbox;
-	GtkWidget *label;
-	GtkWidget *menu;
-	gchar *label_markup;
+    GtkWidget *hbox;
+    GtkWidget *label;
+    GtkWidget *menu;
+    gchar *label_markup;
 
-	hbox = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 6);
+    hbox = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 6);
 
-	label_markup = g_strdup_printf ("<small>%s</small>",
-					_("Ch_aracter Encoding:"));
-	label = gtk_label_new_with_mnemonic (label_markup);
-	g_free (label_markup);
-	gtk_label_set_use_markup (GTK_LABEL (label), TRUE);
-	menu = xed_encodings_combo_box_new (TRUE);
-	g_object_set_data (G_OBJECT (message_area), 
-			   "xed-message-area-encoding-menu", 
-			   menu);
+    label_markup = g_strdup_printf ("<small>%s</small>", _("Ch_aracter Encoding:"));
+    label = gtk_label_new_with_mnemonic (label_markup);
+    g_free (label_markup);
+    gtk_label_set_use_markup (GTK_LABEL (label), TRUE);
+    menu = xed_encodings_combo_box_new (TRUE);
+    g_object_set_data (G_OBJECT (message_area), "xed-message-area-encoding-menu", menu);
 
-	gtk_label_set_mnemonic_widget (GTK_LABEL (label), menu);
-	gtk_box_pack_start (GTK_BOX (hbox),
-			    label,
-			    FALSE,
-			    FALSE,
-			    0);
+    gtk_label_set_mnemonic_widget (GTK_LABEL (label), menu);
+    gtk_box_pack_start (GTK_BOX (hbox), label, FALSE, FALSE, 0);
+    gtk_box_pack_start (GTK_BOX (hbox), menu, FALSE, FALSE, 0);
 
-	gtk_box_pack_start (GTK_BOX (hbox),
-			    menu,
-			    FALSE,
-			    FALSE,
-			    0);
-
-	gtk_widget_show_all (hbox);
-	gtk_box_pack_start (GTK_BOX (vbox), hbox, TRUE, TRUE, 0);
+    gtk_widget_show_all (hbox);
+    gtk_box_pack_start (GTK_BOX (vbox), hbox, TRUE, TRUE, 0);
 }
 
 static GtkWidget *
 create_conversion_error_message_area (const gchar *primary_text,
-				      const gchar *secondary_text,
-				      gboolean     edit_anyway)
+                                      const gchar *secondary_text,
+                                      gboolean     edit_anyway)
 {
-	GtkWidget *message_area;
-	GtkWidget *hbox_content;
-	GtkWidget *image;
-	GtkWidget *vbox;
-	gchar *primary_markup;
-	gchar *secondary_markup;
-	GtkWidget *primary_label;
-	GtkWidget *secondary_label;
+    GtkWidget *message_area;
+    GtkWidget *hbox_content;
+    GtkWidget *image;
+    GtkWidget *vbox;
+    gchar *primary_markup;
+    gchar *secondary_markup;
+    GtkWidget *primary_label;
+    GtkWidget *secondary_label;
 
-	message_area = gtk_info_bar_new ();
+    message_area = gtk_info_bar_new ();
 
-	info_bar_add_stock_button_with_text (GTK_INFO_BAR (message_area),
-					     _("_Retry"),
-					     GTK_STOCK_REDO,
-					     GTK_RESPONSE_OK);
+    info_bar_add_button_with_text (GTK_INFO_BAR (message_area), _("_Retry"),
+                                   "edit-redo-symbolic", GTK_RESPONSE_OK);
 
-	if (edit_anyway)
-	{
-		gtk_info_bar_add_button (GTK_INFO_BAR (message_area),
-		/* Translators: the access key chosen for this string should be
-		 different from other main menu access keys (Open, Edit, View...) */
-					 _("Edit Any_way"),
-					 GTK_RESPONSE_YES);
-		gtk_info_bar_add_button (GTK_INFO_BAR (message_area),
-		/* Translators: the access key chosen for this string should be
-		 different from other main menu access keys (Open, Edit, View...) */
-					 _("D_on't Edit"),
-					 GTK_RESPONSE_NO);
-		gtk_info_bar_set_message_type (GTK_INFO_BAR (message_area),
-					       GTK_MESSAGE_WARNING);
-	}
-	else
-	{
-		gtk_info_bar_add_button (GTK_INFO_BAR (message_area),
-					 GTK_STOCK_CANCEL,
-					 GTK_RESPONSE_CANCEL);
-		gtk_info_bar_set_message_type (GTK_INFO_BAR (message_area),
-					       GTK_MESSAGE_ERROR);
-	}
+    if (edit_anyway)
+    {
+        gtk_info_bar_add_button (GTK_INFO_BAR (message_area),
+        /* Translators: the access key chosen for this string should be
+         different from other main menu access keys (Open, Edit, View...) */
+                     _("Edit Any_way"),
+                     GTK_RESPONSE_YES);
+        gtk_info_bar_add_button (GTK_INFO_BAR (message_area),
+        /* Translators: the access key chosen for this string should be
+         different from other main menu access keys (Open, Edit, View...) */
+                     _("D_on't Edit"),
+                     GTK_RESPONSE_NO);
+        gtk_info_bar_set_message_type (GTK_INFO_BAR (message_area), GTK_MESSAGE_WARNING);
+    }
+    else
+    {
+        gtk_info_bar_add_button (GTK_INFO_BAR (message_area), _("_Cancel"), GTK_RESPONSE_CANCEL);
+        gtk_info_bar_set_message_type (GTK_INFO_BAR (message_area), GTK_MESSAGE_ERROR);
+    }
 
-	hbox_content = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 8);
+    hbox_content = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 8);
 
-	image = gtk_image_new_from_stock ("gtk-dialog-error", GTK_ICON_SIZE_DIALOG);
-	gtk_box_pack_start (GTK_BOX (hbox_content), image, FALSE, FALSE, 0);
-	gtk_widget_set_halign (image, GTK_ALIGN_CENTER);
-	gtk_widget_set_valign (image, GTK_ALIGN_START);
+    image = gtk_image_new_from_icon_name ("dialog-error-symbolic", GTK_ICON_SIZE_DIALOG);
+    gtk_box_pack_start (GTK_BOX (hbox_content), image, FALSE, FALSE, 0);
+    gtk_widget_set_halign (image, GTK_ALIGN_CENTER);
+    gtk_widget_set_valign (image, GTK_ALIGN_START);
 
-	vbox = gtk_box_new (GTK_ORIENTATION_VERTICAL, 6);
-	gtk_box_pack_start (GTK_BOX (hbox_content), vbox, TRUE, TRUE, 0);
-	
-	primary_markup = g_strdup_printf ("<b>%s</b>", primary_text);
-	primary_label = gtk_label_new (primary_markup);
-	g_free (primary_markup);
-	gtk_box_pack_start (GTK_BOX (vbox), primary_label, TRUE, TRUE, 0);
-	gtk_label_set_use_markup (GTK_LABEL (primary_label), TRUE);
-	gtk_label_set_line_wrap (GTK_LABEL (primary_label), TRUE);
-	gtk_misc_set_alignment (GTK_MISC (primary_label), 0.0, 0.5);
-	gtk_widget_set_can_focus (primary_label, TRUE);
-	gtk_label_set_selectable (GTK_LABEL (primary_label), TRUE);
+    vbox = gtk_box_new (GTK_ORIENTATION_VERTICAL, 6);
+    gtk_box_pack_start (GTK_BOX (hbox_content), vbox, TRUE, TRUE, 0);
 
-	if (secondary_text != NULL)
-	{
-		secondary_markup = g_strdup_printf ("<small>%s</small>",
-						    secondary_text);
-		secondary_label = gtk_label_new (secondary_markup);
-		g_free (secondary_markup);
-		gtk_box_pack_start (GTK_BOX (vbox), secondary_label, TRUE, TRUE, 0);
-		gtk_widget_set_can_focus (secondary_label, TRUE);
-		gtk_label_set_use_markup (GTK_LABEL (secondary_label), TRUE);
-		gtk_label_set_line_wrap (GTK_LABEL (secondary_label), TRUE);
-		gtk_label_set_selectable (GTK_LABEL (secondary_label), TRUE);
-		gtk_misc_set_alignment (GTK_MISC (secondary_label), 0.0, 0.5);
-	}
+    primary_markup = g_strdup_printf ("<b>%s</b>", primary_text);
+    primary_label = gtk_label_new (primary_markup);
+    g_free (primary_markup);
+    gtk_box_pack_start (GTK_BOX (vbox), primary_label, TRUE, TRUE, 0);
+    gtk_label_set_use_markup (GTK_LABEL (primary_label), TRUE);
+    gtk_label_set_line_wrap (GTK_LABEL (primary_label), TRUE);
+    gtk_misc_set_alignment (GTK_MISC (primary_label), 0.0, 0.5);
+    gtk_widget_set_can_focus (primary_label, TRUE);
+    gtk_label_set_selectable (GTK_LABEL (primary_label), TRUE);
 
-	create_combo_box (message_area, vbox);
-	gtk_widget_show_all (hbox_content);
-	set_contents (message_area, hbox_content);
+    if (secondary_text != NULL)
+    {
+        secondary_markup = g_strdup_printf ("<small>%s</small>", secondary_text);
+        secondary_label = gtk_label_new (secondary_markup);
+        g_free (secondary_markup);
+        gtk_box_pack_start (GTK_BOX (vbox), secondary_label, TRUE, TRUE, 0);
+        gtk_widget_set_can_focus (secondary_label, TRUE);
+        gtk_label_set_use_markup (GTK_LABEL (secondary_label), TRUE);
+        gtk_label_set_line_wrap (GTK_LABEL (secondary_label), TRUE);
+        gtk_label_set_selectable (GTK_LABEL (secondary_label), TRUE);
+        gtk_misc_set_alignment (GTK_MISC (secondary_label), 0.0, 0.5);
+    }
 
-	return message_area;
+    create_combo_box (message_area, vbox);
+    gtk_widget_show_all (hbox_content);
+    set_contents (message_area, hbox_content);
+
+    return message_area;
 }
 
 GtkWidget *
-xed_io_loading_error_message_area_new (const gchar         *uri,
-					 const XedEncoding *encoding,
-					 const GError        *error)
+xed_io_loading_error_message_area_new (const gchar       *uri,
+                                       const XedEncoding *encoding,
+                                       const GError      *error)
 {
-	gchar *error_message = NULL;
-	gchar *message_details = NULL;
-	gchar *full_formatted_uri;
-	gchar *encoding_name;
-	gchar *uri_for_display;
-	gchar *temp_uri_for_display;
-	GtkWidget *message_area;
-	gboolean edit_anyway = FALSE;
-	gboolean convert_error = FALSE;
-	
-	g_return_val_if_fail (uri != NULL, NULL);
-	g_return_val_if_fail (error != NULL, NULL);
-	g_return_val_if_fail ((error->domain == G_CONVERT_ERROR) ||
-			      (error->domain == XED_DOCUMENT_ERROR) ||
-			      (error->domain == G_IO_ERROR), NULL);
-	
-	full_formatted_uri = xed_utils_uri_for_display (uri);
+    gchar *error_message = NULL;
+    gchar *message_details = NULL;
+    gchar *full_formatted_uri;
+    gchar *encoding_name;
+    gchar *uri_for_display;
+    gchar *temp_uri_for_display;
+    GtkWidget *message_area;
+    gboolean edit_anyway = FALSE;
+    gboolean convert_error = FALSE;
 
-	/* Truncate the URI so it doesn't get insanely wide. Note that even
-	 * though the dialog uses wrapped text, if the URI doesn't contain
-	 * white space then the text-wrapping code is too stupid to wrap it.
-	 */
-	temp_uri_for_display = xed_utils_str_middle_truncate (full_formatted_uri,
-								MAX_URI_IN_DIALOG_LENGTH);
-	g_free (full_formatted_uri);
-	
-	uri_for_display = g_markup_printf_escaped ("<i>%s</i>", temp_uri_for_display);
-	g_free (temp_uri_for_display);
+    g_return_val_if_fail (uri != NULL, NULL);
+    g_return_val_if_fail (error != NULL, NULL);
+    g_return_val_if_fail ((error->domain == G_CONVERT_ERROR) ||
+                  (error->domain == XED_DOCUMENT_ERROR) ||
+                  (error->domain == G_IO_ERROR), NULL);
 
-	if (encoding != NULL)
-		encoding_name = xed_encoding_to_string (encoding);
-	else
-		encoding_name = g_strdup ("UTF-8");
+    full_formatted_uri = xed_utils_uri_for_display (uri);
 
-	if (is_gio_error (error, G_IO_ERROR_TOO_MANY_LINKS))
-	{
-		message_details = g_strdup (_("The number of followed links is limited and the actual file could not be found within this limit."));
-	}
-	else if (is_gio_error (error, G_IO_ERROR_PERMISSION_DENIED))
-	{
-		message_details = g_strdup (_("You do not have the permissions necessary to open the file."));
-	}
-	else if ((is_gio_error (error, G_IO_ERROR_INVALID_DATA) && encoding == NULL) ||
-	         (error->domain == XED_DOCUMENT_ERROR &&
-	         error->code == XED_DOCUMENT_ERROR_ENCODING_AUTO_DETECTION_FAILED))
-	{
-		message_details = g_strconcat (_("xed has not been able to detect "
-					         "the character encoding."), "\n",
-					       _("Please check that you are not trying to open a binary file."), "\n",
-					       _("Select a character encoding from the menu and try again."), NULL);
-		convert_error = TRUE;
-	}
-	else if (error->domain == XED_DOCUMENT_ERROR &&
-	         error->code == XED_DOCUMENT_ERROR_CONVERSION_FALLBACK)
-	{
-		error_message = g_strdup_printf (_("There was a problem opening the file %s."),
-						 uri_for_display);
-		message_details = g_strconcat (_("The file you opened has some invalid characters. "
-					       "If you continue editing this file you could make this "
-					       "document useless."), "\n",
-					       _("You can also choose another character encoding and try again."),
-					       NULL);
-		edit_anyway = TRUE;
-		convert_error = TRUE;
-	}
-	else if (is_gio_error (error, G_IO_ERROR_INVALID_DATA) && encoding != NULL)
-	{
-		error_message = g_strdup_printf (_("Could not open the file %s using the %s character encoding."),
-						 uri_for_display, 
-						 encoding_name);
-		message_details = g_strconcat (_("Please check that you are not trying to open a binary file."), "\n",
-					       _("Select a different character encoding from the menu and try again."), NULL);
-		convert_error = TRUE;
-	}
-	else
-	{
-		parse_error (error, &error_message, &message_details, uri, uri_for_display);
-	}
+    /* Truncate the URI so it doesn't get insanely wide. Note that even
+     * though the dialog uses wrapped text, if the URI doesn't contain
+     * white space then the text-wrapping code is too stupid to wrap it.
+     */
+    temp_uri_for_display = xed_utils_str_middle_truncate (full_formatted_uri, MAX_URI_IN_DIALOG_LENGTH);
+    g_free (full_formatted_uri);
 
-	if (error_message == NULL)
-	{
-		error_message = g_strdup_printf (_("Could not open the file %s."),
-						 uri_for_display);
-	}
+    uri_for_display = g_markup_printf_escaped ("<i>%s</i>", temp_uri_for_display);
+    g_free (temp_uri_for_display);
 
-	if (convert_error)
-	{
-		message_area = create_conversion_error_message_area (error_message,
-								     message_details,
-								     edit_anyway);
-	}
-	else
-	{
-		message_area = create_io_loading_error_message_area (error_message,
-								     message_details,
-								     is_recoverable_error (error));
-	}
+    if (encoding != NULL)
+    {
+        encoding_name = xed_encoding_to_string (encoding);
+    }
+    else
+    {
+        encoding_name = g_strdup ("UTF-8");
+    }
 
-	g_free (uri_for_display);
-	g_free (encoding_name);
-	g_free (error_message);
-	g_free (message_details);
-	
-	return message_area;
+    if (is_gio_error (error, G_IO_ERROR_TOO_MANY_LINKS))
+    {
+        message_details = g_strdup (_("The number of followed links is limited and the actual file could not be found within this limit."));
+    }
+    else if (is_gio_error (error, G_IO_ERROR_PERMISSION_DENIED))
+    {
+        message_details = g_strdup (_("You do not have the permissions necessary to open the file."));
+    }
+    else if ((is_gio_error (error, G_IO_ERROR_INVALID_DATA) && encoding == NULL) ||
+             (error->domain == XED_DOCUMENT_ERROR &&
+             error->code == XED_DOCUMENT_ERROR_ENCODING_AUTO_DETECTION_FAILED))
+    {
+        message_details = g_strconcat (_("xed has not been able to detect "
+                                         "the character encoding."), "\n",
+                                       _("Please check that you are not trying to open a binary file."), "\n",
+                                       _("Select a character encoding from the menu and try again."), NULL);
+        convert_error = TRUE;
+    }
+    else if (error->domain == XED_DOCUMENT_ERROR && error->code == XED_DOCUMENT_ERROR_CONVERSION_FALLBACK)
+    {
+        error_message = g_strdup_printf (_("There was a problem opening the file %s."), uri_for_display);
+        message_details = g_strconcat (_("The file you opened has some invalid characters. "
+                                       "If you continue editing this file you could make this "
+                                       "document useless."), "\n",
+                                       _("You can also choose another character encoding and try again."),
+                                       NULL);
+        edit_anyway = TRUE;
+        convert_error = TRUE;
+    }
+    else if (is_gio_error (error, G_IO_ERROR_INVALID_DATA) && encoding != NULL)
+    {
+        error_message = g_strdup_printf (_("Could not open the file %s using the %s character encoding."),
+                                         uri_for_display,
+                                         encoding_name);
+        message_details = g_strconcat (_("Please check that you are not trying to open a binary file."), "\n",
+                                       _("Select a different character encoding from the menu and try again."), NULL);
+        convert_error = TRUE;
+    }
+    else
+    {
+        parse_error (error, &error_message, &message_details, uri, uri_for_display);
+    }
+
+    if (error_message == NULL)
+    {
+        error_message = g_strdup_printf (_("Could not open the file %s."), uri_for_display);
+    }
+
+    if (convert_error)
+    {
+        message_area = create_conversion_error_message_area (error_message, message_details, edit_anyway);
+    }
+    else
+    {
+        message_area = create_io_loading_error_message_area (error_message,
+                                                             message_details,
+                                                             is_recoverable_error (error));
+    }
+
+    g_free (uri_for_display);
+    g_free (encoding_name);
+    g_free (error_message);
+    g_free (message_details);
+
+    return message_area;
 }
 
 GtkWidget *
-xed_conversion_error_while_saving_message_area_new (
-						const gchar         *uri,
-						const XedEncoding *encoding,
-				    		const GError        *error)
+xed_conversion_error_while_saving_message_area_new (const gchar       *uri,
+                                                    const XedEncoding *encoding,
+                                                    const GError      *error)
 {
-	gchar *error_message = NULL;
-	gchar *message_details = NULL;
-	gchar *full_formatted_uri;
-	gchar *encoding_name;
-	gchar *uri_for_display;
-	gchar *temp_uri_for_display;
-	GtkWidget *message_area;
-	
-	g_return_val_if_fail (uri != NULL, NULL);
-	g_return_val_if_fail (error != NULL, NULL);
-	g_return_val_if_fail (error->domain == G_CONVERT_ERROR ||
-	                      error->domain == G_IO_ERROR, NULL);
-	g_return_val_if_fail (encoding != NULL, NULL);
-	
-	full_formatted_uri = xed_utils_uri_for_display (uri);
+    gchar *error_message = NULL;
+    gchar *message_details = NULL;
+    gchar *full_formatted_uri;
+    gchar *encoding_name;
+    gchar *uri_for_display;
+    gchar *temp_uri_for_display;
+    GtkWidget *message_area;
 
-	/* Truncate the URI so it doesn't get insanely wide. Note that even
-	 * though the dialog uses wrapped text, if the URI doesn't contain
-	 * white space then the text-wrapping code is too stupid to wrap it.
-	 */
-	temp_uri_for_display = xed_utils_str_middle_truncate (full_formatted_uri, 
-								MAX_URI_IN_DIALOG_LENGTH);								
-	g_free (full_formatted_uri);
-	
-	uri_for_display = g_markup_printf_escaped ("<i>%s</i>", temp_uri_for_display);
-	g_free (temp_uri_for_display);
+    g_return_val_if_fail (uri != NULL, NULL);
+    g_return_val_if_fail (error != NULL, NULL);
+    g_return_val_if_fail (error->domain == G_CONVERT_ERROR ||
+                          error->domain == G_IO_ERROR, NULL);
+    g_return_val_if_fail (encoding != NULL, NULL);
 
-	encoding_name = xed_encoding_to_string (encoding);
-	
-	error_message = g_strdup_printf (_("Could not save the file %s using the %s character encoding."),
-					 uri_for_display, 
-					 encoding_name);
-	message_details = g_strconcat (_("The document contains one or more characters that cannot be encoded "
-					 "using the specified character encoding."), "\n",
-				       _("Select a different character encoding from the menu and try again."), NULL);
-	
-	message_area = create_conversion_error_message_area (
-								error_message,
-								message_details,
-								FALSE);
+    full_formatted_uri = xed_utils_uri_for_display (uri);
 
-	g_free (uri_for_display);
-	g_free (encoding_name);
-	g_free (error_message);
-	g_free (message_details);
-	
-	return message_area;
+    /* Truncate the URI so it doesn't get insanely wide. Note that even
+     * though the dialog uses wrapped text, if the URI doesn't contain
+     * white space then the text-wrapping code is too stupid to wrap it.
+     */
+    temp_uri_for_display = xed_utils_str_middle_truncate (full_formatted_uri, MAX_URI_IN_DIALOG_LENGTH);
+    g_free (full_formatted_uri);
+
+    uri_for_display = g_markup_printf_escaped ("<i>%s</i>", temp_uri_for_display);
+    g_free (temp_uri_for_display);
+
+    encoding_name = xed_encoding_to_string (encoding);
+
+    error_message = g_strdup_printf (_("Could not save the file %s using the %s character encoding."),
+                                     uri_for_display,
+                                     encoding_name);
+    message_details = g_strconcat (_("The document contains one or more characters that cannot be encoded "
+                                     "using the specified character encoding."), "\n",
+                                     _("Select a different character encoding from the menu and try again."), NULL);
+
+    message_area = create_conversion_error_message_area (error_message, message_details, FALSE);
+
+    g_free (uri_for_display);
+    g_free (encoding_name);
+    g_free (error_message);
+    g_free (message_details);
+
+    return message_area;
 }
 
 const XedEncoding *
 xed_conversion_error_message_area_get_encoding (GtkWidget *message_area)
 {
-	gpointer menu;
+    gpointer menu;
 
-	g_return_val_if_fail (GTK_IS_INFO_BAR (message_area), NULL);
+    g_return_val_if_fail (GTK_IS_INFO_BAR (message_area), NULL);
 
-	menu = g_object_get_data (G_OBJECT (message_area), 
-				  "xed-message-area-encoding-menu");	
-	g_return_val_if_fail (menu, NULL);
-	
-	return xed_encodings_combo_box_get_selected_encoding
-					(XED_ENCODINGS_COMBO_BOX (menu));
+    menu = g_object_get_data (G_OBJECT (message_area), "xed-message-area-encoding-menu");
+    g_return_val_if_fail (menu, NULL);
+
+    return xed_encodings_combo_box_get_selected_encoding (XED_ENCODINGS_COMBO_BOX (menu));
 }
 
 GtkWidget *
 xed_file_already_open_warning_message_area_new (const gchar *uri)
 {
-	GtkWidget *message_area;
-	GtkWidget *hbox_content;
-	GtkWidget *image;
-	GtkWidget *vbox;
-	gchar *primary_markup;
-	gchar *secondary_markup;
-	GtkWidget *primary_label;
-	GtkWidget *secondary_label;
-	gchar *primary_text;
-	const gchar *secondary_text;
-	gchar *full_formatted_uri;
-	gchar *uri_for_display;
-	gchar *temp_uri_for_display;
-	
-	full_formatted_uri = xed_utils_uri_for_display (uri);
+    GtkWidget *message_area;
+    GtkWidget *hbox_content;
+    GtkWidget *image;
+    GtkWidget *vbox;
+    gchar *primary_markup;
+    gchar *secondary_markup;
+    GtkWidget *primary_label;
+    GtkWidget *secondary_label;
+    gchar *primary_text;
+    const gchar *secondary_text;
+    gchar *full_formatted_uri;
+    gchar *uri_for_display;
+    gchar *temp_uri_for_display;
 
-	/* Truncate the URI so it doesn't get insanely wide. Note that even
-	 * though the dialog uses wrapped text, if the URI doesn't contain
-	 * white space then the text-wrapping code is too stupid to wrap it.
-	 */
-	temp_uri_for_display = xed_utils_str_middle_truncate (full_formatted_uri, 
-								MAX_URI_IN_DIALOG_LENGTH);								
-	g_free (full_formatted_uri);
-	
-	uri_for_display = g_markup_printf_escaped ("<i>%s</i>", temp_uri_for_display);
-	g_free (temp_uri_for_display);
+    full_formatted_uri = xed_utils_uri_for_display (uri);
 
-	message_area = gtk_info_bar_new ();
-	gtk_info_bar_add_button (GTK_INFO_BAR (message_area),
-	/* Translators: the access key chosen for this string should be
-	 different from other main menu access keys (Open, Edit, View...) */
-				 _("Edit Any_way"),
-				 GTK_RESPONSE_YES);
-	gtk_info_bar_add_button (GTK_INFO_BAR (message_area),
-	/* Translators: the access key chosen for this string should be
-	 different from other main menu access keys (Open, Edit, View...) */
-				 _("D_on't Edit"),
-				 GTK_RESPONSE_CANCEL);
-	gtk_info_bar_set_message_type (GTK_INFO_BAR (message_area),
-				       GTK_MESSAGE_WARNING);
+    /* Truncate the URI so it doesn't get insanely wide. Note that even
+     * though the dialog uses wrapped text, if the URI doesn't contain
+     * white space then the text-wrapping code is too stupid to wrap it.
+     */
+    temp_uri_for_display = xed_utils_str_middle_truncate (full_formatted_uri, MAX_URI_IN_DIALOG_LENGTH);
+    g_free (full_formatted_uri);
 
-	hbox_content = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 8);
+    uri_for_display = g_markup_printf_escaped ("<i>%s</i>", temp_uri_for_display);
+    g_free (temp_uri_for_display);
 
-	image = gtk_image_new_from_stock ("gtk-dialog-warning", GTK_ICON_SIZE_DIALOG);
-	gtk_box_pack_start (GTK_BOX (hbox_content), image, FALSE, FALSE, 0);
-	gtk_widget_set_halign (image, GTK_ALIGN_CENTER);
-	gtk_widget_set_valign (image, GTK_ALIGN_START);
+    message_area = gtk_info_bar_new ();
+    gtk_info_bar_add_button (GTK_INFO_BAR (message_area),
+    /* Translators: the access key chosen for this string should be
+     different from other main menu access keys (Open, Edit, View...) */
+                 _("Edit Any_way"),
+                 GTK_RESPONSE_YES);
+    gtk_info_bar_add_button (GTK_INFO_BAR (message_area),
+    /* Translators: the access key chosen for this string should be
+     different from other main menu access keys (Open, Edit, View...) */
+                 _("D_on't Edit"),
+                 GTK_RESPONSE_CANCEL);
+    gtk_info_bar_set_message_type (GTK_INFO_BAR (message_area), GTK_MESSAGE_WARNING);
 
-	vbox = gtk_box_new (GTK_ORIENTATION_VERTICAL, 6);
-	gtk_box_pack_start (GTK_BOX (hbox_content), vbox, TRUE, TRUE, 0);
+    hbox_content = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 8);
 
-	primary_text = g_strdup_printf (_("This file (%s) is already open in another xed window."), uri_for_display);
-	g_free (uri_for_display);
-	
-	primary_markup = g_strdup_printf ("<b>%s</b>", primary_text);
-	g_free (primary_text);
-	primary_label = gtk_label_new (primary_markup);
-	g_free (primary_markup);
-	gtk_box_pack_start (GTK_BOX (vbox), primary_label, TRUE, TRUE, 0);
-	gtk_label_set_use_markup (GTK_LABEL (primary_label), TRUE);
-	gtk_label_set_line_wrap (GTK_LABEL (primary_label), TRUE);
-	gtk_misc_set_alignment (GTK_MISC (primary_label), 0.0, 0.5);
-	gtk_widget_set_can_focus (primary_label, TRUE);
-	gtk_label_set_selectable (GTK_LABEL (primary_label), TRUE);
+    image = gtk_image_new_from_icon_name ("dialog-warning-symbolic", GTK_ICON_SIZE_DIALOG);
+    gtk_box_pack_start (GTK_BOX (hbox_content), image, FALSE, FALSE, 0);
+    gtk_widget_set_halign (image, GTK_ALIGN_CENTER);
+    gtk_widget_set_valign (image, GTK_ALIGN_START);
 
-	secondary_text = _("xed opened this instance of the file in a non-editable way. "
-			   "Do you want to edit it anyway?");
-	secondary_markup = g_strdup_printf ("<small>%s</small>",
-					    secondary_text);
-	secondary_label = gtk_label_new (secondary_markup);
-	g_free (secondary_markup);
-	gtk_box_pack_start (GTK_BOX (vbox), secondary_label, TRUE, TRUE, 0);
-	gtk_widget_set_can_focus (secondary_label, TRUE);
-	gtk_label_set_use_markup (GTK_LABEL (secondary_label), TRUE);
-	gtk_label_set_line_wrap (GTK_LABEL (secondary_label), TRUE);
-	gtk_label_set_selectable (GTK_LABEL (secondary_label), TRUE);
-	gtk_misc_set_alignment (GTK_MISC (secondary_label), 0.0, 0.5);
+    vbox = gtk_box_new (GTK_ORIENTATION_VERTICAL, 6);
+    gtk_box_pack_start (GTK_BOX (hbox_content), vbox, TRUE, TRUE, 0);
 
-	gtk_widget_show_all (hbox_content);
-	set_contents (message_area, hbox_content);
+    primary_text = g_strdup_printf (_("This file (%s) is already open in another xed window."), uri_for_display);
+    g_free (uri_for_display);
 
-	return message_area;
+    primary_markup = g_strdup_printf ("<b>%s</b>", primary_text);
+    g_free (primary_text);
+    primary_label = gtk_label_new (primary_markup);
+    g_free (primary_markup);
+    gtk_box_pack_start (GTK_BOX (vbox), primary_label, TRUE, TRUE, 0);
+    gtk_label_set_use_markup (GTK_LABEL (primary_label), TRUE);
+    gtk_label_set_line_wrap (GTK_LABEL (primary_label), TRUE);
+    gtk_misc_set_alignment (GTK_MISC (primary_label), 0.0, 0.5);
+    gtk_widget_set_can_focus (primary_label, TRUE);
+    gtk_label_set_selectable (GTK_LABEL (primary_label), TRUE);
+
+    secondary_text = _("xed opened this instance of the file in a non-editable way. "
+                     "Do you want to edit it anyway?");
+    secondary_markup = g_strdup_printf ("<small>%s</small>", secondary_text);
+    secondary_label = gtk_label_new (secondary_markup);
+    g_free (secondary_markup);
+    gtk_box_pack_start (GTK_BOX (vbox), secondary_label, TRUE, TRUE, 0);
+    gtk_widget_set_can_focus (secondary_label, TRUE);
+    gtk_label_set_use_markup (GTK_LABEL (secondary_label), TRUE);
+    gtk_label_set_line_wrap (GTK_LABEL (secondary_label), TRUE);
+    gtk_label_set_selectable (GTK_LABEL (secondary_label), TRUE);
+    gtk_misc_set_alignment (GTK_MISC (secondary_label), 0.0, 0.5);
+
+    gtk_widget_show_all (hbox_content);
+    set_contents (message_area, hbox_content);
+
+    return message_area;
 }
 
 GtkWidget *
-xed_externally_modified_saving_error_message_area_new (
-						const gchar  *uri,
-						const GError *error)
+xed_externally_modified_saving_error_message_area_new (const gchar  *uri,
+                                                       const GError *error)
 {
-	GtkWidget *message_area;
-	GtkWidget *hbox_content;
-	GtkWidget *image;
-	GtkWidget *vbox;
-	gchar *primary_markup;
-	gchar *secondary_markup;
-	GtkWidget *primary_label;
-	GtkWidget *secondary_label;
-	gchar *primary_text;
-	const gchar *secondary_text;
-	gchar *full_formatted_uri;
-	gchar *uri_for_display;
-	gchar *temp_uri_for_display;
+    GtkWidget *message_area;
+    GtkWidget *hbox_content;
+    GtkWidget *image;
+    GtkWidget *vbox;
+    gchar *primary_markup;
+    gchar *secondary_markup;
+    GtkWidget *primary_label;
+    GtkWidget *secondary_label;
+    gchar *primary_text;
+    const gchar *secondary_text;
+    gchar *full_formatted_uri;
+    gchar *uri_for_display;
+    gchar *temp_uri_for_display;
 
-	g_return_val_if_fail (uri != NULL, NULL);
-	g_return_val_if_fail (error != NULL, NULL);
-	g_return_val_if_fail (error->domain == XED_DOCUMENT_ERROR, NULL);
-	g_return_val_if_fail (error->code == XED_DOCUMENT_ERROR_EXTERNALLY_MODIFIED, NULL);
+    g_return_val_if_fail (uri != NULL, NULL);
+    g_return_val_if_fail (error != NULL, NULL);
+    g_return_val_if_fail (error->domain == XED_DOCUMENT_ERROR, NULL);
+    g_return_val_if_fail (error->code == XED_DOCUMENT_ERROR_EXTERNALLY_MODIFIED, NULL);
 
-	full_formatted_uri = xed_utils_uri_for_display (uri);
+    full_formatted_uri = xed_utils_uri_for_display (uri);
 
-	/* Truncate the URI so it doesn't get insanely wide. Note that even
-	 * though the dialog uses wrapped text, if the URI doesn't contain
-	 * white space then the text-wrapping code is too stupid to wrap it.
-	 */
-	temp_uri_for_display = xed_utils_str_middle_truncate (full_formatted_uri, 
-								MAX_URI_IN_DIALOG_LENGTH);								
-	g_free (full_formatted_uri);
+    /* Truncate the URI so it doesn't get insanely wide. Note that even
+     * though the dialog uses wrapped text, if the URI doesn't contain
+     * white space then the text-wrapping code is too stupid to wrap it.
+     */
+    temp_uri_for_display = xed_utils_str_middle_truncate (full_formatted_uri, MAX_URI_IN_DIALOG_LENGTH);
+    g_free (full_formatted_uri);
 
-	uri_for_display = g_markup_printf_escaped ("<i>%s</i>", temp_uri_for_display);
-	g_free (temp_uri_for_display);
+    uri_for_display = g_markup_printf_escaped ("<i>%s</i>", temp_uri_for_display);
+    g_free (temp_uri_for_display);
 
-	message_area = gtk_info_bar_new ();
-	
-	info_bar_add_stock_button_with_text (GTK_INFO_BAR (message_area),
-					     _("S_ave Anyway"),
-					     GTK_STOCK_SAVE,
-					     GTK_RESPONSE_YES);
-	gtk_info_bar_add_button (GTK_INFO_BAR (message_area),
-				 _("D_on't Save"),
-				 GTK_RESPONSE_CANCEL);
-	gtk_info_bar_set_message_type (GTK_INFO_BAR (message_area),
-				       GTK_MESSAGE_WARNING);
+    message_area = gtk_info_bar_new ();
 
-	hbox_content = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 8);
+    info_bar_add_button_with_text (GTK_INFO_BAR (message_area), _("S_ave Anyway"),
+                                   "document-save-symbolic", GTK_RESPONSE_YES);
+    gtk_info_bar_add_button (GTK_INFO_BAR (message_area), _("D_on't Save"), GTK_RESPONSE_CANCEL);
+    gtk_info_bar_set_message_type (GTK_INFO_BAR (message_area), GTK_MESSAGE_WARNING);
 
-	image = gtk_image_new_from_stock ("gtk-dialog-warning", GTK_ICON_SIZE_DIALOG);
-	gtk_box_pack_start (GTK_BOX (hbox_content), image, FALSE, FALSE, 0);
-	gtk_widget_set_halign (image, GTK_ALIGN_CENTER);
-	gtk_widget_set_valign (image, GTK_ALIGN_START);
+    hbox_content = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 8);
 
-	vbox = gtk_box_new (GTK_ORIENTATION_VERTICAL, 6);
-	gtk_box_pack_start (GTK_BOX (hbox_content), vbox, TRUE, TRUE, 0);
+    image = gtk_image_new_from_icon_name ("dialog-warning-symbolic", GTK_ICON_SIZE_DIALOG);
+    gtk_box_pack_start (GTK_BOX (hbox_content), image, FALSE, FALSE, 0);
+    gtk_widget_set_halign (image, GTK_ALIGN_CENTER);
+    gtk_widget_set_valign (image, GTK_ALIGN_START);
 
-	// FIXME: review this message, it's not clear since for the user the "modification"
-	// could be interpreted as the changes he made in the document. beside "reading" is
-	// not accurate (since last load/save)
-	primary_text = g_strdup_printf (_("The file %s has been modified since reading it."),
-					uri_for_display);
-	g_free (uri_for_display);
+    vbox = gtk_box_new (GTK_ORIENTATION_VERTICAL, 6);
+    gtk_box_pack_start (GTK_BOX (hbox_content), vbox, TRUE, TRUE, 0);
 
-	primary_markup = g_strdup_printf ("<b>%s</b>", primary_text);
-	g_free (primary_text);
-	primary_label = gtk_label_new (primary_markup);
-	g_free (primary_markup);
-	gtk_box_pack_start (GTK_BOX (vbox), primary_label, TRUE, TRUE, 0);
-	gtk_label_set_use_markup (GTK_LABEL (primary_label), TRUE);
-	gtk_label_set_line_wrap (GTK_LABEL (primary_label), TRUE);
-	gtk_misc_set_alignment (GTK_MISC (primary_label), 0.0, 0.5);
-	gtk_widget_set_can_focus (primary_label, TRUE);
-	gtk_label_set_selectable (GTK_LABEL (primary_label), TRUE);
+    // FIXME: review this message, it's not clear since for the user the "modification"
+    // could be interpreted as the changes he made in the document. beside "reading" is
+    // not accurate (since last load/save)
+    primary_text = g_strdup_printf (_("The file %s has been modified since reading it."), uri_for_display);
+    g_free (uri_for_display);
 
-	secondary_text = _("If you save it, all the external changes could be lost. Save it anyway?");
-	secondary_markup = g_strdup_printf ("<small>%s</small>",
-					    secondary_text);
-	secondary_label = gtk_label_new (secondary_markup);
-	g_free (secondary_markup);
-	gtk_box_pack_start (GTK_BOX (vbox), secondary_label, TRUE, TRUE, 0);
-	gtk_widget_set_can_focus (secondary_label, TRUE);
-	gtk_label_set_use_markup (GTK_LABEL (secondary_label), TRUE);
-	gtk_label_set_line_wrap (GTK_LABEL (secondary_label), TRUE);
-	gtk_label_set_selectable (GTK_LABEL (secondary_label), TRUE);
-	gtk_misc_set_alignment (GTK_MISC (secondary_label), 0.0, 0.5);
+    primary_markup = g_strdup_printf ("<b>%s</b>", primary_text);
+    g_free (primary_text);
+    primary_label = gtk_label_new (primary_markup);
+    g_free (primary_markup);
+    gtk_box_pack_start (GTK_BOX (vbox), primary_label, TRUE, TRUE, 0);
+    gtk_label_set_use_markup (GTK_LABEL (primary_label), TRUE);
+    gtk_label_set_line_wrap (GTK_LABEL (primary_label), TRUE);
+    gtk_misc_set_alignment (GTK_MISC (primary_label), 0.0, 0.5);
+    gtk_widget_set_can_focus (primary_label, TRUE);
+    gtk_label_set_selectable (GTK_LABEL (primary_label), TRUE);
 
-	gtk_widget_show_all (hbox_content);
-	set_contents (message_area, hbox_content);
+    secondary_text = _("If you save it, all the external changes could be lost. Save it anyway?");
+    secondary_markup = g_strdup_printf ("<small>%s</small>", secondary_text);
+    secondary_label = gtk_label_new (secondary_markup);
+    g_free (secondary_markup);
+    gtk_box_pack_start (GTK_BOX (vbox), secondary_label, TRUE, TRUE, 0);
+    gtk_widget_set_can_focus (secondary_label, TRUE);
+    gtk_label_set_use_markup (GTK_LABEL (secondary_label), TRUE);
+    gtk_label_set_line_wrap (GTK_LABEL (secondary_label), TRUE);
+    gtk_label_set_selectable (GTK_LABEL (secondary_label), TRUE);
+    gtk_misc_set_alignment (GTK_MISC (secondary_label), 0.0, 0.5);
 
-	return message_area;
+    gtk_widget_show_all (hbox_content);
+    set_contents (message_area, hbox_content);
+
+    return message_area;
 }
 
 GtkWidget *
 xed_no_backup_saving_error_message_area_new (const gchar  *uri,
-					       const GError *error)
+                                             const GError *error)
 {
-	GtkWidget *message_area;
-	GtkWidget *hbox_content;
-	GtkWidget *image;
-	GtkWidget *vbox;
-	gchar *primary_markup;
-	gchar *secondary_markup;
-	GtkWidget *primary_label;
-	GtkWidget *secondary_label;
-	gchar *primary_text;
-	const gchar *secondary_text;
-	gchar *full_formatted_uri;
-	gchar *uri_for_display;
-	gchar *temp_uri_for_display;
+    GtkWidget *message_area;
+    GtkWidget *hbox_content;
+    GtkWidget *image;
+    GtkWidget *vbox;
+    gchar *primary_markup;
+    gchar *secondary_markup;
+    GtkWidget *primary_label;
+    GtkWidget *secondary_label;
+    gchar *primary_text;
+    const gchar *secondary_text;
+    gchar *full_formatted_uri;
+    gchar *uri_for_display;
+    gchar *temp_uri_for_display;
 
-	g_return_val_if_fail (uri != NULL, NULL);
-	g_return_val_if_fail (error != NULL, NULL);
-	g_return_val_if_fail (((error->domain == XED_DOCUMENT_ERROR &&
-			        error->code == XED_DOCUMENT_ERROR_CANT_CREATE_BACKUP) ||
-			       (error->domain == G_IO_ERROR &&
-			        error->code == G_IO_ERROR_CANT_CREATE_BACKUP)), NULL);
+    g_return_val_if_fail (uri != NULL, NULL);
+    g_return_val_if_fail (error != NULL, NULL);
+    g_return_val_if_fail (((error->domain == XED_DOCUMENT_ERROR &&
+                          error->code == XED_DOCUMENT_ERROR_CANT_CREATE_BACKUP) ||
+                          (error->domain == G_IO_ERROR &&
+                          error->code == G_IO_ERROR_CANT_CREATE_BACKUP)), NULL);
 
-	full_formatted_uri = xed_utils_uri_for_display (uri);
+    full_formatted_uri = xed_utils_uri_for_display (uri);
 
-	/* Truncate the URI so it doesn't get insanely wide. Note that even
-	 * though the dialog uses wrapped text, if the URI doesn't contain
-	 * white space then the text-wrapping code is too stupid to wrap it.
-	 */
-	temp_uri_for_display = xed_utils_str_middle_truncate (full_formatted_uri, 
-								MAX_URI_IN_DIALOG_LENGTH);								
-	g_free (full_formatted_uri);
+    /* Truncate the URI so it doesn't get insanely wide. Note that even
+     * though the dialog uses wrapped text, if the URI doesn't contain
+     * white space then the text-wrapping code is too stupid to wrap it.
+     */
+    temp_uri_for_display = xed_utils_str_middle_truncate (full_formatted_uri, MAX_URI_IN_DIALOG_LENGTH);
+    g_free (full_formatted_uri);
 
-	uri_for_display = g_markup_printf_escaped ("<i>%s</i>", temp_uri_for_display);
-	g_free (temp_uri_for_display);
+    uri_for_display = g_markup_printf_escaped ("<i>%s</i>", temp_uri_for_display);
+    g_free (temp_uri_for_display);
 
-	message_area = gtk_info_bar_new ();
-	
-	info_bar_add_stock_button_with_text (GTK_INFO_BAR (message_area),
-					     _("S_ave Anyway"),
-					     GTK_STOCK_SAVE,
-					     GTK_RESPONSE_YES);
-	gtk_info_bar_add_button (GTK_INFO_BAR (message_area),
-				 _("D_on't Save"),
-				 GTK_RESPONSE_CANCEL);
-	gtk_info_bar_set_message_type (GTK_INFO_BAR (message_area),
-				       GTK_MESSAGE_WARNING);
+    message_area = gtk_info_bar_new ();
 
-	hbox_content = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 8);
+    info_bar_add_button_with_text (GTK_INFO_BAR (message_area), _("S_ave Anyway"),
+                                   "document-save-symbolic", GTK_RESPONSE_YES);
+    gtk_info_bar_add_button (GTK_INFO_BAR (message_area), _("D_on't Save"), GTK_RESPONSE_CANCEL);
+    gtk_info_bar_set_message_type (GTK_INFO_BAR (message_area), GTK_MESSAGE_WARNING);
 
-	image = gtk_image_new_from_stock ("gtk-dialog-warning", GTK_ICON_SIZE_DIALOG);
-	gtk_box_pack_start (GTK_BOX (hbox_content), image, FALSE, FALSE, 0);
-	gtk_widget_set_halign (image, GTK_ALIGN_CENTER);
-	gtk_widget_set_valign (image, GTK_ALIGN_START);
+    hbox_content = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 8);
 
-	vbox = gtk_box_new (GTK_ORIENTATION_VERTICAL, 6);
-	gtk_box_pack_start (GTK_BOX (hbox_content), vbox, TRUE, TRUE, 0);
+    image = gtk_image_new_from_icon_name ("dialog-warning-symbolic", GTK_ICON_SIZE_DIALOG);
+    gtk_box_pack_start (GTK_BOX (hbox_content), image, FALSE, FALSE, 0);
+    gtk_widget_set_halign (image, GTK_ALIGN_CENTER);
+    gtk_widget_set_valign (image, GTK_ALIGN_START);
 
-	// FIXME: review this messages
+    vbox = gtk_box_new (GTK_ORIENTATION_VERTICAL, 6);
+    gtk_box_pack_start (GTK_BOX (hbox_content), vbox, TRUE, TRUE, 0);
 
-	if (xed_prefs_manager_get_create_backup_copy ())
-		primary_text = g_strdup_printf (_("Could not create a backup file while saving %s"),
-						uri_for_display);
-	else
-		primary_text = g_strdup_printf (_("Could not create a temporary backup file while saving %s"),
-						uri_for_display);
+    // FIXME: review this messages
 
-	g_free (uri_for_display);
+    if (xed_prefs_manager_get_create_backup_copy ())
+    {
+        primary_text = g_strdup_printf (_("Could not create a backup file while saving %s"), uri_for_display);
+    }
+    else
+    {
+        primary_text = g_strdup_printf (_("Could not create a temporary backup file while saving %s"), uri_for_display);
+    }
 
-	primary_markup = g_strdup_printf ("<b>%s</b>", primary_text);
-	g_free (primary_text);
-	primary_label = gtk_label_new (primary_markup);
-	g_free (primary_markup);
-	gtk_box_pack_start (GTK_BOX (vbox), primary_label, TRUE, TRUE, 0);
-	gtk_label_set_use_markup (GTK_LABEL (primary_label), TRUE);
-	gtk_label_set_line_wrap (GTK_LABEL (primary_label), TRUE);
-	gtk_misc_set_alignment (GTK_MISC (primary_label), 0.0, 0.5);
-	gtk_widget_set_can_focus (primary_label, TRUE);
-	gtk_label_set_selectable (GTK_LABEL (primary_label), TRUE);
+    g_free (uri_for_display);
 
-	secondary_text = _("xed could not back up the old copy of the file before saving the new one. "
-			   "You can ignore this warning and save the file anyway, but if an error "
-			   "occurs while saving, you could lose the old copy of the file. Save anyway?");
-	secondary_markup = g_strdup_printf ("<small>%s</small>",
-					    secondary_text);
-	secondary_label = gtk_label_new (secondary_markup);
-	g_free (secondary_markup);
-	gtk_box_pack_start (GTK_BOX (vbox), secondary_label, TRUE, TRUE, 0);
-	gtk_widget_set_can_focus (secondary_label, TRUE);
-	gtk_label_set_use_markup (GTK_LABEL (secondary_label), TRUE);
-	gtk_label_set_line_wrap (GTK_LABEL (secondary_label), TRUE);
-	gtk_label_set_selectable (GTK_LABEL (secondary_label), TRUE);
-	gtk_misc_set_alignment (GTK_MISC (secondary_label), 0.0, 0.5);
+    primary_markup = g_strdup_printf ("<b>%s</b>", primary_text);
+    g_free (primary_text);
+    primary_label = gtk_label_new (primary_markup);
+    g_free (primary_markup);
+    gtk_box_pack_start (GTK_BOX (vbox), primary_label, TRUE, TRUE, 0);
+    gtk_label_set_use_markup (GTK_LABEL (primary_label), TRUE);
+    gtk_label_set_line_wrap (GTK_LABEL (primary_label), TRUE);
+    gtk_misc_set_alignment (GTK_MISC (primary_label), 0.0, 0.5);
+    gtk_widget_set_can_focus (primary_label, TRUE);
+    gtk_label_set_selectable (GTK_LABEL (primary_label), TRUE);
 
-	gtk_widget_show_all (hbox_content);
-	set_contents (message_area, hbox_content);
+    secondary_text = _("xed could not back up the old copy of the file before saving the new one. "
+                    "You can ignore this warning and save the file anyway, but if an error "
+                    "occurs while saving, you could lose the old copy of the file. Save anyway?");
+    secondary_markup = g_strdup_printf ("<small>%s</small>", secondary_text);
+    secondary_label = gtk_label_new (secondary_markup);
+    g_free (secondary_markup);
+    gtk_box_pack_start (GTK_BOX (vbox), secondary_label, TRUE, TRUE, 0);
+    gtk_widget_set_can_focus (secondary_label, TRUE);
+    gtk_label_set_use_markup (GTK_LABEL (secondary_label), TRUE);
+    gtk_label_set_line_wrap (GTK_LABEL (secondary_label), TRUE);
+    gtk_label_set_selectable (GTK_LABEL (secondary_label), TRUE);
+    gtk_misc_set_alignment (GTK_MISC (secondary_label), 0.0, 0.5);
 
-	return message_area;
+    gtk_widget_show_all (hbox_content);
+    set_contents (message_area, hbox_content);
+
+    return message_area;
 }
 
 GtkWidget *
 xed_unrecoverable_saving_error_message_area_new (const gchar  *uri,
-						   const GError *error)
+                                                 const GError *error)
 {
-	gchar *error_message = NULL;
-	gchar *message_details = NULL;
-	gchar *full_formatted_uri;
-	gchar *scheme_string;
-	gchar *scheme_markup;
-	gchar *uri_for_display;
-	gchar *temp_uri_for_display;
-	GtkWidget *message_area;
+    gchar *error_message = NULL;
+    gchar *message_details = NULL;
+    gchar *full_formatted_uri;
+    gchar *scheme_string;
+    gchar *scheme_markup;
+    gchar *uri_for_display;
+    gchar *temp_uri_for_display;
+    GtkWidget *message_area;
 
-	g_return_val_if_fail (uri != NULL, NULL);
-	g_return_val_if_fail (error != NULL, NULL);
-	g_return_val_if_fail ((error->domain == XED_DOCUMENT_ERROR) || 
-			      (error->domain == G_IO_ERROR), NULL);
+    g_return_val_if_fail (uri != NULL, NULL);
+    g_return_val_if_fail (error != NULL, NULL);
+    g_return_val_if_fail ((error->domain == XED_DOCUMENT_ERROR) || (error->domain == G_IO_ERROR), NULL);
 
-	full_formatted_uri = xed_utils_uri_for_display (uri);
+    full_formatted_uri = xed_utils_uri_for_display (uri);
 
-	/* Truncate the URI so it doesn't get insanely wide. Note that even
-	 * though the dialog uses wrapped text, if the URI doesn't contain
-	 * white space then the text-wrapping code is too stupid to wrap it.
-	 */
-	temp_uri_for_display = xed_utils_str_middle_truncate (full_formatted_uri, 
-								MAX_URI_IN_DIALOG_LENGTH);
-	g_free (full_formatted_uri);
+    /* Truncate the URI so it doesn't get insanely wide. Note that even
+     * though the dialog uses wrapped text, if the URI doesn't contain
+     * white space then the text-wrapping code is too stupid to wrap it.
+     */
+    temp_uri_for_display = xed_utils_str_middle_truncate (full_formatted_uri, MAX_URI_IN_DIALOG_LENGTH);
+    g_free (full_formatted_uri);
 
-	uri_for_display = g_markup_printf_escaped ("<i>%s</i>", temp_uri_for_display);
-	g_free (temp_uri_for_display);
+    uri_for_display = g_markup_printf_escaped ("<i>%s</i>", temp_uri_for_display);
+    g_free (temp_uri_for_display);
 
-	if (is_gio_error (error, G_IO_ERROR_NOT_SUPPORTED))
-	{
-		scheme_string = g_uri_parse_scheme (uri);
+    if (is_gio_error (error, G_IO_ERROR_NOT_SUPPORTED))
+    {
+        scheme_string = g_uri_parse_scheme (uri);
 
-		if ((scheme_string != NULL) && g_utf8_validate (scheme_string, -1, NULL))
-		{
-			scheme_markup = g_markup_printf_escaped ("<i>%s:</i>", scheme_string);
+        if ((scheme_string != NULL) && g_utf8_validate (scheme_string, -1, NULL))
+        {
+            scheme_markup = g_markup_printf_escaped ("<i>%s:</i>", scheme_string);
 
-			/* Translators: %s is a URI scheme (like for example http:, ftp:, etc.) */
-			message_details = g_strdup_printf (_("xed cannot handle %s locations in write mode. "
-							     "Please check that you typed the "
-							     "location correctly and try again."),
-							   scheme_markup);
-			g_free (scheme_markup);
-		}
-		else
-		{
-			message_details = g_strdup (_("xed cannot handle this location in write mode. "
-						      "Please check that you typed the "
-						      "location correctly and try again."));
-		}
+            /* Translators: %s is a URI scheme (like for example http:, ftp:, etc.) */
+            message_details = g_strdup_printf (_("xed cannot handle %s locations in write mode. "
+                                               "Please check that you typed the "
+                                               "location correctly and try again."),
+                                               scheme_markup);
+            g_free (scheme_markup);
+        }
+        else
+        {
+            message_details = g_strdup (_("xed cannot handle this location in write mode. "
+                                        "Please check that you typed the "
+                                        "location correctly and try again."));
+        }
 
-		g_free (scheme_string);
-	}
-	else if (is_gio_error (error, G_IO_ERROR_INVALID_FILENAME))
-	{
-		message_details = g_strdup (_("%s is not a valid location. " 
-					      "Please check that you typed the "
-					      "location correctly and try again."));
-	}
-	else if (is_gio_error (error, G_IO_ERROR_PERMISSION_DENIED))
-	{
-		message_details = g_strdup (_("You do not have the permissions necessary to save the file. "
-					      "Please check that you typed the "
-					      "location correctly and try again."));
-	}
-	else if (is_gio_error (error, G_IO_ERROR_NO_SPACE))
-	{
-		message_details = g_strdup (_("There is not enough disk space to save the file. "
-					      "Please free some disk space and try again."));
-	}
-	else if (is_gio_error (error, G_IO_ERROR_READ_ONLY))
-	{
-		message_details = g_strdup (_("You are trying to save the file on a read-only disk. "
-					      "Please check that you typed the location "
-					      "correctly and try again."));
-	}
-	else if (is_gio_error (error, G_IO_ERROR_EXISTS))
-	{
-		message_details = g_strdup (_("A file with the same name already exists. "
-					      "Please use a different name."));
-	}
-	else if (is_gio_error (error, G_IO_ERROR_FILENAME_TOO_LONG))
-	{
-		message_details = g_strdup (_("The disk where you are trying to save the file has "
-					      "a limitation on length of the file names. "
-					      "Please use a shorter name."));
-	}
-	else if (error->domain == XED_DOCUMENT_ERROR &&
-		 error->code == XED_DOCUMENT_ERROR_TOO_BIG)
-	{
-		message_details = g_strdup (_("The disk where you are trying to save the file has "
-					      "a limitation on file sizes. Please try saving "
-					      "a smaller file or saving it to a disk that does not "
-					      "have this limitation."));
-	}
-	else
-	{
-		parse_error (error, 
-			     &error_message, 
-			     &message_details, 
-			     uri, 
-			     uri_for_display);
-	}
+        g_free (scheme_string);
+    }
+    else if (is_gio_error (error, G_IO_ERROR_INVALID_FILENAME))
+    {
+        message_details = g_strdup (_("%s is not a valid location. "
+                                    "Please check that you typed the "
+                                    "location correctly and try again."));
+    }
+    else if (is_gio_error (error, G_IO_ERROR_PERMISSION_DENIED))
+    {
+        message_details = g_strdup (_("You do not have the permissions necessary to save the file. "
+                                    "Please check that you typed the "
+                                    "location correctly and try again."));
+    }
+    else if (is_gio_error (error, G_IO_ERROR_NO_SPACE))
+    {
+        message_details = g_strdup (_("There is not enough disk space to save the file. "
+                                    "Please free some disk space and try again."));
+    }
+    else if (is_gio_error (error, G_IO_ERROR_READ_ONLY))
+    {
+        message_details = g_strdup (_("You are trying to save the file on a read-only disk. "
+                                    "Please check that you typed the location "
+                                    "correctly and try again."));
+    }
+    else if (is_gio_error (error, G_IO_ERROR_EXISTS))
+    {
+        message_details = g_strdup (_("A file with the same name already exists. "
+                                    "Please use a different name."));
+    }
+    else if (is_gio_error (error, G_IO_ERROR_FILENAME_TOO_LONG))
+    {
+        message_details = g_strdup (_("The disk where you are trying to save the file has "
+                                    "a limitation on length of the file names. "
+                                    "Please use a shorter name."));
+    }
+    else if (error->domain == XED_DOCUMENT_ERROR && error->code == XED_DOCUMENT_ERROR_TOO_BIG)
+    {
+        message_details = g_strdup (_("The disk where you are trying to save the file has "
+                                    "a limitation on file sizes. Please try saving "
+                                    "a smaller file or saving it to a disk that does not "
+                                    "have this limitation."));
+    }
+    else
+    {
+        parse_error (error, &error_message, &message_details, uri, uri_for_display);
+    }
 
-	if (error_message == NULL)
-	{
-		error_message = g_strdup_printf (_("Could not save the file %s."),
-						 uri_for_display);
-	}
+    if (error_message == NULL)
+    {
+        error_message = g_strdup_printf (_("Could not save the file %s."), uri_for_display);
+    }
 
-	message_area = create_io_loading_error_message_area (error_message,
-							     message_details,
-							     FALSE);
+    message_area = create_io_loading_error_message_area (error_message, message_details, FALSE);
 
-	g_free (uri_for_display);
-	g_free (error_message);
-	g_free (message_details);
+    g_free (uri_for_display);
+    g_free (error_message);
+    g_free (message_details);
 
-	return message_area;
+    return message_area;
 }
 
 GtkWidget *
 xed_externally_modified_message_area_new (const gchar *uri,
-					    gboolean     document_modified)
+                                          gboolean     document_modified)
 {
-	gchar *full_formatted_uri;
-	gchar *uri_for_display;
-	gchar *temp_uri_for_display;
-	const gchar *primary_text;
-	const gchar *secondary_text;
-	GtkWidget *message_area;
+    gchar *full_formatted_uri;
+    gchar *uri_for_display;
+    gchar *temp_uri_for_display;
+    const gchar *primary_text;
+    const gchar *secondary_text;
+    GtkWidget *message_area;
 
-	g_return_val_if_fail (uri != NULL, NULL);
+    g_return_val_if_fail (uri != NULL, NULL);
 
-	full_formatted_uri = xed_utils_uri_for_display (uri);
+    full_formatted_uri = xed_utils_uri_for_display (uri);
 
-	/* Truncate the URI so it doesn't get insanely wide. Note that even
-	 * though the dialog uses wrapped text, if the URI doesn't contain
-	 * white space then the text-wrapping code is too stupid to wrap it.
-	 */
-	temp_uri_for_display = xed_utils_str_middle_truncate (full_formatted_uri, 
-								MAX_URI_IN_DIALOG_LENGTH);
-	g_free (full_formatted_uri);
+    /* Truncate the URI so it doesn't get insanely wide. Note that even
+     * though the dialog uses wrapped text, if the URI doesn't contain
+     * white space then the text-wrapping code is too stupid to wrap it.
+     */
+    temp_uri_for_display = xed_utils_str_middle_truncate (full_formatted_uri, MAX_URI_IN_DIALOG_LENGTH);
+    g_free (full_formatted_uri);
 
-	uri_for_display = g_markup_printf_escaped ("<i>%s</i>", temp_uri_for_display);
-	g_free (temp_uri_for_display);
+    uri_for_display = g_markup_printf_escaped ("<i>%s</i>", temp_uri_for_display);
+    g_free (temp_uri_for_display);
 
-	// FIXME: review this message, it's not clear since for the user the "modification"
-	// could be interpreted as the changes he made in the document. beside "reading" is
-	// not accurate (since last load/save)
-	primary_text = g_strdup_printf (_("The file %s changed on disk."),
-					uri_for_display);
-	g_free (uri_for_display);
+    // FIXME: review this message, it's not clear since for the user the "modification"
+    // could be interpreted as the changes he made in the document. beside "reading" is
+    // not accurate (since last load/save)
+    primary_text = g_strdup_printf (_("The file %s changed on disk."), uri_for_display);
+    g_free (uri_for_display);
 
-	if (document_modified)
-		secondary_text = _("Do you want to drop your changes and reload the file?");
-	else
-		secondary_text = _("Do you want to reload the file?");
+    if (document_modified)
+    {
+        secondary_text = _("Do you want to drop your changes and reload the file?");
+    }
+    else
+    {
+        secondary_text = _("Do you want to reload the file?");
+    }
 
-	message_area = gtk_info_bar_new ();
-	
-	info_bar_add_stock_button_with_text (GTK_INFO_BAR (message_area),
-					     _("_Reload"),
-					     GTK_STOCK_REFRESH,
-					     GTK_RESPONSE_OK);
-	gtk_info_bar_add_button (GTK_INFO_BAR (message_area),
-				 GTK_STOCK_CANCEL,
-				 GTK_RESPONSE_CANCEL);
-	gtk_info_bar_set_message_type (GTK_INFO_BAR (message_area),
-				       GTK_MESSAGE_WARNING);
+    message_area = gtk_info_bar_new ();
 
-	set_message_area_text_and_icon (message_area,
-					"gtk-dialog-warning",
-					primary_text,
-					secondary_text);
+    info_bar_add_button_with_text (GTK_INFO_BAR (message_area), _("_Reload"),
+                                   "view-refresh-symbolic", GTK_RESPONSE_OK);
+    gtk_info_bar_add_button (GTK_INFO_BAR (message_area), _("_Cancel"), GTK_RESPONSE_CANCEL);
+    gtk_info_bar_set_message_type (GTK_INFO_BAR (message_area), GTK_MESSAGE_WARNING);
 
-	return message_area;
+    set_message_area_text_and_icon (message_area, "dialog-warning-symbolic", primary_text, secondary_text);
+
+    return message_area;
 }
 
