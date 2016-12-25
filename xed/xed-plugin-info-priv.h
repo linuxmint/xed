@@ -2,7 +2,7 @@
  * xed-plugin-info-priv.h
  * This file is part of xed
  *
- * Copyright (C) 2002-2005 - Paolo Maggi 
+ * Copyright (C) 2002-2005 - Paolo Maggi
  * Copyright (C) 2007 - Paolo Maggi, Steve Frécinaux
  *
  * This program is free software; you can redistribute it and/or modify
@@ -17,10 +17,10 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
- * Foundation, Inc., 51 Franklin St, Fifth Floor, 
- * Boston, MA 02110-1301, USA. 
+ * Foundation, Inc., 51 Franklin St, Fifth Floor,
+ * Boston, MA 02110-1301, USA.
  */
- 
+
 /*
  * Modified by the xed Team, 2002-2007. See the AUTHORS file for a
  * list of people on the xed Team.
@@ -55,8 +55,7 @@ struct _XedPluginInfo
 	gchar             *version;
 
 	/* A plugin is unavailable if it is not possible to activate it
-	   due to an error loading the plugin module (e.g. for Python plugins
-	   when the interpreter has not been correctly initializated) */
+	   due to an error loading the plugin module */
 	gint               available : 1;
 };
 

@@ -20,7 +20,7 @@ DOC_SOURCE_DIR=../../xed
 SCANGOBJ_OPTIONS=
 
 # Extra options to supply to gtkdoc-scan.
-# e.g. SCAN_OPTIONS=--deprecated-guards="GTK_DISABLE_DEPRECATED" 
+# e.g. SCAN_OPTIONS=--deprecated-guards="GTK_DISABLE_DEPRECATED"
 SCAN_OPTIONS=
 
 # Extra options to supply to gtkdoc-mkdb.
@@ -95,16 +95,6 @@ GTKDOC_CFLAGS=	\
 GTKDOC_LIBS=	\
 	$(top_builddir)/xed/libxed.la	\
 	$(XED_LIBS)
-
-if ENABLE_PYTHON
-GTKDOC_CFLAGS += \
-        $(NO_STRICT_ALIASING_CFLAGS)    \
-        $(PYGTK_CFLAGS)                 \
-        $(PYTHON_CFLAGS)                \
-        $(AM_CFLAGS)
-GTKDOC_LIBS += \
-	$(top_builddir)/plugin-loaders/python/bindings/xed.la
-endif
 
 # This includes the standard gtk-doc make rules, copied by gtkdocize.
 include $(top_srcdir)/gtk-doc.make
