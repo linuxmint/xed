@@ -40,7 +40,10 @@
 #include <glib.h>
 #include <gmodule.h>
 #include <gio/gio.h>
+#include <libpeas/peas-activatable.h>
+#include <libpeas-gtk/peas-gtk-configurable.h>
 
+#include <xed/xed-window.h>
 #include <xed/xed-debug.h>
 #include <xed/xed-utils.h>
 
@@ -48,7 +51,6 @@
 					      XED_TYPE_TIME_PLUGIN, \
 					      XedTimePluginPrivate))
 
-#define WINDOW_DATA_KEY "XedTimePluginWindowData"
 #define MENU_PATH "/MenuBar/EditMenu/EditOps_4"
 
 /* GSettings keys */
@@ -106,7 +108,7 @@ typedef struct _TimeConfigureDialog TimeConfigureDialog;
 
 struct _TimeConfigureDialog
 {
-	GtkWidget *dialog;
+	GtkWidget *content;
 
 	GtkWidget *list;
 
@@ -118,8 +120,7 @@ struct _TimeConfigureDialog
 	GtkWidget *custom_entry;
 	GtkWidget *custom_format_example;
 
-	/* Info needed for the response handler */
-	XedTimePlugin *plugin;
+	GSettings *settings;
 };
 
 typedef struct _ChooseFormatDialog ChooseFormatDialog;
@@ -139,7 +140,8 @@ struct _ChooseFormatDialog
 
 	/* Info needed for the response handler */
 	GtkTextBuffer   *buffer;
-	XedTimePlugin *plugin;
+
+    GSettings *settings;
 };
 
 typedef enum
@@ -152,24 +154,33 @@ typedef enum
 
 struct _XedTimePluginPrivate
 {
-	GSettings *settings;
-};
+	GtkWidget *window;
 
-XED_PLUGIN_REGISTER_TYPE(XedTimePlugin, xed_time_plugin)
+    GSettings *settings;
 
-typedef struct
-{
 	GtkActionGroup *action_group;
 	guint           ui_id;
-} WindowData;
+};
 
-typedef struct
+enum
 {
-	XedWindow     *window;
-	XedTimePlugin *plugin;
-} ActionData;
+   PROP_0,
+   PROP_OBJECT
+};
 
-static void time_cb (GtkAction *action, ActionData *data);
+static void peas_activatable_iface_init (PeasActivatableInterface *iface);
+static void peas_gtk_configurable_iface_init (PeasGtkConfigurableInterface *iface);
+
+G_DEFINE_DYNAMIC_TYPE_EXTENDED (XedTimePlugin,
+                                xed_time_plugin,
+                                PEAS_TYPE_EXTENSION_BASE,
+                                0,
+                                G_IMPLEMENT_INTERFACE_DYNAMIC (PEAS_TYPE_ACTIVATABLE,
+                                                               peas_activatable_iface_init)
+                                G_IMPLEMENT_INTERFACE_DYNAMIC (PEAS_GTK_TYPE_CONFIGURABLE,
+                                                               peas_gtk_configurable_iface_init))
+
+static void time_cb (GtkAction *action, XedTimePlugin *plugin);
 
 static const GtkActionEntry action_entries[] =
 {
@@ -206,23 +217,37 @@ xed_time_plugin_finalize (GObject *object)
 }
 
 static void
-free_window_data (WindowData *data)
+xed_time_plugin_dispose (GObject *object)
 {
-	g_return_if_fail (data != NULL);
+	XedTimePlugin *plugin = XED_TIME_PLUGIN (object);
 
-	g_object_unref (data->action_group);
-	g_free (data);
+    xed_debug_message (DEBUG_PLUGINS, "XedTimePlugin disposing");
+
+    if (plugin->priv->window != NULL)
+    {
+        g_object_unref (plugin->priv->window);
+        plugin->priv->window = NULL;
+    }
+
+    if (plugin->priv->action_group)
+    {
+        g_object_unref (plugin->priv->action_group);
+        plugin->priv->action_group = NULL;
+    }
+
+	G_OBJECT_CLASS (xed_time_plugin_parent_class)->dispose (object);
 }
 
 static void
-update_ui_real (XedWindow  *window,
-		WindowData   *data)
+update_ui (XedTimePluginPrivate *data)
 {
+    XedWindow *window;
 	XedView *view;
 	GtkAction *action;
 
 	xed_debug (DEBUG_PLUGINS);
 
+    window = XED_WINDOW (data->window);
 	view = xed_window_get_active_view (window);
 
 	xed_debug_message (DEBUG_PLUGINS, "View: %p", view);
@@ -235,40 +260,32 @@ update_ui_real (XedWindow  *window,
 }
 
 static void
-impl_activate (XedPlugin *plugin,
-	       XedWindow *window)
+xed_time_plugin_activate (PeasActivatable *activatable)
 {
+    XedTimePlugin *plugin;
+    XedTimePluginPrivate *data;
+    XedWindow *window;
 	GtkUIManager *manager;
-	WindowData *data;
-	ActionData *action_data;
 
 	xed_debug (DEBUG_PLUGINS);
 
-	data = g_new (WindowData, 1);
-	action_data = g_new (ActionData, 1);
-
-	action_data->plugin = XED_TIME_PLUGIN (plugin);
-	action_data->window = window;
+	plugin = XED_TIME_PLUGIN (activatable);
+    data = plugin->priv;
+    window = XED_WINDOW (data->window);
 
 	manager = xed_window_get_ui_manager (window);
 
 	data->action_group = gtk_action_group_new ("XedTimePluginActions");
 	gtk_action_group_set_translation_domain (data->action_group,
 						 GETTEXT_PACKAGE);
-	gtk_action_group_add_actions_full (data->action_group,
+	gtk_action_group_add_actions (data->action_group,
 				      	   action_entries,
 				      	   G_N_ELEMENTS (action_entries),
-				      	   action_data,
-				      	   (GDestroyNotify) g_free);
+				      	   plugin);
 
 	gtk_ui_manager_insert_action_group (manager, data->action_group, -1);
 
 	data->ui_id = gtk_ui_manager_new_merge_id (manager);
-
-	g_object_set_data_full (G_OBJECT (window),
-				WINDOW_DATA_KEY,
-				data,
-				(GDestroyNotify) free_window_data);
 
 	gtk_ui_manager_add_ui (manager,
 			       data->ui_id,
@@ -278,41 +295,33 @@ impl_activate (XedPlugin *plugin,
 			       GTK_UI_MANAGER_MENUITEM,
 			       FALSE);
 
-	update_ui_real (window, data);
+	update_ui (data);
 }
 
 static void
-impl_deactivate	(XedPlugin *plugin,
-		 XedWindow *window)
+xed_time_plugin_deactivate (PeasActivatable *activatable)
 {
+    XedTimePluginPrivate *data;
+    XedWindow *window;
 	GtkUIManager *manager;
-	WindowData *data;
 
 	xed_debug (DEBUG_PLUGINS);
+
+	data = XED_TIME_PLUGIN (activatable)->priv;
+    window = XED_WINDOW (data->window);
 
 	manager = xed_window_get_ui_manager (window);
 
-	data = (WindowData *) g_object_get_data (G_OBJECT (window), WINDOW_DATA_KEY);
-	g_return_if_fail (data != NULL);
-
 	gtk_ui_manager_remove_ui (manager, data->ui_id);
 	gtk_ui_manager_remove_action_group (manager, data->action_group);
-
-	g_object_set_data (G_OBJECT (window), WINDOW_DATA_KEY, NULL);
 }
 
 static void
-impl_update_ui	(XedPlugin *plugin,
-		 XedWindow *window)
+xed_time_plugin_update_state (PeasActivatable *activatable)
 {
-	WindowData   *data;
-
 	xed_debug (DEBUG_PLUGINS);
 
-	data = (WindowData *) g_object_get_data (G_OBJECT (window), WINDOW_DATA_KEY);
-	g_return_if_fail (data != NULL);
-
-	update_ui_real (window, data);
+	update_ui (XED_TIME_PLUGIN (activatable)->priv);
 }
 
 /* whether we should prompt the user or use the specified format */
@@ -328,16 +337,16 @@ get_prompt_type (XedTimePlugin *plugin)
 }
 
 static void
-set_prompt_type (XedTimePlugin           *plugin,
+set_prompt_type (GSettings *settings,
 		 XedTimePluginPromptType  prompt_type)
 {
-	if (!g_settings_is_writable (plugin->priv->settings,
+	if (!g_settings_is_writable (settings,
 					   PROMPT_TYPE_KEY))
 	{
 		return;
 	}
 
-	g_settings_set_enum (plugin->priv->settings,
+	g_settings_set_enum (settings,
 				 PROMPT_TYPE_KEY,
 				 prompt_type);
 }
@@ -355,18 +364,18 @@ get_selected_format (XedTimePlugin *plugin)
 }
 
 static void
-set_selected_format (XedTimePlugin *plugin,
+set_selected_format (GSettings *settings,
 		     const gchar     *format)
 {
 	g_return_if_fail (format != NULL);
 
-	if (!g_settings_is_writable (plugin->priv->settings,
+	if (!g_settings_is_writable (settings,
 					   SELECTED_FORMAT_KEY))
 	{
 		return;
 	}
 
-	g_settings_set_string (plugin->priv->settings,
+	g_settings_set_string (settings,
 				 SELECTED_FORMAT_KEY,
 		       		 format);
 }
@@ -384,16 +393,16 @@ get_custom_format (XedTimePlugin *plugin)
 }
 
 static void
-set_custom_format (XedTimePlugin *plugin,
+set_custom_format (GSettings *settings,
 		   const gchar     *format)
 {
 	g_return_if_fail (format != NULL);
 
-	if (!g_settings_is_writable (plugin->priv->settings,
+	if (!g_settings_is_writable (settings,
 					   CUSTOM_FORMAT_KEY))
 		return;
 
-	g_settings_set_string (plugin->priv->settings,
+	g_settings_set_string (settings,
 				 CUSTOM_FORMAT_KEY,
 		       		 format);
 }
@@ -448,13 +457,24 @@ get_time (const gchar* format)
 }
 
 static void
-dialog_disposed (GObject *obj, gpointer dialog_pointer)
+configure_dialog_destroyed (GtkWidget *widget,
+                            gpointer   data)
 {
+    TimeConfigureDialog *dialog = (TimeConfigureDialog *) data;
+
 	xed_debug (DEBUG_PLUGINS);
 
-	g_free (dialog_pointer);
+	g_object_unref (dialog->settings);
+    g_slice_free (TimeConfigureDialog, data);
+}
 
-	xed_debug_message (DEBUG_PLUGINS, "END");
+static void
+choose_format_dialog_destroyed (GtkWidget *widget,
+                                gpointer   data)
+{
+    xed_debug (DEBUG_PLUGINS);
+
+	g_slice_free (ChooseFormatDialog, data);
 }
 
 static GtkTreeModel *
@@ -640,7 +660,8 @@ configure_dialog_button_toggled (GtkToggleButton *button, TimeConfigureDialog *d
 		gtk_widget_set_sensitive (dialog->custom_entry, TRUE);
 		gtk_widget_set_sensitive (dialog->custom_format_example, TRUE);
 
-		return;
+		set_prompt_type (dialog->settings, USE_CUSTOM_FORMAT);
+        return;
 	}
 
 	if (gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (dialog->use_list)))
@@ -649,7 +670,8 @@ configure_dialog_button_toggled (GtkToggleButton *button, TimeConfigureDialog *d
 		gtk_widget_set_sensitive (dialog->custom_entry, FALSE);
 		gtk_widget_set_sensitive (dialog->custom_format_example, FALSE);
 
-		return;
+		set_prompt_type (dialog->settings, USE_SELECTED_FORMAT);
+        return;
 	}
 
 	if (gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (dialog->prompt)))
@@ -658,7 +680,8 @@ configure_dialog_button_toggled (GtkToggleButton *button, TimeConfigureDialog *d
 		gtk_widget_set_sensitive (dialog->custom_entry, FALSE);
 		gtk_widget_set_sensitive (dialog->custom_format_example, FALSE);
 
-		return;
+		set_prompt_type (dialog->settings, PROMPT_SELECTED_FORMAT);
+        return;
 	}
 }
 
@@ -691,10 +714,21 @@ get_format_from_list (GtkWidget *listview)
 	g_return_val_if_reached (0);
 }
 
+static void
+configure_dialog_selection_changed (GtkTreeSelection *selection,
+                                    TimeConfigureDialog *dialog)
+{
+    gint sel_format;
+
+    sel_format = get_format_from_list (dialog->list);
+    set_selected_format (dialog->settings, formats[sel_format]);
+}
+
 static TimeConfigureDialog *
 get_configure_dialog (XedTimePlugin *plugin)
 {
 	TimeConfigureDialog *dialog = NULL;
+    GtkTreeSelection *selection;
 	gchar *data_dir;
 	gchar *ui_file;
 	GtkWidget *content;
@@ -710,37 +744,15 @@ get_configure_dialog (XedTimePlugin *plugin)
 
 	xed_debug (DEBUG_PLUGINS);
 
-	GtkWidget *dlg = gtk_dialog_new_with_buttons (_("Configure insert date/time plugin..."),
-						      NULL,
-						      GTK_DIALOG_DESTROY_WITH_PARENT,
-						      GTK_STOCK_CANCEL,
-						      GTK_RESPONSE_CANCEL,
-						      GTK_STOCK_OK,
-						      GTK_RESPONSE_OK,
-						      GTK_STOCK_HELP,
-						      GTK_RESPONSE_HELP,
-						      NULL);
+	dialog = g_slice_new (TimeConfigureDialog);
+    dialog->settings = g_object_ref (plugin->priv->settings);
 
-	g_return_val_if_fail (dlg != NULL, NULL);
-
-	dialog = g_new0 (TimeConfigureDialog, 1);
-	dialog->dialog = dlg;
-
-	/* HIG defaults */
-	gtk_container_set_border_width (GTK_CONTAINER (GTK_DIALOG (dialog->dialog)), 5);
-	gtk_box_set_spacing (GTK_BOX (gtk_dialog_get_content_area (GTK_DIALOG (dialog->dialog))),
-			     2); /* 2 * 5 + 2 = 12 */
-	gtk_container_set_border_width (GTK_CONTAINER (gtk_dialog_get_action_area (GTK_DIALOG (dialog->dialog))),
-					5);
-	gtk_box_set_spacing (GTK_BOX (gtk_dialog_get_action_area (GTK_DIALOG (dialog->dialog))), 6);
-
-
-	data_dir = xed_plugin_get_data_dir (XED_PLUGIN (plugin));
+	data_dir = peas_extension_base_get_data_dir (PEAS_EXTENSION_BASE (plugin));
 	ui_file = g_build_filename (data_dir, "xed-time-setup-dialog.ui", NULL);
 	ret = xed_utils_get_ui_objects (ui_file,
 					  root_objects,
 					  &error_widget,
-					  "time_dialog_content", &content,
+					  "time_dialog_content", &dialog->content,
 					  "formats_viewport", &viewport,
 					  "formats_tree", &dialog->list,
 					  "always_prompt", &dialog->prompt,
@@ -755,17 +767,8 @@ get_configure_dialog (XedTimePlugin *plugin)
 
 	if (!ret)
 	{
-		gtk_box_pack_start (GTK_BOX (gtk_dialog_get_content_area (GTK_DIALOG (dialog->dialog))),
-		                    error_widget,
-		                    TRUE, TRUE, 0);
-		gtk_container_set_border_width (GTK_CONTAINER (error_widget), 5);
-
-		gtk_widget_show (error_widget);
-
-		return dialog;
+		return NULL;
 	}
-
-	gtk_window_set_resizable (GTK_WINDOW (dialog->dialog), FALSE);
 
 	sf = get_selected_format (plugin);
 	create_formats_list (dialog->list, sf, plugin);
@@ -773,9 +776,9 @@ get_configure_dialog (XedTimePlugin *plugin)
 
 	prompt_type = get_prompt_type (plugin);
 
-	cf = get_custom_format (plugin);
-     	gtk_entry_set_text (GTK_ENTRY(dialog->custom_entry), cf);
-       	g_free (cf);
+	g_settings_bind (dialog->settings, CUSTOM_FORMAT_KEY,
+                    dialog->custom_entry, "text",
+                    G_SETTINGS_BIND_GET | G_SETTINGS_BIND_SET);
 
         if (prompt_type == USE_CUSTOM_FORMAT)
         {
@@ -808,34 +811,14 @@ get_configure_dialog (XedTimePlugin *plugin)
 	/* setup a window of a sane size. */
 	gtk_widget_set_size_request (GTK_WIDGET (viewport), 10, 200);
 
-	gtk_box_pack_start (GTK_BOX (gtk_dialog_get_content_area (GTK_DIALOG (dialog->dialog))),
-			    content, FALSE, FALSE, 0);
-	g_object_unref (content);
-	gtk_container_set_border_width (GTK_CONTAINER (content), 5);
+	g_signal_connect (dialog->custom, "toggled", G_CALLBACK (configure_dialog_button_toggled), dialog);
+   	g_signal_connect (dialog->prompt, "toggled", G_CALLBACK (configure_dialog_button_toggled), dialog);
+	g_signal_connect (dialog->use_list, "toggled", G_CALLBACK (configure_dialog_button_toggled), dialog);
+	g_signal_connect (dialog->content, "destroy", G_CALLBACK (configure_dialog_destroyed), dialog);
+	g_signal_connect (dialog->custom_entry, "changed", G_CALLBACK (updated_custom_format_example), dialog->custom_format_example);
 
-	gtk_dialog_set_default_response (GTK_DIALOG (dialog->dialog),
-					 GTK_RESPONSE_OK);
-
-	g_signal_connect (dialog->custom,
-			  "toggled",
-			  G_CALLBACK (configure_dialog_button_toggled),
-			  dialog);
-   	g_signal_connect (dialog->prompt,
-			  "toggled",
-			  G_CALLBACK (configure_dialog_button_toggled),
-			  dialog);
-	g_signal_connect (dialog->use_list,
-			  "toggled",
-			  G_CALLBACK (configure_dialog_button_toggled),
-			  dialog);
-	g_signal_connect (dialog->dialog,
-			  "dispose",
-			  G_CALLBACK (dialog_disposed),
-			  dialog);
-	g_signal_connect (dialog->custom_entry,
-			  "changed",
-			  G_CALLBACK (updated_custom_format_example),
-			  dialog->custom_format_example);
+    selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (dialog->list));
+    g_signal_connect (selection, "changed", G_CALLBACK (configure_dialog_selection_changed), dialog);
 
 	return dialog;
 }
@@ -866,8 +849,8 @@ choose_format_dialog_row_activated (GtkTreeView        *list,
 	sel_format = get_format_from_list (dialog->list);
 	the_time = get_time (formats[sel_format]);
 
-	set_prompt_type (dialog->plugin, PROMPT_SELECTED_FORMAT);
-	set_selected_format (dialog->plugin, formats[sel_format]);
+	set_prompt_type (dialog->settings, PROMPT_SELECTED_FORMAT);
+	set_selected_format (dialog->settings, formats[sel_format]);
 
 	g_return_if_fail (the_time != NULL);
 
@@ -892,9 +875,10 @@ get_choose_format_dialog (GtkWindow                 *parent,
 	if (parent != NULL)
 		wg = gtk_window_get_group (parent);
 
-	dialog = g_new0 (ChooseFormatDialog, 1);
+	dialog = g_slice_new (ChooseFormatDialog);
+    dialog->settings = plugin->priv->settings;
 
-	data_dir = xed_plugin_get_data_dir (XED_PLUGIN (plugin));
+	data_dir = peas_extension_base_get_data_dir (PEAS_EXTENSION_BASE (plugin));
 	ui_file = g_build_filename (data_dir, "xed-time-dialog.ui", NULL);
 	ret = xed_utils_get_ui_objects (ui_file,
 					  NULL,
@@ -991,8 +975,8 @@ get_choose_format_dialog (GtkWindow                 *parent,
 			  G_CALLBACK (choose_format_dialog_button_toggled),
 			  dialog);
 	g_signal_connect (dialog->dialog,
-			  "dispose",
-			  G_CALLBACK (dialog_disposed),
+			  "destroy",
+              G_CALLBACK (choose_format_dialog_destroyed),
 			  dialog);
 	g_signal_connect (dialog->custom_entry,
 			  "changed",
@@ -1037,8 +1021,8 @@ choose_format_dialog_response_cb (GtkWidget          *widget,
 				sel_format = get_format_from_list (dialog->list);
 				the_time = get_time (formats[sel_format]);
 
-				set_prompt_type (dialog->plugin, PROMPT_SELECTED_FORMAT);
-				set_selected_format (dialog->plugin, formats[sel_format]);
+				set_prompt_type (dialog->settings, PROMPT_SELECTED_FORMAT);
+				set_selected_format (dialog->settings, formats[sel_format]);
 			}
 			else
 			{
@@ -1047,8 +1031,8 @@ choose_format_dialog_response_cb (GtkWidget          *widget,
 				format = gtk_entry_get_text (GTK_ENTRY (dialog->custom_entry));
 				the_time = get_time (format);
 
-				set_prompt_type (dialog->plugin, PROMPT_CUSTOM_FORMAT);
-				set_custom_format (dialog->plugin, format);
+				set_prompt_type (dialog->settings, PROMPT_CUSTOM_FORMAT);
+				set_custom_format (dialog->settings, format);
 			}
 
 			g_return_if_fail (the_time != NULL);
@@ -1066,29 +1050,31 @@ choose_format_dialog_response_cb (GtkWidget          *widget,
 }
 
 static void
-time_cb (GtkAction  *action,
-	 ActionData *data)
+time_cb (GtkAction     *action,
+	     XedTimePlugin *plugin)
 {
+    XedWindow *window;
 	GtkTextBuffer *buffer;
 	gchar *the_time = NULL;
 	XedTimePluginPromptType prompt_type;
 
 	xed_debug (DEBUG_PLUGINS);
 
-	buffer = GTK_TEXT_BUFFER (xed_window_get_active_document (data->window));
+	window = XED_WINDOW (plugin->priv->window);
+    buffer = GTK_TEXT_BUFFER (xed_window_get_active_document (window));
 	g_return_if_fail (buffer != NULL);
 
-	prompt_type = get_prompt_type (data->plugin);
+	prompt_type = get_prompt_type (plugin);
 
         if (prompt_type == USE_CUSTOM_FORMAT)
         {
-		gchar *cf = get_custom_format (data->plugin);
+		gchar *cf = get_custom_format (plugin);
 	        the_time = get_time (cf);
 		g_free (cf);
 	}
         else if (prompt_type == USE_SELECTED_FORMAT)
         {
-		gchar *sf = get_selected_format (data->plugin);
+		gchar *sf = get_selected_format (plugin);
 	        the_time = get_time (sf);
 		g_free (sf);
 	}
@@ -1096,13 +1082,13 @@ time_cb (GtkAction  *action,
         {
 		ChooseFormatDialog *dialog;
 
-		dialog = get_choose_format_dialog (GTK_WINDOW (data->window),
+		dialog = get_choose_format_dialog (GTK_WINDOW (window),
 						   prompt_type,
-						   data->plugin);
+						   plugin);
 		if (dialog != NULL)
 		{
 			dialog->buffer = buffer;
-			dialog->plugin = data->plugin;
+			dialog->settings = plugin->priv->settings;
 
 			g_signal_connect (dialog->dialog,
 					  "response",
@@ -1122,100 +1108,99 @@ time_cb (GtkAction  *action,
 	g_free (the_time);
 }
 
-static void
-ok_button_pressed (TimeConfigureDialog *dialog)
-{
-	gint sel_format;
-	const gchar *custom_format;
-
-	xed_debug (DEBUG_PLUGINS);
-
-	sel_format = get_format_from_list (dialog->list);
-
-	custom_format = gtk_entry_get_text (GTK_ENTRY (dialog->custom_entry));
-
-	if (gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (dialog->custom)))
-	{
-		set_prompt_type (dialog->plugin, USE_CUSTOM_FORMAT);
-		set_custom_format (dialog->plugin, custom_format);
-	}
-	else if (gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (dialog->use_list)))
-	{
-		set_prompt_type (dialog->plugin, USE_SELECTED_FORMAT);
-		set_selected_format (dialog->plugin, formats [sel_format]);
-	}
-	else
-	{
-		/* Default to prompt the user with the list selected */
-		set_prompt_type (dialog->plugin, PROMPT_SELECTED_FORMAT);
-	}
-
-	xed_debug_message (DEBUG_PLUGINS, "Sel: %d", sel_format);
-}
-
-static void
-configure_dialog_response_cb (GtkWidget           *widget,
-			      gint                 response,
-			      TimeConfigureDialog *dialog)
-{
-	switch (response)
-	{
-		case GTK_RESPONSE_HELP:
-		{
-			xed_debug_message (DEBUG_PLUGINS, "GTK_RESPONSE_HELP");
-
-			xed_help_display (GTK_WINDOW (widget),
-					    NULL,
-					    "xed-insert-date-time-plugin#xed-date-time-configure");
-			break;
-		}
-		case GTK_RESPONSE_OK:
-		{
-			xed_debug_message (DEBUG_PLUGINS, "GTK_RESPONSE_OK");
-
-			ok_button_pressed (dialog);
-
-			gtk_widget_destroy (dialog->dialog);
-			break;
-		}
-		case GTK_RESPONSE_CANCEL:
-		{
-			xed_debug_message (DEBUG_PLUGINS, "GTK_RESPONSE_CANCEL");
-			gtk_widget_destroy (dialog->dialog);
-		}
-	}
-}
-
 static GtkWidget *
-impl_create_configure_dialog (XedPlugin *plugin)
+xed_time_plugin_create_configure_widget (PeasGtkConfigurable *configurable)
 {
 	TimeConfigureDialog *dialog;
 
-	dialog = get_configure_dialog (XED_TIME_PLUGIN (plugin));
+	dialog = get_configure_dialog (XED_TIME_PLUGIN (configurable));
 
-	dialog->plugin = XED_TIME_PLUGIN (plugin);
+	return dialog->content;
+}
 
-	g_signal_connect (dialog->dialog,
-			  "response",
-			  G_CALLBACK (configure_dialog_response_cb),
-			  dialog);
+static void
+xed_time_plugin_set_property (GObject      *object,
+                              guint         prop_id,
+                              const GValue *value,
+                              GParamSpec   *pspec)
+{
+    XedTimePlugin *plugin = XED_TIME_PLUGIN (object);
 
-	return GTK_WIDGET (dialog->dialog);
+    switch (prop_id)
+    {
+        case PROP_OBJECT:
+            plugin->priv->window = GTK_WIDGET (g_value_dup_object (value));
+            break;
+        default:
+            G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
+            break;
+    }
+}
+
+static void
+xed_time_plugin_get_property (GObject    *object,
+                              guint       prop_id,
+                              GValue     *value,
+                              GParamSpec *pspec)
+{
+    XedTimePlugin *plugin = XED_TIME_PLUGIN (object);
+
+    switch (prop_id)
+    {
+        case PROP_OBJECT:
+            g_value_set_object (value, plugin->priv->window);
+            break;
+        default:
+            G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
+            break;
+    }
 }
 
 static void
 xed_time_plugin_class_init (XedTimePluginClass *klass)
 {
 	GObjectClass *object_class = G_OBJECT_CLASS (klass);
-	XedPluginClass *plugin_class = XED_PLUGIN_CLASS (klass);
 
 	object_class->finalize = xed_time_plugin_finalize;
+    object_class->dispose = xed_time_plugin_dispose;
+    object_class->set_property = xed_time_plugin_set_property;
+    object_class->get_property = xed_time_plugin_get_property;
 
-	plugin_class->activate = impl_activate;
-	plugin_class->deactivate = impl_deactivate;
-	plugin_class->update_ui = impl_update_ui;
-
-	plugin_class->create_configure_dialog = impl_create_configure_dialog;
+	g_object_class_override_property (object_class, PROP_OBJECT, "object");
 
 	g_type_class_add_private (object_class, sizeof (XedTimePluginPrivate));
+}
+
+static void
+xed_time_plugin_class_finalize (XedTimePluginClass *klass)
+{
+    /* dummy function - used by G_DEFINE_DYNAMIC_TYPE_EXTENDED */
+}
+
+static void
+peas_activatable_iface_init (PeasActivatableInterface *iface)
+{
+    iface->activate = xed_time_plugin_activate;
+    iface->deactivate = xed_time_plugin_deactivate;
+    iface->update_state = xed_time_plugin_update_state;
+}
+
+static void
+peas_gtk_configurable_iface_init (PeasGtkConfigurableInterface *iface)
+{
+    iface->create_configure_widget = xed_time_plugin_create_configure_widget;
+}
+
+G_MODULE_EXPORT void
+peas_register_types (PeasObjectModule *module)
+{
+    xed_time_plugin_register_type (G_TYPE_MODULE (module));
+
+    peas_object_module_register_extension_type (module,
+                                                PEAS_TYPE_ACTIVATABLE,
+                                                XED_TYPE_TIME_PLUGIN);
+
+    peas_object_module_register_extension_type (module,
+                                                PEAS_GTK_TYPE_CONFIGURABLE,
+                                                XED_TYPE_TIME_PLUGIN);
 }
