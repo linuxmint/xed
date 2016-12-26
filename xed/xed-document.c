@@ -549,8 +549,6 @@ xed_document_class_init (XedDocumentClass *klass)
      * @create: whether the document should be created if it doesn't exist.
      *
      * The "load" signal is emitted when a document is loaded.
-     *
-     * Since: 2.22
      */
     document_signals[LOAD] =
         g_signal_new ("load",
@@ -600,8 +598,6 @@ xed_document_class_init (XedDocumentClass *klass)
      * @flags: the #XedDocumentSaveFlags for the save operation.
      *
      * The "save" signal is emitted when the document is saved.
-     *
-     * Since: 2.20
      */
     document_signals[SAVE] =
         g_signal_new ("save",

@@ -33,9 +33,6 @@
  *                                                         NULL);
  * </programlisting>
  * </example>
- *
- * Since: 2.25.3
- *
  */
 typedef struct
 {

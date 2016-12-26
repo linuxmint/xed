@@ -17,9 +17,6 @@
  * A message can be seen as a method call, or signal emission depending on
  * who is the sender and who is the receiver. There is no explicit distinction
  * between methods and signals.
- *
- * Since: 2.25.3
- *
  */
 #define XED_MESSAGE_GET_PRIVATE(object)(G_TYPE_INSTANCE_GET_PRIVATE((object), XED_TYPE_MESSAGE, XedMessagePrivate))
 
