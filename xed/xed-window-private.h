@@ -2,7 +2,7 @@
  * xed-window-private.h
  * This file is part of xed
  *
- * Copyright (C) 2005 - Paolo Maggi 
+ * Copyright (C) 2005 - Paolo Maggi
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,20 +16,22 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
- * Foundation, Inc., 51 Franklin St, Fifth Floor, 
+ * Foundation, Inc., 51 Franklin St, Fifth Floor,
  * Boston, MA 02110-1301, USA.
  */
- 
+
 /*
- * Modified by the xed Team, 2005. See the AUTHORS file for a 
- * list of people on the xed Team.  
- * See the ChangeLog files for a list of changes. 
+ * Modified by the xed Team, 2005. See the AUTHORS file for a
+ * list of people on the xed Team.
+ * See the ChangeLog files for a list of changes.
  *
  * $Id$
  */
 
 #ifndef __XED_WINDOW_PRIVATE_H__
 #define __XED_WINDOW_PRIVATE_H__
+
+#include <libpeas/peas-extension-set.h>
 
 #include "xed/xed-window.h"
 #include "xed-prefs-manager.h"
@@ -48,11 +50,12 @@ struct _XedWindowPrivate
 
 	GtkWidget      *hpaned;
 	GtkWidget      *vpaned;
-	
+
 	GtkWidget      *tab_width_combo;
 	GtkWidget      *language_combo;
-	
-	XedMessageBus *message_bus;	
+
+	XedMessageBus *message_bus;
+    PeasExtensionSet *extensions;
 
 	/* Widgets for fullscreen mode */
 	GtkWidget      *fullscreen_controls;
@@ -61,8 +64,8 @@ struct _XedWindowPrivate
 	gboolean        fullscreen_animation_enter;
 
 	/* statusbar and context ids for statusbar messages */
-	GtkWidget      *statusbar;	
-	GtkWidget      *searchbar;	
+	GtkWidget      *statusbar;
+	GtkWidget      *searchbar;
 	guint           generic_message_cid;
 	guint           tip_message_cid;
 	guint 		tab_width_id;
@@ -93,7 +96,7 @@ struct _XedWindowPrivate
 	gint            num_tabs_with_error;
 
 	gint            width;
-	gint            height;	
+	gint            height;
 	GdkWindowState  window_state;
 
 	gint            side_panel_size;

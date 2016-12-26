@@ -9,6 +9,8 @@
 #include <gio/gio.h>
 #include <gtk/gtk.h>
 #include <gtksourceview/gtksource.h>
+#include <libpeas/peas-activatable.h>
+#include <libpeas/peas-extension-set.h>
 
 #include "xed-ui.h"
 #include "xed-window.h"
@@ -154,14 +156,18 @@ xed_window_dispose (GObject *object)
     /* First of all, force collection so that plugins
      * really drop some of the references.
      */
-    xed_plugins_engine_garbage_collect (xed_plugins_engine_get_default ());
+    peas_engine_garbage_collect (PEAS_ENGINE (xed_plugins_engine_get_default()));
 
     /* save the panes position and make sure to deactivate plugins
      * for this window, but only once */
     if (!window->priv->dispose_has_run)
     {
         save_panes_state (window);
-        xed_plugins_engine_deactivate_plugins (xed_plugins_engine_get_default (), window);
+        /* Note that unreffing the extension will automatically remove
+           all extensions which in turn will deactivate the extension */
+        g_object_unref (window->priv->extensions);
+
+        peas_engine_garbage_collect (PEAS_ENGINE (xed_plugins_engine_get_default ()));
         window->priv->dispose_has_run = TRUE;
     }
 
@@ -203,9 +209,8 @@ xed_window_dispose (GObject *object)
         window->priv->window_group = NULL;
     }
 
-    /* Now that there have broken some reference loops, force collection again.
-     */
-    xed_plugins_engine_garbage_collect (xed_plugins_engine_get_default ());
+    /* Now that there have broken some reference loops, force collection again. */
+    peas_engine_garbage_collect (PEAS_ENGINE (xed_plugins_engine_get_default ()));
 
     G_OBJECT_CLASS (xed_window_parent_class)->dispose (object);
 }
@@ -293,7 +298,7 @@ static void
 xed_window_tab_removed (XedWindow *window,
                         XedTab *tab)
 {
-    xed_plugins_engine_garbage_collect (xed_plugins_engine_get_default ());
+    peas_engine_garbage_collect (PEAS_ENGINE (xed_plugins_engine_get_default ()));
 }
 
 static void
@@ -641,7 +646,7 @@ set_sensitivity_according_to_tab (XedWindow *window,
 
     update_next_prev_doc_sensitivity (window, tab);
 
-    xed_plugins_engine_update_plugins_ui (xed_plugins_engine_get_default (), window);
+    peas_extension_set_call (window->priv->extensions, "update_state", window);
 }
 
 static void
@@ -2289,7 +2294,7 @@ sync_name (XedTab *tab,
     g_free (escaped_name);
     g_free (tip);
 
-    xed_plugins_engine_update_plugins_ui (xed_plugins_engine_get_default (), window);
+    peas_extension_set_call (window->priv->extensions, "update_state", window);
 }
 
 static XedWindow *
@@ -2702,7 +2707,7 @@ selection_changed (XedDocument *doc,
     gtk_action_set_sensitive (action,
                     state_normal && editable && gtk_text_buffer_get_has_selection (GTK_TEXT_BUFFER(doc)));
 
-    xed_plugins_engine_update_plugins_ui (xed_plugins_engine_get_default (), window);
+    peas_extension_set_call (window->priv->extensions, "update_state", window);
 }
 
 static void
@@ -2711,7 +2716,7 @@ sync_languages_menu (XedDocument *doc,
                      XedWindow *window)
 {
     update_languages_menu (window);
-    xed_plugins_engine_update_plugins_ui (xed_plugins_engine_get_default (), window);
+    peas_extension_set_call (window->priv->extensions, "update_state", window);
 }
 
 static void
@@ -2721,7 +2726,7 @@ readonly_changed (XedDocument *doc,
 {
     set_sensitivity_according_to_tab (window, window->priv->active_tab);
     sync_name (window->priv->active_tab, NULL, window);
-    xed_plugins_engine_update_plugins_ui (xed_plugins_engine_get_default (), window);
+    peas_extension_set_call (window->priv->extensions, "update_state", window);
 }
 
 static void
@@ -2729,7 +2734,7 @@ editable_changed (XedView *view,
                   GParamSpec *arg1,
                   XedWindow *window)
 {
-    xed_plugins_engine_update_plugins_ui (xed_plugins_engine_get_default (), window);
+    peas_extension_set_call (window->priv->extensions, "update_state", window);
 }
 
 static void
@@ -2871,7 +2876,7 @@ notebook_tab_removed (XedNotebook *notebook,
 
     if (window->priv->num_tabs == 0)
     {
-        xed_plugins_engine_update_plugins_ui (xed_plugins_engine_get_default (), window);
+        peas_extension_set_call (window->priv->extensions, "update_state", window);
     }
 
     update_window_state (window);
@@ -3272,6 +3277,28 @@ add_notebook (XedWindow *window,
     connect_notebook_signals (window, notebook);
 }
 
+ static void
+on_extension_added (PeasExtensionSet *extensions,
+                    PeasPluginInfo   *info,
+                    PeasExtension    *exten,
+                    XedWindow        *window)
+{
+    peas_extension_call (exten, "activate", window);
+}
+
+static void
+on_extension_removed (PeasExtensionSet *extensions,
+                      PeasPluginInfo   *info,
+                      PeasExtension    *exten,
+                      XedWindow        *window)
+{
+    peas_extension_call (exten, "deactivate", window);
+
+    /* Ensure update of the ui manager, because we suspect it does something with expected static strings in the
+     * type module (when unloaded the strings don't exist anymore, and the ui manager update in a idle func) */
+    gtk_ui_manager_ensure_update (window->priv->manager);
+}
+
 static void
 xed_window_init (XedWindow *window)
 {
@@ -3378,7 +3405,13 @@ xed_window_init (XedWindow *window)
 
     xed_debug_message (DEBUG_WINDOW, "Update plugins ui");
 
-    xed_plugins_engine_activate_plugins (xed_plugins_engine_get_default (), window);
+    window->priv->extensions = peas_extension_set_new (PEAS_ENGINE (xed_plugins_engine_get_default ()),
+                                                       PEAS_TYPE_ACTIVATABLE, "object", window, NULL);
+
+    peas_extension_set_call (window->priv->extensions, "activate");
+
+    g_signal_connect (window->priv->extensions, "extension-added", G_CALLBACK (on_extension_added), window);
+    g_signal_connect (window->priv->extensions, "extension-removed", G_CALLBACK (on_extension_removed), window);
 
     /* set visibility of panes.
      * This needs to be done after plugins activatation */

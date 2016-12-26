@@ -3,7 +3,7 @@
  * xed-preferences-dialog.c
  * This file is part of xed
  *
- * Copyright (C) 2001-2005 Paolo Maggi 
+ * Copyright (C) 2001-2005 Paolo Maggi
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,14 +17,14 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
- * Foundation, Inc., 51 Franklin St, Fifth Floor, 
- * Boston, MA 02110-1301, USA. 
+ * Foundation, Inc., 51 Franklin St, Fifth Floor,
+ * Boston, MA 02110-1301, USA.
  */
 
 /*
- * Modified by the xed Team, 2001-2003. See the AUTHORS file for a 
- * list of people on the xed Team.  
- * See the ChangeLog files for a list of changes. 
+ * Modified by the xed Team, 2001-2003. See the AUTHORS file for a
+ * list of people on the xed Team.
+ * See the ChangeLog files for a list of changes.
  *
  * $Id$
  */
@@ -39,6 +39,7 @@
 #include <glib/gi18n.h>
 #include <gtk/gtk.h>
 #include <gtksourceview/gtksource.h>
+#include <libpeas-gtk/peas-gtk-plugin-manager.h>
 
 #include <xed/xed-prefs-manager.h>
 
@@ -47,7 +48,6 @@
 #include "xed-debug.h"
 #include "xed-document.h"
 #include "xed-style-scheme-manager.h"
-#include "xed-plugin-manager.h"
 #include "xed-help.h"
 #include "xed-dirs.h"
 
@@ -90,7 +90,7 @@ struct _XedPreferencesDialogPrivate
 	GtkWidget	*schemes_treeview;
 	GtkWidget	*install_scheme_button;
 	GtkWidget	*uninstall_scheme_button;
-	
+
 	GtkWidget	*install_scheme_file_schooser;
 
 	/* Tabs */
@@ -110,16 +110,16 @@ struct _XedPreferencesDialogPrivate
 	GtkWidget	*auto_save_checkbutton;
 	GtkWidget	*auto_save_spinbutton;
 	GtkWidget	*autosave_hbox;
-	
+
 	/* Line numbers */
 	GtkWidget	*display_line_numbers_checkbutton;
 
 	/* Highlight current line */
 	GtkWidget	*highlight_current_line_checkbutton;
-	
+
 	/* Highlight matching bracket */
 	GtkWidget	*bracket_matching_checkbutton;
-	
+
 	/* Right margin */
 	GtkWidget	*right_margin_checkbutton;
 	GtkWidget	*right_margin_position_spinbutton;
@@ -136,7 +136,7 @@ struct _XedPreferencesDialogPrivate
 G_DEFINE_TYPE(XedPreferencesDialog, xed_preferences_dialog, GTK_TYPE_DIALOG)
 
 
-static void 
+static void
 xed_preferences_dialog_class_init (XedPreferencesDialogClass *klass)
 {
 	GObjectClass *object_class = G_OBJECT_CLASS (klass);
@@ -145,7 +145,7 @@ xed_preferences_dialog_class_init (XedPreferencesDialogClass *klass)
 }
 
 static void
-dialog_response_handler (GtkDialog *dlg, 
+dialog_response_handler (GtkDialog *dlg,
 			 gint       res_id)
 {
 	xed_debug (DEBUG_PREFS);
@@ -176,7 +176,7 @@ tabs_width_spinbutton_value_changed (GtkSpinButton          *spin_button,
 
 	xed_prefs_manager_set_tabs_size (gtk_spin_button_get_value_as_int (spin_button));
 }
-	
+
 static void
 insert_spaces_checkbutton_toggled (GtkToggleButton        *button,
 				   XedPreferencesDialog *dlg)
@@ -209,12 +209,12 @@ auto_save_checkbutton_toggled (GtkToggleButton        *button,
 
 	if (gtk_toggle_button_get_active (button))
 	{
-		gtk_widget_set_sensitive (dlg->priv->auto_save_spinbutton, 
+		gtk_widget_set_sensitive (dlg->priv->auto_save_spinbutton,
 					  xed_prefs_manager_auto_save_interval_can_set());
 
 		xed_prefs_manager_set_auto_save (TRUE);
 	}
-	else	
+	else
 	{
 		gtk_widget_set_sensitive (dlg->priv->auto_save_spinbutton, FALSE);
 		xed_prefs_manager_set_auto_save (FALSE);
@@ -228,7 +228,7 @@ backup_copy_checkbutton_toggled (GtkToggleButton        *button,
 	xed_debug (DEBUG_PREFS);
 
 	g_return_if_fail (button == GTK_TOGGLE_BUTTON (dlg->priv->backup_copy_checkbutton));
-	
+
 	xed_prefs_manager_set_create_backup_copy (gtk_toggle_button_get_active (button));
 }
 
@@ -253,9 +253,9 @@ setup_editor_page (XedPreferencesDialog *dlg)
 	/* Set initial state */
 	gtk_spin_button_set_value (GTK_SPIN_BUTTON (dlg->priv->tabs_width_spinbutton),
 				   (guint) xed_prefs_manager_get_tabs_size ());
-	gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (dlg->priv->insert_spaces_checkbutton), 
+	gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (dlg->priv->insert_spaces_checkbutton),
 				      xed_prefs_manager_get_insert_spaces ());
-	gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (dlg->priv->auto_indent_checkbutton), 
+	gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (dlg->priv->auto_indent_checkbutton),
 				      xed_prefs_manager_get_auto_indent ());
 	gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (dlg->priv->backup_copy_checkbutton),
 				      xed_prefs_manager_get_create_backup_copy ());
@@ -272,7 +272,7 @@ setup_editor_page (XedPreferencesDialog *dlg)
 				   auto_save_interval);
 
 	/* Set widget sensitivity */
-	gtk_widget_set_sensitive (dlg->priv->tabs_width_hbox, 
+	gtk_widget_set_sensitive (dlg->priv->tabs_width_hbox,
 				  xed_prefs_manager_tabs_size_can_set ());
 	gtk_widget_set_sensitive (dlg->priv->insert_spaces_checkbutton,
 				  xed_prefs_manager_insert_spaces_can_set ());
@@ -280,9 +280,9 @@ setup_editor_page (XedPreferencesDialog *dlg)
 				  xed_prefs_manager_auto_indent_can_set ());
 	gtk_widget_set_sensitive (dlg->priv->backup_copy_checkbutton,
 				  xed_prefs_manager_create_backup_copy_can_set ());
-	gtk_widget_set_sensitive (dlg->priv->autosave_hbox, 
-				  xed_prefs_manager_auto_save_can_set ()); 
-	gtk_widget_set_sensitive (dlg->priv->auto_save_spinbutton, 
+	gtk_widget_set_sensitive (dlg->priv->autosave_hbox,
+				  xed_prefs_manager_auto_save_can_set ());
+	gtk_widget_set_sensitive (dlg->priv->auto_save_spinbutton,
 			          auto_save &&
 				  xed_prefs_manager_auto_save_interval_can_set ());
 
@@ -317,7 +317,7 @@ static void
 display_line_numbers_checkbutton_toggled (GtkToggleButton        *button,
 					  XedPreferencesDialog *dlg)
 {
-	g_return_if_fail (button == 
+	g_return_if_fail (button ==
 			GTK_TOGGLE_BUTTON (dlg->priv->display_line_numbers_checkbutton));
 
 	xed_prefs_manager_set_display_line_numbers (gtk_toggle_button_get_active (button));
@@ -327,7 +327,7 @@ static void
 highlight_current_line_checkbutton_toggled (GtkToggleButton        *button,
 					    XedPreferencesDialog *dlg)
 {
-	g_return_if_fail (button == 
+	g_return_if_fail (button ==
 			GTK_TOGGLE_BUTTON (dlg->priv->highlight_current_line_checkbutton));
 
 	xed_prefs_manager_set_highlight_current_line (gtk_toggle_button_get_active (button));
@@ -337,7 +337,7 @@ static void
 bracket_matching_checkbutton_toggled (GtkToggleButton        *button,
 				      XedPreferencesDialog *dlg)
 {
-	g_return_if_fail (button == 
+	g_return_if_fail (button ==
 			GTK_TOGGLE_BUTTON (dlg->priv->bracket_matching_checkbutton));
 
 	xed_prefs_manager_set_bracket_matching (
@@ -347,21 +347,21 @@ bracket_matching_checkbutton_toggled (GtkToggleButton        *button,
 static gboolean split_button_state = TRUE;
 
 static void
-wrap_mode_checkbutton_toggled (GtkToggleButton        *button, 
+wrap_mode_checkbutton_toggled (GtkToggleButton        *button,
 			       XedPreferencesDialog *dlg)
 {
 	if (!gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (dlg->priv->wrap_text_checkbutton)))
 	{
 		xed_prefs_manager_set_wrap_mode (GTK_WRAP_NONE);
-		
-		gtk_widget_set_sensitive (dlg->priv->split_checkbutton, 
+
+		gtk_widget_set_sensitive (dlg->priv->split_checkbutton,
 					  FALSE);
 		gtk_toggle_button_set_inconsistent (
 			GTK_TOGGLE_BUTTON (dlg->priv->split_checkbutton), TRUE);
 	}
 	else
 	{
-		gtk_widget_set_sensitive (dlg->priv->split_checkbutton, 
+		gtk_widget_set_sensitive (dlg->priv->split_checkbutton,
 					  TRUE);
 
 		gtk_toggle_button_set_inconsistent (
@@ -371,13 +371,13 @@ wrap_mode_checkbutton_toggled (GtkToggleButton        *button,
 		if (gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (dlg->priv->split_checkbutton)))
 		{
 			split_button_state = TRUE;
-			
+
 			xed_prefs_manager_set_wrap_mode (GTK_WRAP_WORD);
 		}
 		else
 		{
 			split_button_state = FALSE;
-			
+
 			xed_prefs_manager_set_wrap_mode (GTK_WRAP_CHAR);
 		}
 	}
@@ -388,24 +388,24 @@ right_margin_checkbutton_toggled (GtkToggleButton        *button,
 				  XedPreferencesDialog *dlg)
 {
 	gboolean active;
-	
+
 	g_return_if_fail (button == GTK_TOGGLE_BUTTON (dlg->priv->right_margin_checkbutton));
 
 	active = gtk_toggle_button_get_active (button);
-	
+
 	xed_prefs_manager_set_display_right_margin (active);
 
 	gtk_widget_set_sensitive (dlg->priv->right_margin_position_hbox,
-				  active && 
+				  active &&
 				  xed_prefs_manager_right_margin_position_can_set ());
 }
 
 static void
-right_margin_position_spinbutton_value_changed (GtkSpinButton          *spin_button, 
+right_margin_position_spinbutton_value_changed (GtkSpinButton          *spin_button,
 						XedPreferencesDialog *dlg)
 {
 	gint value;
-	
+
 	g_return_if_fail (spin_button == GTK_SPIN_BUTTON (dlg->priv->right_margin_position_spinbutton));
 
 	value = CLAMP (gtk_spin_button_get_value_as_int (spin_button), 1, 160);
@@ -421,14 +421,14 @@ setup_view_page (XedPreferencesDialog *dlg)
 	gboolean wrap_mode_can_set;
 
 	xed_debug (DEBUG_PREFS);
-	
+
 	/* Set initial state */
 	gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (dlg->priv->display_line_numbers_checkbutton),
 				      xed_prefs_manager_get_display_line_numbers ());
-	
+
 	gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (dlg->priv->highlight_current_line_checkbutton),
 				      xed_prefs_manager_get_highlight_current_line ());
-	
+
 	gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (dlg->priv->bracket_matching_checkbutton),
 				      xed_prefs_manager_get_bracket_matching ());
 
@@ -458,15 +458,15 @@ setup_view_page (XedPreferencesDialog *dlg)
 	}
 
 	display_right_margin = xed_prefs_manager_get_display_right_margin ();
-	
+
 	gtk_toggle_button_set_active (
-		GTK_TOGGLE_BUTTON (dlg->priv->right_margin_checkbutton), 
+		GTK_TOGGLE_BUTTON (dlg->priv->right_margin_checkbutton),
 		display_right_margin);
-	
+
 	gtk_spin_button_set_value (
 		GTK_SPIN_BUTTON (dlg->priv->right_margin_position_spinbutton),
 		(guint)CLAMP (xed_prefs_manager_get_right_margin_position (), 1, 160));
-		
+
 	/* Set widgets sensitivity */
 	gtk_widget_set_sensitive (dlg->priv->display_line_numbers_checkbutton,
 				  xed_prefs_manager_display_line_numbers_can_set ());
@@ -475,45 +475,45 @@ setup_view_page (XedPreferencesDialog *dlg)
 	gtk_widget_set_sensitive (dlg->priv->bracket_matching_checkbutton,
 				  xed_prefs_manager_bracket_matching_can_set ());
 	wrap_mode_can_set = xed_prefs_manager_wrap_mode_can_set ();
-	gtk_widget_set_sensitive (dlg->priv->wrap_text_checkbutton, 
+	gtk_widget_set_sensitive (dlg->priv->wrap_text_checkbutton,
 				  wrap_mode_can_set);
-	gtk_widget_set_sensitive (dlg->priv->split_checkbutton, 
-				  wrap_mode_can_set && 
+	gtk_widget_set_sensitive (dlg->priv->split_checkbutton,
+				  wrap_mode_can_set &&
 				  (wrap_mode != GTK_WRAP_NONE));
 	gtk_widget_set_sensitive (dlg->priv->right_margin_checkbutton,
 				  xed_prefs_manager_display_right_margin_can_set ());
 	gtk_widget_set_sensitive (dlg->priv->right_margin_position_hbox,
-				  display_right_margin && 
+				  display_right_margin &&
 				  xed_prefs_manager_right_margin_position_can_set ());
-				  
+
 	/* Connect signals */
 	g_signal_connect (dlg->priv->display_line_numbers_checkbutton,
 			  "toggled",
-			  G_CALLBACK (display_line_numbers_checkbutton_toggled), 
+			  G_CALLBACK (display_line_numbers_checkbutton_toggled),
 			  dlg);
 	g_signal_connect (dlg->priv->highlight_current_line_checkbutton,
-			  "toggled", 
-			  G_CALLBACK (highlight_current_line_checkbutton_toggled), 
+			  "toggled",
+			  G_CALLBACK (highlight_current_line_checkbutton_toggled),
 			  dlg);
 	g_signal_connect (dlg->priv->bracket_matching_checkbutton,
-			  "toggled", 
-			  G_CALLBACK (bracket_matching_checkbutton_toggled), 
+			  "toggled",
+			  G_CALLBACK (bracket_matching_checkbutton_toggled),
 			  dlg);
 	g_signal_connect (dlg->priv->wrap_text_checkbutton,
-			  "toggled", 
-			  G_CALLBACK (wrap_mode_checkbutton_toggled), 
+			  "toggled",
+			  G_CALLBACK (wrap_mode_checkbutton_toggled),
 			  dlg);
 	g_signal_connect (dlg->priv->split_checkbutton,
-			  "toggled", 
-			  G_CALLBACK (wrap_mode_checkbutton_toggled), 
+			  "toggled",
+			  G_CALLBACK (wrap_mode_checkbutton_toggled),
 			  dlg);
 	g_signal_connect (dlg->priv->right_margin_checkbutton,
-			  "toggled", 
-			  G_CALLBACK (right_margin_checkbutton_toggled), 
+			  "toggled",
+			  G_CALLBACK (right_margin_checkbutton_toggled),
 			  dlg);
 	g_signal_connect (dlg->priv->right_margin_position_spinbutton,
 			  "value_changed",
-			  G_CALLBACK (right_margin_position_spinbutton_value_changed), 
+			  G_CALLBACK (right_margin_position_spinbutton_value_changed),
 			  dlg);
 }
 
@@ -532,7 +532,7 @@ default_font_font_checkbutton_toggled (GtkToggleButton        *button,
 	}
 	else
 	{
-		gtk_widget_set_sensitive (dlg->priv->font_hbox, 
+		gtk_widget_set_sensitive (dlg->priv->font_hbox,
 					  xed_prefs_manager_editor_font_can_set ());
 		xed_prefs_manager_set_use_default_font (FALSE);
 	}
@@ -575,8 +575,8 @@ setup_font_colors_page_font_section (XedPreferencesDialog *dlg)
 				      dlg->priv->default_font_checkbutton,
 				      ATK_RELATION_CONTROLLED_BY);
 	xed_utils_set_atk_relation (dlg->priv->default_font_checkbutton,
-				      dlg->priv->font_button, 
-				      ATK_RELATION_CONTROLLER_FOR);	
+				      dlg->priv->font_button,
+				      ATK_RELATION_CONTROLLER_FOR);
 
 	editor_font = xed_prefs_manager_get_system_font ();
 	label = g_strdup_printf(_("_Use the system fixed width font (%s)"),
@@ -610,13 +610,13 @@ setup_font_colors_page_font_section (XedPreferencesDialog *dlg)
 			  dlg);
 
 	/* Set initial widget sensitivity */
-	gtk_widget_set_sensitive (dlg->priv->default_font_checkbutton, 
+	gtk_widget_set_sensitive (dlg->priv->default_font_checkbutton,
 				  xed_prefs_manager_use_default_font_can_set ());
 
 	if (use_default_font)
 		gtk_widget_set_sensitive (dlg->priv->font_hbox, FALSE);
 	else
-		gtk_widget_set_sensitive (dlg->priv->font_hbox, 
+		gtk_widget_set_sensitive (dlg->priv->font_hbox,
 					  xed_prefs_manager_editor_font_can_set ());
 }
 
@@ -625,8 +625,8 @@ set_buttons_sensisitivity_according_to_scheme (XedPreferencesDialog *dlg,
 					       const gchar            *scheme_id)
 {
 	gboolean editable;
-	
-	editable = (scheme_id != NULL) && 
+
+	editable = (scheme_id != NULL) &&
 	           _xed_style_scheme_manager_scheme_is_xed_user_scheme (
 						xed_get_style_scheme_manager (),
 						scheme_id);
@@ -694,7 +694,7 @@ ensure_color_scheme_id (const gchar *id)
 	return 	gtk_source_style_scheme_get_id (scheme);
 }
 
-/* If def_id is NULL, use the default scheme as returned by 
+/* If def_id is NULL, use the default scheme as returned by
  * xed_style_scheme_manager_get_default_scheme. If this one returns NULL
  * use the first available scheme as default */
 static const gchar *
@@ -702,17 +702,17 @@ populate_color_scheme_list (XedPreferencesDialog *dlg, const gchar *def_id)
 {
 	GSList *schemes;
 	GSList *l;
-	
+
 	gtk_list_store_clear (dlg->priv->schemes_treeview_model);
-	
+
 	def_id = ensure_color_scheme_id (def_id);
-	if (def_id == NULL) 
+	if (def_id == NULL)
 	{
 		g_warning ("Cannot build the list of available color schemes.\n"
 		           "Please check your GtkSourceView installation.");
 		return NULL;
 	}
-	
+
 	schemes = xed_style_scheme_manager_list_schemes_sorted (xed_get_style_scheme_manager ());
 	l = schemes;
 	while (l != NULL)
@@ -724,7 +724,7 @@ populate_color_scheme_list (XedPreferencesDialog *dlg, const gchar *def_id)
 		GtkTreeIter iter;
 
 		scheme = GTK_SOURCE_STYLE_SCHEME (l->data);
-				
+
 		id = gtk_source_style_scheme_get_id (scheme);
 		name = gtk_source_style_scheme_get_name (scheme);
 		description = gtk_source_style_scheme_get_description (scheme);
@@ -741,39 +741,39 @@ populate_color_scheme_list (XedPreferencesDialog *dlg, const gchar *def_id)
 		if (strcmp (id, def_id) == 0)
 		{
 			GtkTreeSelection *selection;
-			
+
 			selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (dlg->priv->schemes_treeview));
 			gtk_tree_selection_select_iter (selection, &iter);
 		}
-		
+
 		l = g_slist_next (l);
 	}
-	
+
 	g_slist_free (schemes);
-	
+
 	return def_id;
 }
 
 static void
-add_scheme_chooser_response_cb (GtkDialog              *chooser, 
+add_scheme_chooser_response_cb (GtkDialog              *chooser,
 				gint                    res_id,
 				XedPreferencesDialog *dlg)
 {
-	gchar* filename; 
+	gchar* filename;
 	const gchar *scheme_id;
-	
+
 	if (res_id != GTK_RESPONSE_ACCEPT)
 	{
 		gtk_widget_hide (GTK_WIDGET (chooser));
 		return;
 	}
-	
+
 	filename = gtk_file_chooser_get_filename (GTK_FILE_CHOOSER (chooser));
 	if (filename == NULL)
 		return;
-	
+
 	gtk_widget_hide (GTK_WIDGET (chooser));
-	
+
 	scheme_id = _xed_style_scheme_manager_install_scheme (
 					xed_get_style_scheme_manager (),
 					filename);
@@ -793,14 +793,14 @@ add_scheme_chooser_response_cb (GtkDialog              *chooser,
 
 	set_buttons_sensisitivity_according_to_scheme (dlg, scheme_id);
 }
-			 
+
 static void
 install_scheme_clicked (GtkButton              *button,
 			XedPreferencesDialog *dlg)
 {
 	GtkWidget      *chooser;
 	GtkFileFilter  *filter;
-	
+
 	if (dlg->priv->install_scheme_file_schooser != NULL) {
 		gtk_window_present (GTK_WINDOW (dlg->priv->install_scheme_file_schooser));
 		gtk_widget_grab_focus (dlg->priv->install_scheme_file_schooser);
@@ -813,13 +813,13 @@ install_scheme_clicked (GtkButton              *button,
 					       GTK_STOCK_CANCEL, GTK_RESPONSE_CANCEL,
 					       NULL);
 
-	xed_dialog_add_button (GTK_DIALOG (chooser), 
+	xed_dialog_add_button (GTK_DIALOG (chooser),
 				 _("A_dd Scheme"),
 				 GTK_STOCK_ADD,
 				 GTK_RESPONSE_ACCEPT);
 
 	gtk_window_set_destroy_with_parent (GTK_WINDOW (chooser), TRUE);
-		
+
 	/* Filters */
 	filter = gtk_file_filter_new ();
 	gtk_file_filter_set_name (filter, _("Color Scheme Files"));
@@ -827,25 +827,25 @@ install_scheme_clicked (GtkButton              *button,
 	gtk_file_chooser_add_filter (GTK_FILE_CHOOSER (chooser), filter);
 
 	gtk_file_chooser_set_filter (GTK_FILE_CHOOSER (chooser), filter);
-	
+
 	filter = gtk_file_filter_new ();
 	gtk_file_filter_set_name (filter, _("All Files"));
 	gtk_file_filter_add_pattern (filter, "*");
 	gtk_file_chooser_add_filter (GTK_FILE_CHOOSER (chooser), filter);
 
 	gtk_dialog_set_default_response (GTK_DIALOG (chooser), GTK_RESPONSE_ACCEPT);
-			
+
 	g_signal_connect (chooser,
 			  "response",
 			  G_CALLBACK (add_scheme_chooser_response_cb),
 			  dlg);
 
 	dlg->priv->install_scheme_file_schooser = chooser;
-	
+
 	g_object_add_weak_pointer (G_OBJECT (chooser),
 				   (gpointer) &dlg->priv->install_scheme_file_schooser);
-				   
-	gtk_widget_show (chooser);	
+
+	gtk_widget_show (chooser);
 }
 
 static void
@@ -870,7 +870,7 @@ uninstall_scheme_clicked (GtkButton              *button,
 				    ID_COLUMN, &id,
 				    NAME_COLUMN, &name,
 				    -1);
-	
+
 		if (!_xed_style_scheme_manager_uninstall_scheme (xed_get_style_scheme_manager (), id))
 		{
 			xed_warning (GTK_WINDOW (dlg),
@@ -878,7 +878,7 @@ uninstall_scheme_clicked (GtkButton              *button,
 				       name);
 		}
 		else
-		{	
+		{
 			const gchar *real_new_id;
 			gchar *new_id = NULL;
 			GtkTreePath *path;
@@ -899,13 +899,13 @@ uninstall_scheme_clicked (GtkButton              *button,
 			gtk_tree_path_next (path);
 			if (!gtk_tree_model_get_iter (model, &new_iter, path))
 			{
-				/* It seems the removed style scheme was the 
-				 * last of the list. Try to move to the 
+				/* It seems the removed style scheme was the
+				 * last of the list. Try to move to the
 				 * previous one */
 				gtk_tree_path_free (path);
 
 				path = gtk_tree_model_get_path (model, &iter);
-				
+
 				gtk_tree_path_prev (path);
 				if (gtk_tree_model_get_iter (model, &new_iter, path))
 					new_iter_set = TRUE;
@@ -914,17 +914,17 @@ uninstall_scheme_clicked (GtkButton              *button,
 				new_iter_set = TRUE;
 
 			gtk_tree_path_free (path);
-						
+
 			if (new_iter_set)
 				gtk_tree_model_get (model, &new_iter,
 						    ID_COLUMN, &new_id,
 						    -1);
-						    			
+
 			real_new_id = populate_color_scheme_list (dlg, new_id);
 			g_free (new_id);
-	
+
 			set_buttons_sensisitivity_according_to_scheme (dlg, real_new_id);
-			
+
 			if (real_new_id != NULL)
 				xed_prefs_manager_set_source_style_scheme (real_new_id);
 		}
@@ -980,9 +980,9 @@ setup_font_colors_page_style_scheme_section (XedPreferencesDialog *dlg)
 	GtkTreeViewColumn *column;
 	GtkTreeSelection *selection;
 	const gchar *def_id;
-	
+
 	xed_debug (DEBUG_PREFS);
-			  
+
 	/* Create GtkListStore for styles & setup treeview. */
 	dlg->priv->schemes_treeview_model = gtk_list_store_new (NUM_COLUMNS,
 								G_TYPE_STRING,
@@ -1014,7 +1014,7 @@ setup_font_colors_page_style_scheme_section (XedPreferencesDialog *dlg)
 	gtk_tree_selection_set_mode (selection, GTK_SELECTION_BROWSE);
 
 	def_id = populate_color_scheme_list (dlg, NULL);
-	
+
 	/* Connect signals */
 	g_signal_connect (dlg->priv->schemes_treeview,
 			  "cursor-changed",
@@ -1028,7 +1028,7 @@ setup_font_colors_page_style_scheme_section (XedPreferencesDialog *dlg)
 			  "clicked",
 			  G_CALLBACK (uninstall_scheme_clicked),
 			  dlg);
-		
+
 	/* Set initial widget sensitivity */
 	set_buttons_sensisitivity_according_to_scheme (dlg, def_id);
 }
@@ -1047,7 +1047,7 @@ setup_plugins_page (XedPreferencesDialog *dlg)
 
 	xed_debug (DEBUG_PREFS);
 
-	page_content = xed_plugin_manager_new ();
+	page_content = peas_gtk_plugin_manager_new (NULL);
 	g_return_if_fail (page_content != NULL);
 
 	gtk_box_pack_start (GTK_BOX (dlg->priv->plugin_manager_place_holder),
@@ -1094,12 +1094,12 @@ xed_preferences_dialog_init (XedPreferencesDialog *dlg)
 	gtk_box_set_spacing (GTK_BOX (gtk_dialog_get_content_area (GTK_DIALOG (dlg))), 2); /* 2 * 5 + 2 = 12 */
 	gtk_container_set_border_width (GTK_CONTAINER (gtk_dialog_get_action_area (GTK_DIALOG (dlg))), 5);
 	gtk_box_set_spacing (GTK_BOX (gtk_dialog_get_action_area (GTK_DIALOG (dlg))), 6);
-	
+
 	g_signal_connect (dlg,
 			  "response",
 			  G_CALLBACK (dialog_response_handler),
 			  NULL);
-	
+
 	file = xed_dirs_get_ui_file ("xed-preferences-dialog.ui");
 	ret = xed_utils_get_ui_objects (file,
 		root_objects,
@@ -1144,11 +1144,11 @@ xed_preferences_dialog_init (XedPreferencesDialog *dlg)
 	if (!ret)
 	{
 		gtk_widget_show (error_widget);
-			
+
 		gtk_box_pack_start (GTK_BOX (gtk_dialog_get_content_area (GTK_DIALOG (dlg))),
 		                    error_widget,
 		                    TRUE, TRUE, 0);
-		
+
 		return;
 	}
 

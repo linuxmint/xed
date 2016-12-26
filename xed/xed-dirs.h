@@ -16,8 +16,8 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
- * Foundation, Inc., 51 Franklin St, Fifth Floor, 
- * Boston, MA 02110-1301, USA. 
+ * Foundation, Inc., 51 Franklin St, Fifth Floor,
+ * Boston, MA 02110-1301, USA.
  */
 
 
@@ -44,8 +44,7 @@ gchar		*xed_dirs_get_xed_lib_dir		(void);
 
 gchar		*xed_dirs_get_xed_plugins_dir	(void);
 
-gchar		*xed_dirs_get_xed_plugin_loaders_dir
-							(void);
+gchar		*xed_dirs_get_xed_plugins_data_dir (void);
 
 gchar		*xed_dirs_get_ui_file			(const gchar *file);
 

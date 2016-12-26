@@ -112,10 +112,6 @@ static void xed_prefs_manager_auto_save_changed	(GSettings *settings,
 							 gchar       *key,
 							 gpointer     user_data);
 
-static void xed_prefs_manager_active_plugins_changed	(GSettings *settings,
-							 gchar       *key,
-							 gpointer     user_data);
-
 /* GUI state is serialized to a .desktop file, not in GSettings */
 
 #define XED_STATE_DEFAULT_WINDOW_STATE	0
@@ -707,11 +703,6 @@ xed_prefs_manager_app_init (void)
 		g_signal_connect (xed_prefs_manager->settings,
 				"changed::" GPM_WRITABLE_VFS_SCHEMES,
 				G_CALLBACK (xed_prefs_manager_auto_save_changed),
-				NULL);
-
-		g_signal_connect (xed_prefs_manager->settings,
-				"changed::" GPM_ACTIVE_PLUGINS,
-				G_CALLBACK (xed_prefs_manager_active_plugins_changed),
 				NULL);
 	}
 
@@ -1305,7 +1296,7 @@ xed_prefs_manager_source_style_scheme_changed (GSettings *settings,
 		for (l = docs; l != NULL; l = l->next)
 		{
 			g_return_if_fail (GTK_SOURCE_IS_BUFFER (l->data));
-            
+
 			gtk_source_buffer_set_style_scheme (GTK_SOURCE_BUFFER (l->data),
 							    style);
 		}
@@ -1394,21 +1385,3 @@ xed_prefs_manager_auto_save_changed (GSettings *settings,
 		g_list_free (docs);
 	}
 }
-
-static void
-xed_prefs_manager_active_plugins_changed (GSettings *settings,
-					    gchar       *key,
-					    gpointer     user_data)
-{
-	xed_debug (DEBUG_PREFS);
-
-	if (strcmp (key, GPM_ACTIVE_PLUGINS) == 0)
-	{
-		XedPluginsEngine *engine;
-
-		engine = xed_plugins_engine_get_default ();
-
-		xed_plugins_engine_active_plugins_changed (engine);
-	}
-}
-

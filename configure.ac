@@ -157,6 +157,8 @@ PKG_CHECK_MODULES(XED, [
 	gio-2.0 >= 2.26.0
 	gtk+-3.0 >= 3.10.0
 	gtksourceview-3.0 >= 2.9.7
+	libpeas-1.0 >= 1.12.0
+	libpeas-gtk-1.0 >= 1.12.0
 ])
 
 PKG_CHECK_MODULES(X11, [x11])

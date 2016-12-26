@@ -2,7 +2,7 @@
  * xed-plugins-engine.h
  * This file is part of xed
  *
- * Copyright (C) 2002-2005 - Paolo Maggi 
+ * Copyright (C) 2002-2005 - Paolo Maggi
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,14 +16,14 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
- * Foundation, Inc., 51 Franklin St, Fifth Floor, 
- * Boston, MA 02110-1301, USA. 
+ * Foundation, Inc., 51 Franklin St, Fifth Floor,
+ * Boston, MA 02110-1301, USA.
  */
- 
+
 /*
- * Modified by the xed Team, 2002-2005. See the AUTHORS file for a 
- * list of people on the xed Team.  
- * See the ChangeLog files for a list of changes. 
+ * Modified by the xed Team, 2002-2005. See the AUTHORS file for a
+ * list of people on the xed Team.
+ * See the ChangeLog files for a list of changes.
  *
  * $Id$
  */
@@ -32,9 +32,7 @@
 #define __XED_PLUGINS_ENGINE_H__
 
 #include <glib.h>
-#include "xed-window.h"
-#include "xed-plugin-info.h"
-#include "xed-plugin.h"
+#include <libpeas/peas-engine.h>
 
 G_BEGIN_DECLS
 
@@ -45,62 +43,25 @@ G_BEGIN_DECLS
 #define XED_IS_PLUGINS_ENGINE_CLASS(klass)   (G_TYPE_CHECK_CLASS_TYPE ((klass), XED_TYPE_PLUGINS_ENGINE))
 #define XED_PLUGINS_ENGINE_GET_CLASS(obj)    (G_TYPE_INSTANCE_GET_CLASS((obj), XED_TYPE_PLUGINS_ENGINE, XedPluginsEngineClass))
 
-typedef struct _XedPluginsEngine		XedPluginsEngine;
-typedef struct _XedPluginsEnginePrivate	XedPluginsEnginePrivate;
+typedef struct _XedPluginsEngine        XedPluginsEngine;
+typedef struct _XedPluginsEnginePrivate XedPluginsEnginePrivate;
 
 struct _XedPluginsEngine
 {
-	GObject parent;
-	XedPluginsEnginePrivate *priv;
+    PeasEngine parent;
+    XedPluginsEnginePrivate *priv;
 };
 
-typedef struct _XedPluginsEngineClass		XedPluginsEngineClass;
+typedef struct _XedPluginsEngineClass       XedPluginsEngineClass;
 
 struct _XedPluginsEngineClass
 {
-	GObjectClass parent_class;
-
-	void	 (* activate_plugin)		(XedPluginsEngine *engine,
-						 XedPluginInfo    *info);
-
-	void	 (* deactivate_plugin)		(XedPluginsEngine *engine,
-						 XedPluginInfo    *info);
+    PeasEngineClass parent_class;
 };
 
-GType			 xed_plugins_engine_get_type		(void) G_GNUC_CONST;
+GType             xed_plugins_engine_get_type    (void) G_GNUC_CONST;
 
-XedPluginsEngine	*xed_plugins_engine_get_default	(void);
-
-void		 xed_plugins_engine_garbage_collect	(XedPluginsEngine *engine);
-
-const GList	*xed_plugins_engine_get_plugin_list 	(XedPluginsEngine *engine);
-
-XedPluginInfo	*xed_plugins_engine_get_plugin_info	(XedPluginsEngine *engine,
-							 const gchar        *name);
-
-/* plugin load and unloading (overall, for all windows) */
-gboolean 	 xed_plugins_engine_activate_plugin 	(XedPluginsEngine *engine,
-							 XedPluginInfo    *info);
-gboolean 	 xed_plugins_engine_deactivate_plugin	(XedPluginsEngine *engine,
-							 XedPluginInfo    *info);
-
-void	 	 xed_plugins_engine_configure_plugin	(XedPluginsEngine *engine,
-							 XedPluginInfo    *info,
-							 GtkWindow          *parent);
-
-/* plugin activation/deactivation per window, private to XedWindow */
-void 		 xed_plugins_engine_activate_plugins   (XedPluginsEngine *engine,
-							  XedWindow        *window);
-void 		 xed_plugins_engine_deactivate_plugins (XedPluginsEngine *engine,
-							  XedWindow        *window);
-void		 xed_plugins_engine_update_plugins_ui  (XedPluginsEngine *engine,
-							  XedWindow        *window);
-
-/* private for GSettings notification */
-void		 xed_plugins_engine_active_plugins_changed
-							(XedPluginsEngine *engine);
-
-void		 xed_plugins_engine_rescan_plugins	(XedPluginsEngine *engine);
+XedPluginsEngine *xed_plugins_engine_get_default (void);
 
 G_END_DECLS
 
