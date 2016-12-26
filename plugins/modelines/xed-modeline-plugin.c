@@ -1,14 +1,14 @@
 /*
  * xed-modeline-plugin.c
  * Emacs, Kate and Vim-style modelines support for xed.
- * 
+ *
  * Copyright (C) 2005-2007 - Steve Frécinaux <code@istique.net>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
  * any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
@@ -18,27 +18,30 @@
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA.
  */
- 
+
 #ifdef HAVE_CONFIG_H
 #	include <config.h>
 #endif
 
 #include <glib/gi18n-lib.h>
 #include <gmodule.h>
+#include <libpeas/peas-activatable.h>
 #include "xed-modeline-plugin.h"
 #include "modeline-parser.h"
 
+#include <xed/xed-window.h>
 #include <xed/xed-debug.h>
 #include <xed/xed-utils.h>
 
-#define WINDOW_DATA_KEY "XedModelinePluginWindowData"
 #define DOCUMENT_DATA_KEY "XedModelinePluginDocumentData"
 
-typedef struct
+struct _XedModelinePluginPrivate
 {
+    GtkWidget *window;
+
 	gulong tab_added_handler_id;
 	gulong tab_removed_handler_id;
-} WindowData;
+};
 
 typedef struct
 {
@@ -46,18 +49,20 @@ typedef struct
 	gulong document_saved_handler_id;
 } DocumentData;
 
-static void	xed_modeline_plugin_activate (XedPlugin *plugin, XedWindow *window);
-static void	xed_modeline_plugin_deactivate (XedPlugin *plugin, XedWindow *window);
-static GObject	*xed_modeline_plugin_constructor (GType type, guint n_construct_properties, GObjectConstructParam *construct_param);
-static void	xed_modeline_plugin_finalize (GObject *object);
-
-XED_PLUGIN_REGISTER_TYPE(XedModelinePlugin, xed_modeline_plugin)
-
-static void
-window_data_free (WindowData *wdata)
+enum
 {
-	g_slice_free (WindowData, wdata);
-}
+    PROP_0,
+    PROP_OBJECT
+};
+
+static void peas_activatable_iface_init (PeasActivatableInterface *iface);
+
+G_DEFINE_DYNAMIC_TYPE_EXTENDED (XedModelinePlugin,
+                                xed_modeline_plugin,
+                                PEAS_TYPE_EXTENSION_BASE,
+                                0,
+                                G_IMPLEMENT_INTERFACE_DYNAMIC (PEAS_TYPE_ACTIVATABLE,
+                                                               peas_activatable_iface_init))
 
 static void
 document_data_free (DocumentData *ddata)
@@ -66,43 +71,27 @@ document_data_free (DocumentData *ddata)
 }
 
 static void
-xed_modeline_plugin_class_init (XedModelinePluginClass *klass)
+xed_modeline_plugin_constructed (GObject *object)
 {
-	GObjectClass *object_class = G_OBJECT_CLASS (klass);
-	XedPluginClass *plugin_class = XED_PLUGIN_CLASS (klass);
-
-	object_class->constructor = xed_modeline_plugin_constructor;
-	object_class->finalize = xed_modeline_plugin_finalize;
-
-	plugin_class->activate = xed_modeline_plugin_activate;
-	plugin_class->deactivate = xed_modeline_plugin_deactivate;
-}
-
-static GObject *
-xed_modeline_plugin_constructor (GType                  type,
-				   guint                  n_construct_properties,
-				   GObjectConstructParam *construct_param)
-{
-	GObject *object;
 	gchar *data_dir;
 
-	object = G_OBJECT_CLASS (xed_modeline_plugin_parent_class)->constructor (type,
-										   n_construct_properties,
-										   construct_param);
-
-	data_dir = xed_plugin_get_data_dir (XED_PLUGIN (object));
+	data_dir = peas_extension_base_get_data_dir (PEAS_EXTENSION_BASE (object));
 
 	modeline_parser_init (data_dir);
 
 	g_free (data_dir);
 
-	return object;
+	G_OBJECT_CLASS (xed_modeline_plugin_parent_class)->constructed (object);
 }
 
 static void
 xed_modeline_plugin_init (XedModelinePlugin *plugin)
 {
 	xed_debug_message (DEBUG_PLUGINS, "XedModelinePlugin initializing");
+
+    plugin->priv = G_TYPE_INSTANCE_GET_PRIVATE (plugin,
+                                                XED_TYPE_MODELINE_PLUGIN,
+                                                XedModelinePluginPrivate);
 }
 
 static void
@@ -113,6 +102,60 @@ xed_modeline_plugin_finalize (GObject *object)
 	modeline_parser_shutdown ();
 
 	G_OBJECT_CLASS (xed_modeline_plugin_parent_class)->finalize (object);
+}
+
+static void
+xed_modeline_plugin_dispose (GObject *object)
+{
+    XedModelinePlugin *plugin = XED_MODELINE_PLUGIN (object);
+
+    xed_debug_message (DEBUG_PLUGINS, "XedModelinePlugin disposing");
+
+    if (plugin->priv->window != NULL)
+    {
+        g_object_unref (plugin->priv->window);
+        plugin->priv->window = NULL;
+    }
+
+    G_OBJECT_CLASS (xed_modeline_plugin_parent_class)->dispose (object);
+}
+
+static void
+xed_modeline_plugin_set_property (GObject      *object,
+                                  guint         prop_id,
+                                  const GValue *value,
+                                  GParamSpec   *pspec)
+{
+    XedModelinePlugin *plugin = XED_MODELINE_PLUGIN (object);
+
+    switch (prop_id)
+    {
+        case PROP_OBJECT:
+            plugin->priv->window = GTK_WIDGET (g_value_dup_object (value));
+            break;
+        default:
+            G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
+            break;
+    }
+}
+
+static void
+xed_modeline_plugin_get_property (GObject    *object,
+                                  guint       prop_id,
+                                  GValue     *value,
+                                  GParamSpec *pspec)
+{
+    XedModelinePlugin *plugin = XED_MODELINE_PLUGIN (object);
+
+    switch (prop_id)
+    {
+        case PROP_OBJECT:
+            g_value_set_object (value, plugin->priv->window);
+            break;
+        default:
+            G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
+            break;
+    }
 }
 
 static void
@@ -186,14 +229,17 @@ on_window_tab_removed (XedWindow *window,
 }
 
 static void
-xed_modeline_plugin_activate (XedPlugin *plugin,
-				XedWindow *window)
+xed_modeline_plugin_activate (PeasActivatable *activatable)
 {
-	WindowData *wdata;
+	XedModelinePluginPrivate *data;
+    XedWindow *window;
 	GList *views;
 	GList *l;
 
 	xed_debug (DEBUG_PLUGINS);
+
+    data = XED_MODELINE_PLUGIN (activatable)->priv;
+    window = XED_WINDOW (data->window);
 
 	views = xed_window_get_views (window);
 	for (l = views; l != NULL; l = l->next)
@@ -203,46 +249,78 @@ xed_modeline_plugin_activate (XedPlugin *plugin,
 	}
 	g_list_free (views);
 
-	wdata = g_slice_new (WindowData);
-
-	wdata->tab_added_handler_id =
+    data->tab_added_handler_id =
 		g_signal_connect (window, "tab-added",
 				  G_CALLBACK (on_window_tab_added), NULL);
 
-	wdata->tab_removed_handler_id =
+	data->tab_removed_handler_id =
 		g_signal_connect (window, "tab-removed",
 				  G_CALLBACK (on_window_tab_removed), NULL);
-
-	g_object_set_data_full (G_OBJECT (window), WINDOW_DATA_KEY,
-				wdata, (GDestroyNotify) window_data_free);
 }
 
 static void
-xed_modeline_plugin_deactivate (XedPlugin *plugin,
-				  XedWindow *window)
+xed_modeline_plugin_deactivate (PeasActivatable *activatable)
 {
-	WindowData *wdata;
+	XedModelinePluginPrivate *data;
+    XedWindow *window;
 	GList *views;
 	GList *l;
 
 	xed_debug (DEBUG_PLUGINS);
 
-	wdata = g_object_steal_data (G_OBJECT (window), WINDOW_DATA_KEY);
+	data = XED_MODELINE_PLUGIN (activatable)->priv;
+    window = XED_WINDOW (data->window);
 
-	g_signal_handler_disconnect (window, wdata->tab_added_handler_id);
-	g_signal_handler_disconnect (window, wdata->tab_removed_handler_id);
-
-	window_data_free (wdata);
+	g_signal_handler_disconnect (window, data->tab_added_handler_id);
+    g_signal_handler_disconnect (window, data->tab_removed_handler_id);
 
 	views = xed_window_get_views (window);
 
 	for (l = views; l != NULL; l = l->next)
 	{
 		disconnect_handlers (XED_VIEW (l->data));
-		
+
 		modeline_parser_deactivate (GTK_SOURCE_VIEW (l->data));
 	}
-	
+
 	g_list_free (views);
 }
 
+static void
+xed_modeline_plugin_class_init (XedModelinePluginClass *klass)
+{
+    GObjectClass *object_class = G_OBJECT_CLASS (klass);
+
+    object_class->constructed = xed_modeline_plugin_constructed;
+    object_class->finalize = xed_modeline_plugin_finalize;
+    object_class->dispose = xed_modeline_plugin_dispose;
+    object_class->set_property = xed_modeline_plugin_set_property;
+    object_class->get_property = xed_modeline_plugin_get_property;
+
+    g_object_class_override_property (object_class, PROP_OBJECT, "object");
+
+    g_type_class_add_private (klass, sizeof (XedModelinePluginPrivate));
+}
+
+static void
+xed_modeline_plugin_class_finalize (XedModelinePluginClass *klass)
+{
+   /* dummy function - used by G_DEFINE_DYNAMIC_TYPE_EXTENDED */
+}
+
+static void
+peas_activatable_iface_init (PeasActivatableInterface *iface)
+{
+   iface->activate = xed_modeline_plugin_activate;
+   iface->deactivate = xed_modeline_plugin_deactivate;
+}
+
+G_MODULE_EXPORT void
+peas_register_types (PeasObjectModule *module)
+{
+   xed_modeline_plugin_register_type (G_TYPE_MODULE (module));
+
+   peas_object_module_register_extension_type (module,
+                                               PEAS_TYPE_ACTIVATABLE,
+                                               XED_TYPE_MODELINE_PLUGIN);
+}
