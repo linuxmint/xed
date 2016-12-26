@@ -310,8 +310,6 @@ load_uri_list (XedWindow         *window,
  * @line_pos:
  *
  * Do nothing if uri does not exist
- *
- * Returns: (transfer container):
  */
 void
 xed_commands_load_uri (XedWindow         *window,
@@ -343,7 +341,7 @@ xed_commands_load_uri (XedWindow         *window,
  *
  * Ignore non-existing URIs
  *
- * Returns: (transfer container):
+ * Returns:
  */
 gint
 xed_commands_load_uris (XedWindow         *window,
