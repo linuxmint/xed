@@ -16,9 +16,7 @@ override_dh_auto_configure:
 	dh_auto_configure $(DHFLAGS) -- \
 		--disable-silent-rules \
 		--libexecdir=/usr/lib/ \
-		--disable-python \
-		--enable-gtk-doc \
-		--with-gtk=3.0
+		--enable-gtk-doc
 
 override_dh_installchangelogs:
 	dh_installchangelogs NEWS
