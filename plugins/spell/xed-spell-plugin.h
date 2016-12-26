@@ -1,7 +1,7 @@
 /*
  * xed-spell-plugin.h
- * 
- * Copyright (C) 2002-2005 Paolo Maggi 
+ *
+ * Copyright (C) 2002-2005 Paolo Maggi
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -25,52 +25,53 @@
 
 #include <glib.h>
 #include <glib-object.h>
-#include <xed/xed-plugin.h>
+#include <libpeas/peas-extension-base.h>
+#include <libpeas/peas-object-module.h>
 
 G_BEGIN_DECLS
 
 /*
  * Type checking and casting macros
  */
-#define XED_TYPE_SPELL_PLUGIN		(xed_spell_plugin_get_type ())
-#define XED_SPELL_PLUGIN(o)		(G_TYPE_CHECK_INSTANCE_CAST ((o), XED_TYPE_SPELL_PLUGIN, XedSpellPlugin))
-#define XED_SPELL_PLUGIN_CLASS(k)	(G_TYPE_CHECK_CLASS_CAST((k), XED_TYPE_SPELL_PLUGIN, XedSpellPluginClass))
-#define XED_IS_SPELL_PLUGIN(o)	(G_TYPE_CHECK_INSTANCE_TYPE ((o), XED_TYPE_SPELL_PLUGIN))
-#define XED_IS_SPELL_PLUGIN_CLASS(k)	(G_TYPE_CHECK_CLASS_TYPE ((k), XED_TYPE_SPELL_PLUGIN))
-#define XED_SPELL_PLUGIN_GET_CLASS(o)	(G_TYPE_INSTANCE_GET_CLASS ((o), XED_TYPE_SPELL_PLUGIN, XedSpellPluginClass))
+#define XED_TYPE_SPELL_PLUGIN       (xed_spell_plugin_get_type ())
+#define XED_SPELL_PLUGIN(o)     (G_TYPE_CHECK_INSTANCE_CAST ((o), XED_TYPE_SPELL_PLUGIN, XedSpellPlugin))
+#define XED_SPELL_PLUGIN_CLASS(k)   (G_TYPE_CHECK_CLASS_CAST((k), XED_TYPE_SPELL_PLUGIN, XedSpellPluginClass))
+#define XED_IS_SPELL_PLUGIN(o)  (G_TYPE_CHECK_INSTANCE_TYPE ((o), XED_TYPE_SPELL_PLUGIN))
+#define XED_IS_SPELL_PLUGIN_CLASS(k)    (G_TYPE_CHECK_CLASS_TYPE ((k), XED_TYPE_SPELL_PLUGIN))
+#define XED_SPELL_PLUGIN_GET_CLASS(o)   (G_TYPE_INSTANCE_GET_CLASS ((o), XED_TYPE_SPELL_PLUGIN, XedSpellPluginClass))
 
 /* Private structure type */
-typedef struct _XedSpellPluginPrivate	XedSpellPluginPrivate;
+typedef struct _XedSpellPluginPrivate   XedSpellPluginPrivate;
 
 /*
  * Main object structure
  */
-typedef struct _XedSpellPlugin	XedSpellPlugin;
+typedef struct _XedSpellPlugin  XedSpellPlugin;
 
 struct _XedSpellPlugin
 {
-	XedPlugin parent_instance;
+    PeasExtensionBase parent_instance;
 
-	XedSpellPluginPrivate *priv;
+    XedSpellPluginPrivate *priv;
 };
 
 /*
  * Class definition
  */
-typedef struct _XedSpellPluginClass	XedSpellPluginClass;
+typedef struct _XedSpellPluginClass XedSpellPluginClass;
 
 struct _XedSpellPluginClass
 {
-	XedPluginClass parent_class;
+    PeasExtensionBaseClass parent_class;
 };
 
 /*
  * Public methods
  */
-GType	xed_spell_plugin_get_type		(void) G_GNUC_CONST;
+GType   xed_spell_plugin_get_type       (void) G_GNUC_CONST;
 
 /* All the plugins must implement this function */
-G_MODULE_EXPORT GType register_xed_plugin (GTypeModule *module);
+G_MODULE_EXPORT void peas_register_types (PeasObjectModule *module);
 
 G_END_DECLS
 
