@@ -3395,7 +3395,7 @@ xed_window_init (XedWindow *window)
  *
  * Gets the active #XedView.
  *
- * Returns: the active #XedView
+ * Returns: (transfer none): the active #XedView
  */
 XedView *
 xed_window_get_active_view (XedWindow *window)
@@ -3423,7 +3423,7 @@ xed_window_get_active_view (XedWindow *window)
  *
  * Gets the active #XedDocument.
  *
- * Returns: the active #XedDocument
+ * Returns: (transfer none): the active #XedDocument
  */
 XedDocument *
 xed_window_get_active_document (XedWindow *window)
@@ -3460,7 +3460,7 @@ _xed_window_get_notebook (XedWindow *window)
  * Creates a new #XedTab and adds the new tab to the #XedNotebook.
  * In case @jump_to is %TRUE the #XedNotebook switches to that new #XedTab.
  *
- * Returns: a new #XedTab
+ * Returns: (transfer none): a new #XedTab
  */
 XedTab *
 xed_window_create_tab (XedWindow *window,
@@ -3497,7 +3497,7 @@ xed_window_create_tab (XedWindow *window,
  * Whether @create is %TRUE, creates a new empty document if location does
  * not refer to an existing file
  *
- * Returns: a new #XedTab
+ * Returns: (transfer none): a new #XedTab
  */
 XedTab *
 xed_window_create_tab_from_uri (XedWindow *window,
@@ -3536,7 +3536,7 @@ xed_window_create_tab_from_uri (XedWindow *window,
  *
  * Gets the active #XedTab in the @window.
  *
- * Returns: the active #XedTab in the @window.
+ * Returns: (transfer none): the active #XedTab in the @window.
  */
 XedTab *
 xed_window_get_active_tab (XedWindow *window)
@@ -3729,7 +3729,7 @@ xed_window_set_active_tab (XedWindow *window,
  *
  * Gets the #GtkWindowGroup in which @window resides.
  *
- * Returns: the #GtkWindowGroup
+ * Returns: (transfer none): the #GtkWindowGroup
  */
 GtkWindowGroup *
 xed_window_get_group (XedWindow *window)
@@ -3751,7 +3751,7 @@ _xed_window_is_removing_tabs (XedWindow *window)
  *
  * Gets the #GtkUIManager associated with the @window.
  *
- * Returns: the #GtkUIManager of the @window.
+ * Returns: (transfer none): the #GtkUIManager of the @window.
  */
 GtkUIManager *
 xed_window_get_ui_manager (XedWindow *window)
@@ -3766,7 +3766,7 @@ xed_window_get_ui_manager (XedWindow *window)
  *
  * Gets the side #XedPanel of the @window.
  *
- * Returns: the side #XedPanel.
+ * Returns: (transfer none): the side #XedPanel.
  */
 XedPanel *
 xed_window_get_side_panel (XedWindow *window)
@@ -3781,7 +3781,7 @@ xed_window_get_side_panel (XedWindow *window)
  *
  * Gets the bottom #XedPanel of the @window.
  *
- * Returns: the bottom #XedPanel.
+ * Returns: (transfer none): the bottom #XedPanel.
  */
 XedPanel *
 xed_window_get_bottom_panel (XedWindow *window)
@@ -3796,7 +3796,7 @@ xed_window_get_bottom_panel (XedWindow *window)
  *
  * Gets the #XedStatusbar of the @window.
  *
- * Returns: the #XedStatusbar of the @window.
+ * Returns: (transfer none): the #XedStatusbar of the @window.
  */
 GtkWidget *
 xed_window_get_statusbar (XedWindow *window)
@@ -3809,9 +3809,9 @@ xed_window_get_statusbar (XedWindow *window)
  * xed_window_get_searchbar:
  * @window: a #XedWindow
  *
- * Gets the #XedSearchDialog of the @window.
+ * Gets the #XedSearchbar of the @window.
  *
- * Returns: the #XedSearchDialog of the @window.
+ * Returns: (transfer none): the #XedSearchbar of the @window.
  */
 GtkWidget *
 xed_window_get_searchbar (XedWindow *window)
@@ -4084,7 +4084,7 @@ xed_window_get_message_bus (XedWindow *window)
  *
  * Gets the #XedTab that matches @uri.
  *
- * Returns: the #XedTab associated with @uri.
+ * Returns: (transfer none): the #XedTab associated with @uri.
  *
  * Deprecated: 2.24: Use xed_window_get_tab_from_location() instead.
  */

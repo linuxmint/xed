@@ -45,7 +45,7 @@ static void
 xed_message_finalize (GObject *object)
 {
 	XedMessage *message = XED_MESSAGE (object);
-	
+
 	xed_message_type_unref (message->priv->type);
 	g_hash_table_destroy (message->priv->values);
 
@@ -102,16 +102,16 @@ add_value (XedMessage *message,
 {
 	GValue *value;
 	GType type = xed_message_type_lookup (message->priv->type, key);
-	
+
 	if (type == G_TYPE_INVALID)
 		return NULL;
-	
+
 	value = g_new0 (GValue, 1);
 	g_value_init (value, type);
 	g_value_reset (value);
 
 	g_hash_table_insert (message->priv->values, g_strdup (key), value);
-	
+
 	return value;
 }
 
@@ -119,11 +119,11 @@ static void
 xed_message_class_init (XedMessageClass *klass)
 {
 	GObjectClass *object_class = G_OBJECT_CLASS(klass);
-	
+
 	object_class->finalize = xed_message_finalize;
 	object_class->get_property = xed_message_get_property;
 	object_class->set_property = xed_message_set_property;
-	
+
 	/**
 	 * XedMessage:object_path:
 	 *
@@ -151,7 +151,7 @@ xed_message_class_init (XedMessageClass *klass)
 							      NULL,
 							      G_PARAM_READABLE |
 							      G_PARAM_STATIC_STRINGS));
-	
+
 	/**
 	 * XedMEssage:type:
 	 *
@@ -189,17 +189,17 @@ xed_message_init (XedMessage *self)
 }
 
 static gboolean
-set_value_real (GValue 	     *to, 
+set_value_real (GValue 	     *to,
 		const GValue *from)
 {
 	GType from_type;
 	GType to_type;
-	
+
 	from_type = G_VALUE_TYPE (from);
 	to_type = G_VALUE_TYPE (to);
 
 	if (!g_type_is_a (from_type, to_type))
-	{		
+	{
 		if (!g_value_transform (from, to))
 		{
 			g_warning ("%s: Unable to make conversion from %s to %s",
@@ -208,10 +208,10 @@ set_value_real (GValue 	     *to,
 				   g_type_name (to_type));
 			return FALSE;
 		}
-		
+
 		return TRUE;
 	}
-	
+
 	g_value_copy (from, to);
 	return TRUE;
 }
@@ -222,10 +222,10 @@ value_lookup (XedMessage *message,
 	      gboolean	    create)
 {
 	GValue *ret = (GValue *)g_hash_table_lookup (message->priv->values, key);
-	
+
 	if (!ret && create)
 		ret = add_value (message, key);
-	
+
 	return ret;
 }
 
@@ -242,7 +242,7 @@ const gchar *
 xed_message_get_method (XedMessage *message)
 {
 	g_return_val_if_fail (XED_IS_MESSAGE (message), NULL);
-	
+
 	return xed_message_type_get_method (message->priv->type);
 }
 
@@ -259,7 +259,7 @@ const gchar *
 xed_message_get_object_path (XedMessage *message)
 {
 	g_return_val_if_fail (XED_IS_MESSAGE (message), NULL);
-	
+
 	return xed_message_type_get_object_path (message->priv->type);
 }
 
@@ -308,21 +308,21 @@ xed_message_set_valist (XedMessage *message,
 		GValue *container = value_lookup (message, key, TRUE);
 		GValue value = {0,};
 		gchar *error = NULL;
-		
+
 		if (!container)
 		{
-			g_warning ("%s: Cannot set value for %s, does not exist", 
+			g_warning ("%s: Cannot set value for %s, does not exist",
 				   G_STRLOC,
 				   key);
-			
+
 			/* skip value */
 			va_arg (var_args, gpointer);
 			continue;
 		}
-		
+
 		g_value_init (&value, G_VALUE_TYPE (container));
 		G_VALUE_COLLECT (&value, var_args, 0, &error);
-		
+
 		if (error)
 		{
 			g_warning ("%s: %s", G_STRLOC, error);
@@ -350,25 +350,25 @@ xed_message_set_value (XedMessage *message,
 {
 	GValue *container;
 	g_return_if_fail (XED_IS_MESSAGE (message));
-	
+
 	container = value_lookup (message, key, TRUE);
-	
+
 	if (!container)
 	{
-		g_warning ("%s: Cannot set value for %s, does not exist", 
-			   G_STRLOC, 
+		g_warning ("%s: Cannot set value for %s, does not exist",
+			   G_STRLOC,
 			   key);
 		return;
 	}
-	
+
 	set_value_real (container, value);
 }
 
 /**
  * xed_message_set_valuesv:
  * @message: the #XedMessage
- * @keys: (array-length=n_values): keys to set values for
- * @values: (array-length=n_values): values to set
+ * @keys: (array length=n_values): keys to set values for
+ * @values: (array length=n_values): values to set
  * @n_values: number of arguments to set values for
  *
  * Set message argument values.
@@ -381,9 +381,9 @@ xed_message_set_valuesv (XedMessage	 *message,
 			   gint		  n_values)
 {
 	gint i;
-	
+
 	g_return_if_fail (XED_IS_MESSAGE (message));
-	
+
 	for (i = 0; i < n_values; i++)
 	{
 		xed_message_set_value (message, keys[i], &values[i]);
@@ -401,14 +401,14 @@ xed_message_set_valuesv (XedMessage	 *message,
  * value for the specified key.
  *
  */
-void 
+void
 xed_message_get (XedMessage	*message,
 		   ...)
 {
 	va_list ap;
 
 	g_return_if_fail (XED_IS_MESSAGE (message));
-	
+
 	va_start (ap, message);
 	xed_message_get_valist (message, ap);
 	va_end (ap);
@@ -431,7 +431,7 @@ xed_message_get_valist (XedMessage *message,
 	const gchar *key;
 
 	g_return_if_fail (XED_IS_MESSAGE (message));
-	
+
 	while ((key = va_arg (var_args, const gchar *)) != NULL)
 	{
 		GValue *container;
@@ -439,30 +439,30 @@ xed_message_get_valist (XedMessage *message,
 		gchar *error = NULL;
 
 		container = value_lookup (message, key, FALSE);
-	
+
 		if (!container)
-		{		
+		{
 			/* skip value */
 			va_arg (var_args, gpointer);
 			continue;
 		}
-		
+
 		/* copy the value here, to be sure it isn't tainted */
 		g_value_init (&copy, G_VALUE_TYPE (container));
 		g_value_copy (container, &copy);
-		
+
 		G_VALUE_LCOPY (&copy, var_args, 0, &error);
-		
+
 		if (error)
 		{
 			g_warning ("%s: %s", G_STRLOC, error);
 			g_free (error);
-			
+
 			/* purposely leak the value here, because it might
 			   be in a bad state */
 			continue;
 		}
-		
+
 		g_value_unset (&copy);
 	}
 }
@@ -477,17 +477,17 @@ xed_message_get_valist (XedMessage *message,
  * with the correct type.
  *
  */
-void 
+void
 xed_message_get_value (XedMessage *message,
 			 const gchar  *key,
 			 GValue	      *value)
 {
 	GValue *container;
-	
+
 	g_return_if_fail (XED_IS_MESSAGE (message));
-	
+
 	container = value_lookup (message, key, FALSE);
-	
+
 	if (!container)
 	{
 		g_warning ("%s: Invalid key `%s'",
@@ -495,7 +495,7 @@ xed_message_get_value (XedMessage *message,
 			   key);
 		return;
 	}
-	
+
 	g_value_init (value, G_VALUE_TYPE (container));
 	set_value_real (value, container);
 }
@@ -510,7 +510,7 @@ xed_message_get_value (XedMessage *message,
  * Return value: the type of @key
  *
  */
-GType 
+GType
 xed_message_get_key_type (XedMessage    *message,
 			    const gchar	    *key)
 {
@@ -535,14 +535,14 @@ xed_message_has_key (XedMessage *message,
 		       const gchar  *key)
 {
 	g_return_val_if_fail (XED_IS_MESSAGE (message), FALSE);
-	
+
 	return value_lookup (message, key, FALSE) != NULL;
 }
 
 typedef struct
 {
 	XedMessage *message;
-	gboolean valid;	
+	gboolean valid;
 } ValidateInfo;
 
 static void
@@ -552,12 +552,12 @@ validate_key (const gchar  *key,
 	      ValidateInfo *info)
 {
 	GValue *value;
-	
+
 	if (!info->valid || !required)
 		return;
-	
+
 	value = value_lookup (info->message, key, FALSE);
-	
+
 	if (!value)
 		info->valid = FALSE;
 }
@@ -578,16 +578,16 @@ xed_message_validate (XedMessage *message)
 
 	g_return_val_if_fail (XED_IS_MESSAGE (message), FALSE);
 	g_return_val_if_fail (message->priv->type != NULL, FALSE);
-	
+
 	if (!message->priv->valid)
 	{
-		xed_message_type_foreach (message->priv->type, 
+		xed_message_type_foreach (message->priv->type,
 					    (XedMessageTypeForeach)validate_key,
 					    &info);
 
 		message->priv->valid = info.valid;
 	}
-	
+
 	return message->priv->valid;
 }
 

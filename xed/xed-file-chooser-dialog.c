@@ -455,7 +455,7 @@ xed_file_chooser_dialog_new_valist (const gchar          *title,
  * @action: Open or save mode for the dialog
  * @first_button_text: (allow-none): stock ID or text to go in
  * the first button, or %NULL
- * @Varargs: (allow-none): response ID for the first button, then
+ * @...: (allow-none): response ID for the first button, then
  * additional (button, id) pairs, ending with %NULL
  *
  * Creates a new #XedFileChooserDialog.  This function is analogous to

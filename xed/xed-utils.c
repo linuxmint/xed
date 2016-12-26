@@ -3,8 +3,8 @@
  * This file is part of xed
  *
  * Copyright (C) 1998, 1999 Alex Roberts, Evan Lawrence
- * Copyright (C) 2000, 2002 Chema Celorio, Paolo Maggi 
- * Copyright (C) 2003-2005 Paolo Maggi 
+ * Copyright (C) 2000, 2002 Chema Celorio, Paolo Maggi
+ * Copyright (C) 2003-2005 Paolo Maggi
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -18,14 +18,14 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
- * Foundation, Inc., 51 Franklin St, Fifth Floor, 
- * Boston, MA 02110-1301, USA. 
+ * Foundation, Inc., 51 Franklin St, Fifth Floor,
+ * Boston, MA 02110-1301, USA.
  */
- 
+
 /*
- * Modified by the xed Team, 1998-2005. See the AUTHORS file for a 
- * list of people on the xed Team.  
- * See the ChangeLog files for a list of changes. 
+ * Modified by the xed Team, 1998-2005. See the AUTHORS file for a
+ * list of people on the xed Team.
+ * See the ChangeLog files for a list of changes.
  *
  * $Id$
  */
@@ -74,7 +74,7 @@ xed_utils_uri_has_file_scheme (const gchar *uri)
 
 	gfile = g_file_new_for_uri (uri);
 	res = g_file_has_uri_scheme (gfile, "file");
-	
+
 	g_object_unref (gfile);
 	return res;
 }
@@ -163,7 +163,7 @@ xed_utils_menu_position_under_tree_view (GtkMenu  *menu,
 	GtkTreeModel *model;
 	GtkTreeSelection *selection;
 	GtkTreeIter iter;
-	
+
 	model = gtk_tree_view_get_model (tree);
 	g_return_if_fail (model != NULL);
 
@@ -176,16 +176,16 @@ xed_utils_menu_position_under_tree_view (GtkMenu  *menu,
 		GdkRectangle rect;
 
 		widget_get_origin (GTK_WIDGET (tree), x, y);
-			
+
 		path = gtk_tree_model_get_path (model, &iter);
 		gtk_tree_view_get_cell_area (tree, path,
 					     gtk_tree_view_get_column (tree, 0), /* FIXME 0 for RTL ? */
 					     &rect);
 		gtk_tree_path_free (path);
-		
+
 		*x += rect.x;
 		*y += rect.y + rect.height;
-		
+
 		if (gtk_widget_get_direction (GTK_WIDGET (tree)) == GTK_TEXT_DIR_RTL)
 		{
 			GtkRequisition requisition;
@@ -204,15 +204,22 @@ xed_utils_menu_position_under_tree_view (GtkMenu  *menu,
 }
 
 /* FIXME: remove this with gtk 2.12, it has gdk_color_to_string */
-gchar * 
+gchar *
 xed_gdk_color_to_string (GdkColor color)
 {
 	return g_strdup_printf ("#%04x%04x%04x",
-				color.red, 
+				color.red,
 				color.green,
 				color.blue);
 }
 
+/**
+ * xed_gtk_button_new_with_stock_icon:
+ * @label:
+ * @stock_id:
+ *
+ * Returns: (transfer full):
+ */
 GtkWidget *
 xed_gtk_button_new_with_stock_icon (const gchar *label,
 				      const gchar *stock_id)
@@ -227,6 +234,15 @@ xed_gtk_button_new_with_stock_icon (const gchar *label,
         return button;
 }
 
+/**
+ * xed_dialog_add_button:
+ * @dialog:
+ * @text:
+ * @stock_id:
+ * @response_id:
+ *
+ * Returns: (transfer none):
+ */
 GtkWidget *
 xed_dialog_add_button (GtkDialog   *dialog,
 			 const gchar *text,
@@ -246,7 +262,7 @@ xed_dialog_add_button (GtkDialog   *dialog,
 
 	gtk_widget_show (button);
 
-	gtk_dialog_add_action_widget (dialog, button, response_id);	
+	gtk_dialog_add_action_widget (dialog, button, response_id);
 
 	return button;
 }
@@ -254,7 +270,7 @@ xed_dialog_add_button (GtkDialog   *dialog,
 /*
  * n: len of the string in bytes
  */
-gboolean 
+gboolean
 g_utf8_caselessnmatch (const char *s1, const char *s2, gssize n1, gssize n2)
 {
 	gchar *casefold;
@@ -284,10 +300,10 @@ g_utf8_caselessnmatch (const char *s1, const char *s2, gssize n1, gssize n2)
 		goto finally_2;
 
 	ret = (strncmp (normalized_s1, normalized_s2, len_s2) == 0);
-	
+
 finally_2:
 	g_free (normalized_s1);
-	g_free (normalized_s2);	
+	g_free (normalized_s2);
 
 	return ret;
 }
@@ -302,7 +318,7 @@ finally_2:
  * for a specified gtk widget.
  */
 void
-xed_utils_set_atk_name_description (GtkWidget *widget, 
+xed_utils_set_atk_name_description (GtkWidget *widget,
 				      const gchar *name,
 				      const gchar *description)
 {
@@ -330,8 +346,8 @@ xed_utils_set_atk_name_description (GtkWidget *widget,
  * between 2 specified widgets.
  */
 void
-xed_utils_set_atk_relation (GtkWidget *obj1, 
-			      GtkWidget *obj2, 
+xed_utils_set_atk_relation (GtkWidget *obj1,
+			      GtkWidget *obj2,
 			      AtkRelationType rel_type )
 {
 	AtkObject *atk_obj1, *atk_obj2;
@@ -359,9 +375,9 @@ xed_utils_uri_exists (const gchar* text_uri)
 {
 	GFile *gfile;
 	gboolean res;
-		
+
 	g_return_val_if_fail (text_uri != NULL, FALSE);
-	
+
 	xed_debug_message (DEBUG_UTILS, "text_uri: %s", text_uri);
 
 	gfile = g_file_new_for_uri (text_uri);
@@ -439,7 +455,7 @@ xed_utils_unescape_search_text (const gchar *text)
 	const gchar *cur;
 	const gchar *end;
 	const gchar *prev;
-	
+
 	if (text == NULL)
 		return NULL;
 
@@ -450,15 +466,15 @@ xed_utils_unescape_search_text (const gchar *text)
 	cur = text;
 	end = text + length;
 	prev = NULL;
-	
-	while (cur != end) 
+
+	while (cur != end)
 	{
 		const gchar *next;
 		next = g_utf8_next_char (cur);
 
-		if (prev && (*prev == '\\')) 
+		if (prev && (*prev == '\\'))
 		{
-			switch (*cur) 
+			switch (*cur)
 			{
 				case 'n':
 					str = g_string_append (str, "\n");
@@ -478,21 +494,21 @@ xed_utils_unescape_search_text (const gchar *text)
 					str = g_string_append_len (str, cur, next - cur);
 				break;
 			}
-		} 
-		else if (*cur != '\\') 
+		}
+		else if (*cur != '\\')
 		{
 			str = g_string_append_len (str, cur, next - cur);
-		} 
-		else if ((next == end) && (*cur == '\\')) 
+		}
+		else if ((next == end) && (*cur == '\\'))
 		{
 			str = g_string_append (str, "\\");
 		}
-		
+
 		if (!drop_prev)
 		{
 			prev = cur;
 		}
-		else 
+		else
 		{
 			prev = NULL;
 			drop_prev = FALSE;
@@ -504,19 +520,19 @@ xed_utils_unescape_search_text (const gchar *text)
 	return g_string_free (str, FALSE);
 }
 
-void 
+void
 xed_warning (GtkWindow *parent, const gchar *format, ...)
 {
 	va_list         args;
 	gchar          *str;
 	GtkWidget      *dialog;
 	GtkWindowGroup *wg = NULL;
-	
+
 	g_return_if_fail (format != NULL);
 
 	if (parent != NULL)
 		wg = gtk_window_get_group (parent);
-		
+
 	va_start (args, format);
 	str = g_strdup_vprintf (format, args);
 	va_end (args);
@@ -532,7 +548,7 @@ xed_warning (GtkWindow *parent, const gchar *format, ...)
 
 	if (wg != NULL)
 		gtk_window_group_add_window (wg, GTK_WINDOW (dialog));
-		
+
 	gtk_dialog_set_default_response (GTK_DIALOG (dialog), GTK_RESPONSE_OK);
 
 	gtk_window_set_resizable (GTK_WINDOW (dialog), FALSE);
@@ -541,14 +557,14 @@ xed_warning (GtkWindow *parent, const gchar *format, ...)
 			  "response",
 			  G_CALLBACK (gtk_widget_destroy),
 			  NULL);
-			  
+
 	gtk_widget_show (dialog);
 }
 
 /*
  * Doubles underscore to avoid spurious menu accels.
  */
-gchar * 
+gchar *
 xed_utils_escape_underscores (const gchar* text,
 				gssize       length)
 {
@@ -642,7 +658,7 @@ xed_utils_str_truncate (const gchar *string,
 					      g_utf8_offset_to_pointer (string, num_left_chars) - string);
 		g_string_append (truncated, delimiter);
 	}
-	
+
 	return g_string_free (truncated, FALSE);
 }
 
@@ -695,7 +711,7 @@ xed_utils_make_valid_utf8 (const char *name)
 	}
 
 	g_string_append (string, remainder);
-	
+
 	g_assert (g_utf8_validate (string->str, -1, NULL));
 
 	return g_string_free (string, FALSE);
@@ -721,14 +737,14 @@ xed_utils_uri_get_dirname (const gchar *uri)
 	if ((strlen (str) == 1) && (*str == '.'))
 	{
 		g_free (str);
-		
+
 		return NULL;
 	}
 
 	res = xed_utils_replace_home_dir_with_tilde (str);
 
 	g_free (str);
-	
+
 	return res;
 }
 
@@ -827,7 +843,7 @@ xed_utils_replace_home_dir_with_tilde (const gchar *uri)
 	if (strcmp (uri, home) == 0)
 	{
 		g_free (home);
-		
+
 		return g_strdup ("~");
 	}
 
@@ -842,8 +858,8 @@ xed_utils_replace_home_dir_with_tilde (const gchar *uri)
 		res = g_strdup_printf ("~/%s", uri + strlen (home));
 
 		g_free (home);
-		
-		return res;		
+
+		return res;
 	}
 
 	g_free (home);
@@ -1059,7 +1075,7 @@ xed_utils_is_valid_uri (const gchar *uri)
 			if (!g_ascii_isxdigit (*p))
 				return FALSE;
 
-			++p;		
+			++p;
 			if (!g_ascii_isxdigit (*p))
 				return FALSE;
 		}
@@ -1146,12 +1162,12 @@ xed_utils_get_ui_objects (const gchar  *filename,
 	*error_widget = NULL;
 
 	builder = gtk_builder_new ();
-	
+
 	if (root_objects != NULL)
 	{
-		gtk_builder_add_objects_from_file (builder, 
-						   filename, 
-						   root_objects, 
+		gtk_builder_add_objects_from_file (builder,
+						   filename,
+						   root_objects,
 						   &error);
 	}
 	else
@@ -1183,8 +1199,8 @@ xed_utils_get_ui_objects (const gchar  *filename,
 
 		if (!*gobj)
 		{
-			*error_widget = handle_builder_error (_("Unable to find the object '%s' inside file %s."), 
-							      name, 
+			*error_widget = handle_builder_error (_("Unable to find the object '%s' inside file %s."),
+							      name,
 							      filename_markup),
 			ret = FALSE;
 			break;
@@ -1215,25 +1231,25 @@ xed_utils_get_ui_objects (const gchar  *filename,
 
 gchar *
 xed_utils_make_canonical_uri_from_shell_arg (const gchar *str)
-{	
+{
 	GFile *gfile;
 	gchar *uri;
 
 	g_return_val_if_fail (str != NULL, NULL);
 	g_return_val_if_fail (*str != '\0', NULL);
-	
-	/* Note for the future: 
+
+	/* Note for the future:
 	 * FIXME: is still still relevant?
 	 *
-	 * <federico> paolo: and flame whoever tells 
-	 * you that file:///mate/test_files/hëllò 
+	 * <federico> paolo: and flame whoever tells
+	 * you that file:///mate/test_files/hëllò
 	 * doesn't work --- that's not a valid URI
 	 *
-	 * <paolo> federico: well, another solution that 
-	 * does not requires patch to _from_shell_args 
-	 * is to check that the string returned by it 
+	 * <paolo> federico: well, another solution that
+	 * does not requires patch to _from_shell_args
+	 * is to check that the string returned by it
 	 * contains only ASCII chars
-	 * <federico> paolo: hmmmm, isn't there 
+	 * <federico> paolo: hmmmm, isn't there
 	 * mate_vfs_is_uri_valid() or something?
 	 * <paolo>: I will use xed_utils_is_valid_uri ()
 	 *
@@ -1245,7 +1261,7 @@ xed_utils_make_canonical_uri_from_shell_arg (const gchar *str)
 
 	if (xed_utils_is_valid_uri (uri))
 		return uri;
-	
+
 	g_free (uri);
 	return NULL;
 }
@@ -1262,13 +1278,13 @@ xed_utils_file_has_parent (GFile *gfile)
 {
 	GFile *parent;
 	gboolean ret;
-	
+
 	parent = g_file_get_parent (gfile);
 	ret = parent != NULL;
-	
+
 	if (parent)
 		g_object_unref (parent);
-	
+
 	return ret;
 }
 
@@ -1294,9 +1310,9 @@ xed_utils_basename_for_display (gchar const *uri)
 	{
 		GFileInfo *info;
 		info = g_file_query_info (gfile,
-					  G_FILE_ATTRIBUTE_STANDARD_DISPLAY_NAME, 
-					  G_FILE_QUERY_INFO_NONE, 
-					  NULL, 
+					  G_FILE_ATTRIBUTE_STANDARD_DISPLAY_NAME,
+					  G_FILE_QUERY_INFO_NONE,
+					  NULL,
 					  NULL);
 
 		if (info)
@@ -1310,7 +1326,7 @@ xed_utils_basename_for_display (gchar const *uri)
 			/* This is a local file, and therefore we will use
 			 * g_filename_display_basename on the local path */
 			gchar *local_path;
-		
+
 			local_path = g_file_get_path (gfile);
 			name = g_filename_display_basename (local_path);
 			g_free (local_path);
@@ -1327,8 +1343,8 @@ xed_utils_basename_for_display (gchar const *uri)
 		parse_name = g_file_get_parse_name (gfile);
 		base = g_filename_display_basename (parse_name);
 		name = g_uri_unescape_string (base, NULL);
-		
-		g_free (base);		
+
+		g_free (base);
 		g_free (parse_name);
 	}
 	else
@@ -1360,7 +1376,7 @@ xed_utils_basename_for_display (gchar const *uri)
  *
  * Filter, modify, unescape and change @uri to make it appropriate
  * for display to users.
- * 
+ *
  * This function is a convenient wrapper for g_file_get_parse_name
  *
  * Return value: a string which represents @uri and can be displayed.
@@ -1383,9 +1399,9 @@ xed_utils_uri_for_display (const gchar *uri)
  * @selection_data: the #GtkSelectionData from drag_data_received
  *
  * Create a list of valid uri's from a uri-list drop.
- * 
- * Return value: a string array which will hold the uris or %NULL if there
- *		 were no valid uris. g_strfreev should be used when the 
+ *
+ * Return value: (transfer full): a string array which will hold the uris or %NULL if there
+ *		 were no valid uris. g_strfreev should be used when the
  *		 string array is no longer used
  */
 gchar **
@@ -1402,9 +1418,9 @@ xed_utils_drop_get_uris (GtkSelectionData *selection_data)
 	for (i = 0; uris[i] != NULL; i++)
 	{
 		gchar *uri;
-		
+
 		uri = xed_utils_make_canonical_uri_from_shell_arg (uris[i]);
-		
+
 		/* Silently ignore malformed URI/filename */
 		if (uri != NULL)
 			uri_list[p++] = uri;
@@ -1442,7 +1458,7 @@ null_ptr (gchar **ptr)
  * scheme, user info, port, host and path. The return value pointer can be
  * %NULL to ignore certain parts of the uri. If the function returns %TRUE, then
  * all return value pointers should be freed using g_free
- * 
+ *
  * Return value: %TRUE if the uri could be properly decoded, %FALSE otherwise.
  */
 gboolean
@@ -1454,7 +1470,7 @@ xed_utils_decode_uri (const gchar  *uri,
 			gchar       **path
 )
 {
-	/* Largely copied from glib/gio/gdummyfile.c:_g_decode_uri. This 
+	/* Largely copied from glib/gio/gdummyfile.c:_g_decode_uri. This
 	 * functionality should be in glib/gio, but for now we implement it
 	 * ourselves (see bug #546182) */
 
@@ -1464,10 +1480,10 @@ xed_utils_decode_uri (const gchar  *uri,
 
 	/* From RFC 3986 Decodes:
 	 * URI = scheme ":" hier-part [ "?" query ] [ "#" fragment ]
-	 */ 
+	 */
 
 	p = uri;
-	
+
 	null_ptr (scheme);
 	null_ptr (user);
 	null_ptr (port);
@@ -1494,32 +1510,32 @@ xed_utils_decode_uri (const gchar  *uri,
 		      c == '.'))
 			return FALSE;
 	}
-	
+
 	if (scheme)
 	{
 		*scheme = g_malloc (p - uri);
 		out = *scheme;
-	
+
 		for (in = uri; in < p - 1; in++)
 			*out++ = g_ascii_tolower (*in);
-			
+
 		*out = '\0';
 	}
-	
+
 	hier_part_start = p;
 	hier_part_end = p + strlen (p);
-	
+
 	if (hier_part_start[0] == '/' && hier_part_start[1] == '/')
 	{
 		const char *authority_start, *authority_end;
 		const char *userinfo_start, *userinfo_end;
 		const char *host_start, *host_end;
 		const char *port_start;
-		
+
 		authority_start = hier_part_start + 2;
 		/* authority is always followed by / or nothing */
 		authority_end = memchr (authority_start, '/', hier_part_end - authority_start);
-		
+
 		if (authority_end == NULL)
 			authority_end = hier_part_end;
 
@@ -1528,14 +1544,14 @@ xed_utils_decode_uri (const gchar  *uri,
 		 */
 
 		userinfo_end = memchr (authority_start, '@', authority_end - authority_start);
-		
+
 		if (userinfo_end)
 		{
 			userinfo_start = authority_start;
-			
+
 			if (user)
 				*user = g_uri_unescape_segment (userinfo_start, userinfo_end, NULL);
-			
+
 			if (user && *user == NULL)
 			{
 				if (scheme)
@@ -1543,7 +1559,7 @@ xed_utils_decode_uri (const gchar  *uri,
 
 				return FALSE;
 			}
-	
+
 			host_start = userinfo_end + 1;
 		}
 		else
@@ -1569,6 +1585,6 @@ xed_utils_decode_uri (const gchar  *uri,
 
 	if (path)
 		*path = g_uri_unescape_segment (hier_part_start, hier_part_end, "/");
-	
+
 	return TRUE;
 }

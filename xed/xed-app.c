@@ -329,7 +329,7 @@ app_weak_notify (gpointer data,
  * Returns the #XedApp object. This object is a singleton and
  * represents the running xed instance.
  *
- * Return value: the #XedApp pointer
+ * Return value: (transfer none): the #XedApp pointer
  */
 XedApp *
 xed_app_get_default (void)
@@ -527,7 +527,7 @@ xed_app_create_window_real (XedApp      *app,
  *
  * Create a new #XedWindow part of @app.
  *
- * Return value: the new #XedWindow
+ * Return value: (transfer none): the new #XedWindow
  */
 XedWindow *
 xed_app_create_window (XedApp    *app,
@@ -566,7 +566,7 @@ _xed_app_restore_window (XedApp *app,
  *
  * Returns all the windows currently present in #XedApp.
  *
- * Return value: (transfer none): the list of #XedWindows objects.
+ * Return value: (element-type Xed.Window) (transfer none): the list of #XedWindows objects.
  * The list should not be freed
  */
 const GList *
@@ -583,7 +583,7 @@ xed_app_get_windows (XedApp *app)
  *
  * Retrives the #XedWindow currently active.
  *
- * Return value: the active #XedWindow
+ * Return value: (transfer none): the active #XedWindow
  */
 XedWindow *
 xed_app_get_active_window (XedApp *app)

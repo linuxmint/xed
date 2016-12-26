@@ -1036,6 +1036,12 @@ set_uri (XedDocument *doc,
     }
 }
 
+/**
+ * xed_document_get_location:
+ * @doc: a #XedDocument
+ *
+ * Returns: (allow-none) (transfer full): a new #GFile
+ */
 GFile *
 xed_document_get_location (XedDocument *doc)
 {
@@ -1736,7 +1742,7 @@ compute_num_of_lines (const gchar *text)
 }
 
 /**
- * xed_document_set_search_text"
+ * xed_document_set_search_text:
  * @doc:
  * @text: (allow-none):
  * @flags:
@@ -1835,7 +1841,7 @@ xed_document_get_can_search_again (XedDocument *doc)
  * @start: (allow-none):
  * @end: (allow-none):
  * @match_start: (allow-none):
- * @match_end: (allow=none):
+ * @match_end: (allow-none):
  **/
 gboolean
 xed_document_search_forward (XedDocument       *doc,
@@ -1920,7 +1926,7 @@ xed_document_search_forward (XedDocument       *doc,
  * @start: (allow-none):
  * @end: (allow-none):
  * @match_start: (allow-none):
- * @match_end: (allow=none):
+ * @match_end: (allow-none):
  **/
 gboolean
 xed_document_search_backward (XedDocument       *doc,
@@ -2130,6 +2136,12 @@ xed_document_set_language (XedDocument       *doc,
     set_language (doc, lang, TRUE);
 }
 
+/**
+ * xed_document_get_language:
+ * @doc:
+ *
+ * Return value: (transfer none):
+ */
 GtkSourceLanguage *
 xed_document_get_language (XedDocument *doc)
 {
