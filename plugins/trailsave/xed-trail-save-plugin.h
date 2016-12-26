@@ -23,47 +23,54 @@
 
 #include <glib.h>
 #include <glib-object.h>
-#include <xed/xed-plugin.h>
+#include <libpeas/peas-extension-base.h>
+#include <libpeas/peas-object-module.h>
 
 G_BEGIN_DECLS
 
 /*
  * Type checking and casting macros
  */
-#define XED_TYPE_TRAIL_SAVE_PLUGIN		(xed_trail_save_plugin_get_type ())
-#define XED_TRAIL_SAVE_PLUGIN(o)		(G_TYPE_CHECK_INSTANCE_CAST ((o), XED_TYPE_TRAIL_SAVE_PLUGIN, XedTrailSavePlugin))
-#define XED_TRAIL_SAVE_PLUGIN_CLASS(k)	(G_TYPE_CHECK_CLASS_CAST((k), XED_TYPE_TRAIL_SAVE_PLUGIN, XedTrailSavePluginClass))
-#define XED_IS_TRAIL_SAVE_PLUGIN(o)		(G_TYPE_CHECK_INSTANCE_TYPE ((o), XED_TYPE_TRAIL_SAVE_PLUGIN))
-#define XED_IS_TRAIL_SAVE_PLUGIN_CLASS(k)	(G_TYPE_CHECK_CLASS_TYPE ((k), XED_TYPE_TRAIL_SAVE_PLUGIN))
-#define XED_TRAIL_SAVE_PLUGIN_GET_CLASS(o)	(G_TYPE_INSTANCE_GET_CLASS ((o), XED_TYPE_TRAIL_SAVE_PLUGIN, XedTrailSavePluginClass))
+#define XED_TYPE_TRAIL_SAVE_PLUGIN      (xed_trail_save_plugin_get_type ())
+#define XED_TRAIL_SAVE_PLUGIN(o)        (G_TYPE_CHECK_INSTANCE_CAST ((o), XED_TYPE_TRAIL_SAVE_PLUGIN, XedTrailSavePlugin))
+#define XED_TRAIL_SAVE_PLUGIN_CLASS(k)  (G_TYPE_CHECK_CLASS_CAST((k), XED_TYPE_TRAIL_SAVE_PLUGIN, XedTrailSavePluginClass))
+#define XED_IS_TRAIL_SAVE_PLUGIN(o)     (G_TYPE_CHECK_INSTANCE_TYPE ((o), XED_TYPE_TRAIL_SAVE_PLUGIN))
+#define XED_IS_TRAIL_SAVE_PLUGIN_CLASS(k)   (G_TYPE_CHECK_CLASS_TYPE ((k), XED_TYPE_TRAIL_SAVE_PLUGIN))
+#define XED_TRAIL_SAVE_PLUGIN_GET_CLASS(o)  (G_TYPE_INSTANCE_GET_CLASS ((o), XED_TYPE_TRAIL_SAVE_PLUGIN, XedTrailSavePluginClass))
+
+/* Private structure type */
+typedef struct _XedTrailSavePluginPrivate    XedTrailSavePluginPrivate;
 
 /*
  * Main object structure
  */
-typedef struct _XedTrailSavePlugin		XedTrailSavePlugin;
+typedef struct _XedTrailSavePlugin      XedTrailSavePlugin;
 
 struct _XedTrailSavePlugin
 {
-	XedPlugin parent_instance;
+    PeasExtensionBase parent_instance;
+
+    /*< private >*/
+    XedTrailSavePluginPrivate *priv;
 };
 
 /*
  * Class definition
  */
-typedef struct _XedTrailSavePluginClass	XedTrailSavePluginClass;
+typedef struct _XedTrailSavePluginClass XedTrailSavePluginClass;
 
 struct _XedTrailSavePluginClass
 {
-	XedPluginClass parent_class;
+    PeasExtensionBaseClass parent_class;
 };
 
 /*
  * Public methods
  */
-GType	xed_trail_save_plugin_get_type	(void) G_GNUC_CONST;
+GType   xed_trail_save_plugin_get_type  (void) G_GNUC_CONST;
 
 /* All the plugins must implement this function */
-G_MODULE_EXPORT GType register_xed_plugin (GTypeModule *module);
+G_MODULE_EXPORT void peas_register_types (PeasObjectModule *module);
 
 G_END_DECLS
 
