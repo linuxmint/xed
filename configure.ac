@@ -172,6 +172,16 @@ PKG_CHECK_MODULES(EGG_SMCLIENT, [sm >= 1.0.0])
 AC_SUBST(EGG_SMCLIENT_CFLAGS)
 AC_SUBST(EGG_SMCLIENT_LIBS)
 
+# Introspection
+GOBJECT_INTROSPECTION_CHECK([0.9.3])
+
+if test "$found_introspection" = "yes"; then
+	have_introspection=yes
+	AC_DEFINE([HAVE_INTROSPECTION], [1], [Define to enable GObject Introspection])
+else
+	have_introspection=no
+fi
+
 dnl ================================================================
 dnl GSettings related settings
 dnl ================================================================
@@ -265,5 +275,6 @@ Configuration:
 	Compiler:				${CC}
 	Spell Plugin enabled:	$enable_enchant
 	Gvfs metadata enabled:	$enable_gvfs_metadata
+	GObject Introspection:	${have_introspection}
 	Tests enabled:			$enable_tests
 "

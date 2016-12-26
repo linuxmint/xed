@@ -5,20 +5,21 @@ bin_PROGRAMS = xed
 
 noinst_LTLIBRARIES = libxed.la
 
-AM_CPPFLAGS =								\
-	-I$(top_srcdir)							\
+AM_CPPFLAGS =							\
+	-I$(top_srcdir)						\
 	-I$(srcdir)							\
-	-I$(srcdir)/smclient						\
-	$(XED_CFLAGS)							\
-	$(WARN_CFLAGS)							\
-	$(DISABLE_DEPRECATED_CFLAGS)					\
-	-DDATADIR=\""$(datadir)"\"					\
+	-I$(srcdir)/smclient				\
+	$(XED_CFLAGS)						\
+	$(WARN_CFLAGS)						\
+	$(INTROSPECTION_CFLAGS)				\
+	$(DISABLE_DEPRECATED_CFLAGS)		\
+	-DDATADIR=\""$(datadir)"\"			\
 	-DLIBDIR=\""$(libdir)"\"
 
 xed_SOURCES = \
 	xed.c
 
-xed_LDADD = libxed.la $(XED_LIBS) $(EGG_SMCLIENT_LIBS)
+xed_LDADD = libxed.la $(XED_LIBS) $(EGG_SMCLIENT_LIBS) $(INTROSPECTION_LIBS)
 
 xed_LDFLAGS = -export-dynamic -no-undefined -export-symbols-regex "^[[^_]].*"
 
@@ -104,22 +105,19 @@ header_DATA = 				\
 	$(INST_H_FILES)
 
 
-libxed_la_SOURCES = 			\
-	$(BUILT_SOURCES)		\
-	$(BACON_FILES)			\
-	$(POSIXIO_FILES)		\
-	xed-app.c			\
-	xed-close-button.c		\
+libxed_c_files = 				\
+	xed-app.c					\
+	xed-close-button.c			\
 	xed-commands-documents.c	\
-	xed-commands-edit.c		\
-	xed-commands-file.c		\
+	xed-commands-edit.c			\
+	xed-commands-file.c			\
 	xed-commands-file-print.c	\
-	xed-commands-help.c		\
+	xed-commands-help.c			\
 	xed-commands-search.c		\
-	xed-commands-view.c		\
-	xed-debug.c			\
-	xed-dirs.c			\
-	xed-document.c 		\
+	xed-commands-view.c			\
+	xed-debug.c					\
+	xed-dirs.c					\
+	xed-document.c 				\
 	xed-document-input-stream.c	\
 	xed-document-loader.c		\
 	xed-document-output-stream.c	\
@@ -127,19 +125,19 @@ libxed_la_SOURCES = 			\
 	xed-document-saver.c		\
 	xed-gio-document-saver.c	\
 	xed-documents-panel.c		\
-	xed-encodings.c		\
+	xed-encodings.c				\
 	xed-encodings-combo-box.c	\
 	xed-file-chooser-dialog.c	\
-	xed-help.c			\
-	xed-history-entry.c		\
+	xed-help.c					\
+	xed-history-entry.c			\
 	xed-io-error-message-area.c	\
-	xed-language-manager.c	\
-	xed-message-bus.c		\
-	xed-message-type.c		\
-	xed-message.c			\
-	xed-object-module.c		\
-	xed-notebook.c		\
-	xed-panel.c			\
+	xed-language-manager.c		\
+	xed-message-bus.c			\
+	xed-message-type.c			\
+	xed-message.c				\
+	xed-object-module.c			\
+	xed-notebook.c			\
+	xed-panel.c				\
 	xed-plugin-info.c		\
 	xed-plugin.c			\
 	xed-plugin-loader.c		\
@@ -162,7 +160,13 @@ libxed_la_SOURCES = 			\
 	xed-utils.c 			\
 	xed-view.c 			\
 	xed-window.c			\
-	xedtextregion.c		\
+	xedtextregion.c
+
+libxed_la_SOURCES = 		\
+	$(libxed_c_files)		\
+	$(BUILT_SOURCES)		\
+	$(BACON_FILES)			\
+	$(POSIXIO_FILES)		\
 	$(NOINST_H_FILES)		\
 	$(INST_H_FILES)
 
@@ -197,6 +201,27 @@ EXTRA_DIST = 				\
 	xed.rc
 
 CLEANFILES = $(BUILT_SOURCES)
+
+if HAVE_INTROSPECTION
+-include $(INTROSPECTION_MAKEFILE)
+INTROSPECTION_GIRS = Xed-1.0.gir
+INTROSPECTION_SCANNER_ARGS = -I$(top_srcdir) --warn-all
+
+Xed-1.0.gir: xed
+Xed_1_0_gir_INCLUDES = Gtk-3.0 GtkSource-3.0
+Xed_1_0_gir_FILES = $(INST_H_FILES) $(libxed_c_files) $(BUILT_SOURCES)
+Xed_1_0_gir_VERSION = 1.0
+Xed_1_0_gir_PROGRAM = $(builddir)/xed
+Xed_1_0_gir_NAMESPACE = Xed
+
+girdir = $(datadir)/gir-1.0
+gir_DATA = $(INTROSPECTION_GIRS)
+
+typelibdir = $(libdir)/girepository-1.0
+typelib_DATA = $(INTROSPECTION_GIRS:.gir=.typelib)
+
+CLEANFILES += $(gir_DATA) $(typelib_DATA)
+endif
 
 dist-hook:
 	cd $(distdir); rm -f $(BUILT_SOURCES)

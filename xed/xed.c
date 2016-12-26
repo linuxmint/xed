@@ -42,6 +42,10 @@
 #include <gtk/gtk.h>
 #include <gdk/gdkx.h>
 
+#ifdef HAVE_INTROSPECTION
+#include <girepository.h>
+#endif
+
 #include "xed-app.h"
 #include "xed-commands.h"
 #include "xed-debug.h"
@@ -521,6 +525,10 @@ main (int argc, char *argv[])
 	g_option_context_add_main_entries (context, options, GETTEXT_PACKAGE);
 	g_option_context_add_group (context, gtk_get_option_group (FALSE));
 	g_option_context_add_group (context, egg_sm_client_get_option_group ());
+
+#ifdef HAVE_INTROSPECTION
+    g_option_context_add_group (context, g_irepository_get_option_group ());
+#endif
 
 	gtk_init (&argc, &argv);
 
