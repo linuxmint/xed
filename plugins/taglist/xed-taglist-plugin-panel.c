@@ -39,7 +39,6 @@
 
 #include <xed/xed-utils.h>
 #include <xed/xed-debug.h>
-#include <xed/xed-plugin.h>
 
 #include <gtk/gtk.h>
 #include <gdk/gdkkeysyms.h>
@@ -65,11 +64,11 @@ struct _XedTaglistPluginPanelPrivate
 	GtkWidget *preview;
 
 	TagGroup *selected_tag_group;
-	
+
 	gchar *data_dir;
 };
 
-XED_PLUGIN_DEFINE_TYPE (XedTaglistPluginPanel, xed_taglist_plugin_panel, GTK_TYPE_BOX)
+G_DEFINE_DYNAMIC_TYPE (XedTaglistPluginPanel, xed_taglist_plugin_panel, GTK_TYPE_BOX)
 
 enum
 {
@@ -133,7 +132,7 @@ static void
 xed_taglist_plugin_panel_finalize (GObject *object)
 {
 	XedTaglistPluginPanel *panel = XED_TAGLIST_PLUGIN_PANEL (object);
-	
+
 	g_free (panel->priv->data_dir);
 
 	G_OBJECT_CLASS (xed_taglist_plugin_panel_parent_class)->finalize (object);
@@ -158,6 +157,12 @@ xed_taglist_plugin_panel_class_init (XedTaglistPluginPanelClass *klass)
 							 G_PARAM_CONSTRUCT_ONLY));
 
 	g_type_class_add_private (object_class, sizeof(XedTaglistPluginPanelPrivate));
+}
+
+static void
+xed_taglist_plugin_panel_class_finalize (XedTaglistPluginPanelClass *klass)
+{
+    /* dummy function - used by G_DEFINE_DYNAMIC_TYPE */
 }
 
 static void
@@ -431,7 +436,7 @@ selected_group_changed (GtkComboBox             *combo,
 
 		populate_tags_list (panel);
 	}
-	
+
 	/* Clean up preview */
 	gtk_label_set_text (GTK_LABEL (panel->priv->preview),
 			    "");
@@ -781,8 +786,14 @@ xed_taglist_plugin_panel_new (XedWindow *window,
 	panel = g_object_new (XED_TYPE_TAGLIST_PLUGIN_PANEL,
 			      "window", window,
 			      NULL);
-	
+
 	panel->priv->data_dir = g_strdup (data_dir);
-	
+
 	return GTK_WIDGET (panel);
+}
+
+void
+_xed_taglist_plugin_panel_register_type (GTypeModule *type_module)
+{
+    xed_taglist_plugin_panel_register_type (type_module);
 }
