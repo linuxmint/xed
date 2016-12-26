@@ -97,7 +97,6 @@ GtkWidget      *xed_window_get_searchbar (XedWindow *window);
 GtkUIManager   *xed_window_get_ui_manager (XedWindow *window);
 XedWindowState  xed_window_get_state (XedWindow *window);
 XedTab         *xed_window_get_tab_from_location (XedWindow *window, GFile *location);
-XedTab         *xed_window_get_tab_from_uri (XedWindow *window, const gchar *uri);
 
 /* Message bus */
 XedMessageBus *xed_window_get_message_bus (XedWindow *window);

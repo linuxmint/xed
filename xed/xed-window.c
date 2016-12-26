@@ -4076,31 +4076,3 @@ xed_window_get_message_bus (XedWindow *window)
     g_return_val_if_fail(XED_IS_WINDOW (window), NULL);
     return window->priv->message_bus;
 }
-
-/**
- * xed_window_get_tab_from_uri:
- * @window: a #XedWindow
- * @uri: the uri to get the #XedTab
- *
- * Gets the #XedTab that matches @uri.
- *
- * Returns: (transfer none): the #XedTab associated with @uri.
- *
- * Deprecated: 2.24: Use xed_window_get_tab_from_location() instead.
- */
-XedTab *
-xed_window_get_tab_from_uri (XedWindow *window,
-                             const gchar *uri)
-{
-    GFile *f;
-    XedTab *tab;
-
-    g_return_val_if_fail(XED_IS_WINDOW (window), NULL);
-    g_return_val_if_fail(uri != NULL, NULL);
-
-    f = g_file_new_for_uri (uri);
-    tab = xed_window_get_tab_from_location (window, f);
-    g_object_unref (f);
-
-    return tab;
-}
