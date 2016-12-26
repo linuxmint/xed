@@ -1,5 +1,5 @@
 /*
- * xed-file-browser-plugin.h - Xed plugin providing easy file access 
+ * xed-file-browser-plugin.h - Xed plugin providing easy file access
  * from the sidepanel
  *
  * Copyright (C) 2006 - Jesse van den Kieboom <jesse@icecrew.nl>
@@ -24,46 +24,48 @@
 
 #include <glib.h>
 #include <glib-object.h>
-#include <xed/xed-plugin.h>
+#include <libpeas/peas-extension-base.h>
+#include <libpeas/peas-object-module.h>
 
 G_BEGIN_DECLS
+
 /*
  * Type checking and casting macros
  */
-#define XED_TYPE_FILE_BROWSER_PLUGIN		(filetree_plugin_get_type ())
-#define XED_FILE_BROWSER_PLUGIN(o)		(G_TYPE_CHECK_INSTANCE_CAST ((o), XED_TYPE_FILE_BROWSER_PLUGIN, XedFileBrowserPlugin))
-#define XED_FILE_BROWSER_PLUGIN_CLASS(k)	(G_TYPE_CHECK_CLASS_CAST((k), XED_TYPE_FILE_BROWSER_PLUGIN, XedFileBrowserPluginClass))
-#define XED_IS_FILE_BROWSER_PLUGIN(o)		(G_TYPE_CHECK_INSTANCE_TYPE ((o), XED_TYPE_FILE_BROWSER_PLUGIN))
-#define XED_IS_FILE_BROWSER_PLUGIN_CLASS(k)	(G_TYPE_CHECK_CLASS_TYPE ((k), XED_TYPE_FILE_BROWSER_PLUGIN))
-#define XED_FILE_BROWSER_GET_CLASS(o)		(G_TYPE_INSTANCE_GET_CLASS ((o), XED_TYPE_FILE_BROWSER_PLUGIN, XedFileBrowserPluginClass))
+#define XED_TYPE_FILE_BROWSER_PLUGIN        (xed_file_browser_plugin_get_type ())
+#define XED_FILE_BROWSER_PLUGIN(o)      (G_TYPE_CHECK_INSTANCE_CAST ((o), XED_TYPE_FILE_BROWSER_PLUGIN, XedFileBrowserPlugin))
+#define XED_FILE_BROWSER_PLUGIN_CLASS(k)    (G_TYPE_CHECK_CLASS_CAST((k), XED_TYPE_FILE_BROWSER_PLUGIN, XedFileBrowserPluginClass))
+#define XED_IS_FILE_BROWSER_PLUGIN(o)       (G_TYPE_CHECK_INSTANCE_TYPE ((o), XED_TYPE_FILE_BROWSER_PLUGIN))
+#define XED_IS_FILE_BROWSER_PLUGIN_CLASS(k) (G_TYPE_CHECK_CLASS_TYPE ((k), XED_TYPE_FILE_BROWSER_PLUGIN))
+#define XED_FILE_BROWSER_GET_CLASS(o)       (G_TYPE_INSTANCE_GET_CLASS ((o), XED_TYPE_FILE_BROWSER_PLUGIN, XedFileBrowserPluginClass))
 
 /* Private structure type */
 typedef struct _XedFileBrowserPluginPrivate XedFileBrowserPluginPrivate;
 typedef struct _XedFileBrowserPlugin        XedFileBrowserPlugin;
 typedef struct _XedFileBrowserPluginClass   XedFileBrowserPluginClass;
 
-struct _XedFileBrowserPlugin 
+struct _XedFileBrowserPlugin
 {
-	XedPlugin parent_instance;
+    PeasExtensionBase parent_instance;
 
-	/*< private > */
-	XedFileBrowserPluginPrivate *priv;
+    /*< private > */
+    XedFileBrowserPluginPrivate *priv;
 };
 
 
 
-struct _XedFileBrowserPluginClass 
+struct _XedFileBrowserPluginClass
 {
-	XedPluginClass parent_class;
+    PeasExtensionBaseClass parent_class;
 };
 
 /*
  * Public methods
  */
-GType filetree_plugin_get_type              (void) G_GNUC_CONST;
+GType xed_file_browser_plugin_get_type              (void) G_GNUC_CONST;
 
 /* All the plugins must implement this function */
-G_MODULE_EXPORT GType register_xed_plugin (GTypeModule * module);
+G_MODULE_EXPORT void peas_register_types (PeasObjectModule * module);
 
 G_END_DECLS
 #endif /* __XED_FILE_BROWSER_PLUGIN_H__ */

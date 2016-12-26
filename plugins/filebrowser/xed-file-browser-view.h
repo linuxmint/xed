@@ -1,5 +1,5 @@
 /*
- * xed-file-browser-view.h - Xed plugin providing easy file access 
+ * xed-file-browser-view.h - Xed plugin providing easy file access
  * from the sidepanel
  *
  * Copyright (C) 2006 - Jesse van den Kieboom <jesse@icecrew.nl>
@@ -39,22 +39,22 @@ typedef struct _XedFileBrowserViewPrivate XedFileBrowserViewPrivate;
 
 typedef enum {
 	XED_FILE_BROWSER_VIEW_CLICK_POLICY_DOUBLE,
-	XED_FILE_BROWSER_VIEW_CLICK_POLICY_SINGLE	
+	XED_FILE_BROWSER_VIEW_CLICK_POLICY_SINGLE
 } XedFileBrowserViewClickPolicy;
 
-struct _XedFileBrowserView 
+struct _XedFileBrowserView
 {
 	GtkTreeView parent;
 
 	XedFileBrowserViewPrivate *priv;
 };
 
-struct _XedFileBrowserViewClass 
+struct _XedFileBrowserViewClass
 {
 	GtkTreeViewClass parent_class;
 
 	/* Signals */
-	void (*error) (XedFileBrowserView * filetree, 
+	void (*error) (XedFileBrowserView * filetree,
 	               guint code,
 		       gchar const *message);
 	void (*file_activated) (XedFileBrowserView * filetree,
@@ -66,12 +66,12 @@ struct _XedFileBrowserViewClass
 };
 
 GType xed_file_browser_view_get_type			(void) G_GNUC_CONST;
-GType xed_file_browser_view_register_type		(GTypeModule 			* module);
+void _xed_file_browser_view_register_type		(GTypeModule 			* module);
 
 GtkWidget *xed_file_browser_view_new			(void);
 void xed_file_browser_view_set_model			(XedFileBrowserView 		* tree_view,
 							 GtkTreeModel 			* model);
-void xed_file_browser_view_start_rename		(XedFileBrowserView 		* tree_view, 
+void xed_file_browser_view_start_rename		(XedFileBrowserView 		* tree_view,
 							 GtkTreeIter 			* iter);
 void xed_file_browser_view_set_click_policy		(XedFileBrowserView 		* tree_view,
 							 XedFileBrowserViewClickPolicy  policy);

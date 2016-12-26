@@ -28,9 +28,11 @@
 #include <xed/xed-utils.h>
 #include <xed/xed-app.h>
 #include <glib/gi18n-lib.h>
+#include <xed/xed-window.h>
 #include <xed/xed-debug.h>
 #include <gio/gio.h>
 #include <string.h>
+#include <libpeas/peas-activatable.h>
 
 #include "xed-file-browser-enum-types.h"
 #include "xed-file-browser-plugin.h"
@@ -39,8 +41,6 @@
 #include "xed-file-browser-widget.h"
 #include "xed-file-browser-messages.h"
 
-#define WINDOW_DATA_KEY	        	"XedFileBrowserPluginWindowData"
-
 #define FILE_BROWSER_SCHEMA 		"org.x.editor.plugins.filebrowser"
 #define FILE_BROWSER_ONLOAD_SCHEMA 	"org.x.editor.plugins.filebrowser.on-load"
 
@@ -48,11 +48,8 @@
 
 struct _XedFileBrowserPluginPrivate
 {
-	gpointer *dummy;
-};
+	GtkWidget *window;
 
-typedef struct _XedFileBrowserPluginData
-{
 	XedFileBrowserWidget * tree_widget;
 	gulong                   merge_id;
 	GtkActionGroup         * action_group;
@@ -62,7 +59,13 @@ typedef struct _XedFileBrowserPluginData
 
 	GSettings *settings;
 	GSettings *onload_settings;
-} XedFileBrowserPluginData;
+};
+
+enum
+{
+    PROP_0,
+    PROP_OBJECT
+};
 
 static void on_uri_activated_cb          (XedFileBrowserWidget * widget,
                                           gchar const *uri,
@@ -70,67 +73,113 @@ static void on_uri_activated_cb          (XedFileBrowserWidget * widget,
 static void on_error_cb                  (XedFileBrowserWidget * widget,
                                           guint code,
                                           gchar const *message,
-                                          XedWindow * window);
+                                          XedFileBrowserPluginPrivate * data);
 static void on_model_set_cb              (XedFileBrowserView * widget,
                                           GParamSpec *arg1,
-                                          XedWindow * window);
+                                          XedFileBrowserPluginPrivate * data);
 static void on_virtual_root_changed_cb   (XedFileBrowserStore * model,
                                           GParamSpec * param,
-                                          XedWindow * window);
+                                          XedFileBrowserPluginPrivate * data);
 static void on_filter_mode_changed_cb    (XedFileBrowserStore * model,
                                           GParamSpec * param,
-                                          XedWindow * window);
+                                          XedFileBrowserPluginPrivate * data);
 static void on_rename_cb		 (XedFileBrowserStore * model,
 					  const gchar * olduri,
 					  const gchar * newuri,
 					  XedWindow * window);
 static void on_filter_pattern_changed_cb (XedFileBrowserWidget * widget,
                                           GParamSpec * param,
-                                          XedWindow * window);
+                                          XedFileBrowserPluginPrivate * data);
 static void on_tab_added_cb              (XedWindow * window,
                                           XedTab * tab,
-                                          XedFileBrowserPluginData * data);
+                                          XedFileBrowserPluginPrivate * data);
 static gboolean on_confirm_delete_cb     (XedFileBrowserWidget * widget,
                                           XedFileBrowserStore * store,
                                           GList * rows,
-                                          XedWindow * window);
+                                          XedFileBrowserPluginPrivate * data);
 static gboolean on_confirm_no_trash_cb   (XedFileBrowserWidget * widget,
                                           GList * files,
                                           XedWindow * window);
 
-XED_PLUGIN_REGISTER_TYPE_WITH_CODE (XedFileBrowserPlugin, filetree_plugin, 	\
-	xed_file_browser_enum_and_flag_register_type (type_module);		\
-	xed_file_browser_store_register_type         (type_module);		\
-	xed_file_bookmarks_store_register_type       (type_module);		\
-	xed_file_browser_view_register_type	       (type_module);		\
-	xed_file_browser_widget_register_type	       (type_module);		\
+static void peas_activatable_iface_init (PeasActivatableInterface *iface);
+
+G_DEFINE_DYNAMIC_TYPE_EXTENDED (XedFileBrowserPlugin,
+                                xed_file_browser_plugin,
+                                PEAS_TYPE_EXTENSION_BASE,
+                                0,
+                                G_IMPLEMENT_INTERFACE_DYNAMIC (PEAS_TYPE_ACTIVATABLE,
+                                                               peas_activatable_iface_init)    \
+                                                                                               \
+                                xed_file_browser_enum_and_flag_register_type (type_module);  \
+                                _xed_file_browser_store_register_type        (type_module);  \
+                                _xed_file_bookmarks_store_register_type      (type_module);  \
+                                _xed_file_browser_view_register_type         (type_module);  \
+                                _xed_file_browser_widget_register_type       (type_module);
 )
 
 
 static void
-filetree_plugin_init (XedFileBrowserPlugin * plugin)
+xed_file_browser_plugin_init (XedFileBrowserPlugin * plugin)
 {
 	plugin->priv = XED_FILE_BROWSER_PLUGIN_GET_PRIVATE (plugin);
 }
 
 static void
-filetree_plugin_finalize (GObject * object)
+xed_file_browser_plugin_dispose (GObject * object)
 {
-	//XedFileBrowserPlugin * plugin = XED_FILE_BROWSER_PLUGIN (object);
+    XedFileBrowserPlugin *plugin = XED_FILE_BROWSER_PLUGIN (object);
 
-	G_OBJECT_CLASS (filetree_plugin_parent_class)->finalize (object);
+    if (plugin->priv->window != NULL)
+    {
+        g_object_unref (plugin->priv->window);
+        plugin->priv->window = NULL;
+    }
+
+    G_OBJECT_CLASS (xed_file_browser_plugin_parent_class)->dispose (object);
 }
 
-static XedFileBrowserPluginData *
-get_plugin_data (XedWindow * window)
+static void
+xed_file_browser_plugin_set_property (GObject      *object,
+                                      guint         prop_id,
+                                      const GValue *value,
+                                      GParamSpec   *pspec)
 {
-	return (XedFileBrowserPluginData *) (g_object_get_data (G_OBJECT (window), WINDOW_DATA_KEY));
+	XedFileBrowserPlugin *plugin = XED_FILE_BROWSER_PLUGIN (object);
+
+    switch (prop_id)
+    {
+        case PROP_OBJECT:
+            plugin->priv->window = GTK_WIDGET (g_value_dup_object (value));
+            break;
+        default:
+            G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
+            break;
+    }
+}
+
+static void
+xed_file_browser_plugin_get_property (GObject    *object,
+                                        guint       prop_id,
+                                        GValue     *value,
+                                        GParamSpec *pspec)
+{
+	XedFileBrowserPlugin *plugin = XED_FILE_BROWSER_PLUGIN (object);
+
+    switch (prop_id)
+    {
+        case PROP_OBJECT:
+            g_value_set_object (value, plugin->priv->window);
+            break;
+        default:
+            G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
+            break;
+    }
 }
 
 static void
 on_end_loading_cb (XedFileBrowserStore      * store,
                    GtkTreeIter                * iter,
-                   XedFileBrowserPluginData * data)
+                   XedFileBrowserPluginPrivate * data)
 {
 	/* Disconnect the signal */
 	g_signal_handler_disconnect (store, data->end_loading_handle);
@@ -139,7 +188,7 @@ on_end_loading_cb (XedFileBrowserStore      * store,
 }
 
 static void
-prepare_auto_root (XedFileBrowserPluginData *data)
+prepare_auto_root (XedFileBrowserPluginPrivate *data)
 {
 	XedFileBrowserStore *store;
 
@@ -159,7 +208,7 @@ prepare_auto_root (XedFileBrowserPluginData *data)
 }
 
 static void
-restore_default_location (XedFileBrowserPluginData *data)
+restore_default_location (XedFileBrowserPluginPrivate *data)
 {
 	gchar * root;
 	gchar * virtual_root;
@@ -205,7 +254,7 @@ restore_default_location (XedFileBrowserPluginData *data)
 }
 
 static void
-restore_filter (XedFileBrowserPluginData * data)
+restore_filter (XedFileBrowserPluginPrivate *data)
 {
 	gchar *filter_mode;
 	XedFileBrowserStoreFilterMode mode;
@@ -247,7 +296,7 @@ restore_filter (XedFileBrowserPluginData * data)
 }
 
 static void
-set_root_from_doc (XedFileBrowserPluginData * data,
+set_root_from_doc (XedFileBrowserPluginPrivate * data,
                    XedDocument * doc)
 {
 	GFile *file;
@@ -280,17 +329,13 @@ set_root_from_doc (XedFileBrowserPluginData * data,
 
 static void
 on_action_set_active_root (GtkAction * action,
-                           XedWindow * window)
+                           XedFileBrowserPluginPrivate * data)
 {
-	XedFileBrowserPluginData *data;
-
-	data = get_plugin_data (window);
-	set_root_from_doc (data,
-	                   xed_window_get_active_document (window));
+	set_root_from_doc (data, xed_window_get_active_document (XED_WINDOW (data->window)));
 }
 
 static gchar *
-get_terminal (XedFileBrowserPluginData * data)
+get_terminal (XedFileBrowserPluginPrivate * data)
 {
 	// TODO : Identify the DE, find the preferred terminal application (xterminal shouldn't be hardcoded here, it should be set as default in the DE prefs)
 	return g_strdup ("xterminal");
@@ -298,9 +343,8 @@ get_terminal (XedFileBrowserPluginData * data)
 
 static void
 on_action_open_terminal (GtkAction * action,
-                         XedWindow * window)
+                         XedFileBrowserPluginPrivate * data)
 {
-	XedFileBrowserPluginData * data;
 	gchar * terminal;
 	gchar * wd = NULL;
 	gchar * local;
@@ -309,8 +353,6 @@ on_action_open_terminal (GtkAction * action,
 
 	GtkTreeIter iter;
 	XedFileBrowserStore * store;
-
-	data = get_plugin_data (window);
 
 	/* Get the current directory */
 	if (!xed_file_browser_widget_get_selected_directory (data->tree_widget, &iter))
@@ -351,16 +393,13 @@ on_action_open_terminal (GtkAction * action,
 
 static void
 on_selection_changed_cb (GtkTreeSelection *selection,
-			 XedWindow      *window)
+			 XedFileBrowserPluginPrivate *data)
 {
-	XedFileBrowserPluginData * data;
 	GtkTreeView * tree_view;
 	GtkTreeModel * model;
 	GtkTreeIter iter;
 	gboolean sensitive;
 	gchar * uri;
-
-	data = get_plugin_data (window);
 
 	tree_view = GTK_TREE_VIEW (xed_file_browser_widget_get_browser_view (data->tree_widget));
 	model = gtk_tree_view_get_model (tree_view);
@@ -418,14 +457,12 @@ static GtkActionEntry extra_single_selection_actions[] = {
 };
 
 static void
-add_popup_ui (XedWindow * window)
+add_popup_ui (XedFileBrowserPluginPrivate *data)
 {
-	XedFileBrowserPluginData * data;
 	GtkUIManager * manager;
 	GtkActionGroup * action_group;
 	GError * error = NULL;
 
-	data = get_plugin_data (window);
 	manager = xed_file_browser_widget_get_ui_manager (data->tree_widget);
 
 	action_group = gtk_action_group_new ("FileBrowserPluginExtra");
@@ -433,7 +470,7 @@ add_popup_ui (XedWindow * window)
 	gtk_action_group_add_actions (action_group,
 				      extra_actions,
 				      G_N_ELEMENTS (extra_actions),
-				      window);
+				      data);
 	gtk_ui_manager_insert_action_group (manager, action_group, 0);
 	data->action_group = action_group;
 
@@ -442,7 +479,7 @@ add_popup_ui (XedWindow * window)
 	gtk_action_group_add_actions (action_group,
 				      extra_single_selection_actions,
 				      G_N_ELEMENTS (extra_single_selection_actions),
-				      window);
+				      data);
 	gtk_ui_manager_insert_action_group (manager, action_group, 0);
 	data->single_selection_action_group = action_group;
 
@@ -458,12 +495,10 @@ add_popup_ui (XedWindow * window)
 }
 
 static void
-remove_popup_ui (XedWindow * window)
+remove_popup_ui (XedFileBrowserPluginPrivate *data)
 {
-	XedFileBrowserPluginData * data;
 	GtkUIManager * manager;
 
-	data = get_plugin_data (window);
 	manager = xed_file_browser_widget_get_ui_manager (data->tree_widget);
 	gtk_ui_manager_remove_ui (manager, data->merge_id);
 
@@ -475,14 +510,14 @@ remove_popup_ui (XedWindow * window)
 }
 
 static void
-impl_updateui (XedPlugin * plugin, XedWindow * window)
+xed_file_browser_plugin_update_state (PeasActivatable *activatable)
 {
-	XedFileBrowserPluginData * data;
+	XedFileBrowserPluginPrivate *data;
 	XedDocument * doc;
 
-	data = get_plugin_data (window);
+	data = XED_FILE_BROWSER_PLUGIN (activatable)->priv;
 
-	doc = xed_window_get_active_document (window);
+	doc = xed_window_get_active_document (XED_WINDOW (data->window));
 
 	gtk_action_set_sensitive (gtk_action_group_get_action (data->action_group,
 	                                                       "SetActiveRoot"),
@@ -491,10 +526,11 @@ impl_updateui (XedPlugin * plugin, XedWindow * window)
 }
 
 static void
-impl_activate (XedPlugin * plugin, XedWindow * window)
+xed_file_browser_plugin_activate (PeasActivatable *activatable)
 {
+    XedFileBrowserPluginPrivate *data;
+    XedWindow *window;
 	XedPanel * panel;
-	XedFileBrowserPluginData * data;
 	GtkWidget * image;
 	GdkPixbuf * pixbuf;
 	XedFileBrowserStore * store;
@@ -502,9 +538,10 @@ impl_activate (XedPlugin * plugin, XedWindow * window)
 	GSettingsSchemaSource *schema_source;
 	GSettingsSchema *schema;
 
-	data = g_new0 (XedFileBrowserPluginData, 1);
+	data = XED_FILE_BROWSER_PLUGIN (activatable)->priv;
+    window = XED_WINDOW (data->window);
 
-	data_dir = xed_plugin_get_data_dir (plugin);
+	data_dir = peas_extension_base_get_data_dir (PEAS_EXTENSION_BASE (activatable));
 	data->tree_widget = XED_FILE_BROWSER_WIDGET (xed_file_browser_widget_new (data_dir));
 	g_free (data_dir);
 
@@ -516,17 +553,17 @@ impl_activate (XedPlugin * plugin, XedWindow * window)
 			  G_CALLBACK (on_uri_activated_cb), window);
 
 	g_signal_connect (data->tree_widget,
-			  "error", G_CALLBACK (on_error_cb), window);
+			  "error", G_CALLBACK (on_error_cb), data);
 
 	g_signal_connect (data->tree_widget,
 	                  "notify::filter-pattern",
 	                  G_CALLBACK (on_filter_pattern_changed_cb),
-	                  window);
+	                  data);
 
 	g_signal_connect (data->tree_widget,
 	                  "confirm-delete",
 	                  G_CALLBACK (on_confirm_delete_cb),
-	                  window);
+	                  data);
 
 	g_signal_connect (data->tree_widget,
 	                  "confirm-no-trash",
@@ -538,7 +575,7 @@ impl_activate (XedPlugin * plugin, XedWindow * window)
 			  (data->tree_widget))),
 			  "changed",
 			  G_CALLBACK (on_selection_changed_cb),
-			  window);
+			  data);
 
 	panel = xed_window_get_side_panel (window);
 	pixbuf = xed_file_browser_utils_pixbuf_from_theme("system-file-manager",
@@ -557,9 +594,8 @@ impl_activate (XedPlugin * plugin, XedWindow * window)
 	                      _("File Browser"),
 	                      image);
 	gtk_widget_show (GTK_WIDGET (data->tree_widget));
-	g_object_set_data (G_OBJECT (window), WINDOW_DATA_KEY, data);
 
-	add_popup_ui (window);
+	add_popup_ui (data);
 
 	/* Restore filter options */
 	restore_filter (data);
@@ -568,18 +604,18 @@ impl_activate (XedPlugin * plugin, XedWindow * window)
 	g_signal_connect (xed_file_browser_widget_get_browser_view (data->tree_widget),
 	                  "notify::model",
 	                  G_CALLBACK (on_model_set_cb),
-	                  window);
+	                  data);
 
 	store = xed_file_browser_widget_get_browser_store (data->tree_widget);
 	g_signal_connect (store,
 	                  "notify::virtual-root",
 	                  G_CALLBACK (on_virtual_root_changed_cb),
-	                  window);
+	                  data);
 
 	g_signal_connect (store,
 	                  "notify::filter-mode",
 	                  G_CALLBACK (on_filter_mode_changed_cb),
-	                  window);
+	                  data);
 
 	g_signal_connect (store,
 			  "rename",
@@ -594,16 +630,18 @@ impl_activate (XedPlugin * plugin, XedWindow * window)
 	/* Register messages on the bus */
 	xed_file_browser_messages_register (window, data->tree_widget);
 
-	impl_updateui (plugin, window);
+	xed_file_browser_plugin_update_state (activatable);
 }
 
 static void
-impl_deactivate (XedPlugin * plugin, XedWindow * window)
+xed_file_browser_plugin_deactivate (PeasActivatable *activatable)
 {
-	XedFileBrowserPluginData * data;
+	XedFileBrowserPluginPrivate *data;
+    XedWindow *window;
 	XedPanel * panel;
 
-	data = get_plugin_data (window);
+	data = XED_FILE_BROWSER_PLUGIN (activatable)->priv;
+    window = XED_WINDOW (data->window);
 
 	/* Unregister messages from the bus */
 	xed_file_browser_messages_unregister (window);
@@ -616,29 +654,49 @@ impl_deactivate (XedPlugin * plugin, XedWindow * window)
 	g_object_unref (data->settings);
 	g_object_unref (data->onload_settings);
 
-	remove_popup_ui (window);
+	remove_popup_ui (data);
 
 	panel = xed_window_get_side_panel (window);
 	xed_panel_remove_item (panel, GTK_WIDGET (data->tree_widget));
-
-	g_free (data);
-	g_object_set_data (G_OBJECT (window), WINDOW_DATA_KEY, NULL);
 }
 
 static void
-filetree_plugin_class_init (XedFileBrowserPluginClass * klass)
+xed_file_browser_plugin_class_init (XedFileBrowserPluginClass * klass)
 {
 	GObjectClass  *object_class = G_OBJECT_CLASS (klass);
-	XedPluginClass * plugin_class = XED_PLUGIN_CLASS (klass);
 
-	object_class->finalize = filetree_plugin_finalize;
+	object_class->dispose = xed_file_browser_plugin_dispose;
+    object_class->set_property = xed_file_browser_plugin_set_property;
+    object_class->get_property = xed_file_browser_plugin_get_property;
 
-	plugin_class->activate = impl_activate;
-	plugin_class->deactivate = impl_deactivate;
-	plugin_class->update_ui = impl_updateui;
+	g_object_class_override_property (object_class, PROP_OBJECT, "object");
 
 	g_type_class_add_private (object_class,
 				  sizeof (XedFileBrowserPluginPrivate));
+}
+
+static void
+xed_file_browser_plugin_class_finalize (XedFileBrowserPluginClass *klass)
+{
+    /* dummy function - used by G_DEFINE_DYNAMIC_TYPE_EXTENDED */
+}
+
+static void
+peas_activatable_iface_init (PeasActivatableInterface *iface)
+{
+    iface->activate = xed_file_browser_plugin_activate;
+    iface->deactivate = xed_file_browser_plugin_deactivate;
+    iface->update_state = xed_file_browser_plugin_update_state;
+}
+
+G_MODULE_EXPORT void
+peas_register_types (PeasObjectModule *module)
+{
+    xed_file_browser_plugin_register_type (G_TYPE_MODULE (module));
+
+    peas_object_module_register_extension_type (module,
+                                                PEAS_TYPE_ACTIVATABLE,
+                                                XED_TYPE_FILE_BROWSER_PLUGIN);
 }
 
 /* Callbacks */
@@ -651,13 +709,10 @@ on_uri_activated_cb (XedFileBrowserWidget * tree_widget,
 
 static void
 on_error_cb (XedFileBrowserWidget * tree_widget,
-	     guint code, gchar const *message, XedWindow * window)
+	     guint code, gchar const *message, XedFileBrowserPluginPrivate * data)
 {
 	gchar * title;
 	GtkWidget * dlg;
-	XedFileBrowserPluginData * data;
-
-	data = get_plugin_data (window);
 
 	/* Do not show the error when the root has been set automatically */
 	if (data->auto_root && (code == XED_FILE_BROWSER_ERROR_SET_ROOT ||
@@ -704,7 +759,7 @@ on_error_cb (XedFileBrowserWidget * tree_widget,
 		break;
 	}
 
-	dlg = gtk_message_dialog_new (GTK_WINDOW (window),
+	dlg = gtk_message_dialog_new (GTK_WINDOW (data->window),
 				      GTK_DIALOG_MODAL |
 				      GTK_DIALOG_DESTROY_WITH_PARENT,
 				      GTK_MESSAGE_ERROR, GTK_BUTTONS_OK,
@@ -719,9 +774,8 @@ on_error_cb (XedFileBrowserWidget * tree_widget,
 static void
 on_model_set_cb (XedFileBrowserView * widget,
                  GParamSpec *arg1,
-                 XedWindow * window)
+                 XedFileBrowserPluginPrivate * data)
 {
-	XedFileBrowserPluginData * data = get_plugin_data (window);
 	GtkTreeModel * model;
 
 	model = gtk_tree_view_get_model (GTK_TREE_VIEW (xed_file_browser_widget_get_browser_view (data->tree_widget)));
@@ -737,9 +791,8 @@ on_model_set_cb (XedFileBrowserView * widget,
 static void
 on_filter_mode_changed_cb (XedFileBrowserStore * model,
                            GParamSpec * param,
-                           XedWindow * window)
+                           XedFileBrowserPluginPrivate * data)
 {
-	XedFileBrowserPluginData * data = get_plugin_data (window);
 	XedFileBrowserStoreFilterMode mode;
 
 	mode = xed_file_browser_store_get_filter_mode (model);
@@ -823,9 +876,8 @@ on_rename_cb (XedFileBrowserStore * store,
 static void
 on_filter_pattern_changed_cb (XedFileBrowserWidget * widget,
                               GParamSpec * param,
-                              XedWindow * window)
+                              XedFileBrowserPluginPrivate * data)
 {
-	XedFileBrowserPluginData * data = get_plugin_data (window);
 	gchar * pattern;
 
 	g_object_get (G_OBJECT (widget), "filter-pattern", &pattern, NULL);
@@ -841,9 +893,8 @@ on_filter_pattern_changed_cb (XedFileBrowserWidget * widget,
 static void
 on_virtual_root_changed_cb (XedFileBrowserStore * store,
                             GParamSpec * param,
-                            XedWindow * window)
+                            XedFileBrowserPluginPrivate * data)
 {
-	XedFileBrowserPluginData * data = get_plugin_data (window);
 	gchar * root;
 	gchar * virtual_root;
 
@@ -863,7 +914,7 @@ on_virtual_root_changed_cb (XedFileBrowserStore * store,
 		g_settings_set_string (data->onload_settings, "virtual-root", virtual_root);
 	}
 
-	g_signal_handlers_disconnect_by_func (window,
+	g_signal_handlers_disconnect_by_func (XED_WINDOW (data->window),
 	                                      G_CALLBACK (on_tab_added_cb),
 	                                      data);
 
@@ -874,7 +925,7 @@ on_virtual_root_changed_cb (XedFileBrowserStore * store,
 static void
 on_tab_added_cb (XedWindow * window,
                  XedTab * tab,
-                 XedFileBrowserPluginData * data)
+                 XedFileBrowserPluginPrivate *data)
 {
 	gboolean open;
 	gboolean load_default = TRUE;
@@ -956,15 +1007,12 @@ static gboolean
 on_confirm_delete_cb (XedFileBrowserWidget *widget,
                       XedFileBrowserStore *store,
                       GList *paths,
-                      XedWindow *window)
+                      XedFileBrowserPluginPrivate *data)
 {
 	gchar *normal;
 	gchar *message;
 	gchar *secondary;
 	gboolean result;
-	XedFileBrowserPluginData *data;
-
-	data = get_plugin_data (window);
 
 	if (paths->next == NULL) {
 		normal = get_filename_from_path (GTK_TREE_MODEL (store), (GtkTreePath *)(paths->data));
@@ -976,7 +1024,7 @@ on_confirm_delete_cb (XedFileBrowserWidget *widget,
 
 	secondary = _("If you delete an item, it is permanently lost.");
 
-	result = xed_file_browser_utils_confirmation_dialog (window,
+	result = xed_file_browser_utils_confirmation_dialog (XED_WINDOW (data->window),
 	                                                       GTK_MESSAGE_QUESTION,
 	                                                       message,
 	                                                       secondary,

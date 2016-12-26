@@ -32,7 +32,6 @@
 #include <gdk/gdkkeysyms.h>
 
 #include <xed/xed-utils.h>
-#include <xed/xed-plugin.h>
 
 #include "xed-file-browser-utils.h"
 #include "xed-file-browser-error.h"
@@ -236,7 +235,7 @@ static void on_action_filter_binary            (GtkAction * action,
 static void on_action_bookmark_open            (GtkAction * action,
                         XedFileBrowserWidget * obj);
 
-XED_PLUGIN_DEFINE_TYPE (XedFileBrowserWidget, xed_file_browser_widget,
+G_DEFINE_DYNAMIC_TYPE (XedFileBrowserWidget, xed_file_browser_widget,
                       GTK_TYPE_BOX)
 
 static void
@@ -477,6 +476,12 @@ xed_file_browser_widget_class_init (XedFileBrowserWidgetClass * klass)
 
     g_type_class_add_private (object_class,
                   sizeof (XedFileBrowserWidgetPrivate));
+}
+
+static void
+xed_file_browser_widget_class_finalize (XedFileBrowserWidgetClass *klass)
+{
+    /* dummy function - used by G_DEFINE_DYNAMIC_TYPE */
 }
 
 static void
@@ -3144,6 +3149,12 @@ on_action_bookmark_open (GtkAction * action, XedFileBrowserWidget * obj)
 
     if (gtk_tree_selection_get_selected (selection, NULL, &iter))
         bookmark_open (obj, model, &iter);
+}
+
+void
+_xed_file_browser_widget_register_type (GTypeModule *type_module)
+{
+    xed_file_browser_widget_register_type (type_module);
 }
 
 // ex:ts=8:noet:
