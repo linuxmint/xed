@@ -1619,14 +1619,18 @@ static void
 create_statusbar (XedWindow *window,
                   GtkWidget *main_box)
 {
+    GtkWidget *image;
+    GtkWidget *button_box;
+    GtkAction *action;
+
     xed_debug (DEBUG_WINDOW);
 
     window->priv->statusbar = xed_statusbar_new ();
     window->priv->searchbar = xed_searchbar_new (window, TRUE);
 
-    window->priv->generic_message_cid = gtk_statusbar_get_context_id (GTK_STATUSBAR(window->priv->statusbar),
+    window->priv->generic_message_cid = gtk_statusbar_get_context_id (GTK_STATUSBAR (window->priv->statusbar),
                                                                       "generic_message");
-    window->priv->tip_message_cid = gtk_statusbar_get_context_id (GTK_STATUSBAR(window->priv->statusbar),
+    window->priv->tip_message_cid = gtk_statusbar_get_context_id (GTK_STATUSBAR (window->priv->statusbar),
                                                                   "tip_message");
 
     gtk_box_pack_end (GTK_BOX(main_box), window->priv->statusbar, FALSE, TRUE, 0);
@@ -1649,6 +1653,38 @@ create_statusbar (XedWindow *window,
     g_signal_connect(G_OBJECT (window->priv->language_combo), "changed",
                      G_CALLBACK (language_combo_changed), window);
 
+    button_box = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 4);
+    gtk_widget_set_margin_top (button_box, 4);
+    gtk_widget_set_margin_bottom (button_box, 4);
+    gtk_box_pack_start (GTK_BOX (window->priv->statusbar), button_box, FALSE, FALSE, 0);
+
+    window->priv->show_side_pane_button = gtk_toggle_button_new ();
+    image = gtk_image_new_from_icon_name ("view-left-pane-symbolic", GTK_ICON_SIZE_INVALID);
+    gtk_image_set_pixel_size (GTK_IMAGE (image), 12);
+    gtk_container_add (GTK_CONTAINER (window->priv->show_side_pane_button), image);
+    gtk_box_pack_start (GTK_BOX (button_box), window->priv->show_side_pane_button, FALSE, FALSE, 0);
+
+    action = gtk_action_group_get_action (window->priv->panes_action_group, "ViewSidePane");
+    gtk_activatable_set_related_action (GTK_ACTIVATABLE (window->priv->show_side_pane_button), action);
+    gtk_widget_set_tooltip_text (window->priv->show_side_pane_button, gtk_action_get_tooltip (action));
+
+    window->priv->bottom_pane_button_revealer = gtk_revealer_new ();
+    gtk_revealer_set_transition_type (GTK_REVEALER (window->priv->bottom_pane_button_revealer),
+                                      GTK_REVEALER_TRANSITION_TYPE_SLIDE_RIGHT);
+    gtk_box_pack_start (GTK_BOX (button_box), window->priv->bottom_pane_button_revealer, FALSE, FALSE, 0);
+
+    window->priv->show_bottom_pane_button = gtk_toggle_button_new ();
+    image = gtk_image_new_from_icon_name ("view-bottom-pane-symbolic", GTK_ICON_SIZE_INVALID);
+    gtk_image_set_pixel_size (GTK_IMAGE (image), 12);
+    gtk_container_add (GTK_CONTAINER (window->priv->show_bottom_pane_button), image);
+    gtk_container_add (GTK_CONTAINER (window->priv->bottom_pane_button_revealer), window->priv->show_bottom_pane_button);
+
+    action = gtk_action_group_get_action (window->priv->panes_action_group, "ViewBottomPane");
+    gtk_activatable_set_related_action (GTK_ACTIVATABLE (window->priv->show_bottom_pane_button), action);
+    gtk_widget_set_tooltip_text (window->priv->show_bottom_pane_button, gtk_action_get_tooltip (action));
+
+    gtk_widget_show_all (button_box);
+
     g_signal_connect_after(G_OBJECT (window->priv->statusbar), "show",
                            G_CALLBACK (statusbar_visibility_changed), window);
 
@@ -1657,8 +1693,9 @@ create_statusbar (XedWindow *window,
 
     set_statusbar_style (window, NULL);
 
-    gtk_box_pack_end (GTK_BOX(main_box), window->priv->searchbar, FALSE, FALSE, 0);
+    gtk_box_pack_end (GTK_BOX (main_box), window->priv->searchbar, FALSE, FALSE, 0);
 
+    gtk_box_reorder_child (GTK_BOX (window->priv->statusbar), button_box, 0);
 }
 
 static XedWindow *
@@ -3102,7 +3139,7 @@ bottom_panel_visibility_changed (XedPanel *bottom_panel,
     gboolean visible;
     GtkAction *action;
 
-    visible = gtk_widget_get_visible (GTK_WIDGET(bottom_panel));
+    visible = gtk_widget_get_visible (GTK_WIDGET (bottom_panel));
 
     if (xed_prefs_manager_bottom_panel_visible_can_set ())
     {
@@ -3124,21 +3161,23 @@ bottom_panel_visibility_changed (XedPanel *bottom_panel,
 }
 
 static void
-bottom_panel_item_removed (XedPanel *panel,
+bottom_panel_item_removed (XedPanel  *panel,
                            GtkWidget *item,
                            XedWindow *window)
 {
     if (xed_panel_get_n_items (panel) == 0)
     {
         GtkAction *action;
-        gtk_widget_hide (GTK_WIDGET(panel));
+
+        gtk_widget_hide (GTK_WIDGET (panel));
+        gtk_revealer_set_reveal_child (GTK_REVEALER (window->priv->bottom_pane_button_revealer), FALSE);
         action = gtk_action_group_get_action (window->priv->panes_action_group, "ViewBottomPane");
         gtk_action_set_sensitive (action, FALSE);
     }
 }
 
 static void
-bottom_panel_item_added (XedPanel *panel,
+bottom_panel_item_added (XedPanel  *panel,
                          GtkWidget *item,
                          XedWindow *window)
 {
@@ -3148,9 +3187,12 @@ bottom_panel_item_added (XedPanel *panel,
     {
         GtkAction *action;
         gboolean show;
+
+        gtk_revealer_set_reveal_child (GTK_REVEALER (window->priv->bottom_pane_button_revealer), TRUE);
+
         action = gtk_action_group_get_action (window->priv->panes_action_group, "ViewBottomPane");
         gtk_action_set_sensitive (action, TRUE);
-        show = gtk_toggle_action_get_active (GTK_TOGGLE_ACTION(action));
+        show = gtk_toggle_action_get_active (GTK_TOGGLE_ACTION (action));
         if (show)
         {
             gtk_widget_show (GTK_WIDGET(panel));
@@ -3163,9 +3205,7 @@ create_bottom_panel (XedWindow *window)
 {
     xed_debug (DEBUG_WINDOW);
     window->priv->bottom_panel = xed_panel_new (GTK_ORIENTATION_HORIZONTAL);
-    gtk_paned_pack2 (GTK_PANED(window->priv->vpaned), window->priv->bottom_panel,
-    FALSE,
-                     FALSE);
+    gtk_paned_pack2 (GTK_PANED (window->priv->vpaned), window->priv->bottom_panel, FALSE, FALSE);
     g_signal_connect_after(window->priv->bottom_panel, "show", G_CALLBACK (bottom_panel_visibility_changed), window);
     g_signal_connect_after(window->priv->bottom_panel, "hide", G_CALLBACK (bottom_panel_visibility_changed), window);
 }
@@ -3178,7 +3218,7 @@ init_panels_visibility (XedWindow *window)
 
     /* side pane */
     active_page = xed_prefs_manager_get_side_panel_active_page ();
-    _xed_panel_set_active_item_by_id (XED_PANEL(window->priv->side_panel), active_page);
+    _xed_panel_set_active_item_by_id (XED_PANEL (window->priv->side_panel), active_page);
 
     if (xed_prefs_manager_get_side_pane_visible ())
     {
@@ -3186,7 +3226,7 @@ init_panels_visibility (XedWindow *window)
     }
 
     /* bottom pane, it can be empty */
-    if (xed_panel_get_n_items (XED_PANEL(window->priv->bottom_panel)) > 0)
+    if (xed_panel_get_n_items (XED_PANEL (window->priv->bottom_panel)) > 0)
     {
         active_page = xed_prefs_manager_get_bottom_panel_active_page ();
         _xed_panel_set_active_item_by_id (XED_PANEL(window->priv->bottom_panel), active_page);
@@ -3195,17 +3235,22 @@ init_panels_visibility (XedWindow *window)
         {
             gtk_widget_show (window->priv->bottom_panel);
         }
+
+        gtk_revealer_set_reveal_child (GTK_REVEALER (window->priv->bottom_pane_button_revealer), TRUE);
     }
     else
     {
         GtkAction *action;
+
         action = gtk_action_group_get_action (window->priv->panes_action_group, "ViewBottomPane");
         gtk_action_set_sensitive (action, FALSE);
+        gtk_revealer_set_reveal_child (GTK_REVEALER (window->priv->bottom_pane_button_revealer), FALSE);
     }
 
     /* start track sensitivity after the initial state is set */
-    window->priv->bottom_panel_item_removed_handler_id = g_signal_connect(window->priv->bottom_panel, "item_removed",
-                                                            G_CALLBACK (bottom_panel_item_removed), window);
+    window->priv->bottom_panel_item_removed_handler_id =
+        g_signal_connect (window->priv->bottom_panel, "item_removed",
+        G_CALLBACK (bottom_panel_item_removed), window);
 
     g_signal_connect(window->priv->bottom_panel, "item_added", G_CALLBACK (bottom_panel_item_added), window);
 }

@@ -179,10 +179,6 @@ xed_statusbar_init (XedStatusbar *statusbar)
     gtk_box_pack_start (GTK_BOX (statusbar),
                         statusbar->priv->error_frame,
                         FALSE, TRUE, 0);
-
-    gtk_box_reorder_child (GTK_BOX (statusbar),
-                           statusbar->priv->error_frame,
-                           0);
 }
 
 /**
