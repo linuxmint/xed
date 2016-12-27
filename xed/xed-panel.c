@@ -47,6 +47,8 @@ struct _XedPanelPrivate
 {
     GtkOrientation orientation;
 
+    GtkWidget *main_box;
+
     /* Title bar (vertical panel only) */
     GtkWidget *title_image;
     GtkWidget *title_label;
@@ -87,7 +89,7 @@ static GObject *xed_panel_constructor (GType                  type,
                                        GObjectConstructParam *construct_properties);
 
 
-G_DEFINE_TYPE (XedPanel, xed_panel, GTK_TYPE_BOX)
+G_DEFINE_TYPE (XedPanel, xed_panel, GTK_TYPE_BIN)
 
 static void
 xed_panel_finalize (GObject *obj)
@@ -159,6 +161,71 @@ xed_panel_focus_document (XedPanel *panel)
 }
 
 static void
+xed_panel_get_size (GtkWidget      *widget,
+                    GtkOrientation  orientation,
+                    gint           *minimum,
+                    gint           *natural)
+{
+    GtkBin *bin = GTK_BIN (widget);
+    GtkWidget *child;
+
+    if (minimum)
+    {
+        *minimum = 0;
+    }
+
+    if (natural)
+    {
+        *natural = 0;
+    }
+
+    child = gtk_bin_get_child (bin);
+    if (child && gtk_widget_get_visible (child))
+    {
+        if (orientation == GTK_ORIENTATION_HORIZONTAL)
+        {
+            gtk_widget_get_preferred_width (child, minimum, natural);
+        }
+        else
+        {
+            gtk_widget_get_preferred_height (child, minimum, natural);
+        }
+    }
+}
+
+static void
+xed_panel_get_preferred_width (GtkWidget *widget,
+                               gint      *minimum,
+                               gint      *natural)
+{
+    xed_panel_get_size (widget, GTK_ORIENTATION_HORIZONTAL, minimum, natural);
+}
+
+static void
+xed_panel_get_preferred_height (GtkWidget *widget,
+                                gint      *minimum,
+                                gint      *natural)
+{
+   xed_panel_get_size (widget, GTK_ORIENTATION_VERTICAL, minimum, natural);
+}
+
+static void
+xed_panel_size_allocate (GtkWidget     *widget,
+                         GtkAllocation *allocation)
+{
+    GtkBin *bin = GTK_BIN (widget);
+    GtkWidget *child;
+
+    GTK_WIDGET_CLASS (xed_panel_parent_class)->size_allocate (widget, allocation);
+
+    child = gtk_bin_get_child (bin);
+    if (child && gtk_widget_get_visible (child))
+    {
+       gtk_widget_size_allocate (child, allocation);
+    }
+}
+
+static void
 xed_panel_grab_focus (GtkWidget *w)
 {
     gint n;
@@ -191,22 +258,24 @@ xed_panel_class_init (XedPanelClass *klass)
     object_class->get_property = xed_panel_get_property;
     object_class->set_property = xed_panel_set_property;
 
-    g_object_class_install_property (object_class,
-                                     PROP_ORIENTATION,
-                                     g_param_spec_enum ("panel-orientation",
-                                                        "Panel Orientation",
-                                                        "The panel's orientation",
-                                                        GTK_TYPE_ORIENTATION,
-                                                        GTK_ORIENTATION_VERTICAL,
-                                                        G_PARAM_WRITABLE |
-                                                        G_PARAM_READABLE |
-                                                        G_PARAM_CONSTRUCT_ONLY |
-                                                        G_PARAM_STATIC_STRINGS));
-
+    widget_class->get_preferred_width = xed_panel_get_preferred_width;
+    widget_class->get_preferred_height = xed_panel_get_preferred_height;
+    widget_class->size_allocate = xed_panel_size_allocate;
     widget_class->grab_focus = xed_panel_grab_focus;
 
     klass->close = xed_panel_close;
     klass->focus_document = xed_panel_focus_document;
+
+    g_object_class_install_property (object_class,
+                                     PROP_ORIENTATION,
+                                     g_param_spec_enum ("orientation",
+                                                        "Panel Orientation",
+                                                        "The panel's orientation",
+                                                        GTK_TYPE_ORIENTATION,
+                                                        GTK_ORIENTATION_VERTICAL,
+                                                        G_PARAM_READWRITE |
+                                                        G_PARAM_CONSTRUCT_ONLY |
+                                                        G_PARAM_STATIC_STRINGS));
 
     signals[ITEM_ADDED] =
         g_signal_new ("item_added",
@@ -384,7 +453,9 @@ xed_panel_init (XedPanel *panel)
 {
     panel->priv = XED_PANEL_GET_PRIVATE (panel);
 
-    gtk_orientable_set_orientation (GTK_ORIENTABLE (panel), GTK_ORIENTATION_VERTICAL);
+    panel->priv->main_box = gtk_box_new (GTK_ORIENTATION_VERTICAL, 0);
+    gtk_widget_show (panel->priv->main_box);
+    gtk_container_add (GTK_CONTAINER (panel), panel->priv->main_box);
 }
 
 static void
@@ -441,7 +512,7 @@ build_horizontal_panel (XedPanel *panel)
 
     gtk_widget_show_all (box);
 
-    gtk_box_pack_start (GTK_BOX (panel), box, TRUE, TRUE, 0);
+    gtk_box_pack_start (GTK_BOX (panel->priv->main_box), box, TRUE, TRUE, 0);
 }
 
 static void
@@ -456,7 +527,7 @@ build_vertical_panel (XedPanel *panel)
     title_hbox = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 6);
     gtk_container_set_border_width (GTK_CONTAINER (title_hbox), 5);
 
-    gtk_box_pack_start (GTK_BOX (panel), title_hbox, FALSE, FALSE, 0);
+    gtk_box_pack_start (GTK_BOX (panel->priv->main_box), title_hbox, FALSE, FALSE, 0);
 
     icon_name_hbox = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 0);
     gtk_box_pack_start (GTK_BOX (title_hbox), icon_name_hbox, TRUE, TRUE, 0);
@@ -477,7 +548,7 @@ build_vertical_panel (XedPanel *panel)
 
     gtk_widget_show_all (title_hbox);
 
-    gtk_box_pack_start (GTK_BOX (panel), panel->priv->notebook, TRUE, TRUE, 0);
+    gtk_box_pack_start (GTK_BOX (panel->priv->main_box), panel->priv->notebook, TRUE, TRUE, 0);
 }
 
 static GObject *
