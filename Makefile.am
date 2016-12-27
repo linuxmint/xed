@@ -1,7 +1,7 @@
 ## Process this file with automake to produce Makefile.in
 ACLOCAL_AMFLAGS = -I m4 ${ACLOCAL_FLAGS}
 
-SUBDIRS = xed pixmaps po data plugin-loaders plugins docs help
+SUBDIRS = xed pixmaps po data plugins docs help
 
 if ENABLE_TESTS
     SUBDIRS += tests

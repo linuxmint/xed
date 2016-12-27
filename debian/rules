@@ -6,7 +6,6 @@ DHFLAGS=--parallel
 	dh $@ $(DHFLAGS)
 
 override_dh_install:
-	rm -rfv debian/tmp/usr/lib/*/xed/plugin-loaders/*.la
 	rm -rfv debian/tmp/usr/lib/*/xed/plugins/*.la
 	dh_install --fail-missing
 

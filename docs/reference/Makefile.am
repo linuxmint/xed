@@ -46,8 +46,6 @@ IGNORE_HFILES=		\
 	xed-documents-panel.h			\
 	xed-io-error-message-area.h		\
 	xed-languages-manager.h		\
-	xed-object-module.h			\
-	xed-plugin-manager.h			\
 	xed-plugins-engine.h			\
 	xed-prefs-manager-private.h		\
 	xed-session.h				\
