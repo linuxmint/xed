@@ -48,12 +48,6 @@ struct _XedPanelPrivate
     GtkOrientation orientation;
 
     GtkWidget *main_box;
-
-    /* Title bar (vertical panel only) */
-    GtkWidget *title_image;
-    GtkWidget *title_label;
-
-    /* Notebook */
     GtkWidget *notebook;
 };
 
@@ -392,63 +386,6 @@ set_gtk_image_from_gtk_image (GtkImage *image,
 }
 
 static void
-sync_title (XedPanel     *panel,
-            XedPanelItem *item)
-{
-    if (panel->priv->orientation != GTK_ORIENTATION_VERTICAL)
-    {
-        return;
-    }
-
-    if (item != NULL)
-    {
-        gtk_label_set_text (GTK_LABEL (panel->priv->title_label), item->name);
-
-        set_gtk_image_from_gtk_image (GTK_IMAGE (panel->priv->title_image), GTK_IMAGE (item->icon));
-    }
-    else
-    {
-        gtk_label_set_text (GTK_LABEL (panel->priv->title_label), _("Empty"));
-        gtk_image_set_from_stock (GTK_IMAGE (panel->priv->title_image), GTK_STOCK_FILE, GTK_ICON_SIZE_MENU);
-    }
-}
-
-static void
-notebook_page_changed (GtkNotebook *notebook,
-                       GtkWidget   *page,
-                       guint        page_num,
-                       XedPanel    *panel)
-{
-    GtkWidget *item;
-    XedPanelItem *data;
-
-    item = gtk_notebook_get_nth_page (notebook, page_num);
-    g_return_if_fail (item != NULL);
-
-    data = (XedPanelItem *)g_object_get_data (G_OBJECT (item), PANEL_ITEM_KEY);
-    g_return_if_fail (data != NULL);
-
-    sync_title (panel, data);
-}
-
-static void
-panel_show (XedPanel *panel,
-            gpointer  user_data)
-{
-    gint page;
-    GtkNotebook *nb;
-
-    nb = GTK_NOTEBOOK (panel->priv->notebook);
-
-    page = gtk_notebook_get_current_page (nb);
-
-    if (page != -1)
-    {
-        notebook_page_changed (nb, NULL, page, panel);
-    }
-}
-
-static void
 xed_panel_init (XedPanel *panel)
 {
     panel->priv = XED_PANEL_GET_PRIVATE (panel);
@@ -456,25 +393,6 @@ xed_panel_init (XedPanel *panel)
     panel->priv->main_box = gtk_box_new (GTK_ORIENTATION_VERTICAL, 0);
     gtk_widget_show (panel->priv->main_box);
     gtk_container_add (GTK_CONTAINER (panel), panel->priv->main_box);
-}
-
-static void
-close_button_clicked_cb (GtkWidget *widget,
-                         GtkWidget *panel)
-{
-    gtk_widget_hide (panel);
-}
-
-static GtkWidget *
-create_close_button (XedPanel *panel)
-{
-    GtkWidget *button;
-
-    button = xed_close_button_new ();
-    gtk_widget_set_tooltip_text (button, _("Hide panel"));
-    g_signal_connect (button, "clicked", G_CALLBACK (close_button_clicked_cb), panel);
-
-    return button;
 }
 
 static void
@@ -488,66 +406,17 @@ build_notebook_for_panel (XedPanel *panel)
     gtk_notebook_popup_enable (GTK_NOTEBOOK (panel->priv->notebook));
 
     gtk_widget_show (GTK_WIDGET (panel->priv->notebook));
-
-    g_signal_connect (panel->priv->notebook, "switch-page", G_CALLBACK (notebook_page_changed), panel);
 }
 
 static void
 build_horizontal_panel (XedPanel *panel)
 {
-    GtkWidget *box;
-    GtkWidget *sidebar;
-    GtkWidget *close_button;
-
-    box = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 0);
-    gtk_box_pack_start (GTK_BOX (box), panel->priv->notebook, TRUE, TRUE, 0);
-
-    /* Toolbar, close button and first separator */
-    sidebar = gtk_box_new(GTK_ORIENTATION_VERTICAL, 6);
-    gtk_container_set_border_width (GTK_CONTAINER (sidebar), 4);
-    gtk_box_pack_start (GTK_BOX (box), sidebar, FALSE, FALSE, 0);
-
-    close_button = create_close_button (panel);
-    gtk_box_pack_start (GTK_BOX (sidebar), close_button, FALSE, FALSE, 0);
-
-    gtk_widget_show_all (box);
-
-    gtk_box_pack_start (GTK_BOX (panel->priv->main_box), box, TRUE, TRUE, 0);
+    gtk_box_pack_start (GTK_BOX (panel->priv->main_box), panel->priv->notebook, TRUE, TRUE, 0);
 }
 
 static void
 build_vertical_panel (XedPanel *panel)
 {
-    GtkWidget *close_button;
-    GtkWidget *title_hbox;
-    GtkWidget *icon_name_hbox;
-    GtkWidget *dummy_label;
-
-    /* Create title hbox */
-    title_hbox = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 6);
-    gtk_container_set_border_width (GTK_CONTAINER (title_hbox), 5);
-
-    gtk_box_pack_start (GTK_BOX (panel->priv->main_box), title_hbox, FALSE, FALSE, 0);
-
-    icon_name_hbox = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 0);
-    gtk_box_pack_start (GTK_BOX (title_hbox), icon_name_hbox, TRUE, TRUE, 0);
-
-    panel->priv->title_image = gtk_image_new_from_stock (GTK_STOCK_FILE, GTK_ICON_SIZE_MENU);
-    gtk_box_pack_start (GTK_BOX (icon_name_hbox), panel->priv->title_image, FALSE, TRUE, 0);
-
-    dummy_label = gtk_label_new (" ");
-    gtk_box_pack_start (GTK_BOX (icon_name_hbox), dummy_label, FALSE, FALSE, 0);
-
-    panel->priv->title_label = gtk_label_new (_("Empty"));
-    gtk_misc_set_alignment (GTK_MISC (panel->priv->title_label), 0, 0.5);
-    gtk_label_set_ellipsize(GTK_LABEL (panel->priv->title_label), PANGO_ELLIPSIZE_END);
-    gtk_box_pack_start (GTK_BOX (icon_name_hbox), panel->priv->title_label, TRUE, TRUE, 0);
-
-    close_button = create_close_button (panel);
-    gtk_box_pack_start (GTK_BOX (title_hbox), close_button, FALSE, FALSE, 0);
-
-    gtk_widget_show_all (title_hbox);
-
     gtk_box_pack_start (GTK_BOX (panel->priv->main_box), panel->priv->notebook, TRUE, TRUE, 0);
 }
 
@@ -574,8 +443,6 @@ xed_panel_constructor (GType                  type,
     {
         build_vertical_panel (panel);
     }
-
-    g_signal_connect (panel, "show", G_CALLBACK (panel_show), NULL);
 
     return obj;
 }
@@ -771,12 +638,6 @@ xed_panel_remove_item (XedPanel  *panel,
     g_object_ref (G_OBJECT (item));
 
     gtk_notebook_remove_page (GTK_NOTEBOOK (panel->priv->notebook), page_num);
-
-    /* if we removed all the pages, reset the title */
-    if (gtk_notebook_get_n_pages (GTK_NOTEBOOK (panel->priv->notebook)) == 0)
-    {
-        sync_title (panel, NULL);
-    }
 
     g_signal_emit (G_OBJECT (panel), signals[ITEM_REMOVED], 0, item);
 
