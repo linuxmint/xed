@@ -408,18 +408,6 @@ build_notebook_for_panel (XedPanel *panel)
     gtk_widget_show (GTK_WIDGET (panel->priv->notebook));
 }
 
-static void
-build_horizontal_panel (XedPanel *panel)
-{
-    gtk_box_pack_start (GTK_BOX (panel->priv->main_box), panel->priv->notebook, TRUE, TRUE, 0);
-}
-
-static void
-build_vertical_panel (XedPanel *panel)
-{
-    gtk_box_pack_start (GTK_BOX (panel->priv->main_box), panel->priv->notebook, TRUE, TRUE, 0);
-}
-
 static GObject *
 xed_panel_constructor (GType                  type,
                        guint                  n_construct_properties,
@@ -435,14 +423,7 @@ xed_panel_constructor (GType                  type,
     XedPanel *panel = XED_PANEL (obj);
 
     build_notebook_for_panel (panel);
-    if (panel->priv->orientation == GTK_ORIENTATION_HORIZONTAL)
-    {
-        build_horizontal_panel (panel);
-    }
-    else
-    {
-        build_vertical_panel (panel);
-    }
+    gtk_box_pack_start (GTK_BOX (panel->priv->main_box), panel->priv->notebook, TRUE, TRUE, 0);
 
     return obj;
 }
