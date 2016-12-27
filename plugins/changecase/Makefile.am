@@ -19,11 +19,11 @@ libchangecase_la_LIBADD = $(XED_LIBS)
 uidir = $(XED_PLUGINS_DATA_DIR)/changecase
 ui_DATA =
 
-plugin_in_files = changecase.xed-plugin.desktop.in
+plugin_in_files = changecase.plugin.desktop.in
 
-%.xed-plugin: %.xed-plugin.desktop.in $(INTLTOOL_MERGE) $(wildcard $(top_srcdir)/po/*po) ; $(INTLTOOL_MERGE) $(top_srcdir)/po $< $@ -d -u -c $(top_builddir)/po/.intltool-merge-cache
+%.plugin: %.plugin.desktop.in $(INTLTOOL_MERGE) $(wildcard $(top_srcdir)/po/*po) ; $(INTLTOOL_MERGE) $(top_srcdir)/po $< $@ -d -u -c $(top_builddir)/po/.intltool-merge-cache
 
-plugin_DATA = $(plugin_in_files:.xed-plugin.desktop.in=.xed-plugin)
+plugin_DATA = $(plugin_in_files:.plugin.desktop.in=.plugin)
 
 EXTRA_DIST = $(ui_DATA) $(plugin_in_files)
 

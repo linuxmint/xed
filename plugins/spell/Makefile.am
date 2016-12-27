@@ -6,7 +6,7 @@ AM_CPPFLAGS = 							\
 	$(XED_CFLAGS) 					\
 	$(ENCHANT_CFLAGS)					\
 	$(WARN_CFLAGS)						\
-	$(DISABLE_DEPRECATED_CFLAGS)	
+	$(DISABLE_DEPRECATED_CFLAGS)
 
 BUILT_SOURCES = 					\
 	xed-spell-marshal.c				\
@@ -29,9 +29,9 @@ libspell_la_SOURCES = \
 	xed-automatic-spell-checker.h			\
 	xed-spell-utils.c				\
 	xed-spell-utils.h				\
-	$(BUILT_SOURCES)			
+	$(BUILT_SOURCES)
 
-libspell_la_LDFLAGS = $(PLUGIN_LIBTOOL_FLAGS) 
+libspell_la_LDFLAGS = $(PLUGIN_LIBTOOL_FLAGS)
 libspell_la_LIBADD  = $(XED_LIBS) $(ENCHANT_LIBS)
 
 uidir = $(XED_PLUGINS_DATA_DIR)/spell
@@ -44,11 +44,11 @@ xed-spell-marshal.c: xed-spell-marshal.list $(GLIB_GENMARSHAL)
 	$(AM_V_GEN) echo "#include \"xed-spell-marshal.h\"" > $@ && \
 	$(GLIB_GENMARSHAL) $< --body --prefix=xed_marshal >> $@
 
-plugin_in_files = spell.xed-plugin.desktop.in
+plugin_in_files = spell.plugin.desktop.in
 
-%.xed-plugin: %.xed-plugin.desktop.in $(INTLTOOL_MERGE) $(wildcard $(top_srcdir)/po/*po) ; $(INTLTOOL_MERGE) $(top_srcdir)/po $< $@ -d -u -c $(top_builddir)/po/.intltool-merge-cache
+%.plugin: %.plugin.desktop.in $(INTLTOOL_MERGE) $(wildcard $(top_srcdir)/po/*po) ; $(INTLTOOL_MERGE) $(top_srcdir)/po $< $@ -d -u -c $(top_builddir)/po/.intltool-merge-cache
 
-plugin_DATA = $(plugin_in_files:.xed-plugin.desktop.in=.xed-plugin)
+plugin_DATA = $(plugin_in_files:.plugin.desktop.in=.plugin)
 
 @INTLTOOL_XML_NOMERGE_RULE@
 spell_gschema_in = org.x.editor.plugins.spell.gschema.xml.in

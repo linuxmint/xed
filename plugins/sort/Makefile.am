@@ -5,7 +5,7 @@ AM_CPPFLAGS = \
 	-I$(top_srcdir) 				\
 	$(XED_CFLAGS) 				\
 	$(WARN_CFLAGS)					\
-	$(DISABLE_DEPRECATED_CFLAGS)	
+	$(DISABLE_DEPRECATED_CFLAGS)
 
 plugin_LTLIBRARIES = libsort.la
 
@@ -19,11 +19,11 @@ libsort_la_LIBADD  = $(XED_LIBS)
 uidir = $(XED_PLUGINS_DATA_DIR)/sort
 ui_DATA = sort.ui
 
-plugin_in_files = sort.xed-plugin.desktop.in
+plugin_in_files = sort.plugin.desktop.in
 
-%.xed-plugin: %.xed-plugin.desktop.in $(INTLTOOL_MERGE) $(wildcard $(top_srcdir)/po/*po) ; $(INTLTOOL_MERGE) $(top_srcdir)/po $< $@ -d -u -c $(top_builddir)/po/.intltool-merge-cache
+%.plugin: %.plugin.desktop.in $(INTLTOOL_MERGE) $(wildcard $(top_srcdir)/po/*po) ; $(INTLTOOL_MERGE) $(top_srcdir)/po $< $@ -d -u -c $(top_builddir)/po/.intltool-merge-cache
 
-plugin_DATA = $(plugin_in_files:.xed-plugin.desktop.in=.xed-plugin)
+plugin_DATA = $(plugin_in_files:.plugin.desktop.in=.plugin)
 
 EXTRA_DIST = $(ui_DATA) $(plugin_in_files)
 
