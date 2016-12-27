@@ -401,7 +401,6 @@ build_notebook_for_panel (XedPanel *panel)
     /* Create the panel notebook */
     panel->priv->notebook = gtk_notebook_new ();
 
-    gtk_notebook_set_tab_pos (GTK_NOTEBOOK (panel->priv->notebook), GTK_POS_BOTTOM);
     gtk_notebook_set_scrollable (GTK_NOTEBOOK (panel->priv->notebook), TRUE);
     gtk_notebook_popup_enable (GTK_NOTEBOOK (panel->priv->notebook));
 
