@@ -3352,7 +3352,7 @@ xed_window_init (XedWindow *window)
 
     xed_debug (DEBUG_WINDOW);
 
-    window->priv = XED_WINDOW_GET_PRIVATE(window);
+    window->priv = XED_WINDOW_GET_PRIVATE (window);
     window->priv->active_tab = NULL;
     window->priv->num_tabs = 0;
     window->priv->removing_tabs = FALSE;
@@ -3364,10 +3364,10 @@ xed_window_init (XedWindow *window)
     window->priv->message_bus = xed_message_bus_new ();
 
     window->priv->window_group = gtk_window_group_new ();
-    gtk_window_group_add_window (window->priv->window_group, GTK_WINDOW(window));
+    gtk_window_group_add_window (window->priv->window_group, GTK_WINDOW (window));
 
     main_box = gtk_box_new (GTK_ORIENTATION_VERTICAL, 0);
-    gtk_container_add (GTK_CONTAINER(window), main_box);
+    gtk_container_add (GTK_CONTAINER (window), main_box);
     gtk_widget_show (main_box);
 
     /* Add menu bar and toolbar bar */
@@ -3377,12 +3377,12 @@ xed_window_init (XedWindow *window)
     if (geteuid () == 0)
     {
         GtkWidget *root_bar = gtk_info_bar_new ();
-        gtk_info_bar_set_message_type (GTK_INFO_BAR(root_bar), GTK_MESSAGE_ERROR);
-        GtkWidget *content_area = gtk_info_bar_get_content_area (GTK_INFO_BAR(root_bar));
+        gtk_info_bar_set_message_type (GTK_INFO_BAR (root_bar), GTK_MESSAGE_ERROR);
+        GtkWidget *content_area = gtk_info_bar_get_content_area (GTK_INFO_BAR (root_bar));
         GtkWidget *label = gtk_label_new (_("Elevated Privileges"));
         gtk_widget_show (label);
-        gtk_container_add (GTK_CONTAINER(content_area), label);
-        gtk_box_pack_start (GTK_BOX(main_box), root_bar, FALSE, FALSE, 0);
+        gtk_container_add (GTK_CONTAINER (content_area), label);
+        gtk_box_pack_start (GTK_BOX (main_box), root_bar, FALSE, FALSE, 0);
         gtk_widget_set_visible (root_bar, TRUE);
     }
 
@@ -3391,12 +3391,11 @@ xed_window_init (XedWindow *window)
 
     /* Add the main area */
     xed_debug_message (DEBUG_WINDOW, "Add main area");
-    window->priv->hpaned = gtk_hpaned_new ();
-    gtk_box_pack_start (GTK_BOX(main_box), window->priv->hpaned, TRUE, TRUE, 0);
+    window->priv->hpaned = gtk_paned_new (GTK_ORIENTATION_HORIZONTAL);
+    gtk_box_pack_start (GTK_BOX (main_box), window->priv->hpaned, TRUE, TRUE, 0);
 
-    window->priv->vpaned = gtk_vpaned_new ();
-    gtk_paned_pack2 (GTK_PANED(window->priv->hpaned), window->priv->vpaned, TRUE,
-    FALSE);
+    window->priv->vpaned = gtk_paned_new (GTK_ORIENTATION_VERTICAL);
+    gtk_paned_pack2 (GTK_PANED (window->priv->hpaned), window->priv->vpaned, TRUE, FALSE);
 
     xed_debug_message (DEBUG_WINDOW, "Create xed notebook");
     window->priv->notebook = xed_notebook_new ();
@@ -3423,30 +3422,28 @@ xed_window_init (XedWindow *window)
                        NULL, 0, GDK_ACTION_COPY);
 
     /* Add uri targets */
-    tl = gtk_drag_dest_get_target_list (GTK_WIDGET(window));
+    tl = gtk_drag_dest_get_target_list (GTK_WIDGET (window));
 
     if (tl == NULL)
     {
         tl = gtk_target_list_new (NULL, 0);
-        gtk_drag_dest_set_target_list (GTK_WIDGET(window), tl);
+        gtk_drag_dest_set_target_list (GTK_WIDGET (window), tl);
         gtk_target_list_unref (tl);
     }
 
     gtk_target_list_add_uri_targets (tl, TARGET_URI_LIST);
 
-    /* connect instead of override, so that we can
-     * share the cb code with the view */
-    g_signal_connect(window, "drag_data_received", G_CALLBACK (drag_data_received_cb), NULL);
+    /* connect instead of override, so that we can share the cb code with the view */
+    g_signal_connect (window, "drag_data_received", G_CALLBACK (drag_data_received_cb), NULL);
 
-    /* we can get the clipboard only after the widget
-     * is realized */
-    g_signal_connect(window, "realize", G_CALLBACK (window_realized), NULL);
-    g_signal_connect(window, "unrealize", G_CALLBACK (window_unrealized), NULL);
+    /* we can get the clipboard only after the widget is realized */
+    g_signal_connect (window, "realize", G_CALLBACK (window_realized), NULL);
+    g_signal_connect (window, "unrealize", G_CALLBACK (window_unrealized), NULL);
 
     /* Check if the window is active for fullscreen */
-    g_signal_connect(window, "notify::is-active", G_CALLBACK (check_window_is_active), NULL);
+    g_signal_connect (window, "notify::is-active", G_CALLBACK (check_window_is_active), NULL);
 
-    g_signal_connect(GTK_WIDGET (window), "key-press-event", G_CALLBACK (on_key_pressed), window);
+    g_signal_connect (GTK_WIDGET (window), "key-press-event", G_CALLBACK (on_key_pressed), window);
 
     xed_debug_message (DEBUG_WINDOW, "Update plugins ui");
 
