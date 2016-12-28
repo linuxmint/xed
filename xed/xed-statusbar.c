@@ -120,6 +120,7 @@ xed_statusbar_init (XedStatusbar *statusbar)
     gtk_box_pack_end (GTK_BOX (statusbar),
                       statusbar->priv->overwrite_mode_label,
                       FALSE, TRUE, 0);
+    gtk_widget_set_margin_right (GTK_WIDGET (statusbar->priv->overwrite_mode_label), 6);
 
     statusbar->priv->cursor_position_label = gtk_label_new (NULL);
     gtk_label_set_width_chars (GTK_LABEL (statusbar->priv->cursor_position_label),

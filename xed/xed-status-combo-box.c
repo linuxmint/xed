@@ -153,7 +153,7 @@ xed_status_combo_box_class_init (XedStatusComboBoxClass *klass)
           "-GtkButton-inner-border: 0;\n"
           "-GtkWidget-focus-line-width : 0;\n"
           "-GtkWidget-focus-padding : 0;\n"
-          "padding: 0;\n"
+          "padding: 2px;\n"
         "}";
 
     object_class->finalize = xed_status_combo_box_finalize;

@@ -1633,11 +1633,16 @@ create_statusbar (XedWindow *window,
     window->priv->tip_message_cid = gtk_statusbar_get_context_id (GTK_STATUSBAR (window->priv->statusbar),
                                                                   "tip_message");
 
-    gtk_box_pack_end (GTK_BOX(main_box), window->priv->statusbar, FALSE, TRUE, 0);
+    gtk_box_pack_end (GTK_BOX( main_box), window->priv->statusbar, FALSE, TRUE, 0);
+
+    gtk_widget_set_margin_left (GTK_WIDGET (window->priv->statusbar), 0);
+    gtk_widget_set_margin_right (GTK_WIDGET (window->priv->statusbar), 0);
 
     window->priv->tab_width_combo = xed_status_combo_box_new (_("Tab Width"));
     gtk_widget_show (window->priv->tab_width_combo);
-    gtk_box_pack_end (GTK_BOX(window->priv->statusbar), window->priv->tab_width_combo, FALSE, TRUE, 0);
+    gtk_box_pack_end (GTK_BOX (window->priv->statusbar), window->priv->tab_width_combo, FALSE, FALSE, 0);
+    gtk_widget_set_margin_bottom (GTK_WIDGET (window->priv->tab_width_combo), 2);
+    gtk_widget_set_margin_top (GTK_WIDGET (window->priv->tab_width_combo), 2);
 
     fill_tab_width_combo (window);
 
@@ -1646,7 +1651,9 @@ create_statusbar (XedWindow *window,
 
     window->priv->language_combo = xed_status_combo_box_new (NULL);
     gtk_widget_show (window->priv->language_combo);
-    gtk_box_pack_end (GTK_BOX(window->priv->statusbar), window->priv->language_combo, FALSE, TRUE, 0);
+    gtk_widget_set_margin_bottom (GTK_WIDGET (window->priv->language_combo), 2);
+    gtk_widget_set_margin_top (GTK_WIDGET (window->priv->language_combo), 2);
+    gtk_box_pack_end (GTK_BOX(window->priv->statusbar), window->priv->language_combo, FALSE, FALSE, 0);
 
     fill_language_combo (window);
 
@@ -1656,6 +1663,7 @@ create_statusbar (XedWindow *window,
     button_box = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 4);
     gtk_widget_set_margin_top (button_box, 4);
     gtk_widget_set_margin_bottom (button_box, 4);
+    gtk_widget_set_margin_left (button_box, 6);
     gtk_box_pack_start (GTK_BOX (window->priv->statusbar), button_box, FALSE, FALSE, 0);
 
     window->priv->show_side_pane_button = gtk_toggle_button_new ();
