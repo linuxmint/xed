@@ -424,6 +424,17 @@ xed_panel_constructor (GType                  type,
     build_notebook_for_panel (panel);
     gtk_box_pack_start (GTK_BOX (panel->priv->main_box), panel->priv->notebook, TRUE, TRUE, 0);
 
+    gtk_style_context_add_class (gtk_widget_get_style_context (panel), "xed-panel");
+
+    if (panel->priv->orientation == GTK_ORIENTATION_VERTICAL)
+    {
+        gtk_style_context_add_class (gtk_widget_get_style_context (panel), "side");
+    }
+    else
+    {
+        gtk_style_context_add_class (gtk_widget_get_style_context (panel), "bottom");
+    }
+
     return obj;
 }
 

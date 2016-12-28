@@ -3120,15 +3120,13 @@ create_side_panel (XedWindow *window)
 
     window->priv->side_panel = xed_panel_new (GTK_ORIENTATION_VERTICAL);
 
-    gtk_paned_pack1 (GTK_PANED(window->priv->hpaned), window->priv->side_panel,
-    FALSE,
-                     FALSE);
+    gtk_paned_pack1 (GTK_PANED (window->priv->hpaned), window->priv->side_panel, FALSE, FALSE);
 
-    g_signal_connect_after(window->priv->side_panel, "show", G_CALLBACK (side_panel_visibility_changed), window);
-    g_signal_connect_after(window->priv->side_panel, "hide", G_CALLBACK (side_panel_visibility_changed), window);
+    g_signal_connect_after (window->priv->side_panel, "show", G_CALLBACK (side_panel_visibility_changed), window);
+    g_signal_connect_after (window->priv->side_panel, "hide", G_CALLBACK (side_panel_visibility_changed), window);
 
     documents_panel = xed_documents_panel_new (window);
-    xed_panel_add_item_with_stock_icon (XED_PANEL(window->priv->side_panel), documents_panel, _("Documents"),
+    xed_panel_add_item_with_stock_icon (XED_PANEL (window->priv->side_panel), documents_panel, _("Documents"),
     GTK_STOCK_FILE);
 }
 
@@ -3365,6 +3363,8 @@ xed_window_init (XedWindow *window)
 
     window->priv->window_group = gtk_window_group_new ();
     gtk_window_group_add_window (window->priv->window_group, GTK_WINDOW (window));
+
+    gtk_style_context_add_class (gtk_widget_get_style_context (window), "xed-window");
 
     main_box = gtk_box_new (GTK_ORIENTATION_VERTICAL, 0);
     gtk_container_add (GTK_CONTAINER (window), main_box);

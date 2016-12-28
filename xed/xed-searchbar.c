@@ -564,6 +564,8 @@ xed_searchbar_init (XedSearchbar *searchbar)
                               NULL);
     g_free (file);
 
+    gtk_style_context_add_class (gtk_widget_get_style_context (searchbar), "xed-searchbar");
+
     searchbar->priv->search_entry = xed_history_entry_new ("history-search-for", TRUE);
     gtk_widget_set_hexpand (searchbar->priv->search_entry, TRUE);
     xed_history_entry_set_escape_func (XED_HISTORY_ENTRY (searchbar->priv->search_entry),
