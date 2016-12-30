@@ -2051,6 +2051,34 @@ language_changed (GObject *object,
 }
 
 static void
+word_wrap_changed (GObject *object,
+                   GParamSpec *pspec,
+                   XedWindow *window)
+{
+    XedView *view;
+    GtkWrapMode wrap_mode;
+    GtkAction *action;
+    gboolean wrap_enabled;
+
+    view = XED_VIEW (object);
+    wrap_mode = gtk_text_view_get_wrap_mode (GTK_TEXT_VIEW (view));
+    action = gtk_action_group_get_action (window->priv->always_sensitive_action_group, "ViewWordWrap");
+
+    if (wrap_mode == GTK_WRAP_NONE)
+    {
+        wrap_enabled = FALSE;
+    }
+    else
+    {
+        wrap_enabled = TRUE;
+    }
+
+    g_signal_handlers_block_by_func (action, G_CALLBACK (_xed_cmd_view_toggle_word_wrap), window);
+    gtk_toggle_action_set_active (GTK_TOGGLE_ACTION (action), wrap_enabled);
+    g_signal_handlers_unblock_by_func (action, G_CALLBACK (_xed_cmd_view_toggle_word_wrap), window);
+}
+
+static void
 notebook_switch_page (GtkNotebook *book,
                       GtkWidget *pg,
                       gint page_num,
@@ -2080,9 +2108,14 @@ notebook_switch_page (GtkNotebook *book,
 
         if (window->priv->spaces_instead_of_tabs_id)
         {
-            g_signal_handler_disconnect (xed_tab_get_view (window->priv->active_tab),
-                                         window->priv->spaces_instead_of_tabs_id);
+            g_signal_handler_disconnect (xed_tab_get_view (window->priv->active_tab), window->priv->spaces_instead_of_tabs_id);
             window->priv->spaces_instead_of_tabs_id = 0;
+        }
+
+        if (window->priv->use_word_wrap_id)
+        {
+            g_signal_handler_disconnect (xed_tab_get_view (window->priv->active_tab), window->priv->use_word_wrap_id);
+            window->priv->use_word_wrap_id = 0;
         }
     }
 
@@ -2102,7 +2135,7 @@ notebook_switch_page (GtkNotebook *book,
      */
     if (action != NULL)
     {
-        gtk_toggle_action_set_active (GTK_TOGGLE_ACTION(action), TRUE);
+        gtk_toggle_action_set_active (GTK_TOGGLE_ACTION (action), TRUE);
     }
 
     g_free (action_name);
@@ -2113,8 +2146,8 @@ notebook_switch_page (GtkNotebook *book,
     view = xed_tab_get_view (tab);
 
     /* sync the statusbar */
-    update_cursor_position_statusbar (GTK_TEXT_BUFFER(xed_tab_get_document (tab)), window);
-    xed_statusbar_set_overwrite (XED_STATUSBAR(window->priv->statusbar),
+    update_cursor_position_statusbar (GTK_TEXT_BUFFER (xed_tab_get_document (tab)), window);
+    xed_statusbar_set_overwrite (XED_STATUSBAR (window->priv->statusbar),
                                  gtk_text_view_get_overwrite (GTK_TEXT_VIEW(view)));
 
     gtk_widget_show (window->priv->tab_width_combo);
@@ -2128,12 +2161,16 @@ notebook_switch_page (GtkNotebook *book,
     window->priv->language_changed_id = g_signal_connect(xed_tab_get_document (tab), "notify::language",
                                                          G_CALLBACK (language_changed), window);
 
-    /* call it for the first time */
-    tab_width_changed (G_OBJECT(view), NULL, window);
-    spaces_instead_of_tabs_changed (G_OBJECT(view), NULL, window);
-    language_changed (G_OBJECT(xed_tab_get_document (tab)), NULL, window);
+    window->priv->use_word_wrap_id = g_signal_connect (view, "notify::wrap-mode",
+                                                       G_CALLBACK (word_wrap_changed), window);
 
-    g_signal_emit (G_OBJECT(window), signals[ACTIVE_TAB_CHANGED], 0, window->priv->active_tab);
+    /* call it for the first time */
+    tab_width_changed (G_OBJECT (view), NULL, window);
+    spaces_instead_of_tabs_changed (G_OBJECT (view), NULL, window);
+    language_changed (G_OBJECT (xed_tab_get_document (tab)), NULL, window);
+    word_wrap_changed (G_OBJECT (view), NULL, window);
+
+    g_signal_emit (G_OBJECT (window), signals[ACTIVE_TAB_CHANGED], 0, window->priv->active_tab);
 }
 
 static void
@@ -2885,6 +2922,12 @@ notebook_tab_removed (XedNotebook *notebook,
     {
         g_signal_handler_disconnect (doc, window->priv->language_changed_id);
         window->priv->language_changed_id = 0;
+    }
+
+    if (window->priv->use_word_wrap_id && tab == xed_window_get_active_tab (window))
+    {
+        g_signal_handler_disconnect (view, window->priv->use_word_wrap_id);
+        window->priv->use_word_wrap_id = 0;
     }
 
     g_return_if_fail(window->priv->num_tabs >= 0);
