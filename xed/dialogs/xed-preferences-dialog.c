@@ -725,11 +725,10 @@ install_scheme_clicked (GtkButton            *button,
     chooser = gtk_file_chooser_dialog_new (_("Add Scheme"),
                                            GTK_WINDOW (dlg),
                                            GTK_FILE_CHOOSER_ACTION_OPEN,
-                                           GTK_STOCK_CANCEL, GTK_RESPONSE_CANCEL,
+                                           _("Cancel"), GTK_RESPONSE_CANCEL,
                                            NULL);
 
-    xed_dialog_add_button (GTK_DIALOG (chooser), _("A_dd Scheme"),
-                           GTK_STOCK_ADD, GTK_RESPONSE_ACCEPT);
+    gtk_dialog_add_button (GTK_DIALOG (chooser), _("Add Scheme"), GTK_RESPONSE_ACCEPT);
 
     gtk_window_set_destroy_with_parent (GTK_WINDOW (chooser), TRUE);
 
@@ -967,8 +966,8 @@ xed_preferences_dialog_init (XedPreferencesDialog *dlg)
     dlg->priv = XED_PREFERENCES_DIALOG_GET_PRIVATE (dlg);
 
     gtk_dialog_add_buttons (GTK_DIALOG (dlg),
-                            GTK_STOCK_CLOSE, GTK_RESPONSE_CLOSE,
-                            GTK_STOCK_HELP, GTK_RESPONSE_HELP,
+                            _("Close"), GTK_RESPONSE_CLOSE,
+                            _("Help"), GTK_RESPONSE_HELP,
                             NULL);
 
     gtk_window_set_title (GTK_WINDOW (dlg), _("Xed Preferences"));
