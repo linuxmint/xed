@@ -43,6 +43,7 @@
 #include "xed-debug.h"
 #include "xed-view.h"
 #include "xed-window.h"
+#include "xed-notebook.h"
 #include "xed-window-private.h"
 #include "xed-plugins-engine.h"
 #include "xed-style-scheme-manager.h"
@@ -83,6 +84,10 @@ static void xed_prefs_manager_right_margin_changed	(GSettings *settings,
 static void xed_prefs_manager_smart_home_end_changed	(GSettings *settings,
 							 gchar       *key,
 							 gpointer     user_data);
+
+static void xed_prefs_manager_enable_tab_scrolling_changed (GSettings *settings,
+                                                            gchar     *key,
+                                                            gpointer   user_data);
 
 static void xed_prefs_manager_hl_current_line_changed	(GSettings *settings,
 							 gchar       *key,
@@ -660,6 +665,9 @@ xed_prefs_manager_app_init (void)
 				G_CALLBACK (xed_prefs_manager_smart_home_end_changed),
 				NULL);
 
+        g_signal_connect (xed_prefs_manager->settings, "changed::" GPM_ENABLE_TAB_SCROLLING,
+                          G_CALLBACK (xed_prefs_manager_enable_tab_scrolling_changed), NULL);
+
 		g_signal_connect (xed_prefs_manager->settings,
 				"changed::" GPM_HIGHLIGHT_CURRENT_LINE,
 				G_CALLBACK (xed_prefs_manager_hl_current_line_changed),
@@ -1166,6 +1174,35 @@ xed_prefs_manager_smart_home_end_changed (GSettings *settings,
 
 		g_list_free (views);
 	}
+}
+
+static void
+xed_prefs_manager_enable_tab_scrolling_changed (GSettings *settings,
+                                                gchar     *key,
+                                                gpointer   user_data)
+{
+    xed_debug (DEBUG_PREFS);
+
+    g_printerr ("Tab scrolling changed\n");
+
+    if (strcmp (key, GPM_ENABLE_TAB_SCROLLING) == 0)
+    {
+        gboolean enable;
+        const GList *windows;
+
+        enable = g_settings_get_boolean (settings, key);
+
+        windows = xed_app_get_windows (xed_app_get_default ());
+        while (windows != NULL)
+        {
+            XedNotebook *notebook;
+
+            notebook = XED_NOTEBOOK (_xed_window_get_notebook (windows->data));
+            xed_notebook_set_tab_scrolling_enabled (notebook, enable);
+
+            windows = g_list_next (windows);
+        }
+    }
 }
 
 static void

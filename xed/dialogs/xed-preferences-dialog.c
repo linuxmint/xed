@@ -125,6 +125,9 @@ struct _XedPreferencesDialogPrivate
     GtkWidget   *right_margin_position_spinbutton;
     GtkWidget   *right_margin_position_hbox;
 
+    /* Tab scrolling */
+    GtkWidget   *tab_scrolling_checkbutton;
+
     /* Plugins manager */
     GtkWidget   *plugin_manager_place_holder;
 
@@ -235,6 +238,17 @@ auto_save_spinbutton_value_changed (GtkSpinButton        *spin_button,
 }
 
 static void
+tab_scrolling_checkbutton_toggled (GtkToggleButton      *button,
+                                   XedPreferencesDialog *dlg)
+{
+    xed_debug (DEBUG_PREFS);
+
+    g_return_if_fail (button == GTK_TOGGLE_BUTTON (dlg->priv->tab_scrolling_checkbutton));
+
+    xed_prefs_manager_set_enable_tab_scrolling (gtk_toggle_button_get_active (button));
+}
+
+static void
 setup_editor_page (XedPreferencesDialog *dlg)
 {
     gboolean auto_save;
@@ -251,6 +265,8 @@ setup_editor_page (XedPreferencesDialog *dlg)
                                   xed_prefs_manager_get_auto_indent ());
     gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (dlg->priv->backup_copy_checkbutton),
                                   xed_prefs_manager_get_create_backup_copy ());
+    gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (dlg->priv->tab_scrolling_checkbutton),
+                                  xed_prefs_manager_get_enable_tab_scrolling ());
 
     auto_save = xed_prefs_manager_get_auto_save ();
     gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (dlg->priv->auto_save_checkbutton), auto_save);
@@ -271,6 +287,7 @@ setup_editor_page (XedPreferencesDialog *dlg)
     gtk_widget_set_sensitive (dlg->priv->autosave_hbox, xed_prefs_manager_auto_save_can_set ());
     gtk_widget_set_sensitive (dlg->priv->auto_save_spinbutton,
                               auto_save && xed_prefs_manager_auto_save_interval_can_set ());
+    gtk_widget_set_sensitive (dlg->priv->tab_scrolling_checkbutton, xed_prefs_manager_enable_tab_scrolling_can_set ());
 
     /* Connect signal */
     g_signal_connect (dlg->priv->tabs_width_spinbutton, "value_changed",
@@ -285,6 +302,8 @@ setup_editor_page (XedPreferencesDialog *dlg)
                       G_CALLBACK (backup_copy_checkbutton_toggled), dlg);
     g_signal_connect (dlg->priv->auto_save_spinbutton, "value_changed",
                       G_CALLBACK (auto_save_spinbutton_value_changed), dlg);
+    g_signal_connect (dlg->priv->tab_scrolling_checkbutton, "toggled",
+                      G_CALLBACK (tab_scrolling_checkbutton_toggled), dlg);
 }
 
 static void
@@ -1007,6 +1026,8 @@ xed_preferences_dialog_init (XedPreferencesDialog *dlg)
         "backup_copy_checkbutton", &dlg->priv->backup_copy_checkbutton,
         "auto_save_checkbutton", &dlg->priv->auto_save_checkbutton,
         "auto_save_spinbutton", &dlg->priv->auto_save_spinbutton,
+
+        "tab_scrolling_checkbutton", &dlg->priv->tab_scrolling_checkbutton,
 
         "default_font_checkbutton", &dlg->priv->default_font_checkbutton,
         "font_button", &dlg->priv->font_button,

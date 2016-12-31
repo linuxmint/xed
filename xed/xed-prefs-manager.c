@@ -3,7 +3,7 @@
  * xed-prefs-manager.c
  * This file is part of xed
  *
- * Copyright (C) 2002  Paolo Maggi 
+ * Copyright (C) 2002  Paolo Maggi
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,14 +17,14 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
- * Foundation, Inc., 51 Franklin St, Fifth Floor, 
- * Boston, MA 02110-1301, USA. 
+ * Foundation, Inc., 51 Franklin St, Fifth Floor,
+ * Boston, MA 02110-1301, USA.
  */
- 
+
 /*
- * Modified by the xed Team, 2002. See the AUTHORS file for a 
- * list of people on the xed Team.  
- * See the ChangeLog files for a list of changes. 
+ * Modified by the xed Team, 2002. See the AUTHORS file for a
+ * list of people on the xed Team.
+ * See the ChangeLog files for a list of changes.
  */
 
 #ifdef HAVE_CONFIG_H
@@ -65,7 +65,7 @@ xed_prefs_manager_ ## name ## _can_set (void)				\
 	xed_debug (DEBUG_PREFS);					\
 									\
 	return xed_prefs_manager_key_is_writable (key);		\
-}	
+}
 
 
 
@@ -92,7 +92,7 @@ xed_prefs_manager_ ## name ## _can_set (void)				\
 	xed_debug (DEBUG_PREFS);					\
 									\
 	return xed_prefs_manager_key_is_writable (key);		\
-}		
+}
 
 
 
@@ -119,7 +119,7 @@ xed_prefs_manager_ ## name ## _can_set (void)				\
 	xed_debug (DEBUG_PREFS);					\
 									\
 	return xed_prefs_manager_key_is_writable (key);		\
-}		
+}
 
 
 XedPrefsManager *xed_prefs_manager = NULL;
@@ -162,7 +162,7 @@ xed_prefs_manager_shutdown (void)
 	xed_prefs_manager->interface_settings = NULL;
 }
 
-static gboolean		 
+static gboolean
 xed_prefs_manager_get_bool (const gchar* key)
 {
 	xed_debug (DEBUG_PREFS);
@@ -170,7 +170,7 @@ xed_prefs_manager_get_bool (const gchar* key)
 	return g_settings_get_boolean (xed_prefs_manager->settings, key);
 }
 
-static gint 
+static gint
 xed_prefs_manager_get_int (const gchar* key)
 {
 	xed_debug (DEBUG_PREFS);
@@ -186,7 +186,7 @@ xed_prefs_manager_get_string (const gchar* key)
 	return g_settings_get_string (xed_prefs_manager->settings, key);
 }
 
-static void		 
+static void
 xed_prefs_manager_set_bool (const gchar* key, gboolean value)
 {
 	xed_debug (DEBUG_PREFS);
@@ -197,7 +197,7 @@ xed_prefs_manager_set_bool (const gchar* key, gboolean value)
 	g_settings_set_boolean (xed_prefs_manager->settings, key, value);
 }
 
-static void		 
+static void
 xed_prefs_manager_set_int (const gchar* key, gint value)
 {
 	xed_debug (DEBUG_PREFS);
@@ -208,20 +208,20 @@ xed_prefs_manager_set_int (const gchar* key, gint value)
 	g_settings_set_int (xed_prefs_manager->settings, key, value);
 }
 
-static void		 
+static void
 xed_prefs_manager_set_string (const gchar* key, const gchar* value)
 {
 	xed_debug (DEBUG_PREFS);
 
 	g_return_if_fail (value != NULL);
-	
+
 	g_return_if_fail (g_settings_is_writable (
 				xed_prefs_manager->settings, key));
 
 	g_settings_set_string (xed_prefs_manager->settings, key, value);
 }
 
-static gboolean 
+static gboolean
 xed_prefs_manager_key_is_writable (const gchar* key)
 {
 	xed_debug (DEBUG_PREFS);
@@ -267,13 +267,13 @@ DEFINE_INT_PREF (auto_save_interval,
 DEFINE_INT_PREF (undo_actions_limit,
 		 GPM_UNDO_ACTIONS_LIMIT)
 
-static GtkWrapMode 
+static GtkWrapMode
 get_wrap_mode_from_string (const gchar* str)
 {
 	GtkWrapMode res;
 
 	g_return_val_if_fail (str != NULL, GTK_WRAP_WORD);
-	
+
 	if (strcmp (str, "GTK_WRAP_NONE") == 0)
 		res = GTK_WRAP_NONE;
 	else
@@ -293,9 +293,9 @@ xed_prefs_manager_get_wrap_mode (void)
 {
 	gchar *str;
 	GtkWrapMode res;
-	
+
 	xed_debug (DEBUG_PREFS);
-	
+
 	str = xed_prefs_manager_get_string (GPM_WRAP_MODE);
 
 	res = get_wrap_mode_from_string (str);
@@ -304,12 +304,12 @@ xed_prefs_manager_get_wrap_mode (void)
 
 	return res;
 }
-	
+
 void
 xed_prefs_manager_set_wrap_mode (GtkWrapMode wp)
 {
 	const gchar * str;
-	
+
 	xed_debug (DEBUG_PREFS);
 
 	switch (wp)
@@ -329,30 +329,30 @@ xed_prefs_manager_set_wrap_mode (GtkWrapMode wp)
 	xed_prefs_manager_set_string (GPM_WRAP_MODE,
 					str);
 }
-	
+
 gboolean
 xed_prefs_manager_wrap_mode_can_set (void)
 {
 	xed_debug (DEBUG_PREFS);
-	
+
 	return xed_prefs_manager_key_is_writable (GPM_WRAP_MODE);
 }
 
 
 /* Tabs size */
-DEFINE_INT_PREF (tabs_size, 
+DEFINE_INT_PREF (tabs_size,
 		 GPM_TABS_SIZE)
 
 /* Insert spaces */
-DEFINE_BOOL_PREF (insert_spaces, 
+DEFINE_BOOL_PREF (insert_spaces,
 		  GPM_INSERT_SPACES)
 
 /* Auto indent */
-DEFINE_BOOL_PREF (auto_indent, 
+DEFINE_BOOL_PREF (auto_indent,
 		  GPM_AUTO_INDENT)
 
 /* Display line numbers */
-DEFINE_BOOL_PREF (display_line_numbers, 
+DEFINE_BOOL_PREF (display_line_numbers,
 		  GPM_DISPLAY_LINE_NUMBERS)
 
 /* Toolbar visibility */
@@ -362,14 +362,17 @@ DEFINE_BOOL_PREF (toolbar_visible,
 /* Statusbar visiblity */
 DEFINE_BOOL_PREF (statusbar_visible,
 		  GPM_STATUSBAR_VISIBLE)
-		  
+
 /* Side Pane visiblity */
 DEFINE_BOOL_PREF (side_pane_visible,
 		  GPM_SIDE_PANE_VISIBLE)
-		  
+
 /* Bottom Panel visiblity */
 DEFINE_BOOL_PREF (bottom_panel_visible,
 		  GPM_BOTTOM_PANEL_VISIBLE)
+
+/* Tab scrolling */
+DEFINE_BOOL_PREF (enable_tab_scrolling, GPM_ENABLE_TAB_SCROLLING)
 
 /* Print syntax highlighting */
 DEFINE_BOOL_PREF (print_syntax_hl,
@@ -386,9 +389,9 @@ xed_prefs_manager_get_print_wrap_mode (void)
 {
 	gchar *str;
 	GtkWrapMode res;
-	
+
 	xed_debug (DEBUG_PREFS);
-	
+
 	str = xed_prefs_manager_get_string (GPM_PRINT_WRAP_MODE);
 
 	if (strcmp (str, "GTK_WRAP_NONE") == 0)
@@ -405,7 +408,7 @@ xed_prefs_manager_get_print_wrap_mode (void)
 
 	return res;
 }
-	
+
 void
 xed_prefs_manager_set_print_wrap_mode (GtkWrapMode pwp)
 {
@@ -434,11 +437,11 @@ gboolean
 xed_prefs_manager_print_wrap_mode_can_set (void)
 {
 	xed_debug (DEBUG_PREFS);
-	
+
 	return xed_prefs_manager_key_is_writable (GPM_PRINT_WRAP_MODE);
 }
 
-/* Print line numbers */	
+/* Print line numbers */
 DEFINE_INT_PREF (print_line_numbers,
 		 GPM_PRINT_LINE_NUMBERS)
 
@@ -481,8 +484,8 @@ xed_prefs_manager_get_default_print_font_numbers (void)
 	return xed_prefs_manager_get_default_string_value (GPM_PRINT_FONT_NUMBERS);
 }
 
-/* Max number of files in "Recent Files" menu. 
- * This is configurable only using gsettings, dconf or dconf-editor 
+/* Max number of files in "Recent Files" menu.
+ * This is configurable only using gsettings, dconf or dconf-editor
  */
 gint
 xed_prefs_manager_get_max_recents (void)
@@ -556,16 +559,16 @@ xed_prefs_manager_get_auto_detected_encodings (void)
 	strings = xed_prefs_manager_get_gslist (xed_prefs_manager->settings, GPM_AUTO_DETECTED_ENCODINGS);
 
 	if (strings != NULL)
-	{	
+	{
 		GSList *tmp;
 		const XedEncoding *enc;
 
 		tmp = strings;
-		
+
 		while (tmp)
 		{
 		      const char *charset = tmp->data;
-      
+
 		      if (strcmp (charset, "CURRENT") == 0)
 			      g_get_charset (&charset);
 
@@ -583,7 +586,7 @@ xed_prefs_manager_get_auto_detected_encodings (void)
 		}
 
 		g_slist_foreach (strings, (GFunc) g_free, NULL);
-		g_slist_free (strings);    
+		g_slist_free (strings);
 
 	 	res = g_slist_reverse (res);
 	}
@@ -607,12 +610,12 @@ xed_prefs_manager_get_shown_in_menu_encodings (void)
 	strings = xed_prefs_manager_get_gslist (xed_prefs_manager->settings, GPM_SHOWN_IN_MENU_ENCODINGS);
 
 	if (strings != NULL)
-	{	
+	{
 		GSList *tmp;
 		const XedEncoding *enc;
 
 		tmp = strings;
-		
+
 		while (tmp)
 		{
 		      const char *charset = tmp->data;
@@ -633,7 +636,7 @@ xed_prefs_manager_get_shown_in_menu_encodings (void)
 		}
 
 		g_slist_foreach (strings, (GFunc) g_free, NULL);
-		g_slist_free (strings);    
+		g_slist_free (strings);
 
 	 	res = g_slist_reverse (res);
 	}
@@ -643,9 +646,9 @@ xed_prefs_manager_get_shown_in_menu_encodings (void)
 
 void
 xed_prefs_manager_set_shown_in_menu_encodings (const GSList *encs)
-{	
+{
 	GSList *list = NULL;
-	
+
 	g_return_if_fail (xed_prefs_manager != NULL);
 	g_return_if_fail (xed_prefs_manager->settings != NULL);
 	g_return_if_fail (xed_prefs_manager_shown_in_menu_encodings_can_set ());
@@ -654,7 +657,7 @@ xed_prefs_manager_set_shown_in_menu_encodings (const GSList *encs)
 	{
 		const XedEncoding *enc;
 		const gchar *charset;
-		
+
 		enc = (const XedEncoding *)encs->data;
 
 		charset = xed_encoding_get_charset (enc);
@@ -676,7 +679,7 @@ gboolean
 xed_prefs_manager_shown_in_menu_encodings_can_set (void)
 {
 	xed_debug (DEBUG_PREFS);
-	
+
 	return xed_prefs_manager_key_is_writable (GPM_SHOWN_IN_MENU_ENCODINGS);
 
 }
@@ -688,12 +691,12 @@ DEFINE_BOOL_PREF (highlight_current_line,
 /* Highlight matching bracket */
 DEFINE_BOOL_PREF (bracket_matching,
 		  GPM_BRACKET_MATCHING)
-	
+
 /* Display Right Margin */
 DEFINE_BOOL_PREF (display_right_margin,
 		  GPM_DISPLAY_RIGHT_MARGIN)
 
-/* Right Margin Position */	
+/* Right Margin Position */
 DEFINE_INT_PREF (right_margin_position,
 		 GPM_RIGHT_MARGIN_POSITION)
 
@@ -732,7 +735,7 @@ xed_prefs_manager_get_smart_home_end (void)
 
 	return res;
 }
-	
+
 void
 xed_prefs_manager_set_smart_home_end (GtkSourceSmartHomeEndType smart_he)
 {
@@ -765,7 +768,7 @@ gboolean
 xed_prefs_manager_smart_home_end_can_set (void)
 {
 	xed_debug (DEBUG_PREFS);
-	
+
 	return xed_prefs_manager_key_is_writable (GPM_SMART_HOME_END);
 }
 
@@ -785,7 +788,7 @@ GSList *
 xed_prefs_manager_get_writable_vfs_schemes (void)
 {
 	GSList *strings;
-	
+
 	xed_debug (DEBUG_PREFS);
 
 	g_return_val_if_fail (xed_prefs_manager != NULL, NULL);
@@ -794,8 +797,8 @@ xed_prefs_manager_get_writable_vfs_schemes (void)
 	strings = xed_prefs_manager_get_gslist (xed_prefs_manager->settings, GPM_WRITABLE_VFS_SCHEMES);
 
 	/* The 'file' scheme is writable by default. */
-	strings = g_slist_prepend (strings, g_strdup ("file")); 
-	
+	strings = g_slist_prepend (strings, g_strdup ("file"));
+
 	xed_debug_message (DEBUG_PREFS, "Done");
 
 	return strings;
@@ -829,7 +832,7 @@ xed_prefs_manager_get_active_plugins (void)
 
 void
 xed_prefs_manager_set_active_plugins (const GSList *plugins)
-{	
+{
 	g_return_if_fail (xed_prefs_manager != NULL);
 	g_return_if_fail (xed_prefs_manager->settings != NULL);
 	g_return_if_fail (xed_prefs_manager_active_plugins_can_set ());

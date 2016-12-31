@@ -3368,6 +3368,9 @@ add_notebook (XedWindow *window,
 {
     gtk_paned_pack1 (GTK_PANED(window->priv->vpaned), notebook, TRUE, TRUE);
     gtk_widget_show (notebook);
+
+    xed_notebook_set_tab_scrolling_enabled (XED_NOTEBOOK (notebook), xed_prefs_manager_get_enable_tab_scrolling ());
+
     connect_notebook_signals (window, notebook);
 }
 

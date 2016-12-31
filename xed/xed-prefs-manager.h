@@ -81,6 +81,8 @@
 
 #define GPM_BOTTOM_PANEL_VISIBLE	"bottom-panel-visible"
 
+#define GPM_ENABLE_TAB_SCROLLING    "enable-tab-scrolling"
+
 #define GPM_MAX_RECENTS			"max-recents"
 
 /* Print */
@@ -201,6 +203,12 @@ gboolean		 xed_prefs_manager_side_pane_visible_can_set	(void);
 gboolean		 xed_prefs_manager_get_bottom_panel_visible	(void);
 void			 xed_prefs_manager_set_bottom_panel_visible	(gboolean tv);
 gboolean		 xed_prefs_manager_bottom_panel_visible_can_set(void);
+
+/* Tab scrolling enabled */
+gboolean         xed_prefs_manager_get_enable_tab_scrolling     (void);
+void             xed_prefs_manager_set_enable_tab_scrolling     (gboolean tv);
+gboolean         xed_prefs_manager_enable_tab_scrolling_can_set (void);
+
 /* Print syntax highlighting */
 gboolean		 xed_prefs_manager_get_print_syntax_hl	(void);
 void			 xed_prefs_manager_set_print_syntax_hl	(gboolean ps);
