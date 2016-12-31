@@ -1183,8 +1183,6 @@ xed_prefs_manager_enable_tab_scrolling_changed (GSettings *settings,
 {
     xed_debug (DEBUG_PREFS);
 
-    g_printerr ("Tab scrolling changed\n");
-
     if (strcmp (key, GPM_ENABLE_TAB_SCROLLING) == 0)
     {
         gboolean enable;
