@@ -208,58 +208,6 @@ xed_gdk_color_to_string (GdkColor color)
     return g_strdup_printf ("#%04x%04x%04x", color.red, color.green, color.blue);
 }
 
-/**
- * xed_gtk_button_new_with_stock_icon:
- * @label:
- * @stock_id:
- *
- * Returns: (transfer full):
- */
-GtkWidget *
-xed_gtk_button_new_with_stock_icon (const gchar *label,
-                                    const gchar *stock_id)
-{
-    GtkWidget *button;
-
-    button = gtk_button_new_with_mnemonic (label);
-    gtk_button_set_image (GTK_BUTTON (button), gtk_image_new_from_stock (stock_id, GTK_ICON_SIZE_BUTTON));
-
-    return button;
-}
-
-/**
- * xed_dialog_add_button:
- * @dialog:
- * @text:
- * @stock_id:
- * @response_id:
- *
- * Returns: (transfer none):
- */
-GtkWidget *
-xed_dialog_add_button (GtkDialog   *dialog,
-                       const gchar *text,
-                       const gchar *stock_id,
-                       gint         response_id)
-{
-    GtkWidget *button;
-
-    g_return_val_if_fail (GTK_IS_DIALOG (dialog), NULL);
-    g_return_val_if_fail (text != NULL, NULL);
-    g_return_val_if_fail (stock_id != NULL, NULL);
-
-    button = xed_gtk_button_new_with_stock_icon (text, stock_id);
-    g_return_val_if_fail (button != NULL, NULL);
-
-    gtk_widget_set_can_default (button, TRUE);
-
-    gtk_widget_show (button);
-
-    gtk_dialog_add_action_widget (dialog, button, response_id);
-
-    return button;
-}
-
 /*
  * n: len of the string in bytes
  */

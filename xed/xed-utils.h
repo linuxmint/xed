@@ -65,14 +65,6 @@ void xed_utils_menu_position_under_tree_view (GtkMenu  *menu,
 
 gchar *xed_gdk_color_to_string (GdkColor color);
 
-GtkWidget *xed_gtk_button_new_with_stock_icon (const gchar *label,
-                                               const gchar *stock_id);
-
-GtkWidget *xed_dialog_add_button (GtkDialog   *dialog,
-                                  const gchar *text,
-                                  const gchar *stock_id,
-                                  gint         response_id);
-
 gchar *xed_utils_escape_underscores (const gchar *text,
                                      gssize       length);
 
