@@ -56,16 +56,16 @@
 
 struct _XedNotebookPrivate
 {
-	GList         *focused_pages;
-	gulong         motion_notify_handler_id;
-	gint           x_start;
-	gint           y_start;
-	gint           drag_in_progress : 1;
-	gint	       always_show_tabs : 1;
-	gint           close_buttons_sensitive : 1;
-	gint           tab_drag_and_drop_enabled : 1;
+    GList         *focused_pages;
+    gulong         motion_notify_handler_id;
+    gint           x_start;
+    gint           y_start;
+    gint           drag_in_progress : 1;
+    gint           always_show_tabs : 1;
+    gint           close_buttons_sensitive : 1;
+    gint           tab_drag_and_drop_enabled : 1;
     gint           tab_scrolling_enabled : 1;
-	guint          destroy_has_run : 1;
+    guint          destroy_has_run : 1;
 };
 
 G_DEFINE_TYPE(XedNotebook, xed_notebook, GTK_TYPE_NOTEBOOK)
@@ -73,12 +73,12 @@ G_DEFINE_TYPE(XedNotebook, xed_notebook, GTK_TYPE_NOTEBOOK)
 static void xed_notebook_finalize (GObject *object);
 
 static gboolean xed_notebook_change_current_page (GtkNotebook *notebook,
-						    gint         offset);
+                                                  gint         offset);
 
-static void move_current_tab_to_another_notebook  (XedNotebook  *src,
-						   XedNotebook  *dest,
-						   GdkEventMotion *event,
-						   gint            dest_position);
+static void move_current_tab_to_another_notebook  (XedNotebook    *src,
+                                                   XedNotebook    *dest,
+                                                   GdkEventMotion *event,
+                                                   gint            dest_position);
 
 /* Local variables */
 static GdkCursor *cursor = NULL;
@@ -86,12 +86,12 @@ static GdkCursor *cursor = NULL;
 /* Signals */
 enum
 {
-	TAB_ADDED,
-	TAB_REMOVED,
-	TABS_REORDERED,
-	TAB_DETACHED,
-	TAB_CLOSE_REQUEST,
-	LAST_SIGNAL
+    TAB_ADDED,
+    TAB_REMOVED,
+    TABS_REORDERED,
+    TAB_DETACHED,
+    TAB_CLOSE_REQUEST,
+    LAST_SIGNAL
 };
 
 static guint signals[LAST_SIGNAL] = { 0 };
@@ -99,178 +99,175 @@ static guint signals[LAST_SIGNAL] = { 0 };
 static void
 xed_notebook_dispose (GObject *object)
 {
-	XedNotebook *notebook = XED_NOTEBOOK (object);
+    XedNotebook *notebook = XED_NOTEBOOK (object);
 
-	if (!notebook->priv->destroy_has_run)
-	{
-		GList *children, *l;
+    if (!notebook->priv->destroy_has_run)
+    {
+        GList *children, *l;
 
-		children = gtk_container_get_children (GTK_CONTAINER (notebook));
+        children = gtk_container_get_children (GTK_CONTAINER (notebook));
 
-		for (l = children; l != NULL; l = g_list_next (l))
-		{
-			xed_notebook_remove_tab (notebook,
-						   XED_TAB (l->data));
-		}
+        for (l = children; l != NULL; l = g_list_next (l))
+        {
+            xed_notebook_remove_tab (notebook, XED_TAB (l->data));
+        }
 
-		g_list_free (children);
-		notebook->priv->destroy_has_run = TRUE;
-	}
+        g_list_free (children);
+        notebook->priv->destroy_has_run = TRUE;
+    }
 
-	G_OBJECT_CLASS (xed_notebook_parent_class)->dispose (object);
+    G_OBJECT_CLASS (xed_notebook_parent_class)->dispose (object);
 }
 
 static void
 xed_notebook_class_init (XedNotebookClass *klass)
 {
-	GObjectClass *object_class = G_OBJECT_CLASS (klass);
-	GtkNotebookClass *notebook_class = GTK_NOTEBOOK_CLASS (klass);
+    GObjectClass *object_class = G_OBJECT_CLASS (klass);
+    GtkNotebookClass *notebook_class = GTK_NOTEBOOK_CLASS (klass);
 
-	object_class->finalize = xed_notebook_finalize;
-	object_class->dispose = xed_notebook_dispose;
+    object_class->finalize = xed_notebook_finalize;
+    object_class->dispose = xed_notebook_dispose;
 
-	notebook_class->change_current_page = xed_notebook_change_current_page;
+    notebook_class->change_current_page = xed_notebook_change_current_page;
 
-	signals[TAB_ADDED] =
-		g_signal_new ("tab_added",
-			      G_OBJECT_CLASS_TYPE (object_class),
-			      G_SIGNAL_RUN_FIRST,
-			      G_STRUCT_OFFSET (XedNotebookClass, tab_added),
-			      NULL, NULL,
-			      g_cclosure_marshal_VOID__OBJECT,
-			      G_TYPE_NONE,
-			      1,
-			      XED_TYPE_TAB);
-	signals[TAB_REMOVED] =
-		g_signal_new ("tab_removed",
-			      G_OBJECT_CLASS_TYPE (object_class),
-			      G_SIGNAL_RUN_FIRST,
-			      G_STRUCT_OFFSET (XedNotebookClass, tab_removed),
-			      NULL, NULL,
-			      g_cclosure_marshal_VOID__OBJECT,
-			      G_TYPE_NONE,
-			      1,
-			      XED_TYPE_TAB);
-	signals[TAB_DETACHED] =
-		g_signal_new ("tab_detached",
-			      G_OBJECT_CLASS_TYPE (object_class),
-			      G_SIGNAL_RUN_FIRST,
-			      G_STRUCT_OFFSET (XedNotebookClass, tab_detached),
-			      NULL, NULL,
-			      g_cclosure_marshal_VOID__OBJECT,
-			      G_TYPE_NONE,
-			      1,
-			      XED_TYPE_TAB);
-	signals[TABS_REORDERED] =
-		g_signal_new ("tabs_reordered",
-			      G_OBJECT_CLASS_TYPE (object_class),
-			      G_SIGNAL_RUN_FIRST,
-			      G_STRUCT_OFFSET (XedNotebookClass, tabs_reordered),
-			      NULL, NULL,
-			      g_cclosure_marshal_VOID__VOID,
-			      G_TYPE_NONE,
-			      0);
-	signals[TAB_CLOSE_REQUEST] =
-		g_signal_new ("tab-close-request",
-			      G_OBJECT_CLASS_TYPE (object_class),
-			      G_SIGNAL_RUN_LAST,
-			      G_STRUCT_OFFSET (XedNotebookClass, tab_close_request),
-			      NULL, NULL,
-			      g_cclosure_marshal_VOID__OBJECT,
-			      G_TYPE_NONE,
-			      1,
-			      XED_TYPE_TAB);
+    signals[TAB_ADDED] =
+        g_signal_new ("tab_added",
+                      G_OBJECT_CLASS_TYPE (object_class),
+                      G_SIGNAL_RUN_FIRST,
+                      G_STRUCT_OFFSET (XedNotebookClass, tab_added),
+                      NULL, NULL,
+                      g_cclosure_marshal_VOID__OBJECT,
+                      G_TYPE_NONE,
+                      1,
+                      XED_TYPE_TAB);
+    signals[TAB_REMOVED] =
+        g_signal_new ("tab_removed",
+                      G_OBJECT_CLASS_TYPE (object_class),
+                      G_SIGNAL_RUN_FIRST,
+                      G_STRUCT_OFFSET (XedNotebookClass, tab_removed),
+                      NULL, NULL,
+                      g_cclosure_marshal_VOID__OBJECT,
+                      G_TYPE_NONE,
+                      1,
+                      XED_TYPE_TAB);
+    signals[TAB_DETACHED] =
+        g_signal_new ("tab_detached",
+                      G_OBJECT_CLASS_TYPE (object_class),
+                      G_SIGNAL_RUN_FIRST,
+                      G_STRUCT_OFFSET (XedNotebookClass, tab_detached),
+                      NULL, NULL,
+                      g_cclosure_marshal_VOID__OBJECT,
+                      G_TYPE_NONE,
+                      1,
+                      XED_TYPE_TAB);
+    signals[TABS_REORDERED] =
+        g_signal_new ("tabs_reordered",
+                      G_OBJECT_CLASS_TYPE (object_class),
+                      G_SIGNAL_RUN_FIRST,
+                      G_STRUCT_OFFSET (XedNotebookClass, tabs_reordered),
+                      NULL, NULL,
+                      g_cclosure_marshal_VOID__VOID,
+                      G_TYPE_NONE,
+                      0);
+    signals[TAB_CLOSE_REQUEST] =
+        g_signal_new ("tab-close-request",
+                      G_OBJECT_CLASS_TYPE (object_class),
+                      G_SIGNAL_RUN_LAST,
+                      G_STRUCT_OFFSET (XedNotebookClass, tab_close_request),
+                      NULL, NULL,
+                      g_cclosure_marshal_VOID__OBJECT,
+                      G_TYPE_NONE,
+                      1,
+                      XED_TYPE_TAB);
 
-	g_type_class_add_private (object_class, sizeof(XedNotebookPrivate));
+    g_type_class_add_private (object_class, sizeof(XedNotebookPrivate));
 }
 
 static XedNotebook *
-find_notebook_at_pointer (gint abs_x, gint abs_y)
+find_notebook_at_pointer (gint abs_x,
+                          gint abs_y)
 {
-	GdkWindow *win_at_pointer;
-	GdkWindow *toplevel_win;
-	gpointer toplevel = NULL;
-	gint x, y;
+    GdkWindow *win_at_pointer;
+    GdkWindow *toplevel_win;
+    gpointer toplevel = NULL;
+    gint x, y;
 
-	/* FIXME multi-head */
-	win_at_pointer = gdk_window_at_pointer (&x, &y);
-	if (win_at_pointer == NULL)
-	{
-		/* We are outside all windows of the same application */
-		return NULL;
-	}
+    /* FIXME multi-head */
+    win_at_pointer = gdk_window_at_pointer (&x, &y);
+    if (win_at_pointer == NULL)
+    {
+        /* We are outside all windows of the same application */
+        return NULL;
+    }
 
-	toplevel_win = gdk_window_get_toplevel (win_at_pointer);
+    toplevel_win = gdk_window_get_toplevel (win_at_pointer);
 
-	/* get the GtkWidget which owns the toplevel GdkWindow */
-	gdk_window_get_user_data (toplevel_win, &toplevel);
+    /* get the GtkWidget which owns the toplevel GdkWindow */
+    gdk_window_get_user_data (toplevel_win, &toplevel);
 
-	/* toplevel should be an XedWindow */
-	if ((toplevel != NULL) &&
-	    XED_IS_WINDOW (toplevel))
-	{
-		return XED_NOTEBOOK (_xed_window_get_notebook
-						(XED_WINDOW (toplevel)));
-	}
+    /* toplevel should be an XedWindow */
+    if ((toplevel != NULL) && XED_IS_WINDOW (toplevel))
+    {
+        return XED_NOTEBOOK (_xed_window_get_notebook (XED_WINDOW (toplevel)));
+    }
 
-	/* We are outside all windows containing a notebook */
-	return NULL;
+    /* We are outside all windows containing a notebook */
+    return NULL;
 }
 
 static gboolean
 is_in_notebook_window (XedNotebook *notebook,
-		       gint           abs_x,
-		       gint           abs_y)
+                       gint         abs_x,
+                       gint         abs_y)
 {
-	XedNotebook *nb_at_pointer;
+    XedNotebook *nb_at_pointer;
 
-	g_return_val_if_fail (notebook != NULL, FALSE);
+    g_return_val_if_fail (notebook != NULL, FALSE);
 
-	nb_at_pointer = find_notebook_at_pointer (abs_x, abs_y);
+    nb_at_pointer = find_notebook_at_pointer (abs_x, abs_y);
 
-	return (nb_at_pointer == notebook);
+    return (nb_at_pointer == notebook);
 }
 
 static gint
 find_tab_num_at_pos (XedNotebook *notebook,
-		     gint           abs_x,
-		     gint           abs_y)
+                     gint         abs_x,
+                     gint         abs_y)
 {
-	GtkPositionType tab_pos;
-	int page_num = 0;
-	GtkNotebook *nb = GTK_NOTEBOOK (notebook);
-	GtkWidget *page;
+    GtkPositionType tab_pos;
+    int page_num = 0;
+    GtkNotebook *nb = GTK_NOTEBOOK (notebook);
+    GtkWidget *page;
 
-	tab_pos = gtk_notebook_get_tab_pos (GTK_NOTEBOOK (notebook));
+    tab_pos = gtk_notebook_get_tab_pos (GTK_NOTEBOOK (notebook));
 
-	/* For some reason unfullscreen + quick click can
-	   cause a wrong click event to be reported to the tab */
-	if (!is_in_notebook_window (notebook, abs_x, abs_y))
-	{
-		return NOT_IN_APP_WINDOWS;
-	}
+    /* For some reason unfullscreen + quick click can
+       cause a wrong click event to be reported to the tab */
+    if (!is_in_notebook_window (notebook, abs_x, abs_y))
+    {
+        return NOT_IN_APP_WINDOWS;
+    }
 
-	while ((page = gtk_notebook_get_nth_page (nb, page_num)) != NULL)
-	{
-		GtkAllocation allocation;
-		GtkWidget *tab;
+    while ((page = gtk_notebook_get_nth_page (nb, page_num)) != NULL)
+    {
+        GtkAllocation allocation;
+        GtkWidget *tab;
         gint min_x, min_y;
-		gint max_x, max_y;
-		gint x_root, y_root;
+        gint max_x, max_y;
+        gint x_root, y_root;
 
-		tab = gtk_notebook_get_tab_label (nb, page);
-		g_return_val_if_fail (tab != NULL, AFTER_ALL_TABS);
+        tab = gtk_notebook_get_tab_label (nb, page);
+        g_return_val_if_fail (tab != NULL, AFTER_ALL_TABS);
 
-		if (!gtk_widget_get_mapped (tab))
-		{
-			++page_num;
-			continue;
-		}
+        if (!gtk_widget_get_mapped (tab))
+        {
+            ++page_num;
+            continue;
+        }
 
-		gdk_window_get_origin (GDK_WINDOW (gtk_widget_get_window (tab)),
-				       &x_root, &y_root);
+        gdk_window_get_origin (GDK_WINDOW (gtk_widget_get_window (tab)), &x_root, &y_root);
 
-		gtk_widget_get_allocation(tab, &allocation);
+        gtk_widget_get_allocation(tab, &allocation);
 
         min_x = x_root + allocation.x;
         max_x = x_root + allocation.x + allocation.width;
@@ -294,34 +291,34 @@ find_tab_num_at_pos (XedNotebook *notebook,
             return page_num;
         }
 
-		++page_num;
-	}
+        ++page_num;
+    }
 
-	return AFTER_ALL_TABS;
+    return AFTER_ALL_TABS;
 }
 
 static gint
-find_notebook_and_tab_at_pos (gint            abs_x,
-			      gint            abs_y,
-			      XedNotebook **notebook,
-			      gint           *page_num)
+find_notebook_and_tab_at_pos (gint          abs_x,
+                              gint          abs_y,
+                              XedNotebook **notebook,
+                              gint         *page_num)
 {
-	*notebook = find_notebook_at_pointer (abs_x, abs_y);
-	if (*notebook == NULL)
-	{
-		return NOT_IN_APP_WINDOWS;
-	}
+    *notebook = find_notebook_at_pointer (abs_x, abs_y);
+    if (*notebook == NULL)
+    {
+        return NOT_IN_APP_WINDOWS;
+    }
 
-	*page_num = find_tab_num_at_pos (*notebook, abs_x, abs_y);
+    *page_num = find_tab_num_at_pos (*notebook, abs_x, abs_y);
 
-	if (*page_num < 0)
-	{
-		return *page_num;
-	}
-	else
-	{
-		return 0;
-	}
+    if (*page_num < 0)
+    {
+        return *page_num;
+    }
+    else
+    {
+        return 0;
+    }
 }
 
 /**
@@ -338,20 +335,20 @@ find_notebook_and_tab_at_pos (gint            abs_x,
  */
 void
 xed_notebook_move_tab (XedNotebook *src,
-			 XedNotebook *dest,
-			 XedTab      *tab,
-			 gint           dest_position)
+                       XedNotebook *dest,
+                       XedTab      *tab,
+                       gint         dest_position)
 {
-	g_return_if_fail (XED_IS_NOTEBOOK (src));
-	g_return_if_fail (XED_IS_NOTEBOOK (dest));
-	g_return_if_fail (src != dest);
-	g_return_if_fail (XED_IS_TAB (tab));
+    g_return_if_fail (XED_IS_NOTEBOOK (src));
+    g_return_if_fail (XED_IS_NOTEBOOK (dest));
+    g_return_if_fail (src != dest);
+    g_return_if_fail (XED_IS_TAB (tab));
 
-	/* make sure the tab isn't destroyed while we move it */
-	g_object_ref (tab);
-	xed_notebook_remove_tab (src, tab);
-	xed_notebook_add_tab (dest, tab, dest_position, TRUE);
-	g_object_unref (tab);
+    /* make sure the tab isn't destroyed while we move it */
+    g_object_ref (tab);
+    xed_notebook_remove_tab (src, tab);
+    xed_notebook_add_tab (dest, tab, dest_position, TRUE);
+    g_object_unref (tab);
 }
 
 /**
@@ -367,75 +364,71 @@ xed_notebook_move_tab (XedNotebook *src,
  */
 void
 xed_notebook_reorder_tab (XedNotebook *src,
-			    XedTab      *tab,
-			    gint           dest_position)
+                          XedTab      *tab,
+                          gint         dest_position)
 {
-	gint old_position;
+    gint old_position;
 
-	g_return_if_fail (XED_IS_NOTEBOOK (src));
-	g_return_if_fail (XED_IS_TAB (tab));
+    g_return_if_fail (XED_IS_NOTEBOOK (src));
+    g_return_if_fail (XED_IS_TAB (tab));
 
-	old_position = gtk_notebook_page_num (GTK_NOTEBOOK (src),
-				    	      GTK_WIDGET (tab));
+    old_position = gtk_notebook_page_num (GTK_NOTEBOOK (src), GTK_WIDGET (tab));
 
-	if (old_position == dest_position)
-		return;
+    if (old_position == dest_position)
+    {
+        return;
+    }
 
-	gtk_notebook_reorder_child (GTK_NOTEBOOK (src),
-				    GTK_WIDGET (tab),
-				    dest_position);
+    gtk_notebook_reorder_child (GTK_NOTEBOOK (src), GTK_WIDGET (tab), dest_position);
 
-	if (!src->priv->drag_in_progress)
-	{
-		g_signal_emit (G_OBJECT (src),
-			       signals[TABS_REORDERED],
-			       0);
-	}
+    if (!src->priv->drag_in_progress)
+    {
+        g_signal_emit (G_OBJECT (src), signals[TABS_REORDERED], 0);
+    }
 }
 
 static void
 drag_start (XedNotebook *notebook,
-	    guint32        time)
+            guint32      time)
 {
-	notebook->priv->drag_in_progress = TRUE;
+    notebook->priv->drag_in_progress = TRUE;
 
-	/* get a new cursor, if necessary */
-	/* FIXME multi-head */
-	if (cursor == NULL)
-		cursor = gdk_cursor_new (GDK_FLEUR);
+    /* get a new cursor, if necessary */
+    /* FIXME multi-head */
+    if (cursor == NULL)
+    {
+        cursor = gdk_cursor_new (GDK_FLEUR);
+    }
 
-	/* grab the pointer */
-	gtk_grab_add (GTK_WIDGET (notebook));
+    /* grab the pointer */
+    gtk_grab_add (GTK_WIDGET (notebook));
 
-	/* FIXME multi-head */
-	if (!gdk_pointer_is_grabbed ())
-	{
-		gdk_pointer_grab (gtk_widget_get_window (GTK_WIDGET (notebook)),
-				  FALSE,
-				  GDK_BUTTON1_MOTION_MASK | GDK_BUTTON_RELEASE_MASK,
-				  NULL,
-				  cursor,
-				  time);
-	}
+    /* FIXME multi-head */
+    if (!gdk_pointer_is_grabbed ())
+    {
+        gdk_pointer_grab (gtk_widget_get_window (GTK_WIDGET (notebook)),
+                          FALSE,
+                          GDK_BUTTON1_MOTION_MASK | GDK_BUTTON_RELEASE_MASK,
+                          NULL,
+                          cursor,
+                          time);
+    }
 }
 
 static void
 drag_stop (XedNotebook *notebook)
 {
-	if (notebook->priv->drag_in_progress)
-	{
-		g_signal_emit (G_OBJECT (notebook),
-			       signals[TABS_REORDERED],
-			       0);
-	}
+    if (notebook->priv->drag_in_progress)
+    {
+        g_signal_emit (G_OBJECT (notebook), signals[TABS_REORDERED], 0);
+    }
 
-	notebook->priv->drag_in_progress = FALSE;
-	if (notebook->priv->motion_notify_handler_id != 0)
-	{
-		g_signal_handler_disconnect (G_OBJECT (notebook),
-					     notebook->priv->motion_notify_handler_id);
-		notebook->priv->motion_notify_handler_id = 0;
-	}
+    notebook->priv->drag_in_progress = FALSE;
+    if (notebook->priv->motion_notify_handler_id != 0)
+    {
+        g_signal_handler_disconnect (G_OBJECT (notebook), notebook->priv->motion_notify_handler_id);
+        notebook->priv->motion_notify_handler_id = 0;
+    }
 }
 
 /* This function is only called during dnd, we don't need to emit TABS_REORDERED
@@ -443,205 +436,182 @@ drag_stop (XedNotebook *notebook)
  */
 static void
 move_current_tab (XedNotebook *notebook,
-	          gint           dest_position)
+                  gint         dest_position)
 {
-	gint cur_page_num;
+    gint cur_page_num;
 
-	cur_page_num = gtk_notebook_get_current_page (GTK_NOTEBOOK (notebook));
+    cur_page_num = gtk_notebook_get_current_page (GTK_NOTEBOOK (notebook));
 
-	if (dest_position != cur_page_num)
-	{
-		GtkWidget *cur_tab;
+    if (dest_position != cur_page_num)
+    {
+        GtkWidget *cur_tab;
 
-		cur_tab = gtk_notebook_get_nth_page (GTK_NOTEBOOK (notebook),
-						     cur_page_num);
-
-		xed_notebook_reorder_tab (XED_NOTEBOOK (notebook),
-					    XED_TAB (cur_tab),
-					    dest_position);
-	}
+        cur_tab = gtk_notebook_get_nth_page (GTK_NOTEBOOK (notebook), cur_page_num);
+        xed_notebook_reorder_tab (XED_NOTEBOOK (notebook), XED_TAB (cur_tab), dest_position);
+    }
 }
 
 static gboolean
-motion_notify_cb (XedNotebook  *notebook,
-		  GdkEventMotion *event,
-		  gpointer        data)
+motion_notify_cb (XedNotebook    *notebook,
+                  GdkEventMotion *event,
+                  gpointer        data)
 {
-	XedNotebook *dest;
-	gint page_num;
-	gint result;
+    XedNotebook *dest;
+    gint page_num;
+    gint result;
 
-	if (notebook->priv->drag_in_progress == FALSE)
-	{
-		if (notebook->priv->tab_drag_and_drop_enabled == FALSE)
-			return FALSE;
+    if (notebook->priv->drag_in_progress == FALSE)
+    {
+        if (notebook->priv->tab_drag_and_drop_enabled == FALSE)
+        {
+            return FALSE;
+        }
 
-		if (gtk_drag_check_threshold (GTK_WIDGET (notebook),
-					      notebook->priv->x_start,
-					      notebook->priv->y_start,
-					      event->x_root,
-					      event->y_root))
-		{
-			drag_start (notebook, event->time);
-			return TRUE;
-		}
+        if (gtk_drag_check_threshold (GTK_WIDGET (notebook),
+                                      notebook->priv->x_start,
+                                      notebook->priv->y_start,
+                                      event->x_root,
+                                      event->y_root))
+        {
+            drag_start (notebook, event->time);
+            return TRUE;
+        }
 
-		return FALSE;
-	}
+        return FALSE;
+    }
 
-	result = find_notebook_and_tab_at_pos ((gint)event->x_root,
-					       (gint)event->y_root,
-					       &dest,
-					       &page_num);
+    result = find_notebook_and_tab_at_pos ((gint)event->x_root, (gint)event->y_root, &dest, &page_num);
 
-	if (result != NOT_IN_APP_WINDOWS)
-	{
-		if (dest != notebook)
-		{
-			move_current_tab_to_another_notebook (notebook,
-							      dest,
-						      	      event,
-						      	      page_num);
-		}
-		else
-		{
-			g_return_val_if_fail (page_num >= -1, FALSE);
-			move_current_tab (notebook, page_num);
-		}
-	}
+    if (result != NOT_IN_APP_WINDOWS)
+    {
+        if (dest != notebook)
+        {
+            move_current_tab_to_another_notebook (notebook, dest, event, page_num);
+        }
+        else
+        {
+            g_return_val_if_fail (page_num >= -1, FALSE);
+            move_current_tab (notebook, page_num);
+        }
+    }
 
-	return FALSE;
+    return FALSE;
 }
 
 static void
-move_current_tab_to_another_notebook (XedNotebook  *src,
-				      XedNotebook  *dest,
-				      GdkEventMotion *event,
-				      gint            dest_position)
+move_current_tab_to_another_notebook (XedNotebook    *src,
+                                      XedNotebook    *dest,
+                                      GdkEventMotion *event,
+                                      gint            dest_position)
 {
-	XedTab *tab;
-	gint cur_page;
+    XedTab *tab;
+    gint cur_page;
 
-	/* This is getting tricky, the tab was dragged in a notebook
-	 * in another window of the same app, we move the tab
-	 * to that new notebook, and let this notebook handle the
-	 * drag
-	 */
-	g_return_if_fail (XED_IS_NOTEBOOK (dest));
-	g_return_if_fail (dest != src);
+    /* This is getting tricky, the tab was dragged in a notebook
+     * in another window of the same app, we move the tab
+     * to that new notebook, and let this notebook handle the
+     * drag
+     */
+    g_return_if_fail (XED_IS_NOTEBOOK (dest));
+    g_return_if_fail (dest != src);
 
-	cur_page = gtk_notebook_get_current_page (GTK_NOTEBOOK (src));
-	tab = XED_TAB (gtk_notebook_get_nth_page (GTK_NOTEBOOK (src),
-						    cur_page));
+    cur_page = gtk_notebook_get_current_page (GTK_NOTEBOOK (src));
+    tab = XED_TAB (gtk_notebook_get_nth_page (GTK_NOTEBOOK (src), cur_page));
 
-	/* stop drag in origin window */
-	/* ungrab the pointer if it's grabbed */
-	drag_stop (src);
-	if (gdk_pointer_is_grabbed ())
-	{
-		gdk_pointer_ungrab (event->time);
-	}
-	gtk_grab_remove (GTK_WIDGET (src));
+    /* stop drag in origin window */
+    /* ungrab the pointer if it's grabbed */
+    drag_stop (src);
+    if (gdk_pointer_is_grabbed ())
+    {
+        gdk_pointer_ungrab (event->time);
+    }
+    gtk_grab_remove (GTK_WIDGET (src));
 
-	xed_notebook_move_tab (src, dest, tab, dest_position);
+    xed_notebook_move_tab (src, dest, tab, dest_position);
 
-	/* start drag handling in dest notebook */
-	dest->priv->motion_notify_handler_id =
-		g_signal_connect (G_OBJECT (dest),
-				  "motion-notify-event",
-				  G_CALLBACK (motion_notify_cb),
-				  NULL);
+    /* start drag handling in dest notebook */
+    dest->priv->motion_notify_handler_id = g_signal_connect (G_OBJECT (dest), "motion-notify-event",
+                                                             G_CALLBACK (motion_notify_cb), NULL);
 
-	drag_start (dest, event->time);
+    drag_start (dest, event->time);
 }
 
 static gboolean
-button_release_cb (XedNotebook  *notebook,
-		   GdkEventButton *event,
-		   gpointer        data)
+button_release_cb (XedNotebook    *notebook,
+                   GdkEventButton *event,
+                   gpointer        data)
 {
-	if (notebook->priv->drag_in_progress)
-	{
-		gint cur_page_num;
-		GtkWidget *cur_page;
+    if (notebook->priv->drag_in_progress)
+    {
+        gint cur_page_num;
+        GtkWidget *cur_page;
 
-		cur_page_num = gtk_notebook_get_current_page (GTK_NOTEBOOK (notebook));
-		cur_page = gtk_notebook_get_nth_page (GTK_NOTEBOOK (notebook),
-						      cur_page_num);
+        cur_page_num = gtk_notebook_get_current_page (GTK_NOTEBOOK (notebook));
+        cur_page = gtk_notebook_get_nth_page (GTK_NOTEBOOK (notebook), cur_page_num);
 
-		/* CHECK: I don't follow the code here -- Paolo  */
-		if (!is_in_notebook_window (notebook, event->x_root, event->y_root) &&
-		    (gtk_notebook_get_n_pages (GTK_NOTEBOOK (notebook)) > 1))
-		{
-			/* Tab was detached */
-			g_signal_emit (G_OBJECT (notebook),
-				       signals[TAB_DETACHED],
-				       0,
-				       cur_page);
-		}
+        /* CHECK: I don't follow the code here -- Paolo  */
+        if (!is_in_notebook_window (notebook, event->x_root, event->y_root) &&
+            (gtk_notebook_get_n_pages (GTK_NOTEBOOK (notebook)) > 1))
+        {
+            /* Tab was detached */
+            g_signal_emit (G_OBJECT (notebook), signals[TAB_DETACHED], 0, cur_page);
+        }
 
-		/* ungrab the pointer if it's grabbed */
-		if (gdk_pointer_is_grabbed ())
-		{
-			gdk_pointer_ungrab (event->time);
-		}
-		gtk_grab_remove (GTK_WIDGET (notebook));
-	}
+        /* ungrab the pointer if it's grabbed */
+        if (gdk_pointer_is_grabbed ())
+        {
+            gdk_pointer_ungrab (event->time);
+        }
+        gtk_grab_remove (GTK_WIDGET (notebook));
+    }
 
-	/* This must be called even if a drag isn't happening */
-	drag_stop (notebook);
+    /* This must be called even if a drag isn't happening */
+    drag_stop (notebook);
 
-	return FALSE;
+    return FALSE;
 }
 
 static gboolean
-button_press_cb (XedNotebook  *notebook,
-		 GdkEventButton *event,
-		 gpointer        data)
+button_press_cb (XedNotebook    *notebook,
+                 GdkEventButton *event,
+                 gpointer        data)
 {
-	gint tab_clicked;
+    gint tab_clicked;
 
-	if (notebook->priv->drag_in_progress)
-		return TRUE;
+    if (notebook->priv->drag_in_progress)
+    {
+        return TRUE;
+    }
 
-	tab_clicked = find_tab_num_at_pos (notebook,
-					   event->x_root,
-					   event->y_root);
+    tab_clicked = find_tab_num_at_pos (notebook, event->x_root, event->y_root);
 
-	if ((event->button == 1) &&
-	    (event->type == GDK_BUTTON_PRESS) &&
-	    (tab_clicked >= 0))
-	{
-		notebook->priv->x_start = event->x_root;
-		notebook->priv->y_start = event->y_root;
+    if ((event->button == 1) && (event->type == GDK_BUTTON_PRESS) && (tab_clicked >= 0))
+    {
+        notebook->priv->x_start = event->x_root;
+        notebook->priv->y_start = event->y_root;
 
-		notebook->priv->motion_notify_handler_id =
-			g_signal_connect (G_OBJECT (notebook),
-					  "motion-notify-event",
-					  G_CALLBACK (motion_notify_cb),
-					  NULL);
-	}
-	else if ((event->type == GDK_BUTTON_PRESS) &&
-		 (event->button == 3 || event->button == 2))
-	{
-		if (tab_clicked == -1)
-		{
-			// CHECK: do we really need it?
+        notebook->priv->motion_notify_handler_id = g_signal_connect (G_OBJECT (notebook), "motion-notify-event",
+                                                                     G_CALLBACK (motion_notify_cb), NULL);
+    }
+    else if ((event->type == GDK_BUTTON_PRESS) && (event->button == 3 || event->button == 2))
+    {
+        if (tab_clicked == -1)
+        {
+            // CHECK: do we really need it?
 
-			/* consume event, so that we don't pop up the context menu when
-			 * the mouse if not over a tab label
-			 */
-			return TRUE;
-		}
-		else
-		{
-			/* Switch to the page the mouse is over, but don't consume the event */
-			gtk_notebook_set_current_page (GTK_NOTEBOOK (notebook),
-						       tab_clicked);
-		}
-	}
+            /* consume event, so that we don't pop up the context menu when
+             * the mouse if not over a tab label
+             */
+            return TRUE;
+        }
+        else
+        {
+            /* Switch to the page the mouse is over, but don't consume the event */
+            gtk_notebook_set_current_page (GTK_NOTEBOOK (notebook), tab_clicked);
+        }
+    }
 
-	return FALSE;
+    return FALSE;
 }
 
 static gboolean
@@ -690,35 +660,33 @@ notebook_scroll_event_cb (XedNotebook    *notebook,
 GtkWidget *
 xed_notebook_new (void)
 {
-	return GTK_WIDGET (g_object_new (XED_TYPE_NOTEBOOK, NULL));
+    return GTK_WIDGET (g_object_new (XED_TYPE_NOTEBOOK, NULL));
 }
 
 static void
-xed_notebook_switch_page_cb (GtkNotebook     *notebook,
-                               GtkWidget       *page,
-                               guint            page_num,
-                               gpointer         data)
+xed_notebook_switch_page_cb (GtkNotebook *notebook,
+                             GtkWidget   *page,
+                             guint        page_num,
+                             gpointer     data)
 {
-	XedNotebook *nb = XED_NOTEBOOK (notebook);
-	GtkWidget *child;
-	XedView *view;
+    XedNotebook *nb = XED_NOTEBOOK (notebook);
+    GtkWidget *child;
+    XedView *view;
 
-	child = gtk_notebook_get_nth_page (notebook, page_num);
+    child = gtk_notebook_get_nth_page (notebook, page_num);
 
-	/* Remove the old page, we dont want to grow unnecessarily
-	 * the list */
-	if (nb->priv->focused_pages)
-	{
-		nb->priv->focused_pages =
-			g_list_remove (nb->priv->focused_pages, child);
-	}
+    /* Remove the old page, we dont want to grow unnecessarily
+     * the list */
+    if (nb->priv->focused_pages)
+    {
+        nb->priv->focused_pages = g_list_remove (nb->priv->focused_pages, child);
+    }
 
-	nb->priv->focused_pages = g_list_append (nb->priv->focused_pages,
-						 child);
+    nb->priv->focused_pages = g_list_append (nb->priv->focused_pages, child);
 
-	/* give focus to the view */
-	view = xed_tab_get_view (XED_TAB (child));
-	gtk_widget_grab_focus (GTK_WIDGET (view));
+    /* give focus to the view */
+    view = xed_tab_get_view (XED_TAB (child));
+    gtk_widget_grab_focus (GTK_WIDGET (view));
 }
 
 /*
@@ -727,50 +695,43 @@ xed_notebook_switch_page_cb (GtkNotebook     *notebook,
  */
 static void
 update_tabs_visibility (XedNotebook *nb,
-			gboolean       before_inserting)
+                        gboolean     before_inserting)
 {
-	gboolean show_tabs;
-	guint num;
+    gboolean show_tabs;
+    guint num;
 
-	num = gtk_notebook_get_n_pages (GTK_NOTEBOOK (nb));
+    num = gtk_notebook_get_n_pages (GTK_NOTEBOOK (nb));
 
-	if (before_inserting) num++;
+    if (before_inserting) num++;
 
-	show_tabs = (nb->priv->always_show_tabs || num > 1);
+    show_tabs = (nb->priv->always_show_tabs || num > 1);
 
-	gtk_notebook_set_show_tabs (GTK_NOTEBOOK (nb), show_tabs);
+    gtk_notebook_set_show_tabs (GTK_NOTEBOOK (nb), show_tabs);
 }
 
 static void
 xed_notebook_init (XedNotebook *notebook)
 {
-	notebook->priv = XED_NOTEBOOK_GET_PRIVATE (notebook);
+    notebook->priv = XED_NOTEBOOK_GET_PRIVATE (notebook);
 
-	notebook->priv->close_buttons_sensitive = TRUE;
-	notebook->priv->tab_drag_and_drop_enabled = TRUE;
+    notebook->priv->close_buttons_sensitive = TRUE;
+    notebook->priv->tab_drag_and_drop_enabled = TRUE;
     notebook->priv->tab_scrolling_enabled = TRUE;
 
-	gtk_notebook_set_scrollable (GTK_NOTEBOOK (notebook), TRUE);
-	gtk_notebook_set_show_border (GTK_NOTEBOOK (notebook), FALSE);
-	gtk_notebook_set_show_tabs (GTK_NOTEBOOK (notebook), FALSE);
+    gtk_notebook_set_scrollable (GTK_NOTEBOOK (notebook), TRUE);
+    gtk_notebook_set_show_border (GTK_NOTEBOOK (notebook), FALSE);
+    gtk_notebook_set_show_tabs (GTK_NOTEBOOK (notebook), FALSE);
 
-	notebook->priv->always_show_tabs = TRUE;
+    notebook->priv->always_show_tabs = TRUE;
 
-	g_signal_connect (notebook,
-			  "button-press-event",
-			  (GCallback)button_press_cb,
-			  NULL);
-	g_signal_connect (notebook,
-			  "button-release-event",
-			  (GCallback)button_release_cb,
-			  NULL);
-	gtk_widget_add_events (GTK_WIDGET (notebook),
-			       GDK_BUTTON1_MOTION_MASK);
+    g_signal_connect (notebook, "button-press-event",
+                      (GCallback)button_press_cb, NULL);
+    g_signal_connect (notebook, "button-release-event",
+                      (GCallback)button_release_cb, NULL);
+    gtk_widget_add_events (GTK_WIDGET (notebook), GDK_BUTTON1_MOTION_MASK);
 
-	g_signal_connect_after (G_OBJECT (notebook),
-				"switch_page",
-                                G_CALLBACK (xed_notebook_switch_page_cb),
-                                NULL);
+    g_signal_connect_after (G_OBJECT (notebook), "switch_page",
+                            G_CALLBACK (xed_notebook_switch_page_cb), NULL);
 
     gtk_widget_add_events (GTK_WIDGET (notebook), GDK_SCROLL_MASK);
     g_signal_connect (notebook, "scroll-event",
@@ -780,11 +741,11 @@ xed_notebook_init (XedNotebook *notebook)
 static void
 xed_notebook_finalize (GObject *object)
 {
-	XedNotebook *notebook = XED_NOTEBOOK (object);
+    XedNotebook *notebook = XED_NOTEBOOK (object);
 
-	g_list_free (notebook->priv->focused_pages);
+    g_list_free (notebook->priv->focused_pages);
 
-	G_OBJECT_CLASS (xed_notebook_parent_class)->finalize (object);
+    G_OBJECT_CLASS (xed_notebook_parent_class)->finalize (object);
 }
 
 /*
@@ -793,94 +754,90 @@ xed_notebook_finalize (GObject *object)
  */
 static gboolean
 xed_notebook_change_current_page (GtkNotebook *notebook,
-				    gint         offset)
+                                  gint         offset)
 {
-	gboolean wrap_around;
-	gint current;
+    gboolean wrap_around;
+    gint current;
 
-	current = gtk_notebook_get_current_page (notebook);
+    current = gtk_notebook_get_current_page (notebook);
 
-	if (current != -1)
-	{
-		current = current + offset;
+    if (current != -1)
+    {
+        current = current + offset;
 
-		g_object_get (gtk_widget_get_settings (GTK_WIDGET (notebook)),
-			      "gtk-keynav-wrap-around", &wrap_around,
-			      NULL);
+        g_object_get (gtk_widget_get_settings (GTK_WIDGET (notebook)),
+                      "gtk-keynav-wrap-around", &wrap_around, NULL);
 
-		if (wrap_around)
-		{
-			if (current < 0)
-			{
-				current = gtk_notebook_get_n_pages (notebook) - 1;
-			}
-			else if (current >= gtk_notebook_get_n_pages (notebook))
-			{
-				current = 0;
-			}
-		}
+        if (wrap_around)
+        {
+            if (current < 0)
+            {
+                current = gtk_notebook_get_n_pages (notebook) - 1;
+            }
+            else if (current >= gtk_notebook_get_n_pages (notebook))
+            {
+                current = 0;
+            }
+        }
 
-		gtk_notebook_set_current_page (notebook, current);
-	}
-	else
-	{
-		gtk_widget_error_bell (GTK_WIDGET (notebook));
-	}
+        gtk_notebook_set_current_page (notebook, current);
+    }
+    else
+    {
+        gtk_widget_error_bell (GTK_WIDGET (notebook));
+    }
 
-	return TRUE;
+    return TRUE;
 }
 
 static void
-close_button_clicked_cb (XedTabLabel *tab_label, XedNotebook *notebook)
+close_button_clicked_cb (XedTabLabel *tab_label,
+                         XedNotebook *notebook)
 {
-	XedTab *tab;
+    XedTab *tab;
 
-	tab = xed_tab_label_get_tab (tab_label);
-	g_signal_emit (notebook, signals[TAB_CLOSE_REQUEST], 0, tab);
+    tab = xed_tab_label_get_tab (tab_label);
+    g_signal_emit (notebook, signals[TAB_CLOSE_REQUEST], 0, tab);
 }
 
 static GtkWidget *
 create_tab_label (XedNotebook *nb,
-		  XedTab      *tab)
+                  XedTab      *tab)
 {
-	GtkWidget *tab_label;
+    GtkWidget *tab_label;
 
-	tab_label = xed_tab_label_new (tab);
+    tab_label = xed_tab_label_new (tab);
 
-	g_signal_connect (tab_label,
-			  "close-clicked",
-			  G_CALLBACK (close_button_clicked_cb),
-			  nb);
+    g_signal_connect (tab_label, "close-clicked",
+                      G_CALLBACK (close_button_clicked_cb), nb);
 
-	g_object_set_data (G_OBJECT (tab), "tab-label", tab_label);
+    g_object_set_data (G_OBJECT (tab), "tab-label", tab_label);
 
-	return tab_label;
+    return tab_label;
 }
 
 static GtkWidget *
 get_tab_label (XedTab *tab)
 {
-	GtkWidget *tab_label;
+    GtkWidget *tab_label;
 
-	tab_label = GTK_WIDGET (g_object_get_data (G_OBJECT (tab), "tab-label"));
-	g_return_val_if_fail (tab_label != NULL, NULL);
+    tab_label = GTK_WIDGET (g_object_get_data (G_OBJECT (tab), "tab-label"));
+    g_return_val_if_fail (tab_label != NULL, NULL);
 
-	return tab_label;
+    return tab_label;
 }
 
 static void
 remove_tab_label (XedNotebook *nb,
-		  XedTab      *tab)
+                  XedTab      *tab)
 {
-	GtkWidget *tab_label;
+    GtkWidget *tab_label;
 
-	tab_label = get_tab_label (tab);
+    tab_label = get_tab_label (tab);
 
-	g_signal_handlers_disconnect_by_func (tab_label,
-					      G_CALLBACK (close_button_clicked_cb),
-					      nb);
+    g_signal_handlers_disconnect_by_func (tab_label, G_CALLBACK (close_button_clicked_cb), nb);
 
-	g_object_set_data (G_OBJECT (tab), "tab-label", NULL);
+    g_object_set_data (G_OBJECT (tab), "tab-label", NULL);
 }
 
 /**
@@ -892,13 +849,13 @@ remove_tab_label (XedNotebook *nb,
  */
 void
 xed_notebook_set_always_show_tabs (XedNotebook *nb,
-				     gboolean       show_tabs)
+                                   gboolean     show_tabs)
 {
-	g_return_if_fail (XED_IS_NOTEBOOK (nb));
+    g_return_if_fail (XED_IS_NOTEBOOK (nb));
 
-	nb->priv->always_show_tabs = (show_tabs != FALSE);
+    nb->priv->always_show_tabs = (show_tabs != FALSE);
 
-	update_tabs_visibility (nb, FALSE);
+    update_tabs_visibility (nb, FALSE);
 }
 
 /**
@@ -912,91 +869,82 @@ xed_notebook_set_always_show_tabs (XedNotebook *nb,
  */
 void
 xed_notebook_add_tab (XedNotebook *nb,
-		        XedTab      *tab,
-		        gint           position,
-		        gboolean       jump_to)
+                      XedTab      *tab,
+                      gint         position,
+                      gboolean     jump_to)
 {
-	GtkWidget *tab_label;
+    GtkWidget *tab_label;
 
-	g_return_if_fail (XED_IS_NOTEBOOK (nb));
-	g_return_if_fail (XED_IS_TAB (tab));
+    g_return_if_fail (XED_IS_NOTEBOOK (nb));
+    g_return_if_fail (XED_IS_TAB (tab));
 
-	tab_label = create_tab_label (nb, tab);
-	gtk_notebook_insert_page (GTK_NOTEBOOK (nb),
-				  GTK_WIDGET (tab),
-				  tab_label,
-				  position);
-	update_tabs_visibility (nb, TRUE);
+    tab_label = create_tab_label (nb, tab);
+    gtk_notebook_insert_page (GTK_NOTEBOOK (nb), GTK_WIDGET (tab), tab_label, position);
+    update_tabs_visibility (nb, TRUE);
 
-	g_signal_emit (G_OBJECT (nb), signals[TAB_ADDED], 0, tab);
+    g_signal_emit (G_OBJECT (nb), signals[TAB_ADDED], 0, tab);
 
-	/* The signal handler may have reordered the tabs */
-	position = gtk_notebook_page_num (GTK_NOTEBOOK (nb),
-					  GTK_WIDGET (tab));
+    /* The signal handler may have reordered the tabs */
+    position = gtk_notebook_page_num (GTK_NOTEBOOK (nb), GTK_WIDGET (tab));
 
-	if (jump_to)
-	{
-		XedView *view;
+    if (jump_to)
+    {
+        XedView *view;
 
-		gtk_notebook_set_current_page (GTK_NOTEBOOK (nb), position);
-		g_object_set_data (G_OBJECT (tab),
-				   "jump_to",
-				   GINT_TO_POINTER (jump_to));
-		view = xed_tab_get_view (tab);
+        gtk_notebook_set_current_page (GTK_NOTEBOOK (nb), position);
+        g_object_set_data (G_OBJECT (tab), "jump_to", GINT_TO_POINTER (jump_to));
+        view = xed_tab_get_view (tab);
 
-		gtk_widget_grab_focus (GTK_WIDGET (view));
-	}
+        gtk_widget_grab_focus (GTK_WIDGET (view));
+    }
 }
 
 static void
 smart_tab_switching_on_closure (XedNotebook *nb,
-				XedTab      *tab)
+                                XedTab      *tab)
 {
-	gboolean jump_to;
+    gboolean jump_to;
 
-	jump_to = GPOINTER_TO_INT (g_object_get_data
-				   (G_OBJECT (tab), "jump_to"));
+    jump_to = GPOINTER_TO_INT (g_object_get_data (G_OBJECT (tab), "jump_to"));
 
-	if (!jump_to || !nb->priv->focused_pages)
-	{
-		gtk_notebook_next_page (GTK_NOTEBOOK (nb));
-	}
-	else
-	{
-		GList *l;
-		GtkWidget *child;
-		int page_num;
+    if (!jump_to || !nb->priv->focused_pages)
+    {
+        gtk_notebook_next_page (GTK_NOTEBOOK (nb));
+    }
+    else
+    {
+        GList *l;
+        GtkWidget *child;
+        int page_num;
 
-		/* activate the last focused tab */
-		l = g_list_last (nb->priv->focused_pages);
-		child = GTK_WIDGET (l->data);
-		page_num = gtk_notebook_page_num (GTK_NOTEBOOK (nb),
-						  child);
-		gtk_notebook_set_current_page (GTK_NOTEBOOK (nb),
-					       page_num);
-	}
+        /* activate the last focused tab */
+        l = g_list_last (nb->priv->focused_pages);
+        child = GTK_WIDGET (l->data);
+        page_num = gtk_notebook_page_num (GTK_NOTEBOOK (nb), child);
+        gtk_notebook_set_current_page (GTK_NOTEBOOK (nb), page_num);
+    }
 }
 
 static void
 remove_tab (XedTab      *tab,
-	    XedNotebook *nb)
+            XedNotebook *nb)
 {
-	gint position;
+    gint position;
 
-	position = gtk_notebook_page_num (GTK_NOTEBOOK (nb), GTK_WIDGET (tab));
+    position = gtk_notebook_page_num (GTK_NOTEBOOK (nb), GTK_WIDGET (tab));
 
-	/* we ref the tab so that it's still alive while the tabs_removed
-	 * signal is processed.
-	 */
-	g_object_ref (tab);
+    /* we ref the tab so that it's still alive while the tabs_removed
+     * signal is processed.
+     */
+    g_object_ref (tab);
 
-	remove_tab_label (nb, tab);
-	gtk_notebook_remove_page (GTK_NOTEBOOK (nb), position);
-	update_tabs_visibility (nb, FALSE);
+    remove_tab_label (nb, tab);
+    gtk_notebook_remove_page (GTK_NOTEBOOK (nb), position);
+    update_tabs_visibility (nb, FALSE);
 
-	g_signal_emit (G_OBJECT (nb), signals[TAB_REMOVED], 0, tab);
+    g_signal_emit (G_OBJECT (nb), signals[TAB_REMOVED], 0, tab);
 
-	g_object_unref (tab);
+    g_object_unref (tab);
 }
 
 /**
@@ -1008,26 +956,25 @@ remove_tab (XedTab      *tab,
  */
 void
 xed_notebook_remove_tab (XedNotebook *nb,
-			   XedTab      *tab)
+                         XedTab      *tab)
 {
-	gint position, curr;
+    gint position, curr;
 
-	g_return_if_fail (XED_IS_NOTEBOOK (nb));
-	g_return_if_fail (XED_IS_TAB (tab));
+    g_return_if_fail (XED_IS_NOTEBOOK (nb));
+    g_return_if_fail (XED_IS_TAB (tab));
 
-	/* Remove the page from the focused pages list */
-	nb->priv->focused_pages =  g_list_remove (nb->priv->focused_pages,
-						  tab);
+    /* Remove the page from the focused pages list */
+    nb->priv->focused_pages =  g_list_remove (nb->priv->focused_pages, tab);
 
-	position = gtk_notebook_page_num (GTK_NOTEBOOK (nb), GTK_WIDGET (tab));
-	curr = gtk_notebook_get_current_page (GTK_NOTEBOOK (nb));
+    position = gtk_notebook_page_num (GTK_NOTEBOOK (nb), GTK_WIDGET (tab));
+    curr = gtk_notebook_get_current_page (GTK_NOTEBOOK (nb));
 
-	if (position == curr)
-	{
-		smart_tab_switching_on_closure (nb, tab);
-	}
+    if (position == curr)
+    {
+        smart_tab_switching_on_closure (nb, tab);
+    }
 
-	remove_tab (tab, nb);
+    remove_tab (tab, nb);
 }
 
 /**
@@ -1039,26 +986,23 @@ xed_notebook_remove_tab (XedNotebook *nb,
 void
 xed_notebook_remove_all_tabs (XedNotebook *nb)
 {
-	g_return_if_fail (XED_IS_NOTEBOOK (nb));
+    g_return_if_fail (XED_IS_NOTEBOOK (nb));
 
-	g_list_free (nb->priv->focused_pages);
-	nb->priv->focused_pages = NULL;
+    g_list_free (nb->priv->focused_pages);
+    nb->priv->focused_pages = NULL;
 
-	gtk_container_foreach (GTK_CONTAINER (nb),
-			       (GtkCallback)remove_tab,
-			       nb);
+    gtk_container_foreach (GTK_CONTAINER (nb), (GtkCallback)remove_tab, nb);
 }
 
 static void
 set_close_buttons_sensitivity (XedTab      *tab,
                                XedNotebook *nb)
 {
-	GtkWidget *tab_label;
+    GtkWidget *tab_label;
 
-	tab_label = get_tab_label (tab);
+    tab_label = get_tab_label (tab);
 
-	xed_tab_label_set_close_button_sensitive (XED_TAB_LABEL (tab_label),
-						    nb->priv->close_buttons_sensitive);
+    xed_tab_label_set_close_button_sensitive (XED_TAB_LABEL (tab_label), nb->priv->close_buttons_sensitive);
 }
 
 /**
@@ -1070,20 +1014,20 @@ set_close_buttons_sensitivity (XedTab      *tab,
  */
 void
 xed_notebook_set_close_buttons_sensitive (XedNotebook *nb,
-					    gboolean       sensitive)
+                                          gboolean     sensitive)
 {
-	g_return_if_fail (XED_IS_NOTEBOOK (nb));
+    g_return_if_fail (XED_IS_NOTEBOOK (nb));
 
-	sensitive = (sensitive != FALSE);
+    sensitive = (sensitive != FALSE);
 
-	if (sensitive == nb->priv->close_buttons_sensitive)
-		return;
+    if (sensitive == nb->priv->close_buttons_sensitive)
+    {
+        return;
+    }
 
-	nb->priv->close_buttons_sensitive = sensitive;
+    nb->priv->close_buttons_sensitive = sensitive;
 
-	gtk_container_foreach (GTK_CONTAINER (nb),
-			       (GtkCallback)set_close_buttons_sensitivity,
-			       nb);
+    gtk_container_foreach (GTK_CONTAINER (nb), (GtkCallback)set_close_buttons_sensitivity, nb);
 }
 
 /**
@@ -1097,9 +1041,9 @@ xed_notebook_set_close_buttons_sensitive (XedNotebook *nb,
 gboolean
 xed_notebook_get_close_buttons_sensitive (XedNotebook *nb)
 {
-	g_return_val_if_fail (XED_IS_NOTEBOOK (nb), TRUE);
+    g_return_val_if_fail (XED_IS_NOTEBOOK (nb), TRUE);
 
-	return nb->priv->close_buttons_sensitive;
+    return nb->priv->close_buttons_sensitive;
 }
 
 /**
@@ -1111,16 +1055,18 @@ xed_notebook_get_close_buttons_sensitive (XedNotebook *nb)
  */
 void
 xed_notebook_set_tab_drag_and_drop_enabled (XedNotebook *nb,
-					      gboolean       enable)
+                                            gboolean     enable)
 {
-	g_return_if_fail (XED_IS_NOTEBOOK (nb));
+    g_return_if_fail (XED_IS_NOTEBOOK (nb));
 
-	enable = (enable != FALSE);
+    enable = (enable != FALSE);
 
-	if (enable == nb->priv->tab_drag_and_drop_enabled)
-		return;
+    if (enable == nb->priv->tab_drag_and_drop_enabled)
+    {
+        return;
+    }
 
-	nb->priv->tab_drag_and_drop_enabled = enable;
+    nb->priv->tab_drag_and_drop_enabled = enable;
 }
 
 /**
@@ -1134,9 +1080,9 @@ xed_notebook_set_tab_drag_and_drop_enabled (XedNotebook *nb,
 gboolean
 xed_notebook_get_tab_drag_and_drop_enabled (XedNotebook *nb)
 {
-	g_return_val_if_fail (XED_IS_NOTEBOOK (nb), TRUE);
+    g_return_val_if_fail (XED_IS_NOTEBOOK (nb), TRUE);
 
-	return nb->priv->tab_drag_and_drop_enabled;
+    return nb->priv->tab_drag_and_drop_enabled;
 }
 
 /**
