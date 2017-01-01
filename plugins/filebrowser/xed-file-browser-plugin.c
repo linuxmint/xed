@@ -531,8 +531,8 @@ xed_file_browser_plugin_activate (PeasActivatable *activatable)
     XedFileBrowserPluginPrivate *data;
     XedWindow *window;
 	XedPanel * panel;
-	GtkWidget * image;
-	GdkPixbuf * pixbuf;
+	// GtkWidget * image;
+	// GdkPixbuf * pixbuf;
 	XedFileBrowserStore * store;
 	gchar *data_dir;
 	GSettingsSchemaSource *schema_source;
@@ -578,21 +578,18 @@ xed_file_browser_plugin_activate (PeasActivatable *activatable)
 			  data);
 
 	panel = xed_window_get_side_panel (window);
-	pixbuf = xed_file_browser_utils_pixbuf_from_theme("system-file-manager",
-	                                                    GTK_ICON_SIZE_MENU);
+	// pixbuf = xed_file_browser_utils_pixbuf_from_theme("system-file-manager",
+	//                                                     GTK_ICON_SIZE_MENU);
 
-	if (pixbuf) {
-		image = gtk_image_new_from_pixbuf(pixbuf);
-		g_object_unref(pixbuf);
-	} else {
-		image = gtk_image_new_from_stock(GTK_STOCK_INDEX, GTK_ICON_SIZE_MENU);
-	}
+	// if (pixbuf) {
+	// 	image = gtk_image_new_from_pixbuf(pixbuf);
+	// 	g_object_unref(pixbuf);
+	// } else {
+	// 	image = gtk_image_new_from_stock(GTK_STOCK_INDEX, GTK_ICON_SIZE_MENU);
+	// }
 
-	gtk_widget_show(image);
-	xed_panel_add_item (panel,
-	                      GTK_WIDGET (data->tree_widget),
-	                      _("File Browser"),
-	                      image);
+	// gtk_widget_show(image);
+	xed_panel_add_item (panel, GTK_WIDGET (data->tree_widget), _("File Browser"), "system-file-manager");
 	gtk_widget_show (GTK_WIDGET (data->tree_widget));
 
 	add_popup_ui (data);

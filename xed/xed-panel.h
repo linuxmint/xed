@@ -96,12 +96,7 @@ GtkWidget *xed_panel_new (GtkOrientation  orientation);
 void xed_panel_add_item (XedPanel    *panel,
                          GtkWidget   *item,
                          const gchar *name,
-                         GtkWidget   *image);
-
-void xed_panel_add_item_with_stock_icon (XedPanel    *panel,
-                                         GtkWidget   *item,
-                                         const gchar *name,
-                                         const gchar *stock_id);
+                         const gchar *icon_name);
 
 gboolean xed_panel_remove_item (XedPanel  *panel,
                                 GtkWidget *item);

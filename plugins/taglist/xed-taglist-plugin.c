@@ -121,10 +121,7 @@ xed_taglist_plugin_activate (PeasActivatable *activatable)
     priv->taglist_panel = xed_taglist_plugin_panel_new (window, data_dir);
 	g_free (data_dir);
 
-	xed_panel_add_item_with_stock_icon (side_panel,
-					      priv->taglist_panel,
-					      _("Tags"),
-					      GTK_STOCK_ADD);
+	xed_panel_add_item (side_panel, priv->taglist_panel, _("Tags"), "list-add");
 }
 
 static void

@@ -323,68 +323,6 @@ xed_panel_class_init (XedPanelClass *klass)
                                   0);
 }
 
-/* This is ugly, since it supports only known
- * storage types of GtkImage, otherwise fall back
- * to the empty icon.
- * See http://bugzilla.gnome.org/show_bug.cgi?id=317520.
- */
-static void
-set_gtk_image_from_gtk_image (GtkImage *image,
-                              GtkImage *source)
-{
-    switch (gtk_image_get_storage_type (source))
-    {
-        case GTK_IMAGE_EMPTY:
-            gtk_image_clear (image);
-            break;
-        case GTK_IMAGE_PIXBUF:
-            {
-                GdkPixbuf *pb;
-
-                pb = gtk_image_get_pixbuf (source);
-                gtk_image_set_from_pixbuf (image, pb);
-            }
-            break;
-        case GTK_IMAGE_STOCK:
-            {
-                gchar *s_id;
-                GtkIconSize s;
-
-                gtk_image_get_stock (source, &s_id, &s);
-                gtk_image_set_from_stock (image, s_id, s);
-            }
-            break;
-        case GTK_IMAGE_ICON_SET:
-            {
-                GtkIconSet *is;
-                GtkIconSize s;
-
-                gtk_image_get_icon_set (source, &is, &s);
-                gtk_image_set_from_icon_set (image, is, s);
-            }
-            break;
-        case GTK_IMAGE_ANIMATION:
-            {
-                GdkPixbufAnimation *a;
-
-                a = gtk_image_get_animation (source);
-                gtk_image_set_from_animation (image, a);
-            }
-            break;
-        case GTK_IMAGE_ICON_NAME:
-            {
-                const gchar *n;
-                GtkIconSize s;
-
-                gtk_image_get_icon_name (source, &n, &s);
-                gtk_image_set_from_icon_name (image, n, s);
-            }
-            break;
-        default:
-            gtk_image_set_from_stock (image, GTK_STOCK_FILE, GTK_ICON_SIZE_MENU);
-    }
-}
-
 static void
 xed_panel_init (XedPanel *panel)
 {
@@ -521,7 +459,7 @@ update_tabs_visibility (XedPanel *panel)
  * @panel: a #XedPanel
  * @item: the #GtkWidget to add to the @panel
  * @name: the name to be shown in the @panel
- * @image: the image to be shown in the @panel
+ * @icon_name: the name of the icon to be shown in the @panel
  *
  * Adds a new item to the @panel.
  */
@@ -529,34 +467,28 @@ void
 xed_panel_add_item (XedPanel    *panel,
                     GtkWidget   *item,
                     const gchar *name,
-                    GtkWidget   *image)
+                    const gchar *icon_name)
 {
     XedPanelItem *data;
     GtkWidget *tab_label;
     GtkWidget *menu_label;
-    gint w, h;
 
     g_return_if_fail (XED_IS_PANEL (panel));
     g_return_if_fail (GTK_IS_WIDGET (item));
     g_return_if_fail (name != NULL);
-    g_return_if_fail (image == NULL || GTK_IS_IMAGE (image));
 
     data = g_new (XedPanelItem, 1);
 
     data->name = g_strdup (name);
 
-    if (image == NULL)
+    if (icon_name)
     {
-        /* default to empty */
-        data->icon = gtk_image_new_from_stock (GTK_STOCK_FILE, GTK_ICON_SIZE_MENU);
+        data->icon = gtk_image_new_from_icon_name (icon_name, GTK_ICON_SIZE_MENU);
     }
     else
     {
-        data->icon = image;
+        data->icon = gtk_image_new_from_icon_name ("text-x-generic", GTK_ICON_SIZE_MENU);
     }
-
-    gtk_icon_size_lookup (GTK_ICON_SIZE_MENU, &w, &h);
-    gtk_widget_set_size_request (data->icon, w, h);
 
     g_object_set_data (G_OBJECT (item), PANEL_ITEM_KEY, data);
 
@@ -575,31 +507,6 @@ xed_panel_add_item (XedPanel    *panel,
     update_tabs_visibility (panel);
 
     g_signal_emit (G_OBJECT (panel), signals[ITEM_ADDED], 0, item);
-}
-
-/**
- * xed_panel_add_item_with_stock_icon:
- * @panel: a #XedPanel
- * @item: the #GtkWidget to add to the @panel
- * @name: the name to be shown in the @panel
- * @stock_id: a stock id
- *
- * Same as xed_panel_add_item() but using an image from stock.
- */
-void
-xed_panel_add_item_with_stock_icon (XedPanel    *panel,
-                                    GtkWidget   *item,
-                                    const gchar *name,
-                                    const gchar *stock_id)
-{
-    GtkWidget *icon = NULL;
-
-    if (stock_id != NULL)
-    {
-        icon = gtk_image_new_from_stock (stock_id, GTK_ICON_SIZE_MENU);
-    }
-
-    xed_panel_add_item (panel, item, name, icon);
 }
 
 /**
