@@ -119,11 +119,6 @@ void            xed_notebook_move_tab		(XedNotebook *src,
 						 XedTab      *tab,
 						 gint           dest_position);
 
-/* FIXME: do we really need this function ? */
-void		xed_notebook_set_always_show_tabs
-						(XedNotebook *nb,
-						 gboolean       show_tabs);
-
 void		xed_notebook_set_close_buttons_sensitive
 						(XedNotebook *nb,
 						 gboolean       sensitive);

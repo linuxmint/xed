@@ -403,6 +403,8 @@ build_notebook_for_panel (XedPanel *panel)
 
     gtk_notebook_set_scrollable (GTK_NOTEBOOK (panel->priv->notebook), TRUE);
     gtk_notebook_popup_enable (GTK_NOTEBOOK (panel->priv->notebook));
+    gtk_notebook_set_show_tabs (GTK_NOTEBOOK (panel->priv->notebook), FALSE);
+    gtk_notebook_set_show_border (GTK_NOTEBOOK (panel->priv->notebook), FALSE);
 
     gtk_widget_show (GTK_WIDGET (panel->priv->notebook));
 }
@@ -505,6 +507,15 @@ build_tab_label (XedPanel    *panel,
     return hbox;
 }
 
+static void
+update_tabs_visibility (XedPanel *panel)
+{
+    gboolean show_tabs;
+
+    show_tabs = (gtk_notebook_get_n_pages (GTK_NOTEBOOK (panel->priv->notebook)) > 1);
+    gtk_notebook_set_show_tabs (GTK_NOTEBOOK (panel->priv->notebook), show_tabs);
+}
+
 /**
  * xed_panel_add_item:
  * @panel: a #XedPanel
@@ -561,6 +572,7 @@ xed_panel_add_item (XedPanel    *panel,
     }
 
     gtk_notebook_append_page_menu (GTK_NOTEBOOK (panel->priv->notebook), item, tab_label, menu_label);
+    update_tabs_visibility (panel);
 
     g_signal_emit (G_OBJECT (panel), signals[ITEM_ADDED], 0, item);
 }
@@ -629,6 +641,7 @@ xed_panel_remove_item (XedPanel  *panel,
     g_object_ref (G_OBJECT (item));
 
     gtk_notebook_remove_page (GTK_NOTEBOOK (panel->priv->notebook), page_num);
+    update_tabs_visibility (panel);
 
     g_signal_emit (G_OBJECT (panel), signals[ITEM_REMOVED], 0, item);
 

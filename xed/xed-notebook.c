@@ -61,7 +61,6 @@ struct _XedNotebookPrivate
     gint           x_start;
     gint           y_start;
     gint           drag_in_progress : 1;
-    gint           always_show_tabs : 1;
     gint           close_buttons_sensitive : 1;
     gint           tab_drag_and_drop_enabled : 1;
     gint           tab_scrolling_enabled : 1;
@@ -691,22 +690,14 @@ xed_notebook_switch_page_cb (GtkNotebook *notebook,
 
 /*
  * update_tabs_visibility: Hide tabs if there is only one tab
- * and the pref is not set.
  */
 static void
-update_tabs_visibility (XedNotebook *nb,
-                        gboolean     before_inserting)
+update_tabs_visibility (XedNotebook *notebook)
 {
     gboolean show_tabs;
-    guint num;
 
-    num = gtk_notebook_get_n_pages (GTK_NOTEBOOK (nb));
-
-    if (before_inserting) num++;
-
-    show_tabs = (nb->priv->always_show_tabs || num > 1);
-
-    gtk_notebook_set_show_tabs (GTK_NOTEBOOK (nb), show_tabs);
+    show_tabs = (gtk_notebook_get_n_pages (GTK_NOTEBOOK (notebook)) > 1);
+    gtk_notebook_set_show_tabs (GTK_NOTEBOOK (notebook), show_tabs);
 }
 
 static void
@@ -719,10 +710,8 @@ xed_notebook_init (XedNotebook *notebook)
     notebook->priv->tab_scrolling_enabled = TRUE;
 
     gtk_notebook_set_scrollable (GTK_NOTEBOOK (notebook), TRUE);
-    gtk_notebook_set_show_border (GTK_NOTEBOOK (notebook), FALSE);
+    // gtk_notebook_set_show_border (GTK_NOTEBOOK (notebook), FALSE);
     gtk_notebook_set_show_tabs (GTK_NOTEBOOK (notebook), FALSE);
-
-    notebook->priv->always_show_tabs = TRUE;
 
     g_signal_connect (notebook, "button-press-event",
                       (GCallback)button_press_cb, NULL);
@@ -841,24 +830,6 @@ remove_tab_label (XedNotebook *nb,
 }
 
 /**
- * xed_notebook_set_always_show_tabs:
- * @nb: a #XedNotebook
- * @show_tabs: %TRUE to always show the tabs
- *
- * Sets the visibility of the tabs in the @nb.
- */
-void
-xed_notebook_set_always_show_tabs (XedNotebook *nb,
-                                   gboolean     show_tabs)
-{
-    g_return_if_fail (XED_IS_NOTEBOOK (nb));
-
-    nb->priv->always_show_tabs = (show_tabs != FALSE);
-
-    update_tabs_visibility (nb, FALSE);
-}
-
-/**
  * xed_notebook_add_tab:
  * @nb: a #XedNotebook
  * @tab: a #XedTab
@@ -880,7 +851,7 @@ xed_notebook_add_tab (XedNotebook *nb,
 
     tab_label = create_tab_label (nb, tab);
     gtk_notebook_insert_page (GTK_NOTEBOOK (nb), GTK_WIDGET (tab), tab_label, position);
-    update_tabs_visibility (nb, TRUE);
+    update_tabs_visibility (nb);
 
     g_signal_emit (G_OBJECT (nb), signals[TAB_ADDED], 0, tab);
 
@@ -940,7 +911,7 @@ remove_tab (XedTab      *tab,
 
     remove_tab_label (nb, tab);
     gtk_notebook_remove_page (GTK_NOTEBOOK (nb), position);
-    update_tabs_visibility (nb, FALSE);
+    update_tabs_visibility (nb);
 
     g_signal_emit (G_OBJECT (nb), signals[TAB_REMOVED], 0, tab);
 
