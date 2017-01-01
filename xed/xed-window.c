@@ -129,7 +129,7 @@ on_key_pressed (GtkWidget *widget,
     gint handled = FALSE;
     if (event->keyval == GDK_KEY_Escape)
     {
-        xed_searchbar_hide (window->priv->searchbar);
+        xed_searchbar_hide (XED_SEARCHBAR (window->priv->searchbar));
         handled = TRUE;
     }
     return handled;
@@ -1626,7 +1626,7 @@ create_statusbar (XedWindow *window,
     xed_debug (DEBUG_WINDOW);
 
     window->priv->statusbar = xed_statusbar_new ();
-    window->priv->searchbar = xed_searchbar_new (window, TRUE);
+    window->priv->searchbar = xed_searchbar_new (GTK_WINDOW (window), TRUE);
 
     window->priv->generic_message_cid = gtk_statusbar_get_context_id (GTK_STATUSBAR (window->priv->statusbar),
                                                                       "generic_message");
@@ -3418,7 +3418,7 @@ xed_window_init (XedWindow *window)
     window->priv->window_group = gtk_window_group_new ();
     gtk_window_group_add_window (window->priv->window_group, GTK_WINDOW (window));
 
-    gtk_style_context_add_class (gtk_widget_get_style_context (window), "xed-window");
+    gtk_style_context_add_class (gtk_widget_get_style_context (GTK_WIDGET (window)), "xed-window");
 
     main_box = gtk_box_new (GTK_ORIENTATION_VERTICAL, 0);
     gtk_container_add (GTK_CONTAINER (window), main_box);
