@@ -1271,7 +1271,6 @@ xed_prefs_manager_max_recents_changed (GSettings *settings,
 
     if (strcmp (key, GPM_MAX_RECENTS) == 0)
     {
-        const GList *windows;
         gint max;
 
         max = g_settings_get_int (settings, key);
