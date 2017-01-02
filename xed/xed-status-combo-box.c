@@ -345,7 +345,7 @@ xed_status_combo_box_init (XedStatusComboBox *self)
 
     gtk_box_pack_start (GTK_BOX (self->priv->hbox), self->priv->item, TRUE, TRUE, 0);
 
-    self->priv->arrow = gtk_arrow_new (GTK_ARROW_DOWN, GTK_SHADOW_NONE);
+    self->priv->arrow = gtk_image_new_from_icon_name ("pan-down-symbolic", GTK_ICON_SIZE_MENU);
     gtk_widget_show (self->priv->arrow);
 
     gtk_widget_set_halign (self->priv->arrow, GTK_ALIGN_CENTER);
