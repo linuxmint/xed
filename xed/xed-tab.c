@@ -1657,55 +1657,6 @@ _xed_tab_get_tooltips (XedTab *tab)
 }
 
 static GdkPixbuf *
-resize_icon (GdkPixbuf *pixbuf,
-             gint       size)
-{
-    gint width, height;
-
-    width = gdk_pixbuf_get_width (pixbuf);
-    height = gdk_pixbuf_get_height (pixbuf);
-
-    /* if the icon is larger than the nominal size, scale down */
-    if (MAX (width, height) > size)
-    {
-        GdkPixbuf *scaled_pixbuf;
-
-        if (width > height)
-        {
-            height = height * size / width;
-            width = size;
-        }
-        else
-        {
-            width = width * size / height;
-            height = size;
-        }
-
-        scaled_pixbuf = gdk_pixbuf_scale_simple (pixbuf, width, height, GDK_INTERP_BILINEAR);
-        g_object_unref (pixbuf);
-        pixbuf = scaled_pixbuf;
-    }
-
-    return pixbuf;
-}
-
-static GdkPixbuf *
-get_stock_icon (GtkIconTheme *theme,
-                const gchar  *stock,
-                gint          size)
-{
-    GdkPixbuf *pixbuf;
-
-    pixbuf = gtk_icon_theme_load_icon (theme, stock, size, 0, NULL);
-    if (pixbuf == NULL)
-    {
-        return NULL;
-    }
-
-    return resize_icon (pixbuf, size);
-}
-
-static GdkPixbuf *
 get_icon (GtkIconTheme *theme,
           GFile        *location,
           gint          size)
@@ -1717,7 +1668,7 @@ get_icon (GtkIconTheme *theme,
 
     if (location == NULL)
     {
-        return get_stock_icon (theme, GTK_STOCK_FILE, size);
+        return gtk_icon_theme_load_icon (theme, "text-x-generic", size, 0, NULL);
     }
 
     /* FIXME: Doing a sync stat is bad, this should be fixed */
@@ -1728,7 +1679,7 @@ get_icon (GtkIconTheme *theme,
                               NULL);
     if (info == NULL)
     {
-        return get_stock_icon (theme, GTK_STOCK_FILE, size);
+        return gtk_icon_theme_load_icon (theme, "text-x-generic", size, 0, NULL);
     }
 
     gicon = g_file_info_get_icon (info);
@@ -1736,7 +1687,7 @@ get_icon (GtkIconTheme *theme,
     if (gicon == NULL)
     {
         g_object_unref (info);
-        return get_stock_icon (theme, GTK_STOCK_FILE, size);
+        return gtk_icon_theme_load_icon (theme, "text-x-generic", size, 0, NULL);
     }
 
     icon_info = gtk_icon_theme_lookup_by_gicon (theme, gicon, size, 0);
@@ -1744,18 +1695,18 @@ get_icon (GtkIconTheme *theme,
 
     if (icon_info == NULL)
     {
-        return get_stock_icon (theme, GTK_STOCK_FILE, size);
+        return gtk_icon_theme_load_icon (theme, "text-x-generic", size, 0, NULL);
     }
 
     pixbuf = gtk_icon_info_load_icon (icon_info, NULL);
-    gtk_icon_info_free (icon_info);
+    g_object_unref (icon_info);
 
     if (pixbuf == NULL)
     {
-        return get_stock_icon (theme, GTK_STOCK_FILE, size);
+        return gtk_icon_theme_load_icon (theme, "text-x-generic", size, 0, NULL);
     }
 
-    return resize_icon (pixbuf, size);
+    return pixbuf;
 }
 
 /* FIXME: add support for theme changed. I think it should be as easy as
@@ -1763,15 +1714,15 @@ get_icon (GtkIconTheme *theme,
 GdkPixbuf *
 _xed_tab_get_icon (XedTab *tab)
 {
-    GdkPixbuf *pixbuf;
-    GtkIconTheme *theme;
     GdkScreen *screen;
+    GtkIconTheme *theme;
     gint icon_size;
+    const gchar *icon_name;
+    GdkPixbuf *pixbuf = NULL;
 
     g_return_val_if_fail (XED_IS_TAB (tab), NULL);
 
     screen = gtk_widget_get_screen (GTK_WIDGET (tab));
-
     theme = gtk_icon_theme_get_for_screen (screen);
     g_return_val_if_fail (theme != NULL, NULL);
 
@@ -1780,52 +1731,53 @@ _xed_tab_get_icon (XedTab *tab)
     switch (tab->priv->state)
     {
         case XED_TAB_STATE_LOADING:
-            pixbuf = get_stock_icon (theme, GTK_STOCK_OPEN, icon_size);
+            icon_name = "document-open-symbolic";
             break;
 
         case XED_TAB_STATE_REVERTING:
-            pixbuf = get_stock_icon (theme, GTK_STOCK_REVERT_TO_SAVED, icon_size);
+            icon_name = "document-revert-symbolic";
             break;
 
         case XED_TAB_STATE_SAVING:
-            pixbuf = get_stock_icon (theme, GTK_STOCK_SAVE, icon_size);
+            icon_name = "document-save-symbolic";
             break;
 
         case XED_TAB_STATE_PRINTING:
-            pixbuf = get_stock_icon (theme, GTK_STOCK_PRINT, icon_size);
+            icon_name = "printer-printing-symbolic";
             break;
 
         case XED_TAB_STATE_PRINT_PREVIEWING:
         case XED_TAB_STATE_SHOWING_PRINT_PREVIEW:
-            pixbuf = get_stock_icon (theme, GTK_STOCK_PRINT_PREVIEW, icon_size);
+            icon_name = "printer-symbolic";
             break;
 
         case XED_TAB_STATE_LOADING_ERROR:
         case XED_TAB_STATE_REVERTING_ERROR:
         case XED_TAB_STATE_SAVING_ERROR:
         case XED_TAB_STATE_GENERIC_ERROR:
-            pixbuf = get_stock_icon (theme, GTK_STOCK_DIALOG_ERROR, icon_size);
+            icon_name = "dialog-error-symbolic";
             break;
 
         case XED_TAB_STATE_EXTERNALLY_MODIFIED_NOTIFICATION:
-            pixbuf = get_stock_icon (theme, GTK_STOCK_DIALOG_WARNING, icon_size);
+            icon_name = "dialog-warning-symbolic";
             break;
 
         default:
-        {
-            GFile *location;
-            XedDocument *doc;
+            icon_name = NULL;
+    }
 
-            doc = xed_tab_get_document (tab);
+    if (icon_name != NULL)
+    {
+        pixbuf = gtk_icon_theme_load_icon (theme, icon_name, icon_size, 0, NULL);
+    }
+    else
+    {
+        GFile *location;
+        XedDocument *doc;
 
-            location = xed_document_get_location (doc);
-            pixbuf = get_icon (theme, location, icon_size);
-
-            if (location)
-            {
-                g_object_unref (location);
-            }
-        }
+        doc = xed_tab_get_document (tab);
+        location = xed_document_get_location (doc);
+        pixbuf = get_icon (theme, location, icon_size);
     }
 
     return pixbuf;

@@ -16,7 +16,7 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
- * Foundation, Inc., 51 Franklin St, Fifth Floor, 
+ * Foundation, Inc., 51 Franklin St, Fifth Floor,
  * Boston, MA 02110-1301, USA.
  */
 
@@ -108,7 +108,7 @@ xed_tab_label_get_property (GObject    *object,
 }
 
 static void
-close_button_clicked_cb (GtkWidget     *widget, 
+close_button_clicked_cb (GtkWidget     *widget,
 			 XedTabLabel *tab_label)
 {
 	g_signal_emit (tab_label, signals[CLOSE_CLICKED], 0, NULL);
@@ -172,12 +172,17 @@ sync_state (XedTab *tab, GParamSpec *pspec, XedTabLabel *tab_label)
 		GdkPixbuf *pixbuf;
 
 		pixbuf = _xed_tab_get_icon (tab);
-		gtk_image_set_from_pixbuf (GTK_IMAGE (tab_label->priv->icon), pixbuf);
 
-		if (pixbuf != NULL)
-			g_object_unref (pixbuf);
-
-		gtk_widget_show (tab_label->priv->icon);
+        if (pixbuf != NULL)
+        {
+            gtk_image_set_from_pixbuf (GTK_IMAGE (tab_label->priv->icon), pixbuf);
+            g_clear_object (&pixbuf);
+            gtk_widget_show (tab_label->priv->icon);
+        }
+        else
+        {
+            gtk_widget_hide (tab_label->priv->icon);
+        }
 
 		gtk_widget_hide (tab_label->priv->spinner);
 		gtk_spinner_stop (GTK_SPINNER (tab_label->priv->spinner));
@@ -218,7 +223,7 @@ static void
 xed_tab_label_class_init (XedTabLabelClass *klass)
 {
 	GObjectClass *object_class = G_OBJECT_CLASS (klass);
-	
+
 	object_class->finalize = xed_tab_label_finalize;
 	object_class->set_property = xed_tab_label_set_property;
 	object_class->get_property = xed_tab_label_get_property;
@@ -329,7 +334,7 @@ xed_tab_label_set_close_button_sensitive (XedTabLabel *tab_label,
 
 	state = xed_tab_get_state (tab_label->priv->tab);
 
-	gtk_widget_set_sensitive (tab_label->priv->close_button, 
+	gtk_widget_set_sensitive (tab_label->priv->close_button,
 				  tab_label->priv->close_button_sensitive &&
 				  (state != XED_TAB_STATE_CLOSING) &&
 				  (state != XED_TAB_STATE_SAVING)  &&
