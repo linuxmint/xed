@@ -3177,8 +3177,7 @@ create_side_panel (XedWindow *window)
     g_signal_connect_after (window->priv->side_panel, "hide", G_CALLBACK (side_panel_visibility_changed), window);
 
     documents_panel = xed_documents_panel_new (window);
-    xed_panel_add_item (XED_PANEL (window->priv->side_panel), documents_panel, _("Documents"),
-    GTK_STOCK_FILE);
+    xed_panel_add_item (XED_PANEL (window->priv->side_panel), documents_panel, _("Documents"), "text-x-generic");
 }
 
 static void
