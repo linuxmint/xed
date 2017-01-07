@@ -252,8 +252,8 @@ set_zoom_fit_to_size (XedPrintPreview *preview)
 
     priv = preview->priv;
 
-    g_object_get (gtk_layout_get_hadjustment (GTK_LAYOUT (priv->layout)), "page-size", &width, NULL);
-    g_object_get (gtk_layout_get_vadjustment (GTK_LAYOUT (priv->layout)), "page-size", &height, NULL);
+    g_object_get (gtk_scrollable_get_hadjustment (GTK_SCROLLABLE (priv->layout)), "page-size", &width, NULL);
+    g_object_get (gtk_scrollable_get_vadjustment (GTK_SCROLLABLE (priv->layout)), "page-size", &height, NULL);
 
     width /= priv->cols;
     height /= priv->rows;
@@ -714,8 +714,8 @@ get_page_at_coords (XedPrintPreview *preview,
         return -1;
     }
 
-    hadj = gtk_layout_get_hadjustment (GTK_LAYOUT (priv->layout));
-    vadj = gtk_layout_get_vadjustment (GTK_LAYOUT (priv->layout));
+    hadj = gtk_scrollable_get_hadjustment (GTK_SCROLLABLE (priv->layout));
+    vadj = gtk_scrollable_get_vadjustment (GTK_SCROLLABLE (priv->layout));
 
     x += gtk_adjustment_get_value (hadj);
     y += gtk_adjustment_get_value (vadj);
@@ -782,8 +782,8 @@ preview_layout_key_press (GtkWidget       *widget,
 
     priv = preview->priv;
 
-    hadj = gtk_layout_get_hadjustment (GTK_LAYOUT (priv->layout));
-    vadj = gtk_layout_get_vadjustment (GTK_LAYOUT (priv->layout));
+    hadj = gtk_scrollable_get_hadjustment (GTK_SCROLLABLE (priv->layout));
+    vadj = gtk_scrollable_get_vadjustment (GTK_SCROLLABLE (priv->layout));
 
     x = gtk_adjustment_get_value (hadj);
     y = gtk_adjustment_get_value (vadj);
