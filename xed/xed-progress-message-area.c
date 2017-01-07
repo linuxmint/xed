@@ -64,7 +64,7 @@ xed_progress_message_area_set_has_cancel_button (XedProgressMessageArea *area,
 {
     if (has_button)
     {
-        gtk_info_bar_add_button (GTK_INFO_BAR (area), GTK_STOCK_CANCEL, GTK_RESPONSE_CANCEL);
+        gtk_info_bar_add_button (GTK_INFO_BAR (area), _("Cancel"), GTK_RESPONSE_CANCEL);
     }
 
     g_object_notify (G_OBJECT (area), "has-cancel-button");
@@ -141,7 +141,7 @@ xed_progress_message_area_init (XedProgressMessageArea *area)
     gtk_widget_show (hbox);
     gtk_box_pack_start (GTK_BOX (vbox), hbox, FALSE, FALSE, 0);
 
-    area->priv->image = gtk_image_new_from_icon_name (GTK_STOCK_MISSING_IMAGE, GTK_ICON_SIZE_SMALL_TOOLBAR);
+    area->priv->image = gtk_image_new_from_icon_name ("image-missing", GTK_ICON_SIZE_SMALL_TOOLBAR);
     gtk_widget_show (area->priv->image);
     gtk_widget_set_halign (area->priv->image, GTK_ALIGN_CENTER);
     gtk_widget_set_valign (area->priv->image, GTK_ALIGN_CENTER);
@@ -166,33 +166,33 @@ xed_progress_message_area_init (XedProgressMessageArea *area)
 }
 
 GtkWidget *
-xed_progress_message_area_new (const gchar *stock_id,
+xed_progress_message_area_new (const gchar *icon_name,
                                const gchar *markup,
                                gboolean     has_cancel)
 {
     XedProgressMessageArea *area;
 
-    g_return_val_if_fail (stock_id != NULL, NULL);
+    g_return_val_if_fail (icon_name != NULL, NULL);
     g_return_val_if_fail (markup != NULL, NULL);
 
     area = XED_PROGRESS_MESSAGE_AREA (g_object_new (XED_TYPE_PROGRESS_MESSAGE_AREA,
                                       "has-cancel-button", has_cancel,
                                       NULL));
 
-    xed_progress_message_area_set_stock_image (area, stock_id);
+    xed_progress_message_area_set_image (area, icon_name);
     xed_progress_message_area_set_markup (area, markup);
 
     return GTK_WIDGET (area);
 }
 
 void
-xed_progress_message_area_set_stock_image (XedProgressMessageArea *area,
-                                           const gchar            *stock_id)
+xed_progress_message_area_set_image (XedProgressMessageArea *area,
+                                     const gchar            *icon_name)
 {
     g_return_if_fail (XED_IS_PROGRESS_MESSAGE_AREA (area));
-    g_return_if_fail (stock_id != NULL);
+    g_return_if_fail (icon_name != NULL);
 
-    gtk_image_set_from_stock (GTK_IMAGE (area->priv->image), stock_id, GTK_ICON_SIZE_SMALL_TOOLBAR);
+    gtk_image_set_from_icon_name (GTK_IMAGE (area->priv->image), icon_name, GTK_ICON_SIZE_SMALL_TOOLBAR);
 }
 
 void

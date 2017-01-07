@@ -2,7 +2,7 @@
  * xed-progress-message-area.h
  * This file is part of xed
  *
- * Copyright (C) 2005 - Paolo Maggi 
+ * Copyright (C) 2005 - Paolo Maggi
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,14 +16,14 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
- * Foundation, Inc., 51 Franklin St, Fifth Floor, 
+ * Foundation, Inc., 51 Franklin St, Fifth Floor,
  * Boston, MA 02110-1301, USA.
  */
- 
+
 /*
- * Modified by the xed Team, 2005. See the AUTHORS file for a 
- * list of people on the xed Team.  
- * See the ChangeLog files for a list of changes. 
+ * Modified by the xed Team, 2005. See the AUTHORS file for a
+ * list of people on the xed Team.
+ * See the ChangeLog files for a list of changes.
  *
  * $Id$
  */
@@ -53,12 +53,12 @@ typedef struct _XedProgressMessageAreaPrivate XedProgressMessageAreaPrivate;
  */
 typedef struct _XedProgressMessageArea XedProgressMessageArea;
 
-struct _XedProgressMessageArea 
+struct _XedProgressMessageArea
 {
-	GtkInfoBar parent;
+    GtkInfoBar parent;
 
-	/*< private > */
-	XedProgressMessageAreaPrivate *priv;
+    /*< private > */
+    XedProgressMessageAreaPrivate *priv;
 };
 
 /*
@@ -66,34 +66,34 @@ struct _XedProgressMessageArea
  */
 typedef struct _XedProgressMessageAreaClass XedProgressMessageAreaClass;
 
-struct _XedProgressMessageAreaClass 
+struct _XedProgressMessageAreaClass
 {
-	GtkInfoBarClass parent_class;
+    GtkInfoBarClass parent_class;
 };
 
 /*
  * Public methods
  */
-GType 		 xed_progress_message_area_get_type 		(void) G_GNUC_CONST;
+GType xed_progress_message_area_get_type (void) G_GNUC_CONST;
 
-GtkWidget	*xed_progress_message_area_new      		(const gchar              *stock_id,
-								 const gchar              *markup,
-								 gboolean                  has_cancel);
+GtkWidget *xed_progress_message_area_new (const gchar *icon_name,
+                                          const gchar *markup,
+                                          gboolean     has_cancel);
 
-void		 xed_progress_message_area_set_stock_image	(XedProgressMessageArea *area,
-								 const gchar              *stock_id);
+void xed_progress_message_area_set_image (XedProgressMessageArea *area,
+                                          const gchar            *icon_name);
 
-void		 xed_progress_message_area_set_markup		(XedProgressMessageArea *area,
-								 const gchar              *markup);
+void xed_progress_message_area_set_markup (XedProgressMessageArea *area,
+                                           const gchar            *markup);
 
-void		 xed_progress_message_area_set_text		(XedProgressMessageArea *area,
-								 const gchar              *text);
+void xed_progress_message_area_set_text (XedProgressMessageArea *area,
+                                         const gchar            *text);
 
-void		 xed_progress_message_area_set_fraction	(XedProgressMessageArea *area,
-								 gdouble                   fraction);
+void xed_progress_message_area_set_fraction (XedProgressMessageArea *area,
+                                             gdouble                 fraction);
 
-void		 xed_progress_message_area_pulse		(XedProgressMessageArea *area);
-								 
+void xed_progress_message_area_pulse (XedProgressMessageArea *area);
+
 
 G_END_DECLS
 

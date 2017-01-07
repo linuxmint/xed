@@ -657,7 +657,7 @@ show_loading_message_area (XedTab *tab)
             msg = g_strdup_printf (_("Reverting %s"), name_markup);
         }
 
-        area = xed_progress_message_area_new (GTK_STOCK_REVERT_TO_SAVED, msg, TRUE);
+        area = xed_progress_message_area_new ("document-revert-symbolic", msg, TRUE);
     }
     else
     {
@@ -675,7 +675,7 @@ show_loading_message_area (XedTab *tab)
             msg = g_strdup_printf (_("Loading %s"), name_markup);
         }
 
-        area = xed_progress_message_area_new (GTK_STOCK_OPEN, msg, TRUE);
+        area = xed_progress_message_area_new ("document-open-symbolic", msg, TRUE);
     }
 
     g_signal_connect (area, "response",
@@ -758,7 +758,7 @@ show_saving_message_area (XedTab *tab)
         msg = g_strdup_printf (_("Saving %s"), from_markup);
     }
 
-    area = xed_progress_message_area_new (GTK_STOCK_SAVE, msg, FALSE);
+    area = xed_progress_message_area_new ("document-save-symbolic", msg, FALSE);
 
     gtk_widget_show (area);
 
@@ -2316,11 +2316,11 @@ show_printing_message_area (XedTab   *tab,
 
     if (preview)
     {
-        area = xed_progress_message_area_new (GTK_STOCK_PRINT_PREVIEW, "", TRUE);
+        area = xed_progress_message_area_new ("document-print-preview-symbolic", "", TRUE);
     }
     else
     {
-        area = xed_progress_message_area_new (GTK_STOCK_PRINT, "", TRUE);
+        area = xed_progress_message_area_new ("document-print-symbolic", "", TRUE);
     }
 
     g_signal_connect (area, "response",
