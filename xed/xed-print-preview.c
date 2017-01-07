@@ -51,15 +51,15 @@ struct _XedPrintPreviewPrivate
     GtkWidget *layout;
     GtkWidget *scrolled_window;
 
-    GtkToolItem *next;
-    GtkToolItem *prev;
+    GtkWidget *next;
+    GtkWidget *prev;
     GtkWidget   *page_entry;
     GtkWidget   *last;
-    GtkToolItem *multi;
-    GtkToolItem *zoom_one;
-    GtkToolItem *zoom_fit;
-    GtkToolItem *zoom_in;
-    GtkToolItem *zoom_out;
+    GtkWidget *multi;
+    GtkWidget *zoom_one;
+    GtkWidget *zoom_fit;
+    GtkWidget *zoom_in;
+    GtkWidget *zoom_out;
 
     /* real size of the page in inches */
     double paper_w;
@@ -548,31 +548,36 @@ create_bar (XedPrintPreview *preview)
     GtkToolItem *i;
     AtkObject *atko;
     GtkWidget *status;
+    GtkWidget *box;
+    GtkWidget *close_button;
 
     priv = preview->priv;
 
     toolbar = gtk_toolbar_new ();
-    gtk_toolbar_set_style (GTK_TOOLBAR (toolbar), GTK_TOOLBAR_BOTH_HORIZ);
+    gtk_style_context_add_class (gtk_widget_get_style_context (toolbar), "inline-toolbar");
     gtk_widget_show (toolbar);
     gtk_box_pack_start (GTK_BOX (preview), toolbar, FALSE, FALSE, 0);
 
-    priv->prev = gtk_tool_button_new_from_stock (GTK_STOCK_GO_BACK);
-    gtk_tool_button_set_label (GTK_TOOL_BUTTON (priv->prev), "P_revious Page");
-    gtk_tool_button_set_use_underline (GTK_TOOL_BUTTON (priv->prev), TRUE);
-    gtk_tool_item_set_tooltip_text (priv->prev, _("Show the previous page"));
-    gtk_toolbar_insert (GTK_TOOLBAR (toolbar), priv->prev, -1);
+    i = gtk_tool_item_new ();
+    gtk_toolbar_insert (GTK_TOOLBAR (toolbar), i, -1);
+
+    box = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 0);
+    gtk_style_context_add_class (gtk_widget_get_style_context (box), "linked");
+    gtk_container_add (GTK_CONTAINER (i), box);
+
+    priv->prev = gtk_button_new_from_icon_name ("go-previous-symbolic", GTK_ICON_SIZE_MENU);
+    gtk_box_pack_start (GTK_BOX (box), priv->prev, FALSE, FALSE, 0);
+    gtk_widget_set_tooltip_text (priv->prev, _("Show the previous page"));
     g_signal_connect (priv->prev, "clicked",
                       G_CALLBACK (prev_button_clicked), preview);
-    gtk_widget_show (GTK_WIDGET (priv->prev));
 
-    priv->next = gtk_tool_button_new_from_stock (GTK_STOCK_GO_FORWARD);
-    gtk_tool_button_set_label (GTK_TOOL_BUTTON (priv->next), "_Next Page");
-    gtk_tool_button_set_use_underline (GTK_TOOL_BUTTON (priv->next), TRUE);
-    gtk_tool_item_set_tooltip_text (priv->next, _("Show the next page"));
-    gtk_toolbar_insert (GTK_TOOLBAR (toolbar), priv->next, -1);
+    priv->next = gtk_button_new_from_icon_name ("go-next-symbolic", GTK_ICON_SIZE_MENU);
+    gtk_box_pack_start (GTK_BOX (box), priv->next, FALSE, FALSE, 0);
+    gtk_widget_set_tooltip_text (priv->next, _("Show the next page"));
     g_signal_connect (priv->next, "clicked",
                       G_CALLBACK (next_button_clicked), preview);
-    gtk_widget_show (GTK_WIDGET (priv->next));
+
+    gtk_widget_show_all (GTK_WIDGET (i));
 
     i = gtk_separator_tool_item_new ();
     gtk_widget_show (GTK_WIDGET (i));
@@ -615,59 +620,71 @@ create_bar (XedPrintPreview *preview)
     gtk_widget_show (GTK_WIDGET (i));
     gtk_toolbar_insert (GTK_TOOLBAR (toolbar), i, -1);
 
-    priv->multi = gtk_tool_button_new_from_stock (GTK_STOCK_DND_MULTIPLE);
-    gtk_tool_button_set_label (GTK_TOOL_BUTTON (priv->multi), "_Show Multiple Pages");
-    gtk_tool_button_set_use_underline (GTK_TOOL_BUTTON (priv->multi), TRUE);
-    gtk_tool_item_set_tooltip_text (priv->multi, _("Show multiple pages"));
-    gtk_toolbar_insert (GTK_TOOLBAR (toolbar), priv->multi, -1);
+    i = gtk_tool_item_new ();
+    gtk_toolbar_insert (GTK_TOOLBAR (toolbar), i, -1);
+    box = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 0);
+    gtk_container_add (GTK_CONTAINER (i), box);
+
+    priv->multi = gtk_button_new_from_icon_name ("view-grid-symbolic", GTK_ICON_SIZE_MENU);
+    gtk_box_pack_start (GTK_BOX (box), priv->multi, FALSE, FALSE, 0);
+    gtk_widget_set_tooltip_text (priv->multi, _("Show multiple pages"));
     g_signal_connect (priv->multi, "clicked",
                       G_CALLBACK (multi_button_clicked), preview);
-    gtk_widget_show (GTK_WIDGET (priv->multi));
+
+    gtk_widget_show_all (GTK_WIDGET (i));
 
     i = gtk_separator_tool_item_new ();
     gtk_widget_show (GTK_WIDGET (i));
     gtk_toolbar_insert (GTK_TOOLBAR (toolbar), i, -1);
 
-    priv->zoom_one = gtk_tool_button_new_from_stock (GTK_STOCK_ZOOM_100);
-    gtk_tool_item_set_tooltip_text (priv->zoom_one, _("Zoom 1:1"));
-    gtk_toolbar_insert (GTK_TOOLBAR (toolbar), priv->zoom_one, -1);
+    i = gtk_tool_item_new ();
+    gtk_toolbar_insert (GTK_TOOLBAR (toolbar), i, -1);
+    box = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 0);
+    gtk_style_context_add_class (gtk_widget_get_style_context (box), "linked");
+    gtk_container_add (GTK_CONTAINER (i), box);
+
+    priv->zoom_one = gtk_button_new_from_icon_name ("zoom-original-symbolic", GTK_ICON_SIZE_MENU);
+    gtk_box_pack_start (GTK_BOX (box), priv->zoom_one, FALSE, FALSE, 0);
+    gtk_widget_set_tooltip_text (priv->zoom_one, _("Zoom 1:1"));
     g_signal_connect (priv->zoom_one, "clicked",
                       G_CALLBACK (zoom_one_button_clicked), preview);
-    gtk_widget_show (GTK_WIDGET (priv->zoom_one));
 
-    priv->zoom_fit = gtk_tool_button_new_from_stock (GTK_STOCK_ZOOM_FIT);
-    gtk_tool_item_set_tooltip_text (priv->zoom_fit, _("Zoom to fit the whole page"));
-    gtk_toolbar_insert (GTK_TOOLBAR (toolbar), priv->zoom_fit, -1);
+    priv->zoom_fit = gtk_button_new_from_icon_name ("zoom-fit-best-symbolic", GTK_ICON_SIZE_MENU);
+    gtk_box_pack_start (GTK_BOX (box), priv->zoom_fit, FALSE, FALSE, 0);
+    gtk_widget_set_tooltip_text (priv->zoom_fit, _("Zoom to fit the whole page"));
     g_signal_connect (priv->zoom_fit, "clicked",
                       G_CALLBACK (zoom_fit_button_clicked), preview);
-    gtk_widget_show (GTK_WIDGET (priv->zoom_fit));
 
-    priv->zoom_in = gtk_tool_button_new_from_stock (GTK_STOCK_ZOOM_IN);
-    gtk_tool_item_set_tooltip_text (priv->zoom_in, _("Zoom the page in"));
-    gtk_toolbar_insert (GTK_TOOLBAR (toolbar), priv->zoom_in, -1);
+    priv->zoom_in = gtk_button_new_from_icon_name ("zoom-in-symbolic", GTK_ICON_SIZE_MENU);
+    gtk_box_pack_start (GTK_BOX (box), priv->zoom_in, FALSE, FALSE, 0);
+    gtk_widget_set_tooltip_text (priv->zoom_in, _("Zoom the page in"));
     g_signal_connect (priv->zoom_in, "clicked",
                       G_CALLBACK (zoom_in_button_clicked), preview);
-    gtk_widget_show (GTK_WIDGET (priv->zoom_in));
 
-    priv->zoom_out = gtk_tool_button_new_from_stock (GTK_STOCK_ZOOM_OUT);
-    gtk_tool_item_set_tooltip_text (priv->zoom_out, _("Zoom the page out"));
-    gtk_toolbar_insert (GTK_TOOLBAR (toolbar), priv->zoom_out, -1);
+    priv->zoom_out = gtk_button_new_from_icon_name ("zoom-out-symbolic", GTK_ICON_SIZE_MENU);
+    gtk_box_pack_start (GTK_BOX (box), priv->zoom_out, FALSE, FALSE, 0);
+    gtk_widget_set_tooltip_text (priv->zoom_out, _("Zoom the page out"));
     g_signal_connect (priv->zoom_out, "clicked",
                       G_CALLBACK (zoom_out_button_clicked), preview);
-    gtk_widget_show (GTK_WIDGET (priv->zoom_out));
+
+    gtk_widget_show_all (GTK_WIDGET (i));
 
     i = gtk_separator_tool_item_new ();
     gtk_widget_show (GTK_WIDGET (i));
     gtk_toolbar_insert (GTK_TOOLBAR (toolbar), i, -1);
 
-    i = gtk_tool_button_new (NULL, _("_Close Preview"));
-    gtk_tool_button_set_use_underline (GTK_TOOL_BUTTON (i), TRUE);
-    gtk_tool_item_set_is_important (i, TRUE);
-    gtk_tool_item_set_tooltip_text (i, _("Close print preview"));
-    g_signal_connect (i, "clicked",
-                      G_CALLBACK (close_button_clicked), preview);
-    gtk_widget_show (GTK_WIDGET (i));
+    i = gtk_tool_item_new ();
     gtk_toolbar_insert (GTK_TOOLBAR (toolbar), i, -1);
+    box = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 0);
+    gtk_container_add (GTK_CONTAINER (i), box);
+
+    close_button = gtk_button_new_with_mnemonic (_("_Close preview"));
+    gtk_box_pack_start (GTK_BOX (box), close_button, FALSE, FALSE, 0);
+    gtk_widget_set_tooltip_text (close_button, _("Close print preview"));
+    g_signal_connect (close_button, "clicked",
+                      G_CALLBACK (close_button_clicked), preview);
+
+    gtk_widget_show_all (GTK_WIDGET (i));
 }
 
 static gint
