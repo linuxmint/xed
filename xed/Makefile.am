@@ -19,7 +19,11 @@ AM_CPPFLAGS =							\
 xed_SOURCES = \
 	xed.c
 
-xed_LDADD = libxed.la $(XED_LIBS) $(EGG_SMCLIENT_LIBS) $(INTROSPECTION_LIBS)
+xed_LDADD = 				\
+	libxed.la 				\
+	$(XED_LIBS) 			\
+	$(EGG_SMCLIENT_LIBS)	\
+	$(INTROSPECTION_LIBS)
 
 xed_LDFLAGS = -export-dynamic -no-undefined -export-symbols-regex "^[[^_]].*"
 
@@ -152,8 +156,8 @@ libxed_c_files = 				\
 	xedtextregion.c
 
 libxed_la_SOURCES = 		\
-	$(libxed_c_files)		\
 	$(BUILT_SOURCES)		\
+	$(libxed_c_files)		\
 	$(BACON_FILES)			\
 	$(POSIXIO_FILES)		\
 	$(NOINST_H_FILES)		\
@@ -194,22 +198,26 @@ CLEANFILES = $(BUILT_SOURCES)
 if HAVE_INTROSPECTION
 -include $(INTROSPECTION_MAKEFILE)
 INTROSPECTION_GIRS = Xed-1.0.gir
-INTROSPECTION_SCANNER_ARGS = -I$(top_srcdir) --warn-all
+
+
 
 Xed-1.0.gir: xed
-Xed_1_0_gir_INCLUDES = Gtk-3.0 GtkSource-3.0
-Xed_1_0_gir_FILES = $(INST_H_FILES) $(libxed_c_files) $(BUILT_SOURCES)
+INTROSPECTION_SCANNER_ARGS = -I$(top_srcdir) --warn-all
+Xed_1_0_gir_NAMESPACE = Xed
 Xed_1_0_gir_VERSION = 1.0
 Xed_1_0_gir_PROGRAM = $(builddir)/xed
-Xed_1_0_gir_NAMESPACE = Xed
+Xed_1_0_gir_FILES = $(INST_H_FILES) $(libxed_c_files) $(BUILT_SOURCES)
+Xed_1_0_gir_INCLUDES = Gtk-3.0 GtkSource-3.0
 
-girdir = $(datadir)/gir-1.0
+girdir = $(datadir)/xed/gir-1.0
 gir_DATA = $(INTROSPECTION_GIRS)
 
-typelibdir = $(libdir)/girepository-1.0
+typelibdir = $(libdir)/xed/girepository-1.0
 typelib_DATA = $(INTROSPECTION_GIRS:.gir=.typelib)
 
-CLEANFILES += $(gir_DATA) $(typelib_DATA)
+CLEANFILES += 		\
+	$(gir_DATA)		\
+	$(typelib_DATA)
 endif
 
 dist-hook:
