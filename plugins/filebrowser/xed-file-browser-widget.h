@@ -71,7 +71,7 @@ struct _XedFileBrowserWidgetClass
 };
 
 GType xed_file_browser_widget_get_type            (void) G_GNUC_CONST;
-void _xed_file_browser_widget_register_type       (GTypeModule * module);
+void _xed_file_browser_widget_register_type       (GTypeModule *type_module);
 
 GtkWidget *xed_file_browser_widget_new            (const gchar *data_dir);
 

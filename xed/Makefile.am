@@ -70,6 +70,7 @@ NOINST_H_FILES =			\
 
 INST_H_FILES =				\
 	xed-app.h			\
+	xed-app-activatable.h 	\
 	xed-commands.h		\
 	xed-debug.h			\
 	xed-document.h 		\
@@ -91,7 +92,9 @@ INST_H_FILES =				\
 	xed-tab.h 			\
 	xed-utils.h 			\
 	xed-view.h 			\
-	xed-window.h
+	xed-view-activatable.h 	\
+	xed-window.h 		\
+	xed-window-activatable.h
 
 if !ENABLE_GVFS_METADATA
 INST_H_FILES += xed-metadata-manager.h
@@ -105,6 +108,7 @@ header_DATA = 				\
 
 libxed_c_files = 				\
 	xed-app.c					\
+	xed-app-activatable.c 		\
 	xed-close-button.c			\
 	xed-commands-documents.c	\
 	xed-commands-edit.c			\
@@ -152,7 +156,9 @@ libxed_c_files = 				\
 	xed-tab-label.c		\
 	xed-utils.c 			\
 	xed-view.c 			\
+	xed-view-activatable.c 		\
 	xed-window.c			\
+	xed-window-activatable.c 	\
 	xedtextregion.c
 
 libxed_la_SOURCES = 		\

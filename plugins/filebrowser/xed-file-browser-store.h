@@ -81,10 +81,9 @@ typedef struct _XedFileBrowserStore        XedFileBrowserStore;
 typedef struct _XedFileBrowserStoreClass   XedFileBrowserStoreClass;
 typedef struct _XedFileBrowserStorePrivate XedFileBrowserStorePrivate;
 
-typedef gboolean (*XedFileBrowserStoreFilterFunc) (XedFileBrowserStore
-                             * model,
-                             GtkTreeIter * iter,
-                             gpointer user_data);
+typedef gboolean (*XedFileBrowserStoreFilterFunc) (XedFileBrowserStore *model,
+                                                   GtkTreeIter         *iter,
+                                                   gpointer             user_data);
 
 struct _XedFileBrowserStore
 {
@@ -97,102 +96,91 @@ struct _XedFileBrowserStoreClass {
     GObjectClass parent_class;
 
     /* Signals */
-    void (*begin_loading)        (XedFileBrowserStore * model,
-                          GtkTreeIter * iter);
-    void (*end_loading)          (XedFileBrowserStore * model,
-                          GtkTreeIter * iter);
-    void (*error)                (XedFileBrowserStore * model,
-                                  guint code,
-                              gchar * message);
-    gboolean (*no_trash)         (XedFileBrowserStore * model,
-                      GList * files);
-    void (*rename)           (XedFileBrowserStore * model,
-                      const gchar * olduri,
-                      const gchar * newuri);
-    void (*begin_refresh)        (XedFileBrowserStore * model);
-    void (*end_refresh)      (XedFileBrowserStore * model);
-    void (*unload)           (XedFileBrowserStore * model,
-                      const gchar * uri);
+    void (*begin_loading) (XedFileBrowserStore *model,
+                           GtkTreeIter         *iter);
+    void (*end_loading)   (XedFileBrowserStore *model,
+                           GtkTreeIter         *iter);
+    void (*error)         (XedFileBrowserStore *model,
+                           guint                code,
+                           gchar               *message);
+    gboolean (*no_trash)  (XedFileBrowserStore *model,
+                           GList               *files);
+    void (*rename)        (XedFileBrowserStore *model,
+                           const gchar         *olduri,
+                           const gchar         *newuri);
+    void (*begin_refresh) (XedFileBrowserStore *model);
+    void (*end_refresh)   (XedFileBrowserStore *model);
+    void (*unload)        (XedFileBrowserStore *model,
+                           const gchar         *uri);
 };
 
-GType xed_file_browser_store_get_type               (void) G_GNUC_CONST;
-void _xed_file_browser_store_register_type          (GTypeModule * module);
+GType xed_file_browser_store_get_type (void) G_GNUC_CONST;
+void _xed_file_browser_store_register_type (GTypeModule *type_module);
 
-XedFileBrowserStore *xed_file_browser_store_new   (gchar const *root);
+XedFileBrowserStore *xed_file_browser_store_new (gchar const *root);
 
-XedFileBrowserStoreResult
-xed_file_browser_store_set_root_and_virtual_root    (XedFileBrowserStore * model,
-                               gchar const *root,
-                               gchar const *virtual_root);
-XedFileBrowserStoreResult
-xed_file_browser_store_set_root                     (XedFileBrowserStore * model,
-                                       gchar const *root);
-XedFileBrowserStoreResult
-xed_file_browser_store_set_virtual_root             (XedFileBrowserStore * model,
-                                   GtkTreeIter * iter);
-XedFileBrowserStoreResult
-xed_file_browser_store_set_virtual_root_from_string (XedFileBrowserStore * model,
-                                                       gchar const *root);
-XedFileBrowserStoreResult
-xed_file_browser_store_set_virtual_root_up          (XedFileBrowserStore * model);
-XedFileBrowserStoreResult
-xed_file_browser_store_set_virtual_root_top         (XedFileBrowserStore * model);
+XedFileBrowserStoreResult xed_file_browser_store_set_root_and_virtual_root (XedFileBrowserStore *model,
+                                                                            gchar const         *root,
+                                                                            gchar const         *virtual_root);
+XedFileBrowserStoreResult xed_file_browser_store_set_root (XedFileBrowserStore *model,
+                                                           gchar const         *root);
+XedFileBrowserStoreResult xed_file_browser_store_set_virtual_root (XedFileBrowserStore *model,
+                                                                   GtkTreeIter         *iter);
+XedFileBrowserStoreResult xed_file_browser_store_set_virtual_root_from_string (XedFileBrowserStore *model,
+                                                                               gchar const         *root);
+XedFileBrowserStoreResult xed_file_browser_store_set_virtual_root_up (XedFileBrowserStore *model);
+XedFileBrowserStoreResult xed_file_browser_store_set_virtual_root_top (XedFileBrowserStore *model);
 
-gboolean
-xed_file_browser_store_get_iter_virtual_root        (XedFileBrowserStore * model,
-                                                       GtkTreeIter * iter);
-gboolean xed_file_browser_store_get_iter_root       (XedFileBrowserStore * model,
-                               GtkTreeIter * iter);
-gchar * xed_file_browser_store_get_root             (XedFileBrowserStore * model);
-gchar * xed_file_browser_store_get_virtual_root     (XedFileBrowserStore * model);
+gboolean xed_file_browser_store_get_iter_virtual_root (XedFileBrowserStore *model,
+                                                       GtkTreeIter         *iter);
+gboolean xed_file_browser_store_get_iter_root (XedFileBrowserStore *model,
+                                               GtkTreeIter         *iter);
+gchar * xed_file_browser_store_get_root (XedFileBrowserStore *model);
+gchar * xed_file_browser_store_get_virtual_root (XedFileBrowserStore *model);
 
-gboolean xed_file_browser_store_iter_equal          (XedFileBrowserStore * model,
-                                                       GtkTreeIter * iter1,
-                                   GtkTreeIter * iter2);
+gboolean xed_file_browser_store_iter_equal (XedFileBrowserStore *model,
+                                            GtkTreeIter         *iter1,
+                                            GtkTreeIter         *iter2);
 
-void xed_file_browser_store_set_value               (XedFileBrowserStore * tree_model,
-                                                       GtkTreeIter * iter,
-                                                       gint column,
-                                                       GValue * value);
+void xed_file_browser_store_set_value (XedFileBrowserStore *tree_model,
+                                       GtkTreeIter         *iter,
+                                       gint                 column,
+                                       GValue              *value);
 
-void _xed_file_browser_store_iter_expanded          (XedFileBrowserStore * model,
-                                                       GtkTreeIter * iter);
-void _xed_file_browser_store_iter_collapsed         (XedFileBrowserStore * model,
-                                                       GtkTreeIter * iter);
+void _xed_file_browser_store_iter_expanded (XedFileBrowserStore *model,
+                                            GtkTreeIter         *iter);
+void _xed_file_browser_store_iter_collapsed (XedFileBrowserStore *model,
+                                             GtkTreeIter         *iter);
 
-XedFileBrowserStoreFilterMode
-xed_file_browser_store_get_filter_mode              (XedFileBrowserStore * model);
-void xed_file_browser_store_set_filter_mode         (XedFileBrowserStore * model,
-                                                       XedFileBrowserStoreFilterMode mode);
-void xed_file_browser_store_set_filter_func         (XedFileBrowserStore * model,
-                                                       XedFileBrowserStoreFilterFunc func,
-                                                       gpointer user_data);
-void xed_file_browser_store_refilter                (XedFileBrowserStore * model);
-XedFileBrowserStoreFilterMode
-xed_file_browser_store_filter_mode_get_default      (void);
+XedFileBrowserStoreFilterMode xed_file_browser_store_get_filter_mode (XedFileBrowserStore *model);
+void xed_file_browser_store_set_filter_mode (XedFileBrowserStore           *model,
+                                             XedFileBrowserStoreFilterMode  mode);
+void xed_file_browser_store_set_filter_func (XedFileBrowserStore           *model,
+                                             XedFileBrowserStoreFilterFunc  func,
+                                             gpointer                       user_data);
+void xed_file_browser_store_refilter (XedFileBrowserStore *model);
+XedFileBrowserStoreFilterMode xed_file_browser_store_filter_mode_get_default (void);
 
-void xed_file_browser_store_refresh                 (XedFileBrowserStore * model);
-gboolean xed_file_browser_store_rename              (XedFileBrowserStore * model,
-                                                       GtkTreeIter * iter,
-                                                       gchar const *new_name,
-                                                       GError ** error);
-XedFileBrowserStoreResult
-xed_file_browser_store_delete                       (XedFileBrowserStore * model,
-                                                       GtkTreeIter * iter,
-                                                       gboolean trash);
-XedFileBrowserStoreResult
-xed_file_browser_store_delete_all                   (XedFileBrowserStore * model,
-                                                       GList *rows,
-                                                       gboolean trash);
+void xed_file_browser_store_refresh (XedFileBrowserStore * model);
+gboolean xed_file_browser_store_rename (XedFileBrowserStore *model,
+                                        GtkTreeIter         *iter,
+                                        gchar const         *new_name,
+                                        GError             **error);
+XedFileBrowserStoreResult xed_file_browser_store_delete (XedFileBrowserStore *model,
+                                                         GtkTreeIter         *iter,
+                                                         gboolean             trash);
+XedFileBrowserStoreResult xed_file_browser_store_delete_all (XedFileBrowserStore *model,
+                                                             GList               *rows,
+                                                             gboolean             trash);
 
-gboolean xed_file_browser_store_new_file            (XedFileBrowserStore * model,
-                                                       GtkTreeIter * parent,
-                                                       GtkTreeIter * iter);
-gboolean xed_file_browser_store_new_directory       (XedFileBrowserStore * model,
-                                                       GtkTreeIter * parent,
-                                                       GtkTreeIter * iter);
+gboolean xed_file_browser_store_new_file (XedFileBrowserStore *model,
+                                          GtkTreeIter         *parent,
+                                          GtkTreeIter         *iter);
+gboolean xed_file_browser_store_new_directory (XedFileBrowserStore *model,
+                                               GtkTreeIter         *parent,
+                                               GtkTreeIter         *iter);
 
-void xed_file_browser_store_cancel_mount_operation  (XedFileBrowserStore *store);
+void xed_file_browser_store_cancel_mount_operation (XedFileBrowserStore *store);
 
 G_END_DECLS
 #endif              /* __XED_FILE_BROWSER_STORE_H__ */

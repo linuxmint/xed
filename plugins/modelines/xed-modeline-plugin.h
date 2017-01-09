@@ -39,10 +39,11 @@ G_BEGIN_DECLS
 /* Private structure type */
 typedef struct _XedModelinePlugin         XedModelinePlugin;
 typedef struct _XedModelinePluginPrivate  XedModelinePluginPrivate;
+typedef struct _XedModelinePluginClass    XedModelinePluginClass;
 
 struct _XedModelinePlugin
 {
-    PeasExtensionBase parent_instance;
+    PeasExtensionBase parent;
 
     /*< private >*/
     XedModelinePluginPrivate *priv;

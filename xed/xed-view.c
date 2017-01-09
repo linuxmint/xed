@@ -6,9 +6,12 @@
 #include <stdlib.h>
 #include <gtk/gtk.h>
 #include <gdk/gdkkeysyms.h>
+#include <libpeas/peas-extension-set.h>
 #include <glib/gi18n.h>
 
 #include "xed-view.h"
+#include "xed-view-activatable.h"
+#include "xed-plugins-engine.h"
 #include "xed-debug.h"
 #include "xed-prefs-manager.h"
 #include "xed-prefs-manager-app.h"
@@ -34,10 +37,13 @@ struct _XedViewPrivate
     guint search_entry_changed_id;
     gboolean disable_popdown;
     GtkTextBuffer *current_buffer;
+    PeasExtensionSet *extensions;
+    guint view_realized : 1;
 };
 
 static void xed_view_dispose (GObject *object);
 static void xed_view_finalize (GObject *object);
+static void xed_view_realize (GtkWidget *widget);
 static gint xed_view_focus_out (GtkWidget *widget, GdkEventFocus *event);
 static gboolean xed_view_drag_motion (GtkWidget *widget, GdkDragContext *context, gint x, gint y, guint timestamp);
 static void xed_view_drag_data_received (GtkWidget *widget, GdkDragContext *context, gint x, gint y,
@@ -107,6 +113,7 @@ xed_view_class_init (XedViewClass *klass)
     widget_class->drag_data_received = xed_view_drag_data_received;
     widget_class->drag_drop = xed_view_drag_drop;
     widget_class->button_press_event = xed_view_button_press_event;
+    widget_class->realize = xed_view_realize;
     klass->start_interactive_goto_line = start_interactive_goto_line;
 
     text_view_class->delete_from_cursor = xed_view_delete_from_cursor;
@@ -150,6 +157,24 @@ current_buffer_removed (XedView *view)
         g_object_unref (view->priv->current_buffer);
         view->priv->current_buffer = NULL;
     }
+}
+
+static void
+extension_added (PeasExtensionSet *extensions,
+                 PeasPluginInfo   *info,
+                 PeasExtension    *exten,
+                 XedView          *view)
+{
+    peas_extension_call (exten, "activate");
+}
+
+static void
+extension_removed (PeasExtensionSet *extensions,
+                   PeasPluginInfo   *info,
+                   PeasExtension    *exten,
+                   XedView          *view)
+{
+    peas_extension_call (exten, "deactivate");
 }
 
 static void
@@ -223,6 +248,14 @@ xed_view_init (XedView *view)
         gtk_target_list_add_uri_targets (tl, TARGET_URI_LIST);
     }
 
+    view->priv->extensions = peas_extension_set_new (PEAS_ENGINE (xed_plugins_engine_get_default ()),
+                                                     XED_TYPE_VIEW_ACTIVATABLE, "view", view, NULL);
+
+    g_signal_connect (view->priv->extensions, "extension-added",
+                      G_CALLBACK (extension_added), view);
+    g_signal_connect (view->priv->extensions, "extension-removed",
+                      G_CALLBACK (extension_removed), view);
+
     /* Act on buffer change */
     g_signal_connect(view, "notify::buffer", G_CALLBACK (on_notify_buffer_cb), NULL);
 }
@@ -233,6 +266,12 @@ xed_view_dispose (GObject *object)
     XedView *view;
 
     view = XED_VIEW(object);
+
+    if (view->priv->extensions != NULL)
+    {
+        g_object_unref (view->priv->extensions);
+        view->priv->extensions = NULL;
+    }
 
     if (view->priv->search_window != NULL)
     {
@@ -261,7 +300,8 @@ xed_view_finalize (GObject *object)
     XedView *view;
     view = XED_VIEW(object);
     current_buffer_removed (view);
-    (* G_OBJECT_CLASS (xed_view_parent_class)->finalize) (object);
+
+    G_OBJECT_CLASS (xed_view_parent_class)->finalize (object);
 }
 
 static gint
@@ -1139,6 +1179,20 @@ xed_view_button_press_event (GtkWidget *widget,
     }
 
     return GTK_WIDGET_CLASS (xed_view_parent_class)->button_press_event (widget, event);
+}
+
+static void
+xed_view_realize (GtkWidget *widget)
+{
+    XedView *view = XED_VIEW (widget);
+
+    if (!view->priv->view_realized)
+    {
+        peas_extension_set_call (view->priv->extensions, "activate");
+        view->priv->view_realized = TRUE;
+    }
+
+    GTK_WIDGET_CLASS (xed_view_parent_class)->realize (widget);
 }
 
 static void

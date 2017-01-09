@@ -43,8 +43,8 @@
 #include "xed-file-browser-enum-types.h"
 
 #define XED_FILE_BROWSER_WIDGET_GET_PRIVATE(object)(G_TYPE_INSTANCE_GET_PRIVATE((object), \
-                              XED_TYPE_FILE_BROWSER_WIDGET, \
-                              XedFileBrowserWidgetPrivate))
+                                                    XED_TYPE_FILE_BROWSER_WIDGET, \
+                                                    XedFileBrowserWidgetPrivate))
 
 #define XML_UI_FILE "xed-file-browser-widget-ui.xml"
 #define LOCATION_DATA_KEY "xed-file-browser-widget-location"
@@ -800,18 +800,15 @@ static GtkActionEntry toplevel_actions[] =
 static const GtkActionEntry tree_actions_selection[] =
 {
     {"FileMoveToTrash", "user-trash", N_("_Move to Trash"), NULL,
-     N_("Move selected file or folder to trash"),
-     G_CALLBACK (on_action_file_move_to_trash)},
+     N_("Move selected file or folder to trash"), G_CALLBACK (on_action_file_move_to_trash)},
     {"FileDelete", "edit-delete-symbolic", N_("_Delete"), NULL,
-     N_("Delete selected file or folder"),
-     G_CALLBACK (on_action_file_delete)}
+     N_("Delete selected file or folder"), G_CALLBACK (on_action_file_delete)}
 };
 
 static const GtkActionEntry tree_actions_file_selection[] =
 {
-    {"FileOpen", "document-open-symbolic", N_("Open"), NULL,
-     N_("Open selected file"),
-     G_CALLBACK (on_action_file_open)}
+    {"FileOpen", "document-open-symbolic", N_("_Open"), NULL,
+     N_("Open selected file"), G_CALLBACK (on_action_file_open)}
 };
 
 static const GtkActionEntry tree_actions[] =
@@ -823,8 +820,7 @@ static const GtkActionEntry tree_actions[] =
 static const GtkActionEntry tree_actions_single_most_selection[] =
 {
     {"DirectoryNew", "folder-new-symbolic", N_("_New Folder"), NULL,
-     N_("Add new empty folder"),
-     G_CALLBACK (on_action_directory_new)},
+     N_("Add new empty folder"), G_CALLBACK (on_action_directory_new)},
     {"FileNew", "document-new-symbolic", N_("New F_ile"), NULL,
      N_("Add new empty file"), G_CALLBACK (on_action_file_new)}
 };
@@ -832,33 +828,27 @@ static const GtkActionEntry tree_actions_single_most_selection[] =
 static const GtkActionEntry tree_actions_single_selection[] =
 {
     {"FileRename", NULL, N_("_Rename"), NULL,
-     N_("Rename selected file or folder"),
-     G_CALLBACK (on_action_file_rename)}
+     N_("Rename selected file or folder"), G_CALLBACK (on_action_file_rename)}
 };
 
 static const GtkActionEntry tree_actions_sensitive[] =
 {
     {"DirectoryPrevious", "go-previous-symbolic", N_("_Previous Location"), NULL,
-     N_("Go to the previous visited location"),
-     G_CALLBACK (on_action_directory_previous)},
+     N_("Go to the previous visited location"), G_CALLBACK (on_action_directory_previous)},
     {"DirectoryNext", "go-next-symbolic", N_("_Next Location"), NULL,
      N_("Go to the next visited location"), G_CALLBACK (on_action_directory_next)},
     {"DirectoryRefresh", "view-refresh-symbolic", N_("Re_fresh View"), NULL,
      N_("Refresh the view"), G_CALLBACK (on_action_directory_refresh)},
     {"DirectoryOpen", "folder-open-symbolic", N_("_View Folder"), NULL,
-     N_("View folder in file manager"),
-     G_CALLBACK (on_action_directory_open)}
+     N_("View folder in file manager"), G_CALLBACK (on_action_directory_open)}
 };
 
 static const GtkToggleActionEntry tree_actions_toggle[] =
 {
-    {"FilterHidden", GTK_STOCK_DIALOG_AUTHENTICATION,
-     N_("Show _Hidden"), NULL,
-     N_("Show hidden files and folders"),
-     G_CALLBACK (on_action_filter_hidden), FALSE},
+    {"FilterHidden", GTK_STOCK_DIALOG_AUTHENTICATION, N_("Show _Hidden"), NULL,
+     N_("Show hidden files and folders"), G_CALLBACK (on_action_filter_hidden), FALSE},
     {"FilterBinary", NULL, N_("Show _Binary"), NULL,
-     N_("Show binary files"), G_CALLBACK (on_action_filter_binary),
-     FALSE}
+     N_("Show binary files"), G_CALLBACK (on_action_filter_binary), FALSE}
 };
 
 static const GtkActionEntry bookmark_actions[] =

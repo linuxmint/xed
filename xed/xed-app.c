@@ -36,6 +36,7 @@
 #include <unistd.h>
 
 #include <glib/gi18n.h>
+#include <libpeas/peas-extension-set.h>
 
 #include "xed-app.h"
 #include "xed-prefs-manager-app.h"
@@ -45,6 +46,8 @@
 #include "xed-utils.h"
 #include "xed-enum-types.h"
 #include "xed-dirs.h"
+#include "xed-app-activatable.h"
+#include "xed-plugins-engine.h"
 
 #define XED_PAGE_SETUP_FILE     "xed-page-setup"
 #define XED_PRINT_SETTINGS_FILE "xed-print-settings"
@@ -61,8 +64,11 @@ struct _XedAppPrivate
 {
     GList            *windows;
     XedWindow        *active_window;
+
     GtkPageSetup     *page_setup;
     GtkPrintSettings *print_settings;
+
+    PeasExtensionSet *extensions;
 };
 
 G_DEFINE_TYPE(XedApp, xed_app, G_TYPE_OBJECT)
@@ -88,6 +94,16 @@ xed_app_finalize (GObject *object)
 }
 
 static void
+xed_app_dispose (GObject *object)
+{
+    XedApp *app = XED_APP (object);
+
+    g_clear_object (&app->priv->extensions);
+
+    G_OBJECT_CLASS (xed_app_parent_class)->dispose (object);
+}
+
+static void
 xed_app_get_property (GObject    *object,
                       guint       prop_id,
                       GValue     *value,
@@ -107,9 +123,10 @@ xed_app_class_init (XedAppClass *klass)
     GObjectClass *object_class = G_OBJECT_CLASS (klass);
 
     object_class->finalize = xed_app_finalize;
+    object_class->dispose = xed_app_dispose;
     object_class->get_property = xed_app_get_property;
 
-    g_type_class_add_private (object_class, sizeof(XedAppPrivate));
+    g_type_class_add_private (object_class, sizeof (XedAppPrivate));
 }
 
 static gboolean
@@ -309,18 +326,39 @@ save_print_settings (XedApp *app)
 }
 
 static void
+extension_added (PeasExtensionSet *extensions,
+                 PeasPluginInfo   *info,
+                 PeasExtension    *exten,
+                 XedApp           *app)
+{
+    peas_extension_call (exten, "activate");
+}
+
+static void
+extension_removed (PeasExtensionSet *extensions,
+                   PeasPluginInfo   *info,
+                   PeasExtension    *exten,
+                   XedApp           *app)
+{
+    peas_extension_call (exten, "deactivate");
+}
+
+static void
 xed_app_init (XedApp *app)
 {
     app->priv = XED_APP_GET_PRIVATE (app);
 
     load_accels ();
-}
 
-static void
-app_weak_notify (gpointer data,
-                 GObject *where_the_app_was)
-{
-    gtk_main_quit ();
+    app->priv->extensions = peas_extension_set_new (PEAS_ENGINE (xed_plugins_engine_get_default ()),
+                                                    XED_TYPE_APP_ACTIVATABLE, "app", app, NULL);
+
+    g_signal_connect (app->priv->extensions, "extension-added",
+                      G_CALLBACK (extension_added), app);
+    g_signal_connect (app->priv->extensions, "extension-removed",
+                      G_CALLBACK (extension_removed), app);
+
+    peas_extension_set_call (app->priv->extensions, "activate");
 }
 
 /**
@@ -342,7 +380,6 @@ xed_app_get_default (void)
     app = XED_APP (g_object_new (XED_TYPE_APP, NULL));
 
     g_object_add_weak_pointer (G_OBJECT (app), (gpointer) &app);
-    g_object_weak_ref (G_OBJECT (app), app_weak_notify, NULL);
 
     return app;
 }
@@ -421,7 +458,7 @@ window_destroy (XedWindow *window,
         save_page_setup (app);
         save_print_settings (app);
 
-        g_object_unref (app);
+        gtk_main_quit ();
     }
 }
 

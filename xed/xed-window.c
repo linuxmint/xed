@@ -9,7 +9,6 @@
 #include <gio/gio.h>
 #include <gtk/gtk.h>
 #include <gtksourceview/gtksource.h>
-#include <libpeas/peas-activatable.h>
 #include <libpeas/peas-extension-set.h>
 
 #include "xed-ui.h"
@@ -27,6 +26,7 @@
 #include "xed-panel.h"
 #include "xed-documents-panel.h"
 #include "xed-plugins-engine.h"
+#include "xed-window-activatable.h"
 #include "xed-enum-types.h"
 #include "xed-dirs.h"
 #include "xed-status-combo-box.h"
@@ -142,7 +142,7 @@ xed_window_dispose (GObject *object)
 
     xed_debug (DEBUG_WINDOW);
 
-    window = XED_WINDOW(object);
+    window = XED_WINDOW (object);
 
     /* Stop tracking removal of panes otherwise we always
      * end up with thinking we had no pane active, since they
@@ -163,11 +163,13 @@ xed_window_dispose (GObject *object)
     if (!window->priv->dispose_has_run)
     {
         save_panes_state (window);
+
         /* Note that unreffing the extension will automatically remove
            all extensions which in turn will deactivate the extension */
         g_object_unref (window->priv->extensions);
 
         peas_engine_garbage_collect (PEAS_ENGINE (xed_plugins_engine_get_default ()));
+
         window->priv->dispose_has_run = TRUE;
     }
 
@@ -191,23 +193,10 @@ xed_window_dispose (GObject *object)
         window->priv->recents_handler_id = 0;
     }
 
-    if (window->priv->manager != NULL)
-    {
-        g_object_unref (window->priv->manager);
-        window->priv->manager = NULL;
-    }
-
-    if (window->priv->message_bus != NULL)
-    {
-        g_object_unref (window->priv->message_bus);
-        window->priv->message_bus = NULL;
-    }
-
-    if (window->priv->window_group != NULL)
-    {
-        g_object_unref (window->priv->window_group);
-        window->priv->window_group = NULL;
-    }
+    g_clear_object (&window->priv->manager);
+    g_clear_object (&window->priv->message_bus);
+    g_clear_object (&window->priv->window_group);
+    g_clear_object (&window->priv->default_location);
 
     /* Now that there have broken some reference loops, force collection again. */
     peas_engine_garbage_collect (PEAS_ENGINE (xed_plugins_engine_get_default ()));
@@ -218,13 +207,8 @@ xed_window_dispose (GObject *object)
 static void
 xed_window_finalize (GObject *object)
 {
-    XedWindow *window;
     xed_debug (DEBUG_WINDOW);
-    window = XED_WINDOW(object);
-    if (window->priv->default_location != NULL)
-    {
-        g_object_unref (window->priv->default_location);
-    }
+
     G_OBJECT_CLASS (xed_window_parent_class)->finalize (object);
 }
 
@@ -646,7 +630,7 @@ set_sensitivity_according_to_tab (XedWindow *window,
 
     update_next_prev_doc_sensitivity (window, tab);
 
-    peas_extension_set_call (window->priv->extensions, "update_state", window);
+    peas_extension_set_call (window->priv->extensions, "update_state");
 }
 
 static void
@@ -2376,7 +2360,7 @@ sync_name (XedTab *tab,
     g_free (escaped_name);
     g_free (tip);
 
-    peas_extension_set_call (window->priv->extensions, "update_state", window);
+    peas_extension_set_call (window->priv->extensions, "update_state");
 }
 
 static XedWindow *
@@ -2789,7 +2773,7 @@ selection_changed (XedDocument *doc,
     gtk_action_set_sensitive (action,
                     state_normal && editable && gtk_text_buffer_get_has_selection (GTK_TEXT_BUFFER(doc)));
 
-    peas_extension_set_call (window->priv->extensions, "update_state", window);
+    peas_extension_set_call (window->priv->extensions, "update_state");
 }
 
 static void
@@ -2798,7 +2782,7 @@ sync_languages_menu (XedDocument *doc,
                      XedWindow *window)
 {
     update_languages_menu (window);
-    peas_extension_set_call (window->priv->extensions, "update_state", window);
+    peas_extension_set_call (window->priv->extensions, "update_state");
 }
 
 static void
@@ -2808,7 +2792,7 @@ readonly_changed (XedDocument *doc,
 {
     set_sensitivity_according_to_tab (window, window->priv->active_tab);
     sync_name (window->priv->active_tab, NULL, window);
-    peas_extension_set_call (window->priv->extensions, "update_state", window);
+    peas_extension_set_call (window->priv->extensions, "update_state");
 }
 
 static void
@@ -2816,7 +2800,7 @@ editable_changed (XedView *view,
                   GParamSpec *arg1,
                   XedWindow *window)
 {
-    peas_extension_set_call (window->priv->extensions, "update_state", window);
+    peas_extension_set_call (window->priv->extensions, "update_state");
 }
 
 static void
@@ -2964,7 +2948,7 @@ notebook_tab_removed (XedNotebook *notebook,
 
     if (window->priv->num_tabs == 0)
     {
-        peas_extension_set_call (window->priv->extensions, "update_state", window);
+        peas_extension_set_call (window->priv->extensions, "update_state");
     }
 
     update_window_state (window);
@@ -3374,21 +3358,21 @@ add_notebook (XedWindow *window,
 }
 
  static void
-on_extension_added (PeasExtensionSet *extensions,
-                    PeasPluginInfo   *info,
-                    PeasExtension    *exten,
-                    XedWindow        *window)
+extension_added (PeasExtensionSet *extensions,
+                 PeasPluginInfo   *info,
+                 PeasExtension    *exten,
+                 XedWindow        *window)
 {
-    peas_extension_call (exten, "activate", window);
+    peas_extension_call (exten, "activate");
 }
 
 static void
-on_extension_removed (PeasExtensionSet *extensions,
-                      PeasPluginInfo   *info,
-                      PeasExtension    *exten,
-                      XedWindow        *window)
+extension_removed (PeasExtensionSet *extensions,
+                   PeasPluginInfo   *info,
+                   PeasExtension    *exten,
+                   XedWindow        *window)
 {
-    peas_extension_call (exten, "deactivate", window);
+    peas_extension_call (exten, "deactivate");
 
     /* Ensure update of the ui manager, because we suspect it does something with expected static strings in the
      * type module (when unloaded the strings don't exist anymore, and the ui manager update in a idle func) */
@@ -3501,12 +3485,12 @@ xed_window_init (XedWindow *window)
     xed_debug_message (DEBUG_WINDOW, "Update plugins ui");
 
     window->priv->extensions = peas_extension_set_new (PEAS_ENGINE (xed_plugins_engine_get_default ()),
-                                                       PEAS_TYPE_ACTIVATABLE, "object", window, NULL);
+                                                       XED_TYPE_WINDOW_ACTIVATABLE, "window", window, NULL);
+
+    g_signal_connect (window->priv->extensions, "extension-added", G_CALLBACK (extension_added), window);
+    g_signal_connect (window->priv->extensions, "extension-removed", G_CALLBACK (extension_removed), window);
 
     peas_extension_set_call (window->priv->extensions, "activate");
-
-    g_signal_connect (window->priv->extensions, "extension-added", G_CALLBACK (on_extension_added), window);
-    g_signal_connect (window->priv->extensions, "extension-removed", G_CALLBACK (on_extension_removed), window);
 
     /* set visibility of panes.
      * This needs to be done after plugins activatation */

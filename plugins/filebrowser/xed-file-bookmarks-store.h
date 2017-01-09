@@ -77,7 +77,7 @@ struct _XedFileBookmarksStoreClass
 };
 
 GType xed_file_bookmarks_store_get_type               (void) G_GNUC_CONST;
-void _xed_file_bookmarks_store_register_type          (GTypeModule * module);
+void _xed_file_bookmarks_store_register_type          (GTypeModule *type_module);
 
 XedFileBookmarksStore *xed_file_bookmarks_store_new (void);
 gchar *xed_file_bookmarks_store_get_uri               (XedFileBookmarksStore * model,
