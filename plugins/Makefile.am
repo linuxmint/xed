@@ -1,11 +1,13 @@
 DIST_SUBDIRS =		\
 	docinfo 		\
 	filebrowser 	\
-	modelines
+	modelines 		\
+	sort
 
 SUBDIRS = 			\
 	docinfo 		\
 	filebrowser 	\
-	modelines
+	modelines 		\
+	sort
 
 -include $(top_srcdir)/git.mk

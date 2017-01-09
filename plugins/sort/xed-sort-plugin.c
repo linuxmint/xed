@@ -28,11 +28,10 @@
 #include "xed-sort-plugin.h"
 
 #include <string.h>
-#include <glib/gi18n-lib.h>
-#include <gmodule.h>
-#include <libpeas/peas-activatable.h>
+#include <glib/gi18n.h>
 
 #include <xed/xed-window.h>
+#include <xed/xed-window-activatable.h>
 #include <xed/xed-debug.h>
 #include <xed/xed-utils.h>
 #include <xed/xed-help.h>
@@ -41,53 +40,49 @@
 
 #define MENU_PATH "/MenuBar/EditMenu/EditOps_6"
 
-static void peas_activatable_iface_init (PeasActivatableInterface *iface);
+static void xed_window_activatable_iface_init (XedWindowActivatableInterface *iface);
 
 G_DEFINE_DYNAMIC_TYPE_EXTENDED (XedSortPlugin,
                                 xed_sort_plugin,
                                 PEAS_TYPE_EXTENSION_BASE,
                                 0,
-                                G_IMPLEMENT_INTERFACE_DYNAMIC (PEAS_TYPE_ACTIVATABLE,
-                                                               peas_activatable_iface_init))
+                                G_IMPLEMENT_INTERFACE_DYNAMIC (XED_TYPE_WINDOW_ACTIVATABLE,
+                                                               xed_window_activatable_iface_init))
 
-enum
+struct _XedSortPluginPrivate
 {
-    PROP_0,
-    PROP_OBJECT
-};
+    XedWindow *window;
 
-typedef struct
-{
+    GtkActionGroup *ui_action_group;
+    guint ui_id;
+
     GtkWidget *dialog;
     GtkWidget *col_num_spinbutton;
     GtkWidget *reverse_order_checkbutton;
     GtkWidget *ignore_case_checkbutton;
     GtkWidget *remove_dups_checkbutton;
 
-    XedDocument *doc;
-
     GtkTextIter start, end; /* selection */
-} SortDialog;
-
-struct _XedSortPluginPrivate
-{
-    GtkWidget *window;
-
-    GtkActionGroup *ui_action_group;
-    guint ui_id;
 };
 
 typedef struct
 {
-    gboolean ignore_case;
-    gboolean reverse_order;
-    gboolean remove_duplicates;
     gint starting_column;
+
+    guint ignore_case : 1;
+    guint reverse_order : 1;
+    guint remove_duplicates : 1;
 } SortInfo;
+
+enum
+{
+    PROP_0,
+    PROP_WINDOW
+};
 
 static void sort_cb (GtkAction     *action,
                      XedSortPlugin *plugin);
-static void sort_real (SortDialog *dialog);
+static void sort_real (XedSortPlugin *plugin);
 
 static const GtkActionEntry action_entries[] =
 {
@@ -101,34 +96,25 @@ static const GtkActionEntry action_entries[] =
 };
 
 static void
-sort_dialog_destroy (GObject  *obj,
-                     gpointer  dialog_pointer)
-{
-    xed_debug (DEBUG_PLUGINS);
-
-    g_slice_free (SortDialog, dialog_pointer);
-}
-
-static void
-sort_dialog_response_handler (GtkDialog  *widget,
-                              gint        res_id,
-                              SortDialog *dialog)
+sort_dialog_response_handler (GtkDialog     *dlg,
+                              gint           res_id,
+                              XedSortPlugin *plugin)
 {
     xed_debug (DEBUG_PLUGINS);
 
     switch (res_id)
     {
         case GTK_RESPONSE_OK:
-            sort_real (dialog);
-            gtk_widget_destroy (dialog->dialog);
+            sort_real (plugin);
+            gtk_widget_destroy (GTK_WIDGET (dlg));
             break;
 
         case GTK_RESPONSE_HELP:
-            xed_help_display (GTK_WINDOW (widget), NULL, "xed-sort-plugin");
+            xed_help_display (GTK_WINDOW (dlg), NULL, "xed-sort-plugin");
             break;
 
         case GTK_RESPONSE_CANCEL:
-            gtk_widget_destroy (dialog->dialog);
+            gtk_widget_destroy (GTK_WIDGET (dlg));
             break;
     }
 }
@@ -137,27 +123,28 @@ sort_dialog_response_handler (GtkDialog  *widget,
  * the text field (like the combo box) looses the documnent selection.
  * Storing the selection ONLY works because the dialog is modal */
 static void
-get_current_selection (XedWindow  *window,
-                       SortDialog *dialog)
+get_current_selection (XedSortPlugin *plugin)
 {
+    XedSortPluginPrivate *priv;
     XedDocument *doc;
 
     xed_debug (DEBUG_PLUGINS);
 
-    doc = xed_window_get_active_document (window);
+    priv = plugin->priv;
 
-    if (!gtk_text_buffer_get_selection_bounds (GTK_TEXT_BUFFER (doc), &dialog->start, &dialog->end))
+    doc = xed_window_get_active_document (priv->window);
+
+    if (!gtk_text_buffer_get_selection_bounds (GTK_TEXT_BUFFER (doc), &priv->start, &priv->end))
     {
         /* No selection, get the whole document. */
-        gtk_text_buffer_get_bounds (GTK_TEXT_BUFFER (doc), &dialog->start, &dialog->end);
+        gtk_text_buffer_get_bounds (GTK_TEXT_BUFFER (doc), &priv->start, &priv->end);
     }
 }
 
-static SortDialog *
-get_sort_dialog (XedSortPlugin *plugin)
+static void
+create_sort_dialog (XedSortPlugin *plugin)
 {
-    XedWindow *window;
-    SortDialog *dialog;
+    XedSortPluginPrivate *priv;
     GtkWidget *error_widget;
     gboolean ret;
     gchar *data_dir;
@@ -165,22 +152,20 @@ get_sort_dialog (XedSortPlugin *plugin)
 
     xed_debug (DEBUG_PLUGINS);
 
-    window = XED_WINDOW (plugin->priv->window);
-
-    dialog = g_slice_new (SortDialog);
+    priv = plugin->priv;
 
     data_dir = peas_extension_base_get_data_dir (PEAS_EXTENSION_BASE (plugin));
     ui_file = g_build_filename (data_dir, "sort.ui", NULL);
-    g_free (data_dir);
     ret = xed_utils_get_ui_objects (ui_file,
                                     NULL,
                                     &error_widget,
-                                    "sort_dialog", &dialog->dialog,
-                                    "reverse_order_checkbutton", &dialog->reverse_order_checkbutton,
-                                    "col_num_spinbutton", &dialog->col_num_spinbutton,
-                                    "ignore_case_checkbutton", &dialog->ignore_case_checkbutton,
-                                    "remove_dups_checkbutton", &dialog->remove_dups_checkbutton,
+                                    "sort_dialog", &priv->dialog,
+                                    "reverse_order_checkbutton", &priv->reverse_order_checkbutton,
+                                    "col_num_spinbutton", &priv->col_num_spinbutton,
+                                    "ignore_case_checkbutton", &priv->ignore_case_checkbutton,
+                                    "remove_dups_checkbutton", &priv->remove_dups_checkbutton,
                                     NULL);
+    g_free (data_dir);
     g_free (ui_file);
 
     if (!ret)
@@ -188,52 +173,41 @@ get_sort_dialog (XedSortPlugin *plugin)
         const gchar *err_message;
 
         err_message = gtk_label_get_label (GTK_LABEL (error_widget));
-        xed_warning (GTK_WINDOW (window), "%s", err_message);
+        xed_warning (GTK_WINDOW (priv->window), "%s", err_message);
 
-        g_slice_free (SortDialog, dialog);
         gtk_widget_destroy (error_widget);
 
-        return NULL;
+        return;
     }
 
-    gtk_dialog_set_default_response (GTK_DIALOG (dialog->dialog), GTK_RESPONSE_OK);
+    gtk_dialog_set_default_response (GTK_DIALOG (priv->dialog), GTK_RESPONSE_OK);
 
-    g_signal_connect (dialog->dialog, "destroy", G_CALLBACK (sort_dialog_destroy), dialog);
-    g_signal_connect (dialog->dialog, "response", G_CALLBACK (sort_dialog_response_handler), dialog);
+    g_signal_connect (priv->dialog, "destroy", G_CALLBACK (gtk_widget_destroyed), &priv->dialog);
+    g_signal_connect (priv->dialog, "response", G_CALLBACK (sort_dialog_response_handler), plugin);
 
-    get_current_selection (window, dialog);
-
-    return dialog;
+    get_current_selection (plugin);
 }
 
 static void
 sort_cb (GtkAction     *action,
          XedSortPlugin *plugin)
 {
-    XedWindow *window;
-    XedDocument *doc;
+    XedSortPluginPrivate *priv;
     GtkWindowGroup *wg;
-    SortDialog *dialog;
 
     xed_debug (DEBUG_PLUGINS);
 
-    window = XED_WINDOW (plugin->priv->window);
+    priv = plugin->priv;
 
-    doc = xed_window_get_active_document (window);
-    g_return_if_fail (doc != NULL);
+    create_sort_dialog (plugin);
 
-    dialog = get_sort_dialog (plugin);
-    g_return_if_fail (dialog != NULL);
+    wg = xed_window_get_group (priv->window);
+    gtk_window_group_add_window (wg, GTK_WINDOW (priv->dialog));
 
-    wg = xed_window_get_group (window);
-    gtk_window_group_add_window (wg, GTK_WINDOW (dialog->dialog));
+    gtk_window_set_transient_for (GTK_WINDOW (priv->dialog), GTK_WINDOW (priv->window));
+    gtk_window_set_modal (GTK_WINDOW (priv->dialog), TRUE);
 
-    dialog->doc = doc;
-
-    gtk_window_set_transient_for (GTK_WINDOW (dialog->dialog), GTK_WINDOW (window));
-    gtk_window_set_modal (GTK_WINDOW (dialog->dialog), TRUE);
-
-    gtk_widget_show (GTK_WIDGET (dialog->dialog));
+    gtk_widget_show (GTK_WIDGET (priv->dialog));
 }
 
 /* Compares two strings for the sorting algorithm. Uses the UTF-8 processing
@@ -344,8 +318,9 @@ get_line_slice (GtkTextBuffer *buf,
 }
 
 static void
-sort_real (SortDialog *dialog)
+sort_real (XedSortPlugin *plugin)
 {
+    XedSortPluginPrivate *priv;
     XedDocument *doc;
     GtkTextIter start, end;
     gint start_line, end_line;
@@ -357,17 +332,19 @@ sort_real (SortDialog *dialog)
 
     xed_debug (DEBUG_PLUGINS);
 
-    doc = dialog->doc;
+    priv = plugin->priv;
+
+    doc = xed_window_get_active_document (priv->window);
     g_return_if_fail (doc != NULL);
 
-    sort_info = g_new0 (SortInfo, 1);
-    sort_info->ignore_case = gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (dialog->ignore_case_checkbutton));
-    sort_info->reverse_order = gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (dialog->reverse_order_checkbutton));
-    sort_info->remove_duplicates = gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (dialog->remove_dups_checkbutton));
-    sort_info->starting_column = gtk_spin_button_get_value_as_int (GTK_SPIN_BUTTON (dialog->col_num_spinbutton)) - 1;
+    sort_info = g_slice_new (SortInfo);
+    sort_info->ignore_case = gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (priv->ignore_case_checkbutton));
+    sort_info->reverse_order = gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (priv->reverse_order_checkbutton));
+    sort_info->remove_duplicates = gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (priv->remove_dups_checkbutton));
+    sort_info->starting_column = gtk_spin_button_get_value_as_int (GTK_SPIN_BUTTON (priv->col_num_spinbutton)) - 1;
 
-    start = dialog->start;
-    end = dialog->end;
+    start = priv->start;
+    end = priv->end;
     start_line = gtk_text_iter_get_line (&start);
     end_line = gtk_text_iter_get_line (&end);
 
@@ -421,9 +398,105 @@ sort_real (SortDialog *dialog)
     gtk_source_buffer_end_not_undoable_action (GTK_SOURCE_BUFFER (doc));
 
     g_strfreev (lines);
-    g_free (sort_info);
+    g_slice_free (SortInfo, sort_info);
 
     xed_debug_message (DEBUG_PLUGINS, "Done.");
+}
+
+static void
+update_ui (XedSortPlugin *plugin)
+{
+    XedView *view;
+
+    xed_debug (DEBUG_PLUGINS);
+
+    view = xed_window_get_active_view (plugin->priv->window);
+
+    gtk_action_group_set_sensitive (plugin->priv->ui_action_group,
+                                    (view != NULL) &&
+                                    gtk_text_view_get_editable (GTK_TEXT_VIEW (view)));
+}
+
+static void
+xed_sort_plugin_activate (XedWindowActivatable *activatable)
+{
+    XedSortPluginPrivate *priv;
+    GtkUIManager *manager;
+
+    xed_debug (DEBUG_PLUGINS);
+
+    priv = XED_SORT_PLUGIN (activatable)->priv;
+    manager = xed_window_get_ui_manager (priv->window);
+
+    priv->ui_action_group = gtk_action_group_new ("XedSortPluginActions");
+    gtk_action_group_set_translation_domain (priv->ui_action_group, GETTEXT_PACKAGE);
+    gtk_action_group_add_actions (priv->ui_action_group, action_entries, G_N_ELEMENTS (action_entries), activatable);
+
+    gtk_ui_manager_insert_action_group (manager, priv->ui_action_group, -1);
+
+    priv->ui_id = gtk_ui_manager_new_merge_id (manager);
+
+    gtk_ui_manager_add_ui (manager,
+                           priv->ui_id,
+                           MENU_PATH,
+                           "Sort",
+                           "Sort",
+                           GTK_UI_MANAGER_MENUITEM,
+                           FALSE);
+
+    update_ui (XED_SORT_PLUGIN (activatable));
+}
+
+static void
+xed_sort_plugin_deactivate (XedWindowActivatable *activatable)
+{
+    XedSortPluginPrivate *priv;
+    GtkUIManager *manager;
+
+    xed_debug (DEBUG_PLUGINS);
+
+    priv = XED_SORT_PLUGIN (activatable)->priv;
+    manager = xed_window_get_ui_manager (priv->window);
+
+    gtk_ui_manager_remove_ui (manager, priv->ui_id);
+    gtk_ui_manager_remove_action_group (manager, priv->ui_action_group);
+}
+
+static void
+xed_sort_plugin_update_state (XedWindowActivatable *activatable)
+{
+    xed_debug (DEBUG_PLUGINS);
+
+    update_ui (XED_SORT_PLUGIN (activatable));
+}
+
+static void
+xed_sort_plugin_init (XedSortPlugin *plugin)
+{
+    xed_debug_message (DEBUG_PLUGINS, "XedSortPlugin initializing");
+
+    plugin->priv = G_TYPE_INSTANCE_GET_PRIVATE (plugin, XED_TYPE_SORT_PLUGIN, XedSortPluginPrivate);
+}
+
+static void
+xed_sort_plugin_dispose (GObject *object)
+{
+    XedSortPlugin *plugin = XED_SORT_PLUGIN (object);
+
+    xed_debug_message (DEBUG_PLUGINS, "XedSortPlugin disposing");
+
+    g_clear_object (&plugin->priv->ui_action_group);
+    g_clear_object (&plugin->priv->window);
+
+    G_OBJECT_CLASS (xed_sort_plugin_parent_class)->dispose (object);
+}
+
+static void
+xed_sort_plugin_finalize (GObject *object)
+{
+    xed_debug_message (DEBUG_PLUGINS, "XedSortPlugin finalizing");
+
+    G_OBJECT_CLASS (xed_sort_plugin_parent_class)->finalize (object);
 }
 
 static void
@@ -436,8 +509,8 @@ xed_sort_plugin_set_property (GObject      *object,
 
     switch (prop_id)
     {
-        case PROP_OBJECT:
-            plugin->priv->window = GTK_WIDGET (g_value_dup_object (value));
+        case PROP_WINDOW:
+            plugin->priv->window = XED_WINDOW (g_value_dup_object (value));
             break;
         default:
             G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
@@ -455,7 +528,7 @@ xed_sort_plugin_get_property (GObject    *object,
 
     switch (prop_id)
     {
-        case PROP_OBJECT:
+        case PROP_WINDOW:
             g_value_set_object (value, plugin->priv->window);
             break;
         default:
@@ -465,125 +538,16 @@ xed_sort_plugin_get_property (GObject    *object,
 }
 
 static void
-update_ui (XedSortPluginPrivate *data)
-{
-    XedWindow *window;
-    XedView *view;
-
-    xed_debug (DEBUG_PLUGINS);
-
-    window = XED_WINDOW (data->window);
-    view = xed_window_get_active_view (window);
-
-    gtk_action_group_set_sensitive (data->ui_action_group,
-                                    (view != NULL) &&
-                                    gtk_text_view_get_editable (GTK_TEXT_VIEW (view)));
-}
-
-static void
-xed_sort_plugin_activate (PeasActivatable *activatable)
-{
-    XedSortPlugin *plugin;
-    XedSortPluginPrivate *data;
-    XedWindow *window;
-    GtkUIManager *manager;
-
-    xed_debug (DEBUG_PLUGINS);
-
-    plugin = XED_SORT_PLUGIN (activatable);
-    data = plugin->priv;
-    window = XED_WINDOW (data->window);
-
-    manager = xed_window_get_ui_manager (window);
-
-    data->ui_action_group = gtk_action_group_new ("XedSortPluginActions");
-    gtk_action_group_set_translation_domain (data->ui_action_group, GETTEXT_PACKAGE);
-    gtk_action_group_add_actions (data->ui_action_group,
-                                  action_entries,
-                                  G_N_ELEMENTS (action_entries),
-                                  plugin);
-
-    gtk_ui_manager_insert_action_group (manager, data->ui_action_group, -1);
-
-    data->ui_id = gtk_ui_manager_new_merge_id (manager);
-
-    gtk_ui_manager_add_ui (manager,
-                           data->ui_id,
-                           MENU_PATH,
-                           "Sort",
-                           "Sort",
-                           GTK_UI_MANAGER_MENUITEM,
-                           FALSE);
-
-    update_ui (data);
-}
-
-static void
-xed_sort_plugin_deactivate (PeasActivatable *activatable)
-{
-    XedSortPluginPrivate *data;
-    XedWindow *window;
-    GtkUIManager *manager;
-
-    xed_debug (DEBUG_PLUGINS);
-
-    data = XED_SORT_PLUGIN (activatable)->priv;
-    window = XED_WINDOW (data->window);
-
-    manager = xed_window_get_ui_manager (window);
-
-    gtk_ui_manager_remove_ui (manager, data->ui_id);
-    gtk_ui_manager_remove_action_group (manager, data->ui_action_group);
-}
-
-static void
-xed_sort_plugin_update_state (PeasActivatable *activatable)
-{
-    xed_debug (DEBUG_PLUGINS);
-
-    update_ui (XED_SORT_PLUGIN (activatable)->priv);
-}
-
-static void
-xed_sort_plugin_init (XedSortPlugin *plugin)
-{
-    xed_debug_message (DEBUG_PLUGINS, "XedSortPlugin initializing");
-
-    plugin->priv = XED_SORT_PLUGIN_GET_PRIVATE (plugin);
-}
-
-static void
-xed_sort_plugin_dispose (GObject *object)
-{
-    XedSortPlugin *plugin = XED_SORT_PLUGIN (object);
-
-    xed_debug_message (DEBUG_PLUGINS, "XedSortPlugin disposing");
-
-    if (plugin->priv->window != NULL)
-    {
-        g_object_unref (plugin->priv->window);
-        plugin->priv->window = NULL;
-    }
-
-    if (plugin->priv->ui_action_group)
-    {
-        g_object_unref (plugin->priv->ui_action_group);
-        plugin->priv->ui_action_group = NULL;
-    }
-
-    G_OBJECT_CLASS (xed_sort_plugin_parent_class)->dispose (object);
-}
-
-static void
 xed_sort_plugin_class_init (XedSortPluginClass *klass)
 {
     GObjectClass *object_class = G_OBJECT_CLASS (klass);
 
     object_class->dispose = xed_sort_plugin_dispose;
+    object_class->finalize = xed_sort_plugin_finalize;
     object_class->set_property = xed_sort_plugin_set_property;
     object_class->get_property = xed_sort_plugin_get_property;
 
-    g_object_class_override_property (object_class, PROP_OBJECT, "object");
+    g_object_class_override_property (object_class, PROP_WINDOW, "window");
 
     g_type_class_add_private (klass, sizeof (XedSortPluginPrivate));
 }
@@ -595,7 +559,7 @@ xed_sort_plugin_class_finalize (XedSortPluginClass *klass)
 }
 
 static void
-peas_activatable_iface_init (PeasActivatableInterface *iface)
+xed_window_activatable_iface_init (XedWindowActivatableInterface *iface)
 {
     iface->activate = xed_sort_plugin_activate;
     iface->deactivate = xed_sort_plugin_deactivate;
@@ -608,6 +572,6 @@ peas_register_types (PeasObjectModule *module)
     xed_sort_plugin_register_type (G_TYPE_MODULE (module));
 
     peas_object_module_register_extension_type (module,
-                                                PEAS_TYPE_ACTIVATABLE,
+                                                XED_TYPE_WINDOW_ACTIVATABLE,
                                                 XED_TYPE_SORT_PLUGIN);
 }
