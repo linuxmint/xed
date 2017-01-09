@@ -17,7 +17,6 @@
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA.
  *
- * $Id$
  */
 
 #ifdef HAVE_CONFIG_H
@@ -28,32 +27,24 @@
 
 #include <string.h> /* For strlen (...) */
 
-#include <glib/gi18n-lib.h>
+#include <glib/gi18n.h>
 #include <pango/pango-break.h>
 #include <gmodule.h>
-#include <libpeas/peas-activatable.h>
 
 #include <xed/xed-window.h>
+#include <xed/xed-window-activatable.h>
 #include <xed/xed-debug.h>
 #include <xed/xed-utils.h>
 
 #define MENU_PATH "/MenuBar/ToolsMenu/ToolsOps_2"
 
-#define XED_DOCINFO_PLUGIN_GET_PRIVATE(object)(G_TYPE_INSTANCE_GET_PRIVATE ((object), \
-                                               XED_TYPE_DOCINFO_PLUGIN, \
-                                               XedDocInfoPluginPrivate))
-
-static void peas_activatable_iface_init (PeasActivatableInterface *iface);
-
-G_DEFINE_DYNAMIC_TYPE_EXTENDED (XedDocInfoPlugin,
-                                xed_docinfo_plugin,
-                                PEAS_TYPE_EXTENSION_BASE,
-                                0,
-                                G_IMPLEMENT_INTERFACE_DYNAMIC (PEAS_TYPE_ACTIVATABLE,
-                                                               peas_activatable_iface_init))
-
-typedef struct
+struct _XedDocInfoPluginPrivate
 {
+    XedWindow *window;
+
+    GtkActionGroup *action_group;
+    guint ui_id;
+
     GtkWidget *dialog;
     GtkWidget *file_name_label;
     GtkWidget *lines_label;
@@ -67,105 +58,22 @@ typedef struct
     GtkWidget *selected_chars_label;
     GtkWidget *selected_chars_ns_label;
     GtkWidget *selected_bytes_label;
-} DocInfoDialog;
-
-struct _XedDocInfoPluginPrivate
-{
-    GtkWidget *window;
-
-    GtkActionGroup *ui_action_group;
-    guint ui_id;
-
-    DocInfoDialog *dialog;
 };
 
 enum
 {
     PROP_0,
-    PROP_OBJECT
+    PROP_WINDOW
 };
 
-static void docinfo_dialog_response_cb (GtkDialog               *widget,
-                                        gint                     res_id,
-                                        XedDocInfoPluginPrivate *data);
+static void xed_window_activatable_iface_init (XedWindowActivatableInterface *iface);
 
-static void
-docinfo_dialog_destroy_cb (GObject                 *obj,
-                           XedDocInfoPluginPrivate *data)
-{
-    xed_debug (DEBUG_PLUGINS);
-
-    if (data != NULL)
-    {
-        g_free (data->dialog);
-        data->dialog = NULL;
-    }
-}
-
-static DocInfoDialog *
-get_docinfo_dialog (XedDocInfoPlugin *plugin)
-{
-    XedDocInfoPluginPrivate *data;
-    XedWindow *window;
-    DocInfoDialog *dialog;
-    gchar *data_dir;
-    gchar *ui_file;
-    GtkWidget *content;
-    GtkWidget *error_widget;
-    gboolean ret;
-
-    xed_debug (DEBUG_PLUGINS);
-
-    data = plugin->priv;
-    window = XED_WINDOW (data->window);
-
-    dialog = g_new (DocInfoDialog, 1);
-
-    data_dir = peas_extension_base_get_data_dir (PEAS_EXTENSION_BASE (plugin));
-    ui_file = g_build_filename (data_dir, "docinfo.ui", NULL);
-    ret = xed_utils_get_ui_objects (ui_file,
-                                    NULL,
-                                    &error_widget,
-                                    "dialog", &dialog->dialog,
-                                    "docinfo_dialog_content", &content,
-                                    "file_name_label", &dialog->file_name_label,
-                                    "words_label", &dialog->words_label,
-                                    "bytes_label", &dialog->bytes_label,
-                                    "lines_label", &dialog->lines_label,
-                                    "chars_label", &dialog->chars_label,
-                                    "chars_ns_label", &dialog->chars_ns_label,
-                                    "selection_vbox", &dialog->selection_vbox,
-                                    "selected_words_label", &dialog->selected_words_label,
-                                    "selected_bytes_label", &dialog->selected_bytes_label,
-                                    "selected_lines_label", &dialog->selected_lines_label,
-                                    "selected_chars_label", &dialog->selected_chars_label,
-                                    "selected_chars_ns_label", &dialog->selected_chars_ns_label,
-                                    NULL);
-
-    g_free (data_dir);
-    g_free (ui_file);
-
-    if (!ret)
-    {
-        const gchar *err_message;
-
-        err_message = gtk_label_get_label (GTK_LABEL (error_widget));
-        xed_warning (GTK_WINDOW (window), "%s", err_message);
-
-        g_free (dialog);
-        gtk_widget_destroy (error_widget);
-
-        return NULL;
-    }
-
-    gtk_dialog_set_default_response (GTK_DIALOG (dialog->dialog), GTK_RESPONSE_OK);
-    gtk_window_set_transient_for (GTK_WINDOW (dialog->dialog), GTK_WINDOW (window));
-
-    g_signal_connect (dialog->dialog, "destroy", G_CALLBACK (docinfo_dialog_destroy_cb), data);
-    g_signal_connect (dialog->dialog, "response", G_CALLBACK (docinfo_dialog_response_cb), data);
-
-    return dialog;
-}
+G_DEFINE_DYNAMIC_TYPE_EXTENDED (XedDocInfoPlugin,
+                                xed_docinfo_plugin,
+                                PEAS_TYPE_EXTENSION_BASE,
+                                0,
+                                G_IMPLEMENT_INTERFACE_DYNAMIC (XED_TYPE_WINDOW_ACTIVATABLE,
+                                                               xed_window_activatable_iface_init))
 
 static void
 calculate_info (XedDocument *doc,
@@ -219,9 +127,10 @@ calculate_info (XedDocument *doc,
 }
 
 static void
-docinfo_real (XedDocument   *doc,
-              DocInfoDialog *dialog)
+update_document_info (XedDocInfoPlugin *plugin,
+                      XedDocument *doc)
 {
+    XedDocInfoPluginPrivate *priv;
     GtkTextIter start, end;
     gint words = 0;
     gint chars = 0;
@@ -232,6 +141,8 @@ docinfo_real (XedDocument   *doc,
     gchar *doc_name;
 
     xed_debug (DEBUG_PLUGINS);
+
+    priv = plugin->priv;
 
     gtk_text_buffer_get_bounds (GTK_TEXT_BUFFER (doc), &start, &end);
 
@@ -252,35 +163,36 @@ docinfo_real (XedDocument   *doc,
 
     doc_name = xed_document_get_short_name_for_display (doc);
     tmp_str = g_strdup_printf ("<span weight=\"bold\">%s</span>", doc_name);
-    gtk_label_set_markup (GTK_LABEL (dialog->file_name_label), tmp_str);
+    gtk_label_set_markup (GTK_LABEL (priv->file_name_label), tmp_str);
     g_free (doc_name);
     g_free (tmp_str);
 
     tmp_str = g_strdup_printf("%d", lines);
-    gtk_label_set_text (GTK_LABEL (dialog->lines_label), tmp_str);
+    gtk_label_set_text (GTK_LABEL (priv->lines_label), tmp_str);
     g_free (tmp_str);
 
     tmp_str = g_strdup_printf("%d", words);
-    gtk_label_set_text (GTK_LABEL (dialog->words_label), tmp_str);
+    gtk_label_set_text (GTK_LABEL (priv->words_label), tmp_str);
     g_free (tmp_str);
 
     tmp_str = g_strdup_printf("%d", chars);
-    gtk_label_set_text (GTK_LABEL (dialog->chars_label), tmp_str);
+    gtk_label_set_text (GTK_LABEL (priv->chars_label), tmp_str);
     g_free (tmp_str);
 
     tmp_str = g_strdup_printf("%d", chars - white_chars);
-    gtk_label_set_text (GTK_LABEL (dialog->chars_ns_label), tmp_str);
+    gtk_label_set_text (GTK_LABEL (priv->chars_ns_label), tmp_str);
     g_free (tmp_str);
 
     tmp_str = g_strdup_printf("%d", bytes);
-    gtk_label_set_text (GTK_LABEL (dialog->bytes_label), tmp_str);
+    gtk_label_set_text (GTK_LABEL (priv->bytes_label), tmp_str);
     g_free (tmp_str);
 }
 
 static void
-selectioninfo_real (XedDocument   *doc,
-                    DocInfoDialog *dialog)
+update_selection_info (XedDocInfoPlugin *plugin,
+                       XedDocument *doc)
 {
+    XedDocInfoPluginPrivate *priv;
     gboolean sel;
     GtkTextIter start, end;
     gint words = 0;
@@ -291,6 +203,8 @@ selectioninfo_real (XedDocument   *doc,
     gchar *tmp_str;
 
     xed_debug (DEBUG_PLUGINS);
+
+    priv = plugin->priv;
 
     sel = gtk_text_buffer_get_selection_bounds (GTK_TEXT_BUFFER (doc), &start, &end);
 
@@ -306,11 +220,11 @@ selectioninfo_real (XedDocument   *doc,
         xed_debug_message (DEBUG_PLUGINS, "Selected chars non-space: %d", chars - white_chars);
         xed_debug_message (DEBUG_PLUGINS, "Selected bytes: %d", bytes);
 
-        gtk_widget_set_sensitive (dialog->selection_vbox, TRUE);
+        gtk_widget_set_sensitive (priv->selection_vbox, TRUE);
     }
     else
     {
-        gtk_widget_set_sensitive (dialog->selection_vbox, FALSE);
+        gtk_widget_set_sensitive (priv->selection_vbox, FALSE);
 
         xed_debug_message (DEBUG_PLUGINS, "Selection empty");
     }
@@ -321,82 +235,41 @@ selectioninfo_real (XedDocument   *doc,
     }
 
     tmp_str = g_strdup_printf("%d", lines);
-    gtk_label_set_text (GTK_LABEL (dialog->selected_lines_label), tmp_str);
+    gtk_label_set_text (GTK_LABEL (priv->selected_lines_label), tmp_str);
     g_free (tmp_str);
 
     tmp_str = g_strdup_printf("%d", words);
-    gtk_label_set_text (GTK_LABEL (dialog->selected_words_label), tmp_str);
+    gtk_label_set_text (GTK_LABEL (priv->selected_words_label), tmp_str);
     g_free (tmp_str);
 
     tmp_str = g_strdup_printf("%d", chars);
-    gtk_label_set_text (GTK_LABEL (dialog->selected_chars_label), tmp_str);
+    gtk_label_set_text (GTK_LABEL (priv->selected_chars_label), tmp_str);
     g_free (tmp_str);
 
     tmp_str = g_strdup_printf("%d", chars - white_chars);
-    gtk_label_set_text (GTK_LABEL (dialog->selected_chars_ns_label), tmp_str);
+    gtk_label_set_text (GTK_LABEL (priv->selected_chars_ns_label), tmp_str);
     g_free (tmp_str);
 
     tmp_str = g_strdup_printf("%d", bytes);
-    gtk_label_set_text (GTK_LABEL (dialog->selected_bytes_label), tmp_str);
+    gtk_label_set_text (GTK_LABEL (priv->selected_bytes_label), tmp_str);
     g_free (tmp_str);
 }
 
 static void
-docinfo_cb (GtkAction        *action,
-            XedDocInfoPlugin *plugin)
+docinfo_dialog_response_cb (GtkDialog        *widget,
+                            gint              res_id,
+                            XedDocInfoPlugin *plugin)
 {
-    XedDocInfoPluginPrivate *data;
-    XedWindow *window;
-    XedDocument *doc;
+    XedDocInfoPluginPrivate *priv;
 
-    xed_debug (DEBUG_PLUGINS);
-
-    data = plugin->priv;
-    window = XED_WINDOW (data->window);
-    doc = xed_window_get_active_document (window);
-    g_return_if_fail (doc != NULL);
-
-    if (data->dialog != NULL)
-    {
-        gtk_window_present (GTK_WINDOW (data->dialog->dialog));
-        gtk_widget_grab_focus (GTK_WIDGET (data->dialog->dialog));
-    }
-    else
-    {
-        DocInfoDialog *dialog;
-
-        dialog = get_docinfo_dialog (plugin);
-        g_return_if_fail (dialog != NULL);
-
-        data->dialog = dialog;
-
-        gtk_widget_show (GTK_WIDGET (dialog->dialog));
-    }
-
-    docinfo_real (doc,
-              data->dialog);
-    selectioninfo_real (doc,
-                data->dialog);
-}
-
-static void
-docinfo_dialog_response_cb (GtkDialog               *widget,
-                            gint                     res_id,
-                            XedDocInfoPluginPrivate *data)
-{
-    XedWindow *window;
-
-    xed_debug (DEBUG_PLUGINS);
-
-    window = XED_WINDOW (data->window);
+    priv = plugin->priv;
 
     switch (res_id)
     {
         case GTK_RESPONSE_CLOSE:
         {
             xed_debug_message (DEBUG_PLUGINS, "GTK_RESPONSE_CLOSE");
-            gtk_widget_destroy (data->dialog->dialog);
-
+            gtk_widget_destroy (priv->dialog);
             break;
         }
 
@@ -406,15 +279,100 @@ docinfo_dialog_response_cb (GtkDialog               *widget,
 
             xed_debug_message (DEBUG_PLUGINS, "GTK_RESPONSE_OK");
 
-            doc = xed_window_get_active_document (window);
-            g_return_if_fail (doc != NULL);
+            doc = xed_window_get_active_document (priv->window);
 
-            docinfo_real (doc, data->dialog);
-            selectioninfo_real (doc, data->dialog);
-
+            update_document_info (plugin, doc);
+            update_selection_info (plugin, doc);
             break;
         }
     }
+}
+
+static void
+create_docinfo_dialog (XedDocInfoPlugin *plugin)
+{
+    XedDocInfoPluginPrivate *priv;
+    gchar *data_dir;
+    gchar *ui_file;
+    GtkWidget *content;
+    GtkWidget *error_widget;
+    gboolean ret;
+
+    xed_debug (DEBUG_PLUGINS);
+
+    priv = plugin->priv;
+
+    data_dir = peas_extension_base_get_data_dir (PEAS_EXTENSION_BASE (plugin));
+    ui_file = g_build_filename (data_dir, "docinfo.ui", NULL);
+    ret = xed_utils_get_ui_objects (ui_file,
+                                    NULL,
+                                    &error_widget,
+                                    "dialog", &priv->dialog,
+                                    "docinfo_dialog_content", &content,
+                                    "file_name_label", &priv->file_name_label,
+                                    "words_label", &priv->words_label,
+                                    "bytes_label", &priv->bytes_label,
+                                    "lines_label", &priv->lines_label,
+                                    "chars_label", &priv->chars_label,
+                                    "chars_ns_label", &priv->chars_ns_label,
+                                    "selection_vbox", &priv->selection_vbox,
+                                    "selected_words_label", &priv->selected_words_label,
+                                    "selected_bytes_label", &priv->selected_bytes_label,
+                                    "selected_lines_label", &priv->selected_lines_label,
+                                    "selected_chars_label", &priv->selected_chars_label,
+                                    "selected_chars_ns_label", &priv->selected_chars_ns_label,
+                                    NULL);
+
+    g_free (data_dir);
+    g_free (ui_file);
+
+    if (!ret)
+    {
+        const gchar *err_message;
+
+        err_message = gtk_label_get_label (GTK_LABEL (error_widget));
+        xed_warning (GTK_WINDOW (priv->window), "%s", err_message);
+
+        gtk_widget_destroy (error_widget);
+
+        return;
+    }
+
+    gtk_dialog_set_default_response (GTK_DIALOG (priv->dialog), GTK_RESPONSE_OK);
+    gtk_window_set_transient_for (GTK_WINDOW (priv->dialog), GTK_WINDOW (priv->window));
+
+    g_signal_connect (priv->dialog, "destroy",
+                      G_CALLBACK (gtk_widget_destroyed), &priv->dialog);
+    g_signal_connect (priv->dialog, "response",
+                      G_CALLBACK (docinfo_dialog_response_cb), plugin);
+}
+
+static void
+docinfo_cb (GtkAction        *action,
+            XedDocInfoPlugin *plugin)
+{
+    XedDocInfoPluginPrivate *priv;
+    XedDocument *doc;
+
+    xed_debug (DEBUG_PLUGINS);
+
+    priv = plugin->priv;
+
+    doc = xed_window_get_active_document (priv->window);
+
+    if (priv->dialog != NULL)
+    {
+        gtk_window_present (GTK_WINDOW (priv->dialog));
+        gtk_widget_grab_focus (GTK_WIDGET (priv->dialog));
+    }
+    else
+    {
+        create_docinfo_dialog (plugin);
+        gtk_widget_show (GTK_WIDGET (priv->dialog));
+    }
+
+    update_document_info (plugin, doc);
+    update_selection_info (plugin, doc);
 }
 
 static const GtkActionEntry action_entries[] =
@@ -428,29 +386,10 @@ static const GtkActionEntry action_entries[] =
 };
 
 static void
-update_ui (XedDocInfoPluginPrivate *data)
-{
-    XedWindow *window;
-    XedView *view;
-
-    xed_debug (DEBUG_PLUGINS);
-
-    window = XED_WINDOW (data->window);
-    view = xed_window_get_active_view (window);
-
-    gtk_action_group_set_sensitive (data->ui_action_group, (view != NULL));
-
-    if (data->dialog != NULL)
-    {
-        gtk_dialog_set_response_sensitive (GTK_DIALOG (data->dialog->dialog), GTK_RESPONSE_OK, (view != NULL));
-    }
-}
-
-static void
 xed_docinfo_plugin_init (XedDocInfoPlugin *plugin)
 {
     xed_debug_message (DEBUG_PLUGINS, "XedDocInfoPlugin initializing");
-    plugin->priv = XED_DOCINFO_PLUGIN_GET_PRIVATE (plugin);
+    plugin->priv = G_TYPE_INSTANCE_GET_PRIVATE (plugin, XED_TYPE_DOCINFO_PLUGIN, XedDocInfoPluginPrivate);
 }
 
 static void
@@ -458,21 +397,20 @@ xed_docinfo_plugin_dispose (GObject *object)
 {
     XedDocInfoPlugin *plugin = XED_DOCINFO_PLUGIN (object);
 
-    xed_debug_message (DEBUG_PLUGINS, "XedDocInfoPlugin disposing");
+    xed_debug_message (DEBUG_PLUGINS, "XedDocInfoPlugin dispose");
 
-    if (plugin->priv->window != NULL)
-    {
-       g_object_unref (plugin->priv->window);
-       plugin->priv->window = NULL;
-    }
-
-    if (plugin->priv->ui_action_group != NULL)
-    {
-       g_object_unref (plugin->priv->ui_action_group);
-       plugin->priv->ui_action_group = NULL;
-    }
+    g_clear_object (&plugin->priv->action_group);
+    g_clear_object (&plugin->priv->window);
 
     G_OBJECT_CLASS (xed_docinfo_plugin_parent_class)->dispose (object);
+}
+
+static void
+xed_docinfo_plugin_finalize (GObject *object)
+{
+    xed_debug_message (DEBUG_PLUGINS, "XedDocInfoPlugin finalizing");
+
+    G_OBJECT_CLASS (xed_docinfo_plugin_parent_class)->finalize (object);
 }
 
 static void
@@ -485,8 +423,8 @@ xed_docinfo_plugin_set_property (GObject      *object,
 
     switch (prop_id)
     {
-        case PROP_OBJECT:
-            plugin->priv->window = GTK_WIDGET (g_value_dup_object (value));
+        case PROP_WINDOW:
+            plugin->priv->window = XED_WINDOW (g_value_dup_object (value));
             break;
         default:
             G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
@@ -504,7 +442,7 @@ xed_docinfo_plugin_get_property (GObject    *object,
 
     switch (prop_id)
    {
-        case PROP_OBJECT:
+        case PROP_WINDOW:
             g_value_set_object (value, plugin->priv->window);
             break;
         default:
@@ -514,66 +452,76 @@ xed_docinfo_plugin_get_property (GObject    *object,
 }
 
 static void
-xed_docinfo_plugin_activate (PeasActivatable *activatable)
+update_ui (XedDocInfoPlugin *plugin)
 {
-    XedDocInfoPlugin *plugin;
-    XedDocInfoPluginPrivate *data;
-    XedWindow *window;
+    XedDocInfoPluginPrivate *priv;
+    XedView *view;
+
+    xed_debug (DEBUG_PLUGINS);
+
+    priv = plugin->priv;
+
+    view = xed_window_get_active_view (priv->window);
+
+    gtk_action_group_set_sensitive (priv->action_group, (view != NULL));
+
+    if (priv->dialog != NULL)
+    {
+        gtk_dialog_set_response_sensitive (GTK_DIALOG (priv->dialog), GTK_RESPONSE_OK, (view != NULL));
+    }
+}
+
+static void
+xed_docinfo_plugin_activate (XedWindowActivatable *activatable)
+{
+    XedDocInfoPluginPrivate *priv;
     GtkUIManager *manager;
 
     xed_debug (DEBUG_PLUGINS);
 
-    plugin = XED_DOCINFO_PLUGIN (activatable);
-    data = plugin->priv;
-    window = XED_WINDOW (data->window);
+    priv = XED_DOCINFO_PLUGIN (activatable)->priv;
+    manager = xed_window_get_ui_manager (priv->window);
 
-    data->dialog = NULL;
-    data->ui_action_group = gtk_action_group_new ("XedDocInfoPluginActions");
+    priv->action_group = gtk_action_group_new ("XedDocinfoPluginActions");
+    gtk_action_group_set_translation_domain (priv->action_group, GETTEXT_PACKAGE);
+    gtk_action_group_add_actions (priv->action_group, action_entries, G_N_ELEMENTS (action_entries), activatable);
 
-    gtk_action_group_set_translation_domain (data->ui_action_group, GETTEXT_PACKAGE);
-    gtk_action_group_add_actions (data->ui_action_group, action_entries,
-                                  G_N_ELEMENTS (action_entries), plugin);
+    gtk_ui_manager_insert_action_group (manager, priv->action_group, -1);
 
-    manager = xed_window_get_ui_manager (window);
-    gtk_ui_manager_insert_action_group (manager, data->ui_action_group, -1);
-
-    data->ui_id = gtk_ui_manager_new_merge_id (manager);
+    priv->ui_id = gtk_ui_manager_new_merge_id (manager);
 
     gtk_ui_manager_add_ui (manager,
-                           data->ui_id,
+                           priv->ui_id,
                            MENU_PATH,
                            "DocumentStatistics",
                            "DocumentStatistics",
                            GTK_UI_MANAGER_MENUITEM,
                            FALSE);
 
-    update_ui (data);
+    update_ui (XED_DOCINFO_PLUGIN (activatable));
 }
 
 static void
-xed_docinfo_plugin_deactivate (PeasActivatable *activatable)
+xed_docinfo_plugin_deactivate (XedWindowActivatable *activatable)
 {
-    XedDocInfoPluginPrivate *data;
-    XedWindow *window;
+    XedDocInfoPluginPrivate *priv;
     GtkUIManager *manager;
 
     xed_debug (DEBUG_PLUGINS);
 
-    data = XED_DOCINFO_PLUGIN (activatable)->priv;
-    window = XED_WINDOW (data->window);
+    priv = XED_DOCINFO_PLUGIN (activatable)->priv;
+    manager = xed_window_get_ui_manager (priv->window);
 
-    manager = xed_window_get_ui_manager (window);
-
-    gtk_ui_manager_remove_ui (manager, data->ui_id);
-    gtk_ui_manager_remove_action_group (manager, data->ui_action_group);
+    gtk_ui_manager_remove_ui (manager, priv->ui_id);
+    gtk_ui_manager_remove_action_group (manager, priv->action_group);
 }
 
 static void
-xed_docinfo_plugin_update_state (PeasActivatable *activatable)
+xed_docinfo_plugin_update_state (XedWindowActivatable *activatable)
 {
     xed_debug (DEBUG_PLUGINS);
 
-    update_ui (XED_DOCINFO_PLUGIN (activatable)->priv);
+    update_ui (XED_DOCINFO_PLUGIN (activatable));
 }
 
 static void
@@ -582,26 +530,26 @@ xed_docinfo_plugin_class_init (XedDocInfoPluginClass *klass)
     GObjectClass *object_class = G_OBJECT_CLASS (klass);
 
     object_class->dispose = xed_docinfo_plugin_dispose;
+    object_class->finalize = xed_docinfo_plugin_finalize;
     object_class->set_property = xed_docinfo_plugin_set_property;
     object_class->get_property = xed_docinfo_plugin_get_property;
 
-    g_object_class_override_property (object_class, PROP_OBJECT, "object");
+    g_object_class_override_property (object_class, PROP_WINDOW, "window");
 
     g_type_class_add_private (klass, sizeof (XedDocInfoPluginPrivate));
 }
 
 static void
-xed_docinfo_plugin_class_finalize (XedDocInfoPluginClass *klass)
-{
-    /* dummy function - used by G_DEFINE_DYNAMIC_TYPE_EXTENDED */
-}
-
-static void
-peas_activatable_iface_init (PeasActivatableInterface *iface)
+xed_window_activatable_iface_init (XedWindowActivatableInterface *iface)
 {
     iface->activate = xed_docinfo_plugin_activate;
     iface->deactivate = xed_docinfo_plugin_deactivate;
     iface->update_state = xed_docinfo_plugin_update_state;
+}
+
+static void
+xed_docinfo_plugin_class_finalize (XedDocInfoPluginClass *klass)
+{
 }
 
 G_MODULE_EXPORT void
@@ -610,6 +558,6 @@ peas_register_types (PeasObjectModule *module)
     xed_docinfo_plugin_register_type (G_TYPE_MODULE (module));
 
     peas_object_module_register_extension_type (module,
-                                                PEAS_TYPE_ACTIVATABLE,
+                                                XED_TYPE_WINDOW_ACTIVATABLE,
                                                 XED_TYPE_DOCINFO_PLUGIN);
 }

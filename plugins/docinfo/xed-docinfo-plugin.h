@@ -30,35 +30,24 @@
 
 G_BEGIN_DECLS
 
-/*
- * Type checking and casting macros
- */
-#define XED_TYPE_DOCINFO_PLUGIN     (xed_docinfo_plugin_get_type ())
+#define XED_TYPE_DOCINFO_PLUGIN         (xed_docinfo_plugin_get_type ())
 #define XED_DOCINFO_PLUGIN(o)           (G_TYPE_CHECK_INSTANCE_CAST ((o), XED_TYPE_DOCINFO_PLUGIN, XedDocInfoPlugin))
 #define XED_DOCINFO_PLUGIN_CLASS(k)     (G_TYPE_CHECK_CLASS_CAST((k), XED_TYPE_DOCINFO_PLUGIN, XedDocInfoPluginClass))
 #define XED_IS_DOCINFO_PLUGIN(o)        (G_TYPE_CHECK_INSTANCE_TYPE ((o), XED_TYPE_DOCINFO_PLUGIN))
 #define XED_IS_DOCINFO_PLUGIN_CLASS(k)  (G_TYPE_CHECK_CLASS_TYPE ((k), XED_TYPE_DOCINFO_PLUGIN))
 #define XED_DOCINFO_PLUGIN_GET_CLASS(o) (G_TYPE_INSTANCE_GET_CLASS ((o), XED_TYPE_DOCINFO_PLUGIN, XedDocInfoPluginClass))
 
-/* Private structure type */
-typedef struct _XedDocInfoPluginPrivate XedDocInfoPluginPrivate;
-
-/*
- * Main object structure
- */
 typedef struct _XedDocInfoPlugin        XedDocInfoPlugin;
+typedef struct _XedDocInfoPluginPrivate XedDocInfoPluginPrivate;
+typedef struct _XedDocInfoPluginClass   XedDocInfoPluginClass;
 
 struct _XedDocInfoPlugin
 {
-    PeasExtensionBase parent_instance;
+    PeasExtensionBase parent;
 
-    /*< private >*/
     XedDocInfoPluginPrivate *priv;
 };
 
-/*
- * Class definition
- */
 typedef struct _XedDocInfoPluginClass   XedDocInfoPluginClass;
 
 struct _XedDocInfoPluginClass
@@ -66,12 +55,8 @@ struct _XedDocInfoPluginClass
     PeasExtensionBaseClass parent_class;
 };
 
-/*
- * Public methods
- */
-GType   xed_docinfo_plugin_get_type     (void) G_GNUC_CONST;
+GType xed_docinfo_plugin_get_type     (void) G_GNUC_CONST;
 
-/* All the plugins must implement this function */
 G_MODULE_EXPORT void peas_register_types (PeasObjectModule *module);
 
 G_END_DECLS
