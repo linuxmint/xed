@@ -2,12 +2,18 @@ DIST_SUBDIRS =		\
 	docinfo 		\
 	filebrowser 	\
 	modelines 		\
-	sort
+	sort 			\
+	spell
 
 SUBDIRS = 			\
 	docinfo 		\
 	filebrowser 	\
 	modelines 		\
-	sort
+	sort			\
+	spell
+
+if ENABLE_ENCHANT
+SUBDIRS += spell
+endif
 
 -include $(top_srcdir)/git.mk
