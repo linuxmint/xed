@@ -26,29 +26,26 @@
 
 #include "xed-changecase-plugin.h"
 
-#include <glib/gi18n-lib.h>
+#include <glib/gi18n.h>
 #include <gmodule.h>
-#include <libpeas/peas-activatable.h>
 
 #include <xed/xed-window.h>
+#include <xed/xed-window-activatable.h>
 #include <xed/xed-debug.h>
 
-#define XED_CHANGECASE_PLUGIN_GET_PRIVATE(object)(G_TYPE_INSTANCE_GET_PRIVATE ((object), \
-                                                  XED_TYPE_CHANGECASE_PLUGIN, \
-                                                  XedChangecasePluginPrivate))
-
-static void peas_activatable_iface_init (PeasActivatableInterface *iface);
+static void xed_window_activatable_iface_init (XedWindowActivatableInterface *iface);
 
 G_DEFINE_DYNAMIC_TYPE_EXTENDED (XedChangecasePlugin,
                                 xed_changecase_plugin,
                                 PEAS_TYPE_EXTENSION_BASE,
                                 0,
-                                G_IMPLEMENT_INTERFACE_DYNAMIC (PEAS_TYPE_ACTIVATABLE,
-                                                               peas_activatable_iface_init))
+                                G_IMPLEMENT_INTERFACE_DYNAMIC (XED_TYPE_WINDOW_ACTIVATABLE,
+                                                               xed_window_activatable_iface_init))
 
 struct _XedChangecasePluginPrivate
 {
-    GtkWidget      *window;
+    XedWindow *window;
+
     GtkActionGroup *action_group;
     guint           ui_id;
 };
@@ -56,7 +53,7 @@ struct _XedChangecasePluginPrivate
 enum
 {
     PROP_0,
-    PROP_OBJECT
+    PROP_WINDOW
 };
 
 typedef enum {
@@ -197,20 +194,20 @@ change_case (XedWindow        *window,
 
     switch (choice)
     {
-    case TO_UPPER_CASE:
-        do_upper_case (GTK_TEXT_BUFFER (doc), &start, &end);
-        break;
-    case TO_LOWER_CASE:
-        do_lower_case (GTK_TEXT_BUFFER (doc), &start, &end);
-        break;
-    case INVERT_CASE:
-        do_invert_case (GTK_TEXT_BUFFER (doc), &start, &end);
-        break;
-    case TO_TITLE_CASE:
-        do_title_case (GTK_TEXT_BUFFER (doc), &start, &end);
-        break;
-    default:
-        g_return_if_reached ();
+        case TO_UPPER_CASE:
+            do_upper_case (GTK_TEXT_BUFFER (doc), &start, &end);
+            break;
+        case TO_LOWER_CASE:
+            do_lower_case (GTK_TEXT_BUFFER (doc), &start, &end);
+            break;
+        case INVERT_CASE:
+            do_invert_case (GTK_TEXT_BUFFER (doc), &start, &end);
+            break;
+        case TO_TITLE_CASE:
+            do_title_case (GTK_TEXT_BUFFER (doc), &start, &end);
+            break;
+        default:
+            g_return_if_reached ();
     }
 
     gtk_text_buffer_end_user_action (GTK_TEXT_BUFFER (doc));
@@ -282,7 +279,7 @@ xed_changecase_plugin_init (XedChangecasePlugin *plugin)
 {
     xed_debug_message (DEBUG_PLUGINS, "XedChangecasePlugin initializing");
 
-    plugin->priv = XED_CHANGECASE_PLUGIN_GET_PRIVATE (plugin);
+    plugin->priv = G_TYPE_INSTANCE_GET_PRIVATE (plugin, XED_TYPE_CHANGECASE_PLUGIN, XedChangecasePluginPrivate);
 }
 
 static void
@@ -292,17 +289,8 @@ xed_changecase_plugin_dispose (GObject *object)
 
     xed_debug_message (DEBUG_PLUGINS, "XedChangecasePlugin disposing");
 
-    if (plugin->priv->window != NULL)
-    {
-        g_object_unref (plugin->priv->window);
-        plugin->priv->window = NULL;
-    }
-
-    if (plugin->priv->action_group != NULL)
-    {
-        g_object_unref (plugin->priv->action_group);
-        plugin->priv->action_group = NULL;
-    }
+    g_clear_object (&plugin->priv->window);
+    g_clear_object (&plugin->priv->action_group);
 
     G_OBJECT_CLASS (xed_changecase_plugin_parent_class)->dispose (object);
 }
@@ -317,8 +305,8 @@ xed_changecase_plugin_set_property (GObject      *object,
 
     switch (prop_id)
     {
-        case PROP_OBJECT:
-            plugin->priv->window = GTK_WIDGET (g_value_dup_object (value));
+        case PROP_WINDOW:
+            plugin->priv->window = XED_WINDOW (g_value_dup_object (value));
             break;
         default:
             G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
@@ -336,7 +324,7 @@ xed_changecase_plugin_get_property (GObject    *object,
 
     switch (prop_id)
     {
-        case PROP_OBJECT:
+        case PROP_WINDOW:
             g_value_set_object (value, plugin->priv->window);
             break;
         default:
@@ -346,17 +334,15 @@ xed_changecase_plugin_get_property (GObject    *object,
 }
 
 static void
-update_ui (XedChangecasePluginPrivate *data)
+update_ui (XedChangecasePlugin *plugin)
 {
-    XedWindow *window;
     GtkTextView *view;
     GtkAction *action;
     gboolean sensitive = FALSE;
 
     xed_debug (DEBUG_PLUGINS);
 
-    window = XED_WINDOW (data->window);
-    view = GTK_TEXT_VIEW (xed_window_get_active_view (window));
+    view = GTK_TEXT_VIEW (xed_window_get_active_view (plugin->priv->window));
 
     if (view != NULL)
     {
@@ -366,65 +352,61 @@ update_ui (XedChangecasePluginPrivate *data)
         sensitive = (gtk_text_view_get_editable (view) && gtk_text_buffer_get_has_selection (buffer));
     }
 
-    action = gtk_action_group_get_action (data->action_group, "ChangeCase");
+    action = gtk_action_group_get_action (plugin->priv->action_group, "ChangeCase");
     gtk_action_set_sensitive (action, sensitive);
 }
 
 static void
-xed_changecase_plugin_activate (PeasActivatable *activatable)
+xed_changecase_plugin_activate (XedWindowActivatable *activatable)
 {
-    XedChangecasePluginPrivate *data;
-    XedWindow *window;
+    XedChangecasePluginPrivate *priv;
     GtkUIManager *manager;
     GError *error = NULL;
 
     xed_debug (DEBUG_PLUGINS);
 
-    data = XED_CHANGECASE_PLUGIN (activatable)->priv;
-    window = XED_WINDOW (data->window);
+    priv = XED_CHANGECASE_PLUGIN (activatable)->priv;
 
-    manager = xed_window_get_ui_manager (window);
+    manager = xed_window_get_ui_manager (priv->window);
 
-    data->action_group = gtk_action_group_new ("XedChangecasePluginActions");
-    gtk_action_group_set_translation_domain (data->action_group, GETTEXT_PACKAGE);
-    gtk_action_group_add_actions (data->action_group, action_entries, G_N_ELEMENTS (action_entries), window);
+    priv->action_group = gtk_action_group_new ("XedChangecasePluginActions");
+    gtk_action_group_set_translation_domain (priv->action_group, GETTEXT_PACKAGE);
+    gtk_action_group_add_actions (priv->action_group, action_entries, G_N_ELEMENTS (action_entries), priv->window);
 
-    gtk_ui_manager_insert_action_group (manager, data->action_group, -1);
+    gtk_ui_manager_insert_action_group (manager, priv->action_group, -1);
 
-    data->ui_id = gtk_ui_manager_add_ui_from_string (manager, submenu, -1, &error);
-    if (data->ui_id == 0)
+    priv->ui_id = gtk_ui_manager_add_ui_from_string (manager, submenu, -1, &error);
+    if (priv->ui_id == 0)
     {
         g_warning ("%s", error->message);
         return;
     }
 
-    update_ui (data);
+    update_ui (XED_CHANGECASE_PLUGIN (activatable));
 }
 
 static void
-xed_changecase_plugin_deactivate (PeasActivatable *activatable)
+xed_changecase_plugin_deactivate (XedWindowActivatable *activatable)
 {
-    XedChangecasePluginPrivate *data;
-    XedWindow *window;
+    XedChangecasePluginPrivate *priv;
     GtkUIManager *manager;
 
     xed_debug (DEBUG_PLUGINS);
 
-    data = XED_CHANGECASE_PLUGIN (activatable)->priv;
-    window = XED_WINDOW (data->window);
+    priv = XED_CHANGECASE_PLUGIN (activatable)->priv;
 
-    manager = xed_window_get_ui_manager (window);
+    manager = xed_window_get_ui_manager (priv->window);
 
-    gtk_ui_manager_remove_ui (manager, data->ui_id);
-    gtk_ui_manager_remove_action_group (manager, data->action_group);
+    gtk_ui_manager_remove_ui (manager, priv->ui_id);
+    gtk_ui_manager_remove_action_group (manager, priv->action_group);
 }
 
 static void
-xed_changecase_plugin_update_state (PeasActivatable *activatable)
+xed_changecase_plugin_update_state (XedWindowActivatable *activatable)
 {
     xed_debug (DEBUG_PLUGINS);
 
-    update_ui (XED_CHANGECASE_PLUGIN (activatable)->priv);
+    update_ui (XED_CHANGECASE_PLUGIN (activatable));
 }
 
 static void
@@ -436,7 +418,7 @@ xed_changecase_plugin_class_init (XedChangecasePluginClass *klass)
     object_class->set_property = xed_changecase_plugin_set_property;
     object_class->get_property = xed_changecase_plugin_get_property;
 
-    g_object_class_override_property (object_class, PROP_OBJECT, "object");
+    g_object_class_override_property (object_class, PROP_WINDOW, "window");
 
     g_type_class_add_private (klass, sizeof (XedChangecasePluginPrivate));
 }
@@ -448,7 +430,7 @@ xed_changecase_plugin_class_finalize (XedChangecasePluginClass *klass)
 }
 
 static void
-peas_activatable_iface_init (PeasActivatableInterface *iface)
+xed_window_activatable_iface_init (XedWindowActivatableInterface *iface)
 {
     iface->activate = xed_changecase_plugin_activate;
     iface->deactivate = xed_changecase_plugin_deactivate;
@@ -461,6 +443,6 @@ peas_register_types (PeasObjectModule *module)
     xed_changecase_plugin_register_type (G_TYPE_MODULE (module));
 
     peas_object_module_register_extension_type (module,
-                                                PEAS_TYPE_ACTIVATABLE,
+                                                XED_TYPE_WINDOW_ACTIVATABLE,
                                                 XED_TYPE_CHANGECASE_PLUGIN);
 }

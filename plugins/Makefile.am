@@ -1,4 +1,5 @@
 DIST_SUBDIRS =		\
+	changecase		\
 	docinfo 		\
 	filebrowser 	\
 	modelines 		\
@@ -7,6 +8,7 @@ DIST_SUBDIRS =		\
 	time
 
 SUBDIRS = 			\
+	changecase 		\
 	docinfo 		\
 	filebrowser 	\
 	modelines 		\
