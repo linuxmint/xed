@@ -3,14 +3,16 @@ DIST_SUBDIRS =		\
 	filebrowser 	\
 	modelines 		\
 	sort 			\
-	spell
+	spell			\
+	time
 
 SUBDIRS = 			\
 	docinfo 		\
 	filebrowser 	\
 	modelines 		\
 	sort			\
-	spell
+	spell			\
+	time
 
 if ENABLE_ENCHANT
 SUBDIRS += spell
