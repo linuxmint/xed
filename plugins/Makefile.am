@@ -5,6 +5,7 @@ DIST_SUBDIRS =		\
 	modelines 		\
 	sort 			\
 	spell			\
+	taglist			\
 	time
 
 SUBDIRS = 			\
@@ -14,6 +15,7 @@ SUBDIRS = 			\
 	modelines 		\
 	sort			\
 	spell			\
+	taglist			\
 	time
 
 if ENABLE_ENCHANT
