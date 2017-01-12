@@ -28,23 +28,16 @@
 
 G_BEGIN_DECLS
 
-/*
- * Type checking and casting macros
- */
-#define XED_TYPE_TRAIL_SAVE_PLUGIN      (xed_trail_save_plugin_get_type ())
-#define XED_TRAIL_SAVE_PLUGIN(o)        (G_TYPE_CHECK_INSTANCE_CAST ((o), XED_TYPE_TRAIL_SAVE_PLUGIN, XedTrailSavePlugin))
-#define XED_TRAIL_SAVE_PLUGIN_CLASS(k)  (G_TYPE_CHECK_CLASS_CAST((k), XED_TYPE_TRAIL_SAVE_PLUGIN, XedTrailSavePluginClass))
-#define XED_IS_TRAIL_SAVE_PLUGIN(o)     (G_TYPE_CHECK_INSTANCE_TYPE ((o), XED_TYPE_TRAIL_SAVE_PLUGIN))
+#define XED_TYPE_TRAIL_SAVE_PLUGIN          (xed_trail_save_plugin_get_type ())
+#define XED_TRAIL_SAVE_PLUGIN(o)            (G_TYPE_CHECK_INSTANCE_CAST ((o), XED_TYPE_TRAIL_SAVE_PLUGIN, XedTrailSavePlugin))
+#define XED_TRAIL_SAVE_PLUGIN_CLASS(k)      (G_TYPE_CHECK_CLASS_CAST((k), XED_TYPE_TRAIL_SAVE_PLUGIN, XedTrailSavePluginClass))
+#define XED_IS_TRAIL_SAVE_PLUGIN(o)         (G_TYPE_CHECK_INSTANCE_TYPE ((o), XED_TYPE_TRAIL_SAVE_PLUGIN))
 #define XED_IS_TRAIL_SAVE_PLUGIN_CLASS(k)   (G_TYPE_CHECK_CLASS_TYPE ((k), XED_TYPE_TRAIL_SAVE_PLUGIN))
 #define XED_TRAIL_SAVE_PLUGIN_GET_CLASS(o)  (G_TYPE_INSTANCE_GET_CLASS ((o), XED_TYPE_TRAIL_SAVE_PLUGIN, XedTrailSavePluginClass))
 
-/* Private structure type */
-typedef struct _XedTrailSavePluginPrivate    XedTrailSavePluginPrivate;
-
-/*
- * Main object structure
- */
 typedef struct _XedTrailSavePlugin      XedTrailSavePlugin;
+typedef struct _XedTrailSavePluginPrivate    XedTrailSavePluginPrivate;
+typedef struct _XedTrailSavePluginClass XedTrailSavePluginClass;
 
 struct _XedTrailSavePlugin
 {
@@ -54,22 +47,13 @@ struct _XedTrailSavePlugin
     XedTrailSavePluginPrivate *priv;
 };
 
-/*
- * Class definition
- */
-typedef struct _XedTrailSavePluginClass XedTrailSavePluginClass;
-
 struct _XedTrailSavePluginClass
 {
     PeasExtensionBaseClass parent_class;
 };
 
-/*
- * Public methods
- */
-GType   xed_trail_save_plugin_get_type  (void) G_GNUC_CONST;
+GType xed_trail_save_plugin_get_type (void) G_GNUC_CONST;
 
-/* All the plugins must implement this function */
 G_MODULE_EXPORT void peas_register_types (PeasObjectModule *module);
 
 G_END_DECLS

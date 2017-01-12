@@ -6,7 +6,8 @@ DIST_SUBDIRS =		\
 	sort 			\
 	spell			\
 	taglist			\
-	time
+	time			\
+	trailsave
 
 SUBDIRS = 			\
 	changecase 		\
@@ -16,7 +17,8 @@ SUBDIRS = 			\
 	sort			\
 	spell			\
 	taglist			\
-	time
+	time			\
+	trailsave
 
 if ENABLE_ENCHANT
 SUBDIRS += spell
