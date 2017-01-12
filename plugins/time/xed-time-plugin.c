@@ -307,20 +307,6 @@ get_selected_format (XedTimePlugin *plugin)
     return sel_format ? sel_format : g_strdup (formats [0]);
 }
 
-// static void
-// set_selected_format (XedTimePlugin *plugin,
-//                      const gchar   *format)
-// {
-//     g_return_if_fail (format != NULL);
-
-//     if (!g_settings_is_writable (plugin->priv->settings, SELECTED_FORMAT_KEY))
-//     {
-//         return;
-//     }
-
-//     g_settings_set_string (settings, SELECTED_FORMAT_KEY, format);
-// }
-
 /* the custom format in the entry */
 static gchar *
 get_custom_format (XedTimePlugin *plugin)
@@ -331,20 +317,6 @@ get_custom_format (XedTimePlugin *plugin)
 
     return format ? format : g_strdup (DEFAULT_CUSTOM_FORMAT);
 }
-
-// static void
-// set_custom_format (XedTimePlugin *plugin,
-//                    const gchar   *format)
-// {
-//     g_return_if_fail (format != NULL);
-
-//     if (!g_settings_is_writable (plugin->priv->settings, CUSTOM_FORMAT_KEY))
-//     {
-//         return;
-//     }
-
-//     g_settings_set_string (plugin->priv->settings, CUSTOM_FORMAT_KEY, format);
-// }
 
 static gchar *
 get_time (const gchar* format)
@@ -663,16 +635,6 @@ get_format_from_list (GtkWidget *listview)
     g_return_val_if_reached (0);
 }
 
-// static void
-// configure_dialog_selection_changed (GtkTreeSelection *selection,
-//                                     TimeConfigureDialog *dialog)
-// {
-//     gint sel_format;
-
-//     sel_format = get_format_from_list (dialog->list);
-//     set_selected_format (dialog->settings, formats[sel_format]);
-// }
-
 static void
 on_configure_widget_selection_changed (GtkTreeSelection    *selection,
                                        TimeConfigureWidget *conf_widget)
@@ -866,7 +828,7 @@ get_choose_format_dialog (GtkWindow               *parent,
         err_dialog = gtk_dialog_new_with_buttons (NULL,
                                                   parent,
                                                   GTK_DIALOG_MODAL | GTK_DIALOG_DESTROY_WITH_PARENT,
-                                                  GTK_STOCK_OK, GTK_RESPONSE_ACCEPT,
+                                                  _("_OK"), GTK_RESPONSE_ACCEPT,
                                                   NULL);
 
         if (wg != NULL)
