@@ -7,9 +7,6 @@
 
 G_BEGIN_DECLS
 
-/*
- * Type checking and casting macros
- */
 #define XED_TYPE_SEARCHBAR              (xed_searchbar_get_type())
 #define XED_SEARCHBAR(obj)              (G_TYPE_CHECK_INSTANCE_CAST((obj), XED_TYPE_SEARCHBAR, XedSearchbar))
 #define XED_SEARCHBAR_CONST(obj)        (G_TYPE_CHECK_INSTANCE_CAST((obj), XED_TYPE_SEARCHBAR, XedSearchbar const))
@@ -18,13 +15,9 @@ G_BEGIN_DECLS
 #define XED_IS_SEARCHBAR_CLASS(klass)   (G_TYPE_CHECK_CLASS_TYPE ((klass), XED_TYPE_SEARCHBAR))
 #define XED_SEARCHBAR_GET_CLASS(obj)    (G_TYPE_INSTANCE_GET_CLASS((obj), XED_TYPE_SEARCHBAR, XedSearchbarClass))
 
-/* Private structure type */
+typedef struct _XedSearchbar        XedSearchbar;
 typedef struct _XedSearchbarPrivate XedSearchbarPrivate;
-
-/*
- * Main object structure
- */
-typedef struct _XedSearchbar XedSearchbar;
+typedef struct _XedSearchbarClass   XedSearchbarClass;
 
 struct _XedSearchbar
 {
@@ -34,11 +27,6 @@ struct _XedSearchbar
     /*< private > */
     XedSearchbarPrivate *priv;
 };
-
-/*
- * Class definition
- */
-typedef struct _XedSearchbarClass XedSearchbarClass;
 
 struct _XedSearchbarClass
 {
@@ -55,9 +43,6 @@ enum
     XED_SEARCHBAR_REPLACE_ALL_RESPONSE
 };
 
-/*
- * Public methods
- */
 GType        xed_searchbar_get_type (void) G_GNUC_CONST;
 
 GtkWidget   *xed_searchbar_new (GtkWindow *parent, gboolean show_replace);
