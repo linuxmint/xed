@@ -27,7 +27,7 @@
 
 #include <string.h> /* For strlen */
 
-#include <glib/gi18n.h>
+#include <glib/gi18n-lib.h>
 #include <libpeas-gtk/peas-gtk-configurable.h>
 
 #include <xed/xed-window.h>
@@ -1039,7 +1039,6 @@ auto_spell_cb (GtkAction      *action,
                XedSpellPlugin *plugin)
 {
     XedSpellPluginPrivate *priv;
-    XedWindow *window;
     XedDocument *doc;
     gboolean active;
 
@@ -1319,7 +1318,7 @@ xed_spell_plugin_activate (XedWindowActivatable *activatable)
     {
         XedDocument *doc = XED_DOCUMENT (l->data);
 
-        set_auto_spell_from_metadata (activatable, doc, priv->action_group);
+        set_auto_spell_from_metadata (XED_SPELL_PLUGIN (activatable), doc, priv->action_group);
 
         g_signal_handlers_disconnect_by_func (doc, on_document_loaded, activatable);
         g_signal_handlers_disconnect_by_func (doc, on_document_saved, activatable);
