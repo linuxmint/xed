@@ -51,9 +51,8 @@ static void
 xed_searchbar_class_init (XedSearchbarClass *klass)
 {
     GObjectClass *object_class = G_OBJECT_CLASS(klass);
-    GtkBindingSet *binding_set;
+
     g_type_class_add_private (object_class, sizeof(XedSearchbarPrivate));
-    binding_set = gtk_binding_set_by_class (klass);
 }
 
 #define XED_SEARCHBAR_KEY "xed-searchbar-key"
@@ -564,7 +563,7 @@ xed_searchbar_init (XedSearchbar *searchbar)
                               NULL);
     g_free (file);
 
-    gtk_style_context_add_class (gtk_widget_get_style_context (searchbar), "xed-searchbar");
+    gtk_style_context_add_class (gtk_widget_get_style_context (GTK_WIDGET (searchbar)), "xed-searchbar");
 
     searchbar->priv->search_entry = xed_history_entry_new ("history-search-for", TRUE);
     gtk_widget_set_hexpand (searchbar->priv->search_entry, TRUE);
@@ -653,7 +652,7 @@ xed_searchbar_new (GtkWindow *parent,
 {
     XedSearchbar *searchbar;
     searchbar = g_object_new (XED_TYPE_SEARCHBAR, NULL);
-    searchbar->window = parent;
+    searchbar->window = XED_WINDOW (parent);
     return GTK_WIDGET(searchbar);
 }
 
