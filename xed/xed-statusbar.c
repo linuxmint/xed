@@ -161,7 +161,7 @@ xed_statusbar_init (XedStatusbar *statusbar)
 
     gtk_box_pack_start (GTK_BOX (statusbar), statusbar->priv->error_frame, FALSE, TRUE, 0);
 
-    gtk_style_context_add_class (gtk_widget_get_style_context (statusbar), "xed-statusbar");
+    gtk_style_context_add_class (gtk_widget_get_style_context GTK_WIDGET (statusbar), "xed-statusbar");
 }
 
 /**
