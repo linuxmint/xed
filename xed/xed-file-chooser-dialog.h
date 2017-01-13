@@ -2,7 +2,7 @@
  * xed-file-chooser-dialog.h
  * This file is part of xed
  *
- * Copyright (C) 2005 - Paolo Maggi 
+ * Copyright (C) 2005 - Paolo Maggi
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,14 +16,14 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
- * Foundation, Inc., 51 Franklin St, Fifth Floor, 
+ * Foundation, Inc., 51 Franklin St, Fifth Floor,
  * Boston, MA 02110-1301, USA.
  */
- 
+
 /*
- * Modified by the xed Team, 2005. See the AUTHORS file for a 
- * list of people on the xed Team.  
- * See the ChangeLog files for a list of changes. 
+ * Modified by the xed Team, 2005. See the AUTHORS file for a
+ * list of people on the xed Team.
+ * See the ChangeLog files for a list of changes.
  *
  * $Id$
  */
@@ -46,43 +46,40 @@ G_BEGIN_DECLS
 #define XED_IS_FILE_CHOOSER_DIALOG_CLASS(klass)  (G_TYPE_CHECK_CLASS_TYPE ((klass), XED_TYPE_FILE_CHOOSER_DIALOG))
 #define XED_FILE_CHOOSER_DIALOG_GET_CLASS(obj)   (G_TYPE_INSTANCE_GET_CLASS ((obj), XED_TYPE_FILE_CHOOSER_DIALOG, XedFileChooserDialogClass))
 
-typedef struct _XedFileChooserDialog      XedFileChooserDialog;
-typedef struct _XedFileChooserDialogClass XedFileChooserDialogClass;
-
+typedef struct _XedFileChooserDialog        XedFileChooserDialog;
 typedef struct _XedFileChooserDialogPrivate XedFileChooserDialogPrivate;
-
-struct _XedFileChooserDialogClass
-{
-	GtkFileChooserDialogClass parent_class;
-};
+typedef struct _XedFileChooserDialogClass   XedFileChooserDialogClass;
 
 struct _XedFileChooserDialog
 {
-	GtkFileChooserDialog parent_instance;
+    GtkFileChooserDialog parent_instance;
 
-	XedFileChooserDialogPrivate *priv;
+    XedFileChooserDialogPrivate *priv;
 };
 
-GType		 xed_file_chooser_dialog_get_type	(void) G_GNUC_CONST;
+struct _XedFileChooserDialogClass
+{
+    GtkFileChooserDialogClass parent_class;
+};
 
-GtkWidget	*xed_file_chooser_dialog_new		(const gchar            *title,
-							 GtkWindow              *parent,
-							 GtkFileChooserAction    action,
-							 const XedEncoding    *encoding,
-							 const gchar            *first_button_text,
-							 ...);
+GType xed_file_chooser_dialog_get_type (void) G_GNUC_CONST;
 
-void		 xed_file_chooser_dialog_set_encoding (XedFileChooserDialog *dialog,
-							 const XedEncoding    *encoding);
+GtkWidget *xed_file_chooser_dialog_new (const gchar          *title,
+                                        GtkWindow            *parent,
+                                        GtkFileChooserAction  action,
+                                        const XedEncoding    *encoding,
+                                        const gchar          *first_button_text,
+                                        ...);
 
-const XedEncoding
-		*xed_file_chooser_dialog_get_encoding (XedFileChooserDialog *dialog);
+void xed_file_chooser_dialog_set_encoding (XedFileChooserDialog *dialog,
+                                           const XedEncoding    *encoding);
 
-void		 xed_file_chooser_dialog_set_newline_type (XedFileChooserDialog  *dialog,
-							     XedDocumentNewlineType newline_type);
+const XedEncoding *xed_file_chooser_dialog_get_encoding (XedFileChooserDialog *dialog);
 
-XedDocumentNewlineType
-		 xed_file_chooser_dialog_get_newline_type (XedFileChooserDialog *dialog);
+void xed_file_chooser_dialog_set_newline_type (XedFileChooserDialog  *dialog,
+                                               XedDocumentNewlineType newline_type);
+
+XedDocumentNewlineType xed_file_chooser_dialog_get_newline_type (XedFileChooserDialog *dialog);
 
 G_END_DECLS
 
