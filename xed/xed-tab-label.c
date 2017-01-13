@@ -297,7 +297,7 @@ xed_tab_label_init (XedTabLabel *tab_label)
 
 	label = gtk_label_new ("");
 
-	gtk_misc_set_alignment (GTK_MISC (label), 0.0, 0.5);
+	gtk_widget_set_halign (label, GTK_ALIGN_START);
 	gtk_widget_set_margin_left (label, 0);
 	gtk_widget_set_margin_right (label, 0);
 	gtk_widget_set_margin_top (label, 0);

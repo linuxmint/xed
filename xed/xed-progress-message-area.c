@@ -151,7 +151,7 @@ xed_progress_message_area_init (XedProgressMessageArea *area)
     gtk_widget_show (area->priv->label);
     gtk_box_pack_start (GTK_BOX (hbox), area->priv->label, TRUE, TRUE, 0);
     gtk_label_set_use_markup (GTK_LABEL (area->priv->label), TRUE);
-    gtk_misc_set_alignment (GTK_MISC (area->priv->label), 0.0, 0.5);
+    gtk_widget_set_halign (area->priv->label, GTK_ALIGN_START);
     gtk_label_set_ellipsize (GTK_LABEL (area->priv->label), PANGO_ELLIPSIZE_END);
 
     area->priv->progress = gtk_progress_bar_new ();

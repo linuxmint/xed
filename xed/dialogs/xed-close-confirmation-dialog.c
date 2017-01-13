@@ -471,7 +471,6 @@ build_single_doc_dialog (XedCloseConfirmationDialog *dlg)
     primary_label = gtk_label_new (NULL);
     gtk_label_set_line_wrap (GTK_LABEL (primary_label), TRUE);
     gtk_label_set_use_markup (GTK_LABEL (primary_label), TRUE);
-    gtk_misc_set_alignment (GTK_MISC (primary_label), 0.0, 0.5);
     gtk_label_set_selectable (GTK_LABEL (primary_label), TRUE);
     gtk_widget_set_can_focus (GTK_WIDGET (primary_label), FALSE);
 
@@ -639,7 +638,7 @@ build_multiple_docs_dialog (XedCloseConfirmationDialog *dlg)
     gtk_label_set_line_wrap (GTK_LABEL (primary_label), TRUE);
     gtk_label_set_use_markup (GTK_LABEL (primary_label), TRUE);
     gtk_widget_set_halign (GTK_WIDGET (primary_label), GTK_ALIGN_START);
-    gtk_misc_set_alignment (GTK_MISC (primary_label), 0.0, 0.5);
+    gtk_widget_set_halign (primary_label, GTK_ALIGN_START);
     gtk_label_set_selectable (GTK_LABEL (primary_label), TRUE);
 
     str = g_strdup_printf (ngettext ("There is %d document with unsaved changes. "
@@ -663,7 +662,7 @@ build_multiple_docs_dialog (XedCloseConfirmationDialog *dlg)
 
     gtk_box_pack_start (GTK_BOX (vbox2), select_label, FALSE, FALSE, 0);
     gtk_label_set_line_wrap (GTK_LABEL (select_label), TRUE);
-    gtk_misc_set_alignment (GTK_MISC (select_label), 0.0, 0.5);
+    gtk_widget_set_halign (select_label, GTK_ALIGN_START);
 
     scrolledwindow = gtk_scrolled_window_new (NULL, NULL);
     gtk_box_pack_start (GTK_BOX (vbox2), scrolledwindow, TRUE, TRUE, 0);

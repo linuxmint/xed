@@ -422,7 +422,7 @@ build_tab_label (XedPanel    *panel,
     /* setup label */
     label = gtk_label_new (name);
 
-    gtk_misc_set_alignment (GTK_MISC (label), 0.0, 0.5);
+    gtk_widget_set_halign (label, GTK_ALIGN_START);
     gtk_widget_set_margin_left (label, 0);
     gtk_widget_set_margin_right (label, 0);
     gtk_widget_set_margin_top (label, 0);
@@ -496,7 +496,7 @@ xed_panel_add_item (XedPanel    *panel,
 
     menu_label = gtk_label_new (name);
 
-    gtk_misc_set_alignment (GTK_MISC (menu_label), 0.0, 0.5);
+    gtk_widget_set_halign (menu_label, GTK_ALIGN_START);
 
     if (!gtk_widget_get_visible (item))
     {
