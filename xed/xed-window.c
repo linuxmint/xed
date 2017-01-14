@@ -43,14 +43,20 @@
 /* Signals */
 enum
 {
-    TAB_ADDED, TAB_REMOVED, TABS_REORDERED, ACTIVE_TAB_CHANGED, ACTIVE_TAB_STATE_CHANGED, LAST_SIGNAL
+    TAB_ADDED,
+    TAB_REMOVED,
+    TABS_REORDERED,
+    ACTIVE_TAB_CHANGED,
+    ACTIVE_TAB_STATE_CHANGED,
+    LAST_SIGNAL
 };
 
 static guint signals[LAST_SIGNAL] = { 0 };
 
 enum
 {
-    PROP_0, PROP_STATE
+    PROP_0,
+    PROP_STATE
 };
 
 enum
@@ -841,12 +847,13 @@ update_languages_menu (XedWindow *window)
 }
 
 void
-_xed_recent_add (XedWindow *window,
-                 const gchar *uri,
+_xed_recent_add (XedWindow   *window,
+                 GFile       *location,
                  const gchar *mime)
 {
     GtkRecentManager *recent_manager;
     GtkRecentData *recent_data;
+    gchar *uri;
 
     static gchar *groups[2] = { "xed", NULL };
 
@@ -862,8 +869,11 @@ _xed_recent_add (XedWindow *window,
     recent_data->groups = groups;
     recent_data->is_private = FALSE;
 
+    uri = g_file_get_uri (location);
+
     gtk_recent_manager_add_full (recent_manager, uri, recent_data);
 
+    g_free (uri);
     g_free (recent_data->app_exec);
 
     g_slice_free(GtkRecentData, recent_data);
@@ -871,29 +881,32 @@ _xed_recent_add (XedWindow *window,
 
 void
 _xed_recent_remove (XedWindow *window,
-                    const gchar *uri)
+                    GFile     *location)
 {
     GtkRecentManager *recent_manager;
+    gchar *uri;
 
     recent_manager = gtk_recent_manager_get_default ();
 
+    uri = g_file_get_uri (location);
     gtk_recent_manager_remove_item (recent_manager, uri, NULL);
+    g_free (uri);
 }
 
 static void
-open_recent_file (const gchar *uri,
+open_recent_file (GFile     *location,
                   XedWindow *window)
 {
-    GSList *uris = NULL;
+    GSList *locations = NULL;
 
-    uris = g_slist_prepend (uris, (gpointer) uri);
+    locations = g_slist_prepend (locations, (gpointer) location);
 
-    if (xed_commands_load_uris (window, uris, NULL, 0) != 1)
+    if (xed_commands_load_locations (window, locations, NULL, 0) != 1)
     {
-        _xed_recent_remove (window, uri);
+        _xed_recent_remove (window, location);
     }
 
-    g_slist_free (uris);
+    g_slist_free (locations);
 }
 
 static void
@@ -901,14 +914,20 @@ recents_menu_activate (GtkAction *action,
                        XedWindow *window)
 {
     GtkRecentInfo *info;
+    GFile *location;
     const gchar *uri;
 
-    info = g_object_get_data (G_OBJECT(action), "gtk-recent-info");
-    g_return_if_fail(info != NULL);
+    info = g_object_get_data (G_OBJECT (action), "gtk-recent-info");
+    g_return_if_fail (info != NULL);
 
     uri = gtk_recent_info_get_uri (info);
+    location = g_file_new_for_uri (uri);
 
-    open_recent_file (uri, window);
+    if (location)
+    {
+        open_recent_file (location, window);
+        g_object_unref (location);
+    }
 }
 
 static gint
@@ -994,6 +1013,7 @@ update_recent_files_menu (XedWindow *window)
         gchar *tip;
         GtkAction *action;
         GtkRecentInfo *info = l->data;
+        GFile *location;
 
         /* clamp */
         if (i >= max_recents)
@@ -1017,7 +1037,9 @@ update_recent_files_menu (XedWindow *window)
 
         /* gtk_recent_info_get_uri_display (info) is buggy and
          * works only for local files */
-        uri = xed_utils_uri_for_display (gtk_recent_info_get_uri (info));
+        location = g_file_new_for_uri (gtk_recent_info_get_uri (info));
+        uri = xed_utils_uri_for_display (location);
+        g_object_unref (location);
         ruri = xed_utils_replace_home_dir_with_tilde (uri);
         g_free (uri);
 
@@ -2380,9 +2402,9 @@ get_drop_window (GtkWidget *widget)
 
 static void
 load_uris_from_drop (XedWindow *window,
-                     gchar **uri_list)
+                     gchar    **uri_list)
 {
-    GSList *uris = NULL;
+    GSList *locations = NULL;
     gint i;
 
     if (uri_list == NULL)
@@ -2392,13 +2414,14 @@ load_uris_from_drop (XedWindow *window,
 
     for (i = 0; uri_list[i] != NULL; ++i)
     {
-        uris = g_slist_prepend (uris, uri_list[i]);
+        locations = g_slist_prepend (locations, g_file_new_for_uri (uri_list[i]));
     }
 
-    uris = g_slist_reverse (uris);
-    xed_commands_load_uris (window, uris, NULL, 0);
+    locations = g_slist_reverse (locations);
+    xed_commands_load_locations (window, locations, NULL, 0);
 
-    g_slist_free (uris);
+    g_slist_foreach (locations, (GFunc) g_object_unref, NULL);
+    g_slist_free (locations);
 }
 
 /* Handle drops on the XedWindow */
@@ -3596,9 +3619,9 @@ xed_window_create_tab (XedWindow *window,
 }
 
 /**
- * xed_window_create_tab_from_uri:
+ * xed_window_create_tab_from_location:
  * @window: a #XedWindow
- * @uri: the uri of the document
+ * @location: the location of the document
  * @encoding: a #XedEncoding
  * @line_pos: the line position to visualize
  * @create: %TRUE to create a new document in case @uri does exist
@@ -3612,19 +3635,19 @@ xed_window_create_tab (XedWindow *window,
  * Returns: (transfer none): a new #XedTab
  */
 XedTab *
-xed_window_create_tab_from_uri (XedWindow *window,
-                                const gchar *uri,
-                                const XedEncoding *encoding,
-                                gint line_pos,
-                                gboolean create,
-                                gboolean jump_to)
+xed_window_create_tab_from_location (XedWindow         *window,
+                                     GFile             *location,
+                                     const XedEncoding *encoding,
+                                     gint               line_pos,
+                                     gboolean           create,
+                                     gboolean           jump_to)
 {
     GtkWidget *tab;
 
     g_return_val_if_fail(XED_IS_WINDOW (window), NULL);
-    g_return_val_if_fail(uri != NULL, NULL);
+    g_return_val_if_fail(G_IS_FILE (location), NULL);
 
-    tab = _xed_tab_new_from_uri (uri, encoding, line_pos, create);
+    tab = _xed_tab_new_from_location (location, encoding, line_pos, create);
     if (tab == NULL)
     {
         return NULL;

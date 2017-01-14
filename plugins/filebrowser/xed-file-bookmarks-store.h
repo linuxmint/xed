@@ -25,13 +25,13 @@
 #include <gtk/gtk.h>
 
 G_BEGIN_DECLS
-#define XED_TYPE_FILE_BOOKMARKS_STORE           (xed_file_bookmarks_store_get_type ())
-#define XED_FILE_BOOKMARKS_STORE(obj)           (G_TYPE_CHECK_INSTANCE_CAST ((obj), XED_TYPE_FILE_BOOKMARKS_STORE, XedFileBookmarksStore))
-#define XED_FILE_BOOKMARKS_STORE_CONST(obj)     (G_TYPE_CHECK_INSTANCE_CAST ((obj), XED_TYPE_FILE_BOOKMARKS_STORE, XedFileBookmarksStore const))
+#define XED_TYPE_FILE_BOOKMARKS_STORE               (xed_file_bookmarks_store_get_type ())
+#define XED_FILE_BOOKMARKS_STORE(obj)               (G_TYPE_CHECK_INSTANCE_CAST ((obj), XED_TYPE_FILE_BOOKMARKS_STORE, XedFileBookmarksStore))
+#define XED_FILE_BOOKMARKS_STORE_CONST(obj)         (G_TYPE_CHECK_INSTANCE_CAST ((obj), XED_TYPE_FILE_BOOKMARKS_STORE, XedFileBookmarksStore const))
 #define XED_FILE_BOOKMARKS_STORE_CLASS(klass)       (G_TYPE_CHECK_CLASS_CAST ((klass), XED_TYPE_FILE_BOOKMARKS_STORE, XedFileBookmarksStoreClass))
-#define XED_IS_FILE_BOOKMARKS_STORE(obj)        (G_TYPE_CHECK_INSTANCE_TYPE ((obj), XED_TYPE_FILE_BOOKMARKS_STORE))
+#define XED_IS_FILE_BOOKMARKS_STORE(obj)            (G_TYPE_CHECK_INSTANCE_TYPE ((obj), XED_TYPE_FILE_BOOKMARKS_STORE))
 #define XED_IS_FILE_BOOKMARKS_STORE_CLASS(klass)    (G_TYPE_CHECK_CLASS_TYPE ((klass), XED_TYPE_FILE_BOOKMARKS_STORE))
-#define XED_FILE_BOOKMARKS_STORE_GET_CLASS(obj) (G_TYPE_INSTANCE_GET_CLASS ((obj), XED_TYPE_FILE_BOOKMARKS_STORE, XedFileBookmarksStoreClass))
+#define XED_FILE_BOOKMARKS_STORE_GET_CLASS(obj)     (G_TYPE_INSTANCE_GET_CLASS ((obj), XED_TYPE_FILE_BOOKMARKS_STORE, XedFileBookmarksStoreClass))
 
 typedef struct _XedFileBookmarksStore        XedFileBookmarksStore;
 typedef struct _XedFileBookmarksStoreClass   XedFileBookmarksStoreClass;
@@ -76,13 +76,13 @@ struct _XedFileBookmarksStoreClass
     GtkTreeStoreClass parent_class;
 };
 
-GType xed_file_bookmarks_store_get_type               (void) G_GNUC_CONST;
-void _xed_file_bookmarks_store_register_type          (GTypeModule *type_module);
+GType xed_file_bookmarks_store_get_type (void) G_GNUC_CONST;
+void _xed_file_bookmarks_store_register_type (GTypeModule *type_module);
 
 XedFileBookmarksStore *xed_file_bookmarks_store_new (void);
-gchar *xed_file_bookmarks_store_get_uri               (XedFileBookmarksStore * model,
-                                                       GtkTreeIter * iter);
-void xed_file_bookmarks_store_refresh                 (XedFileBookmarksStore * model);
+GFile *xed_file_bookmarks_store_get_location (XedFileBookmarksStore * model,
+                                              GtkTreeIter * iter);
+void xed_file_bookmarks_store_refresh (XedFileBookmarksStore * model);
 
 G_END_DECLS
 #endif              /* __XED_FILE_BOOKMARKS_STORE_H__ */

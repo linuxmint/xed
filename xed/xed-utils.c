@@ -64,48 +64,12 @@
 /**
  * xed_utils_uris_has_file_scheme
  *
- * Returns: %TRUE if @uri is a file: uri and is not a chained uri
+ * Returns: %TRUE if @location is a file: uri and is not a chained uri
  */
 gboolean
-xed_utils_uri_has_file_scheme (const gchar *uri)
+xed_utils_location_has_file_scheme (GFile *location)
 {
-    GFile *gfile;
-    gboolean res;
-
-    gfile = g_file_new_for_uri (uri);
-    res = g_file_has_uri_scheme (gfile, "file");
-
-    g_object_unref (gfile);
-    return res;
-}
-
-/* FIXME: we should check for chained URIs */
-gboolean
-xed_utils_uri_has_writable_scheme (const gchar *uri)
-{
-    GFile *gfile;
-    gchar *scheme;
-    GSList *writable_schemes;
-    gboolean res;
-
-    gfile = g_file_new_for_uri (uri);
-    scheme = g_file_get_uri_scheme (gfile);
-
-    g_return_val_if_fail (scheme != NULL, FALSE);
-
-    g_object_unref (gfile);
-
-    writable_schemes = xed_prefs_manager_get_writable_vfs_schemes ();
-
-    /* CHECK: should we use g_ascii_strcasecmp? - Paolo (Nov 6, 2005) */
-    res = (g_slist_find_custom (writable_schemes, scheme, (GCompareFunc)strcmp) != NULL);
-
-    g_slist_foreach (writable_schemes, (GFunc)g_free, NULL);
-    g_slist_free (writable_schemes);
-
-    g_free (scheme);
-
-    return res;
+    return g_file_has_uri_scheme (location, "file");
 }
 
 static void
@@ -325,19 +289,18 @@ xed_utils_set_atk_relation (GtkWidget       *obj1,
 }
 
 gboolean
-xed_utils_uri_exists (const gchar* text_uri)
+xed_utils_location_exists (GFile *location)
 {
-    GFile *gfile;
     gboolean res;
+    gchar *uri;
 
-    g_return_val_if_fail (text_uri != NULL, FALSE);
+    g_return_val_if_fail (G_IS_FILE (location), FALSE);
 
-    xed_debug_message (DEBUG_UTILS, "text_uri: %s", text_uri);
+    uri = g_file_get_uri (location);
+    xed_debug_message (DEBUG_UTILS, "text_uri: %s", uri);
+    g_free (uri);
 
-    gfile = g_file_new_for_uri (text_uri);
-    res = g_file_query_exists (gfile, NULL);
-
-    g_object_unref (gfile);
+    res = g_file_query_exists (location, NULL);
 
     xed_debug_message (DEBUG_UTILS, res ? "TRUE" : "FALSE");
 
@@ -1042,19 +1005,26 @@ has_valid_scheme (const gchar *uri)
 }
 
 gboolean
-xed_utils_is_valid_uri (const gchar *uri)
+xed_utils_is_valid_location (GFile *location)
 {
     const guchar *p;
+    gchar *uri;
+    gboolean is_valid;
 
-    if (uri == NULL)
+    if (location == NULL)
     {
         return FALSE;
     }
+
+    uri = g_file_get_uri (location);
 
     if (!has_valid_scheme (uri))
     {
+        g_free (uri);
         return FALSE;
     }
+
+    is_valid = TRUE;
 
     /* We expect to have a fully valid set of characters */
     for (p = (const guchar *)uri; *p; p++)
@@ -1064,25 +1034,30 @@ xed_utils_is_valid_uri (const gchar *uri)
             ++p;
             if (!g_ascii_isxdigit (*p))
             {
-                return FALSE;
+                is_valid = FALSE;
+                break;
             }
 
             ++p;
             if (!g_ascii_isxdigit (*p))
             {
-                return FALSE;
+                is_valid = FALSE;
+                break;
             }
         }
         else
         {
             if (*p <= 32 || *p >= 128)
             {
-                return FALSE;
+                is_valid = FALSE;
+                break;
             }
         }
     }
 
-    return TRUE;
+    g_free (uri);
+
+    return is_valid;
 }
 
 static GtkWidget *
@@ -1248,15 +1223,15 @@ xed_utils_make_canonical_uri_from_shell_arg (const gchar *str)
      */
 
     gfile = g_file_new_for_commandline_arg (str);
-    uri = g_file_get_uri (gfile);
-    g_object_unref (gfile);
 
-    if (xed_utils_is_valid_uri (uri))
+    if (xed_utils_is_valid_location (gfile))
     {
+        uri = g_file_get_uri (gfile);
+        g_object_unref (gfile);
         return uri;
     }
 
-    g_free (uri);
+    g_object_unref (gfile);
     return NULL;
 }
 
@@ -1286,26 +1261,26 @@ xed_utils_file_has_parent (GFile *gfile)
 
 /**
  * xed_utils_basename_for_display:
- * @uri: uri for which the basename should be displayed
+ * @location: location for which the basename should be displayed
  *
  * Return the basename of a file suitable for display to users.
  */
 gchar *
-xed_utils_basename_for_display (gchar const *uri)
+xed_utils_basename_for_display (GFile *location)
 {
     gchar *name;
-    GFile *gfile;
     gchar *hn;
+    gchar *uri;
 
-    g_return_val_if_fail (uri != NULL, NULL);
+    g_return_val_if_fail (G_IS_FILE (location), NULL);
 
-    gfile = g_file_new_for_uri (uri);
+    uri = g_file_get_uri (location);
 
     /* First, try to query the display name, but only on local files */
-    if (g_file_has_uri_scheme (gfile, "file"))
+    if (xed_utils_location_has_file_scheme (location))
     {
         GFileInfo *info;
-        info = g_file_query_info (gfile,
+        info = g_file_query_info (location,
                                   G_FILE_ATTRIBUTE_STANDARD_DISPLAY_NAME,
                                   G_FILE_QUERY_INFO_NONE,
                                   NULL,
@@ -1323,12 +1298,12 @@ xed_utils_basename_for_display (gchar const *uri)
              * g_filename_display_basename on the local path */
             gchar *local_path;
 
-            local_path = g_file_get_path (gfile);
+            local_path = g_file_get_path (location);
             name = g_filename_display_basename (local_path);
             g_free (local_path);
         }
     }
-    else if (xed_utils_file_has_parent (gfile) || !xed_utils_decode_uri (uri, NULL, NULL, &hn, NULL, NULL))
+    else if (xed_utils_file_has_parent (location) || !xed_utils_decode_uri (uri, NULL, NULL, &hn, NULL, NULL))
     {
         /* For remote files with a parent (so not just http://foo.com)
            or remote file for which the decoding of the host name fails,
@@ -1336,7 +1311,7 @@ xed_utils_basename_for_display (gchar const *uri)
         gchar *parse_name;
         gchar *base;
 
-        parse_name = g_file_get_parse_name (gfile);
+        parse_name = g_file_get_parse_name (location);
         base = g_filename_display_basename (parse_name);
         name = g_uri_unescape_string (base, NULL);
 
@@ -1365,14 +1340,14 @@ xed_utils_basename_for_display (gchar const *uri)
         g_free (hn);
     }
 
-    g_object_unref (gfile);
+    g_free (uri);
 
     return name;
 }
 
 /**
  * xed_utils_uri_for_display:
- * @uri: uri to be displayed.
+ * @location: location to be displayed.
  *
  * Filter, modify, unescape and change @uri to make it appropriate
  * for display to users.
@@ -1382,16 +1357,9 @@ xed_utils_basename_for_display (gchar const *uri)
  * Return value: a string which represents @uri and can be displayed.
  */
 gchar *
-xed_utils_uri_for_display (const gchar *uri)
+xed_utils_uri_for_display (GFile *location)
 {
-    GFile *gfile;
-    gchar *parse_name;
-
-    gfile = g_file_new_for_uri (uri);
-    parse_name = g_file_get_parse_name (gfile);
-    g_object_unref (gfile);
-
-    return parse_name;
+    return g_file_get_parse_name (location);
 }
 
 /**

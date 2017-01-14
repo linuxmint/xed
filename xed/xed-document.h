@@ -3,8 +3,8 @@
  * This file is part of xed
  *
  * Copyright (C) 1998, 1999 Alex Roberts, Evan Lawrence
- * Copyright (C) 2000, 2001 Chema Celorio, Paolo Maggi 
- * Copyright (C) 2002-2005 Paolo Maggi 
+ * Copyright (C) 2000, 2001 Chema Celorio, Paolo Maggi
+ * Copyright (C) 2002-2005 Paolo Maggi
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -18,18 +18,18 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
- * Foundation, Inc., 51 Franklin St, Fifth Floor, 
+ * Foundation, Inc., 51 Franklin St, Fifth Floor,
  * Boston, MA 02110-1301, USA.
  */
- 
+
 /*
- * Modified by the xed Team, 1998-2005. See the AUTHORS file for a 
- * list of people on the xed Team.  
- * See the ChangeLog files for a list of changes. 
+ * Modified by the xed Team, 1998-2005. See the AUTHORS file for a
+ * list of people on the xed Team.
+ * See the ChangeLog files for a list of changes.
  *
  * $Id$
  */
- 
+
 #ifndef __XED_DOCUMENT_H__
 #define __XED_DOCUMENT_H__
 
@@ -66,7 +66,7 @@ typedef enum
 
 typedef enum
 {
-	XED_SEARCH_DONT_SET_FLAGS	= 1 << 0, 
+	XED_SEARCH_DONT_SET_FLAGS	= 1 << 0,
 	XED_SEARCH_ENTIRE_WORD	= 1 << 1,
 	XED_SEARCH_CASE_SENSITIVE	= 1 << 2,
 	XED_SEARCH_PARSE_ESCAPES	= 1 << 3
@@ -93,11 +93,11 @@ typedef struct _XedDocumentPrivate    XedDocumentPrivate;
  * Main object structure
  */
 typedef struct _XedDocument           XedDocument;
- 
+
 struct _XedDocument
 {
 	GtkSourceBuffer buffer;
-	
+
 	/*< private > */
 	XedDocumentPrivate *priv;
 };
@@ -117,7 +117,7 @@ struct _XedDocumentClass
 
 	/* Document load */
 	void (* load)			(XedDocument       *document,
-					 const gchar         *uri,
+					 GFile          *location,
 					 const XedEncoding *encoding,
 					 gint                 line_pos,
 					 gboolean             create);
@@ -131,7 +131,7 @@ struct _XedDocumentClass
 
 	/* Document save */
 	void (* save)			(XedDocument          *document,
-					 const gchar            *uri,
+					 GFile *location,
 					 const XedEncoding    *encoding,
 					 XedDocumentSaveFlags  flags);
 
@@ -169,9 +169,8 @@ XedDocument   *xed_document_new 		(void);
 
 GFile		*xed_document_get_location	(XedDocument       *doc);
 
-gchar		*xed_document_get_uri 	(XedDocument       *doc);
-void		 xed_document_set_uri		(XedDocument       *doc,
-						 const gchar 	     *uri);
+void xed_document_set_location (XedDocument *doc,
+								GFile *location);
 
 gchar		*xed_document_get_uri_for_display
 						(XedDocument       *doc);
@@ -194,23 +193,18 @@ gchar		*xed_document_get_mime_type 	(XedDocument       *doc);
 gboolean	 xed_document_get_readonly 	(XedDocument       *doc);
 
 void		 xed_document_load 		(XedDocument       *doc,
-						 const gchar         *uri,
+						 GFile     *location,
 						 const XedEncoding *encoding,
 						 gint                 line_pos,
-						 gboolean             create); 
-
-gboolean	 xed_document_insert_file	(XedDocument       *doc,
-						 GtkTextIter         *iter, 
-						 const gchar         *uri, 
-						 const XedEncoding *encoding);
+						 gboolean             create);
 
 gboolean	 xed_document_load_cancel	(XedDocument       *doc);
 
 void		 xed_document_save 		(XedDocument       *doc,
 						 XedDocumentSaveFlags flags);
 
-void		 xed_document_save_as 	(XedDocument       *doc,	
-						 const gchar         *uri, 
+void		 xed_document_save_as 	(XedDocument       *doc,
+						 GFile     *location,
 						 const XedEncoding *encoding,
 						 XedDocumentSaveFlags flags);
 
@@ -221,7 +215,7 @@ gboolean	 xed_document_is_local	(XedDocument       *doc);
 
 gboolean	 xed_document_get_deleted	(XedDocument       *doc);
 
-gboolean	 xed_document_goto_line 	(XedDocument       *doc, 
+gboolean	 xed_document_goto_line 	(XedDocument       *doc,
 						 gint                 line);
 
 gboolean	 xed_document_goto_line_offset(XedDocument *doc,
@@ -231,7 +225,7 @@ gboolean	 xed_document_goto_line_offset(XedDocument *doc,
 void		 xed_document_set_search_text	(XedDocument       *doc,
 						 const gchar         *text,
 						 guint                flags);
-						 
+
 gchar		*xed_document_get_search_text	(XedDocument       *doc,
 						 guint               *flags);
 
@@ -243,7 +237,7 @@ gboolean	 xed_document_search_forward	(XedDocument       *doc,
 						 const GtkTextIter   *end,
 						 GtkTextIter         *match_start,
 						 GtkTextIter         *match_end);
-						 
+
 gboolean	 xed_document_search_backward	(XedDocument       *doc,
 						 const GtkTextIter   *start,
 						 const GtkTextIter   *end,
@@ -251,19 +245,19 @@ gboolean	 xed_document_search_backward	(XedDocument       *doc,
 						 GtkTextIter         *match_end);
 
 gint		 xed_document_replace_all 	(XedDocument       *doc,
-				            	 const gchar         *find, 
-						 const gchar         *replace, 
+				            	 const gchar         *find,
+						 const gchar         *replace,
 					    	 guint                flags);
 
 void 		 xed_document_set_language 	(XedDocument       *doc,
 						 GtkSourceLanguage   *lang);
-GtkSourceLanguage 
+GtkSourceLanguage
 		*xed_document_get_language 	(XedDocument       *doc);
 
-const XedEncoding 
+const XedEncoding
 		*xed_document_get_encoding	(XedDocument       *doc);
 
-void		 xed_document_set_enable_search_highlighting 
+void		 xed_document_set_enable_search_highlighting
 						(XedDocument       *doc,
 						 gboolean             enable);
 
@@ -283,13 +277,13 @@ void		 xed_document_set_metadata	(XedDocument *doc,
 						 const gchar   *first_key,
 						 ...);
 
-/* 
+/*
  * Non exported functions
  */
 void		 _xed_document_set_readonly 	(XedDocument       *doc,
 						 gboolean             readonly);
 
-glong		 _xed_document_get_seconds_since_last_save_or_load 
+glong		 _xed_document_get_seconds_since_last_save_or_load
 						(XedDocument       *doc);
 
 /* Note: this is a sync stat: use only on local files */
@@ -299,7 +293,7 @@ gboolean	_xed_document_check_externally_modified
 void		_xed_document_search_region   (XedDocument       *doc,
 						 const GtkTextIter   *start,
 						 const GtkTextIter   *end);
-						  
+
 /* Search macros */
 #define XED_SEARCH_IS_DONT_SET_FLAGS(sflags) ((sflags & XED_SEARCH_DONT_SET_FLAGS) != 0)
 #define XED_SEARCH_SET_DONT_SET_FLAGS(sflags,state) ((state == TRUE) ? \
@@ -317,7 +311,7 @@ void		_xed_document_search_region   (XedDocument       *doc,
 #define XED_SEARCH_SET_PARSE_ESCAPES(sflags,state) ((state == TRUE) ? \
 (sflags |= XED_SEARCH_PARSE_ESCAPES) : (sflags &= ~XED_SEARCH_PARSE_ESCAPES))
 
-typedef GMountOperation *(*XedMountOperationFactory)(XedDocument *doc, 
+typedef GMountOperation *(*XedMountOperationFactory)(XedDocument *doc,
 						       gpointer       userdata);
 
 void		 _xed_document_set_mount_operation_factory

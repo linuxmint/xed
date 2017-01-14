@@ -48,8 +48,7 @@ G_BEGIN_DECLS
 
 enum { XED_ALL_WORKSPACES = 0xffffffff };
 
-gboolean xed_utils_uri_has_writable_scheme (const gchar *uri);
-gboolean xed_utils_uri_has_file_scheme (const gchar *uri);
+gboolean xed_utils_location_has_file_scheme (GFile *location);
 
 void xed_utils_menu_position_under_widget (GtkMenu  *menu,
                                            gint     *x,
@@ -87,7 +86,7 @@ void xed_utils_set_atk_relation (GtkWidget       *obj1,
                                  GtkWidget       *obj2,
                                  AtkRelationType  rel_type);
 
-gboolean xed_utils_uri_exists (const gchar* text_uri);
+gboolean xed_utils_location_exists (GFile *location);
 
 gchar *xed_utils_escape_search_text (const gchar *text);
 
@@ -114,7 +113,7 @@ void xed_utils_get_current_viewport (GdkScreen    *screen,
                                      gint         *x,
                                      gint         *y);
 
-gboolean xed_utils_is_valid_uri (const gchar *uri);
+gboolean xed_utils_is_valid_location (GFile *location);
 
 gboolean xed_utils_get_ui_objects (const gchar  *filename,
                                    gchar       **root_objects,
@@ -127,9 +126,9 @@ gboolean xed_utils_file_has_parent (GFile *gfile);
 /* Return NULL if str is not a valid URI and/or filename */
 gchar *xed_utils_make_canonical_uri_from_shell_arg (const gchar *str);
 
-gchar *xed_utils_uri_for_display (const gchar *uri);
+gchar *xed_utils_uri_for_display (GFile *location);
 
-gchar *xed_utils_basename_for_display (const gchar *uri);
+gchar *xed_utils_basename_for_display (GFile *location);
 
 gboolean xed_utils_decode_uri (const gchar  *uri,
                                gchar       **scheme,

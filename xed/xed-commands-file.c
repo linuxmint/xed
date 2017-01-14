@@ -124,7 +124,7 @@ is_duplicated_file (GSList *files,
 /* File loading */
 static gint
 load_file_list (XedWindow         *window,
-                GSList            *files,
+                const GSList      *files,
                 const XedEncoding *encoding,
                 gint               line_pos,
                 gboolean           create)
@@ -134,7 +134,7 @@ load_file_list (XedWindow         *window,
     gboolean jump_to = TRUE; /* Whether to jump to the new tab */
     GList *win_docs;
     GSList *files_to_load = NULL;
-    GSList *l;
+    const GSList *l;
 
     xed_debug (DEBUG_COMMANDS);
 
@@ -197,12 +197,7 @@ load_file_list (XedWindow         *window,
 
         if (xed_document_is_untouched (doc) && (xed_tab_get_state (tab) == XED_TAB_STATE_NORMAL))
         {
-            gchar *uri;
-
-            // FIXME: pass the GFile to tab when api is there
-            uri = g_file_get_uri (l->data);
-            _xed_tab_load (tab, uri, encoding, line_pos, create);
-            g_free (uri);
+            _xed_tab_load (tab, l->data, encoding, line_pos, create);
 
             l = g_slist_next (l);
             jump_to = FALSE;
@@ -213,14 +208,9 @@ load_file_list (XedWindow         *window,
 
     while (l != NULL)
     {
-        gchar *uri;
-
         g_return_val_if_fail (l->data != NULL, 0);
 
-        // FIXME: pass the GFile to tab when api is there
-        uri = g_file_get_uri (l->data);
-        tab = xed_window_create_tab_from_uri (window, uri, encoding, line_pos, create, jump_to);
-        g_free (uri);
+        tab = xed_window_create_tab_from_location (window, l->data, encoding, line_pos, create, jump_to);
 
         if (tab != NULL)
         {
@@ -264,114 +254,62 @@ load_file_list (XedWindow         *window,
     return loaded_files;
 }
 
-
-// FIXME: we should expose API with GFile and just make the uri
-// variants backward compat wrappers
-
-static gint
-load_uri_list (XedWindow         *window,
-               const GSList      *uris,
-               const XedEncoding *encoding,
-               gint               line_pos,
-               gboolean           create)
-{
-    GSList *files = NULL;
-    const GSList *u;
-    gint ret;
-
-    for (u = uris; u != NULL; u = u->next)
-    {
-        gchar *uri = u->data;
-
-        if (xed_utils_is_valid_uri (uri))
-        {
-            files = g_slist_prepend (files, g_file_new_for_uri (uri));
-        }
-        else
-        {
-            g_warning ("invalid uri: %s", uri);
-        }
-    }
-    files = g_slist_reverse (files);
-
-    ret = load_file_list (window, files, encoding, line_pos, create);
-
-    g_slist_foreach (files, (GFunc) g_object_unref, NULL);
-    g_slist_free (files);
-
-    return ret;
-}
-
 /**
- * xed_commands_load_uri:
+ * xed_commands_load_location:
  * @window:
  * @uri:
  * @encoding: (allow-none):
  * @line_pos:
  *
- * Do nothing if uri does not exist
+ * Do nothing if location does not exist
  */
 void
-xed_commands_load_uri (XedWindow         *window,
-                       const gchar       *uri,
-                       const XedEncoding *encoding,
-                       gint               line_pos)
+xed_commands_load_location (XedWindow         *window,
+                            GFile             *location,
+                            const XedEncoding *encoding,
+                            gint               line_pos)
 {
-    GSList *uris = NULL;
+    GSList *locations = NULL;
+    gchar *uri;
 
     g_return_if_fail (XED_IS_WINDOW (window));
-    g_return_if_fail (uri != NULL);
-    g_return_if_fail (xed_utils_is_valid_uri (uri));
+    g_return_if_fail (G_IS_FILE (location));
+    g_return_if_fail (xed_utils_is_valid_location (location));
 
+    uri = g_file_get_uri (location);
     xed_debug_message (DEBUG_COMMANDS, "Loading URI '%s'", uri);
+    g_free (uri);
 
-    uris = g_slist_prepend (uris, (gchar *)uri);
+    locations = g_slist_prepend (locations, location);
 
-    load_uri_list (window, uris, encoding, line_pos, FALSE);
+    load_file_list (window, locations, encoding, line_pos, FALSE);
 
-    g_slist_free (uris);
+    g_slist_free (locations);
 }
 
 /**
- * xed_commands_load_uris:
+ * xed_commands_load_locations:
  * @window:
  * @uris:
  * @encoding:
  * @line_pos:
  *
- * Ignore non-existing URIs
+ * Ignore non-existing locations
  *
  * Returns:
  */
 gint
-xed_commands_load_uris (XedWindow         *window,
-                        const GSList      *uris,
-                        const XedEncoding *encoding,
-                        gint               line_pos)
+xed_commands_load_locations (XedWindow         *window,
+                             const GSList      *locations,
+                             const XedEncoding *encoding,
+                             gint               line_pos)
 {
     g_return_val_if_fail (XED_IS_WINDOW (window), 0);
-    g_return_val_if_fail ((uris != NULL) && (uris->data != NULL), 0);
+    g_return_val_if_fail ((locations != NULL) && (locations->data != NULL), 0);
 
     xed_debug (DEBUG_COMMANDS);
 
-    return load_uri_list (window, uris, encoding, line_pos, FALSE);
-}
-
-/*
- * This should become public once we convert all api to GFile:
- */
-static gint
-xed_commands_load_files (XedWindow         *window,
-                         GSList            *files,
-                         const XedEncoding *encoding,
-                         gint               line_pos)
-{
-    g_return_val_if_fail (XED_IS_WINDOW (window), 0);
-    g_return_val_if_fail ((files != NULL) && (files->data != NULL), 0);
-
-    xed_debug (DEBUG_COMMANDS);
-
-    return load_file_list (window, files, encoding, line_pos, FALSE);
+    return load_file_list (window, locations, encoding, line_pos, FALSE);
 }
 
 /*
@@ -426,7 +364,7 @@ open_dialog_response_cb (XedFileChooserDialog *dialog,
     /* Remember the folder we navigated to */
      _xed_window_set_default_location (window, files->data);
 
-    xed_commands_load_files (window, files, encoding, 0);
+    xed_commands_load_locations (window, files, encoding, 0);
 
     g_slist_foreach (files, (GFunc) g_object_unref, NULL);
     g_slist_free (files);
@@ -616,7 +554,6 @@ save_dialog_response_cb (XedFileChooserDialog *dialog,
     {
         XedDocument *doc;
         gchar *parse_name;
-        gchar *uri;
 
         doc = xed_tab_get_document (tab);
         g_return_if_fail (XED_IS_DOCUMENT (doc));
@@ -634,10 +571,7 @@ save_dialog_response_cb (XedFileChooserDialog *dialog,
          * even if the saving fails... */
          _xed_window_set_default_location (window, file);
 
-        // FIXME: pass the GFile to tab when api is there
-        uri = g_file_get_uri (file);
-        _xed_tab_save_as (tab, uri, encoding, newline_type);
-        g_free (uri);
+        _xed_tab_save_as (tab, file, encoding, newline_type);
     }
 
     g_object_unref (file);

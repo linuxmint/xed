@@ -180,7 +180,7 @@ static gboolean
 parse_gio_error (gint          code,
                  gchar       **error_message,
                  gchar       **message_details,
-                 const gchar  *uri,
+                 GFile        *location,
                  const gchar  *uri_for_display)
 {
     gboolean ret = TRUE;
@@ -198,7 +198,7 @@ parse_gio_error (gint          code,
                 gchar *scheme_string;
                 gchar *scheme_markup;
 
-                scheme_string = g_uri_parse_scheme (uri);
+                scheme_string = g_file_get_uri_scheme (location);
 
                 if ((scheme_string != NULL) && g_utf8_validate (scheme_string, -1, NULL))
                 {
@@ -240,8 +240,11 @@ parse_gio_error (gint          code,
              */
             {
                 gchar *hn = NULL;
+                gchar *uri;
 
-                if (xed_utils_decode_uri (uri, NULL, NULL, &hn, NULL, NULL))
+                uri = g_file_get_uri (location);
+
+                if (uri && xed_utils_decode_uri (uri, NULL, NULL, &hn, NULL, NULL))
                 {
                     if (hn != NULL)
                     {
@@ -263,6 +266,8 @@ parse_gio_error (gint          code,
                         g_free (host_markup);
                     }
                 }
+
+                g_free (uri);
 
                 if (!*message_details)
                 {
@@ -291,7 +296,7 @@ static gboolean
 parse_xed_error (gint          code,
                  gchar       **error_message,
                  gchar       **message_details,
-                 const gchar  *uri,
+                 GFile        *location,
                  const gchar  *uri_for_display)
 {
     gboolean ret = TRUE;
@@ -313,18 +318,18 @@ static void
 parse_error (const GError *error,
              gchar       **error_message,
              gchar       **message_details,
-             const gchar  *uri,
+             GFile        *location,
              const gchar  *uri_for_display)
 {
     gboolean ret = FALSE;
 
     if (error->domain == G_IO_ERROR)
     {
-        ret = parse_gio_error (error->code, error_message, message_details, uri, uri_for_display);
+        ret = parse_gio_error (error->code, error_message, message_details, location, uri_for_display);
     }
     else if (error->domain == XED_DOCUMENT_ERROR)
     {
-        ret = parse_xed_error (error->code, error_message, message_details, uri, uri_for_display);
+        ret = parse_xed_error (error->code, error_message, message_details, location, uri_for_display);
     }
 
     if (!ret)
@@ -335,7 +340,7 @@ parse_error (const GError *error,
 }
 
 GtkWidget *
-xed_unrecoverable_reverting_error_message_area_new (const gchar  *uri,
+xed_unrecoverable_reverting_error_message_area_new (GFile        *location,
                                                     const GError *error)
 {
     gchar *error_message = NULL;
@@ -345,11 +350,11 @@ xed_unrecoverable_reverting_error_message_area_new (const gchar  *uri,
     gchar *temp_uri_for_display;
     GtkWidget *message_area;
 
-    g_return_val_if_fail (uri != NULL, NULL);
+    g_return_val_if_fail (G_IS_FILE (location), NULL);
     g_return_val_if_fail (error != NULL, NULL);
     g_return_val_if_fail ((error->domain == XED_DOCUMENT_ERROR) || (error->domain == G_IO_ERROR), NULL);
 
-    full_formatted_uri = xed_utils_uri_for_display (uri);
+    full_formatted_uri = xed_utils_uri_for_display (location);
 
     /* Truncate the URI so it doesn't get insanely wide. Note that even
      * though the dialog uses wrapped text, if the URI doesn't contain
@@ -368,7 +373,7 @@ xed_unrecoverable_reverting_error_message_area_new (const gchar  *uri,
     }
     else
     {
-        parse_error (error, &error_message, &message_details, uri, uri_for_display);
+        parse_error (error, &error_message, &message_details, location, uri_for_display);
     }
 
     if (error_message == NULL)
@@ -491,7 +496,7 @@ create_conversion_error_message_area (const gchar *primary_text,
 }
 
 GtkWidget *
-xed_io_loading_error_message_area_new (const gchar       *uri,
+xed_io_loading_error_message_area_new (GFile             *location,
                                        const XedEncoding *encoding,
                                        const GError      *error)
 {
@@ -505,13 +510,13 @@ xed_io_loading_error_message_area_new (const gchar       *uri,
     gboolean edit_anyway = FALSE;
     gboolean convert_error = FALSE;
 
-    g_return_val_if_fail (uri != NULL, NULL);
+    g_return_val_if_fail (G_IS_FILE (location), NULL);
     g_return_val_if_fail (error != NULL, NULL);
     g_return_val_if_fail ((error->domain == G_CONVERT_ERROR) ||
                   (error->domain == XED_DOCUMENT_ERROR) ||
                   (error->domain == G_IO_ERROR), NULL);
 
-    full_formatted_uri = xed_utils_uri_for_display (uri);
+    full_formatted_uri = xed_utils_uri_for_display (location);
 
     /* Truncate the URI so it doesn't get insanely wide. Note that even
      * though the dialog uses wrapped text, if the URI doesn't contain
@@ -572,7 +577,7 @@ xed_io_loading_error_message_area_new (const gchar       *uri,
     }
     else
     {
-        parse_error (error, &error_message, &message_details, uri, uri_for_display);
+        parse_error (error, &error_message, &message_details, location, uri_for_display);
     }
 
     if (error_message == NULL)
@@ -600,7 +605,7 @@ xed_io_loading_error_message_area_new (const gchar       *uri,
 }
 
 GtkWidget *
-xed_conversion_error_while_saving_message_area_new (const gchar       *uri,
+xed_conversion_error_while_saving_message_area_new (GFile             *location,
                                                     const XedEncoding *encoding,
                                                     const GError      *error)
 {
@@ -612,13 +617,13 @@ xed_conversion_error_while_saving_message_area_new (const gchar       *uri,
     gchar *temp_uri_for_display;
     GtkWidget *message_area;
 
-    g_return_val_if_fail (uri != NULL, NULL);
+    g_return_val_if_fail (G_IS_FILE (location), NULL);
     g_return_val_if_fail (error != NULL, NULL);
     g_return_val_if_fail (error->domain == G_CONVERT_ERROR ||
                           error->domain == G_IO_ERROR, NULL);
     g_return_val_if_fail (encoding != NULL, NULL);
 
-    full_formatted_uri = xed_utils_uri_for_display (uri);
+    full_formatted_uri = xed_utils_uri_for_display (location);
 
     /* Truncate the URI so it doesn't get insanely wide. Note that even
      * though the dialog uses wrapped text, if the URI doesn't contain
@@ -663,7 +668,7 @@ xed_conversion_error_message_area_get_encoding (GtkWidget *message_area)
 }
 
 GtkWidget *
-xed_file_already_open_warning_message_area_new (const gchar *uri)
+xed_file_already_open_warning_message_area_new (GFile *location)
 {
     GtkWidget *message_area;
     GtkWidget *hbox_content;
@@ -679,7 +684,9 @@ xed_file_already_open_warning_message_area_new (const gchar *uri)
     gchar *uri_for_display;
     gchar *temp_uri_for_display;
 
-    full_formatted_uri = xed_utils_uri_for_display (uri);
+    g_return_val_if_fail (G_IS_FILE (location), NULL);
+
+    full_formatted_uri = xed_utils_uri_for_display (location);
 
     /* Truncate the URI so it doesn't get insanely wide. Note that even
      * though the dialog uses wrapped text, if the URI doesn't contain
@@ -747,7 +754,7 @@ xed_file_already_open_warning_message_area_new (const gchar *uri)
 }
 
 GtkWidget *
-xed_externally_modified_saving_error_message_area_new (const gchar  *uri,
+xed_externally_modified_saving_error_message_area_new (GFile        *location,
                                                        const GError *error)
 {
     GtkWidget *message_area;
@@ -764,12 +771,12 @@ xed_externally_modified_saving_error_message_area_new (const gchar  *uri,
     gchar *uri_for_display;
     gchar *temp_uri_for_display;
 
-    g_return_val_if_fail (uri != NULL, NULL);
+    g_return_val_if_fail (G_IS_FILE (location), NULL);
     g_return_val_if_fail (error != NULL, NULL);
     g_return_val_if_fail (error->domain == XED_DOCUMENT_ERROR, NULL);
     g_return_val_if_fail (error->code == XED_DOCUMENT_ERROR_EXTERNALLY_MODIFIED, NULL);
 
-    full_formatted_uri = xed_utils_uri_for_display (uri);
+    full_formatted_uri = xed_utils_uri_for_display (location);
 
     /* Truncate the URI so it doesn't get insanely wide. Note that even
      * though the dialog uses wrapped text, if the URI doesn't contain
@@ -833,7 +840,7 @@ xed_externally_modified_saving_error_message_area_new (const gchar  *uri,
 }
 
 GtkWidget *
-xed_no_backup_saving_error_message_area_new (const gchar  *uri,
+xed_no_backup_saving_error_message_area_new (GFile        *location,
                                              const GError *error)
 {
     GtkWidget *message_area;
@@ -850,14 +857,14 @@ xed_no_backup_saving_error_message_area_new (const gchar  *uri,
     gchar *uri_for_display;
     gchar *temp_uri_for_display;
 
-    g_return_val_if_fail (uri != NULL, NULL);
+    g_return_val_if_fail (G_IS_FILE (location), NULL);
     g_return_val_if_fail (error != NULL, NULL);
     g_return_val_if_fail (((error->domain == XED_DOCUMENT_ERROR &&
                           error->code == XED_DOCUMENT_ERROR_CANT_CREATE_BACKUP) ||
                           (error->domain == G_IO_ERROR &&
                           error->code == G_IO_ERROR_CANT_CREATE_BACKUP)), NULL);
 
-    full_formatted_uri = xed_utils_uri_for_display (uri);
+    full_formatted_uri = xed_utils_uri_for_display (location);
 
     /* Truncate the URI so it doesn't get insanely wide. Note that even
      * though the dialog uses wrapped text, if the URI doesn't contain
@@ -930,7 +937,7 @@ xed_no_backup_saving_error_message_area_new (const gchar  *uri,
 }
 
 GtkWidget *
-xed_unrecoverable_saving_error_message_area_new (const gchar  *uri,
+xed_unrecoverable_saving_error_message_area_new (GFile        *location,
                                                  const GError *error)
 {
     gchar *error_message = NULL;
@@ -942,11 +949,11 @@ xed_unrecoverable_saving_error_message_area_new (const gchar  *uri,
     gchar *temp_uri_for_display;
     GtkWidget *message_area;
 
-    g_return_val_if_fail (uri != NULL, NULL);
+    g_return_val_if_fail (G_IS_FILE (location), NULL);
     g_return_val_if_fail (error != NULL, NULL);
     g_return_val_if_fail ((error->domain == XED_DOCUMENT_ERROR) || (error->domain == G_IO_ERROR), NULL);
 
-    full_formatted_uri = xed_utils_uri_for_display (uri);
+    full_formatted_uri = xed_utils_uri_for_display (location);
 
     /* Truncate the URI so it doesn't get insanely wide. Note that even
      * though the dialog uses wrapped text, if the URI doesn't contain
@@ -960,7 +967,7 @@ xed_unrecoverable_saving_error_message_area_new (const gchar  *uri,
 
     if (is_gio_error (error, G_IO_ERROR_NOT_SUPPORTED))
     {
-        scheme_string = g_uri_parse_scheme (uri);
+        scheme_string = g_file_get_uri_scheme (location);
 
         if ((scheme_string != NULL) && g_utf8_validate (scheme_string, -1, NULL))
         {
@@ -1025,7 +1032,7 @@ xed_unrecoverable_saving_error_message_area_new (const gchar  *uri,
     }
     else
     {
-        parse_error (error, &error_message, &message_details, uri, uri_for_display);
+        parse_error (error, &error_message, &message_details, location, uri_for_display);
     }
 
     if (error_message == NULL)
@@ -1043,8 +1050,8 @@ xed_unrecoverable_saving_error_message_area_new (const gchar  *uri,
 }
 
 GtkWidget *
-xed_externally_modified_message_area_new (const gchar *uri,
-                                          gboolean     document_modified)
+xed_externally_modified_message_area_new (GFile    *location,
+                                          gboolean  document_modified)
 {
     gchar *full_formatted_uri;
     gchar *uri_for_display;
@@ -1053,9 +1060,9 @@ xed_externally_modified_message_area_new (const gchar *uri,
     const gchar *secondary_text;
     GtkWidget *message_area;
 
-    g_return_val_if_fail (uri != NULL, NULL);
+    g_return_val_if_fail (G_IS_FILE (location), NULL);
 
-    full_formatted_uri = xed_utils_uri_for_display (uri);
+    full_formatted_uri = xed_utils_uri_for_display (location);
 
     /* Truncate the URI so it doesn't get insanely wide. Note that even
      * though the dialog uses wrapped text, if the URI doesn't contain

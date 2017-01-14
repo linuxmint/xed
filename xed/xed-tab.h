@@ -2,7 +2,7 @@
  * xed-tab.h
  * This file is part of xed
  *
- * Copyright (C) 2005 - Paolo Maggi 
+ * Copyright (C) 2005 - Paolo Maggi
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,14 +16,14 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
- * Foundation, Inc., 51 Franklin St, Fifth Floor, 
+ * Foundation, Inc., 51 Franklin St, Fifth Floor,
  * Boston, MA 02110-1301, USA.
  */
- 
+
 /*
- * Modified by the xed Team, 2005. See the AUTHORS file for a 
- * list of people on the xed Team.  
- * See the ChangeLog files for a list of changes. 
+ * Modified by the xed Team, 2005. See the AUTHORS file for a
+ * list of people on the xed Team.
+ * See the ChangeLog files for a list of changes.
  *
  * $Id$
  */
@@ -40,26 +40,23 @@ G_BEGIN_DECLS
 
 typedef enum
 {
-	XED_TAB_STATE_NORMAL = 0,
-	XED_TAB_STATE_LOADING,
-	XED_TAB_STATE_REVERTING,
-	XED_TAB_STATE_SAVING,	
-	XED_TAB_STATE_PRINTING,
-	XED_TAB_STATE_PRINT_PREVIEWING,
-	XED_TAB_STATE_SHOWING_PRINT_PREVIEW,
-	XED_TAB_STATE_GENERIC_NOT_EDITABLE,
-	XED_TAB_STATE_LOADING_ERROR,
-	XED_TAB_STATE_REVERTING_ERROR,	
-	XED_TAB_STATE_SAVING_ERROR,
-	XED_TAB_STATE_GENERIC_ERROR,
-	XED_TAB_STATE_CLOSING,
-	XED_TAB_STATE_EXTERNALLY_MODIFIED_NOTIFICATION,
-	XED_TAB_NUM_OF_STATES /* This is not a valid state */
+    XED_TAB_STATE_NORMAL = 0,
+    XED_TAB_STATE_LOADING,
+    XED_TAB_STATE_REVERTING,
+    XED_TAB_STATE_SAVING,
+    XED_TAB_STATE_PRINTING,
+    XED_TAB_STATE_PRINT_PREVIEWING,
+    XED_TAB_STATE_SHOWING_PRINT_PREVIEW,
+    XED_TAB_STATE_GENERIC_NOT_EDITABLE,
+    XED_TAB_STATE_LOADING_ERROR,
+    XED_TAB_STATE_REVERTING_ERROR,
+    XED_TAB_STATE_SAVING_ERROR,
+    XED_TAB_STATE_GENERIC_ERROR,
+    XED_TAB_STATE_CLOSING,
+    XED_TAB_STATE_EXTERNALLY_MODIFIED_NOTIFICATION,
+    XED_TAB_NUM_OF_STATES /* This is not a valid state */
 } XedTabState;
 
-/*
- * Type checking and casting macros
- */
 #define XED_TYPE_TAB              (xed_tab_get_type())
 #define XED_TAB(obj)              (G_TYPE_CHECK_INSTANCE_CAST((obj), XED_TYPE_TAB, XedTab))
 #define XED_TAB_CLASS(klass)      (G_TYPE_CHECK_CLASS_CAST((klass), XED_TYPE_TAB, XedTabClass))
@@ -67,95 +64,74 @@ typedef enum
 #define XED_IS_TAB_CLASS(klass)   (G_TYPE_CHECK_CLASS_TYPE ((klass), XED_TYPE_TAB))
 #define XED_TAB_GET_CLASS(obj)    (G_TYPE_INSTANCE_GET_CLASS((obj), XED_TYPE_TAB, XedTabClass))
 
-/* Private structure type */
-typedef struct _XedTabPrivate XedTabPrivate;
+typedef struct _XedTab          XedTab;
+typedef struct _XedTabPrivate   XedTabPrivate;
+typedef struct _XedTabClass     XedTabClass;
 
-/*
- * Main object structure
- */
-typedef struct _XedTab XedTab;
-
-struct _XedTab 
+struct _XedTab
 {
-	GtkBox vbox;
+    GtkBox vbox;
 
-	/*< private > */
-	XedTabPrivate *priv;
+    /*< private > */
+    XedTabPrivate *priv;
 };
 
-/*
- * Class definition
- */
-typedef struct _XedTabClass XedTabClass;
-
-struct _XedTabClass 
+struct _XedTabClass
 {
-	GtkBoxClass parent_class;
+    GtkBoxClass parent_class;
 
 };
 
-/*
- * Public methods
- */
-GType 		 xed_tab_get_type 		(void) G_GNUC_CONST;
+GType xed_tab_get_type (void) G_GNUC_CONST;
 
-XedView	*xed_tab_get_view		(XedTab            *tab);
+XedView *xed_tab_get_view (XedTab *tab);
 
 /* This is only an helper function */
-XedDocument	*xed_tab_get_document		(XedTab            *tab);
+XedDocument *xed_tab_get_document (XedTab *tab);
+XedTab *xed_tab_get_from_document (XedDocument *doc);
 
-XedTab	*xed_tab_get_from_document	(XedDocument       *doc);
+XedTabState xed_tab_get_state (XedTab *tab);
 
-XedTabState	 xed_tab_get_state		(XedTab	     *tab);
+gboolean xed_tab_get_auto_save_enabled (XedTab *tab);
+void         xed_tab_set_auto_save_enabled (XedTab   *tab,
+                                            gboolean  enable);
 
-gboolean	 xed_tab_get_auto_save_enabled	
-						(XedTab            *tab); 
+gint xed_tab_get_auto_save_interval (XedTab *tab);
+void xed_tab_set_auto_save_interval (XedTab *tab,
+                                     gint    interval);
 
-void		 xed_tab_set_auto_save_enabled	
-						(XedTab            *tab, 
-						 gboolean            enable);
-
-gint		 xed_tab_get_auto_save_interval 
-						(XedTab            *tab);
-
-void		 xed_tab_set_auto_save_interval 
-						(XedTab            *tab, 
-						 gint                interval);
-
-void		 xed_tab_set_info_bar		(XedTab            *tab,
-						 GtkWidget           *info_bar);
+void xed_tab_set_info_bar (XedTab    *tab,
+                           GtkWidget *info_bar);
 /*
  * Non exported methods
  */
-GtkWidget 	*_xed_tab_new 		(void);
+GtkWidget *_xed_tab_new (void);
 
-/* Whether create is TRUE, creates a new empty document if location does 
+/* Whether create is TRUE, creates a new empty document if location does
    not refer to an existing file */
-GtkWidget	*_xed_tab_new_from_uri	(const gchar         *uri,
-						 const XedEncoding *encoding,
-						 gint                 line_pos,
-						 gboolean             create);
-gchar 		*_xed_tab_get_name		(XedTab            *tab);
-gchar 		*_xed_tab_get_tooltips	(XedTab            *tab);
-GdkPixbuf 	*_xed_tab_get_icon		(XedTab            *tab);
-void		 _xed_tab_load		(XedTab            *tab,
-						 const gchar         *uri,
-						 const XedEncoding *encoding,
-						 gint                 line_pos,
-						 gboolean             create);
-void		 _xed_tab_revert		(XedTab            *tab);
-void		 _xed_tab_save		(XedTab            *tab);
-void		 _xed_tab_save_as		(XedTab            *tab,
-						 const gchar         *uri,
-						 const XedEncoding *encoding,
-						 XedDocumentNewlineType newline_type);
+GtkWidget *_xed_tab_new_from_location  (GFile             *location,
+                                        const XedEncoding *encoding,
+                                        gint               line_pos,
+                                        gboolean           create);
+gchar *_xed_tab_get_name (XedTab *tab);
+gchar *_xed_tab_get_tooltips (XedTab *tab);
+GdkPixbuf *_xed_tab_get_icon (XedTab *tab);
+void _xed_tab_load (XedTab            *tab,
+                    GFile             *location,
+                    const XedEncoding *encoding,
+                    gint               line_pos,
+                    gboolean           create);
+void _xed_tab_revert (XedTab *tab);
+void _xed_tab_save (XedTab *tab);
+void _xed_tab_save_as (XedTab                *tab,
+                       GFile                 *location,
+                       const XedEncoding     *encoding,
+                       XedDocumentNewlineType newline_type);
 
-void		 _xed_tab_print		(XedTab            *tab);
-void		 _xed_tab_print_preview	(XedTab            *tab);
-
-void		 _xed_tab_mark_for_closing	(XedTab	     *tab);
-
-gboolean	 _xed_tab_can_close		(XedTab	     *tab);
+void _xed_tab_print (XedTab *tab);
+void _xed_tab_print_preview (XedTab *tab);
+void _xed_tab_mark_for_closing (XedTab *tab);
+gboolean _xed_tab_can_close (XedTab *tab);
 
 G_END_DECLS
 

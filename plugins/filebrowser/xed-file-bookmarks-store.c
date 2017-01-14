@@ -535,6 +535,7 @@ init_bookmarks (XedFileBookmarksStore * model)
         {
             if (**line)
             {
+                GFile *location;
                 gchar *pos;
                 gchar *name;
 
@@ -553,10 +554,12 @@ init_bookmarks (XedFileBookmarksStore * model)
 
                 /* the bookmarks file should contain valid
                  * URIs, but paranoia is good */
-                if (xed_utils_is_valid_uri (*line))
+                location = g_file_new_for_uri (*line);
+                if (xed_utils_is_valid_location (location))
                 {
                     added |= add_bookmark (model, name, *line);
                 }
+                g_object_unref (location);
             }
         }
 
@@ -844,14 +847,14 @@ xed_file_bookmarks_store_new (void)
     return model;
 }
 
-gchar *
-xed_file_bookmarks_store_get_uri (XedFileBookmarksStore *model,
-                                  GtkTreeIter           *iter)
+GFile *
+xed_file_bookmarks_store_get_location (XedFileBookmarksStore *model,
+                                       GtkTreeIter           *iter)
 {
-    GObject * obj;
-    GFile * file = NULL;
+    GObject *obj;
+    GFile *file = NULL;
     guint flags;
-    gchar * ret = NULL;
+    GFile *ret = NULL;
     gboolean isfs;
 
     g_return_val_if_fail (XED_IS_FILE_BOOKMARKS_STORE (model), NULL);
@@ -884,7 +887,7 @@ xed_file_bookmarks_store_get_uri (XedFileBookmarksStore *model,
 
     if (file)
     {
-        ret = g_file_get_uri (file);
+        ret = g_file_dup (file);
         g_object_unref (file);
     }
 

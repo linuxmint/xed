@@ -99,7 +99,7 @@ static void on_end_refresh (XedFileBrowserStore *model,
                             XedFileBrowserView  *view);
 
 static void on_unload (XedFileBrowserStore *model,
-                       gchar const         *uri,
+                       GFile               *location,
                        XedFileBrowserView  *view);
 
 static void on_row_inserted (XedFileBrowserStore *model,
@@ -135,46 +135,32 @@ xed_file_browser_view_finalize (GObject *object)
 
 static void
 add_expand_state (XedFileBrowserView *view,
-                  gchar const        *uri)
+                  GFile              *location)
 {
-    GFile * file;
-
-    if (!uri)
+    if (!location)
     {
         return;
     }
 
-    file = g_file_new_for_uri (uri);
-
     if (view->priv->expand_state)
     {
-        g_hash_table_insert (view->priv->expand_state, file, file);
-    }
-    else
-    {
-        g_object_unref (file);
+        g_hash_table_insert (view->priv->expand_state, location, g_object_ref (location));
     }
 }
 
 static void
 remove_expand_state (XedFileBrowserView *view,
-                     gchar const        *uri)
+                     GFile              *location)
 {
-    GFile * file;
-
-    if (!uri)
+    if (!location)
     {
         return;
     }
 
-    file = g_file_new_for_uri (uri);
-
     if (view->priv->expand_state)
     {
-        g_hash_table_remove (view->priv->expand_state, file);
+        g_hash_table_remove (view->priv->expand_state, location);
     }
-
-    g_object_unref (file);
 }
 
 static void
@@ -183,7 +169,7 @@ row_expanded (GtkTreeView *tree_view,
               GtkTreePath *path)
 {
     XedFileBrowserView *view = XED_FILE_BROWSER_VIEW (tree_view);
-    gchar *uri;
+    GFile *location;
 
     if (GTK_TREE_VIEW_CLASS (xed_file_browser_view_parent_class)->row_expanded)
     {
@@ -197,10 +183,9 @@ row_expanded (GtkTreeView *tree_view,
 
     if (view->priv->restore_expand_state)
     {
-        gtk_tree_model_get (view->priv->model, iter, XED_FILE_BROWSER_STORE_COLUMN_URI, &uri, -1);
+        gtk_tree_model_get (view->priv->model, iter, XED_FILE_BROWSER_STORE_COLUMN_LOCATION, &location, -1);
 
-        add_expand_state (view, uri);
-        g_free (uri);
+        add_expand_state (view, location);
     }
 
     _xed_file_browser_store_iter_expanded (XED_FILE_BROWSER_STORE (view->priv->model), iter);
@@ -212,7 +197,7 @@ row_collapsed (GtkTreeView *tree_view,
                GtkTreePath *path)
 {
     XedFileBrowserView *view = XED_FILE_BROWSER_VIEW (tree_view);
-    gchar * uri;
+    GFile *location;
 
     if (GTK_TREE_VIEW_CLASS (xed_file_browser_view_parent_class)->row_collapsed)
     {
@@ -226,10 +211,9 @@ row_collapsed (GtkTreeView *tree_view,
 
     if (view->priv->restore_expand_state)
     {
-        gtk_tree_model_get (view->priv->model, iter, XED_FILE_BROWSER_STORE_COLUMN_URI, &uri, -1);
+        gtk_tree_model_get (view->priv->model, iter, XED_FILE_BROWSER_STORE_COLUMN_LOCATION, &location, -1);
 
-        remove_expand_state (view, uri);
-        g_free (uri);
+        remove_expand_state (view, location);
     }
 
     _xed_file_browser_store_iter_collapsed (XED_FILE_BROWSER_STORE (view->priv->model), iter);
@@ -766,7 +750,7 @@ fill_expand_state (XedFileBrowserView *view,
 {
     GtkTreePath * path;
     GtkTreeIter child;
-    gchar * uri;
+    GFile *location;
 
     if (!gtk_tree_model_iter_has_child (view->priv->model, iter))
     {
@@ -779,12 +763,11 @@ fill_expand_state (XedFileBrowserView *view,
     {
         gtk_tree_model_get (view->priv->model,
                             iter,
-                            XED_FILE_BROWSER_STORE_COLUMN_URI,
-                            &uri,
+                            XED_FILE_BROWSER_STORE_COLUMN_LOCATION,
+                            &location,
                             -1);
 
-        add_expand_state (view, uri);
-        g_free (uri);
+        add_expand_state (view, location);
     }
 
     if (gtk_tree_model_iter_children (view->priv->model, &child, iter))
@@ -1273,7 +1256,7 @@ on_end_refresh (XedFileBrowserStore *model,
 
 static void
 on_unload (XedFileBrowserStore *model,
-           gchar const         *uri,
+           GFile               *location,
            XedFileBrowserView  *view)
 {
     /* Don't remove the expand state if we are refreshing */
@@ -1282,7 +1265,7 @@ on_unload (XedFileBrowserStore *model,
         return;
     }
 
-    remove_expand_state (view, uri);
+    remove_expand_state (view, location);
 }
 
 static void
@@ -1290,33 +1273,28 @@ restore_expand_state (XedFileBrowserView  *view,
                       XedFileBrowserStore *model,
                       GtkTreeIter         *iter)
 {
-    gchar *uri;
-    GFile *file;
+    GFile *location;
     GtkTreePath *path;
 
     gtk_tree_model_get (GTK_TREE_MODEL (model),
                         iter,
-                        XED_FILE_BROWSER_STORE_COLUMN_URI,
-                        &uri,
+                        XED_FILE_BROWSER_STORE_COLUMN_LOCATION,
+                        &location,
                         -1);
 
-    if (!uri)
+    if (!location)
     {
         return;
     }
 
-    file = g_file_new_for_uri (uri);
     path = gtk_tree_model_get_path (GTK_TREE_MODEL (model), iter);
 
-    if (g_hash_table_lookup (view->priv->expand_state, file))
+    if (g_hash_table_lookup (view->priv->expand_state, location))
     {
         gtk_tree_view_expand_row (GTK_TREE_VIEW (view), path, FALSE);
     }
 
     gtk_tree_path_free (path);
-
-    g_object_unref (file);
-    g_free (uri);
 }
 
 static void

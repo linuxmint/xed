@@ -51,8 +51,6 @@ NOINST_H_FILES =			\
 	xed-document-output-stream.h	\
 	xed-document-saver.h		\
 	xed-documents-panel.h		\
-	xed-gio-document-loader.h	\
-	xed-gio-document-saver.h	\
 	xed-history-entry.h		\
 	xed-io-error-message-area.h	\
 	xed-language-manager.h	\
@@ -123,9 +121,7 @@ libxed_c_files = 				\
 	xed-document-input-stream.c	\
 	xed-document-loader.c		\
 	xed-document-output-stream.c	\
-	xed-gio-document-loader.c	\
 	xed-document-saver.c		\
-	xed-gio-document-saver.c	\
 	xed-documents-panel.c		\
 	xed-encodings.c				\
 	xed-encodings-combo-box.c	\

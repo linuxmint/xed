@@ -37,7 +37,7 @@ typedef enum
 {
     XED_FILE_BROWSER_STORE_COLUMN_ICON = 0,
     XED_FILE_BROWSER_STORE_COLUMN_NAME,
-    XED_FILE_BROWSER_STORE_COLUMN_URI,
+    XED_FILE_BROWSER_STORE_COLUMN_LOCATION,
     XED_FILE_BROWSER_STORE_COLUMN_FLAGS,
     XED_FILE_BROWSER_STORE_COLUMN_EMBLEM,
     XED_FILE_BROWSER_STORE_COLUMN_NUM
@@ -106,28 +106,28 @@ struct _XedFileBrowserStoreClass {
     gboolean (*no_trash)  (XedFileBrowserStore *model,
                            GList               *files);
     void (*rename)        (XedFileBrowserStore *model,
-                           const gchar         *olduri,
-                           const gchar         *newuri);
+                           GFile               *oldfile,
+                           GFile               *newfile);
     void (*begin_refresh) (XedFileBrowserStore *model);
     void (*end_refresh)   (XedFileBrowserStore *model);
     void (*unload)        (XedFileBrowserStore *model,
-                           const gchar         *uri);
+                           GFile               *location);
 };
 
 GType xed_file_browser_store_get_type (void) G_GNUC_CONST;
 void _xed_file_browser_store_register_type (GTypeModule *type_module);
 
-XedFileBrowserStore *xed_file_browser_store_new (gchar const *root);
+XedFileBrowserStore *xed_file_browser_store_new (GFile *root);
 
 XedFileBrowserStoreResult xed_file_browser_store_set_root_and_virtual_root (XedFileBrowserStore *model,
-                                                                            gchar const         *root,
-                                                                            gchar const         *virtual_root);
+                                                                            GFile               *root,
+                                                                            GFile              *virtual_root);
 XedFileBrowserStoreResult xed_file_browser_store_set_root (XedFileBrowserStore *model,
-                                                           gchar const         *root);
+                                                           GFile               *root);
 XedFileBrowserStoreResult xed_file_browser_store_set_virtual_root (XedFileBrowserStore *model,
                                                                    GtkTreeIter         *iter);
-XedFileBrowserStoreResult xed_file_browser_store_set_virtual_root_from_string (XedFileBrowserStore *model,
-                                                                               gchar const         *root);
+XedFileBrowserStoreResult xed_file_browser_store_set_virtual_root_from_location (XedFileBrowserStore *model,
+                                                                                 GFile               *root);
 XedFileBrowserStoreResult xed_file_browser_store_set_virtual_root_up (XedFileBrowserStore *model);
 XedFileBrowserStoreResult xed_file_browser_store_set_virtual_root_top (XedFileBrowserStore *model);
 
@@ -135,8 +135,8 @@ gboolean xed_file_browser_store_get_iter_virtual_root (XedFileBrowserStore *mode
                                                        GtkTreeIter         *iter);
 gboolean xed_file_browser_store_get_iter_root (XedFileBrowserStore *model,
                                                GtkTreeIter         *iter);
-gchar * xed_file_browser_store_get_root (XedFileBrowserStore *model);
-gchar * xed_file_browser_store_get_virtual_root (XedFileBrowserStore *model);
+GFile * xed_file_browser_store_get_root (XedFileBrowserStore *model);
+GFile * xed_file_browser_store_get_virtual_root (XedFileBrowserStore *model);
 
 gboolean xed_file_browser_store_iter_equal (XedFileBrowserStore *model,
                                             GtkTreeIter         *iter1,

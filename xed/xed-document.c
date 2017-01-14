@@ -80,12 +80,12 @@ PROFILE (static GTimer *timer = NULL)
 #define XED_DOCUMENT_GET_PRIVATE(object)(G_TYPE_INSTANCE_GET_PRIVATE ((object), XED_TYPE_DOCUMENT, XedDocumentPrivate))
 
 static void xed_document_load_real (XedDocument       *doc,
-                                    const gchar       *uri,
+                                    GFile             *location,
                                     const XedEncoding *encoding,
                                     gint               line_pos,
                                     gboolean           create);
 static void xed_document_save_real (XedDocument         *doc,
-                                    const gchar         *uri,
+                                    GFile               *location,
                                     const XedEncoding   *encoding,
                                     XedDocumentSaveFlags flags);
 static void to_search_region_range (XedDocument *doc,
@@ -102,7 +102,7 @@ static void delete_range_cb (XedDocument *doc,
 
 struct _XedDocumentPrivate
 {
-    gchar *uri;
+    GFile *location;
     gint   untitled_number;
     gchar *short_name;
 
@@ -150,7 +150,7 @@ enum
 {
     PROP_0,
 
-    PROP_URI,
+    PROP_LOCATION,
     PROP_SHORTNAME,
     PROP_CONTENT_TYPE,
     PROP_MIME_TYPE,
@@ -237,7 +237,7 @@ xed_document_dispose (GObject *object)
      * because the language is gone by the time finalize runs.
      * beside if some plugin prevents proper finalization by
      * holding a ref to the doc, we still save the metadata */
-    if ((!doc->priv->dispose_has_run) && (doc->priv->uri != NULL))
+    if ((!doc->priv->dispose_has_run) && (doc->priv->location != NULL))
     {
         GtkTextIter iter;
         gchar *position;
@@ -290,6 +290,12 @@ xed_document_dispose (GObject *object)
         doc->priv->metadata_info = NULL;
     }
 
+    if (doc->priv->location != NULL)
+    {
+        g_object_unref (doc->priv->location);
+        doc->priv->location = NULL;
+    }
+
     doc->priv->dispose_has_run = TRUE;
 
     G_OBJECT_CLASS (xed_document_parent_class)->dispose (object);
@@ -304,11 +310,9 @@ xed_document_finalize (GObject *object)
 
     if (doc->priv->untitled_number > 0)
     {
-        g_return_if_fail (doc->priv->uri == NULL);
         release_untitled_number (doc->priv->untitled_number);
     }
 
-    g_free (doc->priv->uri);
     g_free (doc->priv->content_type);
     g_free (doc->priv->search_text);
 
@@ -331,8 +335,8 @@ xed_document_get_property (GObject    *object,
 
     switch (prop_id)
     {
-        case PROP_URI:
-            g_value_set_string (value, doc->priv->uri);
+        case PROP_LOCATION:
+            g_value_set_object (value, doc->priv->location);
             break;
         case PROP_SHORTNAME:
             g_value_take_string (value, xed_document_get_short_name_for_display (doc));
@@ -444,11 +448,11 @@ xed_document_class_init (XedDocumentClass *klass)
     klass->load = xed_document_load_real;
     klass->save = xed_document_save_real;
 
-    g_object_class_install_property (object_class, PROP_URI,
-                                     g_param_spec_string ("uri",
-                                                          "URI",
-                                                          "The document's URI",
-                                                          NULL,
+    g_object_class_install_property (object_class, PROP_LOCATION,
+                                     g_param_spec_object ("location",
+                                                          "LOCATION",
+                                                          "The document's location",
+                                                          G_TYPE_FILE,
                                                           G_PARAM_READABLE |
                                                           G_PARAM_STATIC_STRINGS));
 
@@ -543,7 +547,7 @@ xed_document_class_init (XedDocumentClass *klass)
     /**
      * XedDocument::load:
      * @document: the #XedDocument.
-     * @uri: the uri where to load the document from.
+     * @location: the location where to load the document from.
      * @encoding: the #XedEncoding to encode the document.
      * @line_pos: the line to show.
      * @create: whether the document should be created if it doesn't exist.
@@ -556,10 +560,10 @@ xed_document_class_init (XedDocumentClass *klass)
                       G_SIGNAL_RUN_LAST,
                       G_STRUCT_OFFSET (XedDocumentClass, load),
                       NULL, NULL,
-                      xed_marshal_VOID__STRING_BOXED_INT_BOOLEAN,
+                      xed_marshal_VOID__OBJECT_BOXED_INT_BOOLEAN,
                       G_TYPE_NONE,
                       4,
-                      G_TYPE_STRING,
+                      G_TYPE_FILE,
                       /* we rely on the fact that the XedEncoding pointer stays
                        * the same forever */
                       XED_TYPE_ENCODING | G_SIGNAL_TYPE_STATIC_SCOPE,
@@ -593,7 +597,7 @@ xed_document_class_init (XedDocumentClass *klass)
     /**
      * XedDocument::save:
      * @document: the #XedDocument.
-     * @uri: the uri where the document is about to be saved.
+     * @location: the location where the document is about to be saved.
      * @encoding: the #XedEncoding used to save the document.
      * @flags: the #XedDocumentSaveFlags for the save operation.
      *
@@ -605,10 +609,10 @@ xed_document_class_init (XedDocumentClass *klass)
                       G_SIGNAL_RUN_LAST,
                       G_STRUCT_OFFSET (XedDocumentClass, save),
                       NULL, NULL,
-                      xed_marshal_VOID__STRING_BOXED_FLAGS,
+                      xed_marshal_VOID__OBJECT_BOXED_FLAGS,
                       G_TYPE_NONE,
                       3,
-                      G_TYPE_STRING,
+                      G_TYPE_FILE,
                       /* we rely on the fact that the XedEncoding pointer stays
                        * the same forever */
                       XED_TYPE_ENCODING | G_SIGNAL_TYPE_STATIC_SCOPE,
@@ -680,7 +684,7 @@ set_language (XedDocument       *doc,
         gtk_source_buffer_set_highlight_syntax (GTK_SOURCE_BUFFER (doc), FALSE);
     }
 
-    if (set_by_user && (doc->priv->uri != NULL))
+    if (set_by_user)
     {
         xed_document_set_metadata (doc, XED_METADATA_ATTRIBUTE_LANGUAGE,
                                    (lang == NULL) ? "_NORMAL_" : gtk_source_language_get_id (lang),
@@ -747,18 +751,18 @@ get_default_style_scheme (void)
 }
 
 static void
-on_uri_changed (XedDocument *doc,
-                GParamSpec  *pspec,
-                gpointer     useless)
+on_location_changed (XedDocument *doc,
+                     GParamSpec  *pspec,
+                     gpointer     useless)
 {
 #ifdef ENABLE_GVFS_METADATA
     GFile *location;
 
     location = xed_document_get_location (doc);
 
-    /* load metadata for this uri: we load sync since metadata is
+    /* load metadata for this location: we load sync since metadata is
      * always local so it should be fast and we need the information
-     * right after the uri was set.
+     * right after the location was set.
      */
     if (location != NULL)
     {
@@ -814,15 +818,15 @@ guess_language (XedDocument *doc,
     }
     else
     {
-        GFile *file;
+        GFile *location;
         gchar *basename = NULL;
 
-        file = xed_document_get_location (doc);
+        location = xed_document_get_location (doc);
         xed_debug_message (DEBUG_DOCUMENT, "Sniffing Language");
 
-        if (file)
+        if (location)
         {
-            basename = g_file_get_basename (file);
+            basename = g_file_get_basename (location);
         }
         else if (doc->priv->short_name != NULL)
         {
@@ -833,9 +837,9 @@ guess_language (XedDocument *doc,
 
         g_free (basename);
 
-        if (file != NULL)
+        if (location != NULL)
         {
-            g_object_unref (file);
+            g_object_unref (location);
         }
     }
 
@@ -875,7 +879,7 @@ xed_document_init (XedDocument *doc)
 
     doc->priv = XED_DOCUMENT_GET_PRIVATE (doc);
 
-    doc->priv->uri = NULL;
+    doc->priv->location = NULL;
     doc->priv->untitled_number = get_untitled_number ();
 
     doc->priv->metadata_info = NULL;
@@ -914,7 +918,7 @@ xed_document_init (XedDocument *doc)
     g_signal_connect_after (doc, "insert-text", G_CALLBACK (insert_text_cb), NULL);
     g_signal_connect_after (doc, "delete-range", G_CALLBACK (delete_range_cb), NULL);
     g_signal_connect (doc, "notify::content-type", G_CALLBACK (on_content_type_changed), NULL);
-    g_signal_connect (doc, "notify::uri", G_CALLBACK (on_uri_changed), NULL);
+    g_signal_connect (doc, "notify::location", G_CALLBACK (on_location_changed), NULL);
 }
 
 XedDocument *
@@ -953,26 +957,26 @@ set_content_type_no_guess (XedDocument *doc,
 
 static void
 set_content_type (XedDocument *doc,
-                  const gchar   *content_type)
+                  const gchar *content_type)
 {
     xed_debug (DEBUG_DOCUMENT);
 
     if (content_type == NULL)
     {
-        GFile *file;
+        GFile *location;
         gchar *guessed_type = NULL;
 
         /* If content type is null, we guess from the filename */
-        file = xed_document_get_location (doc);
-        if (file != NULL)
+        location = xed_document_get_location (doc);
+        if (location != NULL)
         {
             gchar *basename;
 
-            basename = g_file_get_basename (file);
+            basename = g_file_get_basename (location);
             guessed_type = g_content_type_guess (basename, NULL, 0, NULL);
 
             g_free (basename);
-            g_object_unref (file);
+            g_object_unref (location);
         }
 
         set_content_type_no_guess (doc, guessed_type);
@@ -1000,22 +1004,26 @@ xed_document_set_content_type (XedDocument *doc,
 }
 
 static void
-set_uri (XedDocument *doc,
-         const gchar *uri)
+set_location (XedDocument *doc,
+              GFile       *location)
 {
     xed_debug (DEBUG_DOCUMENT);
 
-    g_return_if_fail ((uri == NULL) || xed_utils_is_valid_uri (uri));
+    g_return_if_fail ((location == NULL) || xed_utils_is_valid_location (location));
 
-    if (uri != NULL)
+    if (location != NULL)
     {
-        if (doc->priv->uri == uri)
+        if (doc->priv->location == location)
         {
             return;
         }
 
-        g_free (doc->priv->uri);
-        doc->priv->uri = g_strdup (uri);
+        if (doc->priv->location != NULL)
+        {
+            g_object_unref (doc->priv->location);
+        }
+
+        doc->priv->location = g_file_dup (location);
 
         if (doc->priv->untitled_number > 0)
         {
@@ -1024,7 +1032,7 @@ set_uri (XedDocument *doc,
         }
     }
 
-    g_object_notify (G_OBJECT (doc), "uri");
+    g_object_notify (G_OBJECT (doc), "location");
 
     if (doc->priv->short_name == NULL)
     {
@@ -1043,25 +1051,17 @@ xed_document_get_location (XedDocument *doc)
 {
     g_return_val_if_fail (XED_IS_DOCUMENT (doc), NULL);
 
-    return doc->priv->uri == NULL ? NULL : g_file_new_for_uri (doc->priv->uri);
-}
-
-gchar *
-xed_document_get_uri (XedDocument *doc)
-{
-    g_return_val_if_fail (XED_IS_DOCUMENT (doc), NULL);
-
-    return g_strdup (doc->priv->uri);
+    return doc->priv->location == NULL ? NULL : g_file_dup (doc->priv->location);
 }
 
 void
-xed_document_set_uri (XedDocument *doc,
-                      const gchar *uri)
+xed_document_set_location (XedDocument *doc,
+                           GFile       *location)
 {
     g_return_if_fail (XED_IS_DOCUMENT (doc));
-    g_return_if_fail (uri != NULL);
+    g_return_if_fail (G_IS_FILE (location));
 
-    set_uri (doc, uri);
+    set_location (doc, location);
     set_content_type (doc, NULL);
 }
 
@@ -1076,13 +1076,13 @@ xed_document_get_uri_for_display (XedDocument *doc)
 {
     g_return_val_if_fail (XED_IS_DOCUMENT (doc), g_strdup (""));
 
-    if (doc->priv->uri == NULL)
+    if (doc->priv->location == NULL)
     {
         return g_strdup_printf (_("Unsaved Document %d"), doc->priv->untitled_number);
     }
     else
     {
-        return xed_utils_uri_for_display (doc->priv->uri);
+        return xed_utils_uri_for_display (doc->priv->location);
     }
 }
 
@@ -1101,13 +1101,13 @@ xed_document_get_short_name_for_display (XedDocument *doc)
     {
         return g_strdup (doc->priv->short_name);
     }
-    else if (doc->priv->uri == NULL)
+    else if (doc->priv->location == NULL)
     {
         return g_strdup_printf (_("Unsaved Document %d"), doc->priv->untitled_number);
     }
     else
     {
-        return xed_utils_basename_for_display (doc->priv->uri);
+        return xed_utils_basename_for_display (doc->priv->location);
     }
 }
 
@@ -1161,7 +1161,7 @@ xed_document_get_mime_type (XedDocument *doc)
 /* Note: do not emit the notify::read-only signal */
 static gboolean
 set_readonly (XedDocument *doc,
-              gboolean       readonly)
+              gboolean     readonly)
 {
     xed_debug (DEBUG_DOCUMENT);
 
@@ -1209,23 +1209,20 @@ xed_document_get_readonly (XedDocument *doc)
 gboolean
 _xed_document_check_externally_modified (XedDocument *doc)
 {
-    GFile *gfile;
     GFileInfo *info;
 
     g_return_val_if_fail (XED_IS_DOCUMENT (doc), FALSE);
 
-    if (doc->priv->uri == NULL)
+    if (doc->priv->location == NULL)
     {
         return FALSE;
     }
 
-    gfile = g_file_new_for_uri (doc->priv->uri);
-    info = g_file_query_info (gfile,
+    info = g_file_query_info (doc->priv->location,
                               G_FILE_ATTRIBUTE_TIME_MODIFIED "," \
                               G_FILE_ATTRIBUTE_ACCESS_CAN_WRITE,
                               G_FILE_QUERY_INFO_NONE,
                               NULL, NULL);
-    g_object_unref (gfile);
 
     if (info != NULL)
     {
@@ -1353,7 +1350,7 @@ document_loader_loaded (XedDocumentLoader *loader,
     /* special case creating a named new doc */
     else if (doc->priv->create &&
              (error->domain == G_IO_ERROR && error->code == G_IO_ERROR_NOT_FOUND) &&
-             (xed_utils_uri_has_file_scheme (doc->priv->uri)))
+             (xed_utils_location_has_file_scheme (doc->priv->location)))
     {
         reset_temp_loading_data (doc);
 
@@ -1398,17 +1395,21 @@ document_loader_loading (XedDocumentLoader *loader,
 
 static void
 xed_document_load_real (XedDocument       *doc,
-                        const gchar       *uri,
+                        GFile             *location,
                         const XedEncoding *encoding,
                         gint               line_pos,
                         gboolean           create)
 {
+    gchar *uri;
+
     g_return_if_fail (doc->priv->loader == NULL);
 
+    uri = g_file_get_uri (location);
     xed_debug_message (DEBUG_DOCUMENT, "load_real: uri = %s", uri);
+    g_free (uri);
 
     /* create a loader. It will be destroyed when loading is completed */
-    doc->priv->loader = xed_document_loader_new (doc, uri, encoding);
+    doc->priv->loader = xed_document_loader_new (doc, location, encoding);
 
     g_signal_connect (doc->priv->loader, "loading", G_CALLBACK (document_loader_loading), doc);
 
@@ -1416,7 +1417,7 @@ xed_document_load_real (XedDocument       *doc,
     doc->priv->requested_encoding = encoding;
     doc->priv->requested_line_pos = line_pos;
 
-    set_uri (doc, uri);
+    set_location (doc, location);
     set_content_type (doc, NULL);
 
     xed_document_loader_load (doc->priv->loader);
@@ -1425,7 +1426,7 @@ xed_document_load_real (XedDocument       *doc,
 /**
  * xed_document_load:
  * @doc: the #XedDocument.
- * @uri: the uri where to load the document from.
+ * @location: the location where to load the document from.
  * @encoding: the #XedEncoding to encode the document.
  * @line_pos: the line to show.
  * @create: whether the document should be created if it doesn't exist.
@@ -1434,16 +1435,16 @@ xed_document_load_real (XedDocument       *doc,
  */
 void
 xed_document_load (XedDocument       *doc,
-                   const gchar       *uri,
+                   GFile             *location,
                    const XedEncoding *encoding,
                    gint               line_pos,
                    gboolean           create)
 {
     g_return_if_fail (XED_IS_DOCUMENT (doc));
-    g_return_if_fail (uri != NULL);
-    g_return_if_fail (xed_utils_is_valid_uri (uri));
+    g_return_if_fail (location != NULL);
+    g_return_if_fail (xed_utils_is_valid_location (location));
 
-    g_signal_emit (doc, document_signals[LOAD], 0, uri, encoding, line_pos, create);
+    g_signal_emit (doc, document_signals[LOAD], 0, location, encoding, line_pos, create);
 }
 
 /**
@@ -1478,13 +1479,14 @@ document_saver_saving (XedDocumentSaver *saver,
         /* save was successful */
         if (error == NULL)
         {
-            const gchar *uri;
+            GFile *location;
             const gchar *content_type = NULL;
             GTimeVal mtime = {0, 0};
             GFileInfo *info;
 
-            uri = xed_document_saver_get_uri (saver);
-            set_uri (doc, uri);
+            location = xed_document_saver_get_location (saver);
+            set_location (doc, location);
+            g_object_unref (location);
 
             info = xed_document_saver_get_info (saver);
 
@@ -1533,14 +1535,14 @@ document_saver_saving (XedDocumentSaver *saver,
 
 static void
 xed_document_save_real (XedDocument          *doc,
-                        const gchar          *uri,
+                        GFile                *location,
                         const XedEncoding    *encoding,
                         XedDocumentSaveFlags  flags)
 {
     g_return_if_fail (doc->priv->saver == NULL);
 
     /* create a saver, it will be destroyed once saving is complete */
-    doc->priv->saver = xed_document_saver_new (doc, uri, encoding, doc->priv->newline_type, flags);
+    doc->priv->saver = xed_document_saver_new (doc, location, encoding, doc->priv->newline_type, flags);
 
     g_signal_connect (doc->priv->saver, "saving", G_CALLBACK (document_saver_saving), doc);
 
@@ -1562,15 +1564,15 @@ xed_document_save (XedDocument          *doc,
                    XedDocumentSaveFlags  flags)
 {
     g_return_if_fail (XED_IS_DOCUMENT (doc));
-    g_return_if_fail (doc->priv->uri != NULL);
+    g_return_if_fail (G_IS_FILE (doc->priv->location));
 
-    g_signal_emit (doc, document_signals[SAVE], 0, doc->priv->uri, doc->priv->encoding, flags);
+    g_signal_emit (doc, document_signals[SAVE], 0, doc->priv->location, doc->priv->encoding, flags);
 }
 
 /**
  * xed_document_save_as:
  * @doc: the #XedDocument.
- * @uri: the uri where to save the document.
+ * @location: the location where to save the document.
  * @encoding: the #XedEncoding to encode the document.
  * @flags: optionnal #XedDocumentSaveFlags.
  *
@@ -1579,32 +1581,17 @@ xed_document_save (XedDocument          *doc,
  */
 void
 xed_document_save_as (XedDocument          *doc,
-                      const gchar          *uri,
+                      GFile                *location,
                       const XedEncoding    *encoding,
                       XedDocumentSaveFlags  flags)
 {
     g_return_if_fail (XED_IS_DOCUMENT (doc));
-    g_return_if_fail (uri != NULL);
+    g_return_if_fail (G_IS_FILE (location));
     g_return_if_fail (encoding != NULL);
 
-    /* priv->mtime refers to the the old uri (if any). Thus, it should be
+    /* priv->mtime refers to the the old location (if any). Thus, it should be
      * ignored when saving as. */
-    g_signal_emit (doc, document_signals[SAVE], 0, uri, encoding, flags | XED_DOCUMENT_SAVE_IGNORE_MTIME);
-}
-
-gboolean
-xed_document_insert_file (XedDocument       *doc,
-                          GtkTextIter       *iter,
-                          const gchar       *uri,
-                          const XedEncoding *encoding)
-{
-    g_return_val_if_fail (XED_IS_DOCUMENT (doc), FALSE);
-    g_return_val_if_fail (iter != NULL, FALSE);
-    g_return_val_if_fail (gtk_text_iter_get_buffer (iter) == GTK_TEXT_BUFFER (doc), FALSE);
-
-    /* TODO */
-
-    return FALSE;
+    g_signal_emit (doc, document_signals[SAVE], 0, location, encoding, flags | XED_DOCUMENT_SAVE_IGNORE_MTIME);
 }
 
 gboolean
@@ -1612,7 +1599,7 @@ xed_document_is_untouched (XedDocument *doc)
 {
     g_return_val_if_fail (XED_IS_DOCUMENT (doc), TRUE);
 
-    return (doc->priv->uri == NULL) && (!gtk_text_buffer_get_modified (GTK_TEXT_BUFFER (doc)));
+    return (doc->priv->location == NULL) && (!gtk_text_buffer_get_modified (GTK_TEXT_BUFFER (doc)));
 }
 
 gboolean
@@ -1620,7 +1607,7 @@ xed_document_is_untitled (XedDocument *doc)
 {
     g_return_val_if_fail (XED_IS_DOCUMENT (doc), TRUE);
 
-    return (doc->priv->uri == NULL);
+    return (doc->priv->location == NULL);
 }
 
 gboolean
@@ -1628,12 +1615,12 @@ xed_document_is_local (XedDocument *doc)
 {
     g_return_val_if_fail (XED_IS_DOCUMENT (doc), FALSE);
 
-    if (doc->priv->uri == NULL)
+    if (doc->priv->location == NULL)
     {
         return FALSE;
     }
 
-    return xed_utils_uri_has_file_scheme (doc->priv->uri);
+    return xed_utils_location_has_file_scheme (doc->priv->location);
 }
 
 gboolean
@@ -1641,7 +1628,8 @@ xed_document_get_deleted (XedDocument *doc)
 {
     g_return_val_if_fail (XED_IS_DOCUMENT (doc), FALSE);
 
-    return doc->priv->uri && !xed_utils_uri_exists (doc->priv->uri);
+    /* This is done sync, maybe we should do it async? */
+    return doc->priv->location && !xed_utils_location_exists (doc->priv->location);
 }
 
 /*
@@ -2592,14 +2580,14 @@ gchar *
 xed_document_get_metadata (XedDocument *doc,
                            const gchar *key)
 {
-    gchar *value = NULL;
+    gchar *uri;
 
     g_return_val_if_fail (XED_IS_DOCUMENT (doc), NULL);
     g_return_val_if_fail (key != NULL, NULL);
 
     if (!xed_document_is_untitled (doc))
     {
-        value = xed_metadata_manager_get (doc->priv->uri, key);
+        value = xed_metadata_manager_get (doc->priv->location, key);
     }
 
     return value;
@@ -2629,7 +2617,10 @@ xed_document_set_metadata (XedDocument *doc,
     {
         value = va_arg (var_args, const gchar *);
 
-        xed_metadata_manager_set (doc->priv->uri, key, value);
+        if (doc->priv->location != NULL)
+        {
+            xed_metadata_manager_set (doc->priv->uri, key, value);
+        }
     }
 
     va_end (var_args);

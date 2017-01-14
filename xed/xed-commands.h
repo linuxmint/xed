@@ -7,10 +7,10 @@
 G_BEGIN_DECLS
 
 /* Do nothing if URI does not exist */
-void xed_commands_load_uri (XedWindow *window, const gchar *uri, const XedEncoding *encoding, gint line_pos);
+void xed_commands_load_location (XedWindow *window, GFile *location, const XedEncoding *encoding, gint line_pos);
 
 /* Ignore non-existing URIs */
-gint xed_commands_load_uris (XedWindow *window, const GSList *uris, const XedEncoding *encoding, gint line_pos);
+gint xed_commands_load_locations (XedWindow *window, const GSList *locations, const XedEncoding *encoding, gint line_pos);
 void xed_commands_save_document (XedWindow *window, XedDocument *document);
 void xed_commands_save_all_documents (XedWindow *window);
 

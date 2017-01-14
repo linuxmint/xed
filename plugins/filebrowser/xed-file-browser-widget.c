@@ -80,7 +80,7 @@ enum
 /* Signals */
 enum
 {
-    URI_ACTIVATED,
+    LOCATION_ACTIVATED,
     ERROR,
     CONFIRM_DELETE,
     CONFIRM_NO_TRASH,
@@ -433,14 +433,14 @@ xed_file_browser_widget_class_init (XedFileBrowserWidgetClass * klass)
                                    G_PARAM_READWRITE |
                                    G_PARAM_CONSTRUCT));
 
-    signals[URI_ACTIVATED] =
-        g_signal_new ("uri-activated",
+    signals[LOCATION_ACTIVATED] =
+        g_signal_new ("location-activated",
               G_OBJECT_CLASS_TYPE (object_class),
               G_SIGNAL_RUN_LAST,
               G_STRUCT_OFFSET (XedFileBrowserWidgetClass,
-                       uri_activated), NULL, NULL,
-              g_cclosure_marshal_VOID__STRING, G_TYPE_NONE, 1,
-              G_TYPE_STRING);
+                       location_activated), NULL, NULL,
+              g_cclosure_marshal_VOID__OBJECT, G_TYPE_NONE, 1,
+              G_TYPE_FILE);
     signals[ERROR] =
         g_signal_new ("error", G_OBJECT_CLASS_TYPE (object_class),
               G_SIGNAL_RUN_LAST,
@@ -1060,21 +1060,17 @@ add_bookmark_hash (XedFileBrowserWidget * obj,
     GtkTreeModel *model;
     GdkPixbuf * pixbuf;
     gchar * name;
-    gchar * uri;
-    GFile * file;
+    GFile * location;
     NameIcon * item;
 
     model = GTK_TREE_MODEL (obj->priv->bookmarks_store);
 
-    uri = xed_file_bookmarks_store_get_uri (obj->priv->
+    location = xed_file_bookmarks_store_get_location (obj->priv->
                           bookmarks_store,
                           iter);
 
-    if (uri == NULL)
+    if (location == NULL)
         return;
-
-    file = g_file_new_for_uri (uri);
-    g_free (uri);
 
     gtk_tree_model_get (model, iter,
                 XED_FILE_BOOKMARKS_STORE_COLUMN_ICON,
@@ -1087,7 +1083,7 @@ add_bookmark_hash (XedFileBrowserWidget * obj,
     item->icon = pixbuf;
 
     g_hash_table_insert (obj->priv->bookmarks_hash,
-                 file,
+                 location,
                  item);
 }
 
@@ -1581,8 +1577,6 @@ jump_to_location (XedFileBrowserWidget * obj, GList * item,
     GList *(*iter_func) (GList *);
     GtkWidget *menu_from;
     GtkWidget *menu_to;
-    gchar *root;
-    gchar *virtual_root;
 
     if (!obj->priv->locations)
         return;
@@ -1643,15 +1637,9 @@ jump_to_location (XedFileBrowserWidget * obj, GList * item,
     loc = (Location *) (obj->priv->current_location->data);
 
     /* Set the new root + virtual root */
-    root = g_file_get_uri (loc->root);
-    virtual_root = g_file_get_uri (loc->virtual_root);
-
     xed_file_browser_widget_set_root_and_virtual_root (obj,
-                                 root,
-                                 virtual_root);
-
-    g_free (root);
-    g_free (virtual_root);
+                                 loc->root,
+                                 loc->virtual_root);
 
     obj->priv->changing_location = FALSE;
 }
@@ -1840,8 +1828,8 @@ xed_file_browser_widget_show_files (XedFileBrowserWidget * obj)
 
 void
 xed_file_browser_widget_set_root_and_virtual_root (XedFileBrowserWidget *obj,
-                             gchar const *root,
-                             gchar const *virtual_root)
+                             GFile *root,
+                             GFile *virtual_root)
 {
     XedFileBrowserStoreResult result;
 
@@ -1860,12 +1848,10 @@ xed_file_browser_widget_set_root_and_virtual_root (XedFileBrowserWidget *obj,
 
 void
 xed_file_browser_widget_set_root (XedFileBrowserWidget * obj,
-                    gchar const *root,
+                    GFile *root,
                     gboolean virtual_root)
 {
-    GFile *file;
     GFile *parent;
-    gchar *str;
 
     if (!virtual_root) {
         xed_file_browser_widget_set_root_and_virtual_root (obj,
@@ -1877,16 +1863,11 @@ xed_file_browser_widget_set_root (XedFileBrowserWidget * obj,
     if (!root)
         return;
 
-    file = g_file_new_for_uri (root);
-    parent = get_topmost_file (file);
-    str = g_file_get_uri (parent);
+    parent = get_topmost_file (root);
 
     xed_file_browser_widget_set_root_and_virtual_root
-        (obj, str, root);
+        (obj, parent, root);
 
-    g_free (str);
-
-    g_object_unref (file);
     g_object_unref (parent);
 }
 
@@ -2113,7 +2094,6 @@ activate_mount (XedFileBrowserWidget *widget,
         GMount             *mount)
 {
     GFile *root;
-    gchar *uri;
 
     if (!mount)
     {
@@ -2135,11 +2115,9 @@ activate_mount (XedFileBrowserWidget *widget,
     }
 
     root = g_mount_get_root (mount);
-    uri = g_file_get_uri (root);
 
-    xed_file_browser_widget_set_root (widget, uri, FALSE);
+    xed_file_browser_widget_set_root (widget, root, FALSE);
 
-    g_free (uri);
     g_object_unref (root);
 }
 
@@ -2370,7 +2348,7 @@ bookmark_open (XedFileBrowserWidget *obj,
            GtkTreeModel           *model,
            GtkTreeIter            *iter)
 {
-    gchar *uri;
+    GFile *location;
     gint flags;
 
     gtk_tree_model_get (model, iter,
@@ -2392,11 +2370,11 @@ bookmark_open (XedFileBrowserWidget *obj,
         return;
     }
 
-    uri =
-        xed_file_bookmarks_store_get_uri
+    location =
+        xed_file_bookmarks_store_get_location
         (XED_FILE_BOOKMARKS_STORE (model), iter);
 
-    if (uri) {
+    if (location) {
         /* here we check if the bookmark is a mount point, or if it
            is a remote bookmark. If that's the case, we will set the
            root to the uri of the bookmark and not try to set the
@@ -2405,18 +2383,18 @@ bookmark_open (XedFileBrowserWidget *obj,
         if ((flags & XED_FILE_BOOKMARKS_STORE_IS_MOUNT) ||
             (flags & XED_FILE_BOOKMARKS_STORE_IS_REMOTE_BOOKMARK)) {
             xed_file_browser_widget_set_root (obj,
-                                uri,
+                                location,
                                 FALSE);
         } else {
             xed_file_browser_widget_set_root (obj,
-                                uri,
+                                location,
                                 TRUE);
         }
+
+        g_object_unref (location);
     } else {
         g_warning ("No uri!");
     }
-
-    g_free (uri);
 }
 
 static void
@@ -2424,19 +2402,17 @@ file_open  (XedFileBrowserWidget *obj,
         GtkTreeModel           *model,
         GtkTreeIter            *iter)
 {
-    gchar *uri;
+    GFile *location;
     gint flags;
 
     gtk_tree_model_get (model, iter,
                 XED_FILE_BROWSER_STORE_COLUMN_FLAGS, &flags,
-                XED_FILE_BROWSER_STORE_COLUMN_URI, &uri,
+                XED_FILE_BROWSER_STORE_COLUMN_LOCATION, &location,
                 -1);
 
     if (!FILE_IS_DIR (flags) && !FILE_IS_DUMMY (flags)) {
-        g_signal_emit (obj, signals[URI_ACTIVATED], 0, uri);
+        g_signal_emit (obj, signals[LOCATION_ACTIVATED], 0, location);
     }
-
-    g_free (uri);
 }
 
 static gboolean
@@ -2446,16 +2422,19 @@ directory_open (XedFileBrowserWidget *obj,
 {
     gboolean result = FALSE;
     GError *error = NULL;
-    gchar *uri = NULL;
+    GFile *location;
     XedFileBrowserStoreFlag flags;
 
     gtk_tree_model_get (model, iter,
                 XED_FILE_BROWSER_STORE_COLUMN_FLAGS, &flags,
-                XED_FILE_BROWSER_STORE_COLUMN_URI, &uri,
+                XED_FILE_BROWSER_STORE_COLUMN_LOCATION, &location,
                 -1);
 
-    if (FILE_IS_DIR (flags)) {
+    if (FILE_IS_DIR (flags) && location) {
+        gchar *uri;
         result = TRUE;
+
+        uri = g_file_get_uri (location);
 
         if (!gtk_show_uri (gtk_widget_get_screen (GTK_WIDGET (obj)), uri, GDK_CURRENT_TIME, &error)) {
             g_signal_emit (obj, signals[ERROR], 0,
@@ -2465,9 +2444,9 @@ directory_open (XedFileBrowserWidget *obj,
             g_error_free (error);
             error = NULL;
         }
-    }
 
-    g_free (uri);
+        g_free (uri);
+    }
 
     return result;
 }
@@ -2514,8 +2493,7 @@ on_virtual_root_changed (XedFileBrowserStore * model,
              XedFileBrowserWidget * obj)
 {
     GtkTreeIter iter;
-    gchar *uri;
-    gchar *root_uri;
+    GFile *location;
     GtkTreeIter root;
     GtkAction *action;
     Location *loc;
@@ -2529,8 +2507,8 @@ on_virtual_root_changed (XedFileBrowserStore * model,
 
     if (xed_file_browser_store_get_iter_virtual_root (model, &iter)) {
         gtk_tree_model_get (GTK_TREE_MODEL (model), &iter,
-                    XED_FILE_BROWSER_STORE_COLUMN_URI,
-                    &uri, -1);
+                    XED_FILE_BROWSER_STORE_COLUMN_LOCATION,
+                    &location, -1);
 
         if (xed_file_browser_store_get_iter_root (model, &root)) {
             if (!obj->priv->changing_location) {
@@ -2538,14 +2516,9 @@ on_virtual_root_changed (XedFileBrowserStore * model,
                 if (obj->priv->current_location)
                     clear_next_locations (obj);
 
-                root_uri =
-                    xed_file_browser_store_get_root
-                    (model);
-
                 loc = g_new (Location, 1);
-                loc->root = g_file_new_for_uri (root_uri);
-                loc->virtual_root = g_file_new_for_uri (uri);
-                g_free (root_uri);
+                loc->root = xed_file_browser_store_get_root (model);
+                loc->virtual_root = g_object_ref (location);
 
                 if (obj->priv->current_location) {
                     /* Add current location to the menu so we can go back
@@ -2614,7 +2587,6 @@ on_virtual_root_changed (XedFileBrowserStore * model,
         }
 
         check_current_item (obj, TRUE);
-        g_free (uri);
     } else {
         g_message ("NO!");
     }
@@ -2694,7 +2666,6 @@ on_combo_changed (GtkComboBox * combo, XedFileBrowserWidget * obj)
 {
     GtkTreeIter iter;
     guint id;
-    gchar * uri;
     GFile * file;
 
     if (!gtk_combo_box_get_active_iter (combo, &iter))
@@ -2713,11 +2684,8 @@ on_combo_changed (GtkComboBox * combo, XedFileBrowserWidget * obj)
                     (obj->priv->combo_model), &iter,
                     COLUMN_FILE, &file, -1);
 
-        uri = g_file_get_uri (file);
-        xed_file_browser_store_set_virtual_root_from_string
-            (obj->priv->file_store, uri);
+        xed_file_browser_store_set_virtual_root_from_location (obj->priv->file_store, file);
 
-        g_free (uri);
         g_object_unref (file);
         break;
     }
@@ -2902,22 +2870,19 @@ on_bookmarks_row_deleted (GtkTreeModel * model,
                           XedFileBrowserWidget *obj)
 {
     GtkTreeIter iter;
-    gchar * uri;
-    GFile * file;
+    GFile *location;
 
     if (!gtk_tree_model_get_iter (model, &iter, path))
         return;
 
-    uri = xed_file_bookmarks_store_get_uri (obj->priv->bookmarks_store, &iter);
+    location = xed_file_bookmarks_store_get_location (obj->priv->bookmarks_store, &iter);
 
-    if (!uri)
+    if (!location)
         return;
 
-    file = g_file_new_for_uri (uri);
-    g_hash_table_remove (obj->priv->bookmarks_hash, file);
+    g_hash_table_remove (obj->priv->bookmarks_hash, location);
 
-    g_object_unref (file);
-    g_free (uri);
+    g_object_unref (location);
 }
 
 static void

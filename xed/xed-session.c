@@ -3,7 +3,7 @@
  * This file is part of xed
  *
  * Copyright (C) 2002 Ximian, Inc.
- * Copyright (C) 2005 - Paolo Maggi 
+ * Copyright (C) 2005 - Paolo Maggi
  *
  * Author: Federico Mena-Quintero <federico@ximian.com>
  *
@@ -19,13 +19,13 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
- * Foundation, Inc., 51 Franklin St, Fifth Floor, 
- * Boston, MA 02110-1301, USA. 
+ * Foundation, Inc., 51 Franklin St, Fifth Floor,
+ * Boston, MA 02110-1301, USA.
  */
 
 /*
- * Modified by the xed Team, 2002-2005. See the AUTHORS file for a 
- * list of people on the xed Team.  
+ * Modified by the xed Team, 2002-2005. See the AUTHORS file for a
+ * list of people on the xed Team.
  * See the ChangeLog files for a list of changes.
  *
  * $Id$
@@ -75,7 +75,7 @@ save_window_session (GKeyFile    *state_file,
 	GList *docs, *l;
 	GPtrArray *doc_array;
 	XedDocument *active_document;
-	gchar *uri;
+	gchar *uri = NULL;
 
 	xed_debug (DEBUG_SESSION);
 
@@ -96,9 +96,17 @@ save_window_session (GKeyFile    *state_file,
 	active_document = xed_window_get_active_document (window);
 	if (active_document)
 	{
-	        uri = xed_document_get_uri (active_document);
-	        g_key_file_set_string (state_file, group_name,
-				       "active-document", uri);
+	        GFile *location;
+
+	        location = xed_document_get_location (active_document);
+	        if (location)
+	        {
+	        	uri = g_file_get_uri (location);
+	        	g_object_unref (location);
+	        }
+
+	        g_key_file_set_string (state_file, group_name, "active-document", uri);
+	        g_free (uri);
 	}
 
 	docs = xed_window_get_documents (window);
@@ -106,24 +114,30 @@ save_window_session (GKeyFile    *state_file,
 	doc_array = g_ptr_array_new ();
 	for (l = docs; l != NULL; l = g_list_next (l))
 	{
-		uri = xed_document_get_uri (XED_DOCUMENT (l->data));
+		GFile *location;
+
+		location = xed_document_get_location (XED_DOCUMENT (l->data));
+		if (location)
+		{
+			uri = g_file_get_uri (location);
+			g_object_unref (location);
+		}
 
 		if (uri != NULL)
+		{
 		        g_ptr_array_add (doc_array, uri);
-			  
+		}
+
 	}
-	g_list_free (docs);	
+	g_list_free (docs);
 
 	if (doc_array->len)
 	{
-	        guint i;
- 
 		g_key_file_set_string_list (state_file, group_name,
 					    "documents",
 					    (const char **)doc_array->pdata,
 					    doc_array->len);
-		for (i = 0; i < doc_array->len; i++)
-		        g_free (doc_array->pdata[i]);
+		g_ptr_array_foreach (doc_array, (GFunc) g_free, NULL);
 	}
 	g_ptr_array_free (doc_array, TRUE);
 }
@@ -147,7 +161,7 @@ client_save_state_cb (EggSMClient *client,
 				     group_name,
 				     XED_WINDOW (windows->data));
 		g_free (group_name);
-		
+
 		windows = g_list_next (windows);
 		n++;
 	}
@@ -376,9 +390,9 @@ client_quit_cb (EggSMClient *client, gpointer data)
 		xed_file_close_all ();
 
 	xed_debug_message (DEBUG_FILE, "All files closed.");
-	
+
 	matecomponent_mdi_destroy (MATECOMPONENT_MDI (xed_mdi));
-	
+
 	xed_debug_message (DEBUG_FILE, "Unref xed_mdi.");
 
 	g_object_unref (G_OBJECT (xed_mdi));
@@ -397,7 +411,7 @@ client_quit_cb (EggSMClient *client, gpointer data)
 
 /**
  * xed_session_init:
- * 
+ *
  * Initializes session management support.  This function should be called near
  * the beginning of the program.
  **/
@@ -405,7 +419,7 @@ void
 xed_session_init (void)
 {
 	xed_debug (DEBUG_SESSION);
-	
+
 	if (master_client)
 	  return;
 
@@ -421,14 +435,14 @@ xed_session_init (void)
 	g_signal_connect (master_client,
 			  "quit",
 			  G_CALLBACK (client_quit_cb),
-			  NULL);		  
+			  NULL);
 }
 
 /**
  * xed_session_is_restored:
- * 
+ *
  * Returns whether this xed is running from a restarted session.
- * 
+ *
  * Return value: TRUE if the session manager restarted us, FALSE otherwise.
  * This should be used to determine whether to pay attention to command line
  * arguments in case the session was not restored.
@@ -459,7 +473,7 @@ parse_window (GKeyFile *state_file, const char *group_name)
 	gboolean visible;
 	XedPanel *panel;
 	GError *error = NULL;
-  
+
 	role = g_key_file_get_string (state_file, group_name, "role", NULL);
 
 	xed_debug_message (DEBUG_SESSION, "Window role: %s", role);
@@ -488,8 +502,8 @@ parse_window (GKeyFile *state_file, const char *group_name)
 		height = -1;
 	}
 	gtk_window_set_default_size (GTK_WINDOW (window), width, height);
-  
- 
+
+
 	visible = g_key_file_get_boolean (state_file, group_name,
 					  "side-panel-visible", &error);
 	if (error)
@@ -497,9 +511,9 @@ parse_window (GKeyFile *state_file, const char *group_name)
 	        g_clear_error (&error);
 		visible = FALSE;
 	}
-  
+
 	panel = xed_window_get_side_panel (window);
-  
+
 	if (visible)
 	{
 	        xed_debug_message (DEBUG_SESSION, "Side panel visible");
@@ -510,7 +524,7 @@ parse_window (GKeyFile *state_file, const char *group_name)
 	      xed_debug_message (DEBUG_SESSION, "Side panel _NOT_ visible");
 	      gtk_widget_hide (GTK_WIDGET (panel));
 	}
-  
+
 	visible = g_key_file_get_boolean (state_file, group_name,
 					  "bottom-panel-visible", &error);
 	if (error)
@@ -518,7 +532,7 @@ parse_window (GKeyFile *state_file, const char *group_name)
 	        g_clear_error (&error);
 		visible = FALSE;
 	}
-  
+
 	panel = xed_window_get_bottom_panel (window);
 	if (visible)
 	{
@@ -537,40 +551,44 @@ parse_window (GKeyFile *state_file, const char *group_name)
 						"documents", NULL, NULL);
 	if (documents)
 	{
-	        int i;
+	        gint i;
 		gboolean jump_to = FALSE;
-  
+
 		for (i = 0; documents[i]; i++)
 		{
+		        GFile *location;
+
 		        if (active_document != NULL)
-			        jump_to = strcmp (active_document,
-						  documents[i]) == 0;
-  
+		        {
+		        	jump_to = strcmp (active_document, documents[i]) == 0;
+		        }
+
 			xed_debug_message (DEBUG_SESSION,
 					     "URI: %s (%s)",
 					     documents[i],
 					     jump_to ? "active" : "not active");
-			xed_window_create_tab_from_uri (window,
-							  documents[i],
-							  NULL,
-							  0,
-							  FALSE,
-							  jump_to);
+
+			location = g_file_new_for_uri (documents[i]);
+			xed_window_create_tab_from_location (window, location, NULL, 0, FALSE, jump_to);
+			if (location)
+			{
+				g_object_unref (location);
+			}
 		}
 		g_strfreev (documents);
 	}
- 
+
 	g_free (active_document);
-	
+
 	gtk_widget_show (GTK_WIDGET (window));
 }
 
 /**
  * xed_session_load:
- * 
+ *
  * Loads the session by fetching the necessary information from the session
  * manager and opening files.
- * 
+ *
  * Return value: TRUE if the session was loaded successfully, FALSE otherwise.
  **/
 gboolean

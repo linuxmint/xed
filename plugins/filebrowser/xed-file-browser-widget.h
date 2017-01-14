@@ -58,8 +58,8 @@ struct _XedFileBrowserWidgetClass
     GtkBoxClass parent_class;
 
     /* Signals */
-    void (*uri_activated)        (XedFileBrowserWidget * widget,
-                          gchar const *uri);
+    void (*location_activated)        (XedFileBrowserWidget * widget,
+                                       GFile                *location);
     void (*error)                (XedFileBrowserWidget * widget,
                                   guint code,
                               gchar const *message);
@@ -79,12 +79,12 @@ void xed_file_browser_widget_show_bookmarks       (XedFileBrowserWidget * obj);
 void xed_file_browser_widget_show_files           (XedFileBrowserWidget * obj);
 
 void xed_file_browser_widget_set_root             (XedFileBrowserWidget * obj,
-                                                     gchar const *root,
+                                                     GFile *root,
                                                      gboolean virtual_root);
 void
 xed_file_browser_widget_set_root_and_virtual_root (XedFileBrowserWidget * obj,
-                             gchar const *root,
-                             gchar const *virtual_root);
+                             GFile *root,
+                             GFile *virtual_root);
 
 gboolean
 xed_file_browser_widget_get_selected_directory    (XedFileBrowserWidget * obj,

@@ -68,9 +68,9 @@ enum
     PROP_WINDOW
 };
 
-static void on_uri_activated_cb (XedFileBrowserWidget *widget,
-                                 gchar const          *uri,
-                                 XedWindow            *window);
+static void on_location_activated_cb (XedFileBrowserWidget *widget,
+                                      GFile                *location,
+                                      XedWindow            *window);
 static void on_error_cb (XedFileBrowserWidget *widget,
                          guint                 code,
                          gchar const          *message,
@@ -85,8 +85,8 @@ static void on_filter_mode_changed_cb (XedFileBrowserStore  *model,
                                        GParamSpec           *param,
                                        XedFileBrowserPlugin *plugin);
 static void on_rename_cb (XedFileBrowserStore *model,
-                          const gchar         *olduri,
-                          const gchar         *newuri,
+                          GFile               *oldfile,
+                          GFile               *newfile,
                           XedWindow           *window);
 static void on_filter_pattern_changed_cb (XedFileBrowserWidget *widget,
                                           GParamSpec           *param,
@@ -229,25 +229,28 @@ restore_default_location (XedFileBrowserPlugin *plugin)
     remote = g_settings_get_boolean (priv->onload_settings, "enable-remote");
 
     if (root != NULL && *root != '\0') {
-        GFile *file;
+        GFile *rootfile;
+        GFile *vrootfile;
 
-        file = g_file_new_for_uri (root);
+        rootfile = g_file_new_for_uri (root);
+        vrootfile = g_file_new_for_uri (virtual_root);
 
-        if (remote || g_file_is_native (file))
+        if (remote || g_file_is_native (rootfile))
         {
             if (virtual_root != NULL && *virtual_root != '\0')
             {
                 prepare_auto_root (plugin);
-                xed_file_browser_widget_set_root_and_virtual_root (priv->tree_widget, root, virtual_root);
+                xed_file_browser_widget_set_root_and_virtual_root (priv->tree_widget, rootfile, vrootfile);
             }
             else
             {
                 prepare_auto_root (plugin);
-                xed_file_browser_widget_set_root (priv->tree_widget, root, TRUE);
+                xed_file_browser_widget_set_root (priv->tree_widget, rootfile, TRUE);
             }
         }
 
-        g_object_unref (file);
+        g_object_unref (rootfile);
+        g_object_unref (vrootfile);
     }
 
     g_free (root);
@@ -317,16 +320,11 @@ set_root_from_doc (XedFileBrowserPlugin *plugin,
 
     if (parent != NULL)
     {
-        gchar * root;
-
-        root = g_file_get_uri (parent);
-
         xed_file_browser_widget_set_root (priv->tree_widget,
-                                    root,
+                                    parent,
                                     TRUE);
 
         g_object_unref (parent);
-        g_free (root);
     }
 
     g_object_unref (file);
@@ -352,7 +350,6 @@ on_action_open_terminal (GtkAction            *action,
 {
     XedFileBrowserPluginPrivate *priv = plugin->priv;
     gchar *terminal;
-    gchar *wd = NULL;
     gchar *local;
     gchar *argv[2];
     GFile *file;
@@ -367,18 +364,16 @@ on_action_open_terminal (GtkAction            *action,
     }
 
     store = xed_file_browser_widget_get_browser_store (priv->tree_widget);
-    gtk_tree_model_get (GTK_TREE_MODEL (store), &iter, XED_FILE_BROWSER_STORE_COLUMN_URI, &wd, -1);
+    gtk_tree_model_get (GTK_TREE_MODEL (store), &iter, XED_FILE_BROWSER_STORE_COLUMN_LOCATION, &file, -1);
 
-    if (wd == NULL)
+    if (file == NULL)
     {
         return;
     }
 
     terminal = get_terminal (plugin);
 
-    file = g_file_new_for_uri (wd);
     local = g_file_get_path (file);
-    g_object_unref (file);
 
     argv[0] = terminal;
     argv[1] = NULL;
@@ -393,7 +388,6 @@ on_action_open_terminal (GtkAction            *action,
                    NULL);
 
     g_free (terminal);
-    g_free (wd);
     g_free (local);
 }
 
@@ -406,7 +400,7 @@ on_selection_changed_cb (GtkTreeSelection     *selection,
     GtkTreeModel *model;
     GtkTreeIter iter;
     gboolean sensitive;
-    gchar *uri;
+    GFile *location;
 
     tree_view = GTK_TREE_VIEW (xed_file_browser_widget_get_browser_view (priv->tree_widget));
     model = gtk_tree_view_get_model (tree_view);
@@ -420,10 +414,9 @@ on_selection_changed_cb (GtkTreeSelection     *selection,
 
     if (sensitive)
     {
-        gtk_tree_model_get (model, &iter, XED_FILE_BROWSER_STORE_COLUMN_URI, &uri, -1);
+        gtk_tree_model_get (model, &iter, XED_FILE_BROWSER_STORE_COLUMN_LOCATION, &location, -1);
 
-        sensitive = xed_utils_uri_has_file_scheme (uri);
-        g_free (uri);
+        sensitive = xed_utils_location_has_file_scheme (location);
     }
 
     gtk_action_set_sensitive (gtk_action_group_get_action (priv->single_selection_action_group, "OpenTerminal"), sensitive);
@@ -550,8 +543,8 @@ xed_file_browser_plugin_activate (XedWindowActivatable *activatable)
     priv->settings = g_settings_new (FILE_BROWSER_SCHEMA);
     priv->onload_settings = g_settings_new (FILE_BROWSER_ONLOAD_SCHEMA);
 
-    g_signal_connect (priv->tree_widget, "uri-activated",
-                      G_CALLBACK (on_uri_activated_cb), priv->window);
+    g_signal_connect (priv->tree_widget, "location-activated",
+                      G_CALLBACK (on_location_activated_cb), priv->window);
 
     g_signal_connect (priv->tree_widget, "error",
                       G_CALLBACK (on_error_cb), plugin);
@@ -652,11 +645,11 @@ xed_file_browser_plugin_class_finalize (XedFileBrowserPluginClass *klass)
 
 /* Callbacks */
 static void
-on_uri_activated_cb (XedFileBrowserWidget *tree_widget,
-                     gchar const          *uri,
-                     XedWindow            *window)
+on_location_activated_cb (XedFileBrowserWidget *tree_widget,
+                          GFile                *location,
+                          XedWindow            *window)
 {
-    xed_commands_load_uri (window, uri, NULL, 0);
+    xed_commands_load_location (window, location, NULL, 0);
 }
 
 static void
@@ -764,41 +757,33 @@ on_filter_mode_changed_cb (XedFileBrowserStore  *model,
 
 static void
 on_rename_cb (XedFileBrowserStore *store,
-              const gchar *olduri,
-              const gchar *newuri,
-              XedWindow   *window)
+              GFile               *oldfile,
+              GFile               *newfile,
+              XedWindow           *window)
 {
     XedApp *app;
     GList *documents;
     GList *item;
     XedDocument *doc;
     GFile *docfile;
-    GFile *oldfile;
-    GFile *newfile;
-    gchar *uri;
 
     /* Find all documents and set its uri to newuri where it matches olduri */
     app = xed_app_get_default ();
     documents = xed_app_get_documents (app);
 
-    oldfile = g_file_new_for_uri (olduri);
-    newfile = g_file_new_for_uri (newuri);
-
     for (item = documents; item; item = item->next)
     {
         doc = XED_DOCUMENT (item->data);
-        uri = xed_document_get_uri (doc);
+        docfile = xed_document_get_location (doc);
 
-        if (!uri)
+        if (!docfile)
         {
             continue;
         }
 
-        docfile = g_file_new_for_uri (uri);
-
         if (g_file_equal (docfile, oldfile))
         {
-            xed_document_set_uri (doc, newuri);
+            xed_document_set_location (doc, newfile);
         }
         else
         {
@@ -812,23 +797,17 @@ on_rename_cb (XedFileBrowserStore *store,
                    the prefix oldfile */
 
                 g_object_unref (docfile);
-                g_free (uri);
 
                 docfile = g_file_get_child (newfile, relative);
-                uri = g_file_get_uri (docfile);
 
-                xed_document_set_uri (doc, uri);
+                xed_document_set_location (doc, docfile);
             }
 
             g_free (relative);
         }
 
-        g_free (uri);
         g_object_unref (docfile);
     }
-
-    g_object_unref (oldfile);
-    g_object_unref (newfile);
 
     g_list_free (documents);
 }
@@ -861,8 +840,9 @@ on_virtual_root_changed_cb (XedFileBrowserStore  *store,
                             XedFileBrowserPlugin *plugin)
 {
     XedFileBrowserPluginPrivate *priv = plugin->priv;
-    gchar * root;
-    gchar * virtual_root;
+    GFile *root;
+    GFile *virtual_root;
+    gchar *uri_root = NULL;
 
     root = xed_file_browser_store_get_root (store);
 
@@ -870,25 +850,35 @@ on_virtual_root_changed_cb (XedFileBrowserStore  *store,
     {
         return;
     }
+    else
+    {
+        uri_root = g_file_get_uri (root);
+        g_object_unref (root);
+    }
 
-    g_settings_set_string (priv->onload_settings, "root", root);
+    g_settings_set_string (priv->onload_settings, "root", uri_root);
+    g_free (uri_root);
 
     virtual_root = xed_file_browser_store_get_virtual_root (store);
 
     if (!virtual_root)
     {
         /* Set virtual to same as root then */
-        g_settings_set_string (priv->onload_settings, "virtual-root", root);
+        g_settings_set_string (priv->onload_settings, "virtual-root", uri_root);
     }
     else
     {
-        g_settings_set_string (priv->onload_settings, "virtual-root", virtual_root);
+        gchar *uri_vroot;
+
+        uri_vroot = g_file_get_uri (virtual_root);
+
+        g_settings_set_string (priv->onload_settings, "virtual-root", uri_vroot);
+
+        g_free (uri_vroot);
+        g_object_unref (virtual_root);
     }
 
     g_signal_handlers_disconnect_by_func (XED_WINDOW (priv->window), G_CALLBACK (on_tab_added_cb), plugin);
-
-    g_free (root);
-    g_free (virtual_root);
 }
 
 static void
@@ -905,23 +895,27 @@ on_tab_added_cb (XedWindow            *window,
     if (open)
     {
         XedDocument *doc;
-        gchar *uri;
+        GFile *location;
 
         doc = xed_tab_get_document (tab);
-        uri = xed_document_get_uri (doc);
+        location = xed_document_get_location (doc);
 
-        if (uri != NULL && xed_utils_uri_has_file_scheme (uri))
+        if (location != NULL)
         {
-            prepare_auto_root (plugin);
-            set_root_from_doc (plugin, doc);
-            load_default = FALSE;
+            if (xed_utils_location_has_file_scheme (location))
+            {
+                prepare_auto_root (plugin);
+                set_root_from_doc (plugin, doc);
+                load_default = FALSE;
+            }
+            g_object_unref (location);
         }
-
-        g_free (uri);
     }
 
     if (load_default)
+    {
         restore_default_location (plugin);
+    }
 
     /* Disconnect this signal, it's only called once */
     g_signal_handlers_disconnect_by_func (window, G_CALLBACK (on_tab_added_cb), plugin);
@@ -932,12 +926,12 @@ get_filename_from_path (GtkTreeModel *model,
                         GtkTreePath  *path)
 {
     GtkTreeIter iter;
-    gchar *uri;
+    GFile *location;
 
     gtk_tree_model_get_iter (model, &iter, path);
-    gtk_tree_model_get (model, &iter, XED_FILE_BROWSER_STORE_COLUMN_URI, &uri, -1);
+    gtk_tree_model_get (model, &iter, XED_FILE_BROWSER_STORE_COLUMN_LOCATION, &location, -1);
 
-    return xed_file_browser_utils_uri_basename (uri);
+    return xed_file_browser_utils_file_basename (location);
 }
 
 static gboolean

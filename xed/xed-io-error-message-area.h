@@ -2,7 +2,7 @@
  * xed-io-error-message-area.h
  * This file is part of xed
  *
- * Copyright (C) 2005 - Paolo Maggi 
+ * Copyright (C) 2005 - Paolo Maggi
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,14 +16,14 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
- * Foundation, Inc., 51 Franklin St, Fifth Floor, 
+ * Foundation, Inc., 51 Franklin St, Fifth Floor,
  * Boston, MA 02110-1301, USA.
  */
- 
+
 /*
- * Modified by the xed Team, 2005. See the AUTHORS file for a 
- * list of people on the xed Team.  
- * See the ChangeLog files for a list of changes. 
+ * Modified by the xed Team, 2005. See the AUTHORS file for a
+ * list of people on the xed Team.
+ * See the ChangeLog files for a list of changes.
  *
  * $Id$
  */
@@ -35,32 +35,32 @@
 
 G_BEGIN_DECLS
 
-GtkWidget	*xed_io_loading_error_message_area_new		 (const gchar         *uri,
+GtkWidget	*xed_io_loading_error_message_area_new		 (GFile               *location,
 									  const XedEncoding *encoding,
 									  const GError        *error);
 
-GtkWidget	*xed_unrecoverable_reverting_error_message_area_new	 (const gchar         *uri,
+GtkWidget	*xed_unrecoverable_reverting_error_message_area_new	 (GFile               *location,
 									  const GError        *error);
 
-GtkWidget	*xed_conversion_error_while_saving_message_area_new	 (const gchar         *uri,
+GtkWidget	*xed_conversion_error_while_saving_message_area_new	 (GFile               *location,
 									  const XedEncoding *encoding,
 									  const GError        *error);
 
-const XedEncoding 
+const XedEncoding
 		*xed_conversion_error_message_area_get_encoding	 (GtkWidget           *message_area);
 
-GtkWidget	*xed_file_already_open_warning_message_area_new	 (const gchar         *uri);
+GtkWidget	*xed_file_already_open_warning_message_area_new	 (GFile               *location);
 
-GtkWidget	*xed_externally_modified_saving_error_message_area_new (const gchar         *uri,
+GtkWidget	*xed_externally_modified_saving_error_message_area_new (GFile               *location,
 									  const GError        *error);
 
-GtkWidget	*xed_no_backup_saving_error_message_area_new		 (const gchar         *uri,
+GtkWidget	*xed_no_backup_saving_error_message_area_new		 (GFile               *location,
 									  const GError        *error);
 
-GtkWidget	*xed_unrecoverable_saving_error_message_area_new	 (const gchar         *uri,
+GtkWidget	*xed_unrecoverable_saving_error_message_area_new	 (GFile               *location,
 									  const GError        *error);
 
-GtkWidget	*xed_externally_modified_message_area_new		 (const gchar         *uri,
+GtkWidget	*xed_externally_modified_message_area_new		 (GFile               *location,
 									  gboolean             document_modified);
 
 G_END_DECLS

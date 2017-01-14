@@ -62,7 +62,7 @@ struct _XedTabPrivate
     XedPrintJob *print_job;
 
     /* tmp data for saving */
-    gchar *tmp_save_uri;
+    GFile *tmp_save_location;
 
     /* tmp data for loading */
     gint               tmp_line_pos;
@@ -213,6 +213,20 @@ xed_tab_set_property (GObject      *object,
 }
 
 static void
+xed_tab_dispose (GObject *object)
+{
+    XedTab *tab = XED_TAB (object);
+
+    if (tab->priv->tmp_save_location != NULL)
+    {
+        g_object_unref (tab->priv->tmp_save_location);
+        tab->priv->tmp_save_location = NULL;
+    }
+
+    G_OBJECT_CLASS (xed_tab_parent_class)->dispose (object);
+}
+
+static void
 xed_tab_finalize (GObject *object)
 {
     XedTab *tab = XED_TAB (object);
@@ -221,8 +235,6 @@ xed_tab_finalize (GObject *object)
     {
         g_timer_destroy (tab->priv->timer);
     }
-
-    g_free (tab->priv->tmp_save_uri);
 
     if (tab->priv->auto_save_timeout > 0)
     {
@@ -237,6 +249,7 @@ xed_tab_class_init (XedTabClass *klass)
 {
     GObjectClass *object_class = G_OBJECT_CLASS (klass);
 
+    object_class->dispose = xed_tab_dispose;
     object_class->finalize = xed_tab_finalize;
     object_class->get_property = xed_tab_get_property;
     object_class->set_property = xed_tab_set_property;
@@ -407,13 +420,13 @@ xed_tab_set_state (XedTab      *tab,
 }
 
 static void
-document_uri_notify_handler (XedDocument *document,
-                             GParamSpec  *pspec,
-                             XedTab      *tab)
+document_location_notify_handler (XedDocument *document,
+                                  GParamSpec  *pspec,
+                                  XedTab      *tab)
 {
     xed_debug (DEBUG_TAB);
 
-    /* Notify the change in the URI */
+    /* Notify the change in the location */
     g_object_notify (G_OBJECT (tab), "name");
 }
 
@@ -478,7 +491,7 @@ io_loading_error_message_area_response (GtkWidget *message_area,
 {
     XedDocument *doc;
     XedView *view;
-    gchar *uri;
+    GFile *location;
     const XedEncoding *encoding;
 
     doc = xed_tab_get_document (tab);
@@ -487,8 +500,8 @@ io_loading_error_message_area_response (GtkWidget *message_area,
     view = xed_tab_get_view (tab);
     g_return_if_fail (XED_IS_VIEW (view));
 
-    uri = xed_document_get_uri (doc);
-    g_return_if_fail (uri != NULL);
+    location = xed_document_get_location (doc);
+    g_return_if_fail (location != NULL);
 
     switch (response_id)
     {
@@ -505,7 +518,7 @@ io_loading_error_message_area_response (GtkWidget *message_area,
 
             g_return_if_fail (tab->priv->auto_save_timeout <= 0);
 
-            xed_document_load (doc, uri, tab->priv->tmp_encoding, tab->priv->tmp_line_pos, FALSE);
+            xed_document_load (doc, location, tab->priv->tmp_encoding, tab->priv->tmp_line_pos, FALSE);
             break;
         case GTK_RESPONSE_YES:
             /* This means that we want to edit the document anyway */
@@ -517,13 +530,13 @@ io_loading_error_message_area_response (GtkWidget *message_area,
             set_message_area (tab, NULL);
             break;
         default:
-            _xed_recent_remove (XED_WINDOW (gtk_widget_get_toplevel (GTK_WIDGET (tab))), uri);
+            _xed_recent_remove (XED_WINDOW (gtk_widget_get_toplevel (GTK_WIDGET (tab))), location);
 
             remove_tab (tab);
             break;
     }
 
-    g_free (uri);
+    g_object_unref (location);
 }
 
 static void
@@ -618,15 +631,15 @@ show_loading_message_area (XedTab *tab)
     }
     else
     {
-        GFile *file;
+        GFile *location;
 
-        file = xed_document_get_location (doc);
-        if (file != NULL)
+        location = xed_document_get_location (doc);
+        if (location != NULL)
         {
             gchar *str;
 
-            str = xed_utils_location_get_dirname_for_display (file);
-            g_object_unref (file);
+            str = xed_utils_location_get_dirname_for_display (location);
+            g_object_unref (location);
 
             /* use the remaining space for the dir, but use a min of 20 chars
              * so that we do not end up with a dirname like "(a...b)".
@@ -704,7 +717,7 @@ show_saving_message_area (XedTab *tab)
     gchar *msg = NULL;
     gint len;
 
-    g_return_if_fail (tab->priv->tmp_save_uri != NULL);
+    g_return_if_fail (tab->priv->tmp_save_location != NULL);
 
     if (tab->priv->message_area != NULL)
     {
@@ -734,7 +747,7 @@ show_saving_message_area (XedTab *tab)
 
         from = short_name;
 
-        to = xed_utils_uri_for_display (tab->priv->tmp_save_uri);
+        to = xed_utils_uri_for_display (tab->priv->tmp_save_location);
 
         str = xed_utils_str_middle_truncate (to, MAX (20, MAX_MSG_LENGTH - len));
         g_free (to);
@@ -848,7 +861,6 @@ document_loaded (XedDocument  *document,
 {
     GtkWidget *emsg;
     GFile *location;
-    gchar *uri;
     const XedEncoding *encoding;
 
     g_return_if_fail ((tab->priv->state == XED_TAB_STATE_LOADING) || (tab->priv->state == XED_TAB_STATE_REVERTING));
@@ -864,7 +876,6 @@ document_loaded (XedDocument  *document,
     set_message_area (tab, NULL);
 
     location = xed_document_get_location (document);
-    uri = xed_document_get_uri (document);
 
     /* if the error is CONVERSION FALLBACK don't treat it as a normal error */
     if (error != NULL && (error->domain != XED_DOCUMENT_ERROR || error->code != XED_DOCUMENT_ERROR_CONVERSION_FALLBACK))
@@ -892,11 +903,11 @@ document_loaded (XedDocument  *document,
         }
         else
         {
-            _xed_recent_remove (XED_WINDOW (gtk_widget_get_toplevel (GTK_WIDGET (tab))), uri);
+            _xed_recent_remove (XED_WINDOW (gtk_widget_get_toplevel (GTK_WIDGET (tab))), location);
 
             if (tab->priv->state == XED_TAB_STATE_LOADING_ERROR)
             {
-                emsg = xed_io_loading_error_message_area_new (uri, tab->priv->tmp_encoding, error);
+                emsg = xed_io_loading_error_message_area_new (location, tab->priv->tmp_encoding, error);
                 g_signal_connect (emsg, "response",
                                   G_CALLBACK (io_loading_error_message_area_response), tab);
             }
@@ -904,7 +915,7 @@ document_loaded (XedDocument  *document,
             {
                 g_return_if_fail (tab->priv->state == XED_TAB_STATE_REVERTING_ERROR);
 
-                emsg = xed_unrecoverable_reverting_error_message_area_new (uri, error);
+                emsg = xed_unrecoverable_reverting_error_message_area_new (location, error);
 
                 g_signal_connect (emsg, "response",
                                   G_CALLBACK (unrecoverable_reverting_error_message_area_response), tab);
@@ -918,7 +929,6 @@ document_loaded (XedDocument  *document,
         gtk_widget_show (emsg);
 
         g_object_unref (location);
-        g_free (uri);
 
         return;
     }
@@ -928,10 +938,10 @@ document_loaded (XedDocument  *document,
         GList *all_documents;
         GList *l;
 
-        g_return_if_fail (uri != NULL);
+        g_return_if_fail (location != NULL);
 
         mime = xed_document_get_mime_type (document);
-        _xed_recent_add (XED_WINDOW (gtk_widget_get_toplevel (GTK_WIDGET (tab))), uri, mime);
+        _xed_recent_add (XED_WINDOW (gtk_widget_get_toplevel (GTK_WIDGET (tab))), location, mime);
         g_free (mime);
 
         if (error && error->domain == XED_DOCUMENT_ERROR && error->code == XED_DOCUMENT_ERROR_CONVERSION_FALLBACK)
@@ -940,7 +950,7 @@ document_loaded (XedDocument  *document,
 
             _xed_document_set_readonly (document, TRUE);
 
-            emsg = xed_io_loading_error_message_area_new (uri, tab->priv->tmp_encoding, error);
+            emsg = xed_io_loading_error_message_area_new (location, tab->priv->tmp_encoding, error);
 
             set_message_area (tab, emsg);
 
@@ -976,7 +986,7 @@ document_loaded (XedDocument  *document,
 
                         tab->priv->not_editable = TRUE;
 
-                        w = xed_file_already_open_warning_message_area_new (uri);
+                        w = xed_file_already_open_warning_message_area_new (location);
 
                         set_message_area (tab, w);
 
@@ -1009,7 +1019,6 @@ document_loaded (XedDocument  *document,
 
  end:
     g_object_unref (location);
-    g_free (uri);
 
     tab->priv->tmp_line_pos = 0;
     tab->priv->tmp_encoding = NULL;
@@ -1054,8 +1063,11 @@ static void
 end_saving (XedTab *tab)
 {
     /* Reset tmp data for saving */
-    g_free (tab->priv->tmp_save_uri);
-    tab->priv->tmp_save_uri = NULL;
+    if (tab->priv->tmp_save_location)
+    {
+        g_object_unref (tab->priv->tmp_save_location);
+        tab->priv->tmp_save_location = NULL;
+    }
     tab->priv->tmp_encoding = NULL;
 
     install_auto_save_timeout_if_needed (tab);
@@ -1100,7 +1112,7 @@ no_backup_error_message_area_response (GtkWidget *message_area,
 
         set_message_area (tab, NULL);
 
-        g_return_if_fail (tab->priv->tmp_save_uri != NULL);
+        g_return_if_fail (tab->priv->tmp_save_location != NULL);
         g_return_if_fail (tab->priv->tmp_encoding != NULL);
 
         xed_tab_set_state (tab, XED_TAB_STATE_SAVING);
@@ -1133,7 +1145,7 @@ externally_modified_error_message_area_response (GtkWidget *message_area,
 
         set_message_area (tab, NULL);
 
-        g_return_if_fail (tab->priv->tmp_save_uri != NULL);
+        g_return_if_fail (tab->priv->tmp_save_location != NULL);
         g_return_if_fail (tab->priv->tmp_encoding != NULL);
 
         xed_tab_set_state (tab, XED_TAB_STATE_SAVING);
@@ -1164,6 +1176,7 @@ recoverable_saving_error_message_area_response (GtkWidget *message_area,
     if (response_id == GTK_RESPONSE_OK)
     {
         const XedEncoding *encoding;
+        gchar *tmp_uri;
 
         encoding = xed_conversion_error_message_area_get_encoding (GTK_WIDGET (message_area));
 
@@ -1171,17 +1184,19 @@ recoverable_saving_error_message_area_response (GtkWidget *message_area,
 
         set_message_area (tab, NULL);
 
-        g_return_if_fail (tab->priv->tmp_save_uri != NULL);
+        g_return_if_fail (tab->priv->tmp_save_location != NULL);
 
         xed_tab_set_state (tab, XED_TAB_STATE_SAVING);
 
         tab->priv->tmp_encoding = encoding;
 
-        xed_debug_message (DEBUG_TAB, "Force saving with URI '%s'", tab->priv->tmp_save_uri);
+        tmp_uri = g_file_get_uri (tab->priv->tmp_save_location);
+        xed_debug_message (DEBUG_TAB, "Force saving with URI '%s'", tmp_uri);
+        g_free (tmp_uri);
 
         g_return_if_fail (tab->priv->auto_save_timeout <= 0);
 
-        xed_document_save_as (doc, tab->priv->tmp_save_uri, tab->priv->tmp_encoding, tab->priv->save_flags);
+        xed_document_save_as (doc, tab->priv->tmp_save_location, tab->priv->tmp_encoding, tab->priv->save_flags);
     }
     else
     {
@@ -1198,7 +1213,7 @@ document_saved (XedDocument  *document,
 
     g_return_if_fail (tab->priv->state == XED_TAB_STATE_SAVING);
 
-    g_return_if_fail (tab->priv->tmp_save_uri != NULL);
+    g_return_if_fail (tab->priv->tmp_save_location != NULL);
     g_return_if_fail (tab->priv->tmp_encoding != NULL);
     g_return_if_fail (tab->priv->auto_save_timeout <= 0);
 
@@ -1215,7 +1230,7 @@ document_saved (XedDocument  *document,
         if (error->domain == XED_DOCUMENT_ERROR && error->code == XED_DOCUMENT_ERROR_EXTERNALLY_MODIFIED)
         {
             /* This error is recoverable */
-            emsg = xed_externally_modified_saving_error_message_area_new (tab->priv->tmp_save_uri, error);
+            emsg = xed_externally_modified_saving_error_message_area_new (tab->priv->tmp_save_location, error);
             g_return_if_fail (emsg != NULL);
 
             set_message_area (tab, emsg);
@@ -1229,7 +1244,7 @@ document_saved (XedDocument  *document,
                  error->code == G_IO_ERROR_CANT_CREATE_BACKUP))
         {
             /* This error is recoverable */
-            emsg = xed_no_backup_saving_error_message_area_new (tab->priv->tmp_save_uri, error);
+            emsg = xed_no_backup_saving_error_message_area_new (tab->priv->tmp_save_location, error);
             g_return_if_fail (emsg != NULL);
 
             set_message_area (tab, emsg);
@@ -1243,9 +1258,9 @@ document_saved (XedDocument  *document,
                  error->code != G_IO_ERROR_PARTIAL_INPUT))
         {
             /* These errors are _NOT_ recoverable */
-            _xed_recent_remove  (XED_WINDOW (gtk_widget_get_toplevel (GTK_WIDGET (tab))), tab->priv->tmp_save_uri);
+            _xed_recent_remove  (XED_WINDOW (gtk_widget_get_toplevel (GTK_WIDGET (tab))), tab->priv->tmp_save_location);
 
-            emsg = xed_unrecoverable_saving_error_message_area_new (tab->priv->tmp_save_uri, error);
+            emsg = xed_unrecoverable_saving_error_message_area_new (tab->priv->tmp_save_location, error);
             g_return_if_fail (emsg != NULL);
 
             set_message_area (tab, emsg);
@@ -1258,7 +1273,7 @@ document_saved (XedDocument  *document,
             /* This error is recoverable */
             g_return_if_fail (error->domain == G_CONVERT_ERROR || error->domain == G_IO_ERROR);
 
-            emsg = xed_conversion_error_while_saving_message_area_new (tab->priv->tmp_save_uri,
+            emsg = xed_conversion_error_while_saving_message_area_new (tab->priv->tmp_save_location,
                                                                        tab->priv->tmp_encoding,
                                                                        error);
 
@@ -1276,7 +1291,7 @@ document_saved (XedDocument  *document,
     {
         gchar *mime = xed_document_get_mime_type (document);
 
-        _xed_recent_add (XED_WINDOW (gtk_widget_get_toplevel (GTK_WIDGET (tab))), tab->priv->tmp_save_uri, mime);
+        _xed_recent_add (XED_WINDOW (gtk_widget_get_toplevel (GTK_WIDGET (tab))), tab->priv->tmp_save_location, mime);
         g_free (mime);
 
         if (tab->priv->print_preview != NULL)
@@ -1324,20 +1339,19 @@ display_externally_modified_notification (XedTab *tab)
 {
     GtkWidget *message_area;
     XedDocument *doc;
-    gchar *uri;
+    GFile *location;
     gboolean document_modified;
 
     doc = xed_tab_get_document (tab);
     g_return_if_fail (XED_IS_DOCUMENT (doc));
 
-    /* uri cannot be NULL, we're here because
-     * the file we're editing changed on disk */
-    uri = xed_document_get_uri (doc);
-    g_return_if_fail (uri != NULL);
+    /* we're here because the file we're editing changed on disk */
+    location = xed_document_get_location (doc);
+    g_return_if_fail (location != NULL);
 
     document_modified = gtk_text_buffer_get_modified (GTK_TEXT_BUFFER(doc));
-    message_area = xed_externally_modified_message_area_new (uri, document_modified);
-    g_free (uri);
+    message_area = xed_externally_modified_message_area_new (location, document_modified);
+    g_object_unref (location);
 
     tab->priv->message_area = NULL;
     set_message_area (tab, message_area);
@@ -1448,8 +1462,8 @@ xed_tab_init (XedTab *tab)
     gtk_container_add (GTK_CONTAINER (sw), tab->priv->view);
     gtk_widget_show (sw);
 
-    g_signal_connect (doc, "notify::uri",
-                      G_CALLBACK (document_uri_notify_handler), tab);
+    g_signal_connect (doc, "notify::location",
+                      G_CALLBACK (document_location_notify_handler), tab);
     g_signal_connect (doc, "notify::shortname",
                       G_CALLBACK (document_shortname_notify_handler), tab);
     g_signal_connect (doc, "modified_changed",
@@ -1478,18 +1492,18 @@ _xed_tab_new (void)
 /* Whether create is TRUE, creates a new empty document if location does
    not refer to an existing file */
 GtkWidget *
-_xed_tab_new_from_uri (const gchar       *uri,
-                       const XedEncoding *encoding,
-                       gint               line_pos,
-                       gboolean           create)
+_xed_tab_new_from_location (GFile             *location,
+                            const XedEncoding *encoding,
+                            gint               line_pos,
+                            gboolean           create)
 {
     XedTab *tab;
 
-    g_return_val_if_fail (uri != NULL, NULL);
+    g_return_val_if_fail (G_IS_FILE (location), NULL);
 
     tab = XED_TAB (_xed_tab_new ());
 
-    _xed_tab_load (tab, uri, encoding, line_pos, create);
+    _xed_tab_load (tab, location, encoding, line_pos, create);
 
     return GTK_WIDGET (tab);
 }
@@ -1805,7 +1819,7 @@ xed_tab_get_from_document (XedDocument *doc)
 
 void
 _xed_tab_load (XedTab            *tab,
-               const gchar       *uri,
+               GFile             *location,
                const XedEncoding *encoding,
                gint               line_pos,
                gboolean           create)
@@ -1813,6 +1827,7 @@ _xed_tab_load (XedTab            *tab,
     XedDocument *doc;
 
     g_return_if_fail (XED_IS_TAB (tab));
+    g_return_if_fail (G_IS_FILE (location));
     g_return_if_fail (tab->priv->state == XED_TAB_STATE_NORMAL);
 
     doc = xed_tab_get_document (tab);
@@ -1828,14 +1843,14 @@ _xed_tab_load (XedTab            *tab,
         remove_auto_save_timeout (tab);
     }
 
-    xed_document_load (doc, uri, encoding, line_pos, create);
+    xed_document_load (doc, location, encoding, line_pos, create);
 }
 
 void
 _xed_tab_revert (XedTab *tab)
 {
     XedDocument *doc;
-    gchar *uri;
+    GFile *location;
 
     g_return_if_fail (XED_IS_TAB (tab));
     g_return_if_fail ((tab->priv->state == XED_TAB_STATE_NORMAL) ||
@@ -1851,8 +1866,8 @@ _xed_tab_revert (XedTab *tab)
 
     xed_tab_set_state (tab, XED_TAB_STATE_REVERTING);
 
-    uri = xed_document_get_uri (doc);
-    g_return_if_fail (uri != NULL);
+    location = xed_document_get_location (doc);
+    g_return_if_fail (location != NULL);
 
     tab->priv->tmp_line_pos = 0;
     tab->priv->tmp_encoding = xed_document_get_encoding (doc);
@@ -1862,9 +1877,9 @@ _xed_tab_revert (XedTab *tab)
         remove_auto_save_timeout (tab);
     }
 
-    xed_document_load (doc, uri, tab->priv->tmp_encoding, 0, FALSE);
+    xed_document_load (doc, location, tab->priv->tmp_encoding, 0, FALSE);
 
-    g_free (uri);
+    g_object_unref (location);
 }
 
 void
@@ -1877,7 +1892,7 @@ _xed_tab_save (XedTab *tab)
     g_return_if_fail ((tab->priv->state == XED_TAB_STATE_NORMAL) ||
                       (tab->priv->state == XED_TAB_STATE_EXTERNALLY_MODIFIED_NOTIFICATION) ||
                       (tab->priv->state == XED_TAB_STATE_SHOWING_PRINT_PREVIEW));
-    g_return_if_fail (tab->priv->tmp_save_uri == NULL);
+    g_return_if_fail (tab->priv->tmp_save_location == NULL);
     g_return_if_fail (tab->priv->tmp_encoding == NULL);
 
     doc = xed_tab_get_document (tab);
@@ -1902,7 +1917,7 @@ _xed_tab_save (XedTab *tab)
     xed_tab_set_state (tab, XED_TAB_STATE_SAVING);
 
     /* uri used in error messages, will be freed in document_saved */
-    tab->priv->tmp_save_uri = xed_document_get_uri (doc);
+    tab->priv->tmp_save_location = xed_document_get_location (doc);
     tab->priv->tmp_encoding = xed_document_get_encoding (doc);
 
     if (tab->priv->auto_save_timeout > 0)
@@ -1920,7 +1935,7 @@ xed_tab_auto_save (XedTab *tab)
 
     xed_debug (DEBUG_TAB);
 
-    g_return_val_if_fail (tab->priv->tmp_save_uri == NULL, FALSE);
+    g_return_val_if_fail (tab->priv->tmp_save_location == NULL, FALSE);
     g_return_val_if_fail (tab->priv->tmp_encoding == NULL, FALSE);
 
     doc = xed_tab_get_document (tab);
@@ -1958,7 +1973,7 @@ xed_tab_auto_save (XedTab *tab)
     xed_tab_set_state (tab, XED_TAB_STATE_SAVING);
 
     /* uri used in error messages, will be freed in document_saved */
-    tab->priv->tmp_save_uri = xed_document_get_uri (doc);
+    tab->priv->tmp_save_location = xed_document_get_location (doc);
     tab->priv->tmp_encoding = xed_document_get_encoding (doc);
 
     /* Set auto_save_timeout to 0 since the timeout is going to be destroyed */
@@ -1978,7 +1993,7 @@ xed_tab_auto_save (XedTab *tab)
 
 void
 _xed_tab_save_as (XedTab                 *tab,
-                  const gchar            *uri,
+                  GFile                  *location,
                   const XedEncoding      *encoding,
                   XedDocumentNewlineType  newline_type)
 {
@@ -1989,9 +2004,10 @@ _xed_tab_save_as (XedTab                 *tab,
     g_return_if_fail ((tab->priv->state == XED_TAB_STATE_NORMAL) ||
                       (tab->priv->state == XED_TAB_STATE_EXTERNALLY_MODIFIED_NOTIFICATION) ||
                       (tab->priv->state == XED_TAB_STATE_SHOWING_PRINT_PREVIEW));
+    g_return_if_fail (G_IS_FILE (location));
     g_return_if_fail (encoding != NULL);
 
-    g_return_if_fail (tab->priv->tmp_save_uri == NULL);
+    g_return_if_fail (tab->priv->tmp_save_location == NULL);
     g_return_if_fail (tab->priv->tmp_encoding == NULL);
 
     doc = xed_tab_get_document (tab);
@@ -2019,7 +2035,7 @@ _xed_tab_save_as (XedTab                 *tab,
 
     /* uri used in error messages... strdup because errors are async
      * and the string can go away, will be freed in document_saved */
-    tab->priv->tmp_save_uri = g_strdup (uri);
+    tab->priv->tmp_save_location = g_file_dup (location);
     tab->priv->tmp_encoding = encoding;
 
     if (tab->priv->auto_save_timeout > 0)
@@ -2032,7 +2048,7 @@ _xed_tab_save_as (XedTab                 *tab,
        a very big deal, but would be nice to have them follow the
        same pattern. This can be changed once we break API for 3.0 */
     xed_document_set_newline_type (doc, newline_type);
-    xed_document_save_as (doc, uri, encoding, tab->priv->save_flags);
+    xed_document_save_as (doc, location, encoding, tab->priv->save_flags);
 }
 
 #define XED_PAGE_SETUP_KEY "xed-page-setup-key"
