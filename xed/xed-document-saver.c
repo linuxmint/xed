@@ -39,10 +39,10 @@
 #include "xed-document-saver.h"
 #include "xed-debug.h"
 #include "xed-document-input-stream.h"
-#include "xed-prefs-manager.h"
 #include "xed-marshal.h"
 #include "xed-utils.h"
 #include "xed-enum-types.h"
+#include "xed-settings.h"
 
 #define WRITE_CHUNK_SIZE 8192
 
@@ -86,6 +86,8 @@ static void check_modified_async (AsyncData *async);
 
 struct _XedDocumentSaverPrivate
 {
+    GSettings *editor_settings;
+
     GFileInfo *info;
     XedDocument *document;
     gboolean used;
@@ -219,6 +221,8 @@ xed_document_saver_dispose (GObject *object)
         priv->location = NULL;
     }
 
+    g_clear_object (&priv->editor_settings);
+
     G_OBJECT_CLASS (xed_document_saver_parent_class)->dispose (object);
 }
 
@@ -314,17 +318,16 @@ xed_document_saver_class_init (XedDocumentSaverClass *klass)
                                                          G_PARAM_READWRITE |
                                                          G_PARAM_CONSTRUCT_ONLY));
 
-    signals[SAVING] =
-        g_signal_new ("saving",
-                  G_OBJECT_CLASS_TYPE (object_class),
-                  G_SIGNAL_RUN_LAST,
-                  G_STRUCT_OFFSET (XedDocumentSaverClass, saving),
-                  NULL, NULL,
-                  xed_marshal_VOID__BOOLEAN_POINTER,
-                  G_TYPE_NONE,
-                  2,
-                  G_TYPE_BOOLEAN,
-                  G_TYPE_POINTER);
+    signals[SAVING] = g_signal_new ("saving",
+                                    G_OBJECT_CLASS_TYPE (object_class),
+                                    G_SIGNAL_RUN_LAST,
+                                    G_STRUCT_OFFSET (XedDocumentSaverClass, saving),
+                                    NULL, NULL,
+                                    xed_marshal_VOID__BOOLEAN_POINTER,
+                                    G_TYPE_NONE,
+                                    2,
+                                    G_TYPE_BOOLEAN,
+                                    G_TYPE_POINTER);
 
     g_type_class_add_private (object_class, sizeof (XedDocumentSaverPrivate));
 }
@@ -337,6 +340,7 @@ xed_document_saver_init (XedDocumentSaver *saver)
     saver->priv->cancellable = g_cancellable_new ();
     saver->priv->error = NULL;
     saver->priv->used = FALSE;
+    saver->priv->editor_settings = g_settings_new ("org.x.editor.preferences.editor");
 }
 
 XedDocumentSaver *
@@ -940,7 +944,8 @@ xed_document_saver_save (XedDocumentSaver *saver,
     }
     else
     {
-        saver->priv->keep_backup = xed_prefs_manager_get_create_backup_copy ();
+        saver->priv->keep_backup = g_settings_get_boolean (saver->priv->editor_settings,
+                                                           XED_SETTINGS_CREATE_BACKUP_COPY);
     }
 
     saver->priv->old_mtime = *old_mtime;

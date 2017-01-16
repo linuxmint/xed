@@ -21,7 +21,6 @@
  */
 
 #include "xed-document-loader.h"
-#include "xed-prefs-manager-app.h"
 #include <gio/gio.h>
 #include <gtk/gtk.h>
 #include <glib.h>
@@ -240,8 +239,6 @@ int main (int   argc,
           char *argv[])
 {
 	g_test_init (&argc, &argv, NULL);
-
-	xed_prefs_manager_app_init ();
 
 	g_test_add_func ("/document-loader/end-line-stripping", test_end_line_stripping);
 	g_test_add_func ("/document-loader/end-new-line-detection", test_end_new_line_detection);

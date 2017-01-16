@@ -2,7 +2,7 @@
  * xed-encodings.c
  * This file is part of xed
  *
- * Copyright (C) 2002-2005 Paolo Maggi 
+ * Copyright (C) 2002-2005 Paolo Maggi
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,14 +16,14 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
- * Foundation, Inc., 51 Franklin St, Fifth Floor, 
+ * Foundation, Inc., 51 Franklin St, Fifth Floor,
  * Boston, MA 02110-1301, USA.
  */
- 
+
 /*
- * Modified by the xed Team, 2002-2005. See the AUTHORS file for a 
- * list of people on the xed Team.  
- * See the ChangeLog files for a list of changes. 
+ * Modified by the xed Team, 2002-2005. See the AUTHORS file for a
+ * list of people on the xed Team.
+ * See the ChangeLog files for a list of changes.
  *
  * $Id$
  */
@@ -46,8 +46,8 @@ struct _XedEncoding
 	const gchar *name;
 };
 
-/* 
- * The original versions of the following tables are taken from profterm 
+/*
+ * The original versions of the following tables are taken from profterm
  *
  * Copyright (C) 2002 Red Hat, Inc.
  */
@@ -108,7 +108,7 @@ typedef enum
   XED_ENCODING_KOI8_R,
   XED_ENCODING_KOI8__R,
   XED_ENCODING_KOI8_U,
-  
+
   XED_ENCODING_SHIFT_JIS,
   XED_ENCODING_TCVN,
   XED_ENCODING_TIS_620,
@@ -129,7 +129,7 @@ typedef enum
 
   XED_ENCODING_UTF_8,
   XED_ENCODING_UNKNOWN
-  
+
 } XedEncodingIndex;
 
 static const XedEncoding utf8_encoding =  {
@@ -141,8 +141,8 @@ static const XedEncoding utf8_encoding =  {
 /* initialized in xed_encoding_lazy_init() */
 static XedEncoding unknown_encoding = {
 	XED_ENCODING_UNKNOWN,
-	NULL, 
-	NULL 
+	NULL,
+	NULL
 };
 
 static const XedEncoding encodings [] = {
@@ -248,7 +248,7 @@ static const XedEncoding encodings [] = {
     "KOI8-R", N_("Cyrillic") },
   { XED_ENCODING_KOI8_U,
     "KOI8U", N_("Cyrillic/Ukrainian") },
-  
+
   { XED_ENCODING_SHIFT_JIS,
     "SHIFT_JIS", N_("Japanese") },
   { XED_ENCODING_TCVN,
@@ -312,12 +312,12 @@ xed_encoding_get_from_charset (const gchar *charset)
 	if (g_ascii_strcasecmp (charset, "UTF-8") == 0)
 		return xed_encoding_get_utf8 ();
 
-	i = 0; 
+	i = 0;
 	while (i < XED_ENCODING_LAST)
 	{
 		if (g_ascii_strcasecmp (charset, encodings[i].charset) == 0)
 			return &encodings[i];
-      
+
 		++i;
 	}
 
@@ -364,17 +364,17 @@ xed_encoding_get_current (void)
 	if (initialized != FALSE)
 		return locale_encoding;
 
-	if (g_get_charset (&locale_charset) == FALSE) 
+	if (g_get_charset (&locale_charset) == FALSE)
 	{
 		g_return_val_if_fail (locale_charset != NULL, &utf8_encoding);
-		
+
 		locale_encoding = xed_encoding_get_from_charset (locale_charset);
 	}
 	else
 	{
 		locale_encoding = &utf8_encoding;
 	}
-	
+
 	if (locale_encoding == NULL)
 	{
 		locale_encoding = &unknown_encoding;
@@ -391,7 +391,7 @@ gchar *
 xed_encoding_to_string (const XedEncoding* enc)
 {
 	g_return_val_if_fail (enc != NULL, NULL);
-	
+
 	xed_encoding_lazy_init ();
 
 	g_return_val_if_fail (enc->charset != NULL, NULL);
@@ -443,7 +443,7 @@ xed_encoding_copy (const XedEncoding *enc)
 	return (XedEncoding *) enc;
 }
 
-void 
+void
 xed_encoding_free (XedEncoding *enc)
 {
 	g_return_if_fail (enc != NULL);
@@ -451,13 +451,13 @@ xed_encoding_free (XedEncoding *enc)
 
 /**
  * xed_encoding_get_type:
- * 
+ *
  * Retrieves the GType object which is associated with the
  * #XedEncoding class.
- * 
+ *
  * Return value: the GType associated with #XedEncoding.
  **/
-GType 
+GType
 xed_encoding_get_type (void)
 {
 	static GType our_type = 0;
@@ -469,5 +469,77 @@ xed_encoding_get_type (void)
 			(GBoxedFreeFunc) xed_encoding_free);
 
 	return our_type;
-} 
+}
 
+static gboolean
+data_exists (GSList         *list,
+             const gpointer  data)
+{
+    while (list != NULL)
+    {
+        if (list->data == data)
+            return TRUE;
+
+        list = g_slist_next (list);
+    }
+
+    return FALSE;
+}
+
+GSList *
+_xed_encoding_strv_to_list (const gchar * const *enc_str)
+{
+    GSList *res = NULL;
+    gchar **p;
+    const XedEncoding *enc;
+
+    for (p = (gchar **)enc_str; p != NULL && *p != NULL; p++)
+    {
+        const gchar *charset = *p;
+
+        if (strcmp (charset, "CURRENT") == 0)
+        {
+            g_get_charset (&charset);
+        }
+
+        g_return_val_if_fail (charset != NULL, NULL);
+        enc = xed_encoding_get_from_charset (charset);
+
+        if (enc != NULL)
+        {
+            if (!data_exists (res, (gpointer)enc))
+            {
+                res = g_slist_prepend (res, (gpointer)enc);
+            }
+
+        }
+    }
+
+    return g_slist_reverse (res);
+}
+
+gchar **
+_xed_encoding_list_to_strv (const GSList *enc_list)
+{
+    GSList *l;
+    GPtrArray *array;
+
+    array = g_ptr_array_sized_new (g_slist_length ((GSList *)enc_list) + 1);
+
+    for (l = (GSList *)enc_list; l != NULL; l = g_slist_next (l))
+    {
+        const XedEncoding *enc;
+        const gchar *charset;
+
+        enc = (const XedEncoding *)l->data;
+
+        charset = xed_encoding_get_charset (enc);
+        g_return_val_if_fail (charset != NULL, NULL);
+
+        g_ptr_array_add (array, g_strdup (charset));
+    }
+
+    g_ptr_array_add (array, NULL);
+
+    return (gchar **)g_ptr_array_free (array, FALSE);
+}

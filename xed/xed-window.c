@@ -22,7 +22,6 @@
 #include "xed-commands.h"
 #include "xed-debug.h"
 #include "xed-language-manager.h"
-#include "xed-prefs-manager-app.h"
 #include "xed-panel.h"
 #include "xed-documents-panel.h"
 #include "xed-plugins-engine.h"
@@ -30,6 +29,7 @@
 #include "xed-enum-types.h"
 #include "xed-dirs.h"
 #include "xed-status-combo-box.h"
+#include "xed-settings.h"
 
 #define LANGUAGE_NONE  (const gchar *)"LangNone"
 #define XED_UIFILE     "xed-ui.xml"
@@ -37,6 +37,9 @@
 #define LANGUAGE_DATA  "XedWindowLanguageData"
 
 #define FULLSCREEN_ANIMATION_SPEED 4
+
+#define XED_WINDOW_DEFAULT_WIDTH  650
+#define XED_WINDOW_DEFAULT_HEIGHT 500
 
 #define XED_WINDOW_GET_PRIVATE(object)(G_TYPE_INSTANCE_GET_PRIVATE ((object), XED_TYPE_WINDOW, XedWindowPrivate))
 
@@ -69,9 +72,9 @@ G_DEFINE_TYPE(XedWindow, xed_window, GTK_TYPE_WINDOW)
 static void recent_manager_changed (GtkRecentManager *manager, XedWindow *window);
 
 static void
-xed_window_get_property (GObject *object,
-                         guint prop_id,
-                         GValue *value,
+xed_window_get_property (GObject    *object,
+                         guint       prop_id,
+                         GValue     *value,
                          GParamSpec *pspec)
 {
     XedWindow *window = XED_WINDOW(object);
@@ -90,41 +93,33 @@ xed_window_get_property (GObject *object,
 static void
 save_panes_state (XedWindow *window)
 {
-    gint pane_page;
+    gint panel_page;
 
     xed_debug (DEBUG_WINDOW);
 
-    if (xed_prefs_manager_window_size_can_set ())
+    if (window->priv->side_panel_size > 0)
     {
-        xed_prefs_manager_set_window_size (window->priv->width, window->priv->height);
+        g_settings_set_int (window->priv->window_settings, XED_SETTINGS_SIDE_PANEL_SIZE, window->priv->side_panel_size);
     }
 
-    if (xed_prefs_manager_window_state_can_set ())
+    panel_page = _xed_panel_get_active_item_id (XED_PANEL (window->priv->side_panel));
+    if (panel_page != 0)
     {
-        xed_prefs_manager_set_window_state (window->priv->window_state);
+        g_settings_set_int (window->priv->window_settings, XED_SETTINGS_SIDE_PANEL_ACTIVE_PAGE, panel_page);
     }
 
-    if ((window->priv->side_panel_size > 0) && xed_prefs_manager_side_panel_size_can_set ())
+    if (window->priv->bottom_panel_size > 0)
     {
-        xed_prefs_manager_set_side_panel_size (window->priv->side_panel_size);
+        g_settings_set_int (window->priv->window_settings, XED_SETTINGS_BOTTOM_PANEL_SIZE, window->priv->bottom_panel_size);
     }
 
-    pane_page = _xed_panel_get_active_item_id (XED_PANEL(window->priv->side_panel));
-    if (pane_page != 0 && xed_prefs_manager_side_panel_active_page_can_set ())
+    panel_page = _xed_panel_get_active_item_id (XED_PANEL(window->priv->bottom_panel));
+    if (panel_page != 0)
     {
-        xed_prefs_manager_set_side_panel_active_page (pane_page);
+        g_settings_set_int (window->priv->window_settings, XED_SETTINGS_BOTTOM_PANEL_ACTIVE_PAGE, panel_page);
     }
 
-    if ((window->priv->bottom_panel_size > 0) && xed_prefs_manager_bottom_panel_size_can_set ())
-    {
-        xed_prefs_manager_set_bottom_panel_size (window->priv->bottom_panel_size);
-    }
-
-    pane_page = _xed_panel_get_active_item_id (XED_PANEL(window->priv->bottom_panel));
-    if (pane_page != 0 && xed_prefs_manager_bottom_panel_active_page_can_set ())
-    {
-        xed_prefs_manager_set_bottom_panel_active_page (pane_page);
-    }
+    g_settings_apply (window->priv->window_settings);
 }
 
 static gint
@@ -139,6 +134,26 @@ on_key_pressed (GtkWidget *widget,
         handled = TRUE;
     }
     return handled;
+}
+
+static void
+save_window_state (GtkWidget *widget)
+{
+    XedWindow *window = XED_WINDOW (widget);
+
+    if ((window->priv->window_state &
+        (GDK_WINDOW_STATE_MAXIMIZED | GDK_WINDOW_STATE_FULLSCREEN)) == 0)
+    {
+        GtkAllocation allocation;
+
+        gtk_widget_get_allocation (widget, &allocation);
+
+        window->priv->width = allocation.width;
+        window->priv->height = allocation.height;
+
+        g_settings_set (window->priv->window_settings, XED_SETTINGS_WINDOW_SIZE,
+                        "(ii)", window->priv->width, window->priv->height);
+    }
 }
 
 static void
@@ -168,6 +183,7 @@ xed_window_dispose (GObject *object)
      * for this window, but only once */
     if (!window->priv->dispose_has_run)
     {
+        save_window_state (GTK_WIDGET (window));
         save_panes_state (window);
 
         /* Note that unreffing the extension will automatically remove
@@ -204,6 +220,11 @@ xed_window_dispose (GObject *object)
     g_clear_object (&window->priv->window_group);
     g_clear_object (&window->priv->default_location);
 
+    /* We must free the settings after saving the panels */
+    g_clear_object (&window->priv->editor_settings);
+    g_clear_object (&window->priv->ui_settings);
+    g_clear_object (&window->priv->window_settings);
+
     /* Now that there have broken some reference loops, force collection again. */
     peas_engine_garbage_collect (PEAS_ENGINE (xed_plugins_engine_get_default ()));
 
@@ -219,26 +240,29 @@ xed_window_finalize (GObject *object)
 }
 
 static gboolean
-xed_window_window_state_event (GtkWidget *widget,
+xed_window_window_state_event (GtkWidget           *widget,
                                GdkEventWindowState *event)
 {
-    XedWindow *window = XED_WINDOW(widget);
+    XedWindow *window = XED_WINDOW (widget);
+
     window->priv->window_state = event->new_window_state;
-    if (event->changed_mask & (GDK_WINDOW_STATE_MAXIMIZED | GDK_WINDOW_STATE_FULLSCREEN))
-    {
-        gboolean show;
-        show = !(event->new_window_state & (GDK_WINDOW_STATE_MAXIMIZED | GDK_WINDOW_STATE_FULLSCREEN));
-    }
+    g_settings_set_int (window->priv->window_settings, XED_SETTINGS_WINDOW_STATE, window->priv->state);
+
     return FALSE;
 }
 
 static gboolean
-xed_window_configure_event (GtkWidget *widget,
+xed_window_configure_event (GtkWidget         *widget,
                             GdkEventConfigure *event)
 {
-    XedWindow *window = XED_WINDOW(widget);
-    window->priv->width = event->width;
-    window->priv->height = event->height;
+    XedWindow *window = XED_WINDOW (widget);
+
+    if (gtk_widget_get_realized (widget) &&
+        window->priv->state & (GDK_WINDOW_STATE_MAXIMIZED | GDK_WINDOW_STATE_FULLSCREEN) == 0)
+    {
+        save_window_state (widget);
+    }
+
     return GTK_WIDGET_CLASS (xed_window_parent_class)->configure_event (widget, event);
 }
 
@@ -398,7 +422,7 @@ set_toolbar_style (XedWindow *window,
 
     if (origin == NULL)
     {
-        visible = xed_prefs_manager_get_toolbar_visible ();
+        visible = g_settings_get_boolean (window->priv->ui_settings, XED_SETTINGS_TOOLBAR_VISIBLE);
     }
     else
     {
@@ -417,9 +441,9 @@ set_toolbar_style (XedWindow *window,
 
     action = gtk_action_group_get_action (window->priv->always_sensitive_action_group, "ViewToolbar");
 
-    if (gtk_toggle_action_get_active (GTK_TOGGLE_ACTION(action)) != visible)
+    if (gtk_toggle_action_get_active (GTK_TOGGLE_ACTION (action)) != visible)
     {
-        gtk_toggle_action_set_active (GTK_TOGGLE_ACTION(action), visible);
+        gtk_toggle_action_set_active (GTK_TOGGLE_ACTION (action), visible);
     }
 
     return visible;
@@ -524,7 +548,7 @@ set_paste_sensitivity_according_to_clipboard (XedWindow *window,
 
 static void
 set_sensitivity_according_to_tab (XedWindow *window,
-                                  XedTab *tab)
+                                  XedTab    *tab)
 {
     XedDocument *doc;
     XedView *view;
@@ -534,10 +558,13 @@ set_sensitivity_according_to_tab (XedWindow *window,
     gboolean editable;
     XedTabState state;
     GtkClipboard *clipboard;
+    gboolean enable_syntax_hl;
 
-    g_return_if_fail(XED_TAB (tab));
+    g_return_if_fail (XED_TAB (tab));
 
     xed_debug (DEBUG_WINDOW);
+
+    enable_syntax_hl = g_settings_get_boolean (window->priv->editor_settings, XED_SETTINGS_SYNTAX_HIGHLIGHTING);
 
     state = xed_tab_get_state (tab);
     state_normal = (state == XED_TAB_STATE_NORMAL);
@@ -631,8 +658,7 @@ set_sensitivity_according_to_tab (XedWindow *window,
     gtk_action_set_sensitive (action, (state_normal || state == XED_TAB_STATE_EXTERNALLY_MODIFIED_NOTIFICATION));
 
     action = gtk_action_group_get_action (window->priv->action_group, "ViewHighlightMode");
-    gtk_action_set_sensitive (action,
-                    (state != XED_TAB_STATE_CLOSING) && xed_prefs_manager_get_enable_syntax_highlighting ());
+    gtk_action_set_sensitive (action, (state != XED_TAB_STATE_CLOSING) && enable_syntax_hl);
 
     update_next_prev_doc_sensitivity (window, tab);
 
@@ -960,11 +986,11 @@ update_recent_files_menu (XedWindow *window)
     gint max_recents;
     GList *actions, *l, *items;
     GList *filtered_items = NULL;
-    gint i;
+    guint i;
 
     xed_debug (DEBUG_WINDOW);
 
-    max_recents = xed_prefs_manager_get_max_recents ();
+    max_recents = g_settings_get_uint (window->priv->ui_settings, XED_SETTINGS_MAX_RECENTS);
 
     g_return_if_fail(p->recents_action_group != NULL);
 
@@ -1080,10 +1106,7 @@ toolbar_visibility_changed (GtkWidget *toolbar,
 
     visible = gtk_widget_get_visible (toolbar);
 
-    if (xed_prefs_manager_toolbar_visible_can_set ())
-    {
-        xed_prefs_manager_set_toolbar_visible (visible);
-    }
+    g_settings_set_boolean (window->priv->ui_settings, XED_SETTINGS_TOOLBAR_VISIBLE, visible);
 
     action = gtk_action_group_get_action (window->priv->always_sensitive_action_group, "ViewToolbar");
 
@@ -1433,9 +1456,10 @@ set_statusbar_style (XedWindow *window,
 {
     GtkAction *action;
     gboolean visible;
+
     if (origin == NULL)
     {
-        visible = xed_prefs_manager_get_statusbar_visible ();
+        visible = g_settings_get_boolean (window->priv->ui_settings, XED_SETTINGS_STATUSBAR_VISIBLE);
     }
     else
     {
@@ -1470,10 +1494,7 @@ statusbar_visibility_changed (GtkWidget *statusbar,
 
     visible = gtk_widget_get_visible (statusbar);
 
-    if (xed_prefs_manager_statusbar_visible_can_set ())
-    {
-        xed_prefs_manager_set_statusbar_visible (visible);
-    }
+    g_settings_set_boolean (window->priv->ui_settings, XED_SETTINGS_STATUSBAR_VISIBLE, visible);
 
     action = gtk_action_group_get_action (window->priv->always_sensitive_action_group, "ViewStatusbar");
 
@@ -1730,7 +1751,7 @@ clone_window (XedWindow *origin)
     if ((origin->priv->window_state & GDK_WINDOW_STATE_MAXIMIZED) != 0)
     {
         gint w, h;
-        xed_prefs_manager_get_default_window_size (&w, &h);
+        _xed_window_get_default_size (&w, &h);
         gtk_window_set_default_size (GTK_WINDOW(window), w, h);
         gtk_window_maximize (GTK_WINDOW(window));
     }
@@ -3151,10 +3172,7 @@ side_panel_visibility_changed (GtkWidget *side_panel,
 
     visible = gtk_widget_get_visible (side_panel);
 
-    if (xed_prefs_manager_side_pane_visible_can_set ())
-    {
-        xed_prefs_manager_set_side_pane_visible (visible);
-    }
+    g_settings_set_boolean (window->priv->ui_settings, XED_SETTINGS_SIDE_PANEL_VISIBLE, visible);
 
     action = gtk_action_group_get_action (window->priv->panes_action_group, "ViewSidePane");
 
@@ -3196,10 +3214,7 @@ bottom_panel_visibility_changed (XedPanel *bottom_panel,
 
     visible = gtk_widget_get_visible (GTK_WIDGET (bottom_panel));
 
-    if (xed_prefs_manager_bottom_panel_visible_can_set ())
-    {
-        xed_prefs_manager_set_bottom_panel_visible (visible);
-    }
+    g_settings_set_boolean (window->priv->ui_settings, XED_SETTINGS_BOTTOM_PANEL_VISIBLE, visible);
 
     action = gtk_action_group_get_action (window->priv->panes_action_group, "ViewBottomPane");
 
@@ -3269,13 +3284,19 @@ static void
 init_panels_visibility (XedWindow *window)
 {
     gint active_page;
+    gboolean side_panel_visible;
+    gboolean bottom_panel_visible;
+
     xed_debug (DEBUG_WINDOW);
 
     /* side pane */
-    active_page = xed_prefs_manager_get_side_panel_active_page ();
+    active_page = g_settings_get_int (window->priv->window_settings, XED_SETTINGS_SIDE_PANEL_ACTIVE_PAGE);
     _xed_panel_set_active_item_by_id (XED_PANEL (window->priv->side_panel), active_page);
 
-    if (xed_prefs_manager_get_side_pane_visible ())
+    side_panel_visible = g_settings_get_boolean (window->priv->ui_settings, XED_SETTINGS_SIDE_PANEL_VISIBLE);
+    bottom_panel_visible = g_settings_get_boolean (window->priv->ui_settings, XED_SETTINGS_BOTTOM_PANEL_VISIBLE);
+
+    if (side_panel_visible)
     {
         gtk_widget_show (window->priv->side_panel);
     }
@@ -3283,10 +3304,10 @@ init_panels_visibility (XedWindow *window)
     /* bottom pane, it can be empty */
     if (xed_panel_get_n_items (XED_PANEL (window->priv->bottom_panel)) > 0)
     {
-        active_page = xed_prefs_manager_get_bottom_panel_active_page ();
+        active_page = g_settings_get_int (window->priv->window_settings, XED_SETTINGS_BOTTOM_PANEL_ACTIVE_PAGE);
         _xed_panel_set_active_item_by_id (XED_PANEL(window->priv->bottom_panel), active_page);
 
-        if (xed_prefs_manager_get_bottom_panel_visible ())
+        if (bottom_panel_visible)
         {
             gtk_widget_show (window->priv->bottom_panel);
         }
@@ -3375,7 +3396,7 @@ add_notebook (XedWindow *window,
     gtk_paned_pack1 (GTK_PANED(window->priv->vpaned), notebook, TRUE, TRUE);
     gtk_widget_show (notebook);
 
-    xed_notebook_set_tab_scrolling_enabled (XED_NOTEBOOK (notebook), xed_prefs_manager_get_enable_tab_scrolling ());
+    // xed_notebook_set_tab_scrolling_enabled (XED_NOTEBOOK (notebook), xed_prefs_manager_get_enable_tab_scrolling ());
 
     connect_notebook_signals (window, notebook);
 }
@@ -3418,6 +3439,13 @@ xed_window_init (XedWindow *window)
     window->priv->dispose_has_run = FALSE;
     window->priv->fullscreen_controls = NULL;
     window->priv->fullscreen_animation_timeout_id = 0;
+    window->priv->editor_settings = g_settings_new ("org.x.editor.preferences.editor");
+    window->priv->ui_settings = g_settings_new ("org.x.editor.preferences.ui");
+
+    /* Window settings are applied only once the window is closed. We do not want
+       to keep writing to disk when the window is dragged around */
+    window->priv->window_settings = g_settings_new ("org.x.editor.state.window");
+    g_settings_delay (window->priv->window_settings);
 
     window->priv->message_bus = xed_message_bus_new ();
 
@@ -3467,8 +3495,8 @@ xed_window_init (XedWindow *window)
 
     /* panes' state must be restored after panels have been mapped,
      * since the bottom pane position depends on the size of the vpaned. */
-    window->priv->side_panel_size = xed_prefs_manager_get_side_panel_size ();
-    window->priv->bottom_panel_size = xed_prefs_manager_get_bottom_panel_size ();
+    window->priv->side_panel_size = g_settings_get_int (window->priv->window_settings, XED_SETTINGS_SIDE_PANEL_SIZE);
+    window->priv->bottom_panel_size = g_settings_get_int (window->priv->window_settings, XED_SETTINGS_BOTTOM_PANEL_SIZE);
 
     g_signal_connect_after(window->priv->hpaned, "map", G_CALLBACK (hpaned_restore_position), window);
     g_signal_connect_after(window->priv->vpaned, "map", G_CALLBACK (vpaned_restore_position), window);
@@ -4210,4 +4238,14 @@ xed_window_get_message_bus (XedWindow *window)
 {
     g_return_val_if_fail(XED_IS_WINDOW (window), NULL);
     return window->priv->message_bus;
+}
+
+void
+_xed_window_get_default_size (gint *width,
+                              gint *height)
+{
+    g_return_if_fail (width != NULL && height != NULL);
+
+    *width = XED_WINDOW_DEFAULT_WIDTH;
+    *height = XED_WINDOW_DEFAULT_HEIGHT;
 }

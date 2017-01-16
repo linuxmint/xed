@@ -3,7 +3,7 @@
  * This file is part of xed
  *
  * Copyright (C) 2000-2001 Chema Celorio, Paolo Maggi
- * Copyright (C) 2002-2008 Paolo Maggi  
+ * Copyright (C) 2002-2008 Paolo Maggi
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,14 +17,14 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
- * Foundation, Inc., 51 Franklin St, Fifth Floor, 
- * Boston, MA 02110-1301, USA. 
+ * Foundation, Inc., 51 Franklin St, Fifth Floor,
+ * Boston, MA 02110-1301, USA.
  */
- 
+
 /*
- * Modified by the xed Team, 1998-2005. See the AUTHORS file for a 
- * list of people on the xed Team.  
- * See the ChangeLog files for a list of changes. 
+ * Modified by the xed Team, 1998-2005. See the AUTHORS file for a
+ * list of people on the xed Team.
+ * See the ChangeLog files for a list of changes.
  *
  * $Id: xed-print.c 6022 2007-12-09 14:38:57Z pborelli $
  */
@@ -38,11 +38,11 @@
 
 #include "xed-print-job.h"
 #include "xed-debug.h"
-#include "xed-prefs-manager.h"
 #include "xed-print-preview.h"
 #include "xed-marshal.h"
 #include "xed-utils.h"
 #include "xed-dirs.h"
+#include "xed-settings.h"
 
 
 #define XED_PRINT_JOB_GET_PRIVATE(object)(G_TYPE_INSTANCE_GET_PRIVATE ((object), \
@@ -51,6 +51,8 @@
 
 struct _XedPrintJobPrivate
 {
+	GSettings *print_settings;
+
 	XedView                *view;
 	XedDocument            *doc;
 
@@ -62,7 +64,7 @@ struct _XedPrintJobPrivate
 	GtkWidget                *preview;
 
 	XedPrintJobStatus       status;
-	
+
 	gchar                    *status_string;
 
 	gdouble			  progress;
@@ -94,7 +96,7 @@ enum
 	PROP_VIEW
 };
 
-enum 
+enum
 {
 	PRINTING,
 	SHOW_PREVIEW,
@@ -113,7 +115,7 @@ set_view (XedPrintJob *job, XedView *view)
 	job->priv->doc = XED_DOCUMENT (gtk_text_view_get_buffer (GTK_TEXT_VIEW (view)));
 }
 
-static void 
+static void
 xed_print_job_get_property (GObject    *object,
 			      guint       prop_id,
 			      GValue     *value,
@@ -132,7 +134,7 @@ xed_print_job_get_property (GObject    *object,
 	}
 }
 
-static void 
+static void
 xed_print_job_set_property (GObject      *object,
 			      guint         prop_id,
 			      const GValue *value,
@@ -157,7 +159,7 @@ xed_print_job_finalize (GObject *object)
 	XedPrintJob *job = XED_PRINT_JOB (object);
 
 	g_free (job->priv->status_string);
-	
+
 	if (job->priv->compositor != NULL)
 		g_object_unref (job->priv->compositor);
 
@@ -167,7 +169,17 @@ xed_print_job_finalize (GObject *object)
 	G_OBJECT_CLASS (xed_print_job_parent_class)->finalize (object);
 }
 
-static void 
+static void
+xed_print_job_dispose (GObject *object)
+{
+    XedPrintJob *job = XED_PRINT_JOB (object);
+
+    g_clear_object (&job->priv->print_settings);
+
+    G_OBJECT_CLASS (xed_print_job_parent_class)->dispose (object);
+}
+
+static void
 xed_print_job_class_init (XedPrintJobClass *klass)
 {
 	GObjectClass *object_class;
@@ -177,6 +189,7 @@ xed_print_job_class_init (XedPrintJobClass *klass)
 	object_class->get_property = xed_print_job_get_property;
 	object_class->set_property = xed_print_job_set_property;
 	object_class->finalize = xed_print_job_finalize;
+    object_class->dispose = xed_print_job_dispose;
 
 	g_object_class_install_property (object_class,
 					 PROP_VIEW,
@@ -221,7 +234,7 @@ xed_print_job_class_init (XedPrintJobClass *klass)
 			      2,
 			      G_TYPE_UINT,
 			      G_TYPE_POINTER);
-			      			      
+
 	g_type_class_add_private (object_class, sizeof (XedPrintJobPrivate));
 }
 
@@ -229,15 +242,7 @@ static void
 line_numbers_checkbutton_toggled (GtkToggleButton *button,
 				  XedPrintJob   *job)
 {
-	if (gtk_toggle_button_get_active (button))
-	{
-		gtk_widget_set_sensitive (job->priv->line_numbers_hbox, 
-					  xed_prefs_manager_print_line_numbers_can_set ());
-	}
-	else
-	{
-		gtk_widget_set_sensitive (job->priv->line_numbers_hbox, FALSE);
-	}
+	gtk_widget_set_sensitive (job->priv->line_numbers_hbox, gtk_toggle_button_get_active (button));
 }
 
 static void
@@ -246,7 +251,7 @@ wrap_mode_checkbutton_toggled (GtkToggleButton *button,
 {
 	if (!gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (job->priv->text_wrapping_checkbutton)))
 	{
-		gtk_widget_set_sensitive (job->priv->do_not_split_checkbutton, 
+		gtk_widget_set_sensitive (job->priv->do_not_split_checkbutton,
 					  FALSE);
 		gtk_toggle_button_set_inconsistent (
 			GTK_TOGGLE_BUTTON (job->priv->do_not_split_checkbutton),
@@ -267,58 +272,36 @@ restore_button_clicked (GtkButton     *button,
 			XedPrintJob *job)
 
 {
-	if (xed_prefs_manager_print_font_body_can_set ())
-	{
-		gchar *font;
+	gchar *body;
+    gchar *header;
+    gchar *numbers;
 
-		font = xed_prefs_manager_get_default_print_font_body ();
+	body = g_settings_get_string (job->priv->print_settings, XED_SETTINGS_PRINT_FONT_BODY_PANGO);
+    header = g_settings_get_string (job->priv->print_settings, XED_SETTINGS_PRINT_FONT_HEADER_PANGO);
+    numbers = g_settings_get_string (job->priv->print_settings, XED_SETTINGS_PRINT_FONT_NUMBERS_PANGO);
 
-		gtk_font_button_set_font_name (
-				GTK_FONT_BUTTON (job->priv->body_fontbutton),
-				font);
+    gtk_font_button_set_font_name (GTK_FONT_BUTTON (job->priv->body_fontbutton), body);
+    gtk_font_button_set_font_name (GTK_FONT_BUTTON (job->priv->headers_fontbutton), header);
+    gtk_font_button_set_font_name (GTK_FONT_BUTTON (job->priv->numbers_fontbutton), numbers);
 
-		g_free (font);
-	}
-	
-	if (xed_prefs_manager_print_font_header_can_set ())
-	{
-		gchar *font;
-
-		font = xed_prefs_manager_get_default_print_font_header ();
-
-		gtk_font_button_set_font_name (
-				GTK_FONT_BUTTON (job->priv->headers_fontbutton),
-				font);
-
-		g_free (font);
-	}
-
-	if (xed_prefs_manager_print_font_numbers_can_set ())
-	{
-		gchar *font;
-
-		font = xed_prefs_manager_get_default_print_font_numbers ();
-
-		gtk_font_button_set_font_name (
-				GTK_FONT_BUTTON (job->priv->numbers_fontbutton),
-				font);
-
-		g_free (font);
-	}
+    g_free (body);
+    g_free (header);
+    g_free (numbers);
 }
 
 static GObject *
-create_custom_widget_cb (GtkPrintOperation *operation, 
+create_custom_widget_cb (GtkPrintOperation *operation,
 			 XedPrintJob     *job)
 {
 	gboolean ret;
 	GtkWidget *widget;
 	GtkWidget *error_widget;
-	gchar *font;
-	gint line_numbers;
-	gboolean can_set;
+	guint line_numbers;
 	GtkWrapMode wrap_mode;
 	gchar *file;
+    gboolean syntax_hl;
+    gboolean print_header;
+    gchar *font_body, *font_header, *font_numbers;
 	gchar *root_objects[] = {
 		"adjustment1",
 		"contents",
@@ -353,31 +336,27 @@ create_custom_widget_cb (GtkPrintOperation *operation,
 		return G_OBJECT (error_widget);
 	}
 
+    /* Get all settings values */
+    syntax_hl = g_settings_get_boolean (job->priv->print_settings, XED_SETTINGS_PRINT_SYNTAX_HIGHLIGHTING);
+    print_header = g_settings_get_boolean (job->priv->print_settings, XED_SETTINGS_PRINT_HEADER);
+    line_numbers = g_settings_get_uint (job->priv->print_settings, XED_SETTINGS_PRINT_LINE_NUMBERS);
+    font_body = g_settings_get_string (job->priv->print_settings, XED_SETTINGS_PRINT_FONT_BODY_PANGO);
+    font_header = g_settings_get_string (job->priv->print_settings, XED_SETTINGS_PRINT_FONT_HEADER_PANGO);
+    font_numbers = g_settings_get_string (job->priv->print_settings, XED_SETTINGS_PRINT_FONT_NUMBERS_PANGO);
+
 	/* Print syntax */
-	gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (job->priv->syntax_checkbutton),
-				      xed_prefs_manager_get_print_syntax_hl ());
-	gtk_widget_set_sensitive (job->priv->syntax_checkbutton,
-				  xed_prefs_manager_print_syntax_hl_can_set ());
+	gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (job->priv->syntax_checkbutton), syntax_hl);
 
 	/* Print page headers */
-	gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (job->priv->page_header_checkbutton),
-				      xed_prefs_manager_get_print_header ());
-	gtk_widget_set_sensitive (job->priv->page_header_checkbutton,
-				  xed_prefs_manager_print_header_can_set ());
+	gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (job->priv->page_header_checkbutton), print_header);
 
 	/* Line numbers */
-	line_numbers =  xed_prefs_manager_get_print_line_numbers ();
-	can_set = xed_prefs_manager_print_line_numbers_can_set ();
-
-	gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (job->priv->line_numbers_checkbutton),
-				      line_numbers > 0);
-	gtk_widget_set_sensitive (job->priv->line_numbers_checkbutton, can_set);
+	gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (job->priv->line_numbers_checkbutton), line_numbers > 0);
 
 	if (line_numbers > 0)
 	{
-		gtk_spin_button_set_value (GTK_SPIN_BUTTON (job->priv->line_numbers_spinbutton),
-					   (guint) line_numbers);
-		gtk_widget_set_sensitive (job->priv->line_numbers_hbox, can_set);	
+		gtk_spin_button_set_value (GTK_SPIN_BUTTON (job->priv->line_numbers_spinbutton), (guint) line_numbers);
+		gtk_widget_set_sensitive (job->priv->line_numbers_hbox, TRUE);
 	}
 	else
 	{
@@ -387,7 +366,7 @@ create_custom_widget_cb (GtkPrintOperation *operation,
 	}
 
 	/* Text wrapping */
-	wrap_mode = xed_prefs_manager_get_print_wrap_mode ();
+	wrap_mode = g_settings_get_enum (job->priv->print_settings, XED_SETTINGS_PRINT_WRAP_MODE);
 
 	switch (wrap_mode)
 	{
@@ -410,39 +389,17 @@ create_custom_widget_cb (GtkPrintOperation *operation,
 				GTK_TOGGLE_BUTTON (job->priv->do_not_split_checkbutton), TRUE);
 	}
 
-	can_set = xed_prefs_manager_print_wrap_mode_can_set ();
-
-	gtk_widget_set_sensitive (job->priv->text_wrapping_checkbutton, can_set);
-	gtk_widget_set_sensitive (job->priv->do_not_split_checkbutton, 
-				  can_set && (wrap_mode != GTK_WRAP_NONE));
+	gtk_widget_set_sensitive (job->priv->do_not_split_checkbutton, wrap_mode != GTK_WRAP_NONE);
 
 	/* Set initial values */
-	font = xed_prefs_manager_get_print_font_body ();
-	gtk_font_button_set_font_name (GTK_FONT_BUTTON (job->priv->body_fontbutton),
-				       font);
-	g_free (font);
+	gtk_font_button_set_font_name (GTK_FONT_BUTTON (job->priv->body_fontbutton), font_body);
+	g_free (font_body);
 
-	font = xed_prefs_manager_get_print_font_header ();
-	gtk_font_button_set_font_name (GTK_FONT_BUTTON (job->priv->headers_fontbutton),
-				       font);
-	g_free (font);
+	gtk_font_button_set_font_name (GTK_FONT_BUTTON (job->priv->headers_fontbutton), font_header);
+	g_free (font_header);
 
-	font = xed_prefs_manager_get_print_font_numbers ();
-	gtk_font_button_set_font_name (GTK_FONT_BUTTON (job->priv->numbers_fontbutton),
-				       font);
-	g_free (font);
-
-	can_set = xed_prefs_manager_print_font_body_can_set ();
-	gtk_widget_set_sensitive (job->priv->body_fontbutton, can_set);
-	gtk_widget_set_sensitive (job->priv->body_font_label, can_set);
-
-	can_set = xed_prefs_manager_print_font_header_can_set ();
-	gtk_widget_set_sensitive (job->priv->headers_fontbutton, can_set);
-	gtk_widget_set_sensitive (job->priv->headers_font_label, can_set);
-
-	can_set = xed_prefs_manager_print_font_numbers_can_set ();
-	gtk_widget_set_sensitive (job->priv->numbers_fontbutton, can_set);
-	gtk_widget_set_sensitive (job->priv->numbers_font_label, can_set);
+	gtk_font_button_set_font_name (GTK_FONT_BUTTON (job->priv->numbers_fontbutton), font_numbers);
+    g_free (font_numbers);
 
 	g_signal_connect (job->priv->line_numbers_checkbutton,
 			  "toggled",
@@ -469,39 +426,49 @@ custom_widget_apply_cb (GtkPrintOperation *operation,
 			GtkWidget         *widget,
 			XedPrintJob     *job)
 {
-	xed_prefs_manager_set_print_syntax_hl (gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (job->priv->syntax_checkbutton)));
+	gboolean syntax, page_header;
+    const gchar *body, *header, *numbers;
+    GtkWrapMode wrap_mode;
 
-	xed_prefs_manager_set_print_header (gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (job->priv->page_header_checkbutton)));
+    syntax = gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (job->priv->syntax_checkbutton));
+    page_header = gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (job->priv->page_header_checkbutton));
+    body = gtk_font_button_get_font_name (GTK_FONT_BUTTON (job->priv->body_fontbutton));
+    header = gtk_font_button_get_font_name (GTK_FONT_BUTTON (job->priv->headers_fontbutton));
+    numbers = gtk_font_button_get_font_name (GTK_FONT_BUTTON (job->priv->numbers_fontbutton));
+
+    g_settings_set_boolean (job->priv->print_settings, XED_SETTINGS_PRINT_SYNTAX_HIGHLIGHTING, syntax);
+    g_settings_set_boolean (job->priv->print_settings, XED_SETTINGS_PRINT_HEADER, page_header);
+    g_settings_set_string (job->priv->print_settings, XED_SETTINGS_PRINT_FONT_BODY_PANGO, body);
+    g_settings_set_string (job->priv->print_settings, XED_SETTINGS_PRINT_FONT_HEADER_PANGO, header);
+    g_settings_set_string (job->priv->print_settings, XED_SETTINGS_PRINT_FONT_NUMBERS_PANGO, numbers);
 
 	if (gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (job->priv->line_numbers_checkbutton)))
 	{
-		xed_prefs_manager_set_print_line_numbers (
-			MAX (1, gtk_spin_button_get_value_as_int (GTK_SPIN_BUTTON (job->priv->line_numbers_spinbutton))));
+		g_settings_set_uint (job->priv->print_settings, XED_SETTINGS_PRINT_LINE_NUMBERS,
+                             MAX (1, gtk_spin_button_get_value_as_int (GTK_SPIN_BUTTON (job->priv->line_numbers_spinbutton))));
 	}
 	else
 	{
-		xed_prefs_manager_set_print_line_numbers (0);
+		g_settings_set_uint (job->priv->print_settings, XED_SETTINGS_PRINT_LINE_NUMBERS, 0);
 	}
 
 	if (!gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (job->priv->text_wrapping_checkbutton)))
 	{
-		xed_prefs_manager_set_print_wrap_mode (GTK_WRAP_NONE);
+		wrap_mode = GTK_WRAP_NONE;
 	}
 	else
 	{
 		if (gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (job->priv->do_not_split_checkbutton)))
 		{
-			xed_prefs_manager_set_print_wrap_mode (GTK_WRAP_WORD);
+			wrap_mode = GTK_WRAP_WORD;
 		}
 		else
 		{
-			xed_prefs_manager_set_print_wrap_mode (GTK_WRAP_CHAR);
-		}	
+			wrap_mode = GTK_WRAP_CHAR;
+		}
 	}
 
-	xed_prefs_manager_set_print_font_body (gtk_font_button_get_font_name (GTK_FONT_BUTTON (job->priv->body_fontbutton)));
-	xed_prefs_manager_set_print_font_header (gtk_font_button_get_font_name (GTK_FONT_BUTTON (job->priv->headers_fontbutton)));
-	xed_prefs_manager_set_print_font_numbers (gtk_font_button_get_font_name (GTK_FONT_BUTTON (job->priv->numbers_fontbutton)));
+    g_settings_set_enum (job->priv->print_settings, XED_SETTINGS_PRINT_WRAP_MODE, wrap_mode);
 }
 
 static void
@@ -510,21 +477,29 @@ create_compositor (XedPrintJob *job)
 	gchar *print_font_body;
 	gchar *print_font_header;
 	gchar *print_font_numbers;
-	
+    gboolean syntax_hl;
+    GtkWrapMode wrap_mode;
+    guint print_line_numbers;
+    gboolean print_header;
+
 	/* Create and initialize print compositor */
-	print_font_body = xed_prefs_manager_get_print_font_body ();
-	print_font_header = xed_prefs_manager_get_print_font_header ();
-	print_font_numbers = xed_prefs_manager_get_print_font_numbers ();
-	
+	print_font_body = g_settings_get_string (job->priv->print_settings, XED_SETTINGS_PRINT_FONT_BODY_PANGO);
+    print_font_header = g_settings_get_string (job->priv->print_settings, XED_SETTINGS_PRINT_FONT_HEADER_PANGO);
+    print_font_numbers = g_settings_get_string (job->priv->print_settings, XED_SETTINGS_PRINT_FONT_NUMBERS_PANGO);
+    syntax_hl = g_settings_get_boolean (job->priv->print_settings, XED_SETTINGS_PRINT_SYNTAX_HIGHLIGHTING);
+    print_line_numbers = g_settings_get_uint (job->priv->print_settings, XED_SETTINGS_PRINT_LINE_NUMBERS);
+    print_header = g_settings_get_boolean (job->priv->print_settings, XED_SETTINGS_PRINT_HEADER);
+    wrap_mode = g_settings_get_enum (job->priv->print_settings, XED_SETTINGS_PRINT_WRAP_MODE);
+
 	job->priv->compositor = GTK_SOURCE_PRINT_COMPOSITOR (
 					g_object_new (GTK_SOURCE_TYPE_PRINT_COMPOSITOR,
 						     "buffer", GTK_SOURCE_BUFFER (job->priv->doc),
 						     "tab-width", gtk_source_view_get_tab_width (GTK_SOURCE_VIEW (job->priv->view)),
 						     "highlight-syntax", gtk_source_buffer_get_highlight_syntax (GTK_SOURCE_BUFFER (job->priv->doc)) &&
-					   				 xed_prefs_manager_get_print_syntax_hl (),
-						     "wrap-mode", xed_prefs_manager_get_print_wrap_mode (),
-						     "print-line-numbers", xed_prefs_manager_get_print_line_numbers (),
-						     "print-header", xed_prefs_manager_get_print_header (),
+					   				             syntax_hl,
+						     "wrap-mode", wrap_mode,
+						     "print-line-numbers", print_line_numbers,
+						     "print-header", print_header,
 						     "print-footer", FALSE,
 						     "body-font-name", print_font_body,
 						     "line-numbers-font-name", print_font_numbers,
@@ -534,8 +509,8 @@ create_compositor (XedPrintJob *job)
 	g_free (print_font_body);
 	g_free (print_font_header);
 	g_free (print_font_numbers);
-	
-	if (xed_prefs_manager_get_print_header ())
+
+	if (print_header)
 	{
 		gchar *doc_name;
 		gchar *name_to_display;
@@ -547,7 +522,7 @@ create_compositor (XedPrintJob *job)
 		left = g_strdup_printf (_("File: %s"), name_to_display);
 
 		/* Translators: %N is the current page number, %Q is the total
-		 * number of pages (ex. Page 2 of 10) 
+		 * number of pages (ex. Page 2 of 10)
 		 */
 		gtk_source_print_compositor_set_header_format (job->priv->compositor,
 							       TRUE,
@@ -558,11 +533,11 @@ create_compositor (XedPrintJob *job)
 		g_free (doc_name);
 		g_free (name_to_display);
 		g_free (left);
-	}		
+	}
 }
 
 static void
-begin_print_cb (GtkPrintOperation *operation, 
+begin_print_cb (GtkPrintOperation *operation,
 	        GtkPrintContext   *context,
 	        XedPrintJob     *job)
 {
@@ -571,7 +546,7 @@ begin_print_cb (GtkPrintOperation *operation,
 	job->priv->status = XED_PRINT_JOB_STATUS_PAGINATING;
 
 	job->priv->progress = 0.0;
-	
+
 	g_signal_emit (job, print_job_signals[PRINTING], 0, job->priv->status);
 }
 
@@ -592,7 +567,7 @@ preview_destroyed (GtkWidget                *preview,
 	gtk_print_operation_preview_end_preview (gtk_preview);
 }
 
-static gboolean 
+static gboolean
 preview_cb (GtkPrintOperation        *op,
 	    GtkPrintOperationPreview *gtk_preview,
 	    GtkPrintContext          *context,
@@ -616,16 +591,16 @@ preview_cb (GtkPrintOperation        *op,
 }
 
 static gboolean
-paginate_cb (GtkPrintOperation *operation, 
+paginate_cb (GtkPrintOperation *operation,
 	     GtkPrintContext   *context,
 	     XedPrintJob     *job)
 {
-	gboolean res;	
-	
+	gboolean res;
+
 	job->priv->status = XED_PRINT_JOB_STATUS_PAGINATING;
-	
+
 	res = gtk_source_print_compositor_paginate (job->priv->compositor, context);
-		
+
 	if (res)
 	{
 		gint n_pages;
@@ -659,25 +634,25 @@ draw_page_cb (GtkPrintOperation *operation,
 	if (!job->priv->is_preview)
 	{
 		g_free (job->priv->status_string);
-	
+
 		n_pages = gtk_source_print_compositor_get_n_pages (job->priv->compositor);
-	
+
 		job->priv->status = XED_PRINT_JOB_STATUS_DRAWING;
-	
-		job->priv->status_string = g_strdup_printf ("Rendering page %d of %d...", 
+
+		job->priv->status_string = g_strdup_printf ("Rendering page %d of %d...",
 							    page_nr + 1,
 							    n_pages);
-	
+
 		job->priv->progress = page_nr / (2.0 * n_pages) + 0.5;
 
 		g_signal_emit (job, print_job_signals[PRINTING], 0, job->priv->status);
-	}	
+	}
 
 	gtk_source_print_compositor_draw_page (job->priv->compositor, context, page_nr);
 }
 
 static void
-end_print_cb (GtkPrintOperation *operation, 
+end_print_cb (GtkPrintOperation *operation,
 	      GtkPrintContext   *context,
 	      XedPrintJob     *job)
 {
@@ -693,7 +668,7 @@ done_cb (GtkPrintOperation       *operation,
 	GError *error = NULL;
 	XedPrintJobResult print_result;
 
-	switch (result) 
+	switch (result)
 	{
 		case GTK_PRINT_OPERATION_RESULT_CANCEL:
 			print_result = XED_PRINT_JOB_RESULT_CANCEL;
@@ -711,20 +686,20 @@ done_cb (GtkPrintOperation       *operation,
 		default:
 			g_return_if_reached ();
 	}
-	
+
 	/* Avoid job is destroyed in the handler of the "done" message */
 	g_object_ref (job);
-	
+
 	g_signal_emit (job, print_job_signals[DONE], 0, print_result, error);
-	
+
 	g_object_unref (operation);
 	job->priv->operation = NULL;
-	
+
 	g_object_unref (job);
 }
 
 /* Note that xed_print_job_print can can only be called once on a given XedPrintJob */
-GtkPrintOperationResult	 
+GtkPrintOperationResult
 xed_print_job_print (XedPrintJob            *job,
 		       GtkPrintOperationAction   action,
 		       GtkPageSetup             *page_setup,
@@ -765,15 +740,15 @@ xed_print_job_print (XedPrintJob            *job,
 	gtk_print_operation_set_allow_async (priv->operation, TRUE);
 
 	g_signal_connect (priv->operation,
-			  "create-custom-widget", 
+			  "create-custom-widget",
 			  G_CALLBACK (create_custom_widget_cb),
 			  job);
 	g_signal_connect (priv->operation,
-			  "custom-widget-apply", 
-			  G_CALLBACK (custom_widget_apply_cb), 
+			  "custom-widget-apply",
+			  G_CALLBACK (custom_widget_apply_cb),
 			  job);
   	g_signal_connect (priv->operation,
-			  "begin-print", 
+			  "begin-print",
 			  G_CALLBACK (begin_print_cb),
 			  job);
 	g_signal_connect (priv->operation,
@@ -781,23 +756,23 @@ xed_print_job_print (XedPrintJob            *job,
 			  G_CALLBACK (preview_cb),
 			  job);
   	g_signal_connect (priv->operation,
-			  "paginate", 
+			  "paginate",
 			  G_CALLBACK (paginate_cb),
 			  job);
 	g_signal_connect (priv->operation,
-			  "draw-page", 
+			  "draw-page",
 			  G_CALLBACK (draw_page_cb),
 			  job);
 	g_signal_connect (priv->operation,
-			  "end-print", 
+			  "end-print",
 			  G_CALLBACK (end_print_cb),
 			  job);
 	g_signal_connect (priv->operation,
-			  "done", 
+			  "done",
 			  G_CALLBACK (done_cb),
-			  job);			  
+			  job);
 
-	return gtk_print_operation_run (priv->operation, 
+	return gtk_print_operation_run (priv->operation,
 					action,
 					parent,
 					error);
@@ -807,9 +782,11 @@ static void
 xed_print_job_init (XedPrintJob *job)
 {
 	job->priv = XED_PRINT_JOB_GET_PRIVATE (job);
-	
+
+    job->priv->print_settings = g_settings_new ("org.x.editor.preferences.print");
+
 	job->priv->status = XED_PRINT_JOB_STATUS_INIT;
-	
+
 	job->priv->status_string = g_strdup (_("Preparing..."));
 }
 
@@ -817,9 +794,9 @@ XedPrintJob *
 xed_print_job_new (XedView *view)
 {
 	XedPrintJob *job;
-	
+
 	g_return_val_if_fail (XED_IS_VIEW (view), NULL);
-	
+
 	job = XED_PRINT_JOB (g_object_new (XED_TYPE_PRINT_JOB,
 					     "view", view,
 					      NULL));
@@ -840,7 +817,7 @@ xed_print_job_get_status_string (XedPrintJob *job)
 {
 	g_return_val_if_fail (XED_IS_PRINT_JOB (job), NULL);
 	g_return_val_if_fail (job->priv->status_string != NULL, NULL);
-	
+
 	return job->priv->status_string;
 }
 

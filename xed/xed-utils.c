@@ -48,7 +48,6 @@
 #include "xed-utils.h"
 
 #include "xed-document.h"
-#include "xed-prefs-manager.h"
 #include "xed-debug.h"
 
 /* For the workspace/viewport stuff */

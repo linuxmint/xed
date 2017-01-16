@@ -56,15 +56,16 @@
 
 struct _XedNotebookPrivate
 {
-    GList         *focused_pages;
-    gulong         motion_notify_handler_id;
-    gint           x_start;
-    gint           y_start;
-    gint           drag_in_progress : 1;
-    gint           close_buttons_sensitive : 1;
-    gint           tab_drag_and_drop_enabled : 1;
-    gint           tab_scrolling_enabled : 1;
-    guint          destroy_has_run : 1;
+    GSettings *ui_settings;
+    GList *focused_pages;
+    gulong motion_notify_handler_id;
+    gint x_start;
+    gint y_start;
+    gint drag_in_progress : 1;
+    gint close_buttons_sensitive : 1;
+    gint tab_drag_and_drop_enabled : 1;
+    gint tab_scrolling_enabled : 1;
+    guint destroy_has_run : 1;
 };
 
 G_DEFINE_TYPE(XedNotebook, xed_notebook, GTK_TYPE_NOTEBOOK)
@@ -114,6 +115,8 @@ xed_notebook_dispose (GObject *object)
         g_list_free (children);
         notebook->priv->destroy_has_run = TRUE;
     }
+
+    g_clear_object (&notebook->priv->ui_settings);
 
     G_OBJECT_CLASS (xed_notebook_parent_class)->dispose (object);
 }
@@ -707,7 +710,8 @@ xed_notebook_init (XedNotebook *notebook)
 
     notebook->priv->close_buttons_sensitive = TRUE;
     notebook->priv->tab_drag_and_drop_enabled = TRUE;
-    notebook->priv->tab_scrolling_enabled = TRUE;
+    notebook->priv->ui_settings = g_settings_new ("org.x.editor.preferences.ui");
+    notebook->priv->tab_scrolling_enabled = g_settings_get_boolean (notebook->priv->ui_settings, "enable-tab-scrolling");
 
     gtk_notebook_set_scrollable (GTK_NOTEBOOK (notebook), TRUE);
     // gtk_notebook_set_show_border (GTK_NOTEBOOK (notebook), FALSE);

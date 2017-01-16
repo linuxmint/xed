@@ -55,10 +55,10 @@ NOINST_H_FILES =			\
 	xed-io-error-message-area.h	\
 	xed-language-manager.h	\
 	xed-plugins-engine.h		\
-	xed-prefs-manager-private.h	\
 	xed-print-job.h		\
 	xed-print-preview.h		\
 	xed-session.h			\
+	xed-settings.h 			\
 	xed-smart-charset-converter.h	\
 	xed-style-scheme-manager.h	\
 	xed-tab-label.h		\
@@ -81,8 +81,6 @@ INST_H_FILES =				\
 	xed-message.h			\
 	xed-notebook.h		\
 	xed-panel.h			\
-	xed-prefs-manager-app.h	\
-	xed-prefs-manager.h		\
 	xed-progress-message-area.h	\
 	xed-searchbar.h		\
 	xed-statusbar.h		\
@@ -136,13 +134,11 @@ libxed_c_files = 				\
 	xed-notebook.c			\
 	xed-panel.c				\
 	xed-plugins-engine.c		\
-	xed-prefs-manager-app.c	\
-	xed-prefs-manager.c		\
-	xed-prefs-manager-private.h	\
 	xed-print-job.c		\
 	xed-print-preview.c		\
 	xed-progress-message-area.c	\
 	xed-session.c			\
+	xed-settings.c 			\
 	xed-smart-charset-converter.c	\
 	xed-searchbar.c		\
 	xed-statusbar.c		\

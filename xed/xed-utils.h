@@ -37,6 +37,7 @@
 #include <gtk/gtk.h>
 #include <atk/atk.h>
 #include <xed/xed-encodings.h>
+#include <gtksourceview/gtksourceview.h>
 
 G_BEGIN_DECLS
 

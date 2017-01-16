@@ -2,7 +2,7 @@
  * xed-encodings.h
  * This file is part of xed
  *
- * Copyright (C) 2002-2005 Paolo Maggi 
+ * Copyright (C) 2002-2005 Paolo Maggi
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,14 +16,14 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
- * Foundation, Inc., 51 Franklin St, Fifth Floor, 
+ * Foundation, Inc., 51 Franklin St, Fifth Floor,
  * Boston, MA 02110-1301, USA.
  */
- 
+
 /*
- * Modified by the xed Team, 2002-2005. See the AUTHORS file for a 
- * list of people on the xed Team.  
- * See the ChangeLog files for a list of changes. 
+ * Modified by the xed Team, 2002-2005. See the AUTHORS file for a
+ * list of people on the xed Team.
+ * See the ChangeLog files for a list of changes.
  *
  * $Id$
  */
@@ -56,6 +56,9 @@ const XedEncoding 	*xed_encoding_get_current	 (void);
 /* These should not be used, they are just to make python bindings happy */
 XedEncoding		*xed_encoding_copy		 (const XedEncoding *enc);
 void               	 xed_encoding_free		 (XedEncoding       *enc);
+
+GSList *_xed_encoding_strv_to_list (const gchar * const *enc_str);
+gchar **_xed_encoding_list_to_strv (const GSList *enc);
 
 G_END_DECLS
 

@@ -34,8 +34,8 @@
 #include <libpeas/peas-extension-set.h>
 
 #include "xed/xed-window.h"
-#include "xed-prefs-manager.h"
 #include "xed-message-bus.h"
+#include "xed-settings.h"
 
 G_BEGIN_DECLS
 
@@ -43,38 +43,42 @@ G_BEGIN_DECLS
 
 struct _XedWindowPrivate
 {
-    GtkWidget      *notebook;
+    GSettings *editor_settings;
+    GSettings *ui_settings;
+    GSettings *window_settings;
 
-    GtkWidget      *side_panel;
-    GtkWidget      *bottom_panel;
+    GtkWidget *notebook;
 
-    GtkWidget      *hpaned;
-    GtkWidget      *vpaned;
+    GtkWidget *side_panel;
+    GtkWidget *bottom_panel;
 
-    GtkWidget      *tab_width_combo;
-    GtkWidget      *language_combo;
-    GtkWidget      *show_side_pane_button;
-    GtkWidget      *show_bottom_pane_button;
-    GtkWidget      *bottom_pane_button_revealer;
+    GtkWidget *hpaned;
+    GtkWidget *vpaned;
+
+    GtkWidget *tab_width_combo;
+    GtkWidget *language_combo;
+    GtkWidget *show_side_pane_button;
+    GtkWidget *show_bottom_pane_button;
+    GtkWidget *bottom_pane_button_revealer;
 
     XedMessageBus    *message_bus;
     PeasExtensionSet *extensions;
 
     /* Widgets for fullscreen mode */
-    GtkWidget      *fullscreen_controls;
-    GtkWidget      *fullscreen_controls_container;
-    guint           fullscreen_animation_timeout_id;
-    gboolean        fullscreen_animation_enter;
+    GtkWidget *fullscreen_controls;
+    GtkWidget *fullscreen_controls_container;
+    guint      fullscreen_animation_timeout_id;
+    gboolean   fullscreen_animation_enter;
 
     /* statusbar and context ids for statusbar messages */
-    GtkWidget      *statusbar;
-    GtkWidget      *searchbar;
-    guint           generic_message_cid;
-    guint           tip_message_cid;
-    guint           tab_width_id;
-    guint           spaces_instead_of_tabs_id;
-    guint           language_changed_id;
-    guint           use_word_wrap_id;
+    GtkWidget *statusbar;
+    GtkWidget *searchbar;
+    guint      generic_message_cid;
+    guint      tip_message_cid;
+    guint      tab_width_id;
+    guint      spaces_instead_of_tabs_id;
+    guint      language_changed_id;
+    guint      use_word_wrap_id;
 
     /* Menus & Toolbars */
     GtkUIManager   *manager;
@@ -94,28 +98,28 @@ struct _XedWindowPrivate
     guint           recents_menu_ui_id;
     gulong          recents_handler_id;
 
-    XedTab         *active_tab;
-    gint            num_tabs;
+    XedTab *active_tab;
+    gint    num_tabs;
 
-    gint            num_tabs_with_error;
+    gint num_tabs_with_error;
 
     gint            width;
     gint            height;
     GdkWindowState  window_state;
 
-    gint            side_panel_size;
-    gint            bottom_panel_size;
+    gint side_panel_size;
+    gint bottom_panel_size;
 
-    XedWindowState  state;
+    XedWindowState state;
 
-    gint            bottom_panel_item_removed_handler_id;
+    gint bottom_panel_item_removed_handler_id;
 
     GtkWindowGroup *window_group;
 
-    GFile          *default_location;
+    GFile *default_location;
 
-    gboolean        removing_tabs : 1;
-    gboolean        dispose_has_run : 1;
+    gboolean removing_tabs : 1;
+    gboolean dispose_has_run : 1;
 };
 
 G_END_DECLS

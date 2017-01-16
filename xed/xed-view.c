@@ -13,10 +13,10 @@
 #include "xed-view-activatable.h"
 #include "xed-plugins-engine.h"
 #include "xed-debug.h"
-#include "xed-prefs-manager.h"
-#include "xed-prefs-manager-app.h"
 #include "xed-marshal.h"
 #include "xed-utils.h"
+#include "xed-settings.h"
+#include "xed-app.h"
 
 #define XED_VIEW_SCROLL_MARGIN 0.02
 #define XED_VIEW_SEARCH_DIALOG_TIMEOUT (30*1000) /* 30 seconds */
@@ -30,6 +30,7 @@ enum
 
 struct _XedViewPrivate
 {
+    GSettings *editor_settings;
     GtkTextIter start_search_iter;
     GtkWidget *search_window;
     GtkWidget *search_entry;
@@ -41,20 +42,9 @@ struct _XedViewPrivate
     guint view_realized : 1;
 };
 
-static void xed_view_dispose (GObject *object);
-static void xed_view_finalize (GObject *object);
-static void xed_view_realize (GtkWidget *widget);
-static gint xed_view_focus_out (GtkWidget *widget, GdkEventFocus *event);
-static gboolean xed_view_drag_motion (GtkWidget *widget, GdkDragContext *context, gint x, gint y, guint timestamp);
-static void xed_view_drag_data_received (GtkWidget *widget, GdkDragContext *context, gint x, gint y,
-                                         GtkSelectionData *selection_data, guint info, guint timestamp);
-static gboolean xed_view_drag_drop (GtkWidget *widget, GdkDragContext *context, gint x, gint y, guint timestamp);
-static gboolean xed_view_button_press_event (GtkWidget *widget, GdkEventButton *event);
+
 static gboolean start_interactive_goto_line (XedView *view);
 static void hide_search_window (XedView *view, gboolean cancel);
-static gboolean xed_view_draw (GtkWidget *widget, cairo_t *cr);
-static void search_highlight_updated_cb (XedDocument *doc, GtkTextIter *start, GtkTextIter *end, XedView *view);
-static void xed_view_delete_from_cursor (GtkTextView *text_view, GtkDeleteType type, gint count);
 
 G_DEFINE_TYPE(XedView, xed_view, GTK_SOURCE_TYPE_VIEW)
 
@@ -81,76 +71,52 @@ document_read_only_notify_handler (XedDocument *document,
 }
 
 static void
-xed_view_class_init (XedViewClass *klass)
+search_highlight_updated_cb (XedDocument *doc,
+                             GtkTextIter *start,
+                             GtkTextIter *end,
+                             XedView     *view)
 {
-    GObjectClass *object_class = G_OBJECT_CLASS(klass);
-    GtkWidgetClass *widget_class = GTK_WIDGET_CLASS(klass);
-    GtkTextViewClass *text_view_class = GTK_TEXT_VIEW_CLASS(klass);
+    GdkRectangle visible_rect;
+    GdkRectangle updated_rect;
+    GdkRectangle redraw_rect;
+    gint y;
+    gint height;
+    GtkTextView *text_view;
 
-    GtkBindingSet *binding_set;
+    text_view = GTK_TEXT_VIEW(view);
 
-    object_class->dispose = xed_view_dispose;
-    object_class->finalize = xed_view_finalize;
+    g_return_if_fail(xed_document_get_enable_search_highlighting (XED_DOCUMENT (gtk_text_view_get_buffer (text_view))));
 
-    widget_class->focus_out_event = xed_view_focus_out;
-    widget_class->draw = xed_view_draw;
+    /* get visible area */
+    gtk_text_view_get_visible_rect (text_view, &visible_rect);
 
-    /*
-     * Override the gtk_text_view_drag_motion and drag_drop
-     * functions to get URIs
-     *
-     * If the mime type is text/uri-list, then we will accept
-     * the potential drop, or request the data (depending on the
-     * function).
-     *
-     * If the drag context has any other mime type, then pass the
-     * information onto the GtkTextView's standard handlers.
-     * (widget_class->function_name).
-     *
-     * See bug #89881 for details
-     */
-    widget_class->drag_motion = xed_view_drag_motion;
-    widget_class->drag_data_received = xed_view_drag_data_received;
-    widget_class->drag_drop = xed_view_drag_drop;
-    widget_class->button_press_event = xed_view_button_press_event;
-    widget_class->realize = xed_view_realize;
-    klass->start_interactive_goto_line = start_interactive_goto_line;
+    /* get updated rectangle */
+    gtk_text_view_get_line_yrange (text_view, start, &y, &height);
+    updated_rect.y = y;
+    gtk_text_view_get_line_yrange (text_view, end, &y, &height);
+    updated_rect.height = y + height - updated_rect.y;
+    updated_rect.x = visible_rect.x;
+    updated_rect.width = visible_rect.width;
 
-    text_view_class->delete_from_cursor = xed_view_delete_from_cursor;
+    /* intersect both rectangles to see whether we need to queue a redraw */
+    if (gdk_rectangle_intersect (&updated_rect, &visible_rect, &redraw_rect))
+    {
+        GdkRectangle widget_rect;
+        gtk_text_view_buffer_to_window_coords (text_view, GTK_TEXT_WINDOW_WIDGET, redraw_rect.x, redraw_rect.y,
+                                               &widget_rect.x, &widget_rect.y);
 
-    view_signals[START_INTERACTIVE_GOTO_LINE] = g_signal_new ("start_interactive_goto_line",
-                    G_TYPE_FROM_CLASS(object_class), G_SIGNAL_RUN_LAST | G_SIGNAL_ACTION,
-                    G_STRUCT_OFFSET(XedViewClass, start_interactive_goto_line),
-                    NULL, NULL, xed_marshal_BOOLEAN__NONE, G_TYPE_BOOLEAN, 0);
+        widget_rect.width = redraw_rect.width;
+        widget_rect.height = redraw_rect.height;
 
-    /* A new signal DROP_URIS has been added to allow plugins to intercept
-     * the default dnd behaviour of 'text/uri-list'. XedView now handles
-     * dnd in the default handlers of drag_drop, drag_motion and
-     * drag_data_received. The view emits drop_uris from drag_data_received
-     * if valid uris have been dropped. Plugins should connect to
-     * drag_motion, drag_drop and drag_data_received to change this
-     * default behaviour. They should _NOT_ use this signal because this
-     * will not prevent xed from loading the uri
-     */
-    view_signals[DROP_URIS] = g_signal_new ("drop_uris", G_TYPE_FROM_CLASS(object_class),
-                                            G_SIGNAL_RUN_LAST | G_SIGNAL_ACTION,
-                                            G_STRUCT_OFFSET(XedViewClass, drop_uris),
-                                            NULL, NULL, g_cclosure_marshal_VOID__BOXED, G_TYPE_NONE, 1, G_TYPE_STRV);
-
-    g_type_class_add_private (klass, sizeof(XedViewPrivate));
-
-    binding_set = gtk_binding_set_by_class (klass);
-
-    gtk_binding_entry_add_signal (binding_set, GDK_KEY_i, GDK_CONTROL_MASK, "start_interactive_goto_line", 0);
-
-    gtk_binding_entry_add_signal (binding_set, GDK_KEY_d, GDK_CONTROL_MASK, "delete_from_cursor", 2, G_TYPE_ENUM,
-                                  GTK_DELETE_PARAGRAPHS, G_TYPE_INT, 1);
+        gtk_widget_queue_draw_area (GTK_WIDGET(text_view), widget_rect.x, widget_rect.y, widget_rect.width,
+                                    widget_rect.height);
+    }
 }
 
 static void
 current_buffer_removed (XedView *view)
 {
-    if (view->priv->current_buffer)
+    if (view->priv->current_buffer != NULL)
     {
         g_signal_handlers_disconnect_by_func(view->priv->current_buffer, document_read_only_notify_handler, view);
         g_signal_handlers_disconnect_by_func(view->priv->current_buffer, search_highlight_updated_cb, view);
@@ -207,36 +173,9 @@ xed_view_init (XedView *view)
 
     xed_debug (DEBUG_VIEW);
 
-    view->priv = XED_VIEW_GET_PRIVATE(view);
+    view->priv = XED_VIEW_GET_PRIVATE (view);
 
-    /*
-     *  Set tab, fonts, wrap mode, colors, etc. according
-     *  to preferences
-     */
-    if (!xed_prefs_manager_get_use_default_font ())
-    {
-        gchar *editor_font;
-        editor_font = xed_prefs_manager_get_editor_font ();
-        xed_view_set_font (view, FALSE, editor_font);
-        g_free (editor_font);
-    }
-    else
-    {
-        xed_view_set_font (view, TRUE, NULL);
-    }
-
-    g_object_set (G_OBJECT(view),
-                  "wrap_mode", xed_prefs_manager_get_wrap_mode (),
-                  "show_line_numbers", xed_prefs_manager_get_display_line_numbers (),
-                  "auto_indent", xed_prefs_manager_get_auto_indent (),
-                  "tab_width", xed_prefs_manager_get_tabs_size (),
-                  "insert_spaces_instead_of_tabs", xed_prefs_manager_get_insert_spaces (),
-                  "show_right_margin", xed_prefs_manager_get_display_right_margin (),
-                  "right_margin_position", xed_prefs_manager_get_right_margin_position (),
-                  "highlight_current_line", xed_prefs_manager_get_highlight_current_line (),
-                  "smart_home_end", xed_prefs_manager_get_smart_home_end (),
-                  "indent_on_tab", TRUE,
-                  NULL);
+    view->priv->editor_settings = g_settings_new ("org.x.editor.preferences.editor");
 
     view->priv->typeselect_flush_timeout = 0;
 
@@ -263,15 +202,10 @@ xed_view_init (XedView *view)
 static void
 xed_view_dispose (GObject *object)
 {
-    XedView *view;
+    XedView *view = XED_VIEW (object);
 
-    view = XED_VIEW(object);
-
-    if (view->priv->extensions != NULL)
-    {
-        g_object_unref (view->priv->extensions);
-        view->priv->extensions = NULL;
-    }
+    g_clear_object (&view->priv->extensions);
+    g_clear_object (&view->priv->editor_settings);
 
     if (view->priv->search_window != NULL)
     {
@@ -285,30 +219,116 @@ xed_view_dispose (GObject *object)
         }
     }
 
-    /* Disconnect notify buffer because the destroy of the textview will
-     set the buffer to NULL, and we call get_buffer in the notify which
-     would reinstate a GtkTextBuffer which we don't want */
     current_buffer_removed (view);
-    g_signal_handlers_disconnect_by_func(view, on_notify_buffer_cb, NULL);
 
-    (* G_OBJECT_CLASS (xed_view_parent_class)->dispose) (object);
+    /* Disconnect notify buffer because the destroy of the textview will set
+     * the buffer to NULL, and we call get_buffer in the notify which would
+     * reinstate a buffer which we don't want.
+     * There is no problem calling g_signal_handlers_disconnect_by_func()
+     * several times (if dispose() is called several times).
+     */
+    g_signal_handlers_disconnect_by_func (view, on_notify_buffer_cb, NULL);
+
+    G_OBJECT_CLASS (xed_view_parent_class)->dispose (object);
 }
 
 static void
-xed_view_finalize (GObject *object)
+xed_view_constructed (GObject *object)
 {
     XedView *view;
-    view = XED_VIEW(object);
-    current_buffer_removed (view);
+    XedViewPrivate *priv;
+    gboolean use_default_font;
 
-    G_OBJECT_CLASS (xed_view_parent_class)->finalize (object);
+    view = XED_VIEW (object);
+    priv = view->priv;
+
+    /* Get setting values */
+    use_default_font = g_settings_get_boolean (view->priv->editor_settings, XED_SETTINGS_USE_DEFAULT_FONT);
+
+    /*
+     *  Set tab, fonts, wrap mode, colors, etc. according to preferences
+     */
+    if (!use_default_font)
+    {
+        gchar *editor_font;
+
+        editor_font = g_settings_get_string (view->priv->editor_settings, XED_SETTINGS_EDITOR_FONT);
+
+        xed_view_set_font (view, FALSE, editor_font);
+
+        g_free (editor_font);
+    }
+    else
+    {
+        xed_view_set_font (view, TRUE, NULL);
+    }
+
+    g_settings_bind (priv->editor_settings,
+                     XED_SETTINGS_DISPLAY_LINE_NUMBERS,
+                     view,
+                     "show-line-numbers",
+                     G_SETTINGS_BIND_GET);
+
+    g_settings_bind (priv->editor_settings,
+                     XED_SETTINGS_AUTO_INDENT,
+                     view,
+                     "auto-indent",
+                     G_SETTINGS_BIND_GET);
+
+    g_settings_bind (priv->editor_settings,
+                     XED_SETTINGS_TABS_SIZE,
+                     view,
+                     "tab-width",
+                     G_SETTINGS_BIND_GET);
+
+    g_settings_bind (priv->editor_settings,
+                     XED_SETTINGS_INSERT_SPACES,
+                     view,
+                     "insert-spaces-instead-of-tabs",
+                     G_SETTINGS_BIND_GET);
+
+    g_settings_bind (priv->editor_settings,
+                     XED_SETTINGS_DISPLAY_RIGHT_MARGIN,
+                     view,
+                     "show-right-margin",
+                     G_SETTINGS_BIND_GET);
+
+    g_settings_bind (priv->editor_settings,
+                     XED_SETTINGS_RIGHT_MARGIN_POSITION,
+                     view,
+                     "right-margin-position",
+                     G_SETTINGS_BIND_GET);
+
+    g_settings_bind (priv->editor_settings,
+                     XED_SETTINGS_HIGHLIGHT_CURRENT_LINE,
+                     view,
+                     "highlight-current-line",
+                     G_SETTINGS_BIND_GET);
+
+    g_settings_bind (priv->editor_settings,
+                     XED_SETTINGS_WRAP_MODE,
+                     view,
+                     "wrap-mode",
+                     G_SETTINGS_BIND_GET);
+
+    g_settings_bind (priv->editor_settings,
+                     XED_SETTINGS_SMART_HOME_END,
+                     view,
+                     "smart-home-end",
+                     G_SETTINGS_BIND_GET);
+
+    g_object_set (G_OBJECT (view),
+                  "indent_on_tab", TRUE,
+                  NULL);
+
+    G_OBJECT_CLASS (xed_view_parent_class)->constructed (object);
 }
 
 static gint
-xed_view_focus_out (GtkWidget *widget,
+xed_view_focus_out (GtkWidget     *widget,
                     GdkEventFocus *event)
 {
-    XedView *view = XED_VIEW(widget);
+    XedView *view = XED_VIEW (widget);
 
     gtk_widget_queue_draw (widget);
 
@@ -318,9 +338,382 @@ xed_view_focus_out (GtkWidget *widget,
         hide_search_window (view, FALSE);
     }
 
-    (* GTK_WIDGET_CLASS (xed_view_parent_class)->focus_out_event) (widget, event);
+    GTK_WIDGET_CLASS (xed_view_parent_class)->focus_out_event (widget, event);
 
     return FALSE;
+}
+
+static gboolean
+xed_view_draw (GtkWidget *widget,
+               cairo_t   *cr)
+{
+    GtkTextView *text_view;
+    XedDocument *doc;
+    GdkWindow *window;
+
+    text_view = GTK_TEXT_VIEW(widget);
+
+    doc = XED_DOCUMENT(gtk_text_view_get_buffer (text_view));
+    window = gtk_text_view_get_window (text_view, GTK_TEXT_WINDOW_TEXT);
+
+    if (gtk_cairo_should_draw_window (cr, window) && xed_document_get_enable_search_highlighting (doc))
+    {
+        GdkRectangle visible_rect;
+        GtkTextIter iter1, iter2;
+
+        gtk_text_view_get_visible_rect (text_view, &visible_rect);
+        gtk_text_view_get_line_at_y (text_view, &iter1, visible_rect.y, NULL);
+        gtk_text_view_get_line_at_y (text_view, &iter2, visible_rect.y + visible_rect.height, NULL);
+        gtk_text_iter_forward_line (&iter2);
+
+        _xed_document_search_region (doc, &iter1, &iter2);
+    }
+
+    return GTK_WIDGET_CLASS (xed_view_parent_class)->draw (widget, cr);
+}
+
+static GdkAtom
+drag_get_uri_target (GtkWidget      *widget,
+                     GdkDragContext *context)
+{
+    GdkAtom target;
+    GtkTargetList *tl;
+
+    tl = gtk_target_list_new (NULL, 0);
+    gtk_target_list_add_uri_targets (tl, 0);
+
+    target = gtk_drag_dest_find_target (widget, context, tl);
+    gtk_target_list_unref (tl);
+
+    return target;
+}
+
+static gboolean
+xed_view_drag_motion (GtkWidget      *widget,
+                      GdkDragContext *context,
+                      gint            x,
+                      gint            y,
+                      guint           timestamp)
+{
+    gboolean result;
+
+    /* Chain up to allow textview to scroll and position dnd mark, note
+     * that this needs to be checked if gtksourceview or gtktextview
+     * changes drag_motion behaviour */
+    result = GTK_WIDGET_CLASS (xed_view_parent_class)->drag_motion (widget, context, x, y, timestamp);
+
+    /* If this is a URL, deal with it here */
+    if (drag_get_uri_target (widget, context) != GDK_NONE)
+    {
+        gdk_drag_status (context, gdk_drag_context_get_suggested_action (context), timestamp);
+        result = TRUE;
+    }
+
+    return result;
+}
+
+static void
+xed_view_drag_data_received (GtkWidget        *widget,
+                             GdkDragContext   *context,
+                             gint              x,
+                             gint              y,
+                             GtkSelectionData *selection_data,
+                             guint             info,
+                             guint             timestamp)
+{
+    gchar **uri_list;
+
+    /* If this is an URL emit DROP_URIS, otherwise chain up the signal */
+    if (info == TARGET_URI_LIST)
+    {
+        uri_list = xed_utils_drop_get_uris (selection_data);
+
+        if (uri_list != NULL)
+        {
+            g_signal_emit (widget, view_signals[DROP_URIS], 0, uri_list);
+            g_strfreev (uri_list);
+            gtk_drag_finish (context, TRUE, FALSE, timestamp);
+        }
+    }
+    else
+    {
+        GTK_WIDGET_CLASS (xed_view_parent_class)->drag_data_received (widget, context, x, y, selection_data, info,
+                                                                      timestamp);
+    }
+}
+
+static gboolean
+xed_view_drag_drop (GtkWidget      *widget,
+                    GdkDragContext *context,
+                    gint            x,
+                    gint            y,
+                    guint           timestamp)
+{
+    gboolean result;
+    GdkAtom target;
+
+    /* If this is a URL, just get the drag data */
+    target = drag_get_uri_target (widget, context);
+
+    if (target != GDK_NONE)
+    {
+        gtk_drag_get_data (widget, context, target, timestamp);
+        result = TRUE;
+    }
+    else
+    {
+        /* Chain up */
+        result = GTK_WIDGET_CLASS (xed_view_parent_class)->drag_drop (widget, context, x, y, timestamp);
+    }
+
+    return result;
+}
+
+static GtkWidget *
+create_line_numbers_menu (GtkWidget *view)
+{
+    GtkWidget *menu;
+    GtkWidget *item;
+
+    menu = gtk_menu_new ();
+
+    item = gtk_check_menu_item_new_with_mnemonic (_("_Display line numbers"));
+    gtk_check_menu_item_set_active (GTK_CHECK_MENU_ITEM(item),
+                                    gtk_source_view_get_show_line_numbers (GTK_SOURCE_VIEW(view)));
+
+    g_settings_bind (XED_VIEW (view)->priv->editor_settings,
+                     "active",
+                     item,
+                     XED_SETTINGS_DISPLAY_LINE_NUMBERS,
+                     G_SETTINGS_BIND_SET);
+
+    gtk_menu_shell_append (GTK_MENU_SHELL(menu), item);
+
+    gtk_widget_show_all (menu);
+
+    return menu;
+}
+
+static void
+show_line_numbers_menu (GtkWidget      *view,
+                        GdkEventButton *event)
+{
+    GtkWidget *menu;
+
+    menu = create_line_numbers_menu (view);
+    gtk_menu_popup (GTK_MENU(menu), NULL, NULL, NULL, NULL, event->button, event->time);
+}
+
+static gboolean
+xed_view_button_press_event (GtkWidget      *widget,
+                             GdkEventButton *event)
+{
+    if ((event->type == GDK_BUTTON_PRESS)
+        && (event->button == 3)
+        && (event->window == gtk_text_view_get_window (GTK_TEXT_VIEW(widget), GTK_TEXT_WINDOW_LEFT)))
+    {
+
+        show_line_numbers_menu (widget, event);
+
+        return TRUE;
+    }
+
+    return GTK_WIDGET_CLASS (xed_view_parent_class)->button_press_event (widget, event);
+}
+
+static void
+xed_view_realize (GtkWidget *widget)
+{
+    XedView *view = XED_VIEW (widget);
+
+    if (!view->priv->view_realized)
+    {
+        peas_extension_set_call (view->priv->extensions, "activate");
+        view->priv->view_realized = TRUE;
+    }
+
+    GTK_WIDGET_CLASS (xed_view_parent_class)->realize (widget);
+}
+
+static void
+delete_line (GtkTextView *text_view,
+             gint         count)
+{
+    GtkTextIter start;
+    GtkTextIter end;
+    GtkTextBuffer *buffer;
+
+    buffer = gtk_text_view_get_buffer (text_view);
+
+    gtk_text_view_reset_im_context (text_view);
+
+    /* If there is a selection delete the selected lines and
+     * ignore count */
+    if (gtk_text_buffer_get_selection_bounds (buffer, &start, &end))
+    {
+        gtk_text_iter_order (&start, &end);
+        if (gtk_text_iter_starts_line (&end))
+        {
+            /* Do no delete the line with the cursor if the cursor
+             * is at the beginning of the line */
+            count = 0;
+        }
+        else
+        {
+            count = 1;
+        }
+    }
+
+    gtk_text_iter_set_line_offset (&start, 0);
+
+    if (count > 0)
+    {
+        gtk_text_iter_forward_lines (&end, count);
+        if (gtk_text_iter_is_end (&end))
+        {
+            if (gtk_text_iter_backward_line (&start) && !gtk_text_iter_ends_line (&start))
+            {
+                gtk_text_iter_forward_to_line_end (&start);
+            }
+        }
+    }
+    else if (count < 0)
+    {
+        if (!gtk_text_iter_ends_line (&end))
+        {
+            gtk_text_iter_forward_to_line_end (&end);
+        }
+
+        while (count < 0)
+        {
+            if (!gtk_text_iter_backward_line (&start))
+            {
+                break;
+            }
+            ++count;
+        }
+
+        if (count == 0)
+        {
+            if (!gtk_text_iter_ends_line (&start))
+            {
+                gtk_text_iter_forward_to_line_end (&start);
+            }
+        }
+        else
+        {
+            gtk_text_iter_forward_line (&end);
+        }
+    }
+
+    if (!gtk_text_iter_equal (&start, &end))
+    {
+        GtkTextIter cur = start;
+        gtk_text_iter_set_line_offset (&cur, 0);
+        gtk_text_buffer_begin_user_action (buffer);
+        gtk_text_buffer_place_cursor (buffer, &cur);
+        gtk_text_buffer_delete_interactive (buffer, &start, &end, gtk_text_view_get_editable (text_view));
+        gtk_text_buffer_end_user_action (buffer);
+        gtk_text_view_scroll_mark_onscreen (text_view, gtk_text_buffer_get_insert (buffer));
+    }
+    else
+    {
+        gtk_widget_error_bell (GTK_WIDGET(text_view));
+    }
+}
+
+static void
+xed_view_delete_from_cursor (GtkTextView  *text_view,
+                             GtkDeleteType type,
+                             gint          count)
+{
+    /* We override the standard handler for delete_from_cursor since
+     the GTK_DELETE_PARAGRAPHS case is not implemented as we like (i.e. it
+     does not remove the carriage return in the previous line)
+     */
+    switch (type)
+    {
+        case GTK_DELETE_PARAGRAPHS:
+            delete_line (text_view, count);
+            break;
+        default:
+            GTK_TEXT_VIEW_CLASS (xed_view_parent_class)->delete_from_cursor (text_view, type, count);
+            break;
+    }
+}
+
+static void
+xed_view_class_init (XedViewClass *klass)
+{
+    GObjectClass *object_class = G_OBJECT_CLASS(klass);
+    GtkWidgetClass *widget_class = GTK_WIDGET_CLASS(klass);
+    GtkTextViewClass *text_view_class = GTK_TEXT_VIEW_CLASS(klass);
+    GtkBindingSet *binding_set;
+
+    object_class->dispose = xed_view_dispose;
+    object_class->constructed = xed_view_constructed;
+
+    widget_class->focus_out_event = xed_view_focus_out;
+    widget_class->draw = xed_view_draw;
+
+    /*
+     * Override the gtk_text_view_drag_motion and drag_drop
+     * functions to get URIs
+     *
+     * If the mime type is text/uri-list, then we will accept
+     * the potential drop, or request the data (depending on the
+     * function).
+     *
+     * If the drag context has any other mime type, then pass the
+     * information onto the GtkTextView's standard handlers.
+     * (widget_class->function_name).
+     *
+     * See bug #89881 for details
+     */
+    widget_class->drag_motion = xed_view_drag_motion;
+    widget_class->drag_data_received = xed_view_drag_data_received;
+    widget_class->drag_drop = xed_view_drag_drop;
+    widget_class->button_press_event = xed_view_button_press_event;
+    widget_class->realize = xed_view_realize;
+    klass->start_interactive_goto_line = start_interactive_goto_line;
+
+    text_view_class->delete_from_cursor = xed_view_delete_from_cursor;
+
+    view_signals[START_INTERACTIVE_GOTO_LINE] =
+        g_signal_new ("start_interactive_goto_line",
+                      G_TYPE_FROM_CLASS (object_class),
+                      G_SIGNAL_RUN_LAST | G_SIGNAL_ACTION,
+                      G_STRUCT_OFFSET (XedViewClass, start_interactive_goto_line),
+                      NULL, NULL,
+                      xed_marshal_BOOLEAN__NONE,
+                      G_TYPE_BOOLEAN, 0);
+
+    /* A new signal DROP_URIS has been added to allow plugins to intercept
+     * the default dnd behaviour of 'text/uri-list'. XedView now handles
+     * dnd in the default handlers of drag_drop, drag_motion and
+     * drag_data_received. The view emits drop_uris from drag_data_received
+     * if valid uris have been dropped. Plugins should connect to
+     * drag_motion, drag_drop and drag_data_received to change this
+     * default behaviour. They should _NOT_ use this signal because this
+     * will not prevent xed from loading the uri
+     */
+    view_signals[DROP_URIS] =
+        g_signal_new ("drop_uris",
+                      G_TYPE_FROM_CLASS (object_class),
+                      G_SIGNAL_RUN_LAST | G_SIGNAL_ACTION,
+                      G_STRUCT_OFFSET (XedViewClass, drop_uris),
+                      NULL, NULL,
+                      g_cclosure_marshal_VOID__BOXED,
+                      G_TYPE_NONE, 1, G_TYPE_STRV);
+
+    g_type_class_add_private (klass, sizeof (XedViewPrivate));
+
+    binding_set = gtk_binding_set_by_class (klass);
+
+    gtk_binding_entry_add_signal (binding_set, GDK_KEY_i, GDK_CONTROL_MASK, "start_interactive_goto_line", 0);
+
+    gtk_binding_entry_add_signal (binding_set, GDK_KEY_d, GDK_CONTROL_MASK, "delete_from_cursor", 2, G_TYPE_ENUM,
+                                  GTK_DELETE_PARAGRAPHS, G_TYPE_INT, 1);
 }
 
 /**
@@ -338,10 +731,15 @@ xed_view_new (XedDocument *doc)
     GtkWidget *view;
 
     xed_debug_message (DEBUG_VIEW, "START");
+
     g_return_val_if_fail(XED_IS_DOCUMENT (doc), NULL);
+
     view = GTK_WIDGET(g_object_new (XED_TYPE_VIEW, "buffer", doc, NULL));
+
     xed_debug_message (DEBUG_VIEW, "END: %d", G_OBJECT (view)->ref_count);
+
     gtk_widget_show_all (view);
+
     return view;
 }
 
@@ -485,8 +883,8 @@ xed_view_scroll_to_cursor (XedView *view)
  * otherwise sets it to @font_name.
  **/
 void
-xed_view_set_font (XedView *view,
-                   gboolean def,
+xed_view_set_font (XedView     *view,
+                   gboolean     def,
                    const gchar *font_name)
 {
     PangoFontDescription *font_desc = NULL;
@@ -497,24 +895,28 @@ xed_view_set_font (XedView *view,
 
     if (def)
     {
+        GSettings *settings;
         gchar *font;
-        font = xed_prefs_manager_get_system_font ();
+
+        settings = _xed_app_get_settings (xed_app_get_default ());
+        font = xed_settings_get_system_font (XED_SETTINGS (settings));
         font_desc = pango_font_description_from_string (font);
+
         g_free (font);
     }
     else
     {
-        g_return_if_fail(font_name != NULL);
+        g_return_if_fail (font_name != NULL);
         font_desc = pango_font_description_from_string (font_name);
     }
 
-    g_return_if_fail(font_desc != NULL);
-    gtk_widget_modify_font (GTK_WIDGET(view), font_desc);
+    g_return_if_fail (font_desc != NULL);
+    gtk_widget_modify_font (GTK_WIDGET (view), font_desc);
     pango_font_description_free (font_desc);
 }
 
 static void
-set_entry_state (GtkWidget *entry,
+set_entry_state (GtkWidget          *entry,
                  XedSearchEntryState state)
 {
     GtkStyleContext *context = gtk_widget_get_style_context (GTK_WIDGET(entry));
@@ -532,7 +934,7 @@ set_entry_state (GtkWidget *entry,
 /* Cut and paste from gtkwindow.c */
 static void
 send_focus_change (GtkWidget *widget,
-                   gboolean in)
+                   gboolean   in)
 {
     GdkEvent *fevent = gdk_event_new (GDK_FOCUS_CHANGE);
 
@@ -614,18 +1016,18 @@ update_search_window_position (XedView *view)
 }
 
 static gboolean
-search_window_deleted (GtkWidget *widget,
+search_window_deleted (GtkWidget   *widget,
                        GdkEventAny *event,
-                       XedView *view)
+                       XedView     *view)
 {
     hide_search_window (view, FALSE);
     return TRUE;
 }
 
 static gboolean
-search_window_button_pressed (GtkWidget *widget,
+search_window_button_pressed (GtkWidget      *widget,
                               GdkEventButton *event,
-                              XedView *view)
+                              XedView        *view)
 {
     hide_search_window (view, FALSE);
     gtk_propagate_event (GTK_WIDGET(view), (GdkEvent *) event);
@@ -633,9 +1035,9 @@ search_window_button_pressed (GtkWidget *widget,
 }
 
 static gboolean
-search_window_key_pressed (GtkWidget *widget,
+search_window_key_pressed (GtkWidget   *widget,
                            GdkEventKey *event,
-                           XedView *view)
+                           XedView     *view)
 {
     gboolean retval = FALSE;
     guint modifiers;
@@ -661,7 +1063,7 @@ search_window_key_pressed (GtkWidget *widget,
 
 static void
 search_entry_activate (GtkEntry *entry,
-                       XedView *view)
+                       XedView  *view)
 {
     hide_search_window (view, FALSE);
 }
@@ -692,8 +1094,8 @@ search_enable_popdown (GtkWidget *widget,
 
 static void
 search_entry_populate_popup (GtkEntry *entry,
-                             GtkMenu *menu,
-                             XedView *view)
+                             GtkMenu  *menu,
+                             XedView  *view)
 {
     GtkWidget *menu_item;
     view->priv->disable_popdown = TRUE;
@@ -703,9 +1105,9 @@ search_entry_populate_popup (GtkEntry *entry,
 static void
 search_entry_insert_text (GtkEditable *editable,
                           const gchar *text,
-                          gint length,
-                          gint *position,
-                          XedView *view)
+                          gint         length,
+                          gint        *position,
+                          XedView     *view)
 {
     gunichar c;
     const gchar *p;
@@ -999,348 +1401,4 @@ start_interactive_goto_line (XedView *view)
     send_focus_change (view->priv->search_entry, TRUE);
 
     return TRUE;
-}
-
-static gboolean
-xed_view_draw (GtkWidget *widget,
-               cairo_t *cr)
-{
-    GtkTextView *text_view;
-    XedDocument *doc;
-    GdkWindow *window;
-
-    text_view = GTK_TEXT_VIEW(widget);
-
-    doc = XED_DOCUMENT(gtk_text_view_get_buffer (text_view));
-    window = gtk_text_view_get_window (text_view, GTK_TEXT_WINDOW_TEXT);
-    if (gtk_cairo_should_draw_window (cr, window) && xed_document_get_enable_search_highlighting (doc))
-    {
-        GdkRectangle visible_rect;
-        GtkTextIter iter1, iter2;
-
-        gtk_text_view_get_visible_rect (text_view, &visible_rect);
-        gtk_text_view_get_line_at_y (text_view, &iter1, visible_rect.y, NULL);
-        gtk_text_view_get_line_at_y (text_view, &iter2, visible_rect.y + visible_rect.height, NULL);
-        gtk_text_iter_forward_line (&iter2);
-
-        _xed_document_search_region (doc, &iter1, &iter2);
-    }
-
-    return GTK_WIDGET_CLASS (xed_view_parent_class)->draw (widget, cr);
-}
-
-static GdkAtom
-drag_get_uri_target (GtkWidget *widget,
-                     GdkDragContext *context)
-{
-    GdkAtom target;
-    GtkTargetList *tl;
-
-    tl = gtk_target_list_new (NULL, 0);
-    gtk_target_list_add_uri_targets (tl, 0);
-    target = gtk_drag_dest_find_target (widget, context, tl);
-    gtk_target_list_unref (tl);
-
-    return target;
-}
-
-static gboolean
-xed_view_drag_motion (GtkWidget *widget,
-                      GdkDragContext *context,
-                      gint x,
-                      gint y,
-                      guint timestamp)
-{
-    gboolean result;
-
-    /* Chain up to allow textview to scroll and position dnd mark, note
-     * that this needs to be checked if gtksourceview or gtktextview
-     * changes drag_motion behaviour */
-    result = GTK_WIDGET_CLASS (xed_view_parent_class)->drag_motion (widget, context, x, y, timestamp);
-
-    /* If this is a URL, deal with it here */
-    if (drag_get_uri_target (widget, context) != GDK_NONE)
-    {
-        gdk_drag_status (context, gdk_drag_context_get_suggested_action (context), timestamp);
-        result = TRUE;
-    }
-
-    return result;
-}
-
-static void
-xed_view_drag_data_received (GtkWidget *widget,
-                             GdkDragContext *context,
-                             gint x,
-                             gint y,
-                             GtkSelectionData *selection_data,
-                             guint info,
-                             guint timestamp)
-{
-    gchar **uri_list;
-
-    /* If this is an URL emit DROP_URIS, otherwise chain up the signal */
-    if (info == TARGET_URI_LIST)
-    {
-        uri_list = xed_utils_drop_get_uris (selection_data);
-
-        if (uri_list != NULL)
-        {
-            g_signal_emit (widget, view_signals[DROP_URIS], 0, uri_list);
-            g_strfreev (uri_list);
-            gtk_drag_finish (context, TRUE, FALSE, timestamp);
-        }
-    }
-    else
-    {
-        GTK_WIDGET_CLASS (xed_view_parent_class)->drag_data_received (widget, context, x, y, selection_data, info,
-                                                                      timestamp);
-    }
-}
-
-static gboolean
-xed_view_drag_drop (GtkWidget *widget,
-                    GdkDragContext *context,
-                    gint x,
-                    gint y,
-                    guint timestamp)
-{
-    gboolean result;
-    GdkAtom target;
-
-    /* If this is a URL, just get the drag data */
-    target = drag_get_uri_target (widget, context);
-
-    if (target != GDK_NONE)
-    {
-        gtk_drag_get_data (widget, context, target, timestamp);
-        result = TRUE;
-    }
-    else
-    {
-        /* Chain up */
-        result = GTK_WIDGET_CLASS (xed_view_parent_class)->drag_drop (widget, context, x, y, timestamp);
-    }
-
-    return result;
-}
-
-static void
-show_line_numbers_toggled (GtkMenu *menu,
-                           XedView *view)
-{
-    gboolean show;
-
-    show = gtk_check_menu_item_get_active (GTK_CHECK_MENU_ITEM(menu));
-    xed_prefs_manager_set_display_line_numbers (show);
-}
-
-static GtkWidget *
-create_line_numbers_menu (GtkWidget *view)
-{
-    GtkWidget *menu;
-    GtkWidget *item;
-
-    menu = gtk_menu_new ();
-
-    item = gtk_check_menu_item_new_with_mnemonic (_("_Display line numbers"));
-    gtk_check_menu_item_set_active (GTK_CHECK_MENU_ITEM(item),
-                                    gtk_source_view_get_show_line_numbers (GTK_SOURCE_VIEW(view)));
-    g_signal_connect(item, "toggled", G_CALLBACK (show_line_numbers_toggled), view);
-    gtk_menu_shell_append (GTK_MENU_SHELL(menu), item);
-
-    gtk_widget_show_all (menu);
-
-    return menu;
-}
-
-static void
-show_line_numbers_menu (GtkWidget *view,
-                        GdkEventButton *event)
-{
-    GtkWidget *menu;
-
-    menu = create_line_numbers_menu (view);
-    gtk_menu_popup (GTK_MENU(menu), NULL, NULL, NULL, NULL, event->button, event->time);
-}
-
-static gboolean
-xed_view_button_press_event (GtkWidget *widget,
-                             GdkEventButton *event)
-{
-    if ((event->type == GDK_BUTTON_PRESS)
-        && (event->button == 3)
-        && (event->window == gtk_text_view_get_window (GTK_TEXT_VIEW(widget), GTK_TEXT_WINDOW_LEFT)))
-    {
-
-        show_line_numbers_menu (widget, event);
-
-        return TRUE;
-    }
-
-    return GTK_WIDGET_CLASS (xed_view_parent_class)->button_press_event (widget, event);
-}
-
-static void
-xed_view_realize (GtkWidget *widget)
-{
-    XedView *view = XED_VIEW (widget);
-
-    if (!view->priv->view_realized)
-    {
-        peas_extension_set_call (view->priv->extensions, "activate");
-        view->priv->view_realized = TRUE;
-    }
-
-    GTK_WIDGET_CLASS (xed_view_parent_class)->realize (widget);
-}
-
-static void
-search_highlight_updated_cb (XedDocument *doc,
-                             GtkTextIter *start,
-                             GtkTextIter *end,
-                             XedView *view)
-{
-    GdkRectangle visible_rect;
-    GdkRectangle updated_rect;
-    GdkRectangle redraw_rect;
-    gint y;
-    gint height;
-    GtkTextView *text_view;
-
-    text_view = GTK_TEXT_VIEW(view);
-
-    g_return_if_fail(xed_document_get_enable_search_highlighting (XED_DOCUMENT (gtk_text_view_get_buffer (text_view))));
-
-    /* get visible area */
-    gtk_text_view_get_visible_rect (text_view, &visible_rect);
-
-    /* get updated rectangle */
-    gtk_text_view_get_line_yrange (text_view, start, &y, &height);
-    updated_rect.y = y;
-    gtk_text_view_get_line_yrange (text_view, end, &y, &height);
-    updated_rect.height = y + height - updated_rect.y;
-    updated_rect.x = visible_rect.x;
-    updated_rect.width = visible_rect.width;
-
-    /* intersect both rectangles to see whether we need to queue a redraw */
-    if (gdk_rectangle_intersect (&updated_rect, &visible_rect, &redraw_rect))
-    {
-        GdkRectangle widget_rect;
-        gtk_text_view_buffer_to_window_coords (text_view, GTK_TEXT_WINDOW_WIDGET, redraw_rect.x, redraw_rect.y,
-                                               &widget_rect.x, &widget_rect.y);
-
-        widget_rect.width = redraw_rect.width;
-        widget_rect.height = redraw_rect.height;
-
-        gtk_widget_queue_draw_area (GTK_WIDGET(text_view), widget_rect.x, widget_rect.y, widget_rect.width,
-                                    widget_rect.height);
-    }
-}
-
-static void
-delete_line (GtkTextView *text_view,
-             gint count)
-{
-    GtkTextIter start;
-    GtkTextIter end;
-    GtkTextBuffer *buffer;
-
-    buffer = gtk_text_view_get_buffer (text_view);
-
-    gtk_text_view_reset_im_context (text_view);
-
-    /* If there is a selection delete the selected lines and
-     * ignore count */
-    if (gtk_text_buffer_get_selection_bounds (buffer, &start, &end))
-    {
-        gtk_text_iter_order (&start, &end);
-        if (gtk_text_iter_starts_line (&end))
-        {
-            /* Do no delete the line with the cursor if the cursor
-             * is at the beginning of the line */
-            count = 0;
-        }
-        else
-        {
-            count = 1;
-        }
-    }
-
-    gtk_text_iter_set_line_offset (&start, 0);
-
-    if (count > 0)
-    {
-        gtk_text_iter_forward_lines (&end, count);
-        if (gtk_text_iter_is_end (&end))
-        {
-            if (gtk_text_iter_backward_line (&start) && !gtk_text_iter_ends_line (&start))
-            {
-                gtk_text_iter_forward_to_line_end (&start);
-            }
-        }
-    }
-    else if (count < 0)
-    {
-        if (!gtk_text_iter_ends_line (&end))
-        {
-            gtk_text_iter_forward_to_line_end (&end);
-        }
-
-        while (count < 0)
-        {
-            if (!gtk_text_iter_backward_line (&start))
-            {
-                break;
-            }
-            ++count;
-        }
-
-        if (count == 0)
-        {
-            if (!gtk_text_iter_ends_line (&start))
-            {
-                gtk_text_iter_forward_to_line_end (&start);
-            }
-        }
-        else
-        {
-            gtk_text_iter_forward_line (&end);
-        }
-    }
-
-    if (!gtk_text_iter_equal (&start, &end))
-    {
-        GtkTextIter cur = start;
-        gtk_text_iter_set_line_offset (&cur, 0);
-        gtk_text_buffer_begin_user_action (buffer);
-        gtk_text_buffer_place_cursor (buffer, &cur);
-        gtk_text_buffer_delete_interactive (buffer, &start, &end, gtk_text_view_get_editable (text_view));
-        gtk_text_buffer_end_user_action (buffer);
-        gtk_text_view_scroll_mark_onscreen (text_view, gtk_text_buffer_get_insert (buffer));
-    }
-    else
-    {
-        gtk_widget_error_bell (GTK_WIDGET(text_view));
-    }
-}
-
-static void
-xed_view_delete_from_cursor (GtkTextView *text_view,
-                             GtkDeleteType type,
-                             gint count)
-{
-    /* We override the standard handler for delete_from_cursor since
-     the GTK_DELETE_PARAGRAPHS case is not implemented as we like (i.e. it
-     does not remove the carriage return in the previous line)
-     */
-    switch (type)
-    {
-        case GTK_DELETE_PARAGRAPHS:
-            delete_line (text_view, count);
-            break;
-        default:
-            GTK_TEXT_VIEW_CLASS (xed_view_parent_class)->delete_from_cursor (text_view, type, count);
-            break;
-    }
 }

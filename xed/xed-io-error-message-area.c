@@ -42,10 +42,10 @@
 #include <glib/gi18n.h>
 #include <gio/gio.h>
 
+#include "xed-settings.h"
 #include "xed-utils.h"
 #include "xed-document.h"
 #include "xed-io-error-message-area.h"
-#include "xed-prefs-manager.h"
 #include <xed/xed-encodings-combo-box.h>
 
 #define MAX_URI_IN_DIALOG_LENGTH 50
@@ -856,6 +856,8 @@ xed_no_backup_saving_error_message_area_new (GFile        *location,
     gchar *full_formatted_uri;
     gchar *uri_for_display;
     gchar *temp_uri_for_display;
+    gboolean create_backup_copy;
+    GSettings *editor_settings;
 
     g_return_val_if_fail (G_IS_FILE (location), NULL);
     g_return_val_if_fail (error != NULL, NULL);
@@ -893,9 +895,12 @@ xed_no_backup_saving_error_message_area_new (GFile        *location,
     vbox = gtk_box_new (GTK_ORIENTATION_VERTICAL, 6);
     gtk_box_pack_start (GTK_BOX (hbox_content), vbox, TRUE, TRUE, 0);
 
-    // FIXME: review this messages
+    editor_settings = g_settings_new ("org.x.editor.preferences.editor");
+    create_backup_copy = g_settings_get_boolean (editor_settings, XED_SETTINGS_CREATE_BACKUP_COPY);
+    g_object_unref (editor_settings);
 
-    if (xed_prefs_manager_get_create_backup_copy ())
+    // FIXME: review this messages
+    if (create_backup_copy)
     {
         primary_text = g_strdup_printf (_("Could not create a backup file while saving %s"), uri_for_display);
     }

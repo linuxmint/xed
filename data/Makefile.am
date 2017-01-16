@@ -4,11 +4,13 @@ desktop_DATA 	 = $(desktop_in_files:.desktop.in=.desktop)
 @INTLTOOL_DESKTOP_RULE@
 
 @INTLTOOL_XML_RULE@
+
 appdatadir = $(datadir)/appdata
 appdata_in_files = xed.appdata.xml.in
 appdata_DATA = $(appdata_in_files:.xml.in=.xml)
 
 gsettings_SCHEMAS = org.x.editor.gschema.xml
+
 @GSETTINGS_RULES@
 
 man_MANS = xed.1

@@ -46,7 +46,6 @@
 
 #include "xed-debug.h"
 #include "xed-plugins-engine.h"
-#include "xed-prefs-manager-app.h"
 #include "xed-metadata-manager.h"
 #include "xed-window.h"
 #include "xed-app.h"

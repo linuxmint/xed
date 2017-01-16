@@ -40,11 +40,11 @@
 
 #include "xed-encodings-dialog.h"
 #include "xed-encodings.h"
-#include "xed-prefs-manager.h"
 #include "xed-utils.h"
 #include "xed-debug.h"
 #include "xed-help.h"
 #include "xed-dirs.h"
+#include "xed-settings.h"
 
 #define XED_ENCODINGS_DIALOG_GET_PRIVATE(object)(G_TYPE_INSTANCE_GET_PRIVATE ((object), \
                                                  XED_TYPE_ENCODINGS_DIALOG,           \
@@ -52,12 +52,15 @@
 
 struct _XedEncodingsDialogPrivate
 {
+    GSettings *enc_settings;
+
     GtkListStore *available_liststore;
     GtkListStore *displayed_liststore;
-    GtkWidget    *available_treeview;
-    GtkWidget    *displayed_treeview;
-    GtkWidget    *add_button;
-    GtkWidget    *remove_button;
+
+    GtkWidget *available_treeview;
+    GtkWidget *displayed_treeview;
+    GtkWidget *add_button;
+    GtkWidget *remove_button;
 
     GSList       *show_in_menu_list;
 };
@@ -75,11 +78,22 @@ xed_encodings_dialog_finalize (GObject *object)
 }
 
 static void
+xed_encodings_dialog_dispose (GObject *object)
+{
+    XedEncodingsDialogPrivate *priv = XED_ENCODINGS_DIALOG (object)->priv;
+
+    g_clear_object (&priv->enc_settings);
+
+    G_OBJECT_CLASS (xed_encodings_dialog_parent_class)->dispose (object);
+}
+
+static void
 xed_encodings_dialog_class_init (XedEncodingsDialogClass *klass)
 {
     GObjectClass *object_class = G_OBJECT_CLASS (klass);
 
     object_class->finalize = xed_encodings_dialog_finalize;
+    object_class->dispose = xed_encodings_dialog_dispose;
 
     g_type_class_add_private (object_class, sizeof (XedEncodingsDialogPrivate));
 }
@@ -228,14 +242,15 @@ static void
 init_shown_in_menu_tree_model (XedEncodingsDialog *dialog)
 {
     GtkTreeIter iter;
+    gchar **enc_strv;
     GSList *list, *tmp;
 
     /* add data to the list store */
-    list = xed_prefs_manager_get_shown_in_menu_encodings ();
+    enc_strv = g_settings_get_strv (dialog->priv->enc_settings, XED_SETTINGS_ENCODING_SHOWN_IN_MENU);
 
-    tmp = list;
+    list = _xed_encoding_strv_to_list ((const gchar * const *)enc_strv);
 
-    while (tmp != NULL)
+    for (tmp = list; tmp != NULL; tmp = g_slist_next (tmp))
     {
         const XedEncoding *enc;
 
@@ -248,8 +263,6 @@ init_shown_in_menu_tree_model (XedEncodingsDialog *dialog)
                             COLUMN_CHARSET, xed_encoding_get_charset (enc),
                             COLUMN_NAME, xed_encoding_get_name (enc),
                             -1);
-
-        tmp = g_slist_next (tmp);
     }
 
     g_slist_free (list);
@@ -269,8 +282,14 @@ response_handler (GtkDialog          *dialog,
 
     if (response_id == GTK_RESPONSE_OK)
     {
-        g_return_if_fail (xed_prefs_manager_shown_in_menu_encodings_can_set ());
-        xed_prefs_manager_set_shown_in_menu_encodings (dlg->priv->show_in_menu_list);
+        gchar **encs;
+
+        encs = _xed_encoding_list_to_strv (dlg->priv->show_in_menu_list);
+        g_settings_set_strv (dlg->priv->enc_settings,
+                             XED_SETTINGS_ENCODING_SHOWN_IN_MENU,
+                             (const gchar * const *)encs);
+
+        g_strfreev (encs);
     }
 }
 
@@ -294,6 +313,7 @@ xed_encodings_dialog_init (XedEncodingsDialog *dlg)
     };
 
     dlg->priv = XED_ENCODINGS_DIALOG_GET_PRIVATE (dlg);
+    dlg->priv->enc_settings = g_settings_new ("org.x.editor.preferences.encodings");
 
     gtk_dialog_add_buttons (GTK_DIALOG (dlg),
                             _("_Cancel"), GTK_RESPONSE_CANCEL,

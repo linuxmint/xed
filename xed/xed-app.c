@@ -39,7 +39,6 @@
 #include <libpeas/peas-extension-set.h>
 
 #include "xed-app.h"
-#include "xed-prefs-manager-app.h"
 #include "xed-commands.h"
 #include "xed-notebook.h"
 #include "xed-debug.h"
@@ -48,6 +47,7 @@
 #include "xed-dirs.h"
 #include "xed-app-activatable.h"
 #include "xed-plugins-engine.h"
+#include "xed-settings.h"
 
 #define XED_PAGE_SETUP_FILE     "xed-page-setup"
 #define XED_PRINT_SETTINGS_FILE "xed-print-settings"
@@ -62,11 +62,14 @@ enum
 
 struct _XedAppPrivate
 {
-    GList            *windows;
-    XedWindow        *active_window;
+    GList *windows;
+    XedWindow *active_window;
 
-    GtkPageSetup     *page_setup;
+    GtkPageSetup *page_setup;
     GtkPrintSettings *print_settings;
+
+    GSettings *settings;
+    GSettings *window_settings;
 
     PeasExtensionSet *extensions;
 };
@@ -98,6 +101,8 @@ xed_app_dispose (GObject *object)
 {
     XedApp *app = XED_APP (object);
 
+    g_clear_object (&app->priv->window_settings);
+    g_clear_object (&app->priv->settings);
     g_clear_object (&app->priv->extensions);
 
     G_OBJECT_CLASS (xed_app_parent_class)->dispose (object);
@@ -350,6 +355,8 @@ xed_app_init (XedApp *app)
 
     load_accels ();
 
+    app->priv->settings = xed_settings_new ();
+    app->priv->window_settings = g_settings_new ("org.x.editor.state.window");
     app->priv->extensions = peas_extension_set_new (PEAS_ENGINE (xed_plugins_engine_get_default ()),
                                                     XED_TYPE_APP_ACTIVATABLE, "app", app, NULL);
 
@@ -525,17 +532,17 @@ xed_app_create_window_real (XedApp      *app,
         GdkWindowState state;
         gint w, h;
 
-        state = xed_prefs_manager_get_window_state ();
+        state = g_settings_get_int (app->priv->window_settings, XED_SETTINGS_WINDOW_STATE);
 
         if ((state & GDK_WINDOW_STATE_MAXIMIZED) != 0)
         {
-            xed_prefs_manager_get_default_window_size (&w, &h);
+            _xed_window_get_default_size (&w, &h);
             gtk_window_set_default_size (GTK_WINDOW (window), w, h);
             gtk_window_maximize (GTK_WINDOW (window));
         }
         else
         {
-            xed_prefs_manager_get_window_size (&w, &h);
+            g_settings_get (app->priv->window_settings, XED_SETTINGS_WINDOW_SIZE, "(ii)", &w, &h);
             gtk_window_set_default_size (GTK_WINDOW (window), w, h);
             gtk_window_unmaximize (GTK_WINDOW (window));
         }
@@ -867,3 +874,10 @@ _xed_app_set_default_print_settings (XedApp           *app,
     app->priv->print_settings = g_object_ref (settings);
 }
 
+GSettings *
+_xed_app_get_settings (XedApp *app)
+{
+    g_return_val_if_fail (XED_IS_APP (app), NULL);
+
+    return app->priv->settings;
+}

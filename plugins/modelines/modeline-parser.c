@@ -25,8 +25,9 @@
 #include <gtk/gtk.h>
 #include <gtksourceview/gtksource.h>
 #include <xed/xed-language-manager.h>
-#include <xed/xed-prefs-manager.h>
 #include <xed/xed-debug.h>
+#include <xed/xed-settings.h>
+#include <xed/xed-utils.h>
 #include "modeline-parser.h"
 
 #define MODELINES_LANGUAGE_MAPPINGS_FILE "language-mappings"
@@ -678,6 +679,7 @@ modeline_parser_apply_modeline (GtkSourceView *view)
 	GtkTextBuffer *buffer;
 	GtkTextIter iter, liter;
 	gint line_count;
+	GSettings *settings;
 
 	options.language_id = NULL;
 	options.set = MODELINE_SET_NONE;
@@ -764,6 +766,8 @@ modeline_parser_apply_modeline (GtkSourceView *view)
 	ModelineOptions *previous = g_object_get_data (G_OBJECT (buffer),
 	                                               MODELINE_OPTIONS_DATA_KEY);
 
+    settings = g_settings_new ("org.x.editor.preferences.editor");
+
 	/* Apply the options we got from modelines and restore defaults if
 	   we set them before */
 	if (has_option (&options, MODELINE_SET_INSERT_SPACES))
@@ -773,9 +777,10 @@ modeline_parser_apply_modeline (GtkSourceView *view)
 	}
 	else if (check_previous (view, previous, MODELINE_SET_INSERT_SPACES))
 	{
-		gtk_source_view_set_insert_spaces_instead_of_tabs
-							(view,
-							 xed_prefs_manager_get_insert_spaces ());
+		gboolean insert_spaces;
+
+        insert_spaces = g_settings_get_boolean (settings, XED_SETTINGS_INSERT_SPACES);
+        gtk_source_view_set_insert_spaces_instead_of_tabs (view, insert_spaces);
 	}
 
 	if (has_option (&options, MODELINE_SET_TAB_WIDTH))
@@ -784,8 +789,10 @@ modeline_parser_apply_modeline (GtkSourceView *view)
 	}
 	else if (check_previous (view, previous, MODELINE_SET_TAB_WIDTH))
 	{
-		gtk_source_view_set_tab_width (view,
-		                               xed_prefs_manager_get_tabs_size ());
+		guint tab_width;
+
+        tab_width = g_settings_get_uint (settings, XED_SETTINGS_TABS_SIZE);
+        gtk_source_view_set_tab_width (view, tab_width);
 	}
 
 	if (has_option (&options, MODELINE_SET_INDENT_WIDTH))
@@ -803,8 +810,10 @@ modeline_parser_apply_modeline (GtkSourceView *view)
 	}
 	else if (check_previous (view, previous, MODELINE_SET_WRAP_MODE))
 	{
-		gtk_text_view_set_wrap_mode (GTK_TEXT_VIEW (view),
-		                             xed_prefs_manager_get_wrap_mode ());
+		GtkWrapMode mode;
+
+        mode = g_settings_get_enum (settings, XED_SETTINGS_WRAP_MODE);
+        gtk_text_view_set_wrap_mode (GTK_TEXT_VIEW (view), mode);
 	}
 
 	if (has_option (&options, MODELINE_SET_RIGHT_MARGIN_POSITION))
@@ -813,8 +822,10 @@ modeline_parser_apply_modeline (GtkSourceView *view)
 	}
 	else if (check_previous (view, previous, MODELINE_SET_RIGHT_MARGIN_POSITION))
 	{
-		gtk_source_view_set_right_margin_position (view,
-		                                           xed_prefs_manager_get_right_margin_position ());
+		guint right_margin_pos;
+
+        right_margin_pos = g_settings_get_uint (settings, XED_SETTINGS_RIGHT_MARGIN_POSITION);
+        gtk_source_view_set_right_margin_position (view, right_margin_pos);
 	}
 
 	if (has_option (&options, MODELINE_SET_SHOW_RIGHT_MARGIN))
@@ -823,8 +834,10 @@ modeline_parser_apply_modeline (GtkSourceView *view)
 	}
 	else if (check_previous (view, previous, MODELINE_SET_SHOW_RIGHT_MARGIN))
 	{
-		gtk_source_view_set_show_right_margin (view,
-		                                       xed_prefs_manager_get_display_right_margin ());
+		gboolean display_right_margin;
+
+        display_right_margin = g_settings_get_boolean (settings, XED_SETTINGS_DISPLAY_RIGHT_MARGIN);
+        gtk_source_view_set_show_right_margin (view, display_right_margin);
 	}
 
 	if (previous)

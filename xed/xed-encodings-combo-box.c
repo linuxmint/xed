@@ -37,8 +37,9 @@
 #include <gtk/gtk.h>
 
 #include <xed/xed-encodings-combo-box.h>
-#include <xed/xed-prefs-manager.h>
 #include <xed/dialogs/xed-encodings-dialog.h>
+#include "xed-settings.h"
+#include "xed-utils.h"
 
 #define ENCODING_KEY "Enconding"
 
@@ -48,6 +49,8 @@
 
 struct _XedEncodingsComboBoxPrivate
 {
+    GSettings *enc_settings;
+
     GtkListStore *store;
     glong changed_id;
 
@@ -248,6 +251,7 @@ update_menu (XedEncodingsComboBox *menu)
     gchar *str;
     const XedEncoding *utf8_encoding;
     const XedEncoding *current_encoding;
+    gchar **enc_strv;
 
     store = menu->priv->store;
 
@@ -308,7 +312,9 @@ update_menu (XedEncodingsComboBox *menu)
         g_free (str);
     }
 
-    encodings = xed_prefs_manager_get_shown_in_menu_encodings ();
+    enc_strv = g_settings_get_strv (menu->priv->enc_settings, XED_SETTINGS_ENCODING_SHOWN_IN_MENU);
+    encodings = _xed_encoding_strv_to_list ((const gchar * const *)enc_strv);
+    g_strfreev (enc_strv);
 
     for (l = encodings; l != NULL; l = g_slist_next (l))
     {
@@ -331,23 +337,20 @@ update_menu (XedEncodingsComboBox *menu)
 
     g_slist_free (encodings);
 
-    if (xed_prefs_manager_shown_in_menu_encodings_can_set ())
-    {
-        gtk_list_store_append (store, &iter);
-        /* separator */
-        gtk_list_store_set (store, &iter,
-                            NAME_COLUMN, "",
-                            ENCODING_COLUMN, NULL,
-                            ADD_COLUMN, FALSE,
-                            -1);
+    gtk_list_store_append (store, &iter);
+    /* Separator */
+    gtk_list_store_set (store, &iter,
+                        NAME_COLUMN, "",
+                        ENCODING_COLUMN, NULL,
+                        ADD_COLUMN, FALSE,
+                        -1);
 
-        gtk_list_store_append (store, &iter);
-        gtk_list_store_set (store, &iter,
-                            NAME_COLUMN, _("Add or Remove..."),
-                            ENCODING_COLUMN, NULL,
-                            ADD_COLUMN, TRUE,
-                            -1);
-    }
+    gtk_list_store_append (store, &iter);
+    gtk_list_store_set (store, &iter,
+                        NAME_COLUMN, _("Add or Remove..."),
+                        ENCODING_COLUMN, NULL,
+                        ADD_COLUMN, TRUE,
+                        -1);
 
     /* set the model back */
     gtk_combo_box_set_model (GTK_COMBO_BOX (menu), GTK_TREE_MODEL (menu->priv->store));
@@ -363,6 +366,7 @@ xed_encodings_combo_box_init (XedEncodingsComboBox *menu)
 
     menu->priv = XED_ENCODINGS_COMBO_BOX_GET_PRIVATE (menu);
 
+    menu->priv->enc_settings = g_settings_new ("org.x.editor.preferences.encodings");
     menu->priv->store = gtk_list_store_new (N_COLUMNS, G_TYPE_STRING, G_TYPE_POINTER, G_TYPE_BOOLEAN);
 
     /* Setup up the cells */

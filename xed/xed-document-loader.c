@@ -40,12 +40,12 @@
 #include "xed-document-loader.h"
 #include "xed-document-output-stream.h"
 #include "xed-smart-charset-converter.h"
-#include "xed-prefs-manager.h"
 #include "xed-debug.h"
 #include "xed-metadata-manager.h"
 #include "xed-utils.h"
 #include "xed-marshal.h"
 #include "xed-enum-types.h"
+#include "xed-settings.h"
 
 #ifndef ENABLE_GVFS_METADATA
 #include "xed_metadata-manager.h"
@@ -94,6 +94,8 @@ static void open_async_read (AsyncData *async);
 
 struct _XedDocumentLoaderPrivate
 {
+    GSettings *enc_settings;
+
     XedDocument *document;
     gboolean used;
 
@@ -228,6 +230,8 @@ xed_document_loader_dispose (GObject *object)
         priv->location = NULL;
     }
 
+    g_clear_object (&priv->enc_settings);
+
     G_OBJECT_CLASS (xed_document_loader_parent_class)->dispose (object);
 }
 
@@ -303,6 +307,7 @@ xed_document_loader_init (XedDocumentLoader *loader)
     loader->priv->auto_detected_newline_type = XED_DOCUMENT_NEWLINE_TYPE_DEFAULT;
     loader->priv->converter = NULL;
     loader->priv->error = NULL;
+    loader->priv->enc_settings = g_settings_new ("org.x.editor.preferences.encodings");
 }
 
 XedDocumentLoader *
@@ -585,9 +590,12 @@ static GSList *
 get_candidate_encodings (XedDocumentLoader *loader)
 {
     const XedEncoding *metadata;
-    GSList *encodings = NULL;
+    GSList *encodings;
+    gchar **enc_strv;
 
-    encodings = xed_prefs_manager_get_auto_detected_encodings ();
+    enc_strv = g_settings_get_strv (loader->priv->enc_settings, XED_SETTINGS_ENCODING_AUTO_DETECTED);
+    encodings = _xed_encoding_strv_to_list ((const gchar * const *)enc_strv);
+    g_free (enc_strv);
 
     metadata = get_metadata_encoding (loader);
     if (metadata != NULL)

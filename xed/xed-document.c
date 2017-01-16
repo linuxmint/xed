@@ -41,7 +41,7 @@
 #include <gtk/gtk.h>
 #include <gtksourceview/gtksource.h>
 
-#include "xed-prefs-manager-app.h"
+#include "xed-settings.h"
 #include "xed-document.h"
 #include "xed-debug.h"
 #include "xed-utils.h"
@@ -102,7 +102,10 @@ static void delete_range_cb (XedDocument *doc,
 
 struct _XedDocumentPrivate
 {
+    GSettings *editor_settings;
+
     GFile *location;
+
     gint   untitled_number;
     gchar *short_name;
 
@@ -283,6 +286,8 @@ xed_document_dispose (GObject *object)
         g_object_unref (doc->priv->loader);
         doc->priv->loader = NULL;
     }
+
+    g_clear_object (&doc->priv->editor_settings);
 
     if (doc->priv->metadata_info != NULL)
     {
@@ -676,8 +681,11 @@ set_language (XedDocument       *doc,
 
     if (lang != NULL)
     {
-        gtk_source_buffer_set_highlight_syntax (GTK_SOURCE_BUFFER (doc),
-                                                xed_prefs_manager_get_enable_syntax_highlighting ());
+        gboolean syntax_hl;
+
+        syntax_hl = g_settings_get_boolean (doc->priv->editor_settings,
+                                            XED_SETTINGS_SYNTAX_HIGHLIGHTING);
+        gtk_source_buffer_set_highlight_syntax (GTK_SOURCE_BUFFER (doc), syntax_hl);
     }
     else
     {
@@ -723,16 +731,15 @@ set_encoding (XedDocument       *doc,
 }
 
 static GtkSourceStyleScheme *
-get_default_style_scheme (void)
+get_default_style_scheme (GSettings *editor_settings)
 {
     gchar *scheme_id;
     GtkSourceStyleScheme *def_style;
     GtkSourceStyleSchemeManager *manager;
 
     manager = xed_get_style_scheme_manager ();
-    scheme_id = xed_prefs_manager_get_source_style_scheme ();
-    def_style = gtk_source_style_scheme_manager_get_scheme (manager,
-                                scheme_id);
+    scheme_id = g_settings_get_string (editor_settings, XED_SETTINGS_SCHEME);
+    def_style = gtk_source_style_scheme_manager_get_scheme (manager, scheme_id);
 
     if (def_style == NULL)
     {
@@ -874,10 +881,15 @@ static void
 xed_document_init (XedDocument *doc)
 {
     GtkSourceStyleScheme *style_scheme;
+    gint undo_actions;
+    gboolean bracket_matching;
+    gboolean search_hl;
 
     xed_debug (DEBUG_DOCUMENT);
 
     doc->priv = XED_DOCUMENT_GET_PRIVATE (doc);
+
+    doc->priv->editor_settings = g_settings_new ("org.x.editor.preferences.editor");
 
     doc->priv->location = NULL;
     doc->priv->untitled_number = get_untitled_number ();
@@ -904,12 +916,15 @@ xed_document_init (XedDocument *doc)
 
     doc->priv->newline_type = XED_DOCUMENT_NEWLINE_TYPE_DEFAULT;
 
-    gtk_source_buffer_set_max_undo_levels (GTK_SOURCE_BUFFER (doc), xed_prefs_manager_get_undo_actions_limit ());
-    gtk_source_buffer_set_highlight_matching_brackets (GTK_SOURCE_BUFFER (doc),
-                                                       xed_prefs_manager_get_bracket_matching ());
-    xed_document_set_enable_search_highlighting (doc, xed_prefs_manager_get_enable_search_highlighting ());
+    undo_actions = g_settings_get_int (doc->priv->editor_settings, XED_SETTINGS_MAX_UNDO_ACTIONS);
+    bracket_matching = g_settings_get_boolean (doc->priv->editor_settings, XED_SETTINGS_BRACKET_MATCHING);
+    search_hl = g_settings_get_boolean (doc->priv->editor_settings, XED_SETTINGS_SEARCH_HIGHLIGHTING);
 
-    style_scheme = get_default_style_scheme ();
+    gtk_source_buffer_set_max_undo_levels (GTK_SOURCE_BUFFER (doc), undo_actions);
+    gtk_source_buffer_set_highlight_matching_brackets (GTK_SOURCE_BUFFER (doc), bracket_matching);
+    xed_document_set_enable_search_highlighting (doc, search_hl);
+
+    style_scheme = get_default_style_scheme (doc->priv->editor_settings);
     if (style_scheme != NULL)
     {
         gtk_source_buffer_set_style_scheme (GTK_SOURCE_BUFFER (doc), style_scheme);
@@ -1275,6 +1290,7 @@ document_loader_loaded (XedDocumentLoader *loader,
     {
         GtkTextIter iter;
         GFileInfo *info;
+        gboolean restore_cursor;
         const gchar *content_type = NULL;
         gboolean read_only = FALSE;
         GTimeVal mtime = {0, 0};
@@ -1309,6 +1325,8 @@ document_loader_loaded (XedDocumentLoader *loader,
 
         xed_document_set_newline_type (doc, xed_document_loader_get_newline_type (loader));
 
+        restore_cursor = g_settings_get_boolean (doc->priv->editor_settings, XED_SETTINGS_RESTORE_CURSOR_POSITION);
+
         /* move the cursor at the requested line if any */
         if (doc->priv->requested_line_pos > 0)
         {
@@ -1318,7 +1336,7 @@ document_loader_loaded (XedDocumentLoader *loader,
                                               doc->priv->requested_line_pos - 1);
         }
         /* else, if enabled, to the position stored in the metadata */
-        else if (xed_prefs_manager_get_restore_cursor_position ())
+        else if (restore_cursor)
         {
             gchar *pos;
             gint offset;

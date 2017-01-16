@@ -40,8 +40,9 @@
 #include "xed-plugins-engine.h"
 #include "xed-debug.h"
 #include "xed-app.h"
-#include "xed-prefs-manager.h"
 #include "xed-dirs.h"
+#include "xed-settings.h"
+#include "xed-utils.h"
 
 G_DEFINE_TYPE (XedPluginsEngine, xed_plugins_engine, PEAS_TYPE_ENGINE)
 
@@ -62,7 +63,7 @@ xed_plugins_engine_init (XedPluginsEngine *engine)
 
     engine->priv = G_TYPE_INSTANCE_GET_PRIVATE (engine, XED_TYPE_PLUGINS_ENGINE, XedPluginsEnginePrivate);
 
-    engine->priv->plugin_settings = g_settings_new (XED_SCHEMA);
+    engine->priv->plugin_settings = g_settings_new ("org.x.editor.plugins");
 
     peas_engine_enable_loader (PEAS_ENGINE (engine), "python3");
 
@@ -111,8 +112,11 @@ xed_plugins_engine_init (XedPluginsEngine *engine)
                                  xed_dirs_get_xed_plugins_dir(),
                                  xed_dirs_get_xed_plugins_data_dir());
 
-    g_settings_bind (engine->priv->plugin_settings, GPM_ACTIVE_PLUGINS,
-                     engine, "loaded-plugins", G_SETTINGS_BIND_DEFAULT);
+    g_settings_bind (engine->priv->plugin_settings,
+                     XED_SETTINGS_ACTIVE_PLUGINS,
+                     engine,
+                     "loaded-plugins",
+                     G_SETTINGS_BIND_DEFAULT);
 }
 
 static void

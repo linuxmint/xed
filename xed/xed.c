@@ -52,7 +52,6 @@
 #include "xed-dirs.h"
 #include "xed-encodings.h"
 #include "xed-plugins-engine.h"
-#include "xed-prefs-manager-app.h"
 #include "xed-session.h"
 #include "xed-utils.h"
 #include "xed-window.h"
@@ -597,10 +596,6 @@ main (int argc, char *argv[])
 	/* Set the associated .desktop file */
 	egg_set_desktop_file (DATADIR "/applications/xed.desktop");
 
-	/* Load user preferences */
-	xed_debug_message (DEBUG_APP, "Init prefs manager");
-	xed_prefs_manager_app_init ();
-
 	/* Init plugins engine */
 	xed_debug_message (DEBUG_APP, "Init plugins");
 	engine = xed_plugins_engine_get_default ();
@@ -658,7 +653,6 @@ main (int argc, char *argv[])
 	 * finalize it properly.
 	 */
 	g_object_unref (engine);
-	xed_prefs_manager_app_shutdown ();
 
 #ifndef ENABLE_GVFS_METADATA
 	xed_metadata_manager_shutdown ();

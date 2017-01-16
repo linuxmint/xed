@@ -42,8 +42,8 @@
 #include "xed-print-preview.h"
 #include "xed-progress-message-area.h"
 #include "xed-debug.h"
-#include "xed-prefs-manager-app.h"
 #include "xed-enum-types.h"
+#include "xed-settings.h"
 
 #define XED_TAB_GET_PRIVATE(object)(G_TYPE_INSTANCE_GET_PRIVATE ((object), XED_TYPE_TAB, XedTabPrivate))
 
@@ -51,6 +51,8 @@
 
 struct _XedTabPrivate
 {
+    GSettings *editor;
+
     XedTabState state;
 
     GtkWidget *view;
@@ -73,7 +75,7 @@ struct _XedTabPrivate
 
     XedDocumentSaveFlags save_flags;
 
-    gint  auto_save_interval;
+    guint  auto_save_interval;
     guint auto_save_timeout;
 
     gint not_editable : 1;
@@ -222,6 +224,8 @@ xed_tab_dispose (GObject *object)
         g_object_unref (tab->priv->tmp_save_location);
         tab->priv->tmp_save_location = NULL;
     }
+
+    g_clear_object (&tab->priv->editor);
 
     G_OBJECT_CLASS (xed_tab_parent_class)->dispose (object);
 }
@@ -372,7 +376,9 @@ set_view_properties_according_to_state (XedTab      *tab,
                                         XedTabState  state)
 {
     gboolean val;
+    gboolean hl_current_line;
 
+    hl_current_line = g_settings_get_boolean (tab->priv->editor, XED_SETTINGS_HIGHLIGHT_CURRENT_LINE);
     val = ((state == XED_TAB_STATE_NORMAL) && (tab->priv->print_preview == NULL) && !tab->priv->not_editable);
     gtk_text_view_set_editable (GTK_TEXT_VIEW (tab->priv->view), val);
 
@@ -381,7 +387,7 @@ set_view_properties_according_to_state (XedTab      *tab,
 
     val = ((state != XED_TAB_STATE_LOADING) &&
            (state != XED_TAB_STATE_CLOSING) &&
-           (xed_prefs_manager_get_highlight_current_line ()));
+           (hl_current_line));
     gtk_source_view_set_highlight_current_line (GTK_SOURCE_VIEW (tab->priv->view), val);
 }
 
@@ -1418,15 +1424,15 @@ xed_tab_init (XedTab *tab)
 {
     GtkWidget *sw;
     XedDocument *doc;
+    gboolean auto_save;
+    guint auto_save_interval;
 
     tab->priv = XED_TAB_GET_PRIVATE (tab);
 
+    tab->priv->editor = g_settings_new ("org.x.editor.preferences.editor");
     tab->priv->state = XED_TAB_STATE_NORMAL;
-
     tab->priv->not_editable = FALSE;
-
     tab->priv->save_flags = 0;
-
     tab->priv->ask_if_externally_modified = TRUE;
 
     gtk_orientable_set_orientation (GTK_ORIENTABLE (tab), GTK_ORIENTATION_VERTICAL);
@@ -1438,14 +1444,17 @@ xed_tab_init (XedTab *tab)
     gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (sw), GTK_POLICY_AUTOMATIC, GTK_POLICY_AUTOMATIC);
 
     /* Manage auto save data */
-    tab->priv->auto_save = xed_prefs_manager_get_auto_save ();
+    auto_save = g_settings_get_boolean (tab->priv->editor, XED_SETTINGS_AUTO_SAVE);
+    auto_save_interval = g_settings_get_uint (tab->priv->editor, XED_SETTINGS_AUTO_SAVE_INTERVAL);
+    tab->priv->auto_save = auto_save;
     tab->priv->auto_save = (tab->priv->auto_save != FALSE);
 
-    tab->priv->auto_save_interval = xed_prefs_manager_get_auto_save_interval ();
+    tab->priv->auto_save_interval = auto_save_interval;
+    /*FIXME
     if (tab->priv->auto_save_interval <= 0)
     {
         tab->priv->auto_save_interval = GPM_DEFAULT_AUTO_SAVE_INTERVAL;
-    }
+    }*/
 
     /* Create the view */
     doc = xed_document_new ();

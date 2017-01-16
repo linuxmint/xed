@@ -106,6 +106,8 @@ gboolean   _xed_window_is_fullscreen (XedWindow *window);
 void _xed_recent_add (XedWindow *window, GFile *location, const gchar *mime);
 void _xed_recent_remove (XedWindow *window, GFile *location);
 
+void _xed_window_get_default_size (gint *width, gint *height);
+
 G_END_DECLS
 
 #endif /* __XED_WINDOW_H__ */

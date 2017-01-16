@@ -44,9 +44,9 @@
 #include "xed-file-chooser-dialog.h"
 #include "xed-encodings-combo-box.h"
 #include "xed-language-manager.h"
-#include "xed-prefs-manager-app.h"
 #include "xed-debug.h"
 #include "xed-enum-types.h"
+#include "xed-settings.h"
 
 #define XED_FILE_CHOOSER_DIALOG_GET_PRIVATE(object)(G_TYPE_INSTANCE_GET_PRIVATE ((object), XED_TYPE_FILE_CHOOSER_DIALOG, XedFileChooserDialogPrivate))
 
@@ -55,6 +55,8 @@
 
 struct _XedFileChooserDialogPrivate
 {
+    GSettings *filter_settings;
+
     GtkWidget *option_menu;
     GtkWidget *extra_widget;
 
@@ -66,9 +68,21 @@ struct _XedFileChooserDialogPrivate
 G_DEFINE_TYPE(XedFileChooserDialog, xed_file_chooser_dialog, GTK_TYPE_FILE_CHOOSER_DIALOG)
 
 static void
+xed_file_chooser_dialog_dispose (GObject *object)
+{
+    XedFileChooserDialog *dialog = XED_FILE_CHOOSER_DIALOG (object);
+
+    g_clear_object (&dialog->priv->filter_settings);
+
+    G_OBJECT_CLASS (xed_file_chooser_dialog_parent_class)->dispose (object);
+}
+
+static void
 xed_file_chooser_dialog_class_init (XedFileChooserDialogClass *klass)
 {
     GObjectClass *object_class = G_OBJECT_CLASS (klass);
+
+    object_class->dispose = xed_file_chooser_dialog_dispose;
 
     g_type_class_add_private (object_class, sizeof(XedFileChooserDialogPrivate));
 }
@@ -209,11 +223,6 @@ filter_changed (XedFileChooserDialog *dialog,
 {
     GtkFileFilter *filter;
 
-    if (!xed_prefs_manager_active_file_filter_can_set ())
-    {
-        return;
-    }
-
     filter = gtk_file_chooser_get_filter (GTK_FILE_CHOOSER (dialog));
     if (filter != NULL)
     {
@@ -230,7 +239,7 @@ filter_changed (XedFileChooserDialog *dialog,
 
         xed_debug_message (DEBUG_COMMANDS, "Active filter: %s (%d)", name, id);
 
-        xed_prefs_manager_set_active_file_filter (id);
+        g_settings_set_int (dialog->priv->filter_settings, XED_SETTINGS_ACTIVE_FILE_FILTER, id);
     }
 }
 
@@ -323,6 +332,8 @@ static void
 xed_file_chooser_dialog_init (XedFileChooserDialog *dialog)
 {
     dialog->priv = XED_FILE_CHOOSER_DIALOG_GET_PRIVATE (dialog);
+
+    dialog->priv->filter_settings = g_settings_new ("org.x.editor.state.file-filter");
 }
 
 static GtkWidget *
@@ -359,7 +370,8 @@ xed_file_chooser_dialog_new_valist (const gchar          *title,
                 XED_ENCODINGS_COMBO_BOX (XED_FILE_CHOOSER_DIALOG (result)->priv->option_menu), encoding);
     }
 
-    active_filter = xed_prefs_manager_get_active_file_filter ();
+    active_filter = g_settings_get_int (XED_FILE_CHOOSER_DIALOG (result)->priv->filter_settings,
+                                        XED_SETTINGS_ACTIVE_FILE_FILTER);
     xed_debug_message (DEBUG_COMMANDS, "Active filter: %d", active_filter);
 
     /* Filters */
