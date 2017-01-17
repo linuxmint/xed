@@ -1,4 +1,5 @@
 #include "xed-app.h"
+#include "xed-app-activatable.h"
 #include "xed-document.h"
 #include "xed-encodings.h"
 #include "xed-encodings-combo-box.h"
@@ -12,8 +13,11 @@
 #include "xed-statusbar.h"
 #include "xed-tab.h"
 #include "xed-view.h"
+#include "xed-view-activatable.h"
 #include "xed-window.h"
+#include "xed-window-activatable.h"
 xed_app_get_type
+xed_app_activatable_get_type
 xed_document_get_type
 xed_encoding_get_type
 xed_encodings_combo_box_get_type
@@ -27,4 +31,6 @@ xed_progress_message_area_get_type
 xed_statusbar_get_type
 xed_tab_get_type
 xed_view_get_type
+xed_view_activatable_get_type
 xed_window_get_type
+xed_window_activatable_get_type
