@@ -59,7 +59,6 @@ NOINST_H_FILES =			\
 	xed-print-preview.h		\
 	xed-session.h			\
 	xed-settings.h 			\
-	xed-smart-charset-converter.h	\
 	xed-style-scheme-manager.h	\
 	xed-tab-label.h		\
 	xedtextregion.h		\
@@ -140,7 +139,6 @@ libxed_c_files = 				\
 	xed-progress-message-area.c	\
 	xed-session.c			\
 	xed-settings.c 			\
-	xed-smart-charset-converter.c	\
 	xed-searchbar.c		\
 	xed-statusbar.c		\
 	xed-status-combo-box.c	\

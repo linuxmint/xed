@@ -39,7 +39,6 @@
 
 #include "xed-document-loader.h"
 #include "xed-document-output-stream.h"
-#include "xed-smart-charset-converter.h"
 #include "xed-debug.h"
 #include "xed-metadata-manager.h"
 #include "xed-utils.h"
@@ -112,7 +111,6 @@ struct _XedDocumentLoaderPrivate
     GCancellable *cancellable;
     GInputStream *stream;
     GOutputStream *output;
-    XedSmartCharsetConverter *converter;
 
     gchar buffer[READ_CHUNK_SIZE];
 
@@ -204,12 +202,6 @@ xed_document_loader_dispose (GObject *object)
     {
         g_object_unref (priv->output);
         priv->output = NULL;
-    }
-
-    if (priv->converter != NULL)
-    {
-        g_object_unref (priv->converter);
-        priv->converter = NULL;
     }
 
     if (priv->error != NULL)
@@ -305,7 +297,6 @@ xed_document_loader_init (XedDocumentLoader *loader)
 
     loader->priv->used = FALSE;
     loader->priv->auto_detected_newline_type = XED_DOCUMENT_NEWLINE_TYPE_DEFAULT;
-    loader->priv->converter = NULL;
     loader->priv->error = NULL;
     loader->priv->enc_settings = g_settings_new ("org.x.editor.preferences.encodings");
 }
@@ -544,7 +535,11 @@ async_read_cb (GInputStream *stream,
     /* end of the file, we are done! */
     if (async->read == 0)
     {
-        loader->priv->auto_detected_encoding = xed_smart_charset_converter_get_guessed (loader->priv->converter);
+        /* flush the stream to ensure proper line ending detection */
+        g_output_stream_flush (loader->priv->output, NULL, NULL);
+
+        loader->priv->auto_detected_encoding =
+            xed_document_output_stream_get_guessed (XED_DOCUMENT_OUTPUT_STREAM (loader->priv->output));
 
         loader->priv->auto_detected_newline_type =
             xed_document_output_stream_detect_newline_type (XED_DOCUMENT_OUTPUT_STREAM (loader->priv->output));
@@ -552,7 +547,7 @@ async_read_cb (GInputStream *stream,
         /* Check if we needed some fallback char, if so, check if there was
            a previous error and if not set a fallback used error */
         /* FIXME Uncomment this when we want to manage conversion fallback */
-        /*if ((xed_smart_charset_converter_get_num_fallbacks (loader->priv->converter) != 0) &&
+        /*if ((xed_document_output_stream_get_num_fallbacks (XED_DOCUMENT_OUTPUT_STREAM (loader->priv->ouput)) != 0) &&
             loader->priv->error == NULL)
         {
             g_set_error_literal (&loader->priv->error,
@@ -631,6 +626,10 @@ finish_query_info (AsyncData *async)
         return;
     }
 
+    conv_stream = g_object_ref (loader->priv->stream);
+    g_object_unref (loader->priv->stream);
+    loader->priv->stream = conv_stream;
+
     /* Get the candidate encodings */
     if (loader->priv->encoding == NULL)
     {
@@ -641,16 +640,9 @@ finish_query_info (AsyncData *async)
         candidate_encodings = g_slist_prepend (NULL, (gpointer) loader->priv->encoding);
     }
 
-    loader->priv->converter = xed_smart_charset_converter_new (candidate_encodings);
-    g_slist_free (candidate_encodings);
-
-    conv_stream = g_converter_input_stream_new (loader->priv->stream, G_CONVERTER (loader->priv->converter));
-    g_object_unref (loader->priv->stream);
-
-    loader->priv->stream = conv_stream;
-
     /* Output stream */
-    loader->priv->output = xed_document_output_stream_new (loader->priv->document);
+    loader->priv->output = xed_document_output_stream_new (loader->priv->document, candidate_encodings);
+    g_slist_free (candidate_encodings);
 
     /* start reading */
     read_file_chunk (async);

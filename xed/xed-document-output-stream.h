@@ -26,6 +26,7 @@
 
 #include <gio/gio.h>
 #include "xed-document.h"
+#include "xed-encodings.h"
 
 G_BEGIN_DECLS
 
@@ -55,9 +56,14 @@ struct _XedDocumentOutputStreamClass
 
 GType xed_document_output_stream_get_type (void) G_GNUC_CONST;
 
-GOutputStream *xed_document_output_stream_new (XedDocument *doc);
+GOutputStream *xed_document_output_stream_new (XedDocument *doc,
+                                               GSList      *candidate_encodings);
 
 XedDocumentNewlineType xed_document_output_stream_detect_newline_type (XedDocumentOutputStream *stream);
+
+const XedEncoding *xed_document_output_stream_get_guessed (XedDocumentOutputStream *stream);
+
+guint xed_document_output_stream_get_num_fallbacks (XedDocumentOutputStream *stream);
 
 G_END_DECLS
 

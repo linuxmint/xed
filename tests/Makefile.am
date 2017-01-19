@@ -3,11 +3,7 @@ AM_CPPFLAGS = -g -I$(top_srcdir) -I$(top_srcdir)/xed $(XED_DEBUG_FLAGS) $(XED_CF
 noinst_PROGRAMS = $(TEST_PROGS)
 progs_ldadd     = $(top_builddir)/xed/libxed.la
 
-TEST_PROGS			= smart-converter
-smart_converter_SOURCES		= smart-converter.c
-smart_converter_LDADD		= $(progs_ldadd)
-
-TEST_PROGS			+= document-input-stream
+TEST_PROGS			= document-input-stream
 document_input_stream_SOURCES	= document-input-stream.c
 document_input_stream_LDADD	= $(progs_ldadd)
 
