@@ -16,7 +16,7 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with xed; if not, write to the Free Software
- * Foundation, Inc., 51 Franklin St, Fifth Floor, 
+ * Foundation, Inc., 51 Franklin St, Fifth Floor,
  * Boston, MA  02110-1301  USA
  */
 
@@ -35,213 +35,208 @@
  * thread */
 
 #define XED_DOCUMENT_OUTPUT_STREAM_GET_PRIVATE(object)(G_TYPE_INSTANCE_GET_PRIVATE((object),\
-							 XED_TYPE_DOCUMENT_OUTPUT_STREAM,\
-							 XedDocumentOutputStreamPrivate))
+                                                       XED_TYPE_DOCUMENT_OUTPUT_STREAM,\
+                                                       XedDocumentOutputStreamPrivate))
 
 #define MAX_UNICHAR_LEN 6
 
 struct _XedDocumentOutputStreamPrivate
 {
-	XedDocument *doc;
-	GtkTextIter    pos;
+    XedDocument *doc;
+    GtkTextIter  pos;
 
-	gchar *buffer;
-	gsize buflen;
+    gchar *buffer;
+    gsize buflen;
 
-	guint is_initialized : 1;
-	guint is_closed : 1;
+    guint is_initialized : 1;
+    guint is_closed : 1;
 };
 
 enum
 {
-	PROP_0,
-	PROP_DOCUMENT
+    PROP_0,
+    PROP_DOCUMENT
 };
 
 G_DEFINE_TYPE (XedDocumentOutputStream, xed_document_output_stream, G_TYPE_OUTPUT_STREAM)
 
-static gssize	xed_document_output_stream_write (GOutputStream            *stream,
-						    const void               *buffer,
-						    gsize                     count,
-						    GCancellable             *cancellable,
-						    GError                  **error);
+static gssize   xed_document_output_stream_write (GOutputStream *stream,
+                                                  const void    *buffer,
+                                                  gsize          count,
+                                                  GCancellable   *cancellable,
+                                                  GError        **error);
 
 static gboolean xed_document_output_stream_flush (GOutputStream *stream,
-                                                    GCancellable  *cancellable,
-                                                    GError        **error);
+                                                  GCancellable  *cancellable,
+                                                  GError        **error);
 
-static gboolean	xed_document_output_stream_close (GOutputStream     *stream,
-						    GCancellable      *cancellable,
-						    GError           **error);
+static gboolean xed_document_output_stream_close (GOutputStream *stream,
+                                                  GCancellable  *cancellable,
+                                                  GError       **error);
 
 static void
 xed_document_output_stream_set_property (GObject      *object,
-					   guint         prop_id,
-					   const GValue *value,
-					   GParamSpec   *pspec)
+                                         guint         prop_id,
+                                         const GValue *value,
+                                         GParamSpec   *pspec)
 {
-	XedDocumentOutputStream *stream = XED_DOCUMENT_OUTPUT_STREAM (object);
+    XedDocumentOutputStream *stream = XED_DOCUMENT_OUTPUT_STREAM (object);
 
-	switch (prop_id)
-	{
-		case PROP_DOCUMENT:
-			stream->priv->doc = XED_DOCUMENT (g_value_get_object (value));
-			break;
+    switch (prop_id)
+    {
+        case PROP_DOCUMENT:
+            stream->priv->doc = XED_DOCUMENT (g_value_get_object (value));
+            break;
 
-		default:
-			G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
-			break;
-	}
+        default:
+            G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
+            break;
+    }
 }
 
 static void
 xed_document_output_stream_get_property (GObject    *object,
-					   guint       prop_id,
-					   GValue     *value,
-					   GParamSpec *pspec)
+                                         guint       prop_id,
+                                         GValue     *value,
+                                         GParamSpec *pspec)
 {
-	XedDocumentOutputStream *stream = XED_DOCUMENT_OUTPUT_STREAM (object);
+    XedDocumentOutputStream *stream = XED_DOCUMENT_OUTPUT_STREAM (object);
 
-	switch (prop_id)
-	{
-		case PROP_DOCUMENT:
-			g_value_set_object (value, stream->priv->doc);
-			break;
+    switch (prop_id)
+    {
+        case PROP_DOCUMENT:
+            g_value_set_object (value, stream->priv->doc);
+            break;
 
-		default:
-			G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
-			break;
-	}
+        default:
+            G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
+            break;
+    }
 }
 
 static void
 xed_document_output_stream_finalize (GObject *object)
 {
-	XedDocumentOutputStream *stream = XED_DOCUMENT_OUTPUT_STREAM (object);
+    XedDocumentOutputStream *stream = XED_DOCUMENT_OUTPUT_STREAM (object);
 
-	g_free (stream->priv->buffer);
+    g_free (stream->priv->buffer);
 
-	G_OBJECT_CLASS (xed_document_output_stream_parent_class)->finalize (object);
+    G_OBJECT_CLASS (xed_document_output_stream_parent_class)->finalize (object);
 }
 
 static void
 xed_document_output_stream_constructed (GObject *object)
 {
-	XedDocumentOutputStream *stream = XED_DOCUMENT_OUTPUT_STREAM (object);
+    XedDocumentOutputStream *stream = XED_DOCUMENT_OUTPUT_STREAM (object);
 
-	if (!stream->priv->doc)
-	{
-		g_critical ("This should never happen, a problem happened constructing the Document Output Stream!");
-		return;
-	}
+    if (!stream->priv->doc)
+    {
+        g_critical ("This should never happen, a problem happened constructing the Document Output Stream!");
+        return;
+    }
 
-	/* Init the undoable action */
-	gtk_source_buffer_begin_not_undoable_action (GTK_SOURCE_BUFFER (stream->priv->doc));
-	/* clear the buffer */
-	gtk_text_buffer_set_text (GTK_TEXT_BUFFER (stream->priv->doc),
-				  "", 0);
-	gtk_text_buffer_set_modified (GTK_TEXT_BUFFER (stream->priv->doc),
-				      FALSE);
+    /* Init the undoable action */
+    gtk_source_buffer_begin_not_undoable_action (GTK_SOURCE_BUFFER (stream->priv->doc));
+    /* clear the buffer */
+    gtk_text_buffer_set_text (GTK_TEXT_BUFFER (stream->priv->doc), "", 0);
+    gtk_text_buffer_set_modified (GTK_TEXT_BUFFER (stream->priv->doc), FALSE);
 
-	gtk_source_buffer_end_not_undoable_action (GTK_SOURCE_BUFFER (stream->priv->doc));
+    gtk_source_buffer_end_not_undoable_action (GTK_SOURCE_BUFFER (stream->priv->doc));
 }
 
 static void
 xed_document_output_stream_class_init (XedDocumentOutputStreamClass *klass)
 {
-	GObjectClass *object_class = G_OBJECT_CLASS (klass);
-	GOutputStreamClass *stream_class = G_OUTPUT_STREAM_CLASS (klass);
+    GObjectClass *object_class = G_OBJECT_CLASS (klass);
+    GOutputStreamClass *stream_class = G_OUTPUT_STREAM_CLASS (klass);
 
-	object_class->get_property = xed_document_output_stream_get_property;
-	object_class->set_property = xed_document_output_stream_set_property;
-	object_class->finalize = xed_document_output_stream_finalize;
-	object_class->constructed = xed_document_output_stream_constructed;
+    object_class->get_property = xed_document_output_stream_get_property;
+    object_class->set_property = xed_document_output_stream_set_property;
+    object_class->finalize = xed_document_output_stream_finalize;
+    object_class->constructed = xed_document_output_stream_constructed;
 
-	stream_class->write_fn = xed_document_output_stream_write;
-	stream_class->flush = xed_document_output_stream_flush;
-	stream_class->close_fn = xed_document_output_stream_close;
+    stream_class->write_fn = xed_document_output_stream_write;
+    stream_class->flush = xed_document_output_stream_flush;
+    stream_class->close_fn = xed_document_output_stream_close;
 
-	g_object_class_install_property (object_class,
-					 PROP_DOCUMENT,
-					 g_param_spec_object ("document",
-							      "Document",
-							      "The document which is written",
-							      XED_TYPE_DOCUMENT,
-							      G_PARAM_READWRITE |
-							      G_PARAM_CONSTRUCT_ONLY));
+    g_object_class_install_property (object_class,
+                                     PROP_DOCUMENT,
+                                     g_param_spec_object ("document",
+                                                          "Document",
+                                                          "The document which is written",
+                                                          XED_TYPE_DOCUMENT,
+                                                          G_PARAM_READWRITE |
+                                                          G_PARAM_CONSTRUCT_ONLY));
 
-	g_type_class_add_private (object_class, sizeof (XedDocumentOutputStreamPrivate));
+    g_type_class_add_private (object_class, sizeof (XedDocumentOutputStreamPrivate));
 }
 
 static void
 xed_document_output_stream_init (XedDocumentOutputStream *stream)
 {
-	stream->priv = XED_DOCUMENT_OUTPUT_STREAM_GET_PRIVATE (stream);
+    stream->priv = XED_DOCUMENT_OUTPUT_STREAM_GET_PRIVATE (stream);
 
-	stream->priv->buffer = NULL;
-	stream->priv->buflen = 0;
+    stream->priv->buffer = NULL;
+    stream->priv->buflen = 0;
 
-	stream->priv->is_initialized = FALSE;
-	stream->priv->is_closed = FALSE;
+    stream->priv->is_initialized = FALSE;
+    stream->priv->is_closed = FALSE;
 }
 
 static XedDocumentNewlineType
 get_newline_type (GtkTextIter *end)
 {
-	XedDocumentNewlineType res;
-	GtkTextIter copy;
-	gunichar c;
+    XedDocumentNewlineType res;
+    GtkTextIter copy;
+    gunichar c;
 
-	copy = *end;
-	c = gtk_text_iter_get_char (&copy);
+    copy = *end;
+    c = gtk_text_iter_get_char (&copy);
 
-	if (g_unichar_break_type (c) == G_UNICODE_BREAK_CARRIAGE_RETURN)
-	{
-		if (gtk_text_iter_forward_char (&copy) &&
-		    g_unichar_break_type (gtk_text_iter_get_char (&copy)) == G_UNICODE_BREAK_LINE_FEED)
-		{
-			res = XED_DOCUMENT_NEWLINE_TYPE_CR_LF;
-		}
-		else
-		{
-			res = XED_DOCUMENT_NEWLINE_TYPE_CR;
-		}
-	}
-	else
-	{
-		res = XED_DOCUMENT_NEWLINE_TYPE_LF;
-	}
+    if (g_unichar_break_type (c) == G_UNICODE_BREAK_CARRIAGE_RETURN)
+    {
+        if (gtk_text_iter_forward_char (&copy) &&
+            g_unichar_break_type (gtk_text_iter_get_char (&copy)) == G_UNICODE_BREAK_LINE_FEED)
+        {
+            res = XED_DOCUMENT_NEWLINE_TYPE_CR_LF;
+        }
+        else
+        {
+            res = XED_DOCUMENT_NEWLINE_TYPE_CR;
+        }
+    }
+    else
+    {
+        res = XED_DOCUMENT_NEWLINE_TYPE_LF;
+    }
 
-	return res;
+    return res;
 }
 
 GOutputStream *
 xed_document_output_stream_new (XedDocument *doc)
 {
-	return G_OUTPUT_STREAM (g_object_new (XED_TYPE_DOCUMENT_OUTPUT_STREAM,
-					      "document", doc, NULL));
+    return G_OUTPUT_STREAM (g_object_new (XED_TYPE_DOCUMENT_OUTPUT_STREAM, "document", doc, NULL));
 }
 
 XedDocumentNewlineType
 xed_document_output_stream_detect_newline_type (XedDocumentOutputStream *stream)
 {
-	XedDocumentNewlineType type;
-	GtkTextIter iter;
+    XedDocumentNewlineType type;
+    GtkTextIter iter;
 
-	g_return_val_if_fail (XED_IS_DOCUMENT_OUTPUT_STREAM (stream),
-			      XED_DOCUMENT_NEWLINE_TYPE_DEFAULT);
+    g_return_val_if_fail (XED_IS_DOCUMENT_OUTPUT_STREAM (stream), XED_DOCUMENT_NEWLINE_TYPE_DEFAULT);
 
-	type = XED_DOCUMENT_NEWLINE_TYPE_DEFAULT;
+    type = XED_DOCUMENT_NEWLINE_TYPE_DEFAULT;
 
-	gtk_text_buffer_get_start_iter (GTK_TEXT_BUFFER (stream->priv->doc),
-					&iter);
+    gtk_text_buffer_get_start_iter (GTK_TEXT_BUFFER (stream->priv->doc), &iter);
 
-	if (gtk_text_iter_ends_line (&iter) || gtk_text_iter_forward_to_line_end (&iter))
-	{
-		type = get_newline_type (&iter);
-	}
+    if (gtk_text_iter_ends_line (&iter) || gtk_text_iter_forward_to_line_end (&iter))
+    {
+        type = get_newline_type (&iter);
+    }
 
-	return type;
+    return type;
 }
 
 /* If the last char is a newline, remove it from the buffer (otherwise
@@ -249,171 +244,170 @@ xed_document_output_stream_detect_newline_type (XedDocumentOutputStream *stream)
 static void
 remove_ending_newline (XedDocumentOutputStream *stream)
 {
-	GtkTextIter end;
-	GtkTextIter start;
+    GtkTextIter end;
+    GtkTextIter start;
 
-	gtk_text_buffer_get_end_iter (GTK_TEXT_BUFFER (stream->priv->doc), &end);
-	start = end;
+    gtk_text_buffer_get_end_iter (GTK_TEXT_BUFFER (stream->priv->doc), &end);
+    start = end;
 
-	gtk_text_iter_set_line_offset (&start, 0);
+    gtk_text_iter_set_line_offset (&start, 0);
 
-	if (gtk_text_iter_ends_line (&start) &&
-	    gtk_text_iter_backward_line (&start))
-	{
-		if (!gtk_text_iter_ends_line (&start))
-		{
-			gtk_text_iter_forward_to_line_end (&start);
-		}
+    if (gtk_text_iter_ends_line (&start) && gtk_text_iter_backward_line (&start))
+    {
+        if (!gtk_text_iter_ends_line (&start))
+        {
+            gtk_text_iter_forward_to_line_end (&start);
+        }
 
-		/* Delete the empty line which is from 'start' to 'end' */
-		gtk_text_buffer_delete (GTK_TEXT_BUFFER (stream->priv->doc),
-		                        &start,
-		                        &end);
-	}
+        /* Delete the empty line which is from 'start' to 'end' */
+        gtk_text_buffer_delete (GTK_TEXT_BUFFER (stream->priv->doc), &start, &end);
+    }
 }
 
 static void
 end_append_text_to_document (XedDocumentOutputStream *stream)
 {
-	remove_ending_newline (stream);
+    remove_ending_newline (stream);
 
-	gtk_text_buffer_set_modified (GTK_TEXT_BUFFER (stream->priv->doc),
-				      FALSE);
+    gtk_text_buffer_set_modified (GTK_TEXT_BUFFER (stream->priv->doc), FALSE);
 
-	gtk_source_buffer_end_not_undoable_action (GTK_SOURCE_BUFFER (stream->priv->doc));
+    gtk_source_buffer_end_not_undoable_action (GTK_SOURCE_BUFFER (stream->priv->doc));
 }
 
 static gssize
-xed_document_output_stream_write (GOutputStream            *stream,
-				    const void               *buffer,
-				    gsize                     count,
-				    GCancellable             *cancellable,
-				    GError                  **error)
+xed_document_output_stream_write (GOutputStream *stream,
+                                  const void    *buffer,
+                                  gsize          count,
+                                  GCancellable  *cancellable,
+                                  GError        **error)
 {
-	XedDocumentOutputStream *ostream;
-	gchar *text;
-	gsize len;
-	gboolean freetext = FALSE;
-	const gchar *end;
-	gboolean valid;
+    XedDocumentOutputStream *ostream;
+    gchar *text;
+    gsize len;
+    gboolean freetext = FALSE;
+    const gchar *end;
+    gboolean valid;
 
-	if (g_cancellable_set_error_if_cancelled (cancellable, error))
-		return -1;
+    if (g_cancellable_set_error_if_cancelled (cancellable, error))
+    {
+        return -1;
+    }
 
-	ostream = XED_DOCUMENT_OUTPUT_STREAM (stream);
+    ostream = XED_DOCUMENT_OUTPUT_STREAM (stream);
 
-	if (!ostream->priv->is_initialized)
-	{
-		/* Init the undoable action */
-		gtk_source_buffer_begin_not_undoable_action (GTK_SOURCE_BUFFER (ostream->priv->doc));
+    if (!ostream->priv->is_initialized)
+    {
+        /* Init the undoable action */
+        gtk_source_buffer_begin_not_undoable_action (GTK_SOURCE_BUFFER (ostream->priv->doc));
 
-		gtk_text_buffer_get_start_iter (GTK_TEXT_BUFFER (ostream->priv->doc),
-						&ostream->priv->pos);
-		ostream->priv->is_initialized = TRUE;
-	}
+        gtk_text_buffer_get_start_iter (GTK_TEXT_BUFFER (ostream->priv->doc), &ostream->priv->pos);
+        ostream->priv->is_initialized = TRUE;
+    }
 
-	if (ostream->priv->buflen > 0)
-	{
-		len = ostream->priv->buflen + count;
-		text = g_new (gchar , len + 1);
-		memcpy (text, ostream->priv->buffer, ostream->priv->buflen);
-		memcpy (text + ostream->priv->buflen, buffer, count);
-		text[len] = '\0';
-		g_free (ostream->priv->buffer);
-		ostream->priv->buffer = NULL;
-		ostream->priv->buflen = 0;
-		freetext = TRUE;
-	}
-	else
-	{
-		text = (gchar *) buffer;
-		len = count;
-	}
+    if (ostream->priv->buflen > 0)
+    {
+        len = ostream->priv->buflen + count;
+        text = g_new (gchar , len + 1);
+        memcpy (text, ostream->priv->buffer, ostream->priv->buflen);
+        memcpy (text + ostream->priv->buflen, buffer, count);
+        text[len] = '\0';
+        g_free (ostream->priv->buffer);
+        ostream->priv->buffer = NULL;
+        ostream->priv->buflen = 0;
+        freetext = TRUE;
+    }
+    else
+    {
+        text = (gchar *) buffer;
+        len = count;
+    }
 
-	/* validate */
-	valid = g_utf8_validate (text, len, &end);
+    /* validate */
+    valid = g_utf8_validate (text, len, &end);
 
-	/* Avoid keeping a CRLF across two buffers. */
-	if (valid && len > 1 && end[-1] == '\r')
-	{
-		valid = FALSE;
-		end--;
-	}
+    /* Avoid keeping a CRLF across two buffers. */
+    if (valid && len > 1 && end[-1] == '\r')
+    {
+        valid = FALSE;
+        end--;
+    }
 
-	if (!valid)
-	{
-		gsize nvalid = end - text;
-		gsize remainder = len - nvalid;
-		gunichar ch;
+    if (!valid)
+    {
+        gsize nvalid = end - text;
+        gsize remainder = len - nvalid;
+        gunichar ch;
 
-		if ((remainder < MAX_UNICHAR_LEN) &&
-		    ((ch = g_utf8_get_char_validated (text + nvalid, remainder)) == (gunichar)-2 ||
-		     ch == (gunichar)'\r'))
-		{
-			ostream->priv->buffer = g_strndup (end, remainder);
-			ostream->priv->buflen = remainder;
-			len -= remainder;
-		}
-		else
-		{
-			/* TODO: we could escape invalid text and tag it in red
-			 * and make the doc readonly.
-			 */
-			g_set_error (error, G_IO_ERROR, G_IO_ERROR_INVALID_DATA,
-				     _("Invalid UTF-8 sequence in input"));
+        if ((remainder < MAX_UNICHAR_LEN) &&
+            ((ch = g_utf8_get_char_validated (text + nvalid, remainder)) == (gunichar)-2 ||
+             ch == (gunichar)'\r'))
+        {
+            ostream->priv->buffer = g_strndup (end, remainder);
+            ostream->priv->buflen = remainder;
+            len -= remainder;
+        }
+        else
+        {
+            /* TODO: we could escape invalid text and tag it in red
+             * and make the doc readonly.
+             */
+            g_set_error (error, G_IO_ERROR, G_IO_ERROR_INVALID_DATA, _("Invalid UTF-8 sequence in input"));
 
-			if (freetext)
-				g_free (text);
+            if (freetext)
+            {
+                g_free (text);
+            }
 
-			return -1;
-		}
-	}
+            return -1;
+        }
+    }
 
-	gtk_text_buffer_insert (GTK_TEXT_BUFFER (ostream->priv->doc),
-				&ostream->priv->pos, text, len);
+    gtk_text_buffer_insert (GTK_TEXT_BUFFER (ostream->priv->doc), &ostream->priv->pos, text, len);
 
-	if (freetext)
-		g_free (text);
+    if (freetext)
+    {
+        g_free (text);
+    }
 
-	return count;
+    return count;
 }
 
 static gboolean
 xed_document_output_stream_flush (GOutputStream *stream,
-                                    GCancellable  *cancellable,
-                                    GError        **error)
+                                  GCancellable  *cancellable,
+                                  GError        **error)
 {
-	XedDocumentOutputStream *ostream = XED_DOCUMENT_OUTPUT_STREAM (stream);
+    XedDocumentOutputStream *ostream = XED_DOCUMENT_OUTPUT_STREAM (stream);
 
-	/* Flush deferred data if some. */
-	if (!ostream->priv->is_closed && ostream->priv->is_initialized &&
-	    ostream->priv->buflen > 0 &&
-	    xed_document_output_stream_write (stream, "", 0, cancellable,
-						error) == -1)
-		return FALSE;
+    /* Flush deferred data if some. */
+    if (!ostream->priv->is_closed && ostream->priv->is_initialized &&
+        ostream->priv->buflen > 0 &&
+        xed_document_output_stream_write (stream, "", 0, cancellable, error) == -1)
+    {
+        return FALSE;
+    }
 
-	return TRUE;
+    return TRUE;
 }
 
 static gboolean
-xed_document_output_stream_close (GOutputStream     *stream,
-				    GCancellable      *cancellable,
-				    GError           **error)
+xed_document_output_stream_close (GOutputStream *stream,
+                                  GCancellable  *cancellable,
+                                  GError       **error)
 {
-	XedDocumentOutputStream *ostream = XED_DOCUMENT_OUTPUT_STREAM (stream);
+    XedDocumentOutputStream *ostream = XED_DOCUMENT_OUTPUT_STREAM (stream);
 
-	if (!ostream->priv->is_closed && ostream->priv->is_initialized)
-	{
-		end_append_text_to_document (ostream);
-		ostream->priv->is_closed = TRUE;
-	}
+    if (!ostream->priv->is_closed && ostream->priv->is_initialized)
+    {
+        end_append_text_to_document (ostream);
+        ostream->priv->is_closed = TRUE;
+    }
 
-	if (ostream->priv->buflen > 0)
-	{
-		g_set_error (error, G_IO_ERROR, G_IO_ERROR_INVALID_DATA,
-			     _("Incomplete UTF-8 sequence in input"));
-		return FALSE;
-	}
+    if (ostream->priv->buflen > 0)
+    {
+        g_set_error (error, G_IO_ERROR, G_IO_ERROR_INVALID_DATA, _("Incomplete UTF-8 sequence in input"));
+        return FALSE;
+    }
 
-	return TRUE;
+    return TRUE;
 }
