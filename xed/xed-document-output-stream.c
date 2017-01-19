@@ -496,6 +496,65 @@ xed_document_output_stream_get_num_fallbacks (XedDocumentOutputStream *stream)
     return g_charset_converter_get_num_fallbacks (stream->priv->charset_conv) != 0;
 }
 
+static gboolean
+validate_and_insert (XedDocumentOutputStream *stream,
+                     const gchar             *buffer,
+                     gsize                    count)
+{
+    const gchar *end;
+    gsize nvalid;
+    gboolean valid;
+    gsize len;
+
+    len = count;
+
+    /* validate */
+    valid = g_utf8_validate (buffer, len, &end);
+    nvalid = end - buffer;
+
+    if (!valid)
+    {
+        gsize remainder;
+
+        remainder = len - nvalid;
+
+        if ((remainder < MAX_UNICHAR_LEN) && (g_utf8_get_char_validated (buffer + nvalid, remainder) == (gunichar)-2))
+        {
+            stream->priv->buffer = g_strndup (end, remainder);
+            stream->priv->buflen = remainder;
+            len -= remainder;
+        }
+        else
+        {
+            return FALSE;
+        }
+    }
+    else
+    {
+        gchar *ptr;
+
+        /* Note: this is a workaround for a 'bug' in GtkTextBuffer where
+          inserting first a \r and then in a second insert, a \n,
+          will result in two lines being added instead of a single
+          one */
+
+        ptr = g_utf8_find_prev_char (buffer, buffer + len);
+
+        if (ptr && *ptr == '\r' && ptr - buffer == len - 1)
+        {
+            stream->priv->buffer = g_new (gchar, 1);
+            stream->priv->buffer[0] = '\r';
+            stream->priv->buflen = 1;
+
+            --len;
+        }
+    }
+
+    gtk_text_buffer_insert (GTK_TEXT_BUFFER (stream->priv->doc), &stream->priv->pos, buffer, len);
+
+    return TRUE;
+}
+
 /* If the last char is a newline, remove it from the buffer (otherwise
    GtkTextView shows it as an empty line). See bug #324942. */
 static void
@@ -542,10 +601,10 @@ xed_document_output_stream_write (GOutputStream *stream,
     gchar *text;
     gsize len;
     gboolean freetext = FALSE;
-    const gchar *end;
-    gboolean valid;
-    gsize nvalid;
-    gsize remainder;
+    // const gchar *end;
+    // gboolean valid;
+    // gsize nvalid;
+    // gsize remainder;
 
     if (g_cancellable_set_error_if_cancelled (cancellable, error))
     {
@@ -654,19 +713,21 @@ xed_document_output_stream_write (GOutputStream *stream,
         /* If we reached here is because we need to convert the text so, we
           convert it with the charset converter */
         conv_text = g_convert_with_iconv (text,
-                                         len,
-                                         ostream->priv->iconv,
-                                         &conv_read,
-                                         &conv_written,
-                                         &err);
+                                          len,
+                                          ostream->priv->iconv,
+                                          &conv_read,
+                                          &conv_written,
+                                          &err);
 
         if (freetext)
         {
-           g_free (text);
+            g_free (text);
         }
 
         if (err != NULL)
         {
+            gsize remainder;
+
             remainder = len - conv_read;
 
             /* Store the partial char for the next conversion */
@@ -694,48 +755,20 @@ xed_document_output_stream_write (GOutputStream *stream,
     }
 
 
-    /* validate */
-    valid = g_utf8_validate (text, len, &end);
-    nvalid = end - text;
-
-    /* Avoid keeping a CRLF across two buffers. */
-    if (valid && len > 1 && end[-1] == '\r')
+    if (!validate_and_insert (ostream, text, len))
     {
-        valid = FALSE;
-        end--;
-    }
+        /* TODO: we could escape invalid text and tag it in red
+         * and make the doc readonly.
+         */
+        g_set_error (error, G_IO_ERROR, G_IO_ERROR_INVALID_DATA, _("Invalid UTF-8 sequence in input"));
 
-    if (!valid)
-    {
-        // gsize nvalid = end - text;
-        remainder = len - nvalid;
-        gunichar ch;
-
-        if ((remainder < MAX_UNICHAR_LEN) &&
-            ((ch = g_utf8_get_char_validated (text + nvalid, remainder)) == (gunichar)-2 ||
-             ch == (gunichar)'\r'))
+        if (freetext)
         {
-            ostream->priv->buffer = g_strndup (end, remainder);
-            ostream->priv->buflen = remainder;
-            len -= remainder;
+            g_free (text);
         }
-        else
-        {
-            /* TODO: we could escape invalid text and tag it in red
-             * and make the doc readonly.
-             */
-            g_set_error (error, G_IO_ERROR, G_IO_ERROR_INVALID_DATA, _("Invalid UTF-8 sequence in input"));
 
-            if (freetext)
-            {
-                g_free (text);
-            }
-
-            return -1;
-        }
+        return -1;
     }
-
-    gtk_text_buffer_insert (GTK_TEXT_BUFFER (ostream->priv->doc), &ostream->priv->pos, text, len);
 
     if (freetext)
     {
