@@ -122,11 +122,7 @@ test_loader (const gchar *filename,
 	                  G_CALLBACK (on_document_loaded),
 	                  data);
 
-	uri = g_file_get_uri (file);
-
-	xed_document_load (document, uri, xed_encoding_get_utf8 (), 0, FALSE);
-
-	g_free (uri);
+	xed_document_load (document, file, xed_encoding_get_utf8 (), 0, FALSE);
 
 	while (!test_completed)
 	{
