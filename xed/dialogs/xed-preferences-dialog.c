@@ -375,7 +375,7 @@ on_use_default_font_changed (GSettings            *settings,
     xed_debug (DEBUG_PREFS);
 
     value = g_settings_get_boolean (settings, key);
-    gtk_widget_set_sensitive (dlg->priv->font_hbox, value);
+    gtk_widget_set_sensitive (dlg->priv->font_hbox, !value);
 }
 
 static void
@@ -426,7 +426,7 @@ setup_font_colors_page_font_section (XedPreferencesDialog *dlg)
                      G_SETTINGS_BIND_GET | G_SETTINGS_BIND_SET);
 
     /* Set initial widget sensitivity */
-    gtk_widget_set_sensitive (dlg->priv->font_hbox, use_default_font);
+    gtk_widget_set_sensitive (dlg->priv->font_hbox, !use_default_font);
 }
 
 static void
