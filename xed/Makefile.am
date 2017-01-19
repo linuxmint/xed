@@ -64,6 +64,7 @@ NOINST_H_FILES =			\
 	xed-tab-label.h		\
 	xedtextregion.h		\
 	xed-ui.h			\
+	xed-view-frame.h 	\
 	xed-window-private.h
 
 INST_H_FILES =				\
@@ -149,6 +150,7 @@ libxed_c_files = 				\
 	xed-utils.c 			\
 	xed-view.c 			\
 	xed-view-activatable.c 		\
+	xed-view-frame.c 		\
 	xed-window.c			\
 	xed-window-activatable.c 	\
 	xedtextregion.c

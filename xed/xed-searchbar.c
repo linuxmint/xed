@@ -727,11 +727,13 @@ xed_searchbar_show (XedSearchbar *searchbar,
 void
 xed_searchbar_hide (XedSearchbar *searchbar)
 {
+    XedView *active_view;
+
     gtk_revealer_set_transition_type (GTK_REVEALER (searchbar->priv->revealer), GTK_REVEALER_TRANSITION_TYPE_SLIDE_DOWN);
     gtk_revealer_set_reveal_child (GTK_REVEALER (searchbar->priv->revealer), FALSE);
 
     // focus document
-    XedView *active_view = xed_window_get_active_view (searchbar->window);
+    active_view = xed_window_get_active_view (searchbar->window);
     if (active_view != NULL)
     {
         gtk_widget_grab_focus (GTK_WIDGET (active_view));

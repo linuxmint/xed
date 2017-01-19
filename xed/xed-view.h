@@ -46,9 +46,6 @@ struct _XedViewClass
     /* FIXME: Do we need placeholders ? */
 
     /* Key bindings */
-    gboolean (* start_interactive_search) (XedView *view);
-    gboolean (* start_interactive_goto_line)(XedView *view);
-    gboolean (* reset_searched_text) (XedView *view);
     void     (* drop_uris) (XedView *view, gchar **uri_list);
 };
 

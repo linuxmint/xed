@@ -44,6 +44,7 @@
 #include "xed-debug.h"
 #include "xed-enum-types.h"
 #include "xed-settings.h"
+#include "xed-view-frame.h"
 
 #define XED_TAB_GET_PRIVATE(object)(G_TYPE_INSTANCE_GET_PRIVATE ((object), XED_TYPE_TAB, XedTabPrivate))
 
@@ -55,8 +56,7 @@ struct _XedTabPrivate
 
     XedTabState state;
 
-    GtkWidget *view;
-    GtkWidget *view_scrolled_window;
+    XedViewFrame *frame;
 
     GtkWidget *message_area;
     GtkWidget *print_preview;
@@ -375,20 +375,22 @@ static void
 set_view_properties_according_to_state (XedTab      *tab,
                                         XedTabState  state)
 {
+    XedView *view;
     gboolean val;
     gboolean hl_current_line;
 
     hl_current_line = g_settings_get_boolean (tab->priv->editor, XED_SETTINGS_HIGHLIGHT_CURRENT_LINE);
+    view = xed_view_frame_get_view (tab->priv->frame);
     val = ((state == XED_TAB_STATE_NORMAL) && (tab->priv->print_preview == NULL) && !tab->priv->not_editable);
-    gtk_text_view_set_editable (GTK_TEXT_VIEW (tab->priv->view), val);
+    gtk_text_view_set_editable (GTK_TEXT_VIEW (view), val);
 
     val = ((state != XED_TAB_STATE_LOADING) && (state != XED_TAB_STATE_CLOSING));
-    gtk_text_view_set_cursor_visible (GTK_TEXT_VIEW (tab->priv->view), val);
+    gtk_text_view_set_cursor_visible (GTK_TEXT_VIEW (view), val);
 
     val = ((state != XED_TAB_STATE_LOADING) &&
            (state != XED_TAB_STATE_CLOSING) &&
            (hl_current_line));
-    gtk_source_view_set_highlight_current_line (GTK_SOURCE_VIEW (tab->priv->view), val);
+    gtk_source_view_set_highlight_current_line (GTK_SOURCE_VIEW (view), val);
 }
 
 static void
@@ -410,17 +412,17 @@ xed_tab_set_state (XedTab      *tab,
     if ((state == XED_TAB_STATE_LOADING_ERROR) || /* FIXME: add other states if needed */
         (state == XED_TAB_STATE_SHOWING_PRINT_PREVIEW))
     {
-        gtk_widget_hide (tab->priv->view_scrolled_window);
+        gtk_widget_hide (GTK_WIDGET (tab->priv->frame));
     }
     else
     {
         if (tab->priv->print_preview == NULL)
         {
-            gtk_widget_show (tab->priv->view_scrolled_window);
+            gtk_widget_show (GTK_WIDGET (tab->priv->frame));
         }
     }
 
-    set_cursor_according_to_state (GTK_TEXT_VIEW (tab->priv->view), state);
+    set_cursor_according_to_state (GTK_TEXT_VIEW (xed_view_frame_get_view (tab->priv->frame)), state);
 
     g_object_notify (G_OBJECT (tab), "state");
 }
@@ -969,7 +971,7 @@ document_loaded (XedDocument  *document,
         }
 
         /* Scroll to the cursor when the document is loaded */
-        xed_view_scroll_to_cursor (XED_VIEW (tab->priv->view));
+        xed_view_scroll_to_cursor (xed_view_frame_get_view (tab->priv->frame));
 
         all_documents = xed_app_get_documents (xed_app_get_default ());
 
@@ -1408,24 +1410,13 @@ view_focused_in (GtkWidget     *widget,
     return FALSE;
 }
 
-static GMountOperation *
-tab_mount_operation_factory (XedDocument *doc,
-                             gpointer     userdata)
-{
-    XedTab *tab = XED_TAB (userdata);
-    GtkWidget *window;
-
-    window = gtk_widget_get_toplevel (GTK_WIDGET (tab));
-    return gtk_mount_operation_new (GTK_WINDOW (window));
-}
-
 static void
 xed_tab_init (XedTab *tab)
 {
-    GtkWidget *sw;
-    XedDocument *doc;
     gboolean auto_save;
     guint auto_save_interval;
+    XedDocument *doc;
+    XedView *view;
 
     tab->priv = XED_TAB_GET_PRIVATE (tab);
 
@@ -1437,12 +1428,6 @@ xed_tab_init (XedTab *tab)
 
     gtk_orientable_set_orientation (GTK_ORIENTABLE (tab), GTK_ORIENTATION_VERTICAL);
 
-    /* Create the scrolled window */
-    sw = gtk_scrolled_window_new (NULL, NULL);
-    tab->priv->view_scrolled_window = sw;
-
-    gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (sw), GTK_POLICY_AUTOMATIC, GTK_POLICY_AUTOMATIC);
-
     /* Manage auto save data */
     auto_save = g_settings_get_boolean (tab->priv->editor, XED_SETTINGS_AUTO_SAVE);
     auto_save_interval = g_settings_get_uint (tab->priv->editor, XED_SETTINGS_AUTO_SAVE_INTERVAL);
@@ -1450,26 +1435,18 @@ xed_tab_init (XedTab *tab)
     tab->priv->auto_save = (tab->priv->auto_save != FALSE);
 
     tab->priv->auto_save_interval = auto_save_interval;
-    /*FIXME
-    if (tab->priv->auto_save_interval <= 0)
-    {
-        tab->priv->auto_save_interval = GPM_DEFAULT_AUTO_SAVE_INTERVAL;
-    }*/
 
-    /* Create the view */
-    doc = xed_document_new ();
+    /* Create the frame */
+    tab->priv->frame = xed_view_frame_new ();
+    gtk_widget_show (GTK_WIDGET (tab->priv->frame));
+
+    gtk_box_pack_end (GTK_BOX (tab), GTK_WIDGET (tab->priv->frame), TRUE, TRUE, 0);
+
+    doc = xed_view_frame_get_document (tab->priv->frame);
     g_object_set_data (G_OBJECT (doc), XED_TAB_KEY, tab);
 
-    _xed_document_set_mount_operation_factory (doc, tab_mount_operation_factory, tab);
-
-    tab->priv->view = xed_view_new (doc);
-    g_object_unref (doc);
-    gtk_widget_show (tab->priv->view);
-    g_object_set_data (G_OBJECT (tab->priv->view), XED_TAB_KEY, tab);
-
-    gtk_box_pack_end (GTK_BOX (tab), sw, TRUE, TRUE, 0);
-    gtk_container_add (GTK_CONTAINER (sw), tab->priv->view);
-    gtk_widget_show (sw);
+    view = xed_view_frame_get_view (tab->priv->frame);
+    g_object_set_data (G_OBJECT (view), XED_TAB_KEY, tab);
 
     g_signal_connect (doc, "notify::location",
                       G_CALLBACK (document_location_notify_handler), tab);
@@ -1486,9 +1463,9 @@ xed_tab_init (XedTab *tab)
     g_signal_connect (doc, "saved",
                       G_CALLBACK (document_saved), tab);
 
-    g_signal_connect_after (tab->priv->view, "focus-in-event",
+    g_signal_connect_after (view, "focus-in-event",
                             G_CALLBACK (view_focused_in), tab);
-    g_signal_connect_after (tab->priv->view, "realize",
+    g_signal_connect_after (view, "realize",
                             G_CALLBACK (view_realized), tab);
 }
 
@@ -1528,7 +1505,9 @@ _xed_tab_new_from_location (GFile             *location,
 XedView *
 xed_tab_get_view (XedTab *tab)
 {
-    return XED_VIEW (tab->priv->view);
+    g_return_val_if_fail (XED_IS_TAB (tab), NULL);
+
+    return xed_view_frame_get_view (tab->priv->frame);
 }
 
 /**
@@ -1542,7 +1521,9 @@ xed_tab_get_view (XedTab *tab)
 XedDocument *
 xed_tab_get_document (XedTab *tab)
 {
-    return XED_DOCUMENT (gtk_text_view_get_buffer (GTK_TEXT_VIEW (tab->priv->view)));
+    g_return_val_if_fail (XED_IS_TAB (tab), NULL);
+
+    return xed_view_frame_get_document (tab->priv->frame);
 }
 
 #define MAX_DOC_NAME_LENGTH 40
@@ -2630,4 +2611,10 @@ xed_tab_set_info_bar (XedTab    *tab,
 
     /* FIXME: this can cause problems with the tab state machine */
     set_message_area (tab, info_bar);
+}
+
+GtkWidget *
+_xed_tab_get_view_frame (XedTab *tab)
+{
+    return GTK_WIDGET (tab->priv->frame);
 }

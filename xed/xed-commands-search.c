@@ -12,6 +12,7 @@
 #include "xed-window.h"
 #include "xed-utils.h"
 #include "xed-searchbar.h"
+#include "xed-view-frame.h"
 
 void
 _xed_cmd_search_find (GtkAction *action,
@@ -47,7 +48,9 @@ void
 _xed_cmd_search_clear_highlight (XedWindow *window)
 {
     XedDocument *doc;
+
     xed_debug (DEBUG_COMMANDS);
+
     doc = xed_window_get_active_document (window);
     if (doc != NULL)
     {
@@ -59,19 +62,22 @@ void
 _xed_cmd_search_goto_line (GtkAction *action,
                            XedWindow *window)
 {
-    XedView *active_view;
+    XedTab *active_tab;
+    XedViewFrame *frame;
+
     xed_debug (DEBUG_COMMANDS);
 
-    active_view = xed_window_get_active_view (window);
-    if (active_view == NULL)
+    active_tab = xed_window_get_active_tab (window);
+    if (active_tab == NULL)
     {
         return;
     }
 
     /* Focus the view if needed: we need to focus the view otherwise
      activating the binding for goto line has no effect */
-    gtk_widget_grab_focus (GTK_WIDGET(active_view));
+    // gtk_widget_grab_focus (GTK_WIDGET(active_view));
 
     /* Goto line is builtin in XedView, just activate the corresponding binding. */
-    gtk_bindings_activate (G_OBJECT(active_view), GDK_KEY_i, GDK_CONTROL_MASK);
+    frame = XED_VIEW_FRAME (_xed_tab_get_view_frame (active_tab));
+    xed_view_frame_popup_goto_line (frame);
 }

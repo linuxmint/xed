@@ -18,6 +18,7 @@
 #include "xed-notebook.h"
 #include "xed-statusbar.h"
 #include "xed-searchbar.h"
+#include "xed-view-frame.h"
 #include "xed-utils.h"
 #include "xed-commands.h"
 #include "xed-debug.h"
@@ -127,13 +128,26 @@ on_key_pressed (GtkWidget *widget,
                 GdkEventKey *event,
                 XedWindow *window)
 {
-    gint handled = FALSE;
     if (event->keyval == GDK_KEY_Escape)
     {
-        xed_searchbar_hide (XED_SEARCHBAR (window->priv->searchbar));
-        handled = TRUE;
+        XedTab *tab;
+        XedViewFrame *frame;
+
+        tab = xed_window_get_active_tab (window);
+        frame = XED_VIEW_FRAME (_xed_tab_get_view_frame (tab));
+
+        if (xed_view_frame_get_search_popup_visible (frame))
+        {
+            return GDK_EVENT_PROPAGATE;
+        }
+        else
+        {
+            xed_searchbar_hide (XED_SEARCHBAR (window->priv->searchbar));
+            return GDK_EVENT_STOP;
+        }
     }
-    return handled;
+
+    return GDK_EVENT_PROPAGATE;
 }
 
 static void
