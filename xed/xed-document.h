@@ -81,9 +81,10 @@ typedef enum
  */
 typedef enum
 {
-	XED_DOCUMENT_SAVE_IGNORE_MTIME 	= 1 << 0,
-	XED_DOCUMENT_SAVE_IGNORE_BACKUP	= 1 << 1,
-	XED_DOCUMENT_SAVE_PRESERVE_BACKUP	= 1 << 2
+	XED_DOCUMENT_SAVE_IGNORE_MTIME 	       = 1 << 0,
+	XED_DOCUMENT_SAVE_IGNORE_BACKUP	       = 1 << 1,
+	XED_DOCUMENT_SAVE_PRESERVE_BACKUP	   = 1 << 2,
+    XED_DOCUMENT_SAVE_IGNORE_INVALID_CHARS = 1 << 3
 } XedDocumentSaveFlags;
 
 /* Private structure type */
@@ -285,6 +286,14 @@ void		 _xed_document_set_readonly 	(XedDocument       *doc,
 
 glong		 _xed_document_get_seconds_since_last_save_or_load
 						(XedDocument       *doc);
+
+void _xed_document_apply_error_style (XedDocument *doc,
+                                      GtkTextIter *start,
+                                      GtkTextIter *end);
+
+void _xed_document_apply_error_style (XedDocument *doc,
+                                      GtkTextIter *start,
+                                      GtkTextIter *end);
 
 /* Note: this is a sync stat: use only on local files */
 gboolean	_xed_document_check_externally_modified

@@ -437,6 +437,18 @@ close_input_stream_ready_cb (GInputStream *stream,
         return;
     }
 
+    /* Check if we needed some fallback char, if so, check if there was
+      a previous error and if not set a fallback used error */
+   if ((xed_document_output_stream_get_num_fallbacks (XED_DOCUMENT_OUTPUT_STREAM (async->loader->priv->output)) != 0) &&
+       async->loader->priv->error == NULL)
+   {
+       g_set_error_literal (&async->loader->priv->error,
+                            XED_DOCUMENT_ERROR,
+                            XED_DOCUMENT_ERROR_CONVERSION_FALLBACK,
+                            "There was a conversion error and it was "
+                            "needed to use a fallback char");
+   }
+
     remote_load_completed_or_failed (async->loader, async);
 }
 
@@ -543,19 +555,6 @@ async_read_cb (GInputStream *stream,
 
         loader->priv->auto_detected_newline_type =
             xed_document_output_stream_detect_newline_type (XED_DOCUMENT_OUTPUT_STREAM (loader->priv->output));
-
-        /* Check if we needed some fallback char, if so, check if there was
-           a previous error and if not set a fallback used error */
-        /* FIXME Uncomment this when we want to manage conversion fallback */
-        /*if ((xed_document_output_stream_get_num_fallbacks (XED_DOCUMENT_OUTPUT_STREAM (loader->priv->ouput)) != 0) &&
-            loader->priv->error == NULL)
-        {
-            g_set_error_literal (&loader->priv->error,
-                         XED_DOCUMENT_ERROR,
-                         XED_DOCUMENT_ERROR_CONVERSION_FALLBACK,
-                         "There was a conversion error and it was "
-                         "needed to use a fallback char");
-        }*/
 
         write_complete (async);
 

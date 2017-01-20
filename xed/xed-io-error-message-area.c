@@ -354,7 +354,7 @@ xed_unrecoverable_reverting_error_message_area_new (GFile        *location,
     g_return_val_if_fail (error != NULL, NULL);
     g_return_val_if_fail ((error->domain == XED_DOCUMENT_ERROR) || (error->domain == G_IO_ERROR), NULL);
 
-    full_formatted_uri = xed_utils_uri_for_display (location);
+    full_formatted_uri = g_file_get_parse_name (location);
 
     /* Truncate the URI so it doesn't get insanely wide. Note that even
      * though the dialog uses wrapped text, if the URI doesn't contain
@@ -442,18 +442,14 @@ create_conversion_error_message_area (const gchar *primary_text,
          different from other main menu access keys (Open, Edit, View...) */
                      _("Edit Any_way"),
                      GTK_RESPONSE_YES);
-        gtk_info_bar_add_button (GTK_INFO_BAR (message_area),
-        /* Translators: the access key chosen for this string should be
-         different from other main menu access keys (Open, Edit, View...) */
-                     _("D_on't Edit"),
-                     GTK_RESPONSE_NO);
         gtk_info_bar_set_message_type (GTK_INFO_BAR (message_area), GTK_MESSAGE_WARNING);
     }
     else
     {
-        gtk_info_bar_add_button (GTK_INFO_BAR (message_area), _("_Cancel"), GTK_RESPONSE_CANCEL);
         gtk_info_bar_set_message_type (GTK_INFO_BAR (message_area), GTK_MESSAGE_ERROR);
     }
+
+    gtk_info_bar_add_button (GTK_INFO_BAR (message_area), _("_Cancel"), GTK_RESPONSE_CANCEL);
 
     hbox_content = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 8);
 
@@ -516,7 +512,7 @@ xed_io_loading_error_message_area_new (GFile             *location,
                   (error->domain == XED_DOCUMENT_ERROR) ||
                   (error->domain == G_IO_ERROR), NULL);
 
-    full_formatted_uri = xed_utils_uri_for_display (location);
+    full_formatted_uri = g_file_get_parse_name (location);
 
     /* Truncate the URI so it doesn't get insanely wide. Note that even
      * though the dialog uses wrapped text, if the URI doesn't contain
@@ -559,8 +555,8 @@ xed_io_loading_error_message_area_new (GFile             *location,
     {
         error_message = g_strdup_printf (_("There was a problem opening the file %s."), uri_for_display);
         message_details = g_strconcat (_("The file you opened has some invalid characters. "
-                                       "If you continue editing this file you could make this "
-                                       "document useless."), "\n",
+                                       "If you continue editing this file you could corrupt this "
+                                       "document."), "\n",
                                        _("You can also choose another character encoding and try again."),
                                        NULL);
         edit_anyway = TRUE;
@@ -623,7 +619,7 @@ xed_conversion_error_while_saving_message_area_new (GFile             *location,
                           error->domain == G_IO_ERROR, NULL);
     g_return_val_if_fail (encoding != NULL, NULL);
 
-    full_formatted_uri = xed_utils_uri_for_display (location);
+    full_formatted_uri = g_file_get_parse_name (location);
 
     /* Truncate the URI so it doesn't get insanely wide. Note that even
      * though the dialog uses wrapped text, if the URI doesn't contain
@@ -686,7 +682,7 @@ xed_file_already_open_warning_message_area_new (GFile *location)
 
     g_return_val_if_fail (G_IS_FILE (location), NULL);
 
-    full_formatted_uri = xed_utils_uri_for_display (location);
+    full_formatted_uri = g_file_get_parse_name (location);
 
     /* Truncate the URI so it doesn't get insanely wide. Note that even
      * though the dialog uses wrapped text, if the URI doesn't contain
@@ -776,7 +772,7 @@ xed_externally_modified_saving_error_message_area_new (GFile        *location,
     g_return_val_if_fail (error->domain == XED_DOCUMENT_ERROR, NULL);
     g_return_val_if_fail (error->code == XED_DOCUMENT_ERROR_EXTERNALLY_MODIFIED, NULL);
 
-    full_formatted_uri = xed_utils_uri_for_display (location);
+    full_formatted_uri = g_file_get_parse_name (location);
 
     /* Truncate the URI so it doesn't get insanely wide. Note that even
      * though the dialog uses wrapped text, if the URI doesn't contain
@@ -866,7 +862,7 @@ xed_no_backup_saving_error_message_area_new (GFile        *location,
                           (error->domain == G_IO_ERROR &&
                           error->code == G_IO_ERROR_CANT_CREATE_BACKUP)), NULL);
 
-    full_formatted_uri = xed_utils_uri_for_display (location);
+    full_formatted_uri = g_file_get_parse_name (location);
 
     /* Truncate the URI so it doesn't get insanely wide. Note that even
      * though the dialog uses wrapped text, if the URI doesn't contain
@@ -958,7 +954,7 @@ xed_unrecoverable_saving_error_message_area_new (GFile        *location,
     g_return_val_if_fail (error != NULL, NULL);
     g_return_val_if_fail ((error->domain == XED_DOCUMENT_ERROR) || (error->domain == G_IO_ERROR), NULL);
 
-    full_formatted_uri = xed_utils_uri_for_display (location);
+    full_formatted_uri = g_file_get_parse_name (location);
 
     /* Truncate the URI so it doesn't get insanely wide. Note that even
      * though the dialog uses wrapped text, if the URI doesn't contain
@@ -1067,7 +1063,7 @@ xed_externally_modified_message_area_new (GFile    *location,
 
     g_return_val_if_fail (G_IS_FILE (location), NULL);
 
-    full_formatted_uri = xed_utils_uri_for_display (location);
+    full_formatted_uri = g_file_get_parse_name (location);
 
     /* Truncate the URI so it doesn't get insanely wide. Note that even
      * though the dialog uses wrapped text, if the URI doesn't contain
@@ -1106,3 +1102,84 @@ xed_externally_modified_message_area_new (GFile    *location,
     return message_area;
 }
 
+GtkWidget *
+xed_invalid_character_message_area_new (GFile *location)
+{
+    GtkWidget *info_bar;
+    GtkWidget *hbox_content;
+    GtkWidget *image;
+    GtkWidget *vbox;
+    GtkWidget *primary_label;
+    GtkWidget *secondary_label;
+    gchar *primary_markup;
+    gchar *secondary_markup;
+    gchar *primary_text;
+    gchar *full_formatted_uri;
+    gchar *uri_for_display;
+    gchar *temp_uri_for_display;
+    const gchar *secondary_text;
+
+    g_return_val_if_fail (G_IS_FILE (location), NULL);
+
+    full_formatted_uri = g_file_get_parse_name (location);
+
+    /* Truncate the URI so it doesn't get insanely wide. Note that even
+    * though the dialog uses wrapped text, if the URI doesn't contain
+    * white space then the text-wrapping code is too stupid to wrap it.
+    */
+    temp_uri_for_display = xed_utils_str_middle_truncate (full_formatted_uri, MAX_URI_IN_DIALOG_LENGTH);
+    g_free (full_formatted_uri);
+
+    uri_for_display = g_markup_printf_escaped ("<i>%s</i>", temp_uri_for_display);
+    g_free (temp_uri_for_display);
+
+    info_bar = gtk_info_bar_new ();
+
+    info_bar_add_button_with_text (GTK_INFO_BAR (info_bar), _("S_ave Anyway"),
+                                   "document_save-symbolic", GTK_RESPONSE_YES);
+    gtk_info_bar_add_button (GTK_INFO_BAR (info_bar),
+                            _("D_on't Save"),
+                            GTK_RESPONSE_CANCEL);
+    gtk_info_bar_set_message_type (GTK_INFO_BAR (info_bar), GTK_MESSAGE_WARNING);
+
+    hbox_content = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 8);
+
+    image = gtk_image_new_from_stock ("gtk-dialog-warning", GTK_ICON_SIZE_DIALOG);
+    gtk_box_pack_start (GTK_BOX (hbox_content), image, FALSE, FALSE, 0);
+    gtk_misc_set_alignment (GTK_MISC (image), 0.5, 0);
+
+    vbox = gtk_box_new (GTK_ORIENTATION_VERTICAL, 6);
+    gtk_box_pack_start (GTK_BOX (hbox_content), vbox, TRUE, TRUE, 0);
+
+    primary_text = g_strdup_printf (_("Some invalid chars have been detected while saving %s"), uri_for_display);
+
+    g_free (uri_for_display);
+
+    primary_markup = g_strdup_printf ("<b>%s</b>", primary_text);
+    g_free (primary_text);
+    primary_label = gtk_label_new (primary_markup);
+    g_free (primary_markup);
+    gtk_box_pack_start (GTK_BOX (vbox), primary_label, TRUE, TRUE, 0);
+    gtk_label_set_use_markup (GTK_LABEL (primary_label), TRUE);
+    gtk_label_set_line_wrap (GTK_LABEL (primary_label), TRUE);
+    gtk_misc_set_alignment (GTK_MISC (primary_label), 0, 0.5);
+    gtk_widget_set_can_focus (primary_label, TRUE);
+    gtk_label_set_selectable (GTK_LABEL (primary_label), TRUE);
+
+    secondary_text = _("If you continue saving this file you can corrupt the document. "
+                      " Save anyway?");
+    secondary_markup = g_strdup_printf ("<small>%s</small>", secondary_text);
+    secondary_label = gtk_label_new (secondary_markup);
+    g_free (secondary_markup);
+    gtk_box_pack_start (GTK_BOX (vbox), secondary_label, TRUE, TRUE, 0);
+    gtk_widget_set_can_focus (secondary_label, TRUE);
+    gtk_label_set_use_markup (GTK_LABEL (secondary_label), TRUE);
+    gtk_label_set_line_wrap (GTK_LABEL (secondary_label), TRUE);
+    gtk_label_set_selectable (GTK_LABEL (secondary_label), TRUE);
+    gtk_misc_set_alignment (GTK_MISC (secondary_label), 0, 0.5);
+
+    gtk_widget_show_all (hbox_content);
+    set_contents (info_bar, hbox_content);
+
+    return info_bar;
+}

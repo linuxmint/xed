@@ -87,8 +87,6 @@ void xed_utils_set_atk_relation (GtkWidget       *obj1,
                                  GtkWidget       *obj2,
                                  AtkRelationType  rel_type);
 
-gboolean xed_utils_location_exists (GFile *location);
-
 gchar *xed_utils_escape_search_text (const gchar *text);
 
 gchar *xed_utils_unescape_search_text (const gchar *text);
@@ -126,8 +124,6 @@ gboolean xed_utils_file_has_parent (GFile *gfile);
 
 /* Return NULL if str is not a valid URI and/or filename */
 gchar *xed_utils_make_canonical_uri_from_shell_arg (const gchar *str);
-
-gchar *xed_utils_uri_for_display (GFile *location);
 
 gchar *xed_utils_basename_for_display (GFile *location);
 

@@ -287,25 +287,6 @@ xed_utils_set_atk_relation (GtkWidget       *obj1,
     g_object_unref (G_OBJECT (relation));
 }
 
-gboolean
-xed_utils_location_exists (GFile *location)
-{
-    gboolean res;
-    gchar *uri;
-
-    g_return_val_if_fail (G_IS_FILE (location), FALSE);
-
-    uri = g_file_get_uri (location);
-    xed_debug_message (DEBUG_UTILS, "text_uri: %s", uri);
-    g_free (uri);
-
-    res = g_file_query_exists (location, NULL);
-
-    xed_debug_message (DEBUG_UTILS, res ? "TRUE" : "FALSE");
-
-    return res;
-}
-
 gchar *
 xed_utils_escape_search_text (const gchar* text)
 {
@@ -1342,23 +1323,6 @@ xed_utils_basename_for_display (GFile *location)
     g_free (uri);
 
     return name;
-}
-
-/**
- * xed_utils_uri_for_display:
- * @location: location to be displayed.
- *
- * Filter, modify, unescape and change @uri to make it appropriate
- * for display to users.
- *
- * This function is a convenient wrapper for g_file_get_parse_name
- *
- * Return value: a string which represents @uri and can be displayed.
- */
-gchar *
-xed_utils_uri_for_display (GFile *location)
-{
-    return g_file_get_parse_name (location);
 }
 
 /**

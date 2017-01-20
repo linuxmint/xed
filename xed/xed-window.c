@@ -1078,7 +1078,7 @@ update_recent_files_menu (XedWindow *window)
         /* gtk_recent_info_get_uri_display (info) is buggy and
          * works only for local files */
         location = g_file_new_for_uri (gtk_recent_info_get_uri (info));
-        uri = xed_utils_uri_for_display (location);
+        uri = g_file_get_parse_name (location);
         g_object_unref (location);
         ruri = xed_utils_replace_home_dir_with_tilde (uri);
         g_free (uri);

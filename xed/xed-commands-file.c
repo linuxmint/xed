@@ -257,11 +257,13 @@ load_file_list (XedWindow         *window,
 /**
  * xed_commands_load_location:
  * @window:
- * @uri:
+ * @location:
  * @encoding: (allow-none):
  * @line_pos:
  *
- * Do nothing if location does not exist
+ * Ignore non-existing locations
+ *
+ * Returns: (transfer container):
  */
 void
 xed_commands_load_location (XedWindow         *window,
@@ -290,8 +292,8 @@ xed_commands_load_location (XedWindow         *window,
 /**
  * xed_commands_load_locations:
  * @window:
- * @uris:
- * @encoding:
+ * @locations: (element-type GLib.File) (transfer none):
+ * @encoding: (allow-none):
  * @line_pos:
  *
  * Ignore non-existing locations

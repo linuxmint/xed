@@ -63,6 +63,8 @@ GtkWidget	*xed_unrecoverable_saving_error_message_area_new	 (GFile              
 GtkWidget	*xed_externally_modified_message_area_new		 (GFile               *location,
 									  gboolean             document_modified);
 
+GtkWidget *xed_invalid_character_message_area_new (GFile *location);
+
 G_END_DECLS
 
 #endif  /* __XED_IO_ERROR_MESSAGE_AREA_H__  */

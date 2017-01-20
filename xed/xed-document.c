@@ -88,9 +88,6 @@ static void xed_document_save_real (XedDocument         *doc,
                                     GFile               *location,
                                     const XedEncoding   *encoding,
                                     XedDocumentSaveFlags flags);
-static void to_search_region_range (XedDocument *doc,
-                                    GtkTextIter *start,
-                                    GtkTextIter *end);
 static void     insert_text_cb (XedDocument *doc,
                                 GtkTextIter *pos,
                                 const gchar *text,
@@ -138,15 +135,17 @@ struct _XedDocumentPrivate
     XedTextRegion *to_search_region;
     GtkTextTag    *found_tag;
 
+    GtkTextTag *error_tag;
+
     /* Mount operation factory */
     XedMountOperationFactory  mount_operation_factory;
     gpointer                  mount_operation_userdata;
 
-    gint readonly : 1;
-    gint last_save_was_manually : 1;
-    gint language_set_by_user : 1;
-    gint stop_cursor_moved_emission : 1;
-    gint dispose_has_run : 1;
+    guint readonly : 1;
+    guint last_save_was_manually : 1;
+    guint language_set_by_user : 1;
+    guint stop_cursor_moved_emission : 1;
+    guint dispose_has_run : 1;
 };
 
 enum
@@ -281,25 +280,10 @@ xed_document_dispose (GObject *object)
         g_free (position);
     }
 
-    if (doc->priv->loader)
-    {
-        g_object_unref (doc->priv->loader);
-        doc->priv->loader = NULL;
-    }
-
+    g_clear_object (&doc->priv->loader);
     g_clear_object (&doc->priv->editor_settings);
-
-    if (doc->priv->metadata_info != NULL)
-    {
-        g_object_unref (doc->priv->metadata_info);
-        doc->priv->metadata_info = NULL;
-    }
-
-    if (doc->priv->location != NULL)
-    {
-        g_object_unref (doc->priv->location);
-        doc->priv->location = NULL;
-    }
+    g_clear_object (&doc->priv->metadata_info);
+    g_clear_object (&doc->priv->location);
 
     doc->priv->dispose_has_run = TRUE;
 
@@ -383,17 +367,30 @@ xed_document_set_property (GObject      *object,
 
     switch (prop_id)
     {
-        case PROP_ENABLE_SEARCH_HIGHLIGHTING:
-            xed_document_set_enable_search_highlighting (doc, g_value_get_boolean (value));
+        case PROP_LOCATION:
+        {
+            GFile *location;
+
+            location = g_value_get_object (value);
+
+            if (location != NULL)
+            {
+                xed_document_set_location (doc, location);
+            }
+
             break;
-        case PROP_NEWLINE_TYPE:
-            xed_document_set_newline_type (doc, g_value_get_enum (value));
-            break;
+        }
         case PROP_SHORTNAME:
             xed_document_set_short_name_for_display (doc, g_value_get_string (value));
             break;
         case PROP_CONTENT_TYPE:
             xed_document_set_content_type (doc, g_value_get_string (value));
+            break;
+        case PROP_ENABLE_SEARCH_HIGHLIGHTING:
+            xed_document_set_enable_search_highlighting (doc, g_value_get_boolean (value));
+            break;
+        case PROP_NEWLINE_TYPE:
+            xed_document_set_newline_type (doc, g_value_get_enum (value));
             break;
         default:
             G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
@@ -455,10 +452,10 @@ xed_document_class_init (XedDocumentClass *klass)
 
     g_object_class_install_property (object_class, PROP_LOCATION,
                                      g_param_spec_object ("location",
-                                                          "LOCATION",
+                                                          "Location",
                                                           "The document's location",
                                                           G_TYPE_FILE,
-                                                          G_PARAM_READABLE |
+                                                          G_PARAM_READWRITE |
                                                           G_PARAM_STATIC_STRINGS));
 
     g_object_class_install_property (object_class, PROP_SHORTNAME,
@@ -647,7 +644,7 @@ xed_document_class_init (XedDocumentClass *klass)
                       G_TYPE_POINTER);
 
     document_signals[SEARCH_HIGHLIGHT_UPDATED] =
-        g_signal_new ("search_highlight_updated",
+        g_signal_new ("search-highlight-updated",
                       G_OBJECT_CLASS_TYPE (object_class),
                       G_SIGNAL_RUN_LAST,
                       G_STRUCT_OFFSET (XedDocumentClass, search_highlight_updated),
@@ -658,7 +655,7 @@ xed_document_class_init (XedDocumentClass *klass)
                       GTK_TYPE_TEXT_ITER | G_SIGNAL_TYPE_STATIC_SCOPE,
                       GTK_TYPE_TEXT_ITER | G_SIGNAL_TYPE_STATIC_SCOPE);
 
-    g_type_class_add_private (object_class, sizeof(XedDocumentPrivate));
+    g_type_class_add_private (object_class, sizeof (XedDocumentPrivate));
 }
 
 static void
@@ -1097,7 +1094,7 @@ xed_document_get_uri_for_display (XedDocument *doc)
     }
     else
     {
-        return xed_utils_uri_for_display (doc->priv->location);
+        return g_file_get_parse_name (doc->priv->location);
     }
 }
 
@@ -1193,9 +1190,9 @@ set_readonly (XedDocument *doc,
 }
 
 /**
- * xed_document_set_readonly:
+ * _xed_document_set_readonly:
  * @doc: a #XedDocument
- * @readonly: %TRUE to se the document as read-only
+ * @readonly: %TRUE to set the document as read-only
  *
  * If @readonly is %TRUE sets @doc as read-only.
  */
@@ -1484,6 +1481,34 @@ xed_document_load_cancel (XedDocument *doc)
     return xed_document_loader_cancel (doc->priv->loader);
 }
 
+static gboolean
+has_invalid_chars (XedDocument *doc)
+{
+    GtkTextBuffer *buffer;
+    GtkTextIter start;
+
+    g_return_val_if_fail (XED_IS_DOCUMENT (doc), FALSE);
+
+    xed_debug (DEBUG_DOCUMENT);
+
+    if (doc->priv->error_tag == NULL)
+    {
+        return FALSE;
+    }
+
+    buffer = GTK_TEXT_BUFFER (doc);
+
+    gtk_text_buffer_get_start_iter (buffer, &start);
+
+    if (gtk_text_iter_begins_tag (&start, doc->priv->error_tag) ||
+       gtk_text_iter_forward_to_tag_toggle (&start, doc->priv->error_tag))
+    {
+       return TRUE;
+    }
+
+    return FALSE;
+}
+
 static void
 document_saver_saving (XedDocumentSaver *saver,
                        gboolean          completed,
@@ -1559,14 +1584,28 @@ xed_document_save_real (XedDocument          *doc,
 {
     g_return_if_fail (doc->priv->saver == NULL);
 
-    /* create a saver, it will be destroyed once saving is complete */
-    doc->priv->saver = xed_document_saver_new (doc, location, encoding, doc->priv->newline_type, flags);
+    if (!(flags & XED_DOCUMENT_SAVE_IGNORE_INVALID_CHARS) && has_invalid_chars (doc))
+    {
+        GError *error = NULL;
 
-    g_signal_connect (doc->priv->saver, "saving", G_CALLBACK (document_saver_saving), doc);
+        g_set_error_literal (&error,
+                             XED_DOCUMENT_ERROR,
+                             XED_DOCUMENT_ERROR_CONVERSION_FALLBACK,
+                             "The document contains invalid characters");
 
-    doc->priv->requested_encoding = encoding;
+        g_signal_emit (doc, document_signals[SAVED], 0, error);
+    }
+    else
+    {
+        /* create a saver, it will be destroyed once saving is complete */
+        doc->priv->saver = xed_document_saver_new (doc, location, encoding, doc->priv->newline_type, flags);
 
-    xed_document_saver_save (doc->priv->saver, &doc->priv->mtime);
+        g_signal_connect (doc->priv->saver, "saving", G_CALLBACK (document_saver_saving), doc);
+
+        doc->priv->requested_encoding = encoding;
+
+        xed_document_saver_save (doc->priv->saver, &doc->priv->mtime);
+    }
 }
 
 /**
@@ -1603,13 +1642,23 @@ xed_document_save_as (XedDocument          *doc,
                       const XedEncoding    *encoding,
                       XedDocumentSaveFlags  flags)
 {
+    GError *error;
+
     g_return_if_fail (XED_IS_DOCUMENT (doc));
     g_return_if_fail (G_IS_FILE (location));
     g_return_if_fail (encoding != NULL);
 
+    if (has_invalid_chars (doc))
+    {
+        g_set_error_literal (&error,
+                             XED_DOCUMENT_ERROR,
+                             XED_DOCUMENT_ERROR_CONVERSION_FALLBACK,
+                             "The document contains invalid chars");
+    }
+
     /* priv->mtime refers to the the old location (if any). Thus, it should be
      * ignored when saving as. */
-    g_signal_emit (doc, document_signals[SAVE], 0, location, encoding, flags | XED_DOCUMENT_SAVE_IGNORE_MTIME);
+    g_signal_emit (doc, document_signals[SAVE], 0, location, encoding, flags | XED_DOCUMENT_SAVE_IGNORE_MTIME, error);
 }
 
 gboolean
@@ -1647,7 +1696,7 @@ xed_document_get_deleted (XedDocument *doc)
     g_return_val_if_fail (XED_IS_DOCUMENT (doc), FALSE);
 
     /* This is done sync, maybe we should do it async? */
-    return doc->priv->location && !xed_utils_location_exists (doc->priv->location);
+    return doc->priv->location && !g_file_query_exists (doc->priv->location, NULL);
 }
 
 /*
@@ -1741,6 +1790,36 @@ compute_num_of_lines (const gchar *text)
     }
 
     return n;
+}
+
+static void
+to_search_region_range (XedDocument *doc,
+                        GtkTextIter *start,
+                        GtkTextIter *end)
+{
+    xed_debug (DEBUG_DOCUMENT);
+
+    if (doc->priv->to_search_region == NULL)
+    {
+        return;
+    }
+
+    gtk_text_iter_set_line_offset (start, 0);
+    gtk_text_iter_forward_to_line_end (end);
+
+    /*
+    g_print ("+ [%u (%u), %u (%u)]\n", gtk_text_iter_get_line (start), gtk_text_iter_get_offset (start),
+                       gtk_text_iter_get_line (end), gtk_text_iter_get_offset (end));
+    */
+
+    /* Add the region to the refresh region */
+    xed_text_region_add (doc->priv->to_search_region, start, end);
+
+    /* Notify views of the updated highlight region */
+    gtk_text_iter_backward_lines (start, doc->priv->num_of_lines_search_text);
+    gtk_text_iter_forward_lines (end, doc->priv->num_of_lines_search_text);
+
+    g_signal_emit (doc, document_signals [SEARCH_HIGHLIGHT_UPDATED], 0, start, end);
 }
 
 /**
@@ -1868,7 +1947,9 @@ xed_document_search_forward (XedDocument       *doc,
         return FALSE;
     }
     else
+    {
         xed_debug_message (DEBUG_DOCUMENT, "doc->priv->search_text == \"%s\"\n", doc->priv->search_text);
+    }
 
     if (start == NULL)
     {
@@ -2124,65 +2205,27 @@ xed_document_replace_all (XedDocument *doc,
     return cont;
 }
 
-/**
- * xed_document_set_language:
- * @doc:
- * @lang: (allow-none):
- **/
-void
-xed_document_set_language (XedDocument       *doc,
-                           GtkSourceLanguage *lang)
-{
-    g_return_if_fail (XED_IS_DOCUMENT (doc));
-
-    set_language (doc, lang, TRUE);
-}
-
-/**
- * xed_document_get_language:
- * @doc:
- *
- * Return value: (transfer none):
- */
-GtkSourceLanguage *
-xed_document_get_language (XedDocument *doc)
-{
-    g_return_val_if_fail (XED_IS_DOCUMENT (doc), NULL);
-
-    return gtk_source_buffer_get_language (GTK_SOURCE_BUFFER (doc));
-}
-
-const XedEncoding *
-xed_document_get_encoding (XedDocument *doc)
-{
-    g_return_val_if_fail (XED_IS_DOCUMENT (doc), NULL);
-
-    return doc->priv->encoding;
-}
-
-glong
-_xed_document_get_seconds_since_last_save_or_load (XedDocument *doc)
-{
-    GTimeVal current_time;
-
-    xed_debug (DEBUG_DOCUMENT);
-
-    g_return_val_if_fail (XED_IS_DOCUMENT (doc), -1);
-
-    g_get_current_time (&current_time);
-
-    return (current_time.tv_sec - doc->priv->time_of_last_save_or_load.tv_sec);
-}
-
 static void
-get_search_match_colors (XedDocument *doc,
-                         gboolean    *foreground_set,
-                         GdkRGBA     *foreground,
-                         gboolean    *background_set,
-                         GdkRGBA     *background)
+get_style_colors (XedDocument *doc,
+                  const gchar *style_name,
+                  gboolean    *foreground_set,
+                  GdkRGBA     *foreground,
+                  gboolean    *background_set,
+                  GdkRGBA     *background,
+                  gboolean    *line_background_set,
+                  GdkRGBA     *line_background,
+                  gboolean    *bold_set,
+                  gboolean    *bold,
+                  gboolean    *italic_set,
+                  gboolean    *italic,
+                  gboolean    *underline_set,
+                  gboolean    *underline,
+                  gboolean    *strikethrough_set,
+                  gboolean    *strikethrough)
 {
     GtkSourceStyleScheme *style_scheme;
     GtkSourceStyle *style;
+    gchar *line_bg;
     gchar *bg;
     gchar *fg;
 
@@ -2192,7 +2235,7 @@ get_search_match_colors (XedDocument *doc,
         goto fallback;
     }
 
-    style = gtk_source_style_scheme_get_style (style_scheme, "search-match");
+    style = gtk_source_style_scheme_get_style (style_scheme, style_name);
     if (style == NULL)
     {
         goto fallback;
@@ -2203,6 +2246,16 @@ get_search_match_colors (XedDocument *doc,
                   "foreground", &fg,
                   "background-set", background_set,
                   "background", &bg,
+                  "line-background-set", line_background_set,
+                  "line-background", &line_bg,
+                  "bold-set", bold_set,
+                  "bold", bold,
+                  "italic-set", italic_set,
+                  "italic", italic,
+                  "underline-set", underline_set,
+                  "underline", underline,
+                  "strikethrough-set", strikethrough_set,
+                  "strikethrough", strikethrough,
                   NULL);
 
     if (*foreground_set)
@@ -2221,8 +2274,17 @@ get_search_match_colors (XedDocument *doc,
         }
     }
 
+    if (*line_background_set)
+    {
+        if (line_bg == NULL || !gdk_rgba_parse (background, line_bg))
+        {
+            *line_background_set = FALSE;
+        }
+    }
+
     g_free (fg);
     g_free (bg);
+    g_free (line_bg);
 
     return;
 
@@ -2239,23 +2301,60 @@ get_search_match_colors (XedDocument *doc,
 }
 
 static void
+sync_tag_style (XedDocument *doc,
+                GtkTextTag  *tag,
+                const gchar *style_name)
+{
+    GdkRGBA fg;
+    GdkRGBA bg;
+    GdkRGBA line_bg;
+    gboolean fg_set;
+    gboolean bg_set;
+    gboolean line_bg_set;
+    gboolean bold;
+    gboolean italic;
+    gboolean underline;
+    gboolean strikethrough;
+    gboolean bold_set;
+    gboolean italic_set;
+    gboolean underline_set;
+    gboolean strikethrough_set;
+
+    xed_debug (DEBUG_DOCUMENT);
+
+    g_return_if_fail (tag != NULL);
+
+    get_style_colors (doc,
+                      style_name,
+                      &fg_set, &fg,
+                      &bg_set, &bg,
+                      &line_bg_set, &line_bg,
+                      &bold_set, &bold,
+                      &italic_set, &italic,
+                      &underline_set, &underline,
+                      &strikethrough_set, &strikethrough);
+
+    g_object_freeze_notify (G_OBJECT (tag));
+
+    g_object_set (tag,
+                 "foreground-rgba", fg_set ? &fg : NULL,
+                 "background-rgba", bg_set ? &bg : NULL,
+                 "paragraph-background-rgba", line_bg_set ? &line_bg : NULL,
+                 "weight", bold_set && bold ? PANGO_WEIGHT_BOLD : PANGO_WEIGHT_NORMAL,
+                 "style", italic_set && italic ? PANGO_STYLE_ITALIC : PANGO_STYLE_NORMAL,
+                 "underline", underline_set && underline ? PANGO_UNDERLINE_SINGLE : PANGO_UNDERLINE_NONE,
+                 "strikethrough", strikethrough_set && strikethrough,
+                  NULL);
+
+    g_object_thaw_notify (G_OBJECT (tag));
+}
+
+static void
 sync_found_tag (XedDocument *doc,
                 GParamSpec  *pspec,
                 gpointer     data)
 {
-    GdkRGBA fg;
-    GdkRGBA bg;
-    gboolean fg_set;
-    gboolean bg_set;
-
-    xed_debug (DEBUG_DOCUMENT);
-
-    g_return_if_fail (GTK_TEXT_TAG (doc->priv->found_tag));
-
-    get_search_match_colors (doc, &fg_set, &fg, &bg_set, &bg);
-
-    g_object_set (doc->priv->found_tag, "foreground-rgba", fg_set ? &fg : NULL, NULL);
-    g_object_set (doc->priv->found_tag, "background-rgba", bg_set ? &bg : NULL, NULL);
+    sync_tag_style (doc, doc->priv->found_tag, "search-match");
 }
 
 static void
@@ -2378,36 +2477,6 @@ search_region (XedDocument *doc,
     } while (found);
 }
 
-static void
-to_search_region_range (XedDocument *doc,
-                        GtkTextIter *start,
-                        GtkTextIter *end)
-{
-    xed_debug (DEBUG_DOCUMENT);
-
-    if (doc->priv->to_search_region == NULL)
-    {
-        return;
-    }
-
-    gtk_text_iter_set_line_offset (start, 0);
-    gtk_text_iter_forward_to_line_end (end);
-
-    /*
-    g_print ("+ [%u (%u), %u (%u)]\n", gtk_text_iter_get_line (start), gtk_text_iter_get_offset (start),
-                       gtk_text_iter_get_line (end), gtk_text_iter_get_offset (end));
-    */
-
-    /* Add the region to the refresh region */
-    xed_text_region_add (doc->priv->to_search_region, start, end);
-
-    /* Notify views of the updated highlight region */
-    gtk_text_iter_backward_lines (start, doc->priv->num_of_lines_search_text);
-    gtk_text_iter_forward_lines (end, doc->priv->num_of_lines_search_text);
-
-    g_signal_emit (doc, document_signals [SEARCH_HIGHLIGHT_UPDATED], 0, start, end);
-}
-
 void
 _xed_document_search_region (XedDocument       *doc,
                              const GtkTextIter *start,
@@ -2492,6 +2561,56 @@ delete_range_cb (XedDocument *doc,
     d_end = *end;
 
     to_search_region_range (doc, &d_start, &d_end);
+}
+
+/**
+ * xed_document_set_language:
+ * @doc:
+ * @lang: (allow-none):
+ **/
+void
+xed_document_set_language (XedDocument       *doc,
+                           GtkSourceLanguage *lang)
+{
+    g_return_if_fail (XED_IS_DOCUMENT (doc));
+
+    set_language (doc, lang, TRUE);
+}
+
+/**
+ * xed_document_get_language:
+ * @doc:
+ *
+ * Return value: (transfer none):
+ */
+GtkSourceLanguage *
+xed_document_get_language (XedDocument *doc)
+{
+    g_return_val_if_fail (XED_IS_DOCUMENT (doc), NULL);
+
+    return gtk_source_buffer_get_language (GTK_SOURCE_BUFFER (doc));
+}
+
+const XedEncoding *
+xed_document_get_encoding (XedDocument *doc)
+{
+    g_return_val_if_fail (XED_IS_DOCUMENT (doc), NULL);
+
+    return doc->priv->encoding;
+}
+
+glong
+_xed_document_get_seconds_since_last_save_or_load (XedDocument *doc)
+{
+    GTimeVal current_time;
+
+    xed_debug (DEBUG_DOCUMENT);
+
+    g_return_val_if_fail (XED_IS_DOCUMENT (doc), -1);
+
+    g_get_current_time (&current_time);
+
+    return (current_time.tv_sec - doc->priv->time_of_last_save_or_load.tv_sec);
 }
 
 void
@@ -2598,7 +2717,7 @@ gchar *
 xed_document_get_metadata (XedDocument *doc,
                            const gchar *key)
 {
-    gchar *uri;
+    gchar *value = NULL;
 
     g_return_val_if_fail (XED_IS_DOCUMENT (doc), NULL);
     g_return_val_if_fail (key != NULL, NULL);
@@ -2637,7 +2756,7 @@ xed_document_set_metadata (XedDocument *doc,
 
         if (doc->priv->location != NULL)
         {
-            xed_metadata_manager_set (doc->priv->uri, key, value);
+            xed_metadata_manager_set (doc->priv->location, key, value);
         }
     }
 
@@ -2747,3 +2866,39 @@ xed_document_set_metadata (XedDocument *doc,
     g_object_unref (info);
 }
 #endif
+
+static void
+sync_error_tag (XedDocument *doc,
+                GParamSpec  *pspec,
+                gpointer     data)
+{
+   sync_tag_style (doc, doc->priv->error_tag, "def:error");
+}
+
+void
+_xed_document_apply_error_style (XedDocument *doc,
+                                 GtkTextIter *start,
+                                 GtkTextIter *end)
+{
+   GtkTextBuffer *buffer;
+
+   xed_debug (DEBUG_DOCUMENT);
+
+   buffer = GTK_TEXT_BUFFER (doc);
+
+   if (doc->priv->error_tag == NULL)
+   {
+       doc->priv->error_tag = gtk_text_buffer_create_tag (GTK_TEXT_BUFFER (doc), "error-style", NULL);
+
+       sync_error_tag (doc, NULL, NULL);
+
+       g_signal_connect (doc, "notify::style-scheme",
+                         G_CALLBACK (sync_error_tag), NULL);
+   }
+
+   /* make sure the 'error' tag has the priority over
+    * syntax highlighting tags */
+   text_tag_set_highest_priority (doc->priv->error_tag, GTK_TEXT_BUFFER (doc));
+
+   gtk_text_buffer_apply_tag (buffer, doc->priv->error_tag, start, end);
+}

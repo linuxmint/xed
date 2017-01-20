@@ -530,11 +530,8 @@ io_loading_error_message_area_response (GtkWidget *message_area,
             break;
         case GTK_RESPONSE_YES:
             /* This means that we want to edit the document anyway */
-            set_message_area (tab, NULL);
-            _xed_document_set_readonly (doc, FALSE);
-            break;
-        case GTK_RESPONSE_NO:
-            /* We don't want to edit the document just show it */
+            tab->priv->not_editable = FALSE;
+            gtk_text_view_set_editable (GTK_TEXT_VIEW (view), TRUE);
             set_message_area (tab, NULL);
             break;
         default:
@@ -755,7 +752,7 @@ show_saving_message_area (XedTab *tab)
 
         from = short_name;
 
-        to = xed_utils_uri_for_display (tab->priv->tmp_save_location);
+        to = g_file_get_parse_name (tab->priv->tmp_save_location);
 
         str = xed_utils_str_middle_truncate (to, MAX (20, MAX_MSG_LENGTH - len));
         g_free (to);
@@ -956,7 +953,7 @@ document_loaded (XedDocument  *document,
         {
             GtkWidget *emsg;
 
-            _xed_document_set_readonly (document, TRUE);
+            tab->priv->not_editable = TRUE;
 
             emsg = xed_io_loading_error_message_area_new (location, tab->priv->tmp_encoding, error);
 
@@ -1107,6 +1104,39 @@ unrecoverable_saving_error_message_area_response (GtkWidget *message_area,
 }
 
 static void
+invalid_character_message_area_response (GtkWidget *info_bar,
+                                         gint       response_id,
+                                         XedTab    *tab)
+{
+    if (response_id == GTK_RESPONSE_YES)
+    {
+        XedDocument *doc;
+
+        doc = xed_tab_get_document (tab);
+        g_return_if_fail (XED_IS_DOCUMENT (doc));
+
+        set_message_area (tab, NULL);
+
+        g_return_if_fail (tab->priv->tmp_save_location != NULL);
+        g_return_if_fail (tab->priv->tmp_encoding != NULL);
+
+        xed_tab_set_state (tab, XED_TAB_STATE_SAVING);
+
+        /* don't bug the user again with this... */
+        tab->priv->save_flags |= XED_DOCUMENT_SAVE_IGNORE_INVALID_CHARS;
+
+        g_return_if_fail (tab->priv->auto_save_timeout <= 0);
+
+        /* Force saving */
+        xed_document_save (doc, tab->priv->save_flags);
+    }
+    else
+    {
+        unrecoverable_saving_error_message_area_response (info_bar, response_id, tab);
+    }
+}
+
+static void
 no_backup_error_message_area_response (GtkWidget *message_area,
                                        gint       response_id,
                                        XedTab    *tab)
@@ -1225,8 +1255,11 @@ document_saved (XedDocument  *document,
     g_return_if_fail (tab->priv->tmp_encoding != NULL);
     g_return_if_fail (tab->priv->auto_save_timeout <= 0);
 
-    g_timer_destroy (tab->priv->timer);
-    tab->priv->timer = NULL;
+    if (tab->priv->timer != NULL)
+    {
+        g_timer_destroy (tab->priv->timer);
+        tab->priv->timer = NULL;
+    }
     tab->priv->times_called = 0;
 
     set_message_area (tab, NULL);
@@ -1259,6 +1292,19 @@ document_saved (XedDocument  *document,
 
             g_signal_connect (emsg, "response",
                               G_CALLBACK (no_backup_error_message_area_response), tab);
+        }
+        else if (error->domain == XED_DOCUMENT_ERROR &&
+                 error->code == XED_DOCUMENT_ERROR_CONVERSION_FALLBACK)
+        {
+            /* If we have any invalid char in the document we must warn the user
+               as it can make the document useless if it is saved */
+            emsg = xed_invalid_character_message_area_new (tab->priv->tmp_save_location);
+            g_return_if_fail (emsg != NULL);
+
+            set_message_area (tab, emsg);
+
+            g_signal_connect (emsg, "response",
+                              G_CALLBACK (invalid_character_message_area_response), tab);
         }
         else if (error->domain == XED_DOCUMENT_ERROR ||
                  (error->domain == G_IO_ERROR &&

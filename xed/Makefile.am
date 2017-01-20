@@ -59,10 +59,12 @@ NOINST_H_FILES =			\
 	xed-print-preview.h		\
 	xed-session.h			\
 	xed-settings.h 			\
+	xed-status-combo-box.h 	\
 	xed-style-scheme-manager.h	\
 	xed-tab-label.h		\
 	xedtextregion.h		\
 	xed-ui.h			\
+	xed-utils.h 		\
 	xed-view-frame.h 	\
 	xed-window-private.h
 
@@ -84,9 +86,7 @@ INST_H_FILES =				\
 	xed-progress-message-area.h	\
 	xed-searchbar.h		\
 	xed-statusbar.h		\
-	xed-status-combo-box.h	\
 	xed-tab.h 			\
-	xed-utils.h 			\
 	xed-view.h 			\
 	xed-view-activatable.h 	\
 	xed-window.h 		\
