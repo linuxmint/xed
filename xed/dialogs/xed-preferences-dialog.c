@@ -42,7 +42,6 @@
 #include <gtk/gtk.h>
 #include <gtksourceview/gtksource.h>
 #include <libpeas-gtk/peas-gtk-plugin-manager.h>
-#include <gtksourceview/gtksourcestyleschememanager.h>
 
 #include "xed-preferences-dialog.h"
 #include "xed-utils.h"

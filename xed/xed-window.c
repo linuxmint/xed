@@ -22,7 +22,6 @@
 #include "xed-utils.h"
 #include "xed-commands.h"
 #include "xed-debug.h"
-#include "xed-language-manager.h"
 #include "xed-panel.h"
 #include "xed-documents-panel.h"
 #include "xed-plugins-engine.h"
@@ -707,7 +706,7 @@ language_toggled (GtkToggleAction *action,
     }
     else
     {
-        lang = gtk_source_language_manager_get_language (xed_get_language_manager (), lang_id);
+        lang = gtk_source_language_manager_get_language (gtk_source_language_manager_get_default (), lang_id);
         if (lang == NULL)
         {
             g_warning("Could not get language %s\n", lang_id);
@@ -799,6 +798,54 @@ create_language_menu_item (GtkSourceLanguage *lang,
     g_free (escaped_section);
 }
 
+static gint
+language_compare (GtkSourceLanguage *lang1,
+                  GtkSourceLanguage *lang2)
+{
+    const gchar *section1, *section2, *name1, *name2;
+    gchar *tmp1, *tmp2;
+    gint ret;
+
+    section1 = gtk_source_language_get_section (lang1);
+    section2 = gtk_source_language_get_section (lang2);
+    name1 = gtk_source_language_get_name (lang1);
+    name2 = gtk_source_language_get_name (lang2);
+
+    /* we collate the concatenation so that they are
+    * sorted first by section and then by name */
+    tmp1 = g_strconcat (section1, "::", name1, NULL);
+    tmp2 = g_strconcat (section2, "::", name2, NULL);
+
+    ret = g_utf8_collate (tmp1, tmp2);
+
+    g_free(tmp1);
+    g_free(tmp2);
+
+    return ret;
+}
+
+static GSList *
+get_languages_sorted_by_section (XedWindow *window)
+{
+    GtkSourceLanguageManager *lm;
+    const gchar * const *ids;
+    gint i;
+    GSList *languages = NULL;
+
+    lm = gtk_source_language_manager_get_default ();
+    ids = gtk_source_language_manager_get_language_ids (lm);
+
+    for (i = 0; ids[i] != NULL; i++)
+    {
+        GtkSourceLanguage *lang;
+
+        lang = gtk_source_language_manager_get_language (lm, ids[i]);
+        languages = g_slist_prepend (languages, lang);
+    }
+
+    return g_slist_sort (languages, (GCompareFunc)language_compare);
+}
+
 static void
 create_languages_menu (XedWindow *window)
 {
@@ -830,9 +877,9 @@ create_languages_menu (XedWindow *window)
     gtk_toggle_action_set_active (GTK_TOGGLE_ACTION(action_none), TRUE);
 
     /* now add all the known languages */
-    languages = xed_language_manager_list_languages_sorted (xed_get_language_manager (), FALSE);
+    languages = get_languages_sorted_by_section (window);
 
-    for (l = languages, i = 0; l != NULL; l = l->next, ++i)
+    for (l = languages, i = 0; l != NULL; l = l->next)
     {
         create_language_menu_item (l->data, i, id, window);
     }
@@ -1625,35 +1672,36 @@ fill_tab_width_combo (XedWindow *window)
 static void
 fill_language_combo (XedWindow *window)
 {
-    GtkSourceLanguageManager *manager;
-    GSList *languages;
-    GSList *item;
-    GtkWidget *menu_item;
+    GtkSourceLanguageManager *lm;
+    const gchar * const *ids;
     const gchar *name;
-
-    manager = xed_get_language_manager ();
-    languages = xed_language_manager_list_languages_sorted (manager, FALSE);
+    GtkWidget *menu_item;
+    gint i;
 
     name = _("Plain Text");
     menu_item = gtk_menu_item_new_with_label (name);
     gtk_widget_show (menu_item);
 
     g_object_set_data (G_OBJECT(menu_item), LANGUAGE_DATA, NULL);
-    xed_status_combo_box_add_item (XED_STATUS_COMBO_BOX(window->priv->language_combo), GTK_MENU_ITEM(menu_item), name);
+    xed_status_combo_box_add_item (XED_STATUS_COMBO_BOX (window->priv->language_combo), GTK_MENU_ITEM (menu_item), name);
 
-    for (item = languages; item; item = item->next)
+    lm = gtk_source_language_manager_get_default ();
+    ids = gtk_source_language_manager_get_language_ids (lm);
+
+    for (i = 0; ids[i] != NULL; i++)
     {
-        GtkSourceLanguage *lang = GTK_SOURCE_LANGUAGE(item->data);
+        GtkSourceLanguage *lang;
+
+        lang = gtk_source_language_manager_get_language (lm, ids[i]);
         name = gtk_source_language_get_name (lang);
         menu_item = gtk_menu_item_new_with_label (name);
         gtk_widget_show (menu_item);
-        g_object_set_data_full (G_OBJECT(menu_item), LANGUAGE_DATA, g_object_ref (lang),
-                                (GDestroyNotify) g_object_unref);
-        xed_status_combo_box_add_item (XED_STATUS_COMBO_BOX(window->priv->language_combo),
-                                       GTK_MENU_ITEM(menu_item), name);
-    }
 
-    g_slist_free (languages);
+        g_object_set_data_full (G_OBJECT (menu_item), LANGUAGE_DATA, g_object_ref (lang),
+                                (GDestroyNotify) g_object_unref);
+        xed_status_combo_box_add_item (XED_STATUS_COMBO_BOX (window->priv->language_combo),
+                                       GTK_MENU_ITEM (menu_item), name);
+    }
 }
 
 static void

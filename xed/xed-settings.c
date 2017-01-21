@@ -23,7 +23,7 @@
 
 #include <string.h>
 
-#include <gtksourceview/gtksourcestyleschememanager.h>
+#include <gtksourceview/gtksource.h>
 
 #include "xed-settings.h"
 #include "xed-app.h"

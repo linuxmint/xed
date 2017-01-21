@@ -40,13 +40,11 @@
 #include <glib/gi18n.h>
 #include <gtk/gtk.h>
 #include <gtksourceview/gtksource.h>
-#include <gtksourceview/gtksourcestyleschememanager.h>
 
 #include "xed-settings.h"
 #include "xed-document.h"
 #include "xed-debug.h"
 #include "xed-utils.h"
-#include "xed-language-manager.h"
 #include "xed-document-loader.h"
 #include "xed-document-saver.h"
 #include "xed-marshal.h"
@@ -815,7 +813,7 @@ guess_language (XedDocument *doc,
 
         if (strcmp (data, "_NORMAL_") != 0)
         {
-            language = gtk_source_language_manager_get_language (xed_get_language_manager (), data);
+            language = gtk_source_language_manager_get_language (gtk_source_language_manager_get_default (), data);
         }
 
         g_free (data);
@@ -837,7 +835,8 @@ guess_language (XedDocument *doc,
             basename = g_strdup (doc->priv->short_name);
         }
 
-        language = gtk_source_language_manager_guess_language (xed_get_language_manager (), basename, content_type);
+        language = gtk_source_language_manager_guess_language (gtk_source_language_manager_get_default (),
+                                                               basename, content_type);
 
         g_free (basename);
 
@@ -1646,7 +1645,7 @@ xed_document_save_as (XedDocument          *doc,
                       const XedEncoding    *encoding,
                       XedDocumentSaveFlags  flags)
 {
-    GError *error;
+    GError *error = NULL;
 
     g_return_if_fail (XED_IS_DOCUMENT (doc));
     g_return_if_fail (G_IS_FILE (location));

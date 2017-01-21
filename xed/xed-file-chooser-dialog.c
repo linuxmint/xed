@@ -43,7 +43,6 @@
 
 #include "xed-file-chooser-dialog.h"
 #include "xed-encodings-combo-box.h"
-#include "xed-language-manager.h"
 #include "xed-debug.h"
 #include "xed-enum-types.h"
 #include "xed-settings.h"
@@ -256,7 +255,7 @@ all_text_files_filter (const GtkFileFilterInfo *filter_info,
         GtkSourceLanguageManager *lm;
         const gchar * const *languages;
 
-        lm = xed_get_language_manager ();
+        lm = gtk_source_language_manager_get_default ();
         languages = gtk_source_language_manager_get_language_ids (lm);
 
         while ((languages != NULL) && (*languages != NULL))

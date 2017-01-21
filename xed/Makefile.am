@@ -53,7 +53,6 @@ NOINST_H_FILES =			\
 	xed-documents-panel.h		\
 	xed-history-entry.h		\
 	xed-io-error-message-area.h	\
-	xed-language-manager.h	\
 	xed-plugins-engine.h		\
 	xed-print-job.h		\
 	xed-print-preview.h		\
@@ -126,7 +125,6 @@ libxed_c_files = 				\
 	xed-help.c					\
 	xed-history-entry.c			\
 	xed-io-error-message-area.c	\
-	xed-language-manager.c		\
 	xed-message-bus.c			\
 	xed-message-type.c			\
 	xed-message.c				\

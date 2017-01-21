@@ -24,7 +24,6 @@
 #include <stdio.h>
 #include <gtk/gtk.h>
 #include <gtksourceview/gtksource.h>
-#include <xed/xed-language-manager.h>
 #include <xed/xed-debug.h>
 #include <xed/xed-settings.h>
 #include <xed/xed-utils.h>
@@ -752,7 +751,7 @@ modeline_parser_apply_modeline (GtkSourceView *view)
 		GtkSourceLanguageManager *manager;
 		GtkSourceLanguage *language;
 
-		manager = xed_get_language_manager ();
+		manager = gtk_source_language_manager_get_default ();
 		language = gtk_source_language_manager_get_language
 				(manager, options.language_id);
 
