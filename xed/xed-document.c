@@ -1259,6 +1259,8 @@ _xed_document_check_externally_modified (XedDocument *doc)
                    (timeval.tv_sec == doc->priv->mtime.tv_sec &&
                    timeval.tv_usec > doc->priv->mtime.tv_usec);
         }
+
+        g_object_unref (info);
     }
 
     return FALSE;
@@ -1594,6 +1596,8 @@ xed_document_save_real (XedDocument          *doc,
                              "The document contains invalid characters");
 
         g_signal_emit (doc, document_signals[SAVED], 0, error);
+
+        g_error_free (error);
     }
     else
     {
@@ -1659,6 +1663,11 @@ xed_document_save_as (XedDocument          *doc,
     /* priv->mtime refers to the the old location (if any). Thus, it should be
      * ignored when saving as. */
     g_signal_emit (doc, document_signals[SAVE], 0, location, encoding, flags | XED_DOCUMENT_SAVE_IGNORE_MTIME, error);
+
+    if (error != NULL)
+    {
+        g_error_free (error);
+    }
 }
 
 gboolean
