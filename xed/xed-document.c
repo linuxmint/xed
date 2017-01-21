@@ -1323,7 +1323,7 @@ document_loader_loaded (XedDocumentLoader *loader,
     /* special case creating a named new doc */
     else if (doc->priv->create &&
              (error->domain == G_IO_ERROR && error->code == G_IO_ERROR_NOT_FOUND) &&
-             (xed_utils_location_has_file_scheme (doc->priv->location)))
+             (g_file_has_uri_scheme (doc->priv->location, "file")))
     {
         reset_temp_loading_data (doc);
 
@@ -1655,7 +1655,7 @@ xed_document_is_local (XedDocument *doc)
         return FALSE;
     }
 
-    return xed_utils_location_has_file_scheme (doc->priv->location);
+    return g_file_has_uri_scheme (doc->priv->location, "file");
 }
 
 static void

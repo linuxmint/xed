@@ -416,7 +416,7 @@ on_selection_changed_cb (GtkTreeSelection     *selection,
     {
         gtk_tree_model_get (model, &iter, XED_FILE_BROWSER_STORE_COLUMN_LOCATION, &location, -1);
 
-        sensitive = xed_utils_location_has_file_scheme (location);
+        sensitive = g_file_has_uri_scheme (location, "file");
     }
 
     gtk_action_set_sensitive (gtk_action_group_get_action (priv->single_selection_action_group, "OpenTerminal"), sensitive);
@@ -902,7 +902,7 @@ on_tab_added_cb (XedWindow            *window,
 
         if (location != NULL)
         {
-            if (xed_utils_location_has_file_scheme (location))
+            if (g_file_has_uri_scheme (location, "file"))
             {
                 prepare_auto_root (plugin);
                 set_root_from_doc (plugin, doc);

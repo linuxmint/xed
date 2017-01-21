@@ -49,8 +49,6 @@ G_BEGIN_DECLS
 
 enum { XED_ALL_WORKSPACES = 0xffffffff };
 
-gboolean xed_utils_location_has_file_scheme (GFile *location);
-
 void xed_utils_menu_position_under_widget (GtkMenu  *menu,
                                            gint     *x,
                                            gint     *y,

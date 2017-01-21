@@ -60,17 +60,6 @@
 
 #define STDIN_DELAY_MICROSECONDS 100000
 
-/**
- * xed_utils_uris_has_file_scheme
- *
- * Returns: %TRUE if @location is a file: uri and is not a chained uri
- */
-gboolean
-xed_utils_location_has_file_scheme (GFile *location)
-{
-    return g_file_has_uri_scheme (location, "file");
-}
-
 static void
 widget_get_origin (GtkWidget *widget,
                    gint      *x,
@@ -1257,7 +1246,7 @@ xed_utils_basename_for_display (GFile *location)
     uri = g_file_get_uri (location);
 
     /* First, try to query the display name, but only on local files */
-    if (xed_utils_location_has_file_scheme (location))
+    if (g_file_has_uri_scheme (location, "file"))
     {
         GFileInfo *info;
         info = g_file_query_info (location,
