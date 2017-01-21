@@ -140,6 +140,8 @@ struct _XedDocumentPrivate
     gpointer                  mount_operation_userdata;
 
     guint readonly : 1;
+    guint externally_modified : 1;
+    guint deleted : 1;
     guint last_save_was_manually : 1;
     guint language_set_by_user : 1;
     guint stop_cursor_moved_emission : 1;
@@ -1217,54 +1219,6 @@ xed_document_get_readonly (XedDocument *doc)
     return doc->priv->readonly;
 }
 
-gboolean
-_xed_document_check_externally_modified (XedDocument *doc)
-{
-    GFileInfo *info;
-
-    g_return_val_if_fail (XED_IS_DOCUMENT (doc), FALSE);
-
-    if (doc->priv->location == NULL)
-    {
-        return FALSE;
-    }
-
-    info = g_file_query_info (doc->priv->location,
-                              G_FILE_ATTRIBUTE_TIME_MODIFIED "," \
-                              G_FILE_ATTRIBUTE_ACCESS_CAN_WRITE,
-                              G_FILE_QUERY_INFO_NONE,
-                              NULL, NULL);
-
-    if (info != NULL)
-    {
-        /* While at it also check if permissions changed */
-        if (g_file_info_has_attribute (info, G_FILE_ATTRIBUTE_ACCESS_CAN_WRITE))
-        {
-            gboolean read_only;
-
-            read_only = !g_file_info_get_attribute_boolean (info, G_FILE_ATTRIBUTE_ACCESS_CAN_WRITE);
-
-            _xed_document_set_readonly (doc, read_only);
-        }
-
-        if (g_file_info_has_attribute (info, G_FILE_ATTRIBUTE_TIME_MODIFIED))
-        {
-            GTimeVal timeval;
-
-            g_file_info_get_modification_time (info, &timeval);
-            g_object_unref (info);
-
-            return (timeval.tv_sec > doc->priv->mtime.tv_sec) ||
-                   (timeval.tv_sec == doc->priv->mtime.tv_sec &&
-                   timeval.tv_usec > doc->priv->mtime.tv_usec);
-        }
-
-        g_object_unref (info);
-    }
-
-    return FALSE;
-}
-
 static void
 reset_temp_loading_data (XedDocument       *doc)
 {
@@ -1316,6 +1270,9 @@ document_loader_loaded (XedDocumentLoader *loader,
         set_readonly (doc, read_only);
 
         g_get_current_time (&doc->priv->time_of_last_save_or_load);
+
+        doc->priv->externally_modified = FALSE;
+        doc->priv->deleted = FALSE;
 
         set_encoding (doc, xed_document_loader_get_encoding (loader), (doc->priv->requested_encoding != NULL));
 
@@ -1551,6 +1508,9 @@ document_saver_saving (XedDocumentSaver *saver,
 
             g_get_current_time (&doc->priv->time_of_last_save_or_load);
 
+            doc->priv->externally_modified = FALSE;
+            doc->priv->deleted = FALSE;
+
             _xed_document_set_readonly (doc, FALSE);
 
             gtk_text_buffer_set_modified (GTK_TEXT_BUFFER (doc), FALSE);
@@ -1698,13 +1658,80 @@ xed_document_is_local (XedDocument *doc)
     return xed_utils_location_has_file_scheme (doc->priv->location);
 }
 
+static void
+check_file_on_disk (XedDocument *doc)
+{
+    GFileInfo *info;
+
+    if (doc->priv->location == NULL)
+    {
+        return;
+    }
+
+    info = g_file_query_info (doc->priv->location,
+                              G_FILE_ATTRIBUTE_TIME_MODIFIED "," \
+                              G_FILE_ATTRIBUTE_ACCESS_CAN_WRITE,
+                              G_FILE_QUERY_INFO_NONE,
+                              NULL, NULL);
+
+    if (info != NULL)
+    {
+        /* While at it also check if permissions changed */
+        if (g_file_info_has_attribute (info, G_FILE_ATTRIBUTE_ACCESS_CAN_WRITE))
+        {
+            gboolean read_only;
+
+            read_only = !g_file_info_get_attribute_boolean (info, G_FILE_ATTRIBUTE_ACCESS_CAN_WRITE);
+
+            _xed_document_set_readonly (doc, read_only);
+        }
+
+        if (g_file_info_has_attribute (info, G_FILE_ATTRIBUTE_TIME_MODIFIED))
+        {
+            GTimeVal timeval;
+
+            g_file_info_get_modification_time (info, &timeval);
+
+            if (timeval.tv_sec > doc->priv->mtime.tv_sec ||
+               (timeval.tv_sec == doc->priv->mtime.tv_sec &&
+                timeval.tv_usec > doc->priv->mtime.tv_usec))
+            {
+                doc->priv->externally_modified = TRUE;
+            }
+        }
+
+        g_object_unref (info);
+    }
+    else
+    {
+        doc->priv->deleted = TRUE;
+    }
+}
+
+gboolean
+_xed_document_check_externally_modified (XedDocument *doc)
+{
+    g_return_val_if_fail (XED_IS_DOCUMENT (doc), FALSE);
+
+    if (!doc->priv->externally_modified)
+    {
+        check_file_on_disk (doc);
+    }
+
+    return doc->priv->externally_modified;
+}
+
 gboolean
 xed_document_get_deleted (XedDocument *doc)
 {
     g_return_val_if_fail (XED_IS_DOCUMENT (doc), FALSE);
 
-    /* This is done sync, maybe we should do it async? */
-    return doc->priv->location && !g_file_query_exists (doc->priv->location, NULL);
+    if (!doc->priv->deleted)
+    {
+        check_file_on_disk (doc);
+    }
+
+    return doc->priv->deleted;
 }
 
 /*
