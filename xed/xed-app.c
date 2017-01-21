@@ -37,6 +37,7 @@
 
 #include <glib/gi18n.h>
 #include <libpeas/peas-extension-set.h>
+#include <gtksourceview/gtksourcestyleschememanager.h>
 
 #include "xed-app.h"
 #include "xed-commands.h"
@@ -351,12 +352,23 @@ extension_removed (PeasExtensionSet *extensions,
 static void
 xed_app_init (XedApp *app)
 {
+    GtkSourceStyleSchemeManager *manager;
+
     app->priv = XED_APP_GET_PRIVATE (app);
 
     load_accels ();
 
     app->priv->settings = xed_settings_new ();
     app->priv->window_settings = g_settings_new ("org.x.editor.state.window");
+
+    /*
+     * We use the default gtksourceview style scheme manager so that plugins
+     * can obtain it easily without a xed specific api, but we need to
+     * add our search path at startup before the manager is actually used.
+     */
+    manager = gtk_source_style_scheme_manager_get_default ();
+    gtk_source_style_scheme_manager_append_search_path (manager, xed_dirs_get_user_styles_dir ());
+
     app->priv->extensions = peas_extension_set_new (PEAS_ENGINE (xed_plugins_engine_get_default ()),
                                                     XED_TYPE_APP_ACTIVATABLE, "app", app, NULL);
 

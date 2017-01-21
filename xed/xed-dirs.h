@@ -28,25 +28,27 @@
 
 G_BEGIN_DECLS
 
-gchar		*xed_dirs_get_user_config_dir		(void);
+gchar *xed_dirs_get_user_config_dir (void);
 
-gchar		*xed_dirs_get_user_cache_dir		(void);
+gchar *xed_dirs_get_user_cache_dir (void);
 
-gchar		*xed_dirs_get_user_plugins_dir	(void);
+gchar *xed_dirs_get_user_styles_dir (void);
 
-gchar		*xed_dirs_get_user_accels_file	(void);
+gchar *xed_dirs_get_user_plugins_dir (void);
 
-gchar		*xed_dirs_get_xed_data_dir		(void);
+gchar *xed_dirs_get_user_accels_file (void);
 
-gchar		*xed_dirs_get_xed_locale_dir	(void);
+gchar *xed_dirs_get_xed_data_dir (void);
 
-gchar		*xed_dirs_get_xed_lib_dir		(void);
+gchar *xed_dirs_get_xed_locale_dir (void);
 
-gchar		*xed_dirs_get_xed_plugins_dir	(void);
+gchar *xed_dirs_get_xed_lib_dir (void);
 
-gchar		*xed_dirs_get_xed_plugins_data_dir (void);
+gchar *xed_dirs_get_xed_plugins_dir (void);
 
-gchar		*xed_dirs_get_ui_file			(const gchar *file);
+gchar *xed_dirs_get_xed_plugins_data_dir (void);
+
+gchar *xed_dirs_get_ui_file (const gchar *file);
 
 G_END_DECLS
 

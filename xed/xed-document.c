@@ -40,13 +40,13 @@
 #include <glib/gi18n.h>
 #include <gtk/gtk.h>
 #include <gtksourceview/gtksource.h>
+#include <gtksourceview/gtksourcestyleschememanager.h>
 
 #include "xed-settings.h"
 #include "xed-document.h"
 #include "xed-debug.h"
 #include "xed-utils.h"
 #include "xed-language-manager.h"
-#include "xed-style-scheme-manager.h"
 #include "xed-document-loader.h"
 #include "xed-document-saver.h"
 #include "xed-marshal.h"
@@ -730,11 +730,11 @@ set_encoding (XedDocument       *doc,
 static GtkSourceStyleScheme *
 get_default_style_scheme (GSettings *editor_settings)
 {
+    GtkSourceStyleSchemeManager *manager;
     gchar *scheme_id;
     GtkSourceStyleScheme *def_style;
-    GtkSourceStyleSchemeManager *manager;
 
-    manager = xed_get_style_scheme_manager ();
+    manager = gtk_source_style_scheme_manager_get_default ();
     scheme_id = g_settings_get_string (editor_settings, XED_SETTINGS_SCHEME);
     def_style = gtk_source_style_scheme_manager_get_scheme (manager, scheme_id);
 

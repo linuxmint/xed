@@ -35,17 +35,19 @@
 
 #include <stdio.h>
 #include <string.h>
+#include <errno.h>
 
 #include <glib/gi18n.h>
+#include <glib/gstdio.h>
 #include <gtk/gtk.h>
 #include <gtksourceview/gtksource.h>
 #include <libpeas-gtk/peas-gtk-plugin-manager.h>
+#include <gtksourceview/gtksourcestyleschememanager.h>
 
 #include "xed-preferences-dialog.h"
 #include "xed-utils.h"
 #include "xed-debug.h"
 #include "xed-document.h"
-#include "xed-style-scheme-manager.h"
 #include "xed-help.h"
 #include "xed-dirs.h"
 #include "xed-settings.h"
@@ -429,14 +431,36 @@ setup_font_colors_page_font_section (XedPreferencesDialog *dlg)
     gtk_widget_set_sensitive (dlg->priv->font_hbox, !use_default_font);
 }
 
+static gboolean
+is_xed_user_style_scheme (const gchar *scheme_id)
+{
+    GtkSourceStyleSchemeManager *manager;
+    GtkSourceStyleScheme *scheme;
+    gboolean res = FALSE;
+
+    manager = gtk_source_style_scheme_manager_get_default ();
+    scheme = gtk_source_style_scheme_manager_get_scheme (manager, scheme_id);
+    if (scheme != NULL)
+    {
+        const gchar *filename;
+
+        filename = gtk_source_style_scheme_get_filename (scheme);
+        if (filename != NULL)
+        {
+           res = g_str_has_prefix (filename, xed_dirs_get_user_styles_dir ());
+        }
+    }
+
+   return res;
+}
+
 static void
 set_buttons_sensisitivity_according_to_scheme (XedPreferencesDialog *dlg,
                                                const gchar          *scheme_id)
 {
     gboolean editable;
 
-    editable = (scheme_id != NULL) &&
-               _xed_style_scheme_manager_scheme_is_xed_user_scheme (xed_get_style_scheme_manager (), scheme_id);
+    editable = ((scheme_id != NULL) && is_xed_user_style_scheme (scheme_id));
 
     gtk_widget_set_sensitive (dlg->priv->uninstall_scheme_button, editable);
 }
@@ -465,9 +489,10 @@ static const gchar *
 ensure_color_scheme_id (XedPreferencesDialog *dlg,
                         const gchar          *id)
 {
+    GtkSourceStyleSchemeManager *manager;
     GtkSourceStyleScheme *scheme = NULL;
-    GtkSourceStyleSchemeManager *manager = xed_get_style_scheme_manager ();
 
+    manager = gtk_source_style_scheme_manager_get_default ();
     if (id == NULL)
     {
         gchar *pref_id;
@@ -496,15 +521,13 @@ ensure_color_scheme_id (XedPreferencesDialog *dlg,
     return  gtk_source_style_scheme_get_id (scheme);
 }
 
-/* If def_id is NULL, use the default scheme as returned by
- * xed_style_scheme_manager_get_default_scheme. If this one returns NULL
- * use the first available scheme as default */
 static const gchar *
 populate_color_scheme_list (XedPreferencesDialog *dlg,
                             const gchar          *def_id)
 {
-    GSList *schemes;
-    GSList *l;
+    GtkSourceStyleSchemeManager *manager;
+    const gchar * const *ids;
+    gint i;
 
     gtk_list_store_clear (dlg->priv->schemes_treeview_model);
 
@@ -516,45 +539,260 @@ populate_color_scheme_list (XedPreferencesDialog *dlg,
         return NULL;
     }
 
-    schemes = xed_style_scheme_manager_list_schemes_sorted (xed_get_style_scheme_manager ());
-    l = schemes;
-    while (l != NULL)
+    manager = gtk_source_style_scheme_manager_get_default ();
+    ids = gtk_source_style_scheme_manager_get_scheme_ids (manager);
+    for (i = 0; ids[i] != NULL; i++)
     {
         GtkSourceStyleScheme *scheme;
-        const gchar *id;
         const gchar *name;
         const gchar *description;
         GtkTreeIter iter;
 
-        scheme = GTK_SOURCE_STYLE_SCHEME (l->data);
-
-        id = gtk_source_style_scheme_get_id (scheme);
+        scheme = gtk_source_style_scheme_manager_get_scheme (manager, ids[i]);
         name = gtk_source_style_scheme_get_name (scheme);
         description = gtk_source_style_scheme_get_description (scheme);
 
         gtk_list_store_append (dlg->priv->schemes_treeview_model, &iter);
         gtk_list_store_set (dlg->priv->schemes_treeview_model,
                             &iter,
-                            ID_COLUMN, id,
+                            ID_COLUMN, ids[i],
                             NAME_COLUMN, name,
                             DESC_COLUMN, description,
                             -1);
 
         g_return_val_if_fail (def_id != NULL, NULL);
-        if (strcmp (id, def_id) == 0)
+        if (strcmp (ids[i], def_id) == 0)
         {
             GtkTreeSelection *selection;
 
             selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (dlg->priv->schemes_treeview));
             gtk_tree_selection_select_iter (selection, &iter);
         }
-
-        l = g_slist_next (l);
     }
 
-    g_slist_free (schemes);
-
     return def_id;
+}
+
+/*
+ * file_copy:
+ * @name: a pointer to a %NULL-terminated string, that names
+ * the file to be copied, in the GLib file name encoding
+ * @dest_name: a pointer to a %NULL-terminated string, that is the
+ * name for the destination file, in the GLib file name encoding
+ * @error: return location for a #GError, or %NULL
+ *
+ * Copies file @name to @dest_name.
+ *
+ * If the call was successful, it returns %TRUE. If the call was not
+ * successful, it returns %FALSE and sets @error. The error domain
+ * is #G_FILE_ERROR. Possible error
+ * codes are those in the #GFileError enumeration.
+ *
+ * Return value: %TRUE on success, %FALSE otherwise.
+ */
+static gboolean
+file_copy (const gchar  *name,
+           const gchar  *dest_name,
+           GError      **error)
+{
+    gchar *contents;
+    gsize length;
+    gchar *dest_dir;
+
+    /* FIXME - Paolo (Aug. 13, 2007):
+    * Since the style scheme files are relatively small, we can implement
+    * file copy getting all the content of the source file in a buffer and
+    * then write the content to the destination file. In this way we
+    * can use the g_file_get_contents and g_file_set_contents and avoid to
+    * write custom code to copy the file (with sane error management).
+    * If needed we can improve this code later. */
+
+    g_return_val_if_fail (name != NULL, FALSE);
+    g_return_val_if_fail (dest_name != NULL, FALSE);
+    g_return_val_if_fail (error == NULL || *error == NULL, FALSE);
+
+    /* Note: we allow to copy a file to itself since this is not a problem
+    * in our use case */
+
+    /* Ensure the destination directory exists */
+    dest_dir = g_path_get_dirname (dest_name);
+
+    errno = 0;
+    if (g_mkdir_with_parents (dest_dir, 0755) != 0)
+    {
+        gint save_errno = errno;
+        gchar *display_filename = g_filename_display_name (dest_dir);
+
+        g_set_error (error,
+                G_FILE_ERROR,
+                g_file_error_from_errno (save_errno),
+                _("Directory '%s' could not be created: g_mkdir_with_parents() failed: %s"),
+                display_filename,
+                g_strerror (save_errno));
+
+        g_free (dest_dir);
+        g_free (display_filename);
+
+        return FALSE;
+    }
+
+    g_free (dest_dir);
+
+    if (!g_file_get_contents (name, &contents, &length, error))
+    {
+        return FALSE;
+    }
+
+    if (!g_file_set_contents (dest_name, contents, length, error))
+    {
+        return FALSE;
+    }
+
+    g_free (contents);
+
+    return TRUE;
+}
+
+/*
+ * install_style_scheme:
+ * @manager: a #GtkSourceStyleSchemeManager
+ * @fname: the file name of the style scheme to be installed
+ *
+ * Install a new user scheme.
+ * This function copies @fname in #XED_STYLES_DIR and ask the style manager to
+ * recompute the list of available style schemes. It then checks if a style
+ * scheme with the right file name exists.
+ *
+ * If the call was succesful, it returns the id of the installed scheme
+ * otherwise %NULL.
+ *
+ * Return value: the id of the installed scheme, %NULL otherwise.
+ */
+static const gchar *
+install_style_scheme (const gchar *fname)
+{
+    GtkSourceStyleSchemeManager *manager;
+    gchar *new_file_name = NULL;
+    gchar *dirname;
+    const gchar *styles_dir;
+    GError *error = NULL;
+    gboolean copied = FALSE;
+    const gchar* const *ids;
+
+    g_return_val_if_fail (fname != NULL, NULL);
+
+    manager = gtk_source_style_scheme_manager_get_default ();
+
+    dirname = g_path_get_dirname (fname);
+    styles_dir = xed_dirs_get_user_styles_dir ();
+
+    if (strcmp (dirname, styles_dir) != 0)
+    {
+        gchar *basename;
+
+        basename = g_path_get_basename (fname);
+        new_file_name = g_build_filename (styles_dir, basename, NULL);
+        g_free (basename);
+
+        /* Copy the style scheme file into GEDIT_STYLES_DIR */
+        if (!file_copy (fname, new_file_name, &error))
+        {
+            g_free (new_file_name);
+
+            g_message ("Cannot install style scheme:\n%s", error->message);
+
+           return NULL;
+        }
+
+        copied = TRUE;
+    }
+    else
+    {
+        new_file_name = g_strdup (fname);
+    }
+
+    g_free (dirname);
+
+    /* Reload the available style schemes */
+    gtk_source_style_scheme_manager_force_rescan (manager);
+
+    /* Check the new style scheme has been actually installed */
+    ids = gtk_source_style_scheme_manager_get_scheme_ids (manager);
+
+    while (*ids != NULL)
+    {
+        GtkSourceStyleScheme *scheme;
+        const gchar *filename;
+
+        scheme = gtk_source_style_scheme_manager_get_scheme (manager, *ids);
+
+        filename = gtk_source_style_scheme_get_filename (scheme);
+
+        if (filename && (strcmp (filename, new_file_name) == 0))
+        {
+            /* The style scheme has been correctly installed */
+            g_free (new_file_name);
+
+            return gtk_source_style_scheme_get_id (scheme);
+        }
+        ++ids;
+    }
+
+    /* The style scheme has not been correctly installed */
+    if (copied)
+    {
+        g_unlink (new_file_name);
+    }
+
+    g_free (new_file_name);
+
+    return NULL;
+}
+
+/**
+ * uninstall_style_scheme:
+ * @manager: a #GtkSourceStyleSchemeManager
+ * @id: the id of the style scheme to be uninstalled
+ *
+ * Uninstall a user scheme.
+ *
+ * If the call was succesful, it returns %TRUE
+ * otherwise %FALSE.
+ *
+ * Return value: %TRUE on success, %FALSE otherwise.
+ */
+static gboolean
+uninstall_style_scheme (const gchar *id)
+{
+    GtkSourceStyleSchemeManager *manager;
+    GtkSourceStyleScheme *scheme;
+    const gchar *filename;
+
+    g_return_val_if_fail (id != NULL, FALSE);
+
+    manager = gtk_source_style_scheme_manager_get_default ();
+
+    scheme = gtk_source_style_scheme_manager_get_scheme (manager, id);
+    if (scheme == NULL)
+    {
+       return FALSE;
+    }
+
+    filename = gtk_source_style_scheme_get_filename (scheme);
+    if (filename == NULL)
+    {
+        return FALSE;
+    }
+
+    if (g_unlink (filename) == -1)
+    {
+        return FALSE;
+    }
+
+    /* Reload the available style schemes */
+    gtk_source_style_scheme_manager_force_rescan (manager);
+
+    return TRUE;
 }
 
 static void
@@ -573,11 +811,13 @@ add_scheme_chooser_response_cb (GtkDialog            *chooser,
 
     filename = gtk_file_chooser_get_filename (GTK_FILE_CHOOSER (chooser));
     if (filename == NULL)
+    {
         return;
+    }
 
     gtk_widget_hide (GTK_WIDGET (chooser));
 
-    scheme_id = _xed_style_scheme_manager_install_scheme (xed_get_style_scheme_manager (), filename);
+    scheme_id = install_style_scheme (filename);
     g_free (filename);
 
     if (scheme_id == NULL)
@@ -660,7 +900,7 @@ uninstall_scheme_clicked (GtkButton            *button,
 
         gtk_tree_model_get (model, &iter, ID_COLUMN, &id, NAME_COLUMN, &name, -1);
 
-        if (!_xed_style_scheme_manager_uninstall_scheme (xed_get_style_scheme_manager (), id))
+        if (!uninstall_style_scheme (id))
         {
             xed_warning (GTK_WINDOW (dlg), _("Could not remove color scheme \"%s\"."), name);
         }

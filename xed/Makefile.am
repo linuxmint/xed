@@ -60,7 +60,6 @@ NOINST_H_FILES =			\
 	xed-session.h			\
 	xed-settings.h 			\
 	xed-status-combo-box.h 	\
-	xed-style-scheme-manager.h	\
 	xed-tab-label.h		\
 	xedtextregion.h		\
 	xed-ui.h			\
@@ -142,7 +141,6 @@ libxed_c_files = 				\
 	xed-searchbar.c		\
 	xed-statusbar.c		\
 	xed-status-combo-box.c	\
-	xed-style-scheme-manager.c	\
 	xed-tab.c 			\
 	xed-tab-label.c		\
 	xed-utils.c 			\

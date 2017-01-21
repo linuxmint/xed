@@ -23,6 +23,8 @@
 
 #include <string.h>
 
+#include <gtksourceview/gtksourcestyleschememanager.h>
+
 #include "xed-settings.h"
 #include "xed-app.h"
 #include "xed-debug.h"
@@ -30,7 +32,6 @@
 #include "xed-window.h"
 #include "xed-notebook.h"
 #include "xed-plugins-engine.h"
-#include "xed-style-scheme-manager.h"
 #include "xed-dirs.h"
 #include "xed-utils.h"
 #include "xed-window-private.h"
@@ -187,6 +188,7 @@ on_scheme_changed (GSettings   *settings,
                    const gchar *key,
                    XedSettings *xs)
 {
+    GtkSourceStyleSchemeManager *manager;
     GtkSourceStyleScheme *style;
     gchar *scheme;
     GList *docs;
@@ -202,13 +204,14 @@ on_scheme_changed (GSettings   *settings,
     g_free (xs->priv->old_scheme);
     xs->priv->old_scheme = scheme;
 
-    style = gtk_source_style_scheme_manager_get_scheme (xed_get_style_scheme_manager (), scheme);
+    manager = gtk_source_style_scheme_manager_get_default ();
+    style = gtk_source_style_scheme_manager_get_scheme (manager, scheme);
 
     if (style == NULL)
     {
         g_warning ("Default style scheme '%s' not found, falling back to 'classic'", scheme);
 
-        style = gtk_source_style_scheme_manager_get_scheme (xed_get_style_scheme_manager (), "classic");
+        style = gtk_source_style_scheme_manager_get_scheme (manager, "classic");
 
         if (style == NULL)
         {
