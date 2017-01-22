@@ -844,7 +844,7 @@ xed_view_set_font (XedView     *view,
 
     if (def)
     {
-        GSettings *settings;
+        GObject *settings;
         gchar *font;
 
         settings = _xed_app_get_settings (xed_app_get_default ());

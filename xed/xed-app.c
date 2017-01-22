@@ -69,7 +69,7 @@ struct _XedAppPrivate
     GtkPageSetup *page_setup;
     GtkPrintSettings *print_settings;
 
-    GSettings *settings;
+    GObject *settings;
     GSettings *window_settings;
 
     PeasExtensionSet *extensions;
@@ -886,7 +886,7 @@ _xed_app_set_default_print_settings (XedApp           *app,
     app->priv->print_settings = g_object_ref (settings);
 }
 
-GSettings *
+GObject *
 _xed_app_get_settings (XedApp *app)
 {
     g_return_val_if_fail (XED_IS_APP (app), NULL);

@@ -878,51 +878,60 @@ get_default_content_type (void)
 static void
 xed_document_init (XedDocument *doc)
 {
+    XedDocumentPrivate *priv;
     GtkSourceStyleScheme *style_scheme;
-    gint undo_actions;
-    gboolean bracket_matching;
-    gboolean search_hl;
 
     xed_debug (DEBUG_DOCUMENT);
 
     doc->priv = XED_DOCUMENT_GET_PRIVATE (doc);
+    priv = doc->priv;
 
-    doc->priv->editor_settings = g_settings_new ("org.x.editor.preferences.editor");
+    priv->editor_settings = g_settings_new ("org.x.editor.preferences.editor");
 
-    doc->priv->location = NULL;
-    doc->priv->untitled_number = get_untitled_number ();
+    priv->location = NULL;
+    priv->untitled_number = get_untitled_number ();
 
-    doc->priv->metadata_info = NULL;
+    priv->metadata_info = NULL;
 
-    doc->priv->content_type = get_default_content_type ();
+    priv->content_type = get_default_content_type ();
 
-    doc->priv->readonly = FALSE;
+    priv->readonly = FALSE;
 
-    doc->priv->stop_cursor_moved_emission = FALSE;
+    priv->stop_cursor_moved_emission = FALSE;
 
-    doc->priv->last_save_was_manually = TRUE;
-    doc->priv->language_set_by_user = FALSE;
+    priv->last_save_was_manually = TRUE;
+    priv->language_set_by_user = FALSE;
 
-    doc->priv->dispose_has_run = FALSE;
+    priv->dispose_has_run = FALSE;
 
-    doc->priv->mtime.tv_sec = 0;
-    doc->priv->mtime.tv_usec = 0;
+    priv->mtime.tv_sec = 0;
+    priv->mtime.tv_usec = 0;
 
     g_get_current_time (&doc->priv->time_of_last_save_or_load);
 
-    doc->priv->encoding = xed_encoding_get_utf8 ();
+    priv->encoding = xed_encoding_get_utf8 ();
 
-    doc->priv->newline_type = XED_DOCUMENT_NEWLINE_TYPE_DEFAULT;
+    priv->newline_type = XED_DOCUMENT_NEWLINE_TYPE_DEFAULT;
 
-    undo_actions = g_settings_get_int (doc->priv->editor_settings, XED_SETTINGS_MAX_UNDO_ACTIONS);
-    bracket_matching = g_settings_get_boolean (doc->priv->editor_settings, XED_SETTINGS_BRACKET_MATCHING);
-    search_hl = g_settings_get_boolean (doc->priv->editor_settings, XED_SETTINGS_SEARCH_HIGHLIGHTING);
+    g_settings_bind (priv->editor_settings,
+                     XED_SETTINGS_MAX_UNDO_ACTIONS,
+                     doc,
+                     "max-undo-levels",
+                     G_SETTINGS_BIND_GET);
 
-    gtk_source_buffer_set_max_undo_levels (GTK_SOURCE_BUFFER (doc), undo_actions);
-    gtk_source_buffer_set_highlight_matching_brackets (GTK_SOURCE_BUFFER (doc), bracket_matching);
-    xed_document_set_enable_search_highlighting (doc, search_hl);
+    g_settings_bind (priv->editor_settings,
+                     XED_SETTINGS_BRACKET_MATCHING,
+                     doc,
+                     "highlight-matching-brackets",
+                     G_SETTINGS_BIND_GET);
 
-    style_scheme = get_default_style_scheme (doc->priv->editor_settings);
+    g_settings_bind (priv->editor_settings,
+                     XED_SETTINGS_SEARCH_HIGHLIGHTING,
+                     doc,
+                     "enable-search-highlighting",
+                     G_SETTINGS_BIND_GET);
+
+    style_scheme = get_default_style_scheme (priv->editor_settings);
     if (style_scheme != NULL)
     {
         gtk_source_buffer_set_style_scheme (GTK_SOURCE_BUFFER (doc), style_scheme);

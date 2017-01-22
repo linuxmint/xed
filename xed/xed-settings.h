@@ -45,14 +45,14 @@ typedef struct _XedSettingsPrivate  XedSettingsPrivate;
 
 struct _XedSettings
 {
-    GSettings parent;
+    GObject parent;
 
     XedSettingsPrivate *priv;
 };
 
 struct _XedSettingsClass
 {
-    GSettingsClass parent_class;
+    GObjectClass parent_class;
 };
 
 // typedef enum {
@@ -64,7 +64,7 @@ struct _XedSettingsClass
 
 GType xed_settings_get_type (void) G_GNUC_CONST;
 
-GSettings *xed_settings_new (void);
+GObject *xed_settings_new (void);
 
 // XedLockdownMask    xed_settings_get_lockdown            (XedSettings *xs);
 

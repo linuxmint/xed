@@ -99,7 +99,7 @@ GtkPrintSettings *_xed_app_get_default_print_settings (XedApp *app);
 void _xed_app_set_default_print_settings (XedApp           *app,
                                           GtkPrintSettings *settings);
 
-GSettings *_xed_app_get_settings (XedApp *app);
+GObject *_xed_app_get_settings (XedApp *app);
 
 G_END_DECLS
 
