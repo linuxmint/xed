@@ -35,6 +35,7 @@
 #include <xed/xed-debug.h>
 #include <xed/xed-statusbar.h>
 #include <xed/xed-utils.h>
+#include <gtksourceview/gtksource.h>
 
 #include "xed-spell-checker.h"
 #include "xed-spell-checker-dialog.h"
@@ -704,7 +705,8 @@ change_all_cb (XedSpellCheckerDialog *dlg,
     CheckRange *range;
     gchar *w = NULL;
     GtkTextIter start, end;
-    gint flags = 0;
+    GtkSourceSearchSettings *search_settings;
+    GtkSourceSearchContext *search_context;
 
     xed_debug (DEBUG_PLUGINS);
 
@@ -739,16 +741,24 @@ change_all_cb (XedSpellCheckerDialog *dlg,
 
     g_free (w);
 
-    XED_SEARCH_SET_CASE_SENSITIVE (flags, TRUE);
-    XED_SEARCH_SET_ENTIRE_WORD (flags, TRUE);
+    search_settings = gtk_source_search_settings_new ();
+    gtk_source_search_settings_set_case_sensitive (search_settings, TRUE);
+    gtk_source_search_settings_set_at_word_boundaries (search_settings, TRUE);
+    gtk_source_search_settings_set_search_text (search_settings, word);
 
-    /* CHECK: currently this function does escaping etc */
-    xed_document_replace_all (doc, word, change, flags);
+    search_context = gtk_source_search_context_new (GTK_SOURCE_BUFFER (doc), search_settings);
+
+    gtk_source_search_context_set_highlight (search_context, FALSE);
+
+    gtk_source_search_context_replace_all (search_context, change, -1, NULL);
 
     update_current (doc, range->mw_start + g_utf8_strlen (change, -1));
 
     /* go to next misspelled word */
     ignore_cb (dlg, word, view);
+
+    g_object_unref (search_settings);
+    g_object_unref (search_context);
 }
 
 static void

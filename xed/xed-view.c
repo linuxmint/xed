@@ -56,55 +56,11 @@ document_read_only_notify_handler (XedDocument *document,
 }
 
 static void
-search_highlight_updated_cb (XedDocument *doc,
-                             GtkTextIter *start,
-                             GtkTextIter *end,
-                             XedView     *view)
-{
-    GdkRectangle visible_rect;
-    GdkRectangle updated_rect;
-    GdkRectangle redraw_rect;
-    gint y;
-    gint height;
-    GtkTextView *text_view;
-
-    text_view = GTK_TEXT_VIEW(view);
-
-    g_return_if_fail(xed_document_get_enable_search_highlighting (XED_DOCUMENT (gtk_text_view_get_buffer (text_view))));
-
-    /* get visible area */
-    gtk_text_view_get_visible_rect (text_view, &visible_rect);
-
-    /* get updated rectangle */
-    gtk_text_view_get_line_yrange (text_view, start, &y, &height);
-    updated_rect.y = y;
-    gtk_text_view_get_line_yrange (text_view, end, &y, &height);
-    updated_rect.height = y + height - updated_rect.y;
-    updated_rect.x = visible_rect.x;
-    updated_rect.width = visible_rect.width;
-
-    /* intersect both rectangles to see whether we need to queue a redraw */
-    if (gdk_rectangle_intersect (&updated_rect, &visible_rect, &redraw_rect))
-    {
-        GdkRectangle widget_rect;
-        gtk_text_view_buffer_to_window_coords (text_view, GTK_TEXT_WINDOW_WIDGET, redraw_rect.x, redraw_rect.y,
-                                               &widget_rect.x, &widget_rect.y);
-
-        widget_rect.width = redraw_rect.width;
-        widget_rect.height = redraw_rect.height;
-
-        gtk_widget_queue_draw_area (GTK_WIDGET(text_view), widget_rect.x, widget_rect.y, widget_rect.width,
-                                    widget_rect.height);
-    }
-}
-
-static void
 current_buffer_removed (XedView *view)
 {
     if (view->priv->current_buffer != NULL)
     {
         g_signal_handlers_disconnect_by_func(view->priv->current_buffer, document_read_only_notify_handler, view);
-        g_signal_handlers_disconnect_by_func(view->priv->current_buffer, search_highlight_updated_cb, view);
         g_object_unref (view->priv->current_buffer);
         view->priv->current_buffer = NULL;
     }
@@ -136,9 +92,9 @@ on_notify_buffer_cb (XedView *view,
     GtkTextBuffer *buffer;
 
     current_buffer_removed (view);
-    buffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW(view));
+    buffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (view));
 
-    if (buffer == NULL || !XED_IS_DOCUMENT(buffer))
+    if (buffer == NULL || !XED_IS_DOCUMENT (buffer))
     {
         return;
     }
@@ -146,9 +102,7 @@ on_notify_buffer_cb (XedView *view,
     view->priv->current_buffer = g_object_ref (buffer);
     g_signal_connect(buffer, "notify::read-only", G_CALLBACK (document_read_only_notify_handler), view);
 
-    gtk_text_view_set_editable (GTK_TEXT_VIEW(view), !xed_document_get_readonly (XED_DOCUMENT(buffer)));
-
-    g_signal_connect(buffer, "search_highlight_updated", G_CALLBACK (search_highlight_updated_cb), view);
+    gtk_text_view_set_editable (GTK_TEXT_VIEW (view), !xed_document_get_readonly (XED_DOCUMENT(buffer)));
 }
 
 static void
@@ -304,35 +258,6 @@ xed_view_focus_out (GtkWidget     *widget,
     GTK_WIDGET_CLASS (xed_view_parent_class)->focus_out_event (widget, event);
 
     return FALSE;
-}
-
-static gboolean
-xed_view_draw (GtkWidget *widget,
-               cairo_t   *cr)
-{
-    GtkTextView *text_view;
-    XedDocument *doc;
-    GdkWindow *window;
-
-    text_view = GTK_TEXT_VIEW(widget);
-
-    doc = XED_DOCUMENT(gtk_text_view_get_buffer (text_view));
-    window = gtk_text_view_get_window (text_view, GTK_TEXT_WINDOW_TEXT);
-
-    if (gtk_cairo_should_draw_window (cr, window) && xed_document_get_enable_search_highlighting (doc))
-    {
-        GdkRectangle visible_rect;
-        GtkTextIter iter1, iter2;
-
-        gtk_text_view_get_visible_rect (text_view, &visible_rect);
-        gtk_text_view_get_line_at_y (text_view, &iter1, visible_rect.y, NULL);
-        gtk_text_view_get_line_at_y (text_view, &iter2, visible_rect.y + visible_rect.height, NULL);
-        gtk_text_iter_forward_line (&iter2);
-
-        _xed_document_search_region (doc, &iter1, &iter2);
-    }
-
-    return GTK_WIDGET_CLASS (xed_view_parent_class)->draw (widget, cr);
 }
 
 static GdkAtom
@@ -615,7 +540,6 @@ xed_view_class_init (XedViewClass *klass)
     object_class->constructed = xed_view_constructed;
 
     widget_class->focus_out_event = xed_view_focus_out;
-    widget_class->draw = xed_view_draw;
 
     /*
      * Override the gtk_text_view_drag_motion and drag_drop

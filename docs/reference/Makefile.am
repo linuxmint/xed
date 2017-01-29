@@ -64,7 +64,6 @@ IGNORE_HFILES=		\
 # Do not parse them to make the docs.
 IGNORE_HFILES +=	\
 	bacon-message-connection.h		\
-	xedtextregion.h			\
 	sexy-icon-entry.h
 
 # Images to copy into HTML directory.

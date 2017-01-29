@@ -660,7 +660,7 @@ set_sensitivity_according_to_tab (XedWindow *window,
     action = gtk_action_group_get_action (window->priv->action_group, "SearchReplace");
     gtk_action_set_sensitive (action, state_normal && editable);
 
-    b = xed_document_get_can_search_again (doc);
+    b = TRUE;
     action = gtk_action_group_get_action (window->priv->action_group, "SearchFindNext");
     gtk_action_set_sensitive (action, (state_normal || state == XED_TAB_STATE_EXTERNALLY_MODIFIED_NOTIFICATION) && b);
 
@@ -1715,7 +1715,7 @@ create_statusbar (XedWindow *window,
     xed_debug (DEBUG_WINDOW);
 
     window->priv->statusbar = xed_statusbar_new ();
-    window->priv->searchbar = xed_searchbar_new (GTK_WINDOW (window), TRUE);
+    window->priv->searchbar = xed_searchbar_new (GTK_WINDOW (window));
 
     window->priv->generic_message_cid = gtk_statusbar_get_context_id (GTK_STATUSBAR (window->priv->statusbar),
                                                                       "generic_message");
@@ -2781,9 +2781,9 @@ fullscreen_controls_build (XedWindow *window)
 }
 
 static void
-can_search_again (XedDocument *doc,
-                  GParamSpec *pspec,
-                  XedWindow *window)
+search_text_notify_cb (XedDocument *doc,
+                       GParamSpec  *pspec,
+                       XedWindow   *window)
 {
     gboolean sensitive;
     GtkAction *action;
@@ -2793,7 +2793,7 @@ can_search_again (XedDocument *doc,
         return;
     }
 
-    sensitive = xed_document_get_can_search_again (doc);
+    sensitive = TRUE;
 
     action = gtk_action_group_get_action (window->priv->action_group, "SearchFindNext");
     gtk_action_set_sensitive (action, sensitive);
@@ -2948,7 +2948,7 @@ notebook_tab_added (XedNotebook *notebook,
     g_signal_connect(tab, "notify::state", G_CALLBACK (sync_state), window);
 
     g_signal_connect(doc, "cursor-moved", G_CALLBACK (update_cursor_position_statusbar), window);
-    g_signal_connect(doc, "notify::can-search-again", G_CALLBACK (can_search_again), window);
+    g_signal_connect(doc, "notify::search-text", G_CALLBACK (search_text_notify_cb), window);
     g_signal_connect(doc, "notify::can-undo", G_CALLBACK (can_undo), window);
     g_signal_connect(doc, "notify::can-redo", G_CALLBACK (can_redo), window);
     g_signal_connect(doc, "notify::has-selection", G_CALLBACK (selection_changed), window);
@@ -2986,7 +2986,7 @@ notebook_tab_removed (XedNotebook *notebook,
     g_signal_handlers_disconnect_by_func(tab, G_CALLBACK (sync_name), window);
     g_signal_handlers_disconnect_by_func(tab, G_CALLBACK (sync_state), window);
     g_signal_handlers_disconnect_by_func(doc, G_CALLBACK (update_cursor_position_statusbar), window);
-    g_signal_handlers_disconnect_by_func(doc, G_CALLBACK (can_search_again), window);
+    g_signal_handlers_disconnect_by_func(doc, G_CALLBACK (search_text_notify_cb), window);
     g_signal_handlers_disconnect_by_func(doc, G_CALLBACK (can_undo), window);
     g_signal_handlers_disconnect_by_func(doc, G_CALLBACK (can_redo), window);
     g_signal_handlers_disconnect_by_func(doc, G_CALLBACK (selection_changed), window);

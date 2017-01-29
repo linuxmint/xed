@@ -49,7 +49,6 @@
 #include "xed-document-saver.h"
 #include "xed-marshal.h"
 #include "xed-enum-types.h"
-#include "xedtextregion.h"
 
 #ifndef ENABLE_GVFS_METADATA
 #include "xed-metadata-manager.h"
@@ -86,14 +85,6 @@ static void xed_document_save_real (XedDocument         *doc,
                                     GFile               *location,
                                     const XedEncoding   *encoding,
                                     XedDocumentSaveFlags flags);
-static void     insert_text_cb (XedDocument *doc,
-                                GtkTextIter *pos,
-                                const gchar *text,
-                                gint         length);
-
-static void delete_range_cb (XedDocument *doc,
-                             GtkTextIter *start,
-                             GtkTextIter *end);
 
 struct _XedDocumentPrivate
 {
@@ -113,9 +104,7 @@ struct _XedDocumentPrivate
     GTimeVal mtime;
     GTimeVal time_of_last_save_or_load;
 
-    guint  search_flags;
-    gchar *search_text;
-    gint   num_of_lines_search_text;
+    GtkSourceSearchContext *search_context;
 
     XedDocumentNewlineType newline_type;
 
@@ -128,10 +117,6 @@ struct _XedDocumentPrivate
 
     /* Saving stuff */
     XedDocumentSaver *saver;
-
-    /* Search highlighting support variables */
-    XedTextRegion *to_search_region;
-    GtkTextTag    *found_tag;
 
     GtkTextTag *error_tag;
 
@@ -158,8 +143,6 @@ enum
     PROP_MIME_TYPE,
     PROP_READ_ONLY,
     PROP_ENCODING,
-    PROP_CAN_SEARCH_AGAIN,
-    PROP_ENABLE_SEARCH_HIGHLIGHTING,
     PROP_NEWLINE_TYPE
 };
 
@@ -172,7 +155,6 @@ enum
     SAVE,
     SAVING,
     SAVED,
-    SEARCH_HIGHLIGHT_UPDATED,
     LAST_SIGNAL
 };
 
@@ -284,6 +266,7 @@ xed_document_dispose (GObject *object)
     g_clear_object (&doc->priv->editor_settings);
     g_clear_object (&doc->priv->metadata_info);
     g_clear_object (&doc->priv->location);
+    g_clear_object (&doc->priv->search_context);
 
     doc->priv->dispose_has_run = TRUE;
 
@@ -303,13 +286,6 @@ xed_document_finalize (GObject *object)
     }
 
     g_free (doc->priv->content_type);
-    g_free (doc->priv->search_text);
-
-    if (doc->priv->to_search_region != NULL)
-    {
-        /* we can't delete marks if we're finalizing the buffer */
-        xed_text_region_destroy (doc->priv->to_search_region, FALSE);
-    }
 
     G_OBJECT_CLASS (xed_document_parent_class)->finalize (object);
 }
@@ -341,12 +317,6 @@ xed_document_get_property (GObject    *object,
             break;
         case PROP_ENCODING:
             g_value_set_boxed (value, doc->priv->encoding);
-            break;
-        case PROP_CAN_SEARCH_AGAIN:
-            g_value_set_boolean (value, xed_document_get_can_search_again (doc));
-            break;
-        case PROP_ENABLE_SEARCH_HIGHLIGHTING:
-            g_value_set_boolean (value, xed_document_get_enable_search_highlighting (doc));
             break;
         case PROP_NEWLINE_TYPE:
             g_value_set_enum (value, doc->priv->newline_type);
@@ -385,9 +355,6 @@ xed_document_set_property (GObject      *object,
             break;
         case PROP_CONTENT_TYPE:
             xed_document_set_content_type (doc, g_value_get_string (value));
-            break;
-        case PROP_ENABLE_SEARCH_HIGHLIGHTING:
-            xed_document_set_enable_search_highlighting (doc, g_value_get_boolean (value));
             break;
         case PROP_NEWLINE_TYPE:
             xed_document_set_newline_type (doc, g_value_get_enum (value));
@@ -497,22 +464,6 @@ xed_document_class_init (XedDocumentClass *klass)
                                                          XED_TYPE_ENCODING,
                                                          G_PARAM_READABLE |
                                                          G_PARAM_STATIC_STRINGS));
-
-    g_object_class_install_property (object_class, PROP_CAN_SEARCH_AGAIN,
-                                     g_param_spec_boolean ("can-search-again",
-                                                           "Can search again",
-                                                           "Whether it's possible to search again in the document",
-                                                           FALSE,
-                                                           G_PARAM_READABLE |
-                                                           G_PARAM_STATIC_STRINGS));
-
-    g_object_class_install_property (object_class, PROP_ENABLE_SEARCH_HIGHLIGHTING,
-                                     g_param_spec_boolean ("enable-search-highlighting",
-                                                           "Enable Search Highlighting",
-                                                           "Whether all the occurrences of the searched string must be highlighted",
-                                                           FALSE,
-                                                           G_PARAM_READWRITE |
-                                                           G_PARAM_STATIC_STRINGS));
 
     /**
      * XedDocument:newline-type:
@@ -642,18 +593,6 @@ xed_document_class_init (XedDocumentClass *klass)
                       G_TYPE_NONE,
                       1,
                       G_TYPE_POINTER);
-
-    document_signals[SEARCH_HIGHLIGHT_UPDATED] =
-        g_signal_new ("search-highlight-updated",
-                      G_OBJECT_CLASS_TYPE (object_class),
-                      G_SIGNAL_RUN_LAST,
-                      G_STRUCT_OFFSET (XedDocumentClass, search_highlight_updated),
-                      NULL, NULL,
-                      xed_marshal_VOID__BOXED_BOXED,
-                      G_TYPE_NONE,
-                      2,
-                      GTK_TYPE_TEXT_ITER | G_SIGNAL_TYPE_STATIC_SCOPE,
-                      GTK_TYPE_TEXT_ITER | G_SIGNAL_TYPE_STATIC_SCOPE);
 
     g_type_class_add_private (object_class, sizeof (XedDocumentPrivate));
 }
@@ -925,20 +864,12 @@ xed_document_init (XedDocument *doc)
                      "highlight-matching-brackets",
                      G_SETTINGS_BIND_GET);
 
-    g_settings_bind (priv->editor_settings,
-                     XED_SETTINGS_SEARCH_HIGHLIGHTING,
-                     doc,
-                     "enable-search-highlighting",
-                     G_SETTINGS_BIND_GET);
-
     style_scheme = get_default_style_scheme (priv->editor_settings);
     if (style_scheme != NULL)
     {
         gtk_source_buffer_set_style_scheme (GTK_SOURCE_BUFFER (doc), style_scheme);
     }
 
-    g_signal_connect_after (doc, "insert-text", G_CALLBACK (insert_text_cb), NULL);
-    g_signal_connect_after (doc, "delete-range", G_CALLBACK (delete_range_cb), NULL);
     g_signal_connect (doc, "notify::content-type", G_CALLBACK (on_content_type_changed), NULL);
     g_signal_connect (doc, "notify::location", G_CALLBACK (on_location_changed), NULL);
 }
@@ -1807,448 +1738,6 @@ xed_document_goto_line_offset (XedDocument *doc,
     return ret;
 }
 
-static gint
-compute_num_of_lines (const gchar *text)
-{
-    const gchar *p;
-    gint len;
-    gint n = 1;
-
-    g_return_val_if_fail (text != NULL, 0);
-
-    len = strlen (text);
-    p = text;
-
-    while (len > 0)
-    {
-        gint del, par;
-
-        pango_find_paragraph_boundary (p, len, &del, &par);
-
-        if (del == par) /* not found */
-            break;
-
-        p += par;
-        len -= par;
-        ++n;
-    }
-
-    return n;
-}
-
-static void
-to_search_region_range (XedDocument *doc,
-                        GtkTextIter *start,
-                        GtkTextIter *end)
-{
-    xed_debug (DEBUG_DOCUMENT);
-
-    if (doc->priv->to_search_region == NULL)
-    {
-        return;
-    }
-
-    gtk_text_iter_set_line_offset (start, 0);
-    gtk_text_iter_forward_to_line_end (end);
-
-    /*
-    g_print ("+ [%u (%u), %u (%u)]\n", gtk_text_iter_get_line (start), gtk_text_iter_get_offset (start),
-                       gtk_text_iter_get_line (end), gtk_text_iter_get_offset (end));
-    */
-
-    /* Add the region to the refresh region */
-    xed_text_region_add (doc->priv->to_search_region, start, end);
-
-    /* Notify views of the updated highlight region */
-    gtk_text_iter_backward_lines (start, doc->priv->num_of_lines_search_text);
-    gtk_text_iter_forward_lines (end, doc->priv->num_of_lines_search_text);
-
-    g_signal_emit (doc, document_signals [SEARCH_HIGHLIGHT_UPDATED], 0, start, end);
-}
-
-/**
- * xed_document_set_search_text:
- * @doc:
- * @text: (allow-none):
- * @flags:
- **/
-void
-xed_document_set_search_text (XedDocument *doc,
-                              const gchar *text,
-                              guint        flags)
-{
-    gchar *converted_text;
-    gboolean notify = FALSE;
-    gboolean update_to_search_region = FALSE;
-
-    g_return_if_fail (XED_IS_DOCUMENT (doc));
-    g_return_if_fail ((text == NULL) || (doc->priv->search_text != text));
-    g_return_if_fail ((text == NULL) || g_utf8_validate (text, -1, NULL));
-
-    xed_debug_message (DEBUG_DOCUMENT, "text = %s", text);
-
-    if (text != NULL)
-    {
-        if (*text != '\0')
-        {
-            converted_text = xed_utils_unescape_search_text (text);
-            notify = !xed_document_get_can_search_again (doc);
-        }
-        else
-        {
-            converted_text = g_strdup("");
-            notify = xed_document_get_can_search_again (doc);
-        }
-
-        g_free (doc->priv->search_text);
-
-        doc->priv->search_text = converted_text;
-        doc->priv->num_of_lines_search_text = compute_num_of_lines (doc->priv->search_text);
-        update_to_search_region = TRUE;
-    }
-
-    if (!XED_SEARCH_IS_DONT_SET_FLAGS (flags))
-    {
-        if (doc->priv->search_flags != flags)
-        {
-            update_to_search_region = TRUE;
-        }
-
-        doc->priv->search_flags = flags;
-
-    }
-
-    if (update_to_search_region)
-    {
-        GtkTextIter begin;
-        GtkTextIter end;
-
-        gtk_text_buffer_get_bounds (GTK_TEXT_BUFFER (doc), &begin, &end);
-        to_search_region_range (doc, &begin, &end);
-    }
-
-    if (notify)
-    {
-        g_object_notify (G_OBJECT (doc), "can-search-again");
-    }
-}
-
-/**
- * xed_document_get_search_text:
- * @doc:
- * @flags: (allow-none):
- */
-gchar *
-xed_document_get_search_text (XedDocument *doc,
-                              guint       *flags)
-{
-    g_return_val_if_fail (XED_IS_DOCUMENT (doc), NULL);
-
-    if (flags != NULL)
-    {
-        *flags = doc->priv->search_flags;
-    }
-
-    return xed_utils_escape_search_text (doc->priv->search_text);
-}
-
-gboolean
-xed_document_get_can_search_again (XedDocument *doc)
-{
-    g_return_val_if_fail (XED_IS_DOCUMENT (doc), FALSE);
-
-    return ((doc->priv->search_text != NULL) && (*doc->priv->search_text != '\0'));
-}
-
-/**
- * xed_document_search_forward:
- * @doc:
- * @start: (allow-none):
- * @end: (allow-none):
- * @match_start: (allow-none):
- * @match_end: (allow-none):
- **/
-gboolean
-xed_document_search_forward (XedDocument       *doc,
-                             const GtkTextIter *start,
-                             const GtkTextIter *end,
-                             GtkTextIter       *match_start,
-                             GtkTextIter       *match_end)
-{
-    GtkTextIter iter;
-    GtkTextSearchFlags search_flags;
-    gboolean found = FALSE;
-    GtkTextIter m_start;
-    GtkTextIter m_end;
-
-    g_return_val_if_fail (XED_IS_DOCUMENT (doc), FALSE);
-    g_return_val_if_fail ((start == NULL) || (gtk_text_iter_get_buffer (start) ==  GTK_TEXT_BUFFER (doc)), FALSE);
-    g_return_val_if_fail ((end == NULL) || (gtk_text_iter_get_buffer (end) ==  GTK_TEXT_BUFFER (doc)), FALSE);
-
-    if (doc->priv->search_text == NULL)
-    {
-        xed_debug_message (DEBUG_DOCUMENT, "doc->priv->search_text == NULL\n");
-        return FALSE;
-    }
-    else
-    {
-        xed_debug_message (DEBUG_DOCUMENT, "doc->priv->search_text == \"%s\"\n", doc->priv->search_text);
-    }
-
-    if (start == NULL)
-    {
-        gtk_text_buffer_get_start_iter (GTK_TEXT_BUFFER (doc), &iter);
-    }
-    else
-    {
-        iter = *start;
-    }
-
-    search_flags = GTK_TEXT_SEARCH_VISIBLE_ONLY | GTK_TEXT_SEARCH_TEXT_ONLY;
-
-    if (!XED_SEARCH_IS_CASE_SENSITIVE (doc->priv->search_flags))
-    {
-        search_flags = search_flags | GTK_TEXT_SEARCH_CASE_INSENSITIVE;
-    }
-
-    while (!found)
-    {
-        found = gtk_text_iter_forward_search (&iter,
-                                              doc->priv->search_text,
-                                              search_flags,
-                                              &m_start,
-                                              &m_end,
-                                              end);
-
-        if (found && XED_SEARCH_IS_ENTIRE_WORD (doc->priv->search_flags))
-        {
-            found = gtk_text_iter_starts_word (&m_start) && gtk_text_iter_ends_word (&m_end);
-
-            if (!found)
-            {
-                iter = m_end;
-            }
-        }
-        else
-        {
-            break;
-        }
-    }
-
-    if (found && (match_start != NULL))
-    {
-        *match_start = m_start;
-    }
-    if (found && (match_end != NULL))
-    {
-        *match_end = m_end;
-    }
-
-    return found;
-}
-
-/**
- * xed_document_search_backward:
- * @doc:
- * @start: (allow-none):
- * @end: (allow-none):
- * @match_start: (allow-none):
- * @match_end: (allow-none):
- **/
-gboolean
-xed_document_search_backward (XedDocument       *doc,
-                              const GtkTextIter *start,
-                              const GtkTextIter *end,
-                              GtkTextIter       *match_start,
-                              GtkTextIter       *match_end)
-{
-    GtkTextIter iter;
-    GtkTextSearchFlags search_flags;
-    gboolean found = FALSE;
-    GtkTextIter m_start;
-    GtkTextIter m_end;
-
-    g_return_val_if_fail (XED_IS_DOCUMENT (doc), FALSE);
-    g_return_val_if_fail ((start == NULL) || (gtk_text_iter_get_buffer (start) ==  GTK_TEXT_BUFFER (doc)), FALSE);
-    g_return_val_if_fail ((end == NULL) || (gtk_text_iter_get_buffer (end) ==  GTK_TEXT_BUFFER (doc)), FALSE);
-
-    if (doc->priv->search_text == NULL)
-    {
-        xed_debug_message (DEBUG_DOCUMENT, "doc->priv->search_text == NULL\n");
-        return FALSE;
-    }
-    else
-    {
-        xed_debug_message (DEBUG_DOCUMENT, "doc->priv->search_text == \"%s\"\n", doc->priv->search_text);
-    }
-
-    if (end == NULL)
-    {
-        gtk_text_buffer_get_end_iter (GTK_TEXT_BUFFER (doc), &iter);
-    }
-    else
-    {
-        iter = *end;
-    }
-
-    search_flags = GTK_TEXT_SEARCH_VISIBLE_ONLY | GTK_TEXT_SEARCH_TEXT_ONLY;
-
-    if (!XED_SEARCH_IS_CASE_SENSITIVE (doc->priv->search_flags))
-    {
-        search_flags = search_flags | GTK_TEXT_SEARCH_CASE_INSENSITIVE;
-    }
-
-    while (!found)
-    {
-        found = gtk_text_iter_backward_search (&iter,
-                                               doc->priv->search_text,
-                                               search_flags,
-                                               &m_start,
-                                               &m_end,
-                                               start);
-
-        if (found && XED_SEARCH_IS_ENTIRE_WORD (doc->priv->search_flags))
-        {
-            found = gtk_text_iter_starts_word (&m_start) && gtk_text_iter_ends_word (&m_end);
-
-            if (!found)
-            {
-                iter = m_start;
-            }
-        }
-        else
-        {
-            break;
-        }
-    }
-
-    if (found && (match_start != NULL))
-    {
-        *match_start = m_start;
-    }
-    if (found && (match_end != NULL))
-    {
-        *match_end = m_end;
-    }
-
-    return found;
-}
-
-/* FIXME this is an issue for introspection regardning @find */
-gint
-xed_document_replace_all (XedDocument *doc,
-                          const gchar *find,
-                          const gchar *replace,
-                          guint        flags)
-{
-    GtkTextIter iter;
-    GtkTextIter m_start;
-    GtkTextIter m_end;
-    GtkTextSearchFlags search_flags = 0;
-    gboolean found = TRUE;
-    gint cont = 0;
-    gchar *search_text;
-    gchar *replace_text;
-    gint replace_text_len;
-    GtkTextBuffer *buffer;
-    gboolean brackets_highlighting;
-    gboolean search_highliting;
-
-    g_return_val_if_fail (XED_IS_DOCUMENT (doc), 0);
-    g_return_val_if_fail (replace != NULL, 0);
-    g_return_val_if_fail ((find != NULL) || (doc->priv->search_text != NULL), 0);
-
-    buffer = GTK_TEXT_BUFFER (doc);
-
-    if (find == NULL)
-    {
-        search_text = g_strdup (doc->priv->search_text);
-    }
-    else
-    {
-        search_text = xed_utils_unescape_search_text (find);
-    }
-
-    replace_text = xed_utils_unescape_search_text (replace);
-
-    gtk_text_buffer_get_start_iter (buffer, &iter);
-
-    search_flags = GTK_TEXT_SEARCH_VISIBLE_ONLY | GTK_TEXT_SEARCH_TEXT_ONLY;
-
-    if (!XED_SEARCH_IS_CASE_SENSITIVE (flags))
-    {
-        search_flags = search_flags | GTK_TEXT_SEARCH_CASE_INSENSITIVE;
-    }
-
-    replace_text_len = strlen (replace_text);
-
-    /* disable cursor_moved emission until the end of the
-     * replace_all so that we don't spend all the time
-     * updating the position in the statusbar
-     */
-    doc->priv->stop_cursor_moved_emission = TRUE;
-
-    /* also avoid spending time matching brackets */
-    brackets_highlighting = gtk_source_buffer_get_highlight_matching_brackets (GTK_SOURCE_BUFFER (buffer));
-    gtk_source_buffer_set_highlight_matching_brackets (GTK_SOURCE_BUFFER (buffer), FALSE);
-
-    /* and do search highliting later */
-    search_highliting = xed_document_get_enable_search_highlighting (doc);
-    xed_document_set_enable_search_highlighting (doc, FALSE);
-
-    gtk_text_buffer_begin_user_action (buffer);
-
-    do
-    {
-        found = gtk_text_iter_forward_search (&iter,
-                                              search_text,
-                                              search_flags,
-                                              &m_start,
-                                              &m_end,
-                                              NULL);
-
-        if (found && XED_SEARCH_IS_ENTIRE_WORD (flags))
-        {
-            gboolean word;
-
-            word = gtk_text_iter_starts_word (&m_start) && gtk_text_iter_ends_word (&m_end);
-
-            if (!word)
-            {
-                iter = m_end;
-                continue;
-            }
-        }
-
-        if (found)
-        {
-            ++cont;
-
-            gtk_text_buffer_delete (buffer, &m_start, &m_end);
-            gtk_text_buffer_insert (buffer, &m_start, replace_text, replace_text_len);
-
-            iter = m_start;
-        }
-
-    } while (found);
-
-    gtk_text_buffer_end_user_action (buffer);
-
-    /* re-enable cursor_moved emission and notify
-     * the current position
-     */
-    doc->priv->stop_cursor_moved_emission = FALSE;
-    emit_cursor_moved (doc);
-
-    gtk_source_buffer_set_highlight_matching_brackets (GTK_SOURCE_BUFFER (buffer), brackets_highlighting);
-    xed_document_set_enable_search_highlighting (doc, search_highliting);
-
-    g_free (search_text);
-    g_free (replace_text);
-
-    return cont;
-}
-
 static void
 get_style_colors (XedDocument *doc,
                   const gchar *style_name,
@@ -2394,14 +1883,6 @@ sync_tag_style (XedDocument *doc,
 }
 
 static void
-sync_found_tag (XedDocument *doc,
-                GParamSpec  *pspec,
-                gpointer     data)
-{
-    sync_tag_style (doc, doc->priv->found_tag, "search-match");
-}
-
-static void
 text_tag_set_highest_priority (GtkTextTag    *tag,
                                GtkTextBuffer *buffer)
 {
@@ -2411,200 +1892,6 @@ text_tag_set_highest_priority (GtkTextTag    *tag,
     table = gtk_text_buffer_get_tag_table (buffer);
     n = gtk_text_tag_table_get_size (table);
     gtk_text_tag_set_priority (tag, n - 1);
-}
-
-static void
-search_region (XedDocument *doc,
-               GtkTextIter *start,
-               GtkTextIter *end)
-{
-    GtkTextIter iter;
-    GtkTextIter m_start;
-    GtkTextIter m_end;
-    GtkTextSearchFlags search_flags = 0;
-    gboolean found = TRUE;
-
-    GtkTextBuffer *buffer;
-
-    xed_debug (DEBUG_DOCUMENT);
-
-    buffer = GTK_TEXT_BUFFER (doc);
-
-    if (doc->priv->found_tag == NULL)
-    {
-        doc->priv->found_tag = gtk_text_buffer_create_tag (GTK_TEXT_BUFFER (doc), "found", NULL);
-
-        sync_found_tag (doc, NULL, NULL);
-
-        g_signal_connect (doc, "notify::style-scheme", G_CALLBACK (sync_found_tag), NULL);
-    }
-
-    /* make sure the 'found' tag has the priority over
-     * syntax highlighting tags */
-    text_tag_set_highest_priority (doc->priv->found_tag, GTK_TEXT_BUFFER (doc));
-
-
-    if (doc->priv->search_text == NULL)
-    {
-        return;
-    }
-
-    g_return_if_fail (doc->priv->num_of_lines_search_text > 0);
-
-    gtk_text_iter_backward_lines (start, doc->priv->num_of_lines_search_text);
-    gtk_text_iter_forward_lines (end, doc->priv->num_of_lines_search_text);
-
-    if (gtk_text_iter_has_tag (start, doc->priv->found_tag) &&
-        !gtk_text_iter_begins_tag (start, doc->priv->found_tag))
-    {
-        gtk_text_iter_backward_to_tag_toggle (start, doc->priv->found_tag);
-    }
-    if (gtk_text_iter_has_tag (end, doc->priv->found_tag) &&
-        !gtk_text_iter_ends_tag (end, doc->priv->found_tag))
-    {
-        gtk_text_iter_forward_to_tag_toggle (end, doc->priv->found_tag);
-    }
-    /*
-    g_print ("[%u (%u), %u (%u)]\n", gtk_text_iter_get_line (start), gtk_text_iter_get_offset (start),
-                       gtk_text_iter_get_line (end), gtk_text_iter_get_offset (end));
-    */
-
-    gtk_text_buffer_remove_tag (buffer, doc->priv->found_tag, start, end);
-
-    if (*doc->priv->search_text == '\0')
-    {
-        return;
-    }
-
-    iter = *start;
-
-    search_flags = GTK_TEXT_SEARCH_VISIBLE_ONLY | GTK_TEXT_SEARCH_TEXT_ONLY;
-
-    if (!XED_SEARCH_IS_CASE_SENSITIVE (doc->priv->search_flags))
-    {
-        search_flags = search_flags | GTK_TEXT_SEARCH_CASE_INSENSITIVE;
-    }
-
-    do
-    {
-        if ((end != NULL) && gtk_text_iter_is_end (end))
-        {
-            end = NULL;
-        }
-
-        found = gtk_text_iter_forward_search (&iter,
-                                              doc->priv->search_text,
-                                              search_flags,
-                                              &m_start,
-                                              &m_end,
-                                              end);
-
-        iter = m_end;
-
-        if (found && XED_SEARCH_IS_ENTIRE_WORD (doc->priv->search_flags))
-        {
-            gboolean word;
-
-            word = gtk_text_iter_starts_word (&m_start) && gtk_text_iter_ends_word (&m_end);
-
-            if (!word)
-            {
-                continue;
-            }
-        }
-
-        if (found)
-        {
-            gtk_text_buffer_apply_tag (buffer, doc->priv->found_tag, &m_start, &m_end);
-        }
-
-    } while (found);
-}
-
-void
-_xed_document_search_region (XedDocument       *doc,
-                             const GtkTextIter *start,
-                             const GtkTextIter *end)
-{
-    XedTextRegion *region;
-
-    xed_debug (DEBUG_DOCUMENT);
-
-    g_return_if_fail (XED_IS_DOCUMENT (doc));
-    g_return_if_fail (start != NULL);
-    g_return_if_fail (end != NULL);
-
-    if (doc->priv->to_search_region == NULL)
-    {
-        return;
-    }
-
-    /*
-    g_print ("U [%u (%u), %u (%u)]\n", gtk_text_iter_get_line (start), gtk_text_iter_get_offset (start),
-                       gtk_text_iter_get_line (end), gtk_text_iter_get_offset (end));
-    */
-
-    /* get the subregions not yet highlighted */
-    region = xed_text_region_intersect (doc->priv->to_search_region, start, end);
-    if (region)
-    {
-        gint i;
-        GtkTextIter start_search;
-        GtkTextIter end_search;
-
-        i = xed_text_region_subregions (region);
-        xed_text_region_nth_subregion (region, 0, &start_search, NULL);
-        xed_text_region_nth_subregion (region, i - 1, NULL, &end_search);
-
-        xed_text_region_destroy (region, TRUE);
-
-        gtk_text_iter_order (&start_search, &end_search);
-
-        search_region (doc, &start_search, &end_search);
-
-        /* remove the just highlighted region */
-        xed_text_region_subtract (doc->priv->to_search_region, start, end);
-    }
-}
-
-static void
-insert_text_cb (XedDocument *doc,
-                GtkTextIter *pos,
-                const gchar *text,
-                gint         length)
-{
-    GtkTextIter start;
-    GtkTextIter end;
-
-    xed_debug (DEBUG_DOCUMENT);
-
-    start = end = *pos;
-
-    /*
-     * pos is invalidated when
-     * insertion occurs (because the buffer contents change), but the
-     * default signal handler revalidates it to point to the end of the
-     * inserted text
-     */
-    gtk_text_iter_backward_chars (&start, g_utf8_strlen (text, length));
-
-    to_search_region_range (doc, &start, &end);
-}
-
-static void
-delete_range_cb (XedDocument *doc,
-                 GtkTextIter *start,
-                 GtkTextIter *end)
-{
-    GtkTextIter d_start;
-    GtkTextIter d_end;
-
-    xed_debug (DEBUG_DOCUMENT);
-
-    d_start = *start;
-    d_end = *end;
-
-    to_search_region_range (doc, &d_start, &d_end);
 }
 
 /**
@@ -2655,58 +1942,6 @@ _xed_document_get_seconds_since_last_save_or_load (XedDocument *doc)
     g_get_current_time (&current_time);
 
     return (current_time.tv_sec - doc->priv->time_of_last_save_or_load.tv_sec);
-}
-
-void
-xed_document_set_enable_search_highlighting (XedDocument *doc,
-                                             gboolean     enable)
-{
-    g_return_if_fail (XED_IS_DOCUMENT (doc));
-
-    enable = enable != FALSE;
-
-    if ((doc->priv->to_search_region != NULL) == enable)
-    {
-        return;
-    }
-
-    if (doc->priv->to_search_region != NULL)
-    {
-        /* Disable search highlighting */
-        if (doc->priv->found_tag != NULL)
-        {
-            /* If needed remove the found_tag */
-            GtkTextIter begin;
-            GtkTextIter end;
-
-            gtk_text_buffer_get_bounds (GTK_TEXT_BUFFER (doc), &begin, &end);
-            gtk_text_buffer_remove_tag (GTK_TEXT_BUFFER (doc), doc->priv->found_tag, &begin, &end);
-        }
-
-        xed_text_region_destroy (doc->priv->to_search_region, TRUE);
-        doc->priv->to_search_region = NULL;
-    }
-    else
-    {
-        doc->priv->to_search_region = xed_text_region_new (GTK_TEXT_BUFFER (doc));
-        if (xed_document_get_can_search_again (doc))
-        {
-            /* If search_text is not empty, highligth all its occurrences */
-            GtkTextIter begin;
-            GtkTextIter end;
-
-            gtk_text_buffer_get_bounds (GTK_TEXT_BUFFER (doc), &begin, &end);
-            to_search_region_range (doc, &begin, &end);
-        }
-    }
-}
-
-gboolean
-xed_document_get_enable_search_highlighting (XedDocument *doc)
-{
-    g_return_val_if_fail (XED_IS_DOCUMENT (doc), FALSE);
-
-    return (doc->priv->to_search_region != NULL);
 }
 
 void
@@ -2945,4 +2180,31 @@ _xed_document_apply_error_style (XedDocument *doc,
    text_tag_set_highest_priority (doc->priv->error_tag, GTK_TEXT_BUFFER (doc));
 
    gtk_text_buffer_apply_tag (buffer, doc->priv->error_tag, start, end);
+}
+
+void
+_xed_document_set_search_context (XedDocument            *doc,
+                                  GtkSourceSearchContext *search_context)
+{
+   g_return_if_fail (XED_IS_DOCUMENT (doc));
+
+   g_clear_object (&doc->priv->search_context);
+   doc->priv->search_context = search_context;
+
+   if (search_context != NULL)
+   {
+        gboolean highlight = g_settings_get_boolean (doc->priv->editor_settings, XED_SETTINGS_SEARCH_HIGHLIGHTING);
+
+        gtk_source_search_context_set_highlight (search_context, highlight);
+
+        g_object_ref (search_context);
+   }
+}
+
+GtkSourceSearchContext *
+_xed_document_get_search_context (XedDocument *doc)
+{
+    g_return_val_if_fail (XED_IS_DOCUMENT (doc), NULL);
+
+    return doc->priv->search_context;
 }

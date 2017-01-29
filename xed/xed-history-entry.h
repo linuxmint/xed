@@ -80,10 +80,6 @@ gboolean xed_history_entry_get_enable_completion (XedHistoryEntry *entry);
 
 GtkWidget *xed_history_entry_get_entry (XedHistoryEntry *entry);
 
-typedef gchar * (* XedHistoryEntryEscapeFunc) (const gchar *str);
-void xed_history_entry_set_escape_func (XedHistoryEntry *entry,
-                                        XedHistoryEntryEscapeFunc escape_func);
-
 G_END_DECLS
 
 #endif /* __XED_HISTORY_ENTRY_H__ */

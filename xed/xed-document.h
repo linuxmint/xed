@@ -64,15 +64,6 @@ typedef enum
 
 #define XED_DOCUMENT_NEWLINE_TYPE_DEFAULT XED_DOCUMENT_NEWLINE_TYPE_LF
 
-typedef enum
-{
-	XED_SEARCH_DONT_SET_FLAGS	= 1 << 0,
-	XED_SEARCH_ENTIRE_WORD	= 1 << 1,
-	XED_SEARCH_CASE_SENSITIVE	= 1 << 2,
-	XED_SEARCH_PARSE_ESCAPES	= 1 << 3
-
-} XedSearchFlags;
-
 /**
  * XedDocumentSaveFlags:
  * @XED_DOCUMENT_SAVE_IGNORE_MTIME: save file despite external modifications.
@@ -142,11 +133,6 @@ struct _XedDocumentClass
 
 	void (* saved)  		(XedDocument    *document,
 					 const GError     *error);
-
-	void (* search_highlight_updated)
-					(XedDocument    *document,
-					 GtkTextIter      *start,
-					 GtkTextIter      *end);
 };
 
 
@@ -223,33 +209,6 @@ gboolean	 xed_document_goto_line_offset(XedDocument *doc,
 						 gint           line,
 						 gint           line_offset);
 
-void		 xed_document_set_search_text	(XedDocument       *doc,
-						 const gchar         *text,
-						 guint                flags);
-
-gchar		*xed_document_get_search_text	(XedDocument       *doc,
-						 guint               *flags);
-
-gboolean	 xed_document_get_can_search_again
-						(XedDocument       *doc);
-
-gboolean	 xed_document_search_forward	(XedDocument       *doc,
-						 const GtkTextIter   *start,
-						 const GtkTextIter   *end,
-						 GtkTextIter         *match_start,
-						 GtkTextIter         *match_end);
-
-gboolean	 xed_document_search_backward	(XedDocument       *doc,
-						 const GtkTextIter   *start,
-						 const GtkTextIter   *end,
-						 GtkTextIter         *match_start,
-						 GtkTextIter         *match_end);
-
-gint		 xed_document_replace_all 	(XedDocument       *doc,
-				            	 const gchar         *find,
-						 const gchar         *replace,
-					    	 guint                flags);
-
 void 		 xed_document_set_language 	(XedDocument       *doc,
 						 GtkSourceLanguage   *lang);
 GtkSourceLanguage
@@ -257,13 +216,6 @@ GtkSourceLanguage
 
 const XedEncoding
 		*xed_document_get_encoding	(XedDocument       *doc);
-
-void		 xed_document_set_enable_search_highlighting
-						(XedDocument       *doc,
-						 gboolean             enable);
-
-gboolean	 xed_document_get_enable_search_highlighting
-						(XedDocument       *doc);
 
 void		 xed_document_set_newline_type (XedDocument           *doc,
 						  XedDocumentNewlineType newline_type);
@@ -299,27 +251,6 @@ void _xed_document_apply_error_style (XedDocument *doc,
 gboolean	_xed_document_check_externally_modified
 						(XedDocument       *doc);
 
-void		_xed_document_search_region   (XedDocument       *doc,
-						 const GtkTextIter   *start,
-						 const GtkTextIter   *end);
-
-/* Search macros */
-#define XED_SEARCH_IS_DONT_SET_FLAGS(sflags) ((sflags & XED_SEARCH_DONT_SET_FLAGS) != 0)
-#define XED_SEARCH_SET_DONT_SET_FLAGS(sflags,state) ((state == TRUE) ? \
-(sflags |= XED_SEARCH_DONT_SET_FLAGS) : (sflags &= ~XED_SEARCH_DONT_SET_FLAGS))
-
-#define XED_SEARCH_IS_ENTIRE_WORD(sflags) ((sflags & XED_SEARCH_ENTIRE_WORD) != 0)
-#define XED_SEARCH_SET_ENTIRE_WORD(sflags,state) ((state == TRUE) ? \
-(sflags |= XED_SEARCH_ENTIRE_WORD) : (sflags &= ~XED_SEARCH_ENTIRE_WORD))
-
-#define XED_SEARCH_IS_CASE_SENSITIVE(sflags) ((sflags &  XED_SEARCH_CASE_SENSITIVE) != 0)
-#define XED_SEARCH_SET_CASE_SENSITIVE(sflags,state) ((state == TRUE) ? \
-(sflags |= XED_SEARCH_CASE_SENSITIVE) : (sflags &= ~XED_SEARCH_CASE_SENSITIVE))
-
-#define XED_SEARCH_IS_PARSE_ESCAPES(sflags) ((sflags &  XED_SEARCH_PARSE_ESCAPES) != 0)
-#define XED_SEARCH_SET_PARSE_ESCAPES(sflags,state) ((state == TRUE) ? \
-(sflags |= XED_SEARCH_PARSE_ESCAPES) : (sflags &= ~XED_SEARCH_PARSE_ESCAPES))
-
 typedef GMountOperation *(*XedMountOperationFactory)(XedDocument *doc,
 						       gpointer       userdata);
 
@@ -330,6 +261,11 @@ void		 _xed_document_set_mount_operation_factory
 GMountOperation
 		*_xed_document_create_mount_operation
 						(XedDocument	     *doc);
+
+void _xed_document_set_search_context (XedDocument            *doc,
+                                       GtkSourceSearchContext *search_context);
+
+GtkSourceSearchContext *_xed_document_get_search_context (XedDocument *doc);
 
 G_END_DECLS
 

@@ -36,7 +36,6 @@ xed_app_activatable_get_type
 
 <SECTION>
 <FILE>xed-document</FILE>
-XedSearchFlags
 XedDocumentPrivate
 <TITLE>XedDocument</TITLE>
 XedDocument
@@ -58,21 +57,7 @@ xed_document_is_untouched
 xed_document_is_untitled
 xed_document_get_deleted
 xed_document_goto_line
-xed_document_set_search_text
-xed_document_get_search_text
-xed_document_get_can_search_again
-xed_document_search_forward
-xed_document_search_backward
-xed_document_replace_all
 xed_document_set_language
-xed_document_set_enable_search_highlighting
-xed_document_get_enable_search_highlighting
-XED_SEARCH_IS_DONT_SET_FLAGS
-XED_SEARCH_SET_DONT_SET_FLAGS
-XED_SEARCH_IS_ENTIRE_WORD
-XED_SEARCH_SET_ENTIRE_WORD
-XED_SEARCH_IS_CASE_SENSITIVE
-XED_SEARCH_SET_CASE_SENSITIVE
 <SUBSECTION Standard>
 XED_DOCUMENT
 XED_IS_DOCUMENT
@@ -517,8 +502,6 @@ g_utf8_caselessnmatch
 xed_utils_set_atk_name_description
 xed_utils_set_atk_relation
 xed_utils_uri_exists
-xed_utils_escape_search_text
-xed_utils_unescape_search_text
 xed_utils_get_stdin
 xed_warning
 xed_utils_make_valid_utf8

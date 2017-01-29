@@ -14,18 +14,25 @@
 #include "xed-searchbar.h"
 #include "xed-view-frame.h"
 
+// void
+// _xed_cmd_search_find (GtkAction *action,
+//                       XedWindow *window)
+// {
+//     xed_searchbar_show (XED_SEARCHBAR (xed_window_get_searchbar (window)), FALSE);
+// }
+
 void
 _xed_cmd_search_find (GtkAction *action,
                       XedWindow *window)
 {
-    xed_searchbar_show (XED_SEARCHBAR (xed_window_get_searchbar (window)), FALSE);
+    xed_searchbar_show (XED_SEARCHBAR (xed_window_get_searchbar (window)), SEARCH_MODE_SEARCH);
 }
 
 void
 _xed_cmd_search_replace (GtkAction *action,
                          XedWindow *window)
 {
-    xed_searchbar_show (XED_SEARCHBAR (xed_window_get_searchbar (window)), TRUE);
+    xed_searchbar_show (XED_SEARCHBAR (xed_window_get_searchbar (window)), SEARCH_MODE_REPLACE);
 }
 
 void
@@ -54,7 +61,7 @@ _xed_cmd_search_clear_highlight (XedWindow *window)
     doc = xed_window_get_active_document (window);
     if (doc != NULL)
     {
-        xed_document_set_search_text (XED_DOCUMENT(doc), "", XED_SEARCH_DONT_SET_FLAGS);
+        _xed_document_set_search_context (doc, NULL);
     }
 }
 

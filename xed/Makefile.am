@@ -60,7 +60,6 @@ NOINST_H_FILES =			\
 	xed-settings.h 			\
 	xed-status-combo-box.h 	\
 	xed-tab-label.h		\
-	xedtextregion.h		\
 	xed-ui.h			\
 	xed-utils.h 		\
 	xed-view-frame.h 	\
@@ -146,8 +145,7 @@ libxed_c_files = 				\
 	xed-view-activatable.c 		\
 	xed-view-frame.c 		\
 	xed-window.c			\
-	xed-window-activatable.c 	\
-	xedtextregion.c
+	xed-window-activatable.c
 
 libxed_la_SOURCES = 		\
 	$(BUILT_SOURCES)		\

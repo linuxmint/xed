@@ -85,10 +85,6 @@ void xed_utils_set_atk_relation (GtkWidget       *obj1,
                                  GtkWidget       *obj2,
                                  AtkRelationType  rel_type);
 
-gchar *xed_utils_escape_search_text (const gchar *text);
-
-gchar *xed_utils_unescape_search_text (const gchar *text);
-
 void xed_warning (GtkWindow   *parent,
                   const gchar *format,
                   ...) G_GNUC_PRINTF(2, 3);
