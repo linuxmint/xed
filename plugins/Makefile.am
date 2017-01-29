@@ -1,5 +1,4 @@
 DIST_SUBDIRS =		\
-	changecase		\
 	docinfo 		\
 	filebrowser 	\
 	modelines 		\
@@ -10,7 +9,6 @@ DIST_SUBDIRS =		\
 	trailsave
 
 SUBDIRS = 			\
-	changecase 		\
 	docinfo 		\
 	filebrowser 	\
 	modelines 		\

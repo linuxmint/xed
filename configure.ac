@@ -247,7 +247,6 @@ xed/Makefile
 help/Makefile
 pixmaps/Makefile
 plugins/Makefile
-plugins/changecase/Makefile
 plugins/docinfo/Makefile
 plugins/filebrowser/Makefile
 plugins/filebrowser/org.x.editor.plugins.filebrowser.gschema.xml
