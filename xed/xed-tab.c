@@ -2501,10 +2501,12 @@ _xed_tab_can_close (XedTab *tab)
 
     doc = xed_tab_get_document (tab);
 
-    /* TODO: we need to save the file also if it has been externally
-       modified - Paolo (Oct 10, 2005) */
+    if (_xed_document_needs_saving (doc))
+    {
+        return FALSE;
+    }
 
-    return (!gtk_text_buffer_get_modified (GTK_TEXT_BUFFER (doc)) && !xed_document_get_deleted (doc));
+    return TRUE;
 }
 
 /**

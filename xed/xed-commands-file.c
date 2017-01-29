@@ -806,24 +806,6 @@ _xed_cmd_file_save_as (GtkAction *action,
     file_save_as (tab, window);
 }
 
-static gboolean
-document_needs_saving (XedDocument *doc)
-{
-    if (gtk_text_buffer_get_modified (GTK_TEXT_BUFFER (doc)))
-    {
-        return TRUE;
-    }
-
-    /* we check if it was deleted only for local files
-     * since for remote files it may hang */
-    if (xed_document_is_local (doc) && xed_document_get_deleted (doc))
-    {
-        return TRUE;
-    }
-
-    return FALSE;
-}
-
 /*
  * The docs in the list must belong to the same XedWindow.
  */
@@ -863,7 +845,7 @@ _xed_cmd_file_save_documents_list (XedWindow *window,
                user is running xed - Paolo (Dec. 8, 2005) */
             if (xed_document_is_untitled (doc) || xed_document_get_readonly (doc))
             {
-                if (document_needs_saving (doc))
+                if (_xed_document_needs_saving (doc))
                     {
                         tabs_to_save_as = g_slist_prepend (tabs_to_save_as, t);
                     }
@@ -1214,7 +1196,7 @@ tab_state_changed_while_saving (XedTab     *tab,
 
         /* If the saving operation failed or was interrupted, then the
            document is still "modified" -> do not close the tab */
-        if (document_needs_saving (doc))
+        if (_xed_document_needs_saving (doc))
         {
             return;
         }
@@ -1327,7 +1309,7 @@ save_and_close_all_documents (const GList *docs,
                 (state != XED_TAB_STATE_REVERTING)) /* CHECK: is this the right behavior with REVERTING ?*/
             {
                 /* The document must be saved before closing */
-                g_return_if_fail (document_needs_saving (doc));
+                g_return_if_fail (_xed_document_needs_saving (doc));
 
                 /* FIXME: manage the case of local readonly files owned by the
                    user is running xed - Paolo (Dec. 8, 2005) */
