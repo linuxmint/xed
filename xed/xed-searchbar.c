@@ -183,7 +183,7 @@ run_forward_search (XedWindow *window,
     }
 
     buffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (view));
-    search_context = _xed_document_get_search_context (XED_DOCUMENT (buffer));
+    search_context = xed_document_get_search_context (XED_DOCUMENT (buffer));
 
     if (search_context == NULL)
     {
@@ -255,7 +255,7 @@ run_backward_search (XedWindow *window)
     }
 
     buffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (view));
-    search_context = _xed_document_get_search_context (XED_DOCUMENT (buffer));
+    search_context = xed_document_get_search_context (XED_DOCUMENT (buffer));
 
     if (search_context == NULL)
     {
@@ -287,7 +287,7 @@ update_occurrence_count (XedSearchbar *searchbar)
 
     searchbar->priv->update_occurrence_count_id = 0;
     doc = xed_window_get_active_document (searchbar->window);
-    search_context = _xed_document_get_search_context (doc);
+    search_context = xed_document_get_search_context (doc);
 
     if (search_context == NULL)
     {
@@ -375,14 +375,14 @@ do_find (XedSearchbar *searchbar,
 
     search_settings = xed_searchbar_get_search_settings (searchbar);
     doc = xed_window_get_active_document (searchbar->window);
-    search_context = _xed_document_get_search_context (doc);
+    search_context = xed_document_get_search_context (doc);
     searchbar->priv->search_mode = SEARCH_MODE_SEARCH;
 
     if (search_context == NULL || search_settings != gtk_source_search_context_get_settings (search_context))
     {
         search_context = gtk_source_search_context_new (GTK_SOURCE_BUFFER (doc), search_settings);
 
-        _xed_document_set_search_context (doc, search_context);
+        xed_document_set_search_context (doc, search_context);
 
         g_signal_connect (GTK_TEXT_BUFFER (doc), "mark-set",
                           G_CALLBACK (mark_set_cb), searchbar);
@@ -474,7 +474,7 @@ do_replace (XedSearchbar *searchbar)
         return;
     }
 
-    search_context = _xed_document_get_search_context (doc);
+    search_context = xed_document_get_search_context (doc);
 
     if (search_context == NULL)
     {
@@ -517,7 +517,7 @@ do_replace_all (XedSearchbar *searchbar)
         return;
     }
 
-    search_context = _xed_document_get_search_context (doc);
+    search_context = xed_document_get_search_context (doc);
 
     if (search_context == NULL)
     {

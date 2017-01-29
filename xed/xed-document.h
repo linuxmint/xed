@@ -33,9 +33,7 @@
 #ifndef __XED_DOCUMENT_H__
 #define __XED_DOCUMENT_H__
 
-#include <gio/gio.h>
-#include <gtk/gtk.h>
-#include <gtksourceview/gtksourcebuffer.h>
+#include <gtksourceview/gtksource.h>
 
 #include <xed/xed-encodings.h>
 
@@ -211,6 +209,11 @@ void xed_document_set_metadata (XedDocument *doc,
                                 const gchar *first_key,
                                 ...);
 
+void xed_document_set_search_context (XedDocument            *doc,
+                                      GtkSourceSearchContext *search_context);
+
+GtkSourceSearchContext *xed_document_get_search_context (XedDocument *doc);
+
 /*
  * Non exported functions
  */
@@ -239,11 +242,6 @@ void _xed_document_set_mount_operation_factory (XedDocument              *doc,
                                                 XedMountOperationFactory  callback,
                                                 gpointer                  userdata);
 GMountOperation *_xed_document_create_mount_operation (XedDocument *doc);
-
-void _xed_document_set_search_context (XedDocument            *doc,
-                                       GtkSourceSearchContext *search_context);
-
-GtkSourceSearchContext *_xed_document_get_search_context (XedDocument *doc);
 
 G_END_DECLS
 

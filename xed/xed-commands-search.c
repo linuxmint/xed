@@ -61,7 +61,7 @@ _xed_cmd_search_clear_highlight (XedWindow *window)
     doc = xed_window_get_active_document (window);
     if (doc != NULL)
     {
-        _xed_document_set_search_context (doc, NULL);
+        xed_document_set_search_context (doc, NULL);
     }
 }
 
