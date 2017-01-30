@@ -141,7 +141,6 @@ xed_modeline_plugin_get_property (GObject    *object,
 
 static void
 on_document_loaded_or_saved (XedDocument   *document,
-                             const GError  *error,
                              GtkSourceView *view)
 {
     modeline_parser_apply_modeline (view);

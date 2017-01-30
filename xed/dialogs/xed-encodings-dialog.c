@@ -34,12 +34,10 @@
 
 #include <string.h>
 
-#include <glib.h>
 #include <glib/gi18n.h>
-#include <gtk/gtk.h>
+#include <gtksourceview/gtksource.h>
 
 #include "xed-encodings-dialog.h"
-#include "xed-encodings.h"
 #include "xed-utils.h"
 #include "xed-debug.h"
 #include "xed-help.h"
@@ -148,12 +146,12 @@ get_selected_encodings_func (GtkTreeModel *model,
 {
     GSList **list = data;
     gchar *charset;
-    const XedEncoding *enc;
+    const GtkSourceEncoding *enc;
 
     charset = NULL;
     gtk_tree_model_get (model, iter, COLUMN_CHARSET, &charset, -1);
 
-    enc = xed_encoding_get_from_charset (charset);
+    enc = gtk_source_encoding_get_from_charset (charset);
     g_free (charset);
 
     *list = g_slist_prepend (*list, (gpointer)enc);
@@ -169,14 +167,14 @@ update_shown_in_menu_tree_model (GtkListStore *store,
 
     while (list != NULL)
     {
-        const XedEncoding *enc;
+        const GtkSourceEncoding *enc;
 
-        enc = (const XedEncoding*) list->data;
+        enc = list->data;
 
         gtk_list_store_append (store, &iter);
         gtk_list_store_set (store, &iter,
-                            COLUMN_CHARSET, xed_encoding_get_charset (enc),
-                            COLUMN_NAME, xed_encoding_get_name (enc),
+                            COLUMN_CHARSET, gtk_source_encoding_get_charset (enc),
+                            COLUMN_NAME, gtk_source_encoding_get_name (enc),
                             -1);
 
         list = g_slist_next (list);
@@ -248,20 +246,18 @@ init_shown_in_menu_tree_model (XedEncodingsDialog *dialog)
     /* add data to the list store */
     enc_strv = g_settings_get_strv (dialog->priv->enc_settings, XED_SETTINGS_ENCODING_SHOWN_IN_MENU);
 
-    list = _xed_encoding_strv_to_list ((const gchar * const *)enc_strv);
+    list = _xed_utils_encoding_strv_to_list ((const gchar * const *)enc_strv);
 
     for (tmp = list; tmp != NULL; tmp = g_slist_next (tmp))
     {
-        const XedEncoding *enc;
-
-        enc = (const XedEncoding *) tmp->data;
+        const GtkSourceEncoding *enc = tmp->data;
 
         dialog->priv->show_in_menu_list = g_slist_prepend (dialog->priv->show_in_menu_list, tmp->data);
 
         gtk_list_store_append (dialog->priv->displayed_liststore, &iter);
         gtk_list_store_set (dialog->priv->displayed_liststore, &iter,
-                            COLUMN_CHARSET, xed_encoding_get_charset (enc),
-                            COLUMN_NAME, xed_encoding_get_name (enc),
+                            COLUMN_CHARSET, gtk_source_encoding_get_charset (enc),
+                            COLUMN_NAME, gtk_source_encoding_get_name (enc),
                             -1);
     }
 
@@ -284,7 +280,7 @@ response_handler (GtkDialog          *dialog,
     {
         gchar **encs;
 
-        encs = _xed_encoding_list_to_strv (dlg->priv->show_in_menu_list);
+        encs = _xed_utils_encoding_list_to_strv (dlg->priv->show_in_menu_list);
         g_settings_set_strv (dlg->priv->enc_settings,
                              XED_SETTINGS_ENCODING_SHOWN_IN_MENU,
                              (const gchar * const *)encs);
@@ -294,17 +290,45 @@ response_handler (GtkDialog          *dialog,
 }
 
 static void
+init_liststore_available (XedEncodingsDialog *dialog)
+{
+    GSList *all_encodings;
+    GSList *l;
+
+    all_encodings = gtk_source_encoding_get_all ();
+
+    for (l = all_encodings; l != NULL; l = l->next)
+    {
+        const GtkSourceEncoding *encoding = l->data;
+        GtkTreeIter iter;
+
+        if (encoding == gtk_source_encoding_get_utf8 ())
+        {
+            /* The UTF-8 encoding is always added to the combobox. */
+            continue;
+        }
+
+        gtk_list_store_append (dialog->priv->available_liststore, &iter);
+
+        gtk_list_store_set (dialog->priv->available_liststore,
+                            &iter,
+                            COLUMN_CHARSET, gtk_source_encoding_get_charset (encoding),
+                            COLUMN_NAME, gtk_source_encoding_get_name (encoding),
+                            -1);
+    }
+
+    g_slist_free (all_encodings);
+}
+
+static void
 xed_encodings_dialog_init (XedEncodingsDialog *dlg)
 {
     GtkWidget *content;
     GtkCellRenderer *cell_renderer;
     GtkTreeModel *sort_model;
     GtkTreeViewColumn *column;
-    GtkTreeIter parent_iter;
     GtkTreeSelection *selection;
-    const XedEncoding *enc;
     GtkWidget *error_widget;
-    int i;
     gboolean ret;
     gchar *file;
     gchar *root_objects[] = {
@@ -382,17 +406,7 @@ xed_encodings_dialog_init (XedEncodingsDialog *dlg)
     gtk_tree_view_column_set_sort_column_id (column, COLUMN_CHARSET);
 
     /* Add the data */
-    i = 0;
-    while ((enc = xed_encoding_get_from_index (i)) != NULL)
-    {
-        gtk_list_store_append (dlg->priv->available_liststore, &parent_iter);
-        gtk_list_store_set (dlg->priv->available_liststore, &parent_iter,
-                            COLUMN_CHARSET, xed_encoding_get_charset (enc),
-                            COLUMN_NAME, xed_encoding_get_name (enc),
-                            -1);
-
-        ++i;
-    }
+    init_liststore_available (dlg);
 
     /* Sort model */
     sort_model = gtk_tree_model_sort_new_with_model (GTK_TREE_MODEL (dlg->priv->available_liststore));

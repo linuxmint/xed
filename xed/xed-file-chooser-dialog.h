@@ -31,9 +31,8 @@
 #ifndef __XED_FILE_CHOOSER_DIALOG_H__
 #define __XED_FILE_CHOOSER_DIALOG_H__
 
-#include <gtk/gtk.h>
+#include <gtksourceview/gtksource.h>
 
-#include <xed/xed-encodings.h>
 #include <xed/xed-enum-types.h>
 #include <xed/xed-document.h>
 
@@ -64,22 +63,22 @@ struct _XedFileChooserDialogClass
 
 GType xed_file_chooser_dialog_get_type (void) G_GNUC_CONST;
 
-GtkWidget *xed_file_chooser_dialog_new (const gchar          *title,
-                                        GtkWindow            *parent,
-                                        GtkFileChooserAction  action,
-                                        const XedEncoding    *encoding,
-                                        const gchar          *first_button_text,
+GtkWidget *xed_file_chooser_dialog_new (const gchar             *title,
+                                        GtkWindow               *parent,
+                                        GtkFileChooserAction     action,
+                                        const GtkSourceEncoding *encoding,
+                                        const gchar             *first_button_text,
                                         ...);
 
-void xed_file_chooser_dialog_set_encoding (XedFileChooserDialog *dialog,
-                                           const XedEncoding    *encoding);
+void xed_file_chooser_dialog_set_encoding (XedFileChooserDialog    *dialog,
+                                           const GtkSourceEncoding *encoding);
 
-const XedEncoding *xed_file_chooser_dialog_get_encoding (XedFileChooserDialog *dialog);
+const GtkSourceEncoding *xed_file_chooser_dialog_get_encoding (XedFileChooserDialog *dialog);
 
-void xed_file_chooser_dialog_set_newline_type (XedFileChooserDialog  *dialog,
-                                               XedDocumentNewlineType newline_type);
+void xed_file_chooser_dialog_set_newline_type (XedFileChooserDialog *dialog,
+                                               GtkSourceNewlineType  newline_type);
 
-XedDocumentNewlineType xed_file_chooser_dialog_get_newline_type (XedFileChooserDialog *dialog);
+GtkSourceNewlineType xed_file_chooser_dialog_get_newline_type (XedFileChooserDialog *dialog);
 
 G_END_DECLS
 

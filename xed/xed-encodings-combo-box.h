@@ -17,14 +17,14 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
- * Foundation, Inc., 51 Franklin St, Fifth Floor, 
+ * Foundation, Inc., 51 Franklin St, Fifth Floor,
  * Boston, MA 02110-1301, USA.
  */
- 
+
 /*
- * Modified by the xed Team, 2003-2005. See the AUTHORS file for a 
- * list of people on the xed Team.  
- * See the ChangeLog files for a list of changes. 
+ * Modified by the xed Team, 2003-2005. See the AUTHORS file for a
+ * list of people on the xed Team.
+ * See the ChangeLog files for a list of changes.
  *
  * $Id: xed-encodings-option-menu.h 4429 2005-12-12 17:28:04Z pborelli $
  */
@@ -33,7 +33,6 @@
 #define __XED_ENCODINGS_COMBO_BOX_H__
 
 #include <gtk/gtk.h>
-#include <xed/xed-encodings.h>
 
 G_BEGIN_DECLS
 
@@ -45,31 +44,30 @@ G_BEGIN_DECLS
 #define XED_ENCODINGS_COMBO_BOX_GET_CLASS(obj)   (G_TYPE_INSTANCE_GET_CLASS ((obj), XED_TYPE_ENCODINGS_COMBO_BOX, XedEncodingsComboBoxClass))
 
 
-typedef struct _XedEncodingsComboBox 	XedEncodingsComboBox;
-typedef struct _XedEncodingsComboBoxClass 	XedEncodingsComboBoxClass;
-
-typedef struct _XedEncodingsComboBoxPrivate	XedEncodingsComboBoxPrivate;
+typedef struct _XedEncodingsComboBox        XedEncodingsComboBox;
+typedef struct _XedEncodingsComboBoxClass   XedEncodingsComboBoxClass;
+typedef struct _XedEncodingsComboBoxPrivate XedEncodingsComboBoxPrivate;
 
 struct _XedEncodingsComboBox
 {
-	GtkComboBox			 parent;
+    GtkComboBox parent;
 
-	XedEncodingsComboBoxPrivate	*priv;
+    XedEncodingsComboBoxPrivate *priv;
 };
 
 struct _XedEncodingsComboBoxClass
 {
-	GtkComboBoxClass		 parent_class;
+    GtkComboBoxClass parent_class;
 };
 
-GType		     xed_encodings_combo_box_get_type		(void) G_GNUC_CONST;
+GType xed_encodings_combo_box_get_type (void) G_GNUC_CONST;
 
 /* Constructor */
-GtkWidget 	    *xed_encodings_combo_box_new 			(gboolean save_mode);
+GtkWidget *xed_encodings_combo_box_new (gboolean save_mode);
 
-const XedEncoding *xed_encodings_combo_box_get_selected_encoding	(XedEncodingsComboBox *menu);
-void		     xed_encodings_combo_box_set_selected_encoding	(XedEncodingsComboBox *menu,
-									 const XedEncoding      *encoding);
+const GtkSourceEncoding *xed_encodings_combo_box_get_selected_encoding (XedEncodingsComboBox *menu);
+void xed_encodings_combo_box_set_selected_encoding  (XedEncodingsComboBox    *menu,
+                                                     const GtkSourceEncoding *encoding);
 
 G_END_DECLS
 

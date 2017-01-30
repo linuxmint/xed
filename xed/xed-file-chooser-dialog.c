@@ -38,8 +38,6 @@
 #include <string.h>
 
 #include <glib/gi18n.h>
-#include <gtk/gtk.h>
-#include <gtksourceview/gtksource.h>
 
 #include "xed-file-chooser-dialog.h"
 #include "xed-encodings-combo-box.h"
@@ -125,16 +123,16 @@ update_newline_visibility (XedFileChooserDialog *dialog)
 }
 
 static void
-newline_combo_append (GtkComboBox              *combo,
-                      GtkListStore             *store,
-                      GtkTreeIter              *iter,
-                      const gchar              *label,
-                      XedDocumentNewlineType  newline_type)
+newline_combo_append (GtkComboBox          *combo,
+                      GtkListStore         *store,
+                      GtkTreeIter          *iter,
+                      const gchar          *label,
+                      GtkSourceNewlineType  newline_type)
 {
     gtk_list_store_append (store, iter);
     gtk_list_store_set (store, iter, 0, label, 1, newline_type, -1);
 
-    if (newline_type == XED_DOCUMENT_NEWLINE_TYPE_DEFAULT)
+    if (newline_type == GTK_SOURCE_NEWLINE_TYPE_DEFAULT)
     {
         gtk_combo_box_set_active_iter (combo, iter);
     }
@@ -151,7 +149,7 @@ create_newline_combo (XedFileChooserDialog *dialog)
     label = gtk_label_new_with_mnemonic (_("L_ine Ending:"));
     gtk_widget_set_halign (label, GTK_ALIGN_START);
 
-    store = gtk_list_store_new (2, G_TYPE_STRING, XED_TYPE_DOCUMENT_NEWLINE_TYPE);
+    store = gtk_list_store_new (2, G_TYPE_STRING, GTK_SOURCE_TYPE_NEWLINE_TYPE);
     combo = gtk_combo_box_new_with_model (GTK_TREE_MODEL (store));
     renderer = gtk_cell_renderer_text_new ();
 
@@ -159,9 +157,9 @@ create_newline_combo (XedFileChooserDialog *dialog)
 
     gtk_cell_layout_add_attribute (GTK_CELL_LAYOUT (combo), renderer, "text", 0);
 
-    newline_combo_append (GTK_COMBO_BOX (combo), store, &iter, _("Unix/Linux"), XED_DOCUMENT_NEWLINE_TYPE_LF);
-    newline_combo_append (GTK_COMBO_BOX (combo), store, &iter, _("Mac OS Classic"), XED_DOCUMENT_NEWLINE_TYPE_CR);
-    newline_combo_append (GTK_COMBO_BOX (combo), store, &iter, _("Windows"), XED_DOCUMENT_NEWLINE_TYPE_CR_LF);
+    newline_combo_append (GTK_COMBO_BOX (combo), store, &iter, _("Unix/Linux"), GTK_SOURCE_NEWLINE_TYPE_LF);
+    newline_combo_append (GTK_COMBO_BOX (combo), store, &iter, _("Mac OS Classic"), GTK_SOURCE_NEWLINE_TYPE_CR);
+    newline_combo_append (GTK_COMBO_BOX (combo), store, &iter, _("Windows"), GTK_SOURCE_NEWLINE_TYPE_CR_LF);
 
     gtk_label_set_mnemonic_widget (GTK_LABEL (label), combo);
 
@@ -336,12 +334,12 @@ xed_file_chooser_dialog_init (XedFileChooserDialog *dialog)
 }
 
 static GtkWidget *
-xed_file_chooser_dialog_new_valist (const gchar          *title,
-                                    GtkWindow            *parent,
-                                    GtkFileChooserAction  action,
-                                    const XedEncoding    *encoding,
-                                    const gchar          *first_button_text,
-                                    va_list               varargs)
+xed_file_chooser_dialog_new_valist (const gchar             *title,
+                                    GtkWindow               *parent,
+                                    GtkFileChooserAction     action,
+                                    const GtkSourceEncoding *encoding,
+                                    const gchar             *first_button_text,
+                                    va_list                  varargs)
 {
     GtkWidget *result;
     const char *button_text = first_button_text;
@@ -440,11 +438,11 @@ xed_file_chooser_dialog_new_valist (const gchar          *title,
  *
  **/
 GtkWidget *
-xed_file_chooser_dialog_new (const gchar          *title,
-                             GtkWindow            *parent,
-                             GtkFileChooserAction  action,
-                             const XedEncoding    *encoding,
-                             const gchar          *first_button_text,
+xed_file_chooser_dialog_new (const gchar             *title,
+                             GtkWindow               *parent,
+                             GtkFileChooserAction     action,
+                             const GtkSourceEncoding *encoding,
+                             const gchar             *first_button_text,
                              ...)
 {
     GtkWidget *result;
@@ -458,8 +456,8 @@ xed_file_chooser_dialog_new (const gchar          *title,
 }
 
 void
-xed_file_chooser_dialog_set_encoding (XedFileChooserDialog *dialog,
-                                      const XedEncoding    *encoding)
+xed_file_chooser_dialog_set_encoding (XedFileChooserDialog    *dialog,
+                                      const GtkSourceEncoding *encoding)
 {
     g_return_if_fail (XED_IS_FILE_CHOOSER_DIALOG (dialog));
     g_return_if_fail (XED_IS_ENCODINGS_COMBO_BOX (dialog->priv->option_menu));
@@ -467,7 +465,7 @@ xed_file_chooser_dialog_set_encoding (XedFileChooserDialog *dialog,
     xed_encodings_combo_box_set_selected_encoding (XED_ENCODINGS_COMBO_BOX (dialog->priv->option_menu), encoding);
 }
 
-const XedEncoding *
+const GtkSourceEncoding *
 xed_file_chooser_dialog_get_encoding (XedFileChooserDialog *dialog)
 {
     g_return_val_if_fail (XED_IS_FILE_CHOOSER_DIALOG (dialog), NULL);
@@ -478,17 +476,14 @@ xed_file_chooser_dialog_get_encoding (XedFileChooserDialog *dialog)
     return xed_encodings_combo_box_get_selected_encoding (XED_ENCODINGS_COMBO_BOX (dialog->priv->option_menu));
 }
 
-void
-xed_file_chooser_dialog_set_newline_type (XedFileChooserDialog  *dialog,
-                                          XedDocumentNewlineType newline_type)
+static void
+set_enum_combo (GtkComboBox *combo,
+                gint         value)
 {
     GtkTreeIter iter;
     GtkTreeModel *model;
 
-    g_return_if_fail (XED_IS_FILE_CHOOSER_DIALOG (dialog));
-    g_return_if_fail (gtk_file_chooser_get_action (GTK_FILE_CHOOSER (dialog)) == GTK_FILE_CHOOSER_ACTION_SAVE);
-
-    model = GTK_TREE_MODEL (dialog->priv->newline_store);
+    model = gtk_combo_box_get_model (combo);
 
     if (!gtk_tree_model_get_iter_first (model, &iter))
     {
@@ -497,27 +492,37 @@ xed_file_chooser_dialog_set_newline_type (XedFileChooserDialog  *dialog,
 
     do
     {
-        XedDocumentNewlineType nt;
+        gint nt;
 
         gtk_tree_model_get (model, &iter, 1, &nt, -1);
 
-        if (newline_type == nt)
+        if (value == nt)
         {
-            gtk_combo_box_set_active_iter (GTK_COMBO_BOX (dialog->priv->newline_combo), &iter);
+            gtk_combo_box_set_active_iter (combo, &iter);
             break;
         }
     } while (gtk_tree_model_iter_next (model, &iter));
 }
 
-XedDocumentNewlineType
+void
+xed_file_chooser_dialog_set_newline_type (XedFileChooserDialog *dialog,
+                                          GtkSourceNewlineType  newline_type)
+{
+    g_return_if_fail (XED_IS_FILE_CHOOSER_DIALOG (dialog));
+    g_return_if_fail (gtk_file_chooser_get_action (GTK_FILE_CHOOSER (dialog)) == GTK_FILE_CHOOSER_ACTION_SAVE);
+
+    set_enum_combo (GTK_COMBO_BOX (dialog->priv->newline_combo), newline_type);
+}
+
+GtkSourceNewlineType
 xed_file_chooser_dialog_get_newline_type (XedFileChooserDialog *dialog)
 {
     GtkTreeIter iter;
-    XedDocumentNewlineType newline_type;
+    GtkSourceNewlineType newline_type;
 
-    g_return_val_if_fail (XED_IS_FILE_CHOOSER_DIALOG (dialog), XED_DOCUMENT_NEWLINE_TYPE_DEFAULT);
+    g_return_val_if_fail (XED_IS_FILE_CHOOSER_DIALOG (dialog), GTK_SOURCE_NEWLINE_TYPE_DEFAULT);
     g_return_val_if_fail (gtk_file_chooser_get_action (GTK_FILE_CHOOSER (dialog)) == GTK_FILE_CHOOSER_ACTION_SAVE,
-                          XED_DOCUMENT_NEWLINE_TYPE_DEFAULT);
+                          GTK_SOURCE_NEWLINE_TYPE_DEFAULT);
 
     gtk_combo_box_get_active_iter (GTK_COMBO_BOX (dialog->priv->newline_combo), &iter);
 

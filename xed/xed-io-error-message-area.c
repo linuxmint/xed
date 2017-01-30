@@ -292,28 +292,6 @@ parse_gio_error (gint          code,
     return ret;
 }
 
-static gboolean
-parse_xed_error (gint          code,
-                 gchar       **error_message,
-                 gchar       **message_details,
-                 GFile        *location,
-                 const gchar  *uri_for_display)
-{
-    gboolean ret = TRUE;
-
-    switch (code)
-    {
-        case XED_DOCUMENT_ERROR_TOO_BIG:
-            *message_details = g_strdup (_("The file is too big."));
-            break;
-        default:
-            ret = FALSE;
-            break;
-    }
-
-    return ret;
-}
-
 static void
 parse_error (const GError *error,
              gchar       **error_message,
@@ -326,10 +304,6 @@ parse_error (const GError *error,
     if (error->domain == G_IO_ERROR)
     {
         ret = parse_gio_error (error->code, error_message, message_details, location, uri_for_display);
-    }
-    else if (error->domain == XED_DOCUMENT_ERROR)
-    {
-        ret = parse_xed_error (error->code, error_message, message_details, location, uri_for_display);
     }
 
     if (!ret)
@@ -352,7 +326,7 @@ xed_unrecoverable_reverting_error_message_area_new (GFile        *location,
 
     g_return_val_if_fail (G_IS_FILE (location), NULL);
     g_return_val_if_fail (error != NULL, NULL);
-    g_return_val_if_fail ((error->domain == XED_DOCUMENT_ERROR) || (error->domain == G_IO_ERROR), NULL);
+    g_return_val_if_fail ((error->domain == GTK_SOURCE_FILE_LOADER_ERROR) || error->domain == G_IO_ERROR, NULL);
 
     full_formatted_uri = g_file_get_parse_name (location);
 
@@ -492,14 +466,13 @@ create_conversion_error_message_area (const gchar *primary_text,
 }
 
 GtkWidget *
-xed_io_loading_error_message_area_new (GFile             *location,
-                                       const XedEncoding *encoding,
-                                       const GError      *error)
+xed_io_loading_error_message_area_new (GFile                   *location,
+                                       const GtkSourceEncoding *encoding,
+                                       const GError            *error)
 {
     gchar *error_message = NULL;
     gchar *message_details = NULL;
     gchar *full_formatted_uri;
-    gchar *encoding_name;
     gchar *uri_for_display;
     gchar *temp_uri_for_display;
     GtkWidget *message_area;
@@ -508,11 +481,18 @@ xed_io_loading_error_message_area_new (GFile             *location,
 
     g_return_val_if_fail (G_IS_FILE (location), NULL);
     g_return_val_if_fail (error != NULL, NULL);
-    g_return_val_if_fail ((error->domain == G_CONVERT_ERROR) ||
-                  (error->domain == XED_DOCUMENT_ERROR) ||
-                  (error->domain == G_IO_ERROR), NULL);
+    g_return_val_if_fail (error->domain == GTK_SOURCE_FILE_LOADER_ERROR ||
+                          error->domain == G_IO_ERROR ||
+                          error->domain == G_CONVERT_ERROR, NULL);
 
-    full_formatted_uri = g_file_get_parse_name (location);
+    if (location != NULL)
+    {
+        full_formatted_uri = g_file_get_parse_name (location);
+    }
+    else
+    {
+        full_formatted_uri = g_strdup ("stdin");
+    }
 
     /* Truncate the URI so it doesn't get insanely wide. Note that even
      * though the dialog uses wrapped text, if the URI doesn't contain
@@ -524,15 +504,6 @@ xed_io_loading_error_message_area_new (GFile             *location,
     uri_for_display = g_markup_printf_escaped ("<i>%s</i>", temp_uri_for_display);
     g_free (temp_uri_for_display);
 
-    if (encoding != NULL)
-    {
-        encoding_name = xed_encoding_to_string (encoding);
-    }
-    else
-    {
-        encoding_name = g_strdup ("UTF-8");
-    }
-
     if (is_gio_error (error, G_IO_ERROR_TOO_MANY_LINKS))
     {
         message_details = g_strdup (_("The number of followed links is limited and the actual file could not be found within this limit."));
@@ -542,8 +513,8 @@ xed_io_loading_error_message_area_new (GFile             *location,
         message_details = g_strdup (_("You do not have the permissions necessary to open the file."));
     }
     else if ((is_gio_error (error, G_IO_ERROR_INVALID_DATA) && encoding == NULL) ||
-             (error->domain == XED_DOCUMENT_ERROR &&
-             error->code == XED_DOCUMENT_ERROR_ENCODING_AUTO_DETECTION_FAILED))
+             (error->domain == GTK_SOURCE_FILE_LOADER_ERROR &&
+              error->code == GTK_SOURCE_FILE_LOADER_ERROR_ENCODING_AUTO_DETECTION_FAILED))
     {
         message_details = g_strconcat (_("xed has not been able to detect "
                                          "the character encoding."), "\n",
@@ -551,7 +522,8 @@ xed_io_loading_error_message_area_new (GFile             *location,
                                        _("Select a character encoding from the menu and try again."), NULL);
         convert_error = TRUE;
     }
-    else if (error->domain == XED_DOCUMENT_ERROR && error->code == XED_DOCUMENT_ERROR_CONVERSION_FALLBACK)
+    else if (error->domain == GTK_SOURCE_FILE_LOADER_ERROR &&
+             error->code == GTK_SOURCE_FILE_LOADER_ERROR_CONVERSION_FALLBACK)
     {
         error_message = g_strdup_printf (_("There was a problem opening the file %s."), uri_for_display);
         message_details = g_strconcat (_("The file you opened has some invalid characters. "
@@ -564,12 +536,16 @@ xed_io_loading_error_message_area_new (GFile             *location,
     }
     else if (is_gio_error (error, G_IO_ERROR_INVALID_DATA) && encoding != NULL)
     {
+        gchar *encoding_name = gtk_source_encoding_to_string (encoding);
+
         error_message = g_strdup_printf (_("Could not open the file %s using the %s character encoding."),
                                          uri_for_display,
                                          encoding_name);
         message_details = g_strconcat (_("Please check that you are not trying to open a binary file."), "\n",
                                        _("Select a different character encoding from the menu and try again."), NULL);
         convert_error = TRUE;
+
+        g_free (encoding_name);
     }
     else
     {
@@ -593,7 +569,6 @@ xed_io_loading_error_message_area_new (GFile             *location,
     }
 
     g_free (uri_for_display);
-    g_free (encoding_name);
     g_free (error_message);
     g_free (message_details);
 
@@ -601,9 +576,9 @@ xed_io_loading_error_message_area_new (GFile             *location,
 }
 
 GtkWidget *
-xed_conversion_error_while_saving_message_area_new (GFile             *location,
-                                                    const XedEncoding *encoding,
-                                                    const GError      *error)
+xed_conversion_error_while_saving_message_area_new (GFile                   *location,
+                                                    const GtkSourceEncoding *encoding,
+                                                    const GError            *error)
 {
     gchar *error_message = NULL;
     gchar *message_details = NULL;
@@ -631,7 +606,7 @@ xed_conversion_error_while_saving_message_area_new (GFile             *location,
     uri_for_display = g_markup_printf_escaped ("<i>%s</i>", temp_uri_for_display);
     g_free (temp_uri_for_display);
 
-    encoding_name = xed_encoding_to_string (encoding);
+    encoding_name = gtk_source_encoding_to_string (encoding);
 
     error_message = g_strdup_printf (_("Could not save the file %s using the %s character encoding."),
                                      uri_for_display,
@@ -650,7 +625,7 @@ xed_conversion_error_while_saving_message_area_new (GFile             *location,
     return message_area;
 }
 
-const XedEncoding *
+const GtkSourceEncoding *
 xed_conversion_error_message_area_get_encoding (GtkWidget *message_area)
 {
     gpointer menu;
@@ -769,8 +744,8 @@ xed_externally_modified_saving_error_message_area_new (GFile        *location,
 
     g_return_val_if_fail (G_IS_FILE (location), NULL);
     g_return_val_if_fail (error != NULL, NULL);
-    g_return_val_if_fail (error->domain == XED_DOCUMENT_ERROR, NULL);
-    g_return_val_if_fail (error->code == XED_DOCUMENT_ERROR_EXTERNALLY_MODIFIED, NULL);
+    g_return_val_if_fail (error->domain == GTK_SOURCE_FILE_SAVER_ERROR, NULL);
+    g_return_val_if_fail (error->code == GTK_SOURCE_FILE_SAVER_ERROR_EXTERNALLY_MODIFIED, NULL);
 
     full_formatted_uri = g_file_get_parse_name (location);
 
@@ -857,10 +832,8 @@ xed_no_backup_saving_error_message_area_new (GFile        *location,
 
     g_return_val_if_fail (G_IS_FILE (location), NULL);
     g_return_val_if_fail (error != NULL, NULL);
-    g_return_val_if_fail (((error->domain == XED_DOCUMENT_ERROR &&
-                          error->code == XED_DOCUMENT_ERROR_CANT_CREATE_BACKUP) ||
-                          (error->domain == G_IO_ERROR &&
-                          error->code == G_IO_ERROR_CANT_CREATE_BACKUP)), NULL);
+    g_return_val_if_fail (error->domain == G_IO_ERROR &&
+                          error->code == G_IO_ERROR_CANT_CREATE_BACKUP, NULL);
 
     full_formatted_uri = g_file_get_parse_name (location);
 
@@ -952,7 +925,7 @@ xed_unrecoverable_saving_error_message_area_new (GFile        *location,
 
     g_return_val_if_fail (G_IS_FILE (location), NULL);
     g_return_val_if_fail (error != NULL, NULL);
-    g_return_val_if_fail ((error->domain == XED_DOCUMENT_ERROR) || (error->domain == G_IO_ERROR), NULL);
+    g_return_val_if_fail (error->domain == GTK_SOURCE_FILE_SAVER_ERROR || error->domain == G_IO_ERROR, NULL);
 
     full_formatted_uri = g_file_get_parse_name (location);
 
@@ -1024,6 +997,10 @@ xed_unrecoverable_saving_error_message_area_new (GFile        *location,
                                     "a limitation on length of the file names. "
                                     "Please use a shorter name."));
     }
+#if 0
+    /* FIXME this error can not occur for a file saving. Either remove the
+     * code here, or improve the GtkSourceFileSaver so this error can occur.
+     */
     else if (error->domain == XED_DOCUMENT_ERROR && error->code == XED_DOCUMENT_ERROR_TOO_BIG)
     {
         message_details = g_strdup (_("The disk where you are trying to save the file has "
@@ -1031,6 +1008,7 @@ xed_unrecoverable_saving_error_message_area_new (GFile        *location,
                                     "a smaller file or saving it to a disk that does not "
                                     "have this limitation."));
     }
+#endif
     else
     {
         parse_error (error, &error_message, &message_details, location, uri_for_display);

@@ -302,7 +302,8 @@ set_root_from_doc (XedFileBrowserPlugin *plugin,
                    XedDocument          *doc)
 {
     XedFileBrowserPluginPrivate *priv = plugin->priv;
-    GFile *file;
+    GtkSourceFile *file;
+    GFile *location;
     GFile *parent;
 
     if (doc == NULL)
@@ -310,13 +311,14 @@ set_root_from_doc (XedFileBrowserPlugin *plugin,
         return;
     }
 
-    file = xed_document_get_location (doc);
-    if (file == NULL)
+    file = xed_document_get_file (doc);
+    location = gtk_source_file_get_location (file);
+    if (location == NULL)
     {
         return;
     }
 
-    parent = g_file_get_parent (file);
+    parent = g_file_get_parent (location);
 
     if (parent != NULL)
     {
@@ -326,8 +328,6 @@ set_root_from_doc (XedFileBrowserPlugin *plugin,
 
         g_object_unref (parent);
     }
-
-    g_object_unref (file);
 }
 
 static void
@@ -764,8 +764,6 @@ on_rename_cb (XedFileBrowserStore *store,
     XedApp *app;
     GList *documents;
     GList *item;
-    XedDocument *doc;
-    GFile *docfile;
 
     /* Find all documents and set its uri to newuri where it matches olduri */
     app = xed_app_get_default ();
@@ -773,17 +771,22 @@ on_rename_cb (XedFileBrowserStore *store,
 
     for (item = documents; item; item = item->next)
     {
-        doc = XED_DOCUMENT (item->data);
-        docfile = xed_document_get_location (doc);
+        XedDocument *doc;
+        GtkSourceFile *source_file;
+        GFile *docfile;
 
-        if (!docfile)
+        doc = XED_DOCUMENT (item->data);
+        source_file = xed_document_get_file (doc);
+        docfile = gtk_source_file_get_location (source_file);
+
+        if (docfile == NULL)
         {
             continue;
         }
 
         if (g_file_equal (docfile, oldfile))
         {
-            xed_document_set_location (doc, newfile);
+            gtk_source_file_set_location (source_file, newfile);
         }
         else
         {
@@ -791,22 +794,20 @@ on_rename_cb (XedFileBrowserStore *store,
 
             relative = g_file_get_relative_path (oldfile, docfile);
 
-            if (relative)
+            if (relative != NULL)
             {
                 /* relative now contains the part in docfile without
                    the prefix oldfile */
 
-                g_object_unref (docfile);
-
                 docfile = g_file_get_child (newfile, relative);
 
-                xed_document_set_location (doc, docfile);
+                gtk_source_file_set_location (source_file, docfile);
+
+                g_object_unref (docfile);
             }
 
             g_free (relative);
         }
-
-        g_object_unref (docfile);
     }
 
     g_list_free (documents);
@@ -895,10 +896,12 @@ on_tab_added_cb (XedWindow            *window,
     if (open)
     {
         XedDocument *doc;
+        GtkSourceFile *file;
         GFile *location;
 
         doc = xed_tab_get_document (tab);
-        location = xed_document_get_location (doc);
+        file = xed_document_get_file (doc);
+        location = gtk_source_file_get_location (file);
 
         if (location != NULL)
         {
@@ -908,7 +911,6 @@ on_tab_added_cb (XedWindow            *window,
                 set_root_from_doc (plugin, doc);
                 load_default = FALSE;
             }
-            g_object_unref (location);
         }
     }
 

@@ -117,6 +117,7 @@ void xed_settings_set_list (GSettings    *settings,
 #define XED_SETTINGS_ENCODING_AUTO_DETECTED     "auto-detected"
 #define XED_SETTINGS_ENCODING_SHOWN_IN_MENU     "shown-in-menu"
 #define XED_SETTINGS_ACTIVE_PLUGINS             "active-plugins"
+#define XED_SETTINGS_ENSURE_TRAILING_NEWLINE    "ensure-trailing-newline"
 
 /* window state keys */
 #define XED_SETTINGS_WINDOW_STATE               "state"

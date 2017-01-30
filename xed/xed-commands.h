@@ -1,16 +1,16 @@
 #ifndef __XED_COMMANDS_H__
 #define __XED_COMMANDS_H__
 
-#include <gtk/gtk.h>
+#include <gtksourceview/gtksource.h>
 #include <xed/xed-window.h>
 
 G_BEGIN_DECLS
 
 /* Do nothing if URI does not exist */
-void xed_commands_load_location (XedWindow *window, GFile *location, const XedEncoding *encoding, gint line_pos);
+void xed_commands_load_location (XedWindow *window, GFile *location, const GtkSourceEncoding *encoding, gint line_pos);
 
 /* Ignore non-existing URIs */
-gint xed_commands_load_locations (XedWindow *window, const GSList *locations, const XedEncoding *encoding, gint line_pos);
+gint xed_commands_load_locations (XedWindow *window, const GSList *locations, const GtkSourceEncoding *encoding, gint line_pos);
 void xed_commands_save_document (XedWindow *window, XedDocument *document);
 void xed_commands_save_all_documents (XedWindow *window);
 
@@ -19,7 +19,7 @@ void xed_commands_save_all_documents (XedWindow *window);
  */
 
 /* Create titled documens for non-existing URIs */
-gint _xed_cmd_load_files_from_prompt (XedWindow *window, GSList *files, const XedEncoding *encoding, gint line_pos);
+gint _xed_cmd_load_files_from_prompt (XedWindow *window, GSList *files, const GtkSourceEncoding *encoding, gint line_pos);
 void _xed_cmd_file_new (GtkAction *action, XedWindow *window);
 void _xed_cmd_file_open (GtkAction *action, XedWindow *window);
 void _xed_cmd_file_save (GtkAction *action, XedWindow *window);

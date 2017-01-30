@@ -31,8 +31,7 @@
 #ifndef __XED_TAB_H__
 #define __XED_TAB_H__
 
-#include <gtk/gtk.h>
-
+#include <gtksourceview/gtksource.h>
 #include <xed/xed-view.h>
 #include <xed/xed-document.h>
 
@@ -109,24 +108,24 @@ GtkWidget *_xed_tab_new (void);
 
 /* Whether create is TRUE, creates a new empty document if location does
    not refer to an existing file */
-GtkWidget *_xed_tab_new_from_location  (GFile             *location,
-                                        const XedEncoding *encoding,
-                                        gint               line_pos,
-                                        gboolean           create);
+GtkWidget *_xed_tab_new_from_location  (GFile                   *location,
+                                        const GtkSourceEncoding *encoding,
+                                        gint                     line_pos,
+                                        gboolean                 create);
 gchar *_xed_tab_get_name (XedTab *tab);
 gchar *_xed_tab_get_tooltips (XedTab *tab);
 GdkPixbuf *_xed_tab_get_icon (XedTab *tab);
-void _xed_tab_load (XedTab            *tab,
-                    GFile             *location,
-                    const XedEncoding *encoding,
-                    gint               line_pos,
-                    gboolean           create);
+void _xed_tab_load (XedTab                 *tab,
+                    GFile                  *location,
+                    const GtkSourceEncoding *encoding,
+                    gint                    line_pos,
+                    gboolean                create);
 void _xed_tab_revert (XedTab *tab);
 void _xed_tab_save (XedTab *tab);
-void _xed_tab_save_as (XedTab                *tab,
-                       GFile                 *location,
-                       const XedEncoding     *encoding,
-                       XedDocumentNewlineType newline_type);
+void _xed_tab_save_as (XedTab                  *tab,
+                       GFile                   *location,
+                       const GtkSourceEncoding *encoding,
+                       GtkSourceNewlineType     newline_type);
 
 void _xed_tab_print (XedTab *tab);
 void _xed_tab_print_preview (XedTab *tab);

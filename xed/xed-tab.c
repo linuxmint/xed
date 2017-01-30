@@ -30,6 +30,7 @@
 #include <config.h>
 #endif
 
+#include <stdlib.h>
 #include <glib/gi18n.h>
 #include <gio/gio.h>
 
@@ -63,25 +64,48 @@ struct _XedTabPrivate
 
     XedPrintJob *print_job;
 
-    /* tmp data for saving */
-    GFile *tmp_save_location;
+    GtkSourceFileSaver *saver;
+    GtkSourceFileSaverFlags save_flags;
 
     /* tmp data for loading */
-    gint               tmp_line_pos;
-    const XedEncoding *tmp_encoding;
+    GtkSourceFileLoader *loader;
+    GCancellable *cancellable;
+    gint tmp_line_pos;
+    guint idle_scroll;
 
     GTimer *timer;
     guint   times_called;
 
-    XedDocumentSaveFlags save_flags;
-
     guint  auto_save_interval;
     guint auto_save_timeout;
 
-    gint not_editable : 1;
+    gint editable : 1;
     gint auto_save : 1;
 
     gint ask_if_externally_modified : 1;
+
+    /* Notes about the create_backup saver flag:
+     * - At the beginning of a new file saving, force_no_backup is reset to
+     *   FALSE. The create_backup flag is set to the saver if it is enabled
+     *   in GSettings and if it isn't an auto-save.
+     * - If creating the backup gives an error, and if the user wants to
+     *   save the file without the backup, force_no_backup is set to TRUE
+     *   and the create_backup flag is removed from the saver.
+     *   force_no_backup as TRUE means that the create_backup flag should
+     *   never be added again to the saver (for the current file saving).
+     * - When another error occurs and if the user explicitly retry again
+     *   the file saving, the create_backup flag is added to the saver if
+     *   (1) it is enabled in GSettings, (2) if force_no_backup is FALSE.
+     * - The create_backup flag is added when the user expressed his or her
+     *   willing to save the file, by pressing a button for example. For an
+     *   auto-save, the create_backup flag is thus not added initially, but
+     *   can be added later when an error occurs and the user clicks on a
+     *   button in the info bar to retry the file saving.
+     */
+    guint force_no_backup : 1;
+
+    /*tmp data for loading */
+    guint user_requested_encoding : 1;
 };
 
 G_DEFINE_TYPE(XedTab, xed_tab, GTK_TYPE_BOX)
@@ -97,58 +121,23 @@ enum
 
 static gboolean xed_tab_auto_save (XedTab *tab);
 
+static void load (XedTab                  *tab,
+                  const GtkSourceEncoding *encoding,
+                  gint                     line_pos);
+
+static void save (XedTab *tab);
+
 static void
 install_auto_save_timeout (XedTab *tab)
 {
-    gint timeout;
-
-    xed_debug (DEBUG_TAB);
-
-    g_return_if_fail (tab->priv->auto_save_timeout <= 0);
-    g_return_if_fail (tab->priv->auto_save);
-    g_return_if_fail (tab->priv->auto_save_interval > 0);
-
-    g_return_if_fail (tab->priv->state != XED_TAB_STATE_LOADING);
-    g_return_if_fail (tab->priv->state != XED_TAB_STATE_SAVING);
-    g_return_if_fail (tab->priv->state != XED_TAB_STATE_REVERTING);
-    g_return_if_fail (tab->priv->state != XED_TAB_STATE_LOADING_ERROR);
-    g_return_if_fail (tab->priv->state != XED_TAB_STATE_SAVING_ERROR);
-    g_return_if_fail (tab->priv->state != XED_TAB_STATE_SAVING_ERROR);
-    g_return_if_fail (tab->priv->state != XED_TAB_STATE_REVERTING_ERROR);
-
-    /* Add a new timeout */
-    timeout = g_timeout_add_seconds (tab->priv->auto_save_interval * 60, (GSourceFunc) xed_tab_auto_save, tab);
-
-    tab->priv->auto_save_timeout = timeout;
-}
-
-static gboolean
-install_auto_save_timeout_if_needed (XedTab *tab)
-{
-    XedDocument *doc;
-
-    xed_debug (DEBUG_TAB);
-
-    g_return_val_if_fail (tab->priv->auto_save_timeout <= 0, FALSE);
-    g_return_val_if_fail ((tab->priv->state == XED_TAB_STATE_NORMAL) ||
-                          (tab->priv->state == XED_TAB_STATE_SHOWING_PRINT_PREVIEW) ||
-                          (tab->priv->state == XED_TAB_STATE_CLOSING), FALSE);
-
-    if (tab->priv->state == XED_TAB_STATE_CLOSING)
+    if (tab->priv->auto_save_timeout == 0)
     {
-        return FALSE;
+        g_return_if_fail (tab->priv->auto_save_interval > 0);
+
+        tab->priv->auto_save_timeout = g_timeout_add_seconds (tab->priv->auto_save_interval * 60,
+                                                              (GSourceFunc) xed_tab_auto_save,
+                                                              tab);
     }
-
-    doc = xed_tab_get_document (tab);
-
-    if (tab->priv->auto_save && !xed_document_is_untitled (doc) && !xed_document_get_readonly (doc))
-    {
-        install_auto_save_timeout (tab);
-
-        return TRUE;
-    }
-
-    return FALSE;
 }
 
 static void
@@ -156,12 +145,37 @@ remove_auto_save_timeout (XedTab *tab)
 {
     xed_debug (DEBUG_TAB);
 
-    /* FIXME: check sugli stati */
+    if (tab->priv->auto_save_timeout > 0)
+    {
+        g_source_remove (tab->priv->auto_save_timeout);
+        tab->priv->auto_save_timeout = 0;
+    }
+}
 
-    g_return_if_fail (tab->priv->auto_save_timeout > 0);
+static void
+update_auto_save_timeout (XedTab *tab)
+{
+    gboolean good_state;
+    XedDocument *doc;
 
-    g_source_remove (tab->priv->auto_save_timeout);
-    tab->priv->auto_save_timeout = 0;
+    xed_debug (DEBUG_TAB);
+
+    good_state = (tab->priv->state == XED_TAB_STATE_NORMAL ||
+                  tab->priv->state == XED_TAB_STATE_SHOWING_PRINT_PREVIEW);
+
+    doc = xed_tab_get_document (tab);
+
+    if (good_state &&
+       tab->priv->auto_save &&
+       !xed_document_is_untitled (doc) &&
+       !xed_document_get_readonly (doc))
+    {
+        install_auto_save_timeout (tab);
+    }
+    else
+    {
+        remove_auto_save_timeout (tab);
+    }
 }
 
 static void
@@ -215,17 +229,28 @@ xed_tab_set_property (GObject      *object,
 }
 
 static void
+clear_loading (XedTab *tab)
+{
+    g_clear_object (&tab->priv->loader);
+    g_clear_object (&tab->priv->cancellable);
+}
+
+static void
+clear_saving (XedTab *tab)
+{
+    g_clear_object (&tab->priv->saver);
+    tab->priv->force_no_backup = FALSE;
+}
+
+static void
 xed_tab_dispose (GObject *object)
 {
     XedTab *tab = XED_TAB (object);
 
-    if (tab->priv->tmp_save_location != NULL)
-    {
-        g_object_unref (tab->priv->tmp_save_location);
-        tab->priv->tmp_save_location = NULL;
-    }
-
     g_clear_object (&tab->priv->editor);
+
+    clear_loading (tab);
+    clear_saving (tab);
 
     G_OBJECT_CLASS (xed_tab_parent_class)->dispose (object);
 }
@@ -240,9 +265,12 @@ xed_tab_finalize (GObject *object)
         g_timer_destroy (tab->priv->timer);
     }
 
-    if (tab->priv->auto_save_timeout > 0)
+    remove_auto_save_timeout (tab);
+
+    if (tab->priv->idle_scroll != 0)
     {
-        remove_auto_save_timeout (tab);
+        g_source_remove (tab->priv->idle_scroll);
+        tab->priv->idle_scroll = 0;
     }
 
     G_OBJECT_CLASS (xed_tab_parent_class)->finalize (object);
@@ -381,7 +409,7 @@ set_view_properties_according_to_state (XedTab      *tab,
 
     hl_current_line = g_settings_get_boolean (tab->priv->editor, XED_SETTINGS_HIGHLIGHT_CURRENT_LINE);
     view = xed_view_frame_get_view (tab->priv->frame);
-    val = ((state == XED_TAB_STATE_NORMAL) && (tab->priv->print_preview == NULL) && !tab->priv->not_editable);
+    val = ((state == XED_TAB_STATE_NORMAL) && (tab->priv->print_preview == NULL) && tab->priv->editable);
     gtk_text_view_set_editable (GTK_TEXT_VIEW (view), val);
 
     val = ((state != XED_TAB_STATE_LOADING) && (state != XED_TAB_STATE_CLOSING));
@@ -424,13 +452,15 @@ xed_tab_set_state (XedTab      *tab,
 
     set_cursor_according_to_state (GTK_TEXT_VIEW (xed_view_frame_get_view (tab->priv->frame)), state);
 
+    update_auto_save_timeout (tab);
+
     g_object_notify (G_OBJECT (tab), "state");
 }
 
 static void
-document_location_notify_handler (XedDocument *document,
-                                  GParamSpec  *pspec,
-                                  XedTab      *tab)
+document_location_notify_handler (GtkSourceFile *file,
+                                  GParamSpec    *pspec,
+                                  XedTab        *tab)
 {
     xed_debug (DEBUG_TAB);
 
@@ -497,51 +527,40 @@ io_loading_error_message_area_response (GtkWidget *message_area,
                                         gint       response_id,
                                         XedTab    *tab)
 {
-    XedDocument *doc;
     XedView *view;
     GFile *location;
-    const XedEncoding *encoding;
+    const GtkSourceEncoding *encoding;
 
-    doc = xed_tab_get_document (tab);
-    g_return_if_fail (XED_IS_DOCUMENT (doc));
+    g_return_if_fail (tab->priv->loader != NULL);
 
     view = xed_tab_get_view (tab);
-    g_return_if_fail (XED_IS_VIEW (view));
-
-    location = xed_document_get_location (doc);
-    g_return_if_fail (location != NULL);
+    location = gtk_source_file_loader_get_location (tab->priv->loader);
 
     switch (response_id)
     {
         case GTK_RESPONSE_OK:
             encoding = xed_conversion_error_message_area_get_encoding (GTK_WIDGET (message_area));
 
-            if (encoding != NULL)
-            {
-                tab->priv->tmp_encoding = encoding;
-            }
-
             set_message_area (tab, NULL);
             xed_tab_set_state (tab, XED_TAB_STATE_LOADING);
 
-            g_return_if_fail (tab->priv->auto_save_timeout <= 0);
-
-            xed_document_load (doc, location, tab->priv->tmp_encoding, tab->priv->tmp_line_pos, FALSE);
+            load (tab, encoding, tab->priv->tmp_line_pos);
             break;
+
         case GTK_RESPONSE_YES:
             /* This means that we want to edit the document anyway */
-            tab->priv->not_editable = FALSE;
+            tab->priv->editable = TRUE;
             gtk_text_view_set_editable (GTK_TEXT_VIEW (view), TRUE);
             set_message_area (tab, NULL);
+            clear_loading (tab);
             break;
+
         default:
             _xed_recent_remove (XED_WINDOW (gtk_widget_get_toplevel (GTK_WIDGET (tab))), location);
 
             remove_tab (tab);
             break;
     }
-
-    g_object_unref (location);
 }
 
 static void
@@ -555,8 +574,7 @@ file_already_open_warning_message_area_response (GtkWidget *message_area,
 
     if (response_id == GTK_RESPONSE_YES)
     {
-        tab->priv->not_editable = FALSE;
-
+        tab->priv->editable = TRUE;
         gtk_text_view_set_editable (GTK_TEXT_VIEW (view), TRUE);
     }
 
@@ -571,10 +589,9 @@ load_cancelled (GtkWidget *area,
                 XedTab    *tab)
 {
     g_return_if_fail (XED_IS_PROGRESS_MESSAGE_AREA (tab->priv->message_area));
+    g_return_if_fail (G_IS_CANCELLABLE (tab->priv->cancellable));
 
-    g_object_ref (tab);
-    xed_document_load_cancel (xed_tab_get_document (tab));
-    g_object_unref (tab);
+    g_cancellable_cancel (tab->priv->cancellable);
 }
 
 static void
@@ -584,16 +601,14 @@ unrecoverable_reverting_error_message_area_response (GtkWidget *message_area,
 {
     XedView *view;
 
-    xed_tab_set_state (tab,
-                 XED_TAB_STATE_NORMAL);
+    xed_tab_set_state (tab, XED_TAB_STATE_NORMAL);
 
     set_message_area (tab, NULL);
 
+    clear_loading (tab);
+
     view = xed_tab_get_view (tab);
-
     gtk_widget_grab_focus (GTK_WIDGET (view));
-
-    install_auto_save_timeout_if_needed (tab);
 }
 
 #define MAX_MSG_LENGTH 100
@@ -636,15 +651,12 @@ show_loading_message_area (XedTab *tab)
     }
     else
     {
-        GFile *location;
+        GtkSourceFile *file = xed_document_get_file (doc);
+        GFile *location = gtk_source_file_get_location (file);
 
-        location = xed_document_get_location (doc);
         if (location != NULL)
         {
-            gchar *str;
-
-            str = xed_utils_location_get_dirname_for_display (location);
-            g_object_unref (location);
+            gchar *str = xed_utils_location_get_dirname_for_display (location);
 
             /* use the remaining space for the dir, but use a min of 20 chars
              * so that we do not end up with a dirname like "(a...b)".
@@ -722,7 +734,7 @@ show_saving_message_area (XedTab *tab)
     gchar *msg = NULL;
     gint len;
 
-    g_return_if_fail (tab->priv->tmp_save_location != NULL);
+    g_return_if_fail (tab->priv->saver != NULL);
 
     if (tab->priv->message_area != NULL)
     {
@@ -749,11 +761,10 @@ show_saving_message_area (XedTab *tab)
     else
     {
         gchar *str;
+        GFile *location = gtk_source_file_saver_get_location (tab->priv->saver);
 
         from = short_name;
-
-        to = g_file_get_parse_name (tab->priv->tmp_save_location);
-
+        to = g_file_get_parse_name (location);
         str = xed_utils_str_middle_truncate (to, MAX (20, MAX_MSG_LENGTH - len));
         g_free (to);
 
@@ -819,263 +830,16 @@ message_area_set_progress (XedTab  *tab,
     }
 }
 
-static void
-document_loading (XedDocument *document,
-                  goffset      size,
-                  goffset      total_size,
-                  XedTab      *tab)
-{
-    gdouble et;
-    gdouble total_time;
-
-    g_return_if_fail ((tab->priv->state == XED_TAB_STATE_LOADING) || (tab->priv->state == XED_TAB_STATE_REVERTING));
-
-    xed_debug_message (DEBUG_TAB, "%" G_GUINT64_FORMAT "/%" G_GUINT64_FORMAT, size, total_size);
-
-    if (tab->priv->timer == NULL)
-    {
-        g_return_if_fail (tab->priv->times_called == 0);
-        tab->priv->timer = g_timer_new ();
-    }
-
-    et = g_timer_elapsed (tab->priv->timer, NULL);
-
-    /* et : total_time = size : total_size */
-    total_time = (et * total_size) / size;
-
-    if ((total_time - et) > 3.0)
-    {
-        show_loading_message_area (tab);
-    }
-
-    message_area_set_progress (tab, size, total_size);
-}
-
 static gboolean
-remove_tab_idle (XedTab *tab)
+scroll_to_cursor (XedTab *tab)
 {
-    remove_tab (tab);
+    XedView *view;
 
-    return FALSE;
-}
+    view = xed_tab_get_view (tab);
+    xed_view_scroll_to_cursor (view);
 
-static void
-document_loaded (XedDocument  *document,
-                 const GError *error,
-                 XedTab       *tab)
-{
-    GtkWidget *emsg;
-    GFile *location;
-    const XedEncoding *encoding;
-
-    g_return_if_fail ((tab->priv->state == XED_TAB_STATE_LOADING) || (tab->priv->state == XED_TAB_STATE_REVERTING));
-    g_return_if_fail (tab->priv->auto_save_timeout <= 0);
-
-    if (tab->priv->timer != NULL)
-    {
-        g_timer_destroy (tab->priv->timer);
-        tab->priv->timer = NULL;
-    }
-    tab->priv->times_called = 0;
-
-    set_message_area (tab, NULL);
-
-    location = xed_document_get_location (document);
-
-    /* if the error is CONVERSION FALLBACK don't treat it as a normal error */
-    if (error != NULL && (error->domain != XED_DOCUMENT_ERROR || error->code != XED_DOCUMENT_ERROR_CONVERSION_FALLBACK))
-    {
-        if (tab->priv->state == XED_TAB_STATE_LOADING)
-        {
-            xed_tab_set_state (tab, XED_TAB_STATE_LOADING_ERROR);
-        }
-        else
-        {
-            xed_tab_set_state (tab, XED_TAB_STATE_REVERTING_ERROR);
-        }
-
-        encoding = xed_document_get_encoding (document);
-
-        if (error->domain == G_IO_ERROR && error->code == G_IO_ERROR_CANCELLED)
-        {
-            /* remove the tab, but in an idle handler, since
-             * we are in the handler of doc loaded and we
-             * don't want doc and tab to be finalized now.
-             */
-            g_idle_add ((GSourceFunc) remove_tab_idle, tab);
-
-            goto end;
-        }
-        else
-        {
-            _xed_recent_remove (XED_WINDOW (gtk_widget_get_toplevel (GTK_WIDGET (tab))), location);
-
-            if (tab->priv->state == XED_TAB_STATE_LOADING_ERROR)
-            {
-                emsg = xed_io_loading_error_message_area_new (location, tab->priv->tmp_encoding, error);
-                g_signal_connect (emsg, "response",
-                                  G_CALLBACK (io_loading_error_message_area_response), tab);
-            }
-            else
-            {
-                g_return_if_fail (tab->priv->state == XED_TAB_STATE_REVERTING_ERROR);
-
-                emsg = xed_unrecoverable_reverting_error_message_area_new (location, error);
-
-                g_signal_connect (emsg, "response",
-                                  G_CALLBACK (unrecoverable_reverting_error_message_area_response), tab);
-            }
-
-            set_message_area (tab, emsg);
-        }
-
-        gtk_info_bar_set_default_response (GTK_INFO_BAR (emsg), GTK_RESPONSE_CANCEL);
-
-        gtk_widget_show (emsg);
-
-        g_object_unref (location);
-
-        return;
-    }
-    else
-    {
-        gchar *mime;
-        GList *all_documents;
-        GList *l;
-
-        g_return_if_fail (location != NULL);
-
-        mime = xed_document_get_mime_type (document);
-        _xed_recent_add (XED_WINDOW (gtk_widget_get_toplevel (GTK_WIDGET (tab))), location, mime);
-        g_free (mime);
-
-        if (error && error->domain == XED_DOCUMENT_ERROR && error->code == XED_DOCUMENT_ERROR_CONVERSION_FALLBACK)
-        {
-            GtkWidget *emsg;
-
-            tab->priv->not_editable = TRUE;
-
-            emsg = xed_io_loading_error_message_area_new (location, tab->priv->tmp_encoding, error);
-
-            set_message_area (tab, emsg);
-
-            g_signal_connect (emsg, "response",
-                              G_CALLBACK (io_loading_error_message_area_response), tab);
-
-            gtk_info_bar_set_default_response (GTK_INFO_BAR (emsg), GTK_RESPONSE_CANCEL);
-
-            gtk_widget_show (emsg);
-        }
-
-        /* Scroll to the cursor when the document is loaded */
-        xed_view_scroll_to_cursor (xed_view_frame_get_view (tab->priv->frame));
-
-        all_documents = xed_app_get_documents (xed_app_get_default ());
-
-        for (l = all_documents; l != NULL; l = g_list_next (l))
-        {
-            XedDocument *d = XED_DOCUMENT (l->data);
-
-            if (d != document)
-            {
-                GFile *loc;
-
-                loc = xed_document_get_location (d);
-
-                if ((loc != NULL) && g_file_equal (location, loc))
-                    {
-                        GtkWidget *w;
-                        XedView *view;
-
-                        view = xed_tab_get_view (tab);
-
-                        tab->priv->not_editable = TRUE;
-
-                        w = xed_file_already_open_warning_message_area_new (location);
-
-                        set_message_area (tab, w);
-
-                        gtk_info_bar_set_default_response (GTK_INFO_BAR (w), GTK_RESPONSE_CANCEL);
-
-                        gtk_widget_show (w);
-
-                        g_signal_connect (w, "response",
-                                          G_CALLBACK (file_already_open_warning_message_area_response), tab);
-
-                        g_object_unref (loc);
-                        break;
-                    }
-
-                    if (loc != NULL)
-                    {
-                        g_object_unref (loc);
-                    }
-            }
-        }
-
-        g_list_free (all_documents);
-
-        xed_tab_set_state (tab, XED_TAB_STATE_NORMAL);
-
-        install_auto_save_timeout_if_needed (tab);
-
-        tab->priv->ask_if_externally_modified = TRUE;
-    }
-
- end:
-    g_object_unref (location);
-
-    tab->priv->tmp_line_pos = 0;
-    tab->priv->tmp_encoding = NULL;
-}
-
-static void
-document_saving (XedDocument *document,
-                 goffset      size,
-                 goffset      total_size,
-                 XedTab      *tab)
-{
-    gdouble et;
-    gdouble total_time;
-
-    g_return_if_fail (tab->priv->state == XED_TAB_STATE_SAVING);
-
-    xed_debug_message (DEBUG_TAB, "%" G_GUINT64_FORMAT "/%" G_GUINT64_FORMAT, size, total_size);
-
-
-    if (tab->priv->timer == NULL)
-    {
-        g_return_if_fail (tab->priv->times_called == 0);
-        tab->priv->timer = g_timer_new ();
-    }
-
-    et = g_timer_elapsed (tab->priv->timer, NULL);
-
-    /* et : total_time = size : total_size */
-    total_time = (et * total_size)/size;
-
-    if ((total_time - et) > 3.0)
-    {
-        show_saving_message_area (tab);
-    }
-
-    message_area_set_progress (tab, size, total_size);
-
-    tab->priv->times_called++;
-}
-
-static void
-end_saving (XedTab *tab)
-{
-    /* Reset tmp data for saving */
-    if (tab->priv->tmp_save_location)
-    {
-        g_object_unref (tab->priv->tmp_save_location);
-        tab->priv->tmp_save_location = NULL;
-    }
-    tab->priv->tmp_encoding = NULL;
-
-    install_auto_save_timeout_if_needed (tab);
+    tab->priv->idle_scroll = 0;
+    return G_SOURCE_REMOVE;
 }
 
 static void
@@ -1094,13 +858,39 @@ unrecoverable_saving_error_message_area_response (GtkWidget *message_area,
         xed_tab_set_state (tab, XED_TAB_STATE_NORMAL);
     }
 
-    end_saving (tab);
+    clear_saving (tab);
 
     set_message_area (tab, NULL);
 
     view = xed_tab_get_view (tab);
 
     gtk_widget_grab_focus (GTK_WIDGET (view));
+}
+
+/* Sets the save flags after an info bar response. */
+static void
+response_set_save_flags (XedTab                  *tab,
+                         GtkSourceFileSaverFlags  save_flags)
+{
+    gboolean create_backup;
+
+    create_backup = g_settings_get_boolean (tab->priv->editor, XED_SETTINGS_CREATE_BACKUP_COPY);
+
+    /* If we are here, it means that the user expressed his or her willing
+    * to save the file, by pressing a button in the info bar. So even if
+    * the file saving was initially an auto-save, we set the create_backup
+    * flag (if the conditions are met).
+    */
+    if (create_backup && !tab->priv->force_no_backup)
+    {
+        save_flags |= GTK_SOURCE_FILE_SAVER_FLAGS_CREATE_BACKUP;
+    }
+    else
+    {
+        save_flags &= ~GTK_SOURCE_FILE_SAVER_FLAGS_CREATE_BACKUP;
+    }
+
+    gtk_source_file_saver_set_flags (tab->priv->saver, save_flags);
 }
 
 static void
@@ -1110,25 +900,21 @@ invalid_character_message_area_response (GtkWidget *info_bar,
 {
     if (response_id == GTK_RESPONSE_YES)
     {
-        XedDocument *doc;
-
-        doc = xed_tab_get_document (tab);
-        g_return_if_fail (XED_IS_DOCUMENT (doc));
+        GtkSourceFileSaverFlags save_flags;
 
         set_message_area (tab, NULL);
 
-        g_return_if_fail (tab->priv->tmp_save_location != NULL);
-        g_return_if_fail (tab->priv->tmp_encoding != NULL);
+        g_return_if_fail (tab->priv->saver != NULL);
 
-        xed_tab_set_state (tab, XED_TAB_STATE_SAVING);
+        /* Don't bug the user again with this... */
+        tab->priv->save_flags |= GTK_SOURCE_FILE_SAVER_FLAGS_IGNORE_INVALID_CHARS;
 
-        /* don't bug the user again with this... */
-        tab->priv->save_flags |= XED_DOCUMENT_SAVE_IGNORE_INVALID_CHARS;
-
-        g_return_if_fail (tab->priv->auto_save_timeout <= 0);
+        save_flags = gtk_source_file_saver_get_flags (tab->priv->saver);
+        save_flags |= GTK_SOURCE_FILE_SAVER_FLAGS_IGNORE_INVALID_CHARS;
+        response_set_save_flags (tab, save_flags);
 
         /* Force saving */
-        xed_document_save (doc, tab->priv->save_flags);
+        save (tab);
     }
     else
     {
@@ -1143,25 +929,18 @@ no_backup_error_message_area_response (GtkWidget *message_area,
 {
     if (response_id == GTK_RESPONSE_YES)
     {
-        XedDocument *doc;
-
-        doc = xed_tab_get_document (tab);
-        g_return_if_fail (XED_IS_DOCUMENT (doc));
+        GtkSourceFileSaverFlags save_flags;
 
         set_message_area (tab, NULL);
 
-        g_return_if_fail (tab->priv->tmp_save_location != NULL);
-        g_return_if_fail (tab->priv->tmp_encoding != NULL);
+        g_return_if_fail (tab->priv->saver != NULL);
 
-        xed_tab_set_state (tab, XED_TAB_STATE_SAVING);
-
-        /* don't bug the user again with this... */
-        tab->priv->save_flags |= XED_DOCUMENT_SAVE_IGNORE_BACKUP;
-
-        g_return_if_fail (tab->priv->auto_save_timeout <= 0);
+        tab->priv->force_no_backup = TRUE;
+        save_flags = gtk_source_file_saver_get_flags (tab->priv->saver);
+        response_set_save_flags (tab, save_flags);
 
         /* Force saving */
-        xed_document_save (doc, tab->priv->save_flags);
+        save (tab);
     }
     else
     {
@@ -1176,24 +955,22 @@ externally_modified_error_message_area_response (GtkWidget *message_area,
 {
     if (response_id == GTK_RESPONSE_YES)
     {
-        XedDocument *doc;
-
-        doc = xed_tab_get_document (tab);
-        g_return_if_fail (XED_IS_DOCUMENT (doc));
+        GtkSourceFileSaverFlags save_flags;
 
         set_message_area (tab, NULL);
 
-        g_return_if_fail (tab->priv->tmp_save_location != NULL);
-        g_return_if_fail (tab->priv->tmp_encoding != NULL);
+        g_return_if_fail (tab->priv->saver != NULL);
 
-        xed_tab_set_state (tab, XED_TAB_STATE_SAVING);
+        /* ignore_modification_time should not be persisted in save
+         * flags across saves (i.e. priv->save_flags is not modified).
+         */
 
-        g_return_if_fail (tab->priv->auto_save_timeout <= 0);
-
-        /* ignore mtime should not be persisted in save flags across saves */
+        save_flags = gtk_source_file_saver_get_flags (tab->priv->saver);
+        save_flags |= GTK_SOURCE_FILE_SAVER_FLAGS_IGNORE_MODIFICATION_TIME;
+        response_set_save_flags (tab, save_flags);
 
         /* Force saving */
-        xed_document_save (doc, tab->priv->save_flags | XED_DOCUMENT_SAVE_IGNORE_MTIME);
+        save (tab);
     }
     else
     {
@@ -1206,160 +983,23 @@ recoverable_saving_error_message_area_response (GtkWidget *message_area,
                                                 gint       response_id,
                                                 XedTab    *tab)
 {
-    XedDocument *doc;
-
-    doc = xed_tab_get_document (tab);
-    g_return_if_fail (XED_IS_DOCUMENT (doc));
-
     if (response_id == GTK_RESPONSE_OK)
     {
-        const XedEncoding *encoding;
-        gchar *tmp_uri;
-
-        encoding = xed_conversion_error_message_area_get_encoding (GTK_WIDGET (message_area));
-
-        g_return_if_fail (encoding != NULL);
+        const GtkSourceEncoding *encoding;
 
         set_message_area (tab, NULL);
 
-        g_return_if_fail (tab->priv->tmp_save_location != NULL);
+        g_return_if_fail (tab->priv->saver != NULL);
 
-        xed_tab_set_state (tab, XED_TAB_STATE_SAVING);
+        encoding = xed_conversion_error_message_area_get_encoding (GTK_WIDGET (message_area));
+        g_return_if_fail (encoding != NULL);
 
-        tab->priv->tmp_encoding = encoding;
-
-        tmp_uri = g_file_get_uri (tab->priv->tmp_save_location);
-        xed_debug_message (DEBUG_TAB, "Force saving with URI '%s'", tmp_uri);
-        g_free (tmp_uri);
-
-        g_return_if_fail (tab->priv->auto_save_timeout <= 0);
-
-        xed_document_save_as (doc, tab->priv->tmp_save_location, tab->priv->tmp_encoding, tab->priv->save_flags);
+        gtk_source_file_saver_set_encoding (tab->priv->saver, encoding);
+        save (tab);
     }
     else
     {
         unrecoverable_saving_error_message_area_response (message_area, response_id, tab);
-    }
-}
-
-static void
-document_saved (XedDocument  *document,
-                const GError *error,
-                XedTab       *tab)
-{
-    GtkWidget *emsg;
-
-    g_return_if_fail (tab->priv->state == XED_TAB_STATE_SAVING);
-
-    g_return_if_fail (tab->priv->tmp_save_location != NULL);
-    g_return_if_fail (tab->priv->tmp_encoding != NULL);
-    g_return_if_fail (tab->priv->auto_save_timeout <= 0);
-
-    if (tab->priv->timer != NULL)
-    {
-        g_timer_destroy (tab->priv->timer);
-        tab->priv->timer = NULL;
-    }
-    tab->priv->times_called = 0;
-
-    set_message_area (tab, NULL);
-
-    if (error != NULL)
-    {
-        xed_tab_set_state (tab, XED_TAB_STATE_SAVING_ERROR);
-
-        if (error->domain == XED_DOCUMENT_ERROR && error->code == XED_DOCUMENT_ERROR_EXTERNALLY_MODIFIED)
-        {
-            /* This error is recoverable */
-            emsg = xed_externally_modified_saving_error_message_area_new (tab->priv->tmp_save_location, error);
-            g_return_if_fail (emsg != NULL);
-
-            set_message_area (tab, emsg);
-
-            g_signal_connect (emsg, "response",
-                              G_CALLBACK (externally_modified_error_message_area_response), tab);
-        }
-        else if ((error->domain == XED_DOCUMENT_ERROR &&
-                 error->code == XED_DOCUMENT_ERROR_CANT_CREATE_BACKUP) ||
-                 (error->domain == G_IO_ERROR &&
-                 error->code == G_IO_ERROR_CANT_CREATE_BACKUP))
-        {
-            /* This error is recoverable */
-            emsg = xed_no_backup_saving_error_message_area_new (tab->priv->tmp_save_location, error);
-            g_return_if_fail (emsg != NULL);
-
-            set_message_area (tab, emsg);
-
-            g_signal_connect (emsg, "response",
-                              G_CALLBACK (no_backup_error_message_area_response), tab);
-        }
-        else if (error->domain == XED_DOCUMENT_ERROR &&
-                 error->code == XED_DOCUMENT_ERROR_CONVERSION_FALLBACK)
-        {
-            /* If we have any invalid char in the document we must warn the user
-               as it can make the document useless if it is saved */
-            emsg = xed_invalid_character_message_area_new (tab->priv->tmp_save_location);
-            g_return_if_fail (emsg != NULL);
-
-            set_message_area (tab, emsg);
-
-            g_signal_connect (emsg, "response",
-                              G_CALLBACK (invalid_character_message_area_response), tab);
-        }
-        else if (error->domain == XED_DOCUMENT_ERROR ||
-                 (error->domain == G_IO_ERROR &&
-                 error->code != G_IO_ERROR_INVALID_DATA &&
-                 error->code != G_IO_ERROR_PARTIAL_INPUT))
-        {
-            /* These errors are _NOT_ recoverable */
-            _xed_recent_remove  (XED_WINDOW (gtk_widget_get_toplevel (GTK_WIDGET (tab))), tab->priv->tmp_save_location);
-
-            emsg = xed_unrecoverable_saving_error_message_area_new (tab->priv->tmp_save_location, error);
-            g_return_if_fail (emsg != NULL);
-
-            set_message_area (tab, emsg);
-
-            g_signal_connect (emsg, "response",
-                              G_CALLBACK (unrecoverable_saving_error_message_area_response), tab);
-        }
-        else
-        {
-            /* This error is recoverable */
-            g_return_if_fail (error->domain == G_CONVERT_ERROR || error->domain == G_IO_ERROR);
-
-            emsg = xed_conversion_error_while_saving_message_area_new (tab->priv->tmp_save_location,
-                                                                       tab->priv->tmp_encoding,
-                                                                       error);
-
-            set_message_area (tab, emsg);
-
-            g_signal_connect (emsg, "response",
-                              G_CALLBACK (recoverable_saving_error_message_area_response), tab);
-        }
-
-        gtk_info_bar_set_default_response (GTK_INFO_BAR (emsg), GTK_RESPONSE_CANCEL);
-
-        gtk_widget_show (emsg);
-    }
-    else
-    {
-        gchar *mime = xed_document_get_mime_type (document);
-
-        _xed_recent_add (XED_WINDOW (gtk_widget_get_toplevel (GTK_WIDGET (tab))), tab->priv->tmp_save_location, mime);
-        g_free (mime);
-
-        if (tab->priv->print_preview != NULL)
-        {
-            xed_tab_set_state (tab, XED_TAB_STATE_SHOWING_PRINT_PREVIEW);
-        }
-        else
-        {
-            xed_tab_set_state (tab, XED_TAB_STATE_NORMAL);
-        }
-
-        tab->priv->ask_if_externally_modified = TRUE;
-
-        end_saving (tab);
     }
 }
 
@@ -1393,19 +1033,20 @@ display_externally_modified_notification (XedTab *tab)
 {
     GtkWidget *message_area;
     XedDocument *doc;
+    GtkSourceFile *file;
     GFile *location;
     gboolean document_modified;
 
     doc = xed_tab_get_document (tab);
     g_return_if_fail (XED_IS_DOCUMENT (doc));
+    file = xed_document_get_file (doc);
 
     /* we're here because the file we're editing changed on disk */
-    location = xed_document_get_location (doc);
+    location = gtk_source_file_get_location (file);
     g_return_if_fail (location != NULL);
 
     document_modified = gtk_text_buffer_get_modified (GTK_TEXT_BUFFER(doc));
     message_area = xed_externally_modified_message_area_new (location, document_modified);
-    g_object_unref (location);
 
     tab->priv->message_area = NULL;
     set_message_area (tab, message_area);
@@ -1463,13 +1104,13 @@ xed_tab_init (XedTab *tab)
     guint auto_save_interval;
     XedDocument *doc;
     XedView *view;
+    GtkSourceFile *file;
 
     tab->priv = XED_TAB_GET_PRIVATE (tab);
 
     tab->priv->editor = g_settings_new ("org.x.editor.preferences.editor");
     tab->priv->state = XED_TAB_STATE_NORMAL;
-    tab->priv->not_editable = FALSE;
-    tab->priv->save_flags = 0;
+    tab->priv->editable = TRUE;
     tab->priv->ask_if_externally_modified = TRUE;
 
     gtk_orientable_set_orientation (GTK_ORIENTABLE (tab), GTK_ORIENTATION_VERTICAL);
@@ -1494,20 +1135,14 @@ xed_tab_init (XedTab *tab)
     view = xed_view_frame_get_view (tab->priv->frame);
     g_object_set_data (G_OBJECT (view), XED_TAB_KEY, tab);
 
-    g_signal_connect (doc, "notify::location",
-                      G_CALLBACK (document_location_notify_handler), tab);
+    file = xed_document_get_file (doc);
+
+    g_signal_connect_object (file, "notify::location",
+                             G_CALLBACK (document_location_notify_handler), tab, 0);
     g_signal_connect (doc, "notify::shortname",
                       G_CALLBACK (document_shortname_notify_handler), tab);
     g_signal_connect (doc, "modified_changed",
                       G_CALLBACK (document_modified_changed), tab);
-    g_signal_connect (doc, "loading",
-                      G_CALLBACK (document_loading), tab);
-    g_signal_connect (doc, "loaded",
-                      G_CALLBACK (document_loaded), tab);
-    g_signal_connect (doc, "saving",
-                      G_CALLBACK (document_saving), tab);
-    g_signal_connect (doc, "saved",
-                      G_CALLBACK (document_saved), tab);
 
     g_signal_connect_after (view, "focus-in-event",
                             G_CALLBACK (view_focused_in), tab);
@@ -1524,10 +1159,10 @@ _xed_tab_new (void)
 /* Whether create is TRUE, creates a new empty document if location does
    not refer to an existing file */
 GtkWidget *
-_xed_tab_new_from_location (GFile             *location,
-                            const XedEncoding *encoding,
-                            gint               line_pos,
-                            gboolean           create)
+_xed_tab_new_from_location (GFile                   *location,
+                            const GtkSourceEncoding *encoding,
+                            gint                     line_pos,
+                            gboolean                 create)
 {
     XedTab *tab;
 
@@ -1645,7 +1280,8 @@ _xed_tab_get_tooltips (XedTab *tab)
         gchar *content_description;
         gchar *content_full_description;
         gchar *encoding;
-        const XedEncoding *enc;
+        GtkSourceFile *file;
+        const GtkSourceEncoding *enc;
 
         case XED_TAB_STATE_LOADING_ERROR:
             tip = g_strdup_printf (_("Error opening file %s"), ruri_markup);
@@ -1676,7 +1312,8 @@ _xed_tab_get_tooltips (XedTab *tab)
             g_free (mime_type);
             g_free (content_description);
 
-            enc = xed_document_get_encoding (doc);
+            file = xed_document_get_file (doc);
+            enc = gtk_source_file_get_encoding (file);
 
             if (enc == NULL)
             {
@@ -1684,7 +1321,7 @@ _xed_tab_get_tooltips (XedTab *tab)
             }
             else
             {
-                encoding = xed_encoding_to_string (enc);
+                encoding = gtk_source_encoding_to_string (enc);
             }
 
             tip =  g_markup_printf_escaped ("<b>%s</b> %s\n\n"
@@ -1853,44 +1490,428 @@ xed_tab_get_from_document (XedDocument *doc)
     return (res != NULL) ? XED_TAB (res) : NULL;
 }
 
-void
-_xed_tab_load (XedTab            *tab,
-               GFile             *location,
-               const XedEncoding *encoding,
-               gint               line_pos,
-               gboolean           create)
+static void
+loader_progress_cb (goffset  size,
+                    goffset  total_size,
+                    XedTab  *tab)
+{
+    gdouble elapsed_time;
+    gdouble total_time;
+    gdouble remaining_time;
+
+    g_return_if_fail (tab->priv->state == XED_TAB_STATE_LOADING ||
+                      tab->priv->state == XED_TAB_STATE_REVERTING);
+
+    if (tab->priv->timer == NULL)
+    {
+        tab->priv->timer = g_timer_new ();
+    }
+
+    elapsed_time = g_timer_elapsed (tab->priv->timer, NULL);
+
+    /* elapsed_time / total_time = size / total_size */
+    total_time = (elapsed_time * total_size) / size;
+
+    remaining_time = total_time - elapsed_time;
+
+    /* Approximately more than 3 seconds remaining. */
+    if (remaining_time > 3.0)
+    {
+        show_loading_message_area (tab);
+    }
+
+    message_area_set_progress (tab, size, total_size);
+}
+
+static void
+goto_line (XedTab *tab)
+{
+    XedDocument *doc = xed_tab_get_document (tab);
+    GtkTextIter iter;
+
+    /* Move the cursor at the requested line if any. */
+    if (tab->priv->tmp_line_pos > 0)
+    {
+        xed_document_goto_line_offset (doc, tab->priv->tmp_line_pos - 1, 0);
+        return;
+    }
+
+    /* If enabled, move to the position stored in the metadata. */
+    if (g_settings_get_boolean (tab->priv->editor, XED_SETTINGS_RESTORE_CURSOR_POSITION))
+    {
+        gchar *pos;
+        gint offset;
+
+        pos = xed_document_get_metadata (doc, XED_METADATA_ATTRIBUTE_POSITION);
+
+        offset = pos != NULL ? atoi (pos) : 0;
+        g_free (pos);
+
+        gtk_text_buffer_get_iter_at_offset (GTK_TEXT_BUFFER (doc), &iter, MAX (0, offset));
+
+        /* make sure it's a valid position, if the file
+        * changed we may have ended up in the middle of
+        * a utf8 character cluster */
+        if (!gtk_text_iter_is_cursor_position (&iter))
+        {
+            gtk_text_iter_set_line_offset (&iter, 0);
+        }
+    }
+
+    /* Otherwise to the top. */
+    else
+    {
+        gtk_text_buffer_get_start_iter (GTK_TEXT_BUFFER (doc), &iter);
+    }
+
+    gtk_text_buffer_place_cursor (GTK_TEXT_BUFFER (doc), &iter);
+}
+
+static void
+load_cb (GtkSourceFileLoader *loader,
+         GAsyncResult        *result,
+         XedTab              *tab)
+{
+    XedDocument *doc = xed_tab_get_document (tab);
+    GFile *location = gtk_source_file_loader_get_location (loader);
+    GError *error = NULL;
+
+    g_return_if_fail (tab->priv->state == XED_TAB_STATE_LOADING ||
+                      tab->priv->state == XED_TAB_STATE_REVERTING);
+
+    gtk_source_file_loader_load_finish (loader, result, &error);
+
+    if (error != NULL)
+    {
+        xed_debug_message (DEBUG_TAB, "File loading error: %s", error->message);
+    }
+
+    if (tab->priv->timer != NULL)
+    {
+        g_timer_destroy (tab->priv->timer);
+        tab->priv->timer = NULL;
+    }
+
+    set_message_area (tab, NULL);
+
+    /* Load was successful. */
+    if (error == NULL ||
+       (error->domain == GTK_SOURCE_FILE_LOADER_ERROR &&
+        error->code == GTK_SOURCE_FILE_LOADER_ERROR_CONVERSION_FALLBACK))
+    {
+        if (tab->priv->user_requested_encoding)
+        {
+            const GtkSourceEncoding *encoding = gtk_source_file_loader_get_encoding (loader);
+            const gchar *charset = gtk_source_encoding_get_charset (encoding);
+
+            xed_document_set_metadata (doc, XED_METADATA_ATTRIBUTE_ENCODING, charset, NULL);
+        }
+
+        goto_line (tab);
+    }
+
+    /* Special case creating a named new doc. */
+    else if (_xed_document_get_create (doc) &&
+             error->domain == G_IO_ERROR &&
+             error->code == G_IO_ERROR_NOT_FOUND &&
+             g_file_has_uri_scheme (location, "file"))
+    {
+        g_error_free (error);
+        error = NULL;
+    }
+
+    /* If the error is CONVERSION FALLBACK don't treat it as a normal error. */
+    if (error != NULL &&
+       (error->domain != GTK_SOURCE_FILE_LOADER_ERROR ||
+        error->code != GTK_SOURCE_FILE_LOADER_ERROR_CONVERSION_FALLBACK))
+    {
+        if (tab->priv->state == XED_TAB_STATE_LOADING)
+        {
+            xed_tab_set_state (tab, XED_TAB_STATE_LOADING_ERROR);
+        }
+        else
+        {
+            xed_tab_set_state (tab, XED_TAB_STATE_REVERTING_ERROR);
+        }
+
+        if (error->domain == G_IO_ERROR && error->code == G_IO_ERROR_CANCELLED)
+        {
+            remove_tab (tab);
+        }
+        else
+        {
+            GtkWidget *message_area;
+
+            if (location != NULL)
+            {
+                _xed_recent_remove (XED_WINDOW (gtk_widget_get_toplevel (GTK_WIDGET (tab))), location);
+            }
+
+            if (tab->priv->state == XED_TAB_STATE_LOADING_ERROR)
+            {
+                const GtkSourceEncoding *encoding;
+
+                encoding = gtk_source_file_loader_get_encoding (loader);
+
+                message_area = xed_io_loading_error_message_area_new (location, encoding, error);
+
+                g_signal_connect (message_area, "response",
+                                  G_CALLBACK (io_loading_error_message_area_response), tab);
+            }
+            else
+            {
+                g_return_if_fail (tab->priv->state == XED_TAB_STATE_REVERTING_ERROR);
+
+                message_area = xed_unrecoverable_reverting_error_message_area_new (location, error);
+
+                g_signal_connect (message_area, "response",
+                                  G_CALLBACK (unrecoverable_reverting_error_message_area_response), tab);
+            }
+
+            set_message_area (tab, message_area);
+            gtk_info_bar_set_default_response (GTK_INFO_BAR (message_area), GTK_RESPONSE_CANCEL);
+            gtk_widget_show (message_area);
+        }
+
+        goto end;
+    }
+
+    if (location != NULL)
+    {
+        gchar *mime = xed_document_get_mime_type (doc);
+
+        _xed_recent_add (XED_WINDOW (gtk_widget_get_toplevel (GTK_WIDGET (tab))), location, mime);
+        g_free (mime);
+    }
+
+    if (error != NULL &&
+        error->domain == GTK_SOURCE_FILE_LOADER_ERROR &&
+        error->code == GTK_SOURCE_FILE_LOADER_ERROR_CONVERSION_FALLBACK)
+    {
+        GtkWidget *message_area;
+        const GtkSourceEncoding *encoding;
+
+        /* Set the tab as not editable as we have an error, the user can
+        * decide to make it editable again.
+        */
+        tab->priv->editable = FALSE;
+
+        encoding = gtk_source_file_loader_get_encoding (loader);
+
+        message_area = xed_io_loading_error_message_area_new (location, encoding, error);
+
+        g_signal_connect (message_area, "response",
+                         G_CALLBACK (io_loading_error_message_area_response), tab);
+
+        set_message_area (tab, message_area);
+        gtk_info_bar_set_default_response (GTK_INFO_BAR (message_area), GTK_RESPONSE_CANCEL);
+        gtk_widget_show (message_area);
+    }
+
+    /* Scroll to the cursor when the document is loaded, we need to do it in
+    * an idle as after the document is loaded the textview is still
+    * redrawing and relocating its internals.
+    */
+    if (tab->priv->idle_scroll == 0)
+    {
+       tab->priv->idle_scroll = g_idle_add ((GSourceFunc)scroll_to_cursor, tab);
+    }
+
+    /* If the document is readonly we don't care how many times the document
+    * is opened.
+    */
+    if (!xed_document_get_readonly (doc))
+    {
+        GList *all_documents;
+        GList *l;
+
+        all_documents = xed_app_get_documents (xed_app_get_default ());
+
+        for (l = all_documents; l != NULL; l = g_list_next (l))
+        {
+            XedDocument *cur_doc = l->data;
+
+            if (cur_doc != doc)
+            {
+                GtkSourceFile *cur_file = xed_document_get_file (cur_doc);
+                GFile *cur_location = gtk_source_file_get_location (cur_file);
+
+                if (cur_location != NULL && location != NULL && g_file_equal (location, cur_location))
+                {
+                    GtkWidget *message_area;
+
+                    tab->priv->editable = FALSE;
+
+                    message_area = xed_file_already_open_warning_message_area_new (location);
+
+                    g_signal_connect (message_area, "response",
+                                      G_CALLBACK (file_already_open_warning_message_area_response), tab);
+
+                    set_message_area (tab, message_area);
+                    gtk_info_bar_set_default_response (GTK_INFO_BAR (message_area), GTK_RESPONSE_CANCEL);
+                    gtk_widget_show (message_area);
+
+                    break;
+                }
+            }
+        }
+
+       g_list_free (all_documents);
+    }
+
+    xed_tab_set_state (tab, XED_TAB_STATE_NORMAL);
+
+    if (location == NULL)
+    {
+       /* FIXME: hackish */
+       gtk_text_buffer_set_modified (GTK_TEXT_BUFFER (doc), TRUE);
+    }
+
+    tab->priv->ask_if_externally_modified = TRUE;
+
+    if (error == NULL)
+    {
+       clear_loading (tab);
+    }
+
+    g_signal_emit_by_name (doc, "loaded");
+
+end:
+    /* Async operation finished. */
+    g_object_unref (tab);
+
+    if (error != NULL)
+    {
+        g_error_free (error);
+    }
+}
+
+static GSList *
+get_candidate_encodings (XedTab *tab)
 {
     XedDocument *doc;
+    GSettings *enc_settings;
+    gchar **enc_strv;
+    gchar *metadata_charset;
+    GSList *encodings;
+
+    enc_settings = g_settings_new ("org.x.editor.preferences.encodings");
+
+    enc_strv = g_settings_get_strv (enc_settings, XED_SETTINGS_ENCODING_AUTO_DETECTED);
+
+    encodings = _xed_utils_encoding_strv_to_list ((const gchar * const *)enc_strv);
+
+    doc = xed_tab_get_document (tab);
+    metadata_charset = xed_document_get_metadata (doc, XED_METADATA_ATTRIBUTE_ENCODING);
+
+    if (metadata_charset != NULL)
+    {
+       const GtkSourceEncoding *metadata_enc;
+
+       metadata_enc = gtk_source_encoding_get_from_charset (metadata_charset);
+
+       if (metadata_enc != NULL)
+       {
+           encodings = g_slist_prepend (encodings, (gpointer)metadata_enc);
+       }
+
+       g_free (metadata_charset);
+    }
+
+    g_strfreev (enc_strv);
+    g_object_unref (enc_settings);
+
+    return encodings;
+}
+
+static void
+load (XedTab                  *tab,
+      const GtkSourceEncoding *encoding,
+      gint                     line_pos)
+{
+    GSList *candidate_encodings = NULL;
+    XedDocument *doc;
+
+    g_return_if_fail (GTK_SOURCE_IS_FILE_LOADER (tab->priv->loader));
+
+    if (encoding != NULL)
+    {
+        tab->priv->user_requested_encoding = TRUE;
+        candidate_encodings = g_slist_append (NULL, (gpointer) encoding);
+    }
+    else
+    {
+        tab->priv->user_requested_encoding = FALSE;
+        candidate_encodings = get_candidate_encodings (tab);
+    }
+
+    gtk_source_file_loader_set_candidate_encodings (tab->priv->loader, candidate_encodings);
+    g_slist_free (candidate_encodings);
+
+    tab->priv->tmp_line_pos = line_pos;
+
+    g_clear_object (&tab->priv->cancellable);
+    tab->priv->cancellable = g_cancellable_new ();
+
+    doc = xed_tab_get_document (tab);
+    g_signal_emit_by_name (doc, "load");
+
+    /* Keep the tab alive during the async operation. */
+    g_object_ref (tab);
+
+    gtk_source_file_loader_load_async (tab->priv->loader,
+                                       G_PRIORITY_DEFAULT,
+                                       tab->priv->cancellable,
+                                       (GFileProgressCallback) loader_progress_cb,
+                                       tab,
+                                       NULL,
+                                       (GAsyncReadyCallback) load_cb,
+                                       tab);
+}
+
+void
+_xed_tab_load (XedTab                  *tab,
+               GFile                   *location,
+               const GtkSourceEncoding *encoding,
+               gint                     line_pos,
+               gboolean                 create)
+{
+    XedDocument *doc;
+    GtkSourceFile *file;
 
     g_return_if_fail (XED_IS_TAB (tab));
     g_return_if_fail (G_IS_FILE (location));
     g_return_if_fail (tab->priv->state == XED_TAB_STATE_NORMAL);
 
-    doc = xed_tab_get_document (tab);
-    g_return_if_fail (XED_IS_DOCUMENT (doc));
-
     xed_tab_set_state (tab, XED_TAB_STATE_LOADING);
 
-    tab->priv->tmp_line_pos = line_pos;
-    tab->priv->tmp_encoding = encoding;
+    doc = xed_tab_get_document (tab);
+    file = xed_document_get_file (doc);
 
-    if (tab->priv->auto_save_timeout > 0)
+    if (tab->priv->loader != NULL)
     {
-        remove_auto_save_timeout (tab);
+        g_warning ("XedTab: file loader already exists.");
+        g_object_unref (tab->priv->loader);
     }
 
-    xed_document_load (doc, location, encoding, line_pos, create);
+    gtk_source_file_set_location (file, location);
+    tab->priv->loader = gtk_source_file_loader_new (GTK_SOURCE_BUFFER (doc), file);
+
+    _xed_document_set_create (doc, create);
+
+    load (tab, encoding, line_pos);
 }
 
 void
 _xed_tab_revert (XedTab *tab)
 {
     XedDocument *doc;
+    GtkSourceFile *file;
     GFile *location;
 
     g_return_if_fail (XED_IS_TAB (tab));
-    g_return_if_fail ((tab->priv->state == XED_TAB_STATE_NORMAL) ||
-                      (tab->priv->state == XED_TAB_STATE_EXTERNALLY_MODIFIED_NOTIFICATION));
+    g_return_if_fail (tab->priv->state == XED_TAB_STATE_NORMAL ||
+                      tab->priv->state == XED_TAB_STATE_EXTERNALLY_MODIFIED_NOTIFICATION);
 
     if (tab->priv->state == XED_TAB_STATE_EXTERNALLY_MODIFIED_NOTIFICATION)
     {
@@ -1898,143 +1919,347 @@ _xed_tab_revert (XedTab *tab)
     }
 
     doc = xed_tab_get_document (tab);
-    g_return_if_fail (XED_IS_DOCUMENT (doc));
+    file = xed_document_get_file (doc);
+    location = gtk_source_file_get_location (file);
+    g_return_if_fail (location != NULL);
 
     xed_tab_set_state (tab, XED_TAB_STATE_REVERTING);
 
-    location = xed_document_get_location (doc);
-    g_return_if_fail (location != NULL);
-
-    tab->priv->tmp_line_pos = 0;
-    tab->priv->tmp_encoding = xed_document_get_encoding (doc);
-
-    if (tab->priv->auto_save_timeout > 0)
+    if (tab->priv->loader != NULL)
     {
-        remove_auto_save_timeout (tab);
+        g_warning ("XedTab: file loader already exists.");
+        g_object_unref (tab->priv->loader);
     }
 
-    xed_document_load (doc, location, tab->priv->tmp_encoding, 0, FALSE);
+    tab->priv->loader = gtk_source_file_loader_new (GTK_SOURCE_BUFFER (doc), file);
 
-    g_object_unref (location);
+    load (tab, NULL, 0);
+}
+
+static void
+saver_progress_cb (goffset size,
+                   goffset total_size,
+                   XedTab *tab)
+{
+    gdouble elapsed_time;
+    gdouble total_time;
+    gdouble remaining_time;
+
+    g_return_if_fail (tab->priv->state == XED_TAB_STATE_SAVING);
+
+    if (tab->priv->timer == NULL)
+    {
+        tab->priv->timer = g_timer_new ();
+    }
+
+    elapsed_time = g_timer_elapsed (tab->priv->timer, NULL);
+
+    /* elapsed_time / total_time = size / total_size */
+    total_time = (elapsed_time * total_size) / size;
+
+    remaining_time = total_time - elapsed_time;
+
+    /* Approximately more than 3 seconds remaining. */
+    if (remaining_time > 3.0)
+    {
+        show_saving_message_area (tab);
+    }
+
+    message_area_set_progress (tab, size, total_size);
+}
+
+static void
+save_cb (GtkSourceFileSaver *saver,
+         GAsyncResult       *result,
+         XedTab             *tab)
+{
+    XedDocument *doc = xed_tab_get_document (tab);
+    GFile *location = gtk_source_file_saver_get_location (saver);
+    GError *error = NULL;
+
+    g_return_if_fail (tab->priv->state == XED_TAB_STATE_SAVING);
+
+    gtk_source_file_saver_save_finish (saver, result, &error);
+
+    if (error != NULL)
+    {
+        xed_debug_message (DEBUG_TAB, "File saving error: %s", error->message);
+    }
+
+    if (tab->priv->timer != NULL)
+    {
+        g_timer_destroy (tab->priv->timer);
+        tab->priv->timer = NULL;
+    }
+
+    set_message_area (tab, NULL);
+
+    if (error != NULL)
+    {
+        GtkWidget *message_area;
+
+        xed_tab_set_state (tab, XED_TAB_STATE_SAVING_ERROR);
+
+        if (error->domain == GTK_SOURCE_FILE_SAVER_ERROR &&
+           error->code == GTK_SOURCE_FILE_SAVER_ERROR_EXTERNALLY_MODIFIED)
+        {
+            /* This error is recoverable */
+            message_area = xed_externally_modified_saving_error_message_area_new (location, error);
+            g_return_if_fail (message_area != NULL);
+
+            g_signal_connect (message_area, "response",
+                              G_CALLBACK (externally_modified_error_message_area_response), tab);
+        }
+        else if (error->domain == G_IO_ERROR &&
+                 error->code == G_IO_ERROR_CANT_CREATE_BACKUP)
+        {
+            /* This error is recoverable */
+            message_area = xed_no_backup_saving_error_message_area_new (location, error);
+            g_return_if_fail (message_area != NULL);
+
+            g_signal_connect (message_area, "response",
+                              G_CALLBACK (no_backup_error_message_area_response), tab);
+        }
+        else if (error->domain == GTK_SOURCE_FILE_SAVER_ERROR &&
+                 error->code == GTK_SOURCE_FILE_SAVER_ERROR_INVALID_CHARS)
+        {
+            /* If we have any invalid char in the document we must warn the user
+             * as it can make the document useless if it is saved.
+             */
+            message_area = xed_invalid_character_message_area_new (location);
+            g_return_if_fail (message_area != NULL);
+
+            g_signal_connect (message_area, "response",
+                              G_CALLBACK (invalid_character_message_area_response), tab);
+        }
+        else if (error->domain == GTK_SOURCE_FILE_SAVER_ERROR ||
+                 (error->domain == G_IO_ERROR &&
+                 error->code != G_IO_ERROR_INVALID_DATA &&
+                 error->code != G_IO_ERROR_PARTIAL_INPUT))
+        {
+            /* These errors are _NOT_ recoverable */
+            _xed_recent_remove (XED_WINDOW (gtk_widget_get_toplevel (GTK_WIDGET (tab))), location);
+
+            message_area = xed_unrecoverable_saving_error_message_area_new (location, error);
+            g_return_if_fail (message_area != NULL);
+
+            g_signal_connect (message_area, "response",
+                              G_CALLBACK (unrecoverable_saving_error_message_area_response), tab);
+        }
+        else
+        {
+            const GtkSourceEncoding *encoding;
+
+            /* This error is recoverable */
+            g_return_if_fail (error->domain == G_CONVERT_ERROR || error->domain == G_IO_ERROR);
+
+            encoding = gtk_source_file_saver_get_encoding (saver);
+
+            message_area = xed_conversion_error_while_saving_message_area_new (location, encoding, error);
+            g_return_if_fail (message_area != NULL);
+
+            g_signal_connect (message_area, "response",
+                              G_CALLBACK (recoverable_saving_error_message_area_response), tab);
+        }
+
+        set_message_area (tab, message_area);
+        gtk_info_bar_set_default_response (GTK_INFO_BAR (message_area), GTK_RESPONSE_CANCEL);
+        gtk_widget_show (message_area);
+    }
+    else
+    {
+        gchar *mime = xed_document_get_mime_type (doc);
+
+        _xed_recent_add (XED_WINDOW (gtk_widget_get_toplevel (GTK_WIDGET (tab))), location, mime);
+        g_free (mime);
+
+        if (tab->priv->print_preview != NULL)
+        {
+            xed_tab_set_state (tab, XED_TAB_STATE_SHOWING_PRINT_PREVIEW);
+        }
+        else
+        {
+            xed_tab_set_state (tab, XED_TAB_STATE_NORMAL);
+        }
+
+        tab->priv->ask_if_externally_modified = TRUE;
+
+        clear_saving (tab);
+
+        g_signal_emit_by_name (doc, "saved");
+    }
+
+    /* Async operation finished. */
+    g_object_unref (tab);
+
+    if (error != NULL)
+    {
+        g_error_free (error);
+    }
+}
+
+static void
+save (XedTab *tab)
+{
+    XedDocument *doc;
+
+    g_return_if_fail (GTK_SOURCE_IS_FILE_SAVER (tab->priv->saver));
+
+    xed_tab_set_state (tab, XED_TAB_STATE_SAVING);
+
+    doc = xed_tab_get_document (tab);
+    g_signal_emit_by_name (doc, "save");
+
+    /* Keep the tab alive during the async operation. */
+    g_object_ref (tab);
+
+    gtk_source_file_saver_save_async (tab->priv->saver,
+                                      G_PRIORITY_DEFAULT,
+                                      NULL, /* TODO add a cancellable */
+                                      (GFileProgressCallback) saver_progress_cb,
+                                      tab,
+                                      NULL,
+                                      (GAsyncReadyCallback) save_cb,
+                                      tab);
+}
+
+/* Gets the initial save flags, when launching a new FileSaver. */
+static GtkSourceFileSaverFlags
+get_initial_save_flags (XedTab   *tab,
+                        gboolean  auto_save)
+{
+    GtkSourceFileSaverFlags save_flags;
+    gboolean create_backup;
+
+    save_flags = tab->priv->save_flags;
+
+    /* force_no_backup must have been reset to FALSE for a new file saving. */
+    g_return_val_if_fail (!tab->priv->force_no_backup, save_flags);
+
+    create_backup = g_settings_get_boolean (tab->priv->editor, XED_SETTINGS_CREATE_BACKUP_COPY);
+
+    /* In case of autosaving, we need to preserve the backup that was produced
+    * the last time the user "manually" saved the file. So we don't set the
+    * CREATE_BACKUP flag for an automatic file saving.
+    */
+    if (create_backup && !auto_save)
+    {
+       save_flags |= GTK_SOURCE_FILE_SAVER_FLAGS_CREATE_BACKUP;
+    }
+
+    return save_flags;
 }
 
 void
 _xed_tab_save (XedTab *tab)
 {
     XedDocument *doc;
-    XedDocumentSaveFlags save_flags;
+    GtkSourceFile *file;
+    GtkSourceFileSaverFlags save_flags;
 
     g_return_if_fail (XED_IS_TAB (tab));
     g_return_if_fail ((tab->priv->state == XED_TAB_STATE_NORMAL) ||
                       (tab->priv->state == XED_TAB_STATE_EXTERNALLY_MODIFIED_NOTIFICATION) ||
                       (tab->priv->state == XED_TAB_STATE_SHOWING_PRINT_PREVIEW));
-    g_return_if_fail (tab->priv->tmp_save_location == NULL);
-    g_return_if_fail (tab->priv->tmp_encoding == NULL);
+
+    if (tab->priv->saver != NULL)
+    {
+        g_warning ("XedTab: file saver already exists.");
+        g_object_unref (tab->priv->saver);
+        tab->priv->saver = NULL;
+    }
+
+    clear_saving (tab);
 
     doc = xed_tab_get_document (tab);
     g_return_if_fail (XED_IS_DOCUMENT (doc));
     g_return_if_fail (!xed_document_is_untitled (doc));
 
+    save_flags = get_initial_save_flags (tab, FALSE);
+
     if (tab->priv->state == XED_TAB_STATE_EXTERNALLY_MODIFIED_NOTIFICATION)
     {
-        /* We already told the user about the external
-         * modification: hide the message area and set
-         * the save flag.
+        /* We already told the user about the external modification:
+         * hide the message bar and set the save flag.
          */
 
         set_message_area (tab, NULL);
-        save_flags = tab->priv->save_flags | XED_DOCUMENT_SAVE_IGNORE_MTIME;
-    }
-    else
-    {
-        save_flags = tab->priv->save_flags;
+        save_flags |= GTK_SOURCE_FILE_SAVER_FLAGS_IGNORE_MODIFICATION_TIME;
     }
 
-    xed_tab_set_state (tab, XED_TAB_STATE_SAVING);
+    file = xed_document_get_file (doc);
 
-    /* uri used in error messages, will be freed in document_saved */
-    tab->priv->tmp_save_location = xed_document_get_location (doc);
-    tab->priv->tmp_encoding = xed_document_get_encoding (doc);
+    tab->priv->saver = gtk_source_file_saver_new (GTK_SOURCE_BUFFER (doc), file);
+    gtk_source_file_saver_set_flags (tab->priv->saver, save_flags);
 
-    if (tab->priv->auto_save_timeout > 0)
-    {
-        remove_auto_save_timeout (tab);
-    }
-
-    xed_document_save (doc, save_flags);
+    save (tab);
 }
 
 static gboolean
 xed_tab_auto_save (XedTab *tab)
 {
     XedDocument *doc;
+    GtkSourceFile *file;
+    GtkSourceFileSaverFlags save_flags;
 
     xed_debug (DEBUG_TAB);
-
-    g_return_val_if_fail (tab->priv->tmp_save_location == NULL, FALSE);
-    g_return_val_if_fail (tab->priv->tmp_encoding == NULL, FALSE);
 
     doc = xed_tab_get_document (tab);
 
     g_return_val_if_fail (!xed_document_is_untitled (doc), FALSE);
     g_return_val_if_fail (!xed_document_get_readonly (doc), FALSE);
 
-    g_return_val_if_fail (tab->priv->auto_save_timeout > 0, FALSE);
-    g_return_val_if_fail (tab->priv->auto_save, FALSE);
-    g_return_val_if_fail (tab->priv->auto_save_interval > 0, FALSE);
-
     if (!gtk_text_buffer_get_modified (GTK_TEXT_BUFFER(doc)))
     {
         xed_debug_message (DEBUG_TAB, "Document not modified");
 
-        return TRUE;
+        return G_SOURCE_CONTINUE;
     }
 
     if ((tab->priv->state != XED_TAB_STATE_NORMAL) && (tab->priv->state != XED_TAB_STATE_SHOWING_PRINT_PREVIEW))
     {
-        /* Retry after 30 seconds */
-        guint timeout;
-
         xed_debug_message (DEBUG_TAB, "Retry after 30 seconds");
 
-        /* Add a new timeout */
-        timeout = g_timeout_add_seconds (30, (GSourceFunc) xed_tab_auto_save, tab);
+        tab->priv->auto_save_timeout = g_timeout_add_seconds (30, (GSourceFunc) xed_tab_auto_save, tab);
 
-        tab->priv->auto_save_timeout = timeout;
-
-        /* Returns FALSE so the old timeout is "destroyed" */
-        return FALSE;
+        /* Destroy the old timeout */
+        return G_SOURCE_REMOVE;
     }
-
-    xed_tab_set_state (tab, XED_TAB_STATE_SAVING);
-
-    /* uri used in error messages, will be freed in document_saved */
-    tab->priv->tmp_save_location = xed_document_get_location (doc);
-    tab->priv->tmp_encoding = xed_document_get_encoding (doc);
 
     /* Set auto_save_timeout to 0 since the timeout is going to be destroyed */
     tab->priv->auto_save_timeout = 0;
 
-    /* Since we are autosaving, we need to preserve the backup that was produced
-       the last time the user "manually" saved the file. In the case a recoverable
-       error happens while saving, the last backup is not preserved since the user
-       expressed his willing of saving the file */
-    xed_document_save (doc, tab->priv->save_flags | XED_DOCUMENT_SAVE_PRESERVE_BACKUP);
+    if (tab->priv->saver != NULL)
+    {
+        g_warning ("XedTab: file saver already exists.");
+        g_object_unref (tab->priv->saver);
+        tab->priv->saver = NULL;
+    }
 
-    xed_debug_message (DEBUG_TAB, "Done");
+    clear_saving (tab);
 
-    /* Returns FALSE so the old timeout is "destroyed" */
-    return FALSE;
+    file = xed_document_get_file (doc);
+
+    tab->priv->saver = gtk_source_file_saver_new (GTK_SOURCE_BUFFER (doc), file);
+
+    save_flags = get_initial_save_flags (tab, TRUE);
+    gtk_source_file_saver_set_flags (tab->priv->saver, save_flags);
+
+    save (tab);
+
+    return G_SOURCE_REMOVE;
 }
 
 void
-_xed_tab_save_as (XedTab                 *tab,
-                  GFile                  *location,
-                  const XedEncoding      *encoding,
-                  XedDocumentNewlineType  newline_type)
+_xed_tab_save_as (XedTab                  *tab,
+                  GFile                   *location,
+                  const GtkSourceEncoding *encoding,
+                  GtkSourceNewlineType     newline_type)
 {
     XedDocument *doc;
-    XedDocumentSaveFlags save_flags;
+    GtkSourceFile *file;
+    GtkSourceFileSaverFlags save_flags;
+    GFile *prev_location;
 
     g_return_if_fail (XED_IS_TAB (tab));
     g_return_if_fail ((tab->priv->state == XED_TAB_STATE_NORMAL) ||
@@ -2043,48 +2268,49 @@ _xed_tab_save_as (XedTab                 *tab,
     g_return_if_fail (G_IS_FILE (location));
     g_return_if_fail (encoding != NULL);
 
-    g_return_if_fail (tab->priv->tmp_save_location == NULL);
-    g_return_if_fail (tab->priv->tmp_encoding == NULL);
+    if (tab->priv->saver != NULL)
+    {
+        g_warning ("XedTab: file saver already exists.");
+        g_object_unref (tab->priv->saver);
+        tab->priv->saver = NULL;
+    }
+
+    clear_saving (tab);
 
     doc = xed_tab_get_document (tab);
     g_return_if_fail (XED_IS_DOCUMENT (doc));
 
     /* reset the save flags, when saving as */
-    tab->priv->save_flags = 0;
+    tab->priv->save_flags = GTK_SOURCE_FILE_SAVER_FLAGS_NONE;
+    save_flags = get_initial_save_flags (tab, FALSE);
 
     if (tab->priv->state == XED_TAB_STATE_EXTERNALLY_MODIFIED_NOTIFICATION)
     {
-        /* We already told the user about the external
-         * modification: hide the message area and set
-         * the save flag.
+        /* We already told the user about the external modification:
+         * hide the message bar and set the save flag.
          */
 
         set_message_area (tab, NULL);
-        save_flags = tab->priv->save_flags | XED_DOCUMENT_SAVE_IGNORE_MTIME;
+        save_flags |= GTK_SOURCE_FILE_SAVER_FLAGS_IGNORE_MODIFICATION_TIME;
     }
-    else
+
+    file = xed_document_get_file (doc);
+    prev_location = gtk_source_file_get_location (file);
+
+    if (prev_location == NULL || !g_file_equal (prev_location, location))
     {
-        save_flags = tab->priv->save_flags;
+        /* Ignore modification time for a save to another location. */
+        /* TODO do that in GtkSourceFileSaver. */
+        save_flags |= GTK_SOURCE_FILE_SAVER_FLAGS_IGNORE_MODIFICATION_TIME;
     }
 
-    xed_tab_set_state (tab, XED_TAB_STATE_SAVING);
+    tab->priv->saver = gtk_source_file_saver_new_with_target (GTK_SOURCE_BUFFER (doc), file, location);
 
-    /* uri used in error messages... strdup because errors are async
-     * and the string can go away, will be freed in document_saved */
-    tab->priv->tmp_save_location = g_file_dup (location);
-    tab->priv->tmp_encoding = encoding;
+    gtk_source_file_saver_set_encoding (tab->priv->saver, encoding);
+    gtk_source_file_saver_set_newline_type (tab->priv->saver, newline_type);
+    gtk_source_file_saver_set_flags (tab->priv->saver, save_flags);
 
-    if (tab->priv->auto_save_timeout > 0)
-    {
-        remove_auto_save_timeout (tab);
-    }
-
-    /* FIXME: this should behave the same as encoding, setting it here
-       makes it persistent (if save fails, it's remembered). It's not
-       a very big deal, but would be nice to have them follow the
-       same pattern. This can be changed once we break API for 3.0 */
-    xed_document_set_newline_type (doc, newline_type);
-    xed_document_save_as (doc, location, encoding, tab->priv->save_flags);
+    save (tab);
 }
 
 #define XED_PAGE_SETUP_KEY "xed-page-setup-key"
@@ -2539,49 +2765,18 @@ void
 xed_tab_set_auto_save_enabled (XedTab   *tab,
                                gboolean  enable)
 {
-    XedDocument *doc = NULL;
     xed_debug (DEBUG_TAB);
 
     g_return_if_fail (XED_IS_TAB (tab));
 
-    doc = xed_tab_get_document (tab);
+    enable = enable != FALSE;
 
-    if (tab->priv->auto_save == enable)
+    if (tab->priv->auto_save != enable)
     {
+        tab->priv->auto_save = enable;
+        update_auto_save_timeout (tab);
         return;
     }
-
-    tab->priv->auto_save = enable;
-
-    if (enable &&
-        (tab->priv->auto_save_timeout <=0) &&
-        !xed_document_is_untitled (doc) &&
-        !xed_document_get_readonly (doc))
-    {
-        if ((tab->priv->state != XED_TAB_STATE_LOADING) &&
-            (tab->priv->state != XED_TAB_STATE_SAVING) &&
-            (tab->priv->state != XED_TAB_STATE_REVERTING) &&
-            (tab->priv->state != XED_TAB_STATE_LOADING_ERROR) &&
-            (tab->priv->state != XED_TAB_STATE_SAVING_ERROR) &&
-            (tab->priv->state != XED_TAB_STATE_REVERTING_ERROR))
-        {
-            install_auto_save_timeout (tab);
-        }
-        /* else: the timeout will be installed when loading/saving/reverting
-                 will terminate */
-
-        return;
-    }
-
-    if (!enable && (tab->priv->auto_save_timeout > 0))
-    {
-        remove_auto_save_timeout (tab);
-
-        return;
-    }
-
-    g_return_if_fail ((!enable && (tab->priv->auto_save_timeout <= 0)) ||
-                      xed_document_is_untitled (doc) || xed_document_get_readonly (doc));
 }
 
 /**
@@ -2607,46 +2802,22 @@ xed_tab_get_auto_save_interval (XedTab *tab)
  * @tab: a #XedTab
  * @interval: the new interval
  *
- * Sets the interval for the autosave feature. It does nothing if the
- * interval is the same as the one already present. It removes the old
- * interval timeout and adds a new one with the autosave passed as
- * argument.
+ * Sets the interval for the autosave feature.
  **/
 void
 xed_tab_set_auto_save_interval (XedTab *tab,
                                 gint    interval)
 {
-    XedDocument *doc = NULL;
+    g_return_if_fail (XED_IS_TAB (tab));
+    g_return_if_fail (interval > 0);
 
     xed_debug (DEBUG_TAB);
 
-    g_return_if_fail (XED_IS_TAB (tab));
-
-    doc = xed_tab_get_document(tab);
-
-    g_return_if_fail (XED_IS_DOCUMENT (doc));
-    g_return_if_fail (interval > 0);
-
-    if (tab->priv->auto_save_interval == interval)
+    if (tab->priv->auto_save_interval != interval)
     {
-        return;
-    }
-
-    tab->priv->auto_save_interval = interval;
-
-    if (!tab->priv->auto_save)
-    {
-        return;
-    }
-
-    if (tab->priv->auto_save_timeout > 0)
-    {
-        g_return_if_fail (!xed_document_is_untitled (doc));
-        g_return_if_fail (!xed_document_get_readonly (doc));
-
+        tab->priv->auto_save_interval = interval;
         remove_auto_save_timeout (tab);
-
-        install_auto_save_timeout (tab);
+        update_auto_save_timeout (tab);
     }
 }
 

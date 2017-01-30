@@ -1,8 +1,7 @@
 #ifndef __XED_WINDOW_H__
 #define __XED_WINDOW_H__
 
-#include <gio/gio.h>
-#include <gtk/gtk.h>
+#include <gtksourceview/gtksource.h>
 
 #include <xed/xed-tab.h>
 #include <xed/xed-panel.h>
@@ -56,8 +55,8 @@ struct _XedWindowClass
  */
 GType   xed_window_get_type (void) G_GNUC_CONST;
 XedTab *xed_window_create_tab (XedWindow *window, gboolean jump_to);
-XedTab *xed_window_create_tab_from_location (XedWindow *window, GFile *location, const XedEncoding *encoding,
-                                        gint line_pos, gboolean create, gboolean jump_to);
+XedTab *xed_window_create_tab_from_location (XedWindow *window, GFile *location, const GtkSourceEncoding *encoding,
+                                             gint line_pos, gboolean create, gboolean jump_to);
 void    xed_window_close_tab (XedWindow *window, XedTab *tab);
 void    xed_window_close_all_tabs (XedWindow *window);
 void    xed_window_close_tabs (XedWindow *window, const GList *tabs);

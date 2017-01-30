@@ -44,8 +44,6 @@
 #include "xed-settings.h"
 #include "xed-debug.h"
 #include "xed-utils.h"
-#include "xed-document-loader.h"
-#include "xed-document-saver.h"
 #include "xed-marshal.h"
 #include "xed-enum-types.h"
 
@@ -59,28 +57,19 @@
 
 #define XED_DOCUMENT_GET_PRIVATE(object)(G_TYPE_INSTANCE_GET_PRIVATE ((object), XED_TYPE_DOCUMENT, XedDocumentPrivate))
 
-static void xed_document_load_real (XedDocument       *doc,
-                                    GFile             *location,
-                                    const XedEncoding *encoding,
-                                    gint               line_pos,
-                                    gboolean           create);
-static void xed_document_save_real (XedDocument         *doc,
-                                    GFile               *location,
-                                    const XedEncoding   *encoding,
-                                    XedDocumentSaveFlags flags);
+static void xed_document_loaded_real (XedDocument  *doc);
+static void xed_document_saved_real (XedDocument  *doc);
 
 struct _XedDocumentPrivate
 {
-    GSettings *editor_settings;
+    GtkSourceFile *file;
 
-    GFile *location;
+    GSettings *editor_settings;
 
     gint   untitled_number;
     gchar *short_name;
 
     GFileInfo *metadata_info;
-
-    const XedEncoding *encoding;
 
     gchar *content_type;
 
@@ -89,53 +78,35 @@ struct _XedDocumentPrivate
 
     GtkSourceSearchContext *search_context;
 
-    XedDocumentNewlineType newline_type;
-
-    /* Temp data while loading */
-    XedDocumentLoader *loader;
-    gboolean           create; /* Create file if uri points
-                                  * to a non existing file */
-    const XedEncoding *requested_encoding;
-    gint               requested_line_pos;
-
-    /* Saving stuff */
-    XedDocumentSaver *saver;
-
-    GtkTextTag *error_tag;
-
-    /* Mount operation factory */
-    XedMountOperationFactory  mount_operation_factory;
-    gpointer                  mount_operation_userdata;
-
     guint readonly : 1;
     guint externally_modified : 1;
     guint deleted : 1;
     guint last_save_was_manually : 1;
     guint language_set_by_user : 1;
     guint stop_cursor_moved_emission : 1;
+    guint mtime_set : 1;
+
+    /* Create file if location points to a non existing file (for example
+     * when opened from the command line).
+     */
+    guint create : 1;
 };
 
 enum
 {
     PROP_0,
-
-    PROP_LOCATION,
     PROP_SHORTNAME,
     PROP_CONTENT_TYPE,
     PROP_MIME_TYPE,
-    PROP_READ_ONLY,
-    PROP_ENCODING,
-    PROP_NEWLINE_TYPE
+    PROP_READ_ONLY
 };
 
 enum
 {
     CURSOR_MOVED,
     LOAD,
-    LOADING,
     LOADED,
     SAVE,
-    SAVING,
     SAVED,
     LAST_SIGNAL
 };
@@ -145,19 +116,6 @@ static guint document_signals[LAST_SIGNAL] = { 0 };
 static GHashTable *allocated_untitled_numbers = NULL;
 
 G_DEFINE_TYPE(XedDocument, xed_document, GTK_SOURCE_TYPE_BUFFER)
-
-GQuark
-xed_document_error_quark (void)
-{
-    static GQuark quark = 0;
-
-    if (G_UNLIKELY (quark == 0))
-    {
-        quark = g_quark_from_static_string ("xed_io_load_error");
-    }
-
-    return quark;
-}
 
 static gint
 get_untitled_number (void)
@@ -193,7 +151,7 @@ release_untitled_number (gint n)
 }
 
 static const gchar *
-get_language_metadata (XedDocument *doc)
+get_language_string (XedDocument *doc)
 {
     GtkSourceLanguage *lang = xed_document_get_language (doc);
 
@@ -209,7 +167,7 @@ save_metadata (XedDocument *doc)
 
     if (doc->priv->language_set_by_user)
     {
-        language = get_language_metadata (doc);
+        language = get_language_string (doc);
     }
 
     gtk_text_buffer_get_iter_at_mark (GTK_TEXT_BUFFER (doc),
@@ -245,15 +203,14 @@ xed_document_dispose (GObject *object)
     /* Metadata must be saved here and not in finalize because the language
     * is gone by the time finalize runs.
     */
-    if (doc->priv->location != NULL)
+    if (doc->priv->file != NULL)
     {
         save_metadata (doc);
 
-        g_object_unref (doc->priv->location);
-        doc->priv->location = NULL;
+        g_object_unref (doc->priv->file);
+        doc->priv->file = NULL;
     }
 
-    g_clear_object (&doc->priv->loader);
     g_clear_object (&doc->priv->editor_settings);
     g_clear_object (&doc->priv->metadata_info);
     g_clear_object (&doc->priv->search_context);
@@ -289,9 +246,6 @@ xed_document_get_property (GObject    *object,
 
     switch (prop_id)
     {
-        case PROP_LOCATION:
-            g_value_set_object (value, doc->priv->location);
-            break;
         case PROP_SHORTNAME:
             g_value_take_string (value, xed_document_get_short_name_for_display (doc));
             break;
@@ -303,12 +257,6 @@ xed_document_get_property (GObject    *object,
             break;
         case PROP_READ_ONLY:
             g_value_set_boolean (value, doc->priv->readonly);
-            break;
-        case PROP_ENCODING:
-            g_value_set_boxed (value, doc->priv->encoding);
-            break;
-        case PROP_NEWLINE_TYPE:
-            g_value_set_enum (value, doc->priv->newline_type);
             break;
         default:
             G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
@@ -326,27 +274,11 @@ xed_document_set_property (GObject      *object,
 
     switch (prop_id)
     {
-        case PROP_LOCATION:
-        {
-            GFile *location;
-
-            location = g_value_get_object (value);
-
-            if (location != NULL)
-            {
-                xed_document_set_location (doc, location);
-            }
-
-            break;
-        }
         case PROP_SHORTNAME:
             xed_document_set_short_name_for_display (doc, g_value_get_string (value));
             break;
         case PROP_CONTENT_TYPE:
             xed_document_set_content_type (doc, g_value_get_string (value));
-            break;
-        case PROP_NEWLINE_TYPE:
-            xed_document_set_newline_type (doc, g_value_get_enum (value));
             break;
         default:
             G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
@@ -390,6 +322,20 @@ xed_document_changed (GtkTextBuffer *buffer)
 }
 
 static void
+xed_document_constructed (GObject *object)
+{
+    XedDocument *doc = XED_DOCUMENT (object);
+
+    g_settings_bind (doc->priv->editor_settings,
+                     XED_SETTINGS_ENSURE_TRAILING_NEWLINE,
+                     doc,
+                     "implicit-trailing-newline",
+                     G_SETTINGS_BIND_GET | G_SETTINGS_BIND_NO_SENSITIVITY);
+
+    G_OBJECT_CLASS (xed_document_parent_class)->constructed (object);
+}
+
+static void
 xed_document_class_init (XedDocumentClass *klass)
 {
     GObjectClass *object_class = G_OBJECT_CLASS (klass);
@@ -399,20 +345,13 @@ xed_document_class_init (XedDocumentClass *klass)
     object_class->finalize = xed_document_finalize;
     object_class->get_property = xed_document_get_property;
     object_class->set_property = xed_document_set_property;
+    object_class->constructed = xed_document_constructed;
 
     buf_class->mark_set = xed_document_mark_set;
     buf_class->changed = xed_document_changed;
 
-    klass->load = xed_document_load_real;
-    klass->save = xed_document_save_real;
-
-    g_object_class_install_property (object_class, PROP_LOCATION,
-                                     g_param_spec_object ("location",
-                                                          "Location",
-                                                          "The document's location",
-                                                          G_TYPE_FILE,
-                                                          G_PARAM_READWRITE |
-                                                          G_PARAM_STATIC_STRINGS));
+    klass->loaded = xed_document_loaded_real;
+    klass->saved = xed_document_saved_real;
 
     g_object_class_install_property (object_class, PROP_SHORTNAME,
                                      g_param_spec_string ("shortname",
@@ -446,30 +385,6 @@ xed_document_class_init (XedDocumentClass *klass)
                                                            G_PARAM_READABLE |
                                                            G_PARAM_STATIC_STRINGS));
 
-    g_object_class_install_property (object_class, PROP_ENCODING,
-                                     g_param_spec_boxed ("encoding",
-                                                         "Encoding",
-                                                         "The XedEncoding used for the document",
-                                                         XED_TYPE_ENCODING,
-                                                         G_PARAM_READABLE |
-                                                         G_PARAM_STATIC_STRINGS));
-
-    /**
-     * XedDocument:newline-type:
-     *
-     * The :newline-type property determines what is considered
-     * as a line ending when saving the document
-     */
-    g_object_class_install_property (object_class, PROP_NEWLINE_TYPE,
-                                     g_param_spec_enum ("newline-type",
-                                                        "Newline type",
-                                                        "The accepted types of line ending",
-                                                        XED_TYPE_DOCUMENT_NEWLINE_TYPE,
-                                                        XED_DOCUMENT_NEWLINE_TYPE_LF,
-                                                        G_PARAM_READWRITE |
-                                                        G_PARAM_STATIC_NAME |
-                                                        G_PARAM_STATIC_BLURB));
-
     /* This signal is used to update the cursor position is the statusbar,
      * it's emitted either when the insert mark is moved explicitely or
      * when the buffer changes (insert/delete).
@@ -489,99 +404,58 @@ xed_document_class_init (XedDocumentClass *klass)
     /**
      * XedDocument::load:
      * @document: the #XedDocument.
-     * @location: the location where to load the document from.
-     * @encoding: the #XedEncoding to encode the document.
-     * @line_pos: the line to show.
-     * @create: whether the document should be created if it doesn't exist.
      *
-     * The "load" signal is emitted when a document is loaded.
+     * The "load" signal is emitted at the beginning of file loading.
      */
     document_signals[LOAD] =
         g_signal_new ("load",
                       G_OBJECT_CLASS_TYPE (object_class),
                       G_SIGNAL_RUN_LAST,
                       G_STRUCT_OFFSET (XedDocumentClass, load),
-                      NULL, NULL,
-                      xed_marshal_VOID__OBJECT_BOXED_INT_BOOLEAN,
-                      G_TYPE_NONE,
-                      4,
-                      G_TYPE_FILE,
-                      /* we rely on the fact that the XedEncoding pointer stays
-                       * the same forever */
-                      XED_TYPE_ENCODING | G_SIGNAL_TYPE_STATIC_SCOPE,
-                      G_TYPE_INT,
-                      G_TYPE_BOOLEAN);
+                      NULL, NULL, NULL,
+                      G_TYPE_NONE, 0);
 
-
-    document_signals[LOADING] =
-        g_signal_new ("loading",
-                      G_OBJECT_CLASS_TYPE (object_class),
-                      G_SIGNAL_RUN_LAST,
-                      G_STRUCT_OFFSET (XedDocumentClass, loading),
-                      NULL, NULL,
-                      xed_marshal_VOID__UINT64_UINT64,
-                      G_TYPE_NONE,
-                      2,
-                      G_TYPE_UINT64,
-                      G_TYPE_UINT64);
-
+    /**
+     * XedDocument::loaded:
+     * @document: the #XedDocument.
+     *
+     * The "loaded" signal is emitted at the end of a successful loading.
+     */
     document_signals[LOADED] =
         g_signal_new ("loaded",
                       G_OBJECT_CLASS_TYPE (object_class),
                       G_SIGNAL_RUN_LAST,
                       G_STRUCT_OFFSET (XedDocumentClass, loaded),
-                      NULL, NULL,
-                      g_cclosure_marshal_VOID__POINTER,
-                      G_TYPE_NONE,
-                      1,
-                      G_TYPE_POINTER);
+                      NULL, NULL, NULL,
+                      G_TYPE_NONE, 0);
 
     /**
      * XedDocument::save:
      * @document: the #XedDocument.
-     * @location: the location where the document is about to be saved.
-     * @encoding: the #XedEncoding used to save the document.
-     * @flags: the #XedDocumentSaveFlags for the save operation.
      *
-     * The "save" signal is emitted when the document is saved.
+     * The "save" signal is emitted at the beginning of file saving.
      */
     document_signals[SAVE] =
         g_signal_new ("save",
                       G_OBJECT_CLASS_TYPE (object_class),
                       G_SIGNAL_RUN_LAST,
                       G_STRUCT_OFFSET (XedDocumentClass, save),
-                      NULL, NULL,
-                      xed_marshal_VOID__OBJECT_BOXED_FLAGS,
-                      G_TYPE_NONE,
-                      3,
-                      G_TYPE_FILE,
-                      /* we rely on the fact that the XedEncoding pointer stays
-                       * the same forever */
-                      XED_TYPE_ENCODING | G_SIGNAL_TYPE_STATIC_SCOPE,
-                      XED_TYPE_DOCUMENT_SAVE_FLAGS);
+                      NULL, NULL, NULL,
+                      G_TYPE_NONE, 0);
 
-    document_signals[SAVING] =
-        g_signal_new ("saving",
-                      G_OBJECT_CLASS_TYPE (object_class),
-                      G_SIGNAL_RUN_LAST,
-                      G_STRUCT_OFFSET (XedDocumentClass, saving),
-                      NULL, NULL,
-                      xed_marshal_VOID__UINT64_UINT64,
-                      G_TYPE_NONE,
-                      2,
-                      G_TYPE_UINT64,
-                      G_TYPE_UINT64);
-
+    /**
+     * XedDocument::saved:
+     * @document: the #XedDocument.
+     *
+     * The "saved" signal is emitted at the end of a successful file saving.
+     */
     document_signals[SAVED] =
         g_signal_new ("saved",
                       G_OBJECT_CLASS_TYPE (object_class),
                       G_SIGNAL_RUN_LAST,
                       G_STRUCT_OFFSET (XedDocumentClass, saved),
-                      NULL, NULL,
-                      g_cclosure_marshal_VOID__POINTER,
-                      G_TYPE_NONE,
-                      1,
-                      G_TYPE_POINTER);
+                      NULL, NULL, NULL,
+                      G_TYPE_NONE, 0);
 
     g_type_class_add_private (object_class, sizeof (XedDocumentPrivate));
 }
@@ -619,7 +493,7 @@ set_language (XedDocument       *doc,
 
     if (set_by_user)
     {
-        const gchar *language = get_language_metadata (doc);
+        const gchar *language = get_language_string (doc);
 
         xed_document_set_metadata (doc, XED_METADATA_ATTRIBUTE_LANGUAGE, language, NULL);
     }
@@ -628,31 +502,17 @@ set_language (XedDocument       *doc,
 }
 
 static void
-set_encoding (XedDocument       *doc,
-              const XedEncoding *encoding,
-              gboolean           set_by_user)
+save_encoding_metadata (XedDocument *doc)
 {
-    g_return_if_fail (encoding != NULL);
+    const GtkSourceEncoding *encoding;
+    const gchar *charset;
 
     xed_debug (DEBUG_DOCUMENT);
 
-    if (doc->priv->encoding == encoding)
-    {
-        return;
-    }
+    encoding = gtk_source_file_get_encoding (doc->priv->file);
+    charset = gtk_source_encoding_get_charset (encoding);
 
-    doc->priv->encoding = encoding;
-
-    if (set_by_user)
-    {
-        const gchar *charset;
-
-        charset = xed_encoding_get_charset (encoding);
-
-        xed_document_set_metadata (doc, XED_METADATA_ATTRIBUTE_ENCODING, charset, NULL);
-    }
-
-    g_object_notify (G_OBJECT (doc), "encoding");
+    xed_document_set_metadata (doc, XED_METADATA_ATTRIBUTE_ENCODING, charset, NULL);
 }
 
 static GtkSourceStyleScheme *
@@ -682,52 +542,6 @@ get_default_style_scheme (GSettings *editor_settings)
     return def_style;
 }
 
-static void
-on_location_changed (XedDocument *doc,
-                     GParamSpec  *pspec,
-                     gpointer     useless)
-{
-#ifdef ENABLE_GVFS_METADATA
-    GFile *location;
-
-    location = xed_document_get_location (doc);
-
-    /* load metadata for this location: we load sync since metadata is
-     * always local so it should be fast and we need the information
-     * right after the location was set.
-     */
-    if (location != NULL)
-    {
-        GError *error = NULL;
-
-        if (doc->priv->metadata_info != NULL)
-        {
-            g_object_unref (doc->priv->metadata_info);
-        }
-
-        doc->priv->metadata_info = g_file_query_info (location,
-                                                      METADATA_QUERY,
-                                                      G_FILE_QUERY_INFO_NONE,
-                                                      NULL,
-                                                      &error);
-
-        if (error != NULL)
-        {
-            if (error->code != G_FILE_ERROR_ISDIR &&
-                error->code != G_FILE_ERROR_NOTDIR &&
-                error->code != G_FILE_ERROR_NOENT)
-            {
-                g_warning ("%s", error->message);
-            }
-
-            g_error_free (error);
-        }
-
-        g_object_unref (location);
-    }
-#endif
-}
-
 static GtkSourceLanguage *
 guess_language (XedDocument *doc)
 {
@@ -741,7 +555,7 @@ guess_language (XedDocument *doc)
     {
         xed_debug_message (DEBUG_DOCUMENT, "Language from metadata: %s", data);
 
-        if (strcmp (data, NO_LANGUAGE_NAME) != 0)
+        if (!g_str_equal (data, NO_LANGUAGE_NAME))
         {
             language = gtk_source_language_manager_get_language (manager, data);
         }
@@ -753,10 +567,10 @@ guess_language (XedDocument *doc)
         GFile *location;
         gchar *basename = NULL;
 
-        location = xed_document_get_location (doc);
+        location = gtk_source_file_get_location (doc->priv->file);
         xed_debug_message (DEBUG_DOCUMENT, "Sniffing Language");
 
-        if (location)
+        if (location != NULL)
         {
             basename = g_file_get_basename (location);
         }
@@ -768,11 +582,6 @@ guess_language (XedDocument *doc)
         language = gtk_source_language_manager_guess_language (manager, basename, doc->priv->content_type);
 
         g_free (basename);
-
-        if (location != NULL)
-        {
-            g_object_unref (location);
-        }
     }
 
     return language;
@@ -801,6 +610,68 @@ get_default_content_type (void)
 }
 
 static void
+on_location_changed (GtkSourceFile *file,
+                     GParamSpec    *pspec,
+                     XedDocument   *doc)
+{
+    GFile *location;
+
+    xed_debug (DEBUG_DOCUMENT);
+
+    location = gtk_source_file_get_location (file);
+
+    if (location != NULL && doc->priv->untitled_number > 0)
+    {
+        release_untitled_number (doc->priv->untitled_number);
+        doc->priv->untitled_number = 0;
+    }
+
+    if (doc->priv->short_name == NULL)
+    {
+        g_object_notify (G_OBJECT (doc), "shortname");
+    }
+
+#ifdef ENABLE_GVFS_METADATA
+
+    /* load metadata for this location: we load sync since metadata is
+    * always local so it should be fast and we need the information
+    * right after the location was set.
+    */
+    if (location != NULL)
+    {
+        GError *error = NULL;
+
+        if (doc->priv->metadata_info != NULL)
+        {
+            g_object_unref (doc->priv->metadata_info);
+        }
+
+        doc->priv->metadata_info = g_file_query_info (location,
+                                                      METADATA_QUERY,
+                                                      G_FILE_QUERY_INFO_NONE,
+                                                      NULL,
+                                                      &error);
+
+        if (error != NULL)
+        {
+            /* TODO document why the warning is not displayed in
+             * certain cases.
+             */
+            if (error->domain != G_FILE_ERROR ||
+                (error->code != G_FILE_ERROR_ISDIR &&
+                 error->code != G_FILE_ERROR_NOTDIR &&
+                 error->code != G_FILE_ERROR_NOENT))
+             {
+                 g_warning ("%s", error->message);
+             }
+
+            g_error_free (error);
+        }
+    }
+#endif
+}
+
+static void
 xed_document_init (XedDocument *doc)
 {
     XedDocumentPrivate *priv;
@@ -813,10 +684,7 @@ xed_document_init (XedDocument *doc)
 
     priv->editor_settings = g_settings_new ("org.x.editor.preferences.editor");
 
-    priv->location = NULL;
     priv->untitled_number = get_untitled_number ();
-
-    priv->metadata_info = NULL;
 
     priv->content_type = get_default_content_type ();
 
@@ -827,14 +695,12 @@ xed_document_init (XedDocument *doc)
     priv->last_save_was_manually = TRUE;
     priv->language_set_by_user = FALSE;
 
-    priv->mtime.tv_sec = 0;
-    priv->mtime.tv_usec = 0;
-
     g_get_current_time (&doc->priv->time_of_last_save_or_load);
 
-    priv->encoding = xed_encoding_get_utf8 ();
+    priv->file = gtk_source_file_new ();
 
-    priv->newline_type = XED_DOCUMENT_NEWLINE_TYPE_DEFAULT;
+    g_signal_connect_object (priv->file, "notify::location",
+                             G_CALLBACK (on_location_changed), doc, 0);
 
     g_settings_bind (priv->editor_settings,
                      XED_SETTINGS_MAX_UNDO_ACTIONS,
@@ -855,7 +721,6 @@ xed_document_init (XedDocument *doc)
     }
 
     g_signal_connect (doc, "notify::content-type", G_CALLBACK (on_content_type_changed), NULL);
-    g_signal_connect (doc, "notify::location", G_CALLBACK (on_location_changed), NULL);
 }
 
 XedDocument *
@@ -910,7 +775,7 @@ xed_document_set_content_type (XedDocument *doc,
         gchar *guessed_type = NULL;
 
         /* If content type is null, we guess from the filename */
-        location = xed_document_get_location (doc);
+        location = gtk_source_file_get_location (doc->priv->file);
         if (location != NULL)
         {
             gchar *basename;
@@ -919,50 +784,14 @@ xed_document_set_content_type (XedDocument *doc,
             guessed_type = g_content_type_guess (basename, NULL, 0, NULL);
 
             g_free (basename);
-            g_object_unref (location);
         }
 
         set_content_type_no_guess (doc, guessed_type);
-
         g_free (guessed_type);
     }
     else
     {
         set_content_type_no_guess (doc, content_type);
-    }
-}
-
-static void
-set_location (XedDocument *doc,
-              GFile       *location)
-{
-    xed_debug (DEBUG_DOCUMENT);
-
-    g_return_if_fail ((location == NULL) || xed_utils_is_valid_location (location));
-
-    if (doc->priv->location == location)
-    {
-        return;
-    }
-
-    g_clear_object (&doc->priv->location);
-
-    if (location != NULL)
-    {
-        doc->priv->location = g_file_dup (location);
-
-        if (doc->priv->untitled_number > 0)
-        {
-            release_untitled_number (doc->priv->untitled_number);
-            doc->priv->untitled_number = 0;
-        }
-    }
-
-    g_object_notify (G_OBJECT (doc), "location");
-
-    if (doc->priv->short_name == NULL)
-    {
-        g_object_notify (G_OBJECT (doc), "shortname");
     }
 }
 
@@ -975,9 +804,13 @@ set_location (XedDocument *doc,
 GFile *
 xed_document_get_location (XedDocument *doc)
 {
+    GFile *location;
+
     g_return_val_if_fail (XED_IS_DOCUMENT (doc), NULL);
 
-    return doc->priv->location == NULL ? NULL : g_file_dup (doc->priv->location);
+    location = gtk_source_file_get_location (doc->priv->file);
+
+    return location != NULL ? g_object_ref (location) : NULL;
 }
 
 void
@@ -987,7 +820,7 @@ xed_document_set_location (XedDocument *doc,
     g_return_if_fail (XED_IS_DOCUMENT (doc));
     g_return_if_fail (G_IS_FILE (location));
 
-    set_location (doc, location);
+    gtk_source_file_set_location (doc->priv->file, location);
     xed_document_set_content_type (doc, NULL);
 }
 
@@ -1000,15 +833,19 @@ xed_document_set_location (XedDocument *doc,
 gchar *
 xed_document_get_uri_for_display (XedDocument *doc)
 {
+    GFile *location;
+
     g_return_val_if_fail (XED_IS_DOCUMENT (doc), g_strdup (""));
 
-    if (doc->priv->location == NULL)
+    location = gtk_source_file_get_location (doc->priv->file);
+
+    if (location == NULL)
     {
         return g_strdup_printf (_("Unsaved Document %d"), doc->priv->untitled_number);
     }
     else
     {
-        return g_file_get_parse_name (doc->priv->location);
+        return g_file_get_parse_name (location);
     }
 }
 
@@ -1021,19 +858,23 @@ xed_document_get_uri_for_display (XedDocument *doc)
 gchar *
 xed_document_get_short_name_for_display (XedDocument *doc)
 {
+    GFile *location;
+
     g_return_val_if_fail (XED_IS_DOCUMENT (doc), g_strdup (""));
+
+    location = gtk_source_file_get_location (doc->priv->file);
 
     if (doc->priv->short_name != NULL)
     {
         return g_strdup (doc->priv->short_name);
     }
-    else if (doc->priv->location == NULL)
+    else if (location == NULL)
     {
         return g_strdup_printf (_("Unsaved Document %d"), doc->priv->untitled_number);
     }
     else
     {
-        return xed_utils_basename_for_display (doc->priv->location);
+        return xed_utils_basename_for_display (location);
     }
 }
 
@@ -1071,29 +912,20 @@ xed_document_get_content_type (XedDocument *doc)
 gchar *
 xed_document_get_mime_type (XedDocument *doc)
 {
-    gchar *mime_type = NULL;
-
     g_return_val_if_fail (XED_IS_DOCUMENT (doc), g_strdup ("text/plain"));
 
     if (doc->priv->content_type != NULL &&
         !g_content_type_is_unknown (doc->priv->content_type))
     {
-        mime_type = g_content_type_get_mime_type (doc->priv->content_type);
+        return g_content_type_get_mime_type (doc->priv->content_type);
     }
 
-    return mime_type != NULL ? mime_type : g_strdup ("text/plain");
+    return g_strdup ("text/plain");
 }
 
-/**
- * _xed_document_set_readonly:
- * @doc: a #XedDocument
- * @readonly: the new setting.
- *
- * Sets whether the document is read-only.
- */
-void
-_xed_document_set_readonly (XedDocument *doc,
-                            gboolean     readonly)
+static void
+set_readonly (XedDocument *doc,
+              gboolean     readonly)
 {
     xed_debug (DEBUG_DOCUMENT);
 
@@ -1117,430 +949,184 @@ xed_document_get_readonly (XedDocument *doc)
 }
 
 static void
-reset_temp_loading_data (XedDocument *doc)
+loaded_query_info_cb (GFile        *location,
+                      GAsyncResult *result,
+                      XedDocument  *doc)
 {
-    /* the loader has been used, throw it away */
-    g_object_unref (doc->priv->loader);
-    doc->priv->loader = NULL;
-
-    doc->priv->requested_encoding = NULL;
-    doc->priv->requested_line_pos = 0;
-}
-
-static void
-document_loader_loaded (XedDocumentLoader *loader,
-                        const GError      *error,
-                        XedDocument       *doc)
-{
-    /* load was successful */
-    if (error == NULL ||
-        (error->domain == XED_DOCUMENT_ERROR &&
-         error->code == XED_DOCUMENT_ERROR_CONVERSION_FALLBACK))
-    {
-        GtkTextIter iter;
-        GFileInfo *info;
-        const gchar *content_type = NULL;
-        gboolean read_only = FALSE;
-        GTimeVal mtime = {0, 0};
-
-        info = xed_document_loader_get_info (loader);
-
-        if (info)
-        {
-            if (g_file_info_has_attribute (info, G_FILE_ATTRIBUTE_STANDARD_CONTENT_TYPE))
-            {
-                content_type = g_file_info_get_attribute_string (info, G_FILE_ATTRIBUTE_STANDARD_CONTENT_TYPE);
-            }
-            if (g_file_info_has_attribute (info, G_FILE_ATTRIBUTE_TIME_MODIFIED))
-            {
-                g_file_info_get_modification_time (info, &mtime);
-            }
-            if (g_file_info_has_attribute (info, G_FILE_ATTRIBUTE_ACCESS_CAN_WRITE))
-            {
-                read_only = !g_file_info_get_attribute_boolean (info, G_FILE_ATTRIBUTE_ACCESS_CAN_WRITE);
-            }
-        }
-
-        doc->priv->mtime = mtime;
-
-        doc->priv->readonly = read_only;
-
-        g_get_current_time (&doc->priv->time_of_last_save_or_load);
-
-        doc->priv->externally_modified = FALSE;
-        doc->priv->deleted = FALSE;
-
-        set_encoding (doc, xed_document_loader_get_encoding (loader), (doc->priv->requested_encoding != NULL));
-
-        xed_document_set_content_type (doc, content_type);
-
-        xed_document_set_newline_type (doc, xed_document_loader_get_newline_type (loader));
-
-        /* move the cursor at the requested line if any */
-        if (doc->priv->requested_line_pos > 0)
-        {
-            /* line_pos - 1 because get_iter_at_line counts from 0 */
-            gtk_text_buffer_get_iter_at_line (GTK_TEXT_BUFFER (doc),
-                                              &iter,
-                                              doc->priv->requested_line_pos - 1);
-        }
-        else
-        {
-            /* if enabled, to the position stored in the metadata */
-            if (g_settings_get_boolean (doc->priv->editor_settings, XED_SETTINGS_RESTORE_CURSOR_POSITION))
-            {
-                gchar *pos;
-                gint offset;
-
-                pos = xed_document_get_metadata (doc, XED_METADATA_ATTRIBUTE_POSITION);
-
-                offset = pos ? atoi (pos) : 0;
-                g_free (pos);
-
-                gtk_text_buffer_get_iter_at_offset (GTK_TEXT_BUFFER (doc), &iter, MAX (offset, 0));
-
-                /* make sure it's a valid position, if the file
-                 * changed we may have ended up in the middle of
-                 * a utf8 character cluster */
-                if (!gtk_text_iter_is_cursor_position (&iter))
-                {
-                    gtk_text_buffer_get_start_iter (GTK_TEXT_BUFFER (doc), &iter);
-                }
-            }
-            /* otherwise to the top */
-            else
-            {
-                gtk_text_buffer_get_start_iter (GTK_TEXT_BUFFER (doc), &iter);
-            }
-
-            gtk_text_buffer_place_cursor (GTK_TEXT_BUFFER (doc), &iter);
-        }
-
-        if (!doc->priv->language_set_by_user)
-        {
-            GtkSourceLanguage *language = guess_language (doc);
-
-            xed_debug_message (DEBUG_DOCUMENT, "Language: %s",
-                               language != NULL ? gtk_source_language_get_name (language) : "None");
-
-            set_language (doc, language, FALSE);
-        }
-    }
-
-    /* special case creating a named new doc */
-    else if (doc->priv->create &&
-             (error->domain == G_IO_ERROR && error->code == G_IO_ERROR_NOT_FOUND) &&
-             (g_file_has_uri_scheme (doc->priv->location, "file")))
-    {
-        reset_temp_loading_data (doc);
-
-        g_signal_emit (doc, document_signals[LOADED], 0, NULL);
-
-        return;
-    }
-
-    g_signal_emit (doc, document_signals[LOADED], 0, error);
-
-    reset_temp_loading_data (doc);
-}
-
-static void
-document_loader_loading (XedDocumentLoader *loader,
-                         gboolean           completed,
-                         const GError      *error,
-                         XedDocument       *doc)
-{
-    if (completed)
-    {
-        document_loader_loaded (loader, error, doc);
-    }
-    else
-    {
-        goffset size = 0;
-        goffset read;
-        GFileInfo *info;
-
-        info = xed_document_loader_get_info (loader);
-
-        if (info && g_file_info_has_attribute (info, G_FILE_ATTRIBUTE_STANDARD_SIZE))
-        {
-            size = g_file_info_get_attribute_uint64 (info, G_FILE_ATTRIBUTE_STANDARD_SIZE);
-        }
-
-        read = xed_document_loader_get_bytes_read (loader);
-
-        g_signal_emit (doc, document_signals[LOADING], 0, read, size);
-    }
-}
-
-static void
-xed_document_load_real (XedDocument       *doc,
-                        GFile             *location,
-                        const XedEncoding *encoding,
-                        gint               line_pos,
-                        gboolean           create)
-{
-    gchar *uri;
-
-    g_return_if_fail (doc->priv->loader == NULL);
-
-    uri = g_file_get_uri (location);
-    xed_debug_message (DEBUG_DOCUMENT, "load_real: uri = %s", uri);
-    g_free (uri);
-
-    /* create a loader. It will be destroyed when loading is completed */
-    doc->priv->loader = xed_document_loader_new (doc, location, encoding);
-
-    g_signal_connect (doc->priv->loader, "loading", G_CALLBACK (document_loader_loading), doc);
-
-    doc->priv->create = create;
-    doc->priv->requested_encoding = encoding;
-    doc->priv->requested_line_pos = line_pos;
-
-    xed_document_set_location (doc, location);
-
-    xed_document_loader_load (doc->priv->loader);
-}
-
-/**
- * xed_document_load:
- * @doc: the #XedDocument.
- * @location: the location where to load the document from.
- * @encoding: the #XedEncoding to encode the document.
- * @line_pos: the line to show.
- * @create: whether the document should be created if it doesn't exist.
- *
- * Load a document. This results in the "load" signal to be emitted.
- */
-void
-xed_document_load (XedDocument       *doc,
-                   GFile             *location,
-                   const XedEncoding *encoding,
-                   gint               line_pos,
-                   gboolean           create)
-{
-    g_return_if_fail (XED_IS_DOCUMENT (doc));
-    g_return_if_fail (location != NULL);
-    g_return_if_fail (xed_utils_is_valid_location (location));
-
-    g_signal_emit (doc, document_signals[LOAD], 0, location, encoding, line_pos, create);
-}
-
-/**
- * xed_document_load_cancel:
- * @doc: the #XedDocument.
- *
- * Cancel load of a document.
- */
-gboolean
-xed_document_load_cancel (XedDocument *doc)
-{
-    g_return_val_if_fail (XED_IS_DOCUMENT (doc), FALSE);
-
-    if (doc->priv->loader == NULL)
-    {
-        return FALSE;
-    }
-
-    return xed_document_loader_cancel (doc->priv->loader);
-}
-
-static gboolean
-has_invalid_chars (XedDocument *doc)
-{
-    GtkTextBuffer *buffer;
-    GtkTextIter start;
-
-    g_return_val_if_fail (XED_IS_DOCUMENT (doc), FALSE);
-
-    xed_debug (DEBUG_DOCUMENT);
-
-    if (doc->priv->error_tag == NULL)
-    {
-        return FALSE;
-    }
-
-    buffer = GTK_TEXT_BUFFER (doc);
-
-    gtk_text_buffer_get_start_iter (buffer, &start);
-
-    if (gtk_text_iter_begins_tag (&start, doc->priv->error_tag) ||
-       gtk_text_iter_forward_to_tag_toggle (&start, doc->priv->error_tag))
-    {
-       return TRUE;
-    }
-
-    return FALSE;
-}
-
-static void
-document_saver_saving (XedDocumentSaver *saver,
-                       gboolean          completed,
-                       const GError     *error,
-                       XedDocument      *doc)
-{
-    xed_debug (DEBUG_DOCUMENT);
-
-    if (completed)
-    {
-        /* save was successful */
-        if (error == NULL)
-        {
-            GFile *location;
-            const gchar *content_type = NULL;
-            GTimeVal mtime = {0, 0};
-            GFileInfo *info;
-
-            location = xed_document_saver_get_location (saver);
-            set_location (doc, location);
-            g_object_unref (location);
-
-            info = xed_document_saver_get_info (saver);
-
-            if (info != NULL)
-            {
-                if (g_file_info_has_attribute (info, G_FILE_ATTRIBUTE_STANDARD_CONTENT_TYPE))
-                {
-                    content_type = g_file_info_get_attribute_string (info, G_FILE_ATTRIBUTE_STANDARD_CONTENT_TYPE);
-                }
-                if (g_file_info_has_attribute (info, G_FILE_ATTRIBUTE_TIME_MODIFIED))
-                {
-                    g_file_info_get_modification_time (info, &mtime);
-                }
-            }
-
-            xed_document_set_content_type (doc, content_type);
-            doc->priv->mtime = mtime;
-
-            g_get_current_time (&doc->priv->time_of_last_save_or_load);
-
-            doc->priv->externally_modified = FALSE;
-            doc->priv->deleted = FALSE;
-
-            _xed_document_set_readonly (doc, FALSE);
-
-            gtk_text_buffer_set_modified (GTK_TEXT_BUFFER (doc), FALSE);
-            set_encoding (doc, doc->priv->requested_encoding, TRUE);
-        }
-
-        g_signal_emit (doc, document_signals[SAVED], 0, error);
-
-        /* the saver has been used, throw it away */
-        g_object_unref (doc->priv->saver);
-        doc->priv->saver = NULL;
-    }
-    else
-    {
-        goffset size = 0;
-        goffset written = 0;
-
-        size = xed_document_saver_get_file_size (saver);
-        written = xed_document_saver_get_bytes_written (saver);
-
-        xed_debug_message (DEBUG_DOCUMENT, "save progress: %" G_GINT64_FORMAT " of %" G_GINT64_FORMAT, written, size);
-
-        g_signal_emit (doc, document_signals[SAVING], 0, written, size);
-    }
-}
-
-static void
-xed_document_save_real (XedDocument          *doc,
-                        GFile                *location,
-                        const XedEncoding    *encoding,
-                        XedDocumentSaveFlags  flags)
-{
-    g_return_if_fail (doc->priv->saver == NULL);
-
-    if (!(flags & XED_DOCUMENT_SAVE_IGNORE_INVALID_CHARS) && has_invalid_chars (doc))
-    {
-        GError *error = NULL;
-
-        g_set_error_literal (&error,
-                             XED_DOCUMENT_ERROR,
-                             XED_DOCUMENT_ERROR_CONVERSION_FALLBACK,
-                             "The document contains invalid characters");
-
-        g_signal_emit (doc, document_signals[SAVED], 0, error);
-
-        g_error_free (error);
-    }
-    else
-    {
-        /* create a saver, it will be destroyed once saving is complete */
-        doc->priv->saver = xed_document_saver_new (doc, location, encoding, doc->priv->newline_type, flags);
-
-        g_signal_connect (doc->priv->saver, "saving", G_CALLBACK (document_saver_saving), doc);
-
-        doc->priv->requested_encoding = encoding;
-
-        xed_document_saver_save (doc->priv->saver, &doc->priv->mtime);
-    }
-}
-
-/**
- * xed_document_save:
- * @doc: the #XedDocument.
- * @flags: optionnal #XedDocumentSaveFlags.
- *
- * Save the document to its previous location. This results in the "save"
- * signal to be emitted.
- */
-void
-xed_document_save (XedDocument          *doc,
-                   XedDocumentSaveFlags  flags)
-{
-    g_return_if_fail (XED_IS_DOCUMENT (doc));
-    g_return_if_fail (G_IS_FILE (doc->priv->location));
-
-    g_signal_emit (doc, document_signals[SAVE], 0, doc->priv->location, doc->priv->encoding, flags);
-}
-
-/**
- * xed_document_save_as:
- * @doc: the #XedDocument.
- * @location: the location where to save the document.
- * @encoding: the #XedEncoding to encode the document.
- * @flags: optionnal #XedDocumentSaveFlags.
- *
- * Save the document to a new location. This results in the "save" signal
- * to be emitted.
- */
-void
-xed_document_save_as (XedDocument          *doc,
-                      GFile                *location,
-                      const XedEncoding    *encoding,
-                      XedDocumentSaveFlags  flags)
-{
+    GFileInfo *info;
+    const gchar *content_type = NULL;
+    gboolean read_only = FALSE;
     GError *error = NULL;
 
-    g_return_if_fail (XED_IS_DOCUMENT (doc));
-    g_return_if_fail (G_IS_FILE (location));
-    g_return_if_fail (encoding != NULL);
-
-    if (has_invalid_chars (doc))
-    {
-        g_set_error_literal (&error,
-                             XED_DOCUMENT_ERROR,
-                             XED_DOCUMENT_ERROR_CONVERSION_FALLBACK,
-                             "The document contains invalid chars");
-    }
-
-    /* priv->mtime refers to the the old location (if any). Thus, it should be
-     * ignored when saving as. */
-    g_signal_emit (doc, document_signals[SAVE], 0, location, encoding, flags | XED_DOCUMENT_SAVE_IGNORE_MTIME, error);
+    info = g_file_query_info_finish (location, result, &error);
 
     if (error != NULL)
     {
+        /* Ignore not found error as it can happen when opening a
+         * non-existent file from the command line.
+         */
+        if (error->domain != G_IO_ERROR || error->code != G_IO_ERROR_NOT_FOUND)
+        {
+            g_warning ("Document loading: query info error: %s", error->message);
+        }
+
         g_error_free (error);
+        error = NULL;
     }
+
+    doc->priv->mtime_set = FALSE;
+
+    if (info != NULL)
+    {
+        if (g_file_info_has_attribute (info, G_FILE_ATTRIBUTE_STANDARD_CONTENT_TYPE))
+        {
+            content_type = g_file_info_get_attribute_string (info, G_FILE_ATTRIBUTE_STANDARD_CONTENT_TYPE);
+        }
+
+        if (g_file_info_has_attribute (info, G_FILE_ATTRIBUTE_ACCESS_CAN_WRITE))
+        {
+            read_only = !g_file_info_get_attribute_boolean (info, G_FILE_ATTRIBUTE_ACCESS_CAN_WRITE);
+        }
+
+        if (g_file_info_has_attribute (info, G_FILE_ATTRIBUTE_TIME_MODIFIED))
+        {
+            g_file_info_get_modification_time (info, &doc->priv->mtime);
+            doc->priv->mtime_set = TRUE;
+        }
+    }
+
+    set_readonly (doc, read_only);
+
+    g_get_current_time (&doc->priv->time_of_last_save_or_load);
+
+    doc->priv->externally_modified = FALSE;
+    doc->priv->deleted = FALSE;
+
+    xed_document_set_content_type (doc, content_type);
+
+    if (info != NULL)
+    {
+        g_object_unref (info);
+    }
+
+    if (!doc->priv->language_set_by_user)
+    {
+        GtkSourceLanguage *language = guess_language (doc);
+
+        xed_debug_message (DEBUG_DOCUMENT, "Language: %s",
+                           language != NULL ? gtk_source_language_get_name (language) : "None");
+
+        set_language (doc, language, FALSE);
+    }
+
+    /* Async operation finished. */
+    g_object_unref (doc);
+}
+
+static void
+xed_document_loaded_real (XedDocument  *doc)
+{
+   GFile *location = gtk_source_file_get_location (doc->priv->file);
+
+   /* Keep the doc alive during the async operation. */
+   g_object_ref (doc);
+
+   g_file_query_info_async (location,
+                            G_FILE_ATTRIBUTE_STANDARD_CONTENT_TYPE ","
+                            G_FILE_ATTRIBUTE_ACCESS_CAN_WRITE ","
+                            G_FILE_ATTRIBUTE_TIME_MODIFIED,
+                            G_FILE_QUERY_INFO_NONE,
+                            G_PRIORITY_DEFAULT,
+                            NULL,
+                            (GAsyncReadyCallback) loaded_query_info_cb,
+                            doc);
+}
+
+static void
+saved_query_info_cb (GFile        *location,
+                     GAsyncResult *result,
+                     XedDocument  *doc)
+{
+    GFileInfo *info;
+    const gchar *content_type = NULL;
+    GError *error = NULL;
+
+    info = g_file_query_info_finish (location, result, &error);
+
+    if (error != NULL)
+    {
+        g_warning ("Document saving: query info error: %s", error->message);
+        g_error_free (error);
+        error = NULL;
+    }
+
+    doc->priv->mtime_set = FALSE;
+
+    if (info != NULL)
+    {
+        if (g_file_info_has_attribute (info, G_FILE_ATTRIBUTE_STANDARD_CONTENT_TYPE))
+        {
+            content_type = g_file_info_get_attribute_string (info, G_FILE_ATTRIBUTE_STANDARD_CONTENT_TYPE);
+        }
+
+        if (g_file_info_has_attribute (info, G_FILE_ATTRIBUTE_TIME_MODIFIED))
+        {
+            g_file_info_get_modification_time (info, &doc->priv->mtime);
+            doc->priv->mtime_set = TRUE;
+        }
+    }
+
+    xed_document_set_content_type (doc, content_type);
+
+    if (info != NULL)
+    {
+        g_object_unref (info);
+    }
+
+    g_get_current_time (&doc->priv->time_of_last_save_or_load);
+
+    doc->priv->externally_modified = FALSE;
+    doc->priv->deleted = FALSE;
+    doc->priv->create = FALSE;
+
+    set_readonly (doc, FALSE);
+
+    gtk_text_buffer_set_modified (GTK_TEXT_BUFFER (doc), FALSE);
+
+    save_encoding_metadata (doc);
+
+    /* Async operation finished. */
+    g_object_unref (doc);
+}
+
+static void
+xed_document_saved_real (XedDocument  *doc)
+{
+    GFile *location = gtk_source_file_get_location (doc->priv->file);
+
+    /* Keep the doc alive during the async operation. */
+    g_object_ref (doc);
+
+    g_file_query_info_async (location,
+                             G_FILE_ATTRIBUTE_STANDARD_CONTENT_TYPE ","
+                             G_FILE_ATTRIBUTE_TIME_MODIFIED,
+                             G_FILE_QUERY_INFO_NONE,
+                             G_PRIORITY_DEFAULT,
+                             NULL,
+                             (GAsyncReadyCallback) saved_query_info_cb,
+                             doc);
 }
 
 gboolean
 xed_document_is_untouched (XedDocument *doc)
 {
+    GFile *location;
+
     g_return_val_if_fail (XED_IS_DOCUMENT (doc), TRUE);
 
-    return (doc->priv->location == NULL) && (!gtk_text_buffer_get_modified (GTK_TEXT_BUFFER (doc)));
+    location = gtk_source_file_get_location (doc->priv->file);
+
+    return location == NULL && !gtk_text_buffer_get_modified (GTK_TEXT_BUFFER (doc));
 }
 
 gboolean
@@ -1548,33 +1134,40 @@ xed_document_is_untitled (XedDocument *doc)
 {
     g_return_val_if_fail (XED_IS_DOCUMENT (doc), TRUE);
 
-    return doc->priv->location == NULL;
+    return gtk_source_file_get_location (doc->priv->file) == NULL;
 }
 
 gboolean
 xed_document_is_local (XedDocument *doc)
 {
+    GFile *location;
+
     g_return_val_if_fail (XED_IS_DOCUMENT (doc), FALSE);
 
-    if (doc->priv->location == NULL)
+    location = gtk_source_file_get_location (doc->priv->file);
+
+    if (location == NULL)
     {
         return FALSE;
     }
 
-    return g_file_has_uri_scheme (doc->priv->location, "file");
+    return g_file_has_uri_scheme (location, "file");
 }
 
 static void
 check_file_on_disk (XedDocument *doc)
 {
+    GFile *location;
     GFileInfo *info;
 
-    if (doc->priv->location == NULL)
+    location = gtk_source_file_get_location (doc->priv->file);
+
+    if (location == NULL)
     {
         return;
     }
 
-    info = g_file_query_info (doc->priv->location,
+    info = g_file_query_info (location,
                               G_FILE_ATTRIBUTE_TIME_MODIFIED "," \
                               G_FILE_ATTRIBUTE_ACCESS_CAN_WRITE,
                               G_FILE_QUERY_INFO_NONE,
@@ -1589,10 +1182,10 @@ check_file_on_disk (XedDocument *doc)
 
             read_only = !g_file_info_get_attribute_boolean (info, G_FILE_ATTRIBUTE_ACCESS_CAN_WRITE);
 
-            _xed_document_set_readonly (doc, read_only);
+            set_readonly (doc, read_only);
         }
 
-        if (g_file_info_has_attribute (info, G_FILE_ATTRIBUTE_TIME_MODIFIED))
+        if (g_file_info_has_attribute (info, G_FILE_ATTRIBUTE_TIME_MODIFIED) && doc->priv->mtime_set)
         {
             GTimeVal timeval;
 
@@ -1735,162 +1328,6 @@ xed_document_goto_line_offset (XedDocument *doc,
     return ret;
 }
 
-static void
-get_style_colors (XedDocument *doc,
-                  const gchar *style_name,
-                  gboolean    *foreground_set,
-                  GdkRGBA     *foreground,
-                  gboolean    *background_set,
-                  GdkRGBA     *background,
-                  gboolean    *line_background_set,
-                  GdkRGBA     *line_background,
-                  gboolean    *bold_set,
-                  gboolean    *bold,
-                  gboolean    *italic_set,
-                  gboolean    *italic,
-                  gboolean    *underline_set,
-                  gboolean    *underline,
-                  gboolean    *strikethrough_set,
-                  gboolean    *strikethrough)
-{
-    GtkSourceStyleScheme *style_scheme;
-    GtkSourceStyle *style;
-    gchar *line_bg;
-    gchar *bg;
-    gchar *fg;
-
-    style_scheme = gtk_source_buffer_get_style_scheme (GTK_SOURCE_BUFFER (doc));
-    if (style_scheme == NULL)
-    {
-        goto fallback;
-    }
-
-    style = gtk_source_style_scheme_get_style (style_scheme, style_name);
-    if (style == NULL)
-    {
-        goto fallback;
-    }
-
-    g_object_get (style,
-                  "foreground-set", foreground_set,
-                  "foreground", &fg,
-                  "background-set", background_set,
-                  "background", &bg,
-                  "line-background-set", line_background_set,
-                  "line-background", &line_bg,
-                  "bold-set", bold_set,
-                  "bold", bold,
-                  "italic-set", italic_set,
-                  "italic", italic,
-                  "underline-set", underline_set,
-                  "underline", underline,
-                  "strikethrough-set", strikethrough_set,
-                  "strikethrough", strikethrough,
-                  NULL);
-
-    if (*foreground_set)
-    {
-        if (fg == NULL || !gdk_rgba_parse (foreground, fg))
-        {
-            *foreground_set = FALSE;
-        }
-    }
-
-    if (*background_set)
-    {
-        if (bg == NULL || !gdk_rgba_parse (background, bg))
-        {
-            *background_set = FALSE;
-        }
-    }
-
-    if (*line_background_set)
-    {
-        if (line_bg == NULL || !gdk_rgba_parse (background, line_bg))
-        {
-            *line_background_set = FALSE;
-        }
-    }
-
-    g_free (fg);
-    g_free (bg);
-    g_free (line_bg);
-
-    return;
-
- fallback:
-    xed_debug_message (DEBUG_DOCUMENT,
-                       "Falling back to hard-coded colors "
-                       "for the \"found\" text tag.");
-
-    gdk_rgba_parse (background, "#FFFF78");
-    *background_set = TRUE;
-    *foreground_set = FALSE;
-
-    return;
-}
-
-static void
-sync_tag_style (XedDocument *doc,
-                GtkTextTag  *tag,
-                const gchar *style_name)
-{
-    GdkRGBA fg;
-    GdkRGBA bg;
-    GdkRGBA line_bg;
-    gboolean fg_set;
-    gboolean bg_set;
-    gboolean line_bg_set;
-    gboolean bold;
-    gboolean italic;
-    gboolean underline;
-    gboolean strikethrough;
-    gboolean bold_set;
-    gboolean italic_set;
-    gboolean underline_set;
-    gboolean strikethrough_set;
-
-    xed_debug (DEBUG_DOCUMENT);
-
-    g_return_if_fail (tag != NULL);
-
-    get_style_colors (doc,
-                      style_name,
-                      &fg_set, &fg,
-                      &bg_set, &bg,
-                      &line_bg_set, &line_bg,
-                      &bold_set, &bold,
-                      &italic_set, &italic,
-                      &underline_set, &underline,
-                      &strikethrough_set, &strikethrough);
-
-    g_object_freeze_notify (G_OBJECT (tag));
-
-    g_object_set (tag,
-                 "foreground-rgba", fg_set ? &fg : NULL,
-                 "background-rgba", bg_set ? &bg : NULL,
-                 "paragraph-background-rgba", line_bg_set ? &line_bg : NULL,
-                 "weight", bold_set && bold ? PANGO_WEIGHT_BOLD : PANGO_WEIGHT_NORMAL,
-                 "style", italic_set && italic ? PANGO_STYLE_ITALIC : PANGO_STYLE_NORMAL,
-                 "underline", underline_set && underline ? PANGO_UNDERLINE_SINGLE : PANGO_UNDERLINE_NONE,
-                 "strikethrough", strikethrough_set && strikethrough,
-                  NULL);
-
-    g_object_thaw_notify (G_OBJECT (tag));
-}
-
-static void
-text_tag_set_highest_priority (GtkTextTag    *tag,
-                               GtkTextBuffer *buffer)
-{
-    GtkTextTagTable *table;
-    gint n;
-
-    table = gtk_text_buffer_get_tag_table (buffer);
-    n = gtk_text_tag_table_get_size (table);
-    gtk_text_tag_set_priority (tag, n - 1);
-}
-
 /**
  * xed_document_set_language:
  * @doc:
@@ -1919,12 +1356,12 @@ xed_document_get_language (XedDocument *doc)
     return gtk_source_buffer_get_language (GTK_SOURCE_BUFFER (doc));
 }
 
-const XedEncoding *
+const GtkSourceEncoding *
 xed_document_get_encoding (XedDocument *doc)
 {
     g_return_val_if_fail (XED_IS_DOCUMENT (doc), NULL);
 
-    return doc->priv->encoding;
+    return gtk_source_file_get_encoding (doc->priv->file);
 }
 
 glong
@@ -1941,51 +1378,12 @@ _xed_document_get_seconds_since_last_save_or_load (XedDocument *doc)
     return (current_time.tv_sec - doc->priv->time_of_last_save_or_load.tv_sec);
 }
 
-void
-xed_document_set_newline_type (XedDocument           *doc,
-                               XedDocumentNewlineType newline_type)
-{
-    g_return_if_fail (XED_IS_DOCUMENT (doc));
-
-    if (doc->priv->newline_type != newline_type)
-    {
-        doc->priv->newline_type = newline_type;
-        g_object_notify (G_OBJECT (doc), "newline-type");
-    }
-}
-
-XedDocumentNewlineType
+GtkSourceNewlineType
 xed_document_get_newline_type (XedDocument *doc)
 {
     g_return_val_if_fail (XED_IS_DOCUMENT (doc), 0);
 
-    return doc->priv->newline_type;
-}
-
-void
-_xed_document_set_mount_operation_factory (XedDocument              *doc,
-                                           XedMountOperationFactory  callback,
-                                           gpointer                  userdata)
-{
-    g_return_if_fail (XED_IS_DOCUMENT (doc));
-
-    doc->priv->mount_operation_factory = callback;
-    doc->priv->mount_operation_userdata = userdata;
-}
-
-GMountOperation *
-_xed_document_create_mount_operation (XedDocument *doc)
-{
-    g_return_val_if_fail (XED_IS_DOCUMENT (doc), NULL);
-
-    if (doc->priv->mount_operation_factory == NULL)
-    {
-        return g_mount_operation_new ();
-    }
-    else
-    {
-        return doc->priv->mount_operation_factory (doc, doc->priv->mount_operation_userdata);
-    }
+    return gtk_source_file_get_newline_type (doc->priv->file);
 }
 
 #ifndef ENABLE_GVFS_METADATA
@@ -1993,12 +1391,16 @@ gchar *
 xed_document_get_metadata (XedDocument *doc,
                            const gchar *key)
 {
+    GFile *location;
+
     g_return_val_if_fail (XED_IS_DOCUMENT (doc), NULL);
     g_return_val_if_fail (key != NULL, NULL);
 
-    if (doc->priv->location != NULL)
+    location = gtk_source_file_get_location (doc->priv->file);
+
+    if (location != NULL)
     {
-        return xed_metadata_manager_get (doc->priv->location, key);
+        return xed_metadata_manager_get (location, key);
     }
 
     return NULL;
@@ -2009,6 +1411,7 @@ xed_document_set_metadata (XedDocument *doc,
                            const gchar *first_key,
                            ...)
 {
+    GFile *location;
     const gchar *key;
     const gchar *value;
     va_list var_args;
@@ -2016,7 +1419,9 @@ xed_document_set_metadata (XedDocument *doc,
     g_return_if_fail (XED_IS_DOCUMENT (doc));
     g_return_if_fail (first_key != NULL);
 
-    if (doc->priv->location == NULL)
+    location = gtk_source_file_get_location (doc->priv->file);
+
+    if (location == NULL)
     {
         /* Can't set metadata for untitled documents */
         return;
@@ -2028,10 +1433,7 @@ xed_document_set_metadata (XedDocument *doc,
     {
         value = va_arg (var_args, const gchar *);
 
-        if (doc->priv->location != NULL)
-        {
-            xed_metadata_manager_set (doc->priv->location, key, value);
-        }
+        xed_metadata_manager_set (location, key, value);
     }
 
     va_end (var_args);
@@ -2127,7 +1529,7 @@ xed_document_set_metadata (XedDocument *doc,
         g_file_info_copy_into (info, doc->priv->metadata_info);
     }
 
-    location = xed_document_get_location (doc);
+    location = gtk_source_file_get_location (doc->priv->file);
 
     if (location != NULL)
     {
@@ -2138,49 +1540,11 @@ xed_document_set_metadata (XedDocument *doc,
                                      NULL,
                                      (GAsyncReadyCallback) set_attributes_cb,
                                      NULL);
-
-        g_object_unref (location);
     }
 
     g_object_unref (info);
 }
 #endif
-
-static void
-sync_error_tag (XedDocument *doc,
-                GParamSpec  *pspec,
-                gpointer     data)
-{
-   sync_tag_style (doc, doc->priv->error_tag, "def:error");
-}
-
-void
-_xed_document_apply_error_style (XedDocument *doc,
-                                 GtkTextIter *start,
-                                 GtkTextIter *end)
-{
-   GtkTextBuffer *buffer;
-
-   xed_debug (DEBUG_DOCUMENT);
-
-   buffer = GTK_TEXT_BUFFER (doc);
-
-   if (doc->priv->error_tag == NULL)
-   {
-       doc->priv->error_tag = gtk_text_buffer_create_tag (GTK_TEXT_BUFFER (doc), "error-style", NULL);
-
-       sync_error_tag (doc, NULL, NULL);
-
-       g_signal_connect (doc, "notify::style-scheme",
-                         G_CALLBACK (sync_error_tag), NULL);
-   }
-
-   /* make sure the 'error' tag has the priority over
-    * syntax highlighting tags */
-   text_tag_set_highest_priority (doc->priv->error_tag, GTK_TEXT_BUFFER (doc));
-
-   gtk_text_buffer_apply_tag (buffer, doc->priv->error_tag, start, end);
-}
 
 /**
  * xed_document_set_search_context:
@@ -2221,4 +1585,44 @@ xed_document_get_search_context (XedDocument *doc)
     g_return_val_if_fail (XED_IS_DOCUMENT (doc), NULL);
 
     return doc->priv->search_context;
+}
+
+/**
+ * xed_document_get_file:
+ * @doc: a #XedDocument.
+ *
+ * Gets the associated #GtkSourceFile. You should use it only for reading
+ * purposes, not for creating a #GtkSourceFileLoader or #GtkSourceFileSaver,
+ * because xed does some extra work when loading or saving a file and
+ * maintains an internal state. If you use in a plugin a file loader or saver on
+ * the returned #GtkSourceFile, the internal state of xed won't be updated.
+ *
+ * If you want to save the #GeditDocument to a secondary file, you can create a
+ * new #GtkSourceFile and use a #GtkSourceFileSaver.
+ *
+ * Returns: (transfer none): the associated #GtkSourceFile.
+ */
+GtkSourceFile *
+xed_document_get_file (XedDocument *doc)
+{
+   g_return_val_if_fail (XED_IS_DOCUMENT (doc), NULL);
+
+   return doc->priv->file;
+}
+
+void
+_xed_document_set_create (XedDocument *doc,
+                          gboolean     create)
+{
+    g_return_if_fail (XED_IS_DOCUMENT (doc));
+
+    doc->priv->create = create != FALSE;
+}
+
+gboolean
+_xed_document_get_create (XedDocument *doc)
+{
+   g_return_val_if_fail (XED_IS_DOCUMENT (doc), FALSE);
+
+   return doc->priv->create;
 }

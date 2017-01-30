@@ -31,22 +31,22 @@
 #ifndef __XED_IO_ERROR_MESSAGE_AREA_H__
 #define __XED_IO_ERROR_MESSAGE_AREA_H__
 
-#include <glib.h>
+#include <gtksourceview/gtksource.h>
 
 G_BEGIN_DECLS
 
 GtkWidget	*xed_io_loading_error_message_area_new		 (GFile               *location,
-									  const XedEncoding *encoding,
+									  const GtkSourceEncoding *encoding,
 									  const GError        *error);
 
 GtkWidget	*xed_unrecoverable_reverting_error_message_area_new	 (GFile               *location,
 									  const GError        *error);
 
 GtkWidget	*xed_conversion_error_while_saving_message_area_new	 (GFile               *location,
-									  const XedEncoding *encoding,
+									  const GtkSourceEncoding *encoding,
 									  const GError        *error);
 
-const XedEncoding
+const GtkSourceEncoding
 		*xed_conversion_error_message_area_get_encoding	 (GtkWidget           *message_area);
 
 GtkWidget	*xed_file_already_open_warning_message_area_new	 (GFile               *location);

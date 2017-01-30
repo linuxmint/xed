@@ -45,6 +45,8 @@
 #define XED_METADATA_ATTRIBUTE_SPELL_LANGUAGE "metadata::xed-spell-language"
 #define XED_METADATA_ATTRIBUTE_SPELL_ENABLED  "metadata::xed-spell-enabled"
 
+#define XED_AUTOMATIC_SPELL_VIEW "XedAutomaticSpellView"
+
 #define MENU_PATH "/MenuBar/ToolsMenu/ToolsOps_1"
 
 #define XED_SPELL_PLUGIN_GET_PRIVATE(object)(G_TYPE_INSTANCE_GET_PRIVATE ((object), \
@@ -1009,12 +1011,15 @@ spell_cb (GtkAction      *action,
 }
 
 static void
-set_auto_spell (XedWindow   *window,
-                XedDocument *doc,
-                gboolean     active)
+set_auto_spell (XedWindow *window,
+                XedView   *view,
+                gboolean   active)
 {
     XedAutomaticSpellChecker *autospell;
     XedSpellChecker *spell;
+    XedDocument *doc;
+
+    doc = XED_DOCUMENT (gtk_text_view_get_buffer (GTK_TEXT_VIEW (view)));
 
     spell = get_spell_checker_from_document (doc);
     g_return_if_fail (spell != NULL);
@@ -1025,13 +1030,8 @@ set_auto_spell (XedWindow   *window,
     {
         if (autospell == NULL)
         {
-            XedView *active_view;
-
-            active_view = xed_window_get_active_view (window);
-            g_return_if_fail (active_view != NULL);
-
             autospell = xed_automatic_spell_checker_new (doc, spell);
-            xed_automatic_spell_checker_attach_view (autospell, active_view);
+            xed_automatic_spell_checker_attach_view (autospell, view);
             xed_automatic_spell_checker_recheck_all (autospell);
         }
     }
@@ -1050,6 +1050,7 @@ auto_spell_cb (GtkAction      *action,
 {
     XedSpellPluginPrivate *priv;
     XedDocument *doc;
+    XedView *view;
     gboolean active;
 
     xed_debug (DEBUG_PLUGINS);
@@ -1059,11 +1060,13 @@ auto_spell_cb (GtkAction      *action,
 
     xed_debug_message (DEBUG_PLUGINS, active ? "Auto Spell activated" : "Auto Spell deactivated");
 
-    doc = xed_window_get_active_document (priv->window);
-    if (doc == NULL)
+    view = xed_window_get_active_view (priv->window);
+    if (view == NULL)
     {
         return;
     }
+
+    doc = XED_DOCUMENT (gtk_text_view_get_buffer (GTK_TEXT_VIEW (view)));
 
     if (get_autocheck_type (plugin) == AUTOCHECK_DOCUMENT)
     {
@@ -1072,33 +1075,32 @@ auto_spell_cb (GtkAction      *action,
                                    active ? "1" : NULL, NULL);
     }
 
-    set_auto_spell (priv->window, doc, active);
+    set_auto_spell (priv->window, view, active);
 }
 
 static void
 update_ui (XedSpellPlugin *plugin)
 {
     XedSpellPluginPrivate *priv;
-    XedDocument *doc;
     XedView *view;
-    gboolean autospell;
     GtkAction *action;
 
     xed_debug (DEBUG_PLUGINS);
 
     priv = plugin->priv;
-    doc = xed_window_get_active_document (priv->window);
     view = xed_window_get_active_view (priv->window);
 
-    autospell = (doc != NULL && xed_automatic_spell_checker_get_from_document (doc) != NULL);
-
-    if (doc != NULL)
+    if (view != NULL)
     {
+        XedDocument *doc;
         XedTab *tab;
         XedTabState state;
+        gboolean autospell;
 
+        doc = XED_DOCUMENT (gtk_text_view_get_buffer (GTK_TEXT_VIEW (view)));
         tab = xed_window_get_active_tab (priv->window);
         state = xed_tab_get_state (tab);
+        autospell = (doc != NULL && xed_automatic_spell_checker_get_from_document (doc) != NULL);
 
         /* If the document is loading we can't get the metadata so we
            endup with an useless speller */
@@ -1107,7 +1109,7 @@ update_ui (XedSpellPlugin *plugin)
             action = gtk_action_group_get_action (priv->action_group, "AutoSpell");
 
             g_signal_handlers_block_by_func (action, auto_spell_cb, plugin);
-            set_auto_spell (priv->window, doc, autospell);
+            set_auto_spell (priv->window, view, autospell);
             gtk_toggle_action_set_active (GTK_TOGGLE_ACTION (action), autospell);
             g_signal_handlers_unblock_by_func (action, auto_spell_cb, plugin);
         }
@@ -1120,14 +1122,17 @@ update_ui (XedSpellPlugin *plugin)
 
 static void
 set_auto_spell_from_metadata (XedSpellPlugin *plugin,
-                              XedDocument    *doc,
+                              XedView        *view,
                               GtkActionGroup *action_group)
 {
     gboolean active = FALSE;
     gchar *active_str = NULL;
     XedWindow *window;
+    XedDocument *doc;
     XedDocument *active_doc;
     XedSpellPluginAutocheckType autocheck_type;
+
+    doc = XED_DOCUMENT (gtk_text_view_get_buffer (GTK_TEXT_VIEW (view)));
 
     autocheck_type = get_autocheck_type (plugin);
 
@@ -1158,7 +1163,7 @@ set_auto_spell_from_metadata (XedSpellPlugin *plugin,
 
     window = XED_WINDOW (plugin->priv->window);
 
-    set_auto_spell (window, doc, active);
+    set_auto_spell (window, view, active);
 
     /* In case that the doc is the active one we mark the spell action */
     active_doc = xed_window_get_active_document (window);
@@ -1177,36 +1182,30 @@ set_auto_spell_from_metadata (XedSpellPlugin *plugin,
 
 static void
 on_document_loaded (XedDocument    *doc,
-                    const GError   *error,
                     XedSpellPlugin *plugin)
 {
-    if (error == NULL)
+
+    XedSpellChecker *spell;
+    XedView *view;
+
+    spell = XED_SPELL_CHECKER (g_object_get_qdata (G_OBJECT (doc), spell_checker_id));
+    if (spell != NULL)
     {
-        XedSpellChecker *spell;
-
-        spell = XED_SPELL_CHECKER (g_object_get_qdata (G_OBJECT (doc), spell_checker_id));
-        if (spell != NULL)
-        {
-            set_language_from_metadata (spell, doc);
-        }
-
-        set_auto_spell_from_metadata (plugin, doc, plugin->priv->action_group);
+        set_language_from_metadata (spell, doc);
     }
+
+    view = XED_VIEW (g_object_get_data (G_OBJECT (doc), XED_AUTOMATIC_SPELL_VIEW));
+
+    set_auto_spell_from_metadata (plugin, view, plugin->priv->action_group);
 }
 
 static void
 on_document_saved (XedDocument    *doc,
-                   const GError   *error,
                    XedSpellPlugin *plugin)
 {
     XedAutomaticSpellChecker *autospell;
     XedSpellChecker *spell;
     const gchar *key;
-
-    if (error != NULL)
-    {
-        return;
-    }
 
     /* Make sure to save the metadata here too */
     autospell = xed_automatic_spell_checker_get_from_document (doc);
@@ -1242,9 +1241,13 @@ tab_added_cb (XedWindow      *window,
               XedTab         *tab,
               XedSpellPlugin *plugin)
 {
+    XedView *view;
     XedDocument *doc;
 
-    doc = xed_tab_get_document (tab);
+    view = xed_tab_get_view (tab);
+    doc = XED_DOCUMENT (gtk_text_view_get_buffer (GTK_TEXT_VIEW (view)));
+
+    g_object_set_data (G_OBJECT (doc), XED_AUTOMATIC_SPELL_VIEW, view);
 
     g_signal_connect (doc, "loaded",
                       G_CALLBACK (on_document_loaded), plugin);
@@ -1261,6 +1264,7 @@ tab_removed_cb (XedWindow      *window,
     XedDocument *doc;
 
     doc = xed_tab_get_document (tab);
+    g_object_set_data (G_OBJECT (doc), XED_AUTOMATIC_SPELL_VIEW, NULL);
 
     g_signal_handlers_disconnect_by_func (doc, on_document_loaded, plugin);
     g_signal_handlers_disconnect_by_func (doc, on_document_saved, plugin);
@@ -1271,7 +1275,7 @@ xed_spell_plugin_activate (XedWindowActivatable *activatable)
 {
     XedSpellPluginPrivate *priv;
     GtkUIManager *manager;
-    GList *docs, *l;
+    GList *views, *l;
 
     xed_debug (DEBUG_PLUGINS);
 
@@ -1323,15 +1327,12 @@ xed_spell_plugin_activate (XedWindowActivatable *activatable)
 
     update_ui (XED_SPELL_PLUGIN (activatable));
 
-    docs = xed_window_get_documents (priv->window);
-    for (l = docs; l != NULL; l = g_list_next (l))
+    views = xed_window_get_views (priv->window);
+    for (l = views; l != NULL; l = g_list_next (l))
     {
-        XedDocument *doc = XED_DOCUMENT (l->data);
+        XedView *view = XED_VIEW (l->data);
 
-        set_auto_spell_from_metadata (XED_SPELL_PLUGIN (activatable), doc, priv->action_group);
-
-        g_signal_handlers_disconnect_by_func (doc, on_document_loaded, activatable);
-        g_signal_handlers_disconnect_by_func (doc, on_document_saved, activatable);
+        set_auto_spell_from_metadata (XED_SPELL_PLUGIN (activatable), view, priv->action_group);
     }
 
     priv->tab_added_id = g_signal_connect (priv->window, "tab-added",

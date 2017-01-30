@@ -128,9 +128,6 @@ strip_trailing_spaces (GtkTextBuffer *text_buffer)
 
 static void
 on_save (XedDocument          *document,
-         const gchar          *uri,
-         XedEncoding          *encoding,
-         XedDocumentSaveFlags  save_flags,
          XedTrailSavePlugin   *plugin)
 {
     GtkTextBuffer *text_buffer = GTK_TEXT_BUFFER (document);

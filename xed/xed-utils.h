@@ -36,8 +36,7 @@
 #include <glib.h>
 #include <gtk/gtk.h>
 #include <atk/atk.h>
-#include <xed/xed-encodings.h>
-#include <gtksourceview/gtksourceview.h>
+#include <gtksourceview/gtksource.h>
 
 G_BEGIN_DECLS
 
@@ -131,6 +130,11 @@ gboolean xed_utils_decode_uri (const gchar  *uri,
 
 /* Turns data from a drop into a list of well formatted uris */
 gchar **xed_utils_drop_get_uris (GtkSelectionData *selection_data);
+
+/* Private */
+GSList *_xed_utils_encoding_strv_to_list (const gchar * const *enc_str);
+
+gchar **_xed_utils_encoding_list_to_strv (const GSList *enc_list);
 
 G_END_DECLS
 

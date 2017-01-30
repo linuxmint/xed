@@ -50,7 +50,6 @@
 #include "xed-commands.h"
 #include "xed-debug.h"
 #include "xed-dirs.h"
-#include "xed-encodings.h"
 #include "xed-plugins-engine.h"
 #include "xed-session.h"
 #include "xed-utils.h"
@@ -71,7 +70,7 @@ static BaconMessageConnection *connection;
 
 /* command line */
 static gint line_position = 0;
-static gchar *encoding_charset = NULL;
+// static gchar *encoding_charset = NULL;
 static gboolean new_window_option = FALSE;
 static gboolean new_document_option = FALSE;
 static gchar **remaining_args = NULL;
@@ -85,32 +84,32 @@ show_version_and_quit (void)
 	exit (0);
 }
 
-static void
-list_encodings_and_quit (void)
-{
-	gint i = 0;
-	const XedEncoding *enc;
+// static void
+// list_encodings_and_quit (void)
+// {
+// 	gint i = 0;
+// 	const XedEncoding *enc;
 
-	while ((enc = xed_encoding_get_from_index (i)) != NULL)
-	{
-		g_print ("%s\n", xed_encoding_get_charset (enc));
+// 	while ((enc = xed_encoding_get_from_index (i)) != NULL)
+// 	{
+// 		g_print ("%s\n", xed_encoding_get_charset (enc));
 
-		++i;
-	}
+// 		++i;
+// 	}
 
-	exit (0);
-}
+// 	exit (0);
+// }
 
 static const GOptionEntry options [] =
 {
 	{ "version", 'V', G_OPTION_FLAG_NO_ARG, G_OPTION_ARG_CALLBACK,
 	  show_version_and_quit, N_("Show the application's version"), NULL },
 
-	{ "encoding", '\0', 0, G_OPTION_ARG_STRING, &encoding_charset,
-	  N_("Set the character encoding to be used to open the files listed on the command line"), N_("ENCODING")},
+	// { "encoding", '\0', 0, G_OPTION_ARG_STRING, &encoding_charset,
+	//   N_("Set the character encoding to be used to open the files listed on the command line"), N_("ENCODING")},
 
-	{ "list-encodings", '\0', G_OPTION_FLAG_NO_ARG, G_OPTION_ARG_CALLBACK,
-	  list_encodings_and_quit, N_("Display list of possible values for the encoding option"), NULL},
+	// { "list-encodings", '\0', G_OPTION_FLAG_NO_ARG, G_OPTION_ARG_CALLBACK,
+	//   list_encodings_and_quit, N_("Display list of possible values for the encoding option"), NULL},
 
 	{ "new-window", '\0', 0, G_OPTION_ARG_NONE, &new_window_option,
 	  N_("Create a new top-level window in an existing instance of xed"), NULL },
@@ -134,8 +133,8 @@ free_command_line_data (void)
 	g_strfreev (remaining_args);
 	remaining_args = NULL;
 
-	g_free (encoding_charset);
-	encoding_charset = NULL;
+	// g_free (encoding_charset);
+	// encoding_charset = NULL;
 
 	new_window_option = FALSE;
 	new_document_option = FALSE;
@@ -171,12 +170,12 @@ xed_get_command_line_data (void)
 		file_list = g_slist_reverse (file_list);
 	}
 
-	if (encoding_charset &&
-	    (xed_encoding_get_from_charset (encoding_charset) == NULL))
-	{
-		g_print (_("%s: invalid encoding.\n"),
-			 encoding_charset);
-	}
+	// if (encoding_charset &&
+	//     (xed_encoding_get_from_charset (encoding_charset) == NULL))
+	// {
+	// 	g_print (_("%s: invalid encoding.\n"),
+	// 		 encoding_charset);
+	// }
 }
 
 static guint32
@@ -243,7 +242,7 @@ static void
 on_message_received (const char *message,
 		     gpointer    data)
 {
-	const XedEncoding *encoding = NULL;
+	// const XedEncoding *encoding = NULL;
 	gchar **commands;
 	gchar **params;
 	gint workspace;
@@ -304,8 +303,8 @@ on_message_received (const char *message,
 
 			line_position = atoi (params[1]);
 
-			if (params[2] != '\0')
-				encoding = xed_encoding_get_from_charset (params[2]);
+			// if (params[2] != '\0')
+			// 	encoding = xed_encoding_get_from_charset (params[2]);
 
 			n_uris = atoi (params[3]);
 			uris = g_strsplit (params[4], " ", n_uris);
@@ -352,10 +351,10 @@ on_message_received (const char *message,
 
 	if (file_list != NULL)
 	{
-		_xed_cmd_load_files_from_prompt (window,
-						   file_list,
-						   encoding,
-						   line_position);
+		// _xed_cmd_load_files_from_prompt (window,
+		// 				   file_list,
+		// 				   encoding,
+		// 				   line_position);
 
 		if (new_document_option)
 			xed_window_create_tab (window, TRUE);
@@ -465,11 +464,11 @@ send_bacon_message (void)
 		command = g_string_append_c (command, '\v');
 		command = g_string_append (command, "OPEN-URIS");
 
-		g_string_append_printf (command,
-					"\t%d\t%s\t%u\t",
-					line_position,
-					encoding_charset ? encoding_charset : "",
-					g_slist_length (file_list));
+		// g_string_append_printf (command,
+		// 			"\t%d\t%s\t%u\t",
+		// 			line_position,
+		// 			encoding_charset ? encoding_charset : "",
+		// 			g_slist_length (file_list));
 
 		for (l = file_list; l != NULL; l = l->next)
 		{
@@ -618,24 +617,24 @@ main (int argc, char *argv[])
 		xed_debug_message (DEBUG_APP, "Create main window");
 		window = xed_app_create_window (app, NULL);
 
-		if (file_list != NULL)
-		{
-			const XedEncoding *encoding = NULL;
+		// if (file_list != NULL)
+		// {
+		// 	const XedEncoding *encoding = NULL;
 
-			if (encoding_charset)
-				encoding = xed_encoding_get_from_charset (encoding_charset);
+		// 	// if (encoding_charset)
+		// 	// 	encoding = xed_encoding_get_from_charset (encoding_charset);
 
-			xed_debug_message (DEBUG_APP, "Load files");
-			_xed_cmd_load_files_from_prompt (window,
-							   file_list,
-							   encoding,
-							   line_position);
-		}
-		else
-		{
-			xed_debug_message (DEBUG_APP, "Create tab");
-			xed_window_create_tab (window, TRUE);
-		}
+		// 	xed_debug_message (DEBUG_APP, "Load files");
+		// 	_xed_cmd_load_files_from_prompt (window,
+		// 					   file_list,
+		// 					   encoding,
+		// 					   line_position);
+		// }
+		// else
+		// {
+		// 	xed_debug_message (DEBUG_APP, "Create tab");
+		// 	xed_window_create_tab (window, TRUE);
+		// }
 
 		xed_debug_message (DEBUG_APP, "Show window");
 		gtk_widget_show (GTK_WIDGET (window));

@@ -6,9 +6,7 @@
 #include <sys/types.h>
 #include <string.h>
 #include <glib/gi18n.h>
-#include <gio/gio.h>
 #include <gtk/gtk.h>
-#include <gtksourceview/gtksource.h>
 #include <libpeas/peas-extension-set.h>
 
 #include "xed-ui.h"
@@ -1965,13 +1963,12 @@ set_title (XedWindow *window)
     }
     else
     {
-        GFile *file;
-        file = xed_document_get_location (doc);
-        if (file != NULL)
+        GtkSourceFile *file = xed_document_get_file (doc);
+        GFile *location = gtk_source_file_get_location (file);
+
+        if (location != NULL)
         {
-            gchar *str;
-            str = xed_utils_location_get_dirname_for_display (file);
-            g_object_unref (file);
+            gchar *str = xed_utils_location_get_dirname_for_display (location);
 
             /* use the remaining space for the dir, but use a min of 20 chars
              * so that we do not end up with a dirname like "(a...b)".
@@ -3712,7 +3709,7 @@ xed_window_create_tab (XedWindow *window,
  * xed_window_create_tab_from_location:
  * @window: a #XedWindow
  * @location: the location of the document
- * @encoding: a #XedEncoding
+ * @encoding: (allow-none): a #GtkSourceEncoding
  * @line_pos: the line position to visualize
  * @create: %TRUE to create a new document in case @uri does exist
  * @jump_to: %TRUE to set the new #XedTab as active
@@ -3725,12 +3722,12 @@ xed_window_create_tab (XedWindow *window,
  * Returns: (transfer none): a new #XedTab
  */
 XedTab *
-xed_window_create_tab_from_location (XedWindow         *window,
-                                     GFile             *location,
-                                     const XedEncoding *encoding,
-                                     gint               line_pos,
-                                     gboolean           create,
-                                     gboolean           jump_to)
+xed_window_create_tab_from_location (XedWindow               *window,
+                                     GFile                   *location,
+                                     const GtkSourceEncoding *encoding,
+                                     gint                     line_pos,
+                                     gboolean                 create,
+                                     gboolean                 jump_to)
 {
     GtkWidget *tab;
 
@@ -4260,22 +4257,23 @@ xed_window_get_tab_from_location (XedWindow *window,
 
     for (l = tabs; l != NULL; l = g_list_next(l))
     {
-        XedDocument *d;
-        XedTab *t;
-        GFile *f;
+        XedDocument *doc;
+        GtkSourceFile *file;
+        XedTab *tab;
+        GFile *cur_location;
 
-        t = XED_TAB(l->data);
-        d = xed_tab_get_document (t);
+        tab = XED_TAB (l->data);
+        doc = xed_tab_get_document (tab);
+        file = xed_document_get_file (doc);
+        cur_location = gtk_source_file_get_location (file);
 
-        f = xed_document_get_location (d);
-
-        if ((f != NULL))
+        if (cur_location != NULL)
         {
-            gboolean found = g_file_equal (location, f);
-            g_object_unref (f);
+            gboolean found = g_file_equal (location, cur_location);
+
             if (found)
             {
-                ret = t;
+                ret = tab;
                 break;
             }
         }

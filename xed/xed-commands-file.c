@@ -34,8 +34,6 @@
 #include <config.h>
 #endif
 
-#include <string.h> /* For strlen and strcmp */
-
 #include <glib/gi18n.h>
 #include <gio/gio.h>
 #include <gtk/gtk.h>
@@ -81,21 +79,17 @@ get_tab_from_file (GList *docs,
     while (docs != NULL)
     {
         XedDocument *d;
+        GtkSourceFile *source_file;
         GFile *l;
 
         d = XED_DOCUMENT (docs->data);
+        source_file = xed_document_get_file (d);
 
-        l = xed_document_get_location (d);
-        if (l != NULL)
+        l = gtk_source_file_get_location (source_file);
+        if (l != NULL && g_file_equal (l, file))
         {
-            if (g_file_equal (l, file))
-            {
-                tab = xed_tab_get_from_document (d);
-                g_object_unref (l);
-                break;
-            }
-
-            g_object_unref (l);
+            tab = xed_tab_get_from_document (d);
+            break;
         }
 
         docs = g_list_next (docs);
@@ -123,11 +117,11 @@ is_duplicated_file (GSList *files,
 
 /* File loading */
 static gint
-load_file_list (XedWindow         *window,
-                const GSList      *files,
-                const XedEncoding *encoding,
-                gint               line_pos,
-                gboolean           create)
+load_file_list (XedWindow               *window,
+                const GSList            *files,
+                const GtkSourceEncoding *encoding,
+                gint                     line_pos,
+                gboolean                 create)
 {
     XedTab *tab;
     gint loaded_files = 0; /* Number of files to load */
@@ -256,20 +250,18 @@ load_file_list (XedWindow         *window,
 
 /**
  * xed_commands_load_location:
- * @window:
- * @location:
- * @encoding: (allow-none):
- * @line_pos:
+ * @window: a #XedWindow
+ * @location: a #GFile to be loaded
+ * @encoding: (allow-none): the #GtkSourceEncoding of @location
+ * @line_pos: the line column to place the cursor when @location is loaded
  *
- * Ignore non-existing locations
- *
- * Returns: (transfer container):
+ * Loads @location. Ignores non-existing locations
  */
 void
-xed_commands_load_location (XedWindow         *window,
-                            GFile             *location,
-                            const XedEncoding *encoding,
-                            gint               line_pos)
+xed_commands_load_location (XedWindow               *window,
+                            GFile                   *location,
+                            const GtkSourceEncoding *encoding,
+                            gint                     line_pos)
 {
     GSList *locations = NULL;
     gchar *uri;
@@ -301,10 +293,10 @@ xed_commands_load_location (XedWindow         *window,
  * Returns:
  */
 gint
-xed_commands_load_locations (XedWindow         *window,
-                             const GSList      *locations,
-                             const XedEncoding *encoding,
-                             gint               line_pos)
+xed_commands_load_locations (XedWindow               *window,
+                             const GSList            *locations,
+                             const GtkSourceEncoding *encoding,
+                             gint                     line_pos)
 {
     g_return_val_if_fail (XED_IS_WINDOW (window), 0);
     g_return_val_if_fail ((locations != NULL) && (locations->data != NULL), 0);
@@ -320,10 +312,10 @@ xed_commands_load_locations (XedWindow         *window,
  * titled document.
  */
 gint
-_xed_cmd_load_files_from_prompt (XedWindow         *window,
-                                 GSList              *files,
-                                 const XedEncoding *encoding,
-                                 gint                 line_pos)
+_xed_cmd_load_files_from_prompt (XedWindow               *window,
+                                 GSList                  *files,
+                                 const GtkSourceEncoding *encoding,
+                                 gint                     line_pos)
 {
     xed_debug (DEBUG_COMMANDS);
 
@@ -345,7 +337,7 @@ open_dialog_response_cb (XedFileChooserDialog *dialog,
                          XedWindow            *window)
 {
     GSList *files;
-    const XedEncoding *encoding;
+    const GtkSourceEncoding *encoding;
 
     xed_debug (DEBUG_COMMANDS);
 
@@ -411,14 +403,12 @@ _xed_cmd_file_open (GtkAction *action,
     doc = xed_window_get_active_document (window);
     if (doc != NULL)
     {
-        GFile *file;
+        GtkSourceFile *file = xed_document_get_file (doc);
+        GFile *location = gtk_source_file_get_location (file);
 
-        file = xed_document_get_location (doc);
-
-        if (file != NULL)
+        if (location != NULL)
         {
-            default_path = g_file_get_parent (file);
-            g_object_unref (file);
+            default_path = g_file_get_parent (location);
         }
     }
 
@@ -526,12 +516,9 @@ save_dialog_response_cb (XedFileChooserDialog *dialog,
                          gint                  response_id,
                          XedWindow            *window)
 {
-    GFile *file;
-    const XedEncoding *encoding;
     XedTab *tab;
     gpointer data;
     GSList *tabs_to_save_as;
-    XedDocumentNewlineType newline_type;
 
     xed_debug (DEBUG_COMMANDS);
 
@@ -544,23 +531,30 @@ save_dialog_response_cb (XedFileChooserDialog *dialog,
         goto save_next_tab;
     }
 
-    file = gtk_file_chooser_get_file (GTK_FILE_CHOOSER (dialog));
-    g_return_if_fail (file != NULL);
-
-    encoding = xed_file_chooser_dialog_get_encoding (dialog);
-    newline_type = xed_file_chooser_dialog_get_newline_type (dialog);
-
-    gtk_widget_destroy (GTK_WIDGET (dialog));
-
     if (tab != NULL)
     {
+        GFile *location;
         XedDocument *doc;
+        GtkSourceFile *file;
         gchar *parse_name;
+        GtkSourceNewlineType newline_type;
+        const GtkSourceEncoding *encoding;
+
+        doc = xed_tab_get_document (tab);
+        file = xed_document_get_file (doc);
+
+        location = gtk_file_chooser_get_file (GTK_FILE_CHOOSER (dialog));
+        g_return_if_fail (location != NULL);
+
+        encoding = xed_file_chooser_dialog_get_encoding (dialog);
+        newline_type = xed_file_chooser_dialog_get_newline_type (dialog);
+
+        gtk_widget_destroy (GTK_WIDGET (dialog));
 
         doc = xed_tab_get_document (tab);
         g_return_if_fail (XED_IS_DOCUMENT (doc));
 
-        parse_name = g_file_get_parse_name (file);
+        parse_name = g_file_get_parse_name (location);
 
         xed_statusbar_flash_message (XED_STATUSBAR (window->priv->statusbar),
                                      window->priv->generic_message_cid,
@@ -571,12 +565,12 @@ save_dialog_response_cb (XedFileChooserDialog *dialog,
 
         /* let's remember the dir we navigated too,
          * even if the saving fails... */
-         _xed_window_set_default_location (window, file);
+         _xed_window_set_default_location (window, location);
 
-        _xed_tab_save_as (tab, file, encoding, newline_type);
+        _xed_tab_save_as (tab, location, encoding, newline_type);
+
+        g_object_unref (location);
     }
-
-    g_object_unref (file);
 
 save_next_tab:
 
@@ -655,10 +649,11 @@ file_save_as (XedTab    *tab,
     GtkWidget *save_dialog;
     GtkWindowGroup *wg;
     XedDocument *doc;
-    GFile *file;
+    GtkSourceFile *file;
+    GFile *location;
     gboolean uri_set = FALSE;
-    const XedEncoding *encoding;
-    XedDocumentNewlineType newline_type;
+    const GtkSourceEncoding *encoding;
+    GtkSourceNewlineType newline_type;
 
     g_return_if_fail (XED_IS_TAB (tab));
     g_return_if_fail (XED_IS_WINDOW (window));
@@ -685,13 +680,12 @@ file_save_as (XedTab    *tab,
 
     /* Set the suggested file name */
     doc = xed_tab_get_document (tab);
-    file = xed_document_get_location (doc);
+    file = xed_document_get_file (doc);
+    location = gtk_source_file_get_location (file);
 
-    if (file != NULL)
+    if (location != NULL)
     {
-        uri_set = gtk_file_chooser_set_file (GTK_FILE_CHOOSER (save_dialog), file, NULL);
-
-        g_object_unref (file);
+        uri_set = gtk_file_chooser_set_file (GTK_FILE_CHOOSER (save_dialog), location, NULL);
     }
 
 
@@ -720,10 +714,10 @@ file_save_as (XedTab    *tab,
     }
 
     /* Set suggested encoding */
-    encoding = xed_document_get_encoding (doc);
+    encoding = gtk_source_file_get_encoding (file);
     g_return_if_fail (encoding != NULL);
 
-    newline_type = xed_document_get_newline_type (doc);
+    newline_type = gtk_source_file_get_newline_type (file);
 
     xed_file_chooser_dialog_set_encoding (XED_FILE_CHOOSER_DIALOG (save_dialog), encoding);
 

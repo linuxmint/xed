@@ -34,9 +34,9 @@
 #endif
 
 #include <glib/gi18n.h>
-#include <gtk/gtk.h>
+#include <gtksourceview/gtksource.h>
 
-#include <xed/xed-encodings-combo-box.h>
+#include "xed/xed-encodings-combo-box.h"
 #include <xed/dialogs/xed-encodings-dialog.h>
 #include "xed-settings.h"
 #include "xed-utils.h"
@@ -249,8 +249,8 @@ update_menu (XedEncodingsComboBox *menu)
     GtkTreeIter iter;
     GSList *encodings, *l;
     gchar *str;
-    const XedEncoding *utf8_encoding;
-    const XedEncoding *current_encoding;
+    const GtkSourceEncoding *utf8_encoding;
+    const GtkSourceEncoding *current_encoding;
     gchar **enc_strv;
 
     store = menu->priv->store;
@@ -260,8 +260,8 @@ update_menu (XedEncodingsComboBox *menu)
     gtk_list_store_clear (store);
     gtk_combo_box_set_model (GTK_COMBO_BOX (menu), NULL);
 
-    utf8_encoding = xed_encoding_get_utf8 ();
-    current_encoding = xed_encoding_get_current ();
+    utf8_encoding = gtk_source_encoding_get_utf8 ();
+    current_encoding = gtk_source_encoding_get_current ();
 
     if (!menu->priv->save_mode)
     {
@@ -282,11 +282,11 @@ update_menu (XedEncodingsComboBox *menu)
 
     if (current_encoding != utf8_encoding)
     {
-        str = xed_encoding_to_string (utf8_encoding);
+        str = gtk_source_encoding_to_string (utf8_encoding);
     }
     else
     {
-        str = g_strdup_printf (_("Current Locale (%s)"), xed_encoding_get_charset (utf8_encoding));
+        str = g_strdup_printf (_("Current Locale (%s)"), gtk_source_encoding_get_charset (utf8_encoding));
     }
 
     gtk_list_store_append (store, &iter);
@@ -300,7 +300,7 @@ update_menu (XedEncodingsComboBox *menu)
 
     if ((utf8_encoding != current_encoding) && (current_encoding != NULL))
     {
-        str = g_strdup_printf (_("Current Locale (%s)"), xed_encoding_get_charset (current_encoding));
+        str = g_strdup_printf (_("Current Locale (%s)"), gtk_source_encoding_get_charset (current_encoding));
 
         gtk_list_store_append (store, &iter);
         gtk_list_store_set (store, &iter,
@@ -313,16 +313,16 @@ update_menu (XedEncodingsComboBox *menu)
     }
 
     enc_strv = g_settings_get_strv (menu->priv->enc_settings, XED_SETTINGS_ENCODING_SHOWN_IN_MENU);
-    encodings = _xed_encoding_strv_to_list ((const gchar * const *)enc_strv);
+    encodings = _xed_utils_encoding_strv_to_list ((const gchar * const *)enc_strv);
     g_strfreev (enc_strv);
 
     for (l = encodings; l != NULL; l = g_slist_next (l))
     {
-        const XedEncoding *enc = (const XedEncoding *)l->data;
+        const GtkSourceEncoding *enc = l->data;
 
         if ((enc != current_encoding) && (enc != utf8_encoding) && (enc != NULL))
         {
-            str = xed_encoding_to_string (enc);
+            str = gtk_source_encoding_to_string (enc);
 
             gtk_list_store_append (store, &iter);
             gtk_list_store_set (store, &iter,
@@ -394,7 +394,7 @@ xed_encodings_combo_box_new (gboolean save_mode)
                          NULL);
 }
 
-const XedEncoding *
+const GtkSourceEncoding *
 xed_encodings_combo_box_get_selected_encoding (XedEncodingsComboBox *menu)
 {
     GtkTreeIter iter;
@@ -403,7 +403,7 @@ xed_encodings_combo_box_get_selected_encoding (XedEncodingsComboBox *menu)
 
     if (gtk_combo_box_get_active_iter (GTK_COMBO_BOX (menu), &iter))
     {
-        const XedEncoding *ret;
+        const GtkSourceEncoding *ret;
         GtkTreeModel *model;
 
         model = gtk_combo_box_get_model (GTK_COMBO_BOX (menu));
@@ -422,8 +422,8 @@ xed_encodings_combo_box_get_selected_encoding (XedEncodingsComboBox *menu)
  * @encoding: (allow-none):
  **/
 void
-xed_encodings_combo_box_set_selected_encoding (XedEncodingsComboBox *menu,
-                                               const XedEncoding    *encoding)
+xed_encodings_combo_box_set_selected_encoding (XedEncodingsComboBox    *menu,
+                                               const GtkSourceEncoding *encoding)
 {
     GtkTreeIter iter;
     GtkTreeModel *model;
@@ -436,7 +436,7 @@ xed_encodings_combo_box_set_selected_encoding (XedEncodingsComboBox *menu,
 
     while (b)
     {
-        const XedEncoding *enc;
+        const GtkSourceEncoding *enc;
 
         gtk_tree_model_get (model, &iter, ENCODING_COLUMN, &enc, -1);
 

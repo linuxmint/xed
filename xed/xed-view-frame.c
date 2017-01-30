@@ -80,11 +80,23 @@ static void
 xed_view_frame_dispose (GObject *object)
 {
     XedViewFrame *frame = XED_VIEW_FRAME (object);
+    GtkTextBuffer *buffer = NULL;
+
+    if (frame->priv->view != NULL)
+    {
+        buffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (frame->priv->view));
+    }
 
     if (frame->priv->flush_timeout_id != 0)
     {
         g_source_remove (frame->priv->flush_timeout_id);
         frame->priv->flush_timeout_id = 0;
+    }
+
+    if (buffer != NULL)
+    {
+        GtkSourceFile *file = xed_document_get_file (XED_DOCUMENT (buffer));
+        gtk_source_file_set_mount_operation_factory (file, NULL, NULL, NULL);
     }
 
     G_OBJECT_CLASS (xed_view_frame_parent_class)->dispose (object);
@@ -509,13 +521,11 @@ xed_view_frame_class_init (XedViewFrameClass *klass)
 }
 
 static GMountOperation *
-view_frame_mount_operation_factory (XedDocument *doc,
-                                    gpointer     user_data)
+view_frame_mount_operation_factory (GtkSourceFile *file,
+                                    gpointer       user_data)
 {
-    XedViewFrame *frame = XED_VIEW_FRAME (user_data);
-    GtkWidget *window;
-
-    window = gtk_widget_get_toplevel (GTK_WIDGET (frame));
+    GtkWidget *view_frame = user_data;
+    GtkWidget *window = gtk_widget_get_toplevel (view_frame);
 
     return gtk_mount_operation_new (GTK_WINDOW (window));
 }
@@ -524,6 +534,7 @@ static void
 xed_view_frame_init (XedViewFrame *frame)
 {
     XedDocument *doc;
+    GtkSourceFile *file;
     GtkWidget *sw;
     GdkRGBA transparent = {0, 0, 0, 0};
 
@@ -532,8 +543,9 @@ xed_view_frame_init (XedViewFrame *frame)
     gtk_orientable_set_orientation (GTK_ORIENTABLE (frame), GTK_ORIENTATION_VERTICAL);
 
     doc = xed_document_new ();
+    file = xed_document_get_file (doc);
 
-    _xed_document_set_mount_operation_factory (doc, view_frame_mount_operation_factory, frame);
+    gtk_source_file_set_mount_operation_factory (file, view_frame_mount_operation_factory, frame, NULL);
 
     frame->priv->view = xed_view_new (doc);
     gtk_widget_set_vexpand (frame->priv->view, TRUE);

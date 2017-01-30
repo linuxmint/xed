@@ -46,10 +46,6 @@ BUILT_SOURCES = 			\
 NOINST_H_FILES =			\
 	xed-close-button.h		\
 	xed-dirs.h			\
-	xed-document-input-stream.h	\
-	xed-document-loader.h		\
-	xed-document-output-stream.h	\
-	xed-document-saver.h		\
 	xed-documents-panel.h		\
 	xed-history-entry.h		\
 	xed-io-error-message-area.h	\
@@ -71,7 +67,6 @@ INST_H_FILES =				\
 	xed-commands.h		\
 	xed-debug.h			\
 	xed-document.h 		\
-	xed-encodings.h		\
 	xed-encodings-combo-box.h	\
 	xed-file-chooser-dialog.h	\
 	xed-help.h 			\
@@ -113,12 +108,7 @@ libxed_c_files = 				\
 	xed-debug.c					\
 	xed-dirs.c					\
 	xed-document.c 				\
-	xed-document-input-stream.c	\
-	xed-document-loader.c		\
-	xed-document-output-stream.c	\
-	xed-document-saver.c		\
 	xed-documents-panel.c		\
-	xed-encodings.c				\
 	xed-encodings-combo-box.c	\
 	xed-file-chooser-dialog.c	\
 	xed-help.c					\

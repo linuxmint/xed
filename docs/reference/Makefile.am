@@ -21,7 +21,7 @@ SCANGOBJ_OPTIONS=
 
 # Extra options to supply to gtkdoc-scan.
 # e.g. SCAN_OPTIONS=--deprecated-guards="GTK_DISABLE_DEPRECATED"
-SCAN_OPTIONS=
+SCAN_OPTIONS = --rebuild-types
 
 # Extra options to supply to gtkdoc-mkdb.
 MKDB_OPTIONS=--sgml-mode --output-format=xml
@@ -41,8 +41,6 @@ CFILE_GLOB=$(top_srcdir)/xed/*.c
 # Header files to ignore when scanning (These are internal to xed).
 IGNORE_HFILES=		\
 	xed-commands.h			\
-	xed-document-loader.h			\
-	xed-document-saver.h			\
 	xed-documents-panel.h			\
 	xed-io-error-message-area.h		\
 	xed-languages-manager.h		\
@@ -91,6 +89,8 @@ GTKDOC_CFLAGS=	\
 GTKDOC_LIBS=	\
 	$(top_builddir)/xed/libxed.la	\
 	$(XED_LIBS)
+
+MAINTAINERCLEANFILES = xed.types
 
 # This includes the standard gtk-doc make rules, copied by gtkdocize.
 include $(top_srcdir)/gtk-doc.make
