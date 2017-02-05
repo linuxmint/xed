@@ -639,8 +639,8 @@ add_preview_widget (XedTaglistPluginPanel *panel)
 
 	gtk_widget_set_halign (panel->priv->preview, GTK_ALIGN_START);
 	gtk_widget_set_valign (panel->priv->preview, GTK_ALIGN_START);
-	gtk_widget_set_margin_left (panel->priv->preview, 6);
-	gtk_widget_set_margin_right (panel->priv->preview, 6);
+	gtk_widget_set_margin_start (panel->priv->preview, 6);
+	gtk_widget_set_margin_end (panel->priv->preview, 6);
 	gtk_widget_set_margin_top (panel->priv->preview, 6);
 	gtk_widget_set_margin_bottom (panel->priv->preview, 6);
 

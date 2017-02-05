@@ -117,7 +117,7 @@ xed_statusbar_init (XedStatusbar *statusbar)
     gtk_label_set_width_chars (GTK_LABEL (statusbar->priv->overwrite_mode_label), get_overwrite_mode_length ());
     gtk_widget_show (statusbar->priv->overwrite_mode_label);
     gtk_box_pack_end (GTK_BOX (statusbar), statusbar->priv->overwrite_mode_label, FALSE, TRUE, 0);
-    gtk_widget_set_margin_right (GTK_WIDGET (statusbar->priv->overwrite_mode_label), 6);
+    gtk_widget_set_margin_end (GTK_WIDGET (statusbar->priv->overwrite_mode_label), 6);
 
     statusbar->priv->cursor_position_label = gtk_label_new (NULL);
     gtk_label_set_width_chars (GTK_LABEL (statusbar->priv->cursor_position_label), CURSOR_POSITION_LABEL_WIDTH_CHARS);
@@ -147,8 +147,8 @@ xed_statusbar_init (XedStatusbar *statusbar)
 
     error_image = gtk_image_new_from_icon_name ("dialog-error", GTK_ICON_SIZE_MENU);
 
-    gtk_widget_set_margin_left (error_image, 4);
-    gtk_widget_set_margin_right (error_image, 4);
+    gtk_widget_set_margin_start (error_image, 4);
+    gtk_widget_set_margin_end (error_image, 4);
     gtk_widget_set_margin_top (error_image, 0);
     gtk_widget_set_margin_bottom (error_image, 0);
 

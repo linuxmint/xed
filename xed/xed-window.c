@@ -1726,8 +1726,8 @@ create_statusbar (XedWindow *window,
 
     gtk_box_pack_end (GTK_BOX( main_box), window->priv->statusbar, FALSE, TRUE, 0);
 
-    gtk_widget_set_margin_left (GTK_WIDGET (window->priv->statusbar), 0);
-    gtk_widget_set_margin_right (GTK_WIDGET (window->priv->statusbar), 0);
+    gtk_widget_set_margin_start (GTK_WIDGET (window->priv->statusbar), 0);
+    gtk_widget_set_margin_end (GTK_WIDGET (window->priv->statusbar), 0);
 
     window->priv->tab_width_combo = xed_status_combo_box_new (_("Tab Width"));
     gtk_widget_show (window->priv->tab_width_combo);
@@ -1754,7 +1754,7 @@ create_statusbar (XedWindow *window,
     button_box = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 4);
     gtk_widget_set_margin_top (button_box, 4);
     gtk_widget_set_margin_bottom (button_box, 4);
-    gtk_widget_set_margin_left (button_box, 6);
+    gtk_widget_set_margin_start (button_box, 6);
     gtk_box_pack_start (GTK_BOX (window->priv->statusbar), button_box, FALSE, FALSE, 0);
 
     window->priv->show_side_pane_button = gtk_toggle_button_new ();

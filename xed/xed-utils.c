@@ -920,8 +920,8 @@ handle_builder_error (const gchar *message,
     g_free (msg_plain);
     g_free (msg);
 
-    gtk_widget_set_margin_left (label, 5);
-    gtk_widget_set_margin_right (label, 5);
+    gtk_widget_set_margin_start (label, 5);
+    gtk_widget_set_margin_end (label, 5);
     gtk_widget_set_margin_top (label, 5);
     gtk_widget_set_margin_bottom (label, 5);
 

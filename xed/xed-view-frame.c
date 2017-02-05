@@ -572,15 +572,8 @@ xed_view_frame_init (XedViewFrame *frame)
     gtk_widget_show (frame->priv->revealer);
     gtk_widget_set_halign (frame->priv->revealer, GTK_ALIGN_END);
     gtk_widget_set_valign (frame->priv->revealer, GTK_ALIGN_START);
-
-    if (gtk_widget_get_direction (frame->priv->revealer) == GTK_TEXT_DIR_LTR)
-    {
-        gtk_widget_set_margin_right (frame->priv->revealer, SEARCH_POPUP_MARGIN);
-    }
-    else
-    {
-        gtk_widget_set_margin_left (frame->priv->revealer, SEARCH_POPUP_MARGIN);
-    }
+    gtk_widget_set_margin_end (frame->priv->revealer, SEARCH_POPUP_MARGIN);
+    gtk_widget_set_margin_start (frame->priv->revealer, SEARCH_POPUP_MARGIN);
 
     gtk_overlay_add_overlay (GTK_OVERLAY (frame->priv->overlay), frame->priv->revealer);
 }
