@@ -42,7 +42,7 @@ CFILE_GLOB=$(top_srcdir)/xed/*.c
 IGNORE_HFILES=		\
 	xed-commands.h			\
 	xed-documents-panel.h			\
-	xed-io-error-message-area.h		\
+	xed-io-error-info-bar.h		\
 	xed-languages-manager.h		\
 	xed-plugins-engine.h			\
 	xed-session.h				\

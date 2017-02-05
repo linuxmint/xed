@@ -38,10 +38,10 @@
 #include "xed-notebook.h"
 #include "xed-tab.h"
 #include "xed-utils.h"
-#include "xed-io-error-message-area.h"
+#include "xed-io-error-info-bar.h"
 #include "xed-print-job.h"
 #include "xed-print-preview.h"
-#include "xed-progress-message-area.h"
+#include "xed-progress-info-bar.h"
 #include "xed-debug.h"
 #include "xed-enum-types.h"
 #include "xed-settings.h"
@@ -59,7 +59,7 @@ struct _XedTabPrivate
 
     XedViewFrame *frame;
 
-    GtkWidget *message_area;
+    GtkWidget *info_bar;
     GtkWidget *print_preview;
 
     XedPrintJob *print_job;
@@ -507,29 +507,29 @@ document_modified_changed (GtkTextBuffer *document,
 }
 
 static void
-set_message_area (XedTab    *tab,
-                  GtkWidget *message_area)
+set_info_bar (XedTab    *tab,
+              GtkWidget *info_bar)
 {
-    if (tab->priv->message_area == message_area)
+    if (tab->priv->info_bar == info_bar)
     {
         return;
     }
 
-    if (tab->priv->message_area != NULL)
+    if (tab->priv->info_bar != NULL)
     {
-        gtk_widget_destroy (tab->priv->message_area);
+        gtk_widget_destroy (tab->priv->info_bar);
     }
 
-    tab->priv->message_area = message_area;
+    tab->priv->info_bar = info_bar;
 
-    if (message_area == NULL)
+    if (info_bar == NULL)
     {
         return;
     }
 
-    gtk_box_pack_start (GTK_BOX (tab), tab->priv->message_area, FALSE, FALSE, 0);
+    gtk_box_pack_start (GTK_BOX (tab), tab->priv->info_bar, FALSE, FALSE, 0);
 
-    g_object_add_weak_pointer (G_OBJECT (tab->priv->message_area), (gpointer *)&tab->priv->message_area);
+    g_object_add_weak_pointer (G_OBJECT (tab->priv->info_bar), (gpointer *)&tab->priv->info_bar);
 }
 
 static void
@@ -543,9 +543,9 @@ remove_tab (XedTab *tab)
 }
 
 static void
-io_loading_error_message_area_response (GtkWidget *message_area,
-                                        gint       response_id,
-                                        XedTab    *tab)
+io_loading_error_info_bar_response (GtkWidget *info_bar,
+                                    gint       response_id,
+                                    XedTab    *tab)
 {
     XedView *view;
     GFile *location;
@@ -559,9 +559,9 @@ io_loading_error_message_area_response (GtkWidget *message_area,
     switch (response_id)
     {
         case GTK_RESPONSE_OK:
-            encoding = xed_conversion_error_message_area_get_encoding (GTK_WIDGET (message_area));
+            encoding = xed_conversion_error_info_bar_get_encoding (GTK_WIDGET (info_bar));
 
-            set_message_area (tab, NULL);
+            set_info_bar (tab, NULL);
             xed_tab_set_state (tab, XED_TAB_STATE_LOADING);
 
             load (tab, encoding, tab->priv->tmp_line_pos);
@@ -571,7 +571,7 @@ io_loading_error_message_area_response (GtkWidget *message_area,
             /* This means that we want to edit the document anyway */
             tab->priv->editable = TRUE;
             gtk_text_view_set_editable (GTK_TEXT_VIEW (view), TRUE);
-            set_message_area (tab, NULL);
+            set_info_bar (tab, NULL);
             clear_loading (tab);
             break;
 
@@ -584,9 +584,9 @@ io_loading_error_message_area_response (GtkWidget *message_area,
 }
 
 static void
-file_already_open_warning_message_area_response (GtkWidget *message_area,
-                                                 gint       response_id,
-                                                 XedTab    *tab)
+file_already_open_warning_info_bar_response (GtkWidget *info_bar,
+                                             gint       response_id,
+                                             XedTab    *tab)
 {
     XedView *view;
 
@@ -598,7 +598,7 @@ file_already_open_warning_message_area_response (GtkWidget *message_area,
         gtk_text_view_set_editable (GTK_TEXT_VIEW (view), TRUE);
     }
 
-    gtk_widget_destroy (message_area);
+    gtk_widget_destroy (info_bar);
 
     gtk_widget_grab_focus (GTK_WIDGET (view));
 }
@@ -608,22 +608,22 @@ load_cancelled (GtkWidget *area,
                 gint       response_id,
                 XedTab    *tab)
 {
-    g_return_if_fail (XED_IS_PROGRESS_MESSAGE_AREA (tab->priv->message_area));
+    g_return_if_fail (XED_IS_PROGRESS_INFO_BAR (tab->priv->info_bar));
     g_return_if_fail (G_IS_CANCELLABLE (tab->priv->cancellable));
 
     g_cancellable_cancel (tab->priv->cancellable);
 }
 
 static void
-unrecoverable_reverting_error_message_area_response (GtkWidget *message_area,
-                                                     gint       response_id,
-                                                     XedTab    *tab)
+unrecoverable_reverting_error_info_bar_response (GtkWidget *info_bar,
+                                                 gint       response_id,
+                                                 XedTab    *tab)
 {
     XedView *view;
 
     xed_tab_set_state (tab, XED_TAB_STATE_NORMAL);
 
-    set_message_area (tab, NULL);
+    set_info_bar (tab, NULL);
 
     clear_loading (tab);
 
@@ -634,9 +634,9 @@ unrecoverable_reverting_error_message_area_response (GtkWidget *message_area,
 #define MAX_MSG_LENGTH 100
 
 static void
-show_loading_message_area (XedTab *tab)
+show_loading_info_bar (XedTab *tab)
 {
-    GtkWidget *area;
+    GtkWidget *bar;
     XedDocument *doc = NULL;
     gchar *name;
     gchar *dirname = NULL;
@@ -645,7 +645,7 @@ show_loading_message_area (XedTab *tab)
     gchar *dirname_markup;
     gint len;
 
-    if (tab->priv->message_area != NULL)
+    if (tab->priv->info_bar != NULL)
     {
         return;
     }
@@ -707,7 +707,7 @@ show_loading_message_area (XedTab *tab)
             msg = g_strdup_printf (_("Reverting %s"), name_markup);
         }
 
-        area = xed_progress_message_area_new ("document-revert-symbolic", msg, TRUE);
+        bar = xed_progress_info_bar_new ("document-revert-symbolic", msg, TRUE);
     }
     else
     {
@@ -725,15 +725,15 @@ show_loading_message_area (XedTab *tab)
             msg = g_strdup_printf (_("Loading %s"), name_markup);
         }
 
-        area = xed_progress_message_area_new ("document-open-symbolic", msg, TRUE);
+        bar = xed_progress_info_bar_new ("document-open-symbolic", msg, TRUE);
     }
 
-    g_signal_connect (area, "response",
+    g_signal_connect (bar, "response",
                       G_CALLBACK (load_cancelled), tab);
 
-    gtk_widget_show (area);
+    gtk_widget_show (bar);
 
-    set_message_area (tab, area);
+    set_info_bar (tab, bar);
 
     g_free (msg);
     g_free (name);
@@ -742,9 +742,9 @@ show_loading_message_area (XedTab *tab)
 }
 
 static void
-show_saving_message_area (XedTab *tab)
+show_saving_info_bar (XedTab *tab)
 {
-    GtkWidget *area;
+    GtkWidget *bar;
     XedDocument *doc = NULL;
     gchar *short_name;
     gchar *from;
@@ -756,7 +756,7 @@ show_saving_message_area (XedTab *tab)
 
     g_return_if_fail (tab->priv->task_saver != NULL);
 
-    if (tab->priv->message_area != NULL)
+    if (tab->priv->info_bar != NULL)
     {
         return;
     }
@@ -811,11 +811,11 @@ show_saving_message_area (XedTab *tab)
         msg = g_strdup_printf (_("Saving %s"), from_markup);
     }
 
-    area = xed_progress_message_area_new ("document-save-symbolic", msg, FALSE);
+    bar = xed_progress_info_bar_new ("document-save-symbolic", msg, FALSE);
 
-    gtk_widget_show (area);
+    gtk_widget_show (bar);
 
-    set_message_area (tab, area);
+    set_info_bar (tab, bar);
 
     g_free (msg);
     g_free (to);
@@ -824,25 +824,25 @@ show_saving_message_area (XedTab *tab)
 }
 
 static void
-message_area_set_progress (XedTab  *tab,
-                           goffset  size,
-                           goffset  total_size)
+info_bar_set_progress (XedTab  *tab,
+                       goffset  size,
+                       goffset  total_size)
 {
-    if (tab->priv->message_area == NULL)
+    if (tab->priv->info_bar == NULL)
     {
         return;
     }
 
     xed_debug_message (DEBUG_TAB, "%" G_GUINT64_FORMAT "/%" G_GUINT64_FORMAT, size, total_size);
 
-    g_return_if_fail (XED_IS_PROGRESS_MESSAGE_AREA (tab->priv->message_area));
+    g_return_if_fail (XED_IS_PROGRESS_INFO_BAR (tab->priv->info_bar));
 
     if (total_size == 0)
     {
         if (size != 0)
-            xed_progress_message_area_pulse (XED_PROGRESS_MESSAGE_AREA (tab->priv->message_area));
+            xed_progress_info_bar_pulse (XED_PROGRESS_INFO_BAR (tab->priv->info_bar));
         else
-            xed_progress_message_area_set_fraction (XED_PROGRESS_MESSAGE_AREA (tab->priv->message_area), 0);
+            xed_progress_info_bar_set_fraction (XED_PROGRESS_INFO_BAR (tab->priv->info_bar), 0);
     }
     else
     {
@@ -850,7 +850,7 @@ message_area_set_progress (XedTab  *tab,
 
         frac = (gdouble)size / (gdouble)total_size;
 
-        xed_progress_message_area_set_fraction (XED_PROGRESS_MESSAGE_AREA (tab->priv->message_area), frac);
+        xed_progress_info_bar_set_fraction (XED_PROGRESS_INFO_BAR (tab->priv->info_bar), frac);
     }
 }
 
@@ -867,9 +867,9 @@ scroll_to_cursor (XedTab *tab)
 }
 
 static void
-unrecoverable_saving_error_message_area_response (GtkWidget *message_area,
-                                                  gint       response_id,
-                                                  XedTab    *tab)
+unrecoverable_saving_error_info_bar_response (GtkWidget *info_bar,
+                                              gint       response_id,
+                                              XedTab    *tab)
 {
     XedView *view;
 
@@ -882,7 +882,7 @@ unrecoverable_saving_error_message_area_response (GtkWidget *message_area,
         xed_tab_set_state (tab, XED_TAB_STATE_NORMAL);
     }
 
-    set_message_area (tab, NULL);
+    set_info_bar (tab, NULL);
 
     g_return_if_fail (tab->priv->task_saver != NULL);
     g_task_return_boolean (tab->priv->task_saver, FALSE);
@@ -922,16 +922,16 @@ response_set_save_flags (XedTab                  *tab,
 }
 
 static void
-invalid_character_message_area_response (GtkWidget *info_bar,
-                                         gint       response_id,
-                                         XedTab    *tab)
+invalid_character_info_bar_response (GtkWidget *info_bar,
+                                     gint       response_id,
+                                     XedTab    *tab)
 {
     if (response_id == GTK_RESPONSE_YES)
     {
         SaverData *data;
         GtkSourceFileSaverFlags save_flags;
 
-        set_message_area (tab, NULL);
+        set_info_bar (tab, NULL);
 
         g_return_if_fail (tab->priv->task_saver != NULL);
         data = g_task_get_task_data (tab->priv->task_saver);
@@ -948,21 +948,21 @@ invalid_character_message_area_response (GtkWidget *info_bar,
     }
     else
     {
-        unrecoverable_saving_error_message_area_response (info_bar, response_id, tab);
+        unrecoverable_saving_error_info_bar_response (info_bar, response_id, tab);
     }
 }
 
 static void
-no_backup_error_message_area_response (GtkWidget *message_area,
-                                       gint       response_id,
-                                       XedTab    *tab)
+no_backup_error_info_bar_response (GtkWidget *info_bar,
+                                   gint       response_id,
+                                   XedTab    *tab)
 {
     if (response_id == GTK_RESPONSE_YES)
     {
         SaverData *data;
         GtkSourceFileSaverFlags save_flags;
 
-        set_message_area (tab, NULL);
+        set_info_bar (tab, NULL);
 
         g_return_if_fail (tab->priv->task_saver != NULL);
         data = g_task_get_task_data (tab->priv->task_saver);
@@ -976,21 +976,21 @@ no_backup_error_message_area_response (GtkWidget *message_area,
     }
     else
     {
-        unrecoverable_saving_error_message_area_response (message_area, response_id, tab);
+        unrecoverable_saving_error_info_bar_response (info_bar, response_id, tab);
     }
 }
 
 static void
-externally_modified_error_message_area_response (GtkWidget *message_area,
-                                                 gint       response_id,
-                                                 XedTab    *tab)
+externally_modified_error_info_bar_response (GtkWidget *info_bar,
+                                             gint       response_id,
+                                             XedTab    *tab)
 {
     if (response_id == GTK_RESPONSE_YES)
     {
         SaverData *data;
         GtkSourceFileSaverFlags save_flags;
 
-        set_message_area (tab, NULL);
+        set_info_bar (tab, NULL);
 
         g_return_if_fail (tab->priv->task_saver != NULL);
         data = g_task_get_task_data (tab->priv->task_saver);
@@ -1008,26 +1008,26 @@ externally_modified_error_message_area_response (GtkWidget *message_area,
     }
     else
     {
-        unrecoverable_saving_error_message_area_response (message_area, response_id, tab);
+        unrecoverable_saving_error_info_bar_response (info_bar, response_id, tab);
     }
 }
 
 static void
-recoverable_saving_error_message_area_response (GtkWidget *message_area,
-                                                gint       response_id,
-                                                XedTab    *tab)
+recoverable_saving_error_info_bar_response (GtkWidget *info_bar,
+                                            gint       response_id,
+                                            XedTab    *tab)
 {
     if (response_id == GTK_RESPONSE_OK)
     {
         SaverData *data;
         const GtkSourceEncoding *encoding;
 
-        set_message_area (tab, NULL);
+        set_info_bar (tab, NULL);
 
         g_return_if_fail (tab->priv->task_saver != NULL);
         data = g_task_get_task_data (tab->priv->task_saver);
 
-        encoding = xed_conversion_error_message_area_get_encoding (GTK_WIDGET (message_area));
+        encoding = xed_conversion_error_info_bar_get_encoding (GTK_WIDGET (info_bar));
         g_return_if_fail (encoding != NULL);
 
         gtk_source_file_saver_set_encoding (data->saver, encoding);
@@ -1035,18 +1035,18 @@ recoverable_saving_error_message_area_response (GtkWidget *message_area,
     }
     else
     {
-        unrecoverable_saving_error_message_area_response (message_area, response_id, tab);
+        unrecoverable_saving_error_info_bar_response (info_bar, response_id, tab);
     }
 }
 
 static void
-externally_modified_notification_message_area_response (GtkWidget *message_area,
-                                                        gint       response_id,
-                                                        XedTab    *tab)
+externally_modified_notification_info_bar_response (GtkWidget *info_bar,
+                                                    gint       response_id,
+                                                    XedTab    *tab)
 {
     XedView *view;
 
-    set_message_area (tab, NULL);
+    set_info_bar (tab, NULL);
     view = xed_tab_get_view (tab);
 
     if (response_id == GTK_RESPONSE_OK)
@@ -1067,7 +1067,7 @@ externally_modified_notification_message_area_response (GtkWidget *message_area,
 static void
 display_externally_modified_notification (XedTab *tab)
 {
-    GtkWidget *message_area;
+    GtkWidget *info_bar;
     XedDocument *doc;
     GtkSourceFile *file;
     GFile *location;
@@ -1082,14 +1082,14 @@ display_externally_modified_notification (XedTab *tab)
     g_return_if_fail (location != NULL);
 
     document_modified = gtk_text_buffer_get_modified (GTK_TEXT_BUFFER(doc));
-    message_area = xed_externally_modified_message_area_new (location, document_modified);
+    info_bar = xed_externally_modified_info_bar_new (location, document_modified);
 
-    tab->priv->message_area = NULL;
-    set_message_area (tab, message_area);
-    gtk_widget_show (message_area);
+    tab->priv->info_bar = NULL;
+    set_info_bar (tab, info_bar);
+    gtk_widget_show (info_bar);
 
-    g_signal_connect (message_area, "response",
-                      G_CALLBACK (externally_modified_notification_message_area_response), tab);
+    g_signal_connect (info_bar, "response",
+                      G_CALLBACK (externally_modified_notification_info_bar_response), tab);
 }
 
 static gboolean
@@ -1567,10 +1567,10 @@ loader_progress_cb (goffset  size,
     /* Approximately more than 3 seconds remaining. */
     if (remaining_time > 3.0)
     {
-        show_loading_message_area (tab);
+        show_loading_info_bar (tab);
     }
 
-    message_area_set_progress (tab, size, total_size);
+    info_bar_set_progress (tab, size, total_size);
 }
 
 static void
@@ -1643,7 +1643,7 @@ load_cb (GtkSourceFileLoader *loader,
         tab->priv->timer = NULL;
     }
 
-    set_message_area (tab, NULL);
+    set_info_bar (tab, NULL);
 
     /* Load was successful. */
     if (error == NULL ||
@@ -1694,7 +1694,7 @@ load_cb (GtkSourceFileLoader *loader,
         }
         else
         {
-            GtkWidget *message_area;
+            GtkWidget *info_bar;
 
             if (location != NULL)
             {
@@ -1707,24 +1707,24 @@ load_cb (GtkSourceFileLoader *loader,
 
                 encoding = gtk_source_file_loader_get_encoding (loader);
 
-                message_area = xed_io_loading_error_message_area_new (location, encoding, error);
+                info_bar = xed_io_loading_error_info_bar_new (location, encoding, error);
 
-                g_signal_connect (message_area, "response",
-                                  G_CALLBACK (io_loading_error_message_area_response), tab);
+                g_signal_connect (info_bar, "response",
+                                  G_CALLBACK (io_loading_error_info_bar_response), tab);
             }
             else
             {
                 g_return_if_fail (tab->priv->state == XED_TAB_STATE_REVERTING_ERROR);
 
-                message_area = xed_unrecoverable_reverting_error_message_area_new (location, error);
+                info_bar = xed_unrecoverable_reverting_error_info_bar_new (location, error);
 
-                g_signal_connect (message_area, "response",
-                                  G_CALLBACK (unrecoverable_reverting_error_message_area_response), tab);
+                g_signal_connect (info_bar, "response",
+                                  G_CALLBACK (unrecoverable_reverting_error_info_bar_response), tab);
             }
 
-            set_message_area (tab, message_area);
-            gtk_info_bar_set_default_response (GTK_INFO_BAR (message_area), GTK_RESPONSE_CANCEL);
-            gtk_widget_show (message_area);
+            set_info_bar (tab, info_bar);
+            gtk_info_bar_set_default_response (GTK_INFO_BAR (info_bar), GTK_RESPONSE_CANCEL);
+            gtk_widget_show (info_bar);
         }
 
         goto end;
@@ -1742,7 +1742,7 @@ load_cb (GtkSourceFileLoader *loader,
         error->domain == GTK_SOURCE_FILE_LOADER_ERROR &&
         error->code == GTK_SOURCE_FILE_LOADER_ERROR_CONVERSION_FALLBACK)
     {
-        GtkWidget *message_area;
+        GtkWidget *info_bar;
         const GtkSourceEncoding *encoding;
 
         /* Set the tab as not editable as we have an error, the user can
@@ -1752,14 +1752,14 @@ load_cb (GtkSourceFileLoader *loader,
 
         encoding = gtk_source_file_loader_get_encoding (loader);
 
-        message_area = xed_io_loading_error_message_area_new (location, encoding, error);
+        info_bar = xed_io_loading_error_info_bar_new (location, encoding, error);
 
-        g_signal_connect (message_area, "response",
-                         G_CALLBACK (io_loading_error_message_area_response), tab);
+        g_signal_connect (info_bar, "response",
+                         G_CALLBACK (io_loading_error_info_bar_response), tab);
 
-        set_message_area (tab, message_area);
-        gtk_info_bar_set_default_response (GTK_INFO_BAR (message_area), GTK_RESPONSE_CANCEL);
-        gtk_widget_show (message_area);
+        set_info_bar (tab, info_bar);
+        gtk_info_bar_set_default_response (GTK_INFO_BAR (info_bar), GTK_RESPONSE_CANCEL);
+        gtk_widget_show (info_bar);
     }
 
     /* Scroll to the cursor when the document is loaded, we need to do it in
@@ -1792,18 +1792,18 @@ load_cb (GtkSourceFileLoader *loader,
 
                 if (cur_location != NULL && location != NULL && g_file_equal (location, cur_location))
                 {
-                    GtkWidget *message_area;
+                    GtkWidget *info_bar;
 
                     tab->priv->editable = FALSE;
 
-                    message_area = xed_file_already_open_warning_message_area_new (location);
+                    info_bar = xed_file_already_open_warning_info_bar_new (location);
 
-                    g_signal_connect (message_area, "response",
-                                      G_CALLBACK (file_already_open_warning_message_area_response), tab);
+                    g_signal_connect (info_bar, "response",
+                                      G_CALLBACK (file_already_open_warning_info_bar_response), tab);
 
-                    set_message_area (tab, message_area);
-                    gtk_info_bar_set_default_response (GTK_INFO_BAR (message_area), GTK_RESPONSE_CANCEL);
-                    gtk_widget_show (message_area);
+                    set_info_bar (tab, info_bar);
+                    gtk_info_bar_set_default_response (GTK_INFO_BAR (info_bar), GTK_RESPONSE_CANCEL);
+                    gtk_widget_show (info_bar);
 
                     break;
                 }
@@ -2011,7 +2011,7 @@ _xed_tab_revert (XedTab *tab)
 
     if (tab->priv->state == XED_TAB_STATE_EXTERNALLY_MODIFIED_NOTIFICATION)
     {
-        set_message_area (tab, NULL);
+        set_info_bar (tab, NULL);
     }
 
     doc = xed_tab_get_document (tab);
@@ -2058,10 +2058,10 @@ saver_progress_cb (goffset size,
     /* Approximately more than 3 seconds remaining. */
     if (remaining_time > 3.0)
     {
-        show_saving_message_area (tab);
+        show_saving_info_bar (tab);
     }
 
-    message_area_set_progress (tab, size, total_size);
+    info_bar_set_progress (tab, size, total_size);
 }
 
 static void
@@ -2088,11 +2088,11 @@ save_cb (GtkSourceFileSaver *saver,
         tab->priv->timer = NULL;
     }
 
-    set_message_area (tab, NULL);
+    set_info_bar (tab, NULL);
 
     if (error != NULL)
     {
-        GtkWidget *message_area;
+        GtkWidget *info_bar;
 
         xed_tab_set_state (tab, XED_TAB_STATE_SAVING_ERROR);
 
@@ -2100,21 +2100,21 @@ save_cb (GtkSourceFileSaver *saver,
             error->code == GTK_SOURCE_FILE_SAVER_ERROR_EXTERNALLY_MODIFIED)
         {
             /* This error is recoverable */
-            message_area = xed_externally_modified_saving_error_message_area_new (location, error);
-            g_return_if_fail (message_area != NULL);
+            info_bar = xed_externally_modified_saving_error_info_bar_new (location, error);
+            g_return_if_fail (info_bar != NULL);
 
-            g_signal_connect (message_area, "response",
-                              G_CALLBACK (externally_modified_error_message_area_response), tab);
+            g_signal_connect (info_bar, "response",
+                              G_CALLBACK (externally_modified_error_info_bar_response), tab);
         }
         else if (error->domain == G_IO_ERROR &&
                  error->code == G_IO_ERROR_CANT_CREATE_BACKUP)
         {
             /* This error is recoverable */
-            message_area = xed_no_backup_saving_error_message_area_new (location, error);
-            g_return_if_fail (message_area != NULL);
+            info_bar = xed_no_backup_saving_error_info_bar_new (location, error);
+            g_return_if_fail (info_bar != NULL);
 
-            g_signal_connect (message_area, "response",
-                              G_CALLBACK (no_backup_error_message_area_response), tab);
+            g_signal_connect (info_bar, "response",
+                              G_CALLBACK (no_backup_error_info_bar_response), tab);
         }
         else if (error->domain == GTK_SOURCE_FILE_SAVER_ERROR &&
                  error->code == GTK_SOURCE_FILE_SAVER_ERROR_INVALID_CHARS)
@@ -2122,11 +2122,11 @@ save_cb (GtkSourceFileSaver *saver,
             /* If we have any invalid char in the document we must warn the user
              * as it can make the document useless if it is saved.
              */
-            message_area = xed_invalid_character_message_area_new (location);
-            g_return_if_fail (message_area != NULL);
+            info_bar = xed_invalid_character_info_bar_new (location);
+            g_return_if_fail (info_bar != NULL);
 
-            g_signal_connect (message_area, "response",
-                              G_CALLBACK (invalid_character_message_area_response), tab);
+            g_signal_connect (info_bar, "response",
+                              G_CALLBACK (invalid_character_info_bar_response), tab);
         }
         else if (error->domain == GTK_SOURCE_FILE_SAVER_ERROR ||
                  (error->domain == G_IO_ERROR &&
@@ -2136,11 +2136,11 @@ save_cb (GtkSourceFileSaver *saver,
             /* These errors are _NOT_ recoverable */
             _xed_recent_remove (XED_WINDOW (gtk_widget_get_toplevel (GTK_WIDGET (tab))), location);
 
-            message_area = xed_unrecoverable_saving_error_message_area_new (location, error);
-            g_return_if_fail (message_area != NULL);
+            info_bar = xed_unrecoverable_saving_error_info_bar_new (location, error);
+            g_return_if_fail (info_bar != NULL);
 
-            g_signal_connect (message_area, "response",
-                              G_CALLBACK (unrecoverable_saving_error_message_area_response), tab);
+            g_signal_connect (info_bar, "response",
+                              G_CALLBACK (unrecoverable_saving_error_info_bar_response), tab);
         }
         else
         {
@@ -2151,16 +2151,16 @@ save_cb (GtkSourceFileSaver *saver,
 
             encoding = gtk_source_file_saver_get_encoding (saver);
 
-            message_area = xed_conversion_error_while_saving_message_area_new (location, encoding, error);
-            g_return_if_fail (message_area != NULL);
+            info_bar = xed_conversion_error_while_saving_info_bar_new (location, encoding, error);
+            g_return_if_fail (info_bar != NULL);
 
-            g_signal_connect (message_area, "response",
-                              G_CALLBACK (recoverable_saving_error_message_area_response), tab);
+            g_signal_connect (info_bar, "response",
+                              G_CALLBACK (recoverable_saving_error_info_bar_response), tab);
         }
 
-        set_message_area (tab, message_area);
-        gtk_info_bar_set_default_response (GTK_INFO_BAR (message_area), GTK_RESPONSE_CANCEL);
-        gtk_widget_show (message_area);
+        set_info_bar (tab, info_bar);
+        gtk_info_bar_set_default_response (GTK_INFO_BAR (info_bar), GTK_RESPONSE_CANCEL);
+        gtk_widget_show (info_bar);
     }
     else
     {
@@ -2280,7 +2280,7 @@ _xed_tab_save_async (XedTab              *tab,
          * hide the message bar and set the save flag.
          */
 
-        set_message_area (tab, NULL);
+        set_info_bar (tab, NULL);
         save_flags |= GTK_SOURCE_FILE_SAVER_FLAGS_IGNORE_MODIFICATION_TIME;
     }
 
@@ -2427,7 +2427,7 @@ _xed_tab_save_as_async (XedTab                   *tab,
          * hide the message bar and set the save flag.
          */
 
-        set_message_area (tab, NULL);
+        set_info_bar (tab, NULL);
         save_flags |= GTK_SOURCE_FILE_SAVER_FLAGS_IGNORE_MODIFICATION_TIME;
     }
 
@@ -2504,15 +2504,15 @@ printing_cb (XedPrintJob       *job,
              XedPrintJobStatus  status,
              XedTab            *tab)
 {
-    g_return_if_fail (XED_IS_PROGRESS_MESSAGE_AREA (tab->priv->message_area));
+    g_return_if_fail (XED_IS_PROGRESS_INFO_BAR (tab->priv->info_bar));
 
-    gtk_widget_show (tab->priv->message_area);
+    gtk_widget_show (tab->priv->info_bar);
 
-    xed_progress_message_area_set_text (XED_PROGRESS_MESSAGE_AREA (tab->priv->message_area),
-                                        xed_print_job_get_status_string (job));
+    xed_progress_info_bar_set_text (XED_PROGRESS_INFO_BAR (tab->priv->info_bar),
+                                    xed_print_job_get_status_string (job));
 
-    xed_progress_message_area_set_fraction (XED_PROGRESS_MESSAGE_AREA (tab->priv->message_area),
-                                            xed_print_job_get_progress (job));
+    xed_progress_info_bar_set_fraction (XED_PROGRESS_INFO_BAR (tab->priv->info_bar),
+                                        xed_print_job_get_progress (job));
 }
 
 static void
@@ -2567,9 +2567,9 @@ done_printing_cb (XedPrintJob       *job,
     }
     else
     {
-        g_return_if_fail (XED_IS_PROGRESS_MESSAGE_AREA (tab->priv->message_area));
+        g_return_if_fail (XED_IS_PROGRESS_INFO_BAR (tab->priv->info_bar));
 
-        set_message_area (tab, NULL); /* destroy the message area */
+        set_info_bar (tab, NULL); /* destroy the message area */
     }
 
     // TODO: check status and error
@@ -2634,7 +2634,7 @@ show_preview_cb (XedPrintJob     *job,
 //  g_return_if_fail (tab->priv->state == XED_TAB_STATE_PRINT_PREVIEWING);
     g_return_if_fail (tab->priv->print_preview == NULL);
 
-    set_message_area (tab, NULL); /* destroy the message area */
+    set_info_bar (tab, NULL); /* destroy the message area */
 
     tab->priv->print_preview = GTK_WIDGET (preview);
     gtk_box_pack_end (GTK_BOX (tab), tab->priv->print_preview, TRUE, TRUE, 0);
@@ -2684,8 +2684,8 @@ preview_finished_cb (GtkSourcePrintJob *pjob, XedTab *tab)
     MatePrintJob *gjob;
     GtkWidget *preview = NULL;
 
-    g_return_if_fail (XED_IS_PROGRESS_MESSAGE_AREA (tab->priv->message_area));
-    set_message_area (tab, NULL); /* destroy the message area */
+    g_return_if_fail (XED_IS_PROGRESS_INFO_BAR (tab->priv->info_bar));
+    set_info_bar (tab, NULL); /* destroy the message area */
 
     gjob = gtk_source_print_job_get_print_job (pjob);
 
@@ -2708,7 +2708,7 @@ print_cancelled (GtkWidget *area,
                  gint       response_id,
                  XedTab    *tab)
 {
-    g_return_if_fail (XED_IS_PROGRESS_MESSAGE_AREA (tab->priv->message_area));
+    g_return_if_fail (XED_IS_PROGRESS_INFO_BAR (tab->priv->info_bar));
 
     xed_print_job_cancel (tab->priv->print_job);
 
@@ -2716,24 +2716,24 @@ print_cancelled (GtkWidget *area,
 }
 
 static void
-show_printing_message_area (XedTab   *tab,
-                            gboolean  preview)
+show_printing_info_bar (XedTab   *tab,
+                        gboolean  preview)
 {
     GtkWidget *area;
 
     if (preview)
     {
-        area = xed_progress_message_area_new ("document-print-preview-symbolic", "", TRUE);
+        area = xed_progress_info_bar_new ("document-print-preview-symbolic", "", TRUE);
     }
     else
     {
-        area = xed_progress_message_area_new ("document-print-symbolic", "", TRUE);
+        area = xed_progress_info_bar_new ("document-print-symbolic", "", TRUE);
     }
 
     g_signal_connect (area, "response",
                       G_CALLBACK (print_cancelled), tab);
 
-    set_message_area (tab, area);
+    set_info_bar (tab, area);
 }
 
 static void
@@ -2757,7 +2757,7 @@ xed_tab_print_or_print_preview (XedTab                  *tab,
     tab->priv->print_job = xed_print_job_new (view);
     g_object_add_weak_pointer (G_OBJECT (tab->priv->print_job), (gpointer *) &tab->priv->print_job);
 
-    show_printing_message_area (tab, is_preview);
+    show_printing_info_bar (tab, is_preview);
 
     g_signal_connect (tab->priv->print_job, "printing",
                       G_CALLBACK (printing_cb), tab);
@@ -2958,7 +2958,7 @@ xed_tab_set_info_bar (XedTab    *tab,
     g_return_if_fail (info_bar == NULL || GTK_IS_WIDGET (info_bar));
 
     /* FIXME: this can cause problems with the tab state machine */
-    set_message_area (tab, info_bar);
+    set_info_bar (tab, info_bar);
 }
 
 GtkWidget *

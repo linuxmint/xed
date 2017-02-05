@@ -45,7 +45,7 @@ NOINST_H_FILES =			\
 	xed-dirs.h			\
 	xed-documents-panel.h		\
 	xed-history-entry.h		\
-	xed-io-error-message-area.h	\
+	xed-io-error-info-bar.h	\
 	xed-plugins-engine.h		\
 	xed-print-job.h		\
 	xed-print-preview.h		\
@@ -70,7 +70,7 @@ INST_H_FILES =				\
 	xed-message.h			\
 	xed-notebook.h		\
 	xed-panel.h			\
-	xed-progress-message-area.h	\
+	xed-progress-info-bar.h	\
 	xed-searchbar.h		\
 	xed-statusbar.h		\
 	xed-tab.h 			\
@@ -107,7 +107,7 @@ libxed_c_files = 				\
 	xed-encodings-combo-box.c	\
 	xed-file-chooser-dialog.c	\
 	xed-history-entry.c			\
-	xed-io-error-message-area.c	\
+	xed-io-error-info-bar.c	\
 	xed-message-bus.c			\
 	xed-message-type.c			\
 	xed-message.c				\
@@ -116,7 +116,7 @@ libxed_c_files = 				\
 	xed-plugins-engine.c		\
 	xed-print-job.c		\
 	xed-print-preview.c		\
-	xed-progress-message-area.c	\
+	xed-progress-info-bar.c	\
 	xed-settings.c 			\
 	xed-searchbar.c		\
 	xed-statusbar.c		\
