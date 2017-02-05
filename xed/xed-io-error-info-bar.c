@@ -1121,7 +1121,7 @@ xed_invalid_character_info_bar_new (GFile *location)
 
     hbox_content = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 8);
 
-    image = gtk_image_new_from_stock ("gtk-dialog-warning", GTK_ICON_SIZE_DIALOG);
+    image = gtk_image_new_from_icon_name ("dialog-warning-symbolic", GTK_ICON_SIZE_DIALOG);
     gtk_box_pack_start (GTK_BOX (hbox_content), image, FALSE, FALSE, 0);
     gtk_widget_set_valign (image, GTK_ALIGN_START);
 
