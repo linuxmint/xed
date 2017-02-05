@@ -32,7 +32,7 @@
 #include <time.h>
 
 #include "xed-time-plugin.h"
-#include <xed/xed-help.h>
+#include <xed/xed-app.h>
 
 #include <glib/gi18n-lib.h>
 #include <glib.h>
@@ -916,7 +916,7 @@ choose_format_dialog_response_cb (GtkWidget          *widget,
         case GTK_RESPONSE_HELP:
         {
             xed_debug_message (DEBUG_PLUGINS, "GTK_RESPONSE_HELP");
-            xed_help_display (GTK_WINDOW (widget), NULL, "xed-insert-date-time-plugin");
+            xed_app_show_help (XED_APP (g_application_get_default ()), GTK_WINDOW (widget), NULL, "xed-insert-date-time-plugin");
             break;
         }
         case GTK_RESPONSE_OK:

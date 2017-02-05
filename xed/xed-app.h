@@ -50,7 +50,7 @@ typedef struct _XedAppClass     XedAppClass;
 
 struct _XedApp
 {
-    GObject object;
+    GtkApplication parent;
 
     /*< private > */
     XedAppPrivate *priv;
@@ -58,38 +58,49 @@ struct _XedApp
 
 struct _XedAppClass
 {
-    GObjectClass parent_class;
+    GtkApplicationClass parent_class;
+
+    // gboolean (*last_window_destroyed) (XedApp *app);
+
+    gboolean (*show_help)             (XedApp      *app,
+                                       GtkWindow   *parent,
+                                       const gchar *name,
+                                       const gchar *link_id);
+
+    gchar *(*help_link_id)            (XedApp      *app,
+                                       const gchar *name,
+                                       const gchar *link_id);
+
+    void (*set_window_title)          (XedApp      *app,
+                                       XedWindow   *window,
+                                       const gchar *title);
 };
 
-/*
- * Public methods
- */
+/* Public methods */
 GType xed_app_get_type (void) G_GNUC_CONST;
-
-XedApp *xed_app_get_default (void);
 
 XedWindow *xed_app_create_window (XedApp    *app,
                                   GdkScreen *screen);
 
-const GList *xed_app_get_windows (XedApp *app);
-XedWindow *xed_app_get_active_window (XedApp *app);
+GList *xed_app_get_main_windows (XedApp *app);
 
-/* Returns a newly allocated list with all the documents */
 GList *xed_app_get_documents (XedApp *app);
 
 /* Returns a newly allocated list with all the views */
 GList *xed_app_get_views (XedApp *app);
 
-/*
- * Non exported functions
- */
+gboolean xed_app_show_help (XedApp      *app,
+                            GtkWindow   *parent,
+                            const gchar *name,
+                            const gchar *link_id);
+
+void xed_app_set_window_title (XedApp      *app,
+                               XedWindow   *window,
+                               const gchar *title);
+
+/* Non exported functions */
 XedWindow *_xed_app_restore_window (XedApp      *app,
                                     const gchar *role);
-XedWindow *_xed_app_get_window_in_viewport (XedApp    *app,
-                                            GdkScreen *screen,
-                                            gint       workspace,
-                                            gint       viewport_x,
-                                            gint       viewport_y);
 
 /* global print config */
 GtkPageSetup *_xed_app_get_default_page_setup (XedApp         *app);

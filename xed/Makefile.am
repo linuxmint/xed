@@ -1,5 +1,5 @@
 ## Process this file with automake to produce Makefile.in
-SUBDIRS = dialogs smclient
+SUBDIRS = dialogs
 
 bin_PROGRAMS = xed
 
@@ -8,7 +8,6 @@ noinst_LTLIBRARIES = libxed.la
 AM_CPPFLAGS =							\
 	-I$(top_srcdir)						\
 	-I$(srcdir)							\
-	-I$(srcdir)/smclient				\
 	$(XED_CFLAGS)						\
 	$(WARN_CFLAGS)						\
 	$(INTROSPECTION_CFLAGS)				\
@@ -22,7 +21,6 @@ xed_SOURCES = \
 xed_LDADD = 				\
 	libxed.la 				\
 	$(XED_LIBS) 			\
-	$(EGG_SMCLIENT_LIBS)	\
 	$(INTROSPECTION_LIBS)
 
 xed_LDFLAGS = -export-dynamic -no-undefined -export-symbols-regex "^[[^_]].*"
@@ -30,8 +28,7 @@ xed_LDFLAGS = -export-dynamic -no-undefined -export-symbols-regex "^[[^_]].*"
 libxed_la_LDFLAGS = -export-dynamic -no-undefined -export-symbols-regex "^[[^_]].*"
 
 libxed_la_LIBADD = \
-	dialogs/libdialogs.la		\
-	smclient/libeggsmclient.la
+	dialogs/libdialogs.la
 
 # XED_LIBS must be the last to ensure correct order on some platforms
 libxed_la_LIBADD += $(XED_LIBS) -lICE
@@ -52,7 +49,6 @@ NOINST_H_FILES =			\
 	xed-plugins-engine.h		\
 	xed-print-job.h		\
 	xed-print-preview.h		\
-	xed-session.h			\
 	xed-settings.h 			\
 	xed-status-combo-box.h 	\
 	xed-tab-label.h		\
@@ -69,7 +65,6 @@ INST_H_FILES =				\
 	xed-document.h 		\
 	xed-encodings-combo-box.h	\
 	xed-file-chooser-dialog.h	\
-	xed-help.h 			\
 	xed-message-bus.h		\
 	xed-message-type.h		\
 	xed-message.h			\
@@ -111,7 +106,6 @@ libxed_c_files = 				\
 	xed-documents-panel.c		\
 	xed-encodings-combo-box.c	\
 	xed-file-chooser-dialog.c	\
-	xed-help.c					\
 	xed-history-entry.c			\
 	xed-io-error-message-area.c	\
 	xed-message-bus.c			\
@@ -123,7 +117,6 @@ libxed_c_files = 				\
 	xed-print-job.c		\
 	xed-print-preview.c		\
 	xed-progress-message-area.c	\
-	xed-session.c			\
 	xed-settings.c 			\
 	xed-searchbar.c		\
 	xed-statusbar.c		\
@@ -140,7 +133,6 @@ libxed_c_files = 				\
 libxed_la_SOURCES = 		\
 	$(BUILT_SOURCES)		\
 	$(libxed_c_files)		\
-	$(BACON_FILES)			\
 	$(POSIXIO_FILES)		\
 	$(NOINST_H_FILES)		\
 	$(INST_H_FILES)
@@ -204,11 +196,5 @@ endif
 
 dist-hook:
 	cd $(distdir); rm -f $(BUILT_SOURCES)
-
-BACON_DIR=$(srcdir)/../../libbacon/src/
-BACON_FILES=bacon-message-connection.h bacon-message-connection.c
-
-regenerate-built-sources:
-	BACONFILES="$(BACON_FILES)" BACONDIR="$(BACON_DIR)" $(top_srcdir)/xed/update-from-bacon.sh
 
 -include $(top_srcdir)/git.mk

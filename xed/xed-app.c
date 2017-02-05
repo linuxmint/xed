@@ -34,10 +34,16 @@
 
 #include <string.h>
 #include <unistd.h>
+#include <stdlib.h>
+#include <locale.h>
 
 #include <glib/gi18n.h>
 #include <libpeas/peas-extension-set.h>
 #include <gtksourceview/gtksource.h>
+
+#ifdef ENABLE_INTROSPECTION
+#include <girepository.h>
+#endif
 
 #include "xed-app.h"
 #include "xed-commands.h"
@@ -49,6 +55,11 @@
 #include "xed-app-activatable.h"
 #include "xed-plugins-engine.h"
 #include "xed-settings.h"
+
+#ifndef ENABLE_GVFS_METADATA
+#include "xed-metadata-manager.h"
+#define METADATA_FILE "xed-metadata.xml"
+#endif
 
 #define XED_PAGE_SETUP_FILE     "xed-page-setup"
 #define XED_PRINT_SETTINGS_FILE "xed-print-settings"
@@ -63,8 +74,7 @@ enum
 
 struct _XedAppPrivate
 {
-    GList *windows;
-    XedWindow *active_window;
+    XedPluginsEngine *engine;
 
     GtkPageSetup *page_setup;
     GtkPrintSettings *print_settings;
@@ -75,27 +85,82 @@ struct _XedAppPrivate
     PeasExtensionSet *extensions;
 };
 
-G_DEFINE_TYPE(XedApp, xed_app, G_TYPE_OBJECT)
+G_DEFINE_TYPE (XedApp, xed_app, GTK_TYPE_APPLICATION)
 
-static void
-xed_app_finalize (GObject *object)
+static gboolean new_window = FALSE;
+static gboolean new_document = FALSE;
+static gchar *geometry = NULL;
+static const GtkSourceEncoding *encoding = NULL;
+static GInputStream *stdin_stream = NULL;
+static GSList *file_list = NULL;
+static gint line_position = 0;
+static GApplicationCommandLine *command_line = NULL;
+
+static const GOptionEntry options[] =
 {
-    XedApp *app = XED_APP (object);
-
-    g_list_free (app->priv->windows);
-
-    if (app->priv->page_setup)
+    /* Version */
     {
-        g_object_unref (app->priv->page_setup);
-    }
+        "version", 'V', 0, G_OPTION_ARG_NONE, NULL,
+        N_("Show the application's version"), NULL
+    },
 
-    if (app->priv->print_settings)
+    /* List available encodings */
     {
-        g_object_unref (app->priv->print_settings);
-    }
+        "list-encodings", '\0', 0, G_OPTION_ARG_NONE, NULL,
+        N_("Display list of possible values for the encoding option"),
+        NULL
+    },
 
-    G_OBJECT_CLASS (xed_app_parent_class)->finalize (object);
-}
+    /* Encoding */
+    {
+        "encoding", '\0', 0, G_OPTION_ARG_STRING, NULL,
+        N_("Set the character encoding to be used to open the files listed on the command line"),
+        N_("ENCODING")
+    },
+
+    /* Open a new window */
+    {
+        "new-window", '\0', 0, G_OPTION_ARG_NONE, NULL,
+        N_("Create a new top-level window in an existing instance of xed"),
+        NULL
+    },
+
+    /* Create a new empty document */
+    {
+        "new-document", '\0', 0, G_OPTION_ARG_NONE, NULL,
+        N_("Create a new document in an existing instance of xed"),
+        NULL
+    },
+
+    /* Window geometry */
+    {
+        "geometry", 'g', 0, G_OPTION_ARG_STRING, NULL,
+        N_("Set the size and position of the window (WIDTHxHEIGHT+X+Y)"),
+        N_("GEOMETRY")
+    },
+
+    /* Wait for closing documents */
+    {
+        "wait", 'w', 0, G_OPTION_ARG_NONE, NULL,
+        N_("Open files and block process until files are closed"),
+        NULL
+    },
+
+    /* New instance */
+    {
+        "standalone", 's', 0, G_OPTION_ARG_NONE, NULL,
+        N_("Run xed in standalone mode"),
+        NULL
+    },
+
+    /* collects file arguments */
+    {
+        G_OPTION_REMAINING, '\0', 0, G_OPTION_ARG_FILENAME_ARRAY, NULL, NULL,
+        N_("[FILE...] [+LINE")
+    },
+
+    {NULL}
+};
 
 static void
 xed_app_dispose (GObject *object)
@@ -104,7 +169,10 @@ xed_app_dispose (GObject *object)
 
     g_clear_object (&app->priv->window_settings);
     g_clear_object (&app->priv->settings);
+    g_clear_object (&app->priv->page_setup);
+    g_clear_object (&app->priv->print_settings);
     g_clear_object (&app->priv->extensions);
+    g_clear_object (&app->priv->engine);
 
     G_OBJECT_CLASS (xed_app_parent_class)->dispose (object);
 }
@@ -124,21 +192,421 @@ xed_app_get_property (GObject    *object,
 }
 
 static void
-xed_app_class_init (XedAppClass *klass)
+extension_added (PeasExtensionSet *extensions,
+                 PeasPluginInfo   *info,
+                 PeasExtension    *exten,
+                 XedApp           *app)
 {
-    GObjectClass *object_class = G_OBJECT_CLASS (klass);
+    peas_extension_call (exten, "activate");
+}
 
-    object_class->finalize = xed_app_finalize;
-    object_class->dispose = xed_app_dispose;
-    object_class->get_property = xed_app_get_property;
+static void
+extension_removed (PeasExtensionSet *extensions,
+                   PeasPluginInfo   *info,
+                   PeasExtension    *exten,
+                   XedApp           *app)
+{
+    peas_extension_call (exten, "deactivate");
+}
 
-    g_type_class_add_private (object_class, sizeof (XedAppPrivate));
+static void
+xed_app_startup (GApplication *application)
+{
+    XedApp *app = XED_APP (application);
+    GtkSourceStyleSchemeManager *manager;
+    const gchar *dir;
+    gchar *icon_dir;
+#ifndef ENABLE_GVFS_METADATA
+    const gchar *cache_dir;
+    gchar *metadata_filename;
+#endif
+
+    G_APPLICATION_CLASS (xed_app_parent_class)->startup (application);
+
+    /* Setup debugging */
+    xed_debug_init ();
+    xed_debug_message (DEBUG_APP, "Startup");
+
+    xed_dirs_init ();
+
+    /* Setup locale/gettext */
+    setlocale (LC_ALL, "");
+
+    dir = xed_dirs_get_xed_locale_dir ();
+    bindtextdomain (GETTEXT_PACKAGE, dir);
+
+    bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
+    textdomain (GETTEXT_PACKAGE);
+
+    xed_debug_message (DEBUG_APP, "Set icon");
+
+    dir = xed_dirs_get_xed_data_dir ();
+    icon_dir = g_build_filename (dir, "icons", NULL);
+
+    gtk_icon_theme_append_search_path (gtk_icon_theme_get_default (), icon_dir);
+    g_free (icon_dir);
+
+#ifndef ENABLE_GVFS_METADATA
+    /* Setup metadata-manager */
+    cache_dir = xed_dirs_get_user_cache_dir ();
+
+    metadata_filename = g_build_filename (cache_dir, METADATA_FILE, NULL);
+
+    xed_metadata_manager_init (metadata_filename);
+
+    g_free (metadata_filename);
+#endif
+
+   /* Load settings */
+   app->priv->settings = xed_settings_new ();
+   app->priv->window_settings = g_settings_new ("org.x.editor.state.window");
+
+   /*
+    * We use the default gtksourceview style scheme manager so that plugins
+    * can obtain it easily without a xed specific api, but we need to
+    * add our search path at startup before the manager is actually used.
+    */
+   manager = gtk_source_style_scheme_manager_get_default ();
+   gtk_source_style_scheme_manager_append_search_path (manager, xed_dirs_get_user_styles_dir ());
+
+   app->priv->engine = xed_plugins_engine_get_default ();
+   app->priv->extensions = peas_extension_set_new (PEAS_ENGINE (app->priv->engine),
+                                                   XED_TYPE_APP_ACTIVATABLE,
+                                                   "app", app,
+                                                   NULL);
+
+   g_signal_connect (app->priv->extensions, "extension-added",
+                     G_CALLBACK (extension_added), app);
+
+   g_signal_connect (app->priv->extensions, "extension-removed",
+                     G_CALLBACK (extension_removed), app);
+
+   peas_extension_set_foreach (app->priv->extensions,
+                               (PeasExtensionSetForeachFunc) extension_added,
+                               app);
+}
+
+static gboolean
+is_in_viewport (GtkWindow *window,
+                GdkScreen *screen,
+                gint       workspace,
+                gint       viewport_x,
+                gint       viewport_y)
+{
+    GdkScreen *s;
+    GdkDisplay *display;
+    GdkWindow *gdkwindow;
+    const gchar *cur_name;
+    const gchar *name;
+    gint cur_n;
+    gint n;
+    gint ws;
+    gint sc_width, sc_height;
+    gint x, y, width, height;
+    gint vp_x, vp_y;
+
+    /* Check for screen and display match */
+    display = gdk_screen_get_display (screen);
+    cur_name = gdk_display_get_name (display);
+    cur_n = gdk_screen_get_number (screen);
+
+    s = gtk_window_get_screen (window);
+    display = gdk_screen_get_display (s);
+    name = gdk_display_get_name (display);
+    n = gdk_screen_get_number (s);
+
+    if (strcmp (cur_name, name) != 0 || cur_n != n)
+    {
+       return FALSE;
+    }
+
+    /* Check for workspace match */
+    ws = xed_utils_get_window_workspace (window);
+    if (ws != workspace && ws != XED_ALL_WORKSPACES)
+    {
+       return FALSE;
+    }
+
+    /* Check for viewport match */
+    gdkwindow = gtk_widget_get_window (GTK_WIDGET (window));
+    gdk_window_get_position (gdkwindow, &x, &y);
+    width = gdk_window_get_width (gdkwindow);
+    height = gdk_window_get_height (gdkwindow);
+    xed_utils_get_current_viewport (screen, &vp_x, &vp_y);
+    x += vp_x;
+    y += vp_y;
+
+    sc_width = gdk_screen_get_width (screen);
+    sc_height = gdk_screen_get_height (screen);
+
+    return x + width * .25 >= viewport_x &&
+           x + width * .75 <= viewport_x + sc_width &&
+           y >= viewport_y &&
+           y + height <= viewport_y + sc_height;
+}
+
+static XedWindow *
+get_active_window (GtkApplication *app)
+{
+    GdkScreen *screen;
+    guint workspace;
+    gint viewport_x, viewport_y;
+    GList *windows, *l;
+
+    screen = gdk_screen_get_default ();
+
+    workspace = xed_utils_get_current_workspace (screen);
+    xed_utils_get_current_viewport (screen, &viewport_x, &viewport_y);
+
+    /* Gtk documentation says the window list is always in MRU order */
+    windows = gtk_application_get_windows (app);
+    for (l = windows; l != NULL; l = l->next)
+    {
+       GtkWindow *window = l->data;
+
+        if (is_in_viewport (window, screen, workspace, viewport_x, viewport_y))
+        {
+            return XED_WINDOW (window);
+        }
+    }
+
+   return NULL;
+}
+
+static void
+set_command_line_wait (XedTab *tab)
+{
+    g_object_set_data_full (G_OBJECT (tab),
+                            "XedTabCommandLineWait",
+                            g_object_ref (command_line),
+                            (GDestroyNotify)g_object_unref);
+}
+
+static void
+xed_app_activate (GApplication *application)
+{
+    XedWindow *window = NULL;
+    XedTab *tab;
+    gboolean doc_created = FALSE;
+
+    if (!new_window)
+    {
+        window = get_active_window (GTK_APPLICATION (application));
+    }
+
+    if (window == NULL)
+    {
+        xed_debug_message (DEBUG_APP, "Create main window");
+        window = xed_app_create_window (XED_APP (application), NULL);
+
+        xed_debug_message (DEBUG_APP, "Show window");
+        gtk_widget_show (GTK_WIDGET (window));
+    }
+
+    if (geometry)
+    {
+        gtk_window_parse_geometry (GTK_WINDOW (window), geometry);
+    }
+
+    if (stdin_stream)
+    {
+        xed_debug_message (DEBUG_APP, "Load stdin");
+
+        tab = xed_window_create_tab_from_stream (window,
+                                                 stdin_stream,
+                                                 encoding,
+                                                 line_position,
+                                                 TRUE);
+        doc_created = tab != NULL;
+
+        if (doc_created && command_line)
+        {
+            set_command_line_wait (tab);
+        }
+        g_input_stream_close (stdin_stream, NULL, NULL);
+    }
+
+    if (file_list != NULL)
+    {
+        GSList *loaded;
+
+        xed_debug_message (DEBUG_APP, "Load files");
+        loaded = _xed_cmd_load_files_from_prompt (window, file_list, encoding, line_position);
+
+        doc_created = doc_created || loaded != NULL;
+
+        if (command_line)
+        {
+            g_slist_foreach (loaded, (GFunc)set_command_line_wait, NULL);
+        }
+        g_slist_free (loaded);
+    }
+
+    if (!doc_created || new_document)
+    {
+        xed_debug_message (DEBUG_APP, "Create tab");
+        tab = xed_window_create_tab (window, TRUE);
+
+        if (command_line)
+        {
+            set_command_line_wait (tab);
+        }
+    }
+
+    gtk_window_present (GTK_WINDOW (window));
+}
+
+static void
+clear_options (void)
+{
+    g_free (geometry);
+    g_clear_object (&stdin_stream);
+    g_slist_free_full (file_list, g_object_unref);
+
+    new_window = FALSE;
+    new_document = FALSE;
+    geometry = NULL;
+    encoding = NULL;
+    file_list = NULL;
+    line_position = 0;
+    command_line = NULL;
+}
+
+static void
+get_line_position (const gchar *arg,
+                   gint        *line)
+{
+    *line = atoi (arg);
+}
+
+static gint
+xed_app_command_line (GApplication            *application,
+                      GApplicationCommandLine *cl)
+{
+    GVariantDict *options;
+    const gchar *encoding_charset;
+    const gchar **remaining_args;
+
+    options = g_application_command_line_get_options_dict (cl);
+
+    g_variant_dict_lookup (options, "new-window", "b", &new_window);
+    g_variant_dict_lookup (options, "new-document", "b", &new_document);
+    g_variant_dict_lookup (options, "geometry", "s", &geometry);
+
+    if (g_variant_dict_contains (options, "wait"))
+    {
+        command_line = cl;
+    }
+
+    if (g_variant_dict_lookup (options, "encoding", "&s", &encoding_charset))
+    {
+        encoding = gtk_source_encoding_get_from_charset (encoding_charset);
+
+        if (encoding == NULL)
+        {
+            g_application_command_line_printerr (cl, _("%s: invalid encoding."), encoding_charset);
+        }
+    }
+
+    /* Parse filenames */
+    if (g_variant_dict_lookup (options, G_OPTION_REMAINING, "^a&ay", &remaining_args))
+    {
+        gint i;
+
+        for (i = 0; remaining_args[i]; i++)
+        {
+            if (*remaining_args[i] == '+')
+            {
+                if (*(remaining_args[i] + 1) == '\0')
+                {
+                    /* goto the last line of the document */
+                    line_position = G_MAXINT;
+                }
+                else
+                {
+                    get_line_position (remaining_args[i] + 1, &line_position);
+                }
+            }
+
+            else if (*remaining_args[i] == '-' && *(remaining_args[i] + 1) == '\0')
+            {
+                stdin_stream = g_application_command_line_get_stdin (cl);
+            }
+            else
+            {
+                GFile *file;
+
+                file = g_application_command_line_create_file_for_arg (cl, remaining_args[i]);
+                file_list = g_slist_prepend (file_list, file);
+            }
+        }
+
+        file_list = g_slist_reverse (file_list);
+        g_free (remaining_args);
+    }
+
+    g_application_activate (application);
+    clear_options ();
+
+    return 0;
+}
+
+static void
+print_all_encodings (void)
+{
+    GSList *all_encodings;
+    GSList *l;
+
+    all_encodings = gtk_source_encoding_get_all ();
+
+    for (l = all_encodings; l != NULL; l = l->next)
+    {
+        const GtkSourceEncoding *encoding = l->data;
+        g_print ("%s\n", gtk_source_encoding_get_charset (encoding));
+    }
+
+    g_slist_free (all_encodings);
+}
+
+static gint
+xed_app_handle_local_options (GApplication *application,
+                              GVariantDict *options)
+{
+    if (g_variant_dict_contains (options, "version"))
+    {
+        g_print ("%s - Version %s\n", g_get_application_name (), VERSION);
+        return 0;
+    }
+
+    if (g_variant_dict_contains (options, "list-encodings"))
+    {
+        print_all_encodings ();
+        return 0;
+    }
+
+    if (g_variant_dict_contains (options, "standalone"))
+    {
+        GApplicationFlags old_flags;
+
+        old_flags = g_application_get_flags (application);
+        g_application_set_flags (application, old_flags | G_APPLICATION_NON_UNIQUE);
+    }
+
+    if (g_variant_dict_contains (options, "wait"))
+    {
+        GApplicationFlags old_flags;
+
+        old_flags = g_application_get_flags (application);
+        g_application_set_flags (application, old_flags | G_APPLICATION_IS_LAUNCHER);
+    }
+
+    return -1;
 }
 
 static gboolean
 ensure_user_config_dir (void)
 {
-    gchar *config_dir;
+    const gchar *config_dir;
     gboolean ret = TRUE;
     gint res;
 
@@ -156,23 +624,7 @@ ensure_user_config_dir (void)
         ret = FALSE;
     }
 
-    g_free (config_dir);
-
     return ret;
-}
-
-static void
-load_accels (void)
-{
-    gchar *filename;
-
-    filename = xed_dirs_get_user_accels_file ();
-    if (filename != NULL)
-    {
-        xed_debug_message (DEBUG_APP, "Loading keybindings from %s\n", filename);
-        gtk_accel_map_load (filename);
-        g_free (filename);
-    }
 }
 
 static void
@@ -180,7 +632,7 @@ save_accels (void)
 {
     gchar *filename;
 
-    filename = xed_dirs_get_user_accels_file ();
+    filename = g_build_filename (xed_dirs_get_user_config_dir (), "accels", NULL);
     if (filename != NULL)
     {
         xed_debug_message (DEBUG_APP, "Saving keybindings in %s\n", filename);
@@ -192,7 +644,7 @@ save_accels (void)
 static gchar *
 get_page_setup_file (void)
 {
-    gchar *config_dir;
+    const gchar *config_dir;
     gchar *setup = NULL;
 
     config_dir = xed_dirs_get_user_config_dir ();
@@ -200,10 +652,124 @@ get_page_setup_file (void)
     if (config_dir != NULL)
     {
         setup = g_build_filename (config_dir, XED_PAGE_SETUP_FILE, NULL);
-        g_free (config_dir);
     }
 
     return setup;
+}
+
+static void
+save_page_setup (XedApp *app)
+{
+    gchar *filename;
+    GError *error = NULL;
+
+    if (app->priv->page_setup == NULL)
+    {
+        return;
+    }
+
+    filename = get_page_setup_file ();
+
+    gtk_page_setup_to_file (app->priv->page_setup, filename, &error);
+    if (error)
+    {
+        g_warning ("%s", error->message);
+        g_error_free (error);
+    }
+
+    g_free (filename);
+}
+
+static gchar *
+get_print_settings_file (void)
+{
+    const gchar *config_dir;
+    gchar *settings = NULL;
+
+    config_dir = xed_dirs_get_user_config_dir ();
+
+    if (config_dir != NULL)
+    {
+        settings = g_build_filename (config_dir, XED_PRINT_SETTINGS_FILE, NULL);
+    }
+
+    return settings;
+}
+
+static void
+save_print_settings (XedApp *app)
+{
+    gchar *filename;
+    GError *error = NULL;
+
+    if (app->priv->print_settings == NULL)
+    {
+        return;
+    }
+
+    filename = get_print_settings_file ();
+
+    gtk_print_settings_to_file (app->priv->print_settings, filename, &error);
+    if (error)
+    {
+        g_warning ("%s", error->message);
+        g_error_free (error);
+    }
+
+    g_free (filename);
+}
+
+static void
+xed_app_shutdown (GApplication *app)
+{
+    xed_debug_message (DEBUG_APP, "Quitting\n");
+
+    /* Last window is gone... save some settings and exit */
+    ensure_user_config_dir ();
+
+    save_accels ();
+    save_page_setup (XED_APP (app));
+    save_print_settings (XED_APP (app));
+
+#ifndef ENABLE_GVFS_METADATA
+    xed_metadata_manager_shutdown ();
+#endif
+
+    xed_dirs_shutdown ();
+
+    G_APPLICATION_CLASS (xed_app_parent_class)->shutdown (app);
+}
+
+static void
+xed_app_class_init (XedAppClass *klass)
+{
+    GObjectClass *object_class = G_OBJECT_CLASS (klass);
+    GApplicationClass *app_class =  G_APPLICATION_CLASS (klass);
+
+    object_class->dispose = xed_app_dispose;
+    object_class->get_property = xed_app_get_property;
+
+    app_class->startup = xed_app_startup;
+    app_class->activate = xed_app_activate;
+    app_class->command_line = xed_app_command_line;
+    app_class->handle_local_options = xed_app_handle_local_options;
+    app_class->shutdown = xed_app_shutdown;
+
+    g_type_class_add_private (object_class, sizeof (XedAppPrivate));
+}
+
+static void
+load_accels (void)
+{
+    gchar *filename;
+
+    filename = g_build_filename (xed_dirs_get_user_config_dir (), "accels", NULL);
+    if (filename != NULL)
+    {
+        xed_debug_message (DEBUG_APP, "Loading keybindings from %s\n", filename);
+        gtk_accel_map_load (filename);
+        g_free (filename);
+    }
 }
 
 static void
@@ -238,46 +804,6 @@ load_page_setup (XedApp *app)
 }
 
 static void
-save_page_setup (XedApp *app)
-{
-    gchar *filename;
-    GError *error = NULL;
-
-    if (app->priv->page_setup == NULL)
-    {
-        return;
-    }
-
-    filename = get_page_setup_file ();
-
-    gtk_page_setup_to_file (app->priv->page_setup, filename, &error);
-    if (error)
-    {
-        g_warning ("%s", error->message);
-        g_error_free (error);
-    }
-
-    g_free (filename);
-}
-
-static gchar *
-get_print_settings_file (void)
-{
-    gchar *config_dir;
-    gchar *settings = NULL;
-
-    config_dir = xed_dirs_get_user_config_dir ();
-
-    if (config_dir != NULL)
-    {
-        settings = g_build_filename (config_dir, XED_PRINT_SETTINGS_FILE, NULL);
-        g_free (config_dir);
-    }
-
-    return settings;
-}
-
-static void
 load_print_settings (XedApp *app)
 {
     gchar *filename;
@@ -309,118 +835,20 @@ load_print_settings (XedApp *app)
 }
 
 static void
-save_print_settings (XedApp *app)
-{
-    gchar *filename;
-    GError *error = NULL;
-
-    if (app->priv->print_settings == NULL)
-    {
-        return;
-    }
-
-    filename = get_print_settings_file ();
-
-    gtk_print_settings_to_file (app->priv->print_settings, filename, &error);
-    if (error)
-    {
-        g_warning ("%s", error->message);
-        g_error_free (error);
-    }
-
-    g_free (filename);
-}
-
-static void
-extension_added (PeasExtensionSet *extensions,
-                 PeasPluginInfo   *info,
-                 PeasExtension    *exten,
-                 XedApp           *app)
-{
-    peas_extension_call (exten, "activate");
-}
-
-static void
-extension_removed (PeasExtensionSet *extensions,
-                   PeasPluginInfo   *info,
-                   PeasExtension    *exten,
-                   XedApp           *app)
-{
-    peas_extension_call (exten, "deactivate");
-}
-
-static void
 xed_app_init (XedApp *app)
 {
-    GtkSourceStyleSchemeManager *manager;
-
     app->priv = XED_APP_GET_PRIVATE (app);
 
+    g_set_application_name ("xed");
+    gtk_window_set_default_icon_name ("accessories-text-editor");
+
+    g_application_add_main_option_entries (G_APPLICATION (app), options);
+
+#ifdef ENABLE_INTROSPECTION
+    g_application_add_option_group (G_APPLICATION (app), g_irepository_get_option_group ());
+#endif
+
     load_accels ();
-
-    app->priv->settings = xed_settings_new ();
-    app->priv->window_settings = g_settings_new ("org.x.editor.state.window");
-
-    /*
-     * We use the default gtksourceview style scheme manager so that plugins
-     * can obtain it easily without a xed specific api, but we need to
-     * add our search path at startup before the manager is actually used.
-     */
-    manager = gtk_source_style_scheme_manager_get_default ();
-    gtk_source_style_scheme_manager_append_search_path (manager, xed_dirs_get_user_styles_dir ());
-
-    app->priv->extensions = peas_extension_set_new (PEAS_ENGINE (xed_plugins_engine_get_default ()),
-                                                    XED_TYPE_APP_ACTIVATABLE, "app", app, NULL);
-
-    g_signal_connect (app->priv->extensions, "extension-added",
-                      G_CALLBACK (extension_added), app);
-    g_signal_connect (app->priv->extensions, "extension-removed",
-                      G_CALLBACK (extension_removed), app);
-
-    peas_extension_set_call (app->priv->extensions, "activate");
-}
-
-/**
- * xed_app_get_default:
- *
- * Returns the #XedApp object. This object is a singleton and
- * represents the running xed instance.
- *
- * Return value: (transfer none): the #XedApp pointer
- */
-XedApp *
-xed_app_get_default (void)
-{
-    static XedApp *app = NULL;
-
-    if (app != NULL)
-        return app;
-
-    app = XED_APP (g_object_new (XED_TYPE_APP, NULL));
-
-    g_object_add_weak_pointer (G_OBJECT (app), (gpointer) &app);
-
-    return app;
-}
-
-static void
-set_active_window (XedApp    *app,
-                   XedWindow *window)
-{
-    app->priv->active_window = window;
-}
-
-static gboolean
-window_focus_in_event (XedWindow     *window,
-                       GdkEventFocus *event,
-                       XedApp        *app)
-{
-    /* updates active_view and active_child when a new toplevel receives focus */
-    g_return_val_if_fail (XED_IS_WINDOW (window), FALSE);
-
-    set_active_window (app, window);
-
-    return FALSE;
 }
 
 static gboolean
@@ -446,41 +874,6 @@ window_delete_event (XedWindow *window,
     return TRUE;
 }
 
-static void
-window_destroy (XedWindow *window,
-                XedApp    *app)
-{
-    app->priv->windows = g_list_remove (app->priv->windows,
-                        window);
-
-    if (window == app->priv->active_window)
-    {
-        set_active_window (app, app->priv->windows != NULL ? app->priv->windows->data : NULL);
-    }
-
-/* CHECK: I don't think we have to disconnect this function, since windows
-   is being destroyed */
-/*
-    g_signal_handlers_disconnect_by_func (window,
-                          G_CALLBACK (window_focus_in_event),
-                          app);
-    g_signal_handlers_disconnect_by_func (window,
-                          G_CALLBACK (window_destroy),
-                          app);
-*/
-    if (app->priv->windows == NULL)
-    {
-        /* Last window is gone... save some settings and exit */
-        ensure_user_config_dir ();
-
-        save_accels ();
-        save_page_setup (app);
-        save_print_settings (app);
-
-        gtk_main_quit ();
-    }
-}
-
 /* Generates a unique string for a window role */
 static gchar *
 gen_role (void)
@@ -504,25 +897,7 @@ xed_app_create_window_real (XedApp      *app,
 {
     XedWindow *window;
 
-    xed_debug (DEBUG_APP);
-
-    /*
-     * We need to be careful here, there is a race condition:
-     * when another xed is launched it checks active_window,
-     * so we must do our best to ensure that active_window
-     * is never NULL when at least a window exists.
-     */
-    if (app->priv->windows == NULL)
-    {
-        window = g_object_new (XED_TYPE_WINDOW, NULL);
-        set_active_window (app, window);
-    }
-    else
-    {
-        window = g_object_new (XED_TYPE_WINDOW, NULL);
-    }
-
-    app->priv->windows = g_list_prepend (app->priv->windows, window);
+    window = g_object_new (XED_TYPE_WINDOW, "application", app, NULL);
 
     xed_debug_message (DEBUG_APP, "Window created");
 
@@ -545,17 +920,15 @@ xed_app_create_window_real (XedApp      *app,
         gint w, h;
 
         state = g_settings_get_int (app->priv->window_settings, XED_SETTINGS_WINDOW_STATE);
+        g_settings_get (app->priv->window_settings, XED_SETTINGS_WINDOW_SIZE, "(ii)", &w, &h);
+        gtk_window_set_default_size (GTK_WINDOW (window), w, h);
 
         if ((state & GDK_WINDOW_STATE_MAXIMIZED) != 0)
         {
-            _xed_window_get_default_size (&w, &h);
-            gtk_window_set_default_size (GTK_WINDOW (window), w, h);
             gtk_window_maximize (GTK_WINDOW (window));
         }
         else
         {
-            g_settings_get (app->priv->window_settings, XED_SETTINGS_WINDOW_SIZE, "(ii)", &w, &h);
-            gtk_window_set_default_size (GTK_WINDOW (window), w, h);
             gtk_window_unmaximize (GTK_WINDOW (window));
         }
 
@@ -569,9 +942,7 @@ xed_app_create_window_real (XedApp      *app,
         }
     }
 
-    g_signal_connect (window, "focus_in_event", G_CALLBACK (window_focus_in_event), app);
     g_signal_connect (window, "delete_event", G_CALLBACK (window_delete_event), app);
-    g_signal_connect (window, "destroy", G_CALLBACK (window_destroy), app);
 
     return window;
 }
@@ -617,159 +988,34 @@ _xed_app_restore_window (XedApp *app,
 }
 
 /**
- * xed_app_get_windows:
- * @app: the #XedApp
+ * xed_app_get_main_windows:
+ * @app: the #GeditApp
  *
- * Returns all the windows currently present in #XedApp.
+ * Returns all #XedWindows currently open in #XedApp.
+ * This differs from gtk_application_get_windows() since it does not
+ * include the preferences dialog and other auxiliary windows.
  *
- * Return value: (element-type Xed.Window) (transfer none): the list of #XedWindows objects.
- * The list should not be freed
+ * Return value: (element-type Xed.Window) (transfer container):
+ * a newly allocated list of #XedWindow objects
  */
-const GList *
-xed_app_get_windows (XedApp *app)
+GList *
+xed_app_get_main_windows (XedApp *app)
 {
-    g_return_val_if_fail (XED_IS_APP (app), NULL);
-
-    return app->priv->windows;
-}
-
-/**
- * xed_app_get_active_window:
- * @app: the #XedApp
- *
- * Retrives the #XedWindow currently active.
- *
- * Return value: (transfer none): the active #XedWindow
- */
-XedWindow *
-xed_app_get_active_window (XedApp *app)
-{
-    g_return_val_if_fail (XED_IS_APP (app), NULL);
-
-    /* make sure our active window is always realized:
-     * this is needed on startup if we launch two xed fast
-     * enough that the second instance comes up before the
-     * first one shows its window.
-     */
-    if (!gtk_widget_get_realized (GTK_WIDGET (app->priv->active_window)))
-    {
-        gtk_widget_realize (GTK_WIDGET (app->priv->active_window));
-    }
-
-    return app->priv->active_window;
-}
-
-static gboolean
-is_in_viewport (XedWindow *window,
-                GdkScreen *screen,
-                gint       workspace,
-                gint       viewport_x,
-                gint       viewport_y)
-{
-    GdkScreen *s;
-    GdkDisplay *display;
-    GdkWindow *gdkwindow;
-    const gchar *cur_name;
-    const gchar *name;
-    gint cur_n;
-    gint n;
-    gint ws;
-    gint sc_width, sc_height;
-    gint x, y, width, height;
-    gint vp_x, vp_y;
-
-    /* Check for screen and display match */
-    display = gdk_screen_get_display (screen);
-    cur_name = gdk_display_get_name (display);
-    cur_n = gdk_screen_get_number (screen);
-
-    s = gtk_window_get_screen (GTK_WINDOW (window));
-    display = gdk_screen_get_display (s);
-    name = gdk_display_get_name (display);
-    n = gdk_screen_get_number (s);
-
-    if (strcmp (cur_name, name) != 0 || cur_n != n)
-    {
-        return FALSE;
-    }
-
-    /* Check for workspace match */
-    ws = xed_utils_get_window_workspace (GTK_WINDOW (window));
-    if (ws != workspace && ws != XED_ALL_WORKSPACES)
-    {
-        return FALSE;
-    }
-
-    /* Check for viewport match */
-    gdkwindow = gtk_widget_get_window (GTK_WIDGET (window));
-    gdk_window_get_position (gdkwindow, &x, &y);
-
-    width = gdk_window_get_width (gdkwindow);
-    height = gdk_window_get_height (gdkwindow);
-
-    xed_utils_get_current_viewport (screen, &vp_x, &vp_y);
-    x += vp_x;
-    y += vp_y;
-
-    sc_width = gdk_screen_get_width (screen);
-    sc_height = gdk_screen_get_height (screen);
-
-    return x + width * .25 >= viewport_x &&
-           x + width * .75 <= viewport_x + sc_width &&
-           y  >= viewport_y &&
-           y + height <= viewport_y + sc_height;
-}
-
-/**
- * _xed_app_get_window_in_viewport
- * @app: the #XedApp
- * @screen: the #GdkScreen
- * @workspace: the workspace number
- * @viewport_x: the viewport horizontal origin
- * @viewport_y: the viewport vertical origin
- *
- * Since a workspace can be larger than the screen, it is divided into several
- * equal parts called viewports. This function retrives the #XedWindow in
- * the given viewport of the given workspace.
- *
- * Return value: the #XedWindow in the given viewport of the given workspace.
- */
-XedWindow *
-_xed_app_get_window_in_viewport (XedApp    *app,
-                                 GdkScreen *screen,
-                                 gint       workspace,
-                                 gint       viewport_x,
-                                 gint       viewport_y)
-{
-    XedWindow *window;
-
-    GList *l;
+    GList *res = NULL;
+    GList *windows, *l;
 
     g_return_val_if_fail (XED_IS_APP (app), NULL);
 
-    /* first try if the active window */
-    window = app->priv->active_window;
-
-    g_return_val_if_fail (XED_IS_WINDOW (window), NULL);
-
-    if (is_in_viewport (window, screen, workspace, viewport_x, viewport_y))
+    windows = gtk_application_get_windows (GTK_APPLICATION (app));
+    for (l = windows; l != NULL; l = g_list_next (l))
     {
-        return window;
-    }
-
-    /* otherwise try to see if there is a window on this workspace */
-    for (l = app->priv->windows; l != NULL; l = l->next)
-    {
-        window = l->data;
-
-        if (is_in_viewport (window, screen, workspace, viewport_x, viewport_y))
+        if (XED_IS_WINDOW (l->data))
         {
-            return window;
+            res = g_list_prepend (res, l->data);
         }
     }
 
-    /* no window on this workspace... create a new one */
-    return xed_app_create_window (app, screen);
+    return g_list_reverse (res);
 }
 
 /**
@@ -785,16 +1031,14 @@ GList *
 xed_app_get_documents   (XedApp *app)
 {
     GList *res = NULL;
-    GList *windows;
+    GList *windows, *l;
 
     g_return_val_if_fail (XED_IS_APP (app), NULL);
 
-    windows = app->priv->windows;
-
-    while (windows != NULL)
+    windows = gtk_application_get_windows (GTK_APPLICATION (app));
+    for (l = windows; l != NULL; l = g_list_next (l))
     {
-        res = g_list_concat (res, xed_window_get_documents (XED_WINDOW (windows->data)));
-        windows = g_list_next (windows);
+        res = g_list_concat (res, xed_window_get_documents (XED_WINDOW (l->data)));
     }
 
     return res;
@@ -813,19 +1057,86 @@ GList *
 xed_app_get_views (XedApp *app)
 {
     GList *res = NULL;
-    GList *windows;
+    GList *windows, *l;
 
     g_return_val_if_fail (XED_IS_APP (app), NULL);
 
-    windows = app->priv->windows;
-
-    while (windows != NULL)
+    windows = gtk_application_get_windows (GTK_APPLICATION (app));
+    for (l = windows; l != NULL; l = g_list_next (l))
     {
-        res = g_list_concat (res, xed_window_get_views (XED_WINDOW (windows->data)));
-        windows = g_list_next (windows);
+        res = g_list_concat (res, xed_window_get_views (XED_WINDOW (l->data)));
     }
 
     return res;
+}
+
+gboolean
+xed_app_show_help (XedApp      *app,
+                   GtkWindow   *parent,
+                   const gchar *name,
+                   const gchar *link_id)
+{
+    g_return_val_if_fail (XED_IS_APP (app), FALSE);
+    g_return_val_if_fail (parent == NULL || GTK_IS_WINDOW (parent), FALSE);
+
+    GError *error = NULL;
+    gboolean ret;
+    gchar *link;
+
+    if (name == NULL)
+    {
+        name = "xed";
+    }
+    else if (strcmp (name, "xed.xml") == 0)
+    {
+        g_warning ("%s: Using \"xed.xml\" for the help name is deprecated, use \"xed\" or simply NULL instead", G_STRFUNC);
+        name = "xed";
+    }
+
+    if (link_id)
+    {
+        link = g_strdup_printf ("help:%s/%s", name, link_id);
+    }
+    else
+    {
+        link = g_strdup_printf ("help:%s", name);
+    }
+
+    ret = gtk_show_uri (gtk_widget_get_screen (GTK_WIDGET (parent)), link, GDK_CURRENT_TIME, &error);
+
+    g_free (link);
+
+    if (error != NULL)
+    {
+        GtkWidget *dialog;
+
+        dialog = gtk_message_dialog_new (parent,
+                                         GTK_DIALOG_DESTROY_WITH_PARENT,
+                                         GTK_MESSAGE_ERROR,
+                                         GTK_BUTTONS_CLOSE,
+                                         _("There was an error displaying the help."));
+
+        gtk_message_dialog_format_secondary_text (GTK_MESSAGE_DIALOG (dialog), "%s", error->message);
+
+        g_signal_connect (G_OBJECT (dialog), "response",
+                          G_CALLBACK (gtk_widget_destroy), NULL);
+
+        gtk_window_set_resizable (GTK_WINDOW (dialog), FALSE);
+
+        gtk_widget_show (dialog);
+
+        g_error_free (error);
+    }
+
+    return ret;
+}
+
+void
+xed_app_set_window_title (XedApp      *app,
+                          XedWindow   *window,
+                          const gchar *title)
+{
+   gtk_window_set_title (GTK_WINDOW (window), title);
 }
 
 /* Returns a copy */

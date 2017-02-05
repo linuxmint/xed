@@ -112,20 +112,46 @@ GtkWidget *_xed_tab_new_from_location  (GFile                   *location,
                                         const GtkSourceEncoding *encoding,
                                         gint                     line_pos,
                                         gboolean                 create);
+
+GtkWidget *_xed_tab_new_from_stream (GInputStream            *stream,
+                                     const GtkSourceEncoding *encoding,
+                                     gint                     line_pos);
+
 gchar *_xed_tab_get_name (XedTab *tab);
+
 gchar *_xed_tab_get_tooltips (XedTab *tab);
+
 GdkPixbuf *_xed_tab_get_icon (XedTab *tab);
-void _xed_tab_load (XedTab                 *tab,
-                    GFile                  *location,
+
+void _xed_tab_load (XedTab                  *tab,
+                    GFile                   *location,
                     const GtkSourceEncoding *encoding,
-                    gint                    line_pos,
-                    gboolean                create);
+                    gint                     line_pos,
+                    gboolean                 create);
+
+void _xed_tab_load_stream     (XedTab                  *tab,
+                               GInputStream            *location,
+                               const GtkSourceEncoding *encoding,
+                               gint                     line_pos);
+
 void _xed_tab_revert (XedTab *tab);
-void _xed_tab_save (XedTab *tab);
-void _xed_tab_save_as (XedTab                  *tab,
-                       GFile                   *location,
-                       const GtkSourceEncoding *encoding,
-                       GtkSourceNewlineType     newline_type);
+
+void _xed_tab_save_async (XedTab              *tab,
+                          GCancellable        *cancellable,
+                          GAsyncReadyCallback  callback,
+                          gpointer             user_data);
+
+
+gboolean _xed_tab_save_finish (XedTab       *tab,
+                               GAsyncResult *result);
+
+void _xed_tab_save_as_async (XedTab                   *tab,
+                             GFile                    *location,
+                             const GtkSourceEncoding  *encoding,
+                             GtkSourceNewlineType      newline_type,
+                             GCancellable             *cancellable,
+                             GAsyncReadyCallback       callback,
+                             gpointer                  user_data);
 
 void _xed_tab_print (XedTab *tab);
 void _xed_tab_print_preview (XedTab *tab);

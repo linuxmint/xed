@@ -39,16 +39,16 @@ struct _XedSearchbarClass
 
 typedef enum
 {
-    SEARCH_MODE_SEARCH,
-    SEARCH_MODE_REPLACE
-} SearchMode;
+    XED_SEARCH_MODE_SEARCH,
+    XED_SEARCH_MODE_REPLACE
+} XedSearchMode;
 
 GType        xed_searchbar_get_type (void) G_GNUC_CONST;
 
 GtkWidget   *xed_searchbar_new (GtkWindow *parent);
 
 void         xed_searchbar_hide (XedSearchbar *searchbar);
-void         xed_searchbar_show (XedSearchbar *searchbar, SearchMode search_mode);
+void         xed_searchbar_show (XedSearchbar *searchbar, XedSearchMode search_mode);
 void         xed_searchbar_find_again (XedSearchbar *searchbar, gboolean backward);
 
 const gchar *xed_searchbar_get_replace_text (XedSearchbar *searchbar);

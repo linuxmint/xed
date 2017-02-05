@@ -34,7 +34,7 @@
 #include <glib/gi18n.h>
 #include <gtk/gtk.h>
 #include <xed/xed-utils.h>
-#include <xed/xed-help.h>
+#include <xed/xed-app.h>
 #include "xed-spell-language-dialog.h"
 #include "xed-spell-checker-language.h"
 
@@ -70,7 +70,7 @@ dialog_response_handler (GtkDialog *dlg,
 {
     if (res_id == GTK_RESPONSE_HELP)
     {
-        xed_help_display (GTK_WINDOW (dlg), NULL, "xed-spell-checker-plugin");
+        xed_app_show_help (XED_APP (g_application_get_default ()), GTK_WINDOW (dlg), NULL, "xed-spell-checker-plugin");
 
         g_signal_stop_emission_by_name (dlg, "response");
     }

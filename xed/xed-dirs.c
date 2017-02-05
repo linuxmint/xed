@@ -27,115 +27,115 @@
 
 #include "xed-dirs.h"
 
-gchar *
+static gchar *user_config_dir      = NULL;
+static gchar *user_cache_dir       = NULL;
+static gchar *user_styles_dir      = NULL;
+static gchar *user_plugins_dir     = NULL;
+static gchar *xed_data_dir         = NULL;
+static gchar *xed_locale_dir       = NULL;
+static gchar *xed_lib_dir          = NULL;
+static gchar *xed_plugins_dir      = NULL;
+static gchar *xed_plugins_data_dir = NULL;
+
+void
+xed_dirs_init ()
+{
+    if (xed_data_dir == NULL)
+    {
+        xed_data_dir = g_build_filename (DATADIR, "xed", NULL);
+        xed_locale_dir = g_build_filename (DATADIR, "locale", NULL);
+        xed_lib_dir = g_build_filename (LIBDIR, "xed", NULL);
+    }
+
+    user_cache_dir = g_build_filename (g_get_user_cache_dir (), "xed", NULL);
+    user_config_dir = g_build_filename (g_get_user_config_dir (), "xed", NULL);
+    user_styles_dir = g_build_filename (g_get_user_data_dir (), "xed", "styles", NULL);
+    user_plugins_dir = g_build_filename (g_get_user_data_dir (), "xed", "plugins", NULL);
+    xed_plugins_dir = g_build_filename (xed_lib_dir, "plugins", NULL);
+    xed_plugins_data_dir = g_build_filename (xed_data_dir, "plugins", NULL);
+}
+
+void
+xed_dirs_shutdown ()
+{
+    g_free (user_config_dir);
+    g_free (user_cache_dir);
+    g_free (user_plugins_dir);
+    g_free (xed_data_dir);
+    g_free (xed_locale_dir);
+    g_free (xed_lib_dir);
+    g_free (xed_plugins_dir);
+    g_free (xed_plugins_data_dir);
+}
+
+const gchar *
 xed_dirs_get_user_config_dir (void)
 {
-    gchar* config_dir = NULL;
-
-    config_dir = g_build_filename(g_get_user_config_dir(), "xed", NULL);
-
-    return config_dir;
+    return user_config_dir;
 }
 
-gchar *
+const gchar *
 xed_dirs_get_user_cache_dir (void)
 {
-    const gchar* cache_dir;
-
-    cache_dir = g_get_user_cache_dir();
-
-    return g_build_filename(cache_dir, "xed", NULL);
+    return user_cache_dir;
 }
 
-gchar *
+const gchar *
 xed_dirs_get_user_styles_dir (void)
 {
-    gchar *user_style_dir;
-
-    user_style_dir = g_build_filename (g_get_user_data_dir (), "xed", "styles", NULL);
+    return user_styles_dir;
 }
 
-gchar *
+const gchar *
 xed_dirs_get_user_plugins_dir (void)
 {
-    gchar* plugin_dir;
-
-    plugin_dir = g_build_filename(g_get_user_data_dir(), "xed", "plugins", NULL);
-
-    return plugin_dir;
+    return user_plugins_dir;
 }
 
-gchar *
-xed_dirs_get_user_accels_file (void)
-{
-    gchar* accels = NULL;
-    gchar *config_dir = NULL;
-
-    config_dir = xed_dirs_get_user_config_dir();
-    accels = g_build_filename(config_dir, "accels", NULL);
-
-    g_free(config_dir);
-
-    return accels;
-}
-
-gchar *
+const gchar *
 xed_dirs_get_xed_data_dir (void)
 {
-    return g_build_filename(DATADIR, "xed", NULL);
+    return xed_data_dir;
 }
 
-gchar *
+const gchar *
 xed_dirs_get_xed_locale_dir (void)
 {
-    return g_build_filename(DATADIR, "locale", NULL);
+    return xed_locale_dir;
 }
 
-gchar *
+const gchar *
 xed_dirs_get_xed_lib_dir (void)
 {
-    return g_build_filename(LIBDIR, "xed", NULL);
+    return xed_lib_dir;
 }
 
-gchar *
+const gchar *
 xed_dirs_get_xed_plugins_dir (void)
 {
-    gchar* lib_dir;
-    gchar* plugin_dir;
-
-    lib_dir = xed_dirs_get_xed_lib_dir();
-
-    plugin_dir = g_build_filename(lib_dir, "plugins", NULL);
-    g_free(lib_dir);
-
-    return plugin_dir;
+    return xed_plugins_dir;
 }
 
-gchar *
+const gchar *
 xed_dirs_get_xed_plugins_data_dir (void)
 {
-    gchar* data_dir;
-    gchar* plugin_data_dir;
+    return xed_plugins_data_dir;
+}
 
-    data_dir = xed_dirs_get_xed_data_dir ();
-
-    plugin_data_dir = g_build_filename (data_dir, "plugins", NULL);
-    g_free (data_dir);
-
-    return plugin_data_dir;
+const gchar *
+xed_dirs_get_binding_modules_dir (void)
+{
+    return xed_lib_dir;
 }
 
 gchar *
-xed_dirs_get_ui_file (const gchar* file)
+xed_dirs_get_ui_file (const gchar *file)
 {
-    gchar* datadir;
-    gchar* ui_file;
+    gchar *ui_file;
 
-    g_return_val_if_fail(file != NULL, NULL);
+    g_return_val_if_fail (file != NULL, NULL);
 
-    datadir = xed_dirs_get_xed_data_dir();
-    ui_file = g_build_filename(datadir, "ui", file, NULL);
-    g_free(datadir);
+    ui_file = g_build_filename (xed_dirs_get_xed_data_dir (), "ui", file, NULL);
 
     return ui_file;
 }

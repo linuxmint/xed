@@ -27,22 +27,15 @@
  * See the ChangeLog files for a list of changes.
  */
 
-#ifdef HAVE_CONFIG_H
-#include <config.h>
-#endif
-
 #include <time.h>
 #include <stdlib.h>
 #include <libxml/xmlreader.h>
 #include "xed-metadata-manager.h"
 #include "xed-debug.h"
-#include "xed-dirs.h"
 
 /*
 #define XED_METADATA_VERBOSE_DEBUG	1
 */
-
-#define METADATA_FILE 	"xed-metadata.xml"
 
 #define MAX_ITEMS	50
 
@@ -65,6 +58,8 @@ struct _XedMetadataManager
 	guint 		 timeout_id;
 
 	GHashTable	*items;
+
+	gchar *metadata_filename;
 };
 
 static gboolean xed_metadata_manager_save (gpointer data);
@@ -105,13 +100,20 @@ xed_metadata_manager_arm_timeout (void)
 	}
 }
 
-static gboolean
-xed_metadata_manager_init (void)
+/**
+ * xed_metadata_manager_init:
+ * @metadata_filename: the filename where the metadata is.
+ *
+ * This function initializes the metadata manager.
+ * See also xed_metadata_manager_shutdown().
+ */
+void
+xed_metadata_manager_init (const gchar *metadata_filename)
 {
 	xed_debug (DEBUG_METADATA);
 
 	if (xed_metadata_manager != NULL)
-		return TRUE;
+		return;
 
 	xed_metadata_manager = g_new0 (XedMetadataManager, 1);
 
@@ -123,10 +125,17 @@ xed_metadata_manager_init (void)
 				       g_free,
 				       item_free);
 
-	return TRUE;
+	xed_metadata_manager->metadata_filename = g_strdup (metadata_filename);
+
+    return;
 }
 
-/* This function must be called before exiting xed */
+/**
+ * xed_metadata_manager_shutdown:
+ *
+ * This function frees the internal data of the metadata manager.
+ * See also xed_metadata_manager_init().
+ */
 void
 xed_metadata_manager_shutdown (void)
 {
@@ -145,6 +154,7 @@ xed_metadata_manager_shutdown (void)
 	if (xed_metadata_manager->items != NULL)
 		g_hash_table_destroy (xed_metadata_manager->items);
 
+    g_free (gedit_metadata_manager->metadata_filename);
 	g_free (xed_metadata_manager);
 	xed_metadata_manager = NULL;
 }
@@ -218,29 +228,11 @@ parseItem (xmlDocPtr doc, xmlNodePtr cur)
 	xmlFree (atime);
 }
 
-static gchar *
-get_metadata_filename (void)
-{
-	gchar *cache_dir;
-	gchar *metadata;
-
-	cache_dir = xed_dirs_get_user_cache_dir ();
-
-	metadata = g_build_filename (cache_dir,
-				     METADATA_FILE,
-				     NULL);
-
-	g_free (cache_dir);
-
-	return metadata;
-}
-
 static gboolean
 load_values (void)
 {
 	xmlDocPtr doc;
 	xmlNodePtr cur;
-	gchar *file_name;
 
 	xed_debug (DEBUG_METADATA);
 
@@ -252,16 +244,13 @@ load_values (void)
 	xmlKeepBlanksDefault (0);
 
 	/* FIXME: file locking - Paolo */
-	file_name = get_metadata_filename ();
-	if ((file_name == NULL) ||
-	    (!g_file_test (file_name, G_FILE_TEST_EXISTS)))
+	if ((xed_metadata_manager->metadata_filename == NULL) ||
+        (!g_file_test (xed_metadata_manager->metadata_filename, G_FILE_TEST_EXISTS)))
 	{
-		g_free (file_name);
 		return FALSE;
 	}
 
-	doc = xmlParseFile (file_name);
-	g_free (file_name);
+	doc = xmlParseFile (xed_metadata_manager->metadata_filename);
 
 	if (doc == NULL)
 	{
@@ -271,7 +260,7 @@ load_values (void)
 	cur = xmlDocGetRootElement (doc);
 	if (cur == NULL)
 	{
-		g_message ("The metadata file '%s' is empty", METADATA_FILE);
+		g_message ("The metadata file '%s' is empty", g_path_get_basename (xed_metadata_manager->metadata_filename));
 		xmlFreeDoc (doc);
 
 		return FALSE;
@@ -279,7 +268,7 @@ load_values (void)
 
 	if (xmlStrcmp (cur->name, (const xmlChar *) "metadata"))
 	{
-		g_message ("File '%s' is of the wrong type", METADATA_FILE);
+		g_message ("File '%s' is of the wrong type", g_path_get_basename (xed_metadata_manager->metadata_filename));
 		xmlFreeDoc (doc);
 
 		return FALSE;
@@ -300,6 +289,13 @@ load_values (void)
 	return TRUE;
 }
 
+/**
+ * xed_metadata_manager_get:
+ * @location: a #GFile.
+ * @key: a key.
+ *
+ * Gets the value associated with the specified @key for the file @location.
+ */
 gchar *
 xed_metadata_manager_get (GFile *location,
 			    const gchar *key)
@@ -314,8 +310,6 @@ xed_metadata_manager_get (GFile *location,
 	uri = g_file_get_uri (location);
 
 	xed_debug_message (DEBUG_METADATA, "URI: %s --- key: %s", uri, key );
-
-	xed_metadata_manager_init ();
 
 	if (!xed_metadata_manager->values_loaded)
 	{
@@ -348,6 +342,14 @@ xed_metadata_manager_get (GFile *location,
 		return g_strdup (value);
 }
 
+/**
+ * xed_metadata_manager_set:
+ * @location: a #GFile.
+ * @key: a key.
+ * @value: the value associated with the @key.
+ *
+ * Sets the @key to contain the given @value for the file @location.
+ */
 void
 xed_metadata_manager_set (GFile *location,
 			    const gchar *key,
@@ -362,8 +364,6 @@ xed_metadata_manager_set (GFile *location,
 	uri = g_file_get_uri (location);
 
 	xed_debug_message (DEBUG_METADATA, "URI: %s --- key: %s --- value: %s", uri, key, value);
-
-	xed_metadata_manager_init ();
 
 	if (!xed_metadata_manager->values_loaded)
 	{
@@ -523,7 +523,6 @@ xed_metadata_manager_save (gpointer data)
 {
 	xmlDocPtr  doc;
 	xmlNodePtr root;
-	gchar *file_name;
 
 	xed_debug (DEBUG_METADATA);
 
@@ -546,22 +545,20 @@ xed_metadata_manager_save (gpointer data)
 			      root);
 
 	/* FIXME: lock file - Paolo */
-	file_name = get_metadata_filename ();
-	if (file_name != NULL)
+	if (xed_metadata_manager->metadata_filename != NULL)
 	{
 		gchar *cache_dir;
 		int res;
 
 		/* make sure the cache dir exists */
-		cache_dir = xed_dirs_get_user_cache_dir ();
+		cache_dir = g_path_get_dirname (xed_metadata_manager->metadata_filename);
 		res = g_mkdir_with_parents (cache_dir, 0755);
 		if (res != -1)
 		{
-			xmlSaveFormatFile (file_name, doc, 1);
+			xmlSaveFormatFile (xed_metadata_manager->metadata_filename, doc, 1);
 		}
 
 		g_free (cache_dir);
-		g_free (file_name);
 	}
 
 	xmlFreeDoc (doc);

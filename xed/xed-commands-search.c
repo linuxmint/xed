@@ -25,14 +25,14 @@ void
 _xed_cmd_search_find (GtkAction *action,
                       XedWindow *window)
 {
-    xed_searchbar_show (XED_SEARCHBAR (xed_window_get_searchbar (window)), SEARCH_MODE_SEARCH);
+    xed_searchbar_show (XED_SEARCHBAR (xed_window_get_searchbar (window)), XED_SEARCH_MODE_SEARCH);
 }
 
 void
 _xed_cmd_search_replace (GtkAction *action,
                          XedWindow *window)
 {
-    xed_searchbar_show (XED_SEARCHBAR (xed_window_get_searchbar (window)), SEARCH_MODE_REPLACE);
+    xed_searchbar_show (XED_SEARCHBAR (xed_window_get_searchbar (window)), XED_SEARCH_MODE_REPLACE);
 }
 
 void

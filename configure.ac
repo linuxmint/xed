@@ -49,12 +49,6 @@ dnl toolbar style for GSettings schemas
 TOOLBAR_STYLE="XED_TOOLBAR_SYSTEM"
 AC_SUBST(TOOLBAR_STYLE)
 
-# GLib min/max required versions
-AC_DEFINE([GLIB_VERSION_MAX_ALLOWED], [GLIB_VERSION_2_36],
-	[Warn on use of APIs added after GLib 2.36])
-AC_DEFINE([GLIB_VERSION_MIN_REQUIRED], [GLIB_VERSION_2_36],
-	[Warn on use of APIs deprecated before GLib 2.36])
-
 dnl ===============================================================
 dnl Expanded dirs
 dnl ===============================================================
@@ -151,12 +145,12 @@ dnl ================================================================
 PKG_CHECK_MODULES(GMODULE,gmodule-2.0,[GMODULE_ADD="gmodule-2.0"],[GMODULE_ADD=""])
 PKG_CHECK_MODULES(XED, [
 	libxml-2.0 >= 2.5.0
-	glib-2.0 >= 2.36.0
+	glib-2.0 >= 2.40.0
 	$GMODULE_ADD
 	gthread-2.0 >= 2.13.0
-	gio-2.0 >= 2.26.0
-	gtk+-3.0 >= 3.10.0
-	gtksourceview-3.0 >= 2.9.7
+	gio-2.0 >= 2.40.0
+	gtk+-3.0 >= 3.14.0
+	gtksourceview-3.0 >= 3.14.3
 	libpeas-1.0 >= 1.12.0
 	libpeas-gtk-1.0 >= 1.12.0
 ])
@@ -169,19 +163,14 @@ XED_LIBS="$XED_LIBS $X11_LIBS"
 AC_SUBST(XED_CFLAGS)
 AC_SUBST(XED_LIBS)
 
-PKG_CHECK_MODULES(EGG_SMCLIENT, [sm >= 1.0.0])
-
-AC_SUBST(EGG_SMCLIENT_CFLAGS)
-AC_SUBST(EGG_SMCLIENT_LIBS)
-
 # Introspection
 GOBJECT_INTROSPECTION_CHECK([0.9.3])
 
 if test "$found_introspection" = "yes"; then
-	have_introspection=yes
-	AC_DEFINE([HAVE_INTROSPECTION], [1], [Define to enable GObject Introspection])
+	enable_introspection=yes
+	AC_DEFINE([ENABLE_INTROSPECTION], [1], [Define to enable GObject Introspection])
 else
-	have_introspection=no
+	enable_introspection=no
 fi
 
 dnl ================================================================
@@ -235,7 +224,6 @@ data/Makefile
 docs/Makefile
 docs/reference/Makefile
 xed/dialogs/Makefile
-xed/smclient/Makefile
 xed/Makefile
 help/Makefile
 pixmaps/Makefile
@@ -264,5 +252,5 @@ Configuration:
 	Compiler:				${CC}
 	Spell Plugin enabled:	$enable_enchant
 	Gvfs metadata enabled:	$enable_gvfs_metadata
-	GObject Introspection:	${have_introspection}
+	GObject Introspection:	${enable_introspection}
 "

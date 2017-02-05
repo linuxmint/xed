@@ -34,16 +34,17 @@
 
 G_BEGIN_DECLS
 
+void xed_metadata_manager_init (const gchar *metadata_filename);
 
 /* This function must be called before exiting xed */
-void		 xed_metadata_manager_shutdown 	(void);
+void xed_metadata_manager_shutdown (void);
 
+gchar *xed_metadata_manager_get (GFile       *location,
+                                 const gchar *key);
 
-gchar		*xed_metadata_manager_get 		(GFile *location,
-					     		 const gchar *key);
-void		 xed_metadata_manager_set		(GFile *location,
-							 const gchar *key,
-							 const gchar *value);
+void xed_metadata_manager_set (GFile       *location,
+                               const gchar *key,
+                               const gchar *value);
 
 G_END_DECLS
 

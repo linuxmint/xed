@@ -32,7 +32,7 @@
  */
 
 #ifdef HAVE_CONFIG_H
-	#include <config.h>
+#include <config.h>
 #endif
 
 #include <glib/gi18n.h>
@@ -40,28 +40,30 @@
 
 #include "xed-commands.h"
 #include "xed-debug.h"
-#include "xed-help.h"
+#include "xed-app.h"
 #include "xed-dirs.h"
 
-void _xed_cmd_help_contents(GtkAction* action, XedWindow* window)
+void _xed_cmd_help_contents (GtkAction *action,
+                             XedWindow *window)
 {
-	xed_debug(DEBUG_COMMANDS);
+    xed_debug(DEBUG_COMMANDS);
 
-	xed_help_display(GTK_WINDOW(window), NULL, NULL);
+    xed_app_show_help (XED_APP (g_application_get_default ()), GTK_WINDOW (window), NULL, NULL);
 }
 
-void _xed_cmd_help_about(GtkAction* action, XedWindow* window)
+void _xed_cmd_help_about (GtkAction *action,
+                          XedWindow *window)
 {
-	static const gchar comments[] = \
-		N_("A small and lightweight text editor");
+    static const gchar comments[] = \
+        N_("A small and lightweight text editor");
 
-	xed_debug (DEBUG_COMMANDS);
+    xed_debug (DEBUG_COMMANDS);
 
-	gtk_show_about_dialog(GTK_WINDOW(window),
-		"program-name", "xed",
-		"comments", _(comments),
-		"logo_icon_name", "accessories-text-editor",
-		"version", VERSION,
-		"website", "http://github.com/linuxmint/xed",
-		NULL);
+    gtk_show_about_dialog (GTK_WINDOW (window),
+        "program-name", "xed",
+        "comments", _(comments),
+        "logo_icon_name", "accessories-text-editor",
+        "version", VERSION,
+        "website", "http://github.com/linuxmint/xed",
+        NULL);
 }

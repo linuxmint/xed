@@ -771,7 +771,7 @@ xed_view_set_font (XedView     *view,
         GObject *settings;
         gchar *font;
 
-        settings = _xed_app_get_settings (xed_app_get_default ());
+        settings = _xed_app_get_settings (XED_APP (g_application_get_default ()));
         font = xed_settings_get_system_font (XED_SETTINGS (settings));
         font_desc = pango_font_description_from_string (font);
 

@@ -10,7 +10,7 @@ G_BEGIN_DECLS
 void xed_commands_load_location (XedWindow *window, GFile *location, const GtkSourceEncoding *encoding, gint line_pos);
 
 /* Ignore non-existing URIs */
-gint xed_commands_load_locations (XedWindow *window, const GSList *locations, const GtkSourceEncoding *encoding, gint line_pos);
+GSList *xed_commands_load_locations (XedWindow *window, const GSList *locations, const GtkSourceEncoding *encoding, gint line_pos);
 void xed_commands_save_document (XedWindow *window, XedDocument *document);
 void xed_commands_save_all_documents (XedWindow *window);
 
@@ -19,14 +19,13 @@ void xed_commands_save_all_documents (XedWindow *window);
  */
 
 /* Create titled documens for non-existing URIs */
-gint _xed_cmd_load_files_from_prompt (XedWindow *window, GSList *files, const GtkSourceEncoding *encoding, gint line_pos);
+GSList *_xed_cmd_load_files_from_prompt (XedWindow *window, GSList *files, const GtkSourceEncoding *encoding, gint line_pos);
 void _xed_cmd_file_new (GtkAction *action, XedWindow *window);
 void _xed_cmd_file_open (GtkAction *action, XedWindow *window);
 void _xed_cmd_file_save (GtkAction *action, XedWindow *window);
 void _xed_cmd_file_save_as (GtkAction *action, XedWindow *window);
 void _xed_cmd_file_save_all (GtkAction *action, XedWindow *window);
 void _xed_cmd_file_revert (GtkAction *action, XedWindow *window);
-void _xed_cmd_file_open_uri (GtkAction *action, XedWindow *window);
 void _xed_cmd_file_print_preview (GtkAction *action, XedWindow *window);
 void _xed_cmd_file_print (GtkAction *action, XedWindow *window);
 void _xed_cmd_file_close (GtkAction *action, XedWindow *window);
@@ -66,8 +65,6 @@ void _xed_cmd_help_contents (GtkAction *action, XedWindow *window);
 void _xed_cmd_help_about (GtkAction *action, XedWindow *window);
 
 void _xed_cmd_file_close_tab (XedTab *tab, XedWindow *window);
-
-void _xed_cmd_file_save_documents_list (XedWindow *window, GList *docs);
 
 G_END_DECLS
 

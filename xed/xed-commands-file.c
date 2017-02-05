@@ -61,6 +61,9 @@ static void tab_state_changed_while_saving (XedTab    *tab,
                                             GParamSpec  *pspec,
                                             XedWindow *window);
 
+static void save_as_tab (XedTab    *tab,
+                         XedWindow *window);
+
 void
 _xed_cmd_file_new (GtkAction   *action,
                    XedWindow *window)
@@ -116,7 +119,7 @@ is_duplicated_file (GSList *files,
 }
 
 /* File loading */
-static gint
+static GSList *
 load_file_list (XedWindow               *window,
                 const GSList            *files,
                 const GtkSourceEncoding *encoding,
@@ -124,11 +127,12 @@ load_file_list (XedWindow               *window,
                 gboolean                 create)
 {
     XedTab *tab;
-    gint loaded_files = 0; /* Number of files to load */
+    GSList *loaded_files = NULL; /* Number of files to load */
     gboolean jump_to = TRUE; /* Whether to jump to the new tab */
     GList *win_docs;
     GSList *files_to_load = NULL;
     const GSList *l;
+    gint num_loaded_files = 0;
 
     xed_debug (DEBUG_COMMANDS);
 
@@ -145,29 +149,25 @@ load_file_list (XedWindow               *window,
             {
                 if (l == files)
                 {
+                    XedDocument *doc;
+
                     xed_window_set_active_tab (window, tab);
                     jump_to = FALSE;
+                    doc = xed_tab_get_document (tab);
 
                     if (line_pos > 0)
                     {
-                        XedDocument *doc;
-                        XedView *view;
-
-                        doc = xed_tab_get_document (tab);
-                        view = xed_tab_get_view (tab);
-
-                        /* document counts lines starting from 0 */
                         xed_document_goto_line (doc, line_pos - 1);
-                        xed_view_scroll_to_cursor (view);
+                        xed_view_scroll_to_cursor (xed_tab_get_view (tab));
                     }
                 }
 
-                ++loaded_files;
+                ++num_loaded_files;
+                loaded_files = g_slist_prepend (loaded_files, xed_tab_get_document (tab));
             }
             else
             {
-                files_to_load = g_slist_prepend (files_to_load,
-                                 l->data);
+                files_to_load = g_slist_prepend (files_to_load, l->data);
             }
         }
     }
@@ -176,7 +176,7 @@ load_file_list (XedWindow               *window,
 
     if (files_to_load == NULL)
     {
-        return loaded_files;
+        return g_slist_reverse (loaded_files);
     }
 
     files_to_load = g_slist_reverse (files_to_load);
@@ -196,7 +196,8 @@ load_file_list (XedWindow               *window,
             l = g_slist_next (l);
             jump_to = FALSE;
 
-            ++loaded_files;
+            ++num_loaded_files;
+            loaded_files = g_slist_prepend (loaded_files, xed_tab_get_document (tab));
         }
     }
 
@@ -209,13 +210,16 @@ load_file_list (XedWindow               *window,
         if (tab != NULL)
         {
             jump_to = FALSE;
-            ++loaded_files;
+            ++num_loaded_files;
+            loaded_files = g_slist_prepend (loaded_files, xed_tab_get_document (tab));
         }
 
         l = g_slist_next (l);
     }
 
-    if (loaded_files == 1)
+    loaded_files = g_slist_reverse (loaded_files);
+
+    if (num_loaded_files == 1)
     {
         XedDocument *doc;
         gchar *uri_for_display;
@@ -238,8 +242,8 @@ load_file_list (XedWindow               *window,
                                      window->priv->generic_message_cid,
                                      ngettext("Loading %d file\342\200\246",
                                      "Loading %d files\342\200\246",
-                                     loaded_files),
-                                     loaded_files);
+                                     num_loaded_files),
+                                     num_loaded_files);
     }
 
     /* Free uris_to_load. Note that l points to the first element of uris_to_load */
@@ -265,6 +269,7 @@ xed_commands_load_location (XedWindow               *window,
 {
     GSList *locations = NULL;
     gchar *uri;
+    GSList *ret;
 
     g_return_if_fail (XED_IS_WINDOW (window));
     g_return_if_fail (G_IS_FILE (location));
@@ -276,7 +281,8 @@ xed_commands_load_location (XedWindow               *window,
 
     locations = g_slist_prepend (locations, location);
 
-    load_file_list (window, locations, encoding, line_pos, FALSE);
+    ret = load_file_list (window, locations, encoding, line_pos, FALSE);
+    g_slist_free (ret);
 
     g_slist_free (locations);
 }
@@ -292,7 +298,7 @@ xed_commands_load_location (XedWindow               *window,
  *
  * Returns:
  */
-gint
+GSList *
 xed_commands_load_locations (XedWindow               *window,
                              const GSList            *locations,
                              const GtkSourceEncoding *encoding,
@@ -311,7 +317,7 @@ xed_commands_load_locations (XedWindow               *window,
  * first doc. Beside specifying a not existing uri creates a
  * titled document.
  */
-gint
+GSList *
 _xed_cmd_load_files_from_prompt (XedWindow               *window,
                                  GSList                  *files,
                                  const GtkSourceEncoding *encoding,
@@ -338,6 +344,7 @@ open_dialog_response_cb (XedFileChooserDialog *dialog,
 {
     GSList *files;
     const GtkSourceEncoding *encoding;
+    GSList *loaded;
 
     xed_debug (DEBUG_COMMANDS);
 
@@ -358,7 +365,9 @@ open_dialog_response_cb (XedFileChooserDialog *dialog,
     /* Remember the folder we navigated to */
      _xed_window_set_default_location (window, files->data);
 
-    xed_commands_load_locations (window, files, encoding, 0);
+    loaded = xed_commands_load_locations (window, files, encoding, 0);
+
+    g_slist_free (loaded);
 
     g_slist_foreach (files, (GFunc) g_object_unref, NULL);
     g_slist_free (files);
@@ -432,9 +441,6 @@ _xed_cmd_file_open (GtkAction *action,
 
     gtk_widget_show (open_dialog);
 }
-
-/* File saving */
-static void file_save_as (XedTab *tab, XedWindow *window);
 
 static gboolean
 is_read_only (GFile *location)
@@ -512,6 +518,14 @@ replace_read_only_file (GtkWindow *parent,
 }
 
 static void
+save_finish_cb (XedTab       *tab,
+                GAsyncResult *result,
+                gpointer      user_data)
+{
+    _xed_tab_save_finish (tab, result);
+}
+
+static void
 save_dialog_response_cb (XedFileChooserDialog *dialog,
                          gint                  response_id,
                          XedWindow            *window)
@@ -535,13 +549,11 @@ save_dialog_response_cb (XedFileChooserDialog *dialog,
     {
         GFile *location;
         XedDocument *doc;
-        GtkSourceFile *file;
         gchar *parse_name;
         GtkSourceNewlineType newline_type;
         const GtkSourceEncoding *encoding;
 
         doc = xed_tab_get_document (tab);
-        file = xed_document_get_file (doc);
 
         location = gtk_file_chooser_get_file (GTK_FILE_CHOOSER (dialog));
         g_return_if_fail (location != NULL);
@@ -567,7 +579,13 @@ save_dialog_response_cb (XedFileChooserDialog *dialog,
          * even if the saving fails... */
          _xed_window_set_default_location (window, location);
 
-        _xed_tab_save_as (tab, location, encoding, newline_type);
+        _xed_tab_save_as_async (tab,
+                                location,
+                                encoding,
+                                newline_type,
+                                NULL,
+                                (GAsyncReadyCallback) save_finish_cb,
+                                NULL);
 
         g_object_unref (location);
     }
@@ -602,7 +620,7 @@ save_next_tab:
         }
 
         xed_window_set_active_tab (window, tab);
-        file_save_as (tab, window);
+        save_as_tab (tab, window);
     }
 }
 
@@ -643,8 +661,8 @@ confirm_overwrite_callback (GtkFileChooser *dialog,
 }
 
 static void
-file_save_as (XedTab    *tab,
-              XedWindow *window)
+save_as_tab (XedTab    *tab,
+             XedWindow *window)
 {
     GtkWidget *save_dialog;
     GtkWindowGroup *wg;
@@ -715,7 +733,11 @@ file_save_as (XedTab    *tab,
 
     /* Set suggested encoding */
     encoding = gtk_source_file_get_encoding (file);
-    g_return_if_fail (encoding != NULL);
+
+    if (encoding == NULL)
+    {
+        encoding = gtk_source_encoding_get_utf8 ();
+    }
 
     newline_type = gtk_source_file_get_newline_type (file);
 
@@ -731,8 +753,8 @@ file_save_as (XedTab    *tab,
 }
 
 static void
-file_save (XedTab    *tab,
-           XedWindow *window)
+save_tab (XedTab    *tab,
+          XedWindow *window)
 {
     XedDocument *doc;
     gchar *uri_for_display;
@@ -750,7 +772,7 @@ file_save (XedTab    *tab,
     {
         xed_debug_message (DEBUG_COMMANDS, "Untitled or Readonly");
 
-        file_save_as (tab, window);
+        save_as_tab (tab, window);
 
         return;
     }
@@ -763,7 +785,10 @@ file_save (XedTab    *tab,
 
     g_free (uri_for_display);
 
-    _xed_tab_save (tab);
+    _xed_tab_save_async (tab,
+                         NULL,
+                         (GAsyncReadyCallback) save_finish_cb,
+                         NULL);
 }
 
 void
@@ -780,7 +805,7 @@ _xed_cmd_file_save (GtkAction *action,
         return;
     }
 
-    file_save (tab, window);
+    save_tab (tab, window);
 }
 
 void
@@ -797,15 +822,15 @@ _xed_cmd_file_save_as (GtkAction *action,
         return;
     }
 
-    file_save_as (tab, window);
+    save_as_tab (tab, window);
 }
 
 /*
  * The docs in the list must belong to the same XedWindow.
  */
-void
-_xed_cmd_file_save_documents_list (XedWindow *window,
-                                   GList     *docs)
+static void
+save_documents_list (XedWindow *window,
+                     GList     *docs)
 {
     GList *l;
     GSList *tabs_to_save_as = NULL;
@@ -846,7 +871,7 @@ _xed_cmd_file_save_documents_list (XedWindow *window,
             }
             else
             {
-                file_save (t, window);
+                save_tab (t, window);
             }
         }
         else
@@ -898,7 +923,7 @@ _xed_cmd_file_save_documents_list (XedWindow *window,
         tab = XED_TAB (tabs_to_save_as->data);
 
         xed_window_set_active_tab (window, tab);
-        file_save_as (tab, window);
+        save_as_tab (tab, window);
     }
 }
 
@@ -913,7 +938,7 @@ xed_commands_save_all_documents (XedWindow *window)
 
     docs = xed_window_get_documents (window);
 
-    _xed_cmd_file_save_documents_list (window, docs);
+    save_documents_list (window, docs);
 
     g_list_free (docs);
 }
@@ -937,7 +962,7 @@ xed_commands_save_document (XedWindow   *window,
     xed_debug (DEBUG_COMMANDS);
 
     tab = xed_tab_get_from_document (document);
-    file_save (tab, window);
+    save_tab (tab, window);
 }
 
 /* File revert */
@@ -1213,7 +1238,7 @@ save_and_close (XedTab    *tab,
     /* Trace tab state changes */
     g_signal_connect (tab, "notify::state", G_CALLBACK (tab_state_changed_while_saving), window);
 
-    file_save (tab, window);
+    save_tab (tab, window);
 }
 
 static void
@@ -1228,7 +1253,7 @@ save_as_and_close (XedTab    *tab,
     g_signal_connect (tab, "notify::state", G_CALLBACK (tab_state_changed_while_saving), window);
 
     xed_window_set_active_tab (window, tab);
-    file_save_as (tab, window);
+    save_as_tab (tab, window);
 }
 
 static void

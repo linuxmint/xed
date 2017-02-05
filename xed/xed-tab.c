@@ -64,7 +64,7 @@ struct _XedTabPrivate
 
     XedPrintJob *print_job;
 
-    GtkSourceFileSaver *saver;
+    GTask *task_saver;
     GtkSourceFileSaverFlags save_flags;
 
     /* tmp data for loading */
@@ -74,9 +74,9 @@ struct _XedTabPrivate
     guint idle_scroll;
 
     GTimer *timer;
-    guint   times_called;
+    guint times_called;
 
-    guint  auto_save_interval;
+    guint auto_save_interval;
     guint auto_save_timeout;
 
     gint editable : 1;
@@ -84,10 +84,20 @@ struct _XedTabPrivate
 
     gint ask_if_externally_modified : 1;
 
+    /*tmp data for loading */
+    guint user_requested_encoding : 1;
+};
+
+typedef struct _SaverData SaverData;
+
+struct _SaverData
+{
+    GtkSourceFileSaver *saver;
+
     /* Notes about the create_backup saver flag:
-     * - At the beginning of a new file saving, force_no_backup is reset to
-     *   FALSE. The create_backup flag is set to the saver if it is enabled
-     *   in GSettings and if it isn't an auto-save.
+     * - At the beginning of a new file saving, force_no_backup is FALSE.
+     *   The create_backup flag is set to the saver if it is enabled in
+     *   GSettings and if it isn't an auto-save.
      * - If creating the backup gives an error, and if the user wants to
      *   save the file without the backup, force_no_backup is set to TRUE
      *   and the create_backup flag is removed from the saver.
@@ -103,9 +113,6 @@ struct _XedTabPrivate
      *   button in the info bar to retry the file saving.
      */
     guint force_no_backup : 1;
-
-    /*tmp data for loading */
-    guint user_requested_encoding : 1;
 };
 
 G_DEFINE_TYPE(XedTab, xed_tab, GTK_TYPE_BOX)
@@ -126,6 +133,26 @@ static void load (XedTab                  *tab,
                   gint                     line_pos);
 
 static void save (XedTab *tab);
+
+static SaverData *
+saver_data_new (void)
+{
+    return g_slice_new0 (SaverData);
+}
+
+static void
+saver_data_free (SaverData *data)
+{
+    if (data != NULL)
+    {
+        if (data->saver != NULL)
+        {
+            g_object_unref (data->saver);
+        }
+
+        g_slice_free (SaverData, data);
+    }
+}
 
 static void
 install_auto_save_timeout (XedTab *tab)
@@ -236,21 +263,14 @@ clear_loading (XedTab *tab)
 }
 
 static void
-clear_saving (XedTab *tab)
-{
-    g_clear_object (&tab->priv->saver);
-    tab->priv->force_no_backup = FALSE;
-}
-
-static void
 xed_tab_dispose (GObject *object)
 {
     XedTab *tab = XED_TAB (object);
 
     g_clear_object (&tab->priv->editor);
+    g_clear_object (&tab->priv->task_saver);
 
     clear_loading (tab);
-    clear_saving (tab);
 
     G_OBJECT_CLASS (xed_tab_parent_class)->dispose (object);
 }
@@ -734,7 +754,7 @@ show_saving_message_area (XedTab *tab)
     gchar *msg = NULL;
     gint len;
 
-    g_return_if_fail (tab->priv->saver != NULL);
+    g_return_if_fail (tab->priv->task_saver != NULL);
 
     if (tab->priv->message_area != NULL)
     {
@@ -761,7 +781,11 @@ show_saving_message_area (XedTab *tab)
     else
     {
         gchar *str;
-        GFile *location = gtk_source_file_saver_get_location (tab->priv->saver);
+        SaverData *data;
+        GFile *location;
+
+        data = g_task_get_task_data (tab->priv->task_saver);
+        location = gtk_source_file_saver_get_location (data->saver);
 
         from = short_name;
         to = g_file_get_parse_name (location);
@@ -858,9 +882,10 @@ unrecoverable_saving_error_message_area_response (GtkWidget *message_area,
         xed_tab_set_state (tab, XED_TAB_STATE_NORMAL);
     }
 
-    clear_saving (tab);
-
     set_message_area (tab, NULL);
+
+    g_return_if_fail (tab->priv->task_saver != NULL);
+    g_task_return_boolean (tab->priv->task_saver, FALSE);
 
     view = xed_tab_get_view (tab);
 
@@ -872,7 +897,10 @@ static void
 response_set_save_flags (XedTab                  *tab,
                          GtkSourceFileSaverFlags  save_flags)
 {
+    SaverData *data;
     gboolean create_backup;
+
+    data = g_task_get_task_data (tab->priv->task_saver);
 
     create_backup = g_settings_get_boolean (tab->priv->editor, XED_SETTINGS_CREATE_BACKUP_COPY);
 
@@ -881,7 +909,7 @@ response_set_save_flags (XedTab                  *tab,
     * the file saving was initially an auto-save, we set the create_backup
     * flag (if the conditions are met).
     */
-    if (create_backup && !tab->priv->force_no_backup)
+    if (create_backup && !data->force_no_backup)
     {
         save_flags |= GTK_SOURCE_FILE_SAVER_FLAGS_CREATE_BACKUP;
     }
@@ -890,7 +918,7 @@ response_set_save_flags (XedTab                  *tab,
         save_flags &= ~GTK_SOURCE_FILE_SAVER_FLAGS_CREATE_BACKUP;
     }
 
-    gtk_source_file_saver_set_flags (tab->priv->saver, save_flags);
+    gtk_source_file_saver_set_flags (data->saver, save_flags);
 }
 
 static void
@@ -900,16 +928,18 @@ invalid_character_message_area_response (GtkWidget *info_bar,
 {
     if (response_id == GTK_RESPONSE_YES)
     {
+        SaverData *data;
         GtkSourceFileSaverFlags save_flags;
 
         set_message_area (tab, NULL);
 
-        g_return_if_fail (tab->priv->saver != NULL);
+        g_return_if_fail (tab->priv->task_saver != NULL);
+        data = g_task_get_task_data (tab->priv->task_saver);
 
         /* Don't bug the user again with this... */
         tab->priv->save_flags |= GTK_SOURCE_FILE_SAVER_FLAGS_IGNORE_INVALID_CHARS;
 
-        save_flags = gtk_source_file_saver_get_flags (tab->priv->saver);
+        save_flags = gtk_source_file_saver_get_flags (data->saver);
         save_flags |= GTK_SOURCE_FILE_SAVER_FLAGS_IGNORE_INVALID_CHARS;
         response_set_save_flags (tab, save_flags);
 
@@ -929,14 +959,16 @@ no_backup_error_message_area_response (GtkWidget *message_area,
 {
     if (response_id == GTK_RESPONSE_YES)
     {
+        SaverData *data;
         GtkSourceFileSaverFlags save_flags;
 
         set_message_area (tab, NULL);
 
-        g_return_if_fail (tab->priv->saver != NULL);
+        g_return_if_fail (tab->priv->task_saver != NULL);
+        data = g_task_get_task_data (tab->priv->task_saver);
 
-        tab->priv->force_no_backup = TRUE;
-        save_flags = gtk_source_file_saver_get_flags (tab->priv->saver);
+        data->force_no_backup = TRUE;
+        save_flags = gtk_source_file_saver_get_flags (data->saver);
         response_set_save_flags (tab, save_flags);
 
         /* Force saving */
@@ -955,17 +987,19 @@ externally_modified_error_message_area_response (GtkWidget *message_area,
 {
     if (response_id == GTK_RESPONSE_YES)
     {
+        SaverData *data;
         GtkSourceFileSaverFlags save_flags;
 
         set_message_area (tab, NULL);
 
-        g_return_if_fail (tab->priv->saver != NULL);
+        g_return_if_fail (tab->priv->task_saver != NULL);
+        data = g_task_get_task_data (tab->priv->task_saver);
 
         /* ignore_modification_time should not be persisted in save
          * flags across saves (i.e. priv->save_flags is not modified).
          */
 
-        save_flags = gtk_source_file_saver_get_flags (tab->priv->saver);
+        save_flags = gtk_source_file_saver_get_flags (data->saver);
         save_flags |= GTK_SOURCE_FILE_SAVER_FLAGS_IGNORE_MODIFICATION_TIME;
         response_set_save_flags (tab, save_flags);
 
@@ -985,16 +1019,18 @@ recoverable_saving_error_message_area_response (GtkWidget *message_area,
 {
     if (response_id == GTK_RESPONSE_OK)
     {
+        SaverData *data;
         const GtkSourceEncoding *encoding;
 
         set_message_area (tab, NULL);
 
-        g_return_if_fail (tab->priv->saver != NULL);
+        g_return_if_fail (tab->priv->task_saver != NULL);
+        data = g_task_get_task_data (tab->priv->task_saver);
 
         encoding = xed_conversion_error_message_area_get_encoding (GTK_WIDGET (message_area));
         g_return_if_fail (encoding != NULL);
 
-        gtk_source_file_saver_set_encoding (tab->priv->saver, encoding);
+        gtk_source_file_saver_set_encoding (data->saver, encoding);
         save (tab);
     }
     else
@@ -1175,6 +1211,22 @@ _xed_tab_new_from_location (GFile                   *location,
     return GTK_WIDGET (tab);
 }
 
+GtkWidget *
+_xed_tab_new_from_stream (GInputStream            *stream,
+                          const GtkSourceEncoding *encoding,
+                          gint                     line_pos)
+{
+    GtkWidget *tab;
+
+    g_return_val_if_fail (G_IS_INPUT_STREAM (stream), NULL);
+
+    tab = _xed_tab_new ();
+
+    _xed_tab_load_stream (XED_TAB (tab), stream, encoding, line_pos);
+
+    return tab;
+}
+
 /**
  * xed_tab_get_view:
  * @tab: a #XedTab
@@ -1317,12 +1369,10 @@ _xed_tab_get_tooltips (XedTab *tab)
 
             if (enc == NULL)
             {
-                encoding = g_strdup (_("Unicode (UTF-8)"));
+                enc = gtk_source_encoding_get_utf8 ();
             }
-            else
-            {
-                encoding = gtk_source_encoding_to_string (enc);
-            }
+
+            encoding = gtk_source_encoding_to_string (enc);
 
             tip =  g_markup_printf_escaped ("<b>%s</b> %s\n\n"
                                             "<b>%s</b> %s\n"
@@ -1574,6 +1624,7 @@ load_cb (GtkSourceFileLoader *loader,
 {
     XedDocument *doc = xed_tab_get_document (tab);
     GFile *location = gtk_source_file_loader_get_location (loader);
+    gboolean create_named_new_doc;
     GError *error = NULL;
 
     g_return_if_fail (tab->priv->state == XED_TAB_STATE_LOADING ||
@@ -1611,10 +1662,13 @@ load_cb (GtkSourceFileLoader *loader,
     }
 
     /* Special case creating a named new doc. */
-    else if (_xed_document_get_create (doc) &&
-             error->domain == G_IO_ERROR &&
-             error->code == G_IO_ERROR_NOT_FOUND &&
-             g_file_has_uri_scheme (location, "file"))
+    create_named_new_doc = (_xed_document_get_create (doc) &&
+                            error != NULL &&
+                            error->domain == G_IO_ERROR &&
+                            error->code == G_IO_ERROR_NOT_FOUND &&
+                            g_file_has_uri_scheme (location, "file"));
+
+    if (create_named_new_doc)
     {
         g_error_free (error);
         error = NULL;
@@ -1676,7 +1730,7 @@ load_cb (GtkSourceFileLoader *loader,
         goto end;
     }
 
-    if (location != NULL)
+    if (location != NULL && !create_named_new_doc)
     {
         gchar *mime = xed_document_get_mime_type (doc);
 
@@ -1725,7 +1779,7 @@ load_cb (GtkSourceFileLoader *loader,
         GList *all_documents;
         GList *l;
 
-        all_documents = xed_app_get_documents (xed_app_get_default ());
+        all_documents = xed_app_get_documents (XED_APP (g_application_get_default ()));
 
         for (l = all_documents; l != NULL; l = g_list_next (l))
         {
@@ -1793,6 +1847,8 @@ get_candidate_encodings (XedTab *tab)
     GSettings *enc_settings;
     gchar **enc_strv;
     gchar *metadata_charset;
+    GtkSourceFile *file;
+    const GtkSourceEncoding *file_encoding;
     GSList *encodings;
 
     enc_settings = g_settings_new ("org.x.editor.preferences.encodings");
@@ -1806,20 +1862,27 @@ get_candidate_encodings (XedTab *tab)
 
     if (metadata_charset != NULL)
     {
-       const GtkSourceEncoding *metadata_enc;
+        const GtkSourceEncoding *metadata_enc;
 
-       metadata_enc = gtk_source_encoding_get_from_charset (metadata_charset);
+        metadata_enc = gtk_source_encoding_get_from_charset (metadata_charset);
 
-       if (metadata_enc != NULL)
-       {
-           encodings = g_slist_prepend (encodings, (gpointer)metadata_enc);
-       }
-
-       g_free (metadata_charset);
+        if (metadata_enc != NULL)
+        {
+            encodings = g_slist_prepend (encodings, (gpointer)metadata_enc);
+        }
     }
 
-    g_strfreev (enc_strv);
+    file = xed_document_get_file (doc);
+    file_encoding = gtk_source_file_get_encoding (file);
+
+    if (file_encoding != NULL)
+    {
+        encodings = g_slist_prepend (encodings, (gpointer)file_encoding);
+    }
+
     g_object_unref (enc_settings);
+    g_strfreev (enc_strv);
+    g_free (metadata_charset);
 
     return encodings;
 }
@@ -1903,6 +1966,39 @@ _xed_tab_load (XedTab                  *tab,
 }
 
 void
+_xed_tab_load_stream (XedTab                  *tab,
+                      GInputStream            *stream,
+                      const GtkSourceEncoding *encoding,
+                      gint                     line_pos)
+{
+    XedDocument *doc;
+    GtkSourceFile *file;
+
+    g_return_if_fail (XED_IS_TAB (tab));
+    g_return_if_fail (G_IS_INPUT_STREAM (stream));
+    g_return_if_fail (tab->priv->state == XED_TAB_STATE_NORMAL);
+
+    xed_tab_set_state (tab, XED_TAB_STATE_LOADING);
+
+    doc = xed_tab_get_document (tab);
+    file = xed_document_get_file (doc);
+
+    if (tab->priv->loader != NULL)
+    {
+        g_warning ("XedTab: file loader already exists.");
+        g_object_unref (tab->priv->loader);
+    }
+
+    gtk_source_file_set_location (file, NULL);
+
+    tab->priv->loader = gtk_source_file_loader_new_from_stream (GTK_SOURCE_BUFFER (doc), file, stream);
+
+    _xed_document_set_create (doc, FALSE);
+
+    load (tab, encoding, line_pos);
+}
+
+void
 _xed_tab_revert (XedTab *tab)
 {
     XedDocument *doc;
@@ -1977,7 +2073,7 @@ save_cb (GtkSourceFileSaver *saver,
     GFile *location = gtk_source_file_saver_get_location (saver);
     GError *error = NULL;
 
-    g_return_if_fail (tab->priv->state == XED_TAB_STATE_SAVING);
+    g_return_if_fail (tab->priv->task_saver != NULL);
 
     gtk_source_file_saver_save_finish (saver, result, &error);
 
@@ -2001,7 +2097,7 @@ save_cb (GtkSourceFileSaver *saver,
         xed_tab_set_state (tab, XED_TAB_STATE_SAVING_ERROR);
 
         if (error->domain == GTK_SOURCE_FILE_SAVER_ERROR &&
-           error->code == GTK_SOURCE_FILE_SAVER_ERROR_EXTERNALLY_MODIFIED)
+            error->code == GTK_SOURCE_FILE_SAVER_ERROR_EXTERNALLY_MODIFIED)
         {
             /* This error is recoverable */
             message_area = xed_externally_modified_saving_error_message_area_new (location, error);
@@ -2084,13 +2180,9 @@ save_cb (GtkSourceFileSaver *saver,
 
         tab->priv->ask_if_externally_modified = TRUE;
 
-        clear_saving (tab);
-
         g_signal_emit_by_name (doc, "saved");
+        g_task_return_boolean (tab->priv->task_saver, TRUE);
     }
-
-    /* Async operation finished. */
-    g_object_unref (tab);
 
     if (error != NULL)
     {
@@ -2102,20 +2194,20 @@ static void
 save (XedTab *tab)
 {
     XedDocument *doc;
+    SaverData *data;
 
-    g_return_if_fail (GTK_SOURCE_IS_FILE_SAVER (tab->priv->saver));
+    g_return_if_fail (G_IS_TASK (tab->priv->task_saver));
 
     xed_tab_set_state (tab, XED_TAB_STATE_SAVING);
 
     doc = xed_tab_get_document (tab);
     g_signal_emit_by_name (doc, "save");
 
-    /* Keep the tab alive during the async operation. */
-    g_object_ref (tab);
+    data = g_task_get_task_data (tab->priv->task_saver);
 
-    gtk_source_file_saver_save_async (tab->priv->saver,
+    gtk_source_file_saver_save_async (data->saver,
                                       G_PRIORITY_DEFAULT,
-                                      NULL, /* TODO add a cancellable */
+                                      g_task_get_cancellable (tab->priv->task_saver),
                                       (GFileProgressCallback) saver_progress_cb,
                                       tab,
                                       NULL,
@@ -2133,9 +2225,6 @@ get_initial_save_flags (XedTab   *tab,
 
     save_flags = tab->priv->save_flags;
 
-    /* force_no_backup must have been reset to FALSE for a new file saving. */
-    g_return_val_if_fail (!tab->priv->force_no_backup, save_flags);
-
     create_backup = g_settings_get_boolean (tab->priv->editor, XED_SETTINGS_CREATE_BACKUP_COPY);
 
     /* In case of autosaving, we need to preserve the backup that was produced
@@ -2151,8 +2240,12 @@ get_initial_save_flags (XedTab   *tab,
 }
 
 void
-_xed_tab_save (XedTab *tab)
+_xed_tab_save_async (XedTab              *tab,
+                     GCancellable        *cancellable,
+                     GAsyncReadyCallback  callback,
+                     gpointer             user_data)
 {
+    SaverData *data;
     XedDocument *doc;
     GtkSourceFile *file;
     GtkSourceFileSaverFlags save_flags;
@@ -2162,18 +2255,22 @@ _xed_tab_save (XedTab *tab)
                       (tab->priv->state == XED_TAB_STATE_EXTERNALLY_MODIFIED_NOTIFICATION) ||
                       (tab->priv->state == XED_TAB_STATE_SHOWING_PRINT_PREVIEW));
 
-    if (tab->priv->saver != NULL)
+    if (tab->priv->task_saver != NULL)
     {
         g_warning ("XedTab: file saver already exists.");
-        g_object_unref (tab->priv->saver);
-        tab->priv->saver = NULL;
+        return;
     }
 
-    clear_saving (tab);
-
     doc = xed_tab_get_document (tab);
-    g_return_if_fail (XED_IS_DOCUMENT (doc));
+    // g_return_if_fail (XED_IS_DOCUMENT (doc));
     g_return_if_fail (!xed_document_is_untitled (doc));
+
+    tab->priv->task_saver = g_task_new (tab, cancellable, callback, user_data);
+
+    data = saver_data_new ();
+    g_task_set_task_data (tab->priv->task_saver,
+                          data,
+                          (GDestroyNotify) saver_data_free);
 
     save_flags = get_initial_save_flags (tab, FALSE);
 
@@ -2189,15 +2286,39 @@ _xed_tab_save (XedTab *tab)
 
     file = xed_document_get_file (doc);
 
-    tab->priv->saver = gtk_source_file_saver_new (GTK_SOURCE_BUFFER (doc), file);
-    gtk_source_file_saver_set_flags (tab->priv->saver, save_flags);
+    data->saver = gtk_source_file_saver_new (GTK_SOURCE_BUFFER (doc), file);
+    gtk_source_file_saver_set_flags (data->saver, save_flags);
 
     save (tab);
+}
+
+gboolean
+_xed_tab_save_finish (XedTab       *tab,
+                      GAsyncResult *result)
+{
+    gboolean success;
+
+    g_return_val_if_fail (g_task_is_valid (result, tab), FALSE);
+    g_return_val_if_fail (tab->priv->task_saver == G_TASK (result), FALSE);
+
+    success = g_task_propagate_boolean (tab->priv->task_saver, NULL);
+    g_clear_object (&tab->priv->task_saver);
+
+    return success;
+}
+
+static void
+auto_save_finished_cb (XedTab       *tab,
+                       GAsyncResult *result,
+                       gpointer      user_data)
+{
+    _xed_tab_save_finish (tab, result);
 }
 
 static gboolean
 xed_tab_auto_save (XedTab *tab)
 {
+    SaverData *data;
     XedDocument *doc;
     GtkSourceFile *file;
     GtkSourceFileSaverFlags save_flags;
@@ -2205,11 +2326,10 @@ xed_tab_auto_save (XedTab *tab)
     xed_debug (DEBUG_TAB);
 
     doc = xed_tab_get_document (tab);
+    g_return_val_if_fail (!xed_document_is_untitled (doc), G_SOURCE_REMOVE);
+    g_return_val_if_fail (!xed_document_get_readonly (doc), G_SOURCE_REMOVE);
 
-    g_return_val_if_fail (!xed_document_is_untitled (doc), FALSE);
-    g_return_val_if_fail (!xed_document_get_readonly (doc), FALSE);
-
-    if (!gtk_text_buffer_get_modified (GTK_TEXT_BUFFER(doc)))
+    if (!gtk_text_buffer_get_modified (GTK_TEXT_BUFFER (doc)))
     {
         xed_debug_message (DEBUG_TAB, "Document not modified");
 
@@ -2229,37 +2349,50 @@ xed_tab_auto_save (XedTab *tab)
     /* Set auto_save_timeout to 0 since the timeout is going to be destroyed */
     tab->priv->auto_save_timeout = 0;
 
-    if (tab->priv->saver != NULL)
+    if (tab->priv->task_saver != NULL)
     {
         g_warning ("XedTab: file saver already exists.");
-        g_object_unref (tab->priv->saver);
-        tab->priv->saver = NULL;
+        return G_SOURCE_REMOVE;
     }
 
-    clear_saving (tab);
+    tab->priv->task_saver = g_task_new (tab,
+                                        NULL,
+                                        (GAsyncReadyCallback) auto_save_finished_cb,
+                                        NULL);
+
+    data = saver_data_new ();
+    g_task_set_task_data (tab->priv->task_saver,
+                          data,
+                          (GDestroyNotify) saver_data_free);
 
     file = xed_document_get_file (doc);
 
-    tab->priv->saver = gtk_source_file_saver_new (GTK_SOURCE_BUFFER (doc), file);
+    data->saver = gtk_source_file_saver_new (GTK_SOURCE_BUFFER (doc), file);
 
     save_flags = get_initial_save_flags (tab, TRUE);
-    gtk_source_file_saver_set_flags (tab->priv->saver, save_flags);
+    gtk_source_file_saver_set_flags (data->saver, save_flags);
 
     save (tab);
 
     return G_SOURCE_REMOVE;
 }
 
+/* Call _xed_tab_save_finish() in @callback, there is no
+ * _xed_tab_save_as_finish().
+ */
 void
-_xed_tab_save_as (XedTab                  *tab,
-                  GFile                   *location,
-                  const GtkSourceEncoding *encoding,
-                  GtkSourceNewlineType     newline_type)
+_xed_tab_save_as_async (XedTab                   *tab,
+                        GFile                    *location,
+                        const GtkSourceEncoding  *encoding,
+                        GtkSourceNewlineType      newline_type,
+                        GCancellable             *cancellable,
+                        GAsyncReadyCallback       callback,
+                        gpointer                  user_data)
 {
+    SaverData *data;
     XedDocument *doc;
     GtkSourceFile *file;
     GtkSourceFileSaverFlags save_flags;
-    GFile *prev_location;
 
     g_return_if_fail (XED_IS_TAB (tab));
     g_return_if_fail ((tab->priv->state == XED_TAB_STATE_NORMAL) ||
@@ -2268,14 +2401,18 @@ _xed_tab_save_as (XedTab                  *tab,
     g_return_if_fail (G_IS_FILE (location));
     g_return_if_fail (encoding != NULL);
 
-    if (tab->priv->saver != NULL)
+    if (tab->priv->task_saver != NULL)
     {
         g_warning ("XedTab: file saver already exists.");
-        g_object_unref (tab->priv->saver);
-        tab->priv->saver = NULL;
+        return;
     }
 
-    clear_saving (tab);
+    tab->priv->task_saver = g_task_new (tab, cancellable, callback, user_data);
+
+    data = saver_data_new ();
+    g_task_set_task_data (tab->priv->task_saver,
+                          data,
+                          (GDestroyNotify) saver_data_free);
 
     doc = xed_tab_get_document (tab);
     g_return_if_fail (XED_IS_DOCUMENT (doc));
@@ -2295,20 +2432,12 @@ _xed_tab_save_as (XedTab                  *tab,
     }
 
     file = xed_document_get_file (doc);
-    prev_location = gtk_source_file_get_location (file);
 
-    if (prev_location == NULL || !g_file_equal (prev_location, location))
-    {
-        /* Ignore modification time for a save to another location. */
-        /* TODO do that in GtkSourceFileSaver. */
-        save_flags |= GTK_SOURCE_FILE_SAVER_FLAGS_IGNORE_MODIFICATION_TIME;
-    }
+    data->saver = gtk_source_file_saver_new_with_target (GTK_SOURCE_BUFFER (doc), file, location);
 
-    tab->priv->saver = gtk_source_file_saver_new_with_target (GTK_SOURCE_BUFFER (doc), file, location);
-
-    gtk_source_file_saver_set_encoding (tab->priv->saver, encoding);
-    gtk_source_file_saver_set_newline_type (tab->priv->saver, newline_type);
-    gtk_source_file_saver_set_flags (tab->priv->saver, save_flags);
+    gtk_source_file_saver_set_encoding (data->saver, encoding);
+    gtk_source_file_saver_set_newline_type (data->saver, newline_type);
+    gtk_source_file_saver_set_flags (data->saver, save_flags);
 
     save (tab);
 }
@@ -2327,7 +2456,7 @@ get_page_setup (XedTab *tab)
 
     if (data == NULL)
     {
-        return _xed_app_get_default_page_setup (xed_app_get_default());
+        return _xed_app_get_default_page_setup (XED_APP (g_application_get_default ()));
     }
     else
     {
@@ -2349,7 +2478,7 @@ get_print_settings (XedTab *tab)
 
     if (data == NULL)
     {
-        settings = _xed_app_get_default_print_settings (xed_app_get_default());
+        settings = _xed_app_get_default_print_settings (XED_APP (g_application_get_default ()));
     }
     else
     {
@@ -2407,7 +2536,7 @@ store_print_settings (XedTab      *tab,
                             g_object_ref (settings), (GDestroyNotify)g_object_unref);
 
     /* make them the default */
-    _xed_app_set_default_print_settings (xed_app_get_default (), settings);
+    _xed_app_set_default_print_settings (XED_APP (g_application_get_default ()), settings);
 
     page_setup = xed_print_job_get_page_setup (job);
 
@@ -2416,7 +2545,7 @@ store_print_settings (XedTab      *tab,
                             g_object_ref (page_setup), (GDestroyNotify)g_object_unref);
 
     /* make it the default */
-    _xed_app_set_default_page_setup (xed_app_get_default (), page_setup);
+    _xed_app_set_default_page_setup (XED_APP (g_application_get_default ()), page_setup);
 }
 
 static void

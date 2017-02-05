@@ -96,7 +96,7 @@ set_font (XedSettings *xs,
 
     ts = g_settings_get_uint (xs->priv->editor, XED_SETTINGS_TABS_SIZE);
 
-    views = xed_app_get_views (xed_app_get_default ());
+    views = xed_app_get_views (XED_APP (g_application_get_default ()));
 
     for (l = views; l != NULL; l = g_list_next (l))
     {
@@ -213,7 +213,7 @@ on_scheme_changed (GSettings   *settings,
         }
     }
 
-    docs = xed_app_get_documents (xed_app_get_default ());
+    docs = xed_app_get_documents (XED_APP (g_application_get_default ()));
     for (l = docs; l != NULL; l = g_list_next (l))
     {
         g_return_if_fail (GTK_SOURCE_IS_BUFFER (l->data));
@@ -234,7 +234,7 @@ on_auto_save_changed (GSettings   *settings,
 
     auto_save = g_settings_get_boolean (settings, key);
 
-    docs = xed_app_get_documents (xed_app_get_default ());
+    docs = xed_app_get_documents (XED_APP (g_application_get_default ()));
 
     for (l = docs; l != NULL; l = g_list_next (l))
     {
@@ -256,7 +256,7 @@ on_auto_save_interval_changed (GSettings   *settings,
 
     g_settings_get (settings, key, "u", &auto_save_interval);
 
-    docs = xed_app_get_documents (xed_app_get_default ());
+    docs = xed_app_get_documents (XED_APP (g_application_get_default ()));
 
     for (l = docs; l != NULL; l = g_list_next (l))
     {
@@ -278,7 +278,7 @@ on_wrap_mode_changed (GSettings   *settings,
 
     wrap_mode = g_settings_get_enum (settings, key);
 
-    views = xed_app_get_views (xed_app_get_default ());
+    views = xed_app_get_views (XED_APP (g_application_get_default ()));
 
     for (l = views; l != NULL; l = g_list_next (l))
     {
@@ -293,13 +293,12 @@ on_syntax_highlighting_changed (GSettings   *settings,
                                 const gchar *key,
                                 XedSettings *xs)
 {
-    const GList *windows;
-    GList *docs, *l;
+    GList *docs, *windows, *l;
     gboolean enable;
 
     enable = g_settings_get_boolean (settings, key);
 
-    docs = xed_app_get_documents (xed_app_get_default ());
+    docs = xed_app_get_documents (XED_APP (g_application_get_default ()));
 
     for (l = docs; l != NULL; l = g_list_next (l))
     {
@@ -309,20 +308,20 @@ on_syntax_highlighting_changed (GSettings   *settings,
     g_list_free (docs);
 
     /* update the sensitivity of the Higlight Mode menu item */
-    windows = xed_app_get_windows (xed_app_get_default ());
-    while (windows != NULL)
+    windows = xed_app_get_main_windows (XED_APP (g_application_get_default ()));
+    for (l = windows; l != NULL; l = g_list_next (l))
     {
         GtkUIManager *ui;
         GtkAction *a;
 
-        ui = xed_window_get_ui_manager (XED_WINDOW (windows->data));
+        ui = xed_window_get_ui_manager (XED_WINDOW (l->data));
 
         a = gtk_ui_manager_get_action (ui, "/MenuBar/ViewMenu/ViewHighlightModeMenu");
 
         gtk_action_set_sensitive (a, enable);
-
-        windows = g_list_next (windows);
     }
+
+    g_list_free (windows);
 }
 
 static void
@@ -335,7 +334,7 @@ on_enable_tab_scrolling_changed (GSettings   *settings,
 
     enable = g_settings_get_boolean (settings, key);
 
-    windows = xed_app_get_windows (xed_app_get_default ());
+    windows = xed_app_get_main_windows (XED_APP (g_application_get_default ()));
     while (windows != NULL)
     {
         XedNotebook *notebook;

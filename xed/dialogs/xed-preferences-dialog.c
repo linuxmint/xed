@@ -47,7 +47,6 @@
 #include "xed-utils.h"
 #include "xed-debug.h"
 #include "xed-document.h"
-#include "xed-help.h"
 #include "xed-dirs.h"
 #include "xed-settings.h"
 #include "xed-utils.h"
@@ -172,11 +171,11 @@ dialog_response_handler (GtkDialog *dlg,
     switch (res_id)
     {
         case GTK_RESPONSE_HELP:
-            xed_help_display (GTK_WINDOW (dlg), NULL, "xed-prefs");
+            xed_app_show_help (XED_APP (g_application_get_default ()), GTK_WINDOW (dlg), NULL, "xed-prefs");
             g_signal_stop_emission_by_name (dlg, "response");
             break;
         default:
-            gtk_widget_destroy (GTK_WIDGET(dlg));
+            gtk_widget_destroy (GTK_WIDGET (dlg));
     }
 }
 
@@ -308,13 +307,11 @@ setup_view_page (XedPreferencesDialog *dlg)
 {
     GtkWrapMode wrap_mode;
     gboolean display_right_margin;
-    guint right_margin_position;
 
     xed_debug (DEBUG_PREFS);
 
     /* Get values */
     display_right_margin = g_settings_get_boolean (dlg->priv->editor, XED_SETTINGS_DISPLAY_RIGHT_MARGIN);
-    right_margin_position = g_settings_get_uint (dlg->priv->editor, XED_SETTINGS_RIGHT_MARGIN_POSITION);
 
     /* Set initial state */
     wrap_mode = g_settings_get_enum (dlg->priv->editor, XED_SETTINGS_WRAP_MODE);
@@ -400,7 +397,7 @@ setup_font_colors_page_font_section (XedPreferencesDialog *dlg)
                                 ATK_RELATION_CONTROLLER_FOR);
 
     /* Get values */
-    settings = _xed_app_get_settings (xed_app_get_default ());
+    settings = _xed_app_get_settings (XED_APP (g_application_get_default ()));
     system_font = xed_settings_get_system_font (XED_SETTINGS (settings));
     use_default_font = g_settings_get_boolean (dlg->priv->editor, XED_SETTINGS_USE_DEFAULT_FONT);
 

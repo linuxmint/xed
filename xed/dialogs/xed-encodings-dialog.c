@@ -40,7 +40,6 @@
 #include "xed-encodings-dialog.h"
 #include "xed-utils.h"
 #include "xed-debug.h"
-#include "xed-help.h"
 #include "xed-dirs.h"
 #include "xed-settings.h"
 
@@ -271,7 +270,7 @@ response_handler (GtkDialog          *dialog,
 {
     if (response_id == GTK_RESPONSE_HELP)
     {
-        xed_help_display (GTK_WINDOW (dialog), "xed", NULL);
+        xed_app_show_help (XED_APP (g_application_get_default ()), GTK_WINDOW (dialog), "xed", NULL);
         g_signal_stop_emission_by_name (dialog, "response");
         return;
     }

@@ -32,7 +32,7 @@ typedef struct _XedWindowClass      XedWindowClass;
 
 struct _XedWindow
 {
-    GtkWindow window;
+    GtkApplicationWindow window;
 
     /*< private > */
     XedWindowPrivate *priv;
@@ -40,7 +40,7 @@ struct _XedWindow
 
 struct _XedWindowClass
 {
-    GtkWindowClass parent_class;
+    GtkApplicationWindowClass parent_class;
 
     /* Signals */
     void (* tab_added) (XedWindow *window, XedTab *tab);
@@ -50,13 +50,13 @@ struct _XedWindowClass
     void (* active_tab_state_changed) (XedWindow *window);
 };
 
-/*
- * Public methods
- */
+/* Public methods */
 GType   xed_window_get_type (void) G_GNUC_CONST;
 XedTab *xed_window_create_tab (XedWindow *window, gboolean jump_to);
 XedTab *xed_window_create_tab_from_location (XedWindow *window, GFile *location, const GtkSourceEncoding *encoding,
                                              gint line_pos, gboolean create, gboolean jump_to);
+XedTab *xed_window_create_tab_from_stream (XedWindow *window, GInputStream *stream, const GtkSourceEncoding *encoding,
+                                           gint line_pos, gboolean jump_to);
 void    xed_window_close_tab (XedWindow *window, XedTab *tab);
 void    xed_window_close_all_tabs (XedWindow *window);
 void    xed_window_close_tabs (XedWindow *window, const GList *tabs);

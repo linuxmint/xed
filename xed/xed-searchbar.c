@@ -54,7 +54,7 @@ struct _XedSearchbarPrivate
     GtkWidget *close_button;
 
     GtkSourceSearchSettings *search_settings;
-    SearchMode search_mode;
+    XedSearchMode search_mode;
 
     guint update_occurrence_count_id;
 };
@@ -280,7 +280,7 @@ update_occurrence_count (XedSearchbar *searchbar)
     gint count;
     gint pos;
 
-    if (searchbar->priv->search_mode == SEARCH_MODE_REPLACE)
+    if (searchbar->priv->search_mode == XED_SEARCH_MODE_REPLACE)
     {
         return;
     }
@@ -376,7 +376,7 @@ do_find (XedSearchbar *searchbar,
     search_settings = xed_searchbar_get_search_settings (searchbar);
     doc = xed_window_get_active_document (searchbar->window);
     search_context = xed_document_get_search_context (doc);
-    searchbar->priv->search_mode = SEARCH_MODE_SEARCH;
+    searchbar->priv->search_mode = XED_SEARCH_MODE_SEARCH;
 
     if (search_context == NULL || search_settings != gtk_source_search_context_get_settings (search_context))
     {
@@ -487,7 +487,7 @@ do_replace (XedSearchbar *searchbar)
 
     unescaped_replace_text = gtk_source_utils_unescape_search_text (replace_entry_text);
     gtk_text_buffer_get_selection_bounds (GTK_TEXT_BUFFER (doc), &start, &end);
-    searchbar->priv->search_mode = SEARCH_MODE_REPLACE;
+    searchbar->priv->search_mode = XED_SEARCH_MODE_REPLACE;
 
     gtk_source_search_context_replace (search_context,
                                        &start,
@@ -530,7 +530,7 @@ do_replace_all (XedSearchbar *searchbar)
 
     unescaped_replace_text = gtk_source_utils_unescape_search_text (replace_entry_text);
     count = gtk_source_search_context_replace_all (search_context, unescaped_replace_text, -1, NULL);
-    searchbar->priv->search_mode = SEARCH_MODE_REPLACE;
+    searchbar->priv->search_mode = XED_SEARCH_MODE_REPLACE;
 
     g_free (unescaped_replace_text);
 
@@ -799,8 +799,8 @@ xed_searchbar_new (GtkWindow *parent)
 }
 
 void
-xed_searchbar_show (XedSearchbar *searchbar,
-                    SearchMode    search_mode)
+xed_searchbar_show (XedSearchbar  *searchbar,
+                    XedSearchMode  search_mode)
 {
     XedDocument *doc;
     gboolean selection_exists;
@@ -835,7 +835,7 @@ xed_searchbar_show (XedSearchbar *searchbar,
     gtk_revealer_set_transition_type (GTK_REVEALER (searchbar->priv->revealer), GTK_REVEALER_TRANSITION_TYPE_SLIDE_UP);
     gtk_revealer_set_reveal_child (GTK_REVEALER (searchbar->priv->revealer), TRUE);
 
-    if (search_mode == SEARCH_MODE_REPLACE)
+    if (search_mode == XED_SEARCH_MODE_REPLACE)
     {
         gtk_widget_show (searchbar->priv->replace_label);
         gtk_widget_show (searchbar->priv->replace_entry);

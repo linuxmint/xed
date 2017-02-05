@@ -65,7 +65,7 @@ enum
     TARGET_URI_LIST = 100
 };
 
-G_DEFINE_TYPE(XedWindow, xed_window, GTK_TYPE_WINDOW)
+G_DEFINE_TYPE(XedWindow, xed_window, GTK_TYPE_APPLICATION_WINDOW)
 
 static void recent_manager_changed (GtkRecentManager *manager, XedWindow *window);
 
@@ -583,7 +583,7 @@ set_sensitivity_according_to_tab (XedWindow *window,
     view = xed_tab_get_view (tab);
     editable = gtk_text_view_get_editable (GTK_TEXT_VIEW(view));
 
-    doc = XED_DOCUMENT(gtk_text_view_get_buffer (GTK_TEXT_VIEW (view)));
+    doc = XED_DOCUMENT (gtk_text_view_get_buffer (GTK_TEXT_VIEW (view)));
 
     clipboard = gtk_widget_get_clipboard (GTK_WIDGET(window),
     GDK_SELECTION_CLIPBOARD);
@@ -983,15 +983,19 @@ open_recent_file (GFile     *location,
                   XedWindow *window)
 {
     GSList *locations = NULL;
+    GSList *loaded = NULL;
 
     locations = g_slist_prepend (locations, (gpointer) location);
 
-    if (xed_commands_load_locations (window, locations, NULL, 0) != 1)
+    loaded = xed_commands_load_locations (window, locations, NULL, 0);
+
+    if (!loaded || loaded->next) /* if it doesn't contain just 1 element */
     {
         _xed_recent_remove (window, location);
     }
 
     g_slist_free (locations);
+    g_slist_free (loaded);
 }
 
 static void
@@ -1803,7 +1807,7 @@ clone_window (XedWindow *origin)
 
     xed_debug (DEBUG_WINDOW);
 
-    app = xed_app_get_default ();
+    app = XED_APP (g_application_get_default ());
 
     screen = gtk_window_get_screen (GTK_WINDOW(origin));
     window = xed_app_create_window (app, screen);
@@ -1915,7 +1919,7 @@ static void
 update_overwrite_mode_statusbar (GtkTextView *view,
                                  XedWindow *window)
 {
-    if (view != GTK_TEXT_VIEW(xed_window_get_active_view (window)))
+    if (view != GTK_TEXT_VIEW (xed_window_get_active_view (window)))
     {
         return;
     }
@@ -1940,7 +1944,7 @@ set_title (XedWindow *window)
 
     if (window->priv->active_tab == NULL)
     {
-        gtk_window_set_title (GTK_WINDOW(window), "Xed");
+        xed_app_set_window_title (XED_APP (g_application_get_default ()), window, "Xed");
         return;
     }
 
@@ -2012,7 +2016,7 @@ set_title (XedWindow *window)
         }
     }
 
-    gtk_window_set_title (GTK_WINDOW(window), title);
+    xed_app_set_window_title (XED_APP (g_application_get_default ()), window, title);
 
     g_free (dirname);
     g_free (name);
@@ -2486,6 +2490,7 @@ load_uris_from_drop (XedWindow *window,
 {
     GSList *locations = NULL;
     gint i;
+    GSList *loaded;
 
     if (uri_list == NULL)
     {
@@ -2498,7 +2503,9 @@ load_uris_from_drop (XedWindow *window,
     }
 
     locations = g_slist_reverse (locations);
-    xed_commands_load_locations (window, locations, NULL, 0);
+    loaded = xed_commands_load_locations (window, locations, NULL, 0);
+
+    g_slist_free (loaded);
 
     g_slist_foreach (locations, (GFunc) g_object_unref, NULL);
     g_slist_free (locations);
@@ -2704,7 +2711,7 @@ fullscreen_controls_build (XedWindow *window)
 
     priv->fullscreen_controls = gtk_window_new (GTK_WINDOW_POPUP);
 
-    gtk_window_set_transient_for (GTK_WINDOW(priv->fullscreen_controls), &window->window);
+    gtk_window_set_transient_for (GTK_WINDOW (priv->fullscreen_controls), GTK_WINDOW (&window->window));
 
     window->priv->fullscreen_controls_container = gtk_box_new (GTK_ORIENTATION_VERTICAL, 0);
     gtk_container_set_border_width (GTK_CONTAINER (window->priv->fullscreen_controls_container), 6);
@@ -3634,7 +3641,7 @@ xed_window_get_active_view (XedWindow *window)
         return NULL;
     }
 
-    view = xed_tab_get_view (XED_TAB(window->priv->active_tab));
+    view = xed_tab_get_view (XED_TAB (window->priv->active_tab));
 
     return view;
 }
@@ -3663,7 +3670,7 @@ xed_window_get_active_document (XedWindow *window)
         return NULL;
     }
 
-    return XED_DOCUMENT(gtk_text_view_get_buffer (GTK_TEXT_VIEW (view)));
+    return XED_DOCUMENT (gtk_text_view_get_buffer (GTK_TEXT_VIEW (view)));
 }
 
 GtkWidget *
@@ -3693,13 +3700,35 @@ xed_window_create_tab (XedWindow *window,
     g_return_val_if_fail(XED_IS_WINDOW (window), NULL);
 
     tab = XED_TAB(_xed_tab_new ());
-    gtk_widget_show (GTK_WIDGET(tab));
+    gtk_widget_show (GTK_WIDGET (tab));
 
-    xed_notebook_add_tab (XED_NOTEBOOK(window->priv->notebook), tab, -1, jump_to);
+    xed_notebook_add_tab (XED_NOTEBOOK (window->priv->notebook), tab, -1, jump_to);
 
-    if (!gtk_widget_get_visible (GTK_WIDGET(window)))
+    if (!gtk_widget_get_visible (GTK_WIDGET (window)))
     {
-        gtk_window_present (GTK_WINDOW(window));
+        gtk_window_present (GTK_WINDOW (window));
+    }
+
+    return tab;
+}
+
+static XedTab *
+process_create_tab (XedWindow *window,
+                    XedTab    *tab,
+                    gboolean   jump_to)
+{
+    if (tab == NULL)
+    {
+        return NULL;
+    }
+
+    gtk_widget_show (GTK_WIDGET (tab));
+
+    xed_notebook_add_tab (XED_NOTEBOOK (window->priv->notebook), tab, -1, jump_to);
+
+    if (!gtk_widget_get_visible (GTK_WIDGET (window)))
+    {
+        gtk_window_present (GTK_WINDOW (window));
     }
 
     return tab;
@@ -3735,21 +3764,25 @@ xed_window_create_tab_from_location (XedWindow               *window,
     g_return_val_if_fail(G_IS_FILE (location), NULL);
 
     tab = _xed_tab_new_from_location (location, encoding, line_pos, create);
-    if (tab == NULL)
-    {
-        return NULL;
-    }
 
-    gtk_widget_show (tab);
+    return process_create_tab (window, XED_TAB (tab), jump_to);
+}
 
-    xed_notebook_add_tab (XED_NOTEBOOK(window->priv->notebook), XED_TAB(tab), -1, jump_to);
+XedTab *
+xed_window_create_tab_from_stream (XedWindow               *window,
+                                   GInputStream            *stream,
+                                   const GtkSourceEncoding *encoding,
+                                   gint                     line_pos,
+                                   gboolean                 jump_to)
+{
+    GtkWidget *tab;
 
-    if (!gtk_widget_get_visible (GTK_WIDGET(window)))
-    {
-        gtk_window_present (GTK_WINDOW(window));
-    }
+    g_return_val_if_fail (XED_IS_WINDOW (window), NULL);
+    g_return_val_if_fail (G_IS_INPUT_STREAM (stream), NULL);
 
-    return XED_TAB(tab);
+    tab = _xed_tab_new_from_stream (stream, encoding, line_pos);
+
+    return process_create_tab (window, XED_TAB (tab), jump_to);
 }
 
 /**
@@ -3845,12 +3878,12 @@ void
 xed_window_close_tab (XedWindow *window,
                       XedTab *tab)
 {
-    g_return_if_fail(XED_IS_WINDOW (window));
-    g_return_if_fail(XED_IS_TAB (tab));
-    g_return_if_fail((xed_tab_get_state (tab) != XED_TAB_STATE_SAVING)
+    g_return_if_fail (XED_IS_WINDOW (window));
+    g_return_if_fail (XED_IS_TAB (tab));
+    g_return_if_fail ((xed_tab_get_state (tab) != XED_TAB_STATE_SAVING)
                         && (xed_tab_get_state (tab) != XED_TAB_STATE_SHOWING_PRINT_PREVIEW));
 
-    xed_notebook_remove_tab (XED_NOTEBOOK(window->priv->notebook), tab);
+    xed_notebook_remove_tab (XED_NOTEBOOK (window->priv->notebook), tab);
 }
 
 /**
@@ -4175,7 +4208,7 @@ _xed_window_fullscreen (XedWindow *window)
     }
 
     /* Go to fullscreen mode and hide bars */
-    gtk_window_fullscreen (&window->window);
+    gtk_window_fullscreen (GTK_WINDOW (&window->window));
 
     gtk_widget_hide (window->priv->menubar);
 
@@ -4203,7 +4236,7 @@ _xed_window_unfullscreen (XedWindow *window)
     }
 
     /* Unfullscreen and show bars */
-    gtk_window_unfullscreen (&window->window);
+    gtk_window_unfullscreen (GTK_WINDOW (&window->window));
     g_signal_handlers_disconnect_by_func (window->priv->notebook, hide_notebook_tabs_on_fullscreen, window);
     gtk_widget_show (window->priv->menubar);
 

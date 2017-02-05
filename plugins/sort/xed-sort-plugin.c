@@ -34,7 +34,7 @@
 #include <xed/xed-window-activatable.h>
 #include <xed/xed-debug.h>
 #include <xed/xed-utils.h>
-#include <xed/xed-help.h>
+#include <xed/xed-app.h>
 
 #define XED_SORT_PLUGIN_GET_PRIVATE(object)(G_TYPE_INSTANCE_GET_PRIVATE ((object), XED_TYPE_SORT_PLUGIN, XedSortPluginPrivate))
 
@@ -110,7 +110,7 @@ sort_dialog_response_handler (GtkDialog     *dlg,
             break;
 
         case GTK_RESPONSE_HELP:
-            xed_help_display (GTK_WINDOW (dlg), NULL, "xed-sort-plugin");
+            xed_app_show_help (XED_APP (g_application_get_default ()), GTK_WINDOW (dlg), NULL, "xed-sort-plugin");
             break;
 
         case GTK_RESPONSE_CANCEL:

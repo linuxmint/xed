@@ -13,6 +13,13 @@ gsettings_SCHEMAS = org.x.editor.gschema.xml
 
 @GSETTINGS_RULES@
 
+servicedir = $(datadir)/dbus-1/services
+service_in_files = org.x.editor.service.in
+service_DATA = $(service_in_files:.service.in=.service)
+
+$(service_DATA): $(service_in_files) Makefile
+	@sed -e "s|\@bindir\@|$(bindir)|" $<> $@
+
 man_MANS = xed.1
 
 pkgconfigdir = $(libdir)/pkgconfig
@@ -24,12 +31,14 @@ bugreport_SCRIPTS = xed-bugreport.sh
 EXTRA_DIST = 			\
 	$(appdata_in_files)	\
 	$(desktop_in_files)	\
+	$(service_in_files) \
 	$(man_MANS)			\
 	xed.pc.in			\
 	xed-bugreport.sh.in
 
 CLEANFILES =	 			\
 	$(desktop_DATA)			\
+	$(service_DATA)         \
 	$(gsettings_SCHEMAS)	\
 	$(pkgconfig_DATA)		\
 	$(appdata_DATA)

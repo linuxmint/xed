@@ -510,6 +510,12 @@ save_encoding_metadata (XedDocument *doc)
     xed_debug (DEBUG_DOCUMENT);
 
     encoding = gtk_source_file_get_encoding (doc->priv->file);
+
+    if (encoding == NULL)
+    {
+        encoding = gtk_source_encoding_get_utf8 ();
+    }
+
     charset = gtk_source_encoding_get_charset (encoding);
 
     xed_document_set_metadata (doc, XED_METADATA_ATTRIBUTE_ENCODING, charset, NULL);
@@ -954,8 +960,6 @@ loaded_query_info_cb (GFile        *location,
                       XedDocument  *doc)
 {
     GFileInfo *info;
-    const gchar *content_type = NULL;
-    gboolean read_only = FALSE;
     GError *error = NULL;
 
     info = g_file_query_info_finish (location, result, &error);
@@ -974,18 +978,22 @@ loaded_query_info_cb (GFile        *location,
         error = NULL;
     }
 
-    doc->priv->mtime_set = FALSE;
-
     if (info != NULL)
     {
         if (g_file_info_has_attribute (info, G_FILE_ATTRIBUTE_STANDARD_CONTENT_TYPE))
         {
+            const gchar *content_type;
+
             content_type = g_file_info_get_attribute_string (info, G_FILE_ATTRIBUTE_STANDARD_CONTENT_TYPE);
+            xed_document_set_content_type (doc, content_type);
         }
 
         if (g_file_info_has_attribute (info, G_FILE_ATTRIBUTE_ACCESS_CAN_WRITE))
         {
+            gboolean read_only;
+
             read_only = !g_file_info_get_attribute_boolean (info, G_FILE_ATTRIBUTE_ACCESS_CAN_WRITE);
+            set_readonly (doc, read_only);
         }
 
         if (g_file_info_has_attribute (info, G_FILE_ATTRIBUTE_TIME_MODIFIED))
@@ -993,21 +1001,18 @@ loaded_query_info_cb (GFile        *location,
             g_file_info_get_modification_time (info, &doc->priv->mtime);
             doc->priv->mtime_set = TRUE;
         }
-    }
 
-    set_readonly (doc, read_only);
-
-    g_get_current_time (&doc->priv->time_of_last_save_or_load);
-
-    doc->priv->externally_modified = FALSE;
-    doc->priv->deleted = FALSE;
-
-    xed_document_set_content_type (doc, content_type);
-
-    if (info != NULL)
-    {
         g_object_unref (info);
     }
+
+    /* Async operation finished. */
+    g_object_unref (doc);
+}
+
+static void
+xed_document_loaded_real (XedDocument *doc)
+{
+   GFile *location;
 
     if (!doc->priv->language_set_by_user)
     {
@@ -1019,27 +1024,33 @@ loaded_query_info_cb (GFile        *location,
         set_language (doc, language, FALSE);
     }
 
-    /* Async operation finished. */
-    g_object_unref (doc);
-}
+    doc->priv->mtime_set = FALSE;
+    doc->priv->externally_modified = FALSE;
+    doc->priv->deleted = FALSE;
 
-static void
-xed_document_loaded_real (XedDocument  *doc)
-{
-   GFile *location = gtk_source_file_get_location (doc->priv->file);
+    g_get_current_time (&doc->priv->time_of_last_save_or_load);
 
-   /* Keep the doc alive during the async operation. */
-   g_object_ref (doc);
+    set_readonly (doc, FALSE);
 
-   g_file_query_info_async (location,
-                            G_FILE_ATTRIBUTE_STANDARD_CONTENT_TYPE ","
-                            G_FILE_ATTRIBUTE_ACCESS_CAN_WRITE ","
-                            G_FILE_ATTRIBUTE_TIME_MODIFIED,
-                            G_FILE_QUERY_INFO_NONE,
-                            G_PRIORITY_DEFAULT,
-                            NULL,
-                            (GAsyncReadyCallback) loaded_query_info_cb,
-                            doc);
+    xed_document_set_content_type (doc, NULL);
+
+    location = gtk_source_file_get_location (doc->priv->file);
+
+    if (location != NULL)
+    {
+        /* Keep the doc alive during the async operation. */
+        g_object_ref (doc);
+
+        g_file_query_info_async (location,
+                                 G_FILE_ATTRIBUTE_STANDARD_CONTENT_TYPE ","
+                                 G_FILE_ATTRIBUTE_ACCESS_CAN_WRITE ","
+                                 G_FILE_ATTRIBUTE_TIME_MODIFIED,
+                                 G_FILE_QUERY_INFO_NONE,
+                                 G_PRIORITY_DEFAULT,
+                                 NULL,
+                                 (GAsyncReadyCallback) loaded_query_info_cb,
+                                 doc);
+    }
 }
 
 static void
@@ -1191,9 +1202,11 @@ check_file_on_disk (XedDocument *doc)
 
             g_file_info_get_modification_time (info, &timeval);
 
-            if (timeval.tv_sec > doc->priv->mtime.tv_sec ||
-               (timeval.tv_sec == doc->priv->mtime.tv_sec &&
-                timeval.tv_usec > doc->priv->mtime.tv_usec))
+            /* Note that mtime can even go backwards if the
+             * user is copying over a file with an old mtime
+             */
+            if (timeval.tv_sec != doc->priv->mtime.tv_sec ||
+                timeval.tv_usec != doc->priv->mtime.tv_usec)
             {
                 doc->priv->externally_modified = TRUE;
             }

@@ -761,13 +761,11 @@ on_rename_cb (XedFileBrowserStore *store,
               GFile               *newfile,
               XedWindow           *window)
 {
-    XedApp *app;
     GList *documents;
     GList *item;
 
     /* Find all documents and set its uri to newuri where it matches olduri */
-    app = xed_app_get_default ();
-    documents = xed_app_get_documents (app);
+    documents = xed_app_get_documents (XED_APP (g_application_get_default ()));
 
     for (item = documents; item; item = item->next)
     {
