@@ -40,7 +40,7 @@
 #include "xed-window.h"
 #include "xed-debug.h"
 #include "xed-view.h"
-#include "dialogs/xed-preferences-dialog.h"
+#include "xed-preferences-dialog.h"
 
 void
 _xed_cmd_edit_undo (GtkAction   *action,

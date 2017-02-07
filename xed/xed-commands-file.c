@@ -45,7 +45,7 @@
 #include "xed-debug.h"
 #include "xed-utils.h"
 #include "xed-file-chooser-dialog.h"
-#include "dialogs/xed-close-confirmation-dialog.h"
+#include "xed-close-confirmation-dialog.h"
 
 
 /* Defined constants */

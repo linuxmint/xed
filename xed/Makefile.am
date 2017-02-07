@@ -1,5 +1,4 @@
 ## Process this file with automake to produce Makefile.in
-SUBDIRS = dialogs
 
 bin_PROGRAMS = xed
 
@@ -27,11 +26,8 @@ xed_LDFLAGS = -export-dynamic -no-undefined -export-symbols-regex "^[[^_]].*"
 
 libxed_la_LDFLAGS = -export-dynamic -no-undefined -export-symbols-regex "^[[^_]].*"
 
-libxed_la_LIBADD = \
-	dialogs/libdialogs.la
-
 # XED_LIBS must be the last to ensure correct order on some platforms
-libxed_la_LIBADD += $(XED_LIBS) -lICE
+libxed_la_LIBADD = $(XED_LIBS)
 
 BUILT_SOURCES = 			\
 	xed-enum-types.c		\
@@ -40,43 +36,46 @@ BUILT_SOURCES = 			\
 	xed-marshal.h
 
 
-NOINST_H_FILES =			\
-	xed-close-button.h		\
-	xed-dirs.h			\
-	xed-documents-panel.h		\
-	xed-history-entry.h		\
-	xed-io-error-info-bar.h	\
-	xed-plugins-engine.h		\
-	xed-print-job.h		\
-	xed-print-preview.h		\
-	xed-settings.h 			\
-	xed-status-combo-box.h 	\
-	xed-tab-label.h		\
-	xed-ui.h			\
-	xed-utils.h 		\
-	xed-view-frame.h 	\
+NOINST_H_FILES =						\
+	xed-close-button.h					\
+	xed-close-confirmation-dialog.h 	\
+	xed-dirs.h							\
+	xed-documents-panel.h				\
+	xed-encodings-dialog.h 				\
+	xed-history-entry.h					\
+	xed-io-error-info-bar.h				\
+	xed-plugins-engine.h				\
+	xed-preferences-dialog.h 			\
+	xed-print-job.h						\
+	xed-print-preview.h					\
+	xed-settings.h 						\
+	xed-status-combo-box.h 				\
+	xed-tab-label.h						\
+	xed-ui.h							\
+	xed-utils.h 						\
+	xed-view-frame.h 					\
 	xed-window-private.h
 
-INST_H_FILES =				\
-	xed-app.h			\
-	xed-app-activatable.h 	\
-	xed-commands.h		\
-	xed-debug.h			\
-	xed-document.h 		\
-	xed-encodings-combo-box.h	\
-	xed-file-chooser-dialog.h	\
-	xed-message-bus.h		\
-	xed-message-type.h		\
-	xed-message.h			\
-	xed-notebook.h		\
-	xed-panel.h			\
-	xed-progress-info-bar.h	\
-	xed-searchbar.h		\
-	xed-statusbar.h		\
-	xed-tab.h 			\
-	xed-view.h 			\
-	xed-view-activatable.h 	\
-	xed-window.h 		\
+INST_H_FILES =							\
+	xed-app.h							\
+	xed-app-activatable.h 				\
+	xed-commands.h						\
+	xed-debug.h							\
+	xed-document.h 						\
+	xed-encodings-combo-box.h			\
+	xed-file-chooser-dialog.h			\
+	xed-message-bus.h					\
+	xed-message-type.h					\
+	xed-message.h						\
+	xed-notebook.h						\
+	xed-panel.h							\
+	xed-progress-info-bar.h				\
+	xed-searchbar.h						\
+	xed-statusbar.h						\
+	xed-tab.h 							\
+	xed-view.h 							\
+	xed-view-activatable.h 				\
+	xed-window.h 						\
 	xed-window-activatable.h
 
 if !ENABLE_GVFS_METADATA
@@ -85,56 +84,59 @@ endif
 
 headerdir = $(prefix)/include/xed
 
-header_DATA = 				\
+header_DATA = 							\
 	$(INST_H_FILES)
 
 
-libxed_c_files = 				\
-	xed-app.c					\
-	xed-app-activatable.c 		\
-	xed-close-button.c			\
-	xed-commands-documents.c	\
-	xed-commands-edit.c			\
-	xed-commands-file.c			\
-	xed-commands-file-print.c	\
-	xed-commands-help.c			\
-	xed-commands-search.c		\
-	xed-commands-view.c			\
-	xed-debug.c					\
-	xed-dirs.c					\
-	xed-document.c 				\
-	xed-documents-panel.c		\
-	xed-encodings-combo-box.c	\
-	xed-file-chooser-dialog.c	\
-	xed-history-entry.c			\
-	xed-io-error-info-bar.c	\
-	xed-message-bus.c			\
-	xed-message-type.c			\
-	xed-message.c				\
-	xed-notebook.c			\
-	xed-panel.c				\
-	xed-plugins-engine.c		\
-	xed-print-job.c		\
-	xed-print-preview.c		\
-	xed-progress-info-bar.c	\
-	xed-settings.c 			\
-	xed-searchbar.c		\
-	xed-statusbar.c		\
-	xed-status-combo-box.c	\
-	xed-tab.c 			\
-	xed-tab-label.c		\
-	xed-utils.c 			\
-	xed-view.c 			\
-	xed-view-activatable.c 		\
-	xed-view-frame.c 		\
-	xed-window.c			\
+libxed_c_files = 						\
+	xed-app.c							\
+	xed-app-activatable.c 				\
+	xed-close-button.c					\
+	xed-close-confirmation-dialog.c 	\
+	xed-commands-documents.c			\
+	xed-commands-edit.c					\
+	xed-commands-file.c					\
+	xed-commands-file-print.c			\
+	xed-commands-help.c					\
+	xed-commands-search.c				\
+	xed-commands-view.c					\
+	xed-debug.c							\
+	xed-dirs.c							\
+	xed-document.c 						\
+	xed-documents-panel.c				\
+	xed-encodings-combo-box.c			\
+	xed-encodings-dialog.c 				\
+	xed-file-chooser-dialog.c			\
+	xed-history-entry.c					\
+	xed-io-error-info-bar.c				\
+	xed-message-bus.c					\
+	xed-message-type.c					\
+	xed-message.c						\
+	xed-notebook.c						\
+	xed-panel.c							\
+	xed-plugins-engine.c				\
+	xed-preferences-dialog.c 			\
+	xed-print-job.c						\
+	xed-print-preview.c					\
+	xed-progress-info-bar.c				\
+	xed-settings.c 						\
+	xed-searchbar.c						\
+	xed-statusbar.c						\
+	xed-status-combo-box.c				\
+	xed-tab.c 							\
+	xed-tab-label.c						\
+	xed-utils.c 						\
+	xed-view.c 							\
+	xed-view-activatable.c 				\
+	xed-view-frame.c 					\
+	xed-window.c						\
 	xed-window-activatable.c
 
-libxed_la_SOURCES = 		\
-	$(BUILT_SOURCES)		\
-	$(libxed_c_files)		\
-	$(POSIXIO_FILES)		\
-	$(NOINST_H_FILES)		\
+libxed_la_SOURCES = 					\
+	$(BUILT_SOURCES)					\
+	$(libxed_c_files)					\
+	$(POSIXIO_FILES)					\
+	$(NOINST_H_FILES)					\
 	$(INST_H_FILES)
 
 if !ENABLE_GVFS_METADATA
@@ -155,10 +157,12 @@ xed-marshal.c: xed-marshal.list $(GLIB_GENMARSHAL)
 	$(GLIB_GENMARSHAL) $< --body --prefix=xed_marshal >> $@
 
 uidir = $(datadir)/xed/ui/
-ui_DATA = 				\
-	xed-ui.xml			\
-	xed-searchbar.ui    \
-	xed-print-preferences.ui
+ui_DATA = 						\
+	xed-ui.xml					\
+	xed-searchbar.ui    		\
+	xed-print-preferences.ui 	\
+	xed-encodings-dialog.ui 	\
+	xed-preferences-dialog.ui
 
 EXTRA_DIST = 				\
 	$(ui_DATA)			\

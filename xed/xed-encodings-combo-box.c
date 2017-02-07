@@ -37,7 +37,7 @@
 #include <gtksourceview/gtksource.h>
 
 #include "xed/xed-encodings-combo-box.h"
-#include <xed/dialogs/xed-encodings-dialog.h>
+#include <xed/xed-encodings-dialog.h>
 #include "xed-settings.h"
 #include "xed-utils.h"
 

@@ -223,7 +223,6 @@ data/org.x.editor.gschema.xml
 data/Makefile
 docs/Makefile
 docs/reference/Makefile
-xed/dialogs/Makefile
 xed/Makefile
 help/Makefile
 pixmaps/Makefile
