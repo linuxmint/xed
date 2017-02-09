@@ -268,7 +268,7 @@ xed_window_configure_event (GtkWidget         *widget,
     XedWindow *window = XED_WINDOW (widget);
 
     if (gtk_widget_get_realized (widget) &&
-        window->priv->state & (GDK_WINDOW_STATE_MAXIMIZED | GDK_WINDOW_STATE_FULLSCREEN) == 0)
+        (window->priv->state & (GDK_WINDOW_STATE_MAXIMIZED | GDK_WINDOW_STATE_FULLSCREEN)) == 0)
     {
         save_window_state (widget);
     }
@@ -1805,20 +1805,18 @@ clone_window (XedWindow *origin)
 
     app = XED_APP (g_application_get_default ());
 
-    screen = gtk_window_get_screen (GTK_WINDOW(origin));
+    screen = gtk_window_get_screen (GTK_WINDOW (origin));
     window = xed_app_create_window (app, screen);
+
+    gtk_window_set_default_size (GTK_WINDOW (window), origin->priv->width, origin->priv->height);
 
     if ((origin->priv->window_state & GDK_WINDOW_STATE_MAXIMIZED) != 0)
     {
-        gint w, h;
-        _xed_window_get_default_size (&w, &h);
-        gtk_window_set_default_size (GTK_WINDOW(window), w, h);
-        gtk_window_maximize (GTK_WINDOW(window));
+        gtk_window_maximize (GTK_WINDOW (window));
     }
     else
     {
-        gtk_window_set_default_size (GTK_WINDOW(window), origin->priv->width, origin->priv->height);
-        gtk_window_unmaximize (GTK_WINDOW(window));
+        gtk_window_unmaximize (GTK_WINDOW (window));
     }
 
     if ((origin->priv->window_state & GDK_WINDOW_STATE_STICKY) != 0)
@@ -3942,13 +3940,13 @@ _xed_window_move_tab_to_new_window (XedWindow *window,
 {
     XedWindow *new_window;
 
-    g_return_val_if_fail(XED_IS_WINDOW (window), NULL);
-    g_return_val_if_fail(XED_IS_TAB (tab), NULL);
-    g_return_val_if_fail(gtk_notebook_get_n_pages (GTK_NOTEBOOK (window->priv->notebook)) > 1, NULL);
+    g_return_val_if_fail (XED_IS_WINDOW (window), NULL);
+    g_return_val_if_fail (XED_IS_TAB (tab), NULL);
+    g_return_val_if_fail (gtk_notebook_get_n_pages (GTK_NOTEBOOK (window->priv->notebook)) > 1, NULL);
 
     new_window = clone_window (window);
-    xed_notebook_move_tab (XED_NOTEBOOK(window->priv->notebook), XED_NOTEBOOK(new_window->priv->notebook), tab, -1);
-    gtk_widget_show (GTK_WIDGET(new_window));
+    xed_notebook_move_tab (XED_NOTEBOOK (window->priv->notebook), XED_NOTEBOOK (new_window->priv->notebook), tab, -1);
+    gtk_widget_show (GTK_WIDGET (new_window));
 
     return new_window;
 }
