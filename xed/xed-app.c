@@ -484,7 +484,6 @@ clear_options (XedApp *app)
     priv->encoding = NULL;
     priv->file_list = NULL;
     priv->line_position = 0;
-    priv->column_position = 0;
     priv->command_line = NULL;
 }
 
