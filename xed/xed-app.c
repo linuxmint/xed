@@ -35,7 +35,6 @@
 #include <string.h>
 #include <unistd.h>
 #include <stdlib.h>
-#include <locale.h>
 
 #include <glib/gi18n.h>
 #include <libpeas/peas-extension-set.h>
@@ -156,7 +155,7 @@ static const GOptionEntry options[] =
     /* collects file arguments */
     {
         G_OPTION_REMAINING, '\0', 0, G_OPTION_ARG_FILENAME_ARRAY, NULL, NULL,
-        N_("[FILE...] [+LINE")
+        N_("[FILE...] [+LINE]")
     },
 
     {NULL}
@@ -226,18 +225,6 @@ xed_app_startup (GApplication *application)
     /* Setup debugging */
     xed_debug_init ();
     xed_debug_message (DEBUG_APP, "Startup");
-
-    xed_dirs_init ();
-
-    /* Setup locale/gettext */
-    setlocale (LC_ALL, "");
-
-    dir = xed_dirs_get_xed_locale_dir ();
-    bindtextdomain (GETTEXT_PACKAGE, dir);
-
-    bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
-    textdomain (GETTEXT_PACKAGE);
-
     xed_debug_message (DEBUG_APP, "Set icon");
 
     dir = xed_dirs_get_xed_data_dir ();

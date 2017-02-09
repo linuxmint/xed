@@ -33,7 +33,10 @@
 #endif
 
 #include <glib.h>
+#include <locale.h>
+#include <libintl.h>
 
+#include "xed-dirs.h"
 #include "xed-app.h"
 
 int
@@ -41,6 +44,18 @@ main (int argc, char *argv[])
 {
     XedApp *app;
     gint status;
+    const gchar *dir;
+
+    xed_dirs_init ();
+
+    /* Setup locale/gettext */
+    setlocale (LC_ALL, "");
+
+    dir = xed_dirs_get_xed_locale_dir ();
+    bindtextdomain (GETTEXT_PACKAGE, dir);
+
+    bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
+    textdomain (GETTEXT_PACKAGE);
 
     app = g_object_new (XED_TYPE_APP,
                         "application-id", "org.x.editor",
