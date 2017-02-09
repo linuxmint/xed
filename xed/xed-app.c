@@ -82,18 +82,19 @@ struct _XedAppPrivate
     GSettings *window_settings;
 
     PeasExtensionSet *extensions;
+
+    /* command line parsing */
+    gboolean new_window;
+    gboolean new_document;
+    gchar *geometry;
+    const GtkSourceEncoding *encoding;
+    GInputStream *stdin_stream;
+    GSList *file_list;
+    gint line_position;
+    GApplicationCommandLine *command_line;
 };
 
 G_DEFINE_TYPE (XedApp, xed_app, GTK_TYPE_APPLICATION)
-
-static gboolean new_window = FALSE;
-static gboolean new_document = FALSE;
-static gchar *geometry = NULL;
-static const GtkSourceEncoding *encoding = NULL;
-static GInputStream *stdin_stream = NULL;
-static GSList *file_list = NULL;
-static gint line_position = 0;
-static GApplicationCommandLine *command_line = NULL;
 
 static const GOptionEntry options[] =
 {
@@ -361,16 +362,25 @@ get_active_window (GtkApplication *app)
 }
 
 static void
-set_command_line_wait (XedTab *tab)
+set_command_line_wait (XedApp *app,
+                       XedTab *tab)
 {
     g_object_set_data_full (G_OBJECT (tab),
                             "XedTabCommandLineWait",
-                            g_object_ref (command_line),
+                            g_object_ref (app->priv->command_line),
                             (GDestroyNotify)g_object_unref);
 }
 
 static void
-xed_app_activate (GApplication *application)
+open_files (GApplication            *application,
+            gboolean                 new_window,
+            gboolean                 new_document,
+            gchar                   *geometry,
+            gint                     line_position,
+            const GtkSourceEncoding *encoding,
+            GInputStream            *stdin_stream,
+            GSList                  *file_list,
+            GApplicationCommandLine *command_line)
 {
     XedWindow *window = NULL;
     XedTab *tab;
@@ -408,7 +418,7 @@ xed_app_activate (GApplication *application)
 
         if (doc_created && command_line)
         {
-            set_command_line_wait (tab);
+            set_command_line_wait (XED_APP (application), tab);
         }
         g_input_stream_close (stdin_stream, NULL, NULL);
     }
@@ -436,7 +446,7 @@ xed_app_activate (GApplication *application)
 
         if (command_line)
         {
-            set_command_line_wait (tab);
+            set_command_line_wait (XED_APP (application), tab);
         }
     }
 
@@ -444,19 +454,38 @@ xed_app_activate (GApplication *application)
 }
 
 static void
-clear_options (void)
+xed_app_activate (GApplication *application)
 {
-    g_free (geometry);
-    g_clear_object (&stdin_stream);
-    g_slist_free_full (file_list, g_object_unref);
+    XedAppPrivate *priv = XED_APP (application)->priv;
 
-    new_window = FALSE;
-    new_document = FALSE;
-    geometry = NULL;
-    encoding = NULL;
-    file_list = NULL;
-    line_position = 0;
-    command_line = NULL;
+    open_files (application,
+                priv->new_window,
+                priv->new_document,
+                priv->geometry,
+                priv->line_position,
+                priv->encoding,
+                priv->stdin_stream,
+                priv->file_list,
+                priv->command_line);
+}
+
+static void
+clear_options (XedApp *app)
+{
+    XedAppPrivate *priv = app->priv;
+
+    g_free (priv->geometry);
+    g_clear_object (&priv->stdin_stream);
+    g_slist_free_full (priv->file_list, g_object_unref);
+
+    priv->new_window = FALSE;
+    priv->new_document = FALSE;
+    priv->geometry = NULL;
+    priv->encoding = NULL;
+    priv->file_list = NULL;
+    priv->line_position = 0;
+    priv->column_position = 0;
+    priv->command_line = NULL;
 }
 
 static void
@@ -470,26 +499,29 @@ static gint
 xed_app_command_line (GApplication            *application,
                       GApplicationCommandLine *cl)
 {
+    XedAppPrivate *priv;
     GVariantDict *options;
     const gchar *encoding_charset;
     const gchar **remaining_args;
 
+    priv = XED_APP (application)->priv;
+
     options = g_application_command_line_get_options_dict (cl);
 
-    g_variant_dict_lookup (options, "new-window", "b", &new_window);
-    g_variant_dict_lookup (options, "new-document", "b", &new_document);
-    g_variant_dict_lookup (options, "geometry", "s", &geometry);
+    g_variant_dict_lookup (options, "new-window", "b", &priv->new_window);
+    g_variant_dict_lookup (options, "new-document", "b", &priv->new_document);
+    g_variant_dict_lookup (options, "geometry", "s", &priv->geometry);
 
     if (g_variant_dict_contains (options, "wait"))
     {
-        command_line = cl;
+        priv->command_line = cl;
     }
 
     if (g_variant_dict_lookup (options, "encoding", "&s", &encoding_charset))
     {
-        encoding = gtk_source_encoding_get_from_charset (encoding_charset);
+        priv->encoding = gtk_source_encoding_get_from_charset (encoding_charset);
 
-        if (encoding == NULL)
+        if (priv->encoding == NULL)
         {
             g_application_command_line_printerr (cl, _("%s: invalid encoding."), encoding_charset);
         }
@@ -507,33 +539,33 @@ xed_app_command_line (GApplication            *application,
                 if (*(remaining_args[i] + 1) == '\0')
                 {
                     /* goto the last line of the document */
-                    line_position = G_MAXINT;
+                    priv->line_position = G_MAXINT;
                 }
                 else
                 {
-                    get_line_position (remaining_args[i] + 1, &line_position);
+                    get_line_position (remaining_args[i] + 1, &priv->line_position);
                 }
             }
 
             else if (*remaining_args[i] == '-' && *(remaining_args[i] + 1) == '\0')
             {
-                stdin_stream = g_application_command_line_get_stdin (cl);
+                priv->stdin_stream = g_application_command_line_get_stdin (cl);
             }
             else
             {
                 GFile *file;
 
                 file = g_application_command_line_create_file_for_arg (cl, remaining_args[i]);
-                file_list = g_slist_prepend (file_list, file);
+                priv->file_list = g_slist_prepend (priv->file_list, file);
             }
         }
 
-        file_list = g_slist_reverse (file_list);
+        priv->file_list = g_slist_reverse (priv->file_list);
         g_free (remaining_args);
     }
 
     g_application_activate (application);
-    clear_options ();
+    clear_options (XED_APP (application));
 
     return 0;
 }

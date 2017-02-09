@@ -59,7 +59,7 @@ main (int argc, char *argv[])
 
     app = g_object_new (XED_TYPE_APP,
                         "application-id", "org.x.editor",
-                        "flags", G_APPLICATION_HANDLES_COMMAND_LINE,
+                        "flags", G_APPLICATION_HANDLES_COMMAND_LINE | G_APPLICATION_HANDLES_OPEN,
                         NULL);
 
     status = g_application_run (G_APPLICATION (app), argc, argv);
