@@ -80,6 +80,7 @@ struct _XedAppPrivate
 
     GObject *settings;
     GSettings *window_settings;
+    GSettings *editor_settings;
 
     PeasExtensionSet *extensions;
 
@@ -168,6 +169,7 @@ xed_app_dispose (GObject *object)
     XedApp *app = XED_APP (object);
 
     g_clear_object (&app->priv->window_settings);
+    g_clear_object (&app->priv->editor_settings);
     g_clear_object (&app->priv->settings);
     g_clear_object (&app->priv->page_setup);
     g_clear_object (&app->priv->print_settings);
@@ -210,6 +212,18 @@ extension_removed (PeasExtensionSet *extensions,
 }
 
 static void
+set_initial_theme_style (XedApp *app)
+{
+    if (g_settings_get_boolean (app->priv->editor_settings, XED_SETTINGS_PREFER_DARK_THEME))
+    {
+        GtkSettings *gtk_settings;
+
+        gtk_settings = gtk_settings_get_default ();
+        g_object_set (G_OBJECT (gtk_settings), "gtk-application-prefer-dark-theme", TRUE, NULL);
+    }
+}
+
+static void
 xed_app_startup (GApplication *application)
 {
     XedApp *app = XED_APP (application);
@@ -248,6 +262,9 @@ xed_app_startup (GApplication *application)
    /* Load settings */
    app->priv->settings = xed_settings_new ();
    app->priv->window_settings = g_settings_new ("org.x.editor.state.window");
+   app->priv->editor_settings = g_settings_new ("org.x.editor.preferences.editor");
+
+   set_initial_theme_style (app);
 
    /*
     * We use the default gtksourceview style scheme manager so that plugins

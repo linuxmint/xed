@@ -89,6 +89,7 @@ struct _XedPreferencesDialogPrivate
     GtkWidget *font_hbox;
 
     /* Style Scheme */
+    GtkWidget *prefer_dark_theme_checkbutton;
     GtkListStore *schemes_treeview_model;
     GtkWidget *schemes_treeview;
     GtkWidget *install_scheme_button;
@@ -1050,6 +1051,12 @@ setup_font_colors_page (XedPreferencesDialog *dlg)
 {
     setup_font_colors_page_font_section (dlg);
     setup_font_colors_page_style_scheme_section (dlg);
+
+    g_settings_bind (dlg->priv->editor,
+                     XED_SETTINGS_PREFER_DARK_THEME,
+                     dlg->priv->prefer_dark_theme_checkbutton,
+                     "active",
+                     G_SETTINGS_BIND_GET | G_SETTINGS_BIND_SET);
 }
 
 static void
@@ -1127,6 +1134,7 @@ xed_preferences_dialog_init (XedPreferencesDialog *dlg)
     dlg->priv->default_font_checkbutton = GTK_WIDGET (gtk_builder_get_object (builder, "default_font_checkbutton"));
     dlg->priv->font_button = GTK_WIDGET (gtk_builder_get_object (builder, "font_button"));
     dlg->priv->font_hbox = GTK_WIDGET (gtk_builder_get_object (builder, "font_hbox"));
+    dlg->priv->prefer_dark_theme_checkbutton = GTK_WIDGET (gtk_builder_get_object (builder, "prefer_dark_theme_checkbutton"));
     dlg->priv->schemes_treeview = GTK_WIDGET (gtk_builder_get_object (builder, "schemes_treeview"));
     dlg->priv->install_scheme_button = GTK_WIDGET (gtk_builder_get_object (builder, "install_scheme_button"));
     dlg->priv->uninstall_scheme_button = GTK_WIDGET (gtk_builder_get_object (builder, "uninstall_scheme_button"));
