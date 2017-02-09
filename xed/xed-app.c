@@ -785,13 +785,17 @@ xed_app_shutdown (GApplication *app)
     save_page_setup (XED_APP (app));
     save_print_settings (XED_APP (app));
 
+    /* GTK+ can still hold references to some xed objects, for example
+     * XedDocument for the clipboard. So the metadata-manager should be
+     * shutdown after.
+     */
+    G_APPLICATION_CLASS (xed_app_parent_class)->shutdown (app);
+
 #ifndef ENABLE_GVFS_METADATA
     xed_metadata_manager_shutdown ();
 #endif
 
     xed_dirs_shutdown ();
-
-    G_APPLICATION_CLASS (xed_app_parent_class)->shutdown (app);
 }
 
 static void
