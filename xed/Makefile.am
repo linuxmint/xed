@@ -2,7 +2,7 @@
 
 bin_PROGRAMS = xed
 
-noinst_LTLIBRARIES = libxed.la
+pkglib_LTLIBRARIES = libxed.la
 
 AM_CPPFLAGS =							\
 	-I$(top_srcdir)						\
@@ -24,7 +24,7 @@ xed_LDADD = 				\
 
 xed_LDFLAGS = -export-dynamic -no-undefined -export-symbols-regex "^[[^_]].*"
 
-libxed_la_LDFLAGS = -export-dynamic -no-undefined -export-symbols-regex "^[[^_]].*"
+libxed_la_LDFLAGS = -avoid-version -export-dynamic -no-undefined -export-symbols-regex "^[^_].*"
 
 # XED_LIBS must be the last to ensure correct order on some platforms
 libxed_la_LIBADD = $(XED_LIBS)
@@ -87,10 +87,15 @@ headerdir = $(prefix)/include/xed
 header_DATA = 							\
 	$(INST_H_FILES)
 
+BUILT_SOURCES_PRIVATE = 				\
+	xed-resources.c
 
 libxed_c_files = 						\
-	xed-app.c							\
+	xed-app.c 							\
 	xed-app-activatable.c 				\
+	xed-view-activatable.c 				\
+	xed-window-activatable.c 			\
+	xed-resources.c 					\
 	xed-close-button.c					\
 	xed-close-confirmation-dialog.c 	\
 	xed-commands-documents.c			\
@@ -127,10 +132,8 @@ libxed_c_files = 						\
 	xed-tab-label.c						\
 	xed-utils.c 						\
 	xed-view.c 							\
-	xed-view-activatable.c 				\
 	xed-view-frame.c 					\
-	xed-window.c						\
-	xed-window-activatable.c
+	xed-window.c
 
 libxed_la_SOURCES = 					\
 	$(BUILT_SOURCES)					\
@@ -156,28 +159,27 @@ xed-marshal.c: xed-marshal.list $(GLIB_GENMARSHAL)
 	$(AM_V_GEN) echo "#include \"xed-marshal.h\"" > $@ && \
 	$(GLIB_GENMARSHAL) $< --body --prefix=xed_marshal >> $@
 
-uidir = $(datadir)/xed/ui/
-ui_DATA = 						\
-	xed-ui.xml					\
-	xed-searchbar.ui    		\
-	xed-print-preferences.ui 	\
-	xed-encodings-dialog.ui 	\
-	xed-preferences-dialog.ui
+xed-resources.c: resources/xed.gresource.xml $(shell $(GLIB_COMPILE_RESOURCES) --sourcedir=$(srcdir)/resources --generate-dependencies $(srcdir)/resources/xed.gresource.xml)
+	$(AM_V_GEN) $(GLIB_COMPILE_RESOURCES) --target=$@ --sourcedir=$(srcdir)/resources --generate-source $(srcdir)/resources/xed.gresource.xml
 
-EXTRA_DIST = 				\
-	$(ui_DATA)			\
-	xed-enum-types.h.template	\
-	xed-enum-types.c.template	\
-	xed-marshal.list		\
-	xed.rc
+EXTRA_DIST = 								\
+	xed-enum-types.h.template				\
+	xed-enum-types.c.template				\
+	xed-marshal.list						\
+	xed.rc 									\
+	resources/xed.gresource.xml 			\
+	resources/ui/xed-ui.xml 				\
+	resources/ui/xed-encodings-dialog.ui 	\
+	resources/ui/xed-preferences-dialog.ui 	\
+	resources/ui/xed-print-preferences.ui 	\
+	resources/ui/xed-searchbar.ui 			\
+	resources/ui/xed-view-frame.ui
 
-CLEANFILES = $(BUILT_SOURCES)
+CLEANFILES = $(BUILT_SOURCES) $(BUILT_SOURCES_PRIVATE)
 
 if HAVE_INTROSPECTION
 -include $(INTROSPECTION_MAKEFILE)
 INTROSPECTION_GIRS = Xed-1.0.gir
-
-
 
 Xed-1.0.gir: xed
 INTROSPECTION_SCANNER_ARGS = -I$(top_srcdir) --warn-all
@@ -199,6 +201,6 @@ CLEANFILES += 		\
 endif
 
 dist-hook:
-	cd $(distdir); rm -f $(BUILT_SOURCES)
+	cd $(distdir); rm -f $(BUILT_SOURCES) $(BUILT_SOURCES_PRIVATE)
 
 -include $(top_srcdir)/git.mk

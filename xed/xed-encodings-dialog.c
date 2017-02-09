@@ -322,14 +322,12 @@ init_liststore_available (XedEncodingsDialog *dialog)
 static void
 xed_encodings_dialog_init (XedEncodingsDialog *dlg)
 {
+    GtkBuilder *builder;
     GtkWidget *content;
     GtkCellRenderer *cell_renderer;
     GtkTreeModel *sort_model;
     GtkTreeViewColumn *column;
     GtkTreeSelection *selection;
-    GtkWidget *error_widget;
-    gboolean ret;
-    gchar *file;
     gchar *root_objects[] = {
         "encodings-dialog-contents",
         NULL
@@ -355,27 +353,16 @@ xed_encodings_dialog_init (XedEncodingsDialog *dlg)
 
     g_signal_connect (dlg, "response", G_CALLBACK (response_handler), dlg);
 
-    file = xed_dirs_get_ui_file ("xed-encodings-dialog.ui");
-    ret = xed_utils_get_ui_objects (file,
-                                    root_objects,
-                                    &error_widget,
-                                    "encodings-dialog-contents", &content,
-                                    "add-button", &dlg->priv->add_button,
-                                    "remove-button", &dlg->priv->remove_button,
-                                    "available-treeview", &dlg->priv->available_treeview,
-                                    "displayed-treeview", &dlg->priv->displayed_treeview,
-                                    NULL);
-    g_free (file);
-
-    if (!ret)
-    {
-        gtk_widget_show (error_widget);
-
-        gtk_box_pack_start (GTK_BOX (gtk_dialog_get_content_area (GTK_DIALOG (dlg))), error_widget, TRUE, TRUE, 0);
-        gtk_container_set_border_width (GTK_CONTAINER (error_widget), 5);
-
-        return;
-    }
+    builder = gtk_builder_new ();
+    gtk_builder_add_objects_from_resource (builder, "/org/x/editor/ui/xed-encodings-dialog.ui",
+                                           root_objects, NULL);
+    content = GTK_WIDGET (gtk_builder_get_object (builder, "encodings-dialog-contents"));
+    g_object_ref (content);
+    dlg->priv->add_button = GTK_WIDGET (gtk_builder_get_object (builder, "add-button"));
+    dlg->priv->remove_button = GTK_WIDGET (gtk_builder_get_object (builder, "remove-button"));
+    dlg->priv->available_treeview = GTK_WIDGET (gtk_builder_get_object (builder, "available-treeview"));
+    dlg->priv->displayed_treeview = GTK_WIDGET (gtk_builder_get_object (builder, "displayed-treeview"));
+    g_object_unref (builder);
 
     gtk_box_pack_start (GTK_BOX (gtk_dialog_get_content_area (GTK_DIALOG (dlg))), content, TRUE, TRUE, 0);
     g_object_unref (content);

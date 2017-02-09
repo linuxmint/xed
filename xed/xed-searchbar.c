@@ -18,13 +18,6 @@
 
 #define XED_SEARCHBAR_GET_PRIVATE(object)(G_TYPE_INSTANCE_GET_PRIVATE ((object), XED_TYPE_SEARCHBAR, XedSearchbarPrivate))
 
-// typedef enum
-// {
-//     SEARCH,
-//     REPLACE
-// } SearchMode;
-
-
 enum
 {
     SHOW_REPLACE,
@@ -666,35 +659,32 @@ xed_searchbar_init (XedSearchbar *searchbar)
 {
     GtkWidget *content;
     GtkSizeGroup *size_group;
-    GtkWidget *error_widget;
     GtkStyleContext *context;
     GtkCssProvider *provider;
-    gchar *file;
+    GtkBuilder *builder;
     gchar *root_objects[] = { "searchbar_content", NULL };
     const gchar *data = ".button {padding: 0;}";
 
     searchbar->priv = XED_SEARCHBAR_GET_PRIVATE (searchbar);
 
-    file = xed_dirs_get_ui_file ("xed-searchbar.ui");
-    xed_utils_get_ui_objects (file,
-                              root_objects,
-                              &error_widget,
-                              "searchbar_content", &content,
-                              "revealer", &searchbar->priv->revealer,
-                              "grid", &searchbar->priv->grid,
-                              "search_label", &searchbar->priv->search_label,
-                              "replace_with_label", &searchbar->priv->replace_label,
-                              "regex_checkbutton", &searchbar->priv->regex_checkbutton,
-                              "match_case_checkbutton", &searchbar->priv->match_case_checkbutton,
-                              "entire_word_checkbutton", &searchbar->priv->entire_word_checkbutton,
-                              "wrap_around_checkbutton", &searchbar->priv->wrap_around_checkbutton,
-                              "find_button", &searchbar->priv->find_button,
-                              "find_prev_button", &searchbar->priv->find_prev_button,
-                              "replace_button", &searchbar->priv->replace_button,
-                              "replace_all_button", &searchbar->priv->replace_all_button,
-                              "close_button", &searchbar->priv->close_button,
-                              NULL);
-    g_free (file);
+    builder = gtk_builder_new ();
+    gtk_builder_add_objects_from_resource (builder, "/org/x/editor/ui/xed-searchbar.ui", root_objects, NULL);
+    content = GTK_WIDGET (gtk_builder_get_object (builder, "searchbar_content"));
+    g_object_ref (content);
+    searchbar->priv->revealer = GTK_WIDGET (gtk_builder_get_object (builder, "revealer"));
+    searchbar->priv->grid = GTK_WIDGET (gtk_builder_get_object (builder, "grid"));
+    searchbar->priv->search_label = GTK_WIDGET (gtk_builder_get_object (builder, "search_label"));
+    searchbar->priv->replace_label = GTK_WIDGET (gtk_builder_get_object (builder, "replace_with_label"));
+    searchbar->priv->regex_checkbutton = GTK_WIDGET (gtk_builder_get_object (builder, "regex_checkbutton"));
+    searchbar->priv->match_case_checkbutton = GTK_WIDGET (gtk_builder_get_object (builder, "match_case_checkbutton"));
+    searchbar->priv->entire_word_checkbutton = GTK_WIDGET (gtk_builder_get_object (builder, "entire_word_checkbutton"));
+    searchbar->priv->wrap_around_checkbutton = GTK_WIDGET (gtk_builder_get_object (builder, "wrap_around_checkbutton"));
+    searchbar->priv->find_button = GTK_WIDGET (gtk_builder_get_object (builder, "find_button"));
+    searchbar->priv->find_prev_button = GTK_WIDGET (gtk_builder_get_object (builder, "find_prev_button"));
+    searchbar->priv->replace_button = GTK_WIDGET (gtk_builder_get_object (builder, "replace_button"));
+    searchbar->priv->replace_all_button = GTK_WIDGET (gtk_builder_get_object (builder, "replace_all_button"));
+    searchbar->priv->close_button = GTK_WIDGET (gtk_builder_get_object (builder, "close_button"));
+    g_object_unref (builder);
 
     gtk_style_context_add_class (gtk_widget_get_style_context (GTK_WIDGET (searchbar)), "xed-searchbar");
 

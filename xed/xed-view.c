@@ -528,12 +528,18 @@ xed_view_delete_from_cursor (GtkTextView  *text_view,
     }
 }
 
+static GtkTextBuffer *
+xed_view_create_buffer (GtkTextView *text_view)
+{
+    return GTK_TEXT_BUFFER (xed_document_new ());
+}
+
 static void
 xed_view_class_init (XedViewClass *klass)
 {
-    GObjectClass *object_class = G_OBJECT_CLASS(klass);
-    GtkWidgetClass *widget_class = GTK_WIDGET_CLASS(klass);
-    GtkTextViewClass *text_view_class = GTK_TEXT_VIEW_CLASS(klass);
+    GObjectClass *object_class = G_OBJECT_CLASS (klass);
+    GtkWidgetClass *widget_class = GTK_WIDGET_CLASS (klass);
+    GtkTextViewClass *text_view_class = GTK_TEXT_VIEW_CLASS (klass);
     GtkBindingSet *binding_set;
 
     object_class->dispose = xed_view_dispose;
@@ -562,6 +568,7 @@ xed_view_class_init (XedViewClass *klass)
     widget_class->realize = xed_view_realize;
 
     text_view_class->delete_from_cursor = xed_view_delete_from_cursor;
+    text_view_class->create_buffer = xed_view_create_buffer;
 
     /* A new signal DROP_URIS has been added to allow plugins to intercept
      * the default dnd behaviour of 'text/uri-list'. XedView now handles

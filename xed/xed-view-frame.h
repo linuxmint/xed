@@ -43,14 +43,14 @@ typedef struct _XedViewFramePrivate XedViewFramePrivate;
 
 struct _XedViewFrame
 {
-    GtkBox parent;
+    GtkOverlay parent;
 
     XedViewFramePrivate *priv;
 };
 
 struct _XedViewFrameClass
 {
-    GtkBoxClass parent_class;
+    GtkOverlayClass parent_class;
 };
 
 GType xed_view_frame_get_type (void) G_GNUC_CONST;

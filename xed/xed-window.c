@@ -30,7 +30,6 @@
 #include "xed-settings.h"
 
 #define LANGUAGE_NONE  (const gchar *)"LangNone"
-#define XED_UIFILE     "xed-ui.xml"
 #define TAB_WIDTH_DATA "XedWindowTabWidthData"
 #define LANGUAGE_DATA  "XedWindowLanguageData"
 
@@ -1263,15 +1262,12 @@ create_menu_bar_and_toolbar (XedWindow *window,
     g_object_unref (action_group);
     window->priv->panes_action_group = action_group;
 
-    /* now load the UI definition */
-    ui_file = xed_dirs_get_ui_file (XED_UIFILE);
-    gtk_ui_manager_add_ui_from_file (manager, ui_file, &error);
+    gtk_ui_manager_add_ui_from_resource (manager, "/org/x/editor/ui/xed-ui.xml", &error);
     if (error != NULL)
     {
-        g_warning("Could not merge %s: %s", ui_file, error->message);
+        g_warning ("Could not add ui definition: %s", error->message);
         g_error_free (error);
     }
-    g_free (ui_file);
 
     /* show tooltips in the statusbar */
     g_signal_connect(manager, "connect_proxy", G_CALLBACK (connect_proxy_cb), window);

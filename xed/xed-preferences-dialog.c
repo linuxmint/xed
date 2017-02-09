@@ -1070,15 +1070,12 @@ setup_plugins_page (XedPreferencesDialog *dlg)
 static void
 xed_preferences_dialog_init (XedPreferencesDialog *dlg)
 {
-    GtkWidget *error_widget;
-    gboolean ret;
-    gchar *file;
+    GtkBuilder *builder;
     gchar *root_objects[] = {
         "notebook",
         "adjustment1",
         "adjustment2",
         "adjustment3",
-        "install_scheme_image",
         NULL
     };
 
@@ -1106,52 +1103,35 @@ xed_preferences_dialog_init (XedPreferencesDialog *dlg)
     g_signal_connect (dlg, "response",
                       G_CALLBACK (dialog_response_handler), NULL);
 
-    file = xed_dirs_get_ui_file ("xed-preferences-dialog.ui");
-    ret = xed_utils_get_ui_objects (file, root_objects, &error_widget,
-        "notebook", &dlg->priv->notebook,
-
-        "display_line_numbers_checkbutton", &dlg->priv->display_line_numbers_checkbutton,
-        "highlight_current_line_checkbutton", &dlg->priv->highlight_current_line_checkbutton,
-        "bracket_matching_checkbutton", &dlg->priv->bracket_matching_checkbutton,
-        "wrap_text_checkbutton", &dlg->priv->wrap_text_checkbutton,
-        "split_checkbutton", &dlg->priv->split_checkbutton,
-
-        "right_margin_checkbutton", &dlg->priv->right_margin_checkbutton,
-        "right_margin_position_spinbutton", &dlg->priv->right_margin_position_spinbutton,
-        "right_margin_position_hbox", &dlg->priv->right_margin_position_hbox,
-
-        "tabs_width_spinbutton", &dlg->priv->tabs_width_spinbutton,
-        "tabs_width_hbox", &dlg->priv->tabs_width_hbox,
-        "insert_spaces_checkbutton", &dlg->priv->insert_spaces_checkbutton,
-
-        "auto_indent_checkbutton", &dlg->priv->auto_indent_checkbutton,
-
-        "autosave_hbox", &dlg->priv->autosave_hbox,
-        "backup_copy_checkbutton", &dlg->priv->backup_copy_checkbutton,
-        "auto_save_checkbutton", &dlg->priv->auto_save_checkbutton,
-        "auto_save_spinbutton", &dlg->priv->auto_save_spinbutton,
-
-        "tab_scrolling_checkbutton", &dlg->priv->tab_scrolling_checkbutton,
-
-        "default_font_checkbutton", &dlg->priv->default_font_checkbutton,
-        "font_button", &dlg->priv->font_button,
-        "font_hbox", &dlg->priv->font_hbox,
-
-        "schemes_treeview", &dlg->priv->schemes_treeview,
-        "install_scheme_button", &dlg->priv->install_scheme_button,
-        "uninstall_scheme_button", &dlg->priv->uninstall_scheme_button,
-
-        "plugin_manager_place_holder", &dlg->priv->plugin_manager_place_holder,
-
-        NULL);
-    g_free (file);
-
-    if (!ret)
-    {
-        gtk_widget_show (error_widget);
-        gtk_box_pack_start (GTK_BOX (gtk_dialog_get_content_area (GTK_DIALOG (dlg))), error_widget, TRUE, TRUE, 0);
-        return;
-    }
+    builder = gtk_builder_new ();
+    gtk_builder_add_objects_from_resource (builder, "/org/x/editor/ui/xed-preferences-dialog.ui", root_objects, NULL);
+    dlg->priv->notebook = GTK_WIDGET (gtk_builder_get_object (builder, "notebook"));
+    g_object_ref (dlg->priv->notebook);
+    dlg->priv->display_line_numbers_checkbutton = GTK_WIDGET (gtk_builder_get_object (builder, "display_line_numbers_checkbutton"));
+    dlg->priv->highlight_current_line_checkbutton = GTK_WIDGET (gtk_builder_get_object (builder, "highlight_current_line_checkbutton"));
+    dlg->priv->bracket_matching_checkbutton = GTK_WIDGET (gtk_builder_get_object (builder, "bracket_matching_checkbutton"));
+    dlg->priv->wrap_text_checkbutton = GTK_WIDGET (gtk_builder_get_object (builder, "wrap_text_checkbutton"));
+    dlg->priv->split_checkbutton = GTK_WIDGET (gtk_builder_get_object (builder, "split_checkbutton"));
+    dlg->priv->right_margin_checkbutton = GTK_WIDGET (gtk_builder_get_object (builder, "right_margin_checkbutton"));
+    dlg->priv->right_margin_position_spinbutton = GTK_WIDGET (gtk_builder_get_object (builder, "right_margin_position_spinbutton"));
+    dlg->priv->right_margin_position_hbox = GTK_WIDGET (gtk_builder_get_object (builder, "right_margin_position_hbox"));
+    dlg->priv->tabs_width_spinbutton = GTK_WIDGET (gtk_builder_get_object (builder, "tabs_width_spinbutton"));
+    dlg->priv->tabs_width_hbox = GTK_WIDGET (gtk_builder_get_object (builder, "tabs_width_hbox"));
+    dlg->priv->insert_spaces_checkbutton = GTK_WIDGET (gtk_builder_get_object (builder, "insert_spaces_checkbutton"));
+    dlg->priv->auto_indent_checkbutton = GTK_WIDGET (gtk_builder_get_object (builder, "auto_indent_checkbutton"));
+    dlg->priv->autosave_hbox = GTK_WIDGET (gtk_builder_get_object (builder, "autosave_hbox"));
+    dlg->priv->backup_copy_checkbutton = GTK_WIDGET (gtk_builder_get_object (builder, "backup_copy_checkbutton"));
+    dlg->priv->auto_save_checkbutton = GTK_WIDGET (gtk_builder_get_object (builder, "auto_save_checkbutton"));
+    dlg->priv->auto_save_spinbutton = GTK_WIDGET (gtk_builder_get_object (builder, "auto_save_spinbutton"));
+    dlg->priv->tab_scrolling_checkbutton = GTK_WIDGET (gtk_builder_get_object (builder, "tab_scrolling_checkbutton"));
+    dlg->priv->default_font_checkbutton = GTK_WIDGET (gtk_builder_get_object (builder, "default_font_checkbutton"));
+    dlg->priv->font_button = GTK_WIDGET (gtk_builder_get_object (builder, "font_button"));
+    dlg->priv->font_hbox = GTK_WIDGET (gtk_builder_get_object (builder, "font_hbox"));
+    dlg->priv->schemes_treeview = GTK_WIDGET (gtk_builder_get_object (builder, "schemes_treeview"));
+    dlg->priv->install_scheme_button = GTK_WIDGET (gtk_builder_get_object (builder, "install_scheme_button"));
+    dlg->priv->uninstall_scheme_button = GTK_WIDGET (gtk_builder_get_object (builder, "uninstall_scheme_button"));
+    dlg->priv->plugin_manager_place_holder = GTK_WIDGET (gtk_builder_get_object (builder, "plugin_manager_place_holder"));
+    g_object_unref (builder);
 
     gtk_box_pack_start (GTK_BOX (gtk_dialog_get_content_area (GTK_DIALOG (dlg))), dlg->priv->notebook, FALSE, FALSE, 0);
     g_object_unref (dlg->priv->notebook);

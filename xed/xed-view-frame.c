@@ -37,12 +37,9 @@
 
 #define SEARCH_POPUP_MARGIN 12
 
-#define XED_VIEW_FRAME_GET_PRIVATE(object)(G_TYPE_INSTANCE_GET_PRIVATE((object), XED_TYPE_VIEW_FRAME, XedViewFramePrivate))
-
 struct _XedViewFramePrivate
 {
     GtkWidget *view;
-    GtkWidget *overlay;
 
     GtkTextMark *start_mark;
 
@@ -68,7 +65,7 @@ typedef enum
     SEARCH_STATE_NOT_FOUND
 } SearchState;
 
-G_DEFINE_TYPE (XedViewFrame, xed_view_frame, GTK_TYPE_BOX)
+G_DEFINE_TYPE_WITH_PRIVATE (XedViewFrame, xed_view_frame, GTK_TYPE_OVERLAY)
 
 static void
 xed_view_frame_finalize (GObject *object)
@@ -389,32 +386,18 @@ search_entry_populate_popup (GtkEntry     *entry,
                       G_CALLBACK (search_enable_popdown), frame);
 }
 
-static GtkWidget *
-create_search_widget (XedViewFrame *frame)
+static void
+setup_search_widget (XedViewFrame *frame)
 {
-    GtkWidget *search_widget;
-    GtkWidget *hbox;
-    GtkStyleContext *context;
-
-    /* wrap it in a frame, so we can specify borders etc */
-    search_widget = gtk_frame_new (NULL);
-    context = gtk_widget_get_style_context (search_widget);
-    gtk_style_context_add_class (context, "xed-goto-line-box");
-    gtk_widget_show (search_widget);
-
-    hbox = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 0);
-    gtk_container_add (GTK_CONTAINER (search_widget), hbox);
-    gtk_widget_show (hbox);
-
-    g_signal_connect (hbox, "key-press-event",
+    g_signal_connect (frame->priv->revealer, "key-press-event",
                       G_CALLBACK (search_widget_key_press_event), frame);
 
     /* add entry */
-    frame->priv->search_entry = gtk_entry_new ();
-    gtk_widget_set_tooltip_text (frame->priv->search_entry, _("Line you want to move the cursor to"));
-    gtk_entry_set_icon_from_icon_name (GTK_ENTRY (frame->priv->search_entry),
-                                       GTK_ENTRY_ICON_PRIMARY, "go-jump-symbolic");
-    gtk_widget_show (frame->priv->search_entry);
+    // frame->priv->search_entry = gtk_entry_new ();
+    // gtk_widget_set_tooltip_text (frame->priv->search_entry, _("Line you want to move the cursor to"));
+    // gtk_entry_set_icon_from_icon_name (GTK_ENTRY (frame->priv->search_entry),
+    //                                    GTK_ENTRY_ICON_PRIMARY, "go-jump-symbolic");
+    // gtk_widget_show (frame->priv->search_entry);
 
     g_signal_connect (frame->priv->search_entry, "activate",
                       G_CALLBACK (search_entry_activate), frame);
@@ -426,10 +409,6 @@ create_search_widget (XedViewFrame *frame)
                                                              G_CALLBACK (search_init), frame);
     frame->priv->search_entry_focus_out_id = g_signal_connect (frame->priv->search_entry, "focus-out-event",
                                                                G_CALLBACK (search_entry_focus_out_event), frame);
-
-    gtk_container_add (GTK_CONTAINER (hbox), frame->priv->search_entry);
-
-    return search_widget;
 }
 
 static void
@@ -496,6 +475,7 @@ static void
 xed_view_frame_class_init (XedViewFrameClass *klass)
 {
     GObjectClass *object_class = G_OBJECT_CLASS (klass);
+    GtkWidgetClass *widget_class = GTK_WIDGET_CLASS (klass);
 
     object_class->finalize = xed_view_frame_finalize;
     object_class->dispose = xed_view_frame_dispose;
@@ -517,7 +497,10 @@ xed_view_frame_class_init (XedViewFrameClass *klass)
                                                           G_PARAM_READABLE |
                                                           G_PARAM_STATIC_STRINGS));
 
-    g_type_class_add_private (object_class, sizeof (XedViewFramePrivate));
+    gtk_widget_class_set_template_from_resource (widget_class, "/org/x/editor/ui/xed-view-frame.ui");
+    gtk_widget_class_bind_template_child_private (widget_class, XedViewFrame, view);
+    gtk_widget_class_bind_template_child_private (widget_class, XedViewFrame, revealer);
+    gtk_widget_class_bind_template_child_private (widget_class, XedViewFrame, search_entry);
 }
 
 static GMountOperation *
@@ -535,47 +518,23 @@ xed_view_frame_init (XedViewFrame *frame)
 {
     XedDocument *doc;
     GtkSourceFile *file;
-    GtkWidget *sw;
     GdkRGBA transparent = {0, 0, 0, 0};
 
-    frame->priv = XED_VIEW_FRAME_GET_PRIVATE (frame);
+    frame->priv = xed_view_frame_get_instance_private (frame);
 
-    gtk_orientable_set_orientation (GTK_ORIENTABLE (frame), GTK_ORIENTATION_VERTICAL);
+    gtk_widget_init_template (GTK_WIDGET (frame));
 
-    doc = xed_document_new ();
+    gtk_widget_override_background_color (GTK_WIDGET (frame), 0, &transparent);
+
+    doc = xed_view_frame_get_document (frame);
     file = xed_document_get_file (doc);
 
     gtk_source_file_set_mount_operation_factory (file, view_frame_mount_operation_factory, frame, NULL);
 
-    frame->priv->view = xed_view_new (doc);
-    gtk_widget_set_vexpand (frame->priv->view, TRUE);
-    gtk_widget_show (frame->priv->view);
+    setup_search_widget (frame);
 
-    g_object_unref (doc);
-
-    /* Create the scrolled window */
-    sw = gtk_scrolled_window_new (NULL, NULL);
-    gtk_container_add (GTK_CONTAINER (sw), frame->priv->view);
-    gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (sw), GTK_POLICY_AUTOMATIC, GTK_POLICY_AUTOMATIC);
-    gtk_widget_show (sw);
-
-    frame->priv->overlay = gtk_overlay_new ();
-    gtk_container_add (GTK_CONTAINER (frame->priv->overlay), sw);
-    gtk_widget_override_background_color (frame->priv->overlay, 0, &transparent);
-    gtk_widget_show (frame->priv->overlay);
-
-    gtk_box_pack_start (GTK_BOX (frame), frame->priv->overlay, TRUE, TRUE, 0);
-
-    /* Add revealer */
-    frame->priv->revealer = gtk_revealer_new ();
-    gtk_container_add (GTK_CONTAINER (frame->priv->revealer), create_search_widget (frame));
-    gtk_widget_show (frame->priv->revealer);
-    gtk_widget_set_halign (frame->priv->revealer, GTK_ALIGN_END);
-    gtk_widget_set_valign (frame->priv->revealer, GTK_ALIGN_START);
     gtk_widget_set_margin_end (frame->priv->revealer, SEARCH_POPUP_MARGIN);
     gtk_widget_set_margin_start (frame->priv->revealer, SEARCH_POPUP_MARGIN);
-
-    gtk_overlay_add_overlay (GTK_OVERLAY (frame->priv->overlay), frame->priv->revealer);
 }
 
 XedViewFrame *
