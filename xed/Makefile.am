@@ -54,6 +54,7 @@ NOINST_H_FILES =						\
 	xed-ui.h							\
 	xed-utils.h 						\
 	xed-view-frame.h 					\
+	xed-view-gutter-renderer.h 			\
 	xed-window-private.h
 
 INST_H_FILES =							\
@@ -133,6 +134,7 @@ libxed_c_files = 						\
 	xed-utils.c 						\
 	xed-view.c 							\
 	xed-view-frame.c 					\
+	xed-view-gutter-renderer.c 			\
 	xed-window.c
 
 libxed_la_SOURCES = 					\
