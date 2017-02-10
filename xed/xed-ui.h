@@ -2,7 +2,7 @@
  * xed-ui.h
  * This file is part of xed
  *
- * Copyright (C) 2005 - Paolo Maggi 
+ * Copyright (C) 2005 - Paolo Maggi
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,14 +16,14 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
- * Foundation, Inc., 51 Franklin St, Fifth Floor, 
+ * Foundation, Inc., 51 Franklin St, Fifth Floor,
  * Boston, MA 02110-1301, USA.
  */
- 
+
 /*
- * Modified by the xed Team, 2005. See the AUTHORS file for a 
- * list of people on the xed Team.  
- * See the ChangeLog files for a list of changes. 
+ * Modified by the xed Team, 2005. See the AUTHORS file for a
+ * list of people on the xed Team.
+ * See the ChangeLog files for a list of changes.
  *
  * $Id$
  */
@@ -67,7 +67,7 @@ static const GtkActionEntry xed_always_sensitive_menu_entries[] =
 	 N_("Open the xed manual"), G_CALLBACK (_xed_cmd_help_contents) },
 	{ "HelpAbout", "help-about-symbolic", N_("_About"), NULL,
 	 N_("About this application"), G_CALLBACK (_xed_cmd_help_about) },
-	
+
 	/* Fullscreen toolbar */
 	{ "LeaveFullscreen", "view-restore-symbolic", NULL,
 	  NULL, N_("Leave fullscreen mode"),
@@ -156,7 +156,10 @@ static const GtkToggleActionEntry xed_always_sensitive_toggle_menu_entries[] =
 	  G_CALLBACK (_xed_cmd_view_show_statusbar), TRUE },
 	{ "ViewFullscreen", GTK_STOCK_FULLSCREEN, NULL, "F11",
 	  N_("Edit text in fullscreen"),
-	  G_CALLBACK (_xed_cmd_view_toggle_fullscreen_mode), FALSE }
+	  G_CALLBACK (_xed_cmd_view_toggle_fullscreen_mode), FALSE },
+    { "ViewWordWrap", NULL, N_("_Word wrap"), NULL,
+      N_("Set word wrap for the current document"),
+      G_CALLBACK (_xed_cmd_view_toggle_word_wrap), FALSE }
 };
 
 /* separate group, should be always sensitive except when there are no panes */

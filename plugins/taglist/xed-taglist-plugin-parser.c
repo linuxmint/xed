@@ -44,7 +44,6 @@
 #include "xed-taglist-plugin-parser.h"
 
 /* we screwed up so we still look here for compatibility */
-#define USER_XED_TAGLIST_PLUGIN_LOCATION_LEGACY ".xed/plugins/taglist/"
 #define USER_XED_TAGLIST_PLUGIN_LOCATION "xed/taglist/"
 
 TagList* taglist = NULL;
@@ -603,32 +602,11 @@ TagList* create_taglist(const gchar* data_dir)
 	}
 
 	const gchar* home;
-	const gchar* envvar;
 
 	/* load user's taglists */
 
-	/* legacy dir */
 	home = g_get_home_dir ();
 	if (home != NULL)
-	{
-		pdir = g_build_filename (home,
-					 USER_XED_TAGLIST_PLUGIN_LOCATION_LEGACY,
-					 NULL);
-		parse_taglist_dir (pdir);
-		g_free (pdir);
-	}
-
-	/* Support old libmate env var */
-	envvar = g_getenv ("MATE22_USER_DIR");
-	if (envvar != NULL)
-	{
-		pdir = g_build_filename (envvar,
-					 USER_XED_TAGLIST_PLUGIN_LOCATION,
-					 NULL);
-		parse_taglist_dir (pdir);
-		g_free (pdir);
-	}
-	else if (home != NULL)
 	{
 		pdir = g_build_filename(home, ".config", USER_XED_TAGLIST_PLUGIN_LOCATION, NULL);
 		parse_taglist_dir(pdir);

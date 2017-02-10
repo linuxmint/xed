@@ -20,8 +20,8 @@ DOC_SOURCE_DIR=../../xed
 SCANGOBJ_OPTIONS=
 
 # Extra options to supply to gtkdoc-scan.
-# e.g. SCAN_OPTIONS=--deprecated-guards="GTK_DISABLE_DEPRECATED" 
-SCAN_OPTIONS=
+# e.g. SCAN_OPTIONS=--deprecated-guards="GTK_DISABLE_DEPRECATED"
+SCAN_OPTIONS = --rebuild-types
 
 # Extra options to supply to gtkdoc-mkdb.
 MKDB_OPTIONS=--sgml-mode --output-format=xml
@@ -41,15 +41,10 @@ CFILE_GLOB=$(top_srcdir)/xed/*.c
 # Header files to ignore when scanning (These are internal to xed).
 IGNORE_HFILES=		\
 	xed-commands.h			\
-	xed-document-loader.h			\
-	xed-document-saver.h			\
 	xed-documents-panel.h			\
-	xed-io-error-message-area.h		\
+	xed-io-error-info-bar.h		\
 	xed-languages-manager.h		\
-	xed-object-module.h			\
-	xed-plugin-manager.h			\
 	xed-plugins-engine.h			\
-	xed-prefs-manager-private.h		\
 	xed-session.h				\
 	xed-ui.h				\
 	xed-window-private.h			\
@@ -67,7 +62,6 @@ IGNORE_HFILES=		\
 # Do not parse them to make the docs.
 IGNORE_HFILES +=	\
 	bacon-message-connection.h		\
-	xedtextregion.h			\
 	sexy-icon-entry.h
 
 # Images to copy into HTML directory.
@@ -96,15 +90,7 @@ GTKDOC_LIBS=	\
 	$(top_builddir)/xed/libxed.la	\
 	$(XED_LIBS)
 
-if ENABLE_PYTHON
-GTKDOC_CFLAGS += \
-        $(NO_STRICT_ALIASING_CFLAGS)    \
-        $(PYGTK_CFLAGS)                 \
-        $(PYTHON_CFLAGS)                \
-        $(AM_CFLAGS)
-GTKDOC_LIBS += \
-	$(top_builddir)/plugin-loaders/python/bindings/xed.la
-endif
+MAINTAINERCLEANFILES = xed.types
 
 # This includes the standard gtk-doc make rules, copied by gtkdocize.
 include $(top_srcdir)/gtk-doc.make

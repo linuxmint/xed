@@ -16,8 +16,8 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
- * Foundation, Inc., 51 Franklin St, Fifth Floor, 
- * Boston, MA 02110-1301, USA. 
+ * Foundation, Inc., 51 Franklin St, Fifth Floor,
+ * Boston, MA 02110-1301, USA.
  */
 
 
@@ -28,26 +28,32 @@
 
 G_BEGIN_DECLS
 
-gchar		*xed_dirs_get_user_config_dir		(void);
+/* This function must be called before starting xed */
+void xed_dirs_init (void);
+/* This function must be called before exiting xed */
+void xed_dirs_shutdown (void);
 
-gchar		*xed_dirs_get_user_cache_dir		(void);
+const gchar *xed_dirs_get_user_config_dir (void);
 
-gchar		*xed_dirs_get_user_plugins_dir	(void);
+const gchar *xed_dirs_get_user_cache_dir (void);
 
-gchar		*xed_dirs_get_user_accels_file	(void);
+const gchar *xed_dirs_get_user_styles_dir (void);
 
-gchar		*xed_dirs_get_xed_data_dir		(void);
+const gchar *xed_dirs_get_user_plugins_dir (void);
 
-gchar		*xed_dirs_get_xed_locale_dir	(void);
+const gchar *xed_dirs_get_xed_data_dir (void);
 
-gchar		*xed_dirs_get_xed_lib_dir		(void);
+const gchar *xed_dirs_get_xed_locale_dir (void);
 
-gchar		*xed_dirs_get_xed_plugins_dir	(void);
+const gchar *xed_dirs_get_xed_lib_dir (void);
 
-gchar		*xed_dirs_get_xed_plugin_loaders_dir
-							(void);
+const gchar *xed_dirs_get_xed_plugins_dir (void);
 
-gchar		*xed_dirs_get_ui_file			(const gchar *file);
+const gchar *xed_dirs_get_xed_plugins_data_dir (void);
+
+const gchar *xed_dirs_get_binding_modules_dir (void);
+
+gchar *xed_dirs_get_ui_file (const gchar *file);
 
 G_END_DECLS
 

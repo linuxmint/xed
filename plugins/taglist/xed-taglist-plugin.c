@@ -1,6 +1,6 @@
 /*
  * xed-taglist-plugin.h
- * 
+ *
  * Copyright (C) 2002-2005 - Paolo Maggi
  *
  * This program is free software; you can redistribute it and/or modify
@@ -20,9 +20,9 @@
  */
 
 /*
- * Modified by the xed Team, 2002-2005. See the AUTHORS file for a 
- * list of people on the xed Team.  
- * See the ChangeLog files for a list of changes. 
+ * Modified by the xed Team, 2002-2005. See the AUTHORS file for a
+ * list of people on the xed Team.
+ * See the ChangeLog files for a list of changes.
  *
  * $Id$
  */
@@ -36,125 +36,190 @@
 #include "xed-taglist-plugin-parser.h"
 
 #include <glib/gi18n-lib.h>
-#include <gmodule.h>
 
-#include <xed/xed-plugin.h>
+#include <xed/xed-window.h>
+#include <xed/xed-window-activatable.h>
 #include <xed/xed-debug.h>
-
-#define WINDOW_DATA_KEY "XedTaglistPluginWindowData"
 
 #define XED_TAGLIST_PLUGIN_GET_PRIVATE(object)(G_TYPE_INSTANCE_GET_PRIVATE ((object), XED_TYPE_TAGLIST_PLUGIN, XedTaglistPluginPrivate))
 
 struct _XedTaglistPluginPrivate
 {
-	gpointer dummy;
+    XedWindow *window;
+
+    GtkWidget *taglist_panel;
 };
 
-XED_PLUGIN_REGISTER_TYPE_WITH_CODE (XedTaglistPlugin, xed_taglist_plugin,
-	xed_taglist_plugin_panel_register_type (module);
+static void xed_window_activatable_iface_init (XedWindowActivatableInterface *iface);
+
+G_DEFINE_DYNAMIC_TYPE_EXTENDED (XedTaglistPlugin,
+                                xed_taglist_plugin,
+                                PEAS_TYPE_EXTENSION_BASE,
+                                0,
+                                G_IMPLEMENT_INTERFACE_DYNAMIC (XED_TYPE_WINDOW_ACTIVATABLE,
+                                                               xed_window_activatable_iface_init) \
+                                                                                                  \
+                                _xed_taglist_plugin_panel_register_type (type_module);            \
 )
+
+enum
+{
+    PROP_0,
+    PROP_WINDOW
+};
 
 static void
 xed_taglist_plugin_init (XedTaglistPlugin *plugin)
 {
-	plugin->priv = XED_TAGLIST_PLUGIN_GET_PRIVATE (plugin);
+    plugin->priv = XED_TAGLIST_PLUGIN_GET_PRIVATE (plugin);
 
-	xed_debug_message (DEBUG_PLUGINS, "XedTaglistPlugin initializing");
+    xed_debug_message (DEBUG_PLUGINS, "XedTaglistPlugin initializing");
+}
+
+static void
+xed_taglist_plugin_dispose (GObject *object)
+{
+    XedTaglistPlugin *plugin = XED_TAGLIST_PLUGIN (object);
+
+    xed_debug_message (DEBUG_PLUGINS, "XedTaglistPlugin disposing");
+
+    g_clear_object (&plugin->priv->window);
+
+    G_OBJECT_CLASS (xed_taglist_plugin_parent_class)->dispose (object);
 }
 
 static void
 xed_taglist_plugin_finalize (GObject *object)
 {
-/*
-	XedTaglistPlugin *plugin = XED_TAGLIST_PLUGIN (object);
-*/
-	xed_debug_message (DEBUG_PLUGINS, "XedTaglistPlugin finalizing");
+    xed_debug_message (DEBUG_PLUGINS, "XedTaglistPlugin finalizing");
 
-	free_taglist ();
-	
-	G_OBJECT_CLASS (xed_taglist_plugin_parent_class)->finalize (object);
+    free_taglist ();
+
+    G_OBJECT_CLASS (xed_taglist_plugin_parent_class)->finalize (object);
 }
 
 static void
-impl_activate (XedPlugin *plugin,
-	       XedWindow *window)
+xed_taglist_plugin_activate (XedWindowActivatable *activatable)
 {
-	XedPanel *side_panel;
-	GtkWidget *taglist_panel;
-	gchar *data_dir;
-	
-	xed_debug (DEBUG_PLUGINS);
-	
-	g_return_if_fail (g_object_get_data (G_OBJECT (window), WINDOW_DATA_KEY) == NULL);
-	
-	side_panel = xed_window_get_side_panel (window);
-	
-	data_dir = xed_plugin_get_data_dir (plugin);
-	taglist_panel = xed_taglist_plugin_panel_new (window, data_dir);
-	g_free (data_dir);
-	
-	xed_panel_add_item_with_stock_icon (side_panel, 
-					      taglist_panel, 
-					      _("Tags"), 
-					      GTK_STOCK_ADD);
+    XedTaglistPluginPrivate *priv;
+    XedPanel *side_panel;
+    gchar *data_dir;
 
-	g_object_set_data (G_OBJECT (window), 
-			   WINDOW_DATA_KEY,
-			   taglist_panel);
+    xed_debug (DEBUG_PLUGINS);
+
+    priv = XED_TAGLIST_PLUGIN (activatable)->priv;
+    side_panel = xed_window_get_side_panel (priv->window);
+
+    data_dir = peas_extension_base_get_data_dir (PEAS_EXTENSION_BASE (activatable));
+    priv->taglist_panel = xed_taglist_plugin_panel_new (priv->window, data_dir);
+    g_free (data_dir);
+
+    xed_panel_add_item (side_panel, priv->taglist_panel, _("Tags"), "list-add");
 }
 
 static void
-impl_deactivate	(XedPlugin *plugin,
-		 XedWindow *window)
+xed_taglist_plugin_deactivate (XedWindowActivatable *activatable)
 {
-	XedPanel *side_panel;
-	gpointer data;
-	
-	xed_debug (DEBUG_PLUGINS);
-	
-	data = g_object_get_data (G_OBJECT (window), WINDOW_DATA_KEY);
-	g_return_if_fail (data != NULL);
-	
-	side_panel = xed_window_get_side_panel (window);
+    XedTaglistPluginPrivate *priv;
+    XedPanel *side_panel;
 
-	xed_panel_remove_item (side_panel, 
-			      	 GTK_WIDGET (data));
-			      
-	g_object_set_data (G_OBJECT (window), 
-			   WINDOW_DATA_KEY,
-			   NULL);
+    xed_debug (DEBUG_PLUGINS);
+
+    priv = XED_TAGLIST_PLUGIN (activatable)->priv;
+    side_panel = xed_window_get_side_panel (priv->window);
+
+    xed_panel_remove_item (side_panel, priv->taglist_panel);
 }
 
 static void
-impl_update_ui	(XedPlugin *plugin,
-		 XedWindow *window)
+xed_taglist_plugin_update_state (XedWindowActivatable *activatable)
 {
-	gpointer data;
-	XedView *view;
-	
-	xed_debug (DEBUG_PLUGINS);
-	
-	data = g_object_get_data (G_OBJECT (window), WINDOW_DATA_KEY);
-	g_return_if_fail (data != NULL);
-	
-	view = xed_window_get_active_view (window);
-	
-	gtk_widget_set_sensitive (GTK_WIDGET (data),
-				  (view != NULL) &&
-				  gtk_text_view_get_editable (GTK_TEXT_VIEW (view)));
+    XedTaglistPluginPrivate *priv;
+    XedView *view;
+
+    xed_debug (DEBUG_PLUGINS);
+
+    priv = XED_TAGLIST_PLUGIN (activatable)->priv;
+    view = xed_window_get_active_view (priv->window);
+
+    gtk_widget_set_sensitive (priv->taglist_panel,
+                              (view != NULL) &&
+                              gtk_text_view_get_editable (GTK_TEXT_VIEW (view)));
+}
+
+static void
+xed_taglist_plugin_set_property (GObject      *object,
+                                 guint         prop_id,
+                                 const GValue *value,
+                                 GParamSpec   *pspec)
+{
+    XedTaglistPlugin *plugin = XED_TAGLIST_PLUGIN (object);
+
+    switch (prop_id)
+    {
+        case PROP_WINDOW:
+            plugin->priv->window = XED_WINDOW (g_value_dup_object (value));
+            break;
+        default:
+            G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
+            break;
+    }
+}
+
+static void
+xed_taglist_plugin_get_property (GObject    *object,
+                                 guint       prop_id,
+                                 GValue     *value,
+                                 GParamSpec *pspec)
+{
+    XedTaglistPlugin *plugin = XED_TAGLIST_PLUGIN (object);
+
+    switch (prop_id)
+    {
+        case PROP_WINDOW:
+            g_value_set_object (value, plugin->priv->window);
+            break;
+        default:
+            G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
+            break;
+    }
 }
 
 static void
 xed_taglist_plugin_class_init (XedTaglistPluginClass *klass)
 {
-	GObjectClass *object_class = G_OBJECT_CLASS (klass);
-	XedPluginClass *plugin_class = XED_PLUGIN_CLASS (klass);
+    GObjectClass *object_class = G_OBJECT_CLASS (klass);
 
-	object_class->finalize = xed_taglist_plugin_finalize;
+    object_class->finalize = xed_taglist_plugin_finalize;
+    object_class->dispose = xed_taglist_plugin_dispose;
+    object_class->set_property = xed_taglist_plugin_set_property;
+    object_class->get_property = xed_taglist_plugin_get_property;
 
-	plugin_class->activate = impl_activate;
-	plugin_class->deactivate = impl_deactivate;
-	plugin_class->update_ui = impl_update_ui;
+    g_object_class_override_property (object_class, PROP_WINDOW, "window");
 
-	g_type_class_add_private (object_class, sizeof (XedTaglistPluginPrivate));
+    g_type_class_add_private (object_class, sizeof (XedTaglistPluginPrivate));
+}
+
+static void
+xed_taglist_plugin_class_finalize (XedTaglistPluginClass *klass)
+{
+    /* dummy function - used by G_DEFINE_DYNAMIC_TYPE_EXTENDED */
+}
+
+static void
+xed_window_activatable_iface_init (XedWindowActivatableInterface *iface)
+{
+    iface->activate = xed_taglist_plugin_activate;
+    iface->deactivate = xed_taglist_plugin_deactivate;
+    iface->update_state = xed_taglist_plugin_update_state;
+}
+
+G_MODULE_EXPORT void
+peas_register_types (PeasObjectModule *module)
+{
+    xed_taglist_plugin_register_type (G_TYPE_MODULE (module));
+
+    peas_object_module_register_extension_type (module,
+                                                XED_TYPE_WINDOW_ACTIVATABLE,
+                                                XED_TYPE_TAGLIST_PLUGIN);
 }

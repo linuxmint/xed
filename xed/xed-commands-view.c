@@ -135,6 +135,28 @@ _xed_cmd_view_toggle_fullscreen_mode (GtkAction *action,
 }
 
 void
+_xed_cmd_view_toggle_word_wrap (GtkAction *action,
+								XedWindow *window)
+{
+    XedView *view;
+    gboolean do_word_wrap;
+
+    xed_debug (DEBUG_COMMANDS);
+
+    do_word_wrap = gtk_toggle_action_get_active (GTK_TOGGLE_ACTION (action));
+    view = xed_window_get_active_view (window);
+
+    if (do_word_wrap)
+    {
+        gtk_text_view_set_wrap_mode (GTK_TEXT_VIEW (view), GTK_WRAP_WORD);
+    }
+    else
+    {
+        gtk_text_view_set_wrap_mode (GTK_TEXT_VIEW (view), GTK_WRAP_NONE);
+    }
+}
+
+void
 _xed_cmd_view_leave_fullscreen_mode (GtkAction *action,
 				       XedWindow *window)
 {

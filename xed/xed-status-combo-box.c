@@ -36,7 +36,7 @@ struct _XedStatusComboBoxPrivate
     GtkWidget *label;
     GtkWidget *item;
     GtkWidget *arrow;
-    
+
     GtkWidget *menu;
     GtkWidget *current_item;
 };
@@ -54,10 +54,10 @@ enum
 };
 
 /* Properties */
-enum 
+enum
 {
     PROP_0,
-    
+
     PROP_LABEL
 };
 
@@ -74,9 +74,9 @@ xed_status_combo_box_finalize (GObject *object)
 
 static void
 xed_status_combo_box_get_property (GObject    *object,
-                                     guint       prop_id,
-                                     GValue     *value,
-                                     GParamSpec *pspec)
+                                   guint       prop_id,
+                                   GValue     *value,
+                                   GParamSpec *pspec)
 {
     XedStatusComboBox *obj = XED_STATUS_COMBO_BOX (object);
 
@@ -93,9 +93,9 @@ xed_status_combo_box_get_property (GObject    *object,
 
 static void
 xed_status_combo_box_set_property (GObject      *object,
-                                     guint         prop_id,
-                                     const GValue *value,
-                                     GParamSpec   *pspec)
+                                   guint         prop_id,
+                                   const GValue *value,
+                                   GParamSpec   *pspec)
 {
     XedStatusComboBox *obj = XED_STATUS_COMBO_BOX (object);
 
@@ -117,9 +117,7 @@ xed_status_combo_box_destroy (GtkWidget *widget)
 
     if (combo->priv->menu)
     {
-        g_signal_handlers_disconnect_by_func (combo->priv->menu,
-                                              menu_deactivate,
-                                              combo);
+        g_signal_handlers_disconnect_by_func (combo->priv->menu, menu_deactivate, combo);
         gtk_menu_detach (GTK_MENU (combo->priv->menu));
     }
 
@@ -128,10 +126,10 @@ xed_status_combo_box_destroy (GtkWidget *widget)
 
 static void
 xed_status_combo_box_changed (XedStatusComboBox *combo,
-                                GtkMenuItem         *item)
+                              GtkMenuItem       *item)
 {
     const gchar *text;
-    
+
     text = g_object_get_data (G_OBJECT (item), COMBO_BOX_TEXT_DATA);
 
     if (text != NULL)
@@ -153,15 +151,15 @@ xed_status_combo_box_class_init (XedStatusComboBoxClass *klass)
           "-GtkButton-inner-border: 0;\n"
           "-GtkWidget-focus-line-width : 0;\n"
           "-GtkWidget-focus-padding : 0;\n"
-          "padding: 0;\n"
+          "padding: 2px;\n"
         "}";
-    
+
     object_class->finalize = xed_status_combo_box_finalize;
     object_class->get_property = xed_status_combo_box_get_property;
     object_class->set_property = xed_status_combo_box_set_property;
 
     widget_class->destroy = xed_status_combo_box_destroy;
-    
+
     klass->changed = xed_status_combo_box_changed;
 
     signals[CHANGED] =
@@ -172,7 +170,7 @@ xed_status_combo_box_class_init (XedStatusComboBoxClass *klass)
                                        changed), NULL, NULL,
                       g_cclosure_marshal_VOID__OBJECT, G_TYPE_NONE, 1,
                       GTK_TYPE_MENU_ITEM);
-              
+
     g_object_class_install_property (object_class, PROP_LABEL,
                                      g_param_spec_string ("label",
                                                           "LABEL",
@@ -189,22 +187,22 @@ xed_status_combo_box_class_init (XedStatusComboBoxClass *klass)
 }
 
 static void
-menu_deactivate (GtkMenu             *menu,
+menu_deactivate (GtkMenu           *menu,
                  XedStatusComboBox *combo)
 {
     gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (combo->priv->button), FALSE);
 }
 
 static void
-menu_position_func (GtkMenu             *menu,
-                    gint                *x,
-                    gint                *y,
-                    gboolean            *push_in,
+menu_position_func (GtkMenu           *menu,
+                    gint              *x,
+                    gint              *y,
+                    gboolean          *push_in,
                     XedStatusComboBox *combo)
 {
     GtkRequisition request;
     GtkAllocation allocation;
-    
+
     *push_in = FALSE;
 
     gtk_widget_get_preferred_size (gtk_widget_get_toplevel (GTK_WIDGET (menu)), &request, NULL);
@@ -212,28 +210,27 @@ menu_position_func (GtkMenu             *menu,
     /* get the origin... */
     gdk_window_get_origin (gtk_widget_get_window (GTK_WIDGET (combo)), x, y);
     gtk_widget_get_allocation (GTK_WIDGET (combo), &allocation);
-    
+
     /* make the menu as wide as the widget */
     if (request.width < allocation.width)
     {
         gtk_widget_set_size_request (GTK_WIDGET (menu), allocation.width, -1);
     }
-    
+
     /* position it above the widget */
     *y -= request.height;
 }
 
 static void
 show_menu (XedStatusComboBox *combo,
-           guint                button,
-           guint32              time)
+           guint              button,
+           guint32            time)
 {
     GtkRequisition request;
     gint max_height;
     GtkAllocation allocation;
 
-    gtk_widget_get_preferred_size (combo->priv->menu,
-                                   &request, NULL);
+    gtk_widget_get_preferred_size (combo->priv->menu, &request, NULL);
 
     /* do something relative to our own height here, maybe we can do better */
     gtk_widget_get_allocation (GTK_WIDGET (combo), &allocation);
@@ -257,8 +254,7 @@ show_menu (XedStatusComboBox *combo,
 
     if (combo->priv->current_item)
     {
-        gtk_menu_shell_select_item (GTK_MENU_SHELL (combo->priv->menu),
-                        combo->priv->current_item);
+        gtk_menu_shell_select_item (GTK_MENU_SHELL (combo->priv->menu), combo->priv->current_item);
     }
 }
 
@@ -274,8 +270,8 @@ menu_detached (GtkWidget *widget,
 }
 
 static gboolean
-button_press_event (GtkWidget           *widget,
-                    GdkEventButton      *event,
+button_press_event (GtkWidget         *widget,
+                    GdkEventButton    *event,
                     XedStatusComboBox *combo)
 {
     if (event->type == GDK_BUTTON_PRESS && event->button == 1)
@@ -310,12 +306,12 @@ xed_status_combo_box_init (XedStatusComboBox *self)
     GtkStyleContext *context;
 
     self->priv = XED_STATUS_COMBO_BOX_GET_PRIVATE (self);
-    
+
     gtk_event_box_set_visible_window (GTK_EVENT_BOX (self), TRUE);
 
     self->priv->frame = gtk_frame_new (NULL);
     gtk_widget_show (self->priv->frame);
-    
+
     self->priv->button = gtk_toggle_button_new ();
     gtk_button_set_relief (GTK_BUTTON (self->priv->button), GTK_RELIEF_NONE);
     gtk_widget_show (self->priv->button);
@@ -324,48 +320,42 @@ xed_status_combo_box_init (XedStatusComboBox *self)
 
     self->priv->hbox = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 3);
     gtk_widget_show (self->priv->hbox);
-    
+
     gtk_container_add (GTK_CONTAINER (self), self->priv->frame);
     gtk_container_add (GTK_CONTAINER (self->priv->frame), self->priv->button);
     gtk_container_add (GTK_CONTAINER (self->priv->button), self->priv->hbox);
-    
+
     self->priv->label = gtk_label_new ("");
     gtk_widget_show (self->priv->label);
-    
+
     gtk_label_set_single_line_mode (GTK_LABEL (self->priv->label), TRUE);
     gtk_widget_set_halign (GTK_WIDGET (self->priv->label), GTK_ALIGN_START);
 
     gtk_box_pack_start (GTK_BOX (self->priv->hbox), self->priv->label, FALSE, TRUE, 0);
-    
+
     self->priv->item = gtk_label_new ("");
     gtk_widget_show (self->priv->item);
-    
+
     gtk_label_set_single_line_mode (GTK_LABEL (self->priv->item), TRUE);
     gtk_widget_set_halign (self->priv->item, GTK_ALIGN_START);
 
     gtk_box_pack_start (GTK_BOX (self->priv->hbox), self->priv->item, TRUE, TRUE, 0);
-    
-    self->priv->arrow = gtk_arrow_new (GTK_ARROW_DOWN, GTK_SHADOW_NONE);
+
+    self->priv->arrow = gtk_image_new_from_icon_name ("pan-down-symbolic", GTK_ICON_SIZE_MENU);
     gtk_widget_show (self->priv->arrow);
 
     gtk_widget_set_halign (self->priv->arrow, GTK_ALIGN_CENTER);
     gtk_widget_set_valign (self->priv->arrow, GTK_ALIGN_CENTER);
 
     gtk_box_pack_start (GTK_BOX (self->priv->hbox), self->priv->arrow, FALSE, TRUE, 0);
-    
-    self->priv->menu = gtk_menu_new ();
-    gtk_menu_attach_to_widget (GTK_MENU (self->priv->menu),
-                               GTK_WIDGET (self),
-                               menu_detached);
 
-    g_signal_connect (self->priv->button, 
-                      "button-press-event", 
-                      G_CALLBACK (button_press_event), 
-                      self);
-    g_signal_connect (self->priv->menu,
-                      "deactivate",
-                      G_CALLBACK (menu_deactivate),
-                      self);
+    self->priv->menu = gtk_menu_new ();
+    gtk_menu_attach_to_widget (GTK_MENU (self->priv->menu), GTK_WIDGET (self), menu_detached);
+
+    g_signal_connect (self->priv->button, "button-press-event",
+                      G_CALLBACK (button_press_event), self);
+    g_signal_connect (self->priv->menu, "deactivate",
+                      G_CALLBACK (menu_deactivate), self);
 
     context = gtk_widget_get_style_context (GTK_WIDGET (self->priv->button));
     gtk_style_context_add_provider (context,
@@ -395,13 +385,13 @@ xed_status_combo_box_new (const gchar *label)
  * @label: (allow-none):
  */
 void
-xed_status_combo_box_set_label (XedStatusComboBox *combo, 
-                                  const gchar         *label)
+xed_status_combo_box_set_label (XedStatusComboBox *combo,
+                                const gchar       *label)
 {
     gchar *text;
 
     g_return_if_fail (XED_IS_STATUS_COMBO_BOX (combo));
-    
+
     text = g_strconcat ("  ", label, ": ", NULL);
     gtk_label_set_markup (GTK_LABEL (combo->priv->label), text);
     g_free (text);
@@ -416,7 +406,7 @@ xed_status_combo_box_get_label (XedStatusComboBox *combo)
 }
 
 static void
-item_activated (GtkMenuItem         *item,
+item_activated (GtkMenuItem       *item,
                 XedStatusComboBox *combo)
 {
     xed_status_combo_box_set_item (combo, item);
@@ -430,29 +420,35 @@ item_activated (GtkMenuItem         *item,
  */
 void
 xed_status_combo_box_add_item (XedStatusComboBox *combo,
-                                 GtkMenuItem         *item,
-                                 const gchar         *text)
+                               GtkMenuItem       *item,
+                               const gchar       *text)
 {
     g_return_if_fail (XED_IS_STATUS_COMBO_BOX (combo));
     g_return_if_fail (GTK_IS_MENU_ITEM (item));
 
     gtk_menu_shell_append (GTK_MENU_SHELL (combo->priv->menu), GTK_WIDGET (item));
-    
+
     xed_status_combo_box_set_item_text (combo, item, text);
     g_signal_connect (item, "activate", G_CALLBACK (item_activated), combo);
 }
 
 void
 xed_status_combo_box_remove_item (XedStatusComboBox *combo,
-                                    GtkMenuItem         *item)
+                                  GtkMenuItem       *item)
 {
     g_return_if_fail (XED_IS_STATUS_COMBO_BOX (combo));
     g_return_if_fail (GTK_IS_MENU_ITEM (item));
 
-    gtk_container_remove (GTK_CONTAINER (combo->priv->menu),
-                          GTK_WIDGET (item));
+    gtk_container_remove (GTK_CONTAINER (combo->priv->menu), GTK_WIDGET (item));
 }
 
+
+/**
+ * xed_status_combo_box_get_items:
+ * @combo:
+ *
+ * Returns: (element-type Gtk.Widget) (transfer container):
+ */
 GList *
 xed_status_combo_box_get_items (XedStatusComboBox *combo)
 {
@@ -463,15 +459,15 @@ xed_status_combo_box_get_items (XedStatusComboBox *combo)
 
 const gchar *
 xed_status_combo_box_get_item_text (XedStatusComboBox *combo,
-                                      GtkMenuItem     *item)
+                                    GtkMenuItem       *item)
 {
     const gchar *ret = NULL;
-    
+
     g_return_val_if_fail (XED_IS_STATUS_COMBO_BOX (combo), NULL);
     g_return_val_if_fail (GTK_IS_MENU_ITEM (item), NULL);
-    
+
     ret = g_object_get_data (G_OBJECT (item), COMBO_BOX_TEXT_DATA);
-    
+
     return ret;
 }
 
@@ -481,23 +477,21 @@ xed_status_combo_box_get_item_text (XedStatusComboBox *combo,
  * @item:
  * @text: (allow-none):
  */
-void 
+void
 xed_status_combo_box_set_item_text (XedStatusComboBox *combo,
-                                      GtkMenuItem     *item,
-                                      const gchar         *text)
+                                    GtkMenuItem       *item,
+                                    const gchar       *text)
 {
     g_return_if_fail (XED_IS_STATUS_COMBO_BOX (combo));
     g_return_if_fail (GTK_IS_MENU_ITEM (item));
 
-    g_object_set_data_full (G_OBJECT (item), 
-                            COMBO_BOX_TEXT_DATA,
-                            g_strdup (text),
-                            (GDestroyNotify)g_free);
+    g_object_set_data_full (G_OBJECT (item), COMBO_BOX_TEXT_DATA,
+                            g_strdup (text), (GDestroyNotify)g_free);
 }
 
 void
 xed_status_combo_box_set_item (XedStatusComboBox *combo,
-                                 GtkMenuItem         *item)
+                               GtkMenuItem       *item)
 {
     g_return_if_fail (XED_IS_STATUS_COMBO_BOX (combo));
     g_return_if_fail (GTK_IS_MENU_ITEM (item));
@@ -509,7 +503,7 @@ GtkLabel *
 xed_status_combo_box_get_item_label (XedStatusComboBox *combo)
 {
     g_return_val_if_fail (XED_IS_STATUS_COMBO_BOX (combo), NULL);
-    
+
     return GTK_LABEL (combo->priv->item);
 }
 

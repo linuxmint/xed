@@ -39,26 +39,26 @@
 #include "xed-statusbar.h"
 
 #define XED_STATUSBAR_GET_PRIVATE(object)(G_TYPE_INSTANCE_GET_PRIVATE ((object),\
-                                            XED_TYPE_STATUSBAR,\
-                                            XedStatusbarPrivate))
+                                          XED_TYPE_STATUSBAR,\
+                                          XedStatusbarPrivate))
 
 struct _XedStatusbarPrivate
 {
-    GtkWidget     *overwrite_mode_label;
-    GtkWidget     *cursor_position_label;
+    GtkWidget *overwrite_mode_label;
+    GtkWidget *cursor_position_label;
 
-    GtkWidget     *state_frame;
-    GtkWidget     *load_image;
-    GtkWidget     *save_image;
-    GtkWidget     *print_image;
+    GtkWidget *state_frame;
+    GtkWidget *load_image;
+    GtkWidget *save_image;
+    GtkWidget *print_image;
 
-    GtkWidget     *error_frame;
-    GtkWidget     *error_event_box;
+    GtkWidget *error_frame;
+    GtkWidget *error_event_box;
 
     /* tmp flash timeout data */
-    guint          flash_timeout;
-    guint          flash_context_id;
-    guint          flash_message_id;
+    guint flash_timeout;
+    guint flash_context_id;
+    guint flash_message_id;
 };
 
 G_DEFINE_TYPE(XedStatusbar, xed_statusbar, GTK_TYPE_STATUSBAR)
@@ -114,24 +114,18 @@ xed_statusbar_init (XedStatusbar *statusbar)
     gtk_widget_set_margin_bottom (GTK_WIDGET (statusbar), 0);
 
     statusbar->priv->overwrite_mode_label = gtk_label_new (NULL);
-    gtk_label_set_width_chars (GTK_LABEL (statusbar->priv->overwrite_mode_label),
-                               get_overwrite_mode_length ());
+    gtk_label_set_width_chars (GTK_LABEL (statusbar->priv->overwrite_mode_label), get_overwrite_mode_length ());
     gtk_widget_show (statusbar->priv->overwrite_mode_label);
-    gtk_box_pack_end (GTK_BOX (statusbar),
-                      statusbar->priv->overwrite_mode_label,
-                      FALSE, TRUE, 0);
+    gtk_box_pack_end (GTK_BOX (statusbar), statusbar->priv->overwrite_mode_label, FALSE, TRUE, 0);
+    gtk_widget_set_margin_end (GTK_WIDGET (statusbar->priv->overwrite_mode_label), 6);
 
     statusbar->priv->cursor_position_label = gtk_label_new (NULL);
-    gtk_label_set_width_chars (GTK_LABEL (statusbar->priv->cursor_position_label),
-                               CURSOR_POSITION_LABEL_WIDTH_CHARS);
+    gtk_label_set_width_chars (GTK_LABEL (statusbar->priv->cursor_position_label), CURSOR_POSITION_LABEL_WIDTH_CHARS);
     gtk_widget_show (statusbar->priv->cursor_position_label);
-    gtk_box_pack_end (GTK_BOX (statusbar),
-                      statusbar->priv->cursor_position_label,
-                      FALSE, TRUE, 0);
+    gtk_box_pack_end (GTK_BOX (statusbar), statusbar->priv->cursor_position_label, FALSE, TRUE, 0);
 
     statusbar->priv->state_frame = gtk_frame_new (NULL);
-    gtk_frame_set_shadow_type (GTK_FRAME (statusbar->priv->state_frame),
-                               GTK_SHADOW_IN);
+    gtk_frame_set_shadow_type (GTK_FRAME (statusbar->priv->state_frame), GTK_SHADOW_IN);
 
     hbox = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 0);
     gtk_container_add (GTK_CONTAINER (statusbar->priv->state_frame), hbox);
@@ -142,47 +136,32 @@ xed_statusbar_init (XedStatusbar *statusbar)
 
     gtk_widget_show (hbox);
 
-    gtk_box_pack_start (GTK_BOX (hbox),
-                        statusbar->priv->load_image,
-                        FALSE, TRUE, 4);
-    gtk_box_pack_start (GTK_BOX (hbox),
-                        statusbar->priv->save_image,
-                        FALSE, TRUE, 4);
-    gtk_box_pack_start (GTK_BOX (hbox),
-                        statusbar->priv->print_image,
-                        FALSE, TRUE, 4);
+    gtk_box_pack_start (GTK_BOX (hbox), statusbar->priv->load_image, FALSE, TRUE, 4);
+    gtk_box_pack_start (GTK_BOX (hbox), statusbar->priv->save_image, FALSE, TRUE, 4);
+    gtk_box_pack_start (GTK_BOX (hbox), statusbar->priv->print_image, FALSE, TRUE, 4);
 
-    gtk_box_pack_start (GTK_BOX (statusbar),
-                        statusbar->priv->state_frame,
-                        FALSE, TRUE, 0);
+    gtk_box_pack_start (GTK_BOX (statusbar), statusbar->priv->state_frame, FALSE, TRUE, 0);
 
     statusbar->priv->error_frame = gtk_frame_new (NULL);
     gtk_frame_set_shadow_type (GTK_FRAME (statusbar->priv->error_frame), GTK_SHADOW_IN);
 
     error_image = gtk_image_new_from_icon_name ("dialog-error", GTK_ICON_SIZE_MENU);
 
-    gtk_widget_set_margin_left (error_image, 4);
-    gtk_widget_set_margin_right (error_image, 4);
+    gtk_widget_set_margin_start (error_image, 4);
+    gtk_widget_set_margin_end (error_image, 4);
     gtk_widget_set_margin_top (error_image, 0);
     gtk_widget_set_margin_bottom (error_image, 0);
 
     statusbar->priv->error_event_box = gtk_event_box_new ();
-    gtk_event_box_set_visible_window  (GTK_EVENT_BOX (statusbar->priv->error_event_box),
-                                       FALSE);
+    gtk_event_box_set_visible_window  (GTK_EVENT_BOX (statusbar->priv->error_event_box), FALSE);
     gtk_widget_show (statusbar->priv->error_event_box);
 
-    gtk_container_add (GTK_CONTAINER (statusbar->priv->error_frame),
-                       statusbar->priv->error_event_box);
-    gtk_container_add (GTK_CONTAINER (statusbar->priv->error_event_box),
-                       error_image);
+    gtk_container_add (GTK_CONTAINER (statusbar->priv->error_frame), statusbar->priv->error_event_box);
+    gtk_container_add (GTK_CONTAINER (statusbar->priv->error_event_box), error_image);
 
-    gtk_box_pack_start (GTK_BOX (statusbar),
-                        statusbar->priv->error_frame,
-                        FALSE, TRUE, 0);
+    gtk_box_pack_start (GTK_BOX (statusbar), statusbar->priv->error_frame, FALSE, TRUE, 0);
 
-    gtk_box_reorder_child (GTK_BOX (statusbar),
-                           statusbar->priv->error_frame,
-                           0);
+    gtk_style_context_add_class (gtk_widget_get_style_context GTK_WIDGET (statusbar), "xed-statusbar");
 }
 
 /**
@@ -207,7 +186,7 @@ xed_statusbar_new (void)
  **/
 void
 xed_statusbar_set_overwrite (XedStatusbar *statusbar,
-                               gboolean        overwrite)
+                             gboolean      overwrite)
 {
     gchar *msg;
 
@@ -238,8 +217,8 @@ xed_statusbar_clear_overwrite (XedStatusbar *statusbar)
  **/
 void
 xed_statusbar_set_cursor_position (XedStatusbar *statusbar,
-                                     gint            line,
-                                     gint            col)
+                                   gint          line,
+                                   gint          col)
 {
     gchar *msg = NULL;
 
@@ -280,8 +259,8 @@ remove_message_timeout (XedStatusbar *statusbar)
  */
 void
 xed_statusbar_flash_message (XedStatusbar *statusbar,
-                               guint           context_id,
-                               const gchar    *format, ...)
+                             guint         context_id,
+                             const gchar  *format, ...)
 {
     const guint32 flash_length = 3000; /* three seconds */
     va_list args;
@@ -306,9 +285,7 @@ xed_statusbar_flash_message (XedStatusbar *statusbar,
     }
 
     statusbar->priv->flash_context_id = context_id;
-    statusbar->priv->flash_message_id = gtk_statusbar_push (GTK_STATUSBAR (statusbar),
-                                                            context_id,
-                                                            msg);
+    statusbar->priv->flash_message_id = gtk_statusbar_push (GTK_STATUSBAR (statusbar), context_id, msg);
 
     statusbar->priv->flash_timeout = g_timeout_add (flash_length,
                                                     (GSourceFunc) remove_message_timeout,
@@ -319,8 +296,8 @@ xed_statusbar_flash_message (XedStatusbar *statusbar,
 
 void
 xed_statusbar_set_window_state (XedStatusbar   *statusbar,
-                                  XedWindowState  state,
-                                  gint              num_of_errors)
+                                XedWindowState  state,
+                                gint            num_of_errors)
 {
     g_return_if_fail (XED_IS_STATUSBAR (statusbar));
 
@@ -355,8 +332,7 @@ xed_statusbar_set_window_state (XedStatusbar   *statusbar,
                                num_of_errors),
                                num_of_errors);
 
-        gtk_widget_set_tooltip_text (statusbar->priv->error_event_box,
-                         tip);
+        gtk_widget_set_tooltip_text (statusbar->priv->error_event_box, tip);
         g_free (tip);
 
         gtk_widget_show (statusbar->priv->error_frame);

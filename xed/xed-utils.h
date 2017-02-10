@@ -18,14 +18,14 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
- * Foundation, Inc., 51 Franklin St, Fifth Floor, 
+ * Foundation, Inc., 51 Franklin St, Fifth Floor,
  * Boston, MA 02110-1301, USA.
  */
- 
+
 /*
- * Modified by the xed Team, 1998-2005. See the AUTHORS file for a 
- * list of people on the xed Team.  
- * See the ChangeLog files for a list of changes. 
+ * Modified by the xed Team, 1998-2005. See the AUTHORS file for a
+ * list of people on the xed Team.
+ * See the ChangeLog files for a list of changes.
  *
  * $Id$
  */
@@ -36,7 +36,7 @@
 #include <glib.h>
 #include <gtk/gtk.h>
 #include <atk/atk.h>
-#include <xed/xed-encodings.h>
+#include <gtksourceview/gtksource.h>
 
 G_BEGIN_DECLS
 
@@ -48,108 +48,93 @@ G_BEGIN_DECLS
 
 enum { XED_ALL_WORKSPACES = 0xffffffff };
 
-gboolean	 xed_utils_uri_has_writable_scheme	(const gchar *uri);
-gboolean	 xed_utils_uri_has_file_scheme	(const gchar *uri);
+void xed_utils_menu_position_under_widget (GtkMenu  *menu,
+                                           gint     *x,
+                                           gint     *y,
+                                           gboolean *push_in,
+                                           gpointer  user_data);
 
-void		 xed_utils_menu_position_under_widget (GtkMenu  *menu,
-							 gint     *x,
-							 gint     *y,
-							 gboolean *push_in,
-							 gpointer  user_data);
+void xed_utils_menu_position_under_tree_view (GtkMenu  *menu,
+                                              gint     *x,
+                                              gint     *y,
+                                              gboolean *push_in,
+                                              gpointer  user_data);
 
-void		 xed_utils_menu_position_under_tree_view
-							(GtkMenu  *menu,
-							 gint     *x,
-							 gint     *y,
-							 gboolean *push_in,
-							 gpointer  user_data);
+gchar *xed_gdk_color_to_string (GdkColor color);
 
-gchar		*xed_gdk_color_to_string		(GdkColor color);
+gchar *xed_utils_escape_underscores (const gchar *text,
+                                     gssize       length);
 
-GtkWidget	*xed_gtk_button_new_with_stock_icon	(const gchar *label,
-							 const gchar *stock_id);
+gchar *xed_utils_str_middle_truncate (const gchar *string,
+                                      guint        truncate_length);
 
-GtkWidget	*xed_dialog_add_button		(GtkDialog   *dialog,
-							 const gchar *text,
-							 const gchar *stock_id, 
-							 gint         response_id);
+gchar *xed_utils_str_end_truncate (const gchar *string,
+                                   guint        truncate_length);
 
-gchar		*xed_utils_escape_underscores		(const gchar *text,
-							 gssize       length);
+gboolean g_utf8_caselessnmatch (const char *s1,
+                                const char *s2,
+                                gssize      n1,
+                                gssize      n2);
 
-gchar		*xed_utils_str_middle_truncate	(const gchar *string, 
-							 guint        truncate_length);
+void xed_utils_set_atk_name_description (GtkWidget   *widget,
+                                         const gchar *name,
+                                         const gchar *description);
 
-gchar		*xed_utils_str_end_truncate		(const gchar *string,
-							 guint        truncate_length);
+void xed_utils_set_atk_relation (GtkWidget       *obj1,
+                                 GtkWidget       *obj2,
+                                 AtkRelationType  rel_type);
 
-gboolean	 g_utf8_caselessnmatch			(const char *s1,
-							 const char *s2,
-							 gssize n1,
-							 gssize n2);
+void xed_warning (GtkWindow   *parent,
+                  const gchar *format,
+                  ...) G_GNUC_PRINTF(2, 3);
 
-void		 xed_utils_set_atk_name_description	(GtkWidget  *widget,
-							 const gchar *name,
-							 const gchar *description);
-
-void		 xed_utils_set_atk_relation		(GtkWidget       *obj1,
-							 GtkWidget       *obj2,
-							 AtkRelationType  rel_type);
-
-gboolean	 xed_utils_uri_exists			(const gchar* text_uri);
-
-gchar		*xed_utils_escape_search_text		(const gchar *text);
-
-gchar		*xed_utils_unescape_search_text	(const gchar *text);
-
-void		 xed_warning				(GtkWindow  *parent,
-							 const gchar *format,
-							 ...) G_GNUC_PRINTF(2, 3);
-
-gchar		*xed_utils_make_valid_utf8		(const char *name);
+gchar *xed_utils_make_valid_utf8 (const char *name);
 
 /* Note that this function replace home dir with ~ */
-gchar		*xed_utils_uri_get_dirname		(const char *uri);
+gchar *xed_utils_uri_get_dirname (const char *uri);
 
-gchar		*xed_utils_location_get_dirname_for_display
-							(GFile *location);
+gchar *xed_utils_location_get_dirname_for_display (GFile *location);
 
-gchar		*xed_utils_replace_home_dir_with_tilde (const gchar *uri);
+gchar *xed_utils_replace_home_dir_with_tilde (const gchar *uri);
 
-guint		 xed_utils_get_current_workspace	(GdkScreen *screen);
+guint xed_utils_get_current_workspace (GdkScreen *screen);
 
-guint		 xed_utils_get_window_workspace	(GtkWindow *gtkwindow);
+guint xed_utils_get_window_workspace (GtkWindow *gtkwindow);
 
-void		 xed_utils_get_current_viewport	(GdkScreen    *screen,
-							 gint         *x,
-							 gint         *y);
+void xed_utils_get_current_viewport (GdkScreen    *screen,
+                                     gint         *x,
+                                     gint         *y);
 
-gboolean	 xed_utils_is_valid_uri		(const gchar *uri);
+gboolean xed_utils_is_valid_location (GFile *location);
 
-gboolean	 xed_utils_get_ui_objects		(const gchar  *filename,
-                                                         gchar       **root_objects,
-							 GtkWidget   **error_widget,
-							 const gchar  *object_name,
-							 ...) G_GNUC_NULL_TERMINATED;
+gboolean xed_utils_get_ui_objects (const gchar  *filename,
+                                   gchar       **root_objects,
+                                   GtkWidget   **error_widget,
+                                   const gchar  *object_name,
+                                   ...) G_GNUC_NULL_TERMINATED;
 
-gboolean         xed_utils_file_has_parent            (GFile *gfile);
+gboolean xed_utils_file_has_parent (GFile *gfile);
 
 /* Return NULL if str is not a valid URI and/or filename */
-gchar		*xed_utils_make_canonical_uri_from_shell_arg
-							(const gchar *str);
-		
-gchar		*xed_utils_uri_for_display 	        (const gchar *uri);
-gchar           *xed_utils_basename_for_display	(const gchar *uri);
-gboolean	 xed_utils_decode_uri 		(const gchar *uri,
-							 gchar **scheme,
-							 gchar **user,
-							 gchar **port,
-							 gchar **host,
-							 gchar **path);
+gchar *xed_utils_make_canonical_uri_from_shell_arg (const gchar *str);
+
+gchar *xed_utils_basename_for_display (GFile *location);
+
+gboolean xed_utils_decode_uri (const gchar  *uri,
+                               gchar       **scheme,
+                               gchar       **user,
+                               gchar       **port,
+                               gchar       **host,
+                               gchar       **path);
 
 
 /* Turns data from a drop into a list of well formatted uris */
-gchar 	       **xed_utils_drop_get_uris		(GtkSelectionData *selection_data);
+gchar **xed_utils_drop_get_uris (GtkSelectionData *selection_data);
+
+/* Private */
+GSList *_xed_utils_encoding_strv_to_list (const gchar * const *enc_str);
+
+gchar **_xed_utils_encoding_list_to_strv (const GSList *enc_list);
 
 G_END_DECLS
 

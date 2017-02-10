@@ -2,7 +2,7 @@
  * xed-taglist-plugin-panel.h
  * This file is part of xed
  *
- * Copyright (C) 2005 - Paolo Maggi 
+ * Copyright (C) 2005 - Paolo Maggi
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,14 +16,14 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
- * Foundation, Inc., 51 Franklin St, Fifth Floor, 
+ * Foundation, Inc., 51 Franklin St, Fifth Floor,
  * Boston, MA 02110-1301, USA.
  */
- 
+
 /*
- * Modified by the xed Team, 2005. See the AUTHORS file for a 
- * list of people on the xed Team.  
- * See the ChangeLog files for a list of changes. 
+ * Modified by the xed Team, 2005. See the AUTHORS file for a
+ * list of people on the xed Team.
+ * See the ChangeLog files for a list of changes.
  *
  * $Id$
  */
@@ -56,12 +56,12 @@ typedef struct _XedTaglistPluginPanelPrivate XedTaglistPluginPanelPrivate;
  */
 typedef struct _XedTaglistPluginPanel XedTaglistPluginPanel;
 
-struct _XedTaglistPluginPanel 
+struct _XedTaglistPluginPanel
 {
-	GtkBox vbox;
+    GtkBox vbox;
 
-	/*< private > */
-	XedTaglistPluginPanelPrivate *priv;
+    /*< private > */
+    XedTaglistPluginPanelPrivate *priv;
 };
 
 /*
@@ -69,20 +69,20 @@ struct _XedTaglistPluginPanel
  */
 typedef struct _XedTaglistPluginPanelClass XedTaglistPluginPanelClass;
 
-struct _XedTaglistPluginPanelClass 
+struct _XedTaglistPluginPanelClass
 {
-	GtkBoxClass parent_class;
+    GtkBoxClass parent_class;
 };
 
 /*
  * Public methods
  */
-GType		 xed_taglist_plugin_panel_register_type	(GTypeModule *module);
-							
-GType 		 xed_taglist_plugin_panel_get_type		(void) G_GNUC_CONST;
+void         _xed_taglist_plugin_panel_register_type    (GTypeModule *module);
 
-GtkWidget	*xed_taglist_plugin_panel_new 		(XedWindow *window,
-								 const gchar *data_dir);
+GType        xed_taglist_plugin_panel_get_type      (void) G_GNUC_CONST;
+
+GtkWidget   *xed_taglist_plugin_panel_new       (XedWindow *window,
+                                 const gchar *data_dir);
 
 G_END_DECLS
 

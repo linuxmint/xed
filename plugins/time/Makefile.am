@@ -5,7 +5,7 @@ AM_CPPFLAGS = \
 	-I$(top_srcdir) 				\
 	$(XED_CFLAGS) 				\
 	$(WARN_CFLAGS)					\
-	$(DISABLE_DEPRECATED_CFLAGS)			
+	$(DISABLE_DEPRECATED_CFLAGS)
 
 plugin_LTLIBRARIES = libtime.la
 
@@ -21,11 +21,11 @@ ui_DATA = \
 	xed-time-dialog.ui				\
 	xed-time-setup-dialog.ui
 
-plugin_in_files = time.xed-plugin.desktop.in
+plugin_in_files = time.plugin.desktop.in
 
-%.xed-plugin: %.xed-plugin.desktop.in $(INTLTOOL_MERGE) $(wildcard $(top_srcdir)/po/*po) ; $(INTLTOOL_MERGE) $(top_srcdir)/po $< $@ -d -u -c $(top_builddir)/po/.intltool-merge-cache
+%.plugin: %.plugin.desktop.in $(INTLTOOL_MERGE) $(wildcard $(top_srcdir)/po/*po) ; $(INTLTOOL_MERGE) $(top_srcdir)/po $< $@ -d -u -c $(top_builddir)/po/.intltool-merge-cache
 
-plugin_DATA = $(plugin_in_files:.xed-plugin.desktop.in=.xed-plugin)
+plugin_DATA = $(plugin_in_files:.plugin.desktop.in=.plugin)
 
 @INTLTOOL_XML_NOMERGE_RULE@
 time_gschema_in = org.x.editor.plugins.time.gschema.xml.in

@@ -22,10 +22,10 @@ libmodelines_la_SOURCES = \
 libmodelines_la_LDFLAGS = $(PLUGIN_LIBTOOL_FLAGS)
 libmodelines_la_LIBADD  = $(XED_LIBS)
 
-plugin_in_files = modelines.xed-plugin.desktop.in
-%.xed-plugin: %.xed-plugin.desktop.in $(INTLTOOL_MERGE) $(wildcard $(top_srcdir)/po/*po) ; $(INTLTOOL_MERGE) $(top_srcdir)/po $< $@ -d -u -c $(top_builddir)/po/.intltool-merge-cache
+plugin_in_files = modelines.plugin.desktop.in
+%.plugin: %.plugin.desktop.in $(INTLTOOL_MERGE) $(wildcard $(top_srcdir)/po/*po) ; $(INTLTOOL_MERGE) $(top_srcdir)/po $< $@ -d -u -c $(top_builddir)/po/.intltool-merge-cache
 
-plugin_DATA = $(plugin_in_files:.xed-plugin.desktop.in=.xed-plugin)
+plugin_DATA = $(plugin_in_files:.plugin.desktop.in=.plugin)
 
 EXTRA_DIST = \
 	$(plugin_in_files)				\

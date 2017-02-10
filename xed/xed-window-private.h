@@ -2,7 +2,7 @@
  * xed-window-private.h
  * This file is part of xed
  *
- * Copyright (C) 2005 - Paolo Maggi 
+ * Copyright (C) 2005 - Paolo Maggi
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,14 +16,14 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
- * Foundation, Inc., 51 Franklin St, Fifth Floor, 
+ * Foundation, Inc., 51 Franklin St, Fifth Floor,
  * Boston, MA 02110-1301, USA.
  */
- 
+
 /*
- * Modified by the xed Team, 2005. See the AUTHORS file for a 
- * list of people on the xed Team.  
- * See the ChangeLog files for a list of changes. 
+ * Modified by the xed Team, 2005. See the AUTHORS file for a
+ * list of people on the xed Team.
+ * See the ChangeLog files for a list of changes.
  *
  * $Id$
  */
@@ -31,9 +31,11 @@
 #ifndef __XED_WINDOW_PRIVATE_H__
 #define __XED_WINDOW_PRIVATE_H__
 
+#include <libpeas/peas-extension-set.h>
+
 #include "xed/xed-window.h"
-#include "xed-prefs-manager.h"
 #include "xed-message-bus.h"
+#include "xed-settings.h"
 
 G_BEGIN_DECLS
 
@@ -41,74 +43,83 @@ G_BEGIN_DECLS
 
 struct _XedWindowPrivate
 {
-	GtkWidget      *notebook;
+    GSettings *editor_settings;
+    GSettings *ui_settings;
+    GSettings *window_settings;
 
-	GtkWidget      *side_panel;
-	GtkWidget      *bottom_panel;
+    GtkWidget *notebook;
 
-	GtkWidget      *hpaned;
-	GtkWidget      *vpaned;
-	
-	GtkWidget      *tab_width_combo;
-	GtkWidget      *language_combo;
-	
-	XedMessageBus *message_bus;	
+    GtkWidget *side_panel;
+    GtkWidget *bottom_panel;
 
-	/* Widgets for fullscreen mode */
-	GtkWidget      *fullscreen_controls;
-    GtkWidget      *fullscreen_controls_container;
-	guint           fullscreen_animation_timeout_id;
-	gboolean        fullscreen_animation_enter;
+    GtkWidget *hpaned;
+    GtkWidget *vpaned;
 
-	/* statusbar and context ids for statusbar messages */
-	GtkWidget      *statusbar;	
-	GtkWidget      *searchbar;	
-	guint           generic_message_cid;
-	guint           tip_message_cid;
-	guint 		tab_width_id;
-	guint 		spaces_instead_of_tabs_id;
-	guint 		language_changed_id;
+    GtkWidget *tab_width_combo;
+    GtkWidget *language_combo;
+    GtkWidget *show_side_pane_button;
+    GtkWidget *show_bottom_pane_button;
+    GtkWidget *bottom_pane_button_revealer;
 
-	/* Menus & Toolbars */
-	GtkUIManager   *manager;
-	GtkActionGroup *action_group;
-	GtkActionGroup *always_sensitive_action_group;
-	GtkActionGroup *close_action_group;
-	GtkActionGroup *quit_action_group;
-	GtkActionGroup *panes_action_group;
-	GtkActionGroup *languages_action_group;
-	GtkActionGroup *documents_list_action_group;
-	guint           documents_list_menu_ui_id;
-	GtkWidget      *toolbar;
-	GtkWidget      *menubar;
+    XedMessageBus    *message_bus;
+    PeasExtensionSet *extensions;
 
-	/* recent files */
-	GtkActionGroup *recents_action_group;
-	guint           recents_menu_ui_id;
-	gulong          recents_handler_id;
+    /* Widgets for fullscreen mode */
+    GtkWidget *fullscreen_controls;
+    GtkWidget *fullscreen_controls_container;
+    guint      fullscreen_animation_timeout_id;
+    gboolean   fullscreen_animation_enter;
 
-	XedTab       *active_tab;
-	gint            num_tabs;
+    /* statusbar and context ids for statusbar messages */
+    GtkWidget *statusbar;
+    GtkWidget *searchbar;
+    guint      generic_message_cid;
+    guint      tip_message_cid;
+    guint      tab_width_id;
+    guint      spaces_instead_of_tabs_id;
+    guint      language_changed_id;
+    guint      use_word_wrap_id;
 
-	gint            num_tabs_with_error;
+    /* Menus & Toolbars */
+    GtkUIManager   *manager;
+    GtkActionGroup *action_group;
+    GtkActionGroup *always_sensitive_action_group;
+    GtkActionGroup *close_action_group;
+    GtkActionGroup *quit_action_group;
+    GtkActionGroup *panes_action_group;
+    GtkActionGroup *languages_action_group;
+    GtkActionGroup *documents_list_action_group;
+    guint           documents_list_menu_ui_id;
+    GtkWidget      *toolbar;
+    GtkWidget      *menubar;
 
-	gint            width;
-	gint            height;	
-	GdkWindowState  window_state;
+    /* recent files */
+    GtkActionGroup *recents_action_group;
+    guint           recents_menu_ui_id;
+    gulong          recents_handler_id;
 
-	gint            side_panel_size;
-	gint            bottom_panel_size;
+    XedTab *active_tab;
+    gint    num_tabs;
 
-	XedWindowState state;
+    gint num_tabs_with_error;
 
-	gint            bottom_panel_item_removed_handler_id;
+    gint            width;
+    gint            height;
+    GdkWindowState  window_state;
 
-	GtkWindowGroup *window_group;
+    gint side_panel_size;
+    gint bottom_panel_size;
 
-	GFile          *default_location;
+    XedWindowState state;
 
-	gboolean        removing_tabs : 1;
-	gboolean        dispose_has_run : 1;
+    gint bottom_panel_item_removed_handler_id;
+
+    GtkWindowGroup *window_group;
+
+    GFile *default_location;
+
+    gboolean removing_tabs : 1;
+    gboolean dispose_has_run : 1;
 };
 
 G_END_DECLS

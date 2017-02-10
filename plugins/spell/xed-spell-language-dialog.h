@@ -3,7 +3,7 @@
  * xed-spell-language-dialog.h
  * This file is part of xed
  *
- * Copyright (C) 2002 Paolo Maggi 
+ * Copyright (C) 2002 Paolo Maggi
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,14 +17,14 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
- * Foundation, Inc., 51 Franklin St, Fifth Floor, 
- * Boston, MA 02110-1301, USA. 
+ * Foundation, Inc., 51 Franklin St, Fifth Floor,
+ * Boston, MA 02110-1301, USA.
  */
- 
+
 /*
- * Modified by the xed Team, 2002. See the AUTHORS file for a 
- * list of people on the xed Team.  
- * See the ChangeLog files for a list of changes. 
+ * Modified by the xed Team, 2002. See the AUTHORS file for a
+ * list of people on the xed Team.
+ * See the ChangeLog files for a list of changes.
  */
 
 #ifndef __XED_SPELL_LANGUAGE_DIALOG_H__
@@ -44,22 +44,20 @@ G_BEGIN_DECLS
 
 
 typedef struct _XedSpellLanguageDialog XedSpellLanguageDialog;
-
 typedef struct _XedSpellLanguageDialogClass XedSpellLanguageDialogClass;
 
-struct _XedSpellLanguageDialogClass 
+struct _XedSpellLanguageDialogClass
 {
-	GtkDialogClass parent_class;
+    GtkDialogClass parent_class;
 };
 
-GType		 xed_spell_language_dialog_get_type		(void) G_GNUC_CONST;
+GType xed_spell_language_dialog_get_type (void) G_GNUC_CONST;
 
-GtkWidget	*xed_spell_language_dialog_new		(GtkWindow			 *parent,
-								 const XedSpellCheckerLanguage *cur_lang,
-								 const gchar *data_dir);
+GtkWidget *xed_spell_language_dialog_new (GtkWindow                     *parent,
+                                          const XedSpellCheckerLanguage *cur_lang,
+                                          const gchar                   *data_dir);
 
-const XedSpellCheckerLanguage *
-		 xed_spell_language_get_selected_language	(XedSpellLanguageDialog *dlg);
+const XedSpellCheckerLanguage *xed_spell_language_get_selected_language (XedSpellLanguageDialog *dlg);
 
 G_END_DECLS
 

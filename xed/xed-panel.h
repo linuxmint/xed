@@ -2,7 +2,7 @@
  * xed-panel.h
  * This file is part of xed
  *
- * Copyright (C) 2005 - Paolo Maggi 
+ * Copyright (C) 2005 - Paolo Maggi
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,14 +16,14 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
- * Foundation, Inc., 51 Franklin St, Fifth Floor, 
+ * Foundation, Inc., 51 Franklin St, Fifth Floor,
  * Boston, MA 02110-1301, USA.
  */
- 
+
 /*
- * Modified by the xed Team, 2005. See the AUTHORS file for a 
- * list of people on the xed Team.  
- * See the ChangeLog files for a list of changes. 
+ * Modified by the xed Team, 2005. See the AUTHORS file for a
+ * list of people on the xed Team.
+ * See the ChangeLog files for a list of changes.
  *
  * $Id$
  */
@@ -38,12 +38,12 @@ G_BEGIN_DECLS
 /*
  * Type checking and casting macros
  */
-#define XED_TYPE_PANEL		(xed_panel_get_type())
-#define XED_PANEL(obj)		(G_TYPE_CHECK_INSTANCE_CAST((obj), XED_TYPE_PANEL, XedPanel))
-#define XED_PANEL_CLASS(klass)	(G_TYPE_CHECK_CLASS_CAST((klass), XED_TYPE_PANEL, XedPanelClass))
-#define XED_IS_PANEL(obj)		(G_TYPE_CHECK_INSTANCE_TYPE((obj), XED_TYPE_PANEL))
-#define XED_IS_PANEL_CLASS(klass)	(G_TYPE_CHECK_CLASS_TYPE ((klass), XED_TYPE_PANEL))
-#define XED_PANEL_GET_CLASS(obj)	(G_TYPE_INSTANCE_GET_CLASS((obj), XED_TYPE_PANEL, XedPanelClass))
+#define XED_TYPE_PANEL            (xed_panel_get_type())
+#define XED_PANEL(obj)            (G_TYPE_CHECK_INSTANCE_CAST((obj), XED_TYPE_PANEL, XedPanel))
+#define XED_PANEL_CLASS(klass)    (G_TYPE_CHECK_CLASS_CAST((klass), XED_TYPE_PANEL, XedPanelClass))
+#define XED_IS_PANEL(obj)         (G_TYPE_CHECK_INSTANCE_TYPE((obj), XED_TYPE_PANEL))
+#define XED_IS_PANEL_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), XED_TYPE_PANEL))
+#define XED_PANEL_GET_CLASS(obj)  (G_TYPE_INSTANCE_GET_CLASS((obj), XED_TYPE_PANEL, XedPanelClass))
 
 /* Private structure type */
 typedef struct _XedPanelPrivate XedPanelPrivate;
@@ -53,12 +53,12 @@ typedef struct _XedPanelPrivate XedPanelPrivate;
  */
 typedef struct _XedPanel XedPanel;
 
-struct _XedPanel 
+struct _XedPanel
 {
-	GtkBox vbox;
+    GtkBin parent;
 
-	/*< private > */
-	XedPanelPrivate *priv;
+    /*< private > */
+    XedPanelPrivate *priv;
 };
 
 /*
@@ -66,64 +66,59 @@ struct _XedPanel
  */
 typedef struct _XedPanelClass XedPanelClass;
 
-struct _XedPanelClass 
+struct _XedPanelClass
 {
-	GtkBoxClass parent_class;
+    GtkBinClass parent_class;
 
-	void (* item_added)     (XedPanel     *panel,
-				 GtkWidget      *item);
-	void (* item_removed)   (XedPanel     *panel,
-				 GtkWidget      *item);
+    void (* item_added)     (XedPanel     *panel,
+                             GtkWidget      *item);
+    void (* item_removed)   (XedPanel     *panel,
+                             GtkWidget      *item);
 
-	/* Keybinding signals */
-	void (* close)          (XedPanel     *panel);
-	void (* focus_document) (XedPanel     *panel);
+    /* Keybinding signals */
+    void (* close)          (XedPanel     *panel);
+    void (* focus_document) (XedPanel     *panel);
 
-	/* Padding for future expansion */
-	void (*_xed_reserved1) (void);
-	void (*_xed_reserved2) (void);
-	void (*_xed_reserved3) (void);
-	void (*_xed_reserved4) (void);	
+    /* Padding for future expansion */
+    void (*_xed_reserved1) (void);
+    void (*_xed_reserved2) (void);
+    void (*_xed_reserved3) (void);
+    void (*_xed_reserved4) (void);
 };
 
 /*
  * Public methods
  */
-GType 		 xed_panel_get_type 			(void) G_GNUC_CONST;
+GType xed_panel_get_type (void) G_GNUC_CONST;
 
-GtkWidget 	*xed_panel_new 			(GtkOrientation	 orientation);
+GtkWidget *xed_panel_new (GtkOrientation  orientation);
 
-void		 xed_panel_add_item			(XedPanel     *panel,
-						      	 GtkWidget      *item,
-						      	 const gchar    *name,
-							 GtkWidget      *image);
+void xed_panel_add_item (XedPanel    *panel,
+                         GtkWidget   *item,
+                         const gchar *name,
+                         const gchar *icon_name);
 
-void		 xed_panel_add_item_with_stock_icon	(XedPanel     *panel,
-							 GtkWidget      *item,
-						      	 const gchar    *name,
-						      	 const gchar    *stock_id);
+gboolean xed_panel_remove_item (XedPanel  *panel,
+                                GtkWidget *item);
 
-gboolean	 xed_panel_remove_item	(XedPanel     *panel,
-					  	 GtkWidget      *item);
+gboolean xed_panel_activate_item (XedPanel  *panel,
+                                  GtkWidget *item);
 
-gboolean	 xed_panel_activate_item 	(XedPanel     *panel,
-					    	 GtkWidget      *item);
+gboolean xed_panel_item_is_active (XedPanel  *panel,
+                                   GtkWidget *item);
 
-gboolean	 xed_panel_item_is_active 	(XedPanel     *panel,
-					    	 GtkWidget      *item);
+GtkOrientation xed_panel_get_orientation (XedPanel   *panel);
 
-GtkOrientation	 xed_panel_get_orientation	(XedPanel	*panel);
-
-gint		 xed_panel_get_n_items	(XedPanel	*panel);
+gint xed_panel_get_n_items (XedPanel *panel);
 
 
 /*
  * Non exported functions
  */
-gint		 _xed_panel_get_active_item_id	(XedPanel	*panel);
+gint _xed_panel_get_active_item_id (XedPanel   *panel);
 
-void		 _xed_panel_set_active_item_by_id	(XedPanel	*panel,
-							 gint		 id);
+void _xed_panel_set_active_item_by_id (XedPanel *panel,
+                                       gint      id);
 
 G_END_DECLS
 

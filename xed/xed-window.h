@@ -1,8 +1,7 @@
 #ifndef __XED_WINDOW_H__
 #define __XED_WINDOW_H__
 
-#include <gio/gio.h>
-#include <gtk/gtk.h>
+#include <gtksourceview/gtksource.h>
 
 #include <xed/xed-tab.h>
 #include <xed/xed-panel.h>
@@ -20,40 +19,28 @@ typedef enum
     XED_WINDOW_STATE_SAVING_SESSION = 1 << 5
 } XedWindowState;
 
-/*
- * Type checking and casting macros
- */
-#define XED_TYPE_WINDOW (xed_window_get_type())
-#define XED_WINDOW(obj) (G_TYPE_CHECK_INSTANCE_CAST((obj), XED_TYPE_WINDOW, XedWindow))
-#define XED_WINDOW_CLASS(klass) (G_TYPE_CHECK_CLASS_CAST((klass), XED_TYPE_WINDOW, XedWindowClass))
-#define XED_IS_WINDOW(obj) (G_TYPE_CHECK_INSTANCE_TYPE((obj), XED_TYPE_WINDOW))
-#define XED_IS_WINDOW_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), XED_TYPE_WINDOW))
-#define XED_WINDOW_GET_CLASS(obj) (G_TYPE_INSTANCE_GET_CLASS((obj), XED_TYPE_WINDOW, XedWindowClass))
+#define XED_TYPE_WINDOW             (xed_window_get_type())
+#define XED_WINDOW(obj)             (G_TYPE_CHECK_INSTANCE_CAST((obj), XED_TYPE_WINDOW, XedWindow))
+#define XED_WINDOW_CLASS(klass)     (G_TYPE_CHECK_CLASS_CAST((klass), XED_TYPE_WINDOW, XedWindowClass))
+#define XED_IS_WINDOW(obj)          (G_TYPE_CHECK_INSTANCE_TYPE((obj), XED_TYPE_WINDOW))
+#define XED_IS_WINDOW_CLASS(klass)  (G_TYPE_CHECK_CLASS_TYPE ((klass), XED_TYPE_WINDOW))
+#define XED_WINDOW_GET_CLASS(obj)   (G_TYPE_INSTANCE_GET_CLASS((obj), XED_TYPE_WINDOW, XedWindowClass))
 
-/* Private structure type */
-typedef struct _XedWindowPrivate XedWindowPrivate;
-
-/*
- * Main object structure
- */
-typedef struct _XedWindow XedWindow;
+typedef struct _XedWindow           XedWindow;
+typedef struct _XedWindowPrivate    XedWindowPrivate;
+typedef struct _XedWindowClass      XedWindowClass;
 
 struct _XedWindow
 {
-    GtkWindow window;
+    GtkApplicationWindow window;
 
     /*< private > */
     XedWindowPrivate *priv;
 };
 
-/*
- * Class definition
- */
-typedef struct _XedWindowClass XedWindowClass;
-
 struct _XedWindowClass
 {
-    GtkWindowClass parent_class;
+    GtkApplicationWindowClass parent_class;
 
     /* Signals */
     void (* tab_added) (XedWindow *window, XedTab *tab);
@@ -63,13 +50,13 @@ struct _XedWindowClass
     void (* active_tab_state_changed) (XedWindow *window);
 };
 
-/*
- * Public methods
- */
+/* Public methods */
 GType   xed_window_get_type (void) G_GNUC_CONST;
 XedTab *xed_window_create_tab (XedWindow *window, gboolean jump_to);
-XedTab *xed_window_create_tab_from_uri (XedWindow *window, const gchar *uri, const XedEncoding *encoding,
-                                        gint line_pos, gboolean create, gboolean jump_to);
+XedTab *xed_window_create_tab_from_location (XedWindow *window, GFile *location, const GtkSourceEncoding *encoding,
+                                             gint line_pos, gboolean create, gboolean jump_to);
+XedTab *xed_window_create_tab_from_stream (XedWindow *window, GInputStream *stream, const GtkSourceEncoding *encoding,
+                                           gint line_pos, gboolean jump_to);
 void    xed_window_close_tab (XedWindow *window, XedTab *tab);
 void    xed_window_close_all_tabs (XedWindow *window);
 void    xed_window_close_tabs (XedWindow *window, const GList *tabs);
@@ -97,7 +84,6 @@ GtkWidget      *xed_window_get_searchbar (XedWindow *window);
 GtkUIManager   *xed_window_get_ui_manager (XedWindow *window);
 XedWindowState  xed_window_get_state (XedWindow *window);
 XedTab         *xed_window_get_tab_from_location (XedWindow *window, GFile *location);
-XedTab         *xed_window_get_tab_from_uri (XedWindow *window, const gchar *uri);
 
 /* Message bus */
 XedMessageBus *xed_window_get_message_bus (XedWindow *window);
@@ -116,8 +102,10 @@ void       _xed_window_unfullscreen (XedWindow *window);
 gboolean   _xed_window_is_fullscreen (XedWindow *window);
 
 /* these are in xed-window because of screen safety */
-void _xed_recent_add (XedWindow *window, const gchar *uri, const gchar *mime);
-void _xed_recent_remove (XedWindow *window, const gchar *uri);
+void _xed_recent_add (XedWindow *window, GFile *location, const gchar *mime);
+void _xed_recent_remove (XedWindow *window, GFile *location);
+
+void _xed_window_get_default_size (gint *width, gint *height);
 
 G_END_DECLS
 

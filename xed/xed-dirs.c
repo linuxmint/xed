@@ -27,97 +27,115 @@
 
 #include "xed-dirs.h"
 
-gchar* xed_dirs_get_user_config_dir(void)
+static gchar *user_config_dir      = NULL;
+static gchar *user_cache_dir       = NULL;
+static gchar *user_styles_dir      = NULL;
+static gchar *user_plugins_dir     = NULL;
+static gchar *xed_data_dir         = NULL;
+static gchar *xed_locale_dir       = NULL;
+static gchar *xed_lib_dir          = NULL;
+static gchar *xed_plugins_dir      = NULL;
+static gchar *xed_plugins_data_dir = NULL;
+
+void
+xed_dirs_init ()
 {
-	gchar* config_dir = NULL;
+    if (xed_data_dir == NULL)
+    {
+        xed_data_dir = g_build_filename (DATADIR, "xed", NULL);
+        xed_locale_dir = g_build_filename (DATADIR, "locale", NULL);
+        xed_lib_dir = g_build_filename (LIBDIR, "xed", NULL);
+    }
 
-	config_dir = g_build_filename(g_get_user_config_dir(), "xed", NULL);
-
-	return config_dir;
+    user_cache_dir = g_build_filename (g_get_user_cache_dir (), "xed", NULL);
+    user_config_dir = g_build_filename (g_get_user_config_dir (), "xed", NULL);
+    user_styles_dir = g_build_filename (g_get_user_data_dir (), "xed", "styles", NULL);
+    user_plugins_dir = g_build_filename (g_get_user_data_dir (), "xed", "plugins", NULL);
+    xed_plugins_dir = g_build_filename (xed_lib_dir, "plugins", NULL);
+    xed_plugins_data_dir = g_build_filename (xed_data_dir, "plugins", NULL);
 }
 
-gchar* xed_dirs_get_user_cache_dir(void)
+void
+xed_dirs_shutdown ()
 {
-	const gchar* cache_dir;
-
-	cache_dir = g_get_user_cache_dir();
-
-	return g_build_filename(cache_dir, "xed", NULL);
+    g_free (user_config_dir);
+    g_free (user_cache_dir);
+    g_free (user_plugins_dir);
+    g_free (xed_data_dir);
+    g_free (xed_locale_dir);
+    g_free (xed_lib_dir);
+    g_free (xed_plugins_dir);
+    g_free (xed_plugins_data_dir);
 }
 
-gchar* xed_dirs_get_user_plugins_dir(void)
+const gchar *
+xed_dirs_get_user_config_dir (void)
 {
-	gchar* plugin_dir;
-
-	plugin_dir = g_build_filename(g_get_user_data_dir(), "xed", "plugins", NULL);
-
-	return plugin_dir;
+    return user_config_dir;
 }
 
-gchar* xed_dirs_get_user_accels_file(void)
+const gchar *
+xed_dirs_get_user_cache_dir (void)
 {
-	gchar* accels = NULL;
-	gchar *config_dir = NULL;
-
-	config_dir = xed_dirs_get_user_config_dir();
-	accels = g_build_filename(config_dir, "accels", NULL);
-
-	g_free(config_dir);
-
-	return accels;
+    return user_cache_dir;
 }
 
-gchar* xed_dirs_get_xed_data_dir(void)
+const gchar *
+xed_dirs_get_user_styles_dir (void)
 {
-	return g_build_filename(DATADIR, "xed", NULL);
+    return user_styles_dir;
 }
 
-gchar* xed_dirs_get_xed_locale_dir(void)
+const gchar *
+xed_dirs_get_user_plugins_dir (void)
 {
-	return g_build_filename(DATADIR, "locale", NULL);
+    return user_plugins_dir;
 }
 
-gchar* xed_dirs_get_xed_lib_dir(void)
+const gchar *
+xed_dirs_get_xed_data_dir (void)
 {
-	return g_build_filename(LIBDIR, "xed", NULL);
+    return xed_data_dir;
 }
 
-gchar* xed_dirs_get_xed_plugins_dir(void)
+const gchar *
+xed_dirs_get_xed_locale_dir (void)
 {
-	gchar* lib_dir;
-	gchar* plugin_dir;
-
-	lib_dir = xed_dirs_get_xed_lib_dir();
-
-	plugin_dir = g_build_filename(lib_dir, "plugins", NULL);
-	g_free(lib_dir);
-
-	return plugin_dir;
+    return xed_locale_dir;
 }
 
-gchar* xed_dirs_get_xed_plugin_loaders_dir(void)
+const gchar *
+xed_dirs_get_xed_lib_dir (void)
 {
-	gchar* lib_dir;
-	gchar* loader_dir;
-
-	lib_dir = xed_dirs_get_xed_lib_dir();
-
-	loader_dir = g_build_filename(lib_dir, "plugin-loaders", NULL);
-	g_free(lib_dir);
-
-	return loader_dir;
+    return xed_lib_dir;
 }
 
-gchar* xed_dirs_get_ui_file(const gchar* file)
+const gchar *
+xed_dirs_get_xed_plugins_dir (void)
 {
-	gchar* datadir;
-	gchar* ui_file;
+    return xed_plugins_dir;
+}
 
-	g_return_val_if_fail(file != NULL, NULL);
+const gchar *
+xed_dirs_get_xed_plugins_data_dir (void)
+{
+    return xed_plugins_data_dir;
+}
 
-	datadir = xed_dirs_get_xed_data_dir();
-	ui_file = g_build_filename(datadir, "ui", file, NULL);
-	g_free(datadir);
+const gchar *
+xed_dirs_get_binding_modules_dir (void)
+{
+    return xed_lib_dir;
+}
 
-	return ui_file;
+gchar *
+xed_dirs_get_ui_file (const gchar *file)
+{
+    gchar *ui_file;
+
+    g_return_val_if_fail (file != NULL, NULL);
+
+    ui_file = g_build_filename (xed_dirs_get_xed_data_dir (), "ui", file, NULL);
+
+    return ui_file;
 }

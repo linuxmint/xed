@@ -10,12 +10,12 @@
  * the Object Path, Method and Arguments of the message.
  *
  * A message type can contain any number of required and optional arguments.
- * To instantiate a #XedMessage from a #XedMessageType, use 
+ * To instantiate a #XedMessage from a #XedMessageType, use
  * xed_message_type_instantiate().
  *
  * Registering a new message type on a #XedMessageBus with
  * xed_message_bus_register() internally creates a new #XedMessageType. When
- * then using xed_message_bus_send(), an actual instantiation of the 
+ * then using xed_message_bus_send(), an actual instantiation of the
  * registered type is internally created and send over the bus.
  *
  * <example>
@@ -33,9 +33,6 @@
  *                                                         NULL);
  * </programlisting>
  * </example>
- *
- * Since: 2.25.3
- *
  */
 typedef struct
 {
@@ -50,10 +47,10 @@ struct _XedMessageType
 
 	gchar *object_path;
 	gchar *method;
-	
+
 	guint num_arguments;
 	guint num_required;
-	
+
 	GHashTable *arguments; // mapping of key -> ArgumentInfo
 };
 
@@ -71,7 +68,7 @@ xed_message_type_ref (XedMessageType *message_type)
 {
 	g_return_val_if_fail (message_type != NULL, NULL);
 	g_atomic_int_inc (&message_type->ref_count);
-	
+
 	return message_type;
 }
 
@@ -83,30 +80,30 @@ xed_message_type_ref (XedMessageType *message_type)
  * drops to 0, @message_type is destroyed.
  *
  */
-void 
+void
 xed_message_type_unref (XedMessageType *message_type)
 {
 	g_return_if_fail (message_type != NULL);
 
 	if (!g_atomic_int_dec_and_test (&message_type->ref_count))
 		return;
-	
+
 	g_free (message_type->object_path);
 	g_free (message_type->method);
-	
+
 	g_hash_table_destroy (message_type->arguments);
 	g_free (message_type);
 }
 
 /**
  * xed_message_type_get_type:
- * 
+ *
  * Retrieves the GType object which is associated with the
  * #XedMessageType class.
- * 
+ *
  * Return value: the GType associated with #XedMessageType.
  **/
-GType 
+GType
 xed_message_type_get_type (void)
 {
 	static GType our_type = 0;
@@ -151,17 +148,17 @@ xed_message_type_is_valid_object_path (const gchar *object_path)
 {
 	if (!object_path)
 		return FALSE;
-	
+
 	/* needs to start with / */
 	if (*object_path != '/')
 		return FALSE;
-	
+
 	while (*object_path)
 	{
 		if (*object_path == '/')
 		{
 			++object_path;
-			
+
 			if (!*object_path || !(g_ascii_isalpha (*object_path) || *object_path == '_'))
 				return FALSE;
 		}
@@ -169,10 +166,10 @@ xed_message_type_is_valid_object_path (const gchar *object_path)
 		{
 			return FALSE;
 		}
-		
+
 		++object_path;
 	}
-	
+
 	return TRUE;
 }
 
@@ -189,7 +186,7 @@ gboolean
 xed_message_type_is_supported (GType type)
 {
 	gint i = 0;
-  
+
 	static const GType type_list[] =
 	{
 		G_TYPE_BOOLEAN,
@@ -252,7 +249,7 @@ xed_message_type_new_valist (const gchar *object_path,
 	g_return_val_if_fail (xed_message_type_is_valid_object_path (object_path), NULL);
 
 	message_type = g_new0(XedMessageType, 1);
-	
+
 	message_type->ref_count = 1;
 	message_type->object_path = g_strdup(object_path);
 	message_type->method = g_strdup(method);
@@ -288,11 +285,11 @@ xed_message_type_new (const gchar *object_path,
 {
 	XedMessageType *message_type;
 	va_list var_args;
-	
+
 	va_start(var_args, num_optional);
 	message_type = xed_message_type_new_valist (object_path, method, num_optional, var_args);
 	va_end(var_args);
-	
+
 	return message_type;
 }
 
@@ -313,7 +310,7 @@ xed_message_type_set (XedMessageType *message_type,
 			...)
 {
 	va_list va_args;
-	
+
 	va_start (va_args, num_optional);
 	xed_message_type_set_valist (message_type, num_optional, va_args);
 	va_end (va_args);
@@ -326,11 +323,11 @@ xed_message_type_set (XedMessageType *message_type,
  * @var_args: key/gtype pair variable argument list
  *
  * Sets argument names/types supplied by the NULL terminated variable
- * argument list @var_args. The last @num_optional provided arguments are 
+ * argument list @var_args. The last @num_optional provided arguments are
  * considered optional.
  *
  */
-void 
+void
 xed_message_type_set_valist (XedMessageType *message_type,
 			       guint             num_optional,
 			       va_list	         var_args)
@@ -346,35 +343,35 @@ xed_message_type_set_valist (XedMessageType *message_type,
 		// get corresponding GType
 		GType gtype = va_arg (var_args, GType);
 		ArgumentInfo *info;
-		
+
 		if (!xed_message_type_is_supported (gtype))
 		{
 			g_error ("Message type '%s' is not supported", g_type_name (gtype));
 
 			xed_message_type_unref (message_type);
 			g_free (optional);
-			
+
 			return;
 		}
-		
+
 		info = g_new(ArgumentInfo, 1);
 		info->type = gtype;
 		info->required = TRUE;
 
 		g_hash_table_insert (message_type->arguments, g_strdup (key), info);
-		
+
 		++message_type->num_arguments;
 		++added;
-		
+
 		if (num_optional > 0)
 		{
 			for (i = num_optional - 1; i > 0; --i)
 				optional[i] = optional[i - 1];
-		
+
 			*optional = info;
 		}
 	}
-	
+
 	message_type->num_required += added;
 
 	// set required for last num_optional arguments
@@ -386,7 +383,7 @@ xed_message_type_set_valist (XedMessageType *message_type,
 			--message_type->num_required;
 		}
 	}
-	
+
 	g_free (optional);
 }
 
@@ -398,7 +395,7 @@ xed_message_type_set_valist (XedMessageType *message_type,
  * Instantiate a new message from the message type with specific values
  * for the message arguments.
  *
- * Return value: the newly created message
+ * Return value: (transfer full): the newly created message
  *
  */
 XedMessage *
@@ -406,12 +403,12 @@ xed_message_type_instantiate_valist (XedMessageType *message_type,
 				       va_list		 va_args)
 {
 	XedMessage *message;
-	
+
 	g_return_val_if_fail (message_type != NULL, NULL);
-	
+
 	message = XED_MESSAGE (g_object_new (XED_TYPE_MESSAGE, "type", message_type, NULL));
 	xed_message_set_valist (message, va_args);
-	
+
 	return message;
 }
 
@@ -423,7 +420,7 @@ xed_message_type_instantiate_valist (XedMessageType *message_type,
  * Instantiate a new message from the message type with specific values
  * for the message arguments.
  *
- * Return value: the newly created message
+ * Return value: (transfer full): the newly created message
  *
  */
 XedMessage *
@@ -432,11 +429,11 @@ xed_message_type_instantiate (XedMessageType *message_type,
 {
 	XedMessage *message;
 	va_list va_args;
-	
+
 	va_start (va_args, message_type);
 	message = xed_message_type_instantiate_valist (message_type, va_args);
 	va_end (va_args);
-	
+
 	return message;
 }
 
@@ -485,10 +482,10 @@ xed_message_type_lookup (XedMessageType *message_type,
 			   const gchar      *key)
 {
 	ArgumentInfo *info = g_hash_table_lookup (message_type->arguments, key);
-	
+
 	if (!info)
 		return G_TYPE_INVALID;
-	
+
 	return info->type;
 }
 
@@ -509,13 +506,13 @@ foreach_gtype (const gchar  *key,
 /**
  * xed_message_type_foreach:
  * @message_type: the #XedMessageType
- * @func: the callback function
+ * @func: (scope call): the callback function
  * @user_data: user data supplied to the callback function
  *
  * Calls @func for each argument in the message type.
  *
  */
-void 
+void
 xed_message_type_foreach (XedMessageType 	    *message_type,
 			    XedMessageTypeForeach  func,
 			    gpointer		     user_data)

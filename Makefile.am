@@ -1,11 +1,7 @@
 ## Process this file with automake to produce Makefile.in
 ACLOCAL_AMFLAGS = -I m4 ${ACLOCAL_FLAGS}
 
-SUBDIRS = xed pixmaps po data plugin-loaders plugins docs help
-
-if ENABLE_TESTS
-    SUBDIRS += tests
-endif
+SUBDIRS = xed pixmaps po data plugins docs help
 
 distuninstallcheck_listfiles = find . -type f -print
 
@@ -55,7 +51,7 @@ MAINTAINERCLEANFILES = 		\
 	m4/lt~obsolete.m4	\
 	`find "$(srcdir)" -type f -name Makefile.in -print`
 
-DISTCHECK_CONFIGURE_FLAGS = --enable-gtk-doc --disable-tests
+DISTCHECK_CONFIGURE_FLAGS = --enable-gtk-doc
 
 dist-hook:
 	@if test -d "$(srcdir)/.git"; \

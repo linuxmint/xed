@@ -1,6 +1,6 @@
 /*
  * xed-time-plugin.h
- * 
+ *
  * Copyright (C) 2002-2005 - Paolo Maggi
  *
  * This program is free software; you can redistribute it and/or modify
@@ -25,53 +25,39 @@
 
 #include <glib.h>
 #include <glib-object.h>
-#include <xed/xed-plugin.h>
+#include <libpeas/peas-extension-base.h>
+#include <libpeas/peas-object-module.h>
 
 G_BEGIN_DECLS
 
-/*
- * Type checking and casting macros
- */
-#define XED_TYPE_TIME_PLUGIN		(xed_time_plugin_get_type ())
-#define XED_TIME_PLUGIN(o)		(G_TYPE_CHECK_INSTANCE_CAST ((o), XED_TYPE_TIME_PLUGIN, XedTimePlugin))
-#define XED_TIME_PLUGIN_CLASS(k)	(G_TYPE_CHECK_CLASS_CAST((k), XED_TYPE_TIME_PLUGIN, XedTimePluginClass))
-#define XED_IS_TIME_PLUGIN(o)		(G_TYPE_CHECK_INSTANCE_TYPE ((o), XED_TYPE_TIME_PLUGIN))
-#define XED_IS_TIME_PLUGIN_CLASS(k)	(G_TYPE_CHECK_CLASS_TYPE ((k), XED_TYPE_TIME_PLUGIN))
-#define XED_TIME_PLUGIN_GET_CLASS(o)	(G_TYPE_INSTANCE_GET_CLASS ((o), XED_TYPE_TIME_PLUGIN, XedTimePluginClass))
+#define XED_TYPE_TIME_PLUGIN            (xed_time_plugin_get_type ())
+#define XED_TIME_PLUGIN(o)              (G_TYPE_CHECK_INSTANCE_CAST ((o), XED_TYPE_TIME_PLUGIN, XedTimePlugin))
+#define XED_TIME_PLUGIN_CLASS(k)        (G_TYPE_CHECK_CLASS_CAST((k), XED_TYPE_TIME_PLUGIN, XedTimePluginClass))
+#define XED_IS_TIME_PLUGIN(o)           (G_TYPE_CHECK_INSTANCE_TYPE ((o), XED_TYPE_TIME_PLUGIN))
+#define XED_IS_TIME_PLUGIN_CLASS(k)     (G_TYPE_CHECK_CLASS_TYPE ((k), XED_TYPE_TIME_PLUGIN))
+#define XED_TIME_PLUGIN_GET_CLASS(o)    (G_TYPE_INSTANCE_GET_CLASS ((o), XED_TYPE_TIME_PLUGIN, XedTimePluginClass))
 
-/* Private structure type */
-typedef struct _XedTimePluginPrivate	XedTimePluginPrivate;
-
-/*
- * Main object structure
- */
-typedef struct _XedTimePlugin		XedTimePlugin;
+typedef struct _XedTimePlugin        XedTimePlugin;
+typedef struct _XedTimePluginPrivate XedTimePluginPrivate;
+typedef struct _XedTimePluginClass   XedTimePluginClass;
 
 struct _XedTimePlugin
 {
-	XedPlugin parent_instance;
+    PeasExtensionBase parent_instance;
 
-	/*< private >*/
-	XedTimePluginPrivate *priv;
+    /*< private >*/
+    XedTimePluginPrivate *priv;
 };
-
-/*
- * Class definition
- */
-typedef struct _XedTimePluginClass	XedTimePluginClass;
 
 struct _XedTimePluginClass
 {
-	XedPluginClass parent_class;
+    PeasExtensionBaseClass parent_class;
 };
 
-/*
- * Public methods
- */
-GType	xed_time_plugin_get_type		(void) G_GNUC_CONST;
+GType xed_time_plugin_get_type (void) G_GNUC_CONST;
 
 /* All the plugins must implement this function */
-G_MODULE_EXPORT GType register_xed_plugin (GTypeModule *module);
+G_MODULE_EXPORT void peas_register_types (PeasObjectModule *module);
 
 G_END_DECLS
 

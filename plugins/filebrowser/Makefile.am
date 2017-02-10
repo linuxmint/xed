@@ -44,9 +44,9 @@ libfilebrowser_la_LIBADD = $(XED_LIBS)
 uidir = $(XED_PLUGINS_DATA_DIR)/filebrowser
 ui_DATA = xed-file-browser-widget-ui.xml
 
-plugin_in_files = filebrowser.xed-plugin.desktop.in
+plugin_in_files = filebrowser.plugin.desktop.in
 
-%.xed-plugin: %.xed-plugin.desktop.in $(INTLTOOL_MERGE) $(wildcard $(top_srcdir)/po/*po) ; $(INTLTOOL_MERGE) $(top_srcdir)/po $< $@ -d -u -c $(top_builddir)/po/.intltool-merge-cache
+%.plugin: %.plugin.desktop.in $(INTLTOOL_MERGE) $(wildcard $(top_srcdir)/po/*po) ; $(INTLTOOL_MERGE) $(top_srcdir)/po $< $@ -d -u -c $(top_builddir)/po/.intltool-merge-cache
 
 xed-file-browser-enum-types.h: xed-file-browser-enum-types.h.template $(NOINST_H_FILES) $(GLIB_MKENUMS)
 	(cd $(srcdir) && $(GLIB_MKENUMS) --template xed-file-browser-enum-types.h.template $(NOINST_H_FILES)) > $@
@@ -63,7 +63,7 @@ xed-file-browser-marshal.c: xed-file-browser-marshal.list $(GLIB_GENMARSHAL)
 	$(AM_V_GEN) echo "#include \"xed-file-browser-marshal.h\"" > $@ && \
 	$(GLIB_GENMARSHAL) $< --body --prefix=xed_file_browser_marshal >> $@
 
-plugin_DATA = $(plugin_in_files:.xed-plugin.desktop.in=.xed-plugin)
+plugin_DATA = $(plugin_in_files:.plugin.desktop.in=.plugin)
 
 @INTLTOOL_XML_NOMERGE_RULE@
 filebrowser_gschema_in = org.x.editor.plugins.filebrowser.gschema.xml.in

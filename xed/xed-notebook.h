@@ -2,7 +2,7 @@
  * xed-notebook.h
  * This file is part of xed
  *
- * Copyright (C) 2005 - Paolo Maggi 
+ * Copyright (C) 2005 - Paolo Maggi
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,14 +16,14 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
- * Foundation, Inc., 51 Franklin St, Fifth Floor, 
+ * Foundation, Inc., 51 Franklin St, Fifth Floor,
  * Boston, MA 02110-1301, USA.
  */
- 
+
 /*
- * Modified by the xed Team, 2005. See the AUTHORS file for a 
- * list of people on the xed Team.  
- * See the ChangeLog files for a list of changes. 
+ * Modified by the xed Team, 2005. See the AUTHORS file for a
+ * list of people on the xed Team.
+ * See the ChangeLog files for a list of changes.
  */
 
 /* This file is a modified version of the epiphany file ephy-notebook.h
@@ -34,7 +34,7 @@
  *  Copyright (C) 2003, 2004 Christian Persch
  *
  */
- 
+
 #ifndef XED_NOTEBOOK_H
 #define XED_NOTEBOOK_H
 
@@ -62,7 +62,7 @@ typedef struct _XedNotebookPrivate	XedNotebookPrivate;
  * Main object structure
  */
 typedef struct _XedNotebook		XedNotebook;
- 
+
 struct _XedNotebook
 {
 	GtkNotebook notebook;
@@ -113,16 +113,11 @@ void		xed_notebook_remove_all_tabs 	(XedNotebook *nb);
 void		xed_notebook_reorder_tab	(XedNotebook *src,
 			    			 XedTab      *tab,
 			    			 gint           dest_position);
-			    			 
+
 void            xed_notebook_move_tab		(XedNotebook *src,
 						 XedNotebook *dest,
 						 XedTab      *tab,
 						 gint           dest_position);
-
-/* FIXME: do we really need this function ? */
-void		xed_notebook_set_always_show_tabs	
-						(XedNotebook *nb,
-						 gboolean       show_tabs);
 
 void		xed_notebook_set_close_buttons_sensitive
 						(XedNotebook *nb,
@@ -137,6 +132,10 @@ void		xed_notebook_set_tab_drag_and_drop_enabled
 
 gboolean	xed_notebook_get_tab_drag_and_drop_enabled
 						(XedNotebook *nb);
+
+void        xed_notebook_set_tab_scrolling_enabled (XedNotebook *nb,
+                                                    gboolean     enable);
+gboolean    xed_notebook_get_tab_scrolling_enabled (XedNotebook *nb);
 
 G_END_DECLS
 

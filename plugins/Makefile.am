@@ -1,26 +1,25 @@
-DIST_SUBDIRS =	\
-	changecase 	\
-	docinfo 	\
-	filebrowser \
-	modelines	\
-	sort 		\
-	spell 		\
-	taglist 	\
-	time		\
+DIST_SUBDIRS =		\
+	docinfo 		\
+	filebrowser 	\
+	modelines 		\
+	sort 			\
+	spell			\
+	taglist			\
+	time			\
 	trailsave
 
-SUBDIRS = 		\
-	changecase	\
-	docinfo		\
-	filebrowser	\
-	modelines	\
-	sort		\
-	taglist		\
-	time		\
+SUBDIRS = 			\
+	docinfo 		\
+	filebrowser 	\
+	modelines 		\
+	sort			\
+	spell			\
+	taglist			\
+	time			\
 	trailsave
 
 if ENABLE_ENCHANT
-SUBDIRS      += spell
+SUBDIRS += spell
 endif
 
 -include $(top_srcdir)/git.mk

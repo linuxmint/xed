@@ -16,7 +16,7 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
- * Foundation, Inc., 51 Franklin St, Fifth Floor, 
+ * Foundation, Inc., 51 Franklin St, Fifth Floor,
  * Boston, MA 02110-1301, USA.
  */
 
@@ -28,38 +28,38 @@
 
 G_BEGIN_DECLS
 
-#define XED_TYPE_TAB_LABEL		(xed_tab_label_get_type ())
-#define XED_TAB_LABEL(obj)		(G_TYPE_CHECK_INSTANCE_CAST ((obj), XED_TYPE_TAB_LABEL, XedTabLabel))
-#define XED_TAB_LABEL_CONST(obj)	(G_TYPE_CHECK_INSTANCE_CAST ((obj), XED_TYPE_TAB_LABEL, XedTabLabel const))
-#define XED_TAB_LABEL_CLASS(klass)	(G_TYPE_CHECK_CLASS_CAST ((klass), XED_TYPE_TAB_LABEL, XedTabLabelClass))
-#define XED_IS_TAB_LABEL(obj)		(G_TYPE_CHECK_INSTANCE_TYPE ((obj), XED_TYPE_TAB_LABEL))
-#define XED_IS_TAB_LABEL_CLASS(klass)	(G_TYPE_CHECK_CLASS_TYPE ((klass), XED_TYPE_TAB_LABEL))
-#define XED_TAB_LABEL_GET_CLASS(obj)	(G_TYPE_INSTANCE_GET_CLASS ((obj), XED_TYPE_TAB_LABEL, XedTabLabelClass))
+#define XED_TYPE_TAB_LABEL              (xed_tab_label_get_type ())
+#define XED_TAB_LABEL(obj)              (G_TYPE_CHECK_INSTANCE_CAST ((obj), XED_TYPE_TAB_LABEL, XedTabLabel))
+#define XED_TAB_LABEL_CONST(obj)        (G_TYPE_CHECK_INSTANCE_CAST ((obj), XED_TYPE_TAB_LABEL, XedTabLabel const))
+#define XED_TAB_LABEL_CLASS(klass)      (G_TYPE_CHECK_CLASS_CAST ((klass), XED_TYPE_TAB_LABEL, XedTabLabelClass))
+#define XED_IS_TAB_LABEL(obj)           (G_TYPE_CHECK_INSTANCE_TYPE ((obj), XED_TYPE_TAB_LABEL))
+#define XED_IS_TAB_LABEL_CLASS(klass)   (G_TYPE_CHECK_CLASS_TYPE ((klass), XED_TYPE_TAB_LABEL))
+#define XED_TAB_LABEL_GET_CLASS(obj)    (G_TYPE_INSTANCE_GET_CLASS ((obj), XED_TYPE_TAB_LABEL, XedTabLabelClass))
 
-typedef struct _XedTabLabel		XedTabLabel;
-typedef struct _XedTabLabelClass	XedTabLabelClass;
-typedef struct _XedTabLabelPrivate	XedTabLabelPrivate;
+typedef struct _XedTabLabel         XedTabLabel;
+typedef struct _XedTabLabelClass    XedTabLabelClass;
+typedef struct _XedTabLabelPrivate  XedTabLabelPrivate;
 
 struct _XedTabLabel {
-	GtkBox parent;
+    GtkBox parent;
 
-	XedTabLabelPrivate *priv;
+    XedTabLabelPrivate *priv;
 };
 
 struct _XedTabLabelClass {
-	GtkBoxClass parent_class;
+    GtkBoxClass parent_class;
 
-	void (* close_clicked)  (XedTabLabel *tab_label);
+    void (* close_clicked)  (XedTabLabel *tab_label);
 };
 
-GType		 xed_tab_label_get_type (void) G_GNUC_CONST;
+GType xed_tab_label_get_type (void) G_GNUC_CONST;
 
-GtkWidget 	*xed_tab_label_new (XedTab *tab);
+GtkWidget *xed_tab_label_new (XedTab *tab);
 
-XedTab	*xed_tab_label_get_tab (XedTabLabel *tab_label);
+XedTab *xed_tab_label_get_tab (XedTabLabel *tab_label);
 
-void		xed_tab_label_set_close_button_sensitive (XedTabLabel *tab_label,
-							    gboolean       sensitive);
+void xed_tab_label_set_close_button_sensitive (XedTabLabel *tab_label,
+                                               gboolean     sensitive);
 
 G_END_DECLS
 
