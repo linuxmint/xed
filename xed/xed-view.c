@@ -10,6 +10,7 @@
 #include <glib/gi18n.h>
 
 #include "xed-view.h"
+#include "xed-view-gutter-renderer.h"
 #include "xed-view-activatable.h"
 #include "xed-plugins-engine.h"
 #include "xed-debug.h"
@@ -32,6 +33,7 @@ struct _XedViewPrivate
     GSettings *editor_settings;
     GtkTextBuffer *current_buffer;
     PeasExtensionSet *extensions;
+    GtkSourceGutterRenderer *renderer;
     guint view_realized : 1;
 };
 
@@ -143,6 +145,7 @@ xed_view_dispose (GObject *object)
 
     g_clear_object (&view->priv->extensions);
     g_clear_object (&view->priv->editor_settings);
+    g_clear_object (&view->priv->renderer);
 
     current_buffer_removed (view);
 
@@ -163,6 +166,7 @@ xed_view_constructed (GObject *object)
     XedView *view;
     XedViewPrivate *priv;
     gboolean use_default_font;
+    GtkSourceGutter *gutter;
 
     view = XED_VIEW (object);
     priv = view->priv;
@@ -245,6 +249,15 @@ xed_view_constructed (GObject *object)
     g_object_set (G_OBJECT (view),
                   "indent_on_tab", TRUE,
                   NULL);
+
+    gutter = gtk_source_view_get_gutter (GTK_SOURCE_VIEW (view), GTK_TEXT_WINDOW_LEFT);
+    priv->renderer = g_object_new (XED_TYPE_VIEW_GUTTER_RENDERER,
+                                   "size", 2,
+                                   NULL);
+    g_object_ref (priv->renderer);
+    gtk_source_gutter_insert (gutter, priv->renderer, 0);
+
+    gtk_text_view_set_top_margin (GTK_TEXT_VIEW (view), 2);
 
     G_OBJECT_CLASS (xed_view_parent_class)->constructed (object);
 }
