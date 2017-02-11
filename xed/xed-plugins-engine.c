@@ -58,6 +58,7 @@ xed_plugins_engine_init (XedPluginsEngine *engine)
 {
     gchar *typelib_dir;
     GError *error = NULL;
+    const GList *all_plugins, *l;
 
     xed_debug (DEBUG_PLUGINS);
 
@@ -93,17 +94,6 @@ xed_plugins_engine_init (XedPluginsEngine *engine)
         error = NULL;
     }
 
-    // private_path = g_build_filename (LIBDIR, "girepository-1.0", NULL);
-
-    // if (!g_irepository_require_private (g_irepository_get_default (), private_path, "Xed", "1.0", 0, &error))
-    // {
-    //     g_warning ("Could not load Xed repository: %s", error->message);
-    //     g_error_free (error);
-    //     error = NULL;
-    // }
-
-    // g_free (private_path);
-
     peas_engine_add_search_path (PEAS_ENGINE (engine),
                                  xed_dirs_get_user_plugins_dir (),
                                  xed_dirs_get_user_plugins_dir ());
@@ -117,6 +107,23 @@ xed_plugins_engine_init (XedPluginsEngine *engine)
                      engine,
                      "loaded-plugins",
                      G_SETTINGS_BIND_DEFAULT);
+
+    /* Load our builtin plugins */
+    all_plugins = peas_engine_get_plugin_list (PEAS_ENGINE (engine));
+
+    for (l = all_plugins; l != NULL; l = l->next)
+    {
+        if (peas_plugin_info_is_builtin (l->data))
+        {
+            gboolean loaded;
+
+            loaded = peas_engine_load_plugin (PEAS_ENGINE (engine), l->data);
+            if (!loaded)
+            {
+                g_warning ("Failed to load builtin plugin: %s", peas_plugin_info_get_name (l->data));
+            }
+        }
+    }
 }
 
 static void

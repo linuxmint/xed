@@ -5,6 +5,7 @@ DIST_SUBDIRS =		\
 	sort 			\
 	spell			\
 	taglist			\
+	textsize 		\
 	time			\
 	trailsave
 
@@ -15,6 +16,7 @@ SUBDIRS = 			\
 	sort			\
 	spell			\
 	taglist			\
+	textsize 		\
 	time			\
 	trailsave
 

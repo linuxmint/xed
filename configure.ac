@@ -173,6 +173,8 @@ else
 	enable_introspection=no
 fi
 
+AM_PATH_PYTHON([3.2.3])
+
 dnl ================================================================
 dnl GSettings related settings
 dnl ================================================================
@@ -236,6 +238,8 @@ plugins/sort/Makefile
 plugins/spell/Makefile
 plugins/spell/org.x.editor.plugins.spell.gschema.xml
 plugins/taglist/Makefile
+plugins/textsize/Makefile
+plugins/textsize/textsize/Makefile
 plugins/time/Makefile
 plugins/time/org.x.editor.plugins.time.gschema.xml
 plugins/trailsave/Makefile
