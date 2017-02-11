@@ -62,7 +62,6 @@
 
 static GtkWidget *preferences_dialog = NULL;
 
-
 enum
 {
     ID_COLUMN = 0,
@@ -467,19 +466,24 @@ style_scheme_changed (GtkWidget            *treeview,
                       XedPreferencesDialog *dlg)
 {
     GtkTreePath *path;
-    GtkTreeIter iter;
-    gchar *id;
 
     gtk_tree_view_get_cursor (GTK_TREE_VIEW (dlg->priv->schemes_treeview), &path, NULL);
-    gtk_tree_model_get_iter (GTK_TREE_MODEL (dlg->priv->schemes_treeview_model), &iter, path);
-    gtk_tree_path_free (path);
-    gtk_tree_model_get (GTK_TREE_MODEL (dlg->priv->schemes_treeview_model), &iter, ID_COLUMN, &id, -1);
 
-    g_settings_set_string (dlg->priv->editor, XED_SETTINGS_SCHEME, id);
+    if (path != NULL)
+    {
+        GtkTreeIter iter;
+        gchar *id;
 
-    set_buttons_sensisitivity_according_to_scheme (dlg, id);
+        gtk_tree_model_get_iter (GTK_TREE_MODEL (dlg->priv->schemes_treeview_model), &iter, path);
+        gtk_tree_path_free (path);
+        gtk_tree_model_get (GTK_TREE_MODEL (dlg->priv->schemes_treeview_model), &iter, ID_COLUMN, &id, -1);
 
-    g_free (id);
+        g_settings_set_string (dlg->priv->editor, XED_SETTINGS_SCHEME, id);
+
+        set_buttons_sensisitivity_according_to_scheme (dlg, id);
+
+        g_free (id);
+    }
 }
 
 static const gchar *
