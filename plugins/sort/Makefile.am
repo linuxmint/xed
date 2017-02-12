@@ -16,16 +16,13 @@ libsort_la_SOURCES = \
 libsort_la_LDFLAGS = $(PLUGIN_LIBTOOL_FLAGS)
 libsort_la_LIBADD  = $(XED_LIBS)
 
-uidir = $(XED_PLUGINS_DATA_DIR)/sort
-ui_DATA = sort.ui
-
 plugin_in_files = sort.plugin.desktop.in
 
 %.plugin: %.plugin.desktop.in $(INTLTOOL_MERGE) $(wildcard $(top_srcdir)/po/*po) ; $(INTLTOOL_MERGE) $(top_srcdir)/po $< $@ -d -u -c $(top_builddir)/po/.intltool-merge-cache
 
 plugin_DATA = $(plugin_in_files:.plugin.desktop.in=.plugin)
 
-EXTRA_DIST = $(ui_DATA) $(plugin_in_files)
+EXTRA_DIST = $(plugin_in_files)
 
 CLEANFILES = $(plugin_DATA)
 DISTCLEANFILES = $(plugin_DATA)

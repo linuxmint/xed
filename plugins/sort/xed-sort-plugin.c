@@ -28,6 +28,7 @@
 #include "xed-sort-plugin.h"
 
 #include <string.h>
+#include <stdlib.h>
 #include <glib/gi18n.h>
 
 #include <xed/xed-window.h>
@@ -56,23 +57,8 @@ struct _XedSortPluginPrivate
     GtkActionGroup *ui_action_group;
     guint ui_id;
 
-    GtkWidget *dialog;
-    GtkWidget *col_num_spinbutton;
-    GtkWidget *reverse_order_checkbutton;
-    GtkWidget *ignore_case_checkbutton;
-    GtkWidget *remove_dups_checkbutton;
-
     GtkTextIter start, end; /* selection */
 };
-
-typedef struct
-{
-    gint starting_column;
-
-    guint ignore_case : 1;
-    guint reverse_order : 1;
-    guint remove_duplicates : 1;
-} SortInfo;
 
 enum
 {
@@ -82,42 +68,21 @@ enum
 
 static void sort_cb (GtkAction     *action,
                      XedSortPlugin *plugin);
-static void sort_real (XedSortPlugin *plugin);
+
+static void buffer_sort_lines (GtkSourceBuffer *buffer,
+                               GtkTextIter     *start,
+                               GtkTextIter     *end);
 
 static const GtkActionEntry action_entries[] =
 {
     { "Sort",
-      "view-sort-ascending-symbolic",
-      N_("S_ort..."),
       NULL,
+      N_("S_ort lines"),
+      "F10",
       N_("Sort the current document or selection"),
       G_CALLBACK (sort_cb)
     }
 };
-
-static void
-sort_dialog_response_handler (GtkDialog     *dlg,
-                              gint           res_id,
-                              XedSortPlugin *plugin)
-{
-    xed_debug (DEBUG_PLUGINS);
-
-    switch (res_id)
-    {
-        case GTK_RESPONSE_OK:
-            sort_real (plugin);
-            gtk_widget_destroy (GTK_WIDGET (dlg));
-            break;
-
-        case GTK_RESPONSE_HELP:
-            xed_app_show_help (XED_APP (g_application_get_default ()), GTK_WINDOW (dlg), NULL, "xed-sort-plugin");
-            break;
-
-        case GTK_RESPONSE_CANCEL:
-            gtk_widget_destroy (GTK_WIDGET (dlg));
-            break;
-    }
-}
 
 /* NOTE: we store the current selection in the dialog since focusing
  * the text field (like the combo box) looses the documnent selection.
@@ -142,157 +107,24 @@ get_current_selection (XedSortPlugin *plugin)
 }
 
 static void
-create_sort_dialog (XedSortPlugin *plugin)
-{
-    XedSortPluginPrivate *priv;
-    GtkWidget *error_widget;
-    gboolean ret;
-    gchar *data_dir;
-    gchar *ui_file;
-
-    xed_debug (DEBUG_PLUGINS);
-
-    priv = plugin->priv;
-
-    data_dir = peas_extension_base_get_data_dir (PEAS_EXTENSION_BASE (plugin));
-    ui_file = g_build_filename (data_dir, "sort.ui", NULL);
-    ret = xed_utils_get_ui_objects (ui_file,
-                                    NULL,
-                                    &error_widget,
-                                    "sort_dialog", &priv->dialog,
-                                    "reverse_order_checkbutton", &priv->reverse_order_checkbutton,
-                                    "col_num_spinbutton", &priv->col_num_spinbutton,
-                                    "ignore_case_checkbutton", &priv->ignore_case_checkbutton,
-                                    "remove_dups_checkbutton", &priv->remove_dups_checkbutton,
-                                    NULL);
-    g_free (data_dir);
-    g_free (ui_file);
-
-    if (!ret)
-    {
-        const gchar *err_message;
-
-        err_message = gtk_label_get_label (GTK_LABEL (error_widget));
-        xed_warning (GTK_WINDOW (priv->window), "%s", err_message);
-
-        gtk_widget_destroy (error_widget);
-
-        return;
-    }
-
-    gtk_dialog_set_default_response (GTK_DIALOG (priv->dialog), GTK_RESPONSE_OK);
-
-    g_signal_connect (priv->dialog, "destroy", G_CALLBACK (gtk_widget_destroyed), &priv->dialog);
-    g_signal_connect (priv->dialog, "response", G_CALLBACK (sort_dialog_response_handler), plugin);
-
-    get_current_selection (plugin);
-}
-
-static void
 sort_cb (GtkAction     *action,
          XedSortPlugin *plugin)
 {
     XedSortPluginPrivate *priv;
-    GtkWindowGroup *wg;
+    XedDocument *doc;
 
     xed_debug (DEBUG_PLUGINS);
 
     priv = plugin->priv;
 
-    create_sort_dialog (plugin);
+    doc = xed_window_get_active_document (priv->window);
+    g_return_if_fail (doc != NULL);
 
-    wg = xed_window_get_group (priv->window);
-    gtk_window_group_add_window (wg, GTK_WINDOW (priv->dialog));
+    get_current_selection (plugin);
 
-    gtk_window_set_transient_for (GTK_WINDOW (priv->dialog), GTK_WINDOW (priv->window));
-    gtk_window_set_modal (GTK_WINDOW (priv->dialog), TRUE);
-
-    gtk_widget_show (GTK_WIDGET (priv->dialog));
-}
-
-/* Compares two strings for the sorting algorithm. Uses the UTF-8 processing
- * functions in GLib to be as correct as possible.*/
-static gint
-compare_algorithm (gconstpointer s1,
-                   gconstpointer s2,
-                   gpointer      data)
-{
-    gint length1, length2;
-    gint ret;
-    gchar *string1, *string2;
-    gchar *substring1, *substring2;
-    gchar *key1, *key2;
-    SortInfo *sort_info;
-
-    xed_debug (DEBUG_PLUGINS);
-
-    sort_info = (SortInfo *) data;
-    g_return_val_if_fail (sort_info != NULL, -1);
-
-    if (!sort_info->ignore_case)
-    {
-        string1 = *((gchar **) s1);
-        string2 = *((gchar **) s2);
-    }
-    else
-    {
-        string1 = g_utf8_casefold (*((gchar **) s1), -1);
-        string2 = g_utf8_casefold (*((gchar **) s2), -1);
-    }
-
-    length1 = g_utf8_strlen (string1, -1);
-    length2 = g_utf8_strlen (string2, -1);
-
-    if ((length1 < sort_info->starting_column) &&
-        (length2 < sort_info->starting_column))
-    {
-        ret = 0;
-    }
-    else if (length1 < sort_info->starting_column)
-    {
-        ret = -1;
-    }
-    else if (length2 < sort_info->starting_column)
-    {
-        ret = 1;
-    }
-    else if (sort_info->starting_column < 1)
-    {
-        key1 = g_utf8_collate_key (string1, -1);
-        key2 = g_utf8_collate_key (string2, -1);
-        ret = strcmp (key1, key2);
-
-        g_free (key1);
-        g_free (key2);
-    }
-    else
-    {
-        /* A character column offset is required, so figure out
-         * the correct offset into the UTF-8 string. */
-        substring1 = g_utf8_offset_to_pointer (string1, sort_info->starting_column);
-        substring2 = g_utf8_offset_to_pointer (string2, sort_info->starting_column);
-
-        key1 = g_utf8_collate_key (substring1, -1);
-        key2 = g_utf8_collate_key (substring2, -1);
-        ret = strcmp (key1, key2);
-
-        g_free (key1);
-        g_free (key2);
-    }
-
-    /* Do the necessary cleanup. */
-    if (sort_info->ignore_case)
-    {
-        g_free (string1);
-        g_free (string2);
-    }
-
-    if (sort_info->reverse_order)
-    {
-        ret = -1 * ret;
-    }
-
-    return ret;
+    buffer_sort_lines (GTK_SOURCE_BUFFER (doc),
+                       &priv->start,
+                       &priv->end);
 }
 
 static gchar *
@@ -300,7 +132,6 @@ get_line_slice (GtkTextBuffer *buf,
                 gint           line)
 {
     GtkTextIter start, end;
-    char *ret;
 
     gtk_text_buffer_get_iter_at_line (buf, &start, line);
     end = start;
@@ -310,97 +141,108 @@ get_line_slice (GtkTextBuffer *buf,
         gtk_text_iter_forward_to_line_end (&end);
     }
 
-    ret= gtk_text_buffer_get_slice (buf, &start, &end, TRUE);
+    return gtk_text_buffer_get_slice (buf, &start, &end, TRUE);
+}
 
-    g_assert (ret != NULL);
+typedef struct {
+    gchar *line; /* the original text to re-insert */
+    gchar *key;  /* the key to use for the comparison */
+} SortLine;
 
-    return ret;
+static gint
+compare_line (gconstpointer aptr,
+              gconstpointer bptr)
+{
+    const SortLine *a = aptr;
+    const SortLine *b = bptr;
+
+    return g_strcmp0 (a->key, b->key);
 }
 
 static void
-sort_real (XedSortPlugin *plugin)
+buffer_sort_lines (GtkSourceBuffer    *buffer,
+                   GtkTextIter        *start,
+                   GtkTextIter        *end)
 {
-    XedSortPluginPrivate *priv;
-    XedDocument *doc;
-    GtkTextIter start, end;
-    gint start_line, end_line;
-    gint i;
-    gchar *last_row = NULL;
+    GtkTextBuffer *text_buffer;
+    gint start_line;
+    gint end_line;
     gint num_lines;
-    gchar **lines;
-    SortInfo *sort_info;
+    SortLine *lines;
+    gchar *last_line = NULL;
+    gint i;
 
-    xed_debug (DEBUG_PLUGINS);
+    g_return_if_fail (GTK_SOURCE_IS_BUFFER (buffer));
+    g_return_if_fail (start != NULL);
+    g_return_if_fail (end != NULL);
 
-    priv = plugin->priv;
+    text_buffer = GTK_TEXT_BUFFER (buffer);
 
-    doc = xed_window_get_active_document (priv->window);
-    g_return_if_fail (doc != NULL);
+    gtk_text_iter_order (start, end);
 
-    sort_info = g_slice_new (SortInfo);
-    sort_info->ignore_case = gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (priv->ignore_case_checkbutton));
-    sort_info->reverse_order = gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (priv->reverse_order_checkbutton));
-    sort_info->remove_duplicates = gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (priv->remove_dups_checkbutton));
-    sort_info->starting_column = gtk_spin_button_get_value_as_int (GTK_SPIN_BUTTON (priv->col_num_spinbutton)) - 1;
+    start_line = gtk_text_iter_get_line (start);
+    end_line = gtk_text_iter_get_line (end);
 
-    start = priv->start;
-    end = priv->end;
-    start_line = gtk_text_iter_get_line (&start);
-    end_line = gtk_text_iter_get_line (&end);
+    /* Required for gtk_text_buffer_delete() */
+    if (!gtk_text_iter_starts_line (start))
+    {
+        gtk_text_iter_set_line_offset (start, 0);
+    }
 
     /* if we are at line start our last line is the previus one.
      * Otherwise the last line is the current one but we try to
      * move the iter after the line terminator */
-    if (gtk_text_iter_get_line_offset (&end) == 0)
+    if (gtk_text_iter_starts_line (end))
     {
         end_line = MAX (start_line, end_line - 1);
     }
     else
     {
-        gtk_text_iter_forward_line (&end);
+        gtk_text_iter_forward_line (end);
+    }
+
+    if (start_line == end_line)
+    {
+        return;
     }
 
     num_lines = end_line - start_line + 1;
-    lines = g_new0 (gchar *, num_lines + 1);
-
-    xed_debug_message (DEBUG_PLUGINS, "Building list...");
+    lines = g_new0 (SortLine, num_lines);
 
     for (i = 0; i < num_lines; i++)
     {
-        lines[i] = get_line_slice (GTK_TEXT_BUFFER (doc), start_line + i);
+        gchar *line;
+
+        lines[i].line = get_line_slice (text_buffer, start_line + i);
+        line = g_utf8_casefold (lines[i].line, -1);
+        lines[i].key = g_utf8_collate_key (line, -1);
+
+        g_free (line);
     }
 
-    lines[num_lines] = NULL;
+    qsort (lines, num_lines, sizeof (SortLine), compare_line);
 
-    xed_debug_message (DEBUG_PLUGINS, "Sort list...");
+    gtk_text_buffer_begin_user_action (text_buffer);
 
-    g_qsort_with_data (lines, num_lines, sizeof (gpointer), compare_algorithm, sort_info);
-
-    xed_debug_message (DEBUG_PLUGINS, "Rebuilding document...");
-
-    gtk_source_buffer_begin_not_undoable_action (GTK_SOURCE_BUFFER (doc));
-
-    gtk_text_buffer_delete (GTK_TEXT_BUFFER (doc), &start, &end);
+    gtk_text_buffer_delete (text_buffer, start, end);
 
     for (i = 0; i < num_lines; i++)
     {
-        if (sort_info->remove_duplicates && last_row != NULL && (strcmp (last_row, lines[i]) == 0))
-        {
-            continue;
-        }
+        gtk_text_buffer_insert (text_buffer, start, lines[i].line, -1);
+        gtk_text_buffer_insert (text_buffer, start, "\n", -1);
 
-        gtk_text_buffer_insert (GTK_TEXT_BUFFER (doc), &start, lines[i], -1);
-        gtk_text_buffer_insert (GTK_TEXT_BUFFER (doc), &start, "\n", -1);
-
-        last_row = lines[i];
+        last_line = lines[i].line;
     }
 
-    gtk_source_buffer_end_not_undoable_action (GTK_SOURCE_BUFFER (doc));
+    gtk_text_buffer_end_user_action (text_buffer);
 
-    g_strfreev (lines);
-    g_slice_free (SortInfo, sort_info);
+    for (i = 0; i < num_lines; i++)
+    {
+        g_free (lines[i].line);
+        g_free (lines[i].key);
+    }
 
-    xed_debug_message (DEBUG_PLUGINS, "Done.");
+    g_free (lines);
 }
 
 static void
