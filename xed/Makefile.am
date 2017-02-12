@@ -80,7 +80,7 @@ INST_H_FILES =							\
 	xed-window-activatable.h
 
 if !ENABLE_GVFS_METADATA
-INST_H_FILES += xed-metadata-manager.h
+NOINST_H_FILES += xed-metadata-manager.h
 endif
 
 headerdir = $(prefix)/include/xed

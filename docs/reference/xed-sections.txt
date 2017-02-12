@@ -1,14 +1,13 @@
 <SECTION>
 <FILE>xed-app</FILE>
-XedAppPrivate
 <TITLE>XedApp</TITLE>
 XedApp
-xed_app_get_default
 xed_app_create_window
-xed_app_get_windows
-xed_app_get_active_window
+xed_app_set_window_title
+xed_app_get_main_windows
 xed_app_get_documents
 xed_app_get_views
+xed_app_show_help
 <SUBSECTION Standard>
 XED_APP
 XED_IS_APP
@@ -41,17 +40,18 @@ XedDocumentPrivate
 XedDocument
 xed_document_new
 xed_document_get_file
-xed_document_get_location
 xed_document_get_uri_for_display
 xed_document_get_short_name_for_display
+xed_document_set_short_name_for_display
 xed_document_get_mime_type
 xed_document_get_readonly
-xed_document_insert_file
 xed_document_is_untouched
 xed_document_is_untitled
 xed_document_get_deleted
 xed_document_goto_line
+xed_document_goto_line_offset
 xed_document_set_language
+xed_document_get_metadata
 <SUBSECTION Standard>
 XED_DOCUMENT
 XED_IS_DOCUMENT
@@ -63,21 +63,20 @@ XED_DOCUMENT_GET_CLASS
 </SECTION>
 
 <SECTION>
-<FILE>xed-encodings-option-menu</FILE>
-XedEncodingsOptionMenuPrivate
+<FILE>xed-encodings-combo-box</FILE>
 <TITLE>XedEncodingsOptionMenu</TITLE>
-XedEncodingsOptionMenu
-xed_encodings_option_menu_new
-xed_encodings_option_menu_get_selected_encoding
-xed_encodings_option_menu_set_selected_encoding
+XedEncodingsComboBox
+xed_encodings_combo_box_new
+xed_encodings_combo_box_get_selected_encoding
+xed_encodings_combo_box_set_selected_encoding
 <SUBSECTION Standard>
-XED_ENCODINGS_OPTION_MENU
-XED_IS_ENCODINGS_OPTION_MENU
-XED_TYPE_ENCODINGS_OPTION_MENU
-xed_encodings_option_menu_get_type
-XED_ENCODINGS_OPTION_MENU_CLASS
-XED_IS_ENCODINGS_OPTION_MENU_CLASS
-XED_ENCODINGS_OPTION_MENU_GET_CLASS
+XED_ENCODINGS_COMBO_BOX
+XED_IS_ENCODINGS_COMBO_BOX
+XED_TYPE_ENCODINGS_COMBO_BOX
+xed_encodings_combo_box_get_type
+XED_ENCODINGS_COMBO_BOX_CLASS
+XED_IS_ENCODINGS_COMBO_BOX_CLASS
+XED_ENCODINGS_COMBO_BOX_GET_CLASS
 </SECTION>
 
 <SECTION>
@@ -264,33 +263,30 @@ XED_PRINT_JOB_GET_CLASS
 </SECTION>
 
 <SECTION>
-<FILE>xed-progress-message-area</FILE>
-XedProgressMessageAreaPrivate
-<TITLE>XedProgressMessageArea</TITLE>
-XedProgressMessageArea
-xed_progress_message_area_new
-xed_progress_message_area_set_image
-xed_progress_message_area_set_markup
-xed_progress_message_area_set_text
-xed_progress_message_area_set_fraction
-xed_progress_message_area_pulse
+<FILE>xed-progress-info-bar</FILE>
+<TITLE>XedProgressInfoBar</TITLE>
+XedProgressInfoBar
+xed_progress_info_bar_new
+xed_progress_info_bar_set_icon_name
+xed_progress_info_bar_set_markup
+xed_progress_info_bar_set_text
+xed_progress_info_bar_set_fraction
+xed_progress_info_bar_pulse
 <SUBSECTION Standard>
-XED_PROGRESS_MESSAGE_AREA
-XED_IS_PROGRESS_MESSAGE_AREA
-XED_TYPE_PROGRESS_MESSAGE_AREA
-xed_progress_message_area_get_type
-XED_PROGRESS_MESSAGE_AREA_CLASS
-XED_IS_PROGRESS_MESSAGE_AREA_CLASS
-XED_PROGRESS_MESSAGE_AREA_GET_CLASS
+XED_PROGRESS_INFO_BAR
+XED_IS_PROGRESS_INFO_BAR
+XED_TYPE_PROGRESS_INFO_BAR
+xed_progress_info_bar_get_type
+XED_PROGRESS_INFO_BAR_CLASS
+XED_IS_PROGRESS_INFO_BAR_CLASS
+XED_PROGRESS_INFO_BAR_GET_CLASS
 </SECTION>
 
 <SECTION>
 <FILE>xed-statusbar</FILE>
-XedStatusbarPrivate
 <TITLE>XedStatusbar</TITLE>
 XedStatusbar
 xed_statusbar_new
-XedStatus
 xed_statusbar_set_window_state
 xed_statusbar_set_overwrite
 xed_statusbar_set_cursor_position
@@ -455,13 +451,6 @@ xed_debug_message
 <SECTION>
 <FILE>xed-help</FILE>
 xed_help_display
-</SECTION>
-
-<SECTION>
-<FILE>xed-metadata-manager</FILE>
-xed_metadata_manager_shutdown
-xed_metadata_manager_get
-xed_metadata_manager_set
 </SECTION>
 
 <SECTION>

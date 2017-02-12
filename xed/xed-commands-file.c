@@ -289,14 +289,15 @@ xed_commands_load_location (XedWindow               *window,
 
 /**
  * xed_commands_load_locations:
- * @window:
- * @locations: (element-type GLib.File) (transfer none):
- * @encoding: (allow-none):
- * @line_pos:
+ * @window: a #XedWindow
+ * @locations: (element-type Gio.File): the locations to load
+ * @encoding: (allow-none): the #GtkSourceEncoding
+ * @line_pos: the line position to place the cursor
  *
- * Ignore non-existing locations
+ * Loads @locataions. Ignore non-existing locations
  *
- * Returns:
+ * Returns: (element-type Xed.Document) (transfer container): the locations
+ * that were loaded.
  */
 GSList *
 xed_commands_load_locations (XedWindow               *window,

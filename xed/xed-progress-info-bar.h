@@ -65,8 +65,8 @@ GtkWidget *xed_progress_info_bar_new (const gchar *icon_name,
                                       const gchar *markup,
                                       gboolean     has_cancel);
 
-void xed_progress_info_bar_set_image (XedProgressInfoBar *area,
-                                      const gchar        *icon_name);
+void xed_progress_info_bar_set_icon_name (XedProgressInfoBar *area,
+                                          const gchar        *icon_name);
 
 void xed_progress_info_bar_set_markup (XedProgressInfoBar *area,
                                        const gchar        *markup);

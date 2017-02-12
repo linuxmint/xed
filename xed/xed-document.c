@@ -832,7 +832,7 @@ xed_document_set_location (XedDocument *doc,
 
 /**
  * xed_document_get_uri_for_display:
- * @doc:
+ * @doc: a #XedDocument
  *
  * Note: this never returns %NULL.
  **/
@@ -857,7 +857,7 @@ xed_document_get_uri_for_display (XedDocument *doc)
 
 /**
  * xed_document_get_short_name_for_display:
- * @doc:
+ * @doc: a #XedDocument
  *
  * Note: this never returns %NULL.
  **/
@@ -911,7 +911,7 @@ xed_document_get_content_type (XedDocument *doc)
 
 /**
  * xed_document_get_mime_type:
- * @doc:
+ * @doc: a #XedDocument
  *
  * Note: this never returns %NULL.
  **/
@@ -1461,7 +1461,7 @@ xed_document_set_metadata (XedDocument *doc,
  *
  * Gets the metadata assigned to @key.
  *
- * Returns: the value assigned to @key.
+ * Returns: the value assigned to @key. Free with g_free().
  */
 gchar *
 xed_document_get_metadata (XedDocument *doc,
