@@ -323,37 +323,36 @@ set_item_message (WindowData  *data,
     XedFileBrowserStore *store;
     GFile *location;
     guint flags = 0;
-    gchar *track_id;
 
     store = xed_file_browser_widget_get_browser_store (data->widget);
-
     gtk_tree_model_get (GTK_TREE_MODEL (store), iter,
                         XED_FILE_BROWSER_STORE_COLUMN_LOCATION, &location,
                         XED_FILE_BROWSER_STORE_COLUMN_FLAGS, &flags,
                         -1);
 
-    if (!location)
+    if (location)
     {
-        return;
-    }
+        gchar *track_id;
 
-    if (path && gtk_tree_path_get_depth (path) != 0)
-    {
-        track_id = track_row (data, store, path, location);
-    }
-    else
-    {
-        track_id = NULL;
-    }
+        if (path && gtk_tree_path_get_depth (path) != 0)
+        {
+            track_id = track_row (data, store, path, location);
+        }
+        else
+        {
+            track_id = NULL;
+        }
 
-    xed_message_set (message, "id", track_id, "location", location, NULL);
+        xed_message_set (message, "id", track_id, "location", location, NULL);
 
-    if (xed_message_has_key (message, "is_directory"))
-    {
-        xed_message_set (message, "is_directory", FILE_IS_DIR (flags), NULL);
+        if (xed_message_has_key (message, "is_directory"))
+        {
+            xed_message_set (message, "is_directory", FILE_IS_DIR (flags), NULL);
+        }
+
+        g_free (track_id);
+        g_object_unref (location);
     }
-
-    g_free (track_id);
 }
 
 static gboolean
@@ -386,6 +385,8 @@ custom_message_filter_func (XedFileBrowserWidget *widget,
 
     xed_message_bus_send_message_sync (wdata->bus, data->message);
     xed_message_get (data->message, "filter", &filter, NULL);
+
+    g_object_unref (location);
 
     return !filter;
 }

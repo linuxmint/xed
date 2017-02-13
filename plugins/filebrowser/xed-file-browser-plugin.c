@@ -349,9 +349,6 @@ on_action_open_terminal (GtkAction            *action,
                          XedFileBrowserPlugin *plugin)
 {
     XedFileBrowserPluginPrivate *priv = plugin->priv;
-    gchar *terminal;
-    gchar *local;
-    gchar *argv[2];
     GFile *file;
 
     GtkTreeIter iter;
@@ -366,29 +363,32 @@ on_action_open_terminal (GtkAction            *action,
     store = xed_file_browser_widget_get_browser_store (priv->tree_widget);
     gtk_tree_model_get (GTK_TREE_MODEL (store), &iter, XED_FILE_BROWSER_STORE_COLUMN_LOCATION, &file, -1);
 
-    if (file == NULL)
+    if (file)
     {
-        return;
+        gchar *terminal;
+        gchar *local;
+        gchar *argv[2];
+
+        terminal = get_terminal (plugin);
+
+        local = g_file_get_path (file);
+
+        argv[0] = terminal;
+        argv[1] = NULL;
+
+        g_spawn_async (local,
+                       argv,
+                       NULL,
+                       G_SPAWN_SEARCH_PATH,
+                       NULL,
+                       NULL,
+                       NULL,
+                       NULL);
+
+        g_free (terminal);
+        g_free (local);
+        g_object_unref (file);
     }
-
-    terminal = get_terminal (plugin);
-
-    local = g_file_get_path (file);
-
-    argv[0] = terminal;
-    argv[1] = NULL;
-
-    g_spawn_async (local,
-                   argv,
-                   NULL,
-                   G_SPAWN_SEARCH_PATH,
-                   NULL,
-                   NULL,
-                   NULL,
-                   NULL);
-
-    g_free (terminal);
-    g_free (local);
 }
 
 static void
@@ -400,7 +400,6 @@ on_selection_changed_cb (GtkTreeSelection     *selection,
     GtkTreeModel *model;
     GtkTreeIter iter;
     gboolean sensitive;
-    GFile *location;
 
     tree_view = GTK_TREE_VIEW (xed_file_browser_widget_get_browser_view (priv->tree_widget));
     model = gtk_tree_view_get_model (tree_view);
@@ -414,9 +413,19 @@ on_selection_changed_cb (GtkTreeSelection     *selection,
 
     if (sensitive)
     {
+        GFile *location;
+
         gtk_tree_model_get (model, &iter, XED_FILE_BROWSER_STORE_COLUMN_LOCATION, &location, -1);
 
-        sensitive = g_file_has_uri_scheme (location, "file");
+        if (location)
+        {
+            sensitive = g_file_has_uri_scheme (location, "file");
+            g_object_unref (location);
+        }
+        else
+        {
+            sensitive = FALSE;
+        }
     }
 
     gtk_action_set_sensitive (gtk_action_group_get_action (priv->single_selection_action_group, "OpenTerminal"), sensitive);
@@ -927,11 +936,18 @@ get_filename_from_path (GtkTreeModel *model,
 {
     GtkTreeIter iter;
     GFile *location;
+    gchar *ret = NULL;
 
     gtk_tree_model_get_iter (model, &iter, path);
     gtk_tree_model_get (model, &iter, XED_FILE_BROWSER_STORE_COLUMN_LOCATION, &location, -1);
 
-    return xed_file_browser_utils_file_basename (location);
+    if (location)
+    {
+        ret = xed_file_browser_utils_file_basename (location);
+        g_object_unref (location);
+    }
+
+    return ret;
 }
 
 static gboolean
