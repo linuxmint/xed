@@ -44,8 +44,6 @@ struct _XedFileBrowserViewPrivate
     GtkTreeModel *model;
     GtkTreeRowReference *editable;
 
-    GdkCursor *busy_cursor;
-
     /* CLick policy */
     XedFileBrowserViewClickPolicy click_policy;
     GtkTreePath *double_click_path[2]; /* Both clicks in a double click need to be on the same row */
@@ -127,8 +125,6 @@ xed_file_browser_view_finalize (GObject *object)
         g_hash_table_destroy (obj->priv->expand_state);
         obj->priv->expand_state = NULL;
     }
-
-    g_object_unref (obj->priv->busy_cursor);
 
     G_OBJECT_CLASS (xed_file_browser_view_parent_class)->finalize (object);
 }
@@ -1038,8 +1034,6 @@ xed_file_browser_view_init (XedFileBrowserView *obj)
                                             drag_source_targets,
                                             G_N_ELEMENTS (drag_source_targets),
                                             GDK_ACTION_COPY);
-
-    obj->priv->busy_cursor = gdk_cursor_new (GDK_WATCH);
 }
 
 static gboolean
