@@ -253,7 +253,7 @@ free_name_icon (gpointer data)
     if (item->icon)
         g_object_unref (item->icon);
 
-    g_free (item);
+    g_slice_free (NameIcon, item);
 }
 
 static FilterFunc *
@@ -264,7 +264,7 @@ filter_func_new (XedFileBrowserWidget * obj,
 {
     FilterFunc *result;
 
-    result = g_new (FilterFunc, 1);
+    result = g_slice_new (FilterFunc);
 
     result->id = ++obj->priv->filter_id;
     result->func = func;
@@ -282,7 +282,7 @@ location_free (Location * loc)
     if (loc->virtual_root)
         g_object_unref (loc->virtual_root);
 
-    g_free (loc);
+    g_slice_free (Location, loc);
 }
 
 static gboolean
@@ -329,6 +329,12 @@ cancel_async_operation (XedFileBrowserWidget *widget)
     widget->priv->cancellable = NULL;
 }
 
+ static void
+filter_func_free (FilterFunc *func)
+{
+    g_slice_free (FilterFunc, func);
+}
+
 static void
 xed_file_browser_widget_finalize (GObject * object)
 {
@@ -344,7 +350,7 @@ xed_file_browser_widget_finalize (GObject * object)
     g_object_unref (obj->priv->bookmarks_store);
     g_object_unref (obj->priv->combo_model);
 
-    g_slist_foreach (obj->priv->filter_funcs, (GFunc) g_free, NULL);
+    g_slist_foreach (obj->priv->filter_funcs, (GFunc)filter_func_free, NULL);
     g_slist_free (obj->priv->filter_funcs);
 
     for (loc = obj->priv->locations; loc; loc = loc->next)
@@ -487,7 +493,7 @@ xed_file_browser_widget_class_finalize (XedFileBrowserWidgetClass *klass)
 static void
 add_signal (XedFileBrowserWidget * obj, gpointer object, gulong id)
 {
-    SignalNode *node = g_new (SignalNode, 1);
+    SignalNode *node = g_slice_new (SignalNode);
 
     node->object = G_OBJECT (object);
     node->id = id;
@@ -506,7 +512,7 @@ clear_signals (XedFileBrowserWidget * obj)
         node = (SignalNode *) (item->data);
 
         g_signal_handler_disconnect (node->object, node->id);
-        g_free (item->data);
+        g_slice_free (SignalNode, node);
     }
 
     g_slist_free (obj->priv->signal_pool);
@@ -1078,7 +1084,7 @@ add_bookmark_hash (XedFileBrowserWidget * obj,
                 XED_FILE_BOOKMARKS_STORE_COLUMN_NAME,
                 &name, -1);
 
-    item = g_new (NameIcon, 1);
+    item = g_slice_new (NameIcon);
     item->name = name;
     item->icon = pixbuf;
 
@@ -1941,7 +1947,7 @@ xed_file_browser_widget_remove_filter (XedFileBrowserWidget * obj,
             obj->priv->filter_funcs =
                 g_slist_remove_link (obj->priv->filter_funcs,
                          item);
-            g_free (func);
+            filter_func_free (func);
             break;
         }
     }
@@ -2044,7 +2050,7 @@ async_data_new (XedFileBrowserWidget *widget)
 {
     AsyncData *ret;
 
-    ret = g_new (AsyncData, 1);
+    ret = g_slice_new (AsyncData);
     ret->widget = widget;
 
     cancel_async_operation (widget);
@@ -2059,7 +2065,7 @@ static void
 async_free (AsyncData *async)
 {
     g_object_unref (async->cancellable);
-    g_free (async);
+    g_slice_free (AsyncData, async);
 }
 
 static void
@@ -2516,7 +2522,7 @@ on_virtual_root_changed (XedFileBrowserStore * model,
                 if (obj->priv->current_location)
                     clear_next_locations (obj);
 
-                loc = g_new (Location, 1);
+                loc = g_slice_new (Location);
                 loc->root = xed_file_browser_store_get_root (model);
                 loc->virtual_root = g_object_ref (location);
 
