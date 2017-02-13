@@ -2,8 +2,8 @@
 #include "xed-file-browser-store.h"
 #include <xed/xed-message.h>
 
-#define MESSAGE_OBJECT_PATH     "/plugins/filebrowser"
-#define WINDOW_DATA_KEY         "XedFileBrowserMessagesWindowData"
+#define MESSAGE_OBJECT_PATH "/plugins/filebrowser"
+#define WINDOW_DATA_KEY     "XedFileBrowserMessagesWindowData"
 
 #define BUS_CONNECT(bus, name, data) xed_message_bus_connect(bus, MESSAGE_OBJECT_PATH, #name, (XedMessageCallback)  message_##name##_cb, data, NULL)
 
@@ -41,7 +41,7 @@ typedef struct
 
 static WindowData *
 window_data_new (XedWindow            *window,
-         XedFileBrowserWidget *widget)
+                 XedFileBrowserWidget *widget)
 {
     WindowData *data = g_slice_new (WindowData);
     GtkUIManager *manager;
@@ -50,14 +50,14 @@ window_data_new (XedWindow            *window,
     data->bus = xed_window_get_message_bus (window);
     data->widget = widget;
     data->row_tracking = g_hash_table_new_full (g_str_hash,
-                            g_str_equal,
-                            (GDestroyNotify)g_free,
-                            (GDestroyNotify)gtk_tree_row_reference_free);
+                                                g_str_equal,
+                                                (GDestroyNotify)g_free,
+                                                (GDestroyNotify)gtk_tree_row_reference_free);
 
     data->filters = g_hash_table_new_full (g_str_hash,
-                           g_str_equal,
-                           (GDestroyNotify)g_free,
-                           NULL);
+                                           g_str_equal,
+                                           (GDestroyNotify)g_free,
+                                           NULL);
 
     manager = xed_file_browser_widget_get_ui_manager (widget);
 
@@ -92,7 +92,9 @@ window_data_free (XedWindow *window)
     gtk_ui_manager_remove_action_group (manager, data->merged_actions);
 
     for (item = data->merge_ids; item; item = item->next)
+    {
         gtk_ui_manager_remove_ui (manager, GPOINTER_TO_INT (item->data));
+    }
 
     g_list_free (data->merge_ids);
     g_object_unref (data->merged_actions);
@@ -104,7 +106,7 @@ window_data_free (XedWindow *window)
 
 static FilterData *
 filter_data_new (XedWindow  *window,
-         XedMessage *message)
+                 XedMessage *message)
 {
     FilterData *data = g_slice_new (FilterData);
     WindowData *wdata;
@@ -115,10 +117,8 @@ filter_data_new (XedWindow  *window,
 
     wdata = get_window_data (window);
 
-    g_hash_table_insert (wdata->filters,
-                 xed_message_type_identifier (xed_message_get_object_path (message),
-                                                xed_message_get_method (message)),
-                 data);
+    g_hash_table_insert (wdata->filters, xed_message_type_identifier (xed_message_get_object_path (message),
+                                                                      xed_message_get_method (message)), data);
 
     return data;
 }
@@ -130,7 +130,7 @@ filter_data_free (FilterData *data)
     gchar *identifier;
 
     identifier = xed_message_type_identifier (xed_message_get_object_path (data->message),
-                                        xed_message_get_method (data->message));
+                                              xed_message_get_method (data->message));
 
     g_hash_table_remove (wdata->filters, identifier);
     g_free (identifier);
@@ -141,14 +141,16 @@ filter_data_free (FilterData *data)
 
 static GtkTreePath *
 track_row_lookup (WindowData  *data,
-          const gchar *id)
+                  const gchar *id)
 {
     GtkTreeRowReference *ref;
 
     ref = (GtkTreeRowReference *)g_hash_table_lookup (data->row_tracking, id);
 
     if (!ref)
+    {
         return NULL;
+    }
 
     return gtk_tree_row_reference_get_path (ref);
 }
@@ -161,8 +163,8 @@ message_cache_data_free (MessageCacheData *data)
 }
 
 static MessageCacheData *
-message_cache_data_new (XedWindow            *window,
-            XedMessage           *message)
+message_cache_data_new (XedWindow  *window,
+                        XedMessage *message)
 {
     MessageCacheData *data = g_slice_new (MessageCacheData);
 
@@ -174,8 +176,8 @@ message_cache_data_new (XedWindow            *window,
 
 static void
 message_get_root_cb (XedMessageBus *bus,
-             XedMessage    *message,
-             WindowData      *data)
+                     XedMessage    *message,
+                     WindowData    *data)
 {
     XedFileBrowserStore *store;
     GFile *location;
@@ -192,8 +194,8 @@ message_get_root_cb (XedMessageBus *bus,
 
 static void
 message_set_root_cb (XedMessageBus *bus,
-             XedMessage    *message,
-             WindowData      *data)
+                     XedMessage    *message,
+                     WindowData    *data)
 {
     GFile *root;
     GFile *virtual = NULL;
@@ -201,21 +203,29 @@ message_set_root_cb (XedMessageBus *bus,
     xed_message_get (message, "location", &root, NULL);
 
     if (!root)
+    {
         return;
+    }
 
     if (xed_message_has_key (message, "virtual"))
+    {
         xed_message_get (message, "virtual", &virtual, NULL);
+    }
 
     if (virtual)
+    {
         xed_file_browser_widget_set_root_and_virtual_root (data->widget, root, virtual);
+    }
     else
+    {
         xed_file_browser_widget_set_root (data->widget, root, TRUE);
+    }
 }
 
 static void
 message_set_emblem_cb (XedMessageBus *bus,
-               XedMessage    *message,
-               WindowData      *data)
+                       XedMessage    *message,
+                       WindowData    *data)
 {
     gchar *id = NULL;
     gchar *emblem = NULL;
@@ -239,11 +249,7 @@ message_set_emblem_cb (XedMessageBus *bus,
         GError *error = NULL;
         GdkPixbuf *pixbuf;
 
-        pixbuf = gtk_icon_theme_load_icon (gtk_icon_theme_get_default (),
-                           emblem,
-                           10,
-                           0,
-                           &error);
+        pixbuf = gtk_icon_theme_load_icon (gtk_icon_theme_get_default (), emblem, 10, 0, &error);
 
         if (pixbuf)
         {
@@ -257,10 +263,7 @@ message_set_emblem_cb (XedMessageBus *bus,
                 g_value_init (&value, GDK_TYPE_PIXBUF);
                 g_value_set_object (&value, pixbuf);
 
-                xed_file_browser_store_set_value (store,
-                                    &iter,
-                                    XED_FILE_BROWSER_STORE_COLUMN_EMBLEM,
-                                    &value);
+                xed_file_browser_store_set_value (store, &iter, XED_FILE_BROWSER_STORE_COLUMN_EMBLEM, &value);
 
                 g_value_unset (&value);
             }
@@ -278,7 +281,7 @@ message_set_emblem_cb (XedMessageBus *bus,
 
 static gchar *
 item_id (const gchar *path,
-     GFile *location)
+         GFile       *location)
 {
     gchar *uri;
     gchar *id;
@@ -291,10 +294,10 @@ item_id (const gchar *path,
 }
 
 static gchar *
-track_row (WindowData            *data,
-       XedFileBrowserStore *store,
-       GtkTreePath           *path,
-       GFile               *location)
+track_row (WindowData          *data,
+           XedFileBrowserStore *store,
+           GtkTreePath         *path,
+           GFile               *location)
 {
     GtkTreeRowReference *ref;
     gchar *id;
@@ -312,10 +315,10 @@ track_row (WindowData            *data,
 }
 
 static void
-set_item_message (WindowData   *data,
-          GtkTreeIter  *iter,
-          GtkTreePath  *path,
-          XedMessage *message)
+set_item_message (WindowData  *data,
+                  GtkTreeIter *iter,
+                  GtkTreePath *path,
+                  XedMessage  *message)
 {
     XedFileBrowserStore *store;
     GFile *location;
@@ -325,28 +328,29 @@ set_item_message (WindowData   *data,
     store = xed_file_browser_widget_get_browser_store (data->widget);
 
     gtk_tree_model_get (GTK_TREE_MODEL (store), iter,
-                XED_FILE_BROWSER_STORE_COLUMN_LOCATION, &location,
-                XED_FILE_BROWSER_STORE_COLUMN_FLAGS, &flags,
-                -1);
+                        XED_FILE_BROWSER_STORE_COLUMN_LOCATION, &location,
+                        XED_FILE_BROWSER_STORE_COLUMN_FLAGS, &flags,
+                        -1);
 
     if (!location)
+    {
         return;
+    }
 
     if (path && gtk_tree_path_get_depth (path) != 0)
+    {
         track_id = track_row (data, store, path, location);
+    }
     else
+    {
         track_id = NULL;
+    }
 
-    xed_message_set (message,
-               "id", track_id,
-               "location", location,
-               NULL);
+    xed_message_set (message, "id", track_id, "location", location, NULL);
 
     if (xed_message_has_key (message, "is_directory"))
     {
-        xed_message_set (message,
-                   "is_directory", FILE_IS_DIR (flags),
-                   NULL);
+        xed_message_set (message, "is_directory", FILE_IS_DIR (flags), NULL);
     }
 
     g_free (track_id);
@@ -354,9 +358,9 @@ set_item_message (WindowData   *data,
 
 static gboolean
 custom_message_filter_func (XedFileBrowserWidget *widget,
-                XedFileBrowserStore  *store,
-                GtkTreeIter            *iter,
-                FilterData             *data)
+                            XedFileBrowserStore  *store,
+                            GtkTreeIter          *iter,
+                            FilterData           *data)
 {
     WindowData *wdata = get_window_data (data->window);
     GFile *location;
@@ -365,9 +369,9 @@ custom_message_filter_func (XedFileBrowserWidget *widget,
     GtkTreePath *path;
 
     gtk_tree_model_get (GTK_TREE_MODEL (store), iter,
-                XED_FILE_BROWSER_STORE_COLUMN_LOCATION, &location,
-                XED_FILE_BROWSER_STORE_COLUMN_FLAGS, &flags,
-                -1);
+                        XED_FILE_BROWSER_STORE_COLUMN_LOCATION, &location,
+                        XED_FILE_BROWSER_STORE_COLUMN_FLAGS, &flags,
+                        -1);
 
     if (!location || FILE_IS_DUMMY (flags))
     {
@@ -388,8 +392,8 @@ custom_message_filter_func (XedFileBrowserWidget *widget,
 
 static void
 message_add_filter_cb (XedMessageBus *bus,
-               XedMessage    *message,
-               XedWindow     *window)
+                       XedMessage    *message,
+                       XedWindow     *window)
 {
     gchar *object_path = NULL;
     gchar *method = NULL;
@@ -399,10 +403,7 @@ message_add_filter_cb (XedMessageBus *bus,
     FilterData *filter_data;
     WindowData *data = get_window_data (window);
 
-    xed_message_get (message,
-               "object_path", &object_path,
-               "method", &method,
-               NULL);
+    xed_message_get (message, "object_path", &object_path, "method", &method, NULL);
 
     // Check if there exists such a 'callback' message
     if (!object_path || !method)
@@ -433,41 +434,43 @@ message_add_filter_cb (XedMessageBus *bus,
     }
 
     cbmessage = xed_message_type_instantiate (message_type,
-                            "id", NULL,
-                            "location", NULL,
-                            "is_directory", FALSE,
-                            "filter", FALSE,
-                            NULL);
+                                             "id", NULL,
+                                             "location", NULL,
+                                             "is_directory", FALSE,
+                                             "filter", FALSE,
+                                             NULL);
 
     // Register the custom filter on the widget
     filter_data = filter_data_new (window, cbmessage);
     id = xed_file_browser_widget_add_filter (data->widget,
-                           (XedFileBrowserWidgetFilterFunc)custom_message_filter_func,
-                           filter_data,
-                           (GDestroyNotify)filter_data_free);
+                                             (XedFileBrowserWidgetFilterFunc)custom_message_filter_func,
+                                             filter_data,
+                                             (GDestroyNotify)filter_data_free);
 
     filter_data->id = id;
 }
 
 static void
 message_remove_filter_cb (XedMessageBus *bus,
-                  XedMessage    *message,
-                  WindowData      *data)
+                          XedMessage    *message,
+                          WindowData    *data)
 {
     gulong id = 0;
 
     xed_message_get (message, "id", &id, NULL);
 
     if (!id)
+    {
         return;
+    }
 
     xed_file_browser_widget_remove_filter (data->widget, id);
 }
 
 static void
 message_up_cb (XedMessageBus *bus,
-           XedMessage    *message,
-           WindowData      *data)
+               XedMessage    *message,
+               WindowData    *data)
 {
     XedFileBrowserStore *store = xed_file_browser_widget_get_browser_store (data->widget);
 
@@ -476,32 +479,32 @@ message_up_cb (XedMessageBus *bus,
 
 static void
 message_history_back_cb (XedMessageBus *bus,
-                 XedMessage    *message,
-                 WindowData      *data)
+                         XedMessage    *message,
+                         WindowData    *data)
 {
     xed_file_browser_widget_history_back (data->widget);
 }
 
 static void
 message_history_forward_cb (XedMessageBus *bus,
-                    XedMessage    *message,
-                    WindowData      *data)
+                            XedMessage    *message,
+                            WindowData    *data)
 {
     xed_file_browser_widget_history_forward (data->widget);
 }
 
 static void
 message_refresh_cb (XedMessageBus *bus,
-            XedMessage    *message,
-            WindowData      *data)
+                    XedMessage    *message,
+                    WindowData    *data)
 {
     xed_file_browser_widget_refresh (data->widget);
 }
 
 static void
 message_set_show_hidden_cb (XedMessageBus *bus,
-                    XedMessage    *message,
-                    WindowData      *data)
+                            XedMessage    *message,
+                            WindowData    *data)
 {
     gboolean active = FALSE;
     XedFileBrowserStore *store;
@@ -513,17 +516,21 @@ message_set_show_hidden_cb (XedMessageBus *bus,
     mode = xed_file_browser_store_get_filter_mode (store);
 
     if (active)
+    {
         mode &= ~XED_FILE_BROWSER_STORE_FILTER_MODE_HIDE_HIDDEN;
+    }
     else
+    {
         mode |= XED_FILE_BROWSER_STORE_FILTER_MODE_HIDE_HIDDEN;
+    }
 
     xed_file_browser_store_set_filter_mode (store, mode);
 }
 
 static void
 message_set_show_binary_cb (XedMessageBus *bus,
-                    XedMessage    *message,
-                    WindowData      *data)
+                            XedMessage    *message,
+                            WindowData    *data)
 {
     gboolean active = FALSE;
     XedFileBrowserStore *store;
@@ -535,33 +542,37 @@ message_set_show_binary_cb (XedMessageBus *bus,
     mode = xed_file_browser_store_get_filter_mode (store);
 
     if (active)
+    {
         mode &= ~XED_FILE_BROWSER_STORE_FILTER_MODE_HIDE_BINARY;
+    }
     else
+    {
         mode |= XED_FILE_BROWSER_STORE_FILTER_MODE_HIDE_BINARY;
+    }
 
     xed_file_browser_store_set_filter_mode (store, mode);
 }
 
 static void
 message_show_bookmarks_cb (XedMessageBus *bus,
-                   XedMessage    *message,
-                   WindowData      *data)
+                           XedMessage    *message,
+                           WindowData    *data)
 {
     xed_file_browser_widget_show_bookmarks (data->widget);
 }
 
 static void
 message_show_files_cb (XedMessageBus *bus,
-               XedMessage    *message,
-               WindowData      *data)
+                       XedMessage    *message,
+                       WindowData    *data)
 {
     xed_file_browser_widget_show_files (data->widget);
 }
 
 static void
 message_add_context_item_cb (XedMessageBus *bus,
-                 XedMessage    *message,
-                 WindowData      *data)
+                             XedMessage    *message,
+                             WindowData    *data)
 {
     GtkAction *action = NULL;
     gchar *path = NULL;
@@ -569,15 +580,14 @@ message_add_context_item_cb (XedMessageBus *bus,
     GtkUIManager *manager;
     guint merge_id;
 
-    xed_message_get (message,
-               "action", &action,
-               "path", &path,
-               NULL);
+    xed_message_get (message, "action", &action, "path", &path, NULL);
 
     if (!action || !path)
     {
         if (action)
+        {
             g_object_unref (action);
+        }
 
         g_free (path);
         return;
@@ -589,12 +599,12 @@ message_add_context_item_cb (XedMessageBus *bus,
     merge_id = gtk_ui_manager_new_merge_id (manager);
 
     gtk_ui_manager_add_ui (manager,
-                   merge_id,
-                   path,
-                   name,
-                   gtk_action_get_name (action),
-                   GTK_UI_MANAGER_AUTO,
-                   FALSE);
+                           merge_id,
+                           path,
+                           name,
+                           gtk_action_get_name (action),
+                           GTK_UI_MANAGER_AUTO,
+                           FALSE);
 
     if (gtk_ui_manager_get_widget (manager, path))
     {
@@ -613,8 +623,8 @@ message_add_context_item_cb (XedMessageBus *bus,
 
 static void
 message_remove_context_item_cb (XedMessageBus *bus,
-                XedMessage    *message,
-                WindowData      *data)
+                                XedMessage    *message,
+                                WindowData    *data)
 {
     guint merge_id = 0;
     GtkUIManager *manager;
@@ -622,7 +632,9 @@ message_remove_context_item_cb (XedMessageBus *bus,
     xed_message_get (message, "id", &merge_id, NULL);
 
     if (merge_id == 0)
+    {
         return;
+    }
 
     manager = xed_file_browser_widget_get_ui_manager (data->widget);
 
@@ -632,8 +644,8 @@ message_remove_context_item_cb (XedMessageBus *bus,
 
 static void
 message_get_view_cb (XedMessageBus *bus,
-             XedMessage    *message,
-             WindowData      *data)
+                     XedMessage    *message,
+                     WindowData    *data)
 {
     XedFileBrowserView *view;
     view = xed_file_browser_widget_get_browser_view (data->widget);
@@ -643,59 +655,59 @@ message_get_view_cb (XedMessageBus *bus,
 
 static void
 register_methods (XedWindow            *window,
-          XedFileBrowserWidget *widget)
+                  XedFileBrowserWidget *widget)
 {
     XedMessageBus *bus = xed_window_get_message_bus (window);
     WindowData *data = get_window_data (window);
 
     /* Register method calls */
     xed_message_bus_register (bus,
-                    MESSAGE_OBJECT_PATH, "get_root",
-                    1,
-                    "location", G_TYPE_FILE,
-                    NULL);
+                              MESSAGE_OBJECT_PATH, "get_root",
+                              1,
+                              "location", G_TYPE_FILE,
+                              NULL);
 
     xed_message_bus_register (bus,
-                    MESSAGE_OBJECT_PATH, "set_root",
-                    1,
-                    "location", G_TYPE_FILE,
-                    "virtual", G_TYPE_STRING,
-                    NULL);
+                              MESSAGE_OBJECT_PATH, "set_root",
+                              1,
+                              "location", G_TYPE_FILE,
+                              "virtual", G_TYPE_STRING,
+                              NULL);
 
     xed_message_bus_register (bus,
-                    MESSAGE_OBJECT_PATH, "set_emblem",
-                    0,
-                    "id", G_TYPE_STRING,
-                    "emblem", G_TYPE_STRING,
-                    NULL);
+                              MESSAGE_OBJECT_PATH, "set_emblem",
+                              0,
+                              "id", G_TYPE_STRING,
+                              "emblem", G_TYPE_STRING,
+                              NULL);
 
     xed_message_bus_register (bus,
-                    MESSAGE_OBJECT_PATH, "add_filter",
-                    1,
-                    "object_path", G_TYPE_STRING,
-                    "method", G_TYPE_STRING,
-                    "id", G_TYPE_ULONG,
-                    NULL);
+                              MESSAGE_OBJECT_PATH, "add_filter",
+                              1,
+                              "object_path", G_TYPE_STRING,
+                              "method", G_TYPE_STRING,
+                              "id", G_TYPE_ULONG,
+                              NULL);
 
     xed_message_bus_register (bus,
-                    MESSAGE_OBJECT_PATH, "remove_filter",
-                    0,
-                    "id", G_TYPE_ULONG,
-                    NULL);
+                              MESSAGE_OBJECT_PATH, "remove_filter",
+                              0,
+                              "id", G_TYPE_ULONG,
+                              NULL);
 
     xed_message_bus_register (bus,
-                    MESSAGE_OBJECT_PATH, "add_context_item",
-                    1,
-                    "action", GTK_TYPE_ACTION,
-                    "path", G_TYPE_STRING,
-                    "id", G_TYPE_UINT,
-                    NULL);
+                              MESSAGE_OBJECT_PATH, "add_context_item",
+                              1,
+                              "action", GTK_TYPE_ACTION,
+                              "path", G_TYPE_STRING,
+                              "id", G_TYPE_UINT,
+                              NULL);
 
     xed_message_bus_register (bus,
-                    MESSAGE_OBJECT_PATH, "remove_context_item",
-                    0,
-                    "id", G_TYPE_UINT,
-                    NULL);
+                              MESSAGE_OBJECT_PATH, "remove_context_item",
+                              0,
+                              "id", G_TYPE_UINT,
+                              NULL);
 
     xed_message_bus_register (bus, MESSAGE_OBJECT_PATH, "up", 0, NULL);
 
@@ -705,24 +717,24 @@ register_methods (XedWindow            *window,
     xed_message_bus_register (bus, MESSAGE_OBJECT_PATH, "refresh", 0, NULL);
 
     xed_message_bus_register (bus,
-                    MESSAGE_OBJECT_PATH, "set_show_hidden",
-                    0,
-                    "active", G_TYPE_BOOLEAN,
-                    NULL);
+                              MESSAGE_OBJECT_PATH, "set_show_hidden",
+                              0,
+                              "active", G_TYPE_BOOLEAN,
+                              NULL);
     xed_message_bus_register (bus,
-                    MESSAGE_OBJECT_PATH, "set_show_binary",
-                    0,
-                    "active", G_TYPE_BOOLEAN,
-                    NULL);
+                              MESSAGE_OBJECT_PATH, "set_show_binary",
+                              0,
+                              "active", G_TYPE_BOOLEAN,
+                              NULL);
 
     xed_message_bus_register (bus, MESSAGE_OBJECT_PATH, "show_bookmarks", 0, NULL);
     xed_message_bus_register (bus, MESSAGE_OBJECT_PATH, "show_files", 0, NULL);
 
     xed_message_bus_register (bus,
-                    MESSAGE_OBJECT_PATH, "get_view",
-                    1,
-                    "view", XED_TYPE_FILE_BROWSER_VIEW,
-                    NULL);
+                              MESSAGE_OBJECT_PATH, "get_view",
+                              1,
+                              "view", XED_TYPE_FILE_BROWSER_VIEW,
+                              NULL);
 
     BUS_CONNECT (bus, get_root, data);
     BUS_CONNECT (bus, set_root, data);
@@ -750,15 +762,15 @@ register_methods (XedWindow            *window,
 
 static void
 store_row_inserted (XedFileBrowserStore *store,
-            GtkTreePath       *path,
-            GtkTreeIter           *iter,
-            MessageCacheData      *data)
+                    GtkTreePath         *path,
+                    GtkTreeIter         *iter,
+                    MessageCacheData    *data)
 {
     guint flags = 0;
 
     gtk_tree_model_get (GTK_TREE_MODEL (store), iter,
-                XED_FILE_BROWSER_STORE_COLUMN_FLAGS, &flags,
-                -1);
+                        XED_FILE_BROWSER_STORE_COLUMN_FLAGS, &flags,
+                        -1);
 
     if (!FILE_IS_DUMMY (flags) && !FILE_IS_FILTERED (flags))
     {
@@ -771,18 +783,20 @@ store_row_inserted (XedFileBrowserStore *store,
 
 static void
 store_row_deleted (XedFileBrowserStore *store,
-           GtkTreePath       *path,
-           MessageCacheData      *data)
+                   GtkTreePath         *path,
+                   MessageCacheData    *data)
 {
     GtkTreeIter iter;
     guint flags = 0;
 
     if (!gtk_tree_model_get_iter (GTK_TREE_MODEL (store), &iter, path))
+    {
         return;
+    }
 
     gtk_tree_model_get (GTK_TREE_MODEL (store), &iter,
-                XED_FILE_BROWSER_STORE_COLUMN_FLAGS, &flags,
-                -1);
+                        XED_FILE_BROWSER_STORE_COLUMN_FLAGS, &flags,
+                        -1);
 
     if (!FILE_IS_DUMMY (flags) && !FILE_IS_FILTERED (flags))
     {
@@ -795,8 +809,8 @@ store_row_deleted (XedFileBrowserStore *store,
 
 static void
 store_virtual_root_changed (XedFileBrowserStore *store,
-                GParamSpec            *spec,
-                MessageCacheData      *data)
+                            GParamSpec          *spec,
+                            MessageCacheData    *data)
 {
     WindowData *wdata = get_window_data (data->window);
     GFile *vroot;
@@ -804,11 +818,11 @@ store_virtual_root_changed (XedFileBrowserStore *store,
     vroot = xed_file_browser_store_get_virtual_root (store);
 
     if (!vroot)
+    {
         return;
+    }
 
-    xed_message_set (data->message,
-               "location", vroot,
-               NULL);
+    xed_message_set (data->message, "location", vroot, NULL);
 
     xed_message_bus_send_message_sync (wdata->bus, data->message);
 
@@ -817,8 +831,8 @@ store_virtual_root_changed (XedFileBrowserStore *store,
 
 static void
 store_begin_loading (XedFileBrowserStore *store,
-             GtkTreeIter           *iter,
-             MessageCacheData      *data)
+                     GtkTreeIter         *iter,
+                     MessageCacheData    *data)
 {
     GtkTreePath *path;
     WindowData *wdata = get_window_data (data->window);
@@ -833,8 +847,8 @@ store_begin_loading (XedFileBrowserStore *store,
 
 static void
 store_end_loading (XedFileBrowserStore *store,
-           GtkTreeIter           *iter,
-           MessageCacheData      *data)
+                   GtkTreeIter         *iter,
+                   MessageCacheData    *data)
 {
     GtkTreePath *path;
     WindowData *wdata = get_window_data (data->window);
@@ -849,7 +863,7 @@ store_end_loading (XedFileBrowserStore *store,
 
 static void
 register_signals (XedWindow            *window,
-          XedFileBrowserWidget *widget)
+                  XedFileBrowserWidget *widget)
 {
     XedMessageBus *bus = xed_window_get_message_bus (window);
     XedFileBrowserStore *store;
@@ -864,141 +878,141 @@ register_signals (XedWindow            *window,
 
     /* Register signals */
     root_changed_type = xed_message_bus_register (bus,
-                    MESSAGE_OBJECT_PATH, "root_changed",
-                    0,
-                    "id", G_TYPE_STRING,
-                    "location", G_TYPE_FILE,
-                    NULL);
+                                                  MESSAGE_OBJECT_PATH, "root_changed",
+                                                  0,
+                                                  "id", G_TYPE_STRING,
+                                                  "location", G_TYPE_FILE,
+                                                  NULL);
 
     begin_loading_type = xed_message_bus_register (bus,
-                    MESSAGE_OBJECT_PATH, "begin_loading",
-                    0,
-                    "id", G_TYPE_STRING,
-                    "location", G_TYPE_FILE,
-                    NULL);
+                                                   MESSAGE_OBJECT_PATH, "begin_loading",
+                                                   0,
+                                                   "id", G_TYPE_STRING,
+                                                   "location", G_TYPE_FILE,
+                                                   NULL);
 
     end_loading_type = xed_message_bus_register (bus,
-                    MESSAGE_OBJECT_PATH, "end_loading",
-                    0,
-                    "id", G_TYPE_STRING,
-                    "location", G_TYPE_FILE,
-                    NULL);
+                                                 MESSAGE_OBJECT_PATH, "end_loading",
+                                                 0,
+                                                 "id", G_TYPE_STRING,
+                                                 "location", G_TYPE_FILE,
+                                                 NULL);
 
     inserted_type = xed_message_bus_register (bus,
-                            MESSAGE_OBJECT_PATH, "inserted",
-                            0,
-                            "id", G_TYPE_STRING,
-                            "location", G_TYPE_FILE,
-                            "is_directory", G_TYPE_BOOLEAN,
-                            NULL);
+                                              MESSAGE_OBJECT_PATH, "inserted",
+                                              0,
+                                              "id", G_TYPE_STRING,
+                                              "location", G_TYPE_FILE,
+                                              "is_directory", G_TYPE_BOOLEAN,
+                                              NULL);
 
     deleted_type = xed_message_bus_register (bus,
-                           MESSAGE_OBJECT_PATH, "deleted",
-                           0,
-                           "id", G_TYPE_STRING,
-                           "location", G_TYPE_FILE,
-                           "is_directory", G_TYPE_BOOLEAN,
-                           NULL);
+                                             MESSAGE_OBJECT_PATH, "deleted",
+                                             0,
+                                             "id", G_TYPE_STRING,
+                                             "location", G_TYPE_FILE,
+                                             "is_directory", G_TYPE_BOOLEAN,
+                                             NULL);
 
     store = xed_file_browser_widget_get_browser_store (widget);
 
     message = xed_message_type_instantiate (inserted_type,
-                          "id", NULL,
-                          "location", NULL,
-                          "is_directory", FALSE,
-                          NULL);
+                                            "id", NULL,
+                                            "location", NULL,
+                                            "is_directory", FALSE,
+                                            NULL);
 
     data = get_window_data (window);
 
     data->row_inserted_id =
         g_signal_connect_data (store,
-                       "row-inserted",
-                       G_CALLBACK (store_row_inserted),
-                       message_cache_data_new (window, message),
-                       (GClosureNotify)message_cache_data_free,
-                       0);
+                               "row-inserted",
+                               G_CALLBACK (store_row_inserted),
+                               message_cache_data_new (window, message),
+                               (GClosureNotify)message_cache_data_free,
+                               0);
 
     message = xed_message_type_instantiate (deleted_type,
-                          "id", NULL,
-                          "location", NULL,
-                          "is_directory", FALSE,
-                          NULL);
+                                            "id", NULL,
+                                            "location", NULL,
+                                            "is_directory", FALSE,
+                                            NULL);
     data->row_deleted_id =
         g_signal_connect_data (store,
-                       "row-deleted",
-                       G_CALLBACK (store_row_deleted),
-                       message_cache_data_new (window, message),
-                       (GClosureNotify)message_cache_data_free,
-                       0);
+                               "row-deleted",
+                               G_CALLBACK (store_row_deleted),
+                               message_cache_data_new (window, message),
+                               (GClosureNotify)message_cache_data_free,
+                               0);
 
     message = xed_message_type_instantiate (root_changed_type,
-                          "id", NULL,
-                          "location", NULL,
-                          NULL);
+                                            "id", NULL,
+                                            "location", NULL,
+                                            NULL);
     data->root_changed_id =
         g_signal_connect_data (store,
-                       "notify::virtual-root",
-                       G_CALLBACK (store_virtual_root_changed),
-                       message_cache_data_new (window, message),
-                       (GClosureNotify)message_cache_data_free,
-                       0);
+                               "notify::virtual-root",
+                               G_CALLBACK (store_virtual_root_changed),
+                               message_cache_data_new (window, message),
+                               (GClosureNotify)message_cache_data_free,
+                               0);
 
     message = xed_message_type_instantiate (begin_loading_type,
-                          "id", NULL,
-                          "location", NULL,
-                          NULL);
+                                            "id", NULL,
+                                            "location", NULL,
+                                            NULL);
     data->begin_loading_id =
         g_signal_connect_data (store,
-                      "begin_loading",
-                       G_CALLBACK (store_begin_loading),
-                       message_cache_data_new (window, message),
-                       (GClosureNotify)message_cache_data_free,
-                       0);
+                               "begin_loading",
+                               G_CALLBACK (store_begin_loading),
+                               message_cache_data_new (window, message),
+                               (GClosureNotify)message_cache_data_free,
+                               0);
 
     message = xed_message_type_instantiate (end_loading_type,
-                          "id", NULL,
-                          "location", NULL,
-                          NULL);
+                                            "id", NULL,
+                                            "location", NULL,
+                                            NULL);
     data->end_loading_id =
         g_signal_connect_data (store,
-                       "end_loading",
-                       G_CALLBACK (store_end_loading),
-                       message_cache_data_new (window, message),
-                       (GClosureNotify)message_cache_data_free,
-                       0);
+                               "end_loading",
+                               G_CALLBACK (store_end_loading),
+                               message_cache_data_new (window, message),
+                               (GClosureNotify)message_cache_data_free,
+                               0);
 }
 
 static void
 message_unregistered (XedMessageBus  *bus,
-              XedMessageType *message_type,
-              XedWindow      *window)
+                      XedMessageType *message_type,
+                      XedWindow      *window)
 {
     gchar *identifier = xed_message_type_identifier (xed_message_type_get_object_path (message_type),
-                               xed_message_type_get_method (message_type));
+                                                     xed_message_type_get_method (message_type));
     FilterData *data;
     WindowData *wdata = get_window_data (window);
 
     data = g_hash_table_lookup (wdata->filters, identifier);
 
     if (data)
+    {
         xed_file_browser_widget_remove_filter (wdata->widget, data->id);
+    }
 
     g_free (identifier);
 }
 
 void
 xed_file_browser_messages_register (XedWindow            *window,
-                      XedFileBrowserWidget *widget)
+                                    XedFileBrowserWidget *widget)
 {
     window_data_new (window, widget);
 
     register_methods (window, widget);
     register_signals (window, widget);
 
-    g_signal_connect (xed_window_get_message_bus (window),
-              "unregistered",
-              G_CALLBACK (message_unregistered),
-              window);
+    g_signal_connect (xed_window_get_message_bus (window), "unregistered",
+                      G_CALLBACK (message_unregistered), window);
 }
 
 static void
