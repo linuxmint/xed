@@ -2276,15 +2276,17 @@ model_add_nodes_from_files (XedFileBrowserStore *model,
             (strcmp (name, ".") == 0 ||
              strcmp (name, "..") == 0))
         {
+            g_object_unref (info);
             continue;
         }
 
         file = g_file_get_child (parent->file, name);
 
-        if ((node = node_list_contains_file (original_children, file)) == NULL)
+        node = node_list_contains_file (original_children, file);
+        if (node == NULL)
         {
 
-            if (g_file_info_get_file_type (info) == G_FILE_TYPE_DIRECTORY)
+            if (type == G_FILE_TYPE_DIRECTORY)
             {
                 node = file_browser_node_dir_new (model, file, parent);
             }
