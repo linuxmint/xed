@@ -593,14 +593,15 @@ button_press_event (GtkWidget      *widget,
 
         if (event->type == GDK_2BUTTON_PRESS)
         {
+            /* Chain up, must be before activating the selected
+               items because this will cause the view to grab focus */
+            widget_parent->button_press_event (widget, event);
+
             if (view->priv->double_click_path[1] &&
                 gtk_tree_path_compare (view->priv->double_click_path[0], view->priv->double_click_path[1]) == 0)
             {
                 activate_selected_items (view);
             }
-
-            /* Chain up */
-            widget_parent->button_press_event (widget, event);
         }
         else
         {

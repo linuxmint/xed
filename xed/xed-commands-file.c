@@ -193,6 +193,9 @@ load_file_list (XedWindow               *window,
         {
             _xed_tab_load (tab, l->data, encoding, line_pos, create);
 
+            /* make sure the view has focus */
+            gtk_widget_grab_focus (GTK_WIDGET (xed_tab_get_view (tab)));
+
             l = g_slist_next (l);
             jump_to = FALSE;
 
