@@ -2471,6 +2471,7 @@ model_iterate_next_files_cb (GFileEnumerator *enumerator,
     if (files == NULL)
     {
         g_file_enumerator_close (enumerator, NULL, NULL);
+        g_object_unref (enumerator);
         async_node_free (async);
 
         if (!error)
@@ -2522,6 +2523,7 @@ model_iterate_next_files_cb (GFileEnumerator *enumerator,
     {
         /* Check cancel state manually */
         g_file_enumerator_close (enumerator, NULL, NULL);
+        g_object_unref (enumerator);
         async_node_free (async);
     }
     else
