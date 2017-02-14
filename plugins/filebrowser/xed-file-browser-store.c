@@ -3860,7 +3860,7 @@ xed_file_browser_store_new_file (XedFileBrowserStore *model,
 
     parent_node = FILE_BROWSER_NODE_DIR (parent->user_data);
     /* Translators: This is the default name of new files created by the file browser pane. */
-    file = unique_new_name (((FileBrowserNode *) parent_node)->file, _("file"));
+    file = unique_new_name (((FileBrowserNode *) parent_node)->file, _("Untitled File"));
 
     stream = g_file_create (file, G_FILE_CREATE_NONE, NULL, &error);
 
@@ -3915,7 +3915,7 @@ xed_file_browser_store_new_directory (XedFileBrowserStore *model,
 
     parent_node = FILE_BROWSER_NODE_DIR (parent->user_data);
     /* Translators: This is the default name of new directories created by the file browser pane. */
-    file = unique_new_name (((FileBrowserNode *) parent_node)->file, _("directory"));
+    file = unique_new_name (((FileBrowserNode *) parent_node)->file, _("Untitled Folder"));
 
     if (!g_file_make_directory (file, NULL, &error))
     {
