@@ -856,7 +856,7 @@ static const GtkActionEntry tree_actions_single_most_selection[] =
 
 static const GtkActionEntry tree_actions_single_selection[] =
 {
-    {"FileRename", NULL, N_("_Rename"), NULL,
+    {"FileRename", NULL, N_("_Rename..."), NULL,
      N_("Rename selected file or folder"), G_CALLBACK (on_action_file_rename)}
 };
 
