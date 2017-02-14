@@ -487,7 +487,7 @@ add_popup_ui (XedFileBrowserPlugin *plugin)
     gtk_action_group_add_actions (action_group,
                                   extra_single_selection_actions,
                                   G_N_ELEMENTS (extra_single_selection_actions),
-                                  priv->window);
+                                  plugin);
     gtk_ui_manager_insert_action_group (manager, action_group, 0);
     priv->single_selection_action_group = action_group;
 
