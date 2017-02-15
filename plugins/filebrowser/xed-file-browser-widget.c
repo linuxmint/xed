@@ -60,7 +60,6 @@ enum
 
 enum
 {
-    COLUMN_INDENT,
     COLUMN_ICON,
     COLUMN_NAME,
     COLUMN_FILE,
@@ -574,8 +573,7 @@ static void
 insert_path_item (XedFileBrowserWidget *obj,
                   GFile                *file,
                   GtkTreeIter          *after,
-                  GtkTreeIter          *iter,
-                  guint                 indent)
+                  GtkTreeIter          *iter)
 {
     gchar *unescape;
     GdkPixbuf *icon = NULL;
@@ -594,7 +592,6 @@ insert_path_item (XedFileBrowserWidget *obj,
 
     gtk_tree_store_set (obj->priv->combo_model,
                         iter,
-                        COLUMN_INDENT, indent,
                         COLUMN_ICON, icon,
                         COLUMN_NAME, unescape,
                         COLUMN_FILE, file,
@@ -633,33 +630,6 @@ combo_set_active_by_id (XedFileBrowserWidget *obj,
     }
 }
 
-static guint
-uri_num_parents (GFile *from,
-                 GFile *to)
-{
-    /* Determine the number of 'levels' to get from #from to #to. */
-    guint parents = 0;
-    GFile *parent;
-
-    if (from == NULL)
-    {
-        return 0;
-    }
-
-    g_object_ref (from);
-
-    while ((parent = g_file_get_parent (from)) && !(to && g_file_equal (from, to)))
-    {
-        g_object_unref (from);
-        from = parent;
-
-        ++parents;
-    }
-
-    g_object_unref (from);
-    return parents;
-}
-
 static void
 insert_location_path (XedFileBrowserWidget *obj)
 {
@@ -668,7 +638,6 @@ insert_location_path (XedFileBrowserWidget *obj)
     GFile *tmp;
     GtkTreeIter separator;
     GtkTreeIter iter;
-    guint indent;
 
     if (!obj->priv->current_location)
     {
@@ -681,11 +650,9 @@ insert_location_path (XedFileBrowserWidget *obj)
     current = loc->virtual_root;
     combo_find_by_id (obj, SEPARATOR_ID, &separator);
 
-    indent = uri_num_parents (loc->virtual_root, loc->root);
-
     while (current != NULL)
     {
-        insert_path_item (obj, current, &separator, &iter, indent--);
+        insert_path_item (obj, current, &separator, &iter);
 
         if (current == loc->virtual_root)
         {
@@ -760,47 +727,16 @@ fill_combo_model (XedFileBrowserWidget *obj)
 }
 
 static void
-indent_cell_data_func (GtkCellLayout   *cell_layout,
-                       GtkCellRenderer *cell,
-                       GtkTreeModel    *model,
-                       GtkTreeIter     *iter,
-                       gpointer         data)
-{
-    gchar *indent;
-    guint num;
-
-    gtk_tree_model_get (model, iter, COLUMN_INDENT, &num, -1);
-
-    if (num == 0)
-    {
-        g_object_set (cell, "text", "", NULL);
-    }
-    else
-    {
-        indent = g_strnfill (num * 2, ' ');
-
-        g_object_set (cell, "text", indent, NULL);
-        g_free (indent);
-    }
-}
-
-static void
 create_combo (XedFileBrowserWidget *obj)
 {
     GtkCellRenderer *renderer;
 
     obj->priv->combo_model = gtk_tree_store_new (N_COLUMNS,
-                                                 G_TYPE_UINT,
                                                  GDK_TYPE_PIXBUF,
                                                  G_TYPE_STRING,
                                                  G_TYPE_FILE,
                                                  G_TYPE_UINT);
     obj->priv->combo = gtk_combo_box_new_with_model (GTK_TREE_MODEL (obj->priv->combo_model));
-
-    renderer = gtk_cell_renderer_text_new ();
-    gtk_cell_layout_pack_start (GTK_CELL_LAYOUT (obj->priv->combo), renderer, FALSE);
-    gtk_cell_layout_set_cell_data_func (GTK_CELL_LAYOUT (obj->priv->combo),
-                                        renderer, indent_cell_data_func, obj, NULL);
 
     renderer = gtk_cell_renderer_pixbuf_new ();
     gtk_cell_layout_pack_start (GTK_CELL_LAYOUT (obj->priv->combo), renderer, FALSE);
@@ -812,13 +748,9 @@ create_combo (XedFileBrowserWidget *obj)
 
     g_object_set (renderer, "ellipsize-set", TRUE, "ellipsize", PANGO_ELLIPSIZE_END, NULL);
 
-    gtk_box_pack_start (GTK_BOX (obj), GTK_WIDGET (obj->priv->combo), FALSE, FALSE, 0);
-
     fill_combo_model (obj);
     g_signal_connect (obj->priv->combo, "changed",
                       G_CALLBACK (on_combo_changed), obj);
-
-    gtk_widget_show (obj->priv->combo);
 }
 
 static GtkActionEntry toplevel_actions[] =
@@ -894,6 +826,9 @@ create_toolbar (XedFileBrowserWidget *obj,
     GError *error = NULL;
     GtkActionGroup *action_group;
     GtkWidget *toolbar;
+    GtkWidget *button;
+    GtkWidget *image;
+    GtkWidget *button_box;
     GtkAction *action;
     gchar *ui_file;
 
@@ -987,18 +922,45 @@ create_toolbar (XedFileBrowserWidget *obj,
     gtk_ui_manager_insert_action_group (manager, action_group, 0);
     obj->priv->bookmark_action_group = action_group;
 
+    toolbar = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 3);
+    gtk_container_set_border_width (GTK_CONTAINER (toolbar), 3);
+    button_box = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 0);
+    gtk_style_context_add_class (gtk_widget_get_style_context (button_box), "linked");
+    gtk_box_pack_start (GTK_BOX (toolbar), button_box, FALSE, FALSE, 0);
+
     action = gtk_action_group_get_action (obj->priv->action_group_sensitive, "DirectoryPrevious");
     gtk_action_set_sensitive (action, FALSE);
+    button = gtk_button_new ();
+    gtk_style_context_add_class (gtk_widget_get_style_context (button), "small-button");
+    image = gtk_image_new ();
+    gtk_button_set_image (GTK_BUTTON (button), image);
+    gtk_activatable_set_related_action (GTK_ACTIVATABLE (button), action);
+    gtk_button_set_label (GTK_BUTTON (button), NULL);
+    gtk_box_pack_start (GTK_BOX (button_box), button, FALSE, FALSE, 0);
 
     action = gtk_action_group_get_action (obj->priv->action_group_sensitive, "DirectoryNext");
     gtk_action_set_sensitive (action, FALSE);
+    button = gtk_button_new ();
+    gtk_style_context_add_class (gtk_widget_get_style_context (button), "small-button");
+    image = gtk_image_new ();
+    gtk_button_set_image (GTK_BUTTON (button), image);
+    gtk_activatable_set_related_action (GTK_ACTIVATABLE (button), action);
+    gtk_button_set_label (GTK_BUTTON (button), NULL);
+    gtk_box_pack_start (GTK_BOX (button_box), button, FALSE, FALSE, 0);
 
-    toolbar = gtk_ui_manager_get_widget (manager, "/ToolBar");
-    gtk_toolbar_set_style (GTK_TOOLBAR (toolbar), GTK_TOOLBAR_ICONS);
-    gtk_toolbar_set_icon_size (GTK_TOOLBAR (toolbar), GTK_ICON_SIZE_MENU);
+    action = gtk_action_group_get_action (obj->priv->action_group, "DirectoryUp");
+    button = gtk_button_new ();
+    gtk_style_context_add_class (gtk_widget_get_style_context (button), "small-button");
+    image = gtk_image_new ();
+    gtk_button_set_image (GTK_BUTTON (button), image);
+    gtk_activatable_set_related_action (GTK_ACTIVATABLE (button), action);
+    gtk_button_set_label (GTK_BUTTON (button), NULL);
+    gtk_box_pack_start (GTK_BOX (toolbar), button, FALSE, FALSE, 0);
 
+    create_combo (obj);
+    gtk_box_pack_start (GTK_BOX (toolbar), obj->priv->combo, TRUE, TRUE, 0);
     gtk_box_pack_start (GTK_BOX (obj), toolbar, FALSE, FALSE, 0);
-    gtk_widget_show (toolbar);
+    gtk_widget_show_all (toolbar);
 
     set_enable_delete (obj, obj->priv->enable_delete);
 }
@@ -1143,7 +1105,7 @@ create_tree (XedFileBrowserWidget * obj)
                                             filter_real, obj);
 
     sw = gtk_scrolled_window_new (NULL, NULL);
-    gtk_scrolled_window_set_shadow_type (GTK_SCROLLED_WINDOW (sw), GTK_SHADOW_ETCHED_IN);
+    gtk_scrolled_window_set_shadow_type (GTK_SCROLLED_WINDOW (sw), GTK_SHADOW_NONE);
     gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (sw), GTK_POLICY_AUTOMATIC, GTK_POLICY_AUTOMATIC);
 
     gtk_container_add (GTK_CONTAINER (sw), GTK_WIDGET (obj->priv->treeview));
@@ -1699,7 +1661,7 @@ xed_file_browser_widget_new (const gchar *data_dir)
     XedFileBrowserWidget *obj = g_object_new (XED_TYPE_FILE_BROWSER_WIDGET, NULL);
 
     create_toolbar (obj, data_dir);
-    create_combo (obj);
+    // create_combo (obj);
     create_tree (obj);
     create_filter (obj);
 
