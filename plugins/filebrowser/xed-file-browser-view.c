@@ -445,6 +445,20 @@ activate_selected_items (XedFileBrowserView *view)
 }
 
 static void
+row_activated (GtkTreeView       *tree_view,
+               GtkTreePath       *path,
+               GtkTreeViewColumn *column)
+{
+    GtkTreeSelection *selection = gtk_tree_view_get_selection (tree_view);
+
+    /* Make sure the activated row is the only one selected */
+    gtk_tree_selection_unselect_all (selection);
+    gtk_tree_selection_select_path (selection, path);
+
+    activate_selected_items (XED_FILE_BROWSER_VIEW (tree_view));
+}
+
+static void
 toggle_hidden_filter (XedFileBrowserView *view)
 {
     XedFileBrowserStoreFilterMode mode;
@@ -922,6 +936,7 @@ xed_file_browser_view_class_init (XedFileBrowserViewClass *klass)
     widget_class->key_press_event = key_press_event;
 
     /* Tree view handlers */
+    tree_view_class->row_activated = row_activated;
     tree_view_class->row_expanded = row_expanded;
     tree_view_class->row_collapsed = row_collapsed;
 
