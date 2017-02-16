@@ -1660,7 +1660,6 @@ xed_file_browser_widget_new (const gchar *data_dir)
     XedFileBrowserWidget *obj = g_object_new (XED_TYPE_FILE_BROWSER_WIDGET, NULL);
 
     create_toolbar (obj, data_dir);
-    // create_combo (obj);
     create_tree (obj);
     create_filter (obj);
 
@@ -1677,6 +1676,8 @@ xed_file_browser_widget_show_bookmarks (XedFileBrowserWidget *obj)
     combo_set_active_by_id (obj, BOOKMARKS_ID);
     g_signal_handlers_unblock_by_func (obj->priv->combo, on_combo_changed, obj);
 
+    gtk_widget_set_sensitive (GTK_WIDGET (obj->priv->combo), FALSE);
+
     check_current_item (obj, FALSE);
 
     xed_file_browser_view_set_model (obj->priv->treeview, GTK_TREE_MODEL (obj->priv->bookmarks_store));
@@ -1687,6 +1688,8 @@ show_files_real (XedFileBrowserWidget *obj,
                  gboolean              do_root_changed)
 {
     xed_file_browser_view_set_model (obj->priv->treeview, GTK_TREE_MODEL (obj->priv->file_store));
+
+    gtk_widget_set_sensitive (GTK_WIDGET (obj->priv->combo), TRUE);
 
     if (do_root_changed)
     {
