@@ -337,13 +337,6 @@ on_action_set_active_root (GtkAction            *action,
     set_root_from_doc (plugin, xed_window_get_active_document (XED_WINDOW (plugin->priv->window)));
 }
 
-static gchar *
-get_terminal (XedFileBrowserPlugin *plugin)
-{
-    // TODO : Identify the DE, find the preferred terminal application (xterminal shouldn't be hardcoded here, it should be set as default in the DE prefs)
-    return g_strdup ("xterminal");
-}
-
 static void
 on_action_open_terminal (GtkAction            *action,
                          XedFileBrowserPlugin *plugin)
@@ -369,8 +362,7 @@ on_action_open_terminal (GtkAction            *action,
         gchar *local;
         gchar *argv[2];
 
-        terminal = get_terminal (plugin);
-
+        terminal = g_settings_get_string (priv->settings, "terminal-command");
         local = g_file_get_path (file);
 
         argv[0] = terminal;
