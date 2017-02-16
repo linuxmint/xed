@@ -19,8 +19,14 @@
  * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA.
  */
 
-#include "xed-file-browser-utils.h"
+#ifdef HAVE_CONFIG_H
+#include <config.h>
+#endif
+
+#include <glib/gi18n-lib.h>
 #include <xed/xed-utils.h>
+
+#include "xed-file-browser-utils.h"
 
 static GdkPixbuf *
 process_icon_pixbuf (GdkPixbuf   *pixbuf,
@@ -130,12 +136,10 @@ xed_file_browser_utils_confirmation_dialog (XedWindow      *window,
                                             GtkMessageType  type,
                                             gchar const    *message,
                                             gchar const    *secondary,
-                                            gchar const    *button_stock,
                                             gchar const    *button_label)
 {
     GtkWidget *dlg;
     gint ret;
-    GtkWidget *button;
 
     dlg = gtk_message_dialog_new (GTK_WINDOW (window),
                                   GTK_DIALOG_MODAL |
@@ -148,25 +152,12 @@ xed_file_browser_utils_confirmation_dialog (XedWindow      *window,
         gtk_message_dialog_format_secondary_text (GTK_MESSAGE_DIALOG (dlg), "%s", secondary);
     }
 
-    /* Add a cancel button */
-    button = gtk_button_new_from_stock (GTK_STOCK_CANCEL);
-    gtk_widget_show (button);
+    gtk_dialog_add_buttons (GTK_DIALOG (dlg),
+                            _("_Cancel"), GTK_RESPONSE_CANCEL,
+                            button_label, GTK_RESPONSE_OK,
+                            NULL);
 
-    gtk_widget_set_can_default (button, TRUE);
-    gtk_dialog_add_action_widget (GTK_DIALOG (dlg), button, GTK_RESPONSE_CANCEL);
-
-    /* Add custom button */
-    button = gtk_button_new_from_stock (button_stock);
-
-    if (button_label)
-    {
-        gtk_button_set_use_stock (GTK_BUTTON (button), FALSE);
-        gtk_button_set_label (GTK_BUTTON (button), button_label);
-    }
-
-    gtk_widget_show (button);
-    gtk_widget_set_can_default (button, TRUE);
-    gtk_dialog_add_action_widget (GTK_DIALOG (dlg), button, GTK_RESPONSE_OK);
+    gtk_dialog_set_default_response (GTK_DIALOG (dlg), GTK_RESPONSE_CANCEL);
 
     ret = gtk_dialog_run (GTK_DIALOG (dlg));
     gtk_widget_destroy (dlg);

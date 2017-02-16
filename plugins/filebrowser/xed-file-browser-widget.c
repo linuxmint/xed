@@ -559,11 +559,10 @@ get_from_bookmark_file (XedFileBrowserWidget *obj,
     item = (NameIcon *)data;
 
     *name = g_strdup (item->name);
-    *icon = item->icon;
 
-    if (item->icon != NULL)
+    if (icon != NULL && item->icon != NULL)
     {
-        g_object_ref (item->icon);
+        *icon = g_object_ref (item->icon);
     }
 
     return TRUE;

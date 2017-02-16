@@ -977,8 +977,7 @@ on_confirm_no_trash_cb (XedFileBrowserWidget *widget,
                                                          GTK_MESSAGE_QUESTION,
                                                          message,
                                                          secondary,
-                                                         GTK_STOCK_DELETE,
-                                                         NULL);
+                                                         _("_Delete"));
     g_free (secondary);
 
     return result;
@@ -1013,8 +1012,7 @@ on_confirm_delete_cb (XedFileBrowserWidget *widget,
                                                          GTK_MESSAGE_QUESTION,
                                                          message,
                                                          secondary,
-                                                         GTK_STOCK_DELETE,
-                                                         NULL);
+                                                         _("_Delete"));
 
     g_free (message);
 
