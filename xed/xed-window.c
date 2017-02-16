@@ -3970,6 +3970,9 @@ xed_window_set_active_tab (XedWindow *window,
     page_num = gtk_notebook_page_num (GTK_NOTEBOOK(window->priv->notebook), GTK_WIDGET(tab));
     g_return_if_fail(page_num != -1);
     gtk_notebook_set_current_page (GTK_NOTEBOOK(window->priv->notebook), page_num);
+
+    /* Make sure to grab focus if the page didn't change */
+    gtk_widget_grab_focus (GTK_WIDGET (xed_tab_get_view (tab)));
 }
 
 /**

@@ -716,6 +716,14 @@ xed_documents_panel_init (XedDocumentsPanel *panel)
     gtk_tree_view_set_headers_visible (GTK_TREE_VIEW (panel->priv->treeview), FALSE);
     gtk_tree_view_set_reorderable (GTK_TREE_VIEW (panel->priv->treeview), TRUE);
 
+    /* Disable search because each time the selection is changed, the
+       active tab is changed which focusses the view, and thus would remove
+       the search entry, rendering it useless */
+    gtk_tree_view_set_enable_search (GTK_TREE_VIEW (panel->priv->treeview), FALSE);
+
+    /* Disable focus so it doesn't steel focus each time from the view */
+    gtk_widget_set_can_focus (panel->priv->treeview, FALSE);
+
     g_object_set (panel->priv->treeview, "has-tooltip", TRUE, NULL);
 
     gtk_widget_show (panel->priv->treeview);
