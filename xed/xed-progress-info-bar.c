@@ -179,15 +179,15 @@ xed_progress_info_bar_new (const gchar *icon_name,
                                  "has-cancel-button", has_cancel,
                                  NULL));
 
-    xed_progress_info_bar_set_image (bar, icon_name);
+    xed_progress_info_bar_set_icon_name (bar, icon_name);
     xed_progress_info_bar_set_markup (bar, markup);
 
     return GTK_WIDGET (bar);
 }
 
 void
-xed_progress_info_bar_set_image (XedProgressInfoBar *bar,
-                                 const gchar        *icon_name)
+xed_progress_info_bar_set_icon_name (XedProgressInfoBar *bar,
+                                     const gchar        *icon_name)
 {
     g_return_if_fail (XED_IS_PROGRESS_INFO_BAR (bar));
     g_return_if_fail (icon_name != NULL);

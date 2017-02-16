@@ -62,8 +62,6 @@ GType xed_statusbar_get_type (void) G_GNUC_CONST;
 
 GtkWidget *xed_statusbar_new (void);
 
-/* FIXME: status is not defined in any .h */
-#define XedStatus gint
 void xed_statusbar_set_window_state (XedStatusbar   *statusbar,
                                      XedWindowState  state,
                                      gint            num_of_errors);

@@ -33,15 +33,13 @@
 #include <config.h>
 #endif
 
-#include <glib/gi18n.h>
-#include <gtksourceview/gtksource.h>
+#include "xed-encodings-combo-box.h"
 
-#include "xed/xed-encodings-combo-box.h"
+#include <glib/gi18n.h>
+
 #include <xed/xed-encodings-dialog.h>
 #include "xed-settings.h"
 #include "xed-utils.h"
-
-#define ENCODING_KEY "Enconding"
 
 #define XED_ENCODINGS_COMBO_BOX_GET_PRIVATE(object)(G_TYPE_INSTANCE_GET_PRIVATE ((object),  \
                                                     XED_TYPE_ENCODINGS_COMBO_BOX,   \
@@ -386,6 +384,17 @@ xed_encodings_combo_box_init (XedEncodingsComboBox *menu)
     update_menu (menu);
 }
 
+/**
+ * xed_encodings_combo_box_new:
+ * @save_mode: whether the combo box is used for saving a content.
+ *
+ * Creates a new encodings combo box object. If @save_mode is %FALSE, it means
+ * that the combo box is used for loading a content (e.g. a file), so the row
+ * "Automatically Detected" is added. For saving a content, the encoding must be
+ * provided.
+ *
+ * Returns: a new #XedEncodingsComboBox object.
+ */
 GtkWidget *
 xed_encodings_combo_box_new (gboolean save_mode)
 {
@@ -394,6 +403,13 @@ xed_encodings_combo_box_new (gboolean save_mode)
                          NULL);
 }
 
+/**
+ * xed_encodings_combo_box_get_selected_encoding:
+ * @menu: a #XedEncodingsComboBox.
+ *
+ * Returns: the selected #GtkSourceEncoding, or %NULL if the encoding should be
+ * auto-detected (only for loading mode, not for saving).
+ */
 const GtkSourceEncoding *
 xed_encodings_combo_box_get_selected_encoding (XedEncodingsComboBox *menu)
 {
@@ -418,8 +434,10 @@ xed_encodings_combo_box_get_selected_encoding (XedEncodingsComboBox *menu)
 
 /**
  * xed_encodings_combo_box_set_selected_encoding:
- * @menu:
- * @encoding: (allow-none):
+ * @menu: a #XedEncodingsComboBox
+ * @encoding: the #GtkSourceEncoding
+ *
+ * Sets the selected encoding.
  **/
 void
 xed_encodings_combo_box_set_selected_encoding (XedEncodingsComboBox    *menu,
@@ -428,6 +446,7 @@ xed_encodings_combo_box_set_selected_encoding (XedEncodingsComboBox    *menu,
     GtkTreeIter iter;
     GtkTreeModel *model;
     gboolean b;
+
     g_return_if_fail (XED_IS_ENCODINGS_COMBO_BOX (menu));
     g_return_if_fail (GTK_IS_COMBO_BOX (menu));
 

@@ -32,7 +32,7 @@
 #ifndef __XED_ENCODINGS_COMBO_BOX_H__
 #define __XED_ENCODINGS_COMBO_BOX_H__
 
-#include <gtk/gtk.h>
+#include <gtksourceview/gtksource.h>
 
 G_BEGIN_DECLS
 
