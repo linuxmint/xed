@@ -104,7 +104,6 @@ struct _FileBrowserNodeDir
 {
     FileBrowserNode node;
     GSList *children;
-    GHashTable *hidden_file_hash;
 
     GCancellable *cancellable;
     GFileMonitor *monitor;
@@ -1474,11 +1473,6 @@ file_browser_node_free (XedFileBrowserStore *model,
             g_file_monitor_cancel (dir->monitor);
             g_object_unref (dir->monitor);
         }
-
-        if (dir->hidden_file_hash)
-        {
-            g_hash_table_destroy (dir->hidden_file_hash);
-        }
     }
 
     if (node->file)
@@ -2085,9 +2079,7 @@ file_browser_node_set_from_info (XedFileBrowserStore *model,
                                  GFileInfo           *info,
                                  gboolean             isadded)
 {
-    FileBrowserNodeDir *dir;
     gchar const *content;
-    gchar const *name;
     gboolean free_info = FALSE;
     GtkTreePath *path;
     gchar *uri;
@@ -2117,14 +2109,7 @@ file_browser_node_set_from_info (XedFileBrowserStore *model,
         free_info = TRUE;
     }
 
-    dir = FILE_BROWSER_NODE_DIR (node->parent);
-    name = g_file_info_get_name (info);
-
     if (g_file_info_get_is_hidden (info) || g_file_info_get_is_backup (info))
-    {
-        node->flags |= XED_FILE_BROWSER_STORE_FLAG_IS_HIDDEN;
-    }
-    else if (dir != NULL && dir->hidden_file_hash != NULL && g_hash_table_lookup (dir->hidden_file_hash, name) != NULL)
     {
         node->flags |= XED_FILE_BROWSER_STORE_FLAG_IS_HIDDEN;
     }
@@ -2342,83 +2327,6 @@ model_add_node_from_dir (XedFileBrowserStore *model,
     return node;
 }
 
-/* Read is sync, but we only do it for local files */
-static void
-parse_dot_hidden_file (FileBrowserNode *directory)
-{
-    gsize file_size;
-    char *file_contents;
-    GFile *child;
-    GFileInfo *info;
-    GFileType type;
-    int i;
-    FileBrowserNodeDir * dir = FILE_BROWSER_NODE_DIR (directory);
-
-    /* FIXME: We only support .hidden on file: uri's for the moment.
-     * Need to figure out if we should do this async or sync to extend
-     * it to all types of uris.
-     */
-    if (directory->file == NULL || !g_file_is_native (directory->file))
-    {
-        return;
-    }
-
-    child = g_file_get_child (directory->file, ".hidden");
-    info = g_file_query_info (child, G_FILE_ATTRIBUTE_STANDARD_TYPE, G_FILE_QUERY_INFO_NONE, NULL, NULL);
-
-    type = info ? g_file_info_get_file_type (info) : G_FILE_TYPE_UNKNOWN;
-
-    if (info)
-    {
-        g_object_unref (info);
-    }
-
-    if (type != G_FILE_TYPE_REGULAR)
-    {
-        g_object_unref (child);
-        return;
-    }
-
-    if (!g_file_load_contents (child, NULL, &file_contents, &file_size, NULL, NULL))
-    {
-        g_object_unref (child);
-        return;
-    }
-
-    g_object_unref (child);
-
-    if (dir->hidden_file_hash == NULL)
-    {
-        dir->hidden_file_hash = g_hash_table_new_full (g_str_hash, g_str_equal, g_free, NULL);
-    }
-
-    /* Now parse the data */
-    i = 0;
-    while (i < file_size)
-    {
-        int start;
-
-        start = i;
-        while (i < file_size && file_contents[i] != '\n')
-        {
-            i++;
-        }
-
-        if (i > start)
-        {
-            char *hidden_filename;
-
-            hidden_filename = g_strndup (file_contents + start, i - start);
-            g_hash_table_insert (dir->hidden_file_hash, hidden_filename, hidden_filename);
-        }
-
-        i++;
-
-    }
-
-    g_free (file_contents);
-}
-
 static void
 on_directory_monitor_event (GFileMonitor      *monitor,
                             GFile             *file,
@@ -2607,9 +2515,6 @@ model_load_directory (XedFileBrowserStore *model,
 
     node->flags |= XED_FILE_BROWSER_STORE_FLAG_LOADED;
     model_begin_loading (model, node);
-
-    /* Read the '.hidden' file first (if any) */
-    parse_dot_hidden_file (node);
 
     dir->cancellable = g_cancellable_new ();
 
