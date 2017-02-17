@@ -173,7 +173,7 @@ else
 	enable_introspection=no
 fi
 
-AM_PATH_PYTHON([3.2.3])
+AM_PATH_PYTHON([3.4])
 
 dnl ================================================================
 dnl GSettings related settings
