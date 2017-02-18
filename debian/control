@@ -18,6 +18,8 @@ Build-Depends: autotools-dev,
                libx11-dev,
                libxml2-dev,
                gnome-common,
+               python3,
+               python3-gi,
                yelp-tools,
 Standards-Version: 3.9.6
 
@@ -25,10 +27,11 @@ Package: xed
 Architecture: any
 Depends: iso-codes,
          xed-common (= ${source:Version}),
-         python3,
          ${misc:Depends},
          ${python:Depends},
          ${shlibs:Depends},
+         python3,
+         python3-gi,
          xapps-common,
          zenity
 XB-Python-Version: ${python:Versions}
