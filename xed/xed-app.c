@@ -389,6 +389,15 @@ set_command_line_wait (XedApp *app,
 }
 
 static void
+set_command_line_wait_doc (XedDocument *doc,
+                           XedApp      *app)
+{
+    XedTab *tab = xed_tab_get_from_document (doc);
+
+    set_command_line_wait (app, tab);
+}
+
+static void
 open_files (GApplication            *application,
             gboolean                 new_window,
             gboolean                 new_document,
@@ -451,7 +460,7 @@ open_files (GApplication            *application,
 
         if (command_line)
         {
-            g_slist_foreach (loaded, (GFunc)set_command_line_wait, NULL);
+            g_slist_foreach (loaded, (GFunc)set_command_line_wait_doc, XED_APP (application));
         }
         g_slist_free (loaded);
     }
