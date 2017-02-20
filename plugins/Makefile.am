@@ -14,7 +14,6 @@ SUBDIRS = 			\
 	filebrowser 	\
 	modelines 		\
 	sort			\
-	spell			\
 	taglist			\
 	textsize 		\
 	time			\
