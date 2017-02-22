@@ -104,7 +104,6 @@ struct _FileBrowserNodeDir
 {
     FileBrowserNode node;
     GSList *children;
-    GHashTable *hidden_file_hash;
 
     GCancellable *cancellable;
     GFileMonitor *monitor;
@@ -131,12 +130,12 @@ static FileBrowserNode *model_find_node (XedFileBrowserStore *model,
                                          FileBrowserNode     *node,
                                          GFile               *uri);
 static void model_remove_node (XedFileBrowserStore *model,
-                               FileBrowserNode *node,
-                               GtkTreePath *path,
-                               gboolean free_nodes);
+                               FileBrowserNode     *node,
+                               GtkTreePath         *path,
+                               gboolean             free_nodes);
 
 static void set_virtual_root_from_node (XedFileBrowserStore *model,
-                                        FileBrowserNode *node);
+                                        FileBrowserNode     *node);
 
 static void xed_file_browser_store_iface_init (GtkTreeModelIface *iface);
 static GtkTreeModelFlags xed_file_browser_store_get_flags (GtkTreeModel *tree_model);
@@ -158,42 +157,44 @@ static gboolean xed_file_browser_store_iter_children (GtkTreeModel *tree_model,
                                                       GtkTreeIter *iter,
                                                       GtkTreeIter *parent);
 static gboolean xed_file_browser_store_iter_has_child (GtkTreeModel *tree_model,
-                                                       GtkTreeIter *iter);
+                                                       GtkTreeIter  *iter);
 static gint xed_file_browser_store_iter_n_children (GtkTreeModel *tree_model,
-                                 GtkTreeIter * iter);
-static gboolean xed_file_browser_store_iter_nth_child     (GtkTreeModel * tree_model,
-                                 GtkTreeIter * iter,
-                                 GtkTreeIter * parent,
-                                 gint n);
-static gboolean xed_file_browser_store_iter_parent        (GtkTreeModel * tree_model,
-                                 GtkTreeIter * iter,
-                                 GtkTreeIter * child);
-static void xed_file_browser_store_row_inserted     (GtkTreeModel * tree_model,
-                                 GtkTreePath * path,
-                                 GtkTreeIter * iter);
+                                                    GtkTreeIter  *iter);
+static gboolean xed_file_browser_store_iter_nth_child (GtkTreeModel *tree_model,
+                                                       GtkTreeIter  *iter,
+                                                       GtkTreeIter  *parent,
+                                                       gint          n);
+static gboolean xed_file_browser_store_iter_parent (GtkTreeModel *tree_model,
+                                                    GtkTreeIter  *iter,
+                                                    GtkTreeIter  *child);
+static void xed_file_browser_store_row_inserted (GtkTreeModel *tree_model,
+                                                 GtkTreePath  *path,
+                                                 GtkTreeIter  *iter);
 
-static void xed_file_browser_store_drag_source_init       (GtkTreeDragSourceIface * iface);
-static gboolean xed_file_browser_store_row_draggable      (GtkTreeDragSource * drag_source,
-                                 GtkTreePath       * path);
-static gboolean xed_file_browser_store_drag_data_delete   (GtkTreeDragSource * drag_source,
-                                 GtkTreePath       * path);
-static gboolean xed_file_browser_store_drag_data_get      (GtkTreeDragSource * drag_source,
-                                 GtkTreePath       * path,
-                                 GtkSelectionData  * selection_data);
+static void xed_file_browser_store_drag_source_init (GtkTreeDragSourceIface *iface);
+static gboolean xed_file_browser_store_row_draggable (GtkTreeDragSource *drag_source,
+                                                      GtkTreePath       *path);
+static gboolean xed_file_browser_store_drag_data_delete (GtkTreeDragSource *drag_source,
+                                                         GtkTreePath       *path);
+static gboolean xed_file_browser_store_drag_data_get (GtkTreeDragSource *drag_source,
+                                                      GtkTreePath       *path,
+                                                      GtkSelectionData  *selection_data);
 
-static void file_browser_node_free                          (XedFileBrowserStore * model,
-                                 FileBrowserNode * node);
-static void model_add_node                                  (XedFileBrowserStore * model,
-                                 FileBrowserNode * child,
-                                 FileBrowserNode * parent);
-static void model_clear                                     (XedFileBrowserStore * model,
-                                 gboolean free_nodes);
-static gint model_sort_default                              (FileBrowserNode * node1,
-                                 FileBrowserNode * node2);
-static void model_check_dummy                               (XedFileBrowserStore * model,
-                                 FileBrowserNode * node);
-static void next_files_async                    (GFileEnumerator * enumerator,
-                                 AsyncNode * async);
+static void file_browser_node_free (XedFileBrowserStore *model,
+                                    FileBrowserNode     *node);
+static void model_add_node (XedFileBrowserStore *model,
+                            FileBrowserNode     *child,
+                            FileBrowserNode     *parent);
+static void model_clear (XedFileBrowserStore *model,
+                         gboolean             free_nodes);
+static gint model_sort_default (FileBrowserNode *node1,
+                                FileBrowserNode *node2);
+static void model_check_dummy (XedFileBrowserStore *model,
+                               FileBrowserNode     *node);
+static void next_files_async (GFileEnumerator *enumerator,
+                              AsyncNode       *async);
+
+static void delete_files (AsyncData *data);
 
 G_DEFINE_DYNAMIC_TYPE_EXTENDED (XedFileBrowserStore, xed_file_browser_store,
                                 G_TYPE_OBJECT,
@@ -1027,6 +1028,7 @@ xed_file_browser_store_drag_data_get (GtkTreeDragSource *drag_source,
     ret = gtk_selection_data_set_uris (selection_data, uris);
 
     g_free (uris[0]);
+    g_object_unref (location);
 
     return ret;
 }
@@ -1470,11 +1472,6 @@ file_browser_node_free (XedFileBrowserStore *model,
         {
             g_file_monitor_cancel (dir->monitor);
             g_object_unref (dir->monitor);
-        }
-
-        if (dir->hidden_file_hash)
-        {
-            g_hash_table_destroy (dir->hidden_file_hash);
         }
     }
 
@@ -2082,9 +2079,7 @@ file_browser_node_set_from_info (XedFileBrowserStore *model,
                                  GFileInfo           *info,
                                  gboolean             isadded)
 {
-    FileBrowserNodeDir *dir;
     gchar const *content;
-    gchar const *name;
     gboolean free_info = FALSE;
     GtkTreePath *path;
     gchar *uri;
@@ -2114,14 +2109,7 @@ file_browser_node_set_from_info (XedFileBrowserStore *model,
         free_info = TRUE;
     }
 
-    dir = FILE_BROWSER_NODE_DIR (node->parent);
-    name = g_file_info_get_name (info);
-
     if (g_file_info_get_is_hidden (info) || g_file_info_get_is_backup (info))
-    {
-        node->flags |= XED_FILE_BROWSER_STORE_FLAG_IS_HIDDEN;
-    }
-    else if (dir != NULL && dir->hidden_file_hash != NULL && g_hash_table_lookup (dir->hidden_file_hash, name) != NULL)
     {
         node->flags |= XED_FILE_BROWSER_STORE_FLAG_IS_HIDDEN;
     }
@@ -2276,15 +2264,17 @@ model_add_nodes_from_files (XedFileBrowserStore *model,
             (strcmp (name, ".") == 0 ||
              strcmp (name, "..") == 0))
         {
+            g_object_unref (info);
             continue;
         }
 
         file = g_file_get_child (parent->file, name);
 
-        if ((node = node_list_contains_file (original_children, file)) == NULL)
+        node = node_list_contains_file (original_children, file);
+        if (node == NULL)
         {
 
-            if (g_file_info_get_file_type (info) == G_FILE_TYPE_DIRECTORY)
+            if (type == G_FILE_TYPE_DIRECTORY)
             {
                 node = file_browser_node_dir_new (model, file, parent);
             }
@@ -2337,83 +2327,6 @@ model_add_node_from_dir (XedFileBrowserStore *model,
     return node;
 }
 
-/* Read is sync, but we only do it for local files */
-static void
-parse_dot_hidden_file (FileBrowserNode *directory)
-{
-    gsize file_size;
-    char *file_contents;
-    GFile *child;
-    GFileInfo *info;
-    GFileType type;
-    int i;
-    FileBrowserNodeDir * dir = FILE_BROWSER_NODE_DIR (directory);
-
-    /* FIXME: We only support .hidden on file: uri's for the moment.
-     * Need to figure out if we should do this async or sync to extend
-     * it to all types of uris.
-     */
-    if (directory->file == NULL || !g_file_is_native (directory->file))
-    {
-        return;
-    }
-
-    child = g_file_get_child (directory->file, ".hidden");
-    info = g_file_query_info (child, G_FILE_ATTRIBUTE_STANDARD_TYPE, G_FILE_QUERY_INFO_NONE, NULL, NULL);
-
-    type = info ? g_file_info_get_file_type (info) : G_FILE_TYPE_UNKNOWN;
-
-    if (info)
-    {
-        g_object_unref (info);
-    }
-
-    if (type != G_FILE_TYPE_REGULAR)
-    {
-        g_object_unref (child);
-        return;
-    }
-
-    if (!g_file_load_contents (child, NULL, &file_contents, &file_size, NULL, NULL))
-    {
-        g_object_unref (child);
-        return;
-    }
-
-    g_object_unref (child);
-
-    if (dir->hidden_file_hash == NULL)
-    {
-        dir->hidden_file_hash = g_hash_table_new_full (g_str_hash, g_str_equal, g_free, NULL);
-    }
-
-    /* Now parse the data */
-    i = 0;
-    while (i < file_size)
-    {
-        int start;
-
-        start = i;
-        while (i < file_size && file_contents[i] != '\n')
-        {
-            i++;
-        }
-
-        if (i > start)
-        {
-            char *hidden_filename;
-
-            hidden_filename = g_strndup (file_contents + start, i - start);
-            g_hash_table_insert (dir->hidden_file_hash, hidden_filename, hidden_filename);
-        }
-
-        i++;
-
-    }
-
-    g_free (file_contents);
-}
-
 static void
 on_directory_monitor_event (GFileMonitor      *monitor,
                             GFile             *file,
@@ -2451,7 +2364,7 @@ async_node_free (AsyncNode *async)
 {
     g_object_unref (async->cancellable);
     g_slist_free (async->original_children);
-    g_free (async);
+    g_slice_free (AsyncNode, async);
 }
 
 static void
@@ -2469,6 +2382,7 @@ model_iterate_next_files_cb (GFileEnumerator *enumerator,
     if (files == NULL)
     {
         g_file_enumerator_close (enumerator, NULL, NULL);
+        g_object_unref (enumerator);
         async_node_free (async);
 
         if (!error)
@@ -2520,6 +2434,7 @@ model_iterate_next_files_cb (GFileEnumerator *enumerator,
     {
         /* Check cancel state manually */
         g_file_enumerator_close (enumerator, NULL, NULL);
+        g_object_unref (enumerator);
         async_node_free (async);
     }
     else
@@ -2601,12 +2516,9 @@ model_load_directory (XedFileBrowserStore *model,
     node->flags |= XED_FILE_BROWSER_STORE_FLAG_LOADED;
     model_begin_loading (model, node);
 
-    /* Read the '.hidden' file first (if any) */
-    parse_dot_hidden_file (node);
-
     dir->cancellable = g_cancellable_new ();
 
-    async = g_new (AsyncNode, 1);
+    async = g_slice_new (AsyncNode);
     async->dir = dir;
     async->cancellable = g_object_ref (dir->cancellable);
     async->original_children = g_slist_copy (dir->children);
@@ -3013,9 +2925,13 @@ mount_cb (GFile        *file,
 
     g_object_unref (mount_info->operation);
     g_object_unref (mount_info->cancellable);
-    g_free (mount_info->virtual_root);
 
-    g_free (mount_info);
+    if (mount_info->virtual_root)
+    {
+        g_object_unref (mount_info->virtual_root);
+    }
+
+    g_slice_free (MountInfo, mount_info);
 }
 
 static XedFileBrowserStoreResult
@@ -3039,7 +2955,7 @@ model_mount_root (XedFileBrowserStore *model,
             /* Try to mount it */
             FILE_BROWSER_NODE_DIR (model->priv->root)->cancellable = g_cancellable_new ();
 
-            mount_info = g_new(MountInfo, 1);
+            mount_info = g_slice_new (MountInfo);
             mount_info->model = model;
             mount_info->virtual_root = g_file_dup (virtual_root);
 
@@ -3633,7 +3549,7 @@ async_data_free (AsyncData *data)
         data->model->priv->async_handles = g_slist_remove (data->model->priv->async_handles, data);
     }
 
-    g_free (data);
+    g_slice_free (AsyncData, data);
 }
 
 static gboolean
@@ -3646,93 +3562,101 @@ emit_no_trash (AsyncData *data)
     return ret;
 }
 
-typedef struct
+static void
+delete_file_finished (GFile        *file,
+                      GAsyncResult *res,
+                      AsyncData    *data)
 {
-    XedFileBrowserStore *model;
-    GFile *file;
-} IdleDelete;
-
-static gboolean
-file_deleted (IdleDelete *data)
-{
-    FileBrowserNode *node;
-    node = model_find_node (data->model, NULL, data->file);
-
-    if (node != NULL)
-    {
-        model_remove_node (data->model, node, NULL, TRUE);
-    }
-
-    return FALSE;
-}
-
-static gboolean
-delete_files (GIOSchedulerJob *job,
-              GCancellable    *cancellable,
-              AsyncData       *data)
-{
-    GFile *file;
     GError *error = NULL;
-    gboolean ret;
-    gint code;
-    IdleDelete delete;
-
-    /* Check if our job is done */
-    if (!data->iter)
-    {
-        return FALSE;
-    }
-
-    /* Move a file to the trash */
-    file = G_FILE (data->iter->data);
+    gboolean ok;
 
     if (data->trash)
     {
-        ret = g_file_trash (file, cancellable, &error);
+        ok = g_file_trash_finish (file, res, &error);
     }
     else
     {
-        ret = g_file_delete (file, cancellable, &error);
+        ok = g_file_delete_finish (file, res, &error);
     }
 
-    if (ret)
+    if (ok)
     {
-        delete.model = data->model;
-        delete.file = file;
+        /* Remove the file from the model */
+        FileBrowserNode *node = model_find_node (data->model, NULL, file);
 
-        /* Remove the file from the model in the main loop */
-        g_io_scheduler_job_send_to_mainloop (job, (GSourceFunc)file_deleted, &delete, NULL);
+        if (node != NULL)
+        {
+            model_remove_node (data->model, node, NULL, TRUE);
+        }
+
+        /* Process the next file */
+        data->iter = data->iter->next;
     }
-    else if (!ret && error)
+    else if (!ok && error != NULL)
     {
-        code = error->code;
+        gint code = error->code;
         g_error_free (error);
 
         if (data->trash && code == G_IO_ERROR_NOT_SUPPORTED)
         {
-            /* Trash is not supported on this system ... */
-            if (g_io_scheduler_job_send_to_mainloop (job, (GSourceFunc)emit_no_trash, data, NULL))
+            /* Trash is not supported on this system. Ask the user
+             * if he wants to delete completely the files instead.
+             */
+            if (emit_no_trash (data))
             {
                 /* Changes this into a delete job */
                 data->trash = FALSE;
                 data->iter = data->files;
-
-                return TRUE;
             }
-
-            /* End the job */
-            return FALSE;
+            else
+            {
+                /* End the job */
+                async_data_free (data);
+                return;
+            }
         }
         else if (code == G_IO_ERROR_CANCELLED)
         {
-            /* Job has been cancelled, just let the job end */
-            return FALSE;
+            /* Job has been cancelled, end the job */
+            async_data_free (data);
+            return;
         }
     }
 
-    /* Process the next item */
-    data->iter = data->iter->next;
-    return TRUE;
+    /* Continue the job */
+    delete_files (data);
+}
+
+static void
+delete_files (AsyncData *data)
+{
+    GFile *file;
+
+    /* Check if our job is done */
+    if (data->iter == NULL)
+    {
+        async_data_free (data);
+        return;
+    }
+
+    file = G_FILE (data->iter->data);
+
+    if (data->trash)
+    {
+        g_file_trash_async (file,
+                            G_PRIORITY_DEFAULT,
+                            data->cancellable,
+                            (GAsyncReadyCallback)delete_file_finished,
+                            data);
+    }
+    else
+    {
+        g_file_delete_async (file,
+                             G_PRIORITY_DEFAULT,
+                             data->cancellable,
+                             (GAsyncReadyCallback)delete_file_finished,
+                             data);
+    }
 }
 
 XedFileBrowserStoreResult
@@ -3781,7 +3705,7 @@ xed_file_browser_store_delete_all (XedFileBrowserStore *model,
         files = g_list_prepend (files, g_object_ref (node->file));
     }
 
-    data = g_new (AsyncData, 1);
+    data = g_slice_new (AsyncData);
 
     data->model = model;
     data->cancellable = g_cancellable_new ();
@@ -3792,11 +3716,7 @@ xed_file_browser_store_delete_all (XedFileBrowserStore *model,
 
     model->priv->async_handles = g_slist_prepend (model->priv->async_handles, data);
 
-    g_io_scheduler_push_job ((GIOSchedulerJobFunc)delete_files,
-                             data,
-                             (GDestroyNotify)async_data_free,
-                             G_PRIORITY_DEFAULT,
-                             data->cancellable);
+    delete_files (data);
     g_list_free (rows);
 
     return XED_FILE_BROWSER_STORE_RESULT_OK;
@@ -3851,7 +3771,7 @@ xed_file_browser_store_new_file (XedFileBrowserStore *model,
 
     parent_node = FILE_BROWSER_NODE_DIR (parent->user_data);
     /* Translators: This is the default name of new files created by the file browser pane. */
-    file = unique_new_name (((FileBrowserNode *) parent_node)->file, _("file"));
+    file = unique_new_name (((FileBrowserNode *) parent_node)->file, _("Untitled File"));
 
     stream = g_file_create (file, G_FILE_CREATE_NONE, NULL, &error);
 
@@ -3906,7 +3826,7 @@ xed_file_browser_store_new_directory (XedFileBrowserStore *model,
 
     parent_node = FILE_BROWSER_NODE_DIR (parent->user_data);
     /* Translators: This is the default name of new directories created by the file browser pane. */
-    file = unique_new_name (((FileBrowserNode *) parent_node)->file, _("directory"));
+    file = unique_new_name (((FileBrowserNode *) parent_node)->file, _("Untitled Folder"));
 
     if (!g_file_make_directory (file, NULL, &error))
     {

@@ -234,23 +234,23 @@ init_special_directories (XedFileBookmarksStore * model)
         g_object_unref (file);
     }
 
-    path = g_get_user_special_dir (G_USER_DIRECTORY_DESKTOP);
-    if (path != NULL)
-    {
-        file = g_file_new_for_path (path);
-        add_file (model, file, NULL, XED_FILE_BOOKMARKS_STORE_IS_DESKTOP |
-                                     XED_FILE_BOOKMARKS_STORE_IS_SPECIAL_DIR, NULL);
-        g_object_unref (file);
-    }
+    // path = g_get_user_special_dir (G_USER_DIRECTORY_DESKTOP);
+    // if (path != NULL)
+    // {
+    //     file = g_file_new_for_path (path);
+    //     add_file (model, file, NULL, XED_FILE_BOOKMARKS_STORE_IS_DESKTOP |
+    //                                  XED_FILE_BOOKMARKS_STORE_IS_SPECIAL_DIR, NULL);
+    //     g_object_unref (file);
+    // }
 
-    path = g_get_user_special_dir (G_USER_DIRECTORY_DOCUMENTS);
-    if (path != NULL)
-    {
-        file = g_file_new_for_path (path);
-        add_file (model, file, NULL, XED_FILE_BOOKMARKS_STORE_IS_DOCUMENTS |
-                                     XED_FILE_BOOKMARKS_STORE_IS_SPECIAL_DIR, NULL);
-        g_object_unref (file);
-    }
+    // path = g_get_user_special_dir (G_USER_DIRECTORY_DOCUMENTS);
+    // if (path != NULL)
+    // {
+    //     file = g_file_new_for_path (path);
+    //     add_file (model, file, NULL, XED_FILE_BOOKMARKS_STORE_IS_DOCUMENTS |
+    //                                  XED_FILE_BOOKMARKS_STORE_IS_SPECIAL_DIR, NULL);
+    //     g_object_unref (file);
+    // }
 
     file = g_file_new_for_uri ("file:///");
     add_file (model, file, _("File System"), XED_FILE_BOOKMARKS_STORE_IS_ROOT, NULL);
@@ -514,75 +514,106 @@ add_bookmark (XedFileBookmarksStore * model,
     return ret;
 }
 
-static void
-init_bookmarks (XedFileBookmarksStore * model)
+static gchar *
+get_bookmarks_file (void)
 {
-    gchar *bookmarks;
+    return g_build_filename (g_get_user_config_dir (), "gtk-3.0", "bookmarks", NULL);
+}
+
+static gchar *
+get_legacy_bookmarks_file (void)
+{
+    return g_build_filename (g_get_home_dir (), ".gtk-bookmarks", NULL);
+}
+
+static gboolean
+parse_bookmarks_file (XedFileBookmarksStore *model,
+                      const gchar           *bookmarks,
+                      gboolean              *added)
+
+{
     GError *error = NULL;
     gchar *contents;
     gchar **lines;
     gchar **line;
-    gboolean added = FALSE;
 
-    /* Read the bookmarks file */
-    bookmarks = g_build_filename (g_get_home_dir (), ".gtk-bookmarks", NULL);
-
-    if (g_file_get_contents (bookmarks, &contents, NULL, &error))
-    {
-        lines = g_strsplit (contents, "\n", 0);
-
-        for (line = lines; *line; ++line)
-        {
-            if (**line)
-            {
-                GFile *location;
-                gchar *pos;
-                gchar *name;
-
-                /* CHECK: is this really utf8? */
-                pos = g_utf8_strchr (*line, -1, ' ');
-
-                if (pos != NULL)
-                {
-                    *pos = '\0';
-                    name = pos + 1;
-                }
-                else
-                {
-                    name = NULL;
-                }
-
-                /* the bookmarks file should contain valid
-                 * URIs, but paranoia is good */
-                location = g_file_new_for_uri (*line);
-                if (xed_utils_is_valid_location (location))
-                {
-                    added |= add_bookmark (model, name, *line);
-                }
-                g_object_unref (location);
-            }
-        }
-
-        g_strfreev (lines);
-        g_free (contents);
-
-        /* Add a watch */
-        if (model->priv->bookmarks_monitor == NULL)
-        {
-            GFile * file;
-
-            file = g_file_new_for_path (bookmarks);
-            model->priv->bookmarks_monitor = g_file_monitor_file (file, G_FILE_MONITOR_NONE, NULL, NULL);
-            g_object_unref (file);
-
-            g_signal_connect (model->priv->bookmarks_monitor, "changed",
-                              (GCallback)on_bookmarks_file_changed, model);
-        }
-    }
-    else
+    if (!g_file_get_contents (bookmarks, &contents, NULL, &error))
     {
         /* The bookmarks file doesn't exist (which is perfectly fine) */
         g_error_free (error);
+
+        return FALSE;
+    }
+
+    lines = g_strsplit (contents, "\n", 0);
+
+    for (line = lines; *line; ++line)
+    {
+        if (**line)
+        {
+            GFile *location;
+
+            gchar *pos;
+            gchar *name;
+
+            /* CHECK: is this really utf8? */
+            pos = g_utf8_strchr (*line, -1, ' ');
+
+            if (pos != NULL)
+            {
+                *pos = '\0';
+                name = pos + 1;
+            }
+            else
+            {
+                name = NULL;
+            }
+
+            /* the bookmarks file should contain valid
+            * URIs, but paranoia is good */
+            location = g_file_new_for_uri (*line);
+            if (xed_utils_is_valid_location (location))
+            {
+                *added |= add_bookmark (model, name, *line);
+            }
+            g_object_unref (location);
+        }
+    }
+
+    g_strfreev (lines);
+    g_free (contents);
+
+    /* Add a watch */
+    if (model->priv->bookmarks_monitor == NULL)
+    {
+        GFile * file;
+
+        file = g_file_new_for_path (bookmarks);
+        model->priv->bookmarks_monitor = g_file_monitor_file (file, G_FILE_MONITOR_NONE, NULL, NULL);
+        g_object_unref (file);
+
+        g_signal_connect (model->priv->bookmarks_monitor, "changed",
+                          G_CALLBACK (on_bookmarks_file_changed), model);
+    }
+
+    return TRUE;
+}
+
+static void
+init_bookmarks (XedFileBookmarksStore *model)
+{
+    gchar *bookmarks;
+    gboolean added = FALSE;
+
+    bookmarks = get_bookmarks_file ();
+
+    if (!parse_bookmarks_file (model, bookmarks, &added))
+    {
+        g_free (bookmarks);
+
+        /* try the old location (gtk <= 3.4) */
+        bookmarks = get_legacy_bookmarks_file ();
+        parse_bookmarks_file (model, bookmarks, &added);
     }
 
     if (added)

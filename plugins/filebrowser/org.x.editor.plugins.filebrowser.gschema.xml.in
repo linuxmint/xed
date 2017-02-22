@@ -16,6 +16,11 @@
       <summary>File Browser Filter Pattern</summary>
       <description>The filter pattern to filter the file browser with. This filter works on top of the filter_mode.</description>
     </key>
+    <key name="terminal-command" type="s">
+      <default>'x-terminal-emulator'</default>
+      <summary>Terminal Command</summary>
+      <description>The terminal command when using the "Open terminal here" command.</description>
+    </key>
     <child name="on-load" schema="org.x.editor.plugins.filebrowser.on-load"/>
   </schema>
   <schema id="org.x.editor.plugins.filebrowser.on-load" path="/org/x/editor/plugins/filebrowser/on-load/">
