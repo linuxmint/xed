@@ -47,7 +47,6 @@
 #include "xed-file-chooser-dialog.h"
 #include "xed-close-confirmation-dialog.h"
 
-
 /* Defined constants */
 #define XED_OPEN_DIALOG_KEY         "xed-open-dialog-key"
 #define XED_TAB_TO_SAVE_AS          "xed-tab-to-save-as"
@@ -1535,7 +1534,9 @@ tab_can_close (XedTab  *tab,
 
     if (!_xed_tab_can_close (tab))
     {
-        GtkWidget     *dlg;
+        GtkWidget *dlg;
+
+        xed_window_set_active_tab (XED_WINDOW (window), tab);
 
         dlg = xed_close_confirmation_dialog_new_single (window, doc, FALSE);
 
