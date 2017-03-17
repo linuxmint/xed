@@ -44,6 +44,7 @@ NOINST_H_FILES =						\
 	xed-encodings-dialog.h 				\
 	xed-history-entry.h					\
 	xed-io-error-info-bar.h				\
+	xed-paned.h 						\
 	xed-plugins-engine.h				\
 	xed-preferences-dialog.h 			\
 	xed-print-job.h						\
@@ -119,6 +120,7 @@ libxed_c_files = 						\
 	xed-message-type.c					\
 	xed-message.c						\
 	xed-notebook.c						\
+	xed-paned.c 						\
 	xed-panel.c							\
 	xed-plugins-engine.c				\
 	xed-preferences-dialog.c 			\

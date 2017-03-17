@@ -6,6 +6,7 @@
 #include <xed/xed-tab.h>
 #include <xed/xed-panel.h>
 #include <xed/xed-message-bus.h>
+#include <xed/xed-paned.h>
 
 G_BEGIN_DECLS
 
@@ -106,6 +107,11 @@ void _xed_recent_add (XedWindow *window, GFile *location, const gchar *mime);
 void _xed_recent_remove (XedWindow *window, GFile *location);
 
 void _xed_window_get_default_size (gint *width, gint *height);
+gint _xed_window_get_side_panel_size (XedWindow *window);
+gint _xed_window_get_bottom_panel_size (XedWindow *window);
+
+XedPaned *_xed_window_get_hpaned (XedWindow *window);
+XedPaned *_xed_window_get_vpaned (XedWindow *window);
 
 G_END_DECLS
 

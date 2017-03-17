@@ -3173,7 +3173,10 @@ side_panel_size_allocate (GtkWidget *widget,
                           GtkAllocation *allocation,
                           XedWindow *window)
 {
-    window->priv->side_panel_size = allocation->width;
+    if (!xed_paned_get_is_animating (window->priv->hpaned))
+    {
+        window->priv->side_panel_size = allocation->width;
+    }
 }
 
 static void
@@ -3181,7 +3184,10 @@ bottom_panel_size_allocate (GtkWidget *widget,
                             GtkAllocation *allocation,
                             XedWindow *window)
 {
-    window->priv->bottom_panel_size = allocation->height;
+    if (!xed_paned_get_is_animating (window->priv->vpaned))
+    {
+        window->priv->bottom_panel_size = allocation->height;
+    }
 }
 
 static void
@@ -3256,7 +3262,7 @@ create_side_panel (XedWindow *window)
 
     window->priv->side_panel = xed_panel_new (GTK_ORIENTATION_VERTICAL);
 
-    gtk_paned_pack1 (GTK_PANED (window->priv->hpaned), window->priv->side_panel, FALSE, FALSE);
+    gtk_paned_pack1 (GTK_PANED (window->priv->hpaned), window->priv->side_panel, FALSE, TRUE);
 
     g_signal_connect_after (window->priv->side_panel, "show", G_CALLBACK (side_panel_visibility_changed), window);
     g_signal_connect_after (window->priv->side_panel, "hide", G_CALLBACK (side_panel_visibility_changed), window);
@@ -3299,7 +3305,7 @@ bottom_panel_item_removed (XedPanel  *panel,
     {
         GtkAction *action;
 
-        gtk_widget_hide (GTK_WIDGET (panel));
+        xed_paned_close (window->priv->vpaned, 2);
         gtk_revealer_set_reveal_child (GTK_REVEALER (window->priv->bottom_pane_button_revealer), FALSE);
         action = gtk_action_group_get_action (window->priv->panes_action_group, "ViewBottomPane");
         gtk_action_set_sensitive (action, FALSE);
@@ -3335,7 +3341,7 @@ create_bottom_panel (XedWindow *window)
 {
     xed_debug (DEBUG_WINDOW);
     window->priv->bottom_panel = xed_panel_new (GTK_ORIENTATION_HORIZONTAL);
-    gtk_paned_pack2 (GTK_PANED (window->priv->vpaned), window->priv->bottom_panel, FALSE, FALSE);
+    gtk_paned_pack2 (GTK_PANED (window->priv->vpaned), window->priv->bottom_panel, FALSE, TRUE);
     g_signal_connect_after(window->priv->bottom_panel, "show", G_CALLBACK (bottom_panel_visibility_changed), window);
     g_signal_connect_after(window->priv->bottom_panel, "hide", G_CALLBACK (bottom_panel_visibility_changed), window);
 }
@@ -3539,10 +3545,10 @@ xed_window_init (XedWindow *window)
 
     /* Add the main area */
     xed_debug_message (DEBUG_WINDOW, "Add main area");
-    window->priv->hpaned = gtk_paned_new (GTK_ORIENTATION_HORIZONTAL);
+    window->priv->hpaned = xed_paned_new (GTK_ORIENTATION_HORIZONTAL);
     gtk_box_pack_start (GTK_BOX (main_box), window->priv->hpaned, TRUE, TRUE, 0);
 
-    window->priv->vpaned = gtk_paned_new (GTK_ORIENTATION_VERTICAL);
+    window->priv->vpaned = xed_paned_new (GTK_ORIENTATION_VERTICAL);
     gtk_paned_pack2 (GTK_PANED (window->priv->hpaned), window->priv->vpaned, TRUE, FALSE);
 
     xed_debug_message (DEBUG_WINDOW, "Create xed notebook");
@@ -4338,4 +4344,28 @@ _xed_window_get_default_size (gint *width,
 
     *width = XED_WINDOW_DEFAULT_WIDTH;
     *height = XED_WINDOW_DEFAULT_HEIGHT;
+}
+
+XedPaned *
+_xed_window_get_hpaned (XedWindow *window)
+{
+    return XED_PANED (window->priv->hpaned);
+}
+
+XedPaned *
+_xed_window_get_vpaned (XedWindow *window)
+{
+    return XED_PANED (window->priv->vpaned);
+}
+
+gint
+_xed_window_get_side_panel_size (XedWindow *window)
+{
+    return window->priv->side_panel_size;
+}
+
+gint
+_xed_window_get_bottom_panel_size (XedWindow *window)
+{
+    return window->priv->bottom_panel_size;
 }
