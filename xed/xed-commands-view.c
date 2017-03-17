@@ -44,81 +44,89 @@
 
 
 void
-_xed_cmd_view_show_toolbar (GtkAction   *action,
-			     XedWindow *window)
+_xed_cmd_view_show_toolbar (GtkAction *action,
+                            XedWindow *window)
 {
-	gboolean visible;
+    gboolean visible;
 
-	xed_debug (DEBUG_COMMANDS);
+    xed_debug (DEBUG_COMMANDS);
 
-	visible = gtk_toggle_action_get_active (GTK_TOGGLE_ACTION (action));
+    visible = gtk_toggle_action_get_active (GTK_TOGGLE_ACTION (action));
 
-	if (visible)
-		gtk_widget_show (window->priv->toolbar);
-	else
-		gtk_widget_hide (window->priv->toolbar);
+    if (visible)
+    {
+        gtk_widget_show (window->priv->toolbar);
+    }
+    else
+    {
+        gtk_widget_hide (window->priv->toolbar);
+    }
 }
 
 void
-_xed_cmd_view_show_statusbar (GtkAction   *action,
-			       XedWindow *window)
+_xed_cmd_view_show_statusbar (GtkAction *action,
+                              XedWindow *window)
 {
-	gboolean visible;
+    gboolean visible;
 
-	xed_debug (DEBUG_COMMANDS);
+    xed_debug (DEBUG_COMMANDS);
 
-	visible = gtk_toggle_action_get_active (GTK_TOGGLE_ACTION (action));
+    visible = gtk_toggle_action_get_active (GTK_TOGGLE_ACTION (action));
 
-	if (visible)
-		gtk_widget_show (window->priv->statusbar);
-	else
-		gtk_widget_hide (window->priv->statusbar);
+    if (visible)
+    {
+        gtk_widget_show (window->priv->statusbar);
+    }
+    else
+    {
+        gtk_widget_hide (window->priv->statusbar);
+    }
 }
 
 void
-_xed_cmd_view_show_side_pane (GtkAction   *action,
-			       XedWindow *window)
+_xed_cmd_view_show_side_pane (GtkAction *action,
+                              XedWindow *window)
 {
-	gboolean visible;
-	XedPanel *panel;
+    gboolean visible;
+    XedPanel *panel;
     XedPaned *paned;
 
-	xed_debug (DEBUG_COMMANDS);
+    xed_debug (DEBUG_COMMANDS);
 
-	visible = gtk_toggle_action_get_active (GTK_TOGGLE_ACTION (action));
+    visible = gtk_toggle_action_get_active (GTK_TOGGLE_ACTION (action));
 
-	panel = xed_window_get_side_panel (window);
+    panel = xed_window_get_side_panel (window);
     paned = _xed_window_get_hpaned (window);
 
-	if (visible)
-	{
+    if (visible)
+    {
         gtk_widget_show (GTK_WIDGET (panel));
         xed_paned_open (paned, 1, _xed_window_get_side_panel_size (window));
-		gtk_widget_grab_focus (GTK_WIDGET (panel));
-	}
-	else
-	{
+        gtk_widget_grab_focus (GTK_WIDGET (panel));
+    }
+    else
+    {
         xed_paned_close (paned, 1);
-	}
+    }
 }
 
 void
-_xed_cmd_view_show_bottom_pane (GtkAction   *action,
-				 XedWindow *window)
+_xed_cmd_view_show_bottom_pane (GtkAction *action,
+                                XedWindow *window)
 {
-	gboolean visible;
-	XedPanel *panel;
+    gboolean visible;
+    XedPanel *panel;
     XedPaned *paned;
 
-	xed_debug (DEBUG_COMMANDS);
+    xed_debug (DEBUG_COMMANDS);
 
-	visible = gtk_toggle_action_get_active (GTK_TOGGLE_ACTION (action));
+    visible = gtk_toggle_action_get_active (GTK_TOGGLE_ACTION (action));
 
-	panel = xed_window_get_bottom_panel (window);
+    panel = xed_window_get_bottom_panel (window);
     paned = _xed_window_get_vpaned (window);
 
-	if (visible)
-	{
+    if (visible)
+    {
         gint position;
         gint panel_size;
         gint paned_size;
@@ -126,31 +134,35 @@ _xed_cmd_view_show_bottom_pane (GtkAction   *action,
         panel_size = _xed_window_get_bottom_panel_size (window);
         g_object_get (G_OBJECT (paned), "max-position", &paned_size, NULL);
         position = paned_size - panel_size;
-		gtk_widget_show (GTK_WIDGET (panel));
+        gtk_widget_show (GTK_WIDGET (panel));
         xed_paned_open (paned, 2, position);
-		gtk_widget_grab_focus (GTK_WIDGET (panel));
-	}
-	else
-	{
+        gtk_widget_grab_focus (GTK_WIDGET (panel));
+    }
+    else
+    {
         xed_paned_close (paned, 2);
-	}
+    }
 }
 
 void
 _xed_cmd_view_toggle_fullscreen_mode (GtkAction *action,
-					XedWindow *window)
+                                      XedWindow *window)
 {
-	xed_debug (DEBUG_COMMANDS);
+    xed_debug (DEBUG_COMMANDS);
 
-	if (_xed_window_is_fullscreen (window))
-		_xed_window_unfullscreen (window);
-	else
-		_xed_window_fullscreen (window);
+    if (_xed_window_is_fullscreen (window))
+    {
+        _xed_window_unfullscreen (window);
+    }
+    else
+    {
+        _xed_window_fullscreen (window);
+    }
 }
 
 void
 _xed_cmd_view_toggle_word_wrap (GtkAction *action,
-								XedWindow *window)
+                                XedWindow *window)
 {
     XedView *view;
     gboolean do_word_wrap;
@@ -172,19 +184,13 @@ _xed_cmd_view_toggle_word_wrap (GtkAction *action,
 
 void
 _xed_cmd_view_leave_fullscreen_mode (GtkAction *action,
-				       XedWindow *window)
+                                     XedWindow *window)
 {
-	GtkAction *view_action;
+    GtkAction *view_action;
 
-	view_action = gtk_action_group_get_action (window->priv->always_sensitive_action_group,
-						   "ViewFullscreen");
-	g_signal_handlers_block_by_func
-		(view_action, G_CALLBACK (_xed_cmd_view_toggle_fullscreen_mode),
-		 window);
-	gtk_toggle_action_set_active (GTK_TOGGLE_ACTION (view_action),
-				      FALSE);
-	_xed_window_unfullscreen (window);
-	g_signal_handlers_unblock_by_func
-		(view_action, G_CALLBACK (_xed_cmd_view_toggle_fullscreen_mode),
-		 window);
+    view_action = gtk_action_group_get_action (window->priv->always_sensitive_action_group, "ViewFullscreen");
+    g_signal_handlers_block_by_func (view_action, G_CALLBACK (_xed_cmd_view_toggle_fullscreen_mode), window);
+    gtk_toggle_action_set_active (GTK_TOGGLE_ACTION (view_action), FALSE);
+    _xed_window_unfullscreen (window);
+    g_signal_handlers_unblock_by_func (view_action, G_CALLBACK (_xed_cmd_view_toggle_fullscreen_mode), window);
 }
