@@ -40,6 +40,7 @@
 #include "xed-debug.h"
 #include "xed-window.h"
 #include "xed-window-private.h"
+#include "xed-paned.h"
 
 
 void
@@ -80,21 +81,24 @@ _xed_cmd_view_show_side_pane (GtkAction   *action,
 {
 	gboolean visible;
 	XedPanel *panel;
+    XedPaned *paned;
 
 	xed_debug (DEBUG_COMMANDS);
 
 	visible = gtk_toggle_action_get_active (GTK_TOGGLE_ACTION (action));
 
 	panel = xed_window_get_side_panel (window);
+    paned = _xed_window_get_hpaned (window);
 
 	if (visible)
 	{
-		gtk_widget_show (GTK_WIDGET (panel));
+        gtk_widget_show (GTK_WIDGET (panel));
+        xed_paned_open (paned, 1, _xed_window_get_side_panel_size (window));
 		gtk_widget_grab_focus (GTK_WIDGET (panel));
 	}
 	else
 	{
-		gtk_widget_hide (GTK_WIDGET (panel));
+        xed_paned_close (paned, 1);
 	}
 }
 
@@ -104,21 +108,31 @@ _xed_cmd_view_show_bottom_pane (GtkAction   *action,
 {
 	gboolean visible;
 	XedPanel *panel;
+    XedPaned *paned;
 
 	xed_debug (DEBUG_COMMANDS);
 
 	visible = gtk_toggle_action_get_active (GTK_TOGGLE_ACTION (action));
 
 	panel = xed_window_get_bottom_panel (window);
+    paned = _xed_window_get_vpaned (window);
 
 	if (visible)
 	{
+        gint position;
+        gint panel_size;
+        gint paned_size;
+
+        panel_size = _xed_window_get_bottom_panel_size (window);
+        g_object_get (G_OBJECT (paned), "max-position", &paned_size, NULL);
+        position = paned_size - panel_size;
 		gtk_widget_show (GTK_WIDGET (panel));
+        xed_paned_open (paned, 2, position);
 		gtk_widget_grab_focus (GTK_WIDGET (panel));
 	}
 	else
 	{
-		gtk_widget_hide (GTK_WIDGET (panel));
+        xed_paned_close (paned, 2);
 	}
 }
 

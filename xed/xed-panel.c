@@ -133,12 +133,6 @@ xed_panel_set_property (GObject      *object,
 }
 
 static void
-xed_panel_close (XedPanel *panel)
-{
-    gtk_widget_hide (GTK_WIDGET (panel));
-}
-
-static void
 xed_panel_focus_document (XedPanel *panel)
 {
     GtkWidget *toplevel = gtk_widget_get_toplevel (GTK_WIDGET (panel));
@@ -257,7 +251,6 @@ xed_panel_class_init (XedPanelClass *klass)
     widget_class->size_allocate = xed_panel_size_allocate;
     widget_class->grab_focus = xed_panel_grab_focus;
 
-    klass->close = xed_panel_close;
     klass->focus_document = xed_panel_focus_document;
 
     g_object_class_install_property (object_class,
