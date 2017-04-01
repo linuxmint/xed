@@ -346,12 +346,15 @@ get_time (const gchar* format)
     clock = time (NULL);
     now = localtime (&clock);
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wformat-nonliteral"
     do
     {
         out_length += 255;
         out = g_realloc (out, out_length);
     }
     while (strftime (out, out_length, locale_format, now) == 0);
+#pragma GCC diagnostic pop
 
     g_free (locale_format);
 
