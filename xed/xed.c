@@ -57,6 +57,8 @@ main (int argc, char *argv[])
     bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
     textdomain (GETTEXT_PACKAGE);
 
+    gdk_set_allowed_backends ("x11");
+
     app = g_object_new (XED_TYPE_APP,
                         "application-id", "org.x.editor",
                         "flags", G_APPLICATION_HANDLES_COMMAND_LINE | G_APPLICATION_HANDLES_OPEN,
