@@ -54,8 +54,6 @@
 /* For the workspace/viewport stuff */
 #ifdef GDK_WINDOWING_X11
 #include <gdk/gdkx.h>
-#include <X11/Xlib.h>
-#include <X11/Xutil.h>
 #include <X11/Xatom.h>
 #endif
 
@@ -655,12 +653,6 @@ xed_utils_get_current_workspace (GdkScreen *screen)
 #ifdef GDK_WINDOWING_X11
     GdkWindow *root_win;
     GdkDisplay *display;
-    Atom type;
-    gint format;
-    gulong nitems;
-    gulong bytes_after;
-    guint *current_desktop;
-    gint err, result;
     guint ret = 0;
 
     g_return_val_if_fail (GDK_IS_SCREEN (screen), 0);
@@ -668,24 +660,35 @@ xed_utils_get_current_workspace (GdkScreen *screen)
     root_win = gdk_screen_get_root_window (screen);
     display = gdk_screen_get_display (screen);
 
-    gdk_error_trap_push ();
-    result = XGetWindowProperty (GDK_DISPLAY_XDISPLAY (display), GDK_WINDOW_XID (root_win),
-                                 gdk_x11_get_xatom_by_name_for_display (display, "_NET_CURRENT_DESKTOP"),
-                                 0, G_MAXLONG, False, XA_CARDINAL, &type, &format, &nitems,
-                                 &bytes_after, (gpointer) &current_desktop);
-    err = gdk_error_trap_pop ();
-
-    if (err != Success || result != Success)
+    if (GDK_IS_X11_DISPLAY (display))
     {
-        return ret;
+        Atom type;
+        gint format;
+        gulong nitems;
+        gulong bytes_after;
+        guint *current_desktop;
+        gint err, result;
+
+        gdk_error_trap_push ();
+        result = XGetWindowProperty (GDK_DISPLAY_XDISPLAY (display), GDK_WINDOW_XID (root_win),
+                                     gdk_x11_get_xatom_by_name_for_display (display, "_NET_CURRENT_DESKTOP"),
+                                     0, G_MAXLONG, False, XA_CARDINAL, &type, &format, &nitems,
+                                     &bytes_after, (gpointer) &current_desktop);
+        err = gdk_error_trap_pop ();
+
+        if (err != Success || result != Success)
+        {
+            return ret;
+        }
+
+        if (type == XA_CARDINAL && format == 32 && nitems > 0)
+        {
+            ret = current_desktop[0];
+        }
+
+        XFree (current_desktop);
     }
 
-    if (type == XA_CARDINAL && format == 32 && nitems > 0)
-    {
-        ret = current_desktop[0];
-    }
-
-    XFree (current_desktop);
     return ret;
 #else
     /* FIXME: on mac etc proably there are native APIs
@@ -723,24 +726,28 @@ xed_utils_get_window_workspace (GtkWindow *gtkwindow)
     window = gtk_widget_get_window (GTK_WIDGET (gtkwindow));
     display = gdk_window_get_display (window);
 
-    gdk_error_trap_push ();
-    result = XGetWindowProperty (GDK_DISPLAY_XDISPLAY (display), GDK_WINDOW_XID (window),
-                                 gdk_x11_get_xatom_by_name_for_display (display, "_NET_WM_DESKTOP"),
-                                 0, G_MAXLONG, False, XA_CARDINAL, &type, &format, &nitems,
-                                 &bytes_after, (gpointer) &workspace);
-    err = gdk_error_trap_pop ();
-
-    if (err != Success || result != Success)
+    if (GDK_IS_X11_DISPLAY (display))
     {
-        return ret;
+        gdk_error_trap_push ();
+        result = XGetWindowProperty (GDK_DISPLAY_XDISPLAY (display), GDK_WINDOW_XID (window),
+                                     gdk_x11_get_xatom_by_name_for_display (display, "_NET_WM_DESKTOP"),
+                                     0, G_MAXLONG, False, XA_CARDINAL, &type, &format, &nitems,
+                                     &bytes_after, (gpointer) &workspace);
+        err = gdk_error_trap_pop ();
+
+        if (err != Success || result != Success)
+        {
+            return ret;
+        }
+
+        if (type == XA_CARDINAL && format == 32 && nitems > 0)
+        {
+            ret = workspace[0];
+        }
+
+        XFree (workspace);
     }
 
-    if (type == XA_CARDINAL && format == 32 && nitems > 0)
-    {
-        ret = workspace[0];
-    }
-
-    XFree (workspace);
     return ret;
 #else
     /* FIXME: on mac etc proably there are native APIs
@@ -783,27 +790,30 @@ xed_utils_get_current_viewport (GdkScreen    *screen,
     root_win = gdk_screen_get_root_window (screen);
     display = gdk_screen_get_display (screen);
 
-    gdk_error_trap_push ();
-    result = XGetWindowProperty (GDK_DISPLAY_XDISPLAY (display), GDK_WINDOW_XID (root_win),
-                                 gdk_x11_get_xatom_by_name_for_display (display, "_NET_DESKTOP_VIEWPORT"),
-                                 0, G_MAXLONG, False, XA_CARDINAL, &type, &format, &nitems,
-                                 &bytes_after, (void*) &coordinates);
-    err = gdk_error_trap_pop ();
-
-    if (err != Success || result != Success)
+    if (GDK_IS_X11_DISPLAY (display))
     {
-        return;
-    }
+        gdk_error_trap_push ();
+        result = XGetWindowProperty (GDK_DISPLAY_XDISPLAY (display), GDK_WINDOW_XID (root_win),
+                                     gdk_x11_get_xatom_by_name_for_display (display, "_NET_DESKTOP_VIEWPORT"),
+                                     0, G_MAXLONG, False, XA_CARDINAL, &type, &format, &nitems,
+                                     &bytes_after, (void*) &coordinates);
+        err = gdk_error_trap_pop ();
 
-    if (type != XA_CARDINAL || format != 32 || nitems < 2)
-    {
+        if (err != Success || result != Success)
+        {
+            return;
+        }
+
+        if (type != XA_CARDINAL || format != 32 || nitems < 2)
+        {
+            XFree (coordinates);
+            return;
+        }
+
+        *x = coordinates[0];
+        *y = coordinates[1];
         XFree (coordinates);
-        return;
     }
-
-    *x = coordinates[0];
-    *y = coordinates[1];
-    XFree (coordinates);
 #else
     /* FIXME: on mac etc proably there are native APIs
      * to get the current workspace etc */
