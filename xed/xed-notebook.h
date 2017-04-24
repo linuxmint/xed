@@ -110,6 +110,8 @@ void		xed_notebook_remove_tab	(XedNotebook *nb,
 
 void		xed_notebook_remove_all_tabs 	(XedNotebook *nb);
 
+GList *xed_notebook_get_all_tabs (XedNotebook *nb);
+
 void		xed_notebook_reorder_tab	(XedNotebook *src,
 			    			 XedTab      *tab,
 			    			 gint           dest_position);

@@ -156,7 +156,7 @@ void _xed_tab_save_as_async (XedTab                   *tab,
 void _xed_tab_print (XedTab *tab);
 void _xed_tab_print_preview (XedTab *tab);
 void _xed_tab_mark_for_closing (XedTab *tab);
-gboolean _xed_tab_can_close (XedTab *tab);
+gboolean _xed_tab_get_can_close (XedTab *tab);
 GtkWidget *_xed_tab_get_view_frame (XedTab *tab);
 
 G_END_DECLS

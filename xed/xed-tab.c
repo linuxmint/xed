@@ -123,7 +123,8 @@ enum
     PROP_NAME,
     PROP_STATE,
     PROP_AUTO_SAVE,
-    PROP_AUTO_SAVE_INTERVAL
+    PROP_AUTO_SAVE_INTERVAL,
+    PROP_CAN_CLOSE
 };
 
 static gboolean xed_tab_auto_save (XedTab *tab);
@@ -227,6 +228,8 @@ xed_tab_get_property (GObject    *object,
         case PROP_AUTO_SAVE_INTERVAL:
             g_value_set_int (value, xed_tab_get_auto_save_interval (tab));
             break;
+        case PROP_CAN_CLOSE:
+            g_value_set_boolean (value, _xed_tab_get_can_close (tab));
         default:
             G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
             break;
@@ -344,6 +347,15 @@ xed_tab_class_init (XedTabClass *klass)
                                                        0,
                                                        G_PARAM_READWRITE |
                                                        G_PARAM_STATIC_STRINGS));
+
+    g_object_class_install_property (object_class,
+                                     PROP_CAN_CLOSE,
+                                     g_param_spec_boolean ("can-close",
+                                                           "Can close",
+                                                           "Wheather the tab can be closed",
+                                                           TRUE,
+                                                           G_PARAM_READABLE |
+                                                           G_PARAM_STATIC_STRINGS));
 
     g_type_class_add_private (object_class, sizeof (XedTabPrivate));
 }
@@ -475,6 +487,7 @@ xed_tab_set_state (XedTab      *tab,
     update_auto_save_timeout (tab);
 
     g_object_notify (G_OBJECT (tab), "state");
+    g_object_notify (G_OBJECT (tab), "can-close");
 }
 
 static void
@@ -504,6 +517,7 @@ document_modified_changed (GtkTextBuffer *document,
                            XedTab        *tab)
 {
     g_object_notify (G_OBJECT (tab), "name");
+    g_object_notify (G_OBJECT (tab), "can-close");
 }
 
 static void
@@ -2830,7 +2844,7 @@ _xed_tab_mark_for_closing (XedTab *tab)
 }
 
 gboolean
-_xed_tab_can_close (XedTab *tab)
+_xed_tab_get_can_close (XedTab *tab)
 {
     XedDocument *doc;
     XedTabState  ts;
