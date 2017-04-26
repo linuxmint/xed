@@ -2407,6 +2407,43 @@ update_window_state (XedWindow *window)
 }
 
 static void
+update_can_close (XedWindow *window)
+{
+    XedWindowPrivate *priv = window->priv;
+    GList *tabs;
+    GList *l;
+    gboolean can_close = TRUE;
+
+    tabs = xed_notebook_get_all_tabs (priv->notebook);
+
+    for (l = tabs; l != NULL; l = g_list_next (l))
+    {
+        XedTab *tab = l->data;
+
+        if (!_xed_tab_get_can_close (tab))
+        {
+            can_close = FALSE;
+            break;
+        }
+    }
+
+    if (can_close && (priv->inhibition_cookie != 0))
+    {
+        gtk_application_uninhibit (GTK_APPLICATION (g_application_get_default ()), priv->inhibition_cookie);
+        priv->inhibition_cookie = 0;
+    }
+    else if (!can_close && (priv->inhibition_cookie == 0))
+    {
+        priv->inhibition_cookie = gtk_application_inhibit (GTK_APPLICATION (g_application_get_default ()),
+                                                           GTK_WINDOW (window),
+                                                           GTK_APPLICATION_INHIBIT_LOGOUT,
+                                                           _("There are unsaved documents"));
+    }
+
+    g_list_free (tabs);
+}
+
+static void
 sync_state (XedTab *tab,
             GParamSpec *pspec,
             XedWindow *window)
@@ -2461,6 +2498,14 @@ sync_name (XedTab *tab,
     g_free (tip);
 
     peas_extension_set_call (window->priv->extensions, "update_state");
+}
+
+static void
+sync_can_close (XedTab     *tab,
+                GParamSpec *pspec,
+                XedWindow  *window)
+{
+    update_can_close (window);
 }
 
 static XedWindow *
@@ -2942,24 +2987,26 @@ notebook_tab_added (XedNotebook *notebook,
     /* IMPORTANT: remember to disconnect the signal in notebook_tab_removed
      * if a new signal is connected here */
 
-    g_signal_connect(tab, "notify::name", G_CALLBACK (sync_name), window);
-    g_signal_connect(tab, "notify::state", G_CALLBACK (sync_state), window);
+    g_signal_connect (tab, "notify::name", G_CALLBACK (sync_name), window);
+    g_signal_connect (tab, "notify::state", G_CALLBACK (sync_state), window);
+    g_signal_connect (tab, "notify::can-close", G_CALLBACK (sync_can_close), window);
 
-    g_signal_connect(doc, "cursor-moved", G_CALLBACK (update_cursor_position_statusbar), window);
-    g_signal_connect(doc, "notify::search-text", G_CALLBACK (search_text_notify_cb), window);
-    g_signal_connect(doc, "notify::can-undo", G_CALLBACK (can_undo), window);
-    g_signal_connect(doc, "notify::can-redo", G_CALLBACK (can_redo), window);
-    g_signal_connect(doc, "notify::has-selection", G_CALLBACK (selection_changed), window);
-    g_signal_connect(doc, "notify::language", G_CALLBACK (sync_languages_menu), window);
-    g_signal_connect(doc, "notify::read-only", G_CALLBACK (readonly_changed), window);
-    g_signal_connect(view, "toggle_overwrite", G_CALLBACK (update_overwrite_mode_statusbar), window);
-    g_signal_connect(view, "notify::editable", G_CALLBACK (editable_changed), window);
+    g_signal_connect (doc, "cursor-moved", G_CALLBACK (update_cursor_position_statusbar), window);
+    g_signal_connect (doc, "notify::search-text", G_CALLBACK (search_text_notify_cb), window);
+    g_signal_connect (doc, "notify::can-undo", G_CALLBACK (can_undo), window);
+    g_signal_connect (doc, "notify::can-redo", G_CALLBACK (can_redo), window);
+    g_signal_connect (doc, "notify::has-selection", G_CALLBACK (selection_changed), window);
+    g_signal_connect (doc, "notify::language", G_CALLBACK (sync_languages_menu), window);
+    g_signal_connect (doc, "notify::read-only", G_CALLBACK (readonly_changed), window);
+    g_signal_connect (view, "toggle_overwrite", G_CALLBACK (update_overwrite_mode_statusbar), window);
+    g_signal_connect (view, "notify::editable", G_CALLBACK (editable_changed), window);
 
     update_documents_list_menu (window);
 
     g_signal_connect(view, "drop_uris", G_CALLBACK (drop_uris_cb), NULL);
 
     update_window_state (window);
+    update_can_close (window);
 
     g_signal_emit (G_OBJECT(window), signals[TAB_ADDED], 0, tab);
 }
@@ -2981,18 +3028,19 @@ notebook_tab_removed (XedNotebook *notebook,
     view = xed_tab_get_view (tab);
     doc = xed_tab_get_document (tab);
 
-    g_signal_handlers_disconnect_by_func(tab, G_CALLBACK (sync_name), window);
-    g_signal_handlers_disconnect_by_func(tab, G_CALLBACK (sync_state), window);
-    g_signal_handlers_disconnect_by_func(doc, G_CALLBACK (update_cursor_position_statusbar), window);
-    g_signal_handlers_disconnect_by_func(doc, G_CALLBACK (search_text_notify_cb), window);
-    g_signal_handlers_disconnect_by_func(doc, G_CALLBACK (can_undo), window);
-    g_signal_handlers_disconnect_by_func(doc, G_CALLBACK (can_redo), window);
-    g_signal_handlers_disconnect_by_func(doc, G_CALLBACK (selection_changed), window);
-    g_signal_handlers_disconnect_by_func(doc, G_CALLBACK (sync_languages_menu), window);
-    g_signal_handlers_disconnect_by_func(doc, G_CALLBACK (readonly_changed), window);
-    g_signal_handlers_disconnect_by_func(view, G_CALLBACK (update_overwrite_mode_statusbar), window);
-    g_signal_handlers_disconnect_by_func(view, G_CALLBACK (editable_changed), window);
-    g_signal_handlers_disconnect_by_func(view, G_CALLBACK (drop_uris_cb), NULL);
+    g_signal_handlers_disconnect_by_func (tab, G_CALLBACK (sync_name), window);
+    g_signal_handlers_disconnect_by_func (tab, G_CALLBACK (sync_state), window);
+    g_signal_handlers_disconnect_by_func (tab, G_CALLBACK (sync_can_close), window);
+    g_signal_handlers_disconnect_by_func (doc, G_CALLBACK (update_cursor_position_statusbar), window);
+    g_signal_handlers_disconnect_by_func (doc, G_CALLBACK (search_text_notify_cb), window);
+    g_signal_handlers_disconnect_by_func (doc, G_CALLBACK (can_undo), window);
+    g_signal_handlers_disconnect_by_func (doc, G_CALLBACK (can_redo), window);
+    g_signal_handlers_disconnect_by_func (doc, G_CALLBACK (selection_changed), window);
+    g_signal_handlers_disconnect_by_func (doc, G_CALLBACK (sync_languages_menu), window);
+    g_signal_handlers_disconnect_by_func (doc, G_CALLBACK (readonly_changed), window);
+    g_signal_handlers_disconnect_by_func (view, G_CALLBACK (update_overwrite_mode_statusbar), window);
+    g_signal_handlers_disconnect_by_func (view, G_CALLBACK (editable_changed), window);
+    g_signal_handlers_disconnect_by_func (view, G_CALLBACK (drop_uris_cb), NULL);
 
     if (window->priv->tab_width_id && tab == xed_window_get_active_tab (window))
     {
@@ -3056,6 +3104,7 @@ notebook_tab_removed (XedNotebook *notebook,
     }
 
     update_window_state (window);
+    update_can_close (window);
 
     g_signal_emit (G_OBJECT(window), signals[TAB_REMOVED], 0, tab);
 }
@@ -3502,6 +3551,7 @@ xed_window_init (XedWindow *window)
     window->priv->num_tabs = 0;
     window->priv->removing_tabs = FALSE;
     window->priv->state = XED_WINDOW_STATE_NORMAL;
+    window->priv->inhibition_cookie = 0;
     window->priv->dispose_has_run = FALSE;
     window->priv->fullscreen_controls = NULL;
     window->priv->fullscreen_animation_timeout_id = 0;
@@ -4152,7 +4202,7 @@ xed_window_get_unsaved_documents (XedWindow *window)
     {
         XedTab *tab;
         tab = XED_TAB(l->data);
-        if (!_xed_tab_can_close (tab))
+        if (!_xed_tab_get_can_close (tab))
         {
             XedDocument *doc;
             doc = xed_tab_get_document (tab);

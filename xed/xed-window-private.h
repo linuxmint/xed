@@ -107,6 +107,8 @@ struct _XedWindowPrivate
     gint            height;
     GdkWindowState  window_state;
 
+    guint inhibition_cookie;
+
     gint side_panel_size;
     gint bottom_panel_size;
 

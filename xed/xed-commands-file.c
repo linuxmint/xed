@@ -1125,9 +1125,9 @@ void
 _xed_cmd_file_revert (GtkAction   *action,
                       XedWindow *window)
 {
-    XedTab       *tab;
-    XedDocument  *doc;
-    GtkWidget      *dialog;
+    XedTab *tab;
+    XedDocument *doc;
+    GtkWidget *dialog;
     GtkWindowGroup *wg;
 
     xed_debug (DEBUG_COMMANDS);
@@ -1138,7 +1138,7 @@ _xed_cmd_file_revert (GtkAction   *action,
     /* If we are already displaying a notification
      * reverting will drop local modifications, do
      * not bug the user further */
-    if (xed_tab_get_state (tab) == XED_TAB_STATE_EXTERNALLY_MODIFIED_NOTIFICATION)
+    if (xed_tab_get_state (tab) == XED_TAB_STATE_EXTERNALLY_MODIFIED_NOTIFICATION || _xed_tab_get_can_close (tab))
     {
         do_revert (window, tab);
         return;
@@ -1532,7 +1532,7 @@ tab_can_close (XedTab  *tab,
 
     doc = xed_tab_get_document (tab);
 
-    if (!_xed_tab_can_close (tab))
+    if (!_xed_tab_get_can_close (tab))
     {
         GtkWidget *dlg;
 

@@ -969,6 +969,18 @@ xed_notebook_remove_all_tabs (XedNotebook *nb)
     gtk_container_foreach (GTK_CONTAINER (nb), (GtkCallback)remove_tab, nb);
 }
 
+GList *
+xed_notebook_get_all_tabs (XedNotebook *nb)
+{
+    GList *children = NULL;
+
+    g_return_val_if_fail (XED_IS_NOTEBOOK (nb), NULL);
+
+    children = gtk_container_get_children (GTK_CONTAINER (nb));
+
+    return children;
+}
+
 static void
 set_close_buttons_sensitivity (XedTab      *tab,
                                XedNotebook *nb)
