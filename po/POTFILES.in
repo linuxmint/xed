@@ -4,80 +4,103 @@
 [type: gettext/gsettings]data/org.x.editor.gschema.xml.in
 data/xed.appdata.xml.in
 data/xed.desktop.in.in
-xed/dialogs/xed-close-confirmation-dialog.c
-xed/dialogs/xed-encodings-dialog.c
-[type: gettext/glade]xed/dialogs/xed-encodings-dialog.ui
-xed/dialogs/xed-preferences-dialog.c
-[type: gettext/glade]xed/dialogs/xed-preferences-dialog.ui
-xed/xed.c
+xed/xed-app-activatable.c
 xed/xed-app.c
+xed/xed-close-button.c
+xed/xed-close-confirmation-dialog.c
+xed/xed-commands-documents.c
+xed/xed-commands-edit.c
+xed/xed-commands-file-print.c
 xed/xed-commands-file.c
 xed/xed-commands-help.c
 xed/xed-commands-search.c
+xed/xed-commands-view.c
 xed/xed-debug.c
+xed/xed-dirs.c
 xed/xed-document.c
 xed/xed-documents-panel.c
 xed/xed-encodings-combo-box.c
+xed/xed-encodings-dialog.c
 xed/xed-file-chooser-dialog.c
-xed/xed-gio-document-loader.c
-xed/xed-gio-document-saver.c
-xed/xed-help.c
-xed/xed-io-error-message-area.c
+xed/xed-history-entry.c
+xed/xed-io-error-info-bar.c
+xed/xed-message-bus.c
+xed/xed-message-type.c
+xed/xed-message.c
+xed/xed-metadata-manager.c
 xed/xed-notebook.c
+xed/xed-paned.c
 xed/xed-panel.c
 xed/xed-plugins-engine.c
-xed/xed-prefs-manager.c
+xed/xed-preferences-dialog.c
+xed/xed-preferences-dialog.c
 xed/xed-print-job.c
-[type: gettext/glade]xed/xed-print-preferences.ui
-[type: gettext/glade]xed/xed-searchbar.ui
 xed/xed-print-preview.c
-xed/xed-smart-charset-converter.c
+xed/xed-progress-info-bar.c
+[type: gettext/glade]xed/resources/ui/xed-encodings-dialog.ui
+[type: gettext/glade]xed/resources/ui/xed-preferences-dialog.ui
+[type: gettext/glade]xed/resources/ui/xed-print-preferences.ui
+[type: gettext/glade]xed/resources/ui/xed-searchbar.ui
+[type: gettext/glade]xed/resources/ui/xed-view-frame.ui
+xed/resources/ui/xed-ui.xml
 xed/xed-searchbar.c
+xed/xed-searchbar.c
+xed/xed-settings.c
+xed/xed-status-combo-box.c
 xed/xed-statusbar.c
-xed/xed-style-scheme-manager.c
-xed/xed-tab.c
+xed/xed-statusbar.c
 xed/xed-tab-label.c
+xed/xed-tab.c
 xed/xed-ui.h
-xed/xed-ui.xml
 xed/xed-utils.c
+xed/xed-view-activatable.c
+xed/xed-view-frame.c
+xed/xed-view-gutter-renderer.c
 xed/xed-view.c
+xed/xed-window-activatable.c
 xed/xed-window.c
+xed/xed.c
 plugins/docinfo/docinfo.plugin.desktop.in
 [type: gettext/glade]plugins/docinfo/docinfo.ui
 plugins/docinfo/xed-docinfo-plugin.c
 plugins/filebrowser/filebrowser.plugin.desktop.in
 [type: gettext/gsettings]plugins/filebrowser/org.x.editor.plugins.filebrowser.gschema.xml.in
 plugins/filebrowser/xed-file-bookmarks-store.c
+plugins/filebrowser/xed-file-browser-messages.c
 plugins/filebrowser/xed-file-browser-plugin.c
 plugins/filebrowser/xed-file-browser-store.c
+plugins/filebrowser/xed-file-browser-utils.c
 plugins/filebrowser/xed-file-browser-view.c
 plugins/filebrowser/xed-file-browser-widget.c
+plugins/modelines/modeline-parser.c
 plugins/modelines/modelines.plugin.desktop.in
-plugins/sort/xed-sort-plugin.c
+plugins/modelines/xed-modeline-plugin.c
 plugins/sort/sort.plugin.desktop.in
-[type: gettext/glade]plugins/sort/sort.ui
+plugins/sort/xed-sort-plugin.c
+[type: gettext/glade]plugins/spell/languages-dialog.ui
 [type: gettext/gsettings]plugins/spell/org.x.editor.plugins.spell.gschema.xml.in
+[type: gettext/glade]plugins/spell/spell-checker.ui
+plugins/spell/spell.plugin.desktop.in
 plugins/spell/xed-automatic-spell-checker.c
-plugins/spell/xed-spell-checker.c
 plugins/spell/xed-spell-checker-dialog.c
 plugins/spell/xed-spell-checker-language.c
+plugins/spell/xed-spell-checker.c
 plugins/spell/xed-spell-language-dialog.c
 plugins/spell/xed-spell-plugin.c
-[type: gettext/glade]plugins/spell/languages-dialog.ui
-[type: gettext/glade]plugins/spell/spell-checker.ui
 [type: gettext/glade]plugins/spell/xed-spell-setup-dialog.ui
-plugins/spell/spell.plugin.desktop.in
-plugins/taglist/xed-taglist-plugin.c
-plugins/taglist/xed-taglist-plugin-panel.c
-plugins/taglist/xed-taglist-plugin-parser.c
+plugins/spell/xed-spell-utils.c
 plugins/taglist/HTML.tags.xml.in
 plugins/taglist/Latex.tags.xml.in
 plugins/taglist/taglist.plugin.desktop.in
+plugins/taglist/xed-taglist-plugin-panel.c
+plugins/taglist/xed-taglist-plugin-parser.c
+plugins/taglist/xed-taglist-plugin.c
 plugins/taglist/XSLT.tags.xml.in
 plugins/taglist/XUL.tags.xml.in
 [type: gettext/gsettings]plugins/time/org.x.editor.plugins.time.gschema.xml.in
-plugins/time/xed-time-plugin.c
 plugins/time/time.plugin.desktop.in
-plugins/trailsave/trailsave.plugin.desktop.in
 [type: gettext/glade]plugins/time/xed-time-dialog.ui
+plugins/time/xed-time-plugin.c
 [type: gettext/glade]plugins/time/xed-time-setup-dialog.ui
+plugins/trailsave/trailsave.plugin.desktop.in
+plugins/trailsave/xed-trail-save-plugin.c
