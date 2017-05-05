@@ -1,3 +1,192 @@
+xed (1.4.0) sonya; urgency=medium
+
+  [ Clement Lefebvre ]
+  * Search: Don't jump to the next result when toggling search options
+
+  [ JosephMcc ]
+  * close-confirmation-dialog: Clean up code styling
+  * close-confirmation-dialog: Clean up some deprecations
+  * xed-encodings-dialog: Clean up code styling
+  * xed-encodings-dialog: Clean up some deprecations
+  * xed-encodings-combo-box: Clean up code styling
+  * xed-commands-file: Clean up code styling
+  * xed-commands-file: Clean up deprecations
+  * xed-app: Clean up code styling
+  * xed-app: Remove an unused variable
+  * xed-commands-search: Fix some missing casts
+  * xed-document: Clean up code style
+  * xed-document: Remove use of deprecated gdk_color_parse
+  * xed-documents-panel: Cleanup code styling
+  * xed-documents-panel: Remove an unused variable
+  * xed-message-bus: Clean up code styling
+  * xed-message-bus: Clean up an unused variables
+  * xed-io-error-message-area: Clean up code styling
+  * xed-io-error-message-area: Fix up some deprecations
+  * xed-panel: Clean up code formatting
+  * plugins: Drop support for old style python plugins
+  * build: Clean up a bit more of the gtk2 and --enable-python leftovers
+  * build GObject introspection data
+  * Fix some introspection warnings
+  * Remove a couple of invalid annotations
+  * xed-window: Remove an unused function
+  * Drop some leftover 2.xx comments from gnome/pluma
+  * Port plugin system to libpeas
+  * changecase-plugin: Port to libpeas
+  * docinfo-plugin: Port to libpeas
+  * filebrowser-plugin: Port to libpeas
+  * modelines-plugin: Port to libpeas
+  * sort-plugin: Port to libpeas
+  * spell-plugin: Port to libpeas
+  * taglist-plugin: Port to libpeas
+  * time-plugin: Port to libpeas
+  * trailsave-plugin: Port to libpeas
+  * plugins: Make them actually recognized and loaded by Xed
+  * Remove old plugin system and docs for it
+  * enable dh_girepository helper to fill ${gir:Depends} properly
+  * taglist plugin: don't look for taglist in non-existing legacy dirs
+  * xed-panel: Clean up the layout of the panels
+  * xed-sort-plugin.c: Clean up code styling
+  * Add buttons to the statusbar to show/hide the panels
+  * xed-window: Stop using deprecated (v/h)box
+  * xed-panel: Remove the header and close button
+  * xed-panel: Simplify panel building a bit
+  * xed-panel: Move the notebook tabs to the top
+  * Add a few style classes
+  * xed-statusbar: Clean up the styling a bit
+  * Add view menu entry for word wrap
+  * preferences-dialog: Clean up code styling
+  * preferences-dialog: Clean up uses of GtkStock
+  * Allow scrolling on notebook tabs to change the active page
+  * xed-prefs-manager-app: Remove some leftover logging
+  * xed-notebook.c: Clean up the code formatting
+  * xed-pref-manager-app.c: Clean up code style
+  * xed-prefs-manager-app.c: Clean up an unused variable
+  * notebooks: Don't show tabs when the notebook only has one page
+  * xed-window.c: Fix a few missing casts
+  * xed-utils: Clean up code styling
+  * xed-utils.h: Clean up code styling
+  * xed-utils: Remove a couple functions
+  * xed-panel: Clean up more uses of GtkStock
+  * xed-panel.c: Add a couple of missing casts
+  * xed-status-combo-box: Don't use deprecated GtkArrow
+  * xed-status-combo-box.c: Clean up some code styling
+  * xed-tab.c: Clean up code style
+  * xed-tab: Clean up some uses of GtkStock
+  * xed-window: Use a better icon for the documents panel tab
+  * xed-print-preview.c: Clean up code styling
+  * xed-print-preview.c: Restyle the toolbar
+  * xed-print-preview.c: Don't you deprecated gtk_layout_get_*adjustment
+  * xed-progress-message-area.c: Clean up code style
+  * xed-progress-message-area: Clean up more uses of GtkStock
+  * Install introspection data and lib into a private dir
+  * Add new (App/Window/View)Activatable interfaces for plugins
+  * docinfo-plugin: Update for WindowActivatable changes
+  * sort-plugin: Port the sort plugin to WindowActivatable
+  * spell-plugin: Update to the new WindowActivatable interface
+  * time-plugin: Port to WindowActivatable
+  * changecase-plugin: Port to WindowActivatable
+  * taglist-plugin: Port to WindowActivatable
+  * trailsave-plugin: Port to WindowActivatable
+  * time-plugin: Clean up a bit from libpeas port
+  * spell-plugin: Clean up a few things
+  * Clean up uses of deprecated GtkMisc
+  * xed-tab-label.c/h: Clean up code styling
+  * xed-file-dialog.c/h: Clean up code styling
+  * xed-statusbar.c/h: Clean up code styling
+  * xed-statusbar: Fix a missing cast
+  * xed-searchbar: Add a couple missing casts and remove an unused variable
+  * xed-searchbar.c/h: Clean up styling a bit
+  * Port to the use of GFile instead of URIs and merge gio document loader and saver into document loader and saver
+  * Revamp our handling of settings
+  * Clean up the docs a bit
+  * Redesign the goto line popup dialog
+  * xed-preferences-dialog: Fix a setting having the wrong sensitiviy
+  * tests: Fix to use GFile instead of uris
+  * xed-document-output-stream: Clean up code style
+  * xed-document-output-stream: Clean up code style
+  * Merge smart converter in the document output stream
+  * xed-document-output-stream: Factor out validate_and_insert method
+  * Pull some upstream changes from Gedit in prep for using more of the GtkSource* backend
+  * Remove the xed style scheme manager instance
+  * xed-document: Fix a couple of possible memory leaks
+  * Kill xed-language-manager and use gtksourcelanguagemanager directly
+  * xed-document: Rework externally modified/deleted check
+  * Remove xed_utils_location_has_file_scheme
+  * Clean up our GSettings use a bit more
+  * Port to the GtkSourceView search functionality
+  * Add _xed_document_needs_saving
+  * Plugins: Remove the changecase plugin
+  * xed-document: Do some cleanup
+  * Port to GtkSource* API
+  * Port xed to dbus and GtkApplication
+  * message-area: Rename message area to info bar
+  * info-bars: Don't use deprecated gtk_misc
+  * info-bars: Don't use deprecated GtkStock
+  * info-bar: Don't use icons in buttons
+  * xed-progress-info-bar: Properly expand the progress bar
+  * Don't use deprecated gtk_widget_set margin_left/right
+  * Remove the dialog utility library
+  * Start using GResource
+  * Set textdomain as soon as possible
+  * Don't use global vars for command line parsing
+  * xed-app: Handle also application::open
+  * xed-app: Shutdown metadata-manager after GTK+
+  * xed-app: Fix a typo
+  * xed-window: Fix getting the wrong window size when cloning a window
+  * Add a preference to allow using the dark variant of a theme if available
+  * Debian: Bring back the xed-doc package
+  * xed-view: Add some margin to the top and left of the text view
+  * Makefile: Forgot to git add changes
+  * debian: Add a dependency on xapps-common
+  * prefs-dialog: Fix a crash when removing style schemes
+  * docs: Start cleaning up the docs
+  * Implement font zooming in the editor
+  * Sort: Turn sort into a simpler and undoable action
+  * Focus view when opening files from the filebrowser or documents panel
+  * Fix g_free which should be g_object_unref in file browser
+  * Use slice allocator instead of g_new when appropriate
+  * xed-file-browser-widget: Clean up code styling
+  * filebrowser-view: Removed the unused "busy" cursor
+  * Do not leak file info for . and .. dirs
+  * filebrowser: Unref the enumerator in the filebrowser plugin
+  * file-browser-messages: Clean up formatting
+  * filebrowser: Don't leak GFiles
+  * filebrowser: Fix crash on open_terminal action
+  * filebrowser: Remove the back and forward toolbar dropdowns
+  * filebrowser: Support new location of gtk bookmarks file
+  * xed-file-browser-utils.c: Clean up code style
+  * filebrowser: "Rename" menu entry should have an ellipsis
+  * filebrowser: use Untitled File/Folder for new file/folders
+  * filebrowser: don't use deprecated GIOScheduler
+  * filebrowser: Redesign the toolbar in filebrowser
+  * filebrowser: Activate selected item when search is complete
+  * filebrowser: Don't use deprecated GtkStock
+  * filebrowser: Do not parse .hidden in the file browser
+  * filebrowser: Make the "Open terminal here" command work again
+  * filebrowser: Set the combobox insensitive when the bookmarks are showing
+  * build: Fix the python3 dependency
+  * Actually fix the python dependency
+  * Fix calling set_command_line_wait()
+  * Allow building with --disable-spell
+  * debian: Add dependency on libpeas-1.0-0-python3loader
+  * Focus a tab when attempting to close it with unsaved changes
+  * Add a new animated xed-paned
+  * xed-commands-view: Clean up code style
+  * time-plugin: Use GDateTime
+  * xed-utils: Add runtime checks for x11 specific functions
+
+  [ leigh123linux ]
+  * Fix FSF address
+
+  [ JosephMcc ]
+  * Use GtkApplication inhibit API
+
+  [ Clement Lefebvre ]
+  * Fix po/POTFILES.in and generate POT file
+  * Fix "gedit" occurence
+
+ -- Clement Lefebvre <root@linuxmint.com>  Fri, 05 May 2017 08:38:39 +0100
+
 xed (1.2.2) serena; urgency=medium
 
   [ JosephMcc ]
