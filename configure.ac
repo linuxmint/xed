@@ -150,7 +150,7 @@ PKG_CHECK_MODULES(XED, [
 	gthread-2.0 >= 2.13.0
 	gio-2.0 >= 2.40.0
 	gtk+-3.0 >= 3.14.0
-	gtksourceview-3.0 >= 3.14.3
+	gtksourceview-3.0 >= 3.14.0
 	libpeas-1.0 >= 1.12.0
 	libpeas-gtk-1.0 >= 1.12.0
 ])
