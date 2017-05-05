@@ -257,7 +257,9 @@ xed_view_constructed (GObject *object)
     g_object_ref (priv->renderer);
     gtk_source_gutter_insert (gutter, priv->renderer, 0);
 
+#if GTK_CHECK_VERSION (3, 18, 0)
     gtk_text_view_set_top_margin (GTK_TEXT_VIEW (view), 2);
+#endif
 
     G_OBJECT_CLASS (xed_view_parent_class)->constructed (object);
 }
