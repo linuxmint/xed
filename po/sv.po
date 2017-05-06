@@ -8,17 +8,17 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MATE Desktop Environment\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-12-05 11:34+0000\n"
-"PO-Revision-Date: 2016-12-05 22:34+0000\n"
-"Last-Translator: kristian <Unknown>\n"
+"POT-Creation-Date: 2017-05-04 18:32+0100\n"
+"PO-Revision-Date: 2017-05-06 11:53+0000\n"
+"Last-Translator: Åke Engelbrektson <Unknown>\n"
 "Language-Team: Swedish "
 "(http://www.transifex.com/projects/p/MATE/language/sv/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2016-12-12 12:16+0000\n"
-"X-Generator: Launchpad (build 18292)\n"
+"X-Launchpad-Export-Date: 2017-05-06 12:39+0000\n"
+"X-Generator: Launchpad (build 18366)\n"
 "Language: sv\n"
 
 #: ../data/org.x.editor.gschema.xml.in.h:1
@@ -55,19 +55,30 @@ msgstr ""
 "att ha effekt om alternativet \"Använd standardtypsnitt\" är frånslaget."
 
 #: ../data/org.x.editor.gschema.xml.in.h:6
+msgid "Prefer Dark Theme"
+msgstr "Föredra mörkt tema"
+
+#: ../data/org.x.editor.gschema.xml.in.h:7
+msgid ""
+"Whether xed should prefer the dark variation of the current Gtk theme if "
+"available."
+msgstr ""
+"Om xed skall välja den mörka varianten av Gtk-temat, om tillgängligt."
+
+#: ../data/org.x.editor.gschema.xml.in.h:8
 msgid "Style Scheme"
 msgstr "Stilschema"
 
-#: ../data/org.x.editor.gschema.xml.in.h:7
+#: ../data/org.x.editor.gschema.xml.in.h:9
 msgid "The ID of a GtkSourceView Style Scheme used to color the text."
 msgstr ""
 "ID för ett GtkSourceView-stilschema som används för att färga texten."
 
-#: ../data/org.x.editor.gschema.xml.in.h:8
+#: ../data/org.x.editor.gschema.xml.in.h:10
 msgid "Create Backup Copies"
 msgstr "Skapa säkerhetskopior"
 
-#: ../data/org.x.editor.gschema.xml.in.h:9
+#: ../data/org.x.editor.gschema.xml.in.h:11
 msgid ""
 "Whether xed should create backup copies for the files it saves. You can set "
 "the backup file extension with the \"Backup Copy Extension\" option."
@@ -75,11 +86,11 @@ msgstr ""
 "Om xed skall skapa säkerhetskopior när det sparar. Du kan välja filändelse "
 "på säkerhetskopiorna med inställningen \"Filändelse för säkerhetskopior\"."
 
-#: ../data/org.x.editor.gschema.xml.in.h:10
+#: ../data/org.x.editor.gschema.xml.in.h:12
 msgid "Autosave"
 msgstr "Spara automatiskt"
 
-#: ../data/org.x.editor.gschema.xml.in.h:11
+#: ../data/org.x.editor.gschema.xml.in.h:13
 msgid ""
 "Whether xed should automatically save modified files after a time interval. "
 "You can set the time interval with the \"Autosave Interval\" option."
@@ -88,11 +99,11 @@ msgstr ""
 "in önskat intervall i inställningen \"Tidsintervall för automatisk "
 "sparning\"."
 
-#: ../data/org.x.editor.gschema.xml.in.h:12
+#: ../data/org.x.editor.gschema.xml.in.h:14
 msgid "Autosave Interval"
 msgstr "Intervall för automatiskt sparande"
 
-#: ../data/org.x.editor.gschema.xml.in.h:13
+#: ../data/org.x.editor.gschema.xml.in.h:15
 msgid ""
 "Number of minutes after which xed will automatically save modified files. "
 "This will only take effect if the \"Autosave\" option is turned on."
@@ -100,11 +111,11 @@ msgstr ""
 "Antalet minuter innan xed automatiskt sparar ändrade filer.  Detta kommer "
 "endast att ha effekt om alternativet \"Spara automatiskt\" är påslaget."
 
-#: ../data/org.x.editor.gschema.xml.in.h:14
+#: ../data/org.x.editor.gschema.xml.in.h:16
 msgid "Writable VFS schemes"
 msgstr "Skrivbara VFS-scheman"
 
-#: ../data/org.x.editor.gschema.xml.in.h:15
+#: ../data/org.x.editor.gschema.xml.in.h:17
 msgid ""
 "List of VFS schemes xed supports in write mode. The 'file' scheme is "
 "writable by default."
@@ -112,11 +123,11 @@ msgstr ""
 "En lista med VFS scheman som xed stödjer i skrivläge. Som standard är "
 "\"fil\" schemat skrivbart."
 
-#: ../data/org.x.editor.gschema.xml.in.h:16
+#: ../data/org.x.editor.gschema.xml.in.h:18
 msgid "Maximum Number of Undo Actions"
 msgstr "Maximalt antal ångringsåtgärder"
 
-#: ../data/org.x.editor.gschema.xml.in.h:17
+#: ../data/org.x.editor.gschema.xml.in.h:19
 msgid ""
 "Maximum number of actions that xed will be able to undo or redo. Use \"-1\" "
 "for unlimited number of actions."
@@ -124,182 +135,198 @@ msgstr ""
 "Det maximala antalet åtgärder xed ska kunna ångra eller göra om. Använd \"-"
 "1\" för oändligt antal."
 
-#: ../data/org.x.editor.gschema.xml.in.h:18
+#: ../data/org.x.editor.gschema.xml.in.h:20
 msgid "Line Wrapping Mode"
 msgstr "Radbrytningsläge"
 
-#: ../data/org.x.editor.gschema.xml.in.h:19
+#: ../data/org.x.editor.gschema.xml.in.h:21
 msgid ""
-"Specifies how to wrap long lines in the editing area. Use \"GTK_WRAP_NONE\" "
-"for no wrapping, \"GTK_WRAP_WORD\" for wrapping at word boundaries, and "
-"\"GTK_WRAP_CHAR\" for wrapping at individual character boundaries. Note that "
-"the values are case-sensitive, so make sure they appear exactly as mentioned "
-"here."
+"Specifies how to wrap long lines in the editing area. Use \"none\" for no "
+"wrapping, \"word\" for wrapping at word boundaries, and \"char\" for "
+"wrapping at individual character boundaries. Note that the values are case-"
+"sensitive, so make sure they appear exactly as mentioned here."
 msgstr ""
-"Anger hur långa rader ska radbrytas i redigeringsytan. Använd "
-"\"GTK_WRAP_NONE\" för ingen radbrytning, \"GTK_WRAP_WORD\" för radbrytning "
-"vid ordgränser och \"GTK_WRAP_CHAR\" för radbrytning vid enskilda "
-"teckengränser. Observera att det görs skillnad på versaler och gemener i "
-"värdena, så försäkra dig om att de visas exakt som de visas här."
+"Anger hur långa rader skall radbrytas. Använd \"Ingen\" för ingen "
+"radbrytning, \"Ord\" för radbrytning vid ordgränser och \"Tecken\" för "
+"radbrytning vid enskilda tecken. Notera att värdena är skiftlägeskänsliga, "
+"så tillse att de visas exakt som det anges här."
 
-#: ../data/org.x.editor.gschema.xml.in.h:20
+#: ../data/org.x.editor.gschema.xml.in.h:22
 msgid "Tab Size"
 msgstr "Flikstorlek"
 
-#: ../data/org.x.editor.gschema.xml.in.h:21
+#: ../data/org.x.editor.gschema.xml.in.h:23
 msgid ""
 "Specifies the number of spaces that should be displayed instead of Tab "
 "characters."
 msgstr "Anger antalet blanksteg som ska visas istället för tabulatortecken."
 
-#: ../data/org.x.editor.gschema.xml.in.h:22
+#: ../data/org.x.editor.gschema.xml.in.h:24
 msgid "Insert spaces"
 msgstr "Infoga blanksteg"
 
-#: ../data/org.x.editor.gschema.xml.in.h:23
+#: ../data/org.x.editor.gschema.xml.in.h:25
 msgid "Whether xed should insert spaces instead of tabs."
 msgstr "Om xed skall ersätta tab med mellanslag."
 
-#: ../data/org.x.editor.gschema.xml.in.h:24
+#: ../data/org.x.editor.gschema.xml.in.h:26
 msgid "Automatic indent"
 msgstr "Automatisk indentering"
 
-#: ../data/org.x.editor.gschema.xml.in.h:25
+#: ../data/org.x.editor.gschema.xml.in.h:27
 msgid "Whether xed should enable automatic indentation."
 msgstr "Om xed skall använda automatisk indention."
 
-#: ../data/org.x.editor.gschema.xml.in.h:26
+#: ../data/org.x.editor.gschema.xml.in.h:28
 msgid "Display Line Numbers"
 msgstr "Visa radnummer"
 
-#: ../data/org.x.editor.gschema.xml.in.h:27
+#: ../data/org.x.editor.gschema.xml.in.h:29
 msgid "Whether xed should display line numbers in the editing area."
 msgstr "Om xed skall visa radnummer i redigeringsfönstret."
 
-#: ../data/org.x.editor.gschema.xml.in.h:28
+#: ../data/org.x.editor.gschema.xml.in.h:30
 msgid "Highlight Current Line"
 msgstr "Färgmarkera aktuell rad"
 
-#: ../data/org.x.editor.gschema.xml.in.h:29
+#: ../data/org.x.editor.gschema.xml.in.h:31
 msgid "Whether xed should highlight the current line."
 msgstr "Om xed skall markera den aktiva raden."
 
-#: ../data/org.x.editor.gschema.xml.in.h:30
+#: ../data/org.x.editor.gschema.xml.in.h:32
 msgid "Highlight Matching Bracket"
 msgstr "Färgmarkera matchande klammer"
 
-#: ../data/org.x.editor.gschema.xml.in.h:31
+#: ../data/org.x.editor.gschema.xml.in.h:33
 msgid "Whether xed should highlight the bracket matching the selected one."
 msgstr "Om xed skall markera matchande parenteser."
 
-#: ../data/org.x.editor.gschema.xml.in.h:32
+#: ../data/org.x.editor.gschema.xml.in.h:34
 msgid "Display Right Margin"
 msgstr "Visa högermarginal"
 
-#: ../data/org.x.editor.gschema.xml.in.h:33
+#: ../data/org.x.editor.gschema.xml.in.h:35
 msgid "Whether xed should display the right margin in the editing area."
 msgstr "Om xed skall visa den högra marginalen i redigeringsfönstret."
 
-#: ../data/org.x.editor.gschema.xml.in.h:34
+#: ../data/org.x.editor.gschema.xml.in.h:36
 msgid "Right Margin Position"
 msgstr "Position för högermarginalen"
 
-#: ../data/org.x.editor.gschema.xml.in.h:35
+#: ../data/org.x.editor.gschema.xml.in.h:37
 msgid "Specifies the position of the right margin."
 msgstr "Anger positionen för högermarginalen."
 
-#: ../data/org.x.editor.gschema.xml.in.h:36
+#: ../data/org.x.editor.gschema.xml.in.h:38
 msgid "Smart Home End"
 msgstr "Smarta Home och End"
 
-#: ../data/org.x.editor.gschema.xml.in.h:37
+#: ../data/org.x.editor.gschema.xml.in.h:39
 msgid ""
 "Specifies how the cursor moves when the HOME and END keys are pressed. Use "
-"\"DISABLED\" to always move at the start/end of the line, \"AFTER\" to move "
+"\"disabled\" to always move at the start/end of the line, \"after\" to move "
 "to the start/end of the line the first time the keys are pressed and to the "
 "start/end of the text ignoring whitespaces the second time the keys are "
-"pressed, \"BEFORE\" to move to the start/end of the text before moving to "
-"the start/end of the line and \"ALWAYS\" to always move to the start/end of "
+"pressed, \"before\" to move to the start/end of the text before moving to "
+"the start/end of the line and \"always\" to always move to the start/end of "
 "the text instead of the start/end of the line."
 msgstr ""
 "Anger hur markören flyttas när tangenterna HOME och END används. Använd "
-"\"DISABLED\" för att alltid flytta till början/slutet av raden, \"AFTER\" "
-"för att flytta till början/slutet av raden första gången tangenterna används "
-"och till början/slutet av texten samt ignorera tomrum andra gången som "
-"tangenterna används, \"BEFORE\" för att flytta till början/slutet av texten "
-"innan flytt till början/slutet av raden och \"ALWAYS\" för att alltid flytta "
-"till början/slutet av texten istället för början/slutet av raden."
+"\"Inaktiverad\" för att alltid flytta till början/slutet av raden. Ange "
+"\"Efter\" för att flytta till början/slutet av raden, första gången "
+"tangenterna trycks ner och till början/slutet av texten undantaget "
+"blanksteg, andra gången tangenterna trycks. Ange \"Före\" för att flytta "
+"till början/slutet av texten, före flytt till början/slutet av raden och "
+"\"Alltid\" för att alltid flytta till början eller slutet av texten, i "
+"stället för början/slutet av raden."
 
-#: ../data/org.x.editor.gschema.xml.in.h:38
+#: ../data/org.x.editor.gschema.xml.in.h:40
 msgid "Restore Previous Cursor Position"
 msgstr "Återställ tidigare markörposition"
 
-#: ../data/org.x.editor.gschema.xml.in.h:39
+#: ../data/org.x.editor.gschema.xml.in.h:41
 msgid ""
 "Whether xed should restore the previous cursor position when a file is "
 "loaded."
 msgstr "Om xed skall återställa markörens position när en fil laddas."
 
-#: ../data/org.x.editor.gschema.xml.in.h:40
+#: ../data/org.x.editor.gschema.xml.in.h:42
 msgid "Enable Search Highlighting"
 msgstr "Aktivera färgmarkering vid sökning"
 
-#: ../data/org.x.editor.gschema.xml.in.h:41
+#: ../data/org.x.editor.gschema.xml.in.h:43
 msgid ""
 "Whether xed should highlight all the occurrences of the searched text."
 msgstr "Om xed skall markera alla förekomster av eftersökt text."
 
-#: ../data/org.x.editor.gschema.xml.in.h:42
+#: ../data/org.x.editor.gschema.xml.in.h:44
 msgid "Enable Syntax Highlighting"
 msgstr "Aktivera syntaxmarkering"
 
-#: ../data/org.x.editor.gschema.xml.in.h:43
+#: ../data/org.x.editor.gschema.xml.in.h:45
 msgid "Whether xed should enable syntax highlighting."
 msgstr "Om xed skall använda syntaxmarkering."
 
-#: ../data/org.x.editor.gschema.xml.in.h:44
+#: ../data/org.x.editor.gschema.xml.in.h:46
+msgid "Ensure Trailing Newline"
+msgstr "Säkerställ avslutande ny rad"
+
+#: ../data/org.x.editor.gschema.xml.in.h:47
+msgid ""
+"Whether xed will ensure that documents always end with a trailing newline."
+msgstr ""
+
+#: ../data/org.x.editor.gschema.xml.in.h:48
 msgid "Toolbar is Visible"
 msgstr "Verktygsraden är synlig"
 
-#: ../data/org.x.editor.gschema.xml.in.h:45
+#: ../data/org.x.editor.gschema.xml.in.h:49
 msgid "Whether the toolbar should be visible in editing windows."
 msgstr "Huruvida verktygsraden ska vara synlig i redigeringsfönster."
 
-#: ../data/org.x.editor.gschema.xml.in.h:46
+#: ../data/org.x.editor.gschema.xml.in.h:50
 msgid "Status Bar is Visible"
 msgstr "Statusrad är synlig"
 
-#: ../data/org.x.editor.gschema.xml.in.h:47
+#: ../data/org.x.editor.gschema.xml.in.h:51
 msgid ""
 "Whether the status bar at the bottom of editing windows should be visible."
 msgstr ""
 "Huruvida statusraden i nederkanten på redigeringsfönster ska vara synlig."
 
-#: ../data/org.x.editor.gschema.xml.in.h:48
+#: ../data/org.x.editor.gschema.xml.in.h:52
 msgid "Side Pane is Visible"
 msgstr "Sidopanelen är synlig"
 
-#: ../data/org.x.editor.gschema.xml.in.h:49
+#: ../data/org.x.editor.gschema.xml.in.h:53
 msgid ""
 "Whether the side pane at the left of editing windows should be visible."
 msgstr ""
 "Huruvida sidopanelen till vänster i redigeringsfönstret ska vara synlig."
 
-#: ../data/org.x.editor.gschema.xml.in.h:50
+#: ../data/org.x.editor.gschema.xml.in.h:54
 msgid "Bottom Panel is Visible"
 msgstr "Underpanelen är synlig"
 
-#: ../data/org.x.editor.gschema.xml.in.h:51
+#: ../data/org.x.editor.gschema.xml.in.h:55
 msgid ""
 "Whether the bottom panel at the bottom of editing windows should be visible."
 msgstr ""
 "Huruvida underpanelen i nederkanten av redigeringsfönster ska vara synlig."
 
-#: ../data/org.x.editor.gschema.xml.in.h:52
+#: ../data/org.x.editor.gschema.xml.in.h:56
+msgid "Allow changing active tabs by scrolling"
+msgstr "Tillåt flikbyte med skrollhjullet"
+
+#: ../data/org.x.editor.gschema.xml.in.h:57
+msgid "Whether you can change active tabs by scrolling."
+msgstr "Om du kan byta flik genom att rulla på skrollhjulet"
+
+#: ../data/org.x.editor.gschema.xml.in.h:58
 msgid "Maximum Recent Files"
 msgstr "Maximalt antal senaste filer"
 
-#: ../data/org.x.editor.gschema.xml.in.h:53
+#: ../data/org.x.editor.gschema.xml.in.h:59
 msgid ""
 "Specifies the maximum number of recently opened files that will be displayed "
 "in the \"Recent Files\" submenu."
@@ -307,45 +334,43 @@ msgstr ""
 "Anger det maximala antalet senaste öppnade filer som kommer att visas i "
 "undermenyn \"Senaste filer\"."
 
-#: ../data/org.x.editor.gschema.xml.in.h:54
+#: ../data/org.x.editor.gschema.xml.in.h:60
 msgid "Print Syntax Highlighting"
 msgstr "Skriv ut syntaxmarkering"
 
-#: ../data/org.x.editor.gschema.xml.in.h:55
+#: ../data/org.x.editor.gschema.xml.in.h:61
 msgid "Whether xed should print syntax highlighting when printing documents."
 msgstr "Om xed skall ta med syntaxmarkeringar vid utskrift."
 
-#: ../data/org.x.editor.gschema.xml.in.h:56
+#: ../data/org.x.editor.gschema.xml.in.h:62
 msgid "Print Header"
 msgstr "Skriv ut sidhuvud"
 
-#: ../data/org.x.editor.gschema.xml.in.h:57
+#: ../data/org.x.editor.gschema.xml.in.h:63
 msgid "Whether xed should include a document header when printing documents."
 msgstr "Om xed skall ta med dokumenthuvudet vid utskrift."
 
-#: ../data/org.x.editor.gschema.xml.in.h:58
+#: ../data/org.x.editor.gschema.xml.in.h:64
 msgid "Printing Line Wrapping Mode"
 msgstr "Radbrytningsläge för utskrift"
 
-#: ../data/org.x.editor.gschema.xml.in.h:59
+#: ../data/org.x.editor.gschema.xml.in.h:65
 msgid ""
-"Specifies how to wrap long lines for printing. Use \"GTK_WRAP_NONE\" for no "
-"wrapping, \"GTK_WRAP_WORD\" for wrapping at word boundaries, and "
-"\"GTK_WRAP_CHAR\" for wrapping at individual character boundaries. Note that "
-"the values are case-sensitive, so make sure they appear exactly as mentioned "
-"here."
+"Specifies how to wrap long lines for printing. Use \"none\" for no wrapping, "
+"\"word\" for wrapping at word boundaries, and \"char\" for wrapping at "
+"individual character boundaries. Note that the values are case-sensitive, so "
+"make sure they appear exactly as mentioned here."
 msgstr ""
-"Anger hur långa rader ska radbrytas vid utskrift. Använd \"GTK_WRAP_NONE\" "
-"för ingen radbrytning, \"GTK_WRAP_WORD\" för radbrytning vid ordgränser och "
-"\"GTK_WRAP_CHAR\" för radbrytning vid enskilda teckengränser. Observera att "
-"det görs skillnad på versaler och gemener i värdena, så försäkra dig om att "
-"de visas exakt som de visas här."
+"Anger hur långa rader skall radbrytas vid utskrift. Använd \"Ingen\" för "
+"ingen radbrytning, \"Ord\" för radbrytning vid ordgränser och \"Tecken\" för "
+"radbrytning vid enskilda tecken. Notera att värdena är skiftlägeskänsliga, "
+"så tillse att de visas exakt som det anges här."
 
-#: ../data/org.x.editor.gschema.xml.in.h:60
+#: ../data/org.x.editor.gschema.xml.in.h:66
 msgid "Print Line Numbers"
 msgstr "Skriv ut radnummer"
 
-#: ../data/org.x.editor.gschema.xml.in.h:61
+#: ../data/org.x.editor.gschema.xml.in.h:67
 msgid ""
 "If this value is 0, then no line numbers will be inserted when printing a "
 "document. Otherwise, xed will print line numbers every such number of lines."
@@ -354,32 +379,32 @@ msgstr ""
 "skrivs ut. Om värdet inte är 0 kommer xed att flika in aktuellt radnummer "
 "varje angivet antal rader."
 
-#: ../data/org.x.editor.gschema.xml.in.h:62
+#: ../data/org.x.editor.gschema.xml.in.h:68
 msgctxt "print-font-body-pango"
 msgid "'Monospace 9'"
 msgstr "'Monospace 9'"
 
-#: ../data/org.x.editor.gschema.xml.in.h:63
+#: ../data/org.x.editor.gschema.xml.in.h:69
 msgid "Body Font for Printing"
 msgstr "Texttypsnitt för utskrift"
 
-#: ../data/org.x.editor.gschema.xml.in.h:64
+#: ../data/org.x.editor.gschema.xml.in.h:70
 msgid ""
 "Specifies the font to use for a document's body when printing documents."
 msgstr ""
 "Anger det typsnitt som ska användas för dokumentets text vid utskrift av "
 "dokument."
 
-#: ../data/org.x.editor.gschema.xml.in.h:65
+#: ../data/org.x.editor.gschema.xml.in.h:71
 msgctxt "print-font-header-pango"
 msgid "'Sans 11'"
 msgstr "'Sans 11'"
 
-#: ../data/org.x.editor.gschema.xml.in.h:66
+#: ../data/org.x.editor.gschema.xml.in.h:72
 msgid "Header Font for Printing"
 msgstr "Sidhuvudstypsnitt för utskrift"
 
-#: ../data/org.x.editor.gschema.xml.in.h:67
+#: ../data/org.x.editor.gschema.xml.in.h:73
 msgid ""
 "Specifies the font to use for page headers when printing a document. This "
 "will only take effect if the \"Print Header\" option is turned on."
@@ -388,16 +413,16 @@ msgstr ""
 "dokument. Detta kommer endast att ha effekt om alternativet \"Skriv ut "
 "huvud\" är påslaget."
 
-#: ../data/org.x.editor.gschema.xml.in.h:68
+#: ../data/org.x.editor.gschema.xml.in.h:74
 msgctxt "print-font-numbers-pango"
 msgid "'Sans 8'"
 msgstr "'Sans 8'"
 
-#: ../data/org.x.editor.gschema.xml.in.h:69
+#: ../data/org.x.editor.gschema.xml.in.h:75
 msgid "Line Number Font for Printing"
 msgstr "Radnummerstypsnitt för utskrift"
 
-#: ../data/org.x.editor.gschema.xml.in.h:70
+#: ../data/org.x.editor.gschema.xml.in.h:76
 msgid ""
 "Specifies the font to use for line numbers when printing. This will only "
 "take effect if the \"Print Line Numbers\" option is non-zero."
@@ -405,16 +430,16 @@ msgstr ""
 "Anger det typsnitt som ska användas för radnummer vid utskrift. Detta kommer "
 "endast att ha effekt om alternativet \"Skriv ut radnummer\" inte är noll."
 
-#: ../data/org.x.editor.gschema.xml.in.h:71
+#: ../data/org.x.editor.gschema.xml.in.h:77
 msgctxt "auto-detected"
 msgid "[ 'UTF-8', 'CURRENT', 'ISO-8859-15', 'UTF-16' ]"
 msgstr "[ 'UTF-8', 'NUVARANDE', 'ISO-8859-15', 'UTF-16' ]"
 
-#: ../data/org.x.editor.gschema.xml.in.h:72
+#: ../data/org.x.editor.gschema.xml.in.h:78
 msgid "Automatically Detected Encodings"
 msgstr "Automatiskt identifierade kodningar"
 
-#: ../data/org.x.editor.gschema.xml.in.h:73
+#: ../data/org.x.editor.gschema.xml.in.h:79
 msgid ""
 "Sorted list of encodings used by xed for automatically detecting the "
 "encoding of a file. \"CURRENT\" represents the current locale encoding. Only "
@@ -425,16 +450,16 @@ msgstr ""
 "teckenkodning som gäller för de aktuella formatinställningarna. Bara "
 "igenkända teckenkodningar används."
 
-#: ../data/org.x.editor.gschema.xml.in.h:74
+#: ../data/org.x.editor.gschema.xml.in.h:80
 msgctxt "shown-in-menu"
 msgid "[ 'ISO-8859-15' ]"
 msgstr "[ 'ISO-8859-15' ]"
 
-#: ../data/org.x.editor.gschema.xml.in.h:75
+#: ../data/org.x.editor.gschema.xml.in.h:81
 msgid "Encodings shown in menu"
 msgstr "Kodningar som visas i menyn"
 
-#: ../data/org.x.editor.gschema.xml.in.h:76
+#: ../data/org.x.editor.gschema.xml.in.h:82
 msgid ""
 "List of encodings shown in the Character Encoding menu in open/save file "
 "selector. Only recognized encodings are used."
@@ -442,27 +467,27 @@ msgstr ""
 "Lista med teckenkodningar som visas i teckenkodningsmenyn i filväljaren för "
 "öppnande/sparande av filer. Endast kända kodningar används."
 
-#: ../data/org.x.editor.gschema.xml.in.h:77
+#: ../data/org.x.editor.gschema.xml.in.h:83
 msgid "History for \"search for\" entries"
 msgstr "Historia för \"sök efter\" inmatningar"
 
-#: ../data/org.x.editor.gschema.xml.in.h:78
+#: ../data/org.x.editor.gschema.xml.in.h:84
 msgid "List of entries in \"search for\" textbox."
 msgstr "Lista över inmatningar i \"sök efter\" textrutan."
 
-#: ../data/org.x.editor.gschema.xml.in.h:79
+#: ../data/org.x.editor.gschema.xml.in.h:85
 msgid "History for \"replace with\" entries"
 msgstr "Historia för \"ersätt med\" inmatningar"
 
-#: ../data/org.x.editor.gschema.xml.in.h:80
+#: ../data/org.x.editor.gschema.xml.in.h:86
 msgid "List of entries in \"replace with\" textbox."
 msgstr "Lista över inmatningar i \"ersätt med\" textrutan."
 
-#: ../data/org.x.editor.gschema.xml.in.h:81
+#: ../data/org.x.editor.gschema.xml.in.h:87
 msgid "Active plugins"
 msgstr "Aktiva insticksmoduler"
 
-#: ../data/org.x.editor.gschema.xml.in.h:82
+#: ../data/org.x.editor.gschema.xml.in.h:88
 msgid ""
 "List of active plugins. It contains the \"Location\" of the active plugins. "
 "See the .xed-plugin file for obtaining the \"Location\" of a given plugin."
@@ -493,7 +518,7 @@ msgstr ""
 "filer, läsa ändringsloggar i CVS format och inställningar för "
 "indentering.</p>"
 
-#: ../data/xed.desktop.in.in.h:1 ../xed/xed-print-job.c:763
+#: ../data/xed.desktop.in.in.h:1 ../xed/xed-print-job.c:710
 msgid "Text Editor"
 msgstr "Textredigerare"
 
@@ -501,23 +526,100 @@ msgstr "Textredigerare"
 msgid "Edit text files"
 msgstr "Redigera textfiler"
 
-#: ../xed/dialogs/xed-close-confirmation-dialog.c:139
+#: ../xed/xed-app.c:105
+msgid "Show the application's version"
+msgstr "Visa programmets version"
+
+#: ../xed/xed-app.c:111
+msgid "Display list of possible values for the encoding option"
+msgstr "Visa en lista över möjliga värden för kodningsalternativet"
+
+#: ../xed/xed-app.c:118
+msgid ""
+"Set the character encoding to be used to open the files listed on the "
+"command line"
+msgstr ""
+"Ställ in den teckenkodning som ska användas för att öppna filerna som anges "
+"på kommandoraden"
+
+#: ../xed/xed-app.c:119
+msgid "ENCODING"
+msgstr "KODNING"
+
+#: ../xed/xed-app.c:125
+msgid "Create a new top-level window in an existing instance of xed"
+msgstr "Skapa ett nytt huvudfönster i xed"
+
+#: ../xed/xed-app.c:132
+msgid "Create a new document in an existing instance of xed"
+msgstr "Skapa ett nytt dokument i xed"
+
+#: ../xed/xed-app.c:139
+msgid "Set the size and position of the window (WIDTHxHEIGHT+X+Y)"
+msgstr "Ställ in storlek och position på fönstret (BreddxHöjd+X+Y)"
+
+#: ../xed/xed-app.c:140
+msgid "GEOMETRY"
+msgstr "GEOMETRI"
+
+#: ../xed/xed-app.c:146
+msgid "Open files and block process until files are closed"
+msgstr "Öppna filer och blockera processen tills filen stängs"
+
+#: ../xed/xed-app.c:153
+msgid "Run xed in standalone mode"
+msgstr "Kör xed i fristående läge"
+
+#: ../xed/xed-app.c:160
+msgid "[FILE...] [+LINE]"
+msgstr "[FIL...] [+RAD]"
+
+#: ../xed/xed-app.c:551
+#, c-format
+msgid "%s: invalid encoding."
+msgstr "%s: ogiltig teckenkodning."
+
+#: ../xed/xed-app.c:1201
+msgid "There was an error displaying the help."
+msgstr "Ett fel inträffade vid visning av hjälpen."
+
+#: ../xed/xed-close-confirmation-dialog.c:133
 msgid "Log Out _without Saving"
 msgstr "Logga ut _utan att spara"
 
-#: ../xed/dialogs/xed-close-confirmation-dialog.c:143
+#: ../xed/xed-close-confirmation-dialog.c:134
 msgid "_Cancel Logout"
 msgstr "Avbryt _utloggning"
 
-#: ../xed/dialogs/xed-close-confirmation-dialog.c:150
+#: ../xed/xed-close-confirmation-dialog.c:138
 msgid "Close _without Saving"
 msgstr "Stäng _utan att spara"
 
-#: ../xed/dialogs/xed-close-confirmation-dialog.c:199
+#: ../xed/xed-close-confirmation-dialog.c:139 ../xed/xed-commands-file.c:406
+#: ../xed/xed-commands-file.c:509 ../xed/xed-commands-file.c:688
+#: ../xed/xed-commands-file.c:1117 ../xed/xed-encodings-dialog.c:340
+#: ../xed/xed-io-error-info-bar.c:151 ../xed/xed-io-error-info-bar.c:410
+#: ../xed/xed-io-error-info-bar.c:1055
+#: ../plugins/filebrowser/xed-file-browser-utils.c:156
+#: ../plugins/spell/xed-spell-language-dialog.c:130
+msgid "_Cancel"
+msgstr "_Avbryt"
+
+#: ../xed/xed-close-confirmation-dialog.c:159
+msgid "_Save As..."
+msgstr "_Spara som…"
+
+#. File menu
+#: ../xed/xed-close-confirmation-dialog.c:163 ../xed/xed-commands-file.c:689
+#: ../xed/xed-ui.h:80
+msgid "_Save"
+msgstr "_Spara"
+
+#: ../xed/xed-close-confirmation-dialog.c:188
 msgid "Question"
 msgstr "Fråga"
 
-#: ../xed/dialogs/xed-close-confirmation-dialog.c:399
+#: ../xed/xed-close-confirmation-dialog.c:381
 #, c-format
 msgid ""
 "If you don't save, changes from the last %ld second will be permanently lost."
@@ -531,14 +633,14 @@ msgstr[1] ""
 "Om du inte sparar kommer ändringar gjorda under de senaste %ld sekunderna "
 "att vara borta för alltid."
 
-#: ../xed/dialogs/xed-close-confirmation-dialog.c:408
+#: ../xed/xed-close-confirmation-dialog.c:390
 msgid ""
 "If you don't save, changes from the last minute will be permanently lost."
 msgstr ""
 "Om du inte sparar kommer ändringar gjorda under den senaste minuten att vara "
 "borta för alltid."
 
-#: ../xed/dialogs/xed-close-confirmation-dialog.c:414
+#: ../xed/xed-close-confirmation-dialog.c:395
 #, c-format
 msgid ""
 "If you don't save, changes from the last minute and %ld second will be "
@@ -553,7 +655,7 @@ msgstr[1] ""
 "Om du inte sparar kommer ändringar gjorda under den senaste minuten och %ld "
 "sekunderna att vara borta för alltid."
 
-#: ../xed/dialogs/xed-close-confirmation-dialog.c:424
+#: ../xed/xed-close-confirmation-dialog.c:404
 #, c-format
 msgid ""
 "If you don't save, changes from the last %ld minute will be permanently lost."
@@ -567,14 +669,14 @@ msgstr[1] ""
 "Om du inte sparar kommer ändringar gjorda under de senaste %ld minuterna att "
 "vara borta för alltid."
 
-#: ../xed/dialogs/xed-close-confirmation-dialog.c:439
+#: ../xed/xed-close-confirmation-dialog.c:419
 msgid ""
 "If you don't save, changes from the last hour will be permanently lost."
 msgstr ""
 "Om du inte sparar kommer ändringar gjorda under den senaste timmen att vara "
 "borta för alltid."
 
-#: ../xed/dialogs/xed-close-confirmation-dialog.c:445
+#: ../xed/xed-close-confirmation-dialog.c:424
 #, c-format
 msgid ""
 "If you don't save, changes from the last hour and %d minute will be "
@@ -589,7 +691,7 @@ msgstr[1] ""
 "Om du inte sparar kommer ändringar gjorda under den senaste timmen och %d "
 "minuterna att vara borta för alltid."
 
-#: ../xed/dialogs/xed-close-confirmation-dialog.c:460
+#: ../xed/xed-close-confirmation-dialog.c:438
 #, c-format
 msgid ""
 "If you don't save, changes from the last %d hour will be permanently lost."
@@ -602,12 +704,12 @@ msgstr[1] ""
 "Om du inte sparar kommer ändringar gjorda under de senaste %d timmarna att "
 "vara borta för alltid."
 
-#: ../xed/dialogs/xed-close-confirmation-dialog.c:503
+#: ../xed/xed-close-confirmation-dialog.c:479
 #, c-format
 msgid "Save changes to document \"%s\" before closing?"
 msgstr "Spara ändringarna i dokumentet \"%s\" innan stängning?"
 
-#: ../xed/dialogs/xed-close-confirmation-dialog.c:677
+#: ../xed/xed-close-confirmation-dialog.c:644
 #, c-format
 msgid ""
 "There is %d document with unsaved changes. Save changes before closing?"
@@ -620,275 +722,22 @@ msgstr[1] ""
 "Det finns %d dokument med osparade ändringar. Spara ändringar innan "
 "avslutande?"
 
-#: ../xed/dialogs/xed-close-confirmation-dialog.c:694
+#: ../xed/xed-close-confirmation-dialog.c:661
 msgid "S_elect the documents you want to save:"
 msgstr "_Välj de dokument som du vill spara:"
 
 #. Secondary label
-#: ../xed/dialogs/xed-close-confirmation-dialog.c:713
+#: ../xed/xed-close-confirmation-dialog.c:677
 msgid "If you don't save, all your changes will be permanently lost."
 msgstr ""
 "Om du inte sparar kommer alla dina ändringar att vara borta för alltid."
 
-#: ../xed/dialogs/xed-encodings-dialog.c:321
-msgid "Character Encodings"
-msgstr "Teckenkodningar"
-
-#: ../xed/dialogs/xed-encodings-dialog.c:384
-#: ../xed/dialogs/xed-encodings-dialog.c:445
-msgid "_Description"
-msgstr "_Beskrivning"
-
-#: ../xed/dialogs/xed-encodings-dialog.c:393
-#: ../xed/dialogs/xed-encodings-dialog.c:454
-msgid "_Encoding"
-msgstr "_Kodning"
-
-#: ../xed/dialogs/xed-encodings-dialog.ui.h:1
-msgid "Character encodings"
-msgstr "Teckenkodningar"
-
-#: ../xed/dialogs/xed-encodings-dialog.ui.h:2
-msgid "A_vailable encodings:"
-msgstr "Till_gängliga kodningar:"
-
-#: ../xed/dialogs/xed-encodings-dialog.ui.h:3
-msgid "E_ncodings shown in menu:"
-msgstr "Kod_ningar som visas i menyn:"
-
-#: ../xed/dialogs/xed-preferences-dialog.c:572
-msgid "Click on this button to select the font to be used by the editor"
-msgstr ""
-"Tryck på denna knapp för att välja det typsnitt som ska användas av "
-"redigeraren"
-
-#: ../xed/dialogs/xed-preferences-dialog.c:582
-#, c-format
-msgid "_Use the system fixed width font (%s)"
-msgstr "_Använd systemets typsnitt med fast breddsteg (%s)"
-
-#: ../xed/dialogs/xed-preferences-dialog.c:785
-msgid "The selected color scheme cannot be installed."
-msgstr "Det valda färgschemat kan inte installeras."
-
-#: ../xed/dialogs/xed-preferences-dialog.c:810
-msgid "Add Scheme"
-msgstr "Lägg till schema"
-
-#: ../xed/dialogs/xed-preferences-dialog.c:817
-msgid "A_dd Scheme"
-msgstr "Lä_gg till schema"
-
-#: ../xed/dialogs/xed-preferences-dialog.c:825
-msgid "Color Scheme Files"
-msgstr "Färgschemafiler"
-
-#: ../xed/dialogs/xed-preferences-dialog.c:832
-#: ../xed/xed-file-chooser-dialog.c:53
-msgid "All Files"
-msgstr "Alla filer"
-
-#: ../xed/dialogs/xed-preferences-dialog.c:877
-#, c-format
-msgid "Could not remove color scheme \"%s\"."
-msgstr "Kunde inte ta bort färgschemat \"%s\"."
-
-#: ../xed/dialogs/xed-preferences-dialog.c:1088
-msgid "Xed Preferences"
-msgstr "Xed inställningar."
-
-#: ../xed/dialogs/xed-preferences-dialog.ui.h:1
-msgid "Preferences"
-msgstr "Inställningar"
-
-#: ../xed/dialogs/xed-preferences-dialog.ui.h:2
-#: ../xed/xed-print-preferences.ui.h:9
-msgid "Text Wrapping"
-msgstr "Textradbrytning"
-
-#: ../xed/dialogs/xed-preferences-dialog.ui.h:3
-#: ../plugins/docinfo/docinfo.ui.h:4 ../plugins/time/xed-time-dialog.ui.h:4
-#: ../plugins/time/xed-time-setup-dialog.ui.h:3
-msgid "    "
-msgstr "    "
-
-#: ../xed/dialogs/xed-preferences-dialog.ui.h:4
-#: ../xed/xed-print-preferences.ui.h:10
-msgid "Enable text _wrapping"
-msgstr "Aktivera text_radbrytning"
-
-#: ../xed/dialogs/xed-preferences-dialog.ui.h:5
-#: ../xed/xed-print-preferences.ui.h:11
-msgid "Do not _split words over two lines"
-msgstr "_Dela inte ord över två rader"
-
-#: ../xed/dialogs/xed-preferences-dialog.ui.h:6
-#: ../xed/xed-print-preferences.ui.h:3
-msgid "Line Numbers"
-msgstr "Radnummer"
-
-#: ../xed/dialogs/xed-preferences-dialog.ui.h:7 ../xed/xed-view.c:1106
-msgid "_Display line numbers"
-msgstr "_Visa radnummer"
-
-#: ../xed/dialogs/xed-preferences-dialog.ui.h:8
-msgid "Current Line"
-msgstr "Aktuell rad"
-
-#: ../xed/dialogs/xed-preferences-dialog.ui.h:9
-msgid "Highlight current _line"
-msgstr "Färgmarkera a_ktuell rad"
-
-#: ../xed/dialogs/xed-preferences-dialog.ui.h:10
-msgid "Right Margin"
-msgstr "Högermarginal"
-
-#: ../xed/dialogs/xed-preferences-dialog.ui.h:11
-msgid "Display right _margin"
-msgstr "Visa höger_marginal"
-
-#: ../xed/dialogs/xed-preferences-dialog.ui.h:12
-msgid "_Right margin at column:"
-msgstr "_Högermarginal vid kolumn:"
-
-#: ../xed/dialogs/xed-preferences-dialog.ui.h:13
-msgid "Bracket Matching"
-msgstr "Klammermatchning"
-
-#: ../xed/dialogs/xed-preferences-dialog.ui.h:14
-msgid "Highlight matching _bracket"
-msgstr "Färgmarkera matchande _klammer"
-
-#: ../xed/dialogs/xed-preferences-dialog.ui.h:15
-msgid "View"
-msgstr "Visa"
-
-#: ../xed/dialogs/xed-preferences-dialog.ui.h:16
-msgid "Tab Stops"
-msgstr "Tabulatorstopp"
-
-#: ../xed/dialogs/xed-preferences-dialog.ui.h:17
-msgid "_Tab width:"
-msgstr "_Tabulatorbredd:"
-
-#: ../xed/dialogs/xed-preferences-dialog.ui.h:18
-msgid "Insert _spaces instead of tabs"
-msgstr "Infoga _blanksteg istället för tabulatortecken"
-
-#: ../xed/dialogs/xed-preferences-dialog.ui.h:19
-msgid "Automatic Indentation"
-msgstr "Automatisk indentering"
-
-#: ../xed/dialogs/xed-preferences-dialog.ui.h:20
-msgid "_Enable automatic indentation"
-msgstr "_Aktivera automatisk indentering"
-
-#: ../xed/dialogs/xed-preferences-dialog.ui.h:21
-msgid "File Saving"
-msgstr "Filsparning"
-
-#: ../xed/dialogs/xed-preferences-dialog.ui.h:22
-msgid "Create a _backup copy of files before saving"
-msgstr "Skapa en s_äkerhetskopia av filen innan den sparas"
-
-#: ../xed/dialogs/xed-preferences-dialog.ui.h:23
-msgid "_Autosave files every"
-msgstr "Spara filer _automatiskt var"
-
-#: ../xed/dialogs/xed-preferences-dialog.ui.h:24
-msgid "_minutes"
-msgstr "_minut"
-
-#: ../xed/dialogs/xed-preferences-dialog.ui.h:25
-msgid "Editor"
-msgstr "Redigerare"
-
-#: ../xed/dialogs/xed-preferences-dialog.ui.h:26
-msgid "Font"
-msgstr "Typsnitt"
-
-#: ../xed/dialogs/xed-preferences-dialog.ui.h:27
-msgid "Editor _font: "
-msgstr "Redigerar_typsnitt: "
-
-#: ../xed/dialogs/xed-preferences-dialog.ui.h:28
-msgid "Pick the editor font"
-msgstr "Välj redigerartypsnittet"
-
-#: ../xed/dialogs/xed-preferences-dialog.ui.h:29
-msgid "Color Scheme"
-msgstr "Färgschema"
-
-#: ../xed/dialogs/xed-preferences-dialog.ui.h:30
-msgid "_Add..."
-msgstr "_Lägg till..."
-
-#: ../xed/dialogs/xed-preferences-dialog.ui.h:31
-msgid "Font & Colors"
-msgstr "Typsnitt och färger"
-
-#: ../xed/dialogs/xed-preferences-dialog.ui.h:32
-msgid "Plugins"
-msgstr "Insticksmoduler"
-
-#: ../xed/xed.c:104
-msgid "Show the application's version"
-msgstr "Visa programmets version"
-
-#: ../xed/xed.c:107
-msgid ""
-"Set the character encoding to be used to open the files listed on the "
-"command line"
-msgstr ""
-"Ställ in den teckenkodning som ska användas för att öppna filerna som anges "
-"på kommandoraden"
-
-#: ../xed/xed.c:107
-msgid "ENCODING"
-msgstr "KODNING"
-
-#: ../xed/xed.c:110
-msgid "Display list of possible values for the encoding option"
-msgstr "Visa en lista över möjliga värden för kodningsalternativet"
-
-#: ../xed/xed.c:113
-msgid "Create a new top-level window in an existing instance of xed"
-msgstr "Skapa ett nytt huvudfönster i xed"
-
-#: ../xed/xed.c:116
-msgid "Create a new document in an existing instance of xed"
-msgstr "Skapa ett nytt dokument i xed"
-
-#: ../xed/xed.c:119
-msgid "[FILE...]"
-msgstr "[FIL...]"
-
-#: ../xed/xed.c:174
-#, c-format
-msgid "%s: invalid encoding.\n"
-msgstr "%s: ogiltig kodning.\n"
-
-#. Setup command line options
-#: ../xed/xed.c:520
-msgid "- Edit text files"
-msgstr "- Redigera textfiler"
-
-#: ../xed/xed.c:529
-#, c-format
-msgid ""
-"%s\n"
-"Run '%s --help' to see a full list of available command line options.\n"
-msgstr ""
-"%s\n"
-"Kör \"%s --help\" för att se en komplett lista över tillgängliga "
-"kommandoradsflaggor.\n"
-
-#: ../xed/xed-commands-file.c:250
+#: ../xed/xed-commands-file.c:236
 #, c-format
 msgid "Loading file '%s'…"
 msgstr "Läser in filen \"%s\"..."
 
-#: ../xed/xed-commands-file.c:259
+#: ../xed/xed-commands-file.c:245
 #, c-format
 msgid "Loading %d file…"
 msgid_plural "Loading %d files…"
@@ -896,43 +745,48 @@ msgstr[0] "Läser in %d fil..."
 msgstr[1] "Läser in %d filer..."
 
 #. Translators: "Open Files" is the title of the file chooser window
-#: ../xed/xed-commands-file.c:465
+#: ../xed/xed-commands-file.c:402
 msgid "Open Files"
 msgstr "Öppna filer"
 
-#: ../xed/xed-commands-file.c:576
+#: ../xed/xed-commands-file.c:407
+#: ../plugins/filebrowser/xed-file-browser-widget.c:770
+msgid "_Open"
+msgstr "_Öppna"
+
+#: ../xed/xed-commands-file.c:501
 #, c-format
 msgid "The file \"%s\" is read-only."
 msgstr "Filen \"%s\" är skrivskyddad."
 
-#: ../xed/xed-commands-file.c:581
+#: ../xed/xed-commands-file.c:506
 msgid "Do you want to try to replace it with the one you are saving?"
 msgstr "Vill du försöka ersätta den med den fil som du vill spara?"
 
-#: ../xed/xed-commands-file.c:589 ../xed/xed-ui.h:117
+#: ../xed/xed-commands-file.c:510 ../xed/xed-ui.h:117
 msgid "_Replace"
 msgstr "_Ersätt"
 
-#: ../xed/xed-commands-file.c:650 ../xed/xed-commands-file.c:873
+#: ../xed/xed-commands-file.c:576 ../xed/xed-commands-file.c:786
 #, c-format
 msgid "Saving file '%s'…"
 msgstr "Sparar filen \"%s\"..."
 
-#: ../xed/xed-commands-file.c:758
+#: ../xed/xed-commands-file.c:684
 msgid "Save As…"
 msgstr "Spara som..."
 
-#: ../xed/xed-commands-file.c:1087
+#: ../xed/xed-commands-file.c:986
 #, c-format
 msgid "Reverting the document '%s'…"
 msgstr "Återställer dokumentet \"%s\"..."
 
-#: ../xed/xed-commands-file.c:1132
+#: ../xed/xed-commands-file.c:1033
 #, c-format
 msgid "Revert unsaved changes to document '%s'?"
 msgstr "Återställ osparade ändringar i dokumentet \"%s\"?"
 
-#: ../xed/xed-commands-file.c:1141
+#: ../xed/xed-commands-file.c:1040
 #, c-format
 msgid ""
 "Changes made to the document in the last %ld second will be permanently lost."
@@ -946,14 +800,14 @@ msgstr[1] ""
 "Ändringar i dokumentet gjorda under de senaste %ld sekunderna kommer att "
 "vara borta för alltid."
 
-#: ../xed/xed-commands-file.c:1150
+#: ../xed/xed-commands-file.c:1049
 msgid ""
 "Changes made to the document in the last minute will be permanently lost."
 msgstr ""
 "Ändringar i dokumentet gjorda under den senaste minuten kommer att vara "
 "borta för alltid."
 
-#: ../xed/xed-commands-file.c:1156
+#: ../xed/xed-commands-file.c:1054
 #, c-format
 msgid ""
 "Changes made to the document in the last minute and %ld second will be "
@@ -968,7 +822,7 @@ msgstr[1] ""
 "Ändringar i dokumentet gjorda under den senaste minuten och %ld sekunderna "
 "kommer att vara borta för alltid."
 
-#: ../xed/xed-commands-file.c:1166
+#: ../xed/xed-commands-file.c:1063
 #, c-format
 msgid ""
 "Changes made to the document in the last %ld minute will be permanently lost."
@@ -982,14 +836,14 @@ msgstr[1] ""
 "Ändringar i dokumentet gjorda under de senaste %ld minuterna kommer att vara "
 "borta för alltid."
 
-#: ../xed/xed-commands-file.c:1181
+#: ../xed/xed-commands-file.c:1078
 msgid ""
 "Changes made to the document in the last hour will be permanently lost."
 msgstr ""
 "Ändringar i dokumentet gjorda under den senaste timmen kommer att vara borta "
 "för alltid."
 
-#: ../xed/xed-commands-file.c:1187
+#: ../xed/xed-commands-file.c:1083
 #, c-format
 msgid ""
 "Changes made to the document in the last hour and %d minute will be "
@@ -1004,7 +858,7 @@ msgstr[1] ""
 "Ändringar i dokumentet gjorda under den senaste timmen och %d minuterna "
 "kommer att vara borta för alltid."
 
-#: ../xed/xed-commands-file.c:1202
+#: ../xed/xed-commands-file.c:1097
 #, c-format
 msgid ""
 "Changes made to the document in the last %d hour will be permanently lost."
@@ -1017,232 +871,138 @@ msgstr[1] ""
 "Ändringar i dokumentet gjorda under de senaste %d timmarna kommer att vara "
 "borta för alltid."
 
-#: ../xed/xed-commands-file.c:1228
+#: ../xed/xed-commands-file.c:1118
 msgid "_Revert"
 msgstr "_Återställ"
 
-#: ../xed/xed-commands-help.c:56
+#: ../xed/xed-commands-help.c:58
 msgid "A small and lightweight text editor"
 msgstr "En liten och lättviktig textredigerare"
 
-#: ../xed/xed-document.c:1082 ../xed/xed-document.c:1102
+#: ../xed/xed-document.c:850 ../xed/xed-document.c:879
 #, c-format
 msgid "Unsaved Document %d"
 msgstr "Osparat dokument %d"
 
-#: ../xed/xed-documents-panel.c:97 ../xed/xed-documents-panel.c:111
-#: ../xed/xed-window.c:1860 ../xed/xed-window.c:1864
+#: ../xed/xed-documents-panel.c:95 ../xed/xed-documents-panel.c:106
+#: ../xed/xed-window.c:1994 ../xed/xed-window.c:1998
 msgid "Read-Only"
 msgstr "Skrivskyddad"
 
-#: ../xed/xed-documents-panel.c:784 ../xed/xed-window.c:3089
+#: ../xed/xed-documents-panel.c:732 ../xed/xed-window.c:3320
 msgid "Documents"
 msgstr "Dokument"
 
-#: ../xed/xed-encodings.c:138 ../xed/xed-encodings.c:180
-#: ../xed/xed-encodings.c:182 ../xed/xed-encodings.c:184
-#: ../xed/xed-encodings.c:186 ../xed/xed-encodings.c:188
-#: ../xed/xed-encodings.c:190 ../xed/xed-encodings.c:192
-msgid "Unicode"
-msgstr "Unicode"
-
-#: ../xed/xed-encodings.c:151 ../xed/xed-encodings.c:175
-#: ../xed/xed-encodings.c:225 ../xed/xed-encodings.c:268
-msgid "Western"
-msgstr "Västerländsk"
-
-#: ../xed/xed-encodings.c:153 ../xed/xed-encodings.c:227
-#: ../xed/xed-encodings.c:264
-msgid "Central European"
-msgstr "Centraleuropeisk"
-
-#: ../xed/xed-encodings.c:155
-msgid "South European"
-msgstr "Sydeuropeisk"
-
-#: ../xed/xed-encodings.c:157 ../xed/xed-encodings.c:171
-#: ../xed/xed-encodings.c:278
-msgid "Baltic"
-msgstr "Baltisk"
-
-#: ../xed/xed-encodings.c:159 ../xed/xed-encodings.c:229
-#: ../xed/xed-encodings.c:242 ../xed/xed-encodings.c:246
-#: ../xed/xed-encodings.c:248 ../xed/xed-encodings.c:266
-msgid "Cyrillic"
-msgstr "Kyrillisk"
-
-#: ../xed/xed-encodings.c:161 ../xed/xed-encodings.c:235
-#: ../xed/xed-encodings.c:276
-msgid "Arabic"
-msgstr "Arabisk"
-
-#: ../xed/xed-encodings.c:163 ../xed/xed-encodings.c:270
-msgid "Greek"
-msgstr "Grekisk"
-
-#: ../xed/xed-encodings.c:165
-msgid "Hebrew Visual"
-msgstr "Synlig hebreisk"
-
-#: ../xed/xed-encodings.c:167 ../xed/xed-encodings.c:231
-#: ../xed/xed-encodings.c:272
-msgid "Turkish"
-msgstr "Turkisk"
-
-#: ../xed/xed-encodings.c:169
-msgid "Nordic"
-msgstr "Nordisk"
-
-#: ../xed/xed-encodings.c:173
-msgid "Celtic"
-msgstr "Keltisk"
-
-#: ../xed/xed-encodings.c:177
-msgid "Romanian"
-msgstr "Rumänsk"
-
-#: ../xed/xed-encodings.c:195
-msgid "Armenian"
-msgstr "Armensk"
-
-#: ../xed/xed-encodings.c:197 ../xed/xed-encodings.c:199
-#: ../xed/xed-encodings.c:213
-msgid "Chinese Traditional"
-msgstr "Traditionell kinesisk"
-
-#: ../xed/xed-encodings.c:201
-msgid "Cyrillic/Russian"
-msgstr "Kyrillisk/Rysk"
-
-#: ../xed/xed-encodings.c:204 ../xed/xed-encodings.c:206
-#: ../xed/xed-encodings.c:208 ../xed/xed-encodings.c:238
-#: ../xed/xed-encodings.c:253
-msgid "Japanese"
-msgstr "Japansk"
-
-#: ../xed/xed-encodings.c:211 ../xed/xed-encodings.c:240
-#: ../xed/xed-encodings.c:244 ../xed/xed-encodings.c:259
-msgid "Korean"
-msgstr "Koreansk"
-
-#: ../xed/xed-encodings.c:216 ../xed/xed-encodings.c:218
-#: ../xed/xed-encodings.c:220
-msgid "Chinese Simplified"
-msgstr "Förenklad kinesisk"
-
-#: ../xed/xed-encodings.c:222
-msgid "Georgian"
-msgstr "Georgisk"
-
-#: ../xed/xed-encodings.c:233 ../xed/xed-encodings.c:274
-msgid "Hebrew"
-msgstr "Hebreisk"
-
-#: ../xed/xed-encodings.c:250
-msgid "Cyrillic/Ukrainian"
-msgstr "Kyrillisk/Ukrainsk"
-
-#: ../xed/xed-encodings.c:255 ../xed/xed-encodings.c:261
-#: ../xed/xed-encodings.c:280
-msgid "Vietnamese"
-msgstr "Vietnamesisk"
-
-#: ../xed/xed-encodings.c:257
-msgid "Thai"
-msgstr "Thai"
-
-#: ../xed/xed-encodings.c:431
-msgid "Unknown"
-msgstr "Okänd"
-
-#: ../xed/xed-encodings-combo-box.c:272
+#: ../xed/xed-encodings-combo-box.c:268
 msgid "Automatically Detected"
 msgstr "Automatiskt identifierad"
 
-#: ../xed/xed-encodings-combo-box.c:288 ../xed/xed-encodings-combo-box.c:303
+#: ../xed/xed-encodings-combo-box.c:287 ../xed/xed-encodings-combo-box.c:301
 #, c-format
 msgid "Current Locale (%s)"
 msgstr "Aktuell lokal (%s)"
 
-#: ../xed/xed-encodings-combo-box.c:353
+#: ../xed/xed-encodings-combo-box.c:348
 msgid "Add or Remove..."
 msgstr "Lägg till eller ta bort..."
 
-#: ../xed/xed-file-chooser-dialog.c:54
+#: ../xed/xed-encodings-dialog.c:341
+#: ../plugins/spell/xed-spell-language-dialog.c:131
+#: ../plugins/time/xed-time-plugin.c:793
+msgid "_OK"
+msgstr "_OK"
+
+#: ../xed/xed-encodings-dialog.c:342 ../xed/xed-ui.h:53
+#: ../plugins/spell/xed-spell-language-dialog.c:132
+msgid "_Help"
+msgstr "_Hjälp"
+
+#: ../xed/xed-encodings-dialog.c:345
+msgid "Character Encodings"
+msgstr "Teckenkodningar"
+
+#: ../xed/xed-encodings-dialog.c:378 ../xed/xed-encodings-dialog.c:415
+msgid "_Description"
+msgstr "_Beskrivning"
+
+#: ../xed/xed-encodings-dialog.c:386 ../xed/xed-encodings-dialog.c:423
+msgid "_Encoding"
+msgstr "_Kodning"
+
+#: ../xed/xed-file-chooser-dialog.c:50 ../xed/xed-preferences-dialog.c:870
+msgid "All Files"
+msgstr "Alla filer"
+
+#: ../xed/xed-file-chooser-dialog.c:51
 msgid "All Text Files"
 msgstr "Alla textfiler"
 
-#: ../xed/xed-file-chooser-dialog.c:82
+#: ../xed/xed-file-chooser-dialog.c:93
 msgid "C_haracter Encoding:"
 msgstr "Tec_kenkodning:"
 
-#: ../xed/xed-file-chooser-dialog.c:147
+#: ../xed/xed-file-chooser-dialog.c:149
 msgid "L_ine Ending:"
 msgstr "Rads_lut:"
 
-#: ../xed/xed-file-chooser-dialog.c:166
+#: ../xed/xed-file-chooser-dialog.c:160
 msgid "Unix/Linux"
 msgstr "Unix/Linux"
 
-#: ../xed/xed-file-chooser-dialog.c:172
+#: ../xed/xed-file-chooser-dialog.c:161
 msgid "Mac OS Classic"
 msgstr "Mac OS Classic"
 
-#: ../xed/xed-file-chooser-dialog.c:178
+#: ../xed/xed-file-chooser-dialog.c:162
 msgid "Windows"
 msgstr "Windows"
 
-#: ../xed/xed-help.c:81
-msgid "There was an error displaying the help."
-msgstr "Ett fel inträffade vid visning av hjälpen."
-
-#: ../xed/xed-io-error-message-area.c:179
-#: ../xed/xed-io-error-message-area.c:481
+#: ../xed/xed-io-error-info-bar.c:158 ../xed/xed-io-error-info-bar.c:394
 msgid "_Retry"
 msgstr "_Försök igen"
 
-#: ../xed/xed-io-error-message-area.c:200
+#: ../xed/xed-io-error-info-bar.c:177
 #, c-format
 msgid "Could not find the file %s."
 msgstr "Kunde inte hitta filen %s."
 
-#: ../xed/xed-io-error-message-area.c:202
-#: ../xed/xed-io-error-message-area.c:241
-#: ../xed/xed-io-error-message-area.c:248
+#: ../xed/xed-io-error-info-bar.c:178 ../xed/xed-io-error-info-bar.c:212
+#: ../xed/xed-io-error-info-bar.c:217
 msgid "Please check that you typed the location correctly and try again."
 msgstr "Kontrollera att du angav platsen korrekt och försök igen."
 
 #. Translators: %s is a URI scheme (like for example http:, ftp:, etc.)
-#: ../xed/xed-io-error-message-area.c:217
+#: ../xed/xed-io-error-info-bar.c:193
 #, c-format
 msgid "xed cannot handle %s locations."
 msgstr "xed kan inte hantera %s platser."
 
-#: ../xed/xed-io-error-message-area.c:223
+#: ../xed/xed-io-error-info-bar.c:198
 msgid "xed cannot handle this location."
 msgstr "xed kan inte använda denna plats."
 
-#: ../xed/xed-io-error-message-area.c:231
+#: ../xed/xed-io-error-info-bar.c:205
 msgid "The location of the file cannot be mounted."
 msgstr "Platsen för filen kan inte monteras."
 
-#: ../xed/xed-io-error-message-area.c:235
+#: ../xed/xed-io-error-info-bar.c:208
 msgid ""
 "The location of the file cannot be accessed because it is not mounted."
 msgstr ""
 "Platsen för filen kan inte kommas åt därför att den inte är monterad."
 
-#: ../xed/xed-io-error-message-area.c:239
+#: ../xed/xed-io-error-info-bar.c:211
 #, c-format
 msgid "%s is a directory."
 msgstr "%s är en katalog."
 
-#: ../xed/xed-io-error-message-area.c:246
+#: ../xed/xed-io-error-info-bar.c:216
 #, c-format
 msgid "%s is not a valid location."
 msgstr "%s är inte en giltig plats."
 
-#: ../xed/xed-io-error-message-area.c:276
+#. Translators: %s is a host name
+#: ../xed/xed-io-error-info-bar.c:246
 #, c-format
 msgid ""
 "Host %s could not be found. Please check that your proxy settings are "
@@ -1251,7 +1011,8 @@ msgstr ""
 "Värden %s kunde inte hittas. Kontrollera att dina proxyinställningar är "
 "korrekta och försök igen."
 
-#: ../xed/xed-io-error-message-area.c:289
+#. use the same string as INVALID_HOST
+#: ../xed/xed-io-error-info-bar.c:260
 #, c-format
 msgid ""
 "Hostname was invalid. Please check that you typed the location correctly and "
@@ -1260,52 +1021,40 @@ msgstr ""
 "Värdnamnet var ogiltigt. Kontrollera att du angav platsen korrekt och försök "
 "igen."
 
-#: ../xed/xed-io-error-message-area.c:297
+#: ../xed/xed-io-error-info-bar.c:267
 #, c-format
 msgid "%s is not a regular file."
 msgstr "%s är inte en vanlig fil."
 
-#: ../xed/xed-io-error-message-area.c:302
+#: ../xed/xed-io-error-info-bar.c:270
 msgid "Connection timed out. Please try again."
 msgstr "Anslutningen gjorde time-out. Försök igen."
 
-#: ../xed/xed-io-error-message-area.c:325
-msgid "The file is too big."
-msgstr "Filen är för stor."
-
-#: ../xed/xed-io-error-message-area.c:366
+#: ../xed/xed-io-error-info-bar.c:297
 #, c-format
 msgid "Unexpected error: %s"
 msgstr "Oväntat fel: %s"
 
-#: ../xed/xed-io-error-message-area.c:402
+#: ../xed/xed-io-error-info-bar.c:330
 msgid "xed cannot find the file. Perhaps it has recently been deleted."
 msgstr "xed kan inte hitta filen. Kan den vara borttagen?"
 
-#: ../xed/xed-io-error-message-area.c:412
+#: ../xed/xed-io-error-info-bar.c:340
 #, c-format
 msgid "Could not revert the file %s."
 msgstr "Kunde inte återställa filen %s."
 
-#: ../xed/xed-io-error-message-area.c:438
+#: ../xed/xed-io-error-info-bar.c:363
 msgid "Ch_aracter Encoding:"
 msgstr "Te_ckenkodning:"
 
 #. Translators: the access key chosen for this string should be
 #. different from other main menu access keys (Open, Edit, View...)
-#: ../xed/xed-io-error-message-area.c:490
-#: ../xed/xed-io-error-message-area.c:765
+#: ../xed/xed-io-error-info-bar.c:401 ../xed/xed-io-error-info-bar.c:658
 msgid "Edit Any_way"
 msgstr "Redigera än_då"
 
-#. Translators: the access key chosen for this string should be
-#. different from other main menu access keys (Open, Edit, View...)
-#: ../xed/xed-io-error-message-area.c:495
-#: ../xed/xed-io-error-message-area.c:770
-msgid "D_on't Edit"
-msgstr "Redigera in_te"
-
-#: ../xed/xed-io-error-message-area.c:591
+#: ../xed/xed-io-error-info-bar.c:493
 msgid ""
 "The number of followed links is limited and the actual file could not be "
 "found within this limit."
@@ -1313,61 +1062,59 @@ msgstr ""
 "Antalet följda länkar är begränsat och den faktiska filen kunde inte hittas "
 "inom denna gräns."
 
-#: ../xed/xed-io-error-message-area.c:595
+#: ../xed/xed-io-error-info-bar.c:497
 msgid "You do not have the permissions necessary to open the file."
 msgstr "Du har inte tillräckliga rättigheter för att öppna filen."
 
-#: ../xed/xed-io-error-message-area.c:601
+#: ../xed/xed-io-error-info-bar.c:503
 msgid "xed has not been able to detect the character encoding."
 msgstr "xed har inte kunnat identifiera teckenkodningen"
 
-#: ../xed/xed-io-error-message-area.c:603
-#: ../xed/xed-io-error-message-area.c:625
+#: ../xed/xed-io-error-info-bar.c:505 ../xed/xed-io-error-info-bar.c:528
 msgid "Please check that you are not trying to open a binary file."
 msgstr "Kontrollera att du inte försöker öppna en binär fil."
 
-#: ../xed/xed-io-error-message-area.c:604
+#: ../xed/xed-io-error-info-bar.c:506
 msgid "Select a character encoding from the menu and try again."
 msgstr "Välj en teckenkodning från menyn och försök igen."
 
-#: ../xed/xed-io-error-message-area.c:610
+#: ../xed/xed-io-error-info-bar.c:512
 #, c-format
 msgid "There was a problem opening the file %s."
 msgstr "Ett fel inträffade vid öppnandet av filen %s."
 
-#: ../xed/xed-io-error-message-area.c:612
+#: ../xed/xed-io-error-info-bar.c:513
 msgid ""
 "The file you opened has some invalid characters. If you continue editing "
-"this file you could make this document useless."
+"this file you could corrupt this document."
 msgstr ""
-"Filen som du öppnat innehåller ogiltiga tecken. Om du fortsätter att "
-"redigera denna fil så kanske du förstör dokumentet."
+"Den öppnade filen innehåller ogiltiga tecken. Om du fortsätter att redigera "
+"denna fil, kan dokumentet skadas."
 
-#: ../xed/xed-io-error-message-area.c:615
+#: ../xed/xed-io-error-info-bar.c:516
 msgid "You can also choose another character encoding and try again."
 msgstr "Du kan även välja en annan teckenkodning och försöka igen."
 
-#: ../xed/xed-io-error-message-area.c:622
+#: ../xed/xed-io-error-info-bar.c:525
 #, c-format
 msgid "Could not open the file %s using the %s character encoding."
 msgstr "Kunde inte öppna filen %s med teckenkodningen %s."
 
-#: ../xed/xed-io-error-message-area.c:626
-#: ../xed/xed-io-error-message-area.c:701
+#: ../xed/xed-io-error-info-bar.c:529 ../xed/xed-io-error-info-bar.c:598
 msgid "Select a different character encoding from the menu and try again."
 msgstr "Välj en annan teckenkodning från menyn och försök igen."
 
-#: ../xed/xed-io-error-message-area.c:636
+#: ../xed/xed-io-error-info-bar.c:541
 #, c-format
 msgid "Could not open the file %s."
 msgstr "Kunde inte öppna filen %s."
 
-#: ../xed/xed-io-error-message-area.c:696
+#: ../xed/xed-io-error-info-bar.c:593
 #, c-format
 msgid "Could not save the file %s using the %s character encoding."
 msgstr "Kunde inte spara filen %s med teckenkodningen %s."
 
-#: ../xed/xed-io-error-message-area.c:699
+#: ../xed/xed-io-error-info-bar.c:596
 msgid ""
 "The document contains one or more characters that cannot be encoded using "
 "the specified character encoding."
@@ -1375,52 +1122,59 @@ msgstr ""
 "Detta dokument innehåller ett eller flera tecken som inte kan kodas med den "
 "angivna teckenkodningen."
 
-#: ../xed/xed-io-error-message-area.c:785
+#. Translators: the access key chosen for this string should be
+#. different from other main menu access keys (Open, Edit, View...)
+#: ../xed/xed-io-error-info-bar.c:663
+msgid "D_on't Edit"
+msgstr "Redigera in_te"
+
+#: ../xed/xed-io-error-info-bar.c:677
 #, c-format
 msgid "This file (%s) is already open in another xed window."
 msgstr "Filen (%s) är redan öppen i ett annat xed fönster."
 
-#: ../xed/xed-io-error-message-area.c:799
+#: ../xed/xed-io-error-info-bar.c:691
 msgid ""
 "xed opened this instance of the file in a non-editable way. Do you want to "
 "edit it anyway?"
 msgstr "xed öppnade filen i skrivskyddat läge, vill du ändra i den ändå?"
 
-#: ../xed/xed-io-error-message-area.c:858
-#: ../xed/xed-io-error-message-area.c:954
+#: ../xed/xed-io-error-info-bar.c:746 ../xed/xed-io-error-info-bar.c:834
+#: ../xed/xed-io-error-info-bar.c:1096
 msgid "S_ave Anyway"
 msgstr "Spara än_då"
 
-#: ../xed/xed-io-error-message-area.c:862
-#: ../xed/xed-io-error-message-area.c:958
+#: ../xed/xed-io-error-info-bar.c:747 ../xed/xed-io-error-info-bar.c:835
+#: ../xed/xed-io-error-info-bar.c:1098
 msgid "D_on't Save"
 msgstr "Spara i_nte"
 
 #. FIXME: review this message, it's not clear since for the user the "modification"
-#. could be interpreted as the changes he made in the document. beside "reading" is
-#. not accurate (since last load/save)
-#: ../xed/xed-io-error-message-area.c:880
+#. * could be interpreted as the changes he made in the document. beside "reading" is
+#. * not accurate (since last load/save)
+#. 
+#: ../xed/xed-io-error-info-bar.c:764
 #, c-format
 msgid "The file %s has been modified since reading it."
 msgstr "Filen %s har ändrats sedan den lästes in."
 
-#: ../xed/xed-io-error-message-area.c:895
+#: ../xed/xed-io-error-info-bar.c:778
 msgid ""
 "If you save it, all the external changes could be lost. Save it anyway?"
 msgstr ""
 "Om du sparar det, kan alla externa ändringar går förlorade. Spara det ändå?"
 
-#: ../xed/xed-io-error-message-area.c:976
+#: ../xed/xed-io-error-info-bar.c:855
 #, c-format
 msgid "Could not create a backup file while saving %s"
 msgstr "Kunde inte skapa en säkerhetskopia när %s sparades"
 
-#: ../xed/xed-io-error-message-area.c:979
+#: ../xed/xed-io-error-info-bar.c:859
 #, c-format
 msgid "Could not create a temporary backup file while saving %s"
 msgstr "Kunde inte skapa en temporär säkerhetskopia när %s sparades"
 
-#: ../xed/xed-io-error-message-area.c:995
+#: ../xed/xed-io-error-info-bar.c:875
 msgid ""
 "xed could not back up the old copy of the file before saving the new one. "
 "You can ignore this warning and save the file anyway, but if an error occurs "
@@ -1432,7 +1186,7 @@ msgstr ""
 "du spara ändå?"
 
 #. Translators: %s is a URI scheme (like for example http:, ftp:, etc.)
-#: ../xed/xed-io-error-message-area.c:1055
+#: ../xed/xed-io-error-info-bar.c:932
 #, c-format
 msgid ""
 "xed cannot handle %s locations in write mode. Please check that you typed "
@@ -1441,7 +1195,7 @@ msgstr ""
 "I skrivläge kan xed inte använda %s platser. Kontrollera att du angett "
 "platsen korrekt och vänligen prova igen."
 
-#: ../xed/xed-io-error-message-area.c:1063
+#: ../xed/xed-io-error-info-bar.c:940
 msgid ""
 "xed cannot handle this location in write mode. Please check that you typed "
 "the location correctly and try again."
@@ -1449,7 +1203,7 @@ msgstr ""
 "I skrivläge kan xed inte använda denna plats. Kontrollera att du angett "
 "platsen korrekt och vänligen prova igen."
 
-#: ../xed/xed-io-error-message-area.c:1072
+#: ../xed/xed-io-error-info-bar.c:949
 #, c-format
 msgid ""
 "%s is not a valid location. Please check that you typed the location "
@@ -1458,7 +1212,7 @@ msgstr ""
 "%s är inte en giltig plats. Kontrollera att du angav platsen korrekt och "
 "försök igen."
 
-#: ../xed/xed-io-error-message-area.c:1078
+#: ../xed/xed-io-error-info-bar.c:955
 msgid ""
 "You do not have the permissions necessary to save the file. Please check "
 "that you typed the location correctly and try again."
@@ -1466,7 +1220,7 @@ msgstr ""
 "Du har inte de nödvändiga rättigheterna för att spara filen. Kontrollera att "
 "du angav platsen korrekt och försök igen."
 
-#: ../xed/xed-io-error-message-area.c:1084
+#: ../xed/xed-io-error-info-bar.c:961
 msgid ""
 "There is not enough disk space to save the file. Please free some disk space "
 "and try again."
@@ -1474,7 +1228,7 @@ msgstr ""
 "Det finns inte tillräckligt med diskutrymme för att spara filen. Frigör en "
 "del utrymme på disken och försök igen."
 
-#: ../xed/xed-io-error-message-area.c:1089
+#: ../xed/xed-io-error-info-bar.c:966
 msgid ""
 "You are trying to save the file on a read-only disk. Please check that you "
 "typed the location correctly and try again."
@@ -1482,12 +1236,12 @@ msgstr ""
 "Du försöker att spara filen på en skrivskyddad disk. Kontrollera att du "
 "angav platsen korrekt och försök igen."
 
-#: ../xed/xed-io-error-message-area.c:1095
+#: ../xed/xed-io-error-info-bar.c:972
 msgid ""
 "A file with the same name already exists. Please use a different name."
 msgstr "En fil med samma namn finns redan. Använd ett annat namn."
 
-#: ../xed/xed-io-error-message-area.c:1100
+#: ../xed/xed-io-error-info-bar.c:977
 msgid ""
 "The disk where you are trying to save the file has a limitation on length of "
 "the file names. Please use a shorter name."
@@ -1495,7 +1249,7 @@ msgstr ""
 "Disken där du försöker att spara filen har en begränsning för längden på "
 "filnamn. Använd ett kortare namn."
 
-#: ../xed/xed-io-error-message-area.c:1107
+#: ../xed/xed-io-error-info-bar.c:987
 msgid ""
 "The disk where you are trying to save the file has a limitation on file "
 "sizes. Please try saving a smaller file or saving it to a disk that does not "
@@ -1505,7 +1259,7 @@ msgstr ""
 "Försök att spara en mindre fil eller spara den på en disk som inte har denna "
 "begränsning."
 
-#: ../xed/xed-io-error-message-area.c:1123
+#: ../xed/xed-io-error-info-bar.c:1000
 #, c-format
 msgid "Could not save the file %s."
 msgstr "Kunde inte spara filen %s."
@@ -1513,175 +1267,99 @@ msgstr "Kunde inte spara filen %s."
 #. FIXME: review this message, it's not clear since for the user the "modification"
 #. could be interpreted as the changes he made in the document. beside "reading" is
 #. not accurate (since last load/save)
-#: ../xed/xed-io-error-message-area.c:1167
+#: ../xed/xed-io-error-info-bar.c:1040
 #, c-format
 msgid "The file %s changed on disk."
 msgstr "Filen %s har ändrats på disken."
 
-#: ../xed/xed-io-error-message-area.c:1172
+#: ../xed/xed-io-error-info-bar.c:1045
 msgid "Do you want to drop your changes and reload the file?"
 msgstr "Vill du förkasta dina ändringar och läsa om filen?"
 
-#: ../xed/xed-io-error-message-area.c:1174
+#: ../xed/xed-io-error-info-bar.c:1049
 msgid "Do you want to reload the file?"
 msgstr "Vill du läsa om filen?"
 
-#: ../xed/xed-io-error-message-area.c:1179
+#: ../xed/xed-io-error-info-bar.c:1054
 msgid "_Reload"
 msgstr "_Läs om"
 
-#: ../xed/xed-panel.c:338 ../xed/xed-panel.c:513
-msgid "Empty"
-msgstr "Tom"
+#: ../xed/xed-io-error-info-bar.c:1111
+#, c-format
+msgid "Some invalid chars have been detected while saving %s"
+msgstr "Några ogiltiga tecken upptäcktes när %s sparades"
 
-#: ../xed/xed-panel.c:403
-msgid "Hide panel"
-msgstr "Dölj panel"
+#: ../xed/xed-io-error-info-bar.c:1126
+msgid ""
+"If you continue saving this file you can corrupt the document.  Save anyway?"
+msgstr "Om du sparar detta dokument, kan det skadas. Vill du spara ändå?"
 
-#: ../xed/xed-plugin-manager.c:54
-msgid "Plugin"
-msgstr "Insticksmodul"
+#: ../xed/xed-preferences-dialog.c:390
+msgid "Click on this button to select the font to be used by the editor"
+msgstr ""
+"Tryck på denna knapp för att välja det typsnitt som ska användas av "
+"redigeraren"
 
-#: ../xed/xed-plugin-manager.c:55
-msgid "Enabled"
-msgstr "Aktiverad"
+#: ../xed/xed-preferences-dialog.c:404
+#, c-format
+msgid "_Use the system fixed width font (%s)"
+msgstr "_Använd systemets typsnitt med fast breddsteg (%s)"
 
-#: ../xed/xed-plugin-manager.c:504 ../xed/xed-ui.h:68
-msgid "_About"
-msgstr "_Om"
+#: ../xed/xed-preferences-dialog.c:630
+#, c-format
+msgid ""
+"Directory '%s' could not be created: g_mkdir_with_parents() failed: %s"
+msgstr ""
+"Katalogen \"%s\" kunde inte skapas: g_mkdir_with_parents() misslyckades: %s"
 
-#: ../xed/xed-plugin-manager.c:512
-msgid "C_onfigure"
-msgstr "K_onfigurera"
+#: ../xed/xed-preferences-dialog.c:826
+msgid "The selected color scheme cannot be installed."
+msgstr "Det valda färgschemat kan inte installeras."
 
-#: ../xed/xed-plugin-manager.c:521
-msgid "A_ctivate"
-msgstr "A_ktivera"
+#: ../xed/xed-preferences-dialog.c:851 ../xed/xed-preferences-dialog.c:857
+msgid "Add Scheme"
+msgstr "Lägg till schema"
 
-#: ../xed/xed-plugin-manager.c:532
-msgid "Ac_tivate All"
-msgstr "Ak_tivera alla"
+#: ../xed/xed-preferences-dialog.c:854 ../xed/xed-progress-info-bar.c:67
+msgid "Cancel"
+msgstr "Avbryt"
 
-#: ../xed/xed-plugin-manager.c:537
-msgid "_Deactivate All"
-msgstr "_Inaktivera alla"
+#: ../xed/xed-preferences-dialog.c:863
+msgid "Color Scheme Files"
+msgstr "Färgschemafiler"
 
-#: ../xed/xed-plugin-manager.c:803
-msgid "Active _Plugins:"
-msgstr "Aktiva ins_ticksmoduler:"
+#: ../xed/xed-preferences-dialog.c:906
+#, c-format
+msgid "Could not remove color scheme \"%s\"."
+msgstr "Kunde inte ta bort färgschemat \"%s\"."
 
-#: ../xed/xed-plugin-manager.c:829
-msgid "_About Plugin"
-msgstr "_Om insticksmodul"
+#: ../xed/xed-preferences-dialog.c:1100
+#: ../xed/resources/ui/xed-searchbar.ui.h:11
+msgid "Close"
+msgstr "Stäng"
 
-#: ../xed/xed-plugin-manager.c:833
-msgid "C_onfigure Plugin"
-msgstr "K_onfigurera insticksmodul"
+#: ../xed/xed-preferences-dialog.c:1101
+msgid "Help"
+msgstr "Hjälp"
 
-#: ../xed/xed-print-job.c:547
+#: ../xed/xed-preferences-dialog.c:1104
+msgid "Xed Preferences"
+msgstr "Xed inställningar."
+
+#: ../xed/xed-print-job.c:497
 #, c-format
 msgid "File: %s"
 msgstr "Fil: %s"
 
-#: ../xed/xed-print-job.c:556
+#: ../xed/xed-print-job.c:506
 msgid "Page %N of %Q"
 msgstr "Sida %N av %Q"
 
-#: ../xed/xed-print-job.c:813
+#: ../xed/xed-print-job.c:743
 msgid "Preparing..."
 msgstr "Förbereder..."
 
-#: ../xed/xed-print-preferences.ui.h:1
-msgid "Syntax Highlighting"
-msgstr "Syntaxmarkering"
-
-#: ../xed/xed-print-preferences.ui.h:2
-msgid "Print synta_x highlighting"
-msgstr "Skriv ut synta_xmarkering"
-
-#: ../xed/xed-print-preferences.ui.h:4
-msgid "Print line nu_mbers"
-msgstr "Skriv ut sidnu_mmer"
-
-#. 
-#: ../xed/xed-print-preferences.ui.h:6
-msgid "_Number every"
-msgstr "_Tal var"
-
-#. 
-#: ../xed/xed-print-preferences.ui.h:8
-msgid "lines"
-msgstr "rad"
-
-#: ../xed/xed-print-preferences.ui.h:12
-msgid "Page header"
-msgstr "Sidhuvud"
-
-#: ../xed/xed-print-preferences.ui.h:13
-msgid "Print page _headers"
-msgstr "Skriv ut sidh_uvuden"
-
-#: ../xed/xed-print-preferences.ui.h:14
-msgid "Fonts"
-msgstr "Typsnitt"
-
-#: ../xed/xed-print-preferences.ui.h:15
-msgid "_Body:"
-msgstr "_Text:"
-
-#: ../xed/xed-print-preferences.ui.h:16
-msgid "_Line numbers:"
-msgstr "_Radnummer:"
-
-#: ../xed/xed-print-preferences.ui.h:17
-msgid "He_aders and footers:"
-msgstr "Sidh_uvuden och sidfötter:"
-
-#: ../xed/xed-print-preferences.ui.h:18
-msgid "_Restore Default Fonts"
-msgstr "_Återställ standardtypsnitt"
-
-#: ../xed/xed-searchbar.ui.h:1
-msgid "Replace All"
-msgstr "Ersätt alla"
-
-#: ../xed/xed-searchbar.ui.h:2
-msgid "Replace"
-msgstr "Ersätt"
-
-#: ../xed/xed-searchbar.ui.h:3
-msgid "_Search for: "
-msgstr "_Sök efter: "
-
-#: ../xed/xed-searchbar.ui.h:4
-msgid "Replace _with: "
-msgstr "Ersätt _med: "
-
-#: ../xed/xed-searchbar.ui.h:5
-msgid "Next"
-msgstr "Nästa"
-
-#: ../xed/xed-searchbar.ui.h:6
-msgid "Previous"
-msgstr "Föregående"
-
-#: ../xed/xed-searchbar.ui.h:7
-msgid "Case sensitive"
-msgstr "Skiftlägeskänslig"
-
-#: ../xed/xed-searchbar.ui.h:8
-msgid "Whole word"
-msgstr "Helt ord"
-
-#: ../xed/xed-searchbar.ui.h:9
-msgid "Wrap"
-msgstr "Börja om"
-
-#: ../xed/xed-searchbar.ui.h:10
-msgid "Close"
-msgstr "Stäng"
-
-#: ../xed/xed-print-preview.c:564
+#: ../xed/xed-print-preview.c:570
 msgid "Show the previous page"
 msgstr "Visa föregående sida"
 
@@ -1689,83 +1367,347 @@ msgstr "Visa föregående sida"
 msgid "Show the next page"
 msgstr "Visa nästa sida"
 
-#: ../xed/xed-print-preview.c:592
+#: ../xed/xed-print-preview.c:590
 msgid "Current page (Alt+P)"
 msgstr "Aktuell sida (Alt+P)"
 
+#. gtk_label_set_mnemonic_widget ((GtkLabel *) l, mp->priv->page_entry);
+#. We are displaying 'XXX of XXX'.
 #. Translators: the "of" from "1 of 19" in print preview.
-#: ../xed/xed-print-preview.c:615
+#: ../xed/xed-print-preview.c:604
 msgid "of"
 msgstr "av"
 
-#: ../xed/xed-print-preview.c:623
+#: ../xed/xed-print-preview.c:609
 msgid "Page total"
 msgstr "Sidor totalt"
 
-#: ../xed/xed-print-preview.c:624
+#: ../xed/xed-print-preview.c:610
 msgid "The total number of pages in the document"
 msgstr "Det totala antalet sidor i dokumentet"
 
-#: ../xed/xed-print-preview.c:641
+#: ../xed/xed-print-preview.c:630
 msgid "Show multiple pages"
 msgstr "Visa flera sidor"
 
-#: ../xed/xed-print-preview.c:654
+#: ../xed/xed-print-preview.c:648
 msgid "Zoom 1:1"
 msgstr "Zooma 1:1"
 
-#: ../xed/xed-print-preview.c:663
+#: ../xed/xed-print-preview.c:654
 msgid "Zoom to fit the whole page"
 msgstr "Zooma för att passa hela sidan"
 
-#: ../xed/xed-print-preview.c:672
+#: ../xed/xed-print-preview.c:660
 msgid "Zoom the page in"
 msgstr "Zooma in sidan"
 
-#: ../xed/xed-print-preview.c:681
+#: ../xed/xed-print-preview.c:666
 msgid "Zoom the page out"
 msgstr "Zooma ut sidan"
 
-#: ../xed/xed-print-preview.c:693
-msgid "_Close Preview"
-msgstr "_Stäng förhandsvisning"
+#: ../xed/xed-print-preview.c:681
+msgid "_Close preview"
+msgstr "_Stäng förhandsgranskningen"
 
-#: ../xed/xed-print-preview.c:696
+#: ../xed/xed-print-preview.c:683
 msgid "Close print preview"
 msgstr "Stäng förhandsgranskning"
 
-#: ../xed/xed-print-preview.c:766
+#: ../xed/xed-print-preview.c:761
 #, c-format
 msgid "Page %d of %d"
 msgstr "Sida %d av %d"
 
-#: ../xed/xed-print-preview.c:950
+#: ../xed/xed-print-preview.c:946
 msgid "Page Preview"
 msgstr "Förhandsvisning"
 
-#: ../xed/xed-print-preview.c:951
+#: ../xed/xed-print-preview.c:947
 msgid "The preview of a page in the document to be printed"
 msgstr "Förhandsgranskningen av dokumentsidan som ska skrivas ut"
 
-#: ../xed/xed-smart-charset-converter.c:319
-msgid "It is not possible to detect the encoding automatically"
-msgstr "Det är inte möjligt att automatiskt identifiera teckenkodningen"
+#: ../xed/resources/ui/xed-encodings-dialog.ui.h:1
+msgid "Character encodings"
+msgstr "Teckenkodningar"
 
-#: ../xed/xed-searchbar.c:70
+#: ../xed/resources/ui/xed-encodings-dialog.ui.h:2
+msgid "A_vailable encodings:"
+msgstr "Till_gängliga kodningar:"
+
+#: ../xed/resources/ui/xed-encodings-dialog.ui.h:3
+msgid "E_ncodings shown in menu:"
+msgstr "Kod_ningar som visas i menyn:"
+
+#: ../xed/resources/ui/xed-preferences-dialog.ui.h:1
+msgid "Preferences"
+msgstr "Inställningar"
+
+#: ../xed/resources/ui/xed-preferences-dialog.ui.h:2
+#: ../xed/resources/ui/xed-print-preferences.ui.h:9
+msgid "Text Wrapping"
+msgstr "Radbrytning"
+
+#: ../xed/resources/ui/xed-preferences-dialog.ui.h:3
+#: ../plugins/docinfo/docinfo.ui.h:4 ../plugins/time/xed-time-dialog.ui.h:4
+#: ../plugins/time/xed-time-setup-dialog.ui.h:3
+msgid "    "
+msgstr "    "
+
+#: ../xed/resources/ui/xed-preferences-dialog.ui.h:4
+#: ../xed/resources/ui/xed-print-preferences.ui.h:10
+msgid "Enable text _wrapping"
+msgstr "Aktivera text_radbrytning"
+
+#: ../xed/resources/ui/xed-preferences-dialog.ui.h:5
+#: ../xed/resources/ui/xed-print-preferences.ui.h:11
+msgid "Do not _split words over two lines"
+msgstr "_Dela inte ord över två rader"
+
+#: ../xed/resources/ui/xed-preferences-dialog.ui.h:6
+#: ../xed/resources/ui/xed-print-preferences.ui.h:3
+msgid "Line Numbers"
+msgstr "Radnummer"
+
+#: ../xed/resources/ui/xed-preferences-dialog.ui.h:7 ../xed/xed-view.c:381
+msgid "_Display line numbers"
+msgstr "_Visa radnummer"
+
+#: ../xed/resources/ui/xed-preferences-dialog.ui.h:8
+msgid "Current Line"
+msgstr "Aktuell rad"
+
+#: ../xed/resources/ui/xed-preferences-dialog.ui.h:9
+msgid "Highlight current _line"
+msgstr "Färgmarkera a_ktuell rad"
+
+#: ../xed/resources/ui/xed-preferences-dialog.ui.h:10
+msgid "Right Margin"
+msgstr "Högermarginal"
+
+#: ../xed/resources/ui/xed-preferences-dialog.ui.h:11
+msgid "Display right _margin"
+msgstr "Visa höger_marginal"
+
+#: ../xed/resources/ui/xed-preferences-dialog.ui.h:12
+msgid "_Right margin at column:"
+msgstr "_Högermarginal vid kolumn:"
+
+#: ../xed/resources/ui/xed-preferences-dialog.ui.h:13
+msgid "Bracket Matching"
+msgstr "Klammermatchning"
+
+#: ../xed/resources/ui/xed-preferences-dialog.ui.h:14
+msgid "Highlight matching _bracket"
+msgstr "Färgmarkera matchande _klammer"
+
+#: ../xed/resources/ui/xed-preferences-dialog.ui.h:15
+msgid "View"
+msgstr "Visa"
+
+#: ../xed/resources/ui/xed-preferences-dialog.ui.h:16
+msgid "Tab Stops"
+msgstr "Tabulatorstopp"
+
+#: ../xed/resources/ui/xed-preferences-dialog.ui.h:17
+msgid "_Tab width:"
+msgstr "_Tabulatorbredd:"
+
+#: ../xed/resources/ui/xed-preferences-dialog.ui.h:18
+msgid "Insert _spaces instead of tabs"
+msgstr "Infoga _blanksteg istället för tabulatortecken"
+
+#: ../xed/resources/ui/xed-preferences-dialog.ui.h:19
+msgid "Automatic Indentation"
+msgstr "Automatisk indentering"
+
+#: ../xed/resources/ui/xed-preferences-dialog.ui.h:20
+msgid "_Enable automatic indentation"
+msgstr "_Aktivera automatisk indentering"
+
+#: ../xed/resources/ui/xed-preferences-dialog.ui.h:21
+msgid "File Saving"
+msgstr "Filsparning"
+
+#: ../xed/resources/ui/xed-preferences-dialog.ui.h:22
+msgid "Create a _backup copy of files before saving"
+msgstr "Skapa en s_äkerhetskopia av filen innan den sparas"
+
+#: ../xed/resources/ui/xed-preferences-dialog.ui.h:23
+msgid "_Autosave files every"
+msgstr "Spara filer _automatiskt var"
+
+#: ../xed/resources/ui/xed-preferences-dialog.ui.h:24
+msgid "_minutes"
+msgstr "_minut"
+
+#: ../xed/resources/ui/xed-preferences-dialog.ui.h:25
+msgid "Tab Scrolling"
+msgstr "Flikskrollning"
+
+#: ../xed/resources/ui/xed-preferences-dialog.ui.h:26
+msgid "Allow mouse wheel scrolling to change tabs"
+msgstr "Tillåt flikbyte med skrollhjulet"
+
+#: ../xed/resources/ui/xed-preferences-dialog.ui.h:27
+msgid "Editor"
+msgstr "Redigerare"
+
+#: ../xed/resources/ui/xed-preferences-dialog.ui.h:28
+msgid "Font"
+msgstr "Typsnitt"
+
+#: ../xed/resources/ui/xed-preferences-dialog.ui.h:29
+msgid "Editor _font: "
+msgstr "Redigerar_typsnitt: "
+
+#: ../xed/resources/ui/xed-preferences-dialog.ui.h:30
+msgid "Pick the editor font"
+msgstr "Välj redigerartypsnittet"
+
+#: ../xed/resources/ui/xed-preferences-dialog.ui.h:31
+msgid "Color Scheme"
+msgstr "Färgschema"
+
+#: ../xed/resources/ui/xed-preferences-dialog.ui.h:32
+msgid "Use dark theme variant (if available)"
+msgstr "Använd mörk temavariant (om tillgänglig)"
+
+#: ../xed/resources/ui/xed-preferences-dialog.ui.h:33
+msgid "_Add..."
+msgstr "_Lägg till..."
+
+#: ../xed/resources/ui/xed-preferences-dialog.ui.h:34
+msgid "Font & Colors"
+msgstr "Typsnitt och färger"
+
+#: ../xed/resources/ui/xed-preferences-dialog.ui.h:35
+msgid "Plugins"
+msgstr "Insticksmoduler"
+
+#: ../xed/resources/ui/xed-print-preferences.ui.h:1
+msgid "Syntax Highlighting"
+msgstr "Syntaxmarkering"
+
+#: ../xed/resources/ui/xed-print-preferences.ui.h:2
+msgid "Print synta_x highlighting"
+msgstr "Skriv ut synta_xmarkering"
+
+#: ../xed/resources/ui/xed-print-preferences.ui.h:4
+msgid "Print line nu_mbers"
+msgstr "Skriv ut sidnu_mmer"
+
+#. 
+#: ../xed/resources/ui/xed-print-preferences.ui.h:6
+msgid "_Number every"
+msgstr "_Tal var"
+
+#. 
+#: ../xed/resources/ui/xed-print-preferences.ui.h:8
+msgid "lines"
+msgstr "rad"
+
+#: ../xed/resources/ui/xed-print-preferences.ui.h:12
+msgid "Page header"
+msgstr "Sidhuvud"
+
+#: ../xed/resources/ui/xed-print-preferences.ui.h:13
+msgid "Print page _headers"
+msgstr "Skriv ut sidh_uvuden"
+
+#: ../xed/resources/ui/xed-print-preferences.ui.h:14
+msgid "Fonts"
+msgstr "Typsnitt"
+
+#: ../xed/resources/ui/xed-print-preferences.ui.h:15
+msgid "_Body:"
+msgstr "_Text:"
+
+#: ../xed/resources/ui/xed-print-preferences.ui.h:16
+msgid "_Line numbers:"
+msgstr "_Radnummer:"
+
+#: ../xed/resources/ui/xed-print-preferences.ui.h:17
+msgid "He_aders and footers:"
+msgstr "Sidh_uvuden och sidfötter:"
+
+#: ../xed/resources/ui/xed-print-preferences.ui.h:18
+msgid "_Restore Default Fonts"
+msgstr "_Återställ standardtypsnitt"
+
+#: ../xed/resources/ui/xed-searchbar.ui.h:1
+msgid "Replace All"
+msgstr "Ersätt alla"
+
+#: ../xed/resources/ui/xed-searchbar.ui.h:2
+msgid "Replace"
+msgstr "Ersätt"
+
+#: ../xed/resources/ui/xed-searchbar.ui.h:3
+msgid "_Search for: "
+msgstr "_Sök efter: "
+
+#: ../xed/resources/ui/xed-searchbar.ui.h:4
+msgid "Replace _with: "
+msgstr "Ersätt _med: "
+
+#: ../xed/resources/ui/xed-searchbar.ui.h:5
+msgid "Next"
+msgstr "Nästa"
+
+#: ../xed/resources/ui/xed-searchbar.ui.h:6
+msgid "Previous"
+msgstr "Föregående"
+
+#: ../xed/resources/ui/xed-searchbar.ui.h:7
+msgid "Regular expression"
+msgstr "Reguljärt uttryck"
+
+#: ../xed/resources/ui/xed-searchbar.ui.h:8
+msgid "Case sensitive"
+msgstr "Skiftlägeskänslig"
+
+#: ../xed/resources/ui/xed-searchbar.ui.h:9
+msgid "Whole word"
+msgstr "Helt ord"
+
+#: ../xed/resources/ui/xed-searchbar.ui.h:10
+msgid "Wrap"
+msgstr "Börja om"
+
+#: ../xed/xed-searchbar.c:95
 #, c-format
 msgid "Found and replaced %d occurrence"
 msgid_plural "Found and replaced %d occurrences"
 msgstr[0] "Hittade och ersatte %d förekomst"
 msgstr[1] "Hittade och ersatte %d förekomster"
 
-#: ../xed/xed-searchbar.c:78
+#: ../xed/xed-searchbar.c:105
 msgid "Found and replaced one occurrence"
 msgstr "Hittade och ersatte en förekomst"
 
-#: ../xed/xed-searchbar.c:96
+#: ../xed/xed-searchbar.c:127
 #, c-format
 msgid "\"%s\" not found"
 msgstr "\"%s\" hittades inte"
+
+#: ../xed/xed-searchbar.c:305
+msgid "No matches found"
+msgstr "Inga träffar hittades"
+
+#: ../xed/xed-searchbar.c:313
+#, c-format
+msgid "%d match"
+msgid_plural "%d matches"
+msgstr[0] "%d träff"
+msgstr[1] "%d träffar"
+
+#: ../xed/xed-searchbar.c:319
+#, c-format
+msgid "%d of %d match"
+msgid_plural "%d of %d matches"
+msgstr[0] "%d av %d träff"
+msgstr[1] "%d av %d träffar"
 
 #: ../xed/xed-statusbar.c:70 ../xed/xed-statusbar.c:76
 msgid "OVR"
@@ -1777,100 +1719,89 @@ msgstr "INF"
 
 #. Translators: "Ln" is an abbreviation for "Line", Col is an abbreviation for "Column". Please,
 #. use abbreviations if possible to avoid space problems.
-#: ../xed/xed-statusbar.c:252
+#: ../xed/xed-statusbar.c:231
 #, c-format
 msgid "  Ln %d, Col %d"
 msgstr "  Rad %d, kolumn %d"
 
-#: ../xed/xed-statusbar.c:353
+#: ../xed/xed-statusbar.c:330
 #, c-format
 msgid "There is a tab with errors"
 msgid_plural "There are %d tabs with errors"
 msgstr[0] "Det finns en flik med fel"
 msgstr[1] "Det finns %d flikar med fel"
 
-#: ../xed/xed-style-scheme-manager.c:214
-#, c-format
-msgid ""
-"Directory '%s' could not be created: g_mkdir_with_parents() failed: %s"
-msgstr ""
-"Katalogen \"%s\" kunde inte skapas: g_mkdir_with_parents() misslyckades: %s"
+#: ../xed/xed-tab-label.c:278
+msgid "Close document"
+msgstr "Stäng dokument"
 
 #. Translators: the first %s is a file name (e.g. test.txt) the second one
 #. is a directory (e.g. ssh://master.gnome.org/home/users/paolo)
-#: ../xed/xed-tab.c:656
+#: ../xed/xed-tab.c:716
 #, c-format
 msgid "Reverting %s from %s"
 msgstr "Återställer %s från %s"
 
-#: ../xed/xed-tab.c:663
+#: ../xed/xed-tab.c:721
 #, c-format
 msgid "Reverting %s"
 msgstr "Återställer %s"
 
 #. Translators: the first %s is a file name (e.g. test.txt) the second one
 #. is a directory (e.g. ssh://master.gnome.org/home/users/paolo)
-#: ../xed/xed-tab.c:679
+#: ../xed/xed-tab.c:734
 #, c-format
 msgid "Loading %s from %s"
 msgstr "Läser in %s från %s"
 
-#: ../xed/xed-tab.c:686
+#: ../xed/xed-tab.c:739
 #, c-format
 msgid "Loading %s"
 msgstr "Läser in %s"
 
 #. Translators: the first %s is a file name (e.g. test.txt) the second one
 #. is a directory (e.g. ssh://master.gnome.org/home/users/paolo)
-#: ../xed/xed-tab.c:769
+#: ../xed/xed-tab.c:820
 #, c-format
 msgid "Saving %s to %s"
 msgstr "Sparar %s till %s"
 
-#: ../xed/xed-tab.c:776
+#: ../xed/xed-tab.c:825
 #, c-format
 msgid "Saving %s"
 msgstr "Sparar %s"
 
 #. Read only
-#: ../xed/xed-tab.c:1647
+#: ../xed/xed-tab.c:1305
 msgid "RO"
 msgstr "SKRIVSK"
 
-#: ../xed/xed-tab.c:1694
+#: ../xed/xed-tab.c:1353
 #, c-format
 msgid "Error opening file %s"
 msgstr "Fel vid öppning av filen %s"
 
-#: ../xed/xed-tab.c:1699
+#: ../xed/xed-tab.c:1357
 #, c-format
 msgid "Error reverting file %s"
 msgstr "Fel vid återställning av filen %s"
 
-#: ../xed/xed-tab.c:1704
+#: ../xed/xed-tab.c:1361
 #, c-format
 msgid "Error saving file %s"
 msgstr "Fel vid sparande av filen %s"
 
-#: ../xed/xed-tab.c:1725
-msgid "Unicode (UTF-8)"
-msgstr "Unicode (UTF-8)"
-
-#: ../xed/xed-tab.c:1732
+#: ../xed/xed-tab.c:1394
 msgid "Name:"
 msgstr "Namn:"
 
-#: ../xed/xed-tab.c:1733
+#: ../xed/xed-tab.c:1395
 msgid "MIME Type:"
 msgstr "MIME-typ:"
 
-#: ../xed/xed-tab.c:1734
+#: ../xed/xed-tab.c:1396
 msgid "Encoding:"
 msgstr "Kodning:"
-
-#: ../xed/xed-tab-label.c:275
-msgid "Close document"
-msgstr "Stäng dokument"
 
 #. Toplevel
 #: ../xed/xed-ui.h:47
@@ -1896,10 +1827,6 @@ msgstr "Verkty_g"
 #: ../xed/xed-ui.h:52
 msgid "_Documents"
 msgstr "_Dokument"
-
-#: ../xed/xed-ui.h:53
-msgid "_Help"
-msgstr "_Hjälp"
 
 #. File menu
 #: ../xed/xed-ui.h:56
@@ -1936,6 +1863,10 @@ msgstr "_Innehåll"
 msgid "Open the xed manual"
 msgstr "Öppna manulen för xed."
 
+#: ../xed/xed-ui.h:68
+msgid "_About"
+msgstr "_Om"
+
 #: ../xed/xed-ui.h:69
 msgid "About this application"
 msgstr "Om detta program"
@@ -1943,11 +1874,6 @@ msgstr "Om detta program"
 #: ../xed/xed-ui.h:73
 msgid "Leave fullscreen mode"
 msgstr "Lämna helskärmsläget"
-
-#. File menu
-#: ../xed/xed-ui.h:80
-msgid "_Save"
-msgstr "_Spara"
 
 #: ../xed/xed-ui.h:81
 msgid "Save the current file"
@@ -2026,7 +1952,9 @@ msgstr "_Klistra in"
 msgid "Paste the clipboard"
 msgstr "Klistra in från urklipp"
 
-#: ../xed/xed-ui.h:102 ../plugins/filebrowser/xed-file-browser-widget.c:800
+#: ../xed/xed-ui.h:102 ../plugins/filebrowser/xed-file-browser-plugin.c:972
+#: ../plugins/filebrowser/xed-file-browser-plugin.c:1007
+#: ../plugins/filebrowser/xed-file-browser-widget.c:764
 msgid "_Delete"
 msgstr "_Ta bort"
 
@@ -2050,7 +1978,7 @@ msgstr "_Färgmarkeringsläge"
 #. Search menu
 #: ../xed/xed-ui.h:111
 msgid "_Find"
-msgstr "_Hitta"
+msgstr "_Sök"
 
 #: ../xed/xed-ui.h:112
 msgid "Search for text"
@@ -2125,7 +2053,7 @@ msgstr "_Flytta till nytt fönster"
 msgid "Move the current document to a new window"
 msgstr "Flytta det aktuella dokument till ett nytt fönster"
 
-#: ../xed/xed-ui.h:138
+#: ../xed/xed-ui.h:138 ../plugins/spell/spell-checker.ui.h:14
 msgid "_Close"
 msgstr "_Stäng"
 
@@ -2161,47 +2089,51 @@ msgstr "Visa eller dölj statusraden i det aktuella fönstret"
 msgid "Edit text in fullscreen"
 msgstr "Redigera text i helskärmsläge"
 
-#: ../xed/xed-ui.h:165
+#: ../xed/xed-ui.h:160
+msgid "_Word wrap"
+msgstr "_Ordbrytning"
+
+#: ../xed/xed-ui.h:161
+msgid "Set word wrap for the current document"
+msgstr "Ange radbrytning vid hela ord, i aktuellt dokument"
+
+#: ../xed/xed-ui.h:168
 msgid "Side _Pane"
 msgstr "Sido_panel"
 
-#: ../xed/xed-ui.h:166
+#: ../xed/xed-ui.h:169
 msgid "Show or hide the side pane in the current window"
 msgstr "Visa eller dölj sidopanelen i det aktuella fönstret"
 
-#: ../xed/xed-ui.h:168
+#: ../xed/xed-ui.h:171
 msgid "_Bottom Pane"
 msgstr "_Underpanel"
 
-#: ../xed/xed-ui.h:169
+#: ../xed/xed-ui.h:172
 msgid "Show or hide the bottom pane in the current window"
 msgstr "Visa eller dölj underpanelen i det aktuella fönstret"
 
-#: ../xed/xed-utils.c:1093
+#: ../xed/xed-utils.c:925
 msgid "Please check your installation."
 msgstr "Kontrollera din installation."
 
-#: ../xed/xed-utils.c:1166
+#: ../xed/xed-utils.c:993
 #, c-format
 msgid "Unable to open UI file %s. Error: %s"
 msgstr "Kunde inte öppna gränssnittsfilen %s. Fel: %s"
 
-#: ../xed/xed-utils.c:1186
+#: ../xed/xed-utils.c:1013
 #, c-format
 msgid "Unable to find the object '%s' inside file %s."
 msgstr "Kunde inte hitta objektet \"%s\" inne i filen %s."
 
 #. Translators: '/ on <remote-share>'
-#: ../xed/xed-utils.c:1346
+#: ../xed/xed-utils.c:1181
 #, c-format
 msgid "/ on %s"
 msgstr "/ på %s"
 
-#: ../xed/xed-view.c:719
-msgid "Line you want to move the cursor to"
-msgstr "Rad du vill flytta markören till"
-
-#: ../xed/xed-window.c:742
+#: ../xed/xed-window.c:773
 #, c-format
 msgid "Use %s highlight mode"
 msgstr "Använd färgmarkeringsläge för %s"
@@ -2209,88 +2141,48 @@ msgstr "Använd färgmarkeringsläge för %s"
 #. add the "Plain Text" item before all the others
 #. Translators: "Plain Text" means that no highlight mode is selected in the
 #. * "View->Highlight Mode" submenu and so syntax highlighting is disabled
-#: ../xed/xed-window.c:782 ../xed/xed-window.c:1591
+#: ../xed/xed-window.c:861 ../xed/xed-window.c:1679
 msgid "Plain Text"
 msgstr "Oformaterad text"
 
-#: ../xed/xed-window.c:782
+#: ../xed/xed-window.c:861
 msgid "Disable syntax highlighting"
 msgstr "Inaktivera syntaxmarkering"
 
 #. Translators: %s is a URI
-#: ../xed/xed-window.c:1036
+#: ../xed/xed-window.c:1135
 #, c-format
 msgid "Open '%s'"
 msgstr "Öppna \"%s\""
 
 #. Translators: %s is a URI
-#: ../xed/xed-window.c:1321
+#: ../xed/xed-window.c:1414
 #, c-format
 msgid "Activate '%s'"
 msgstr "Aktivera \"%s\""
 
-#: ../xed/xed-window.c:1572
+#: ../xed/xed-window.c:1663
 msgid "Use Spaces"
 msgstr "Använd blanksteg"
 
-#: ../xed/xed-window.c:1629
+#: ../xed/xed-window.c:1728
 msgid "Tab Width"
 msgstr "Tabulatorbredd"
 
-#: ../xed/xed-window.c:3310
+#: ../xed/xed-window.c:2440
+msgid "There are unsaved documents"
+msgstr "Det finns osparade dokument"
+
+#: ../xed/xed-window.c:3586
 msgid "Elevated Privileges"
 msgstr "Förhöjda Rättigheter"
 
-#: ../plugins/changecase/changecase.xed-plugin.desktop.in.h:1
-msgid "Change Case"
-msgstr "Ändra skiftläge"
-
-#: ../plugins/changecase/changecase.xed-plugin.desktop.in.h:2
-msgid "Changes the case of selected text."
-msgstr "Ändrar skiftläget på den markerade texten."
-
-#: ../plugins/changecase/xed-changecase-plugin.c:222
-msgid "C_hange Case"
-msgstr "Ä_ndra skiftläge"
-
-#: ../plugins/changecase/xed-changecase-plugin.c:223
-msgid "All _Upper Case"
-msgstr "Gör allt till _versaler"
-
-#: ../plugins/changecase/xed-changecase-plugin.c:224
-msgid "Change selected text to upper case"
-msgstr "Ändra den markerade texten till versaler"
-
-#: ../plugins/changecase/xed-changecase-plugin.c:226
-msgid "All _Lower Case"
-msgstr "Gör allt till _gemener"
-
-#: ../plugins/changecase/xed-changecase-plugin.c:227
-msgid "Change selected text to lower case"
-msgstr "Ändra den markerade texten till gemener"
-
-#: ../plugins/changecase/xed-changecase-plugin.c:229
-msgid "_Invert Case"
-msgstr "_Invertera skiftläge"
-
-#: ../plugins/changecase/xed-changecase-plugin.c:230
-msgid "Invert the case of selected text"
-msgstr "Invertera skiftläget på den markerade texten"
-
-#: ../plugins/changecase/xed-changecase-plugin.c:232
-msgid "_Title Case"
-msgstr "_Engelsk rubriksversalisering"
-
-#: ../plugins/changecase/xed-changecase-plugin.c:233
-msgid "Capitalize the first letter of each selected word"
-msgstr "Gör den första bokstaven i varje markerat ord versal"
-
-#: ../plugins/docinfo/docinfo.xed-plugin.desktop.in.h:1
+#: ../plugins/docinfo/docinfo.plugin.desktop.in.h:1
 #: ../plugins/docinfo/docinfo.ui.h:1
 msgid "Document Statistics"
 msgstr "Dokumentstatistik"
 
-#: ../plugins/docinfo/docinfo.xed-plugin.desktop.in.h:2
+#: ../plugins/docinfo/docinfo.plugin.desktop.in.h:2
 msgid ""
 "Analyzes the current document and reports the number of words, lines, "
 "characters and non-space characters in it."
@@ -2334,19 +2226,19 @@ msgstr "Dokument"
 msgid "Selection"
 msgstr "Markering"
 
-#: ../plugins/docinfo/xed-docinfo-plugin.c:423
+#: ../plugins/docinfo/xed-docinfo-plugin.c:382
 msgid "_Document Statistics"
 msgstr "_Dokumentstatistik"
 
-#: ../plugins/docinfo/xed-docinfo-plugin.c:425
+#: ../plugins/docinfo/xed-docinfo-plugin.c:384
 msgid "Get statistical information on the current document"
 msgstr "Få statistikinformation om det aktuella dokumentet"
 
-#: ../plugins/filebrowser/filebrowser.xed-plugin.desktop.in.h:1
+#: ../plugins/filebrowser/filebrowser.plugin.desktop.in.h:1
 msgid "File Browser Pane"
 msgstr "Filbläddrarpanel"
 
-#: ../plugins/filebrowser/filebrowser.xed-plugin.desktop.in.h:2
+#: ../plugins/filebrowser/filebrowser.plugin.desktop.in.h:2
 msgid "Easy file access from the side pane"
 msgstr "Enkel filåtkomst från sidopanelen"
 
@@ -2395,10 +2287,18 @@ msgstr ""
 "toppen av filter_mode."
 
 #: ../plugins/filebrowser/org.x.editor.plugins.filebrowser.gschema.xml.in.h:7
+msgid "Terminal Command"
+msgstr "Terminalkommando"
+
+#: ../plugins/filebrowser/org.x.editor.plugins.filebrowser.gschema.xml.in.h:8
+msgid "The terminal command when using the \"Open terminal here\" command."
+msgstr "Terminalkommando vid användning av kommandot \"Öppna terminal här\"."
+
+#: ../plugins/filebrowser/org.x.editor.plugins.filebrowser.gschema.xml.in.h:9
 msgid "Open With Tree View"
 msgstr "Öppna med trädvy"
 
-#: ../plugins/filebrowser/org.x.editor.plugins.filebrowser.gschema.xml.in.h:8
+#: ../plugins/filebrowser/org.x.editor.plugins.filebrowser.gschema.xml.in.h:10
 msgid ""
 "Open the tree view when the file browser plugin gets loaded instead of the "
 "bookmarks view"
@@ -2406,11 +2306,11 @@ msgstr ""
 "Öppna trädvyn när filbläddrarens insticksmodul blir inläst istället för "
 "bokmärkesvyn"
 
-#: ../plugins/filebrowser/org.x.editor.plugins.filebrowser.gschema.xml.in.h:9
+#: ../plugins/filebrowser/org.x.editor.plugins.filebrowser.gschema.xml.in.h:11
 msgid "File Browser Root Directory"
 msgstr "Filbläddrarens rotkatalog"
 
-#: ../plugins/filebrowser/org.x.editor.plugins.filebrowser.gschema.xml.in.h:10
+#: ../plugins/filebrowser/org.x.editor.plugins.filebrowser.gschema.xml.in.h:12
 msgid ""
 "The file browser root directory to use when loading the file browser plugin "
 "and onload/tree_view is TRUE."
@@ -2418,11 +2318,11 @@ msgstr ""
 "Filbläddrarens rotkatalog att använda när filbläddrarens insticksmodul läses "
 "in och onload/tree_view är TRUE."
 
-#: ../plugins/filebrowser/org.x.editor.plugins.filebrowser.gschema.xml.in.h:11
+#: ../plugins/filebrowser/org.x.editor.plugins.filebrowser.gschema.xml.in.h:13
 msgid "File Browser Virtual Root Directory"
 msgstr "Filbläddrarens virtuella rotkatalog"
 
-#: ../plugins/filebrowser/org.x.editor.plugins.filebrowser.gschema.xml.in.h:12
+#: ../plugins/filebrowser/org.x.editor.plugins.filebrowser.gschema.xml.in.h:14
 msgid ""
 "The file browser virtual root directory to use when loading the file browser "
 "plugin when onload/tree_view is TRUE. The virtual root must always be below "
@@ -2432,71 +2332,71 @@ msgstr ""
 "insticksmodul läses in när onload/tree_view är TRUE. Den virtuella roten "
 "måste alltid vara under den aktuella roten."
 
-#: ../plugins/filebrowser/org.x.editor.plugins.filebrowser.gschema.xml.in.h:13
+#: ../plugins/filebrowser/org.x.editor.plugins.filebrowser.gschema.xml.in.h:15
 msgid "Enable Restore of Remote Locations"
 msgstr "Aktivera återställning av fjärrplatser"
 
-#: ../plugins/filebrowser/org.x.editor.plugins.filebrowser.gschema.xml.in.h:14
+#: ../plugins/filebrowser/org.x.editor.plugins.filebrowser.gschema.xml.in.h:16
 msgid "Sets whether to enable restoring of remote locations."
 msgstr "Ställer in huruvida återställning av fjärrplatser ska aktiveras."
 
-#: ../plugins/filebrowser/xed-file-bookmarks-store.c:235
+#: ../plugins/filebrowser/xed-file-bookmarks-store.c:256
 msgid "File System"
 msgstr "Filsystem"
 
-#: ../plugins/filebrowser/xed-file-browser-plugin.c:407
+#: ../plugins/filebrowser/xed-file-browser-plugin.c:445
 msgid "_Set root to active document"
 msgstr "_Ställ in rot till aktivt dokument"
 
-#: ../plugins/filebrowser/xed-file-browser-plugin.c:409
+#: ../plugins/filebrowser/xed-file-browser-plugin.c:447
 msgid "Set the root to the active document location"
 msgstr "Ställ in roten till platsen för det aktiva dokumentet"
 
-#: ../plugins/filebrowser/xed-file-browser-plugin.c:414
+#: ../plugins/filebrowser/xed-file-browser-plugin.c:452
 msgid "_Open terminal here"
 msgstr "_Öppna en terminal här"
 
-#: ../plugins/filebrowser/xed-file-browser-plugin.c:416
+#: ../plugins/filebrowser/xed-file-browser-plugin.c:454
 msgid "Open a terminal at the currently opened directory"
 msgstr "Öppna en terminal vid för närvarande öppnad katalog"
 
-#: ../plugins/filebrowser/xed-file-browser-plugin.c:557
+#: ../plugins/filebrowser/xed-file-browser-plugin.c:566
 msgid "File Browser"
 msgstr "Filbläddrare"
 
-#: ../plugins/filebrowser/xed-file-browser-plugin.c:674
+#: ../plugins/filebrowser/xed-file-browser-plugin.c:677
 msgid "An error occurred while creating a new directory"
 msgstr "Ett fel uppstod vid skapandet av en ny katalog"
 
-#: ../plugins/filebrowser/xed-file-browser-plugin.c:677
+#: ../plugins/filebrowser/xed-file-browser-plugin.c:680
 msgid "An error occurred while creating a new file"
 msgstr "Ett fel uppstod vid skapandet av en ny fil"
 
-#: ../plugins/filebrowser/xed-file-browser-plugin.c:682
+#: ../plugins/filebrowser/xed-file-browser-plugin.c:683
 msgid "An error occurred while renaming a file or directory"
 msgstr "Ett fel uppstod vid namnbyte av en fil eller katalog"
 
-#: ../plugins/filebrowser/xed-file-browser-plugin.c:687
+#: ../plugins/filebrowser/xed-file-browser-plugin.c:686
 msgid "An error occurred while deleting a file or directory"
 msgstr "Ett fel uppstod vid borttagning av en fil eller katalog"
 
-#: ../plugins/filebrowser/xed-file-browser-plugin.c:692
+#: ../plugins/filebrowser/xed-file-browser-plugin.c:689
 msgid "An error occurred while opening a directory in the file manager"
 msgstr "Ett fel uppstod vid öppnandet av en katalog i filhanteraren"
 
-#: ../plugins/filebrowser/xed-file-browser-plugin.c:696
+#: ../plugins/filebrowser/xed-file-browser-plugin.c:692
 msgid "An error occurred while setting a root directory"
 msgstr "Ett fel uppstod vid inställning av en rotkatalog"
 
-#: ../plugins/filebrowser/xed-file-browser-plugin.c:700
+#: ../plugins/filebrowser/xed-file-browser-plugin.c:695
 msgid "An error occurred while loading a directory"
 msgstr "Ett fel uppstod vid inläsning av en katalog"
 
-#: ../plugins/filebrowser/xed-file-browser-plugin.c:703
+#: ../plugins/filebrowser/xed-file-browser-plugin.c:698
 msgid "An error occurred"
 msgstr "Ett fel inträffade"
 
-#: ../plugins/filebrowser/xed-file-browser-plugin.c:934
+#: ../plugins/filebrowser/xed-file-browser-plugin.c:955
 msgid ""
 "Cannot move file to trash, do you\n"
 "want to delete permanently?"
@@ -2504,33 +2404,33 @@ msgstr ""
 "Kan inte flytta filen till papperskorgen.\n"
 "Vill du ta bort den permanent?"
 
-#: ../plugins/filebrowser/xed-file-browser-plugin.c:938
+#: ../plugins/filebrowser/xed-file-browser-plugin.c:960
 #, c-format
 msgid "The file \"%s\" cannot be moved to the trash."
 msgstr "Filen (%s) kan inte flyttas till papperskorgen."
 
-#: ../plugins/filebrowser/xed-file-browser-plugin.c:941
+#: ../plugins/filebrowser/xed-file-browser-plugin.c:965
 msgid "The selected files cannot be moved to the trash."
 msgstr "De markerade filerna kan inte flyttas till papperskorgen."
 
-#: ../plugins/filebrowser/xed-file-browser-plugin.c:971
+#: ../plugins/filebrowser/xed-file-browser-plugin.c:993
 #, c-format
 msgid "Are you sure you want to permanently delete \"%s\"?"
 msgstr "Är du säker på att du vill ta bort \"%s\" permanent?"
 
-#: ../plugins/filebrowser/xed-file-browser-plugin.c:974
+#: ../plugins/filebrowser/xed-file-browser-plugin.c:998
 msgid "Are you sure you want to permanently delete the selected files?"
 msgstr "Är du säker på att du vill ta bort de markerade filerna permanent?"
 
-#: ../plugins/filebrowser/xed-file-browser-plugin.c:977
+#: ../plugins/filebrowser/xed-file-browser-plugin.c:1001
 msgid "If you delete an item, it is permanently lost."
 msgstr "Om du tar bort ett objekt är det borta för alltid."
 
-#: ../plugins/filebrowser/xed-file-browser-store.c:1667
+#: ../plugins/filebrowser/xed-file-browser-store.c:1818
 msgid "(Empty)"
 msgstr "(Tom)"
 
-#: ../plugins/filebrowser/xed-file-browser-store.c:3305
+#: ../plugins/filebrowser/xed-file-browser-store.c:3508
 msgid ""
 "The renamed file is currently filtered out. You need to adjust your filter "
 "settings to make the file visible"
@@ -2539,11 +2439,11 @@ msgstr ""
 "dina filterinställningar för att göra filen synlig"
 
 #. Translators: This is the default name of new files created by the file browser pane.
-#: ../plugins/filebrowser/xed-file-browser-store.c:3544
-msgid "file"
-msgstr "fil"
+#: ../plugins/filebrowser/xed-file-browser-store.c:3774
+msgid "Untitled File"
+msgstr "Namnlös fil"
 
-#: ../plugins/filebrowser/xed-file-browser-store.c:3568
+#: ../plugins/filebrowser/xed-file-browser-store.c:3802
 msgid ""
 "The new file is currently filtered out. You need to adjust your filter "
 "settings to make the file visible"
@@ -2552,11 +2452,11 @@ msgstr ""
 "filterinställningar för att göra filen synlig"
 
 #. Translators: This is the default name of new directories created by the file browser pane.
-#: ../plugins/filebrowser/xed-file-browser-store.c:3597
-msgid "directory"
-msgstr "katalog"
+#: ../plugins/filebrowser/xed-file-browser-store.c:3829
+msgid "Untitled Folder"
+msgstr "Namnlös mapp"
 
-#: ../plugins/filebrowser/xed-file-browser-store.c:3617
+#: ../plugins/filebrowser/xed-file-browser-store.c:3854
 msgid ""
 "The new directory is currently filtered out. You need to adjust your filter "
 "settings to make the directory visible"
@@ -2564,234 +2464,253 @@ msgstr ""
 "Den nya katalogen är för närvarande bortfiltrerad. Du behöver justera dina "
 "filterinställningar för att göra katalogen synlig"
 
-#: ../plugins/filebrowser/xed-file-browser-widget.c:711
+#: ../plugins/filebrowser/xed-file-browser-widget.c:720
 msgid "Bookmarks"
 msgstr "Bokmärken"
 
-#: ../plugins/filebrowser/xed-file-browser-widget.c:792
+#: ../plugins/filebrowser/xed-file-browser-widget.c:757
 msgid "_Filter"
 msgstr "_Filter"
 
-#: ../plugins/filebrowser/xed-file-browser-widget.c:797
+#: ../plugins/filebrowser/xed-file-browser-widget.c:762
 msgid "_Move to Trash"
 msgstr "_Flytta till papperskorg"
 
-#: ../plugins/filebrowser/xed-file-browser-widget.c:798
+#: ../plugins/filebrowser/xed-file-browser-widget.c:763
 msgid "Move selected file or folder to trash"
 msgstr "Flytta markerad fil eller mapp till papperskorgen"
 
-#: ../plugins/filebrowser/xed-file-browser-widget.c:801
+#: ../plugins/filebrowser/xed-file-browser-widget.c:765
 msgid "Delete selected file or folder"
 msgstr "Ta bort markerad fil eller mapp"
 
-#: ../plugins/filebrowser/xed-file-browser-widget.c:807
-msgid "Open"
-msgstr "Öppna"
-
-#: ../plugins/filebrowser/xed-file-browser-widget.c:808
+#: ../plugins/filebrowser/xed-file-browser-widget.c:771
 msgid "Open selected file"
 msgstr "Öppna markerad fil"
 
-#: ../plugins/filebrowser/xed-file-browser-widget.c:814
+#: ../plugins/filebrowser/xed-file-browser-widget.c:776
 msgid "Up"
 msgstr "Upp"
 
-#: ../plugins/filebrowser/xed-file-browser-widget.c:815
+#: ../plugins/filebrowser/xed-file-browser-widget.c:777
 msgid "Open the parent folder"
 msgstr "Öppna föräldramappen"
 
-#: ../plugins/filebrowser/xed-file-browser-widget.c:820
+#: ../plugins/filebrowser/xed-file-browser-widget.c:782
 msgid "_New Folder"
 msgstr "_Ny mapp"
 
-#: ../plugins/filebrowser/xed-file-browser-widget.c:821
+#: ../plugins/filebrowser/xed-file-browser-widget.c:783
 msgid "Add new empty folder"
 msgstr "Lägg till ny tom mapp"
 
-#: ../plugins/filebrowser/xed-file-browser-widget.c:823
+#: ../plugins/filebrowser/xed-file-browser-widget.c:784
 msgid "New F_ile"
 msgstr "Ny f_il"
 
-#: ../plugins/filebrowser/xed-file-browser-widget.c:824
+#: ../plugins/filebrowser/xed-file-browser-widget.c:785
 msgid "Add new empty file"
 msgstr "Lägg till en ny tom fil"
 
-#: ../plugins/filebrowser/xed-file-browser-widget.c:829
-msgid "_Rename"
-msgstr "_Byt namn"
+#: ../plugins/filebrowser/xed-file-browser-widget.c:790
+msgid "_Rename..."
+msgstr "_Byt namn…"
 
-#: ../plugins/filebrowser/xed-file-browser-widget.c:830
+#: ../plugins/filebrowser/xed-file-browser-widget.c:791
 msgid "Rename selected file or folder"
 msgstr "Byt namn på markerad fil eller mapp"
 
-#: ../plugins/filebrowser/xed-file-browser-widget.c:836
+#: ../plugins/filebrowser/xed-file-browser-widget.c:796
 msgid "_Previous Location"
 msgstr "_Föregående plats"
 
-#: ../plugins/filebrowser/xed-file-browser-widget.c:837
+#: ../plugins/filebrowser/xed-file-browser-widget.c:797
 msgid "Go to the previous visited location"
 msgstr "Gå till föregående besökt plats"
 
-#: ../plugins/filebrowser/xed-file-browser-widget.c:839
+#: ../plugins/filebrowser/xed-file-browser-widget.c:798
 msgid "_Next Location"
 msgstr "_Nästa plats"
 
-#: ../plugins/filebrowser/xed-file-browser-widget.c:840
+#: ../plugins/filebrowser/xed-file-browser-widget.c:799
 msgid "Go to the next visited location"
 msgstr "Gå till nästa besökta plats"
 
-#: ../plugins/filebrowser/xed-file-browser-widget.c:841
+#: ../plugins/filebrowser/xed-file-browser-widget.c:800
 msgid "Re_fresh View"
 msgstr "Upp_datera vy"
 
-#: ../plugins/filebrowser/xed-file-browser-widget.c:842
+#: ../plugins/filebrowser/xed-file-browser-widget.c:801
 msgid "Refresh the view"
 msgstr "Uppdatera vyn"
 
-#: ../plugins/filebrowser/xed-file-browser-widget.c:843
-#: ../plugins/filebrowser/xed-file-browser-widget.c:861
+#: ../plugins/filebrowser/xed-file-browser-widget.c:802
+#: ../plugins/filebrowser/xed-file-browser-widget.c:816
 msgid "_View Folder"
 msgstr "_Visa mapp"
 
-#: ../plugins/filebrowser/xed-file-browser-widget.c:844
-#: ../plugins/filebrowser/xed-file-browser-widget.c:862
+#: ../plugins/filebrowser/xed-file-browser-widget.c:803
+#: ../plugins/filebrowser/xed-file-browser-widget.c:817
 msgid "View folder in file manager"
 msgstr "Visa mapp i filhanterare"
 
-#: ../plugins/filebrowser/xed-file-browser-widget.c:851
+#: ../plugins/filebrowser/xed-file-browser-widget.c:808
 msgid "Show _Hidden"
 msgstr "Visa _dolda"
 
-#: ../plugins/filebrowser/xed-file-browser-widget.c:852
+#: ../plugins/filebrowser/xed-file-browser-widget.c:809
 msgid "Show hidden files and folders"
 msgstr "Visa dolda filer och mappar"
 
-#: ../plugins/filebrowser/xed-file-browser-widget.c:854
+#: ../plugins/filebrowser/xed-file-browser-widget.c:810
 msgid "Show _Binary"
 msgstr "Visa _binära"
 
-#: ../plugins/filebrowser/xed-file-browser-widget.c:855
+#: ../plugins/filebrowser/xed-file-browser-widget.c:811
 msgid "Show binary files"
 msgstr "Visa binära filer"
 
-#: ../plugins/filebrowser/xed-file-browser-widget.c:987
-#: ../plugins/filebrowser/xed-file-browser-widget.c:996
-#: ../plugins/filebrowser/xed-file-browser-widget.c:1017
-msgid "Previous location"
-msgstr "Föregående plats"
-
-#: ../plugins/filebrowser/xed-file-browser-widget.c:989
-msgid "Go to previous location"
-msgstr "Gå till föregående plats"
-
-#: ../plugins/filebrowser/xed-file-browser-widget.c:991
-#: ../plugins/filebrowser/xed-file-browser-widget.c:1012
-msgid "Go to a previously opened location"
-msgstr "Gå till en tidigare öppnad plats"
-
-#: ../plugins/filebrowser/xed-file-browser-widget.c:1008
-msgid "Next location"
-msgstr "Nästa plats"
-
-#: ../plugins/filebrowser/xed-file-browser-widget.c:1010
-msgid "Go to next location"
-msgstr "Gå till nästa plats"
-
-#: ../plugins/filebrowser/xed-file-browser-widget.c:1222
+#: ../plugins/filebrowser/xed-file-browser-widget.c:1154
 msgid "_Match Filename"
 msgstr "_Matcha filnamn"
 
-#: ../plugins/filebrowser/xed-file-browser-widget.c:2129
+#: ../plugins/filebrowser/xed-file-browser-widget.c:1995
 #, c-format
 msgid "No mount object for mounted volume: %s"
 msgstr "Inga monteringsobjekt för monterad volym: %s"
 
-#: ../plugins/filebrowser/xed-file-browser-widget.c:2209
+#: ../plugins/filebrowser/xed-file-browser-widget.c:2073
 #, c-format
 msgid "Could not open media: %s"
 msgstr "Kunde inte öppna media: %s"
 
-#: ../plugins/filebrowser/xed-file-browser-widget.c:2256
+#: ../plugins/filebrowser/xed-file-browser-widget.c:2122
 #, c-format
 msgid "Could not mount volume: %s"
 msgstr "Kunde inte montera volym: %s"
 
-#. ex:ts=8:noet:
-#: ../plugins/modelines/modelines.xed-plugin.desktop.in.h:1
+#. vi:ts=8
+#: ../plugins/modelines/modelines.plugin.desktop.in.h:1
 msgid "Modelines"
 msgstr "Lägesrader"
 
-#: ../plugins/modelines/modelines.xed-plugin.desktop.in.h:2
+#: ../plugins/modelines/modelines.plugin.desktop.in.h:2
 msgid "Emacs, Kate and Vim-style modelines support for xed."
 msgstr "Lägesrader liknande Emacs, Kate och Vim för xed"
 
-#: ../plugins/sort/xed-sort-plugin.c:88
-msgid "S_ort..."
-msgstr "S_ortera..."
-
-#: ../plugins/sort/xed-sort-plugin.c:90
-msgid "Sort the current document or selection"
-msgstr "Sortera det aktuella dokumentet eller markeringen"
-
-#: ../plugins/sort/sort.xed-plugin.desktop.in.h:1 ../plugins/sort/sort.ui.h:1
+#: ../plugins/sort/sort.plugin.desktop.in.h:1
 msgid "Sort"
 msgstr "Sortera"
 
-#: ../plugins/sort/sort.xed-plugin.desktop.in.h:2
+#: ../plugins/sort/sort.plugin.desktop.in.h:2
 msgid "Sorts a document or selected text."
 msgstr "Sorterar ett dokument eller markerad text."
 
-#: ../plugins/sort/sort.ui.h:2
-msgid "_Sort"
-msgstr "_Sortera"
+#: ../plugins/sort/xed-sort-plugin.c:80
+msgid "S_ort lines"
+msgstr "S_ortera rader"
 
-#: ../plugins/sort/sort.ui.h:3
-msgid "_Reverse order"
-msgstr "_Baklänges"
+#: ../plugins/sort/xed-sort-plugin.c:82
+msgid "Sort the current document or selection"
+msgstr "Sortera det aktuella dokumentet eller markeringen"
 
-#: ../plugins/sort/sort.ui.h:4
-msgid "R_emove duplicates"
-msgstr "_Ta bort dubletter"
+#: ../plugins/spell/languages-dialog.ui.h:1
+#: ../plugins/spell/xed-spell-language-dialog.c:135
+msgid "Set language"
+msgstr "Ställ in språk"
 
-#: ../plugins/sort/sort.ui.h:5
-msgid "_Ignore case"
-msgstr "_Gör ingen skillnad på gemener/VERSALER"
-
-#: ../plugins/sort/sort.ui.h:6
-msgid "S_tart at column:"
-msgstr "_Börja vid kolumn:"
-
-#: ../plugins/sort/sort.ui.h:7
-msgid "You cannot undo a sort operation"
-msgstr "Du kan inte ångra en sorteringsåtgärd"
+#: ../plugins/spell/languages-dialog.ui.h:2
+msgid "Select the _language of the current document."
+msgstr "Välj _språket i det aktuella dokumentet."
 
 #: ../plugins/spell/org.x.editor.plugins.spell.gschema.xml.in.h:1
 msgid "Autocheck Type"
 msgstr "Typ av automatisk kontroll"
 
+#: ../plugins/spell/spell-checker.ui.h:1
+msgid "Misspelled word:"
+msgstr "Felstavat ord:"
+
+#: ../plugins/spell/spell-checker.ui.h:2
+msgid "word"
+msgstr "ord"
+
+#: ../plugins/spell/spell-checker.ui.h:3
+msgid "Change _to:"
+msgstr "Ändra _till:"
+
+#: ../plugins/spell/spell-checker.ui.h:4
+msgid "Check _Word"
+msgstr "Kontrollera o_rd"
+
+#: ../plugins/spell/spell-checker.ui.h:5
+msgid "_Suggestions:"
+msgstr "_Förslag:"
+
+#: ../plugins/spell/spell-checker.ui.h:6
+msgid "_Ignore"
+msgstr "_Ignorera"
+
+#: ../plugins/spell/spell-checker.ui.h:7
+msgid "Ignore _All"
+msgstr "Ignorera _alla"
+
+#: ../plugins/spell/spell-checker.ui.h:8
+msgid "Cha_nge"
+msgstr "Ä_ndra"
+
+#: ../plugins/spell/spell-checker.ui.h:9
+msgid "Change A_ll"
+msgstr "Ändra a_lla"
+
+#: ../plugins/spell/spell-checker.ui.h:10
+msgid "User dictionary:"
+msgstr "Användarordbok:"
+
+#: ../plugins/spell/spell-checker.ui.h:11
+msgid "Add w_ord"
+msgstr "Lägg till _ord"
+
+#: ../plugins/spell/spell-checker.ui.h:12
+msgid "Language:"
+msgstr "Språk:"
+
+#: ../plugins/spell/spell-checker.ui.h:13
+msgid "Language"
+msgstr "Språk"
+
+#: ../plugins/spell/spell.plugin.desktop.in.h:1
+msgid "Spell Checker"
+msgstr "Stavningskontroll"
+
+#: ../plugins/spell/spell.plugin.desktop.in.h:2
+msgid "Checks the spelling of the current document."
+msgstr "Kontrollerar stavningen i det aktuella dokumentet."
+
 #. Translators: Displayed in the "Check Spelling" dialog if there are no suggestions for the current misspelled word
 #. Translators: Displayed in the "Check Spelling" dialog if there are no suggestions
 #. * for the current misspelled word
-#: ../plugins/spell/xed-automatic-spell-checker.c:420
+#: ../plugins/spell/xed-automatic-spell-checker.c:433
 #: ../plugins/spell/xed-spell-checker-dialog.c:455
 msgid "(no suggested words)"
 msgstr "(inga föreslagna ord)"
 
-#: ../plugins/spell/xed-automatic-spell-checker.c:444
+#: ../plugins/spell/xed-automatic-spell-checker.c:457
 msgid "_More..."
 msgstr "_Mer..."
 
 #. Ignore all
-#: ../plugins/spell/xed-automatic-spell-checker.c:499
+#: ../plugins/spell/xed-automatic-spell-checker.c:510
 msgid "_Ignore All"
 msgstr "_Ignorera alla"
 
 #. + Add to Dictionary
-#: ../plugins/spell/xed-automatic-spell-checker.c:514
+#: ../plugins/spell/xed-automatic-spell-checker.c:520
 msgid "_Add"
 msgstr "_Lägg till"
 
-#: ../plugins/spell/xed-automatic-spell-checker.c:553
+#. then, on top of it, the suggestions menu.
+#: ../plugins/spell/xed-automatic-spell-checker.c:557
 msgid "_Spelling Suggestions..."
 msgstr "_Stavningsförslag..."
 
@@ -2840,156 +2759,73 @@ msgctxt "language"
 msgid "Default"
 msgstr "Standard"
 
-#: ../plugins/spell/xed-spell-language-dialog.c:141
-#: ../plugins/spell/languages-dialog.ui.h:1
-msgid "Set language"
-msgstr "Ställ in språk"
-
-#: ../plugins/spell/xed-spell-language-dialog.c:195
+#: ../plugins/spell/xed-spell-language-dialog.c:178
 msgid "Languages"
 msgstr "Språk"
 
-#: ../plugins/spell/xed-spell-plugin.c:92
+#: ../plugins/spell/xed-spell-plugin.c:116
 msgid "_Check Spelling..."
 msgstr "_Kontrollera stavning..."
 
-#: ../plugins/spell/xed-spell-plugin.c:94
+#: ../plugins/spell/xed-spell-plugin.c:118
 msgid "Check the current document for incorrect spelling"
 msgstr "Kontrollera det aktuella dokumentets stavning"
 
-#: ../plugins/spell/xed-spell-plugin.c:100
+#: ../plugins/spell/xed-spell-plugin.c:124
 msgid "Set _Language..."
 msgstr "Ställ in _språk..."
 
-#: ../plugins/spell/xed-spell-plugin.c:102
+#: ../plugins/spell/xed-spell-plugin.c:126
 msgid "Set the language of the current document"
 msgstr "Ställ in språket på det aktuella dokumentet"
 
-#: ../plugins/spell/xed-spell-plugin.c:111
+#: ../plugins/spell/xed-spell-plugin.c:135
 msgid "_Autocheck Spelling"
 msgstr "Kontrollera stavning _automatiskt"
 
-#: ../plugins/spell/xed-spell-plugin.c:113
+#: ../plugins/spell/xed-spell-plugin.c:137
 msgid "Automatically spell-check the current document"
 msgstr "Stavningskontrollera automatiskt det aktuella dokumentet"
 
-#: ../plugins/spell/xed-spell-plugin.c:753
-msgid "Configure Spell Checker plugin..."
-msgstr "Konfigurera insticksmodulen för stavningskontroll..."
-
-#: ../plugins/spell/xed-spell-plugin.c:962
+#: ../plugins/spell/xed-spell-plugin.c:967
 msgid "The document is empty."
 msgstr "Dokumentet är tomt."
 
-#: ../plugins/spell/xed-spell-plugin.c:992
+#: ../plugins/spell/xed-spell-plugin.c:986
 msgid "No misspelled words"
 msgstr "Inga felstavade ord"
 
-#: ../plugins/spell/languages-dialog.ui.h:2
-msgid "Select the _language of the current document."
-msgstr "Välj _språket i det aktuella dokumentet."
-
-#: ../plugins/spell/spell-checker.ui.h:1
-msgid "Check spelling"
-msgstr "Kontrollera stavning"
-
-#: ../plugins/spell/spell-checker.ui.h:2
-msgid "Misspelled word:"
-msgstr "Felstavat ord:"
-
-#: ../plugins/spell/spell-checker.ui.h:3
-msgid "word"
-msgstr "ord"
-
-#: ../plugins/spell/spell-checker.ui.h:4
-msgid "Change _to:"
-msgstr "Ändra _till:"
-
-#: ../plugins/spell/spell-checker.ui.h:5
-msgid "Check _Word"
-msgstr "Kontrollera o_rd"
-
-#: ../plugins/spell/spell-checker.ui.h:6
-msgid "_Suggestions:"
-msgstr "_Förslag:"
-
-#: ../plugins/spell/spell-checker.ui.h:7
-msgid "_Ignore"
-msgstr "_Ignorera"
-
-#: ../plugins/spell/spell-checker.ui.h:8
-msgid "Cha_nge"
-msgstr "Ä_ndra"
-
-#: ../plugins/spell/spell-checker.ui.h:9
-msgid "Ignore _All"
-msgstr "Ignorera _alla"
-
-#: ../plugins/spell/spell-checker.ui.h:10
-msgid "Change A_ll"
-msgstr "Ändra a_lla"
-
-#: ../plugins/spell/spell-checker.ui.h:11
-msgid "User dictionary:"
-msgstr "Användarordbok:"
-
-#: ../plugins/spell/spell-checker.ui.h:12
-msgid "Add w_ord"
-msgstr "Lägg till _ord"
-
-#: ../plugins/spell/spell-checker.ui.h:13
-msgid "Language:"
-msgstr "Språk:"
-
-#: ../plugins/spell/spell-checker.ui.h:14
-msgid "Language"
-msgstr "Språk"
-
 #: ../plugins/spell/xed-spell-setup-dialog.ui.h:1
-msgid "_Configure Spell Checker plugin..."
-msgstr "_Konfigurera insticksmodulen för stavningskontroll..."
+msgid "button"
+msgstr "knapp"
 
 #: ../plugins/spell/xed-spell-setup-dialog.ui.h:2
-msgid "Autocheck spelling on document load..."
-msgstr "Kontrollera stavning automatiskt då dokumentet öppnas"
+msgid "Autocheck settings"
+msgstr "Kontrollera inställningar automatiskt"
 
 #: ../plugins/spell/xed-spell-setup-dialog.ui.h:3
-msgid "_Never autocheck"
-msgstr "_Kontrollera aldrig automatiskt"
+msgid "Never"
+msgstr "Aldrig"
 
 #: ../plugins/spell/xed-spell-setup-dialog.ui.h:4
-msgid "_Remember autocheck by document"
-msgstr "_Spara automatisk kontroll per dokument"
+msgid "Never autocheck spelling on document load"
+msgstr "Kontrollera aldrig stavning vid inläsning av dokument"
 
 #: ../plugins/spell/xed-spell-setup-dialog.ui.h:5
-msgid "_Always autocheck"
-msgstr "_Kontrollera alltid automatiskt"
+msgid "Remember by document"
+msgstr "Kom ihåg för varje enskilt dokument"
 
-#: ../plugins/spell/spell.xed-plugin.desktop.in.h:1
-msgid "Spell Checker"
-msgstr "Stavningskontroll"
+#: ../plugins/spell/xed-spell-setup-dialog.ui.h:6
+msgid "Remembers the setting for each  document on load"
+msgstr "Kommer ihåg inställningar för varje enskilt dokument vid inläsning"
 
-#: ../plugins/spell/spell.xed-plugin.desktop.in.h:2
-msgid "Checks the spelling of the current document."
-msgstr "Kontrollerar stavningen i det aktuella dokumentet."
+#: ../plugins/spell/xed-spell-setup-dialog.ui.h:7
+msgid "Always"
+msgstr "Alltid"
 
-#: ../plugins/taglist/xed-taglist-plugin.c:98
-#: ../plugins/taglist/xed-taglist-plugin-panel.c:706
-#: ../plugins/taglist/xed-taglist-plugin-panel.c:722
-msgid "Tags"
-msgstr "Taggar"
-
-#: ../plugins/taglist/xed-taglist-plugin-panel.c:608
-msgid "Select the group of tags you want to use"
-msgstr "Välj den grupp med taggar som du vill använda"
-
-#: ../plugins/taglist/xed-taglist-plugin-panel.c:627
-msgid "_Preview"
-msgstr "_Förhandsgranska"
-
-#: ../plugins/taglist/xed-taglist-plugin-panel.c:703
-msgid "Available Tag Lists"
-msgstr "Tillgängliga tagglistor"
+#: ../plugins/spell/xed-spell-setup-dialog.ui.h:8
+msgid "Always autocheck on document load"
+msgstr "Kontrollera alltid vid dokumentinläsning"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:1
 msgid "XHTML 1.0 - Tags"
@@ -4455,17 +4291,35 @@ msgstr "Obrytbar text"
 msgid "Footnote"
 msgstr "Fotnot"
 
-#: ../plugins/taglist/taglist.xed-plugin.desktop.in.h:1
+#: ../plugins/taglist/taglist.plugin.desktop.in.h:1
 msgid "Tag list"
 msgstr "Tagglista"
 
-#: ../plugins/taglist/taglist.xed-plugin.desktop.in.h:2
+#: ../plugins/taglist/taglist.plugin.desktop.in.h:2
 msgid ""
 "Provides a method to easily insert commonly used tags/strings into a "
 "document without having to type them."
 msgstr ""
 "Tillhandahåller en metod för att enkelt infoga ofta använda taggar/strängar "
 "i ett dokument utan att behöva skriva dem."
+
+#: ../plugins/taglist/xed-taglist-plugin-panel.c:613
+msgid "Select the group of tags you want to use"
+msgstr "Välj den grupp med taggar som du vill använda"
+
+#: ../plugins/taglist/xed-taglist-plugin-panel.c:632
+msgid "_Preview"
+msgstr "_Förhandsgranska"
+
+#: ../plugins/taglist/xed-taglist-plugin-panel.c:708
+msgid "Available Tag Lists"
+msgstr "Tillgängliga tagglistor"
+
+#: ../plugins/taglist/xed-taglist-plugin-panel.c:711
+#: ../plugins/taglist/xed-taglist-plugin-panel.c:727
+#: ../plugins/taglist/xed-taglist-plugin.c:117
+msgid "Tags"
+msgstr "Taggar"
 
 #: ../plugins/taglist/XSLT.tags.xml.in.h:1
 msgid "XSLT - Elements"
@@ -4547,37 +4401,13 @@ msgstr "Markerat format"
 msgid "Custom format"
 msgstr "Anpassat format"
 
-#: ../plugins/time/xed-time-plugin.c:179
-msgid "In_sert Date and Time..."
-msgstr "In_foga datum och tid..."
-
-#: ../plugins/time/xed-time-plugin.c:181
-msgid "Insert current date and time at the cursor position"
-msgstr "Infoga aktuellt datum och tid vid markörpositionen"
-
-#: ../plugins/time/xed-time-plugin.c:562
-msgid "Available formats"
-msgstr "Tillgängliga format"
-
-#: ../plugins/time/xed-time-plugin.c:713
-msgid "Configure insert date/time plugin..."
-msgstr "Konfigurera insticksmodulen Infoga datum/tid..."
-
-#: ../plugins/time/time.xed-plugin.desktop.in.h:1
+#: ../plugins/time/time.plugin.desktop.in.h:1
 msgid "Insert Date/Time"
 msgstr "Infoga datum/tid"
 
-#: ../plugins/time/time.xed-plugin.desktop.in.h:2
+#: ../plugins/time/time.plugin.desktop.in.h:2
 msgid "Inserts current date and time at the cursor position."
 msgstr "Infogar aktuellt datum och tid vid markörpositionen."
-
-#: ../plugins/trailsave/trailsave.xed-plugin.desktop.in.h:1
-msgid "Save Without Trailing Spaces"
-msgstr "Spara utan avslutande blanksteg"
-
-#: ../plugins/trailsave/trailsave.xed-plugin.desktop.in.h:2
-msgid "Removes trailing spaces from lines before saving."
-msgstr "Tar bort avslutande blanksteg från rader innan de sparas."
 
 #: ../plugins/time/xed-time-dialog.ui.h:1
 msgid "Insert Date and Time"
@@ -4610,6 +4440,18 @@ msgstr "%Y-%m-%d %H.%M:%S"
 msgid "01/11/2009 17:52:00"
 msgstr "11-01-2009 17.52:00"
 
+#: ../plugins/time/xed-time-plugin.c:183
+msgid "In_sert Date and Time..."
+msgstr "In_foga datum och tid..."
+
+#: ../plugins/time/xed-time-plugin.c:185
+msgid "Insert current date and time at the cursor position"
+msgstr "Infoga aktuellt datum och tid vid markörpositionen"
+
+#: ../plugins/time/xed-time-plugin.c:461
+msgid "Available formats"
+msgstr "Tillgängliga format"
+
 #: ../plugins/time/xed-time-setup-dialog.ui.h:1
 msgid "Configure date/time plugin"
 msgstr "Konfigurera insticksmodulen Infoga datum/tid"
@@ -4621,3 +4463,11 @@ msgstr "När datum/tid infogas..."
 #: ../plugins/time/xed-time-setup-dialog.ui.h:4
 msgid "_Prompt for a format"
 msgstr "_Fråga efter ett format"
+
+#: ../plugins/trailsave/trailsave.plugin.desktop.in.h:1
+msgid "Save Without Trailing Spaces"
+msgstr "Spara utan avslutande blanksteg"
+
+#: ../plugins/trailsave/trailsave.plugin.desktop.in.h:2
+msgid "Removes trailing spaces from lines before saving."
+msgstr "Tar bort avslutande blanksteg från rader innan de sparas."

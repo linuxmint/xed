@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MATE Desktop Environment\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-12-05 11:34+0000\n"
+"POT-Creation-Date: 2017-05-04 18:32+0100\n"
 "PO-Revision-Date: 2016-01-26 17:19+0000\n"
 "Last-Translator: Miguel Anxo Bouzada <mbouzada@gmail.com>\n"
 "Language-Team: Galician "
@@ -18,8 +18,8 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2016-12-12 12:16+0000\n"
-"X-Generator: Launchpad (build 18292)\n"
+"X-Launchpad-Export-Date: 2017-05-06 12:39+0000\n"
+"X-Generator: Launchpad (build 18366)\n"
 "Language: gl\n"
 
 #: ../data/org.x.editor.gschema.xml.in.h:1
@@ -53,88 +53,91 @@ msgstr ""
 "desactivada."
 
 #: ../data/org.x.editor.gschema.xml.in.h:6
+msgid "Prefer Dark Theme"
+msgstr ""
+
+#: ../data/org.x.editor.gschema.xml.in.h:7
+msgid ""
+"Whether xed should prefer the dark variation of the current Gtk theme if "
+"available."
+msgstr ""
+
+#: ../data/org.x.editor.gschema.xml.in.h:8
 msgid "Style Scheme"
 msgstr "Esquema de estilos"
 
-#: ../data/org.x.editor.gschema.xml.in.h:7
+#: ../data/org.x.editor.gschema.xml.in.h:9
 msgid "The ID of a GtkSourceView Style Scheme used to color the text."
 msgstr ""
 "O ID dun esquema de estilos GtkSourceView usado para colorear o texto."
 
-#: ../data/org.x.editor.gschema.xml.in.h:8
+#: ../data/org.x.editor.gschema.xml.in.h:10
 msgid "Create Backup Copies"
 msgstr "Crear copias de seguranza"
 
-#: ../data/org.x.editor.gschema.xml.in.h:9
+#: ../data/org.x.editor.gschema.xml.in.h:11
 msgid ""
 "Whether xed should create backup copies for the files it saves. You can set "
 "the backup file extension with the \"Backup Copy Extension\" option."
 msgstr ""
 
-#: ../data/org.x.editor.gschema.xml.in.h:10
+#: ../data/org.x.editor.gschema.xml.in.h:12
 msgid "Autosave"
 msgstr "Gardado automático"
 
-#: ../data/org.x.editor.gschema.xml.in.h:11
+#: ../data/org.x.editor.gschema.xml.in.h:13
 msgid ""
 "Whether xed should automatically save modified files after a time interval. "
 "You can set the time interval with the \"Autosave Interval\" option."
 msgstr ""
 
-#: ../data/org.x.editor.gschema.xml.in.h:12
+#: ../data/org.x.editor.gschema.xml.in.h:14
 msgid "Autosave Interval"
 msgstr "Intervalo de gardado automático"
 
-#: ../data/org.x.editor.gschema.xml.in.h:13
+#: ../data/org.x.editor.gschema.xml.in.h:15
 msgid ""
 "Number of minutes after which xed will automatically save modified files. "
 "This will only take effect if the \"Autosave\" option is turned on."
 msgstr ""
 
-#: ../data/org.x.editor.gschema.xml.in.h:14
+#: ../data/org.x.editor.gschema.xml.in.h:16
 msgid "Writable VFS schemes"
 msgstr "Esquemas VFS escribíbeis"
 
-#: ../data/org.x.editor.gschema.xml.in.h:15
+#: ../data/org.x.editor.gschema.xml.in.h:17
 msgid ""
 "List of VFS schemes xed supports in write mode. The 'file' scheme is "
 "writable by default."
 msgstr ""
 
-#: ../data/org.x.editor.gschema.xml.in.h:16
+#: ../data/org.x.editor.gschema.xml.in.h:18
 msgid "Maximum Number of Undo Actions"
 msgstr "Número máximo de accións de desfacer"
 
-#: ../data/org.x.editor.gschema.xml.in.h:17
+#: ../data/org.x.editor.gschema.xml.in.h:19
 msgid ""
 "Maximum number of actions that xed will be able to undo or redo. Use \"-1\" "
 "for unlimited number of actions."
 msgstr ""
 
-#: ../data/org.x.editor.gschema.xml.in.h:18
+#: ../data/org.x.editor.gschema.xml.in.h:20
 msgid "Line Wrapping Mode"
 msgstr "Modo de axuste de liña"
 
-#: ../data/org.x.editor.gschema.xml.in.h:19
+#: ../data/org.x.editor.gschema.xml.in.h:21
 msgid ""
-"Specifies how to wrap long lines in the editing area. Use \"GTK_WRAP_NONE\" "
-"for no wrapping, \"GTK_WRAP_WORD\" for wrapping at word boundaries, and "
-"\"GTK_WRAP_CHAR\" for wrapping at individual character boundaries. Note that "
-"the values are case-sensitive, so make sure they appear exactly as mentioned "
-"here."
+"Specifies how to wrap long lines in the editing area. Use \"none\" for no "
+"wrapping, \"word\" for wrapping at word boundaries, and \"char\" for "
+"wrapping at individual character boundaries. Note that the values are case-"
+"sensitive, so make sure they appear exactly as mentioned here."
 msgstr ""
-"Especifica como se axustan as liñas longas na área de edición. Use "
-"«GTK_WRAP_NONE» para non axustar as liñas, «GTK_WRAP_WORD» para axustalas "
-"aos límites da palabra e «GTK_WRAP_CHAR» para axustalas aos límites dos "
-"caracteres individuais. Repare en que os valores diferencian maiúsculas de "
-"minúsculas, así que asegúrese de que aparecen exactamente como se menciona "
-"aquí."
 
-#: ../data/org.x.editor.gschema.xml.in.h:20
+#: ../data/org.x.editor.gschema.xml.in.h:22
 msgid "Tab Size"
 msgstr "Tamaño da tabulación"
 
-#: ../data/org.x.editor.gschema.xml.in.h:21
+#: ../data/org.x.editor.gschema.xml.in.h:23
 msgid ""
 "Specifies the number of spaces that should be displayed instead of Tab "
 "characters."
@@ -142,154 +145,164 @@ msgstr ""
 "Especifica o número de espazos que se deben amosar no canto de caracteres de "
 "tabulación."
 
-#: ../data/org.x.editor.gschema.xml.in.h:22
+#: ../data/org.x.editor.gschema.xml.in.h:24
 msgid "Insert spaces"
 msgstr "Inserir espazos"
 
-#: ../data/org.x.editor.gschema.xml.in.h:23
+#: ../data/org.x.editor.gschema.xml.in.h:25
 msgid "Whether xed should insert spaces instead of tabs."
 msgstr ""
 
-#: ../data/org.x.editor.gschema.xml.in.h:24
+#: ../data/org.x.editor.gschema.xml.in.h:26
 msgid "Automatic indent"
 msgstr "Sangría automática"
 
-#: ../data/org.x.editor.gschema.xml.in.h:25
+#: ../data/org.x.editor.gschema.xml.in.h:27
 msgid "Whether xed should enable automatic indentation."
 msgstr ""
 
-#: ../data/org.x.editor.gschema.xml.in.h:26
+#: ../data/org.x.editor.gschema.xml.in.h:28
 msgid "Display Line Numbers"
 msgstr "Amosar os números de liña"
 
-#: ../data/org.x.editor.gschema.xml.in.h:27
+#: ../data/org.x.editor.gschema.xml.in.h:29
 msgid "Whether xed should display line numbers in the editing area."
 msgstr ""
 
-#: ../data/org.x.editor.gschema.xml.in.h:28
+#: ../data/org.x.editor.gschema.xml.in.h:30
 msgid "Highlight Current Line"
 msgstr "Realzar a liña actual"
 
-#: ../data/org.x.editor.gschema.xml.in.h:29
+#: ../data/org.x.editor.gschema.xml.in.h:31
 msgid "Whether xed should highlight the current line."
 msgstr ""
 
-#: ../data/org.x.editor.gschema.xml.in.h:30
+#: ../data/org.x.editor.gschema.xml.in.h:32
 msgid "Highlight Matching Bracket"
 msgstr "Realzar a paréntese de peche"
 
-#: ../data/org.x.editor.gschema.xml.in.h:31
+#: ../data/org.x.editor.gschema.xml.in.h:33
 msgid "Whether xed should highlight the bracket matching the selected one."
 msgstr ""
 
-#: ../data/org.x.editor.gschema.xml.in.h:32
+#: ../data/org.x.editor.gschema.xml.in.h:34
 msgid "Display Right Margin"
 msgstr "Amosar a marxe dereita"
 
-#: ../data/org.x.editor.gschema.xml.in.h:33
+#: ../data/org.x.editor.gschema.xml.in.h:35
 msgid "Whether xed should display the right margin in the editing area."
 msgstr ""
 
-#: ../data/org.x.editor.gschema.xml.in.h:34
+#: ../data/org.x.editor.gschema.xml.in.h:36
 msgid "Right Margin Position"
 msgstr "Posición da marxe dereita"
 
-#: ../data/org.x.editor.gschema.xml.in.h:35
+#: ../data/org.x.editor.gschema.xml.in.h:37
 msgid "Specifies the position of the right margin."
 msgstr "Especifica a posición da marxe dereita."
 
-#: ../data/org.x.editor.gschema.xml.in.h:36
+#: ../data/org.x.editor.gschema.xml.in.h:38
 msgid "Smart Home End"
 msgstr "Inicio e fin intelixentes"
 
-#: ../data/org.x.editor.gschema.xml.in.h:37
+#: ../data/org.x.editor.gschema.xml.in.h:39
 msgid ""
 "Specifies how the cursor moves when the HOME and END keys are pressed. Use "
-"\"DISABLED\" to always move at the start/end of the line, \"AFTER\" to move "
+"\"disabled\" to always move at the start/end of the line, \"after\" to move "
 "to the start/end of the line the first time the keys are pressed and to the "
 "start/end of the text ignoring whitespaces the second time the keys are "
-"pressed, \"BEFORE\" to move to the start/end of the text before moving to "
-"the start/end of the line and \"ALWAYS\" to always move to the start/end of "
+"pressed, \"before\" to move to the start/end of the text before moving to "
+"the start/end of the line and \"always\" to always move to the start/end of "
 "the text instead of the start/end of the line."
 msgstr ""
-"Especifica como se move o cursor cando se premen as teclas INICIO e FIN. Use "
-"«DISABLED» para moverse sempre ao inicio/fin da liña, use «AFTER» para "
-"moverse ao inicio/fin da liña (a primeira vez que se preman as teclas) e ao "
-"inicio/fin do texto ignorando os espazos en branco (a segunda vez que se "
-"preman), use «BEFORE» para moverse ao inicio/fin do texto antes de moverse "
-"ao inicio/fin da liña e finalmente use «ALWAYS» para moverse sempre ao "
-"inicio/fin do texto no canto de ao inicio/fin da liña."
 
-#: ../data/org.x.editor.gschema.xml.in.h:38
+#: ../data/org.x.editor.gschema.xml.in.h:40
 msgid "Restore Previous Cursor Position"
 msgstr "Restaurar a posición anterior do cursor"
 
-#: ../data/org.x.editor.gschema.xml.in.h:39
+#: ../data/org.x.editor.gschema.xml.in.h:41
 msgid ""
 "Whether xed should restore the previous cursor position when a file is "
 "loaded."
 msgstr ""
 
-#: ../data/org.x.editor.gschema.xml.in.h:40
+#: ../data/org.x.editor.gschema.xml.in.h:42
 msgid "Enable Search Highlighting"
 msgstr "Activar o realzado de busca"
 
-#: ../data/org.x.editor.gschema.xml.in.h:41
+#: ../data/org.x.editor.gschema.xml.in.h:43
 msgid ""
 "Whether xed should highlight all the occurrences of the searched text."
 msgstr ""
 
-#: ../data/org.x.editor.gschema.xml.in.h:42
+#: ../data/org.x.editor.gschema.xml.in.h:44
 msgid "Enable Syntax Highlighting"
 msgstr "Activar o realzado de sintaxe"
 
-#: ../data/org.x.editor.gschema.xml.in.h:43
+#: ../data/org.x.editor.gschema.xml.in.h:45
 msgid "Whether xed should enable syntax highlighting."
 msgstr ""
 
-#: ../data/org.x.editor.gschema.xml.in.h:44
+#: ../data/org.x.editor.gschema.xml.in.h:46
+msgid "Ensure Trailing Newline"
+msgstr ""
+
+#: ../data/org.x.editor.gschema.xml.in.h:47
+msgid ""
+"Whether xed will ensure that documents always end with a trailing newline."
+msgstr ""
+
+#: ../data/org.x.editor.gschema.xml.in.h:48
 msgid "Toolbar is Visible"
 msgstr "A barra de ferramentas é visíbel"
 
-#: ../data/org.x.editor.gschema.xml.in.h:45
+#: ../data/org.x.editor.gschema.xml.in.h:49
 msgid "Whether the toolbar should be visible in editing windows."
 msgstr "Se a barra de ferramentas debe ser visíbel nas xanelas de edición."
 
-#: ../data/org.x.editor.gschema.xml.in.h:46
+#: ../data/org.x.editor.gschema.xml.in.h:50
 msgid "Status Bar is Visible"
 msgstr "A barra de estado é visíbel"
 
-#: ../data/org.x.editor.gschema.xml.in.h:47
+#: ../data/org.x.editor.gschema.xml.in.h:51
 msgid ""
 "Whether the status bar at the bottom of editing windows should be visible."
 msgstr ""
 "Se a barra de estado no fondo das xanelas de edición debe ser visíbel."
 
-#: ../data/org.x.editor.gschema.xml.in.h:48
+#: ../data/org.x.editor.gschema.xml.in.h:52
 msgid "Side Pane is Visible"
 msgstr "O panel lateral é visíbel"
 
-#: ../data/org.x.editor.gschema.xml.in.h:49
+#: ../data/org.x.editor.gschema.xml.in.h:53
 msgid ""
 "Whether the side pane at the left of editing windows should be visible."
 msgstr ""
 "Indica se o panel lateral á esquerda da xanela de edición debe ser visíbel."
 
-#: ../data/org.x.editor.gschema.xml.in.h:50
+#: ../data/org.x.editor.gschema.xml.in.h:54
 msgid "Bottom Panel is Visible"
 msgstr "O panel inferior é visíbel"
 
-#: ../data/org.x.editor.gschema.xml.in.h:51
+#: ../data/org.x.editor.gschema.xml.in.h:55
 msgid ""
 "Whether the bottom panel at the bottom of editing windows should be visible."
 msgstr ""
 "Se o panel inferior no fondo das xanelas de edición debe ser visíbel."
 
-#: ../data/org.x.editor.gschema.xml.in.h:52
+#: ../data/org.x.editor.gschema.xml.in.h:56
+msgid "Allow changing active tabs by scrolling"
+msgstr ""
+
+#: ../data/org.x.editor.gschema.xml.in.h:57
+msgid "Whether you can change active tabs by scrolling."
+msgstr ""
+
+#: ../data/org.x.editor.gschema.xml.in.h:58
 msgid "Maximum Recent Files"
 msgstr "Máximo de ficheiros recentes"
 
-#: ../data/org.x.editor.gschema.xml.in.h:53
+#: ../data/org.x.editor.gschema.xml.in.h:59
 msgid ""
 "Specifies the maximum number of recently opened files that will be displayed "
 "in the \"Recent Files\" submenu."
@@ -297,76 +310,70 @@ msgstr ""
 "Especifica o número máximo de ficheiros abertos recentemente que se amosarán "
 "no submenú «Ficheiros recentes»."
 
-#: ../data/org.x.editor.gschema.xml.in.h:54
+#: ../data/org.x.editor.gschema.xml.in.h:60
 msgid "Print Syntax Highlighting"
 msgstr "Imprimir o realce de sintaxe"
 
-#: ../data/org.x.editor.gschema.xml.in.h:55
+#: ../data/org.x.editor.gschema.xml.in.h:61
 msgid "Whether xed should print syntax highlighting when printing documents."
 msgstr ""
 
-#: ../data/org.x.editor.gschema.xml.in.h:56
+#: ../data/org.x.editor.gschema.xml.in.h:62
 msgid "Print Header"
 msgstr "Imprimir a cabeceira"
 
-#: ../data/org.x.editor.gschema.xml.in.h:57
+#: ../data/org.x.editor.gschema.xml.in.h:63
 msgid "Whether xed should include a document header when printing documents."
 msgstr ""
 
-#: ../data/org.x.editor.gschema.xml.in.h:58
+#: ../data/org.x.editor.gschema.xml.in.h:64
 msgid "Printing Line Wrapping Mode"
 msgstr "Impresión do modo de axuste de liña"
 
-#: ../data/org.x.editor.gschema.xml.in.h:59
+#: ../data/org.x.editor.gschema.xml.in.h:65
 msgid ""
-"Specifies how to wrap long lines for printing. Use \"GTK_WRAP_NONE\" for no "
-"wrapping, \"GTK_WRAP_WORD\" for wrapping at word boundaries, and "
-"\"GTK_WRAP_CHAR\" for wrapping at individual character boundaries. Note that "
-"the values are case-sensitive, so make sure they appear exactly as mentioned "
-"here."
+"Specifies how to wrap long lines for printing. Use \"none\" for no wrapping, "
+"\"word\" for wrapping at word boundaries, and \"char\" for wrapping at "
+"individual character boundaries. Note that the values are case-sensitive, so "
+"make sure they appear exactly as mentioned here."
 msgstr ""
-"Especifica como se axustan as liñas longas ao imprimir. Use «GTK_WRAP_NONE» "
-"para non axustar as liñas, «GTK_WRAP_WORD» para axustalas aos límites da "
-"palabra e «GTK_WRAP_CHAR» para axustalas aos límites dos caracteres "
-"individuais. Repare en que os valores diferencian maiúsculas de minúsculas, "
-"así que asegúrese de que aparecen exactamente como se menciona aquí."
 
-#: ../data/org.x.editor.gschema.xml.in.h:60
+#: ../data/org.x.editor.gschema.xml.in.h:66
 msgid "Print Line Numbers"
 msgstr "Imprimir os números de liña"
 
-#: ../data/org.x.editor.gschema.xml.in.h:61
+#: ../data/org.x.editor.gschema.xml.in.h:67
 msgid ""
 "If this value is 0, then no line numbers will be inserted when printing a "
 "document. Otherwise, xed will print line numbers every such number of lines."
 msgstr ""
 
-#: ../data/org.x.editor.gschema.xml.in.h:62
+#: ../data/org.x.editor.gschema.xml.in.h:68
 msgctxt "print-font-body-pango"
 msgid "'Monospace 9'"
 msgstr ""
 
-#: ../data/org.x.editor.gschema.xml.in.h:63
+#: ../data/org.x.editor.gschema.xml.in.h:69
 msgid "Body Font for Printing"
 msgstr "Tipo de letra do corpo para imprimir"
 
-#: ../data/org.x.editor.gschema.xml.in.h:64
+#: ../data/org.x.editor.gschema.xml.in.h:70
 msgid ""
 "Specifies the font to use for a document's body when printing documents."
 msgstr ""
 "Especifica o tipo de letra para utilizar no corpo do documento cando se "
 "imprimen ficheiros."
 
-#: ../data/org.x.editor.gschema.xml.in.h:65
+#: ../data/org.x.editor.gschema.xml.in.h:71
 msgctxt "print-font-header-pango"
 msgid "'Sans 11'"
 msgstr ""
 
-#: ../data/org.x.editor.gschema.xml.in.h:66
+#: ../data/org.x.editor.gschema.xml.in.h:72
 msgid "Header Font for Printing"
 msgstr "Tipo de letra da cabeceira para a impresión"
 
-#: ../data/org.x.editor.gschema.xml.in.h:67
+#: ../data/org.x.editor.gschema.xml.in.h:73
 msgid ""
 "Specifies the font to use for page headers when printing a document. This "
 "will only take effect if the \"Print Header\" option is turned on."
@@ -375,16 +382,16 @@ msgstr ""
 "imprime un documento. Isto só será efectivo cando a opción «Imprimir "
 "cabeceira« estea activada."
 
-#: ../data/org.x.editor.gschema.xml.in.h:68
+#: ../data/org.x.editor.gschema.xml.in.h:74
 msgctxt "print-font-numbers-pango"
 msgid "'Sans 8'"
 msgstr ""
 
-#: ../data/org.x.editor.gschema.xml.in.h:69
+#: ../data/org.x.editor.gschema.xml.in.h:75
 msgid "Line Number Font for Printing"
 msgstr "Tipo de letra dos números de liña para a impresión"
 
-#: ../data/org.x.editor.gschema.xml.in.h:70
+#: ../data/org.x.editor.gschema.xml.in.h:76
 msgid ""
 "Specifies the font to use for line numbers when printing. This will only "
 "take effect if the \"Print Line Numbers\" option is non-zero."
@@ -393,32 +400,32 @@ msgstr ""
 "imprime. Isto só será efectivo se a opción «Imprimir números de liña» é "
 "diferente de cero."
 
-#: ../data/org.x.editor.gschema.xml.in.h:71
+#: ../data/org.x.editor.gschema.xml.in.h:77
 msgctxt "auto-detected"
 msgid "[ 'UTF-8', 'CURRENT', 'ISO-8859-15', 'UTF-16' ]"
 msgstr ""
 
-#: ../data/org.x.editor.gschema.xml.in.h:72
+#: ../data/org.x.editor.gschema.xml.in.h:78
 msgid "Automatically Detected Encodings"
 msgstr "Codificacións detectadas automaticamente"
 
-#: ../data/org.x.editor.gschema.xml.in.h:73
+#: ../data/org.x.editor.gschema.xml.in.h:79
 msgid ""
 "Sorted list of encodings used by xed for automatically detecting the "
 "encoding of a file. \"CURRENT\" represents the current locale encoding. Only "
 "recognized encodings are used."
 msgstr ""
 
-#: ../data/org.x.editor.gschema.xml.in.h:74
+#: ../data/org.x.editor.gschema.xml.in.h:80
 msgctxt "shown-in-menu"
 msgid "[ 'ISO-8859-15' ]"
 msgstr ""
 
-#: ../data/org.x.editor.gschema.xml.in.h:75
+#: ../data/org.x.editor.gschema.xml.in.h:81
 msgid "Encodings shown in menu"
 msgstr "Codificacións amosadas no menú"
 
-#: ../data/org.x.editor.gschema.xml.in.h:76
+#: ../data/org.x.editor.gschema.xml.in.h:82
 msgid ""
 "List of encodings shown in the Character Encoding menu in open/save file "
 "selector. Only recognized encodings are used."
@@ -427,27 +434,27 @@ msgstr ""
 "selector para gardar ou abrir un ficheiro. Só se usan as codificacións "
 "recoñecidas."
 
-#: ../data/org.x.editor.gschema.xml.in.h:77
+#: ../data/org.x.editor.gschema.xml.in.h:83
 msgid "History for \"search for\" entries"
 msgstr "Historial de entradas para «buscar por»"
 
-#: ../data/org.x.editor.gschema.xml.in.h:78
+#: ../data/org.x.editor.gschema.xml.in.h:84
 msgid "List of entries in \"search for\" textbox."
 msgstr "Lista de entradas na caixa de texto «buscar por»."
 
-#: ../data/org.x.editor.gschema.xml.in.h:79
+#: ../data/org.x.editor.gschema.xml.in.h:85
 msgid "History for \"replace with\" entries"
 msgstr "Historial de entradas para «substituír con»"
 
-#: ../data/org.x.editor.gschema.xml.in.h:80
+#: ../data/org.x.editor.gschema.xml.in.h:86
 msgid "List of entries in \"replace with\" textbox."
 msgstr "Lista de entradas na caixa de texto «substituír con»."
 
-#: ../data/org.x.editor.gschema.xml.in.h:81
+#: ../data/org.x.editor.gschema.xml.in.h:87
 msgid "Active plugins"
 msgstr "Engadidos activos"
 
-#: ../data/org.x.editor.gschema.xml.in.h:82
+#: ../data/org.x.editor.gschema.xml.in.h:88
 msgid ""
 "List of active plugins. It contains the \"Location\" of the active plugins. "
 "See the .xed-plugin file for obtaining the \"Location\" of a given plugin."
@@ -468,7 +475,7 @@ msgid ""
 "indentation levels. </p>"
 msgstr ""
 
-#: ../data/xed.desktop.in.in.h:1 ../xed/xed-print-job.c:763
+#: ../data/xed.desktop.in.in.h:1 ../xed/xed-print-job.c:710
 msgid "Text Editor"
 msgstr "Editor de texto"
 
@@ -476,23 +483,100 @@ msgstr "Editor de texto"
 msgid "Edit text files"
 msgstr "Editar ficheiros de texto"
 
-#: ../xed/dialogs/xed-close-confirmation-dialog.c:139
+#: ../xed/xed-app.c:105
+msgid "Show the application's version"
+msgstr "Amosar a versión do aplicativo"
+
+#: ../xed/xed-app.c:111
+msgid "Display list of possible values for the encoding option"
+msgstr "Amosa a lista dos valores posíbeis de opcións de codificación"
+
+#: ../xed/xed-app.c:118
+msgid ""
+"Set the character encoding to be used to open the files listed on the "
+"command line"
+msgstr ""
+"Estabelecer a codificación de caracteres que se usará ao abrir os ficheiros "
+"listados na liña de ordes"
+
+#: ../xed/xed-app.c:119
+msgid "ENCODING"
+msgstr "CODIFICACIÓN"
+
+#: ../xed/xed-app.c:125
+msgid "Create a new top-level window in an existing instance of xed"
+msgstr ""
+
+#: ../xed/xed-app.c:132
+msgid "Create a new document in an existing instance of xed"
+msgstr ""
+
+#: ../xed/xed-app.c:139
+msgid "Set the size and position of the window (WIDTHxHEIGHT+X+Y)"
+msgstr ""
+
+#: ../xed/xed-app.c:140
+msgid "GEOMETRY"
+msgstr ""
+
+#: ../xed/xed-app.c:146
+msgid "Open files and block process until files are closed"
+msgstr ""
+
+#: ../xed/xed-app.c:153
+msgid "Run xed in standalone mode"
+msgstr ""
+
+#: ../xed/xed-app.c:160
+msgid "[FILE...] [+LINE]"
+msgstr ""
+
+#: ../xed/xed-app.c:551
+#, c-format
+msgid "%s: invalid encoding."
+msgstr ""
+
+#: ../xed/xed-app.c:1201
+msgid "There was an error displaying the help."
+msgstr "Produciuse un erro ao amosar a axuda."
+
+#: ../xed/xed-close-confirmation-dialog.c:133
 msgid "Log Out _without Saving"
 msgstr "Saír da sesión _sen gardar"
 
-#: ../xed/dialogs/xed-close-confirmation-dialog.c:143
+#: ../xed/xed-close-confirmation-dialog.c:134
 msgid "_Cancel Logout"
 msgstr "_Cancelar a saída"
 
-#: ../xed/dialogs/xed-close-confirmation-dialog.c:150
+#: ../xed/xed-close-confirmation-dialog.c:138
 msgid "Close _without Saving"
 msgstr "Pechar _sen gardar"
 
-#: ../xed/dialogs/xed-close-confirmation-dialog.c:199
+#: ../xed/xed-close-confirmation-dialog.c:139 ../xed/xed-commands-file.c:406
+#: ../xed/xed-commands-file.c:509 ../xed/xed-commands-file.c:688
+#: ../xed/xed-commands-file.c:1117 ../xed/xed-encodings-dialog.c:340
+#: ../xed/xed-io-error-info-bar.c:151 ../xed/xed-io-error-info-bar.c:410
+#: ../xed/xed-io-error-info-bar.c:1055
+#: ../plugins/filebrowser/xed-file-browser-utils.c:156
+#: ../plugins/spell/xed-spell-language-dialog.c:130
+msgid "_Cancel"
+msgstr ""
+
+#: ../xed/xed-close-confirmation-dialog.c:159
+msgid "_Save As..."
+msgstr ""
+
+#. File menu
+#: ../xed/xed-close-confirmation-dialog.c:163 ../xed/xed-commands-file.c:689
+#: ../xed/xed-ui.h:80
+msgid "_Save"
+msgstr ""
+
+#: ../xed/xed-close-confirmation-dialog.c:188
 msgid "Question"
 msgstr "Pregunta"
 
-#: ../xed/dialogs/xed-close-confirmation-dialog.c:399
+#: ../xed/xed-close-confirmation-dialog.c:381
 #, c-format
 msgid ""
 "If you don't save, changes from the last %ld second will be permanently lost."
@@ -506,13 +590,13 @@ msgstr[1] ""
 "Se non garda, os cambios desde os últimos %ld segundos perderanse "
 "permanentemente."
 
-#: ../xed/dialogs/xed-close-confirmation-dialog.c:408
+#: ../xed/xed-close-confirmation-dialog.c:390
 msgid ""
 "If you don't save, changes from the last minute will be permanently lost."
 msgstr ""
 "Se non garda, os cambios desde o último minuto perderanse permanentemente."
 
-#: ../xed/dialogs/xed-close-confirmation-dialog.c:414
+#: ../xed/xed-close-confirmation-dialog.c:395
 #, c-format
 msgid ""
 "If you don't save, changes from the last minute and %ld second will be "
@@ -527,7 +611,7 @@ msgstr[1] ""
 "Se non garda, os cambios desde o último minuto e %ld segundos perderanse "
 "permanentemente."
 
-#: ../xed/dialogs/xed-close-confirmation-dialog.c:424
+#: ../xed/xed-close-confirmation-dialog.c:404
 #, c-format
 msgid ""
 "If you don't save, changes from the last %ld minute will be permanently lost."
@@ -541,13 +625,13 @@ msgstr[1] ""
 "Se non garda, os cambios desde os últimos %ld minutos perderanse "
 "permanentemente."
 
-#: ../xed/dialogs/xed-close-confirmation-dialog.c:439
+#: ../xed/xed-close-confirmation-dialog.c:419
 msgid ""
 "If you don't save, changes from the last hour will be permanently lost."
 msgstr ""
 "Se non garda, os cambios desde a última hora perderanse permanentemente."
 
-#: ../xed/dialogs/xed-close-confirmation-dialog.c:445
+#: ../xed/xed-close-confirmation-dialog.c:424
 #, c-format
 msgid ""
 "If you don't save, changes from the last hour and %d minute will be "
@@ -562,7 +646,7 @@ msgstr[1] ""
 "Se non garda, os cambios desde a última hora e %d minutos perderanse "
 "permanentemente."
 
-#: ../xed/dialogs/xed-close-confirmation-dialog.c:460
+#: ../xed/xed-close-confirmation-dialog.c:438
 #, c-format
 msgid ""
 "If you don't save, changes from the last %d hour will be permanently lost."
@@ -574,12 +658,12 @@ msgstr[1] ""
 "Se non garda, os cambios desde as últimas %d horas perderanse "
 "permanentemente."
 
-#: ../xed/dialogs/xed-close-confirmation-dialog.c:503
+#: ../xed/xed-close-confirmation-dialog.c:479
 #, c-format
 msgid "Save changes to document \"%s\" before closing?"
 msgstr "Quere gardar os cambios do documento «%s» antes de pechar?"
 
-#: ../xed/dialogs/xed-close-confirmation-dialog.c:677
+#: ../xed/xed-close-confirmation-dialog.c:644
 #, c-format
 msgid ""
 "There is %d document with unsaved changes. Save changes before closing?"
@@ -592,273 +676,21 @@ msgstr[1] ""
 "Hai %d documentos con cambios sen gardar. Quere gardar os cambios antes de "
 "pechar?"
 
-#: ../xed/dialogs/xed-close-confirmation-dialog.c:694
+#: ../xed/xed-close-confirmation-dialog.c:661
 msgid "S_elect the documents you want to save:"
 msgstr "S_eleccione os documentos que quere gardar:"
 
 #. Secondary label
-#: ../xed/dialogs/xed-close-confirmation-dialog.c:713
+#: ../xed/xed-close-confirmation-dialog.c:677
 msgid "If you don't save, all your changes will be permanently lost."
 msgstr "Se non garda, todos os seus cambios perderanse permanentemente."
 
-#: ../xed/dialogs/xed-encodings-dialog.c:321
-msgid "Character Encodings"
-msgstr "Codificacións de caracteres"
-
-#: ../xed/dialogs/xed-encodings-dialog.c:384
-#: ../xed/dialogs/xed-encodings-dialog.c:445
-msgid "_Description"
-msgstr "_Descrición"
-
-#: ../xed/dialogs/xed-encodings-dialog.c:393
-#: ../xed/dialogs/xed-encodings-dialog.c:454
-msgid "_Encoding"
-msgstr "_Codificación"
-
-#: ../xed/dialogs/xed-encodings-dialog.ui.h:1
-msgid "Character encodings"
-msgstr "Codificacións de caracteres"
-
-#: ../xed/dialogs/xed-encodings-dialog.ui.h:2
-msgid "A_vailable encodings:"
-msgstr "Codificacións _dispoñíbeis:"
-
-#: ../xed/dialogs/xed-encodings-dialog.ui.h:3
-msgid "E_ncodings shown in menu:"
-msgstr "Codi_ficacións amosadas no menú:"
-
-#: ../xed/dialogs/xed-preferences-dialog.c:572
-msgid "Click on this button to select the font to be used by the editor"
-msgstr ""
-"Prema este botón para seleccionar o tipo de letra utilizado no editor"
-
-#: ../xed/dialogs/xed-preferences-dialog.c:582
-#, c-format
-msgid "_Use the system fixed width font (%s)"
-msgstr "_Usar o tipo de letra de largura fixa do sistema (%s)"
-
-#: ../xed/dialogs/xed-preferences-dialog.c:785
-msgid "The selected color scheme cannot be installed."
-msgstr "Non é posíbel instalar o esquema de cores seleccionado."
-
-#: ../xed/dialogs/xed-preferences-dialog.c:810
-msgid "Add Scheme"
-msgstr "Engadir esquema"
-
-#: ../xed/dialogs/xed-preferences-dialog.c:817
-msgid "A_dd Scheme"
-msgstr "_Engadir esquema"
-
-#: ../xed/dialogs/xed-preferences-dialog.c:825
-msgid "Color Scheme Files"
-msgstr "Ficheiros de esquema de cores"
-
-#: ../xed/dialogs/xed-preferences-dialog.c:832
-#: ../xed/xed-file-chooser-dialog.c:53
-msgid "All Files"
-msgstr "Todos os ficheiros"
-
-#: ../xed/dialogs/xed-preferences-dialog.c:877
-#, c-format
-msgid "Could not remove color scheme \"%s\"."
-msgstr "Non foi posíbel eliminar o esquema de cor «%s»."
-
-#: ../xed/dialogs/xed-preferences-dialog.c:1088
-msgid "Xed Preferences"
-msgstr ""
-
-#: ../xed/dialogs/xed-preferences-dialog.ui.h:1
-msgid "Preferences"
-msgstr "Preferencias"
-
-#: ../xed/dialogs/xed-preferences-dialog.ui.h:2
-#: ../xed/xed-print-preferences.ui.h:9
-msgid "Text Wrapping"
-msgstr "Axuste do texto"
-
-#: ../xed/dialogs/xed-preferences-dialog.ui.h:3
-#: ../plugins/docinfo/docinfo.ui.h:4 ../plugins/time/xed-time-dialog.ui.h:4
-#: ../plugins/time/xed-time-setup-dialog.ui.h:3
-msgid "    "
-msgstr "    "
-
-#: ../xed/dialogs/xed-preferences-dialog.ui.h:4
-#: ../xed/xed-print-preferences.ui.h:10
-msgid "Enable text _wrapping"
-msgstr "Activar o a_xuste de texto"
-
-#: ../xed/dialogs/xed-preferences-dialog.ui.h:5
-#: ../xed/xed-print-preferences.ui.h:11
-msgid "Do not _split words over two lines"
-msgstr "Non _dividir as palabras en dúas liñas"
-
-#: ../xed/dialogs/xed-preferences-dialog.ui.h:6
-#: ../xed/xed-print-preferences.ui.h:3
-msgid "Line Numbers"
-msgstr "Números de liña"
-
-#: ../xed/dialogs/xed-preferences-dialog.ui.h:7 ../xed/xed-view.c:1106
-msgid "_Display line numbers"
-msgstr "_Amosar os números de liña"
-
-#: ../xed/dialogs/xed-preferences-dialog.ui.h:8
-msgid "Current Line"
-msgstr "Liña actual"
-
-#: ../xed/dialogs/xed-preferences-dialog.ui.h:9
-msgid "Highlight current _line"
-msgstr "Realzar a _liña actual"
-
-#: ../xed/dialogs/xed-preferences-dialog.ui.h:10
-msgid "Right Margin"
-msgstr "Marxe dereita"
-
-#: ../xed/dialogs/xed-preferences-dialog.ui.h:11
-msgid "Display right _margin"
-msgstr "Amosar a _marxe dereita"
-
-#: ../xed/dialogs/xed-preferences-dialog.ui.h:12
-msgid "_Right margin at column:"
-msgstr "Marxe _dereita na columna:"
-
-#: ../xed/dialogs/xed-preferences-dialog.ui.h:13
-msgid "Bracket Matching"
-msgstr "Realce de paréntese"
-
-#: ../xed/dialogs/xed-preferences-dialog.ui.h:14
-msgid "Highlight matching _bracket"
-msgstr "Realzar a parén_tese de peche"
-
-#: ../xed/dialogs/xed-preferences-dialog.ui.h:15
-msgid "View"
-msgstr "Ver"
-
-#: ../xed/dialogs/xed-preferences-dialog.ui.h:16
-msgid "Tab Stops"
-msgstr "Tabulacións"
-
-#: ../xed/dialogs/xed-preferences-dialog.ui.h:17
-msgid "_Tab width:"
-msgstr "Largura do _tabulador:"
-
-#: ../xed/dialogs/xed-preferences-dialog.ui.h:18
-msgid "Insert _spaces instead of tabs"
-msgstr "Inserir e_spazos no canto de tabulacións"
-
-#: ../xed/dialogs/xed-preferences-dialog.ui.h:19
-msgid "Automatic Indentation"
-msgstr "Sangría automática"
-
-#: ../xed/dialogs/xed-preferences-dialog.ui.h:20
-msgid "_Enable automatic indentation"
-msgstr "_Activar a sangría automática"
-
-#: ../xed/dialogs/xed-preferences-dialog.ui.h:21
-msgid "File Saving"
-msgstr "Gardado de  ficheiro"
-
-#: ../xed/dialogs/xed-preferences-dialog.ui.h:22
-msgid "Create a _backup copy of files before saving"
-msgstr "Crear unha copia de _seguranza dos ficheiros antes de gardalos"
-
-#: ../xed/dialogs/xed-preferences-dialog.ui.h:23
-msgid "_Autosave files every"
-msgstr "_Gardar automaticamente os ficheiros cada"
-
-#: ../xed/dialogs/xed-preferences-dialog.ui.h:24
-msgid "_minutes"
-msgstr "_minutos"
-
-#: ../xed/dialogs/xed-preferences-dialog.ui.h:25
-msgid "Editor"
-msgstr "Editor"
-
-#: ../xed/dialogs/xed-preferences-dialog.ui.h:26
-msgid "Font"
-msgstr "Tipo de letra"
-
-#: ../xed/dialogs/xed-preferences-dialog.ui.h:27
-msgid "Editor _font: "
-msgstr "Tipo de letra do _editor: "
-
-#: ../xed/dialogs/xed-preferences-dialog.ui.h:28
-msgid "Pick the editor font"
-msgstr "Seleccionar o tipo de letra do editor"
-
-#: ../xed/dialogs/xed-preferences-dialog.ui.h:29
-msgid "Color Scheme"
-msgstr "Esquema de cor"
-
-#: ../xed/dialogs/xed-preferences-dialog.ui.h:30
-msgid "_Add..."
-msgstr "_Engadir..."
-
-#: ../xed/dialogs/xed-preferences-dialog.ui.h:31
-msgid "Font & Colors"
-msgstr "Tipos de letra e cores"
-
-#: ../xed/dialogs/xed-preferences-dialog.ui.h:32
-msgid "Plugins"
-msgstr "Engadidos"
-
-#: ../xed/xed.c:104
-msgid "Show the application's version"
-msgstr "Amosar a versión do aplicativo"
-
-#: ../xed/xed.c:107
-msgid ""
-"Set the character encoding to be used to open the files listed on the "
-"command line"
-msgstr ""
-"Estabelecer a codificación de caracteres que se usará ao abrir os ficheiros "
-"listados na liña de ordes"
-
-#: ../xed/xed.c:107
-msgid "ENCODING"
-msgstr "CODIFICACIÓN"
-
-#: ../xed/xed.c:110
-msgid "Display list of possible values for the encoding option"
-msgstr "Amosa a lista dos valores posíbeis de opcións de codificación"
-
-#: ../xed/xed.c:113
-msgid "Create a new top-level window in an existing instance of xed"
-msgstr ""
-
-#: ../xed/xed.c:116
-msgid "Create a new document in an existing instance of xed"
-msgstr ""
-
-#: ../xed/xed.c:119
-msgid "[FILE...]"
-msgstr "[FICHEIRO...]"
-
-#: ../xed/xed.c:174
-#, c-format
-msgid "%s: invalid encoding.\n"
-msgstr "%s: codificación incorrecta.\n"
-
-#. Setup command line options
-#: ../xed/xed.c:520
-msgid "- Edit text files"
-msgstr "- Editar ficheiros de texto"
-
-#: ../xed/xed.c:529
-#, c-format
-msgid ""
-"%s\n"
-"Run '%s --help' to see a full list of available command line options.\n"
-msgstr ""
-"%s\n"
-"Execute '%s --help' para ver unha lista completa das opcións de liña de "
-"ordes dispoñíbeis.\n"
-
-#: ../xed/xed-commands-file.c:250
+#: ../xed/xed-commands-file.c:236
 #, c-format
 msgid "Loading file '%s'…"
 msgstr "Cargando o ficheiro «%s»…"
 
-#: ../xed/xed-commands-file.c:259
+#: ../xed/xed-commands-file.c:245
 #, c-format
 msgid "Loading %d file…"
 msgid_plural "Loading %d files…"
@@ -866,43 +698,48 @@ msgstr[0] "Cargando %d ficheiro…"
 msgstr[1] "Cargando %d ficheiros…"
 
 #. Translators: "Open Files" is the title of the file chooser window
-#: ../xed/xed-commands-file.c:465
+#: ../xed/xed-commands-file.c:402
 msgid "Open Files"
 msgstr "Abrir ficheiros"
 
-#: ../xed/xed-commands-file.c:576
+#: ../xed/xed-commands-file.c:407
+#: ../plugins/filebrowser/xed-file-browser-widget.c:770
+msgid "_Open"
+msgstr ""
+
+#: ../xed/xed-commands-file.c:501
 #, c-format
 msgid "The file \"%s\" is read-only."
 msgstr "O ficheiro «%s» é só de lectura."
 
-#: ../xed/xed-commands-file.c:581
+#: ../xed/xed-commands-file.c:506
 msgid "Do you want to try to replace it with the one you are saving?"
 msgstr "Quere tentar substituílo co que está gardando agora?"
 
-#: ../xed/xed-commands-file.c:589 ../xed/xed-ui.h:117
+#: ../xed/xed-commands-file.c:510 ../xed/xed-ui.h:117
 msgid "_Replace"
 msgstr "_Substituír"
 
-#: ../xed/xed-commands-file.c:650 ../xed/xed-commands-file.c:873
+#: ../xed/xed-commands-file.c:576 ../xed/xed-commands-file.c:786
 #, c-format
 msgid "Saving file '%s'…"
 msgstr "Gardando o ficheiro «%s»…"
 
-#: ../xed/xed-commands-file.c:758
+#: ../xed/xed-commands-file.c:684
 msgid "Save As…"
 msgstr "Gardar como…"
 
-#: ../xed/xed-commands-file.c:1087
+#: ../xed/xed-commands-file.c:986
 #, c-format
 msgid "Reverting the document '%s'…"
 msgstr "Recuperando o documento «%s»…"
 
-#: ../xed/xed-commands-file.c:1132
+#: ../xed/xed-commands-file.c:1033
 #, c-format
 msgid "Revert unsaved changes to document '%s'?"
 msgstr "Quere recuperar os cambios non gardados no documento «%s»?"
 
-#: ../xed/xed-commands-file.c:1141
+#: ../xed/xed-commands-file.c:1040
 #, c-format
 msgid ""
 "Changes made to the document in the last %ld second will be permanently lost."
@@ -916,14 +753,14 @@ msgstr[1] ""
 "Os cambios realizados no documento nos últimos %ld segundos perderanse "
 "permanentemente."
 
-#: ../xed/xed-commands-file.c:1150
+#: ../xed/xed-commands-file.c:1049
 msgid ""
 "Changes made to the document in the last minute will be permanently lost."
 msgstr ""
 "Os cambios realizados no documento no último minuto perderanse "
 "permanentemente."
 
-#: ../xed/xed-commands-file.c:1156
+#: ../xed/xed-commands-file.c:1054
 #, c-format
 msgid ""
 "Changes made to the document in the last minute and %ld second will be "
@@ -938,7 +775,7 @@ msgstr[1] ""
 "Os cambios realizados no documento no último minuto e %ld segundos "
 "perderanse permanentemente."
 
-#: ../xed/xed-commands-file.c:1166
+#: ../xed/xed-commands-file.c:1063
 #, c-format
 msgid ""
 "Changes made to the document in the last %ld minute will be permanently lost."
@@ -952,13 +789,13 @@ msgstr[1] ""
 "Os cambios realizados no documento nos últimos %ld minutos perderanse "
 "permanentemente."
 
-#: ../xed/xed-commands-file.c:1181
+#: ../xed/xed-commands-file.c:1078
 msgid ""
 "Changes made to the document in the last hour will be permanently lost."
 msgstr ""
 "Os cambios realizados no documento na última hora perderanse permanentemente."
 
-#: ../xed/xed-commands-file.c:1187
+#: ../xed/xed-commands-file.c:1083
 #, c-format
 msgid ""
 "Changes made to the document in the last hour and %d minute will be "
@@ -973,7 +810,7 @@ msgstr[1] ""
 "Os cambios realizados no documento na última hora e %d minutos perderanse "
 "permanentemente."
 
-#: ../xed/xed-commands-file.c:1202
+#: ../xed/xed-commands-file.c:1097
 #, c-format
 msgid ""
 "Changes made to the document in the last %d hour will be permanently lost."
@@ -986,233 +823,139 @@ msgstr[1] ""
 "Os cambios realizados no documento nas últimas %d horas perderanse "
 "permanentemente."
 
-#: ../xed/xed-commands-file.c:1228
+#: ../xed/xed-commands-file.c:1118
 msgid "_Revert"
 msgstr "_Recuperar"
 
-#: ../xed/xed-commands-help.c:56
+#: ../xed/xed-commands-help.c:58
 msgid "A small and lightweight text editor"
 msgstr ""
 
-#: ../xed/xed-document.c:1082 ../xed/xed-document.c:1102
+#: ../xed/xed-document.c:850 ../xed/xed-document.c:879
 #, c-format
 msgid "Unsaved Document %d"
 msgstr "O documento %d non se gardou"
 
-#: ../xed/xed-documents-panel.c:97 ../xed/xed-documents-panel.c:111
-#: ../xed/xed-window.c:1860 ../xed/xed-window.c:1864
+#: ../xed/xed-documents-panel.c:95 ../xed/xed-documents-panel.c:106
+#: ../xed/xed-window.c:1994 ../xed/xed-window.c:1998
 msgid "Read-Only"
 msgstr "Só de lectura"
 
-#: ../xed/xed-documents-panel.c:784 ../xed/xed-window.c:3089
+#: ../xed/xed-documents-panel.c:732 ../xed/xed-window.c:3320
 msgid "Documents"
 msgstr "Documentos"
 
-#: ../xed/xed-encodings.c:138 ../xed/xed-encodings.c:180
-#: ../xed/xed-encodings.c:182 ../xed/xed-encodings.c:184
-#: ../xed/xed-encodings.c:186 ../xed/xed-encodings.c:188
-#: ../xed/xed-encodings.c:190 ../xed/xed-encodings.c:192
-msgid "Unicode"
-msgstr "Unicode"
-
-#: ../xed/xed-encodings.c:151 ../xed/xed-encodings.c:175
-#: ../xed/xed-encodings.c:225 ../xed/xed-encodings.c:268
-msgid "Western"
-msgstr "Occidental"
-
-#: ../xed/xed-encodings.c:153 ../xed/xed-encodings.c:227
-#: ../xed/xed-encodings.c:264
-msgid "Central European"
-msgstr "Centroeuropeo"
-
-#: ../xed/xed-encodings.c:155
-msgid "South European"
-msgstr "Sureuropeo"
-
-#: ../xed/xed-encodings.c:157 ../xed/xed-encodings.c:171
-#: ../xed/xed-encodings.c:278
-msgid "Baltic"
-msgstr "Báltico"
-
-#: ../xed/xed-encodings.c:159 ../xed/xed-encodings.c:229
-#: ../xed/xed-encodings.c:242 ../xed/xed-encodings.c:246
-#: ../xed/xed-encodings.c:248 ../xed/xed-encodings.c:266
-msgid "Cyrillic"
-msgstr "Cirílico"
-
-#: ../xed/xed-encodings.c:161 ../xed/xed-encodings.c:235
-#: ../xed/xed-encodings.c:276
-msgid "Arabic"
-msgstr "Árabe"
-
-#: ../xed/xed-encodings.c:163 ../xed/xed-encodings.c:270
-msgid "Greek"
-msgstr "Grego"
-
-#: ../xed/xed-encodings.c:165
-msgid "Hebrew Visual"
-msgstr "Hebreo visual"
-
-#: ../xed/xed-encodings.c:167 ../xed/xed-encodings.c:231
-#: ../xed/xed-encodings.c:272
-msgid "Turkish"
-msgstr "Turco"
-
-#: ../xed/xed-encodings.c:169
-msgid "Nordic"
-msgstr "Nórdico"
-
-#: ../xed/xed-encodings.c:173
-msgid "Celtic"
-msgstr "Celta"
-
-#: ../xed/xed-encodings.c:177
-msgid "Romanian"
-msgstr "Romanés"
-
-#: ../xed/xed-encodings.c:195
-msgid "Armenian"
-msgstr "Armenio"
-
-#: ../xed/xed-encodings.c:197 ../xed/xed-encodings.c:199
-#: ../xed/xed-encodings.c:213
-msgid "Chinese Traditional"
-msgstr "Chinés tradicional"
-
-#: ../xed/xed-encodings.c:201
-msgid "Cyrillic/Russian"
-msgstr "Cirílico/Ruso"
-
-#: ../xed/xed-encodings.c:204 ../xed/xed-encodings.c:206
-#: ../xed/xed-encodings.c:208 ../xed/xed-encodings.c:238
-#: ../xed/xed-encodings.c:253
-msgid "Japanese"
-msgstr "Xaponés"
-
-#: ../xed/xed-encodings.c:211 ../xed/xed-encodings.c:240
-#: ../xed/xed-encodings.c:244 ../xed/xed-encodings.c:259
-msgid "Korean"
-msgstr "Coreano"
-
-#: ../xed/xed-encodings.c:216 ../xed/xed-encodings.c:218
-#: ../xed/xed-encodings.c:220
-msgid "Chinese Simplified"
-msgstr "Chinés simplificado"
-
-#: ../xed/xed-encodings.c:222
-msgid "Georgian"
-msgstr "Xeorxiano"
-
-#: ../xed/xed-encodings.c:233 ../xed/xed-encodings.c:274
-msgid "Hebrew"
-msgstr "Hebreo"
-
-#: ../xed/xed-encodings.c:250
-msgid "Cyrillic/Ukrainian"
-msgstr "Cirílico/Ucraíno"
-
-#: ../xed/xed-encodings.c:255 ../xed/xed-encodings.c:261
-#: ../xed/xed-encodings.c:280
-msgid "Vietnamese"
-msgstr "Vietnamita"
-
-#: ../xed/xed-encodings.c:257
-msgid "Thai"
-msgstr "Tailandés"
-
-#: ../xed/xed-encodings.c:431
-msgid "Unknown"
-msgstr "Descoñecido"
-
-#: ../xed/xed-encodings-combo-box.c:272
+#: ../xed/xed-encodings-combo-box.c:268
 msgid "Automatically Detected"
 msgstr "Autodetectada"
 
-#: ../xed/xed-encodings-combo-box.c:288 ../xed/xed-encodings-combo-box.c:303
+#: ../xed/xed-encodings-combo-box.c:287 ../xed/xed-encodings-combo-box.c:301
 #, c-format
 msgid "Current Locale (%s)"
 msgstr "Configuración rexional actual (%s)"
 
-#: ../xed/xed-encodings-combo-box.c:353
+#: ../xed/xed-encodings-combo-box.c:348
 msgid "Add or Remove..."
 msgstr "Engadir ou e_liminar..."
 
-#: ../xed/xed-file-chooser-dialog.c:54
+#: ../xed/xed-encodings-dialog.c:341
+#: ../plugins/spell/xed-spell-language-dialog.c:131
+#: ../plugins/time/xed-time-plugin.c:793
+msgid "_OK"
+msgstr ""
+
+#: ../xed/xed-encodings-dialog.c:342 ../xed/xed-ui.h:53
+#: ../plugins/spell/xed-spell-language-dialog.c:132
+msgid "_Help"
+msgstr "A_xuda"
+
+#: ../xed/xed-encodings-dialog.c:345
+msgid "Character Encodings"
+msgstr "Codificacións de caracteres"
+
+#: ../xed/xed-encodings-dialog.c:378 ../xed/xed-encodings-dialog.c:415
+msgid "_Description"
+msgstr "_Descrición"
+
+#: ../xed/xed-encodings-dialog.c:386 ../xed/xed-encodings-dialog.c:423
+msgid "_Encoding"
+msgstr "_Codificación"
+
+#: ../xed/xed-file-chooser-dialog.c:50 ../xed/xed-preferences-dialog.c:870
+msgid "All Files"
+msgstr "Todos os ficheiros"
+
+#: ../xed/xed-file-chooser-dialog.c:51
 msgid "All Text Files"
 msgstr "Todos os ficheiros de texto"
 
-#: ../xed/xed-file-chooser-dialog.c:82
+#: ../xed/xed-file-chooser-dialog.c:93
 msgid "C_haracter Encoding:"
 msgstr "Codificación de _caracteres:"
 
-#: ../xed/xed-file-chooser-dialog.c:147
+#: ../xed/xed-file-chooser-dialog.c:149
 msgid "L_ine Ending:"
 msgstr "Finalización de li_ña:"
 
-#: ../xed/xed-file-chooser-dialog.c:166
+#: ../xed/xed-file-chooser-dialog.c:160
 msgid "Unix/Linux"
 msgstr "Unix/Linux"
 
-#: ../xed/xed-file-chooser-dialog.c:172
+#: ../xed/xed-file-chooser-dialog.c:161
 msgid "Mac OS Classic"
 msgstr "Mac OS Classic"
 
-#: ../xed/xed-file-chooser-dialog.c:178
+#: ../xed/xed-file-chooser-dialog.c:162
 msgid "Windows"
 msgstr "Windows"
 
-#: ../xed/xed-help.c:81
-msgid "There was an error displaying the help."
-msgstr "Produciuse un erro ao amosar a axuda."
-
-#: ../xed/xed-io-error-message-area.c:179
-#: ../xed/xed-io-error-message-area.c:481
+#: ../xed/xed-io-error-info-bar.c:158 ../xed/xed-io-error-info-bar.c:394
 msgid "_Retry"
 msgstr "_Tentar de novo"
 
-#: ../xed/xed-io-error-message-area.c:200
+#: ../xed/xed-io-error-info-bar.c:177
 #, c-format
 msgid "Could not find the file %s."
 msgstr "Non foi posíbel localizar o ficheiro %s."
 
-#: ../xed/xed-io-error-message-area.c:202
-#: ../xed/xed-io-error-message-area.c:241
-#: ../xed/xed-io-error-message-area.c:248
+#: ../xed/xed-io-error-info-bar.c:178 ../xed/xed-io-error-info-bar.c:212
+#: ../xed/xed-io-error-info-bar.c:217
 msgid "Please check that you typed the location correctly and try again."
 msgstr ""
 "Verifique que escribiu a localización correctamente e ténteo de novo."
 
 #. Translators: %s is a URI scheme (like for example http:, ftp:, etc.)
-#: ../xed/xed-io-error-message-area.c:217
+#: ../xed/xed-io-error-info-bar.c:193
 #, c-format
 msgid "xed cannot handle %s locations."
 msgstr ""
 
-#: ../xed/xed-io-error-message-area.c:223
+#: ../xed/xed-io-error-info-bar.c:198
 msgid "xed cannot handle this location."
 msgstr ""
 
-#: ../xed/xed-io-error-message-area.c:231
+#: ../xed/xed-io-error-info-bar.c:205
 msgid "The location of the file cannot be mounted."
 msgstr "Non é posíbel montar a localización do ficheiro."
 
-#: ../xed/xed-io-error-message-area.c:235
+#: ../xed/xed-io-error-info-bar.c:208
 msgid ""
 "The location of the file cannot be accessed because it is not mounted."
 msgstr ""
 "Non é posíbel acceder á localización do ficheiro porque non está montada."
 
-#: ../xed/xed-io-error-message-area.c:239
+#: ../xed/xed-io-error-info-bar.c:211
 #, c-format
 msgid "%s is a directory."
 msgstr "%s é un cartafol."
 
-#: ../xed/xed-io-error-message-area.c:246
+#: ../xed/xed-io-error-info-bar.c:216
 #, c-format
 msgid "%s is not a valid location."
 msgstr "%s non é unha localización válida."
 
-#: ../xed/xed-io-error-message-area.c:276
+#. Translators: %s is a host name
+#: ../xed/xed-io-error-info-bar.c:246
 #, c-format
 msgid ""
 "Host %s could not be found. Please check that your proxy settings are "
@@ -1221,7 +964,8 @@ msgstr ""
 "Non foi posíbel atopar o host %s. Verifique que a configuración do seu proxy "
 "sexa correcta e ténteo de novo."
 
-#: ../xed/xed-io-error-message-area.c:289
+#. use the same string as INVALID_HOST
+#: ../xed/xed-io-error-info-bar.c:260
 #, c-format
 msgid ""
 "Hostname was invalid. Please check that you typed the location correctly and "
@@ -1230,52 +974,40 @@ msgstr ""
 "O nome do host é incorrecto. Verifique que escribiu ben o enderezo e ténteo "
 "de novo."
 
-#: ../xed/xed-io-error-message-area.c:297
+#: ../xed/xed-io-error-info-bar.c:267
 #, c-format
 msgid "%s is not a regular file."
 msgstr "%s non é un ficheiro normal."
 
-#: ../xed/xed-io-error-message-area.c:302
+#: ../xed/xed-io-error-info-bar.c:270
 msgid "Connection timed out. Please try again."
 msgstr "Excedeuse o tempo de espera da conexión. Ténteo de novo."
 
-#: ../xed/xed-io-error-message-area.c:325
-msgid "The file is too big."
-msgstr "O ficheiro é demasiado grande."
-
-#: ../xed/xed-io-error-message-area.c:366
+#: ../xed/xed-io-error-info-bar.c:297
 #, c-format
 msgid "Unexpected error: %s"
 msgstr "Erro inesperado: %s"
 
-#: ../xed/xed-io-error-message-area.c:402
+#: ../xed/xed-io-error-info-bar.c:330
 msgid "xed cannot find the file. Perhaps it has recently been deleted."
 msgstr ""
 
-#: ../xed/xed-io-error-message-area.c:412
+#: ../xed/xed-io-error-info-bar.c:340
 #, c-format
 msgid "Could not revert the file %s."
 msgstr "Non foi posíbel recuperar o ficheiro %s."
 
-#: ../xed/xed-io-error-message-area.c:438
+#: ../xed/xed-io-error-info-bar.c:363
 msgid "Ch_aracter Encoding:"
 msgstr "Codificación de _caracteres:"
 
 #. Translators: the access key chosen for this string should be
 #. different from other main menu access keys (Open, Edit, View...)
-#: ../xed/xed-io-error-message-area.c:490
-#: ../xed/xed-io-error-message-area.c:765
+#: ../xed/xed-io-error-info-bar.c:401 ../xed/xed-io-error-info-bar.c:658
 msgid "Edit Any_way"
 msgstr "_Editar de todos os modos"
 
-#. Translators: the access key chosen for this string should be
-#. different from other main menu access keys (Open, Edit, View...)
-#: ../xed/xed-io-error-message-area.c:495
-#: ../xed/xed-io-error-message-area.c:770
-msgid "D_on't Edit"
-msgstr "_Non editar"
-
-#: ../xed/xed-io-error-message-area.c:591
+#: ../xed/xed-io-error-info-bar.c:493
 msgid ""
 "The number of followed links is limited and the actual file could not be "
 "found within this limit."
@@ -1283,68 +1015,64 @@ msgstr ""
 "O número de ligazóns seguidas é limitado e o ficheiro actual non se atopa "
 "dentro deste límite."
 
-#: ../xed/xed-io-error-message-area.c:595
+#: ../xed/xed-io-error-info-bar.c:497
 msgid "You do not have the permissions necessary to open the file."
 msgstr "Non ten os permisos necesarios para abrir o ficheiro."
 
-#: ../xed/xed-io-error-message-area.c:601
+#: ../xed/xed-io-error-info-bar.c:503
 msgid "xed has not been able to detect the character encoding."
 msgstr ""
 
-#: ../xed/xed-io-error-message-area.c:603
-#: ../xed/xed-io-error-message-area.c:625
+#: ../xed/xed-io-error-info-bar.c:505 ../xed/xed-io-error-info-bar.c:528
 msgid "Please check that you are not trying to open a binary file."
 msgstr "Verifique que non está tentando abrir un ficheiro binario."
 
-#: ../xed/xed-io-error-message-area.c:604
+#: ../xed/xed-io-error-info-bar.c:506
 msgid "Select a character encoding from the menu and try again."
 msgstr ""
 "Seleccione unha codificación de caracteres desde o menú e ténteo de novo."
 
-#: ../xed/xed-io-error-message-area.c:610
+#: ../xed/xed-io-error-info-bar.c:512
 #, c-format
 msgid "There was a problem opening the file %s."
 msgstr "Produciuse un erro ao abrir o ficheiro %s."
 
-#: ../xed/xed-io-error-message-area.c:612
+#: ../xed/xed-io-error-info-bar.c:513
 msgid ""
 "The file you opened has some invalid characters. If you continue editing "
-"this file you could make this document useless."
+"this file you could corrupt this document."
 msgstr ""
-"O ficheiro que abriu ten algúns caracteres incorrectos, se continúa a "
-"edición deste ficheiro podería inutilizar este documento."
 
-#: ../xed/xed-io-error-message-area.c:615
+#: ../xed/xed-io-error-info-bar.c:516
 msgid "You can also choose another character encoding and try again."
 msgstr ""
 "Vostede tamén pode seleccionar outra codificación de caracteres e tentalo de "
 "novo."
 
-#: ../xed/xed-io-error-message-area.c:622
+#: ../xed/xed-io-error-info-bar.c:525
 #, c-format
 msgid "Could not open the file %s using the %s character encoding."
 msgstr ""
 "Non foi posíbel abrir o ficheiro %s usando a codificación de caracteres %s."
 
-#: ../xed/xed-io-error-message-area.c:626
-#: ../xed/xed-io-error-message-area.c:701
+#: ../xed/xed-io-error-info-bar.c:529 ../xed/xed-io-error-info-bar.c:598
 msgid "Select a different character encoding from the menu and try again."
 msgstr ""
 "Seleccione unha codificación de caracteres diferente desde o menú e ténteo "
 "de novo."
 
-#: ../xed/xed-io-error-message-area.c:636
+#: ../xed/xed-io-error-info-bar.c:541
 #, c-format
 msgid "Could not open the file %s."
 msgstr "Non foi posíbel abrir o ficheiro %s."
 
-#: ../xed/xed-io-error-message-area.c:696
+#: ../xed/xed-io-error-info-bar.c:593
 #, c-format
 msgid "Could not save the file %s using the %s character encoding."
 msgstr ""
 "Non foi posíbel gardar o ficheiro %s usando a codificación de caracteres %s."
 
-#: ../xed/xed-io-error-message-area.c:699
+#: ../xed/xed-io-error-info-bar.c:596
 msgid ""
 "The document contains one or more characters that cannot be encoded using "
 "the specified character encoding."
@@ -1352,53 +1080,60 @@ msgstr ""
 "O documento contén un ou máis caracteres que non é posíbel codificar usando "
 "a codificación de caracteres especificada."
 
-#: ../xed/xed-io-error-message-area.c:785
+#. Translators: the access key chosen for this string should be
+#. different from other main menu access keys (Open, Edit, View...)
+#: ../xed/xed-io-error-info-bar.c:663
+msgid "D_on't Edit"
+msgstr "_Non editar"
+
+#: ../xed/xed-io-error-info-bar.c:677
 #, c-format
 msgid "This file (%s) is already open in another xed window."
 msgstr ""
 
-#: ../xed/xed-io-error-message-area.c:799
+#: ../xed/xed-io-error-info-bar.c:691
 msgid ""
 "xed opened this instance of the file in a non-editable way. Do you want to "
 "edit it anyway?"
 msgstr ""
 
-#: ../xed/xed-io-error-message-area.c:858
-#: ../xed/xed-io-error-message-area.c:954
+#: ../xed/xed-io-error-info-bar.c:746 ../xed/xed-io-error-info-bar.c:834
+#: ../xed/xed-io-error-info-bar.c:1096
 msgid "S_ave Anyway"
 msgstr "G_ardar de todos os modos"
 
-#: ../xed/xed-io-error-message-area.c:862
-#: ../xed/xed-io-error-message-area.c:958
+#: ../xed/xed-io-error-info-bar.c:747 ../xed/xed-io-error-info-bar.c:835
+#: ../xed/xed-io-error-info-bar.c:1098
 msgid "D_on't Save"
 msgstr "N_on gardar"
 
 #. FIXME: review this message, it's not clear since for the user the "modification"
-#. could be interpreted as the changes he made in the document. beside "reading" is
-#. not accurate (since last load/save)
-#: ../xed/xed-io-error-message-area.c:880
+#. * could be interpreted as the changes he made in the document. beside "reading" is
+#. * not accurate (since last load/save)
+#. 
+#: ../xed/xed-io-error-info-bar.c:764
 #, c-format
 msgid "The file %s has been modified since reading it."
 msgstr "O ficheiro %s foi modificado desde que se leu."
 
-#: ../xed/xed-io-error-message-area.c:895
+#: ../xed/xed-io-error-info-bar.c:778
 msgid ""
 "If you save it, all the external changes could be lost. Save it anyway?"
 msgstr ""
 "Se o garda, todos os cambios externos poderían perderse. Quere gardalo de "
 "todos os modos?"
 
-#: ../xed/xed-io-error-message-area.c:976
+#: ../xed/xed-io-error-info-bar.c:855
 #, c-format
 msgid "Could not create a backup file while saving %s"
 msgstr "Non foi posíbel crear un ficheiro de seguranza ao gardar %s"
 
-#: ../xed/xed-io-error-message-area.c:979
+#: ../xed/xed-io-error-info-bar.c:859
 #, c-format
 msgid "Could not create a temporary backup file while saving %s"
 msgstr "Non foi posíbel crear un ficheiro temporal de seguranza ao gardar %s"
 
-#: ../xed/xed-io-error-message-area.c:995
+#: ../xed/xed-io-error-info-bar.c:875
 msgid ""
 "xed could not back up the old copy of the file before saving the new one. "
 "You can ignore this warning and save the file anyway, but if an error occurs "
@@ -1406,20 +1141,20 @@ msgid ""
 msgstr ""
 
 #. Translators: %s is a URI scheme (like for example http:, ftp:, etc.)
-#: ../xed/xed-io-error-message-area.c:1055
+#: ../xed/xed-io-error-info-bar.c:932
 #, c-format
 msgid ""
 "xed cannot handle %s locations in write mode. Please check that you typed "
 "the location correctly and try again."
 msgstr ""
 
-#: ../xed/xed-io-error-message-area.c:1063
+#: ../xed/xed-io-error-info-bar.c:940
 msgid ""
 "xed cannot handle this location in write mode. Please check that you typed "
 "the location correctly and try again."
 msgstr ""
 
-#: ../xed/xed-io-error-message-area.c:1072
+#: ../xed/xed-io-error-info-bar.c:949
 #, c-format
 msgid ""
 "%s is not a valid location. Please check that you typed the location "
@@ -1428,7 +1163,7 @@ msgstr ""
 "%s non é unha localización válida. Verifique que escribiu ben o enderezo e "
 "ténteo de novo."
 
-#: ../xed/xed-io-error-message-area.c:1078
+#: ../xed/xed-io-error-info-bar.c:955
 msgid ""
 "You do not have the permissions necessary to save the file. Please check "
 "that you typed the location correctly and try again."
@@ -1436,7 +1171,7 @@ msgstr ""
 "Non ten os permisos necesarios para gardar o ficheiro. Verifique que "
 "escribiu o enderezo correctamente e ténteo de novo."
 
-#: ../xed/xed-io-error-message-area.c:1084
+#: ../xed/xed-io-error-info-bar.c:961
 msgid ""
 "There is not enough disk space to save the file. Please free some disk space "
 "and try again."
@@ -1444,7 +1179,7 @@ msgstr ""
 "Non hai suficiente espazo no disco para gardar o ficheiro. Libere un pouco "
 "de espazo no disco e ténteo de novo."
 
-#: ../xed/xed-io-error-message-area.c:1089
+#: ../xed/xed-io-error-info-bar.c:966
 msgid ""
 "You are trying to save the file on a read-only disk. Please check that you "
 "typed the location correctly and try again."
@@ -1452,12 +1187,12 @@ msgstr ""
 "Está tentando gardar o ficheiro nun disco só de lectura. Verifique que "
 "escribiu o enderezo correctamente e ténteo de novo."
 
-#: ../xed/xed-io-error-message-area.c:1095
+#: ../xed/xed-io-error-info-bar.c:972
 msgid ""
 "A file with the same name already exists. Please use a different name."
 msgstr "Xa existe un ficheiro co mesmo nome. Use un nome diferente."
 
-#: ../xed/xed-io-error-message-area.c:1100
+#: ../xed/xed-io-error-info-bar.c:977
 msgid ""
 "The disk where you are trying to save the file has a limitation on length of "
 "the file names. Please use a shorter name."
@@ -1465,7 +1200,7 @@ msgstr ""
 "O disco onde está tentando gardar o ficheiro ten unha limitación de "
 "lonxitude dos nomes de ficheiro. Use un nome máis curto."
 
-#: ../xed/xed-io-error-message-area.c:1107
+#: ../xed/xed-io-error-info-bar.c:987
 msgid ""
 "The disk where you are trying to save the file has a limitation on file "
 "sizes. Please try saving a smaller file or saving it to a disk that does not "
@@ -1475,7 +1210,7 @@ msgstr ""
 "de ficheiro. Tente gardar un ficheiro máis pequeno ou gardalo nun disco que "
 "non posúa esta limitación."
 
-#: ../xed/xed-io-error-message-area.c:1123
+#: ../xed/xed-io-error-info-bar.c:1000
 #, c-format
 msgid "Could not save the file %s."
 msgstr "Non foi posíbel gardar o ficheiro %s."
@@ -1483,175 +1218,98 @@ msgstr "Non foi posíbel gardar o ficheiro %s."
 #. FIXME: review this message, it's not clear since for the user the "modification"
 #. could be interpreted as the changes he made in the document. beside "reading" is
 #. not accurate (since last load/save)
-#: ../xed/xed-io-error-message-area.c:1167
+#: ../xed/xed-io-error-info-bar.c:1040
 #, c-format
 msgid "The file %s changed on disk."
 msgstr "O ficheiro %s foi modificado no disco."
 
-#: ../xed/xed-io-error-message-area.c:1172
+#: ../xed/xed-io-error-info-bar.c:1045
 msgid "Do you want to drop your changes and reload the file?"
 msgstr "Quere eliminar as modificacións e recargar o ficheiro?"
 
-#: ../xed/xed-io-error-message-area.c:1174
+#: ../xed/xed-io-error-info-bar.c:1049
 msgid "Do you want to reload the file?"
 msgstr "Quere recargar o ficheiro?"
 
-#: ../xed/xed-io-error-message-area.c:1179
+#: ../xed/xed-io-error-info-bar.c:1054
 msgid "_Reload"
 msgstr "_Recargar"
 
-#: ../xed/xed-panel.c:338 ../xed/xed-panel.c:513
-msgid "Empty"
-msgstr "Baleiro"
+#: ../xed/xed-io-error-info-bar.c:1111
+#, c-format
+msgid "Some invalid chars have been detected while saving %s"
+msgstr ""
 
-#: ../xed/xed-panel.c:403
-msgid "Hide panel"
-msgstr "Ocultar o panel"
+#: ../xed/xed-io-error-info-bar.c:1126
+msgid ""
+"If you continue saving this file you can corrupt the document.  Save anyway?"
+msgstr ""
 
-#: ../xed/xed-plugin-manager.c:54
-msgid "Plugin"
-msgstr "Engadido"
+#: ../xed/xed-preferences-dialog.c:390
+msgid "Click on this button to select the font to be used by the editor"
+msgstr ""
+"Prema este botón para seleccionar o tipo de letra utilizado no editor"
 
-#: ../xed/xed-plugin-manager.c:55
-msgid "Enabled"
-msgstr "Activado"
+#: ../xed/xed-preferences-dialog.c:404
+#, c-format
+msgid "_Use the system fixed width font (%s)"
+msgstr "_Usar o tipo de letra de largura fixa do sistema (%s)"
 
-#: ../xed/xed-plugin-manager.c:504 ../xed/xed-ui.h:68
-msgid "_About"
-msgstr "_Sobre"
+#: ../xed/xed-preferences-dialog.c:630
+#, c-format
+msgid ""
+"Directory '%s' could not be created: g_mkdir_with_parents() failed: %s"
+msgstr ""
+"Non foi posíbel crear o cartafol «%s»: fallou g_mkdir_with_parents(): %s"
 
-#: ../xed/xed-plugin-manager.c:512
-msgid "C_onfigure"
-msgstr "C_onfigurar"
+#: ../xed/xed-preferences-dialog.c:826
+msgid "The selected color scheme cannot be installed."
+msgstr "Non é posíbel instalar o esquema de cores seleccionado."
 
-#: ../xed/xed-plugin-manager.c:521
-msgid "A_ctivate"
-msgstr "A_ctivar"
+#: ../xed/xed-preferences-dialog.c:851 ../xed/xed-preferences-dialog.c:857
+msgid "Add Scheme"
+msgstr "Engadir esquema"
 
-#: ../xed/xed-plugin-manager.c:532
-msgid "Ac_tivate All"
-msgstr "Ac_tivar todos"
+#: ../xed/xed-preferences-dialog.c:854 ../xed/xed-progress-info-bar.c:67
+msgid "Cancel"
+msgstr ""
 
-#: ../xed/xed-plugin-manager.c:537
-msgid "_Deactivate All"
-msgstr "_Desactivar todos"
+#: ../xed/xed-preferences-dialog.c:863
+msgid "Color Scheme Files"
+msgstr "Ficheiros de esquema de cores"
 
-#: ../xed/xed-plugin-manager.c:803
-msgid "Active _Plugins:"
-msgstr "_Engadidos activos:"
+#: ../xed/xed-preferences-dialog.c:906
+#, c-format
+msgid "Could not remove color scheme \"%s\"."
+msgstr "Non foi posíbel eliminar o esquema de cor «%s»."
 
-#: ../xed/xed-plugin-manager.c:829
-msgid "_About Plugin"
-msgstr "_Sobre o engadido"
+#: ../xed/xed-preferences-dialog.c:1100
+#: ../xed/resources/ui/xed-searchbar.ui.h:11
+msgid "Close"
+msgstr ""
 
-#: ../xed/xed-plugin-manager.c:833
-msgid "C_onfigure Plugin"
-msgstr "C_onfigurar o engadido"
+#: ../xed/xed-preferences-dialog.c:1101
+msgid "Help"
+msgstr ""
 
-#: ../xed/xed-print-job.c:547
+#: ../xed/xed-preferences-dialog.c:1104
+msgid "Xed Preferences"
+msgstr ""
+
+#: ../xed/xed-print-job.c:497
 #, c-format
 msgid "File: %s"
 msgstr "Ficheiro: %s"
 
-#: ../xed/xed-print-job.c:556
+#: ../xed/xed-print-job.c:506
 msgid "Page %N of %Q"
 msgstr "Páxina %N de %Q"
 
-#: ../xed/xed-print-job.c:813
+#: ../xed/xed-print-job.c:743
 msgid "Preparing..."
 msgstr "Preparando..."
 
-#: ../xed/xed-print-preferences.ui.h:1
-msgid "Syntax Highlighting"
-msgstr "Resaltado de sintaxe"
-
-#: ../xed/xed-print-preferences.ui.h:2
-msgid "Print synta_x highlighting"
-msgstr "Imprimir o realce de sinta_xe"
-
-#: ../xed/xed-print-preferences.ui.h:4
-msgid "Print line nu_mbers"
-msgstr "Imprimir os nú_meros de liña"
-
-#. 
-#: ../xed/xed-print-preferences.ui.h:6
-msgid "_Number every"
-msgstr "_Numerar cada"
-
-#. 
-#: ../xed/xed-print-preferences.ui.h:8
-msgid "lines"
-msgstr "liñas"
-
-#: ../xed/xed-print-preferences.ui.h:12
-msgid "Page header"
-msgstr "Cabeceira da páxina"
-
-#: ../xed/xed-print-preferences.ui.h:13
-msgid "Print page _headers"
-msgstr "Im_primir as cabeceiras de páxina"
-
-#: ../xed/xed-print-preferences.ui.h:14
-msgid "Fonts"
-msgstr "Tipos de letra"
-
-#: ../xed/xed-print-preferences.ui.h:15
-msgid "_Body:"
-msgstr "_Corpo:"
-
-#: ../xed/xed-print-preferences.ui.h:16
-msgid "_Line numbers:"
-msgstr "Números de _liña:"
-
-#: ../xed/xed-print-preferences.ui.h:17
-msgid "He_aders and footers:"
-msgstr "C_abeceiras e pés de páxina:"
-
-#: ../xed/xed-print-preferences.ui.h:18
-msgid "_Restore Default Fonts"
-msgstr "_Restaurar os tipos de letra predeterminados"
-
-#: ../xed/xed-searchbar.ui.h:1
-msgid "Replace All"
-msgstr "Substituír todo"
-
-#: ../xed/xed-searchbar.ui.h:2
-msgid "Replace"
-msgstr "Substituír"
-
-#: ../xed/xed-searchbar.ui.h:3
-msgid "_Search for: "
-msgstr "_Buscar por: "
-
-#: ../xed/xed-searchbar.ui.h:4
-msgid "Replace _with: "
-msgstr "Substituír _con: "
-
-#: ../xed/xed-searchbar.ui.h:5
-msgid "Next"
-msgstr ""
-
-#: ../xed/xed-searchbar.ui.h:6
-msgid "Previous"
-msgstr ""
-
-#: ../xed/xed-searchbar.ui.h:7
-msgid "Case sensitive"
-msgstr ""
-
-#: ../xed/xed-searchbar.ui.h:8
-msgid "Whole word"
-msgstr ""
-
-#: ../xed/xed-searchbar.ui.h:9
-msgid "Wrap"
-msgstr ""
-
-#: ../xed/xed-searchbar.ui.h:10
-msgid "Close"
-msgstr ""
-
-#: ../xed/xed-print-preview.c:564
+#: ../xed/xed-print-preview.c:570
 msgid "Show the previous page"
 msgstr "Amosar a páxina anterior"
 
@@ -1659,83 +1317,347 @@ msgstr "Amosar a páxina anterior"
 msgid "Show the next page"
 msgstr "Amosar a páxina seguinte"
 
-#: ../xed/xed-print-preview.c:592
+#: ../xed/xed-print-preview.c:590
 msgid "Current page (Alt+P)"
 msgstr "Páxina actual (Alt+P)"
 
+#. gtk_label_set_mnemonic_widget ((GtkLabel *) l, mp->priv->page_entry);
+#. We are displaying 'XXX of XXX'.
 #. Translators: the "of" from "1 of 19" in print preview.
-#: ../xed/xed-print-preview.c:615
+#: ../xed/xed-print-preview.c:604
 msgid "of"
 msgstr "de"
 
-#: ../xed/xed-print-preview.c:623
+#: ../xed/xed-print-preview.c:609
 msgid "Page total"
 msgstr "Total de páxinas"
 
-#: ../xed/xed-print-preview.c:624
+#: ../xed/xed-print-preview.c:610
 msgid "The total number of pages in the document"
 msgstr "O número total de páxinas do documento"
 
-#: ../xed/xed-print-preview.c:641
+#: ../xed/xed-print-preview.c:630
 msgid "Show multiple pages"
 msgstr "Amosar múltiples páxinas"
 
-#: ../xed/xed-print-preview.c:654
+#: ../xed/xed-print-preview.c:648
 msgid "Zoom 1:1"
 msgstr "Zoom 1:1"
 
-#: ../xed/xed-print-preview.c:663
+#: ../xed/xed-print-preview.c:654
 msgid "Zoom to fit the whole page"
 msgstr "Ampliar até encaixar a páxina completa"
 
-#: ../xed/xed-print-preview.c:672
+#: ../xed/xed-print-preview.c:660
 msgid "Zoom the page in"
 msgstr "Ampliar a páxina"
 
-#: ../xed/xed-print-preview.c:681
+#: ../xed/xed-print-preview.c:666
 msgid "Zoom the page out"
 msgstr "Reducir a páxina"
 
-#: ../xed/xed-print-preview.c:693
-msgid "_Close Preview"
-msgstr "Pe_char a previsualización"
+#: ../xed/xed-print-preview.c:681
+msgid "_Close preview"
+msgstr ""
 
-#: ../xed/xed-print-preview.c:696
+#: ../xed/xed-print-preview.c:683
 msgid "Close print preview"
 msgstr "Pechar a previsualización de impresión"
 
-#: ../xed/xed-print-preview.c:766
+#: ../xed/xed-print-preview.c:761
 #, c-format
 msgid "Page %d of %d"
 msgstr "Páxina %d de %d"
 
-#: ../xed/xed-print-preview.c:950
+#: ../xed/xed-print-preview.c:946
 msgid "Page Preview"
 msgstr "Previsualización da páxina"
 
-#: ../xed/xed-print-preview.c:951
+#: ../xed/xed-print-preview.c:947
 msgid "The preview of a page in the document to be printed"
 msgstr "Previsualización dunha páxina no documento que se vai imprimir"
 
-#: ../xed/xed-smart-charset-converter.c:319
-msgid "It is not possible to detect the encoding automatically"
-msgstr "Non é posíbel detectar a codificación automaticamente"
+#: ../xed/resources/ui/xed-encodings-dialog.ui.h:1
+msgid "Character encodings"
+msgstr "Codificacións de caracteres"
 
-#: ../xed/xed-searchbar.c:70
+#: ../xed/resources/ui/xed-encodings-dialog.ui.h:2
+msgid "A_vailable encodings:"
+msgstr "Codificacións _dispoñíbeis:"
+
+#: ../xed/resources/ui/xed-encodings-dialog.ui.h:3
+msgid "E_ncodings shown in menu:"
+msgstr "Codi_ficacións amosadas no menú:"
+
+#: ../xed/resources/ui/xed-preferences-dialog.ui.h:1
+msgid "Preferences"
+msgstr "Preferencias"
+
+#: ../xed/resources/ui/xed-preferences-dialog.ui.h:2
+#: ../xed/resources/ui/xed-print-preferences.ui.h:9
+msgid "Text Wrapping"
+msgstr "Axuste do texto"
+
+#: ../xed/resources/ui/xed-preferences-dialog.ui.h:3
+#: ../plugins/docinfo/docinfo.ui.h:4 ../plugins/time/xed-time-dialog.ui.h:4
+#: ../plugins/time/xed-time-setup-dialog.ui.h:3
+msgid "    "
+msgstr "    "
+
+#: ../xed/resources/ui/xed-preferences-dialog.ui.h:4
+#: ../xed/resources/ui/xed-print-preferences.ui.h:10
+msgid "Enable text _wrapping"
+msgstr "Activar o a_xuste de texto"
+
+#: ../xed/resources/ui/xed-preferences-dialog.ui.h:5
+#: ../xed/resources/ui/xed-print-preferences.ui.h:11
+msgid "Do not _split words over two lines"
+msgstr "Non _dividir as palabras en dúas liñas"
+
+#: ../xed/resources/ui/xed-preferences-dialog.ui.h:6
+#: ../xed/resources/ui/xed-print-preferences.ui.h:3
+msgid "Line Numbers"
+msgstr "Números de liña"
+
+#: ../xed/resources/ui/xed-preferences-dialog.ui.h:7 ../xed/xed-view.c:381
+msgid "_Display line numbers"
+msgstr "_Amosar os números de liña"
+
+#: ../xed/resources/ui/xed-preferences-dialog.ui.h:8
+msgid "Current Line"
+msgstr "Liña actual"
+
+#: ../xed/resources/ui/xed-preferences-dialog.ui.h:9
+msgid "Highlight current _line"
+msgstr "Realzar a _liña actual"
+
+#: ../xed/resources/ui/xed-preferences-dialog.ui.h:10
+msgid "Right Margin"
+msgstr "Marxe dereita"
+
+#: ../xed/resources/ui/xed-preferences-dialog.ui.h:11
+msgid "Display right _margin"
+msgstr "Amosar a _marxe dereita"
+
+#: ../xed/resources/ui/xed-preferences-dialog.ui.h:12
+msgid "_Right margin at column:"
+msgstr "Marxe _dereita na columna:"
+
+#: ../xed/resources/ui/xed-preferences-dialog.ui.h:13
+msgid "Bracket Matching"
+msgstr "Realce de paréntese"
+
+#: ../xed/resources/ui/xed-preferences-dialog.ui.h:14
+msgid "Highlight matching _bracket"
+msgstr "Realzar a parén_tese de peche"
+
+#: ../xed/resources/ui/xed-preferences-dialog.ui.h:15
+msgid "View"
+msgstr "Ver"
+
+#: ../xed/resources/ui/xed-preferences-dialog.ui.h:16
+msgid "Tab Stops"
+msgstr "Tabulacións"
+
+#: ../xed/resources/ui/xed-preferences-dialog.ui.h:17
+msgid "_Tab width:"
+msgstr "Largura do _tabulador:"
+
+#: ../xed/resources/ui/xed-preferences-dialog.ui.h:18
+msgid "Insert _spaces instead of tabs"
+msgstr "Inserir e_spazos no canto de tabulacións"
+
+#: ../xed/resources/ui/xed-preferences-dialog.ui.h:19
+msgid "Automatic Indentation"
+msgstr "Sangría automática"
+
+#: ../xed/resources/ui/xed-preferences-dialog.ui.h:20
+msgid "_Enable automatic indentation"
+msgstr "_Activar a sangría automática"
+
+#: ../xed/resources/ui/xed-preferences-dialog.ui.h:21
+msgid "File Saving"
+msgstr "Gardado de  ficheiro"
+
+#: ../xed/resources/ui/xed-preferences-dialog.ui.h:22
+msgid "Create a _backup copy of files before saving"
+msgstr "Crear unha copia de _seguranza dos ficheiros antes de gardalos"
+
+#: ../xed/resources/ui/xed-preferences-dialog.ui.h:23
+msgid "_Autosave files every"
+msgstr "_Gardar automaticamente os ficheiros cada"
+
+#: ../xed/resources/ui/xed-preferences-dialog.ui.h:24
+msgid "_minutes"
+msgstr "_minutos"
+
+#: ../xed/resources/ui/xed-preferences-dialog.ui.h:25
+msgid "Tab Scrolling"
+msgstr ""
+
+#: ../xed/resources/ui/xed-preferences-dialog.ui.h:26
+msgid "Allow mouse wheel scrolling to change tabs"
+msgstr ""
+
+#: ../xed/resources/ui/xed-preferences-dialog.ui.h:27
+msgid "Editor"
+msgstr "Editor"
+
+#: ../xed/resources/ui/xed-preferences-dialog.ui.h:28
+msgid "Font"
+msgstr "Tipo de letra"
+
+#: ../xed/resources/ui/xed-preferences-dialog.ui.h:29
+msgid "Editor _font: "
+msgstr "Tipo de letra do _editor: "
+
+#: ../xed/resources/ui/xed-preferences-dialog.ui.h:30
+msgid "Pick the editor font"
+msgstr "Seleccionar o tipo de letra do editor"
+
+#: ../xed/resources/ui/xed-preferences-dialog.ui.h:31
+msgid "Color Scheme"
+msgstr "Esquema de cor"
+
+#: ../xed/resources/ui/xed-preferences-dialog.ui.h:32
+msgid "Use dark theme variant (if available)"
+msgstr ""
+
+#: ../xed/resources/ui/xed-preferences-dialog.ui.h:33
+msgid "_Add..."
+msgstr "_Engadir..."
+
+#: ../xed/resources/ui/xed-preferences-dialog.ui.h:34
+msgid "Font & Colors"
+msgstr "Tipos de letra e cores"
+
+#: ../xed/resources/ui/xed-preferences-dialog.ui.h:35
+msgid "Plugins"
+msgstr "Engadidos"
+
+#: ../xed/resources/ui/xed-print-preferences.ui.h:1
+msgid "Syntax Highlighting"
+msgstr "Resaltado de sintaxe"
+
+#: ../xed/resources/ui/xed-print-preferences.ui.h:2
+msgid "Print synta_x highlighting"
+msgstr "Imprimir o realce de sinta_xe"
+
+#: ../xed/resources/ui/xed-print-preferences.ui.h:4
+msgid "Print line nu_mbers"
+msgstr "Imprimir os nú_meros de liña"
+
+#. 
+#: ../xed/resources/ui/xed-print-preferences.ui.h:6
+msgid "_Number every"
+msgstr "_Numerar cada"
+
+#. 
+#: ../xed/resources/ui/xed-print-preferences.ui.h:8
+msgid "lines"
+msgstr "liñas"
+
+#: ../xed/resources/ui/xed-print-preferences.ui.h:12
+msgid "Page header"
+msgstr "Cabeceira da páxina"
+
+#: ../xed/resources/ui/xed-print-preferences.ui.h:13
+msgid "Print page _headers"
+msgstr "Im_primir as cabeceiras de páxina"
+
+#: ../xed/resources/ui/xed-print-preferences.ui.h:14
+msgid "Fonts"
+msgstr "Tipos de letra"
+
+#: ../xed/resources/ui/xed-print-preferences.ui.h:15
+msgid "_Body:"
+msgstr "_Corpo:"
+
+#: ../xed/resources/ui/xed-print-preferences.ui.h:16
+msgid "_Line numbers:"
+msgstr "Números de _liña:"
+
+#: ../xed/resources/ui/xed-print-preferences.ui.h:17
+msgid "He_aders and footers:"
+msgstr "C_abeceiras e pés de páxina:"
+
+#: ../xed/resources/ui/xed-print-preferences.ui.h:18
+msgid "_Restore Default Fonts"
+msgstr "_Restaurar os tipos de letra predeterminados"
+
+#: ../xed/resources/ui/xed-searchbar.ui.h:1
+msgid "Replace All"
+msgstr "Substituír todo"
+
+#: ../xed/resources/ui/xed-searchbar.ui.h:2
+msgid "Replace"
+msgstr "Substituír"
+
+#: ../xed/resources/ui/xed-searchbar.ui.h:3
+msgid "_Search for: "
+msgstr "_Buscar por: "
+
+#: ../xed/resources/ui/xed-searchbar.ui.h:4
+msgid "Replace _with: "
+msgstr "Substituír _con: "
+
+#: ../xed/resources/ui/xed-searchbar.ui.h:5
+msgid "Next"
+msgstr ""
+
+#: ../xed/resources/ui/xed-searchbar.ui.h:6
+msgid "Previous"
+msgstr ""
+
+#: ../xed/resources/ui/xed-searchbar.ui.h:7
+msgid "Regular expression"
+msgstr ""
+
+#: ../xed/resources/ui/xed-searchbar.ui.h:8
+msgid "Case sensitive"
+msgstr ""
+
+#: ../xed/resources/ui/xed-searchbar.ui.h:9
+msgid "Whole word"
+msgstr ""
+
+#: ../xed/resources/ui/xed-searchbar.ui.h:10
+msgid "Wrap"
+msgstr ""
+
+#: ../xed/xed-searchbar.c:95
 #, c-format
 msgid "Found and replaced %d occurrence"
 msgid_plural "Found and replaced %d occurrences"
 msgstr[0] "Encontrada e substituída %d aparición"
 msgstr[1] "Encontradas e substituídas %d aparicións"
 
-#: ../xed/xed-searchbar.c:78
+#: ../xed/xed-searchbar.c:105
 msgid "Found and replaced one occurrence"
 msgstr "Encontrada e substituída unha aparición"
 
-#: ../xed/xed-searchbar.c:96
+#: ../xed/xed-searchbar.c:127
 #, c-format
 msgid "\"%s\" not found"
 msgstr "«%s» non foi atopado"
+
+#: ../xed/xed-searchbar.c:305
+msgid "No matches found"
+msgstr ""
+
+#: ../xed/xed-searchbar.c:313
+#, c-format
+msgid "%d match"
+msgid_plural "%d matches"
+msgstr[0] ""
+msgstr[1] ""
+
+#: ../xed/xed-searchbar.c:319
+#, c-format
+msgid "%d of %d match"
+msgid_plural "%d of %d matches"
+msgstr[0] ""
+msgstr[1] ""
 
 #: ../xed/xed-statusbar.c:70 ../xed/xed-statusbar.c:76
 msgid "OVR"
@@ -1747,100 +1669,89 @@ msgstr "INS"
 
 #. Translators: "Ln" is an abbreviation for "Line", Col is an abbreviation for "Column". Please,
 #. use abbreviations if possible to avoid space problems.
-#: ../xed/xed-statusbar.c:252
+#: ../xed/xed-statusbar.c:231
 #, c-format
 msgid "  Ln %d, Col %d"
 msgstr "  Li %d, Col %d"
 
-#: ../xed/xed-statusbar.c:353
+#: ../xed/xed-statusbar.c:330
 #, c-format
 msgid "There is a tab with errors"
 msgid_plural "There are %d tabs with errors"
 msgstr[0] "Hai un separador con erros"
 msgstr[1] "Hai %d separador con erros"
 
-#: ../xed/xed-style-scheme-manager.c:214
-#, c-format
-msgid ""
-"Directory '%s' could not be created: g_mkdir_with_parents() failed: %s"
-msgstr ""
-"Non foi posíbel crear o cartafol «%s»: fallou g_mkdir_with_parents(): %s"
+#: ../xed/xed-tab-label.c:278
+msgid "Close document"
+msgstr "Pechar o documento"
 
 #. Translators: the first %s is a file name (e.g. test.txt) the second one
 #. is a directory (e.g. ssh://master.gnome.org/home/users/paolo)
-#: ../xed/xed-tab.c:656
+#: ../xed/xed-tab.c:716
 #, c-format
 msgid "Reverting %s from %s"
 msgstr "Recuperando %s de %s"
 
-#: ../xed/xed-tab.c:663
+#: ../xed/xed-tab.c:721
 #, c-format
 msgid "Reverting %s"
 msgstr "Recuperando %s"
 
 #. Translators: the first %s is a file name (e.g. test.txt) the second one
 #. is a directory (e.g. ssh://master.gnome.org/home/users/paolo)
-#: ../xed/xed-tab.c:679
+#: ../xed/xed-tab.c:734
 #, c-format
 msgid "Loading %s from %s"
 msgstr "Cargando %s de %s"
 
-#: ../xed/xed-tab.c:686
+#: ../xed/xed-tab.c:739
 #, c-format
 msgid "Loading %s"
 msgstr "Cargando %s"
 
 #. Translators: the first %s is a file name (e.g. test.txt) the second one
 #. is a directory (e.g. ssh://master.gnome.org/home/users/paolo)
-#: ../xed/xed-tab.c:769
+#: ../xed/xed-tab.c:820
 #, c-format
 msgid "Saving %s to %s"
 msgstr "Gardando %s en %s"
 
-#: ../xed/xed-tab.c:776
+#: ../xed/xed-tab.c:825
 #, c-format
 msgid "Saving %s"
 msgstr "Gardando %s"
 
 #. Read only
-#: ../xed/xed-tab.c:1647
+#: ../xed/xed-tab.c:1305
 msgid "RO"
 msgstr "SL"
 
-#: ../xed/xed-tab.c:1694
+#: ../xed/xed-tab.c:1353
 #, c-format
 msgid "Error opening file %s"
 msgstr "Produciuse un erro ao abrir o ficheiro %s"
 
-#: ../xed/xed-tab.c:1699
+#: ../xed/xed-tab.c:1357
 #, c-format
 msgid "Error reverting file %s"
 msgstr "Produciuse un erro ao recuperar o ficheiro %s"
 
-#: ../xed/xed-tab.c:1704
+#: ../xed/xed-tab.c:1361
 #, c-format
 msgid "Error saving file %s"
 msgstr "Produciuse un erro ao gardar o ficheiro %s"
 
-#: ../xed/xed-tab.c:1725
-msgid "Unicode (UTF-8)"
-msgstr "Unicode (UTF-8)"
-
-#: ../xed/xed-tab.c:1732
+#: ../xed/xed-tab.c:1394
 msgid "Name:"
 msgstr "Nome:"
 
-#: ../xed/xed-tab.c:1733
+#: ../xed/xed-tab.c:1395
 msgid "MIME Type:"
 msgstr "Tipo MIME:"
 
-#: ../xed/xed-tab.c:1734
+#: ../xed/xed-tab.c:1396
 msgid "Encoding:"
 msgstr "Codificación:"
-
-#: ../xed/xed-tab-label.c:275
-msgid "Close document"
-msgstr "Pechar o documento"
 
 #. Toplevel
 #: ../xed/xed-ui.h:47
@@ -1866,10 +1777,6 @@ msgstr "_Ferramentas"
 #: ../xed/xed-ui.h:52
 msgid "_Documents"
 msgstr "_Documentos"
-
-#: ../xed/xed-ui.h:53
-msgid "_Help"
-msgstr "A_xuda"
 
 #. File menu
 #: ../xed/xed-ui.h:56
@@ -1906,6 +1813,10 @@ msgstr "_Contidos"
 msgid "Open the xed manual"
 msgstr ""
 
+#: ../xed/xed-ui.h:68
+msgid "_About"
+msgstr "_Sobre"
+
 #: ../xed/xed-ui.h:69
 msgid "About this application"
 msgstr "Sobre este aplicativo"
@@ -1913,11 +1824,6 @@ msgstr "Sobre este aplicativo"
 #: ../xed/xed-ui.h:73
 msgid "Leave fullscreen mode"
 msgstr "Saír do modo de pantalla completa"
-
-#. File menu
-#: ../xed/xed-ui.h:80
-msgid "_Save"
-msgstr ""
 
 #: ../xed/xed-ui.h:81
 msgid "Save the current file"
@@ -1996,7 +1902,9 @@ msgstr ""
 msgid "Paste the clipboard"
 msgstr "Pegar o contido do portapapeis"
 
-#: ../xed/xed-ui.h:102 ../plugins/filebrowser/xed-file-browser-widget.c:800
+#: ../xed/xed-ui.h:102 ../plugins/filebrowser/xed-file-browser-plugin.c:972
+#: ../plugins/filebrowser/xed-file-browser-plugin.c:1007
+#: ../plugins/filebrowser/xed-file-browser-widget.c:764
 msgid "_Delete"
 msgstr "E_liminar"
 
@@ -2095,7 +2003,7 @@ msgstr "_Mover a unha xanela nova"
 msgid "Move the current document to a new window"
 msgstr "Mover o documento actual a unha xanela nova"
 
-#: ../xed/xed-ui.h:138
+#: ../xed/xed-ui.h:138 ../plugins/spell/spell-checker.ui.h:14
 msgid "_Close"
 msgstr ""
 
@@ -2131,47 +2039,51 @@ msgstr "Amosar ou agochar a barra de estado na xanela actual"
 msgid "Edit text in fullscreen"
 msgstr "Editar texto a pantalla completa"
 
-#: ../xed/xed-ui.h:165
+#: ../xed/xed-ui.h:160
+msgid "_Word wrap"
+msgstr ""
+
+#: ../xed/xed-ui.h:161
+msgid "Set word wrap for the current document"
+msgstr ""
+
+#: ../xed/xed-ui.h:168
 msgid "Side _Pane"
 msgstr "_Panel lateral"
 
-#: ../xed/xed-ui.h:166
+#: ../xed/xed-ui.h:169
 msgid "Show or hide the side pane in the current window"
 msgstr "Amosar ou agochar o panel lateral da xanela actual"
 
-#: ../xed/xed-ui.h:168
+#: ../xed/xed-ui.h:171
 msgid "_Bottom Pane"
 msgstr "Panel _inferior"
 
-#: ../xed/xed-ui.h:169
+#: ../xed/xed-ui.h:172
 msgid "Show or hide the bottom pane in the current window"
 msgstr "Amosar ou agochar o panel inferior na xanela actual"
 
-#: ../xed/xed-utils.c:1093
+#: ../xed/xed-utils.c:925
 msgid "Please check your installation."
 msgstr "Verifique a súa instalación."
 
-#: ../xed/xed-utils.c:1166
+#: ../xed/xed-utils.c:993
 #, c-format
 msgid "Unable to open UI file %s. Error: %s"
 msgstr "Non é posíbel abrir o ficheiro de IU %s. Erro: %s"
 
-#: ../xed/xed-utils.c:1186
+#: ../xed/xed-utils.c:1013
 #, c-format
 msgid "Unable to find the object '%s' inside file %s."
 msgstr "Non é posíbel atopar o obxecto «%s» dentro do ficheiro %s."
 
 #. Translators: '/ on <remote-share>'
-#: ../xed/xed-utils.c:1346
+#: ../xed/xed-utils.c:1181
 #, c-format
 msgid "/ on %s"
 msgstr "/ en %s"
 
-#: ../xed/xed-view.c:719
-msgid "Line you want to move the cursor to"
-msgstr "A liña á que quere mover o cursor"
-
-#: ../xed/xed-window.c:742
+#: ../xed/xed-window.c:773
 #, c-format
 msgid "Use %s highlight mode"
 msgstr "Usar o modo de realce %s"
@@ -2179,88 +2091,48 @@ msgstr "Usar o modo de realce %s"
 #. add the "Plain Text" item before all the others
 #. Translators: "Plain Text" means that no highlight mode is selected in the
 #. * "View->Highlight Mode" submenu and so syntax highlighting is disabled
-#: ../xed/xed-window.c:782 ../xed/xed-window.c:1591
+#: ../xed/xed-window.c:861 ../xed/xed-window.c:1679
 msgid "Plain Text"
 msgstr "Texto plano"
 
-#: ../xed/xed-window.c:782
+#: ../xed/xed-window.c:861
 msgid "Disable syntax highlighting"
 msgstr "Desactivar o realce de sintaxe"
 
 #. Translators: %s is a URI
-#: ../xed/xed-window.c:1036
+#: ../xed/xed-window.c:1135
 #, c-format
 msgid "Open '%s'"
 msgstr "Abrir «%s»"
 
 #. Translators: %s is a URI
-#: ../xed/xed-window.c:1321
+#: ../xed/xed-window.c:1414
 #, c-format
 msgid "Activate '%s'"
 msgstr "Activar «%s»"
 
-#: ../xed/xed-window.c:1572
+#: ../xed/xed-window.c:1663
 msgid "Use Spaces"
 msgstr "Usar espazos"
 
-#: ../xed/xed-window.c:1629
+#: ../xed/xed-window.c:1728
 msgid "Tab Width"
 msgstr "Largura da tabulación"
 
-#: ../xed/xed-window.c:3310
+#: ../xed/xed-window.c:2440
+msgid "There are unsaved documents"
+msgstr ""
+
+#: ../xed/xed-window.c:3586
 msgid "Elevated Privileges"
 msgstr ""
 
-#: ../plugins/changecase/changecase.xed-plugin.desktop.in.h:1
-msgid "Change Case"
-msgstr "Cambiar maiúsculas e minúsculas"
-
-#: ../plugins/changecase/changecase.xed-plugin.desktop.in.h:2
-msgid "Changes the case of selected text."
-msgstr "Cambia as maiúsculas e minúsculas no texto seleccionado."
-
-#: ../plugins/changecase/xed-changecase-plugin.c:222
-msgid "C_hange Case"
-msgstr "C_ambiar maiúsculas e minúsculas"
-
-#: ../plugins/changecase/xed-changecase-plugin.c:223
-msgid "All _Upper Case"
-msgstr "Todo en _maiúsculas"
-
-#: ../plugins/changecase/xed-changecase-plugin.c:224
-msgid "Change selected text to upper case"
-msgstr "Cambia o texto seleccionado a maiúsculas"
-
-#: ../plugins/changecase/xed-changecase-plugin.c:226
-msgid "All _Lower Case"
-msgstr "Todo en m_inúsculas"
-
-#: ../plugins/changecase/xed-changecase-plugin.c:227
-msgid "Change selected text to lower case"
-msgstr "Cambia o texto seleccionado a minúsculas"
-
-#: ../plugins/changecase/xed-changecase-plugin.c:229
-msgid "_Invert Case"
-msgstr "_Inverter as maiúsculas e minúsculas"
-
-#: ../plugins/changecase/xed-changecase-plugin.c:230
-msgid "Invert the case of selected text"
-msgstr "Inverter as maiúsculas e minúsculas do texto seleccionado"
-
-#: ../plugins/changecase/xed-changecase-plugin.c:232
-msgid "_Title Case"
-msgstr "Maiúsculas e minúsculas como _título"
-
-#: ../plugins/changecase/xed-changecase-plugin.c:233
-msgid "Capitalize the first letter of each selected word"
-msgstr "Pór en maiúsculas a primeira letra de cada palabra seleccionada"
-
-#: ../plugins/docinfo/docinfo.xed-plugin.desktop.in.h:1
+#: ../plugins/docinfo/docinfo.plugin.desktop.in.h:1
 #: ../plugins/docinfo/docinfo.ui.h:1
 msgid "Document Statistics"
 msgstr "Estatísticas do documento"
 
-#: ../plugins/docinfo/docinfo.xed-plugin.desktop.in.h:2
+#: ../plugins/docinfo/docinfo.plugin.desktop.in.h:2
 msgid ""
 "Analyzes the current document and reports the number of words, lines, "
 "characters and non-space characters in it."
@@ -2304,19 +2176,19 @@ msgstr "Documento"
 msgid "Selection"
 msgstr "Selección"
 
-#: ../plugins/docinfo/xed-docinfo-plugin.c:423
+#: ../plugins/docinfo/xed-docinfo-plugin.c:382
 msgid "_Document Statistics"
 msgstr "Estatísticas do _documento"
 
-#: ../plugins/docinfo/xed-docinfo-plugin.c:425
+#: ../plugins/docinfo/xed-docinfo-plugin.c:384
 msgid "Get statistical information on the current document"
 msgstr "Obter información estatística sobre o documento actual"
 
-#: ../plugins/filebrowser/filebrowser.xed-plugin.desktop.in.h:1
+#: ../plugins/filebrowser/filebrowser.plugin.desktop.in.h:1
 msgid "File Browser Pane"
 msgstr "Panel do navegador de ficheiros"
 
-#: ../plugins/filebrowser/filebrowser.xed-plugin.desktop.in.h:2
+#: ../plugins/filebrowser/filebrowser.plugin.desktop.in.h:2
 msgid "Easy file access from the side pane"
 msgstr "Acceso fácil a ficheiros desde o panel lateral"
 
@@ -2365,10 +2237,18 @@ msgstr ""
 "funciona por enriba de filter_mode."
 
 #: ../plugins/filebrowser/org.x.editor.plugins.filebrowser.gschema.xml.in.h:7
+msgid "Terminal Command"
+msgstr ""
+
+#: ../plugins/filebrowser/org.x.editor.plugins.filebrowser.gschema.xml.in.h:8
+msgid "The terminal command when using the \"Open terminal here\" command."
+msgstr ""
+
+#: ../plugins/filebrowser/org.x.editor.plugins.filebrowser.gschema.xml.in.h:9
 msgid "Open With Tree View"
 msgstr "Abrir con visualización en árbore"
 
-#: ../plugins/filebrowser/org.x.editor.plugins.filebrowser.gschema.xml.in.h:8
+#: ../plugins/filebrowser/org.x.editor.plugins.filebrowser.gschema.xml.in.h:10
 msgid ""
 "Open the tree view when the file browser plugin gets loaded instead of the "
 "bookmarks view"
@@ -2376,11 +2256,11 @@ msgstr ""
 "Abre a visualización en árbore cando se carga o engadido do navegador de "
 "ficheiros no canto da visualización de marcadores"
 
-#: ../plugins/filebrowser/org.x.editor.plugins.filebrowser.gschema.xml.in.h:9
+#: ../plugins/filebrowser/org.x.editor.plugins.filebrowser.gschema.xml.in.h:11
 msgid "File Browser Root Directory"
 msgstr "Cartafol raíz do navegador de ficheiros"
 
-#: ../plugins/filebrowser/org.x.editor.plugins.filebrowser.gschema.xml.in.h:10
+#: ../plugins/filebrowser/org.x.editor.plugins.filebrowser.gschema.xml.in.h:12
 msgid ""
 "The file browser root directory to use when loading the file browser plugin "
 "and onload/tree_view is TRUE."
@@ -2388,11 +2268,11 @@ msgstr ""
 "O cartafol raíz do navegador de ficheiros que se vai usar cando se carga o "
 "engadido de navegador de ficheiros e onload/tree_view é TRUE."
 
-#: ../plugins/filebrowser/org.x.editor.plugins.filebrowser.gschema.xml.in.h:11
+#: ../plugins/filebrowser/org.x.editor.plugins.filebrowser.gschema.xml.in.h:13
 msgid "File Browser Virtual Root Directory"
 msgstr "Cartafol raíz virtual do navegador de ficheiros"
 
-#: ../plugins/filebrowser/org.x.editor.plugins.filebrowser.gschema.xml.in.h:12
+#: ../plugins/filebrowser/org.x.editor.plugins.filebrowser.gschema.xml.in.h:14
 msgid ""
 "The file browser virtual root directory to use when loading the file browser "
 "plugin when onload/tree_view is TRUE. The virtual root must always be below "
@@ -2402,72 +2282,72 @@ msgstr ""
 "engadido do navegador de ficheiros e onload/tree_view é TRUE. A raíz virtual "
 "debe estar sempre por debaixo da raíz actual."
 
-#: ../plugins/filebrowser/org.x.editor.plugins.filebrowser.gschema.xml.in.h:13
+#: ../plugins/filebrowser/org.x.editor.plugins.filebrowser.gschema.xml.in.h:15
 msgid "Enable Restore of Remote Locations"
 msgstr "Activar a restauración de localizacións remotas"
 
-#: ../plugins/filebrowser/org.x.editor.plugins.filebrowser.gschema.xml.in.h:14
+#: ../plugins/filebrowser/org.x.editor.plugins.filebrowser.gschema.xml.in.h:16
 msgid "Sets whether to enable restoring of remote locations."
 msgstr ""
 "Estabelece se se debe activar a restauración de localizacións remotas."
 
-#: ../plugins/filebrowser/xed-file-bookmarks-store.c:235
+#: ../plugins/filebrowser/xed-file-bookmarks-store.c:256
 msgid "File System"
 msgstr "Sistema de ficheiros"
 
-#: ../plugins/filebrowser/xed-file-browser-plugin.c:407
+#: ../plugins/filebrowser/xed-file-browser-plugin.c:445
 msgid "_Set root to active document"
 msgstr "_Estabelecer a raíz ao documento activo"
 
-#: ../plugins/filebrowser/xed-file-browser-plugin.c:409
+#: ../plugins/filebrowser/xed-file-browser-plugin.c:447
 msgid "Set the root to the active document location"
 msgstr "Estabelecer a raíz para a localización do documento activo"
 
-#: ../plugins/filebrowser/xed-file-browser-plugin.c:414
+#: ../plugins/filebrowser/xed-file-browser-plugin.c:452
 msgid "_Open terminal here"
 msgstr "_Abrir un terminal aquí"
 
-#: ../plugins/filebrowser/xed-file-browser-plugin.c:416
+#: ../plugins/filebrowser/xed-file-browser-plugin.c:454
 msgid "Open a terminal at the currently opened directory"
 msgstr "Abre un terminal no cartafol aberto actualmente"
 
-#: ../plugins/filebrowser/xed-file-browser-plugin.c:557
+#: ../plugins/filebrowser/xed-file-browser-plugin.c:566
 msgid "File Browser"
 msgstr "Navegador de ficheiros"
 
-#: ../plugins/filebrowser/xed-file-browser-plugin.c:674
+#: ../plugins/filebrowser/xed-file-browser-plugin.c:677
 msgid "An error occurred while creating a new directory"
 msgstr "Produciuse un erro ao cargar o cartafol novo"
 
-#: ../plugins/filebrowser/xed-file-browser-plugin.c:677
+#: ../plugins/filebrowser/xed-file-browser-plugin.c:680
 msgid "An error occurred while creating a new file"
 msgstr "Produciuse un erro ao crear un ficheiro novo"
 
-#: ../plugins/filebrowser/xed-file-browser-plugin.c:682
+#: ../plugins/filebrowser/xed-file-browser-plugin.c:683
 msgid "An error occurred while renaming a file or directory"
 msgstr "Produciuse un erro ao renomear un ficheiro ou cartafol"
 
-#: ../plugins/filebrowser/xed-file-browser-plugin.c:687
+#: ../plugins/filebrowser/xed-file-browser-plugin.c:686
 msgid "An error occurred while deleting a file or directory"
 msgstr "Produciuse un erro ao eliminar un ficheiro ou cartafol"
 
-#: ../plugins/filebrowser/xed-file-browser-plugin.c:692
+#: ../plugins/filebrowser/xed-file-browser-plugin.c:689
 msgid "An error occurred while opening a directory in the file manager"
 msgstr "Produciuse un erro ao abrir un cartafol no xestor de ficheiros"
 
-#: ../plugins/filebrowser/xed-file-browser-plugin.c:696
+#: ../plugins/filebrowser/xed-file-browser-plugin.c:692
 msgid "An error occurred while setting a root directory"
 msgstr "Produciuse un erro ao configurar o cartafol raíz"
 
-#: ../plugins/filebrowser/xed-file-browser-plugin.c:700
+#: ../plugins/filebrowser/xed-file-browser-plugin.c:695
 msgid "An error occurred while loading a directory"
 msgstr "Produciuse un erro ao cargar un cartafol"
 
-#: ../plugins/filebrowser/xed-file-browser-plugin.c:703
+#: ../plugins/filebrowser/xed-file-browser-plugin.c:698
 msgid "An error occurred"
 msgstr "Produciuse un erro"
 
-#: ../plugins/filebrowser/xed-file-browser-plugin.c:934
+#: ../plugins/filebrowser/xed-file-browser-plugin.c:955
 msgid ""
 "Cannot move file to trash, do you\n"
 "want to delete permanently?"
@@ -2475,34 +2355,34 @@ msgstr ""
 "Non é posíbel mover o ficheiro ao lixo.\n"
 "Quere eliminalo permanentemente?"
 
-#: ../plugins/filebrowser/xed-file-browser-plugin.c:938
+#: ../plugins/filebrowser/xed-file-browser-plugin.c:960
 #, c-format
 msgid "The file \"%s\" cannot be moved to the trash."
 msgstr "Non é posíbel mover ao lixo o ficheiro «%s»."
 
-#: ../plugins/filebrowser/xed-file-browser-plugin.c:941
+#: ../plugins/filebrowser/xed-file-browser-plugin.c:965
 msgid "The selected files cannot be moved to the trash."
 msgstr "Non é posíbel mover os ficheiros seleccionados ao lixo."
 
-#: ../plugins/filebrowser/xed-file-browser-plugin.c:971
+#: ../plugins/filebrowser/xed-file-browser-plugin.c:993
 #, c-format
 msgid "Are you sure you want to permanently delete \"%s\"?"
 msgstr "Está seguro de que quere eliminar «%s» para sempre?"
 
-#: ../plugins/filebrowser/xed-file-browser-plugin.c:974
+#: ../plugins/filebrowser/xed-file-browser-plugin.c:998
 msgid "Are you sure you want to permanently delete the selected files?"
 msgstr ""
 "Está seguro de que quere eliminar para sempre os ficheiros seleccionados?"
 
-#: ../plugins/filebrowser/xed-file-browser-plugin.c:977
+#: ../plugins/filebrowser/xed-file-browser-plugin.c:1001
 msgid "If you delete an item, it is permanently lost."
 msgstr "Se elimina un elemento perderase para sempre."
 
-#: ../plugins/filebrowser/xed-file-browser-store.c:1667
+#: ../plugins/filebrowser/xed-file-browser-store.c:1818
 msgid "(Empty)"
 msgstr "(Baleiro)"
 
-#: ../plugins/filebrowser/xed-file-browser-store.c:3305
+#: ../plugins/filebrowser/xed-file-browser-store.c:3508
 msgid ""
 "The renamed file is currently filtered out. You need to adjust your filter "
 "settings to make the file visible"
@@ -2511,11 +2391,11 @@ msgstr ""
 "definicións do filtro para facelo visíbel"
 
 #. Translators: This is the default name of new files created by the file browser pane.
-#: ../plugins/filebrowser/xed-file-browser-store.c:3544
-msgid "file"
-msgstr "ficheiro"
+#: ../plugins/filebrowser/xed-file-browser-store.c:3774
+msgid "Untitled File"
+msgstr ""
 
-#: ../plugins/filebrowser/xed-file-browser-store.c:3568
+#: ../plugins/filebrowser/xed-file-browser-store.c:3802
 msgid ""
 "The new file is currently filtered out. You need to adjust your filter "
 "settings to make the file visible"
@@ -2524,11 +2404,11 @@ msgstr ""
 "de filtros para facelo visíbel"
 
 #. Translators: This is the default name of new directories created by the file browser pane.
-#: ../plugins/filebrowser/xed-file-browser-store.c:3597
-msgid "directory"
-msgstr "cartafol"
+#: ../plugins/filebrowser/xed-file-browser-store.c:3829
+msgid "Untitled Folder"
+msgstr ""
 
-#: ../plugins/filebrowser/xed-file-browser-store.c:3617
+#: ../plugins/filebrowser/xed-file-browser-store.c:3854
 msgid ""
 "The new directory is currently filtered out. You need to adjust your filter "
 "settings to make the directory visible"
@@ -2536,234 +2416,253 @@ msgstr ""
 "O cartafol novo está agora agochado polo filtro. É necesario axustar as "
 "definicións do filtro para facelo visíbel"
 
-#: ../plugins/filebrowser/xed-file-browser-widget.c:711
+#: ../plugins/filebrowser/xed-file-browser-widget.c:720
 msgid "Bookmarks"
 msgstr "Marcadores"
 
-#: ../plugins/filebrowser/xed-file-browser-widget.c:792
+#: ../plugins/filebrowser/xed-file-browser-widget.c:757
 msgid "_Filter"
 msgstr "_Filtro"
 
-#: ../plugins/filebrowser/xed-file-browser-widget.c:797
+#: ../plugins/filebrowser/xed-file-browser-widget.c:762
 msgid "_Move to Trash"
 msgstr "_Mover ao lixo"
 
-#: ../plugins/filebrowser/xed-file-browser-widget.c:798
+#: ../plugins/filebrowser/xed-file-browser-widget.c:763
 msgid "Move selected file or folder to trash"
 msgstr "Mover o ficheiro ou cartafol seleccionado ao lixo"
 
-#: ../plugins/filebrowser/xed-file-browser-widget.c:801
+#: ../plugins/filebrowser/xed-file-browser-widget.c:765
 msgid "Delete selected file or folder"
 msgstr "Eliminar o ficheiro ou cartafol seleccionado"
 
-#: ../plugins/filebrowser/xed-file-browser-widget.c:807
-msgid "Open"
-msgstr "Abrir"
-
-#: ../plugins/filebrowser/xed-file-browser-widget.c:808
+#: ../plugins/filebrowser/xed-file-browser-widget.c:771
 msgid "Open selected file"
 msgstr "Abrir o ficheiro seleccionado"
 
-#: ../plugins/filebrowser/xed-file-browser-widget.c:814
+#: ../plugins/filebrowser/xed-file-browser-widget.c:776
 msgid "Up"
 msgstr "Arriba"
 
-#: ../plugins/filebrowser/xed-file-browser-widget.c:815
+#: ../plugins/filebrowser/xed-file-browser-widget.c:777
 msgid "Open the parent folder"
 msgstr "Abre o cartafol pai"
 
-#: ../plugins/filebrowser/xed-file-browser-widget.c:820
+#: ../plugins/filebrowser/xed-file-browser-widget.c:782
 msgid "_New Folder"
 msgstr "Cartafol _novo"
 
-#: ../plugins/filebrowser/xed-file-browser-widget.c:821
+#: ../plugins/filebrowser/xed-file-browser-widget.c:783
 msgid "Add new empty folder"
 msgstr "Engadir un cartafol novo baleiro"
 
-#: ../plugins/filebrowser/xed-file-browser-widget.c:823
+#: ../plugins/filebrowser/xed-file-browser-widget.c:784
 msgid "New F_ile"
 msgstr "F_icheiro novo"
 
-#: ../plugins/filebrowser/xed-file-browser-widget.c:824
+#: ../plugins/filebrowser/xed-file-browser-widget.c:785
 msgid "Add new empty file"
 msgstr "Engade un ficheiro novo baleiro"
 
-#: ../plugins/filebrowser/xed-file-browser-widget.c:829
-msgid "_Rename"
-msgstr "_Renomear"
+#: ../plugins/filebrowser/xed-file-browser-widget.c:790
+msgid "_Rename..."
+msgstr ""
 
-#: ../plugins/filebrowser/xed-file-browser-widget.c:830
+#: ../plugins/filebrowser/xed-file-browser-widget.c:791
 msgid "Rename selected file or folder"
 msgstr "Renomear o ficheiro ou cartafol seleccionado"
 
-#: ../plugins/filebrowser/xed-file-browser-widget.c:836
+#: ../plugins/filebrowser/xed-file-browser-widget.c:796
 msgid "_Previous Location"
 msgstr "Localización _anterior"
 
-#: ../plugins/filebrowser/xed-file-browser-widget.c:837
+#: ../plugins/filebrowser/xed-file-browser-widget.c:797
 msgid "Go to the previous visited location"
 msgstr "Ir á anterior localización visitada"
 
-#: ../plugins/filebrowser/xed-file-browser-widget.c:839
+#: ../plugins/filebrowser/xed-file-browser-widget.c:798
 msgid "_Next Location"
 msgstr "_Seguinte localización"
 
-#: ../plugins/filebrowser/xed-file-browser-widget.c:840
+#: ../plugins/filebrowser/xed-file-browser-widget.c:799
 msgid "Go to the next visited location"
 msgstr "Ir á seguinte localización visitada"
 
-#: ../plugins/filebrowser/xed-file-browser-widget.c:841
+#: ../plugins/filebrowser/xed-file-browser-widget.c:800
 msgid "Re_fresh View"
 msgstr "A_ctualizar visualización"
 
-#: ../plugins/filebrowser/xed-file-browser-widget.c:842
+#: ../plugins/filebrowser/xed-file-browser-widget.c:801
 msgid "Refresh the view"
 msgstr "Actualizar a visualización"
 
-#: ../plugins/filebrowser/xed-file-browser-widget.c:843
-#: ../plugins/filebrowser/xed-file-browser-widget.c:861
+#: ../plugins/filebrowser/xed-file-browser-widget.c:802
+#: ../plugins/filebrowser/xed-file-browser-widget.c:816
 msgid "_View Folder"
 msgstr "_Ver cartafol"
 
-#: ../plugins/filebrowser/xed-file-browser-widget.c:844
-#: ../plugins/filebrowser/xed-file-browser-widget.c:862
+#: ../plugins/filebrowser/xed-file-browser-widget.c:803
+#: ../plugins/filebrowser/xed-file-browser-widget.c:817
 msgid "View folder in file manager"
 msgstr "Ver o cartafol no xestor de ficheiros"
 
-#: ../plugins/filebrowser/xed-file-browser-widget.c:851
+#: ../plugins/filebrowser/xed-file-browser-widget.c:808
 msgid "Show _Hidden"
 msgstr "Amosar os ag_ochados"
 
-#: ../plugins/filebrowser/xed-file-browser-widget.c:852
+#: ../plugins/filebrowser/xed-file-browser-widget.c:809
 msgid "Show hidden files and folders"
 msgstr "Amosar os ficheiros e cartafoles agochados"
 
-#: ../plugins/filebrowser/xed-file-browser-widget.c:854
+#: ../plugins/filebrowser/xed-file-browser-widget.c:810
 msgid "Show _Binary"
 msgstr "Amosar os _binarios"
 
-#: ../plugins/filebrowser/xed-file-browser-widget.c:855
+#: ../plugins/filebrowser/xed-file-browser-widget.c:811
 msgid "Show binary files"
 msgstr "Amosar os ficheiros binarios"
 
-#: ../plugins/filebrowser/xed-file-browser-widget.c:987
-#: ../plugins/filebrowser/xed-file-browser-widget.c:996
-#: ../plugins/filebrowser/xed-file-browser-widget.c:1017
-msgid "Previous location"
-msgstr "Localización anterior"
-
-#: ../plugins/filebrowser/xed-file-browser-widget.c:989
-msgid "Go to previous location"
-msgstr "Ir á localización anterior"
-
-#: ../plugins/filebrowser/xed-file-browser-widget.c:991
-#: ../plugins/filebrowser/xed-file-browser-widget.c:1012
-msgid "Go to a previously opened location"
-msgstr "Ir a unha localización aberta anteriormente"
-
-#: ../plugins/filebrowser/xed-file-browser-widget.c:1008
-msgid "Next location"
-msgstr "Seguinte localización"
-
-#: ../plugins/filebrowser/xed-file-browser-widget.c:1010
-msgid "Go to next location"
-msgstr "Ir á seguinte localización"
-
-#: ../plugins/filebrowser/xed-file-browser-widget.c:1222
+#: ../plugins/filebrowser/xed-file-browser-widget.c:1154
 msgid "_Match Filename"
 msgstr "Coi_ncidir co nome de ficheiro"
 
-#: ../plugins/filebrowser/xed-file-browser-widget.c:2129
+#: ../plugins/filebrowser/xed-file-browser-widget.c:1995
 #, c-format
 msgid "No mount object for mounted volume: %s"
 msgstr "Non hai un obxecto montado para o volume montado: %s"
 
-#: ../plugins/filebrowser/xed-file-browser-widget.c:2209
+#: ../plugins/filebrowser/xed-file-browser-widget.c:2073
 #, c-format
 msgid "Could not open media: %s"
 msgstr "Non foi posíbel abrir o soporte: %s"
 
-#: ../plugins/filebrowser/xed-file-browser-widget.c:2256
+#: ../plugins/filebrowser/xed-file-browser-widget.c:2122
 #, c-format
 msgid "Could not mount volume: %s"
 msgstr "Non foi posíbel montar o volume: %s"
 
-#. ex:ts=8:noet:
-#: ../plugins/modelines/modelines.xed-plugin.desktop.in.h:1
+#. vi:ts=8
+#: ../plugins/modelines/modelines.plugin.desktop.in.h:1
 msgid "Modelines"
 msgstr "Liñas de modo"
 
-#: ../plugins/modelines/modelines.xed-plugin.desktop.in.h:2
+#: ../plugins/modelines/modelines.plugin.desktop.in.h:2
 msgid "Emacs, Kate and Vim-style modelines support for xed."
 msgstr ""
 
-#: ../plugins/sort/xed-sort-plugin.c:88
-msgid "S_ort..."
-msgstr "_Ordenar..."
-
-#: ../plugins/sort/xed-sort-plugin.c:90
-msgid "Sort the current document or selection"
-msgstr "Ordenar o documento ou selección actual"
-
-#: ../plugins/sort/sort.xed-plugin.desktop.in.h:1 ../plugins/sort/sort.ui.h:1
+#: ../plugins/sort/sort.plugin.desktop.in.h:1
 msgid "Sort"
 msgstr "Ordenar"
 
-#: ../plugins/sort/sort.xed-plugin.desktop.in.h:2
+#: ../plugins/sort/sort.plugin.desktop.in.h:2
 msgid "Sorts a document or selected text."
 msgstr "Ordena un documento ou o texto seleccionado."
 
-#: ../plugins/sort/sort.ui.h:2
-msgid "_Sort"
-msgstr "_Ordenar"
+#: ../plugins/sort/xed-sort-plugin.c:80
+msgid "S_ort lines"
+msgstr ""
 
-#: ../plugins/sort/sort.ui.h:3
-msgid "_Reverse order"
-msgstr "Orde in_versa"
+#: ../plugins/sort/xed-sort-plugin.c:82
+msgid "Sort the current document or selection"
+msgstr "Ordenar o documento ou selección actual"
 
-#: ../plugins/sort/sort.ui.h:4
-msgid "R_emove duplicates"
-msgstr "E_liminar duplicados"
+#: ../plugins/spell/languages-dialog.ui.h:1
+#: ../plugins/spell/xed-spell-language-dialog.c:135
+msgid "Set language"
+msgstr "Definir o idioma"
 
-#: ../plugins/sort/sort.ui.h:5
-msgid "_Ignore case"
-msgstr "_Ignorar maiúsculas e minúsculas"
-
-#: ../plugins/sort/sort.ui.h:6
-msgid "S_tart at column:"
-msgstr "Comez_ar na columna:"
-
-#: ../plugins/sort/sort.ui.h:7
-msgid "You cannot undo a sort operation"
-msgstr "Non pode desfacer unha operación de ordenación"
+#: ../plugins/spell/languages-dialog.ui.h:2
+msgid "Select the _language of the current document."
+msgstr "Seleccione o _idioma do documento actual."
 
 #: ../plugins/spell/org.x.editor.plugins.spell.gschema.xml.in.h:1
 msgid "Autocheck Type"
 msgstr ""
 
+#: ../plugins/spell/spell-checker.ui.h:1
+msgid "Misspelled word:"
+msgstr "Palabra incorrecta:"
+
+#: ../plugins/spell/spell-checker.ui.h:2
+msgid "word"
+msgstr "palabra"
+
+#: ../plugins/spell/spell-checker.ui.h:3
+msgid "Change _to:"
+msgstr "Cambiar _por:"
+
+#: ../plugins/spell/spell-checker.ui.h:4
+msgid "Check _Word"
+msgstr "Corrixir pala_bra"
+
+#: ../plugins/spell/spell-checker.ui.h:5
+msgid "_Suggestions:"
+msgstr "_Suxestións:"
+
+#: ../plugins/spell/spell-checker.ui.h:6
+msgid "_Ignore"
+msgstr "_Ignorar"
+
+#: ../plugins/spell/spell-checker.ui.h:7
+msgid "Ignore _All"
+msgstr "Ignorar _todos"
+
+#: ../plugins/spell/spell-checker.ui.h:8
+msgid "Cha_nge"
+msgstr "Ca_mbiar"
+
+#: ../plugins/spell/spell-checker.ui.h:9
+msgid "Change A_ll"
+msgstr "Cambiar _todos"
+
+#: ../plugins/spell/spell-checker.ui.h:10
+msgid "User dictionary:"
+msgstr "Dicionario do usuario:"
+
+#: ../plugins/spell/spell-checker.ui.h:11
+msgid "Add w_ord"
+msgstr "Engadir _palabra"
+
+#: ../plugins/spell/spell-checker.ui.h:12
+msgid "Language:"
+msgstr "Idioma:"
+
+#: ../plugins/spell/spell-checker.ui.h:13
+msgid "Language"
+msgstr "Idioma"
+
+#: ../plugins/spell/spell.plugin.desktop.in.h:1
+msgid "Spell Checker"
+msgstr "Corrector ortográfico"
+
+#: ../plugins/spell/spell.plugin.desktop.in.h:2
+msgid "Checks the spelling of the current document."
+msgstr "Corrixe a ortografía do documento actual."
+
 #. Translators: Displayed in the "Check Spelling" dialog if there are no suggestions for the current misspelled word
 #. Translators: Displayed in the "Check Spelling" dialog if there are no suggestions
 #. * for the current misspelled word
-#: ../plugins/spell/xed-automatic-spell-checker.c:420
+#: ../plugins/spell/xed-automatic-spell-checker.c:433
 #: ../plugins/spell/xed-spell-checker-dialog.c:455
 msgid "(no suggested words)"
 msgstr "(non hai suxestión de palabras)"
 
-#: ../plugins/spell/xed-automatic-spell-checker.c:444
+#: ../plugins/spell/xed-automatic-spell-checker.c:457
 msgid "_More..."
 msgstr "_Máis..."
 
 #. Ignore all
-#: ../plugins/spell/xed-automatic-spell-checker.c:499
+#: ../plugins/spell/xed-automatic-spell-checker.c:510
 msgid "_Ignore All"
 msgstr "_Ignorar todos"
 
 #. + Add to Dictionary
-#: ../plugins/spell/xed-automatic-spell-checker.c:514
+#: ../plugins/spell/xed-automatic-spell-checker.c:520
 msgid "_Add"
 msgstr "Eng_adir"
 
-#: ../plugins/spell/xed-automatic-spell-checker.c:553
+#. then, on top of it, the suggestions menu.
+#: ../plugins/spell/xed-automatic-spell-checker.c:557
 msgid "_Spelling Suggestions..."
 msgstr "_Suxestións de ortografía..."
 
@@ -2812,156 +2711,73 @@ msgctxt "language"
 msgid "Default"
 msgstr "Predeterminado"
 
-#: ../plugins/spell/xed-spell-language-dialog.c:141
-#: ../plugins/spell/languages-dialog.ui.h:1
-msgid "Set language"
-msgstr "Definir o idioma"
-
-#: ../plugins/spell/xed-spell-language-dialog.c:195
+#: ../plugins/spell/xed-spell-language-dialog.c:178
 msgid "Languages"
 msgstr "Idiomas"
 
-#: ../plugins/spell/xed-spell-plugin.c:92
+#: ../plugins/spell/xed-spell-plugin.c:116
 msgid "_Check Spelling..."
 msgstr "_Verificación ortográfica..."
 
-#: ../plugins/spell/xed-spell-plugin.c:94
+#: ../plugins/spell/xed-spell-plugin.c:118
 msgid "Check the current document for incorrect spelling"
 msgstr "Verificar a ortografía do documento actual"
 
-#: ../plugins/spell/xed-spell-plugin.c:100
+#: ../plugins/spell/xed-spell-plugin.c:124
 msgid "Set _Language..."
 msgstr "Definir o _idioma..."
 
-#: ../plugins/spell/xed-spell-plugin.c:102
+#: ../plugins/spell/xed-spell-plugin.c:126
 msgid "Set the language of the current document"
 msgstr "Definir o idioma do documento actual"
 
-#: ../plugins/spell/xed-spell-plugin.c:111
+#: ../plugins/spell/xed-spell-plugin.c:135
 msgid "_Autocheck Spelling"
 msgstr "Verificación _ortográfica automática"
 
-#: ../plugins/spell/xed-spell-plugin.c:113
+#: ../plugins/spell/xed-spell-plugin.c:137
 msgid "Automatically spell-check the current document"
 msgstr "Verificar automaticamente a ortografía do documento actual"
 
-#: ../plugins/spell/xed-spell-plugin.c:753
-msgid "Configure Spell Checker plugin..."
-msgstr ""
-
-#: ../plugins/spell/xed-spell-plugin.c:962
+#: ../plugins/spell/xed-spell-plugin.c:967
 msgid "The document is empty."
 msgstr "O documento está baleiro."
 
-#: ../plugins/spell/xed-spell-plugin.c:992
+#: ../plugins/spell/xed-spell-plugin.c:986
 msgid "No misspelled words"
 msgstr "Non hai palabras con erros ortográficos"
 
-#: ../plugins/spell/languages-dialog.ui.h:2
-msgid "Select the _language of the current document."
-msgstr "Seleccione o _idioma do documento actual."
-
-#: ../plugins/spell/spell-checker.ui.h:1
-msgid "Check spelling"
-msgstr "Corrección ortográfica"
-
-#: ../plugins/spell/spell-checker.ui.h:2
-msgid "Misspelled word:"
-msgstr "Palabra incorrecta:"
-
-#: ../plugins/spell/spell-checker.ui.h:3
-msgid "word"
-msgstr "palabra"
-
-#: ../plugins/spell/spell-checker.ui.h:4
-msgid "Change _to:"
-msgstr "Cambiar _por:"
-
-#: ../plugins/spell/spell-checker.ui.h:5
-msgid "Check _Word"
-msgstr "Corrixir pala_bra"
-
-#: ../plugins/spell/spell-checker.ui.h:6
-msgid "_Suggestions:"
-msgstr "_Suxestións:"
-
-#: ../plugins/spell/spell-checker.ui.h:7
-msgid "_Ignore"
-msgstr "_Ignorar"
-
-#: ../plugins/spell/spell-checker.ui.h:8
-msgid "Cha_nge"
-msgstr "Ca_mbiar"
-
-#: ../plugins/spell/spell-checker.ui.h:9
-msgid "Ignore _All"
-msgstr "Ignorar _todos"
-
-#: ../plugins/spell/spell-checker.ui.h:10
-msgid "Change A_ll"
-msgstr "Cambiar _todos"
-
-#: ../plugins/spell/spell-checker.ui.h:11
-msgid "User dictionary:"
-msgstr "Dicionario do usuario:"
-
-#: ../plugins/spell/spell-checker.ui.h:12
-msgid "Add w_ord"
-msgstr "Engadir _palabra"
-
-#: ../plugins/spell/spell-checker.ui.h:13
-msgid "Language:"
-msgstr "Idioma:"
-
-#: ../plugins/spell/spell-checker.ui.h:14
-msgid "Language"
-msgstr "Idioma"
-
 #: ../plugins/spell/xed-spell-setup-dialog.ui.h:1
-msgid "_Configure Spell Checker plugin..."
+msgid "button"
 msgstr ""
 
 #: ../plugins/spell/xed-spell-setup-dialog.ui.h:2
-msgid "Autocheck spelling on document load..."
+msgid "Autocheck settings"
 msgstr ""
 
 #: ../plugins/spell/xed-spell-setup-dialog.ui.h:3
-msgid "_Never autocheck"
+msgid "Never"
 msgstr ""
 
 #: ../plugins/spell/xed-spell-setup-dialog.ui.h:4
-msgid "_Remember autocheck by document"
+msgid "Never autocheck spelling on document load"
 msgstr ""
 
 #: ../plugins/spell/xed-spell-setup-dialog.ui.h:5
-msgid "_Always autocheck"
+msgid "Remember by document"
 msgstr ""
 
-#: ../plugins/spell/spell.xed-plugin.desktop.in.h:1
-msgid "Spell Checker"
-msgstr "Corrector ortográfico"
+#: ../plugins/spell/xed-spell-setup-dialog.ui.h:6
+msgid "Remembers the setting for each  document on load"
+msgstr ""
 
-#: ../plugins/spell/spell.xed-plugin.desktop.in.h:2
-msgid "Checks the spelling of the current document."
-msgstr "Corrixe a ortografía do documento actual."
+#: ../plugins/spell/xed-spell-setup-dialog.ui.h:7
+msgid "Always"
+msgstr ""
 
-#: ../plugins/taglist/xed-taglist-plugin.c:98
-#: ../plugins/taglist/xed-taglist-plugin-panel.c:706
-#: ../plugins/taglist/xed-taglist-plugin-panel.c:722
-msgid "Tags"
-msgstr "Etiquetas"
-
-#: ../plugins/taglist/xed-taglist-plugin-panel.c:608
-msgid "Select the group of tags you want to use"
-msgstr "Seleccione o grupo de etiquetas que quere usar"
-
-#: ../plugins/taglist/xed-taglist-plugin-panel.c:627
-msgid "_Preview"
-msgstr "_Previsualización"
-
-#: ../plugins/taglist/xed-taglist-plugin-panel.c:703
-msgid "Available Tag Lists"
-msgstr "Lista de etiquetas dispoñíbeis"
+#: ../plugins/spell/xed-spell-setup-dialog.ui.h:8
+msgid "Always autocheck on document load"
+msgstr ""
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:1
 msgid "XHTML 1.0 - Tags"
@@ -4427,17 +4243,35 @@ msgstr "Texto sen quebra de liña"
 msgid "Footnote"
 msgstr "Nota ao pé de páxina"
 
-#: ../plugins/taglist/taglist.xed-plugin.desktop.in.h:1
+#: ../plugins/taglist/taglist.plugin.desktop.in.h:1
 msgid "Tag list"
 msgstr "Lista de etiquetas"
 
-#: ../plugins/taglist/taglist.xed-plugin.desktop.in.h:2
+#: ../plugins/taglist/taglist.plugin.desktop.in.h:2
 msgid ""
 "Provides a method to easily insert commonly used tags/strings into a "
 "document without having to type them."
 msgstr ""
 "Fornece un método sinxelo para inserir nun documento as cadeas ou etiquetas "
 "máis utilizadas sen ter que teclealas."
+
+#: ../plugins/taglist/xed-taglist-plugin-panel.c:613
+msgid "Select the group of tags you want to use"
+msgstr "Seleccione o grupo de etiquetas que quere usar"
+
+#: ../plugins/taglist/xed-taglist-plugin-panel.c:632
+msgid "_Preview"
+msgstr "_Previsualización"
+
+#: ../plugins/taglist/xed-taglist-plugin-panel.c:708
+msgid "Available Tag Lists"
+msgstr "Lista de etiquetas dispoñíbeis"
+
+#: ../plugins/taglist/xed-taglist-plugin-panel.c:711
+#: ../plugins/taglist/xed-taglist-plugin-panel.c:727
+#: ../plugins/taglist/xed-taglist-plugin.c:117
+msgid "Tags"
+msgstr "Etiquetas"
 
 #: ../plugins/taglist/XSLT.tags.xml.in.h:1
 msgid "XSLT - Elements"
@@ -4519,37 +4353,13 @@ msgstr "Formato seleccionado"
 msgid "Custom format"
 msgstr "Formato personalizado"
 
-#: ../plugins/time/xed-time-plugin.c:179
-msgid "In_sert Date and Time..."
-msgstr "In_serir data e hora..."
-
-#: ../plugins/time/xed-time-plugin.c:181
-msgid "Insert current date and time at the cursor position"
-msgstr "Insire a data e hora actuais na posición do cursor"
-
-#: ../plugins/time/xed-time-plugin.c:562
-msgid "Available formats"
-msgstr "Formatos dispoñíbeis"
-
-#: ../plugins/time/xed-time-plugin.c:713
-msgid "Configure insert date/time plugin..."
-msgstr "Configurar o engadido de inserción de data e hora..."
-
-#: ../plugins/time/time.xed-plugin.desktop.in.h:1
+#: ../plugins/time/time.plugin.desktop.in.h:1
 msgid "Insert Date/Time"
 msgstr "Inserir data e hora"
 
-#: ../plugins/time/time.xed-plugin.desktop.in.h:2
+#: ../plugins/time/time.plugin.desktop.in.h:2
 msgid "Inserts current date and time at the cursor position."
 msgstr "Insire a data e hora actuais na posición do cursor."
-
-#: ../plugins/trailsave/trailsave.xed-plugin.desktop.in.h:1
-msgid "Save Without Trailing Spaces"
-msgstr ""
-
-#: ../plugins/trailsave/trailsave.xed-plugin.desktop.in.h:2
-msgid "Removes trailing spaces from lines before saving."
-msgstr ""
 
 #: ../plugins/time/xed-time-dialog.ui.h:1
 msgid "Insert Date and Time"
@@ -4582,6 +4392,18 @@ msgstr "%d/%m/%Y %H:%M:%S"
 msgid "01/11/2009 17:52:00"
 msgstr "01/11/2002 17:52:00"
 
+#: ../plugins/time/xed-time-plugin.c:183
+msgid "In_sert Date and Time..."
+msgstr "In_serir data e hora..."
+
+#: ../plugins/time/xed-time-plugin.c:185
+msgid "Insert current date and time at the cursor position"
+msgstr "Insire a data e hora actuais na posición do cursor"
+
+#: ../plugins/time/xed-time-plugin.c:461
+msgid "Available formats"
+msgstr "Formatos dispoñíbeis"
+
 #: ../plugins/time/xed-time-setup-dialog.ui.h:1
 msgid "Configure date/time plugin"
 msgstr "Configurar o engadido de data e hora"
@@ -4593,3 +4415,11 @@ msgstr "Ao inserir a data/hora..."
 #: ../plugins/time/xed-time-setup-dialog.ui.h:4
 msgid "_Prompt for a format"
 msgstr "_Preguntar por un formato"
+
+#: ../plugins/trailsave/trailsave.plugin.desktop.in.h:1
+msgid "Save Without Trailing Spaces"
+msgstr ""
+
+#: ../plugins/trailsave/trailsave.plugin.desktop.in.h:2
+msgid "Removes trailing spaces from lines before saving."
+msgstr ""
