@@ -14,7 +14,7 @@ msgstr ""
 "Project-Id-Version: MATE Desktop Environment\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-05-04 18:32+0100\n"
-"PO-Revision-Date: 2017-05-03 03:30+0000\n"
+"PO-Revision-Date: 2017-05-09 09:46+0000\n"
 "Last-Translator: Микола Ткач <Stuartlittle1970@gmail.com>\n"
 "Language-Team: Ukrainian "
 "(http://www.transifex.com/projects/p/MATE/language/uk/)\n"
@@ -23,8 +23,8 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Launchpad-Export-Date: 2017-05-06 12:39+0000\n"
-"X-Generator: Launchpad (build 18366)\n"
+"X-Launchpad-Export-Date: 2017-05-23 10:32+0000\n"
+"X-Generator: Launchpad (build 18387)\n"
 "Language: uk\n"
 
 #: ../data/org.x.editor.gschema.xml.in.h:1
@@ -286,6 +286,8 @@ msgstr "Перевірка кінцевого роздільника рядкі�
 msgid ""
 "Whether xed will ensure that documents always end with a trailing newline."
 msgstr ""
+"Чи повинен редактор додавати порожній рядок у кінці документу, якщо його "
+"немає."
 
 #: ../data/org.x.editor.gschema.xml.in.h:48
 msgid "Toolbar is Visible"
@@ -1557,7 +1559,7 @@ msgstr "_хвилин"
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:25
 msgid "Tab Scrolling"
-msgstr ""
+msgstr "Перемикання вкладок"
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:26
 msgid "Allow mouse wheel scrolling to change tabs"
@@ -1714,15 +1716,17 @@ msgstr "Збігів не знайдено"
 #, c-format
 msgid "%d match"
 msgid_plural "%d matches"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d збіг"
+msgstr[1] "%d збіги"
+msgstr[2] "%d збігів"
 
 #: ../xed/xed-searchbar.c:319
 #, c-format
 msgid "%d of %d match"
 msgid_plural "%d of %d matches"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d із %d збігу"
+msgstr[1] "%d із %d збігів"
+msgstr[2] "%d із %d збігів"
 
 #: ../xed/xed-statusbar.c:70 ../xed/xed-statusbar.c:76
 msgid "OVR"
@@ -2308,7 +2312,7 @@ msgstr "Термінальні команди"
 
 #: ../plugins/filebrowser/org.x.editor.plugins.filebrowser.gschema.xml.in.h:8
 msgid "The terminal command when using the \"Open terminal here\" command."
-msgstr ""
+msgstr "Команда терміналу при використанні команди «Відкрити термінал тут»."
 
 #: ../plugins/filebrowser/org.x.editor.plugins.filebrowser.gschema.xml.in.h:9
 msgid "Open With Tree View"
@@ -2821,19 +2825,20 @@ msgstr "Параметри самоперевірки"
 
 #: ../plugins/spell/xed-spell-setup-dialog.ui.h:3
 msgid "Never"
-msgstr ""
+msgstr "Ніколи"
 
 #: ../plugins/spell/xed-spell-setup-dialog.ui.h:4
 msgid "Never autocheck spelling on document load"
 msgstr ""
+"Не запускати самочинну перевірку орфографії при завантаженні документу"
 
 #: ../plugins/spell/xed-spell-setup-dialog.ui.h:5
 msgid "Remember by document"
-msgstr ""
+msgstr "Запам'ятовувати для кожного документу"
 
 #: ../plugins/spell/xed-spell-setup-dialog.ui.h:6
 msgid "Remembers the setting for each  document on load"
-msgstr ""
+msgstr "Запам'ятовувати для кожного завантажуваного документу"
 
 #: ../plugins/spell/xed-spell-setup-dialog.ui.h:7
 msgid "Always"
@@ -2841,7 +2846,7 @@ msgstr "Завжди"
 
 #: ../plugins/spell/xed-spell-setup-dialog.ui.h:8
 msgid "Always autocheck on document load"
-msgstr ""
+msgstr "Виконувати самочинну перевірку при відкритті документу"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:1
 msgid "XHTML 1.0 - Tags"

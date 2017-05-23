@@ -10,15 +10,15 @@ msgstr ""
 "Project-Id-Version: MATE Desktop Environment\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-05-04 18:32+0100\n"
-"PO-Revision-Date: 2016-12-06 20:14+0000\n"
+"PO-Revision-Date: 2017-05-08 03:24+0000\n"
 "Last-Translator: KAMI <kami911@gmail.com>\n"
 "Language-Team: Hungarian <kde-i18n-doc@kde.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2017-05-06 12:40+0000\n"
-"X-Generator: Launchpad (build 18366)\n"
+"X-Launchpad-Export-Date: 2017-05-23 10:32+0000\n"
+"X-Generator: Launchpad (build 18387)\n"
 "Language: hu\n"
 "(http: //www.transifex.com/projects/p/MATE/language/hu/)\n"
 
@@ -57,13 +57,15 @@ msgstr ""
 
 #: ../data/org.x.editor.gschema.xml.in.h:6
 msgid "Prefer Dark Theme"
-msgstr ""
+msgstr "Sötét téma használata"
 
 #: ../data/org.x.editor.gschema.xml.in.h:7
 msgid ""
 "Whether xed should prefer the dark variation of the current Gtk theme if "
 "available."
 msgstr ""
+"A xed az aktuális GTK téma sötét változatát próbálja használni, amennyiben "
+"az elérhető."
 
 #: ../data/org.x.editor.gschema.xml.in.h:8
 msgid "Style Scheme"
@@ -82,8 +84,8 @@ msgid ""
 "Whether xed should create backup copies for the files it saves. You can set "
 "the backup file extension with the \"Backup Copy Extension\" option."
 msgstr ""
-"A biztonsági mentések ki/bekapcsolása. A biztonsági mentés kiterjesztését "
-"beállíthatja a „Biztonsági mentés kiterjesztése” beállításnál."
+"A biztonsági mentések ki- és bekapcsolása. A biztonsági mentés "
+"kiterjesztését beállíthatja a „Biztonsági mentés kiterjesztése” beállításnál."
 
 #: ../data/org.x.editor.gschema.xml.in.h:12
 msgid "Autosave"
@@ -94,8 +96,9 @@ msgid ""
 "Whether xed should automatically save modified files after a time interval. "
 "You can set the time interval with the \"Autosave Interval\" option."
 msgstr ""
-"A módosított fájlok automatikus mentésének ki/bekapcsolása. Az automatikus "
-"mentés időközét beállíthatja az „Automatikus mentés időköze” beállítással."
+"A módosított fájlok automatikus mentésének ki- és bekapcsolása. Az "
+"automatikus mentés időközét beállíthatja az „Automatikus mentés időköze” "
+"beállítással."
 
 #: ../data/org.x.editor.gschema.xml.in.h:14
 msgid "Autosave Interval"
@@ -145,6 +148,11 @@ msgid ""
 "wrapping at individual character boundaries. Note that the values are case-"
 "sensitive, so make sure they appear exactly as mentioned here."
 msgstr ""
+"Meghatározza a hosszú sorok törését a szerkesztőterületen. Használja a "
+"„none” értéket, ha ne legyen törés, a „word” értéket a szóhatároknál történő "
+"töréshez és a „char” értéket az egyes karaktereknél történő töréshez. "
+"Megjegyzés: ezek az értékek kisbetű és nagybetű érzékenyek, pontosan úgy "
+"használja őket, ahogy itt vannak."
 
 #: ../data/org.x.editor.gschema.xml.in.h:22
 msgid "Tab Size"
@@ -162,7 +170,7 @@ msgstr "Szóközök beszúrása"
 
 #: ../data/org.x.editor.gschema.xml.in.h:25
 msgid "Whether xed should insert spaces instead of tabs."
-msgstr "Tabulátor helyett szóköz használatának ki/bekapcsolása."
+msgstr "Tabulátor helyett szóköz használatának ki- és bekapcsolása."
 
 #: ../data/org.x.editor.gschema.xml.in.h:26
 msgid "Automatic indent"
@@ -226,6 +234,13 @@ msgid ""
 "the start/end of the line and \"always\" to always move to the start/end of "
 "the text instead of the start/end of the line."
 msgstr ""
+"Megadja a kurzor mozgásának módját a Home és End billentyűk lenyomásakor. A "
+"„disabled” használatakor mindig a sor elejére/végére mozognak, az „after” "
+"esetén az első lenyomásukkor a sor elejére/végére és második alkalommal "
+"szöveg elejére/végére az üres hely karakterek kihagyásával, a „before” "
+"esetén a szöveg elejére/végére a sor elejére/végére mozgás előtt, és "
+"„always” esetén mindig a szöveg elejére/végére mozognak a sor elejére/végére "
+"mozgás helyett."
 
 #: ../data/org.x.editor.gschema.xml.in.h:40
 msgid "Restore Previous Cursor Position"
@@ -257,12 +272,13 @@ msgstr "Szintaxiskiemelés engedélyezésének ki/bekapcsolása."
 
 #: ../data/org.x.editor.gschema.xml.in.h:46
 msgid "Ensure Trailing Newline"
-msgstr ""
+msgstr "Záró új sor biztosítása"
 
 #: ../data/org.x.editor.gschema.xml.in.h:47
 msgid ""
 "Whether xed will ensure that documents always end with a trailing newline."
 msgstr ""
+"A xed biztosítja, hogy a dokumentum mindig egy üres sorral végződjön."
 
 #: ../data/org.x.editor.gschema.xml.in.h:48
 msgid "Toolbar is Visible"
@@ -302,11 +318,11 @@ msgstr "Megjelenjen-e a szerkesztőablak alján az alsó ablaktábla."
 
 #: ../data/org.x.editor.gschema.xml.in.h:56
 msgid "Allow changing active tabs by scrolling"
-msgstr ""
+msgstr "Aktiv lap megváltoztatása görgetéssel"
 
 #: ../data/org.x.editor.gschema.xml.in.h:57
 msgid "Whether you can change active tabs by scrolling."
-msgstr ""
+msgstr "Az aktív lap megváltoztatása az egérgörgő használatával."
 
 #: ../data/org.x.editor.gschema.xml.in.h:58
 msgid "Maximum Recent Files"
@@ -346,6 +362,11 @@ msgid ""
 "individual character boundaries. Note that the values are case-sensitive, so "
 "make sure they appear exactly as mentioned here."
 msgstr ""
+"Meghatározza a hosszú sorok törését a nyomtatásnál. Használja a „none” "
+"értéket, ha ne legyen törés, a „word” értéket a szóhatároknál történő "
+"töréshez és a „char” értéket az egyes karaktereknél történő töréshez. "
+"Megjegyzés: ezek az értékek kisbetű/nagybetű érzékenyek, pontosan úgy "
+"használja őket, ahogy itt vannak."
 
 #: ../data/org.x.editor.gschema.xml.in.h:66
 msgid "Print Line Numbers"
@@ -538,28 +559,28 @@ msgstr ""
 
 #: ../xed/xed-app.c:139
 msgid "Set the size and position of the window (WIDTHxHEIGHT+X+Y)"
-msgstr ""
+msgstr "Az ablak méretének és helyének beállítása (SZÉLESSÉGxMAGASSÁG+X+Y)"
 
 #: ../xed/xed-app.c:140
 msgid "GEOMETRY"
-msgstr ""
+msgstr "MÉRET"
 
 #: ../xed/xed-app.c:146
 msgid "Open files and block process until files are closed"
-msgstr ""
+msgstr "Fájlok megnyitása, és a folytatás blokkolása a fájlok bezárásáig"
 
 #: ../xed/xed-app.c:153
 msgid "Run xed in standalone mode"
-msgstr ""
+msgstr "A xed futtatása kizárólagos üzemmódban"
 
 #: ../xed/xed-app.c:160
 msgid "[FILE...] [+LINE]"
-msgstr ""
+msgstr "[FÁJL...] [+SOR]"
 
 #: ../xed/xed-app.c:551
 #, c-format
 msgid "%s: invalid encoding."
-msgstr ""
+msgstr "%s: érvénytelen kódolás."
 
 #: ../xed/xed-app.c:1201
 msgid "There was an error displaying the help."
@@ -585,11 +606,11 @@ msgstr "Bezárás mentés _nélkül"
 #: ../plugins/filebrowser/xed-file-browser-utils.c:156
 #: ../plugins/spell/xed-spell-language-dialog.c:130
 msgid "_Cancel"
-msgstr ""
+msgstr "_Mégse"
 
 #: ../xed/xed-close-confirmation-dialog.c:159
 msgid "_Save As..."
-msgstr ""
+msgstr "M_entés másként…"
 
 #. File menu
 #: ../xed/xed-close-confirmation-dialog.c:163 ../xed/xed-commands-file.c:689
@@ -730,7 +751,7 @@ msgstr "Fájlok megnyitása…"
 #: ../xed/xed-commands-file.c:407
 #: ../plugins/filebrowser/xed-file-browser-widget.c:770
 msgid "_Open"
-msgstr ""
+msgstr "_Megnyitás"
 
 #: ../xed/xed-commands-file.c:501
 #, c-format
@@ -878,7 +899,7 @@ msgstr "Hozzáadás vagy eltávolítás…"
 #: ../plugins/spell/xed-spell-language-dialog.c:131
 #: ../plugins/time/xed-time-plugin.c:793
 msgid "_OK"
-msgstr ""
+msgstr "_OK"
 
 #: ../xed/xed-encodings-dialog.c:342 ../xed/xed-ui.h:53
 #: ../plugins/spell/xed-spell-language-dialog.c:132
@@ -1058,6 +1079,8 @@ msgid ""
 "The file you opened has some invalid characters. If you continue editing "
 "this file you could corrupt this document."
 msgstr ""
+"A megnyitott fájl érvénytelen karaktereket tartalmazott. Ha folytatja a fájl "
+"szerkesztését, azzal kárt okozhat a dokumentumban."
 
 #: ../xed/xed-io-error-info-bar.c:516
 msgid "You can also choose another character encoding and try again."
@@ -1190,15 +1213,15 @@ msgid ""
 "that you typed the location correctly and try again."
 msgstr ""
 "Nincs jogosultsága a fájl mentéséhez erre a helyre. Ellenőrizze, hogy "
-"pontosan írta-e be a helyet, és próbálja újra."
+"pontosan írta-e be a helyet és próbálja meg újra."
 
 #: ../xed/xed-io-error-info-bar.c:961
 msgid ""
 "There is not enough disk space to save the file. Please free some disk space "
 "and try again."
 msgstr ""
-"Nincs elég hely a lemezen a fájl mentéséhez. Szabadítson fel egy kis helyet, "
-"és próbálja újra."
+"Nincs elég hely a lemezen a fájl mentéséhez. Szabadítson fel egy kis helyet "
+"és próbálja meg újra."
 
 #: ../xed/xed-io-error-info-bar.c:966
 msgid ""
@@ -1259,12 +1282,14 @@ msgstr "Újr_atöltés"
 #: ../xed/xed-io-error-info-bar.c:1111
 #, c-format
 msgid "Some invalid chars have been detected while saving %s"
-msgstr ""
+msgstr "Érvénytelen karakterek vannak a következő mentésekor: %s"
 
 #: ../xed/xed-io-error-info-bar.c:1126
 msgid ""
 "If you continue saving this file you can corrupt the document.  Save anyway?"
 msgstr ""
+"Ha folytatja a fájl mentését, azzal kárt okozhat a dokumentumban. Mindenképp "
+"menti a dokumentumot?"
 
 #: ../xed/xed-preferences-dialog.c:390
 msgid "Click on this button to select the font to be used by the editor"
@@ -1294,7 +1319,7 @@ msgstr "Séma hozzáadása"
 
 #: ../xed/xed-preferences-dialog.c:854 ../xed/xed-progress-info-bar.c:67
 msgid "Cancel"
-msgstr ""
+msgstr "Mégse"
 
 #: ../xed/xed-preferences-dialog.c:863
 msgid "Color Scheme Files"
@@ -1312,7 +1337,7 @@ msgstr "Bezár"
 
 #: ../xed/xed-preferences-dialog.c:1101
 msgid "Help"
-msgstr ""
+msgstr "Súgó"
 
 #: ../xed/xed-preferences-dialog.c:1104
 msgid "Xed Preferences"
@@ -1380,7 +1405,7 @@ msgstr "Oldal kicsinyítése"
 
 #: ../xed/xed-print-preview.c:681
 msgid "_Close preview"
-msgstr ""
+msgstr "_Előnézet bezárása"
 
 #: ../xed/xed-print-preview.c:683
 msgid "Close print preview"
@@ -1515,11 +1540,11 @@ msgstr "p_ercenként"
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:25
 msgid "Tab Scrolling"
-msgstr ""
+msgstr "Lapok görgetése"
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:26
 msgid "Allow mouse wheel scrolling to change tabs"
-msgstr ""
+msgstr "Váltás a lapok között egérgörgővel"
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:27
 msgid "Editor"
@@ -1543,7 +1568,7 @@ msgstr "Színséma"
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:32
 msgid "Use dark theme variant (if available)"
-msgstr ""
+msgstr "Sötét téma használata (amennyiben elérhető)"
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:33
 msgid "_Add..."
@@ -1633,7 +1658,7 @@ msgstr "Előző"
 
 #: ../xed/resources/ui/xed-searchbar.ui.h:7
 msgid "Regular expression"
-msgstr ""
+msgstr "Reguláris kifejezés"
 
 #: ../xed/resources/ui/xed-searchbar.ui.h:8
 msgid "Case sensitive"
@@ -1665,21 +1690,21 @@ msgstr "„%s” nem található"
 
 #: ../xed/xed-searchbar.c:305
 msgid "No matches found"
-msgstr ""
+msgstr "Nincs találat"
 
 #: ../xed/xed-searchbar.c:313
 #, c-format
 msgid "%d match"
 msgid_plural "%d matches"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d egyezés"
+msgstr[1] "%d egyezés"
 
 #: ../xed/xed-searchbar.c:319
 #, c-format
 msgid "%d of %d match"
 msgid_plural "%d of %d matches"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d egyezés, összesen: %d egyezés"
+msgstr[1] "%d egyezés, összesen: %d egyezés"
 
 #: ../xed/xed-statusbar.c:70 ../xed/xed-statusbar.c:76
 msgid "OVR"
@@ -2063,11 +2088,11 @@ msgstr "Szövegszerkesztés teljes képernyőn"
 
 #: ../xed/xed-ui.h:160
 msgid "_Word wrap"
-msgstr ""
+msgstr "_Sortörés engedélyezése"
 
 #: ../xed/xed-ui.h:161
 msgid "Set word wrap for the current document"
-msgstr ""
+msgstr "_Sortörés engedélyezése az aktuális dokumentumban"
 
 #: ../xed/xed-ui.h:168
 msgid "Side _Pane"
@@ -2143,7 +2168,7 @@ msgstr "Tabulátorszélesség"
 
 #: ../xed/xed-window.c:2440
 msgid "There are unsaved documents"
-msgstr ""
+msgstr "Mentetlen dokumentumok találhatók"
 
 #: ../xed/xed-window.c:3586
 msgid "Elevated Privileges"
@@ -2260,11 +2285,12 @@ msgstr ""
 
 #: ../plugins/filebrowser/org.x.editor.plugins.filebrowser.gschema.xml.in.h:7
 msgid "Terminal Command"
-msgstr ""
+msgstr "Terminál parancs"
 
 #: ../plugins/filebrowser/org.x.editor.plugins.filebrowser.gschema.xml.in.h:8
 msgid "The terminal command when using the \"Open terminal here\" command."
 msgstr ""
+"A „Megnyitás terminálban” menüelemre kattintva alkalmazott terminál parancs."
 
 #: ../plugins/filebrowser/org.x.editor.plugins.filebrowser.gschema.xml.in.h:9
 msgid "Open With Tree View"
@@ -2412,7 +2438,7 @@ msgstr ""
 #. Translators: This is the default name of new files created by the file browser pane.
 #: ../plugins/filebrowser/xed-file-browser-store.c:3774
 msgid "Untitled File"
-msgstr ""
+msgstr "Névtelen fájl"
 
 #: ../plugins/filebrowser/xed-file-browser-store.c:3802
 msgid ""
@@ -2425,7 +2451,7 @@ msgstr ""
 #. Translators: This is the default name of new directories created by the file browser pane.
 #: ../plugins/filebrowser/xed-file-browser-store.c:3829
 msgid "Untitled Folder"
-msgstr ""
+msgstr "Névtelen mappa"
 
 #: ../plugins/filebrowser/xed-file-browser-store.c:3854
 msgid ""
@@ -2485,7 +2511,7 @@ msgstr "Új üres fájl hozzáadása"
 
 #: ../plugins/filebrowser/xed-file-browser-widget.c:790
 msgid "_Rename..."
-msgstr ""
+msgstr "Át_nevezés…"
 
 #: ../plugins/filebrowser/xed-file-browser-widget.c:791
 msgid "Rename selected file or folder"
@@ -2580,7 +2606,7 @@ msgstr "Dokumentum vagy kijelölt szöveg rendezése"
 
 #: ../plugins/sort/xed-sort-plugin.c:80
 msgid "S_ort lines"
-msgstr ""
+msgstr "S_orok szerinti rendezés"
 
 #: ../plugins/sort/xed-sort-plugin.c:82
 msgid "Sort the current document or selection"
@@ -2597,7 +2623,7 @@ msgstr "Válassza ki az aktuális _dokumentum nyelvét"
 
 #: ../plugins/spell/org.x.editor.plugins.spell.gschema.xml.in.h:1
 msgid "Autocheck Type"
-msgstr "Automatikus ellenőrzés típusa"
+msgstr "Automatikus helyesírás-ellenőrzés módja"
 
 #: ../plugins/spell/spell-checker.ui.h:1
 msgid "Misspelled word:"
@@ -2657,7 +2683,7 @@ msgstr "Helyesírás-ellenőrző"
 
 #: ../plugins/spell/spell.plugin.desktop.in.h:2
 msgid "Checks the spelling of the current document."
-msgstr "A jelenlegi dokumentum helyesírás-ellenőrzése"
+msgstr "A jelenlegi dokumentum helyesírás-ellenőrzése."
 
 #. Translators: Displayed in the "Check Spelling" dialog if there are no suggestions for the current misspelled word
 #. Translators: Displayed in the "Check Spelling" dialog if there are no suggestions
@@ -2665,7 +2691,7 @@ msgstr "A jelenlegi dokumentum helyesírás-ellenőrzése"
 #: ../plugins/spell/xed-automatic-spell-checker.c:433
 #: ../plugins/spell/xed-spell-checker-dialog.c:455
 msgid "(no suggested words)"
-msgstr "(nincs javaslat)"
+msgstr "(nincs javasolt szó)"
 
 #: ../plugins/spell/xed-automatic-spell-checker.c:457
 msgid "_More..."
@@ -2769,35 +2795,37 @@ msgstr "Nincs hibás szó"
 
 #: ../plugins/spell/xed-spell-setup-dialog.ui.h:1
 msgid "button"
-msgstr ""
+msgstr "gomb"
 
 #: ../plugins/spell/xed-spell-setup-dialog.ui.h:2
 msgid "Autocheck settings"
-msgstr ""
+msgstr "Automatikus helyesírás-ellenőrzés beállításai"
 
 #: ../plugins/spell/xed-spell-setup-dialog.ui.h:3
 msgid "Never"
-msgstr ""
+msgstr "Soha"
 
 #: ../plugins/spell/xed-spell-setup-dialog.ui.h:4
 msgid "Never autocheck spelling on document load"
-msgstr ""
+msgstr "Soha ne ellenőrizze a helyesírást a dokumentum betöltésekor"
 
 #: ../plugins/spell/xed-spell-setup-dialog.ui.h:5
 msgid "Remember by document"
-msgstr ""
+msgstr "Dokumentum szerinti beállítás"
 
 #: ../plugins/spell/xed-spell-setup-dialog.ui.h:6
 msgid "Remembers the setting for each  document on load"
 msgstr ""
+"A dokumentum szerinti beállítás alapján ellenőrizze a helyesírást a "
+"dokumentum betöltésekor"
 
 #: ../plugins/spell/xed-spell-setup-dialog.ui.h:7
 msgid "Always"
-msgstr ""
+msgstr "Mindig"
 
 #: ../plugins/spell/xed-spell-setup-dialog.ui.h:8
 msgid "Always autocheck on document load"
-msgstr ""
+msgstr "Mindig ellenőrizze a helyesírást a dokumentum betöltésekor"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:1
 msgid "XHTML 1.0 - Tags"

@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: MATE Desktop Environment\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-05-04 18:32+0100\n"
-"PO-Revision-Date: 2017-05-01 20:51+0000\n"
+"PO-Revision-Date: 2017-05-13 17:03+0000\n"
 "Last-Translator: Moo <hazap@hotmail.com>\n"
 "Language-Team: Lithuanian "
 "(http://www.transifex.com/projects/p/MATE/language/lt/)\n"
@@ -19,8 +19,8 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "(n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Launchpad-Export-Date: 2017-05-06 12:39+0000\n"
-"X-Generator: Launchpad (build 18366)\n"
+"X-Launchpad-Export-Date: 2017-05-23 10:31+0000\n"
+"X-Generator: Launchpad (build 18387)\n"
 "Language: lt\n"
 
 #: ../data/org.x.editor.gschema.xml.in.h:1
@@ -58,13 +58,15 @@ msgstr ""
 
 #: ../data/org.x.editor.gschema.xml.in.h:6
 msgid "Prefer Dark Theme"
-msgstr ""
+msgstr "Teikti pirmenybę tamsiai temai"
 
 #: ../data/org.x.editor.gschema.xml.in.h:7
 msgid ""
 "Whether xed should prefer the dark variation of the current Gtk theme if "
 "available."
 msgstr ""
+"Ar xed, jei prieinama, turėtų teikti pirmenybę tamsiam esamos Gtk temos "
+"variantui."
 
 #: ../data/org.x.editor.gschema.xml.in.h:8
 msgid "Style Scheme"
@@ -146,6 +148,11 @@ msgid ""
 "wrapping at individual character boundaries. Note that the values are case-"
 "sensitive, so make sure they appear exactly as mentioned here."
 msgstr ""
+"Nurodo kaip laužyti eilutes redagavimo srityje. Naudokite „none“ jei "
+"nenorite, kad eilutės būtų laužomos, „word“ norėdami laužyti eilutes žodžio "
+"pabaigoje ir „char“ norėdami laužyti eilutes ties simboliu. Atsiminkite, kad "
+"šios reikšmės skiria didžiąsias ir mažąsias raides, todėl pasistenkite, kad "
+"jos būtų įrašytos tiksliai taip, kaip parašyta čia."
 
 #: ../data/org.x.editor.gschema.xml.in.h:22
 msgid "Tab Size"
@@ -227,6 +234,13 @@ msgid ""
 "the start/end of the line and \"always\" to always move to the start/end of "
 "the text instead of the start/end of the line."
 msgstr ""
+"Nurodo kaip juda žymeklis, kai paspaudžiami klavišai HOME ir END. „disabled“ "
+"– visada perkelti į eilutės pradžią/pabaigą, „after“ – perkelti į eilutės "
+"pradžią/pabaigą, kai klavišai paspaudžiami pirmą kartą ir į teksto "
+"pradžią/pabaigą nepaisant tuščių tarpų, kai klavišai paspaudžiami antrą "
+"kartą, „before“ – perkelti į teksto pradžią/pabaigą, prieš perkeliant į "
+"eilutės pradžią/pabaigą, ir „always“ – užuot perkėlus į eilutės "
+"pradžią/pabaigą, visada perkelti į teksto pradžią/pabaigą."
 
 #: ../data/org.x.editor.gschema.xml.in.h:40
 msgid "Restore Previous Cursor Position"
@@ -257,12 +271,12 @@ msgstr "Ar xed turėtų įjungti sintaksės paryškinimą."
 
 #: ../data/org.x.editor.gschema.xml.in.h:46
 msgid "Ensure Trailing Newline"
-msgstr ""
+msgstr "Užtikrinti, kad failas baigiasi nauja eilute"
 
 #: ../data/org.x.editor.gschema.xml.in.h:47
 msgid ""
 "Whether xed will ensure that documents always end with a trailing newline."
-msgstr ""
+msgstr "Ar xed užtikrins, kad dokumentas visada baigiasi nauja eilute."
 
 #: ../data/org.x.editor.gschema.xml.in.h:48
 msgid "Toolbar is Visible"
@@ -301,11 +315,11 @@ msgstr "Ar turi būti matomas apatinis skydelis redagavimo langų apačioje."
 
 #: ../data/org.x.editor.gschema.xml.in.h:56
 msgid "Allow changing active tabs by scrolling"
-msgstr ""
+msgstr "Leisti slinkimu keisti aktyvias korteles"
 
 #: ../data/org.x.editor.gschema.xml.in.h:57
 msgid "Whether you can change active tabs by scrolling."
-msgstr ""
+msgstr "Ar slinkdami galite keisti aktyvias korteles."
 
 #: ../data/org.x.editor.gschema.xml.in.h:58
 msgid "Maximum Recent Files"
@@ -347,6 +361,11 @@ msgid ""
 "individual character boundaries. Note that the values are case-sensitive, so "
 "make sure they appear exactly as mentioned here."
 msgstr ""
+"Nurodo kaip laužyti ilgas eilutes spausdinant. Naudokite „none“ jei norite, "
+"kad eilutės nebūtų laužomos, „word“ eilutės laužymui žodžio pabaigoje, ir "
+"„char“ eilutės laužymui ties simboliu. Atsiminkite, kad šios reikšmės skiria "
+"didžiąsias ir mažąsias raides, todėl pasistenkite, kad jos būtų įrašytos "
+"tiksliai taip, kaip parašyta čia."
 
 #: ../data/org.x.editor.gschema.xml.in.h:66
 msgid "Print Line Numbers"
@@ -533,7 +552,7 @@ msgstr "Sukurti naują dokumentą esamame xed programos egzemplioriuje"
 
 #: ../xed/xed-app.c:139
 msgid "Set the size and position of the window (WIDTHxHEIGHT+X+Y)"
-msgstr ""
+msgstr "Nustatyti lango dydį ir padėtį (PLOTISxAUKŠTIS+X+Y)"
 
 #: ../xed/xed-app.c:140
 msgid "GEOMETRY"
@@ -545,11 +564,11 @@ msgstr "Atverti failus ir blokuoti procesą iki jų užvėrimo"
 
 #: ../xed/xed-app.c:153
 msgid "Run xed in standalone mode"
-msgstr ""
+msgstr "Paleisti xed autonominėje veiksenoje"
 
 #: ../xed/xed-app.c:160
 msgid "[FILE...] [+LINE]"
-msgstr ""
+msgstr "[FAILAS...] [+EILUTĖ]"
 
 #: ../xed/xed-app.c:551
 #, c-format
@@ -1268,12 +1287,13 @@ msgstr "_Atverti iš naujo"
 #: ../xed/xed-io-error-info-bar.c:1111
 #, c-format
 msgid "Some invalid chars have been detected while saving %s"
-msgstr ""
+msgstr "Įrašant %s buvo aptikti kai kurie neteisingi simboliai"
 
 #: ../xed/xed-io-error-info-bar.c:1126
 msgid ""
 "If you continue saving this file you can corrupt the document.  Save anyway?"
 msgstr ""
+"Jei tęsite šio failo įrašymą, galite sugadinti dokumentą.  Vis tiek įrašyti?"
 
 #: ../xed/xed-preferences-dialog.c:390
 msgid "Click on this button to select the font to be used by the editor"
@@ -1301,7 +1321,7 @@ msgstr "Pridėti schemą"
 
 #: ../xed/xed-preferences-dialog.c:854 ../xed/xed-progress-info-bar.c:67
 msgid "Cancel"
-msgstr ""
+msgstr "Atsisakyti"
 
 #: ../xed/xed-preferences-dialog.c:863
 msgid "Color Scheme Files"
@@ -1319,7 +1339,7 @@ msgstr "Užverti"
 
 #: ../xed/xed-preferences-dialog.c:1101
 msgid "Help"
-msgstr ""
+msgstr "Žinynas"
 
 #: ../xed/xed-preferences-dialog.c:1104
 msgid "Xed Preferences"
@@ -1387,7 +1407,7 @@ msgstr "Atitraukti"
 
 #: ../xed/xed-print-preview.c:681
 msgid "_Close preview"
-msgstr ""
+msgstr "_Užverti peržiūrą"
 
 #: ../xed/xed-print-preview.c:683
 msgid "Close print preview"
@@ -1522,11 +1542,11 @@ msgstr "_minučių"
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:25
 msgid "Tab Scrolling"
-msgstr ""
+msgstr "Kortelių slinkimas"
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:26
 msgid "Allow mouse wheel scrolling to change tabs"
-msgstr ""
+msgstr "Leisti slenkant pelės ratuką keisti korteles"
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:27
 msgid "Editor"
@@ -1550,7 +1570,7 @@ msgstr "Spalvų schema"
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:32
 msgid "Use dark theme variant (if available)"
-msgstr ""
+msgstr "Naudoti tamsios temos variantą (jei prieinama)"
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:33
 msgid "_Add..."
@@ -1624,7 +1644,7 @@ msgstr "Pakeisti"
 
 #: ../xed/resources/ui/xed-searchbar.ui.h:3
 msgid "_Search for: "
-msgstr "_Ieškoti ko: "
+msgstr "_Ko ieškoti: "
 
 #: ../xed/resources/ui/xed-searchbar.ui.h:4
 msgid "Replace _with: "
@@ -1640,7 +1660,7 @@ msgstr "Ankstesnis"
 
 #: ../xed/resources/ui/xed-searchbar.ui.h:7
 msgid "Regular expression"
-msgstr ""
+msgstr "Reguliarusis reiškinys"
 
 #: ../xed/resources/ui/xed-searchbar.ui.h:8
 msgid "Case sensitive"
@@ -1673,21 +1693,23 @@ msgstr "„%s“ nerasta"
 
 #: ../xed/xed-searchbar.c:305
 msgid "No matches found"
-msgstr "Atitikmenų nerasta"
+msgstr "Atitikčių nerasta"
 
 #: ../xed/xed-searchbar.c:313
 #, c-format
 msgid "%d match"
 msgid_plural "%d matches"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d atitiktis"
+msgstr[1] "%d atitiktys"
+msgstr[2] "%d atitikčių"
 
 #: ../xed/xed-searchbar.c:319
 #, c-format
 msgid "%d of %d match"
 msgid_plural "%d of %d matches"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d iš %d atitikties"
+msgstr[1] "%d iš %d atitikčių"
+msgstr[2] "%d iš %d atitikčių"
 
 #: ../xed/xed-statusbar.c:70 ../xed/xed-statusbar.c:76
 msgid "OVR"
@@ -2072,11 +2094,11 @@ msgstr "Redaguoti tekstą visame ekrane"
 
 #: ../xed/xed-ui.h:160
 msgid "_Word wrap"
-msgstr ""
+msgstr "_Eilučių laužymas"
 
 #: ../xed/xed-ui.h:161
 msgid "Set word wrap for the current document"
-msgstr ""
+msgstr "Nustatyti eilučių laužymą esamam dokumentui"
 
 #: ../xed/xed-ui.h:168
 msgid "Side _Pane"
@@ -2274,6 +2296,7 @@ msgstr "Terminalo komanda"
 #: ../plugins/filebrowser/org.x.editor.plugins.filebrowser.gschema.xml.in.h:8
 msgid "The terminal command when using the \"Open terminal here\" command."
 msgstr ""
+"Terminalo komanda, naudojama pasirinkus \"Atverti terminalą čia\" komandą."
 
 #: ../plugins/filebrowser/org.x.editor.plugins.filebrowser.gschema.xml.in.h:9
 msgid "Open With Tree View"
@@ -2422,7 +2445,7 @@ msgstr ""
 #. Translators: This is the default name of new files created by the file browser pane.
 #: ../plugins/filebrowser/xed-file-browser-store.c:3774
 msgid "Untitled File"
-msgstr ""
+msgstr "Bevardis failas"
 
 #: ../plugins/filebrowser/xed-file-browser-store.c:3802
 msgid ""
@@ -2435,7 +2458,7 @@ msgstr ""
 #. Translators: This is the default name of new directories created by the file browser pane.
 #: ../plugins/filebrowser/xed-file-browser-store.c:3829
 msgid "Untitled Folder"
-msgstr ""
+msgstr "Bevardis aplankas"
 
 #: ../plugins/filebrowser/xed-file-browser-store.c:3854
 msgid ""
@@ -2589,7 +2612,7 @@ msgstr "Rikiuoja dokumentą arba pažymėtą tekstą"
 
 #: ../plugins/sort/xed-sort-plugin.c:80
 msgid "S_ort lines"
-msgstr ""
+msgstr "R_ikiuoti eilutes"
 
 #: ../plugins/sort/xed-sort-plugin.c:82
 msgid "Sort the current document or selection"
@@ -2782,7 +2805,7 @@ msgstr "mygtukas"
 
 #: ../plugins/spell/xed-spell-setup-dialog.ui.h:2
 msgid "Autocheck settings"
-msgstr ""
+msgstr "Automatinio tikrinimo nustatymai"
 
 #: ../plugins/spell/xed-spell-setup-dialog.ui.h:3
 msgid "Never"
@@ -2790,15 +2813,15 @@ msgstr "Niekada"
 
 #: ../plugins/spell/xed-spell-setup-dialog.ui.h:4
 msgid "Never autocheck spelling on document load"
-msgstr ""
+msgstr "Įkėlus dokumentą niekada automatiškai netikrinti rašybos"
 
 #: ../plugins/spell/xed-spell-setup-dialog.ui.h:5
 msgid "Remember by document"
-msgstr ""
+msgstr "Prisiminti pagal dokumentą"
 
 #: ../plugins/spell/xed-spell-setup-dialog.ui.h:6
 msgid "Remembers the setting for each  document on load"
-msgstr ""
+msgstr "Įkėlus, prisiminti nustatymą kiekvienam dokumentui atskirai"
 
 #: ../plugins/spell/xed-spell-setup-dialog.ui.h:7
 msgid "Always"
@@ -2806,7 +2829,7 @@ msgstr "Visada"
 
 #: ../plugins/spell/xed-spell-setup-dialog.ui.h:8
 msgid "Always autocheck on document load"
-msgstr ""
+msgstr "Įkėlus dokumentą visada automatiškai tikrinti rašybą"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:1
 msgid "XHTML 1.0 - Tags"
@@ -3348,7 +3371,7 @@ msgstr "Nėra URI"
 #. Deprecated since HTML 4.01, not supported in XHTML 1.0 Strict DTD.
 #: ../plugins/taglist/HTML.tags.xml.in.h:154
 msgid "No word wrap (deprecated)"
-msgstr "Nėra žodžių laužymo (nebenaudotinas)"
+msgstr "Nėra eilučių laužymo (nebenaudotinas)"
 
 #. Deprecated since HTML 4.01, not supported in XHTML 1.0 Strict DTD.
 #: ../plugins/taglist/HTML.tags.xml.in.h:156
@@ -3874,7 +3897,7 @@ msgstr "Nėra šešėlio"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:293
 msgid "No word wrap"
-msgstr "Nėra žodžių laužymo"
+msgstr "Nėra eilučių laužymo"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:294
 msgid "Note"
