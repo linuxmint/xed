@@ -34,7 +34,7 @@
 #endif
 
 #include <glib/gi18n.h>
-#include <gtksourceview/gtksourceprintcompositor.h>
+#include <gtksourceview/gtksource.h>
 
 #include "xed-print-job.h"
 #include "xed-debug.h"
