@@ -563,7 +563,7 @@ xed_file_browser_plugin_activate (XedWindowActivatable *activatable)
                       "changed", G_CALLBACK (on_selection_changed_cb), plugin);
 
     panel = xed_window_get_side_panel (priv->window);
-    xed_panel_add_item (panel, GTK_WIDGET (priv->tree_widget), _("File Browser"), "system-file-manager");
+    xed_panel_add_item (panel, GTK_WIDGET (priv->tree_widget), _("File Browser"), "folder");
     gtk_widget_show (GTK_WIDGET (priv->tree_widget));
 
     add_popup_ui (plugin);
