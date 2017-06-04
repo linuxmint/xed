@@ -20,6 +20,8 @@
 #include <config.h>
 #endif
 
+#include <string.h>
+
 #include "xed-trail-save-plugin.h"
 
 #include <xed/xed-window.h>
@@ -59,6 +61,7 @@ strip_trailing_spaces (GtkTextBuffer *text_buffer)
     gchar byte;
     gint byte_index;
     gint strip_start_index, strip_end_index;
+    gint empty_lines_start = -1;
     gboolean should_strip;
     GtkTextIter strip_start, strip_end;
 
@@ -89,6 +92,7 @@ strip_trailing_spaces (GtkTextBuffer *text_buffer)
 
         /* Find indices of bytes that should be stripped */
         should_strip = FALSE;
+        empty_lines_start = (empty_lines_start < 0) ? line_num : empty_lines_start;
 
         for (byte_index = 0; slice [byte_index] != 0; ++byte_index)
         {
@@ -111,6 +115,7 @@ strip_trailing_spaces (GtkTextBuffer *text_buffer)
             else
             {
                 should_strip = FALSE;
+                empty_lines_start = -1;
             }
         }
 
@@ -123,6 +128,14 @@ strip_trailing_spaces (GtkTextBuffer *text_buffer)
             gtk_text_buffer_get_iter_at_line_index (text_buffer, &strip_end, line_num, strip_end_index);
             gtk_text_buffer_delete (text_buffer, &strip_start, &strip_end);
         }
+    }
+
+    /* Strip trailing lines (except for one) */
+    if (empty_lines_start != -1 && empty_lines_start != (line_count - 1))
+    {
+        gtk_text_buffer_get_iter_at_line (text_buffer, &strip_start, empty_lines_start);
+        gtk_text_buffer_get_end_iter (text_buffer, &strip_end);
+        gtk_text_buffer_delete (text_buffer, &strip_start, &strip_end);
     }
 }
 
