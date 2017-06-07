@@ -24,6 +24,9 @@
 from .signals import Signals
 from gi.repository import Gtk, Gdk, Pango
 
+MAX_FONT_SIZE = 30
+MIN_FONT_SIZE = 5
+
 class DocumentHelper(Signals):
     def __init__(self, view):
         Signals.__init__(self)
@@ -94,6 +97,11 @@ class DocumentHelper(Signals):
         size = description.get_size() / Pango.SCALE
 
         if not bounds:
+            if size >= MAX_FONT_SIZE and amount == 1:
+                return;
+            if size <= MIN_FONT_SIZE and amount == -1:
+                return;
+
             description.set_size(max(1, (size + amount)) * Pango.SCALE)
 
             self._view.override_font(description)
@@ -116,6 +124,11 @@ class DocumentHelper(Signals):
                     newsize += tag.props.font_desc.get_size() / Pango.SCALE
 
                 newsize = round(newsize / len(tags))
+
+            if newsize >= MAX_FONT_SIZE and amount == 1:
+                return;
+            if newsize <= MIN_FONT_SIZE and amount == -1:
+                return;
 
             newsize = int(max(1, newsize))
 
