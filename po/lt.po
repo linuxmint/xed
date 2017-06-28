@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: MATE Desktop Environment\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-05-04 18:32+0100\n"
-"PO-Revision-Date: 2017-05-13 17:03+0000\n"
+"PO-Revision-Date: 2017-06-23 22:37+0000\n"
 "Last-Translator: Moo <hazap@hotmail.com>\n"
 "Language-Team: Lithuanian "
 "(http://www.transifex.com/projects/p/MATE/language/lt/)\n"
@@ -19,8 +19,8 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "(n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Launchpad-Export-Date: 2017-05-23 10:31+0000\n"
-"X-Generator: Launchpad (build 18387)\n"
+"X-Launchpad-Export-Date: 2017-06-28 07:51+0000\n"
+"X-Generator: Launchpad (build 18416)\n"
 "Language: lt\n"
 
 #: ../data/org.x.editor.gschema.xml.in.h:1
@@ -139,7 +139,7 @@ msgstr ""
 
 #: ../data/org.x.editor.gschema.xml.in.h:20
 msgid "Line Wrapping Mode"
-msgstr "Eilučių laužymo būdas"
+msgstr "Eilučių laužymo veiksena"
 
 #: ../data/org.x.editor.gschema.xml.in.h:21
 msgid ""
@@ -352,7 +352,7 @@ msgstr "Ar xed, spausdinant dokumentus, turėtų įtraukti dokumento antraštę.
 
 #: ../data/org.x.editor.gschema.xml.in.h:64
 msgid "Printing Line Wrapping Mode"
-msgstr "Eilučių laužymo būdas spausdinant"
+msgstr "Eilučių laužymo veiksena spausdinant"
 
 #: ../data/org.x.editor.gschema.xml.in.h:65
 msgid ""
@@ -716,7 +716,7 @@ msgstr[2] ""
 #: ../xed/xed-close-confirmation-dialog.c:479
 #, c-format
 msgid "Save changes to document \"%s\" before closing?"
-msgstr "Ar įrašyti pakeitimus dokumente \"%s\" prieš užveriant?"
+msgstr "Ar prieš užveriant, įrašyti pakeitimus dokumente \"%s\"?"
 
 #: ../xed/xed-close-confirmation-dialog.c:644
 #, c-format
@@ -1225,8 +1225,8 @@ msgid ""
 "There is not enough disk space to save the file. Please free some disk space "
 "and try again."
 msgstr ""
-"Įrašyti failui nepakanka laisvos vietos diske. Atlaisvinkite šiek tiek "
-"vietos diske ir bandykite iš naujo."
+"Failui įrašyti nepakanka laisvos vietos diske. Atlaisvinkite šiek tiek "
+"vietos diske ir bandykite dar kartą."
 
 #: ../xed/xed-io-error-info-bar.c:966
 msgid ""
@@ -1976,7 +1976,7 @@ msgstr "Pažymėti visą dokumentą"
 #. View menu
 #: ../xed/xed-ui.h:108
 msgid "_Highlight Mode"
-msgstr "_Paryškinimo režimas"
+msgstr "_Paryškinimo veiksena"
 
 #. Search menu
 #: ../xed/xed-ui.h:111
@@ -2139,7 +2139,7 @@ msgstr "%s: /"
 #: ../xed/xed-window.c:773
 #, c-format
 msgid "Use %s highlight mode"
-msgstr "Naudoti %s paryškinimo režimą"
+msgstr "Naudoti %s paryškinimo veikseną"
 
 #. add the "Plain Text" item before all the others
 #. Translators: "Plain Text" means that no highlight mode is selected in the
@@ -2263,7 +2263,7 @@ msgstr ""
 
 #: ../plugins/filebrowser/org.x.editor.plugins.filebrowser.gschema.xml.in.h:3
 msgid "File Browser Filter Mode"
-msgstr "Failų naršyklės filtravimo režimas"
+msgstr "Failų naršyklės filtravimo veiksena"
 
 #: ../plugins/filebrowser/org.x.editor.plugins.filebrowser.gschema.xml.in.h:4
 msgid ""
@@ -3226,19 +3226,19 @@ msgstr "I18N BiDi nepaisymas"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:111
 msgid "Image map area"
-msgstr "Paveikslėlių žemėlapio erdvė"
+msgstr "Paveikslų žemėlapio erdvė"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:112
 msgid "Image map name"
-msgstr "Paveikslėlių žemėlapio pavadinimas"
+msgstr "Paveikslų žemėlapio pavadinimas"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:113
 msgid "Image map"
-msgstr "Paveikslėlių žemėlapis"
+msgstr "Paveikslų žemėlapis"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:114
 msgid "Image"
-msgstr "Paveikslėlis"
+msgstr "Paveikslas"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:115
 msgid "Inline frame"
@@ -3305,12 +3305,12 @@ msgstr "Ilga citata"
 #. Supported in XHTML 1.0 Frameset DTD only.
 #: ../plugins/taglist/HTML.tags.xml.in.h:133
 msgid "Margin pixel height"
-msgstr "Margin pixel height"
+msgstr "Paraštės pikselių aukštis"
 
 #. Supported in XHTML 1.0 Frameset DTD only.
 #: ../plugins/taglist/HTML.tags.xml.in.h:135
 msgid "Margin pixel width"
-msgstr "Margin pixel width"
+msgstr "Paraštės pikselių plotis"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:136
 msgid "Maximum length of text field"
@@ -3534,7 +3534,7 @@ msgstr "Scenarijaus sakiniai"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:197
 msgid "Scrollbar"
-msgstr "Slinkties juosta"
+msgstr "Slankjuostė"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:198
 msgid "Selectable option"
@@ -3546,7 +3546,7 @@ msgstr "Pasirinkta"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:200
 msgid "Server-side image map"
-msgstr "Serverinis paveikslėlių žemėlapis"
+msgstr "Serverinis paveikslų žemėlapis"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:201
 msgid "Shape"
@@ -3707,7 +3707,7 @@ msgstr "Nesurikiuotas sąrašas"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:244
 msgid "Use image map"
-msgstr "Naudoti paveikslėlių žemėlapį"
+msgstr "Naudoti paveikslų žemėlapį"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:245
 msgid "Value interpretation"
@@ -3837,7 +3837,7 @@ msgstr "Hotrizontali erdvė"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:278
 msgid "Image source"
-msgstr "Paveikslėlio šaltinis"
+msgstr "Paveikslo šaltinis"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:279
 msgid "Inline layer"
@@ -3981,7 +3981,7 @@ msgstr "Tekstas"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:314
 msgid "Top margin in pixels"
-msgstr "Viršutinė paraštė taškais"
+msgstr "Viršutinė paraštė pikseliais"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:315
 msgid "URL"

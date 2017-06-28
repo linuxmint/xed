@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: MATE Desktop Environment\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-05-04 18:32+0100\n"
-"PO-Revision-Date: 2017-03-16 20:28+0000\n"
+"PO-Revision-Date: 2017-06-04 14:27+0000\n"
 "Last-Translator: Asier Iturralde Sarasola <Unknown>\n"
 "Language-Team: Basque "
 "(http://www.transifex.com/projects/p/MATE/language/eu/)\n"
@@ -17,8 +17,8 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2017-05-23 10:32+0000\n"
-"X-Generator: Launchpad (build 18387)\n"
+"X-Launchpad-Export-Date: 2017-06-28 07:52+0000\n"
+"X-Generator: Launchpad (build 18416)\n"
 "Language: eu\n"
 
 #: ../data/org.x.editor.gschema.xml.in.h:1
@@ -56,13 +56,15 @@ msgstr ""
 
 #: ../data/org.x.editor.gschema.xml.in.h:6
 msgid "Prefer Dark Theme"
-msgstr ""
+msgstr "Hobetsi gai iluna"
 
 #: ../data/org.x.editor.gschema.xml.in.h:7
 msgid ""
 "Whether xed should prefer the dark variation of the current Gtk theme if "
 "available."
 msgstr ""
+"xed-ek uneko Gtk gaiaren aldaera iluna (erabilgarri balego) hobetsi behar "
+"duen ala ez."
 
 #: ../data/org.x.editor.gschema.xml.in.h:8
 msgid "Style Scheme"
@@ -146,6 +148,11 @@ msgid ""
 "wrapping at individual character boundaries. Note that the values are case-"
 "sensitive, so make sure they appear exactly as mentioned here."
 msgstr ""
+"Lerro luzeak editatzeko arean nola itzulbiratu zehazten du. Erabili \"none\" "
+"(bat ere ez) ez itzulbiratzeko, \"word\" (hitza) hitzaren mugetan "
+"itzulbiratzeko eta \"char\" (karakterea) karaktere indibidualen mugetan "
+"itzulbiratzeko. Kontuan hartu balioek maiuskulak/minuskulak desberdintzen "
+"dituztela; beraz, ziurtatu hemen aipatu bezalaxe agertzen direla."
 
 #: ../data/org.x.editor.gschema.xml.in.h:22
 msgid "Tab Size"
@@ -233,6 +240,15 @@ msgid ""
 "the start/end of the line and \"always\" to always move to the start/end of "
 "the text instead of the start/end of the line."
 msgstr ""
+"Kurtsorea nola mugitzen den zehazten du HASIERA eta AMAIERA teklak sakatzen "
+"direnean. Erabili \"disabled\" (desgaituta) beti lerroaren "
+"hasierara/amaierara mugitzeko. \"after\" (ondoren) lerroaren "
+"hasierara/amaierara mugitzeko teklak aurreneko aldiz sakatzen direnean eta "
+"testuaren hasierara/amaierara (zuriuneei ez ikusi eginez) mugitzeko teklak "
+"bigarren aldiz sakatzean. \"before\" (aurretik) testuaren "
+"hasierara/amaierara mugitzeko lerroaren hasierara/amaierara mugitu aurretik. "
+"Edo erabili \"always\" (beti) testuaren hasierara/amaierara beti mugitzeko, "
+"lerroaren hasierara/amaierara mugitu ordez."
 
 #: ../data/org.x.editor.gschema.xml.in.h:40
 msgid "Restore Previous Cursor Position"
@@ -267,12 +283,14 @@ msgstr "xed-ek sintaxi-nabarmentzea gaitu behar lukeen ala ez."
 
 #: ../data/org.x.editor.gschema.xml.in.h:46
 msgid "Ensure Trailing Newline"
-msgstr ""
+msgstr "Ziurtatu lerro amaierako lerro berria"
 
 #: ../data/org.x.editor.gschema.xml.in.h:47
 msgid ""
 "Whether xed will ensure that documents always end with a trailing newline."
 msgstr ""
+"xed-ek dokumentuak beti lerro amaierako lerro berriarekin amaitu behar "
+"dituen ala ez."
 
 #: ../data/org.x.editor.gschema.xml.in.h:48
 msgid "Toolbar is Visible"
@@ -312,11 +330,11 @@ msgstr "Editatzeko leihoen beheko panelak ikusgai egon behar duen ala ez."
 
 #: ../data/org.x.editor.gschema.xml.in.h:56
 msgid "Allow changing active tabs by scrolling"
-msgstr ""
+msgstr "Baimendu korritzean fitxa aktiboa aldatzea"
 
 #: ../data/org.x.editor.gschema.xml.in.h:57
 msgid "Whether you can change active tabs by scrolling."
-msgstr ""
+msgstr "Korrituz fitxa aktiboa aldatu dezakezun ala ez."
 
 #: ../data/org.x.editor.gschema.xml.in.h:58
 msgid "Maximum Recent Files"
@@ -361,6 +379,11 @@ msgid ""
 "individual character boundaries. Note that the values are case-sensitive, so "
 "make sure they appear exactly as mentioned here."
 msgstr ""
+"Lerro luzeak inprimatzeko nola itzulbiratu zehazten du. Erabili \"none\" "
+"(bat ere ez) ez itzulbiratzeko, \"word\" (hitza) hitzaren mugetan "
+"itzulbiratzeko eta \"char\" (karakterea) karaktere indibidualen mugetan "
+"itzulbiratzeko. Kontuan hartu balioek maiuskulak/minuskulak desberdintzen "
+"dituztela; beraz, ziurtatu hemen aipatu bezalaxe agertzen direla."
 
 #: ../data/org.x.editor.gschema.xml.in.h:66
 msgid "Print Line Numbers"
@@ -552,28 +575,28 @@ msgstr "Sortu dokumentu berri bat lehendik dagoen xed-en instantzia batean"
 
 #: ../xed/xed-app.c:139
 msgid "Set the size and position of the window (WIDTHxHEIGHT+X+Y)"
-msgstr ""
+msgstr "Ezarri leihoaren tamaina eta posizioa (ZABALERAxALTUERA+X+Y)"
 
 #: ../xed/xed-app.c:140
 msgid "GEOMETRY"
-msgstr ""
+msgstr "GEOMETRIA"
 
 #: ../xed/xed-app.c:146
 msgid "Open files and block process until files are closed"
-msgstr ""
+msgstr "Ireki fitxategiak eta blokeatu prozesuak fitxategiak itxi arte"
 
 #: ../xed/xed-app.c:153
 msgid "Run xed in standalone mode"
-msgstr ""
+msgstr "Exekutatu xed modu autonomoan"
 
 #: ../xed/xed-app.c:160
 msgid "[FILE...] [+LINE]"
-msgstr ""
+msgstr "[FITXATEGIA...] [+LERROA]"
 
 #: ../xed/xed-app.c:551
 #, c-format
 msgid "%s: invalid encoding."
-msgstr ""
+msgstr "%s: kodeketa baliogabea."
 
 #: ../xed/xed-app.c:1201
 msgid "There was an error displaying the help."
@@ -599,11 +622,11 @@ msgstr "Itxi gorde _gabe"
 #: ../plugins/filebrowser/xed-file-browser-utils.c:156
 #: ../plugins/spell/xed-spell-language-dialog.c:130
 msgid "_Cancel"
-msgstr ""
+msgstr "_Utzi"
 
 #: ../xed/xed-close-confirmation-dialog.c:159
 msgid "_Save As..."
-msgstr ""
+msgstr "Gorde _honela..."
 
 #. File menu
 #: ../xed/xed-close-confirmation-dialog.c:163 ../xed/xed-commands-file.c:689
@@ -735,7 +758,7 @@ msgstr "Ireki fitxategiak"
 #: ../xed/xed-commands-file.c:407
 #: ../plugins/filebrowser/xed-file-browser-widget.c:770
 msgid "_Open"
-msgstr ""
+msgstr "_Ireki"
 
 #: ../xed/xed-commands-file.c:501
 #, c-format
@@ -884,7 +907,7 @@ msgstr "Gehitu edo kendu..."
 #: ../plugins/spell/xed-spell-language-dialog.c:131
 #: ../plugins/time/xed-time-plugin.c:793
 msgid "_OK"
-msgstr ""
+msgstr "_Ados"
 
 #: ../xed/xed-encodings-dialog.c:342 ../xed/xed-ui.h:53
 #: ../plugins/spell/xed-spell-language-dialog.c:132
@@ -1062,6 +1085,8 @@ msgid ""
 "The file you opened has some invalid characters. If you continue editing "
 "this file you could corrupt this document."
 msgstr ""
+"Ireki duzun fitxategiak zenbait karaktere baliogabe ditu. Fitxategi hau "
+"editatzen jarraitzen baduzu, dokumentua honda dezakezu."
 
 #: ../xed/xed-io-error-info-bar.c:516
 msgid "You can also choose another character encoding and try again."
@@ -1262,12 +1287,14 @@ msgstr "_Birkargatu"
 #: ../xed/xed-io-error-info-bar.c:1111
 #, c-format
 msgid "Some invalid chars have been detected while saving %s"
-msgstr ""
+msgstr "Baliogabeko karaktere batzuk hauteman dira %s gordetzean"
 
 #: ../xed/xed-io-error-info-bar.c:1126
 msgid ""
 "If you continue saving this file you can corrupt the document.  Save anyway?"
 msgstr ""
+"Fitxategi hau gordetzen jarraitzen baduzu, dokumentua honda dezakezu. Gorde "
+"dena den?"
 
 #: ../xed/xed-preferences-dialog.c:390
 msgid "Click on this button to select the font to be used by the editor"
@@ -1295,7 +1322,7 @@ msgstr "Gehitu eskema"
 
 #: ../xed/xed-preferences-dialog.c:854 ../xed/xed-progress-info-bar.c:67
 msgid "Cancel"
-msgstr ""
+msgstr "Utzi"
 
 #: ../xed/xed-preferences-dialog.c:863
 msgid "Color Scheme Files"
@@ -1313,7 +1340,7 @@ msgstr "Itxi"
 
 #: ../xed/xed-preferences-dialog.c:1101
 msgid "Help"
-msgstr ""
+msgstr "Laguntza"
 
 #: ../xed/xed-preferences-dialog.c:1104
 msgid "Xed Preferences"
@@ -1381,7 +1408,7 @@ msgstr "Txikiagotu zooma"
 
 #: ../xed/xed-print-preview.c:681
 msgid "_Close preview"
-msgstr ""
+msgstr "_Itxi aurrebista"
 
 #: ../xed/xed-print-preview.c:683
 msgid "Close print preview"
@@ -1516,11 +1543,11 @@ msgstr "_minutuz behin"
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:25
 msgid "Tab Scrolling"
-msgstr ""
+msgstr "Fitxak korritzea"
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:26
 msgid "Allow mouse wheel scrolling to change tabs"
-msgstr ""
+msgstr "Baimendu saguaren gurpilarekin fitxak aldatzea"
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:27
 msgid "Editor"
@@ -1544,7 +1571,7 @@ msgstr "Kolore-eskema"
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:32
 msgid "Use dark theme variant (if available)"
-msgstr ""
+msgstr "Erabili gaiaren aldaera iluna (erabilgarri badago)"
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:33
 msgid "_Add..."
@@ -1634,7 +1661,7 @@ msgstr "Aurrekoa"
 
 #: ../xed/resources/ui/xed-searchbar.ui.h:7
 msgid "Regular expression"
-msgstr ""
+msgstr "Adierazpen erregularra"
 
 #: ../xed/resources/ui/xed-searchbar.ui.h:8
 msgid "Case sensitive"
@@ -1666,21 +1693,21 @@ msgstr "\"%s\" ez da aurkitu"
 
 #: ../xed/xed-searchbar.c:305
 msgid "No matches found"
-msgstr ""
+msgstr "Ez da bat datorrenik aurkitu"
 
 #: ../xed/xed-searchbar.c:313
 #, c-format
 msgid "%d match"
 msgid_plural "%d matches"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Bat-etortze %d"
+msgstr[1] "%d bat-etortze"
 
 #: ../xed/xed-searchbar.c:319
 #, c-format
 msgid "%d of %d match"
 msgid_plural "%d of %d matches"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d / %d bat-etortzetik"
+msgstr[1] "%d / %d bat-etortzetik"
 
 #: ../xed/xed-statusbar.c:70 ../xed/xed-statusbar.c:76
 msgid "OVR"
@@ -2064,11 +2091,11 @@ msgstr "Editatu testua pantaila osoan"
 
 #: ../xed/xed-ui.h:160
 msgid "_Word wrap"
-msgstr ""
+msgstr "_Egokitu ertzean"
 
 #: ../xed/xed-ui.h:161
 msgid "Set word wrap for the current document"
-msgstr ""
+msgstr "Ezarri ertzean egokitzea uneko dokumentuan"
 
 #: ../xed/xed-ui.h:168
 msgid "Side _Pane"
@@ -2144,7 +2171,7 @@ msgstr "Tabulazio-zabalera"
 
 #: ../xed/xed-window.c:2440
 msgid "There are unsaved documents"
-msgstr ""
+msgstr "Gorde gabeko dokumentuak daude"
 
 #: ../xed/xed-window.c:3586
 msgid "Elevated Privileges"
@@ -2262,11 +2289,13 @@ msgstr ""
 
 #: ../plugins/filebrowser/org.x.editor.plugins.filebrowser.gschema.xml.in.h:7
 msgid "Terminal Command"
-msgstr ""
+msgstr "Terminaleko komandoa"
 
 #: ../plugins/filebrowser/org.x.editor.plugins.filebrowser.gschema.xml.in.h:8
 msgid "The terminal command when using the \"Open terminal here\" command."
 msgstr ""
+"\"Ireki terminala hemen\" komandoarekin erabili beharreko terminaleko "
+"komandoa."
 
 #: ../plugins/filebrowser/org.x.editor.plugins.filebrowser.gschema.xml.in.h:9
 msgid "Open With Tree View"
@@ -2416,7 +2445,7 @@ msgstr ""
 #. Translators: This is the default name of new files created by the file browser pane.
 #: ../plugins/filebrowser/xed-file-browser-store.c:3774
 msgid "Untitled File"
-msgstr ""
+msgstr "Izenik gabeko fitxategia"
 
 #: ../plugins/filebrowser/xed-file-browser-store.c:3802
 msgid ""
@@ -2429,7 +2458,7 @@ msgstr ""
 #. Translators: This is the default name of new directories created by the file browser pane.
 #: ../plugins/filebrowser/xed-file-browser-store.c:3829
 msgid "Untitled Folder"
-msgstr ""
+msgstr "Izenik gabeko karpeta"
 
 #: ../plugins/filebrowser/xed-file-browser-store.c:3854
 msgid ""
@@ -2489,7 +2518,7 @@ msgstr "Gehitu fitxategi huts berria"
 
 #: ../plugins/filebrowser/xed-file-browser-widget.c:790
 msgid "_Rename..."
-msgstr ""
+msgstr "Be_rrizendatu..."
 
 #: ../plugins/filebrowser/xed-file-browser-widget.c:791
 msgid "Rename selected file or folder"
@@ -2583,7 +2612,7 @@ msgstr "Dokumentua edo hautatutako testua ordenatzen du."
 
 #: ../plugins/sort/xed-sort-plugin.c:80
 msgid "S_ort lines"
-msgstr ""
+msgstr "_Ordenatu lerroak"
 
 #: ../plugins/sort/xed-sort-plugin.c:82
 msgid "Sort the current document or selection"
@@ -2772,35 +2801,35 @@ msgstr "Ez dago gaizki idatzitako hitzik"
 
 #: ../plugins/spell/xed-spell-setup-dialog.ui.h:1
 msgid "button"
-msgstr ""
+msgstr "botoia"
 
 #: ../plugins/spell/xed-spell-setup-dialog.ui.h:2
 msgid "Autocheck settings"
-msgstr ""
+msgstr "Egiaztapen automatikoaren ezarpenak"
 
 #: ../plugins/spell/xed-spell-setup-dialog.ui.h:3
 msgid "Never"
-msgstr ""
+msgstr "Inoiz ez"
 
 #: ../plugins/spell/xed-spell-setup-dialog.ui.h:4
 msgid "Never autocheck spelling on document load"
-msgstr ""
+msgstr "Inoiz ez egiaztatu ortografia automatikoki dokumentua kargatzean"
 
 #: ../plugins/spell/xed-spell-setup-dialog.ui.h:5
 msgid "Remember by document"
-msgstr ""
+msgstr "Gogoratu dokumentu bakoitzeko"
 
 #: ../plugins/spell/xed-spell-setup-dialog.ui.h:6
 msgid "Remembers the setting for each  document on load"
-msgstr ""
+msgstr "Dokumentu bakoitzerako ezarpena gogoratzen du kargatzean"
 
 #: ../plugins/spell/xed-spell-setup-dialog.ui.h:7
 msgid "Always"
-msgstr ""
+msgstr "Beti"
 
 #: ../plugins/spell/xed-spell-setup-dialog.ui.h:8
 msgid "Always autocheck on document load"
-msgstr ""
+msgstr "Beti egiaztatu automatikoki dokumentua kargatzean"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:1
 msgid "XHTML 1.0 - Tags"

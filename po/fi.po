@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: MATE Desktop Environment\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-05-04 18:32+0100\n"
-"PO-Revision-Date: 2017-02-01 09:34+0000\n"
+"PO-Revision-Date: 2017-06-27 23:03+0000\n"
 "Last-Translator: Ari Ervasti <ari.ervasti87@gmail.com>\n"
 "Language-Team: Finnish "
 "(http://www.transifex.com/projects/p/MATE/language/fi/)\n"
@@ -17,8 +17,8 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2017-05-23 10:31+0000\n"
-"X-Generator: Launchpad (build 18387)\n"
+"X-Launchpad-Export-Date: 2017-06-28 07:51+0000\n"
+"X-Generator: Launchpad (build 18416)\n"
 "Language: fi\n"
 
 #: ../data/org.x.editor.gschema.xml.in.h:1
@@ -55,13 +55,15 @@ msgstr ""
 
 #: ../data/org.x.editor.gschema.xml.in.h:6
 msgid "Prefer Dark Theme"
-msgstr ""
+msgstr "Suosi tummaa teemaa"
 
 #: ../data/org.x.editor.gschema.xml.in.h:7
 msgid ""
 "Whether xed should prefer the dark variation of the current Gtk theme if "
 "available."
 msgstr ""
+"Tuleeko xed:ssä suosia nykyisen GTK-teeman tummaa vaihtoehtoa, jos sellainen "
+"on saatavilla."
 
 #: ../data/org.x.editor.gschema.xml.in.h:8
 msgid "Style Scheme"
@@ -143,6 +145,11 @@ msgid ""
 "wrapping at individual character boundaries. Note that the values are case-"
 "sensitive, so make sure they appear exactly as mentioned here."
 msgstr ""
+"Määrittää kuinka pitkät rivit rivitetään muokkausalueella. Käytä arvoa "
+"”none” jos et halua rivittää, ”word” rivittääksesi sanan vaihtuessa, ja "
+"”char” rivittääksesi yksittäisen merkin kohdalta. Huomaa, että kirjainkoko "
+"merkitsee arvoissa, joten varmista että kirjoitat arvon täsmälleen kuten "
+"tässä on neuvottu."
 
 #: ../data/org.x.editor.gschema.xml.in.h:22
 msgid "Tab Size"
@@ -225,6 +232,13 @@ msgid ""
 "the start/end of the line and \"always\" to always move to the start/end of "
 "the text instead of the start/end of the line."
 msgstr ""
+"Määrittää, kuinka kohdistin liikkuu, kun Home- ja End-näppäimiä painetaan. "
+"Arvolla ”disabled” siirrytään aina rivin alkuun tai loppuun, arvolla ”after” "
+"siirrytään ensi kerralla rivin alkuun tai loppuun, ja toisella "
+"painalluksella tekstin alkuun tai loppuun, jättäen tyhjä tila huomioimatta, "
+"arvolla ”before” siirrytään aina ensin tekstin alkuun tai loppuun ennen "
+"rivin alkuun tai loppuun siirtymistä, ja arvolla ”always” siirrytään aina "
+"tekstin alkuun tai loppuun rivin alun tai lopun sijasta."
 
 #: ../data/org.x.editor.gschema.xml.in.h:40
 msgid "Restore Previous Cursor Position"
@@ -256,12 +270,14 @@ msgstr "Tulisiko xedin sallia syntaksin korostus."
 
 #: ../data/org.x.editor.gschema.xml.in.h:46
 msgid "Ensure Trailing Newline"
-msgstr ""
+msgstr "Varmista lopun rivinvaihto"
 
 #: ../data/org.x.editor.gschema.xml.in.h:47
 msgid ""
 "Whether xed will ensure that documents always end with a trailing newline."
 msgstr ""
+"Tuleeko xed:ssä varmistaa, että asiakirjat päättyvät aina lopun "
+"rivinvaihtoon."
 
 #: ../data/org.x.editor.gschema.xml.in.h:48
 msgid "Toolbar is Visible"
@@ -300,11 +316,13 @@ msgstr "Määrittää näytetäänkö muokkausikkunan alalaidassa oleva paneeli.
 
 #: ../data/org.x.editor.gschema.xml.in.h:56
 msgid "Allow changing active tabs by scrolling"
-msgstr ""
+msgstr "Salli aktiivisten välilehtien vaihto vierittämällä"
 
 #: ../data/org.x.editor.gschema.xml.in.h:57
 msgid "Whether you can change active tabs by scrolling."
 msgstr ""
+"Tulisiko sinun pystyä vaihtamaan aktiivisten välilehtien välillä "
+"vierittämällä."
 
 #: ../data/org.x.editor.gschema.xml.in.h:58
 msgid "Maximum Recent Files"
@@ -345,6 +363,11 @@ msgid ""
 "individual character boundaries. Note that the values are case-sensitive, so "
 "make sure they appear exactly as mentioned here."
 msgstr ""
+"Määrittää kuinka pitkät rivit rivitetään tulostusta varten. Käytä arvoa "
+"”none” jos et halua rivittää, ”word” rivittääksesi sanan vaihtuessa, ja "
+"”char” rivittääksesi yksittäisen merkin kohdalta. Huomaa, että kirjainkoko "
+"merkitsee arvoissa, joten varmista että kirjoitat arvon täsmälleen kuten "
+"tässä on neuvottu."
 
 #: ../data/org.x.editor.gschema.xml.in.h:66
 msgid "Print Line Numbers"
@@ -532,15 +555,16 @@ msgstr "Luo uusi asiakirja xedin nykyiseen istuntoon"
 
 #: ../xed/xed-app.c:139
 msgid "Set the size and position of the window (WIDTHxHEIGHT+X+Y)"
-msgstr ""
+msgstr "Aseta ikkunan koko ja sijainti (LEVEYSxKORKEUS+X+Y)"
 
 #: ../xed/xed-app.c:140
 msgid "GEOMETRY"
-msgstr ""
+msgstr "MITTASUHTEET"
 
 #: ../xed/xed-app.c:146
 msgid "Open files and block process until files are closed"
 msgstr ""
+"Avaa tiedostoja ja estä prosessia jatkamasta, kunnes tiedostot ovat suljettu"
 
 #: ../xed/xed-app.c:153
 msgid "Run xed in standalone mode"
@@ -553,7 +577,7 @@ msgstr ""
 #: ../xed/xed-app.c:551
 #, c-format
 msgid "%s: invalid encoding."
-msgstr ""
+msgstr "%s: virheellinen merkistökoodaus."
 
 #: ../xed/xed-app.c:1201
 msgid "There was an error displaying the help."
@@ -579,11 +603,11 @@ msgstr "_Sulje tallentamatta"
 #: ../plugins/filebrowser/xed-file-browser-utils.c:156
 #: ../plugins/spell/xed-spell-language-dialog.c:130
 msgid "_Cancel"
-msgstr ""
+msgstr "_Peru"
 
 #: ../xed/xed-close-confirmation-dialog.c:159
 msgid "_Save As..."
-msgstr ""
+msgstr "_Tallenna nimellä..."
 
 #. File menu
 #: ../xed/xed-close-confirmation-dialog.c:163 ../xed/xed-commands-file.c:689
@@ -726,7 +750,7 @@ msgstr "Avaa tiedostoja"
 #: ../xed/xed-commands-file.c:407
 #: ../plugins/filebrowser/xed-file-browser-widget.c:770
 msgid "_Open"
-msgstr ""
+msgstr "_Avaa"
 
 #: ../xed/xed-commands-file.c:501
 #, c-format
@@ -883,7 +907,7 @@ msgstr "Lisää tai poista…"
 #: ../plugins/spell/xed-spell-language-dialog.c:131
 #: ../plugins/time/xed-time-plugin.c:793
 msgid "_OK"
-msgstr ""
+msgstr "_OK"
 
 #: ../xed/xed-encodings-dialog.c:342 ../xed/xed-ui.h:53
 #: ../plugins/spell/xed-spell-language-dialog.c:132
@@ -1060,6 +1084,8 @@ msgid ""
 "The file you opened has some invalid characters. If you continue editing "
 "this file you could corrupt this document."
 msgstr ""
+"Avaamassasi tiedostossa on epäkelpoja merkkejä. Jos jatkat tämän tiedoston "
+"muokkaamista, saatat vioittaa asiakirjaa."
 
 #: ../xed/xed-io-error-info-bar.c:516
 msgid "You can also choose another character encoding and try again."
@@ -1263,12 +1289,14 @@ msgstr "Ko_rvaa"
 #: ../xed/xed-io-error-info-bar.c:1111
 #, c-format
 msgid "Some invalid chars have been detected while saving %s"
-msgstr ""
+msgstr "Epäkelpoja merkkejä havaittu tallentaessa %s"
 
 #: ../xed/xed-io-error-info-bar.c:1126
 msgid ""
 "If you continue saving this file you can corrupt the document.  Save anyway?"
 msgstr ""
+"Jos jatkat tiedoston tallettamista, saatat vioittaa asiakirjaa. Jatketaanko "
+"tallennusta?"
 
 #: ../xed/xed-preferences-dialog.c:390
 msgid "Click on this button to select the font to be used by the editor"
@@ -1295,7 +1323,7 @@ msgstr "Lisää värimalli"
 
 #: ../xed/xed-preferences-dialog.c:854 ../xed/xed-progress-info-bar.c:67
 msgid "Cancel"
-msgstr ""
+msgstr "Peru"
 
 #: ../xed/xed-preferences-dialog.c:863
 msgid "Color Scheme Files"
@@ -1313,7 +1341,7 @@ msgstr "Sulje"
 
 #: ../xed/xed-preferences-dialog.c:1101
 msgid "Help"
-msgstr ""
+msgstr "Ohje"
 
 #: ../xed/xed-preferences-dialog.c:1104
 msgid "Xed Preferences"
@@ -1381,7 +1409,7 @@ msgstr "Loitonna sivua"
 
 #: ../xed/xed-print-preview.c:681
 msgid "_Close preview"
-msgstr ""
+msgstr "_Sulje esikatselu"
 
 #: ../xed/xed-print-preview.c:683
 msgid "Close print preview"
@@ -1516,11 +1544,11 @@ msgstr "_minuutin välein"
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:25
 msgid "Tab Scrolling"
-msgstr ""
+msgstr "Välilehtien vieritys"
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:26
 msgid "Allow mouse wheel scrolling to change tabs"
-msgstr ""
+msgstr "Salli välilehtien vaihtaminen hiiren rullalla"
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:27
 msgid "Editor"
@@ -1544,7 +1572,7 @@ msgstr "Väriteema"
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:32
 msgid "Use dark theme variant (if available)"
-msgstr ""
+msgstr "Käytä teeman tummaa muunnosta (jos saatavilla)"
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:33
 msgid "_Add..."
@@ -1634,7 +1662,7 @@ msgstr "Edellinen"
 
 #: ../xed/resources/ui/xed-searchbar.ui.h:7
 msgid "Regular expression"
-msgstr ""
+msgstr "Säännöllinen lauseke"
 
 #: ../xed/resources/ui/xed-searchbar.ui.h:8
 msgid "Case sensitive"
@@ -1666,7 +1694,7 @@ msgstr "”%s” ei löytynyt"
 
 #: ../xed/xed-searchbar.c:305
 msgid "No matches found"
-msgstr ""
+msgstr "Tuloksia ei löytynyt"
 
 #: ../xed/xed-searchbar.c:313
 #, c-format
@@ -2261,11 +2289,11 @@ msgstr ""
 
 #: ../plugins/filebrowser/org.x.editor.plugins.filebrowser.gschema.xml.in.h:7
 msgid "Terminal Command"
-msgstr ""
+msgstr "Päätekomento"
 
 #: ../plugins/filebrowser/org.x.editor.plugins.filebrowser.gschema.xml.in.h:8
 msgid "The terminal command when using the \"Open terminal here\" command."
-msgstr ""
+msgstr "Päätekomento käytettäessä \"Avaa päätteessä\" -komentoa."
 
 #: ../plugins/filebrowser/org.x.editor.plugins.filebrowser.gschema.xml.in.h:9
 msgid "Open With Tree View"
@@ -2486,7 +2514,7 @@ msgstr "Lisää uusi tyhjä tiedosto"
 
 #: ../plugins/filebrowser/xed-file-browser-widget.c:790
 msgid "_Rename..."
-msgstr ""
+msgstr "_Nimeä uudelleen..."
 
 #: ../plugins/filebrowser/xed-file-browser-widget.c:791
 msgid "Rename selected file or folder"
@@ -2769,7 +2797,7 @@ msgstr "Ei väärinkirjoitettuja sanoja"
 
 #: ../plugins/spell/xed-spell-setup-dialog.ui.h:1
 msgid "button"
-msgstr ""
+msgstr "painike"
 
 #: ../plugins/spell/xed-spell-setup-dialog.ui.h:2
 msgid "Autocheck settings"
@@ -2777,7 +2805,7 @@ msgstr ""
 
 #: ../plugins/spell/xed-spell-setup-dialog.ui.h:3
 msgid "Never"
-msgstr ""
+msgstr "Ei koskaan"
 
 #: ../plugins/spell/xed-spell-setup-dialog.ui.h:4
 msgid "Never autocheck spelling on document load"
@@ -2793,7 +2821,7 @@ msgstr ""
 
 #: ../plugins/spell/xed-spell-setup-dialog.ui.h:7
 msgid "Always"
-msgstr ""
+msgstr "Aina"
 
 #: ../plugins/spell/xed-spell-setup-dialog.ui.h:8
 msgid "Always autocheck on document load"

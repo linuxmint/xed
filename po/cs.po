@@ -11,16 +11,16 @@ msgstr ""
 "Project-Id-Version: MATE Desktop Environment\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-05-04 18:32+0100\n"
-"PO-Revision-Date: 2016-12-18 19:13+0000\n"
-"Last-Translator: Ondřej Kolín <ondrej.kolin@gmail.com>\n"
+"PO-Revision-Date: 2017-06-27 11:03+0000\n"
+"Last-Translator: Petr Šimáček <petr.simacek@gmail.com>\n"
 "Language-Team: Czech "
 "(http://www.transifex.com/projects/p/MATE/language/cs/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
-"X-Launchpad-Export-Date: 2017-05-23 10:31+0000\n"
-"X-Generator: Launchpad (build 18387)\n"
+"X-Launchpad-Export-Date: 2017-06-28 07:52+0000\n"
+"X-Generator: Launchpad (build 18416)\n"
 "Language: cs\n"
 
 #: ../data/org.x.editor.gschema.xml.in.h:1
@@ -58,13 +58,15 @@ msgstr ""
 
 #: ../data/org.x.editor.gschema.xml.in.h:6
 msgid "Prefer Dark Theme"
-msgstr ""
+msgstr "Preferovat tmavé téma"
 
 #: ../data/org.x.editor.gschema.xml.in.h:7
 msgid ""
 "Whether xed should prefer the dark variation of the current Gtk theme if "
 "available."
 msgstr ""
+"Jestli má xed preferovat tmavou variantu aktuálního Gtk tématu pokud je k "
+"dispozici."
 
 #: ../data/org.x.editor.gschema.xml.in.h:8
 msgid "Style Scheme"
@@ -145,6 +147,11 @@ msgid ""
 "wrapping at individual character boundaries. Note that the values are case-"
 "sensitive, so make sure they appear exactly as mentioned here."
 msgstr ""
+"Udává, jak zalamovat řádky v editační oblasti. Hodnota „none“ řádky "
+"zalamovat nebude, hodnota „word“ bude zalamovat řádky na hranicích slov, a "
+"hodnota „char“ bude zalamovat na hranicích znaků. Tyto hodnoty jsou citlivé "
+"na velikost písmen, takže dejte pozor, aby odpovídaly přesně hodnotám, které "
+"jsou zde popsány."
 
 #: ../data/org.x.editor.gschema.xml.in.h:22
 msgid "Tab Size"
@@ -228,6 +235,13 @@ msgid ""
 "the start/end of the line and \"always\" to always move to the start/end of "
 "the text instead of the start/end of the line."
 msgstr ""
+"Udává, jak se kurzor bude pohybovat, když jsou stisknuty klávesy Home a End. "
+"Použijte „disabled“, pokud se chcete vždy přesunout na začátek/konec řádku, "
+"„after“, pokud se chcete při prvním stisknutí přesunout na začátek/konec "
+"řádku a po druhém stisknutí přesunout na začátek/konec textu ignorujíce "
+"mezery, „before“, pokud se chcete přesunout na začátek/konec textu před "
+"přesunutím na začátek/konec řádku a „always“, pokud se chcete vždy přesunout "
+"na začátek/konec textu místo na začátek/konec řádku."
 
 #: ../data/org.x.editor.gschema.xml.in.h:40
 msgid "Restore Previous Cursor Position"
@@ -258,12 +272,13 @@ msgstr "Jestli má xed zobrazovat zvýraznění syntaxe"
 
 #: ../data/org.x.editor.gschema.xml.in.h:46
 msgid "Ensure Trailing Newline"
-msgstr ""
+msgstr "Zajistit koncový nový řádek"
 
 #: ../data/org.x.editor.gschema.xml.in.h:47
 msgid ""
 "Whether xed will ensure that documents always end with a trailing newline."
 msgstr ""
+"Zda se má xed ujišťovat, že dokument bude vždy zakončen novým řádkem."
 
 #: ../data/org.x.editor.gschema.xml.in.h:48
 msgid "Toolbar is Visible"
@@ -302,11 +317,11 @@ msgstr "Má-li být viditelný spodní panel pod editační oblastí."
 
 #: ../data/org.x.editor.gschema.xml.in.h:56
 msgid "Allow changing active tabs by scrolling"
-msgstr ""
+msgstr "Povolit změnu aktivní záložky kolečkem myši"
 
 #: ../data/org.x.editor.gschema.xml.in.h:57
 msgid "Whether you can change active tabs by scrolling."
-msgstr ""
+msgstr "Zda povolit změnu aktivní záložky kolečkem myši"
 
 #: ../data/org.x.editor.gschema.xml.in.h:58
 msgid "Maximum Recent Files"
@@ -347,6 +362,10 @@ msgid ""
 "individual character boundaries. Note that the values are case-sensitive, so "
 "make sure they appear exactly as mentioned here."
 msgstr ""
+"Udává, jak při tisku zalamovat řádky. Hodnota „none“ řádky zalamovat nebude, "
+"hodnota „word“ bude zalamovat řádky na hranicích slov, a hodnota „char“ bude "
+"zalamovat na hranicích znaků. Tyto hodnoty jsou citlivé na velikost písmen, "
+"takže dejte pozor, aby odpovídaly přesně hodnotám, které jsou zde popsány."
 
 #: ../data/org.x.editor.gschema.xml.in.h:66
 msgid "Print Line Numbers"
@@ -532,28 +551,28 @@ msgstr "Vytvořit nový dokument v tomto sezení"
 
 #: ../xed/xed-app.c:139
 msgid "Set the size and position of the window (WIDTHxHEIGHT+X+Y)"
-msgstr ""
+msgstr "Nastavit velikost a polohu okna (ŠÍŘKAxVÝŠKA+X+Y)"
 
 #: ../xed/xed-app.c:140
 msgid "GEOMETRY"
-msgstr ""
+msgstr "GEOMETRIE"
 
 #: ../xed/xed-app.c:146
 msgid "Open files and block process until files are closed"
-msgstr ""
+msgstr "Otevřít soubory a blokovat zpracování, dokud nejsou zavřeny"
 
 #: ../xed/xed-app.c:153
 msgid "Run xed in standalone mode"
-msgstr ""
+msgstr "Spustit xed v samostatném módu"
 
 #: ../xed/xed-app.c:160
 msgid "[FILE...] [+LINE]"
-msgstr ""
+msgstr "[SOUBOR…] [+ŘÁDEK]"
 
 #: ../xed/xed-app.c:551
 #, c-format
 msgid "%s: invalid encoding."
-msgstr ""
+msgstr "%s: neplatné kódování."
 
 #: ../xed/xed-app.c:1201
 msgid "There was an error displaying the help."
@@ -579,11 +598,11 @@ msgstr "Zavřít _bez uložení"
 #: ../plugins/filebrowser/xed-file-browser-utils.c:156
 #: ../plugins/spell/xed-spell-language-dialog.c:130
 msgid "_Cancel"
-msgstr ""
+msgstr "_Zrušit"
 
 #: ../xed/xed-close-confirmation-dialog.c:159
 msgid "_Save As..."
-msgstr ""
+msgstr "_Uložit jako..."
 
 #. File menu
 #: ../xed/xed-close-confirmation-dialog.c:163 ../xed/xed-commands-file.c:689
@@ -740,7 +759,7 @@ msgstr "Otevřít soubory"
 #: ../xed/xed-commands-file.c:407
 #: ../plugins/filebrowser/xed-file-browser-widget.c:770
 msgid "_Open"
-msgstr ""
+msgstr "_Otevřít"
 
 #: ../xed/xed-commands-file.c:501
 #, c-format
@@ -896,13 +915,13 @@ msgstr "Aktuální lokalizace (%s)"
 
 #: ../xed/xed-encodings-combo-box.c:348
 msgid "Add or Remove..."
-msgstr "Přidat nebo odstranit…"
+msgstr "Přidat nebo odebrat…"
 
 #: ../xed/xed-encodings-dialog.c:341
 #: ../plugins/spell/xed-spell-language-dialog.c:131
 #: ../plugins/time/xed-time-plugin.c:793
 msgid "_OK"
-msgstr ""
+msgstr "_Budiž"
 
 #: ../xed/xed-encodings-dialog.c:342 ../xed/xed-ui.h:53
 #: ../plugins/spell/xed-spell-language-dialog.c:132
@@ -1079,6 +1098,8 @@ msgid ""
 "The file you opened has some invalid characters. If you continue editing "
 "this file you could corrupt this document."
 msgstr ""
+"Soubor, který jste otevřeli, obsahuje nějaké neplatné znaky. Pokud budete "
+"pokračovat v úpravách tohoto dokumentu, můžete jej poškodit."
 
 #: ../xed/xed-io-error-info-bar.c:516
 msgid "You can also choose another character encoding and try again."
@@ -1278,12 +1299,14 @@ msgstr "_Znovu načíst"
 #: ../xed/xed-io-error-info-bar.c:1111
 #, c-format
 msgid "Some invalid chars have been detected while saving %s"
-msgstr ""
+msgstr "Při ukládání %s byly zjištěny některé neplatné znaky"
 
 #: ../xed/xed-io-error-info-bar.c:1126
 msgid ""
 "If you continue saving this file you can corrupt the document.  Save anyway?"
 msgstr ""
+"Pokud budete pokračovat v ukládání tohoto souboru, můžete dokument poškodit. "
+"Přesto uložit?"
 
 #: ../xed/xed-preferences-dialog.c:390
 msgid "Click on this button to select the font to be used by the editor"
@@ -1311,7 +1334,7 @@ msgstr "Přidat schéma"
 
 #: ../xed/xed-preferences-dialog.c:854 ../xed/xed-progress-info-bar.c:67
 msgid "Cancel"
-msgstr ""
+msgstr "Zrušit"
 
 #: ../xed/xed-preferences-dialog.c:863
 msgid "Color Scheme Files"
@@ -1329,7 +1352,7 @@ msgstr "Zavřít"
 
 #: ../xed/xed-preferences-dialog.c:1101
 msgid "Help"
-msgstr ""
+msgstr "Nápověda"
 
 #: ../xed/xed-preferences-dialog.c:1104
 msgid "Xed Preferences"
@@ -1397,7 +1420,7 @@ msgstr "Zmenšit stránku"
 
 #: ../xed/xed-print-preview.c:681
 msgid "_Close preview"
-msgstr ""
+msgstr "_Zavřít náhled"
 
 #: ../xed/xed-print-preview.c:683
 msgid "Close print preview"
@@ -1532,11 +1555,11 @@ msgstr "_minut"
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:25
 msgid "Tab Scrolling"
-msgstr ""
+msgstr "Posouvání záložek"
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:26
 msgid "Allow mouse wheel scrolling to change tabs"
-msgstr ""
+msgstr "Povolit změnu záložek kolečkem myši"
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:27
 msgid "Editor"
@@ -1560,7 +1583,7 @@ msgstr "Barevné schéma"
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:32
 msgid "Use dark theme variant (if available)"
-msgstr ""
+msgstr "Použít tmavou variantu tématu (je-li dostupná)"
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:33
 msgid "_Add..."
@@ -1650,7 +1673,7 @@ msgstr "Předchozí"
 
 #: ../xed/resources/ui/xed-searchbar.ui.h:7
 msgid "Regular expression"
-msgstr ""
+msgstr "Regulární výraz"
 
 #: ../xed/resources/ui/xed-searchbar.ui.h:8
 msgid "Case sensitive"
@@ -1683,21 +1706,23 @@ msgstr "„%s“ nenalezeno"
 
 #: ../xed/xed-searchbar.c:305
 msgid "No matches found"
-msgstr ""
+msgstr "Žádné shody nenalezeny"
 
 #: ../xed/xed-searchbar.c:313
 #, c-format
 msgid "%d match"
 msgid_plural "%d matches"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d shod"
+msgstr[1] "%d shoda"
+msgstr[2] "%d shody"
 
 #: ../xed/xed-searchbar.c:319
 #, c-format
 msgid "%d of %d match"
 msgid_plural "%d of %d matches"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d z %d shod"
+msgstr[1] "%d z %d shod"
+msgstr[2] "%d z %d shod"
 
 #: ../xed/xed-statusbar.c:70 ../xed/xed-statusbar.c:76
 msgid "OVR"
@@ -1856,7 +1881,7 @@ msgstr "Otevřít manuál pro xed"
 
 #: ../xed/xed-ui.h:68
 msgid "_About"
-msgstr "_O modulu"
+msgstr "O _aplikaci"
 
 #: ../xed/xed-ui.h:69
 msgid "About this application"
@@ -2046,7 +2071,7 @@ msgstr "Přesunout aktuální dokument do nového okna"
 
 #: ../xed/xed-ui.h:138 ../plugins/spell/spell-checker.ui.h:14
 msgid "_Close"
-msgstr "_Zavřit"
+msgstr "_Zavřít"
 
 #: ../xed/xed-ui.h:139
 msgid "Close the current file"
@@ -2082,11 +2107,11 @@ msgstr "Upravovat text v režimu celé obrazovky"
 
 #: ../xed/xed-ui.h:160
 msgid "_Word wrap"
-msgstr ""
+msgstr "_Zalamování slov"
 
 #: ../xed/xed-ui.h:161
 msgid "Set word wrap for the current document"
-msgstr ""
+msgstr "Nastavit zalamování slov v tomto dokumentu"
 
 #: ../xed/xed-ui.h:168
 msgid "Side _Pane"
@@ -2162,7 +2187,7 @@ msgstr "Šířka tabelátoru"
 
 #: ../xed/xed-window.c:2440
 msgid "There are unsaved documents"
-msgstr ""
+msgstr "Některé dokumenty nejsou uložené"
 
 #: ../xed/xed-window.c:3586
 msgid "Elevated Privileges"
@@ -2279,11 +2304,11 @@ msgstr ""
 
 #: ../plugins/filebrowser/org.x.editor.plugins.filebrowser.gschema.xml.in.h:7
 msgid "Terminal Command"
-msgstr ""
+msgstr "Příkaz terminálu"
 
 #: ../plugins/filebrowser/org.x.editor.plugins.filebrowser.gschema.xml.in.h:8
 msgid "The terminal command when using the \"Open terminal here\" command."
-msgstr ""
+msgstr "Příkaz terminálu při použití příkazu \"Otevřít terminál zde\"."
 
 #: ../plugins/filebrowser/org.x.editor.plugins.filebrowser.gschema.xml.in.h:9
 msgid "Open With Tree View"
@@ -2432,7 +2457,7 @@ msgstr ""
 #. Translators: This is the default name of new files created by the file browser pane.
 #: ../plugins/filebrowser/xed-file-browser-store.c:3774
 msgid "Untitled File"
-msgstr ""
+msgstr "Nepojmenovaný soubor"
 
 #: ../plugins/filebrowser/xed-file-browser-store.c:3802
 msgid ""
@@ -2445,7 +2470,7 @@ msgstr ""
 #. Translators: This is the default name of new directories created by the file browser pane.
 #: ../plugins/filebrowser/xed-file-browser-store.c:3829
 msgid "Untitled Folder"
-msgstr ""
+msgstr "Nepojmenovaná složka"
 
 #: ../plugins/filebrowser/xed-file-browser-store.c:3854
 msgid ""
@@ -2505,7 +2530,7 @@ msgstr "Přidat nový prázdný soubor"
 
 #: ../plugins/filebrowser/xed-file-browser-widget.c:790
 msgid "_Rename..."
-msgstr ""
+msgstr "_Přejmenovat..."
 
 #: ../plugins/filebrowser/xed-file-browser-widget.c:791
 msgid "Rename selected file or folder"
@@ -2599,7 +2624,7 @@ msgstr "Seřadí dokument nebo vybraný text."
 
 #: ../plugins/sort/xed-sort-plugin.c:80
 msgid "S_ort lines"
-msgstr ""
+msgstr "S_eřadit řádky"
 
 #: ../plugins/sort/xed-sort-plugin.c:82
 msgid "Sort the current document or selection"
@@ -2788,35 +2813,36 @@ msgstr "Žádná chybná slova"
 
 #: ../plugins/spell/xed-spell-setup-dialog.ui.h:1
 msgid "button"
-msgstr ""
+msgstr "tlačítko"
 
 #: ../plugins/spell/xed-spell-setup-dialog.ui.h:2
 msgid "Autocheck settings"
-msgstr ""
+msgstr "Nastavení automatické kontroly"
 
 #: ../plugins/spell/xed-spell-setup-dialog.ui.h:3
 msgid "Never"
-msgstr ""
+msgstr "Nikdy"
 
 #: ../plugins/spell/xed-spell-setup-dialog.ui.h:4
 msgid "Never autocheck spelling on document load"
 msgstr ""
+"Nikdy nepoužívat automatickou kontrolu pravopisu při načtení dokumentu"
 
 #: ../plugins/spell/xed-spell-setup-dialog.ui.h:5
 msgid "Remember by document"
-msgstr ""
+msgstr "Pamatovat podle dokumentu"
 
 #: ../plugins/spell/xed-spell-setup-dialog.ui.h:6
 msgid "Remembers the setting for each  document on load"
-msgstr ""
+msgstr "Ukládá nastavení při načtení každého dokumentu"
 
 #: ../plugins/spell/xed-spell-setup-dialog.ui.h:7
 msgid "Always"
-msgstr ""
+msgstr "Vždy"
 
 #: ../plugins/spell/xed-spell-setup-dialog.ui.h:8
 msgid "Always autocheck on document load"
-msgstr ""
+msgstr "Vždy automaticky zkontrolovat při načítání dokumentu"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:1
 msgid "XHTML 1.0 - Tags"
