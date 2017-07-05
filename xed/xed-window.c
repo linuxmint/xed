@@ -268,7 +268,7 @@ xed_window_configure_event (GtkWidget         *widget,
     XedWindow *window = XED_WINDOW (widget);
 
     if (gtk_widget_get_realized (widget) &&
-        (window->priv->state & (GDK_WINDOW_STATE_MAXIMIZED | GDK_WINDOW_STATE_FULLSCREEN)) == 0)
+        (window->priv->window_state & (GDK_WINDOW_STATE_MAXIMIZED | GDK_WINDOW_STATE_FULLSCREEN)) == 0)
     {
         save_window_state (widget);
     }
