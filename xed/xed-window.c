@@ -256,7 +256,7 @@ xed_window_window_state_event (GtkWidget           *widget,
     XedWindow *window = XED_WINDOW (widget);
 
     window->priv->window_state = event->new_window_state;
-    g_settings_set_int (window->priv->window_settings, XED_SETTINGS_WINDOW_STATE, window->priv->state);
+    g_settings_set_int (window->priv->window_settings, XED_SETTINGS_WINDOW_STATE, window->priv->window_state);
 
     return FALSE;
 }
@@ -268,7 +268,7 @@ xed_window_configure_event (GtkWidget         *widget,
     XedWindow *window = XED_WINDOW (widget);
 
     if (gtk_widget_get_realized (widget) &&
-        (window->priv->state & (GDK_WINDOW_STATE_MAXIMIZED | GDK_WINDOW_STATE_FULLSCREEN)) == 0)
+        (window->priv->window_state & (GDK_WINDOW_STATE_MAXIMIZED | GDK_WINDOW_STATE_FULLSCREEN)) == 0)
     {
         save_window_state (widget);
     }
