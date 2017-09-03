@@ -837,7 +837,11 @@ get_languages_sorted_by_section (XedWindow *window)
         GtkSourceLanguage *lang;
 
         lang = gtk_source_language_manager_get_language (lm, ids[i]);
-        languages = g_slist_prepend (languages, lang);
+
+        if (!gtk_source_language_get_hidden (lang))
+        {
+            languages = g_slist_prepend (languages, lang);
+        }
     }
 
     return g_slist_sort (languages, (GCompareFunc)language_compare);
@@ -1691,14 +1695,18 @@ fill_language_combo (XedWindow *window)
         GtkSourceLanguage *lang;
 
         lang = gtk_source_language_manager_get_language (lm, ids[i]);
-        name = gtk_source_language_get_name (lang);
-        menu_item = gtk_menu_item_new_with_label (name);
-        gtk_widget_show (menu_item);
 
-        g_object_set_data_full (G_OBJECT (menu_item), LANGUAGE_DATA, g_object_ref (lang),
-                                (GDestroyNotify) g_object_unref);
-        xed_status_combo_box_add_item (XED_STATUS_COMBO_BOX (window->priv->language_combo),
-                                       GTK_MENU_ITEM (menu_item), name);
+        if (!gtk_source_language_get_hidden (lang))
+        {
+            name = gtk_source_language_get_name (lang);
+            menu_item = gtk_menu_item_new_with_label (name);
+            gtk_widget_show (menu_item);
+
+            g_object_set_data_full (G_OBJECT (menu_item), LANGUAGE_DATA, g_object_ref (lang),
+                                    (GDestroyNotify) g_object_unref);
+            xed_status_combo_box_add_item (XED_STATUS_COMBO_BOX (window->priv->language_combo),
+                                           GTK_MENU_ITEM (menu_item), name);
+        }
     }
 }
 
