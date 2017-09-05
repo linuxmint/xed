@@ -381,16 +381,16 @@ create_line_numbers_menu (GtkWidget *view)
     menu = gtk_menu_new ();
 
     item = gtk_check_menu_item_new_with_mnemonic (_("_Display line numbers"));
-    gtk_check_menu_item_set_active (GTK_CHECK_MENU_ITEM(item),
-                                    gtk_source_view_get_show_line_numbers (GTK_SOURCE_VIEW(view)));
+    gtk_check_menu_item_set_active (GTK_CHECK_MENU_ITEM (item),
+                                    gtk_source_view_get_show_line_numbers (GTK_SOURCE_VIEW (view)));
 
     g_settings_bind (XED_VIEW (view)->priv->editor_settings,
-                     "active",
-                     item,
                      XED_SETTINGS_DISPLAY_LINE_NUMBERS,
+                     item,
+                     "active",
                      G_SETTINGS_BIND_SET);
 
-    gtk_menu_shell_append (GTK_MENU_SHELL(menu), item);
+    gtk_menu_shell_append (GTK_MENU_SHELL (menu), item);
 
     gtk_widget_show_all (menu);
 
