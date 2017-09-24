@@ -159,7 +159,10 @@ static const GtkToggleActionEntry xed_always_sensitive_toggle_menu_entries[] =
 	  G_CALLBACK (_xed_cmd_view_toggle_fullscreen_mode), FALSE },
     { "ViewWordWrap", NULL, N_("_Word wrap"), NULL,
       N_("Set word wrap for the current document"),
-      G_CALLBACK (_xed_cmd_view_toggle_word_wrap), FALSE }
+      G_CALLBACK (_xed_cmd_view_toggle_word_wrap), FALSE },
+    { "ViewOverviewMap", NULL, N_("_Overview Map"), NULL,
+      N_("Show or hide the overview map for the current view"),
+      G_CALLBACK (_xed_cmd_view_toggle_overview_map), FALSE }
 };
 
 /* separate group, should be always sensitive except when there are no panes */

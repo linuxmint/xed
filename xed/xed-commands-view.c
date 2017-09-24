@@ -41,7 +41,7 @@
 #include "xed-window.h"
 #include "xed-window-private.h"
 #include "xed-paned.h"
-
+#include "xed-view-frame.h"
 
 void
 _xed_cmd_view_show_toolbar (GtkAction *action,
@@ -142,6 +142,25 @@ _xed_cmd_view_show_bottom_pane (GtkAction *action,
     {
         xed_paned_close (paned, 2);
     }
+}
+
+void
+_xed_cmd_view_toggle_overview_map (GtkAction *action,
+                                   XedWindow *window)
+{
+    XedTab *tab;
+    XedViewFrame *frame;
+    GtkFrame *map_frame;
+    gboolean visible;
+
+    xed_debug (DEBUG_COMMANDS);
+
+    tab = xed_window_get_active_tab (window);
+    frame = XED_VIEW_FRAME (_xed_tab_get_view_frame (tab));
+    map_frame = xed_view_frame_get_map_frame (frame);
+    visible = gtk_toggle_action_get_active (GTK_TOGGLE_ACTION (action));
+
+    gtk_widget_set_visible (GTK_WIDGET (map_frame), visible);
 }
 
 void

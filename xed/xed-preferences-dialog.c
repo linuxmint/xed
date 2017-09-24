@@ -123,6 +123,9 @@ struct _XedPreferencesDialogPrivate
     /* Highlight matching bracket */
     GtkWidget *bracket_matching_checkbutton;
 
+    /* Minimap */
+    GtkWidget *mini_map_checkbutton;
+
     /* Right margin */
     GtkWidget *right_margin_checkbutton;
     GtkWidget *right_margin_position_spinbutton;
@@ -354,6 +357,11 @@ setup_view_page (XedPreferencesDialog *dlg)
                      XED_SETTINGS_RIGHT_MARGIN_POSITION,
                      dlg->priv->right_margin_position_spinbutton,
                      "value",
+                     G_SETTINGS_BIND_GET | G_SETTINGS_BIND_SET);
+    g_settings_bind (dlg->priv->ui,
+                     XED_SETTINGS_MINIMAP_VISIBLE,
+                     dlg->priv->mini_map_checkbutton,
+                     "active",
                      G_SETTINGS_BIND_GET | G_SETTINGS_BIND_SET);
     g_signal_connect (dlg->priv->wrap_text_checkbutton, "toggled",
                       G_CALLBACK (wrap_mode_checkbutton_toggled), dlg);
@@ -1121,6 +1129,7 @@ xed_preferences_dialog_init (XedPreferencesDialog *dlg)
     dlg->priv->display_line_numbers_checkbutton = GTK_WIDGET (gtk_builder_get_object (builder, "display_line_numbers_checkbutton"));
     dlg->priv->highlight_current_line_checkbutton = GTK_WIDGET (gtk_builder_get_object (builder, "highlight_current_line_checkbutton"));
     dlg->priv->bracket_matching_checkbutton = GTK_WIDGET (gtk_builder_get_object (builder, "bracket_matching_checkbutton"));
+    dlg->priv->mini_map_checkbutton = GTK_WIDGET (gtk_builder_get_object (builder, "mini_map_checkbutton"));
     dlg->priv->wrap_text_checkbutton = GTK_WIDGET (gtk_builder_get_object (builder, "wrap_text_checkbutton"));
     dlg->priv->split_checkbutton = GTK_WIDGET (gtk_builder_get_object (builder, "split_checkbutton"));
     dlg->priv->right_margin_checkbutton = GTK_WIDGET (gtk_builder_get_object (builder, "right_margin_checkbutton"));

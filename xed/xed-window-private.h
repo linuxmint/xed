@@ -79,6 +79,7 @@ struct _XedWindowPrivate
     guint      spaces_instead_of_tabs_id;
     guint      language_changed_id;
     guint      use_word_wrap_id;
+    guint      show_overview_map_id;
 
     /* Menus & Toolbars */
     GtkUIManager   *manager;

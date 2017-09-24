@@ -61,6 +61,8 @@ XedDocument *xed_view_frame_get_document (XedViewFrame *frame);
 
 XedView *xed_view_frame_get_view (XedViewFrame *frame);
 
+GtkFrame *xed_view_frame_get_map_frame (XedViewFrame *frame);
+
 void xed_view_frame_popup_goto_line (XedViewFrame *frame);
 
 gboolean xed_view_frame_get_search_popup_visible (XedViewFrame *frame);
