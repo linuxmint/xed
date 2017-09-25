@@ -45,6 +45,7 @@ void _xed_cmd_view_show_toolbar (GtkAction *action, XedWindow *window);
 void _xed_cmd_view_show_statusbar (GtkAction *action, XedWindow *window);
 void _xed_cmd_view_show_side_pane (GtkAction *action, XedWindow *window);
 void _xed_cmd_view_show_bottom_pane (GtkAction *action, XedWindow *window);
+void _xed_cmd_view_toggle_overview_map (GtkAction *action, XedWindow *window);
 void _xed_cmd_view_toggle_fullscreen_mode (GtkAction *action, XedWindow *window);
 void _xed_cmd_view_toggle_word_wrap (GtkAction *action, XedWindow *window);
 void _xed_cmd_view_leave_fullscreen_mode (GtkAction *action, XedWindow *window);

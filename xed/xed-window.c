@@ -2171,12 +2171,35 @@ word_wrap_changed (GObject *object,
 }
 
 static void
+show_overview_map_changed (GObject    *object,
+                           GParamSpec *pspec,
+                           XedWindow  *window)
+{
+    GtkFrame *map_frame;
+    GtkAction *action;
+    gboolean overveiw_map_visible = FALSE;
+
+    map_frame = GTK_FRAME (object);
+    action = gtk_action_group_get_action (window->priv->always_sensitive_action_group, "ViewOverviewMap");
+
+    if (gtk_widget_get_visible (map_frame))
+    {
+        overveiw_map_visible = TRUE;
+    }
+
+    g_signal_handlers_block_by_func (action, G_CALLBACK (_xed_cmd_view_toggle_overview_map), window);
+    gtk_toggle_action_set_active (GTK_TOGGLE_ACTION (action), overveiw_map_visible);
+    g_signal_handlers_unblock_by_func (action, G_CALLBACK (_xed_cmd_view_toggle_overview_map), window);
+}
+
+static void
 notebook_switch_page (GtkNotebook *book,
                       GtkWidget *pg,
                       gint page_num,
                       XedWindow *window)
 {
     XedView *view;
+    GtkFrame *map_frame;
     XedTab *tab;
     GtkAction *action;
     gchar *action_name;
@@ -2184,7 +2207,7 @@ notebook_switch_page (GtkNotebook *book,
     /* CHECK: I don't know why but it seems notebook_switch_page is called
      two times every time the user change the active tab */
 
-    tab = XED_TAB(gtk_notebook_get_nth_page (book, page_num));
+    tab = XED_TAB (gtk_notebook_get_nth_page (book, page_num));
     if (tab == window->priv->active_tab)
     {
         return;
@@ -2208,6 +2231,12 @@ notebook_switch_page (GtkNotebook *book,
         {
             g_signal_handler_disconnect (xed_tab_get_view (window->priv->active_tab), window->priv->use_word_wrap_id);
             window->priv->use_word_wrap_id = 0;
+        }
+
+        if (window->priv->show_overview_map_id)
+        {
+            g_signal_handler_disconnect (xed_view_frame_get_map_frame (_xed_tab_get_view_frame (window->priv->active_tab)), window->priv->show_overview_map_id);
+            window->priv->show_overview_map_id = 0;
         }
     }
 
@@ -2236,6 +2265,7 @@ notebook_switch_page (GtkNotebook *book,
     update_languages_menu (window);
 
     view = xed_tab_get_view (tab);
+    map_frame = xed_view_frame_get_map_frame (_xed_tab_get_view_frame (tab));
 
     /* sync the statusbar */
     update_cursor_position_statusbar (GTK_TEXT_BUFFER (xed_tab_get_document (tab)), window);
@@ -2256,11 +2286,15 @@ notebook_switch_page (GtkNotebook *book,
     window->priv->use_word_wrap_id = g_signal_connect (view, "notify::wrap-mode",
                                                        G_CALLBACK (word_wrap_changed), window);
 
+    window->priv->show_overview_map_id = g_signal_connect (map_frame, "notify::visible",
+                                                           G_CALLBACK (show_overview_map_changed), window);
+
     /* call it for the first time */
     tab_width_changed (G_OBJECT (view), NULL, window);
     spaces_instead_of_tabs_changed (G_OBJECT (view), NULL, window);
     language_changed (G_OBJECT (xed_tab_get_document (tab)), NULL, window);
     word_wrap_changed (G_OBJECT (view), NULL, window);
+    show_overview_map_changed (G_OBJECT (map_frame), NULL, window);
 
     g_signal_emit (G_OBJECT (window), signals[ACTIVE_TAB_CHANGED], 0, window->priv->active_tab);
 }
@@ -3025,6 +3059,7 @@ notebook_tab_removed (XedNotebook *notebook,
                       XedWindow *window)
 {
     XedView *view;
+    XedViewFrame *frame;
     XedDocument *doc;
 
     xed_debug (DEBUG_WINDOW);
@@ -3034,6 +3069,7 @@ notebook_tab_removed (XedNotebook *notebook,
     --window->priv->num_tabs;
 
     view = xed_tab_get_view (tab);
+    frame = _xed_tab_get_view_frame (tab);
     doc = xed_tab_get_document (tab);
 
     g_signal_handlers_disconnect_by_func (tab, G_CALLBACK (sync_name), window);
@@ -3072,6 +3108,12 @@ notebook_tab_removed (XedNotebook *notebook,
     {
         g_signal_handler_disconnect (view, window->priv->use_word_wrap_id);
         window->priv->use_word_wrap_id = 0;
+    }
+
+    if (window->priv->show_overview_map_id && tab == xed_window_get_active_tab (window))
+    {
+        g_signal_handler_disconnect (xed_view_frame_get_map_frame (frame), window->priv->show_overview_map_id);
+        window->priv->show_overview_map_id = 0;
     }
 
     g_return_if_fail(window->priv->num_tabs >= 0);

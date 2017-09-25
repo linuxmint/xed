@@ -234,6 +234,9 @@ xed_app_startup (GApplication *application)
     const gchar *cache_dir;
     gchar *metadata_filename;
 #endif
+    GError *error = NULL;
+    GFile *css_file;
+    GtkCssProvider *provider;
 
     G_APPLICATION_CLASS (xed_app_parent_class)->startup (application);
 
@@ -259,36 +262,51 @@ xed_app_startup (GApplication *application)
     g_free (metadata_filename);
 #endif
 
-   /* Load settings */
-   app->priv->settings = xed_settings_new ();
-   app->priv->window_settings = g_settings_new ("org.x.editor.state.window");
-   app->priv->editor_settings = g_settings_new ("org.x.editor.preferences.editor");
+    /* Load settings */
+    app->priv->settings = xed_settings_new ();
+    app->priv->window_settings = g_settings_new ("org.x.editor.state.window");
+    app->priv->editor_settings = g_settings_new ("org.x.editor.preferences.editor");
 
-   set_initial_theme_style (app);
+    set_initial_theme_style (app);
 
-   /*
-    * We use the default gtksourceview style scheme manager so that plugins
-    * can obtain it easily without a xed specific api, but we need to
-    * add our search path at startup before the manager is actually used.
-    */
-   manager = gtk_source_style_scheme_manager_get_default ();
-   gtk_source_style_scheme_manager_append_search_path (manager, xed_dirs_get_user_styles_dir ());
+    /* Load custom css */
+    css_file = g_file_new_for_uri ("resource:///org/x/editor/css/xed-style.css");
+    provider = gtk_css_provider_new ();
+    if (gtk_css_provider_load_from_file (provider, css_file, &error))
+    {
+        gtk_style_context_add_provider_for_screen (gdk_screen_get_default (),
+                                                   GTK_STYLE_PROVIDER (provider),
+                                                   GTK_STYLE_PROVIDER_PRIORITY_APPLICATION);
+    }
+    else
+    {
+        g_warning ("Could not load css provider: %s", error->message);
+        g_error_free (error);
+    }
 
-   app->priv->engine = xed_plugins_engine_get_default ();
-   app->priv->extensions = peas_extension_set_new (PEAS_ENGINE (app->priv->engine),
-                                                   XED_TYPE_APP_ACTIVATABLE,
-                                                   "app", app,
-                                                   NULL);
+    /*
+     * We use the default gtksourceview style scheme manager so that plugins
+     * can obtain it easily without a xed specific api, but we need to
+     * add our search path at startup before the manager is actually used.
+     */
+    manager = gtk_source_style_scheme_manager_get_default ();
+    gtk_source_style_scheme_manager_append_search_path (manager, xed_dirs_get_user_styles_dir ());
 
-   g_signal_connect (app->priv->extensions, "extension-added",
-                     G_CALLBACK (extension_added), app);
+    app->priv->engine = xed_plugins_engine_get_default ();
+    app->priv->extensions = peas_extension_set_new (PEAS_ENGINE (app->priv->engine),
+                                                    XED_TYPE_APP_ACTIVATABLE,
+                                                    "app", app,
+                                                    NULL);
 
-   g_signal_connect (app->priv->extensions, "extension-removed",
-                     G_CALLBACK (extension_removed), app);
+    g_signal_connect (app->priv->extensions, "extension-added",
+                      G_CALLBACK (extension_added), app);
 
-   peas_extension_set_foreach (app->priv->extensions,
-                               (PeasExtensionSetForeachFunc) extension_added,
-                               app);
+    g_signal_connect (app->priv->extensions, "extension-removed",
+                      G_CALLBACK (extension_removed), app);
+
+    peas_extension_set_foreach (app->priv->extensions,
+                                (PeasExtensionSetForeachFunc) extension_added,
+                                app);
 }
 
 static gboolean

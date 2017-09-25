@@ -28,6 +28,7 @@
 #include "xed-marshal.h"
 #include "xed-debug.h"
 #include "xed-utils.h"
+#include "xed-settings.h"
 
 #include <gdk/gdkkeysyms.h>
 #include <glib/gi18n.h>
@@ -40,6 +41,10 @@
 struct _XedViewFramePrivate
 {
     GtkWidget *view;
+    GtkFrame *map_frame;
+    GtkSourceMap *map;
+
+    GSettings *ui_settings;
 
     GtkTextMark *start_mark;
 
@@ -95,6 +100,8 @@ xed_view_frame_dispose (GObject *object)
         GtkSourceFile *file = xed_document_get_file (XED_DOCUMENT (buffer));
         gtk_source_file_set_mount_operation_factory (file, NULL, NULL, NULL);
     }
+
+    g_clear_object (&frame->priv->ui_settings);
 
     G_OBJECT_CLASS (xed_view_frame_parent_class)->dispose (object);
 }
@@ -499,6 +506,8 @@ xed_view_frame_class_init (XedViewFrameClass *klass)
 
     gtk_widget_class_set_template_from_resource (widget_class, "/org/x/editor/ui/xed-view-frame.ui");
     gtk_widget_class_bind_template_child_private (widget_class, XedViewFrame, view);
+    gtk_widget_class_bind_template_child_private (widget_class, XedViewFrame, map_frame);
+    gtk_widget_class_bind_template_child_private (widget_class, XedViewFrame, map);
     gtk_widget_class_bind_template_child_private (widget_class, XedViewFrame, revealer);
     gtk_widget_class_bind_template_child_private (widget_class, XedViewFrame, search_entry);
 }
@@ -519,10 +528,22 @@ xed_view_frame_init (XedViewFrame *frame)
     XedDocument *doc;
     GtkSourceFile *file;
     GdkRGBA transparent = {0, 0, 0, 0};
+    PangoFontDescription *font_desc;
 
     frame->priv = xed_view_frame_get_instance_private (frame);
 
     gtk_widget_init_template (GTK_WIDGET (frame));
+
+    frame->priv->ui_settings = g_settings_new ("org.x.editor.preferences.ui");
+    g_settings_bind (frame->priv->ui_settings,
+                     XED_SETTINGS_MINIMAP_VISIBLE,
+                     frame->priv->map_frame,
+                     "visible",
+                     G_SETTINGS_BIND_GET | G_SETTINGS_BIND_NO_SENSITIVITY);
+
+    font_desc = pango_font_description_from_string ("Monospace 2");
+    g_object_set (frame->priv->map, "font-desc", font_desc, NULL);
+    pango_font_description_free (font_desc);
 
     gtk_widget_override_background_color (GTK_WIDGET (frame), 0, &transparent);
 
@@ -557,6 +578,14 @@ xed_view_frame_get_view (XedViewFrame *frame)
     g_return_val_if_fail (XED_IS_VIEW_FRAME (frame), NULL);
 
     return XED_VIEW (frame->priv->view);
+}
+
+GtkFrame *
+xed_view_frame_get_map_frame (XedViewFrame *frame)
+{
+    g_return_val_if_fail (XED_IS_VIEW_FRAME (frame), NULL);
+
+    return frame->priv->map_frame;
 }
 
 void
