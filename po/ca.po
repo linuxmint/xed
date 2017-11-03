@@ -8,22 +8,22 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MATE Desktop Environment\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-05-04 18:32+0100\n"
-"PO-Revision-Date: 2017-05-05 09:25+0000\n"
-"Last-Translator: Isidro Pisa <isidro@utils.info>\n"
+"POT-Creation-Date: 2017-09-25 15:01+0100\n"
+"PO-Revision-Date: 2017-10-10 08:38+0000\n"
+"Last-Translator: Robert Antoni Buj Gelonch <Unknown>\n"
 "Language-Team: Catalan "
 "(http://www.transifex.com/projects/p/MATE/language/ca/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2017-06-28 07:51+0000\n"
-"X-Generator: Launchpad (build 18416)\n"
+"X-Launchpad-Export-Date: 2017-11-03 11:43+0000\n"
+"X-Generator: Launchpad (build 18493)\n"
 "Language: ca\n"
 
 #: ../data/org.x.editor.gschema.xml.in.h:1
 msgid "Use Default Font"
-msgstr "Utilitza el tipus de lletra predeterminat"
+msgstr "Utilitza la lletra predeterminada"
 
 #: ../data/org.x.editor.gschema.xml.in.h:2
 msgid ""
@@ -32,10 +32,10 @@ msgid ""
 "font named in the \"Editor Font\" option will be used instead of the system "
 "font."
 msgstr ""
-"Indica si cal usar la font d'amplada fixa predeterminada del sistema per "
-"l'edició de text, en lloc d'una font específica de xed. Si aquesta opció "
-"està desactivada, es farà servir la font indicada a l'opció \"Font de "
-"l'editor\" en lloc de la font del sistema."
+"Indica si s'ha s'utilitzar la lletra d'amplada fixa predeterminada del "
+"sistema per a l'edició del text, en lloc d'una lletra específica de xed. Si "
+"aquesta opció està desactivada, s'utilitzarà la lletra indicada a l'opció "
+"\"Lletra de l'editor\" en lloc de la lletra del sistema."
 
 #: ../data/org.x.editor.gschema.xml.in.h:3
 msgctxt "editor-font"
@@ -44,16 +44,15 @@ msgstr "'Monoespaiada 12'"
 
 #: ../data/org.x.editor.gschema.xml.in.h:4
 msgid "Editor Font"
-msgstr "Tipus de lletra de l'editor"
+msgstr "Lletra de l'editor"
 
 #: ../data/org.x.editor.gschema.xml.in.h:5
 msgid ""
 "A custom font that will be used for the editing area. This will only take "
 "effect if the \"Use Default Font\" option is turned off."
 msgstr ""
-"Un tipus de lletra personalitzat que s'utilitzarà en l'àrea d'edició. Només "
-"afectarà si l'opció «Utilitza el tipus de lletra predeterminat» està "
-"inhabilitada."
+"La lletra personalitzada que s'utilitzarà en l'àrea d'edició. Només afectarà "
+"si l'opció «Utilitza la lletra predeterminada» està inhabilitada."
 
 #: ../data/org.x.editor.gschema.xml.in.h:6
 msgid "Prefer Dark Theme"
@@ -74,7 +73,7 @@ msgstr "Esquema d'estil"
 #: ../data/org.x.editor.gschema.xml.in.h:9
 msgid "The ID of a GtkSourceView Style Scheme used to color the text."
 msgstr ""
-"L'identificador de l'esquema d'estil del GtkSourceView que s'empra per "
+"L'identificador d'un esquema d'estil GtkSourceView que s'utilitza per "
 "acolorir el text."
 
 #: ../data/org.x.editor.gschema.xml.in.h:10
@@ -86,8 +85,8 @@ msgid ""
 "Whether xed should create backup copies for the files it saves. You can set "
 "the backup file extension with the \"Backup Copy Extension\" option."
 msgstr ""
-"Indica si xed ha de crear còpies de seguretat dels arxius que guarda. Es pot "
-"indicar l'extensió del fitxer en l'opció \"Extensió de la còpia de "
+"Indica si xed ha de crear còpies de seguretat per als fitxers que desa. Es "
+"pot indicar l'extensió del fitxer en l'opció \"Extensió de la còpia de "
 "seguretat\"."
 
 #: ../data/org.x.editor.gschema.xml.in.h:12
@@ -99,7 +98,7 @@ msgid ""
 "Whether xed should automatically save modified files after a time interval. "
 "You can set the time interval with the \"Autosave Interval\" option."
 msgstr ""
-"Indica si xed ha de guardar automàticament els arxius modificats, després "
+"Indica si xed ha de desar automàticament els fitxers modificats, després "
 "d'un interval de temps. Es pot establir aquest interval en l'opció "
 "\"Interval de desament automàtic\"."
 
@@ -112,8 +111,8 @@ msgid ""
 "Number of minutes after which xed will automatically save modified files. "
 "This will only take effect if the \"Autosave\" option is turned on."
 msgstr ""
-"Nombre de minuts després dels quals xed guardarà automàticament els arxius "
-"modificats. Només té efecte si l'opció \"desament automàtic\" està activada."
+"Nombre de minuts després dels quals xed desarà automàticament els fitxers "
+"modificats. Només té efecte si l'opció \"Desament automàtic\" està activada."
 
 #: ../data/org.x.editor.gschema.xml.in.h:16
 msgid "Writable VFS schemes"
@@ -124,8 +123,8 @@ msgid ""
 "List of VFS schemes xed supports in write mode. The 'file' scheme is "
 "writable by default."
 msgstr ""
-"Llista d'esquemes VFS que xed suporta en mode d'escriptura. L'esquema "
-"'arxiu' és d'escriptura per defecte."
+"Llista dels esquemes VFS que xed admet en mode d'escriptura. L'esquema del "
+"'fitxer' és d'escriptura per defecte."
 
 #: ../data/org.x.editor.gschema.xml.in.h:18
 msgid "Maximum Number of Undo Actions"
@@ -307,38 +306,45 @@ msgstr ""
 
 #: ../data/org.x.editor.gschema.xml.in.h:52
 msgid "Side Pane is Visible"
-msgstr "El quadre del costat és visible"
+msgstr "El plafó lateral és visible"
 
 #: ../data/org.x.editor.gschema.xml.in.h:53
 msgid ""
 "Whether the side pane at the left of editing windows should be visible."
 msgstr ""
-"Si hauria de ser visible el quadre lateral de l'esquerra de la finestra "
+"Si hauria de ser visible el plafó lateral de l'esquerra de la finestra "
 "d'edició."
 
 #: ../data/org.x.editor.gschema.xml.in.h:54
 msgid "Bottom Panel is Visible"
-msgstr "El quadre inferior és visible"
+msgstr "El tauler inferior és visible"
 
 #: ../data/org.x.editor.gschema.xml.in.h:55
 msgid ""
 "Whether the bottom panel at the bottom of editing windows should be visible."
-msgstr "Si el quadre inferior de la finestra d'edició hauria de ser visible."
+msgstr "Si el tauler inferior de la finestra d'edició hauria de ser visible."
 
 #: ../data/org.x.editor.gschema.xml.in.h:56
 msgid "Allow changing active tabs by scrolling"
-msgstr "Permet canviar la pestanya activa fent scroll"
+msgstr "Permet el canvi de pestanya activa amb la roda del ratolí"
 
 #: ../data/org.x.editor.gschema.xml.in.h:57
 msgid "Whether you can change active tabs by scrolling."
-msgstr ""
-"Indica si es pot canviar la pestanya activa fent scroll amb el ratolí"
+msgstr "Indica si es pot canviar la pestanya activa amb la roda del ratolí"
 
 #: ../data/org.x.editor.gschema.xml.in.h:58
+msgid "Minimap is visible"
+msgstr "Minimapa visible"
+
+#: ../data/org.x.editor.gschema.xml.in.h:59
+msgid "Whether the minimap for the document should be visible."
+msgstr "Indica si el minimapa del document ha de ser visible."
+
+#: ../data/org.x.editor.gschema.xml.in.h:60
 msgid "Maximum Recent Files"
 msgstr "Màxim de fitxers recents"
 
-#: ../data/org.x.editor.gschema.xml.in.h:59
+#: ../data/org.x.editor.gschema.xml.in.h:61
 msgid ""
 "Specifies the maximum number of recently opened files that will be displayed "
 "in the \"Recent Files\" submenu."
@@ -346,27 +352,27 @@ msgstr ""
 "Especifica el número màxim de fitxers recentment oberts que es mostraran en "
 "el submenú «Fitxers recents»."
 
-#: ../data/org.x.editor.gschema.xml.in.h:60
+#: ../data/org.x.editor.gschema.xml.in.h:62
 msgid "Print Syntax Highlighting"
 msgstr "Imprimeix el ressaltat de sintaxi"
 
-#: ../data/org.x.editor.gschema.xml.in.h:61
+#: ../data/org.x.editor.gschema.xml.in.h:63
 msgid "Whether xed should print syntax highlighting when printing documents."
 msgstr "Indica si xed ha d'imprimir els documents destacant la sintaxi."
 
-#: ../data/org.x.editor.gschema.xml.in.h:62
+#: ../data/org.x.editor.gschema.xml.in.h:64
 msgid "Print Header"
 msgstr "Imprimeix la capçalera"
 
-#: ../data/org.x.editor.gschema.xml.in.h:63
+#: ../data/org.x.editor.gschema.xml.in.h:65
 msgid "Whether xed should include a document header when printing documents."
 msgstr "Indica si xed ha d'incloure una capçalera en imprimir documents."
 
-#: ../data/org.x.editor.gschema.xml.in.h:64
+#: ../data/org.x.editor.gschema.xml.in.h:66
 msgid "Printing Line Wrapping Mode"
 msgstr "Mode d'ajustament de línia en la impressió"
 
-#: ../data/org.x.editor.gschema.xml.in.h:65
+#: ../data/org.x.editor.gschema.xml.in.h:67
 msgid ""
 "Specifies how to wrap long lines for printing. Use \"none\" for no wrapping, "
 "\"word\" for wrapping at word boundaries, and \"char\" for wrapping at "
@@ -379,11 +385,11 @@ msgstr ""
 "que els valors són sensibles a majúscules i minúscules, de manera que s'han "
 "de posar exactament com s'indiquen aquí."
 
-#: ../data/org.x.editor.gschema.xml.in.h:66
+#: ../data/org.x.editor.gschema.xml.in.h:68
 msgid "Print Line Numbers"
 msgstr "Imprimeix els números de línia"
 
-#: ../data/org.x.editor.gschema.xml.in.h:67
+#: ../data/org.x.editor.gschema.xml.in.h:69
 msgid ""
 "If this value is 0, then no line numbers will be inserted when printing a "
 "document. Otherwise, xed will print line numbers every such number of lines."
@@ -392,87 +398,88 @@ msgstr ""
 "documents. En cas contrari, xed imprimirà el número de línia cada X línies, "
 "on X és el valor indicat."
 
-#: ../data/org.x.editor.gschema.xml.in.h:68
+#: ../data/org.x.editor.gschema.xml.in.h:70
 msgctxt "print-font-body-pango"
 msgid "'Monospace 9'"
 msgstr "'Monoespaiada 9'"
 
-#: ../data/org.x.editor.gschema.xml.in.h:69
+#: ../data/org.x.editor.gschema.xml.in.h:71
 msgid "Body Font for Printing"
-msgstr "Tipus de lletra del cos per imprimir"
+msgstr "Lletra del cos per a la impressió"
 
-#: ../data/org.x.editor.gschema.xml.in.h:70
+#: ../data/org.x.editor.gschema.xml.in.h:72
 msgid ""
 "Specifies the font to use for a document's body when printing documents."
 msgstr ""
-"Especifica el tipus de lletra a utilitzar pel cos d'un document en imprimir "
-"documents."
+"Especifica la lletra que s'ha utilitzar per al cos d'un document quan "
+"s'imprimeixen els documents."
 
-#: ../data/org.x.editor.gschema.xml.in.h:71
+#: ../data/org.x.editor.gschema.xml.in.h:73
 msgctxt "print-font-header-pango"
 msgid "'Sans 11'"
 msgstr "'Sans 11'"
 
-#: ../data/org.x.editor.gschema.xml.in.h:72
+#: ../data/org.x.editor.gschema.xml.in.h:74
 msgid "Header Font for Printing"
-msgstr "Tipus de lletra de les capçaleres per imprimir"
+msgstr "Lletra de la capçalera per a la impressió"
 
-#: ../data/org.x.editor.gschema.xml.in.h:73
+#: ../data/org.x.editor.gschema.xml.in.h:75
 msgid ""
 "Specifies the font to use for page headers when printing a document. This "
 "will only take effect if the \"Print Header\" option is turned on."
 msgstr ""
-"Especifica el tipus de lletra per a les capçaleres de les pàgines en "
-"imprimir un document. Només afectarà si l'opció «Imprimeix capçaleres» està "
-"habilitada."
+"Especifica la lletra que s'ha d'utilitzar per a les capçaleres de les "
+"pàgines quan s'imprimeixen els documents. Només afectarà si l'opció "
+"«Imprimeix les capçaleres» està habilitada."
 
-#: ../data/org.x.editor.gschema.xml.in.h:74
+#: ../data/org.x.editor.gschema.xml.in.h:76
 msgctxt "print-font-numbers-pango"
 msgid "'Sans 8'"
 msgstr "'Sans 8'"
 
-#: ../data/org.x.editor.gschema.xml.in.h:75
+#: ../data/org.x.editor.gschema.xml.in.h:77
 msgid "Line Number Font for Printing"
-msgstr "Tipus de lletra dels números de línia per imprimir"
+msgstr "Lletra dels números de línia per a la impressió"
 
-#: ../data/org.x.editor.gschema.xml.in.h:76
+#: ../data/org.x.editor.gschema.xml.in.h:78
 msgid ""
 "Specifies the font to use for line numbers when printing. This will only "
 "take effect if the \"Print Line Numbers\" option is non-zero."
 msgstr ""
-"Especifica el tipus de lletra dels números de línia en imprimir. Només "
-"afectarà si l'opció «Imprimeix els números de línia» no equival a zero."
+"Especifica la lletra que s'ha d'utilitzar per als números de línia quan "
+"s'imprimeixen els documents. Només afectarà si l'opció «Imprimeix els "
+"números de línia» no equival a zero."
 
-#: ../data/org.x.editor.gschema.xml.in.h:77
+#: ../data/org.x.editor.gschema.xml.in.h:79
 msgctxt "auto-detected"
 msgid "[ 'UTF-8', 'CURRENT', 'ISO-8859-15', 'UTF-16' ]"
 msgstr "[ 'UTF-8', 'CURRENT', 'ISO-8859-15', 'UTF-16' ]"
 
-#: ../data/org.x.editor.gschema.xml.in.h:78
+#: ../data/org.x.editor.gschema.xml.in.h:80
 msgid "Automatically Detected Encodings"
 msgstr "Codificacions detectades automàticament"
 
-#: ../data/org.x.editor.gschema.xml.in.h:79
+#: ../data/org.x.editor.gschema.xml.in.h:81
 msgid ""
 "Sorted list of encodings used by xed for automatically detecting the "
 "encoding of a file. \"CURRENT\" represents the current locale encoding. Only "
 "recognized encodings are used."
 msgstr ""
-"Llista ordenada de les codificacions usades per xed per detectar "
+"Llista ordenada de les codificacions utilitzades per xed per detectar "
 "automàticament la codificació d'un fitxer. \"ACTUAL\" representa la "
-"codificació regional actual. Només es fan servir les codificacions "
-"reconegudes."
+"codificació de la configuració regional actual. Només s'utilitzen les "
+"codificacions reconegudes."
 
-#: ../data/org.x.editor.gschema.xml.in.h:80
+#: ../data/org.x.editor.gschema.xml.in.h:82
 msgctxt "shown-in-menu"
 msgid "[ 'ISO-8859-15' ]"
 msgstr "[ 'ISO-8859-15' ]"
 
-#: ../data/org.x.editor.gschema.xml.in.h:81
+#: ../data/org.x.editor.gschema.xml.in.h:83
 msgid "Encodings shown in menu"
 msgstr "Codificacions mostrades al menú"
 
-#: ../data/org.x.editor.gschema.xml.in.h:82
+#: ../data/org.x.editor.gschema.xml.in.h:84
 msgid ""
 "List of encodings shown in the Character Encoding menu in open/save file "
 "selector. Only recognized encodings are used."
@@ -480,33 +487,34 @@ msgstr ""
 "Llista de les codificacions mostrades al menú de codificació de caràcters al "
 "diàleg obre/desa de fitxer. Només s'utilitzen codificacions reconegudes."
 
-#: ../data/org.x.editor.gschema.xml.in.h:83
+#: ../data/org.x.editor.gschema.xml.in.h:85
 msgid "History for \"search for\" entries"
 msgstr "Historial de les entrades «cercar per»"
 
-#: ../data/org.x.editor.gschema.xml.in.h:84
+#: ../data/org.x.editor.gschema.xml.in.h:86
 msgid "List of entries in \"search for\" textbox."
 msgstr "Llista de les entrades a la caixa de text «cercar per»."
 
-#: ../data/org.x.editor.gschema.xml.in.h:85
+#: ../data/org.x.editor.gschema.xml.in.h:87
 msgid "History for \"replace with\" entries"
 msgstr "Historial de les entrades «substituir per»"
 
-#: ../data/org.x.editor.gschema.xml.in.h:86
+#: ../data/org.x.editor.gschema.xml.in.h:88
 msgid "List of entries in \"replace with\" textbox."
 msgstr "Llista de les entrades a la caixa de text «substituir per»."
 
-#: ../data/org.x.editor.gschema.xml.in.h:87
+#: ../data/org.x.editor.gschema.xml.in.h:89
 msgid "Active plugins"
 msgstr "Activa els connectors"
 
-#: ../data/org.x.editor.gschema.xml.in.h:88
+#: ../data/org.x.editor.gschema.xml.in.h:90
 msgid ""
 "List of active plugins. It contains the \"Location\" of the active plugins. "
 "See the .xed-plugin file for obtaining the \"Location\" of a given plugin."
 msgstr ""
-"Llista de plugins actius. Conté la \"ubicació\" dels plugins actius. Vegeu "
-"el fitxer .xed-plugin per obtenir la \"ubicació\" d'un plugin concret."
+"Llista de connectors actius. Conté la \"ubicació\" dels connectors actius. "
+"Vegeu el fitxer .xed-plugin per obtenir la \"ubicació\" d'un connector en "
+"particular."
 
 #: ../data/xed.appdata.xml.in.h:1
 msgid "A Text Editor"
@@ -553,8 +561,8 @@ msgid ""
 "Set the character encoding to be used to open the files listed on the "
 "command line"
 msgstr ""
-"Estableix la codificació de caràcters a emprar per obrir els fitxers "
-"llistats en la línia d'ordres"
+"Estableix la codificació de caràcters que s'ha d'utilitzar per obrir els "
+"fitxers llistats en la línia d'ordres"
 
 #: ../xed/xed-app.c:119
 msgid "ENCODING"
@@ -563,11 +571,11 @@ msgstr "CODIFICACIÓ"
 #: ../xed/xed-app.c:125
 msgid "Create a new top-level window in an existing instance of xed"
 msgstr ""
-"Crea una nova finestra de nivell superior en una instància existent de xed"
+"Crea una finestra de nivell alt nova en una instància existent de xed"
 
 #: ../xed/xed-app.c:132
 msgid "Create a new document in an existing instance of xed"
-msgstr "Crea un nou document en una instància existent de xed"
+msgstr "Crea un document nou en una instància existent de xed"
 
 #: ../xed/xed-app.c:139
 msgid "Set the size and position of the window (WIDTHxHEIGHT+X+Y)"
@@ -579,22 +587,23 @@ msgstr "GEOMETRIA"
 
 #: ../xed/xed-app.c:146
 msgid "Open files and block process until files are closed"
-msgstr "Obre els arxius i bloca el procés fins que es tanquin"
+msgstr ""
+"Obre els fitxers i bloqueja el procés fins que es tanquen els fitxers"
 
 #: ../xed/xed-app.c:153
 msgid "Run xed in standalone mode"
-msgstr "Executar XED en modus autònom"
+msgstr "Executa XED en mode aïllat"
 
 #: ../xed/xed-app.c:160
 msgid "[FILE...] [+LINE]"
-msgstr "[FILE...] [+LINE]"
+msgstr "[FITXER...] [+LÍNIA]"
 
-#: ../xed/xed-app.c:551
+#: ../xed/xed-app.c:569
 #, c-format
 msgid "%s: invalid encoding."
 msgstr "%s: codificació no vàlida."
 
-#: ../xed/xed-app.c:1201
+#: ../xed/xed-app.c:1219
 msgid "There was an error displaying the help."
 msgstr "S'ha produït un error en mostrar l'ajuda."
 
@@ -886,11 +895,11 @@ msgid "Unsaved Document %d"
 msgstr "Document sense desar %d"
 
 #: ../xed/xed-documents-panel.c:95 ../xed/xed-documents-panel.c:106
-#: ../xed/xed-window.c:1994 ../xed/xed-window.c:1998
+#: ../xed/xed-window.c:2002 ../xed/xed-window.c:2006
 msgid "Read-Only"
 msgstr "Només de lectura"
 
-#: ../xed/xed-documents-panel.c:732 ../xed/xed-window.c:3320
+#: ../xed/xed-documents-panel.c:732 ../xed/xed-window.c:3370
 msgid "Documents"
 msgstr "Documents"
 
@@ -901,7 +910,7 @@ msgstr "Detectat automàticament"
 #: ../xed/xed-encodings-combo-box.c:287 ../xed/xed-encodings-combo-box.c:301
 #, c-format
 msgid "Current Locale (%s)"
-msgstr "Localització actual (%s)"
+msgstr "Configuració regional actual (%s)"
 
 #: ../xed/xed-encodings-combo-box.c:348
 msgid "Add or Remove..."
@@ -930,7 +939,7 @@ msgstr "_Descripció"
 msgid "_Encoding"
 msgstr "_Codificacions"
 
-#: ../xed/xed-file-chooser-dialog.c:50 ../xed/xed-preferences-dialog.c:870
+#: ../xed/xed-file-chooser-dialog.c:50 ../xed/xed-preferences-dialog.c:878
 msgid "All Files"
 msgstr "Tots els fitxers"
 
@@ -1009,8 +1018,8 @@ msgid ""
 "Host %s could not be found. Please check that your proxy settings are "
 "correct and try again."
 msgstr ""
-"No s'ha pogut trobar l'ordinador %s. Comproveu que els paràmetres del "
-"servidor intermediari siguin correctes i torneu-ho a intentar."
+"No s'ha pogut trobar l'amfitrió %s. Comproveu que els ajusts del servidor "
+"intermediari siguin correctes i torneu-ho a intentar."
 
 #. use the same string as INVALID_HOST
 #: ../xed/xed-io-error-info-bar.c:260
@@ -1019,8 +1028,8 @@ msgid ""
 "Hostname was invalid. Please check that you typed the location correctly and "
 "try again."
 msgstr ""
-"El nom de l'ordinador no és vàlid. Comproveu que hàgiu escrit la ubicació "
-"correctament i torneu-ho a intentar."
+"El nom d'amfitrió no és vàlid. Comproveu si heu teclejat correctament la "
+"ubicació i torneu-ho a intentar."
 
 #: ../xed/xed-io-error-info-bar.c:267
 #, c-format
@@ -1189,10 +1198,10 @@ msgid ""
 "You can ignore this warning and save the file anyway, but if an error occurs "
 "while saving, you could lose the old copy of the file. Save anyway?"
 msgstr ""
-"xed no ha pogut guardar una còpia de la versió antiga de l'arxiu abans de "
-"desar la nova. Podeu passar per alt aquesta advertència i guardar l'arxiu de "
-"totes maneres, però si es produeix un error, podrieu perdre la còpia antiga "
-"de l'arxiu. Voleu desar de totes maneres?"
+"xed no ha pogut desar la còpia de la versió antiga del fitxer abans de desar "
+"la nova. Podeu passar per alt aquesta advertència i desar el fitxer de totes "
+"maneres, però si es produeix un error, podríeu perdre la còpia antiga del "
+"fitxer. Voleu desar-ho de totes maneres?"
 
 #. Translators: %s is a URI scheme (like for example http:, ftp:, etc.)
 #: ../xed/xed-io-error-info-bar.c:932
@@ -1303,57 +1312,57 @@ msgid ""
 "If you continue saving this file you can corrupt the document.  Save anyway?"
 msgstr "Si deseu el fitxer pot quedar malmès. Voleu desar tot i així?"
 
-#: ../xed/xed-preferences-dialog.c:390
+#: ../xed/xed-preferences-dialog.c:398
 msgid "Click on this button to select the font to be used by the editor"
 msgstr ""
-"Feu clic en aquest botó per seleccionar el tipus de lletra a utilitzar per "
+"Feu clic en aquest botó per seleccionar la lletra que s'ha utilitzar per a "
 "l'editor"
 
-#: ../xed/xed-preferences-dialog.c:404
+#: ../xed/xed-preferences-dialog.c:412
 #, c-format
 msgid "_Use the system fixed width font (%s)"
-msgstr "_Empra el tipus de lletra d'amplada fixa del sistema (%s)"
+msgstr "_Utilitza la lletra d'amplada fixa del sistema (%s)"
 
-#: ../xed/xed-preferences-dialog.c:630
+#: ../xed/xed-preferences-dialog.c:638
 #, c-format
 msgid ""
 "Directory '%s' could not be created: g_mkdir_with_parents() failed: %s"
 msgstr ""
 "No s'ha pogut crear el directori «%s»: ha fallat g_mkdir_with_parents(): %s"
 
-#: ../xed/xed-preferences-dialog.c:826
+#: ../xed/xed-preferences-dialog.c:834
 msgid "The selected color scheme cannot be installed."
 msgstr "No s'ha pogut instal·lar l'esquema de colors seleccionat."
 
-#: ../xed/xed-preferences-dialog.c:851 ../xed/xed-preferences-dialog.c:857
+#: ../xed/xed-preferences-dialog.c:859 ../xed/xed-preferences-dialog.c:865
 msgid "Add Scheme"
 msgstr "Afegeix un esquema"
 
-#: ../xed/xed-preferences-dialog.c:854 ../xed/xed-progress-info-bar.c:67
+#: ../xed/xed-preferences-dialog.c:862 ../xed/xed-progress-info-bar.c:67
 msgid "Cancel"
-msgstr "Cancel·lar"
+msgstr "Cancel·la"
 
-#: ../xed/xed-preferences-dialog.c:863
+#: ../xed/xed-preferences-dialog.c:871
 msgid "Color Scheme Files"
 msgstr "Fitxers d'esquema de colors"
 
-#: ../xed/xed-preferences-dialog.c:906
+#: ../xed/xed-preferences-dialog.c:914
 #, c-format
 msgid "Could not remove color scheme \"%s\"."
 msgstr "No s'ha pogut suprimir l'esquema de colors «%s»."
 
-#: ../xed/xed-preferences-dialog.c:1100
+#: ../xed/xed-preferences-dialog.c:1108
 #: ../xed/resources/ui/xed-searchbar.ui.h:11
 msgid "Close"
 msgstr "Tanca"
 
-#: ../xed/xed-preferences-dialog.c:1101
+#: ../xed/xed-preferences-dialog.c:1109
 msgid "Help"
 msgstr "Ajuda"
 
-#: ../xed/xed-preferences-dialog.c:1104
+#: ../xed/xed-preferences-dialog.c:1112
 msgid "Xed Preferences"
-msgstr "Opcions de xed"
+msgstr "Preferències de xed"
 
 #: ../xed/xed-print-job.c:497
 #, c-format
@@ -1417,11 +1426,11 @@ msgstr "Allunya de la pàgina"
 
 #: ../xed/xed-print-preview.c:681
 msgid "_Close preview"
-msgstr "_Tanca vista prèvia"
+msgstr "Tan_ca la vista prèvia"
 
 #: ../xed/xed-print-preview.c:683
 msgid "Close print preview"
-msgstr "Tanca la visualització prèvia de la impressió"
+msgstr "Tanca la vista prèvia de la impressió"
 
 #: ../xed/xed-print-preview.c:761
 #, c-format
@@ -1430,11 +1439,11 @@ msgstr "Pàgina %d de %d"
 
 #: ../xed/xed-print-preview.c:946
 msgid "Page Preview"
-msgstr "Visualització prèvia de la pàgina"
+msgstr "Vista prèvia de la pàgina"
 
 #: ../xed/xed-print-preview.c:947
 msgid "The preview of a page in the document to be printed"
-msgstr "La visualització prèvia de la pàgina del document a imprimir"
+msgstr "La vista prèvia d'una pàgina del document a imprimir"
 
 #: ../xed/resources/ui/xed-encodings-dialog.ui.h:1
 msgid "Character encodings"
@@ -1478,7 +1487,7 @@ msgstr "No _separis les paraules en dues línies"
 msgid "Line Numbers"
 msgstr "Números de línia"
 
-#: ../xed/resources/ui/xed-preferences-dialog.ui.h:7 ../xed/xed-view.c:381
+#: ../xed/resources/ui/xed-preferences-dialog.ui.h:7 ../xed/xed-view.c:383
 msgid "_Display line numbers"
 msgstr "Mostra els _números de línia"
 
@@ -1511,86 +1520,94 @@ msgid "Highlight matching _bracket"
 msgstr "Ressalta el _claudàtor concordant"
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:15
-msgid "View"
-msgstr "Visualització"
+msgid "Overview Map"
+msgstr "Mapa general"
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:16
+msgid "Display overview map"
+msgstr "Mostra el mapa general"
+
+#: ../xed/resources/ui/xed-preferences-dialog.ui.h:17
+msgid "View"
+msgstr "VIsta"
+
+#: ../xed/resources/ui/xed-preferences-dialog.ui.h:18
 msgid "Tab Stops"
 msgstr "Tabulació"
 
-#: ../xed/resources/ui/xed-preferences-dialog.ui.h:17
+#: ../xed/resources/ui/xed-preferences-dialog.ui.h:19
 msgid "_Tab width:"
 msgstr "_Amplada de la tabulació:"
 
-#: ../xed/resources/ui/xed-preferences-dialog.ui.h:18
+#: ../xed/resources/ui/xed-preferences-dialog.ui.h:20
 msgid "Insert _spaces instead of tabs"
 msgstr "Insereix _espais en comptes de tabulacions"
 
-#: ../xed/resources/ui/xed-preferences-dialog.ui.h:19
+#: ../xed/resources/ui/xed-preferences-dialog.ui.h:21
 msgid "Automatic Indentation"
 msgstr "Sagnat automàtic"
 
-#: ../xed/resources/ui/xed-preferences-dialog.ui.h:20
+#: ../xed/resources/ui/xed-preferences-dialog.ui.h:22
 msgid "_Enable automatic indentation"
 msgstr "Habilita el _sagnat automàtic"
 
-#: ../xed/resources/ui/xed-preferences-dialog.ui.h:21
+#: ../xed/resources/ui/xed-preferences-dialog.ui.h:23
 msgid "File Saving"
 msgstr "Desat de fitxers"
 
-#: ../xed/resources/ui/xed-preferences-dialog.ui.h:22
+#: ../xed/resources/ui/xed-preferences-dialog.ui.h:24
 msgid "Create a _backup copy of files before saving"
 msgstr "Crea una _còpia de seguretat dels fitxers abans de desar-los"
 
-#: ../xed/resources/ui/xed-preferences-dialog.ui.h:23
+#: ../xed/resources/ui/xed-preferences-dialog.ui.h:25
 msgid "_Autosave files every"
 msgstr "_Desa els fitxers automàticament cada"
 
-#: ../xed/resources/ui/xed-preferences-dialog.ui.h:24
+#: ../xed/resources/ui/xed-preferences-dialog.ui.h:26
 msgid "_minutes"
 msgstr "_minuts"
 
-#: ../xed/resources/ui/xed-preferences-dialog.ui.h:25
+#: ../xed/resources/ui/xed-preferences-dialog.ui.h:27
 msgid "Tab Scrolling"
-msgstr "Scroll de pestanyes"
+msgstr "Desplaçament per les pestanyes"
 
-#: ../xed/resources/ui/xed-preferences-dialog.ui.h:26
+#: ../xed/resources/ui/xed-preferences-dialog.ui.h:28
 msgid "Allow mouse wheel scrolling to change tabs"
 msgstr "Permet canviar de pestanya amb la roda del ratolí"
 
-#: ../xed/resources/ui/xed-preferences-dialog.ui.h:27
+#: ../xed/resources/ui/xed-preferences-dialog.ui.h:29
 msgid "Editor"
 msgstr "Editor"
 
-#: ../xed/resources/ui/xed-preferences-dialog.ui.h:28
-msgid "Font"
-msgstr "Tipus de lletra"
-
-#: ../xed/resources/ui/xed-preferences-dialog.ui.h:29
-msgid "Editor _font: "
-msgstr "Tipus de lletra de l'_editor: "
-
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:30
-msgid "Pick the editor font"
-msgstr "Escolliu el tipus de lletra de l'editor"
+msgid "Font"
+msgstr "Lletra"
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:31
+msgid "Editor _font: "
+msgstr "Lletra de l'_editor: "
+
+#: ../xed/resources/ui/xed-preferences-dialog.ui.h:32
+msgid "Pick the editor font"
+msgstr "Escolliu la lletra de l'editor"
+
+#: ../xed/resources/ui/xed-preferences-dialog.ui.h:33
 msgid "Color Scheme"
 msgstr "Esquema de colors"
 
-#: ../xed/resources/ui/xed-preferences-dialog.ui.h:32
+#: ../xed/resources/ui/xed-preferences-dialog.ui.h:34
 msgid "Use dark theme variant (if available)"
 msgstr "Utilitza la variant fosca del tema (si n'hi ha)"
 
-#: ../xed/resources/ui/xed-preferences-dialog.ui.h:33
+#: ../xed/resources/ui/xed-preferences-dialog.ui.h:35
 msgid "_Add..."
 msgstr "_Afegeix..."
 
-#: ../xed/resources/ui/xed-preferences-dialog.ui.h:34
+#: ../xed/resources/ui/xed-preferences-dialog.ui.h:36
 msgid "Font & Colors"
-msgstr "Tipus de lletra i colors"
+msgstr "Lletra i colors"
 
-#: ../xed/resources/ui/xed-preferences-dialog.ui.h:35
+#: ../xed/resources/ui/xed-preferences-dialog.ui.h:37
 msgid "Plugins"
 msgstr "Connectors"
 
@@ -1626,7 +1643,7 @@ msgstr "Im_primeix les capçaleres de la pàgina"
 
 #: ../xed/resources/ui/xed-print-preferences.ui.h:14
 msgid "Fonts"
-msgstr "Tipus de lletra"
+msgstr "Lletres"
 
 #: ../xed/resources/ui/xed-print-preferences.ui.h:15
 msgid "_Body:"
@@ -1642,7 +1659,7 @@ msgstr "C_apçaleres i peus de pàgina:"
 
 #: ../xed/resources/ui/xed-print-preferences.ui.h:18
 msgid "_Restore Default Fonts"
-msgstr "_Restaura els tipus de lletra predeterminats"
+msgstr "_Restaura les lletres predeterminades"
 
 #: ../xed/resources/ui/xed-searchbar.ui.h:1
 msgid "Replace All"
@@ -1674,7 +1691,7 @@ msgstr "Expresió normal"
 
 #: ../xed/resources/ui/xed-searchbar.ui.h:8
 msgid "Case sensitive"
-msgstr "Sensible a majúscules i minúscules"
+msgstr "Distingeix majúscules i minúscules"
 
 #: ../xed/resources/ui/xed-searchbar.ui.h:9
 msgid "Whole word"
@@ -1823,7 +1840,7 @@ msgstr "_Edita"
 
 #: ../xed/xed-ui.h:49
 msgid "_View"
-msgstr "_Visualitza"
+msgstr "_Vista"
 
 #: ../xed/xed-ui.h:50
 msgid "_Search"
@@ -1906,11 +1923,11 @@ msgstr "Recupera la versió desada del fitxer"
 
 #: ../xed/xed-ui.h:86
 msgid "Print Previe_w"
-msgstr "_Previsualització de la impressió"
+msgstr "_Vista prèvia de la impressió"
 
 #: ../xed/xed-ui.h:87
 msgid "Print preview"
-msgstr "Previsualització de la impressió"
+msgstr "Vista prèvia de la impressió"
 
 #: ../xed/xed-ui.h:88
 msgid "_Print..."
@@ -2084,7 +2101,7 @@ msgstr "_Barra d'eines"
 
 #: ../xed/xed-ui.h:152
 msgid "Show or hide the toolbar in the current window"
-msgstr "Mostra o amaga la barra d'eines de la finestra actual"
+msgstr "Mostra o oculta la barra d'eines a la finestra actual"
 
 #: ../xed/xed-ui.h:154
 msgid "_Statusbar"
@@ -2092,7 +2109,7 @@ msgstr "Barra d'e_stat"
 
 #: ../xed/xed-ui.h:155
 msgid "Show or hide the statusbar in the current window"
-msgstr "Mosta o amaga la barra d'estat de la finestra actual"
+msgstr "Mosta o oculta la barra d'estat a la finestra actual"
 
 #: ../xed/xed-ui.h:158
 msgid "Edit text in fullscreen"
@@ -2106,21 +2123,29 @@ msgstr "_Ajust de paraules"
 msgid "Set word wrap for the current document"
 msgstr "Estableix ajust de paraules per al document actual"
 
-#: ../xed/xed-ui.h:168
-msgid "Side _Pane"
-msgstr "Subfinestra _lateral"
+#: ../xed/xed-ui.h:163
+msgid "_Overview Map"
+msgstr "Mapa _general"
 
-#: ../xed/xed-ui.h:169
-msgid "Show or hide the side pane in the current window"
-msgstr "Mostra o amaga la subfinestra lateral de la finestra actual"
+#: ../xed/xed-ui.h:164
+msgid "Show or hide the overview map for the current view"
+msgstr "Mostra o amaga el mapa general de la vista actual"
 
 #: ../xed/xed-ui.h:171
-msgid "_Bottom Pane"
-msgstr "Subfinestra _inferior"
+msgid "Side _Pane"
+msgstr "Plafó _lateral"
 
 #: ../xed/xed-ui.h:172
+msgid "Show or hide the side pane in the current window"
+msgstr "Mostra o oculta el plafó lateral a la finestra actual"
+
+#: ../xed/xed-ui.h:174
+msgid "_Bottom Pane"
+msgstr "Plafó _inferior"
+
+#: ../xed/xed-ui.h:175
 msgid "Show or hide the bottom pane in the current window"
-msgstr "Mostra o amaga la subfinestra inferior de la finestra actual"
+msgstr "Mostra o oculta el plafó inferior a la finestra actual"
 
 #: ../xed/xed-utils.c:925
 msgid "Please check your installation."
@@ -2150,39 +2175,39 @@ msgstr "Utilitza el mode de ressaltat %s"
 #. add the "Plain Text" item before all the others
 #. Translators: "Plain Text" means that no highlight mode is selected in the
 #. * "View->Highlight Mode" submenu and so syntax highlighting is disabled
-#: ../xed/xed-window.c:861 ../xed/xed-window.c:1679
+#: ../xed/xed-window.c:865 ../xed/xed-window.c:1683
 msgid "Plain Text"
 msgstr "Text pla"
 
-#: ../xed/xed-window.c:861
+#: ../xed/xed-window.c:865
 msgid "Disable syntax highlighting"
 msgstr "Inhabilita el ressaltat de la sintaxi"
 
 #. Translators: %s is a URI
-#: ../xed/xed-window.c:1135
+#: ../xed/xed-window.c:1139
 #, c-format
 msgid "Open '%s'"
 msgstr "Obre «%s»"
 
 #. Translators: %s is a URI
-#: ../xed/xed-window.c:1414
+#: ../xed/xed-window.c:1418
 #, c-format
 msgid "Activate '%s'"
 msgstr "Activa «%s»"
 
-#: ../xed/xed-window.c:1663
+#: ../xed/xed-window.c:1667
 msgid "Use Spaces"
 msgstr "Utilitza espais"
 
-#: ../xed/xed-window.c:1728
+#: ../xed/xed-window.c:1736
 msgid "Tab Width"
 msgstr "Amplada de la tabulació"
 
-#: ../xed/xed-window.c:2440
+#: ../xed/xed-window.c:2482
 msgid "There are unsaved documents"
 msgstr "Hi ha documents sense desar"
 
-#: ../xed/xed-window.c:3586
+#: ../xed/xed-window.c:3636
 msgid "Elevated Privileges"
 msgstr "Privilegis elevats"
 
@@ -2245,11 +2270,11 @@ msgstr "Aconsegueix informació estadística del document"
 
 #: ../plugins/filebrowser/filebrowser.plugin.desktop.in.h:1
 msgid "File Browser Pane"
-msgstr "Subfinestra del navegador de fitxers"
+msgstr "Plafó del navegador de fitxers"
 
 #: ../plugins/filebrowser/filebrowser.plugin.desktop.in.h:2
 msgid "Easy file access from the side pane"
-msgstr "Accés fàcil als fitxers des de la barra lateral"
+msgstr "Accés fàcil als fitxers des del plafó lateral"
 
 #: ../plugins/filebrowser/org.x.editor.plugins.filebrowser.gschema.xml.in.h:1
 msgid "Set Location to First Document"
@@ -2301,7 +2326,7 @@ msgstr "Ordre de terminal"
 
 #: ../plugins/filebrowser/org.x.editor.plugins.filebrowser.gschema.xml.in.h:8
 msgid "The terminal command when using the \"Open terminal here\" command."
-msgstr "Ordre de terminal quan s'utilitza l'ordre \"Obrir terminal aquí\"."
+msgstr "L'ordre de terminal quan s'utilitza l'ordre «Obre un terminal aquí»."
 
 #: ../plugins/filebrowser/org.x.editor.plugins.filebrowser.gschema.xml.in.h:9
 msgid "Open With Tree View"
@@ -2396,7 +2421,7 @@ msgstr "S'ha produït un error en obrir un directori al gestor de fitxers"
 
 #: ../plugins/filebrowser/xed-file-browser-plugin.c:692
 msgid "An error occurred while setting a root directory"
-msgstr "S'ha produït un error en establir el directori arrel"
+msgstr "S'ha produït un error quan s'establia un directori arrel"
 
 #: ../plugins/filebrowser/xed-file-browser-plugin.c:695
 msgid "An error occurred while loading a directory"
@@ -2447,20 +2472,20 @@ msgid ""
 "The renamed file is currently filtered out. You need to adjust your filter "
 "settings to make the file visible"
 msgstr ""
-"El fitxer amb el nom canviat està filtrat. Heu de canviar les preferències "
-"del filtre per fer-lo visible"
+"El fitxer reanomenat està exclòs del filtre. Heu de canviar els ajusts del "
+"filtre per fer-lo visible"
 
 #. Translators: This is the default name of new files created by the file browser pane.
 #: ../plugins/filebrowser/xed-file-browser-store.c:3774
 msgid "Untitled File"
-msgstr "Arxiu sense nom"
+msgstr "Fitxer sense nom"
 
 #: ../plugins/filebrowser/xed-file-browser-store.c:3802
 msgid ""
 "The new file is currently filtered out. You need to adjust your filter "
 "settings to make the file visible"
 msgstr ""
-"El fitxer actual està filtrat. Heu de canviar les preferències del filtre "
+"El fitxer nou està exclòs del filtre. Heu de canviar els ajusts del filtre "
 "per fer-lo visible"
 
 #. Translators: This is the default name of new directories created by the file browser pane.
@@ -2473,8 +2498,8 @@ msgid ""
 "The new directory is currently filtered out. You need to adjust your filter "
 "settings to make the directory visible"
 msgstr ""
-"El directori nou està filtrat. Heu de canviar les preferències del filtre "
-"per fer-lo visible"
+"El directori nou està exclòs del filtre. Heu de canviar els ajusts del "
+"filtre per fer-lo visible"
 
 #: ../plugins/filebrowser/xed-file-browser-widget.c:720
 msgid "Bookmarks"
@@ -2813,7 +2838,7 @@ msgstr "botó"
 
 #: ../plugins/spell/xed-spell-setup-dialog.ui.h:2
 msgid "Autocheck settings"
-msgstr "Opcions d'autocomprovació"
+msgstr "Ajusts de l'autocomprovació"
 
 #: ../plugins/spell/xed-spell-setup-dialog.ui.h:3
 msgid "Never"
@@ -2829,7 +2854,7 @@ msgstr "Recorda per a cada document"
 
 #: ../plugins/spell/xed-spell-setup-dialog.ui.h:6
 msgid "Remembers the setting for each  document on load"
-msgstr "Recorda les opcions per a cada document a carregar"
+msgstr "Recorda els ajusts per a cada document a carregar"
 
 #: ../plugins/spell/xed-spell-setup-dialog.ui.h:7
 msgid "Always"
@@ -2909,7 +2934,7 @@ msgstr "Títol de la textura del fons (desaconsellat)"
 #. Deprecated since HTML 4.01, not supported in XHTML 1.0 Strict DTD.
 #: ../plugins/taglist/HTML.tags.xml.in.h:21
 msgid "Base font (deprecated)"
-msgstr "Tipus de lletra base (desaconsellat)"
+msgstr "Lletra base (desaconsellat)"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:22
 msgid "Base URI"
@@ -3085,7 +3110,7 @@ msgstr "Tipus de codificació"
 #. Deprecated since HTML 4.01, not supported in XHTML 1.0 Strict DTD.
 #: ../plugins/taglist/HTML.tags.xml.in.h:73
 msgid "Font face (deprecated)"
-msgstr "Tipus de lletra (desaconsellat)"
+msgstr "Distribució de caràcters (desaconsellat)"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:74
 msgid "For label"
@@ -3300,7 +3325,7 @@ msgstr "Llista de conjunts de caràcters implementats"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:129
 msgid "Local change to font"
-msgstr "Canvi local del tipus de lletra"
+msgstr "Canvi local a la lletra"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:130
 msgid "Long description link"
@@ -3579,7 +3604,7 @@ msgstr "Font"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:207
 msgid "Space-separated archive list"
-msgstr "Llista d'arxius separats per espais"
+msgstr "Llista de fitxers separats per espais"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:208
 msgid "Spacing between cells"
@@ -3773,7 +3798,7 @@ msgstr "Títol de la textura del fons"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:260
 msgid "Base font"
-msgstr "Tipus de lletra base"
+msgstr "Lletra base"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:261
 msgid "Border color"
@@ -3825,7 +3850,7 @@ msgstr "Figura"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:273
 msgid "Font face"
-msgstr "Tipus de lletra"
+msgstr "Distribució de caràcters"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:274
 msgid "Frameborder"
@@ -3845,7 +3870,7 @@ msgstr "Espai horitzontal"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:278
 msgid "Image source"
-msgstr "Font de la imatge"
+msgstr "Origen de la imatge"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:279
 msgid "Inline layer"
@@ -4281,19 +4306,19 @@ msgstr "Símbol estrella"
 
 #: ../plugins/taglist/Latex.tags.xml.in.h:68
 msgid "Typeface bold"
-msgstr "Estil negreta"
+msgstr "Distribució de caràcters en negreta"
 
 #: ../plugins/taglist/Latex.tags.xml.in.h:69
 msgid "Typeface type"
-msgstr "Estil del tipus de lletra"
+msgstr "Tipus de la distribució de caràcters"
 
 #: ../plugins/taglist/Latex.tags.xml.in.h:70
 msgid "Typeface italic"
-msgstr "Estil itàlic"
+msgstr "Distribució de caràcters en cursiva"
 
 #: ../plugins/taglist/Latex.tags.xml.in.h:71
 msgid "Typeface slanted"
-msgstr "Estil inclinat"
+msgstr "Distribució de caràcters inclinada"
 
 #: ../plugins/taglist/Latex.tags.xml.in.h:73
 msgid "Unbreakable text"
@@ -4321,7 +4346,7 @@ msgstr "Selecciona el grup de marcadors que vulgueu utilitzar"
 
 #: ../plugins/taglist/xed-taglist-plugin-panel.c:632
 msgid "_Preview"
-msgstr "_Previsualització"
+msgstr "Vista _prèvia"
 
 #: ../plugins/taglist/xed-taglist-plugin-panel.c:708
 msgid "Available Tag Lists"
@@ -4401,6 +4426,26 @@ msgstr "un mateix"
 msgid "XUL - Tags"
 msgstr "XUL - Marcadors"
 
+#: ../plugins/textsize/textsize.plugin.desktop.in.h:1
+msgid "Text Size"
+msgstr "Mida del text"
+
+#: ../plugins/textsize/textsize.plugin.desktop.in.h:2
+msgid "Allow controlling the zoom levels of the text"
+msgstr "Permet controlar el nivell de zoom del text"
+
+#: ../plugins/textsize/textsize/__init__.py:120
+msgid "_Larger Text"
+msgstr "Text més _gran"
+
+#: ../plugins/textsize/textsize/__init__.py:123
+msgid "S_maller Text"
+msgstr "Text més _petit"
+
+#: ../plugins/textsize/textsize/__init__.py:126
+msgid "_Normal size"
+msgstr "Mida _normal"
+
 #: ../plugins/time/org.x.editor.plugins.time.gschema.xml.in.h:1
 msgid "Prompt type"
 msgstr "Tipus de l'indicador"
@@ -4415,7 +4460,7 @@ msgstr "Format personalitzat"
 
 #: ../plugins/time/time.plugin.desktop.in.h:1
 msgid "Insert Date/Time"
-msgstr "Insereix la data/hora"
+msgstr "Inserció de la data/hora"
 
 #: ../plugins/time/time.plugin.desktop.in.h:2
 msgid "Inserts current date and time at the cursor position."
@@ -4423,7 +4468,7 @@ msgstr "Insereix la data i hora actual a la posició del cursor."
 
 #: ../plugins/time/xed-time-dialog.ui.h:1
 msgid "Insert Date and Time"
-msgstr "Insereix la data i hora"
+msgstr "Inserció de la data/hora"
 
 #: ../plugins/time/xed-time-dialog.ui.h:2
 msgid "_Insert"
@@ -4478,7 +4523,7 @@ msgstr "_Pregunta per un format"
 
 #: ../plugins/trailsave/trailsave.plugin.desktop.in.h:1
 msgid "Save Without Trailing Spaces"
-msgstr "Desar sense espais finals"
+msgstr "Desament sense espais finals"
 
 #: ../plugins/trailsave/trailsave.plugin.desktop.in.h:2
 msgid "Removes trailing spaces from lines before saving."

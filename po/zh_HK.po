@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MATE Desktop Environment\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-05-04 18:32+0100\n"
+"POT-Creation-Date: 2017-09-25 15:01+0100\n"
 "PO-Revision-Date: 2017-05-06 09:22+0000\n"
 "Last-Translator: tomoe_musashi <hkg.musashi@gmail.com>\n"
 "Language-Team: Chinese (Hong Kong) "
@@ -17,8 +17,8 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Launchpad-Export-Date: 2017-06-28 07:51+0000\n"
-"X-Generator: Launchpad (build 18416)\n"
+"X-Launchpad-Export-Date: 2017-11-03 11:44+0000\n"
+"X-Generator: Launchpad (build 18493)\n"
 "Language: zh_HK\n"
 
 #: ../data/org.x.editor.gschema.xml.in.h:1
@@ -296,36 +296,44 @@ msgid "Whether you can change active tabs by scrolling."
 msgstr ""
 
 #: ../data/org.x.editor.gschema.xml.in.h:58
+msgid "Minimap is visible"
+msgstr ""
+
+#: ../data/org.x.editor.gschema.xml.in.h:59
+msgid "Whether the minimap for the document should be visible."
+msgstr ""
+
+#: ../data/org.x.editor.gschema.xml.in.h:60
 msgid "Maximum Recent Files"
 msgstr "最近開啟檔案數目的上限"
 
-#: ../data/org.x.editor.gschema.xml.in.h:59
+#: ../data/org.x.editor.gschema.xml.in.h:61
 msgid ""
 "Specifies the maximum number of recently opened files that will be displayed "
 "in the \"Recent Files\" submenu."
 msgstr "指定在「最近使用的檔案」子選單中，最多可以顯示多少個最近開啟的檔案。"
 
-#: ../data/org.x.editor.gschema.xml.in.h:60
+#: ../data/org.x.editor.gschema.xml.in.h:62
 msgid "Print Syntax Highlighting"
 msgstr "列印時標示語法色彩"
 
-#: ../data/org.x.editor.gschema.xml.in.h:61
+#: ../data/org.x.editor.gschema.xml.in.h:63
 msgid "Whether xed should print syntax highlighting when printing documents."
 msgstr "xed 應否在列印文件時列印語法色彩標示。"
 
-#: ../data/org.x.editor.gschema.xml.in.h:62
+#: ../data/org.x.editor.gschema.xml.in.h:64
 msgid "Print Header"
 msgstr "列印頁首"
 
-#: ../data/org.x.editor.gschema.xml.in.h:63
+#: ../data/org.x.editor.gschema.xml.in.h:65
 msgid "Whether xed should include a document header when printing documents."
 msgstr "xed 應否在列印文件時加上頁首。"
 
-#: ../data/org.x.editor.gschema.xml.in.h:64
+#: ../data/org.x.editor.gschema.xml.in.h:66
 msgid "Printing Line Wrapping Mode"
 msgstr "列印換行模式"
 
-#: ../data/org.x.editor.gschema.xml.in.h:65
+#: ../data/org.x.editor.gschema.xml.in.h:67
 msgid ""
 "Specifies how to wrap long lines for printing. Use \"none\" for no wrapping, "
 "\"word\" for wrapping at word boundaries, and \"char\" for wrapping at "
@@ -335,70 +343,70 @@ msgstr ""
 "指定列印時如何換行。使用「none」代表不會換行，「word」代表在字詞間換行，及「char」代表在個別字符間換行。請注意，設定值會分辨大細階，所以請確保"
 "設定值和上面所列出的完全一致。"
 
-#: ../data/org.x.editor.gschema.xml.in.h:66
+#: ../data/org.x.editor.gschema.xml.in.h:68
 msgid "Print Line Numbers"
 msgstr "列印行號"
 
-#: ../data/org.x.editor.gschema.xml.in.h:67
+#: ../data/org.x.editor.gschema.xml.in.h:69
 msgid ""
 "If this value is 0, then no line numbers will be inserted when printing a "
 "document. Otherwise, xed will print line numbers every such number of lines."
 msgstr "若此值為 0，則列印文件時不會列印行號。否則，xed 會每隔指定的行數列印行號。"
 
-#: ../data/org.x.editor.gschema.xml.in.h:68
+#: ../data/org.x.editor.gschema.xml.in.h:70
 msgctxt "print-font-body-pango"
 msgid "'Monospace 9'"
 msgstr "'Monospace 9'"
 
-#: ../data/org.x.editor.gschema.xml.in.h:69
+#: ../data/org.x.editor.gschema.xml.in.h:71
 msgid "Body Font for Printing"
 msgstr "列印時使用的內文字型"
 
-#: ../data/org.x.editor.gschema.xml.in.h:70
+#: ../data/org.x.editor.gschema.xml.in.h:72
 msgid ""
 "Specifies the font to use for a document's body when printing documents."
 msgstr "指定列印文件時文件內容所使用的字型。"
 
-#: ../data/org.x.editor.gschema.xml.in.h:71
+#: ../data/org.x.editor.gschema.xml.in.h:73
 msgctxt "print-font-header-pango"
 msgid "'Sans 11'"
 msgstr "'Sans 11'"
 
-#: ../data/org.x.editor.gschema.xml.in.h:72
+#: ../data/org.x.editor.gschema.xml.in.h:74
 msgid "Header Font for Printing"
 msgstr "列印時使用的頁首字型"
 
-#: ../data/org.x.editor.gschema.xml.in.h:73
+#: ../data/org.x.editor.gschema.xml.in.h:75
 msgid ""
 "Specifies the font to use for page headers when printing a document. This "
 "will only take effect if the \"Print Header\" option is turned on."
 msgstr "指定列印文件時頁首所用的字型。本選項只有在「列印頁首」選項值開啟時生效。"
 
-#: ../data/org.x.editor.gschema.xml.in.h:74
+#: ../data/org.x.editor.gschema.xml.in.h:76
 msgctxt "print-font-numbers-pango"
 msgid "'Sans 8'"
 msgstr "'Sans 8'"
 
-#: ../data/org.x.editor.gschema.xml.in.h:75
+#: ../data/org.x.editor.gschema.xml.in.h:77
 msgid "Line Number Font for Printing"
 msgstr "列印行號時使用的字型"
 
-#: ../data/org.x.editor.gschema.xml.in.h:76
+#: ../data/org.x.editor.gschema.xml.in.h:78
 msgid ""
 "Specifies the font to use for line numbers when printing. This will only "
 "take effect if the \"Print Line Numbers\" option is non-zero."
 msgstr "指定列印時行號所用的字型。本選項只有在「列印行號」選項值不是零的時候生效。"
 
-#: ../data/org.x.editor.gschema.xml.in.h:77
+#: ../data/org.x.editor.gschema.xml.in.h:79
 msgctxt "auto-detected"
 msgid "[ 'UTF-8', 'CURRENT', 'ISO-8859-15', 'UTF-16' ]"
 msgstr "[ 'UTF-8', 'CURRENT', 'ISO-8859-15', 'UTF-16' ]"
 
-#: ../data/org.x.editor.gschema.xml.in.h:78
+#: ../data/org.x.editor.gschema.xml.in.h:80
 msgid "Automatically Detected Encodings"
 msgstr "自動偵測編碼"
 
-#: ../data/org.x.editor.gschema.xml.in.h:79
+#: ../data/org.x.editor.gschema.xml.in.h:81
 msgid ""
 "Sorted list of encodings used by xed for automatically detecting the "
 "encoding of a file. \"CURRENT\" represents the current locale encoding. Only "
@@ -406,42 +414,42 @@ msgid ""
 msgstr ""
 "這裏是一系列已排序的編碼，xed 會根據此清單自動偵測檔案的字符編碼。「CURRENT」表示使用目前地區設定的編碼。只會使用能識別的編碼。"
 
-#: ../data/org.x.editor.gschema.xml.in.h:80
+#: ../data/org.x.editor.gschema.xml.in.h:82
 msgctxt "shown-in-menu"
 msgid "[ 'ISO-8859-15' ]"
 msgstr "[ 'ISO-8859-15' ]"
 
-#: ../data/org.x.editor.gschema.xml.in.h:81
+#: ../data/org.x.editor.gschema.xml.in.h:83
 msgid "Encodings shown in menu"
 msgstr "選單中顯示的編碼"
 
-#: ../data/org.x.editor.gschema.xml.in.h:82
+#: ../data/org.x.editor.gschema.xml.in.h:84
 msgid ""
 "List of encodings shown in the Character Encoding menu in open/save file "
 "selector. Only recognized encodings are used."
 msgstr "在開啟/儲存檔案對話方塊中的「字符編碼」選單，會顯示這裏列出的編碼。只會使用能辨識的編碼。"
 
-#: ../data/org.x.editor.gschema.xml.in.h:83
+#: ../data/org.x.editor.gschema.xml.in.h:85
 msgid "History for \"search for\" entries"
 msgstr "「搜尋」條目的歷史紀錄"
 
-#: ../data/org.x.editor.gschema.xml.in.h:84
+#: ../data/org.x.editor.gschema.xml.in.h:86
 msgid "List of entries in \"search for\" textbox."
 msgstr "「搜尋」文字方塊中的條目清單。"
 
-#: ../data/org.x.editor.gschema.xml.in.h:85
+#: ../data/org.x.editor.gschema.xml.in.h:87
 msgid "History for \"replace with\" entries"
 msgstr "「取代為」條目的歷史紀錄"
 
-#: ../data/org.x.editor.gschema.xml.in.h:86
+#: ../data/org.x.editor.gschema.xml.in.h:88
 msgid "List of entries in \"replace with\" textbox."
 msgstr "「取代為」文字方塊中的條目清單。"
 
-#: ../data/org.x.editor.gschema.xml.in.h:87
+#: ../data/org.x.editor.gschema.xml.in.h:89
 msgid "Active plugins"
 msgstr "啟用外掛程式"
 
-#: ../data/org.x.editor.gschema.xml.in.h:88
+#: ../data/org.x.editor.gschema.xml.in.h:90
 msgid ""
 "List of active plugins. It contains the \"Location\" of the active plugins. "
 "See the .xed-plugin file for obtaining the \"Location\" of a given plugin."
@@ -519,12 +527,12 @@ msgstr ""
 msgid "[FILE...] [+LINE]"
 msgstr ""
 
-#: ../xed/xed-app.c:551
+#: ../xed/xed-app.c:569
 #, c-format
 msgid "%s: invalid encoding."
 msgstr "%s：無效的編碼。"
 
-#: ../xed/xed-app.c:1201
+#: ../xed/xed-app.c:1219
 msgid "There was an error displaying the help."
 msgstr "顯示說明文件時發生錯誤。"
 
@@ -765,11 +773,11 @@ msgid "Unsaved Document %d"
 msgstr "未儲存文件 %d"
 
 #: ../xed/xed-documents-panel.c:95 ../xed/xed-documents-panel.c:106
-#: ../xed/xed-window.c:1994 ../xed/xed-window.c:1998
+#: ../xed/xed-window.c:2002 ../xed/xed-window.c:2006
 msgid "Read-Only"
 msgstr "唯讀"
 
-#: ../xed/xed-documents-panel.c:732 ../xed/xed-window.c:3320
+#: ../xed/xed-documents-panel.c:732 ../xed/xed-window.c:3370
 msgid "Documents"
 msgstr "文件"
 
@@ -809,7 +817,7 @@ msgstr "描述(_D)"
 msgid "_Encoding"
 msgstr "編碼(_E)"
 
-#: ../xed/xed-file-chooser-dialog.c:50 ../xed/xed-preferences-dialog.c:870
+#: ../xed/xed-file-chooser-dialog.c:50 ../xed/xed-preferences-dialog.c:878
 msgid "All Files"
 msgstr "所有檔案"
 
@@ -1142,52 +1150,52 @@ msgid ""
 "If you continue saving this file you can corrupt the document.  Save anyway?"
 msgstr "如果你繼續儲存這個檔案可能會損毀這份文件。要強制儲存嗎？"
 
-#: ../xed/xed-preferences-dialog.c:390
+#: ../xed/xed-preferences-dialog.c:398
 msgid "Click on this button to select the font to be used by the editor"
 msgstr "按下此按鈕以選擇編輯器要使用的字型"
 
-#: ../xed/xed-preferences-dialog.c:404
+#: ../xed/xed-preferences-dialog.c:412
 #, c-format
 msgid "_Use the system fixed width font (%s)"
 msgstr "使用系統固定闊度字型 [%s](_U)"
 
-#: ../xed/xed-preferences-dialog.c:630
+#: ../xed/xed-preferences-dialog.c:638
 #, c-format
 msgid ""
 "Directory '%s' could not be created: g_mkdir_with_parents() failed: %s"
 msgstr "無法建立目錄「%s」： g_mkdir_with_parents() 失敗：%s"
 
-#: ../xed/xed-preferences-dialog.c:826
+#: ../xed/xed-preferences-dialog.c:834
 msgid "The selected color scheme cannot be installed."
 msgstr "無法安裝所選的色彩配置。"
 
-#: ../xed/xed-preferences-dialog.c:851 ../xed/xed-preferences-dialog.c:857
+#: ../xed/xed-preferences-dialog.c:859 ../xed/xed-preferences-dialog.c:865
 msgid "Add Scheme"
 msgstr "新增配置"
 
-#: ../xed/xed-preferences-dialog.c:854 ../xed/xed-progress-info-bar.c:67
+#: ../xed/xed-preferences-dialog.c:862 ../xed/xed-progress-info-bar.c:67
 msgid "Cancel"
 msgstr "取消"
 
-#: ../xed/xed-preferences-dialog.c:863
+#: ../xed/xed-preferences-dialog.c:871
 msgid "Color Scheme Files"
 msgstr "色彩配置檔案"
 
-#: ../xed/xed-preferences-dialog.c:906
+#: ../xed/xed-preferences-dialog.c:914
 #, c-format
 msgid "Could not remove color scheme \"%s\"."
 msgstr "無法移除色彩配置「%s」。"
 
-#: ../xed/xed-preferences-dialog.c:1100
+#: ../xed/xed-preferences-dialog.c:1108
 #: ../xed/resources/ui/xed-searchbar.ui.h:11
 msgid "Close"
 msgstr "關閉"
 
-#: ../xed/xed-preferences-dialog.c:1101
+#: ../xed/xed-preferences-dialog.c:1109
 msgid "Help"
 msgstr "協助"
 
-#: ../xed/xed-preferences-dialog.c:1104
+#: ../xed/xed-preferences-dialog.c:1112
 msgid "Xed Preferences"
 msgstr "Xed 喜好設定"
 
@@ -1314,7 +1322,7 @@ msgstr "換行時不將字詞斷開(_S)"
 msgid "Line Numbers"
 msgstr "行號"
 
-#: ../xed/resources/ui/xed-preferences-dialog.ui.h:7 ../xed/xed-view.c:381
+#: ../xed/resources/ui/xed-preferences-dialog.ui.h:7 ../xed/xed-view.c:383
 msgid "_Display line numbers"
 msgstr "顯示行號(_D)"
 
@@ -1347,86 +1355,94 @@ msgid "Highlight matching _bracket"
 msgstr "標示對稱的括號(_B)"
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:15
+msgid "Overview Map"
+msgstr ""
+
+#: ../xed/resources/ui/xed-preferences-dialog.ui.h:16
+msgid "Display overview map"
+msgstr ""
+
+#: ../xed/resources/ui/xed-preferences-dialog.ui.h:17
 msgid "View"
 msgstr "檢視"
 
-#: ../xed/resources/ui/xed-preferences-dialog.ui.h:16
+#: ../xed/resources/ui/xed-preferences-dialog.ui.h:18
 msgid "Tab Stops"
 msgstr "定位點停駐位置 (Tab Stops)"
 
-#: ../xed/resources/ui/xed-preferences-dialog.ui.h:17
+#: ../xed/resources/ui/xed-preferences-dialog.ui.h:19
 msgid "_Tab width:"
 msgstr "定位點 (Tab) 闊度(_T):"
 
-#: ../xed/resources/ui/xed-preferences-dialog.ui.h:18
+#: ../xed/resources/ui/xed-preferences-dialog.ui.h:20
 msgid "Insert _spaces instead of tabs"
 msgstr "插入空格而非定位點 (Tab)(_S)"
 
-#: ../xed/resources/ui/xed-preferences-dialog.ui.h:19
+#: ../xed/resources/ui/xed-preferences-dialog.ui.h:21
 msgid "Automatic Indentation"
 msgstr "自動縮排"
 
-#: ../xed/resources/ui/xed-preferences-dialog.ui.h:20
+#: ../xed/resources/ui/xed-preferences-dialog.ui.h:22
 msgid "_Enable automatic indentation"
 msgstr "啟用自動縮排功能(_E)"
 
-#: ../xed/resources/ui/xed-preferences-dialog.ui.h:21
+#: ../xed/resources/ui/xed-preferences-dialog.ui.h:23
 msgid "File Saving"
 msgstr "正在儲存檔案"
 
-#: ../xed/resources/ui/xed-preferences-dialog.ui.h:22
+#: ../xed/resources/ui/xed-preferences-dialog.ui.h:24
 msgid "Create a _backup copy of files before saving"
 msgstr "儲存前先建立暫存檔(_B)"
 
-#: ../xed/resources/ui/xed-preferences-dialog.ui.h:23
+#: ../xed/resources/ui/xed-preferences-dialog.ui.h:25
 msgid "_Autosave files every"
 msgstr "每隔指定時間自動儲存檔案(_A):"
 
-#: ../xed/resources/ui/xed-preferences-dialog.ui.h:24
+#: ../xed/resources/ui/xed-preferences-dialog.ui.h:26
 msgid "_minutes"
 msgstr "分鐘(_M)"
 
-#: ../xed/resources/ui/xed-preferences-dialog.ui.h:25
+#: ../xed/resources/ui/xed-preferences-dialog.ui.h:27
 msgid "Tab Scrolling"
 msgstr "分頁捲動"
 
-#: ../xed/resources/ui/xed-preferences-dialog.ui.h:26
+#: ../xed/resources/ui/xed-preferences-dialog.ui.h:28
 msgid "Allow mouse wheel scrolling to change tabs"
 msgstr "允許以滑鼠滾輪捲動變更分頁"
 
-#: ../xed/resources/ui/xed-preferences-dialog.ui.h:27
+#: ../xed/resources/ui/xed-preferences-dialog.ui.h:29
 msgid "Editor"
 msgstr "編輯器"
 
-#: ../xed/resources/ui/xed-preferences-dialog.ui.h:28
+#: ../xed/resources/ui/xed-preferences-dialog.ui.h:30
 msgid "Font"
 msgstr "字型"
 
-#: ../xed/resources/ui/xed-preferences-dialog.ui.h:29
+#: ../xed/resources/ui/xed-preferences-dialog.ui.h:31
 msgid "Editor _font: "
 msgstr "編輯器字型(_F): "
 
-#: ../xed/resources/ui/xed-preferences-dialog.ui.h:30
+#: ../xed/resources/ui/xed-preferences-dialog.ui.h:32
 msgid "Pick the editor font"
 msgstr "請指定編輯器字型"
 
-#: ../xed/resources/ui/xed-preferences-dialog.ui.h:31
+#: ../xed/resources/ui/xed-preferences-dialog.ui.h:33
 msgid "Color Scheme"
 msgstr "色彩配置"
 
-#: ../xed/resources/ui/xed-preferences-dialog.ui.h:32
+#: ../xed/resources/ui/xed-preferences-dialog.ui.h:34
 msgid "Use dark theme variant (if available)"
 msgstr ""
 
-#: ../xed/resources/ui/xed-preferences-dialog.ui.h:33
+#: ../xed/resources/ui/xed-preferences-dialog.ui.h:35
 msgid "_Add..."
 msgstr "新增(_A)..."
 
-#: ../xed/resources/ui/xed-preferences-dialog.ui.h:34
+#: ../xed/resources/ui/xed-preferences-dialog.ui.h:36
 msgid "Font & Colors"
 msgstr "字型與顏色"
 
-#: ../xed/resources/ui/xed-preferences-dialog.ui.h:35
+#: ../xed/resources/ui/xed-preferences-dialog.ui.h:37
 msgid "Plugins"
 msgstr "外掛程式"
 
@@ -1939,19 +1955,27 @@ msgstr ""
 msgid "Set word wrap for the current document"
 msgstr ""
 
-#: ../xed/xed-ui.h:168
+#: ../xed/xed-ui.h:163
+msgid "_Overview Map"
+msgstr ""
+
+#: ../xed/xed-ui.h:164
+msgid "Show or hide the overview map for the current view"
+msgstr ""
+
+#: ../xed/xed-ui.h:171
 msgid "Side _Pane"
 msgstr "側邊窗格(_P)"
 
-#: ../xed/xed-ui.h:169
+#: ../xed/xed-ui.h:172
 msgid "Show or hide the side pane in the current window"
 msgstr "在目前的視窗中顯示或隱藏側面窗格"
 
-#: ../xed/xed-ui.h:171
+#: ../xed/xed-ui.h:174
 msgid "_Bottom Pane"
 msgstr "底部面板(_B)"
 
-#: ../xed/xed-ui.h:172
+#: ../xed/xed-ui.h:175
 msgid "Show or hide the bottom pane in the current window"
 msgstr "在目前的視窗中顯示或隱藏底部面板"
 
@@ -1983,39 +2007,39 @@ msgstr "使用 %s 標示模式"
 #. add the "Plain Text" item before all the others
 #. Translators: "Plain Text" means that no highlight mode is selected in the
 #. * "View->Highlight Mode" submenu and so syntax highlighting is disabled
-#: ../xed/xed-window.c:861 ../xed/xed-window.c:1679
+#: ../xed/xed-window.c:865 ../xed/xed-window.c:1683
 msgid "Plain Text"
 msgstr "純文字"
 
-#: ../xed/xed-window.c:861
+#: ../xed/xed-window.c:865
 msgid "Disable syntax highlighting"
 msgstr "停用語法色彩標示"
 
 #. Translators: %s is a URI
-#: ../xed/xed-window.c:1135
+#: ../xed/xed-window.c:1139
 #, c-format
 msgid "Open '%s'"
 msgstr "開啟 ‘%s’"
 
 #. Translators: %s is a URI
-#: ../xed/xed-window.c:1414
+#: ../xed/xed-window.c:1418
 #, c-format
 msgid "Activate '%s'"
 msgstr "啟動 '%s'"
 
-#: ../xed/xed-window.c:1663
+#: ../xed/xed-window.c:1667
 msgid "Use Spaces"
 msgstr "使用空格"
 
-#: ../xed/xed-window.c:1728
+#: ../xed/xed-window.c:1736
 msgid "Tab Width"
 msgstr "Tab 字符闊度"
 
-#: ../xed/xed-window.c:2440
+#: ../xed/xed-window.c:2482
 msgid "There are unsaved documents"
 msgstr "尚有未儲存的文件"
 
-#: ../xed/xed-window.c:3586
+#: ../xed/xed-window.c:3636
 msgid "Elevated Privileges"
 msgstr "提升權限"
 
@@ -4209,6 +4233,26 @@ msgstr "self"
 #: ../plugins/taglist/XUL.tags.xml.in.h:1
 msgid "XUL - Tags"
 msgstr "XUL - Tags"
+
+#: ../plugins/textsize/textsize.plugin.desktop.in.h:1
+msgid "Text Size"
+msgstr ""
+
+#: ../plugins/textsize/textsize.plugin.desktop.in.h:2
+msgid "Allow controlling the zoom levels of the text"
+msgstr ""
+
+#: ../plugins/textsize/textsize/__init__.py:120
+msgid "_Larger Text"
+msgstr ""
+
+#: ../plugins/textsize/textsize/__init__.py:123
+msgid "S_maller Text"
+msgstr ""
+
+#: ../plugins/textsize/textsize/__init__.py:126
+msgid "_Normal size"
+msgstr ""
 
 #: ../plugins/time/org.x.editor.plugins.time.gschema.xml.in.h:1
 msgid "Prompt type"

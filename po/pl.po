@@ -8,9 +8,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MATE Desktop Environment\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-05-04 18:32+0100\n"
-"PO-Revision-Date: 2017-05-30 20:32+0000\n"
-"Last-Translator: Mariusz <wisniowy@g.pl>\n"
+"POT-Creation-Date: 2017-09-25 15:01+0100\n"
+"PO-Revision-Date: 2017-10-06 07:10+0000\n"
+"Last-Translator: Piotr Strębski <strebski@gmail.com>\n"
 "Language-Team: Polish "
 "(http://www.transifex.com/projects/p/MATE/language/pl/)\n"
 "MIME-Version: 1.0\n"
@@ -18,8 +18,8 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
 "|| n%100>=20) ? 1 : 2;\n"
-"X-Launchpad-Export-Date: 2017-06-28 07:51+0000\n"
-"X-Generator: Launchpad (build 18416)\n"
+"X-Launchpad-Export-Date: 2017-11-03 11:43+0000\n"
+"X-Generator: Launchpad (build 18493)\n"
 "Language: pl\n"
 
 #: ../data/org.x.editor.gschema.xml.in.h:1
@@ -63,6 +63,8 @@ msgid ""
 "Whether xed should prefer the dark variation of the current Gtk theme if "
 "available."
 msgstr ""
+"Czy xed powinien preferować ciemną odmianę aktualnie używanego motywu Gtk "
+"jeśli to możliwe."
 
 #: ../data/org.x.editor.gschema.xml.in.h:8
 msgid "Style Scheme"
@@ -146,6 +148,11 @@ msgid ""
 "wrapping at individual character boundaries. Note that the values are case-"
 "sensitive, so make sure they appear exactly as mentioned here."
 msgstr ""
+"Określa sposób zawijania długich wierszy w obszarze redagowania tekstu. "
+"Wartość „none” powoduje brak zawijania, „word” — zawijanie wierszy na "
+"granicach słów, a „char” — na granicach pojedynczych znaków. Należy pamiętać "
+"o tym, że podczas odczytywania wartości rozpoznawane są małe i wielkie "
+"litery, więc powinny być one wprowadzone dokładnie w podanej postaci."
 
 #: ../data/org.x.editor.gschema.xml.in.h:22
 msgid "Tab Size"
@@ -230,6 +237,14 @@ msgid ""
 "the start/end of the line and \"always\" to always move to the start/end of "
 "the text instead of the start/end of the line."
 msgstr ""
+"Określa zachowanie się kursora po naciśnięciu klawiszy Home i End. Wartość "
+"„disabled” powoduje, że kursor zawsze wraca na początek/koniec wiersza, "
+"„after” — kursor wraca na początek/koniec wiersza po pierwszym naciśnięciu "
+"klawisza i na początek/koniec tekstu (białe znaki ignorowane) po drugim "
+"naciśnięciu klawisza. Wartość „before” powoduje, że kursor przenosi się na "
+"początek/koniec tekstu przed przejściem na początek/koniec wiersza. „always” "
+"— kursor przenosi się zawsze na początek/koniec tekstu zamiast na "
+"początek/koniec wiersza."
 
 #: ../data/org.x.editor.gschema.xml.in.h:40
 msgid "Restore Previous Cursor Position"
@@ -261,12 +276,13 @@ msgstr "Czy xed powinien włączyć podświetlanie składni."
 
 #: ../data/org.x.editor.gschema.xml.in.h:46
 msgid "Ensure Trailing Newline"
-msgstr ""
+msgstr "Zapewnij znak końca linii"
 
 #: ../data/org.x.editor.gschema.xml.in.h:47
 msgid ""
 "Whether xed will ensure that documents always end with a trailing newline."
 msgstr ""
+"Czy xed ma sprawdzać, czy dokumenty zawsze zakończone są znakiem końca linii."
 
 #: ../data/org.x.editor.gschema.xml.in.h:48
 msgid "Toolbar is Visible"
@@ -317,13 +333,21 @@ msgstr "Zezwól na zmianę aktywnych kart poprzez przewijanie"
 
 #: ../data/org.x.editor.gschema.xml.in.h:57
 msgid "Whether you can change active tabs by scrolling."
-msgstr ""
+msgstr "Czy możesz zmieniać aktywne zakładki rolką przewijania."
 
 #: ../data/org.x.editor.gschema.xml.in.h:58
+msgid "Minimap is visible"
+msgstr "Minimapa jest widoczna"
+
+#: ../data/org.x.editor.gschema.xml.in.h:59
+msgid "Whether the minimap for the document should be visible."
+msgstr "Określenie, czy ma być widoczna minimapa dokumentu."
+
+#: ../data/org.x.editor.gschema.xml.in.h:60
 msgid "Maximum Recent Files"
 msgstr "Maksymalna liczba ostatnich plików"
 
-#: ../data/org.x.editor.gschema.xml.in.h:59
+#: ../data/org.x.editor.gschema.xml.in.h:61
 msgid ""
 "Specifies the maximum number of recently opened files that will be displayed "
 "in the \"Recent Files\" submenu."
@@ -331,41 +355,46 @@ msgstr ""
 "Określa maksymalną liczbę otwieranych ostatnio plików, wyświetlanych w menu "
 "\"Ostatnie pliki\"."
 
-#: ../data/org.x.editor.gschema.xml.in.h:60
+#: ../data/org.x.editor.gschema.xml.in.h:62
 msgid "Print Syntax Highlighting"
 msgstr "Drukowanie wyróżniania elementów składni"
 
-#: ../data/org.x.editor.gschema.xml.in.h:61
+#: ../data/org.x.editor.gschema.xml.in.h:63
 msgid "Whether xed should print syntax highlighting when printing documents."
 msgstr ""
 "Czy xed powinien drukować podświetlenia składni, podczas drukowania "
 "dokumentów."
 
-#: ../data/org.x.editor.gschema.xml.in.h:62
+#: ../data/org.x.editor.gschema.xml.in.h:64
 msgid "Print Header"
 msgstr "Drukowanie nagłówków"
 
-#: ../data/org.x.editor.gschema.xml.in.h:63
+#: ../data/org.x.editor.gschema.xml.in.h:65
 msgid "Whether xed should include a document header when printing documents."
 msgstr "Czy xed powinien dołączać nagłówek dokumentu, podczas druku."
 
-#: ../data/org.x.editor.gschema.xml.in.h:64
+#: ../data/org.x.editor.gschema.xml.in.h:66
 msgid "Printing Line Wrapping Mode"
 msgstr "Tryb zawijania wierszy na wydruku"
 
-#: ../data/org.x.editor.gschema.xml.in.h:65
+#: ../data/org.x.editor.gschema.xml.in.h:67
 msgid ""
 "Specifies how to wrap long lines for printing. Use \"none\" for no wrapping, "
 "\"word\" for wrapping at word boundaries, and \"char\" for wrapping at "
 "individual character boundaries. Note that the values are case-sensitive, so "
 "make sure they appear exactly as mentioned here."
 msgstr ""
+"Określa sposób zawijania długich wierszy podczas drukowania. Wartość „none” "
+"powoduje brak zawijania, „word” — zawijanie wierszy na granicach słów, a "
+"„char” — na granicach pojedynczych znaków. Należy pamiętać o tym, że podczas "
+"odczytywania wartości rozpoznawane są małe i wielkie litery, więc powinny "
+"być one wprowadzone dokładnie w podanej postaci."
 
-#: ../data/org.x.editor.gschema.xml.in.h:66
+#: ../data/org.x.editor.gschema.xml.in.h:68
 msgid "Print Line Numbers"
 msgstr "Drukowanie numerów wierszy"
 
-#: ../data/org.x.editor.gschema.xml.in.h:67
+#: ../data/org.x.editor.gschema.xml.in.h:69
 msgid ""
 "If this value is 0, then no line numbers will be inserted when printing a "
 "document. Otherwise, xed will print line numbers every such number of lines."
@@ -373,30 +402,30 @@ msgstr ""
 "Jeśli ta wartość jest 0, numery linii nie będą wstawione podczas drukowania "
 "dokumentu. W przeciwnym wypadku, xed będzie drukował numery linii."
 
-#: ../data/org.x.editor.gschema.xml.in.h:68
+#: ../data/org.x.editor.gschema.xml.in.h:70
 msgctxt "print-font-body-pango"
 msgid "'Monospace 9'"
 msgstr "'Monospace 9'"
 
-#: ../data/org.x.editor.gschema.xml.in.h:69
+#: ../data/org.x.editor.gschema.xml.in.h:71
 msgid "Body Font for Printing"
 msgstr "Czcionka treści na wydruku"
 
-#: ../data/org.x.editor.gschema.xml.in.h:70
+#: ../data/org.x.editor.gschema.xml.in.h:72
 msgid ""
 "Specifies the font to use for a document's body when printing documents."
 msgstr "Określa czcionkę stosowaną do treści dokumentu na wydruku."
 
-#: ../data/org.x.editor.gschema.xml.in.h:71
+#: ../data/org.x.editor.gschema.xml.in.h:73
 msgctxt "print-font-header-pango"
 msgid "'Sans 11'"
 msgstr "'Sans 11'"
 
-#: ../data/org.x.editor.gschema.xml.in.h:72
+#: ../data/org.x.editor.gschema.xml.in.h:74
 msgid "Header Font for Printing"
 msgstr "Czcionka nagłówka na wydruku"
 
-#: ../data/org.x.editor.gschema.xml.in.h:73
+#: ../data/org.x.editor.gschema.xml.in.h:75
 msgid ""
 "Specifies the font to use for page headers when printing a document. This "
 "will only take effect if the \"Print Header\" option is turned on."
@@ -404,16 +433,16 @@ msgstr ""
 "Określa czcionkę stosowaną do nagłówków stron na wydruku. Opcja jest brana "
 "pod uwagę tylko, jeśli aktywna jest opcja \"Drukowanie nagłówków\"."
 
-#: ../data/org.x.editor.gschema.xml.in.h:74
+#: ../data/org.x.editor.gschema.xml.in.h:76
 msgctxt "print-font-numbers-pango"
 msgid "'Sans 8'"
 msgstr "'Sans 8'"
 
-#: ../data/org.x.editor.gschema.xml.in.h:75
+#: ../data/org.x.editor.gschema.xml.in.h:77
 msgid "Line Number Font for Printing"
 msgstr "Czcionka numerów wierszy na wydruku"
 
-#: ../data/org.x.editor.gschema.xml.in.h:76
+#: ../data/org.x.editor.gschema.xml.in.h:78
 msgid ""
 "Specifies the font to use for line numbers when printing. This will only "
 "take effect if the \"Print Line Numbers\" option is non-zero."
@@ -421,16 +450,16 @@ msgstr ""
 "Określa czcionkę stosowaną do numerów wierszy na wydruku. Opcja jest brana "
 "pod uwagę tylko, jeśli aktywna jest opcja \"Drukowanie numerów wierszy\"."
 
-#: ../data/org.x.editor.gschema.xml.in.h:77
+#: ../data/org.x.editor.gschema.xml.in.h:79
 msgctxt "auto-detected"
 msgid "[ 'UTF-8', 'CURRENT', 'ISO-8859-15', 'UTF-16' ]"
 msgstr "[ 'UTF-8', 'AKTUALNY', 'ISO-8859-15', 'UTF-16' ]"
 
-#: ../data/org.x.editor.gschema.xml.in.h:78
+#: ../data/org.x.editor.gschema.xml.in.h:80
 msgid "Automatically Detected Encodings"
 msgstr "Automatyczne rozpoznawanie kodowania"
 
-#: ../data/org.x.editor.gschema.xml.in.h:79
+#: ../data/org.x.editor.gschema.xml.in.h:81
 msgid ""
 "Sorted list of encodings used by xed for automatically detecting the "
 "encoding of a file. \"CURRENT\" represents the current locale encoding. Only "
@@ -440,16 +469,16 @@ msgstr ""
 "kodowania pliku. \"AKTUALNY\" reprezentuje bieżące kodowanie znaków. Używane "
 "są tylko rozpoznawalne kodowania."
 
-#: ../data/org.x.editor.gschema.xml.in.h:80
+#: ../data/org.x.editor.gschema.xml.in.h:82
 msgctxt "shown-in-menu"
 msgid "[ 'ISO-8859-15' ]"
 msgstr "[ 'ISO-8859-15' ]"
 
-#: ../data/org.x.editor.gschema.xml.in.h:81
+#: ../data/org.x.editor.gschema.xml.in.h:83
 msgid "Encodings shown in menu"
 msgstr "Kodowania wyświetlane w menu"
 
-#: ../data/org.x.editor.gschema.xml.in.h:82
+#: ../data/org.x.editor.gschema.xml.in.h:84
 msgid ""
 "List of encodings shown in the Character Encoding menu in open/save file "
 "selector. Only recognized encodings are used."
@@ -457,27 +486,27 @@ msgstr ""
 "Lista kodowań widoczna w menu Kodowanie znaków na liście wyboru otwierania i "
 "zapisywania pliku. Używane są tylko rozpoznane kodowania."
 
-#: ../data/org.x.editor.gschema.xml.in.h:83
+#: ../data/org.x.editor.gschema.xml.in.h:85
 msgid "History for \"search for\" entries"
 msgstr "Historia dla wpisów \"Szukaj\""
 
-#: ../data/org.x.editor.gschema.xml.in.h:84
+#: ../data/org.x.editor.gschema.xml.in.h:86
 msgid "List of entries in \"search for\" textbox."
 msgstr "Lista wpisów w polu tekstowym \"Szukaj\""
 
-#: ../data/org.x.editor.gschema.xml.in.h:85
+#: ../data/org.x.editor.gschema.xml.in.h:87
 msgid "History for \"replace with\" entries"
 msgstr "Historia dla wpisów \"Zmiana na\""
 
-#: ../data/org.x.editor.gschema.xml.in.h:86
+#: ../data/org.x.editor.gschema.xml.in.h:88
 msgid "List of entries in \"replace with\" textbox."
 msgstr "Lista wpisów w polu tekstowym \"Zmiana na\""
 
-#: ../data/org.x.editor.gschema.xml.in.h:87
+#: ../data/org.x.editor.gschema.xml.in.h:89
 msgid "Active plugins"
 msgstr "Aktywne wtyczki"
 
-#: ../data/org.x.editor.gschema.xml.in.h:88
+#: ../data/org.x.editor.gschema.xml.in.h:90
 msgid ""
 "List of active plugins. It contains the \"Location\" of the active plugins. "
 "See the .xed-plugin file for obtaining the \"Location\" of a given plugin."
@@ -558,18 +587,18 @@ msgstr "Otwiera pliki i blokuje proces, dopóki pliki nie zostaną zamknięte"
 
 #: ../xed/xed-app.c:153
 msgid "Run xed in standalone mode"
-msgstr ""
+msgstr "Uruchom xed w trybie samodzielnym"
 
 #: ../xed/xed-app.c:160
 msgid "[FILE...] [+LINE]"
-msgstr ""
+msgstr "[PLIK...] [+WIERSZ]"
 
-#: ../xed/xed-app.c:551
+#: ../xed/xed-app.c:569
 #, c-format
 msgid "%s: invalid encoding."
 msgstr "%s: nieprawidłowe kodowanie."
 
-#: ../xed/xed-app.c:1201
+#: ../xed/xed-app.c:1219
 msgid "There was an error displaying the help."
 msgstr "Wystąpił błąd podczas wyświetlania pomocy."
 
@@ -898,11 +927,11 @@ msgid "Unsaved Document %d"
 msgstr "Niezapisany dokument %d"
 
 #: ../xed/xed-documents-panel.c:95 ../xed/xed-documents-panel.c:106
-#: ../xed/xed-window.c:1994 ../xed/xed-window.c:1998
+#: ../xed/xed-window.c:2002 ../xed/xed-window.c:2006
 msgid "Read-Only"
 msgstr "Tylko do odczytu"
 
-#: ../xed/xed-documents-panel.c:732 ../xed/xed-window.c:3320
+#: ../xed/xed-documents-panel.c:732 ../xed/xed-window.c:3370
 msgid "Documents"
 msgstr "Dokumenty"
 
@@ -942,7 +971,7 @@ msgstr "_Opis"
 msgid "_Encoding"
 msgstr "_Kodowanie"
 
-#: ../xed/xed-file-chooser-dialog.c:50 ../xed/xed-preferences-dialog.c:870
+#: ../xed/xed-file-chooser-dialog.c:50 ../xed/xed-preferences-dialog.c:878
 msgid "All Files"
 msgstr "Wszystkie pliki"
 
@@ -1315,16 +1344,16 @@ msgid ""
 msgstr ""
 "Kontynuacja zapisywania tego pliku może uszkodzić dokument. Zapisać mimo to?"
 
-#: ../xed/xed-preferences-dialog.c:390
+#: ../xed/xed-preferences-dialog.c:398
 msgid "Click on this button to select the font to be used by the editor"
 msgstr "Kliknięcie tego przycisku umożliwia wybór czcionki edytora"
 
-#: ../xed/xed-preferences-dialog.c:404
+#: ../xed/xed-preferences-dialog.c:412
 #, c-format
 msgid "_Use the system fixed width font (%s)"
 msgstr "_Systemowa o stałej szerokości (%s)"
 
-#: ../xed/xed-preferences-dialog.c:630
+#: ../xed/xed-preferences-dialog.c:638
 #, c-format
 msgid ""
 "Directory '%s' could not be created: g_mkdir_with_parents() failed: %s"
@@ -1332,37 +1361,37 @@ msgstr ""
 "Nie można utworzyć katalogu \"%s\": zmienna g_mkdir_with_parents() się nie "
 "powiodła: %s"
 
-#: ../xed/xed-preferences-dialog.c:826
+#: ../xed/xed-preferences-dialog.c:834
 msgid "The selected color scheme cannot be installed."
 msgstr "Wybrany schemat kolorów nie mógł zostać zainstalowany."
 
-#: ../xed/xed-preferences-dialog.c:851 ../xed/xed-preferences-dialog.c:857
+#: ../xed/xed-preferences-dialog.c:859 ../xed/xed-preferences-dialog.c:865
 msgid "Add Scheme"
 msgstr "Dodaj schemat"
 
-#: ../xed/xed-preferences-dialog.c:854 ../xed/xed-progress-info-bar.c:67
+#: ../xed/xed-preferences-dialog.c:862 ../xed/xed-progress-info-bar.c:67
 msgid "Cancel"
 msgstr "Anuluj"
 
-#: ../xed/xed-preferences-dialog.c:863
+#: ../xed/xed-preferences-dialog.c:871
 msgid "Color Scheme Files"
 msgstr "Pliki schematów kolorów"
 
-#: ../xed/xed-preferences-dialog.c:906
+#: ../xed/xed-preferences-dialog.c:914
 #, c-format
 msgid "Could not remove color scheme \"%s\"."
 msgstr "Nie można usunąć schematu kolorów \"%s\"."
 
-#: ../xed/xed-preferences-dialog.c:1100
+#: ../xed/xed-preferences-dialog.c:1108
 #: ../xed/resources/ui/xed-searchbar.ui.h:11
 msgid "Close"
 msgstr "Zamknij"
 
-#: ../xed/xed-preferences-dialog.c:1101
+#: ../xed/xed-preferences-dialog.c:1109
 msgid "Help"
 msgstr "Pomoc"
 
-#: ../xed/xed-preferences-dialog.c:1104
+#: ../xed/xed-preferences-dialog.c:1112
 msgid "Xed Preferences"
 msgstr "Preferencje Xed"
 
@@ -1428,7 +1457,7 @@ msgstr "Pomniejsza stronę"
 
 #: ../xed/xed-print-preview.c:681
 msgid "_Close preview"
-msgstr ""
+msgstr "_Zamknij podgląd"
 
 #: ../xed/xed-print-preview.c:683
 msgid "Close print preview"
@@ -1489,7 +1518,7 @@ msgstr "Bez _rozdzielania słów"
 msgid "Line Numbers"
 msgstr "Numery wierszy:"
 
-#: ../xed/resources/ui/xed-preferences-dialog.ui.h:7 ../xed/xed-view.c:381
+#: ../xed/resources/ui/xed-preferences-dialog.ui.h:7 ../xed/xed-view.c:383
 msgid "_Display line numbers"
 msgstr "Wyświetla_nie"
 
@@ -1522,86 +1551,94 @@ msgid "Highlight matching _bracket"
 msgstr "Wyróżni_anie pasujących nawiasów"
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:15
+msgid "Overview Map"
+msgstr "Mapa poglądowa"
+
+#: ../xed/resources/ui/xed-preferences-dialog.ui.h:16
+msgid "Display overview map"
+msgstr "Wyświetl mapę poglądową"
+
+#: ../xed/resources/ui/xed-preferences-dialog.ui.h:17
 msgid "View"
 msgstr "Widok"
 
-#: ../xed/resources/ui/xed-preferences-dialog.ui.h:16
+#: ../xed/resources/ui/xed-preferences-dialog.ui.h:18
 msgid "Tab Stops"
 msgstr "Tabulacja"
 
-#: ../xed/resources/ui/xed-preferences-dialog.ui.h:17
+#: ../xed/resources/ui/xed-preferences-dialog.ui.h:19
 msgid "_Tab width:"
 msgstr "_Szerokość:"
 
-#: ../xed/resources/ui/xed-preferences-dialog.ui.h:18
+#: ../xed/resources/ui/xed-preferences-dialog.ui.h:20
 msgid "Insert _spaces instead of tabs"
 msgstr "_Wstawianie spacji zamiast tabulatorów"
 
-#: ../xed/resources/ui/xed-preferences-dialog.ui.h:19
+#: ../xed/resources/ui/xed-preferences-dialog.ui.h:21
 msgid "Automatic Indentation"
 msgstr "Automatyczne wcięcia"
 
-#: ../xed/resources/ui/xed-preferences-dialog.ui.h:20
+#: ../xed/resources/ui/xed-preferences-dialog.ui.h:22
 msgid "_Enable automatic indentation"
 msgstr "_Tworzenie"
 
-#: ../xed/resources/ui/xed-preferences-dialog.ui.h:21
+#: ../xed/resources/ui/xed-preferences-dialog.ui.h:23
 msgid "File Saving"
 msgstr "Zapisywanie pliku"
 
-#: ../xed/resources/ui/xed-preferences-dialog.ui.h:22
+#: ../xed/resources/ui/xed-preferences-dialog.ui.h:24
 msgid "Create a _backup copy of files before saving"
 msgstr "Tworzenie kopii _zapasowych przed zapisem"
 
-#: ../xed/resources/ui/xed-preferences-dialog.ui.h:23
+#: ../xed/resources/ui/xed-preferences-dialog.ui.h:25
 msgid "_Autosave files every"
 msgstr "_Automatyczne co"
 
-#: ../xed/resources/ui/xed-preferences-dialog.ui.h:24
+#: ../xed/resources/ui/xed-preferences-dialog.ui.h:26
 msgid "_minutes"
 msgstr "mi_nut"
 
-#: ../xed/resources/ui/xed-preferences-dialog.ui.h:25
-msgid "Tab Scrolling"
-msgstr ""
-
-#: ../xed/resources/ui/xed-preferences-dialog.ui.h:26
-msgid "Allow mouse wheel scrolling to change tabs"
-msgstr ""
-
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:27
+msgid "Tab Scrolling"
+msgstr "Przewijanie kart"
+
+#: ../xed/resources/ui/xed-preferences-dialog.ui.h:28
+msgid "Allow mouse wheel scrolling to change tabs"
+msgstr "Zezwalaj na zmienianie zakładek poprzez przewijanie kółkiem myszy"
+
+#: ../xed/resources/ui/xed-preferences-dialog.ui.h:29
 msgid "Editor"
 msgstr "Edytor"
 
-#: ../xed/resources/ui/xed-preferences-dialog.ui.h:28
+#: ../xed/resources/ui/xed-preferences-dialog.ui.h:30
 msgid "Font"
 msgstr "Czcionka"
 
-#: ../xed/resources/ui/xed-preferences-dialog.ui.h:29
+#: ../xed/resources/ui/xed-preferences-dialog.ui.h:31
 msgid "Editor _font: "
 msgstr "W edytor_ze: "
 
-#: ../xed/resources/ui/xed-preferences-dialog.ui.h:30
+#: ../xed/resources/ui/xed-preferences-dialog.ui.h:32
 msgid "Pick the editor font"
 msgstr "Wybór czcionki edytora"
 
-#: ../xed/resources/ui/xed-preferences-dialog.ui.h:31
+#: ../xed/resources/ui/xed-preferences-dialog.ui.h:33
 msgid "Color Scheme"
 msgstr "Schemat kolorów"
 
-#: ../xed/resources/ui/xed-preferences-dialog.ui.h:32
+#: ../xed/resources/ui/xed-preferences-dialog.ui.h:34
 msgid "Use dark theme variant (if available)"
-msgstr ""
+msgstr "Użyj trybu ciemnego (jeśli jest dostępny)"
 
-#: ../xed/resources/ui/xed-preferences-dialog.ui.h:33
+#: ../xed/resources/ui/xed-preferences-dialog.ui.h:35
 msgid "_Add..."
 msgstr "_Dodaj..."
 
-#: ../xed/resources/ui/xed-preferences-dialog.ui.h:34
+#: ../xed/resources/ui/xed-preferences-dialog.ui.h:36
 msgid "Font & Colors"
 msgstr "Czcionki i kolory"
 
-#: ../xed/resources/ui/xed-preferences-dialog.ui.h:35
+#: ../xed/resources/ui/xed-preferences-dialog.ui.h:37
 msgid "Plugins"
 msgstr "Wtyczki"
 
@@ -1720,15 +1757,17 @@ msgstr "Brak wyników"
 #, c-format
 msgid "%d match"
 msgid_plural "%d matches"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d trafienie"
+msgstr[1] "%d trafienia"
+msgstr[2] "%d trafień"
 
 #: ../xed/xed-searchbar.c:319
 #, c-format
 msgid "%d of %d match"
 msgid_plural "%d of %d matches"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d z %d trafień"
+msgstr[1] "%d z %d trafień"
+msgstr[2] "%d z %d trafień"
 
 #: ../xed/xed-statusbar.c:70 ../xed/xed-statusbar.c:76
 msgid "OVR"
@@ -2113,25 +2152,33 @@ msgstr "Edytowanie tekstu na pełnym ekranie"
 
 #: ../xed/xed-ui.h:160
 msgid "_Word wrap"
-msgstr ""
+msgstr "_Zawijanie tekstu"
 
 #: ../xed/xed-ui.h:161
 msgid "Set word wrap for the current document"
-msgstr ""
+msgstr "Ustaw zawijanie tekstu dla bieżącego dokumentu"
 
-#: ../xed/xed-ui.h:168
+#: ../xed/xed-ui.h:163
+msgid "_Overview Map"
+msgstr "Mapa _poglądowa"
+
+#: ../xed/xed-ui.h:164
+msgid "Show or hide the overview map for the current view"
+msgstr "Wyświetl lub ukryj mapę poglądową dla bieżącego widoku"
+
+#: ../xed/xed-ui.h:171
 msgid "Side _Pane"
 msgstr "Panel _boczny"
 
-#: ../xed/xed-ui.h:169
+#: ../xed/xed-ui.h:172
 msgid "Show or hide the side pane in the current window"
 msgstr "Przełącza wyświetlanie panelu bocznego w bieżącym oknie"
 
-#: ../xed/xed-ui.h:171
+#: ../xed/xed-ui.h:174
 msgid "_Bottom Pane"
 msgstr "Panel _dolny"
 
-#: ../xed/xed-ui.h:172
+#: ../xed/xed-ui.h:175
 msgid "Show or hide the bottom pane in the current window"
 msgstr "Przełącza wyświetlanie panelu dolnego w bieżącym oknie"
 
@@ -2163,39 +2210,39 @@ msgstr "Używa trybu wyróżniania elementów składni %s"
 #. add the "Plain Text" item before all the others
 #. Translators: "Plain Text" means that no highlight mode is selected in the
 #. * "View->Highlight Mode" submenu and so syntax highlighting is disabled
-#: ../xed/xed-window.c:861 ../xed/xed-window.c:1679
+#: ../xed/xed-window.c:865 ../xed/xed-window.c:1683
 msgid "Plain Text"
 msgstr "Zwykły tekst"
 
-#: ../xed/xed-window.c:861
+#: ../xed/xed-window.c:865
 msgid "Disable syntax highlighting"
 msgstr "Wyłącza wyróżnianie elementów składni"
 
 #. Translators: %s is a URI
-#: ../xed/xed-window.c:1135
+#: ../xed/xed-window.c:1139
 #, c-format
 msgid "Open '%s'"
 msgstr "Otwórz \"%s\""
 
 #. Translators: %s is a URI
-#: ../xed/xed-window.c:1414
+#: ../xed/xed-window.c:1418
 #, c-format
 msgid "Activate '%s'"
 msgstr "Aktywuje \"%s\""
 
-#: ../xed/xed-window.c:1663
+#: ../xed/xed-window.c:1667
 msgid "Use Spaces"
 msgstr "Spacje zamiast Tab"
 
-#: ../xed/xed-window.c:1728
+#: ../xed/xed-window.c:1736
 msgid "Tab Width"
 msgstr "Szerokość tabulacji"
 
-#: ../xed/xed-window.c:2440
+#: ../xed/xed-window.c:2482
 msgid "There are unsaved documents"
-msgstr ""
+msgstr "Są niezapisane dokumenty"
 
-#: ../xed/xed-window.c:3586
+#: ../xed/xed-window.c:3636
 msgid "Elevated Privileges"
 msgstr "Podwyższone uprawnienia"
 
@@ -2310,11 +2357,12 @@ msgstr ""
 
 #: ../plugins/filebrowser/org.x.editor.plugins.filebrowser.gschema.xml.in.h:7
 msgid "Terminal Command"
-msgstr ""
+msgstr "Polecenie terminala"
 
 #: ../plugins/filebrowser/org.x.editor.plugins.filebrowser.gschema.xml.in.h:8
 msgid "The terminal command when using the \"Open terminal here\" command."
 msgstr ""
+"Polecenie terminala podczas użycia polecenia \"Otwórz tutaj terminal\"."
 
 #: ../plugins/filebrowser/org.x.editor.plugins.filebrowser.gschema.xml.in.h:9
 msgid "Open With Tree View"
@@ -2463,7 +2511,7 @@ msgstr ""
 #. Translators: This is the default name of new files created by the file browser pane.
 #: ../plugins/filebrowser/xed-file-browser-store.c:3774
 msgid "Untitled File"
-msgstr ""
+msgstr "Plik bez tytułu"
 
 #: ../plugins/filebrowser/xed-file-browser-store.c:3802
 msgid ""
@@ -2476,7 +2524,7 @@ msgstr ""
 #. Translators: This is the default name of new directories created by the file browser pane.
 #: ../plugins/filebrowser/xed-file-browser-store.c:3829
 msgid "Untitled Folder"
-msgstr ""
+msgstr "Katalog bez nazwy"
 
 #: ../plugins/filebrowser/xed-file-browser-store.c:3854
 msgid ""
@@ -2536,7 +2584,7 @@ msgstr "Dodaje nowy pusty plik"
 
 #: ../plugins/filebrowser/xed-file-browser-widget.c:790
 msgid "_Rename..."
-msgstr ""
+msgstr "Z_mień nazwę…"
 
 #: ../plugins/filebrowser/xed-file-browser-widget.c:791
 msgid "Rename selected file or folder"
@@ -2630,7 +2678,7 @@ msgstr "Sortuje dokument lub zaznaczony tekst."
 
 #: ../plugins/sort/xed-sort-plugin.c:80
 msgid "S_ort lines"
-msgstr ""
+msgstr "S_ortuj wiersze"
 
 #: ../plugins/sort/xed-sort-plugin.c:82
 msgid "Sort the current document or selection"
@@ -2823,7 +2871,7 @@ msgstr "przycisk"
 
 #: ../plugins/spell/xed-spell-setup-dialog.ui.h:2
 msgid "Autocheck settings"
-msgstr ""
+msgstr "Automatycznie sprawdzaj ustawienia"
 
 #: ../plugins/spell/xed-spell-setup-dialog.ui.h:3
 msgid "Never"
@@ -2832,14 +2880,15 @@ msgstr "Nigdy"
 #: ../plugins/spell/xed-spell-setup-dialog.ui.h:4
 msgid "Never autocheck spelling on document load"
 msgstr ""
+"Nie dokonuj automatycznego sprawdzania składni przy ładowaniu dokumentu"
 
 #: ../plugins/spell/xed-spell-setup-dialog.ui.h:5
 msgid "Remember by document"
-msgstr ""
+msgstr "Zapamiętaj przez dokument"
 
 #: ../plugins/spell/xed-spell-setup-dialog.ui.h:6
 msgid "Remembers the setting for each  document on load"
-msgstr ""
+msgstr "Zapamiętaje ustawienie przy ładowaniu każdego dokumentu"
 
 #: ../plugins/spell/xed-spell-setup-dialog.ui.h:7
 msgid "Always"
@@ -2848,6 +2897,7 @@ msgstr "Zawsze"
 #: ../plugins/spell/xed-spell-setup-dialog.ui.h:8
 msgid "Always autocheck on document load"
 msgstr ""
+"Zawsze dokonuj automatycznego sprawdzania składni przy ładowaniu dokumentu"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:1
 msgid "XHTML 1.0 - Tags"
@@ -4410,6 +4460,26 @@ msgstr "bieżący"
 #: ../plugins/taglist/XUL.tags.xml.in.h:1
 msgid "XUL - Tags"
 msgstr "XUL - znaczniki"
+
+#: ../plugins/textsize/textsize.plugin.desktop.in.h:1
+msgid "Text Size"
+msgstr "Rozmiar tekstu"
+
+#: ../plugins/textsize/textsize.plugin.desktop.in.h:2
+msgid "Allow controlling the zoom levels of the text"
+msgstr "Pozwól kontrolować przybliżenie tekstu"
+
+#: ../plugins/textsize/textsize/__init__.py:120
+msgid "_Larger Text"
+msgstr "_Większy rozmiar tekstu"
+
+#: ../plugins/textsize/textsize/__init__.py:123
+msgid "S_maller Text"
+msgstr "_Mniejszy rozmiar tekstu"
+
+#: ../plugins/textsize/textsize/__init__.py:126
+msgid "_Normal size"
+msgstr "_Zwykły rozmiar"
 
 #: ../plugins/time/org.x.editor.plugins.time.gschema.xml.in.h:1
 msgid "Prompt type"
