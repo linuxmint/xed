@@ -26,6 +26,9 @@
 from gi.repository import GObject, Gio, Gtk, Gdk, Xed
 from .documenthelper import DocumentHelper
 
+import gettext
+gettext.install("xed")
+
 MENU_PATH = "/MenuBar/ViewMenu/ViewOps_1"
 
 class TextSizePlugin(GObject.Object, Xed.WindowActivatable):
