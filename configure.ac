@@ -4,7 +4,7 @@ AC_PREREQ(2.63.2)
 
 m4_define(xed_major_version, 1)
 m4_define(xed_minor_version, 6)
-m4_define(xed_micro_version, 1)
+m4_define(xed_micro_version, 2)
 m4_define(xed_version, xed_major_version.xed_minor_version.xed_micro_version)
 
 AC_INIT([xed], [xed_version],
