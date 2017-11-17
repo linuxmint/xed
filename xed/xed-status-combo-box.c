@@ -30,7 +30,6 @@ static void  menu_deactivate (GtkMenu *menu, XedStatusComboBox *combo);
 
 struct _XedStatusComboBoxPrivate
 {
-    GtkWidget *frame;
     GtkWidget *button;
     GtkWidget *hbox;
     GtkWidget *label;
@@ -284,23 +283,6 @@ button_press_event (GtkWidget         *widget,
 }
 
 static void
-set_shadow_type (XedStatusComboBox *combo)
-{
-    GtkStyleContext *context;
-    GtkShadowType shadow_type;
-    GtkWidget *statusbar;
-
-    /* This is a hack needed to use the shadow type of a statusbar */
-    statusbar = gtk_statusbar_new ();
-    context = gtk_widget_get_style_context (statusbar);
-
-    gtk_style_context_get_style (context, "shadow-type", &shadow_type, NULL);
-    gtk_frame_set_shadow_type (GTK_FRAME (combo->priv->frame), shadow_type);
-
-    gtk_widget_destroy (statusbar);
-}
-
-static void
 xed_status_combo_box_init (XedStatusComboBox *self)
 {
     GtkStyleContext *context;
@@ -309,20 +291,14 @@ xed_status_combo_box_init (XedStatusComboBox *self)
 
     gtk_event_box_set_visible_window (GTK_EVENT_BOX (self), TRUE);
 
-    self->priv->frame = gtk_frame_new (NULL);
-    gtk_widget_show (self->priv->frame);
-
     self->priv->button = gtk_toggle_button_new ();
     gtk_button_set_relief (GTK_BUTTON (self->priv->button), GTK_RELIEF_NONE);
     gtk_widget_show (self->priv->button);
 
-    set_shadow_type (self);
-
     self->priv->hbox = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 3);
     gtk_widget_show (self->priv->hbox);
 
-    gtk_container_add (GTK_CONTAINER (self), self->priv->frame);
-    gtk_container_add (GTK_CONTAINER (self->priv->frame), self->priv->button);
+    gtk_container_add (GTK_CONTAINER (self), self->priv->button);
     gtk_container_add (GTK_CONTAINER (self->priv->button), self->priv->hbox);
 
     self->priv->label = gtk_label_new ("");
@@ -358,10 +334,6 @@ xed_status_combo_box_init (XedStatusComboBox *self)
                       G_CALLBACK (menu_deactivate), self);
 
     context = gtk_widget_get_style_context (GTK_WIDGET (self->priv->button));
-    gtk_style_context_add_provider (context,
-                                    GTK_STYLE_PROVIDER (XED_STATUS_COMBO_BOX_GET_CLASS (self)->priv->css),
-                                    GTK_STYLE_PROVIDER_PRIORITY_APPLICATION);
-    context = gtk_widget_get_style_context (GTK_WIDGET (self->priv->frame));
     gtk_style_context_add_provider (context,
                                     GTK_STYLE_PROVIDER (XED_STATUS_COMBO_BOX_GET_CLASS (self)->priv->css),
                                     GTK_STYLE_PROVIDER_PRIORITY_APPLICATION);
