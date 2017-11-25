@@ -714,11 +714,9 @@ xed_notebook_init (XedNotebook *notebook)
     notebook->priv->tab_scrolling_enabled = g_settings_get_boolean (notebook->priv->ui_settings, "enable-tab-scrolling");
 
     gtk_notebook_set_scrollable (GTK_NOTEBOOK (notebook), TRUE);
-
-#if GTK_CHECK_VERSION (3, 20, 0)
-        gtk_notebook_set_show_border (GTK_NOTEBOOK (notebook), FALSE);
-#endif
+    gtk_notebook_set_show_border (GTK_NOTEBOOK (notebook), FALSE);
     gtk_notebook_set_show_tabs (GTK_NOTEBOOK (notebook), FALSE);
+    gtk_container_set_border_width (GTK_CONTAINER (notebook), 0);
 
     g_signal_connect (notebook, "button-press-event",
                       (GCallback)button_press_cb, NULL);
