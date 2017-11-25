@@ -141,17 +141,13 @@ xed_status_combo_box_changed (XedStatusComboBox *combo,
 static void
 xed_status_combo_box_class_init (XedStatusComboBoxClass *klass)
 {
-    GObjectClass *object_class = G_OBJECT_CLASS (klass);
-    GtkWidgetClass *widget_class = GTK_WIDGET_CLASS (klass);
     static const gchar style[] =
         "* {\n"
-          "-GtkButton-default-border : 0;\n"
-          "-GtkButton-default-outside-border : 0;\n"
-          "-GtkButton-inner-border: 0;\n"
-          "-GtkWidget-focus-line-width : 0;\n"
-          "-GtkWidget-focus-padding : 0;\n"
           "padding: 2px;\n"
         "}";
+
+    GObjectClass *object_class = G_OBJECT_CLASS (klass);
+    GtkWidgetClass *widget_class = GTK_WIDGET_CLASS (klass);
 
     object_class->finalize = xed_status_combo_box_finalize;
     object_class->get_property = xed_status_combo_box_get_property;
