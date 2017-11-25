@@ -66,9 +66,9 @@ struct _XedWindowPrivate
 
     /* Widgets for fullscreen mode */
     GtkWidget *fullscreen_controls;
-    GtkWidget *fullscreen_controls_container;
-    guint      fullscreen_animation_timeout_id;
-    gboolean   fullscreen_animation_enter;
+    GtkWidget *fullscreen_overlay;
+    GtkWidget *fullscreen_eventbox;
+    GtkWidget *fullscreen_revealer;
 
     /* statusbar and context ids for statusbar messages */
     GtkWidget *statusbar;
