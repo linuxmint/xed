@@ -222,6 +222,26 @@
         <child>
           <object class="GtkShortcutsGroup">
             <property name="visible">1</property>
+            <property name="title" translatable="yes">Tools</property>
+            <child>
+              <object class="GtkShortcutsShortcut">
+                <property name="visible">1</property>
+                <property name="accelerator">&lt;shift&gt;F7</property>
+                <property name="title" translatable="yes">Check spelling</property>
+              </object>
+            </child>
+            <child>
+              <object class="GtkShortcutsShortcut">
+                <property name="visible">1</property>
+                <property name="accelerator">&lt;ctrl&gt;P</property>
+                <property name="title" translatable="yes">Print the document</property>
+              </object>
+            </child>
+          </object>
+        </child>
+        <child>
+          <object class="GtkShortcutsGroup">
+            <property name="visible">1</property>
             <property name="title" translatable="yes">Editing</property>
             <child>
               <object class="GtkShortcutsShortcut">
@@ -265,7 +285,6 @@
                 <property name="title" translatable="yes">Move current word right</property>
               </object>
             </child>
-            <!--
             <child>
               <object class="GtkShortcutsShortcut">
                 <property name="visible">1</property>
@@ -283,11 +302,17 @@
             <child>
               <object class="GtkShortcutsShortcut">
                 <property name="visible">1</property>
+                <property name="accelerator">&lt;ctrl&gt;T</property>
+                <property name="title" translatable="yes">Convert to title case</property>
+              </object>
+            </child>
+            <child>
+              <object class="GtkShortcutsShortcut">
+                <property name="visible">1</property>
                 <property name="accelerator">&lt;ctrl&gt;asciitilde</property>
                 <property name="title" translatable="yes">Invert case</property>
               </object>
             </child>
-            -->
             <child>
               <object class="GtkShortcutsShortcut">
                 <property name="visible">1</property>
@@ -300,26 +325,6 @@
                 <property name="visible">1</property>
                 <property name="accelerator">&lt;ctrl&gt;&lt;shift&gt;x</property>
                 <property name="title" translatable="yes">Decrement number at cursor</property>
-              </object>
-            </child>
-          </object>
-        </child>
-        <child>
-          <object class="GtkShortcutsGroup">
-            <property name="visible">1</property>
-            <property name="title" translatable="yes">Tools</property>
-            <child>
-              <object class="GtkShortcutsShortcut">
-                <property name="visible">1</property>
-                <property name="accelerator">&lt;shift&gt;F7</property>
-                <property name="title" translatable="yes">Check spelling</property>
-              </object>
-            </child>
-            <child>
-              <object class="GtkShortcutsShortcut">
-                <property name="visible">1</property>
-                <property name="accelerator">&lt;ctrl&gt;P</property>
-                <property name="title" translatable="yes">Print the document</property>
               </object>
             </child>
           </object>
