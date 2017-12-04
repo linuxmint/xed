@@ -66,6 +66,7 @@ void _xed_cmd_documents_move_to_new_window (GtkAction *action, XedWindow *window
 
 void _xed_cmd_help_contents (GtkAction *action, XedWindow *window);
 void _xed_cmd_help_about (GtkAction *action, XedWindow *window);
+void _xed_cmd_help_keyboard_shortcuts (GtkAction *action, XedWindow *window);
 
 void _xed_cmd_file_close_tab (XedTab *tab, XedWindow *window);
 
