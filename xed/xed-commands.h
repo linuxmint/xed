@@ -12,6 +12,8 @@ void xed_commands_load_location (XedWindow *window, GFile *location, const GtkSo
 /* Ignore non-existing URIs */
 GSList *xed_commands_load_locations (XedWindow *window, const GSList *locations, const GtkSourceEncoding *encoding, gint line_pos);
 void xed_commands_save_document (XedWindow *window, XedDocument *document);
+void xed_commands_save_document_async (XedDocument *document, XedWindow *window, GCancellable *cancellable, GAsyncReadyCallback callback, gpointer user_data);
+gboolean xed_commands_save_document_finish (XedDocument *document, GAsyncResult *result);
 void xed_commands_save_all_documents (XedWindow *window);
 
 /*

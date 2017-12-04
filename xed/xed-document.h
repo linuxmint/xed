@@ -37,28 +37,13 @@
 
 G_BEGIN_DECLS
 
-#define XED_TYPE_DOCUMENT              (xed_document_get_type())
-#define XED_DOCUMENT(obj)              (G_TYPE_CHECK_INSTANCE_CAST((obj), XED_TYPE_DOCUMENT, XedDocument))
-#define XED_DOCUMENT_CLASS(klass)      (G_TYPE_CHECK_CLASS_CAST((klass), XED_TYPE_DOCUMENT, XedDocumentClass))
-#define XED_IS_DOCUMENT(obj)           (G_TYPE_CHECK_INSTANCE_TYPE((obj), XED_TYPE_DOCUMENT))
-#define XED_IS_DOCUMENT_CLASS(klass)   (G_TYPE_CHECK_CLASS_TYPE ((klass), XED_TYPE_DOCUMENT))
-#define XED_DOCUMENT_GET_CLASS(obj)    (G_TYPE_INSTANCE_GET_CLASS((obj), XED_TYPE_DOCUMENT, XedDocumentClass))
+#define XED_TYPE_DOCUMENT (xed_document_get_type())
+
+G_DECLARE_DERIVABLE_TYPE (XedDocument, xed_document, XED, DOCUMENT, GtkSourceBuffer)
 
 #define XED_METADATA_ATTRIBUTE_POSITION "metadata::xed-position"
 #define XED_METADATA_ATTRIBUTE_ENCODING "metadata::xed-encoding"
 #define XED_METADATA_ATTRIBUTE_LANGUAGE "metadata::xed-language"
-
-typedef struct _XedDocument        XedDocument;
-typedef struct _XedDocumentPrivate XedDocumentPrivate;
-typedef struct _XedDocumentClass   XedDocumentClass;
-
-struct _XedDocument
-{
-    GtkSourceBuffer buffer;
-
-    /*< private > */
-    XedDocumentPrivate *priv;
-};
 
 struct _XedDocumentClass
 {
@@ -76,8 +61,6 @@ struct _XedDocumentClass
 
     void (* saved)          (XedDocument *document);
 };
-
-GType xed_document_get_type (void) G_GNUC_CONST;
 
 XedDocument *xed_document_new (void);
 
@@ -137,24 +120,6 @@ void xed_document_set_search_context (XedDocument            *doc,
                                       GtkSourceSearchContext *search_context);
 
 GtkSourceSearchContext *xed_document_get_search_context (XedDocument *doc);
-
-/* Non exported functions */
-
-glong _xed_document_get_seconds_since_last_save_or_load (XedDocument *doc);
-
-void _xed_document_apply_error_style (XedDocument *doc,
-                                      GtkTextIter *start,
-                                      GtkTextIter *end);
-
-/* Note: this is a sync stat: use only on local files */
-gboolean _xed_document_check_externally_modified (XedDocument *doc);
-
-gboolean _xed_document_needs_saving (XedDocument *doc);
-
-void _xed_document_set_create (XedDocument *doc,
-                               gboolean     create);
-
-gboolean _xed_document_get_create (XedDocument *doc);
 
 G_END_DECLS
 

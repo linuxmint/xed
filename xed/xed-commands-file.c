@@ -38,30 +38,26 @@
 #include <gio/gio.h>
 #include <gtk/gtk.h>
 
+#include "xed-debug.h"
+#include "xed-document.h"
+#include "xed-document-private.h"
 #include "xed-commands.h"
 #include "xed-window.h"
 #include "xed-window-private.h"
 #include "xed-statusbar.h"
-#include "xed-debug.h"
 #include "xed-utils.h"
 #include "xed-file-chooser-dialog.h"
 #include "xed-close-confirmation-dialog.h"
 
 /* Defined constants */
 #define XED_OPEN_DIALOG_KEY         "xed-open-dialog-key"
-#define XED_TAB_TO_SAVE_AS          "xed-tab-to-save-as"
-#define XED_LIST_OF_TABS_TO_SAVE_AS   "xed-list-of-tabs-to-save-as"
 #define XED_IS_CLOSING_ALL            "xed-is-closing-all"
 #define XED_IS_QUITTING             "xed-is-quitting"
-#define XED_IS_CLOSING_TAB      "xed-is-closing-tab"
 #define XED_IS_QUITTING_ALL     "xed-is-quitting-all"
 
 static void tab_state_changed_while_saving (XedTab    *tab,
                                             GParamSpec  *pspec,
                                             XedWindow *window);
-
-static void save_as_tab (XedTab    *tab,
-                         XedWindow *window);
 
 void
 _xed_cmd_file_new (GtkAction   *action,
@@ -521,110 +517,73 @@ replace_read_only_file (GtkWindow *parent,
 }
 
 static void
-save_finish_cb (XedTab       *tab,
-                GAsyncResult *result,
-                gpointer      user_data)
+tab_save_as_ready_cb (XedTab     *tab,
+                      GAsyncResult *result,
+                      GTask        *task)
 {
-    _xed_tab_save_finish (tab, result);
+    gboolean success = _xed_tab_save_finish (tab, result);
+    g_task_return_boolean (task, success);
+    g_object_unref (task);
 }
 
 static void
 save_dialog_response_cb (XedFileChooserDialog *dialog,
                          gint                  response_id,
-                         XedWindow            *window)
+                         GTask                *task)
 {
     XedTab *tab;
-    gpointer data;
-    GSList *tabs_to_save_as;
+    XedWindow *window;
+    XedDocument *doc;
+    GtkSourceFile *file;
+    GFile *location;
+    gchar *parse_name;
+    GtkSourceNewlineType newline_type;
+    const GtkSourceEncoding *encoding;
 
     xed_debug (DEBUG_COMMANDS);
 
-    tab = XED_TAB (g_object_get_data (G_OBJECT (dialog), XED_TAB_TO_SAVE_AS));
+    tab = g_task_get_source_object (task);
+    window = g_task_get_task_data (task);
 
     if (response_id != GTK_RESPONSE_OK)
     {
         gtk_widget_destroy (GTK_WIDGET (dialog));
 
-        goto save_next_tab;
-    }
-
-    if (tab != NULL)
-    {
-        GFile *location;
-        XedDocument *doc;
-        gchar *parse_name;
-        GtkSourceNewlineType newline_type;
-        const GtkSourceEncoding *encoding;
-
-        doc = xed_tab_get_document (tab);
-
-        location = gtk_file_chooser_get_file (GTK_FILE_CHOOSER (dialog));
-        g_return_if_fail (location != NULL);
-
-        encoding = xed_file_chooser_dialog_get_encoding (dialog);
-        newline_type = xed_file_chooser_dialog_get_newline_type (dialog);
-
-        gtk_widget_destroy (GTK_WIDGET (dialog));
-
-        doc = xed_tab_get_document (tab);
-        g_return_if_fail (XED_IS_DOCUMENT (doc));
-
-        parse_name = g_file_get_parse_name (location);
-
-        xed_statusbar_flash_message (XED_STATUSBAR (window->priv->statusbar),
-                                     window->priv->generic_message_cid,
-                                     _("Saving file '%s'\342\200\246"),
-                                     parse_name);
-
-        g_free (parse_name);
-
-        /* let's remember the dir we navigated too,
-         * even if the saving fails... */
-         _xed_window_set_default_location (window, location);
-
-        _xed_tab_save_as_async (tab,
-                                location,
-                                encoding,
-                                newline_type,
-                                NULL,
-                                (GAsyncReadyCallback) save_finish_cb,
-                                NULL);
-
-        g_object_unref (location);
-    }
-
-save_next_tab:
-
-    data = g_object_get_data (G_OBJECT (window), XED_LIST_OF_TABS_TO_SAVE_AS);
-    if (data == NULL)
-    {
+        g_task_return_boolean (task, FALSE);
+        g_object_unref (task);
         return;
     }
 
-    /* Save As the next tab of the list (we are Saving All files) */
-    tabs_to_save_as = (GSList *)data;
-    g_return_if_fail (tab == XED_TAB (tabs_to_save_as->data));
+    doc = xed_tab_get_document (tab);
+    location = gtk_file_chooser_get_file (GTK_FILE_CHOOSER (dialog));
+    g_return_if_fail (location != NULL);
 
-    /* Remove the first item of the list */
-    tabs_to_save_as = g_slist_delete_link (tabs_to_save_as, tabs_to_save_as);
+    encoding = xed_file_chooser_dialog_get_encoding (dialog);
+    newline_type = xed_file_chooser_dialog_get_newline_type (dialog);
 
-    g_object_set_data (G_OBJECT (window), XED_LIST_OF_TABS_TO_SAVE_AS, tabs_to_save_as);
+    gtk_widget_destroy (GTK_WIDGET (dialog));
 
-    if (tabs_to_save_as != NULL)
-    {
-        tab = XED_TAB (tabs_to_save_as->data);
+    parse_name = g_file_get_parse_name (location);
 
-        if (GPOINTER_TO_BOOLEAN (g_object_get_data (G_OBJECT (tab), XED_IS_CLOSING_TAB)) == TRUE)
-        {
-            g_object_set_data (G_OBJECT (tab), XED_IS_CLOSING_TAB, NULL);
+    xed_statusbar_flash_message (XED_STATUSBAR (window->priv->statusbar),
+                                 window->priv->generic_message_cid,
+                                 _("Saving file '%s'\342\200\246"),
+                                 parse_name);
 
-            /* Trace tab state changes */
-            g_signal_connect (tab, "notify::state", G_CALLBACK (tab_state_changed_while_saving), window);
-        }
+    g_free (parse_name);
 
-        xed_window_set_active_tab (window, tab);
-        save_as_tab (tab, window);
-    }
+        /* let's remember the dir we navigated too, even if the saving fails... */
+    _xed_window_set_default_location (window, location);
+
+    _xed_tab_save_as_async (tab,
+                            location,
+                            encoding,
+                            newline_type,
+                            g_task_get_cancellable (task),
+                            (GAsyncReadyCallback) tab_save_as_ready_cb,
+                            task);
+
+    g_object_unref (location);
 }
 
 static GtkFileChooserConfirmation
@@ -663,16 +622,20 @@ confirm_overwrite_callback (GtkFileChooser *dialog,
     return res;
 }
 
+/* Call save_as_tab_finish() in @callback. */
 static void
-save_as_tab (XedTab    *tab,
-             XedWindow *window)
+save_as_tab_async (XedTab              *tab,
+                   XedWindow           *window,
+                   GCancellable        *cancellable,
+                   GAsyncReadyCallback  callback,
+                   gpointer             user_data)
 {
+    GTask *task;
     GtkWidget *save_dialog;
     GtkWindowGroup *wg;
     XedDocument *doc;
     GtkSourceFile *file;
     GFile *location;
-    gboolean uri_set = FALSE;
     const GtkSourceEncoding *encoding;
     GtkSourceNewlineType newline_type;
 
@@ -680,6 +643,9 @@ save_as_tab (XedTab    *tab,
     g_return_if_fail (XED_IS_WINDOW (window));
 
     xed_debug (DEBUG_COMMANDS);
+
+    task = g_task_new (tab, cancellable, callback, user_data);
+    g_task_set_task_data (task, g_object_ref (window), g_object_unref);
 
     save_dialog = xed_file_chooser_dialog_new (_("Save As\342\200\246"),
                                                GTK_WINDOW (window),
@@ -706,11 +672,11 @@ save_as_tab (XedTab    *tab,
 
     if (location != NULL)
     {
-        uri_set = gtk_file_chooser_set_file (GTK_FILE_CHOOSER (save_dialog), location, NULL);
+        gtk_file_chooser_set_file (GTK_FILE_CHOOSER (save_dialog), location, NULL);
     }
 
 
-    if (!uri_set)
+    else
     {
         GFile *default_path;
         gchar *docname;
@@ -734,7 +700,7 @@ save_as_tab (XedTab    *tab,
         g_free (docname);
     }
 
-    /* Set suggested encoding */
+    /* Set suggested encoding and newline type */
     encoding = gtk_source_file_get_encoding (file);
 
     if (encoding == NULL)
@@ -748,39 +714,94 @@ save_as_tab (XedTab    *tab,
 
     xed_file_chooser_dialog_set_newline_type (XED_FILE_CHOOSER_DIALOG (save_dialog), newline_type);
 
-    g_object_set_data (G_OBJECT (save_dialog), XED_TAB_TO_SAVE_AS, tab);
-
-    g_signal_connect (save_dialog, "response", G_CALLBACK (save_dialog_response_cb), window);
+    g_signal_connect (save_dialog, "response", G_CALLBACK (save_dialog_response_cb), task);
 
     gtk_widget_show (save_dialog);
 }
 
-static void
-save_tab (XedTab    *tab,
-          XedWindow *window)
+static gboolean
+save_as_tab_finish (XedTab       *tab,
+                    GAsyncResult *result)
 {
-    XedDocument *doc;
+   g_return_val_if_fail (g_task_is_valid (result, tab), FALSE);
+
+   return g_task_propagate_boolean (G_TASK (result), NULL);
+}
+
+static void
+save_as_tab_ready_cb (XedTab       *tab,
+                      GAsyncResult *result,
+                      GTask        *task)
+{
+    gboolean success = save_as_tab_finish (tab, result);
+
+    g_task_return_boolean (task, success);
+    g_object_unref (task);
+}
+
+static void
+tab_save_ready_cb (XedTab       *tab,
+                   GAsyncResult *result,
+                   GTask        *task)
+{
+    gboolean success = _xed_tab_save_finish (tab, result);
+
+    g_task_return_boolean (task, success);
+    g_object_unref (task);
+}
+
+/**
+ * xed_commands_save_document_async:
+ * @document: the #XedDocument to save.
+ * @window: a #XedWindow.
+ * @cancellable: (nullable): optional #GCancellable object, %NULL to ignore.
+ * @callback: (scope async): a #GAsyncReadyCallback to call when the operation
+ *   is finished.
+ * @user_data: (closure): the data to pass to the @callback function.
+ *
+ * Asynchronously save the @document. @document must belong to @window. The
+ * source object of the async task is @document (which will be the first
+ * parameter of the #GAsyncReadyCallback).
+ *
+ * When the operation is finished, @callback will be called. You can then call
+ * xed_commands_save_document_finish() to get the result of the operation.
+ */
+void
+xed_commands_save_document_async (XedDocument         *document,
+                                  XedWindow           *window,
+                                  GCancellable        *cancellable,
+                                  GAsyncReadyCallback  callback,
+                                  gpointer             user_data)
+{
+    GTask *task;
+    XedTab *tab;
     gchar *uri_for_display;
 
     xed_debug (DEBUG_COMMANDS);
 
-    g_return_if_fail (XED_IS_TAB (tab));
+    g_return_if_fail (XED_IS_DOCUMENT (document));
     g_return_if_fail (XED_IS_WINDOW (window));
+    g_return_if_fail (cancellable == NULL || G_IS_CANCELLABLE (cancellable));
 
-    doc = xed_tab_get_document (tab);
-    g_return_if_fail (XED_IS_DOCUMENT (doc));
+    task = g_task_new (document, cancellable, callback, user_data);
 
-    if (xed_document_is_untitled (doc) ||
-        xed_document_get_readonly (doc))
+    tab = xed_tab_get_from_document (document);
+
+    if (xed_document_is_untitled (document) ||
+        xed_document_get_readonly (document))
     {
         xed_debug_message (DEBUG_COMMANDS, "Untitled or Readonly");
 
-        save_as_tab (tab, window);
+        save_as_tab_async (tab,
+                           window,
+                           cancellable,
+                           (GAsyncReadyCallback) save_as_tab_ready_cb,
+                           task);
 
         return;
     }
 
-    uri_for_display = xed_document_get_uri_for_display (doc);
+    uri_for_display = xed_document_get_uri_for_display (document);
     xed_statusbar_flash_message (XED_STATUSBAR (window->priv->statusbar),
                                  window->priv->generic_message_cid,
                                  _("Saving file '%s'\342\200\246"),
@@ -789,9 +810,53 @@ save_tab (XedTab    *tab,
     g_free (uri_for_display);
 
     _xed_tab_save_async (tab,
-                         NULL,
-                         (GAsyncReadyCallback) save_finish_cb,
-                         NULL);
+                         cancellable,
+                         (GAsyncReadyCallback) tab_save_ready_cb,
+                         task);
+}
+
+/**
+ * xed_commands_save_document_finish:
+ * @document: a #XedDocument.
+ * @result: a #GAsyncResult.
+ *
+ * Finishes an asynchronous document saving operation started with
+ * xed_commands_save_document_async().
+ *
+ * Note that there is no error parameter because the errors are already handled
+ * by xed.
+ *
+ * Returns: %TRUE if the document has been correctly saved, %FALSE otherwise.
+ */
+gboolean
+xed_commands_save_document_finish (XedDocument  *document,
+                                   GAsyncResult *result)
+{
+    g_return_val_if_fail (g_task_is_valid (result, document), FALSE);
+
+    return g_task_propagate_boolean (G_TASK (result), NULL);
+}
+
+static void
+save_tab_ready_cb (XedDocument  *doc,
+                   GAsyncResult *result,
+                   gpointer      user_data)
+{
+    xed_commands_save_document_finish (doc, result);
+}
+
+/* Save tab asynchronously, but without results. */
+static void
+save_tab (XedTab    *tab,
+          XedWindow *window)
+{
+    XedDocument *doc = xed_tab_get_document (tab);
+
+    xed_commands_save_document_async (doc,
+                                      window,
+                                      NULL,
+                                      (GAsyncReadyCallback) save_tab_ready_cb,
+                                      NULL);
 }
 
 void
@@ -803,12 +868,18 @@ _xed_cmd_file_save (GtkAction *action,
     xed_debug (DEBUG_COMMANDS);
 
     tab = xed_window_get_active_tab (window);
-    if (tab == NULL)
+    if (tab != NULL)
     {
-        return;
+        save_tab (tab, window);
     }
+}
 
-    save_tab (tab, window);
+static void
+_xed_cmd_file_save_as_cb (XedTab     *tab,
+                          GAsyncResult *result,
+                          gpointer      user_data)
+{
+    save_as_tab_finish (tab, result);
 }
 
 void
@@ -820,12 +891,149 @@ _xed_cmd_file_save_as (GtkAction *action,
     xed_debug (DEBUG_COMMANDS);
 
     tab = xed_window_get_active_tab (window);
-    if (tab == NULL)
+    if (tab != NULL)
+    {
+        save_as_tab_async (tab,
+                           window,
+                           NULL,
+                           (GAsyncReadyCallback) _xed_cmd_file_save_as_cb,
+                           NULL);
+    }
+}
+
+static void
+quit_if_needed (XedWindow *window)
+{
+    gboolean is_quitting;
+    gboolean is_quitting_all;
+
+    is_quitting = GPOINTER_TO_BOOLEAN (g_object_get_data (G_OBJECT (window), XED_IS_QUITTING));
+
+    is_quitting_all = GPOINTER_TO_BOOLEAN (g_object_get_data (G_OBJECT (window), XED_IS_QUITTING_ALL));
+
+    if (is_quitting)
+    {
+       gtk_widget_destroy (GTK_WIDGET (window));
+    }
+
+    if (is_quitting_all)
+    {
+        GtkApplication *app;
+
+        app = GTK_APPLICATION (g_application_get_default ());
+
+        if (gtk_application_get_windows (app) == NULL)
+        {
+            g_application_quit (G_APPLICATION (app));
+        }
+    }
+}
+
+static gboolean
+really_close_tab (XedTab *tab)
+{
+    GtkWidget *toplevel;
+    XedWindow *window;
+
+    xed_debug (DEBUG_COMMANDS);
+
+    g_return_val_if_fail (xed_tab_get_state (tab) == XED_TAB_STATE_CLOSING, FALSE);
+
+    toplevel = gtk_widget_get_toplevel (GTK_WIDGET (tab));
+    g_return_val_if_fail (XED_IS_WINDOW (toplevel), FALSE);
+
+    window = XED_WINDOW (toplevel);
+
+    xed_window_close_tab (window, tab);
+
+    if (xed_window_get_active_tab (window) == NULL)
+    {
+        quit_if_needed (window);
+    }
+
+    return FALSE;
+}
+
+static void
+close_tab (XedTab *tab)
+{
+    XedDocument *doc;
+
+    doc = xed_tab_get_document (tab);
+    g_return_if_fail (doc != NULL);
+
+    /* If the user has modified again the document, do not close the tab. */
+    if (_xed_document_needs_saving (doc))
     {
         return;
     }
 
-    save_as_tab (tab, window);
+    /* Close the document only if it has been succesfully saved.
+     * Tab state is set to CLOSING (it is a state without exiting
+     * transitions) and the tab is closed in an idle handler.
+     */
+    _xed_tab_mark_for_closing (tab);
+
+    g_idle_add_full (G_PRIORITY_HIGH_IDLE,
+                     (GSourceFunc) really_close_tab,
+                     tab,
+                     NULL);
+}
+
+typedef struct _SaveAsData SaveAsData;
+
+struct _SaveAsData
+{
+    /* Reffed */
+    XedWindow *window;
+
+    /* List of reffed GeditTab's */
+    GSList *tabs_to_save_as;
+
+    guint close_tabs : 1;
+};
+
+static void save_as_documents_list (SaveAsData *data);
+
+static void
+save_as_documents_list_cb (XedTab       *tab,
+                           GAsyncResult *result,
+                           SaveAsData   *data)
+{
+    gboolean saved = save_as_tab_finish (tab, result);
+
+    if (saved && data->close_tabs)
+    {
+        close_tab (tab);
+    }
+
+    g_return_if_fail (tab == XED_TAB (data->tabs_to_save_as->data));
+    g_object_unref (data->tabs_to_save_as->data);
+    data->tabs_to_save_as = g_slist_delete_link (data->tabs_to_save_as, data->tabs_to_save_as);
+
+    if (data->tabs_to_save_as != NULL)
+    {
+        save_as_documents_list (data);
+    }
+    else
+    {
+       g_object_unref (data->window);
+       g_slice_free (SaveAsData, data);
+    }
+}
+
+static void
+save_as_documents_list (SaveAsData *data)
+{
+    XedTab *next_tab = XED_TAB (data->tabs_to_save_as->data);
+
+    xed_window_set_active_tab (data->window, next_tab);
+
+    save_as_tab_async (next_tab,
+                       data->window,
+                       NULL,
+                       (GAsyncReadyCallback) save_as_documents_list_cb,
+                       data);
 }
 
 /*
@@ -835,8 +1043,8 @@ static void
 save_documents_list (XedWindow *window,
                      GList     *docs)
 {
+    SaveAsData *data = NULL;
     GList *l;
-    GSList *tabs_to_save_as = NULL;
 
     xed_debug (DEBUG_COMMANDS);
 
@@ -868,9 +1076,17 @@ save_documents_list (XedWindow *window,
             if (xed_document_is_untitled (doc) || xed_document_get_readonly (doc))
             {
                 if (_xed_document_needs_saving (doc))
+                {
+                    if (data == NULL)
                     {
-                        tabs_to_save_as = g_slist_prepend (tabs_to_save_as, t);
+                        data = g_slice_new (SaveAsData);
+                        data->window = g_object_ref (window);
+                        data->tabs_to_save_as = NULL;
+                        data->close_tabs = FALSE;
                     }
+
+                    data->tabs_to_save_as = g_slist_prepend (data->tabs_to_save_as, g_object_ref (t));
+                }
             }
             else
             {
@@ -913,23 +1129,21 @@ save_documents_list (XedWindow *window,
         l = g_list_next (l);
     }
 
-    if (tabs_to_save_as != NULL)
+    if (data != NULL)
     {
-        XedTab *tab;
-
-        tabs_to_save_as = g_slist_reverse (tabs_to_save_as );
-
-        g_return_if_fail (g_object_get_data (G_OBJECT (window), XED_LIST_OF_TABS_TO_SAVE_AS) == NULL);
-
-        g_object_set_data (G_OBJECT (window), XED_LIST_OF_TABS_TO_SAVE_AS, tabs_to_save_as);
-
-        tab = XED_TAB (tabs_to_save_as->data);
-
-        xed_window_set_active_tab (window, tab);
-        save_as_tab (tab, window);
+        data->tabs_to_save_as = g_slist_reverse (data->tabs_to_save_as);
+        save_as_documents_list (data);
     }
 }
 
+/**
+ * xed_commands_save_all_documents:
+ * @window: a #XedWindow.
+ *
+ * Asynchronously save all documents belonging to @window. The result of the
+ * operation is not available, so it's difficult to know whether all the
+ * documents are correctly saved.
+ */
 void
 xed_commands_save_all_documents (XedWindow *window)
 {
@@ -953,6 +1167,14 @@ _xed_cmd_file_save_all (GtkAction *action,
     xed_commands_save_all_documents (window);
 }
 
+/**
+ * xed_commands_save_document:
+ * @window: a #XedWindow.
+ * @document: the #XedDocument to save.
+ *
+ * Asynchronously save @document. @document must belong to @window. If you need
+ * the result of the operation, use xed_commands_save_document_async().
+ */
 void
 xed_commands_save_document (XedWindow   *window,
                             XedDocument *document)
@@ -1161,39 +1383,6 @@ _xed_cmd_file_revert (GtkAction   *action,
     gtk_widget_show (dialog);
 }
 
-/* Close tab */
-static gboolean
-really_close_tab (XedTab *tab)
-{
-    GtkWidget *toplevel;
-    XedWindow *window;
-
-    xed_debug (DEBUG_COMMANDS);
-
-    g_return_val_if_fail (xed_tab_get_state (tab) == XED_TAB_STATE_CLOSING, FALSE);
-
-    toplevel = gtk_widget_get_toplevel (GTK_WIDGET (tab));
-    g_return_val_if_fail (XED_IS_WINDOW (toplevel), FALSE);
-
-    window = XED_WINDOW (toplevel);
-
-    xed_window_close_tab (window, tab);
-
-    if (xed_window_get_active_tab (window) == NULL)
-    {
-        gboolean is_quitting;
-
-        is_quitting = GPOINTER_TO_BOOLEAN (g_object_get_data (G_OBJECT (window), XED_IS_QUITTING));
-
-        if (is_quitting)
-        {
-            gtk_widget_destroy (GTK_WIDGET (window));
-        }
-    }
-
-    return FALSE;
-}
-
 static void
 tab_state_changed_while_saving (XedTab     *tab,
                                 GParamSpec *pspec,
@@ -1209,26 +1398,9 @@ tab_state_changed_while_saving (XedTab     *tab,
        finished */
     if (ts == XED_TAB_STATE_NORMAL)
     {
-        XedDocument *doc;
-
         g_signal_handlers_disconnect_by_func (tab, G_CALLBACK (tab_state_changed_while_saving), window);
 
-        doc = xed_tab_get_document (tab);
-        g_return_if_fail (doc != NULL);
-
-        /* If the saving operation failed or was interrupted, then the
-           document is still "modified" -> do not close the tab */
-        if (_xed_document_needs_saving (doc))
-        {
-            return;
-        }
-
-        /* Close the document only if it has been succesfully saved.
-           Tab state is set to CLOSING (it is a state without exiting
-           transitions) and the tab is closed in a idle handler */
-        _xed_tab_mark_for_closing (tab);
-
-        g_idle_add_full (G_PRIORITY_HIGH_IDLE, (GSourceFunc)really_close_tab, tab, NULL);
+        close_tab (tab);
     }
 }
 
@@ -1245,30 +1417,15 @@ save_and_close (XedTab    *tab,
 }
 
 static void
-save_as_and_close (XedTab    *tab,
-                   XedWindow *window)
-{
-    xed_debug (DEBUG_COMMANDS);
-
-    g_object_set_data (G_OBJECT (tab), XED_IS_CLOSING_TAB, NULL);
-
-    /* Trace tab state changes */
-    g_signal_connect (tab, "notify::state", G_CALLBACK (tab_state_changed_while_saving), window);
-
-    xed_window_set_active_tab (window, tab);
-    save_as_tab (tab, window);
-}
-
-static void
 save_and_close_all_documents (const GList *docs,
                               XedWindow   *window)
 {
     GList  *tabs;
     GList  *l;
     GSList *sl;
-    GSList *tabs_to_save_as;
-    GSList *tabs_to_save_and_close;
-    GList  *tabs_to_close;
+    SaveAsData *data = NULL;
+    GSList *tabs_to_save_and_close = NULL;
+    GList  *tabs_to_close = NULL;
 
     xed_debug (DEBUG_COMMANDS);
 
@@ -1276,18 +1433,12 @@ save_and_close_all_documents (const GList *docs,
 
     tabs = gtk_container_get_children (GTK_CONTAINER (_xed_window_get_notebook (window)));
 
-    tabs_to_save_as = NULL;
-    tabs_to_save_and_close = NULL;
-    tabs_to_close = NULL;
-
     l = tabs;
     while (l != NULL)
     {
-        XedTab *t;
+        XedTab *t = XED_TAB (l->data);;
         XedTabState state;
         XedDocument *doc;
-
-        t = XED_TAB (l->data);
 
         state = xed_tab_get_state (t);
         doc = xed_tab_get_document (t);
@@ -1337,9 +1488,15 @@ save_and_close_all_documents (const GList *docs,
                    user is running xed - Paolo (Dec. 8, 2005) */
                 if (xed_document_is_untitled (doc) || xed_document_get_readonly (doc))
                 {
-                    g_object_set_data (G_OBJECT (t), XED_IS_CLOSING_TAB, GBOOLEAN_TO_POINTER (TRUE));
+                    if (data == NULL)
+                    {
+                        data = g_slice_new (SaveAsData);
+                        data->window = g_object_ref (window);
+                        data->tabs_to_save_as = NULL;
+                        data->close_tabs = TRUE;
+                    }
 
-                    tabs_to_save_as = g_slist_prepend (tabs_to_save_as, t);
+                    data->tabs_to_save_as = g_slist_prepend (data->tabs_to_save_as, g_object_ref (t));
                 }
                 else
                 {
@@ -1371,20 +1528,11 @@ save_and_close_all_documents (const GList *docs,
     }
     g_slist_free (tabs_to_save_and_close);
 
-    /* Save As and close all the files in tabs_to_save_as  */
-    if (tabs_to_save_as != NULL)
+    /* Save As and close all the files in data->tabs_to_save_as. */
+    if (data != NULL)
     {
-        XedTab *tab;
-
-        tabs_to_save_as = g_slist_reverse (tabs_to_save_as );
-
-        g_return_if_fail (g_object_get_data (G_OBJECT (window), XED_LIST_OF_TABS_TO_SAVE_AS) == NULL);
-
-        g_object_set_data (G_OBJECT (window), XED_LIST_OF_TABS_TO_SAVE_AS, tabs_to_save_as);
-
-        tab = XED_TAB (tabs_to_save_as->data);
-
-        save_as_and_close (tab, window);
+        data->tabs_to_save_as = g_slist_reverse (data->tabs_to_save_as);
+        save_as_documents_list (data);
     }
 }
 

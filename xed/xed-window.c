@@ -20,6 +20,8 @@
 #include "xed-utils.h"
 #include "xed-commands.h"
 #include "xed-debug.h"
+#include "xed-document.h"
+#include "xed-document-private.h"
 #include "xed-panel.h"
 #include "xed-documents-panel.h"
 #include "xed-plugins-engine.h"

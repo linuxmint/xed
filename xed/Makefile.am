@@ -40,10 +40,12 @@ NOINST_H_FILES =						\
 	xed-close-button.h					\
 	xed-close-confirmation-dialog.h 	\
 	xed-dirs.h							\
+	xed-document-private.h 				\
 	xed-documents-panel.h				\
 	xed-encodings-dialog.h 				\
 	xed-history-entry.h					\
 	xed-io-error-info-bar.h				\
+	xed-metadata-manager.h 				\
 	xed-paned.h 						\
 	xed-plugins-engine.h				\
 	xed-preferences-dialog.h 			\
@@ -80,10 +82,6 @@ INST_H_FILES =							\
 	xed-window.h 						\
 	xed-window-activatable.h
 
-if !ENABLE_GVFS_METADATA
-NOINST_H_FILES += xed-metadata-manager.h
-endif
-
 headerdir = $(prefix)/include/xed
 
 header_DATA = 							\
@@ -119,6 +117,7 @@ libxed_c_files = 						\
 	xed-message-bus.c					\
 	xed-message-type.c					\
 	xed-message.c						\
+	xed-metadata-manager.c 				\
 	xed-notebook.c						\
 	xed-paned.c 						\
 	xed-panel.c							\
@@ -145,10 +144,6 @@ libxed_la_SOURCES = 					\
 	$(POSIXIO_FILES)					\
 	$(NOINST_H_FILES)					\
 	$(INST_H_FILES)
-
-if !ENABLE_GVFS_METADATA
-libxed_la_SOURCES += xed-metadata-manager.c
-endif
 
 xed-enum-types.h: xed-enum-types.h.template $(INST_H_FILES) $(GLIB_MKENUMS)
 	$(AM_V_GEN) (cd $(srcdir) && $(GLIB_MKENUMS) --template xed-enum-types.h.template $(INST_H_FILES)) > $@

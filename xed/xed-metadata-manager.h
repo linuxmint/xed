@@ -30,7 +30,7 @@
 #ifndef __XED_METADATA_MANAGER_H__
 #define __XED_METADATA_MANAGER_H__
 
-#include <glib.h>
+#include <gio/gio.h>
 
 G_BEGIN_DECLS
 
