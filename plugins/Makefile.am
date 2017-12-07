@@ -7,7 +7,8 @@ DIST_SUBDIRS =		\
 	taglist			\
 	textsize 		\
 	time			\
-	trailsave
+	trailsave		\
+	wordcompletion
 
 SUBDIRS = 			\
 	docinfo 		\
@@ -17,7 +18,8 @@ SUBDIRS = 			\
 	taglist			\
 	textsize 		\
 	time			\
-	trailsave
+	trailsave		\
+	wordcompletion
 
 if ENABLE_ENCHANT
 SUBDIRS += spell
