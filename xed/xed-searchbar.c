@@ -659,11 +659,8 @@ xed_searchbar_init (XedSearchbar *searchbar)
 {
     GtkWidget *content;
     GtkSizeGroup *size_group;
-    GtkStyleContext *context;
-    GtkCssProvider *provider;
     GtkBuilder *builder;
     gchar *root_objects[] = { "searchbar_content", NULL };
-    const gchar *data = ".button {padding: 0;}";
 
     searchbar->priv = XED_SEARCHBAR_GET_PRIVATE (searchbar);
 
@@ -709,10 +706,7 @@ xed_searchbar_init (XedSearchbar *searchbar)
     gtk_label_set_mnemonic_widget (GTK_LABEL (searchbar->priv->search_label), searchbar->priv->search_entry);
     gtk_label_set_mnemonic_widget (GTK_LABEL (searchbar->priv->replace_label), searchbar->priv->replace_entry);
 
-    provider = gtk_css_provider_new ();
-    context = gtk_widget_get_style_context (searchbar->priv->close_button);
-    gtk_css_provider_load_from_data (provider, data, -1, NULL);
-    gtk_style_context_add_provider (context, GTK_STYLE_PROVIDER (provider), GTK_STYLE_PROVIDER_PRIORITY_APPLICATION);
+    gtk_style_context_add_class (gtk_widget_get_style_context (searchbar->priv->close_button), "close-button");
 
     size_group = gtk_size_group_new (GTK_SIZE_GROUP_HORIZONTAL);
     gtk_size_group_add_widget (size_group, GTK_WIDGET (searchbar->priv->find_button));
