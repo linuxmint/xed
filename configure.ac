@@ -94,7 +94,7 @@ dnl ================================================================
 dnl spell plugins checks: enchant and iso-codes
 dnl ================================================================
 
-ENCHANT_REQUIRED=1.2.0
+ENCHANT_REQUIRED=1.6.0
 ISO_CODES_REQUIRED=0.35
 
 AC_ARG_ENABLE([spell],

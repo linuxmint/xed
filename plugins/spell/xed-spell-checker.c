@@ -465,7 +465,7 @@ xed_spell_checker_add_word_to_personal (XedSpellChecker *spell,
         len = strlen (word);
     }
 
-    enchant_dict_add_to_pwl (spell->dict, word, len);
+    enchant_dict_add (spell->dict, word, len);
 
     g_signal_emit (G_OBJECT (spell), signals[ADD_WORD_TO_PERSONAL], 0, word, len);
 
