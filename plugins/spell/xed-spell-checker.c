@@ -44,27 +44,27 @@
 
 struct _XedSpellChecker
 {
-	GObject parent_instance;
+    GObject parent_instance;
 
-	EnchantDict                     *dict;
-	EnchantBroker                   *broker;
-	const XedSpellCheckerLanguage *active_lang;
+    EnchantDict                     *dict;
+    EnchantBroker                   *broker;
+    const XedSpellCheckerLanguage *active_lang;
 };
 
 /* GObject properties */
 enum {
-	PROP_0 = 0,
-	PROP_LANGUAGE,
-	LAST_PROP
+    PROP_0 = 0,
+    PROP_LANGUAGE,
+    LAST_PROP
 };
 
 /* Signals */
 enum {
-	ADD_WORD_TO_PERSONAL = 0,
-	ADD_WORD_TO_SESSION,
-	SET_LANGUAGE,
-	CLEAR_SESSION,
-	LAST_SIGNAL
+    ADD_WORD_TO_PERSONAL = 0,
+    ADD_WORD_TO_SESSION,
+    SET_LANGUAGE,
+    CLEAR_SESSION,
+    LAST_SIGNAL
 };
 
 static guint signals[LAST_SIGNAL] = { 0 };
@@ -72,415 +72,453 @@ static guint signals[LAST_SIGNAL] = { 0 };
 G_DEFINE_TYPE(XedSpellChecker, xed_spell_checker, G_TYPE_OBJECT)
 
 static void
-xed_spell_checker_set_property (GObject *object,
-			   guint prop_id,
-			   const GValue *value,
-			   GParamSpec *pspec)
+xed_spell_checker_set_property (GObject      *object,
+                                guint         prop_id,
+                                const GValue *value,
+                                GParamSpec   *pspec)
 {
-	/*
-	XedSpellChecker *spell = XED_SPELL_CHECKER (object);
-	*/
+    /*
+    XedSpellChecker *spell = XED_SPELL_CHECKER (object);
+    */
 
-	switch (prop_id)
-	{
-		case PROP_LANGUAGE:
-			/* TODO */
-			break;
-		default:
-			G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
-	}
+    switch (prop_id)
+    {
+        case PROP_LANGUAGE:
+            /* TODO */
+            break;
+        default:
+            G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
+    }
 }
 
 static void
-xed_spell_checker_get_property (GObject *object,
-			   guint prop_id,
-			   GValue *value,
-			   GParamSpec *pspec)
+xed_spell_checker_get_property (GObject    *object,
+                                guint       prop_id,
+                                GValue     *value,
+                                GParamSpec *pspec)
 {
-	/*
-	XedSpellChecker *spell = XED_SPELL_CHECKER (object);
-	*/
+    /*
+    XedSpellChecker *spell = XED_SPELL_CHECKER (object);
+    */
 
-	switch (prop_id)
-	{
-		case PROP_LANGUAGE:
-			/* TODO */
-		default:
-			G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
-	}
+    switch (prop_id)
+    {
+        case PROP_LANGUAGE:
+            /* TODO */
+        default:
+            G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
+    }
 }
 
 static void
 xed_spell_checker_finalize (GObject *object)
 {
-	XedSpellChecker *spell_checker;
+    XedSpellChecker *spell_checker;
 
-	g_return_if_fail (XED_IS_SPELL_CHECKER (object));
+    g_return_if_fail (XED_IS_SPELL_CHECKER (object));
 
-	spell_checker = XED_SPELL_CHECKER (object);
+    spell_checker = XED_SPELL_CHECKER (object);
 
-	if (spell_checker->dict != NULL)
-		enchant_broker_free_dict (spell_checker->broker, spell_checker->dict);
+    if (spell_checker->dict != NULL)
+    {
+        enchant_broker_free_dict (spell_checker->broker, spell_checker->dict);
+    }
 
-	if (spell_checker->broker != NULL)
-		enchant_broker_free (spell_checker->broker);
+    if (spell_checker->broker != NULL)
+    {
+        enchant_broker_free (spell_checker->broker);
+    }
 
-	G_OBJECT_CLASS (xed_spell_checker_parent_class)->finalize (object);
+    G_OBJECT_CLASS (xed_spell_checker_parent_class)->finalize (object);
 }
 
 static void
-xed_spell_checker_class_init (XedSpellCheckerClass * klass)
+xed_spell_checker_class_init (XedSpellCheckerClass *klass)
 {
-	GObjectClass *object_class;
+    GObjectClass *object_class;
 
-	object_class = G_OBJECT_CLASS (klass);
+    object_class = G_OBJECT_CLASS (klass);
 
-	object_class->set_property = xed_spell_checker_set_property;
-	object_class->get_property = xed_spell_checker_get_property;
+    object_class->set_property = xed_spell_checker_set_property;
+    object_class->get_property = xed_spell_checker_get_property;
 
-	object_class->finalize = xed_spell_checker_finalize;
+    object_class->finalize = xed_spell_checker_finalize;
 
-	g_object_class_install_property (object_class,
-					 PROP_LANGUAGE,
-					 g_param_spec_pointer ("language",
-						 	      "Language",
-							      "The language used by the spell checker",
-							      G_PARAM_READWRITE));
+    g_object_class_install_property (object_class,
+                                     PROP_LANGUAGE,
+                                     g_param_spec_pointer ("language",
+                                                           "Language",
+                                                           "The language used by the spell checker",
+                                                           G_PARAM_READWRITE));
 
-	signals[ADD_WORD_TO_PERSONAL] =
-	    g_signal_new ("add_word_to_personal",
-			  G_OBJECT_CLASS_TYPE (object_class),
-			  G_SIGNAL_RUN_LAST,
-			  G_STRUCT_OFFSET (XedSpellCheckerClass, add_word_to_personal),
-			  NULL, NULL,
-			  xed_marshal_VOID__STRING_INT,
-			  G_TYPE_NONE,
-			  2,
-			  G_TYPE_STRING,
-			  G_TYPE_INT);
+    signals[ADD_WORD_TO_PERSONAL] =
+        g_signal_new ("add_word_to_personal",
+                      G_OBJECT_CLASS_TYPE (object_class),
+                      G_SIGNAL_RUN_LAST,
+                      G_STRUCT_OFFSET (XedSpellCheckerClass, add_word_to_personal),
+                      NULL, NULL,
+                      xed_marshal_VOID__STRING_INT,
+                      G_TYPE_NONE,
+                      2,
+                      G_TYPE_STRING,
+                      G_TYPE_INT);
 
-	signals[ADD_WORD_TO_SESSION] =
-	    g_signal_new ("add_word_to_session",
-			  G_OBJECT_CLASS_TYPE (object_class),
-			  G_SIGNAL_RUN_LAST,
-			  G_STRUCT_OFFSET (XedSpellCheckerClass, add_word_to_session),
-			  NULL, NULL,
-			  xed_marshal_VOID__STRING_INT,
-			  G_TYPE_NONE,
-			  2,
-			  G_TYPE_STRING,
-			  G_TYPE_INT);
+    signals[ADD_WORD_TO_SESSION] =
+        g_signal_new ("add_word_to_session",
+                      G_OBJECT_CLASS_TYPE (object_class),
+                      G_SIGNAL_RUN_LAST,
+                      G_STRUCT_OFFSET (XedSpellCheckerClass, add_word_to_session),
+                      NULL, NULL,
+                      xed_marshal_VOID__STRING_INT,
+                      G_TYPE_NONE,
+                      2,
+                      G_TYPE_STRING,
+                      G_TYPE_INT);
 
-	signals[SET_LANGUAGE] =
-	    g_signal_new ("set_language",
-			  G_OBJECT_CLASS_TYPE (object_class),
-			  G_SIGNAL_RUN_LAST,
-			  G_STRUCT_OFFSET (XedSpellCheckerClass, set_language),
-			  NULL, NULL,
-			  xed_marshal_VOID__POINTER,
-			  G_TYPE_NONE,
-			  1,
-			  G_TYPE_POINTER);
+    signals[SET_LANGUAGE] =
+        g_signal_new ("set_language",
+                      G_OBJECT_CLASS_TYPE (object_class),
+                      G_SIGNAL_RUN_LAST,
+                      G_STRUCT_OFFSET (XedSpellCheckerClass, set_language),
+                      NULL, NULL,
+                      xed_marshal_VOID__POINTER,
+                      G_TYPE_NONE,
+                      1,
+                      G_TYPE_POINTER);
 
-	signals[CLEAR_SESSION] =
-	    g_signal_new ("clear_session",
-			  G_OBJECT_CLASS_TYPE (object_class),
-			  G_SIGNAL_RUN_LAST,
-			  G_STRUCT_OFFSET (XedSpellCheckerClass, clear_session),
-			  NULL, NULL,
-			  xed_marshal_VOID__VOID,
-			  G_TYPE_NONE,
-			  0);
+    signals[CLEAR_SESSION] =
+        g_signal_new ("clear_session",
+                      G_OBJECT_CLASS_TYPE (object_class),
+                      G_SIGNAL_RUN_LAST,
+                      G_STRUCT_OFFSET (XedSpellCheckerClass, clear_session),
+                      NULL, NULL,
+                      xed_marshal_VOID__VOID,
+                      G_TYPE_NONE,
+                      0);
 }
 
 static void
 xed_spell_checker_init (XedSpellChecker *spell_checker)
 {
-	spell_checker->broker = enchant_broker_init ();
-	spell_checker->dict = NULL;
-	spell_checker->active_lang = NULL;
+    spell_checker->broker = enchant_broker_init ();
+    spell_checker->dict = NULL;
+    spell_checker->active_lang = NULL;
 }
 
 XedSpellChecker *
-xed_spell_checker_new	(void)
+xed_spell_checker_new (void)
 {
-	XedSpellChecker *spell;
+    XedSpellChecker *spell;
 
-	spell = XED_SPELL_CHECKER (
-			g_object_new (XED_TYPE_SPELL_CHECKER, NULL));
+    spell = XED_SPELL_CHECKER (g_object_new (XED_TYPE_SPELL_CHECKER, NULL));
 
-	g_return_val_if_fail (spell != NULL, NULL);
+    g_return_val_if_fail (spell != NULL, NULL);
 
-	return spell;
+    return spell;
 }
 
 static gboolean
 lazy_init (XedSpellChecker               *spell,
-	   const XedSpellCheckerLanguage *language)
+           const XedSpellCheckerLanguage *language)
 {
-	if (spell->dict != NULL)
-		return TRUE;
+    if (spell->dict != NULL)
+    {
+        return TRUE;
+    }
 
-	g_return_val_if_fail (spell->broker != NULL, FALSE);
+    g_return_val_if_fail (spell->broker != NULL, FALSE);
 
-	spell->active_lang = NULL;
+    spell->active_lang = NULL;
 
-	if (language != NULL)
-	{
-		spell->active_lang = language;
-	}
-	else
-	{
-		/* First try to get a default language */
-		const XedSpellCheckerLanguage *l;
-		gint i = 0;
-		const gchar * const *lang_tags = g_get_language_names ();
+    if (language != NULL)
+    {
+        spell->active_lang = language;
+    }
+    else
+    {
+        /* First try to get a default language */
+        const XedSpellCheckerLanguage *l;
+        gint i = 0;
+        const gchar * const *lang_tags = g_get_language_names ();
 
-		while (lang_tags [i])
-		{
-			l = xed_spell_checker_language_from_key (lang_tags [i]);
+        while (lang_tags [i])
+        {
+            l = xed_spell_checker_language_from_key (lang_tags [i]);
 
-			if (l != NULL)
-			{
-				spell->active_lang = l;
-				break;
-			}
+            if (l != NULL)
+            {
+                spell->active_lang = l;
+                break;
+            }
 
-			i++;
-		}
-	}
+            i++;
+        }
+    }
 
-	/* Second try to get a default language */
-	if (spell->active_lang == NULL)
-		spell->active_lang = xed_spell_checker_language_from_key ("en_US");
+    /* Second try to get a default language */
+    if (spell->active_lang == NULL)
+    {
+        spell->active_lang = xed_spell_checker_language_from_key ("en_US");
+    }
 
-	/* Last try to get a default language */
-	if (spell->active_lang == NULL)
-	{
-		const GSList *langs;
-		langs = xed_spell_checker_get_available_languages ();
-		if (langs != NULL)
-			spell->active_lang = (const XedSpellCheckerLanguage *)langs->data;
-	}
+    /* Last try to get a default language */
+    if (spell->active_lang == NULL)
+    {
+        const GSList *langs;
+        langs = xed_spell_checker_get_available_languages ();
+        if (langs != NULL)
+        {
+            spell->active_lang = (const XedSpellCheckerLanguage *)langs->data;
+        }
+    }
 
-	if (spell->active_lang != NULL)
-	{
-		const gchar *key;
+    if (spell->active_lang != NULL)
+    {
+        const gchar *key;
 
-		key = xed_spell_checker_language_to_key (spell->active_lang);
+        key = xed_spell_checker_language_to_key (spell->active_lang);
 
-		spell->dict = enchant_broker_request_dict (spell->broker,
-							   key);
-	}
+        spell->dict = enchant_broker_request_dict (spell->broker, key);
+    }
 
-	if (spell->dict == NULL)
-	{
-		spell->active_lang = NULL;
+    if (spell->dict == NULL)
+    {
+        spell->active_lang = NULL;
 
-		if (language != NULL)
-			g_warning ("Spell checker plugin: cannot select a default language.");
+        if (language != NULL)
+        {
+            g_warning ("Spell checker plugin: cannot select a default language.");
+        }
 
-		return FALSE;
-	}
+        return FALSE;
+    }
 
-	return TRUE;
+    return TRUE;
 }
 
 gboolean
 xed_spell_checker_set_language (XedSpellChecker               *spell,
-				  const XedSpellCheckerLanguage *language)
+                                const XedSpellCheckerLanguage *language)
 {
-	gboolean ret;
+    gboolean ret;
 
-	g_return_val_if_fail (XED_IS_SPELL_CHECKER (spell), FALSE);
+    g_return_val_if_fail (XED_IS_SPELL_CHECKER (spell), FALSE);
 
-	if (spell->dict != NULL)
-	{
-		enchant_broker_free_dict (spell->broker, spell->dict);
-		spell->dict = NULL;
-	}
+    if (spell->dict != NULL)
+    {
+        enchant_broker_free_dict (spell->broker, spell->dict);
+        spell->dict = NULL;
+    }
 
-	ret = lazy_init (spell, language);
+    ret = lazy_init (spell, language);
 
-	if (ret)
-		g_signal_emit (G_OBJECT (spell), signals[SET_LANGUAGE], 0, language);
-	else
-		g_warning ("Spell checker plugin: cannot use language %s.",
-		           xed_spell_checker_language_to_string (language));
-
-	return ret;
+    if (ret)
+    {
+        g_signal_emit (G_OBJECT (spell), signals[SET_LANGUAGE], 0, language);
+    }
+    else
+    {
+        g_warning ("Spell checker plugin: cannot use language %s.", xed_spell_checker_language_to_string (language));
+    }
+    
+    return ret;
 }
 
 const XedSpellCheckerLanguage *
 xed_spell_checker_get_language (XedSpellChecker *spell)
 {
-	g_return_val_if_fail (XED_IS_SPELL_CHECKER (spell), NULL);
+    g_return_val_if_fail (XED_IS_SPELL_CHECKER (spell), NULL);
 
-	if (!lazy_init (spell, spell->active_lang))
-		return NULL;
+    if (!lazy_init (spell, spell->active_lang))
+    {
+        return NULL;
+    }
 
-	return spell->active_lang;
+    return spell->active_lang;
 }
 
 gboolean
 xed_spell_checker_check_word (XedSpellChecker *spell,
-				const gchar       *word,
-				gssize             len)
+                              const gchar     *word,
+                              gssize           len)
 {
-	gint enchant_result;
-	gboolean res = FALSE;
+    gint enchant_result;
+    gboolean res = FALSE;
 
-	g_return_val_if_fail (XED_IS_SPELL_CHECKER (spell), FALSE);
-	g_return_val_if_fail (word != NULL, FALSE);
+    g_return_val_if_fail (XED_IS_SPELL_CHECKER (spell), FALSE);
+    g_return_val_if_fail (word != NULL, FALSE);
 
-	if (!lazy_init (spell, spell->active_lang))
-		return FALSE;
+    if (!lazy_init (spell, spell->active_lang))
+    {
+        return FALSE;
+    }
 
-	if (len < 0)
-		len = strlen (word);
+    if (len < 0)
+    {
+        len = strlen (word);
+    }
 
-	if (strcmp (word, "xed") == 0)
-		return TRUE;
+    if (strcmp (word, "xed") == 0)
+    {
+        return TRUE;
+    }
 
-	if (xed_spell_utils_is_digit (word, len))
-		return TRUE;
+    if (xed_spell_utils_is_digit (word, len))
+    {
+        return TRUE;
+    }
 
-	g_return_val_if_fail (spell->dict != NULL, FALSE);
-	enchant_result = enchant_dict_check (spell->dict, word, len);
+    g_return_val_if_fail (spell->dict != NULL, FALSE);
+    enchant_result = enchant_dict_check (spell->dict, word, len);
 
-	switch (enchant_result)
-	{
-		case -1:
-			/* error */
-			res = FALSE;
+    switch (enchant_result)
+    {
+        case -1:
+            /* error */
+            res = FALSE;
 
-			g_warning ("Spell checker plugin: error checking word '%s' (%s).",
-				   word, enchant_dict_get_error (spell->dict));
+            g_warning ("Spell checker plugin: error checking word '%s' (%s).",
+                   word, enchant_dict_get_error (spell->dict));
 
-			break;
-		case 1:
-			/* it is not in the directory */
-			res = FALSE;
-			break;
-		case 0:
-			/* is is in the directory */
-			res = TRUE;
-			break;
-		default:
-			g_return_val_if_reached (FALSE);
-	}
+            break;
+        case 1:
+            /* it is not in the directory */
+            res = FALSE;
+            break;
+        case 0:
+            /* is is in the directory */
+            res = TRUE;
+            break;
+        default:
+            g_return_val_if_reached (FALSE);
+    }
 
-	return res;
+    return res;
 }
 
 
 /* return NULL on error or if no suggestions are found */
 GSList *
 xed_spell_checker_get_suggestions (XedSpellChecker *spell,
-				     const gchar       *word,
-				     gssize             len)
+                                   const gchar     *word,
+                                   gssize           len)
 {
-	gchar **suggestions;
-	size_t n_suggestions = 0;
-	GSList *suggestions_list = NULL;
-	gint i;
+    gchar **suggestions;
+    size_t n_suggestions = 0;
+    GSList *suggestions_list = NULL;
+    gint i;
 
-	g_return_val_if_fail (XED_IS_SPELL_CHECKER (spell), NULL);
-	g_return_val_if_fail (word != NULL, NULL);
+    g_return_val_if_fail (XED_IS_SPELL_CHECKER (spell), NULL);
+    g_return_val_if_fail (word != NULL, NULL);
 
-	if (!lazy_init (spell, spell->active_lang))
-		return NULL;
+    if (!lazy_init (spell, spell->active_lang))
+    {
+        return NULL;
+    }
 
-	g_return_val_if_fail (spell->dict != NULL, NULL);
+    g_return_val_if_fail (spell->dict != NULL, NULL);
 
-	if (len < 0)
-		len = strlen (word);
+    if (len < 0)
+    {
+        len = strlen (word);
+    }
 
-	suggestions = enchant_dict_suggest (spell->dict, word, len, &n_suggestions);
+    suggestions = enchant_dict_suggest (spell->dict, word, len, &n_suggestions);
 
-	if (n_suggestions == 0)
-		return NULL;
+    if (n_suggestions == 0)
+    {
+        return NULL;
+    }
 
-	g_return_val_if_fail (suggestions != NULL, NULL);
+    g_return_val_if_fail (suggestions != NULL, NULL);
 
-	for (i = 0; i < (gint)n_suggestions; i++)
-	{
-		suggestions_list = g_slist_prepend (suggestions_list,
-						    suggestions[i]);
-	}
+    for (i = 0; i < (gint)n_suggestions; i++)
+    {
+        suggestions_list = g_slist_prepend (suggestions_list, suggestions[i]);
+    }
 
-	/* The single suggestions will be freed by the caller */
-	g_free (suggestions);
+    /* The single suggestions will be freed by the caller */
+    g_free (suggestions);
 
-	suggestions_list = g_slist_reverse (suggestions_list);
+    suggestions_list = g_slist_reverse (suggestions_list);
 
-	return suggestions_list;
+    return suggestions_list;
 }
 
 gboolean
 xed_spell_checker_add_word_to_personal (XedSpellChecker *spell,
-					  const gchar       *word,
-					  gssize             len)
+                                        const gchar     *word,
+                                        gssize           len)
 {
-	g_return_val_if_fail (XED_IS_SPELL_CHECKER (spell), FALSE);
-	g_return_val_if_fail (word != NULL, FALSE);
+    g_return_val_if_fail (XED_IS_SPELL_CHECKER (spell), FALSE);
+    g_return_val_if_fail (word != NULL, FALSE);
 
-	if (!lazy_init (spell, spell->active_lang))
-		return FALSE;
+    if (!lazy_init (spell, spell->active_lang))
+    {
+        return FALSE;
+    }
 
-	g_return_val_if_fail (spell->dict != NULL, FALSE);
+    g_return_val_if_fail (spell->dict != NULL, FALSE);
 
-	if (len < 0)
-		len = strlen (word);
+    if (len < 0)
+    {
+        len = strlen (word);
+    }
 
-	enchant_dict_add_to_pwl (spell->dict, word, len);
+    enchant_dict_add_to_pwl (spell->dict, word, len);
 
-	g_signal_emit (G_OBJECT (spell), signals[ADD_WORD_TO_PERSONAL], 0, word, len);
+    g_signal_emit (G_OBJECT (spell), signals[ADD_WORD_TO_PERSONAL], 0, word, len);
 
-	return TRUE;
+    return TRUE;
 }
 
 gboolean
 xed_spell_checker_add_word_to_session (XedSpellChecker *spell,
-					 const gchar       *word,
-					 gssize             len)
+                                       const gchar     *word,
+                                       gssize           len)
 {
-	g_return_val_if_fail (XED_IS_SPELL_CHECKER (spell), FALSE);
-	g_return_val_if_fail (word != NULL, FALSE);
+    g_return_val_if_fail (XED_IS_SPELL_CHECKER (spell), FALSE);
+    g_return_val_if_fail (word != NULL, FALSE);
 
-	if (!lazy_init (spell, spell->active_lang))
-		return FALSE;
+    if (!lazy_init (spell, spell->active_lang))
+    {
+        return FALSE;
+    }
 
-	g_return_val_if_fail (spell->dict != NULL, FALSE);
+    g_return_val_if_fail (spell->dict != NULL, FALSE);
 
-	if (len < 0)
-		len = strlen (word);
+    if (len < 0)
+    {
+        len = strlen (word);
+    }
 
-	enchant_dict_add_to_session (spell->dict, word, len);
+    enchant_dict_add_to_session (spell->dict, word, len);
 
-	g_signal_emit (G_OBJECT (spell), signals[ADD_WORD_TO_SESSION], 0, word, len);
+    g_signal_emit (G_OBJECT (spell), signals[ADD_WORD_TO_SESSION], 0, word, len);
 
-	return TRUE;
+    return TRUE;
 }
 
 gboolean
 xed_spell_checker_clear_session (XedSpellChecker *spell)
 {
-	g_return_val_if_fail (XED_IS_SPELL_CHECKER (spell), FALSE);
+    g_return_val_if_fail (XED_IS_SPELL_CHECKER (spell), FALSE);
 
-	/* free and re-request dictionary */
-	if (spell->dict != NULL)
-	{
-		enchant_broker_free_dict (spell->broker, spell->dict);
-		spell->dict = NULL;
-	}
+    /* free and re-request dictionary */
+    if (spell->dict != NULL)
+    {
+        enchant_broker_free_dict (spell->broker, spell->dict);
+        spell->dict = NULL;
+    }
 
-	if (!lazy_init (spell, spell->active_lang))
-		return FALSE;
+    if (!lazy_init (spell, spell->active_lang))
+    {
+        return FALSE;
+    }
 
-	g_signal_emit (G_OBJECT (spell), signals[CLEAR_SESSION], 0);
+    g_signal_emit (G_OBJECT (spell), signals[CLEAR_SESSION], 0);
 
-	return TRUE;
+    return TRUE;
 }
 
 /*
@@ -489,32 +527,38 @@ xed_spell_checker_clear_session (XedSpellChecker *spell)
  */
 gboolean
 xed_spell_checker_set_correction (XedSpellChecker *spell,
-				    const gchar       *word,
-				    gssize             w_len,
-				    const gchar       *replacement,
-				    gssize             r_len)
+                                  const gchar     *word,
+                                  gssize           w_len,
+                                  const gchar     *replacement,
+                                  gssize           r_len)
 {
-	g_return_val_if_fail (XED_IS_SPELL_CHECKER (spell), FALSE);
-	g_return_val_if_fail (word != NULL, FALSE);
-	g_return_val_if_fail (replacement != NULL, FALSE);
+    g_return_val_if_fail (XED_IS_SPELL_CHECKER (spell), FALSE);
+    g_return_val_if_fail (word != NULL, FALSE);
+    g_return_val_if_fail (replacement != NULL, FALSE);
 
-	if (!lazy_init (spell, spell->active_lang))
-		return FALSE;
+    if (!lazy_init (spell, spell->active_lang))
+    {
+        return FALSE;
+    }
 
-	g_return_val_if_fail (spell->dict != NULL, FALSE);
+    g_return_val_if_fail (spell->dict != NULL, FALSE);
 
-	if (w_len < 0)
-		w_len = strlen (word);
+    if (w_len < 0)
+    {
+        w_len = strlen (word);
+    }
 
-	if (r_len < 0)
-		r_len = strlen (replacement);
+    if (r_len < 0)
+    {
+        r_len = strlen (replacement);
+    }
 
-	enchant_dict_store_replacement (spell->dict,
-					word,
-					w_len,
-					replacement,
-					r_len);
+    enchant_dict_store_replacement (spell->dict,
+                                    word,
+                                    w_len,
+                                    replacement,
+                                    r_len);
 
-	return TRUE;
+    return TRUE;
 }
 
