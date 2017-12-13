@@ -543,6 +543,8 @@ button_release_cb (XedNotebook    *notebook,
                    GdkEventButton *event,
                    gpointer        data)
 {
+    gboolean ret_val = FALSE;
+
     if (notebook->priv->drag_in_progress)
     {
         gint cur_page_num;
@@ -566,11 +568,23 @@ button_release_cb (XedNotebook    *notebook,
         }
         gtk_grab_remove (GTK_WIDGET (notebook));
     }
+    else if ((event->type == GDK_BUTTON_RELEASE) && (event->button == 8))
+    {
+        gtk_notebook_prev_page (GTK_NOTEBOOK (notebook));
+
+        ret_val = TRUE;
+    }
+    else if ((event->type == GDK_BUTTON_RELEASE) && (event->button == 9))
+    {
+        gtk_notebook_next_page (GTK_NOTEBOOK (notebook));
+
+        ret_val = TRUE;
+    }
 
     /* This must be called even if a drag isn't happening */
     drag_stop (notebook);
 
-    return FALSE;
+    return ret_val;
 }
 
 static gboolean
@@ -638,12 +652,12 @@ notebook_scroll_event_cb (XedNotebook    *notebook,
     switch (event->direction)
     {
         case GDK_SCROLL_DOWN:
-        case GDK_SCROLL_RIGHT:
-            gtk_notebook_next_page (GTK_NOTEBOOK (notebook));
-            break;
-        case GDK_SCROLL_UP:
         case GDK_SCROLL_LEFT:
             gtk_notebook_prev_page (GTK_NOTEBOOK (notebook));
+            break;
+        case GDK_SCROLL_UP:
+        case GDK_SCROLL_RIGHT:
+            gtk_notebook_next_page (GTK_NOTEBOOK (notebook));
             break;
         default:
             break;
