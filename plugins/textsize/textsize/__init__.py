@@ -34,7 +34,7 @@ MENU_PATH = "/MenuBar/ViewMenu/ViewOps_1"
 class TextSizePlugin(GObject.Object, Xed.WindowActivatable):
     __gtype_name__ = "TextSizePlugin"
 
-    window = GObject.property(type=Xed.Window)
+    window = GObject.Property(type=Xed.Window)
 
     def __init__(self):
         GObject.Object.__init__(self)
@@ -119,7 +119,7 @@ class TextSizePlugin(GObject.Object, Xed.WindowActivatable):
         manager = self.window.get_ui_manager()
 
         # Create a new action group
-        self._action_group = Gtk.ActionGroup("XedTextSizePluginActions")
+        self._action_group = Gtk.ActionGroup(name="XedTextSizePluginActions")
         self._action_group.add_actions([("LargerTextAction", None, _("_Larger Text"),
                                          "<Ctrl>equal", None,
                                          self.on_larger_text_activate),
