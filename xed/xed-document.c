@@ -948,6 +948,8 @@ xed_document_set_location (XedDocument *doc,
     g_return_if_fail (XED_IS_DOCUMENT (doc));
     g_return_if_fail (G_IS_FILE (location));
 
+    priv = xed_document_get_instance_private (doc);
+
     gtk_source_file_set_location (priv->file, location);
     xed_document_set_content_type (doc, NULL);
 }
@@ -1380,7 +1382,7 @@ xed_document_get_encoding (XedDocument *doc)
 
     g_return_val_if_fail (XED_IS_DOCUMENT (doc), NULL);
 
-    xed_document_get_instance_private (doc);
+    priv = xed_document_get_instance_private (doc);
 
     return gtk_source_file_get_encoding (priv->file);
 }

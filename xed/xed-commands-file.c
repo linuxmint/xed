@@ -533,7 +533,6 @@ save_dialog_response_cb (XedFileChooserDialog *dialog,
 {
     XedTab *tab;
     XedWindow *window;
-    XedDocument *doc;
     GtkSourceFile *file;
     GFile *location;
     gchar *parse_name;
@@ -554,7 +553,6 @@ save_dialog_response_cb (XedFileChooserDialog *dialog,
         return;
     }
 
-    doc = xed_tab_get_document (tab);
     location = gtk_file_chooser_get_file (GTK_FILE_CHOOSER (dialog));
     g_return_if_fail (location != NULL);
 
