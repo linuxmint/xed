@@ -533,7 +533,6 @@ save_dialog_response_cb (XedFileChooserDialog *dialog,
 {
     XedTab *tab;
     XedWindow *window;
-    GtkSourceFile *file;
     GFile *location;
     gchar *parse_name;
     GtkSourceNewlineType newline_type;

@@ -1197,7 +1197,6 @@ create_menu_bar_and_toolbar (XedWindow *window,
     GtkUIManager *manager;
     GtkRecentManager *recent_manager;
     GError *error = NULL;
-    gchar *ui_file;
     GtkWidget *tool_item;
     GtkWidget *tool_box;
     GtkWidget *box;
@@ -2170,7 +2169,7 @@ show_overview_map_changed (GObject    *object,
     map_frame = GTK_FRAME (object);
     action = gtk_action_group_get_action (window->priv->always_sensitive_action_group, "ViewOverviewMap");
 
-    if (gtk_widget_get_visible (map_frame))
+    if (gtk_widget_get_visible (GTK_WIDGET (map_frame)))
     {
         overveiw_map_visible = TRUE;
     }
@@ -2223,7 +2222,7 @@ notebook_switch_page (GtkNotebook *book,
 
         if (window->priv->show_overview_map_id)
         {
-            g_signal_handler_disconnect (xed_view_frame_get_map_frame (_xed_tab_get_view_frame (window->priv->active_tab)), window->priv->show_overview_map_id);
+            g_signal_handler_disconnect (xed_view_frame_get_map_frame (XED_VIEW_FRAME (_xed_tab_get_view_frame (window->priv->active_tab))), window->priv->show_overview_map_id);
             window->priv->show_overview_map_id = 0;
         }
     }
@@ -2253,7 +2252,7 @@ notebook_switch_page (GtkNotebook *book,
     update_languages_menu (window);
 
     view = xed_tab_get_view (tab);
-    map_frame = xed_view_frame_get_map_frame (_xed_tab_get_view_frame (tab));
+    map_frame = xed_view_frame_get_map_frame (XED_VIEW_FRAME (_xed_tab_get_view_frame (tab)));
 
     /* sync the statusbar */
     update_cursor_position_statusbar (GTK_TEXT_BUFFER (xed_tab_get_document (tab)), window);
@@ -2361,15 +2360,6 @@ set_sensitivity_according_to_window_state (XedWindow *window)
 }
 
 static void
-update_tab_autosave (GtkWidget *widget,
-                     gpointer data)
-{
-    XedTab *tab = XED_TAB(widget);
-    gboolean *enabled = (gboolean *) data;
-    xed_tab_set_auto_save_enabled (tab, *enabled);
-}
-
-static void
 analyze_tab_state (XedTab *tab,
                    XedWindow *window)
 {
@@ -2444,7 +2434,7 @@ update_can_close (XedWindow *window)
     GList *l;
     gboolean can_close = TRUE;
 
-    tabs = xed_notebook_get_all_tabs (priv->notebook);
+    tabs = xed_notebook_get_all_tabs (XED_NOTEBOOK (priv->notebook));
 
     for (l = tabs; l != NULL; l = g_list_next (l))
     {
@@ -2947,7 +2937,7 @@ notebook_tab_removed (XedNotebook *notebook,
     --window->priv->num_tabs;
 
     view = xed_tab_get_view (tab);
-    frame = _xed_tab_get_view_frame (tab);
+    frame = XED_VIEW_FRAME (_xed_tab_get_view_frame (tab));
     doc = xed_tab_get_document (tab);
 
     g_signal_handlers_disconnect_by_func (tab, G_CALLBACK (sync_name), window);
@@ -3150,7 +3140,7 @@ side_panel_size_allocate (GtkWidget *widget,
                           GtkAllocation *allocation,
                           XedWindow *window)
 {
-    if (!xed_paned_get_is_animating (window->priv->hpaned))
+    if (!xed_paned_get_is_animating (XED_PANED (window->priv->hpaned)))
     {
         window->priv->side_panel_size = allocation->width;
     }
@@ -3161,7 +3151,7 @@ bottom_panel_size_allocate (GtkWidget *widget,
                             GtkAllocation *allocation,
                             XedWindow *window)
 {
-    if (!xed_paned_get_is_animating (window->priv->vpaned))
+    if (!xed_paned_get_is_animating (XED_PANED (window->priv->vpaned)))
     {
         window->priv->bottom_panel_size = allocation->height;
     }
@@ -3282,7 +3272,7 @@ bottom_panel_item_removed (XedPanel  *panel,
     {
         GtkAction *action;
 
-        xed_paned_close (window->priv->vpaned, 2);
+        xed_paned_close (XED_PANED (window->priv->vpaned), 2);
         gtk_revealer_set_reveal_child (GTK_REVEALER (window->priv->bottom_pane_button_revealer), FALSE);
         action = gtk_action_group_get_action (window->priv->panes_action_group, "ViewBottomPane");
         gtk_action_set_sensitive (action, FALSE);

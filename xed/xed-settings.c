@@ -283,26 +283,6 @@ on_auto_save_interval_changed (GSettings   *settings,
 }
 
 static void
-on_wrap_mode_changed (GSettings   *settings,
-                      const gchar *key,
-                      XedSettings *xs)
-{
-    GtkWrapMode wrap_mode;
-    GList *views, *l;
-
-    wrap_mode = g_settings_get_enum (settings, key);
-
-    views = xed_app_get_views (XED_APP (g_application_get_default ()));
-
-    for (l = views; l != NULL; l = g_list_next (l))
-    {
-        gtk_text_view_set_wrap_mode (GTK_TEXT_VIEW (l->data), wrap_mode);
-    }
-
-    g_list_free (views);
-}
-
-static void
 on_syntax_highlighting_changed (GSettings   *settings,
                                 const gchar *key,
                                 XedSettings *xs)
