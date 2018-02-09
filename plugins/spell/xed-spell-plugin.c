@@ -18,40 +18,28 @@
  * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA.
  */
 
-#ifdef HAVE_CONFIG_H
 #include <config.h>
-#endif
 
 #include "xed-spell-plugin.h"
-#include "xed-spell-utils.h"
 
 #include <string.h> /* For strlen */
 
 #include <glib/gi18n-lib.h>
 #include <libpeas-gtk/peas-gtk-configurable.h>
 
+#include <xed/xed-app.h>
 #include <xed/xed-window.h>
 #include <xed/xed-window-activatable.h>
 #include <xed/xed-debug.h>
-#include <xed/xed-statusbar.h>
 #include <xed/xed-utils.h>
-#include <gtksourceview/gtksource.h>
-
-#include "xed-spell-checker.h"
-#include "xed-spell-checker-dialog.h"
-#include "xed-spell-language-dialog.h"
-#include "xed-automatic-spell-checker.h"
+#include <gspell/gspell.h>
 
 #define XED_METADATA_ATTRIBUTE_SPELL_LANGUAGE "metadata::xed-spell-language"
 #define XED_METADATA_ATTRIBUTE_SPELL_ENABLED  "metadata::xed-spell-enabled"
 
-#define XED_AUTOMATIC_SPELL_VIEW "XedAutomaticSpellView"
+#define SPELL_ENABLED_STR "1"
 
 #define MENU_PATH "/MenuBar/ToolsMenu/ToolsOps_1"
-
-#define XED_SPELL_PLUGIN_GET_PRIVATE(object)(G_TYPE_INSTANCE_GET_PRIVATE ((object), \
-                                             XED_TYPE_SPELL_PLUGIN, \
-                                             XedSpellPluginPrivate))
 
 /* GSettings keys */
 #define SPELL_SCHEMA        "org.x.editor.plugins.spell"
@@ -60,39 +48,14 @@
 static void xed_window_activatable_iface_init (XedWindowActivatableInterface *iface);
 static void peas_gtk_configurable_iface_init (PeasGtkConfigurableInterface *iface);
 
-G_DEFINE_DYNAMIC_TYPE_EXTENDED (XedSpellPlugin,
-                                xed_spell_plugin,
-                                PEAS_TYPE_EXTENSION_BASE,
-                                0,
-                                G_IMPLEMENT_INTERFACE_DYNAMIC (XED_TYPE_WINDOW_ACTIVATABLE,
-                                                               xed_window_activatable_iface_init)
-                                G_IMPLEMENT_INTERFACE_DYNAMIC (PEAS_GTK_TYPE_CONFIGURABLE,
-                                                               peas_gtk_configurable_iface_init))
-
 struct _XedSpellPluginPrivate
 {
     XedWindow *window;
 
     GtkActionGroup *action_group;
     guint           ui_id;
-    guint           message_cid;
-    gulong          tab_added_id;
-    gulong          tab_removed_id;
 
     GSettings *settings;
-};
-
-typedef struct _CheckRange CheckRange;
-
-struct _CheckRange
-{
-    GtkTextMark *start_mark;
-    GtkTextMark *end_mark;
-
-    gint mw_start; /* misspelled word start */
-    gint mw_end;   /* end */
-
-    GtkTextMark *current_mark;
 };
 
 enum
@@ -101,12 +64,22 @@ enum
    PROP_WINDOW
 };
 
-static void spell_cb (GtkAction      *action,
-                      XedSpellPlugin *plugin);
+G_DEFINE_DYNAMIC_TYPE_EXTENDED (XedSpellPlugin,
+                                xed_spell_plugin,
+                                PEAS_TYPE_EXTENSION_BASE,
+                                0,
+                                G_IMPLEMENT_INTERFACE_DYNAMIC (XED_TYPE_WINDOW_ACTIVATABLE,
+                                                               xed_window_activatable_iface_init)
+                                G_IMPLEMENT_INTERFACE_DYNAMIC (PEAS_GTK_TYPE_CONFIGURABLE,
+                                                               peas_gtk_configurable_iface_init)
+                                G_ADD_PRIVATE_DYNAMIC (XedSpellPlugin))
+
+static void check_spell_cb (GtkAction      *action,
+                            XedSpellPlugin *plugin);
 static void set_language_cb (GtkAction      *action,
                              XedSpellPlugin *plugin);
-static void auto_spell_cb   (GtkAction      *action,
-                             XedSpellPlugin *plugin);
+static void inline_checker_cb (GtkAction      *action,
+                               XedSpellPlugin *plugin);
 
 /* UI actions. */
 static const GtkActionEntry action_entries[] =
@@ -116,7 +89,7 @@ static const GtkActionEntry action_entries[] =
       N_("_Check Spelling..."),
       "<shift>F7",
       N_("Check the current document for incorrect spelling"),
-      G_CALLBACK (spell_cb)
+      G_CALLBACK (check_spell_cb)
     },
 
     { "ConfigSpell",
@@ -130,12 +103,12 @@ static const GtkActionEntry action_entries[] =
 
 static const GtkToggleActionEntry toggle_action_entries[] =
 {
-    { "AutoSpell",
+    { "InlineSpellChecker",
       NULL,
       N_("_Autocheck Spelling"),
       NULL,
       N_("Automatically spell-check the current document"),
-      G_CALLBACK (auto_spell_cb),
+      G_CALLBACK (inline_checker_cb),
       FALSE
     }
 };
@@ -159,37 +132,6 @@ typedef enum
     AUTOCHECK_DOCUMENT,
     AUTOCHECK_ALWAYS
 } XedSpellPluginAutocheckType;
-
-
-
-static GQuark spell_checker_id = 0;
-static GQuark check_range_id = 0;
-
-static void
-xed_spell_plugin_init (XedSpellPlugin *plugin)
-{
-    xed_debug_message (DEBUG_PLUGINS, "XedSpellPlugin initializing");
-
-    plugin->priv = G_TYPE_INSTANCE_GET_PRIVATE (plugin, XED_TYPE_SPELL_PLUGIN, XedSpellPluginPrivate);
-
-    plugin->priv->settings = g_settings_new (SPELL_SCHEMA);
-}
-
-static void
-xed_spell_plugin_dispose (GObject *object)
-{
-    XedSpellPlugin *plugin = XED_SPELL_PLUGIN (object);
-
-    xed_debug_message (DEBUG_PLUGINS, "XedSpellPlugin disposing");
-
-    g_clear_object (&plugin->priv->settings);
-    g_clear_object (&plugin->priv->window);
-    g_clear_object (&plugin->priv->action_group);
-    g_clear_object (&plugin->priv->settings);
-
-    G_OBJECT_CLASS (xed_spell_plugin_parent_class)->dispose (object);
-}
-
 
 static void
 xed_spell_plugin_set_property (GObject      *object,
@@ -229,44 +171,94 @@ xed_spell_plugin_get_property (GObject    *object,
     }
 }
 
-
 static void
-set_spell_language_cb (XedSpellChecker               *spell,
-                       const XedSpellCheckerLanguage *lang,
-                       XedDocument                   *doc)
+xed_spell_plugin_dispose (GObject *object)
 {
-    const gchar *key;
+    XedSpellPlugin *plugin = XED_SPELL_PLUGIN (object);
 
-    g_return_if_fail (XED_IS_DOCUMENT (doc));
-    g_return_if_fail (lang != NULL);
+    xed_debug_message (DEBUG_PLUGINS, "XedSpellPlugin disposing");
 
-    key = xed_spell_checker_language_to_key (lang);
-    g_return_if_fail (key != NULL);
+    g_clear_object (&plugin->priv->settings);
+    g_clear_object (&plugin->priv->window);
+    g_clear_object (&plugin->priv->action_group);
+    g_clear_object (&plugin->priv->settings);
 
-    xed_document_set_metadata (doc, XED_METADATA_ATTRIBUTE_SPELL_LANGUAGE, key, NULL);
+    G_OBJECT_CLASS (xed_spell_plugin_parent_class)->dispose (object);
 }
 
 static void
-set_language_from_metadata (XedSpellChecker *spell,
-                            XedDocument     *doc)
+xed_spell_plugin_class_init (XedSpellPluginClass *klass)
 {
-    const XedSpellCheckerLanguage *lang = NULL;
-    gchar *value = NULL;
+    GObjectClass *object_class = G_OBJECT_CLASS (klass);
 
-    value = xed_document_get_metadata (doc, XED_METADATA_ATTRIBUTE_SPELL_LANGUAGE);
+    object_class->dispose = xed_spell_plugin_dispose;
+    object_class->set_property = xed_spell_plugin_set_property;
+    object_class->get_property = xed_spell_plugin_get_property;
 
-    if (value != NULL)
+    g_object_class_override_property (object_class, PROP_WINDOW, "window");
+}
+
+static void
+xed_spell_plugin_class_finalize (XedSpellPluginClass *klass)
+{
+}
+
+static void
+xed_spell_plugin_init (XedSpellPlugin *plugin)
+{
+    xed_debug_message (DEBUG_PLUGINS, "XedSpellPlugin initializing");
+
+    plugin->priv = xed_spell_plugin_get_instance_private (plugin);
+
+    plugin->priv->settings = g_settings_new (SPELL_SCHEMA);
+}
+
+static GspellChecker *
+get_spell_checker (XedDocument *doc)
+{
+    GspellTextBuffer *gspell_buffer;
+
+    gspell_buffer = gspell_text_buffer_get_from_gtk_text_buffer (GTK_TEXT_BUFFER (doc));
+    return gspell_text_buffer_get_spell_checker (gspell_buffer);
+}
+
+static const GspellLanguage *
+get_language_from_metadata (XedDocument *doc)
+{
+    const GspellLanguage *lang = NULL;
+    gchar *language_code = NULL;
+
+    language_code = xed_document_get_metadata (doc, XED_METADATA_ATTRIBUTE_SPELL_LANGUAGE);
+
+    if (language_code != NULL)
     {
-        lang = xed_spell_checker_language_from_key (value);
-        g_free (value);
+        lang = gspell_language_lookup (language_code);
+        g_free (language_code);
     }
 
-    if (lang != NULL)
-    {
-        g_signal_handlers_block_by_func (spell, set_spell_language_cb, doc);
-        xed_spell_checker_set_language (spell, lang);
-        g_signal_handlers_unblock_by_func (spell, set_spell_language_cb, doc);
-    }
+    return lang;
+}
+
+static void
+check_spell_cb (GtkAction      *action,
+                XedSpellPlugin *plugin)
+{
+    XedSpellPluginPrivate *priv;
+    XedView *view;
+    GspellNavigator *navigator;
+    GtkWidget *dialog;
+
+    xed_debug (DEBUG_PLUGINS);
+
+    priv = plugin->priv;
+
+    view = xed_window_get_active_view (priv->window);
+    g_return_if_fail (view != NULL);
+
+    navigator = gspell_navigator_text_view_new (GTK_TEXT_VIEW (view));
+    dialog = gspell_checker_dialog_new (GTK_WINDOW (priv->window), navigator);
+
+    gtk_widget_show (dialog);
 }
 
 static XedSpellPluginAutocheckType
@@ -291,507 +283,21 @@ set_autocheck_type (GSettings                  *settings,
     g_settings_set_enum (settings, AUTOCHECK_TYPE_KEY, autocheck_type);
 }
 
-static XedSpellChecker *
-get_spell_checker_from_document (XedDocument *doc)
-{
-    XedSpellChecker *spell;
-    gpointer data;
-
-    xed_debug (DEBUG_PLUGINS);
-
-    g_return_val_if_fail (doc != NULL, NULL);
-
-    data = g_object_get_qdata (G_OBJECT (doc), spell_checker_id);
-
-    if (data == NULL)
-    {
-        spell = xed_spell_checker_new ();
-
-        set_language_from_metadata (spell, doc);
-
-        g_object_set_qdata_full (G_OBJECT (doc),
-                                 spell_checker_id,
-                                 spell,
-                                 (GDestroyNotify) g_object_unref);
-
-        g_signal_connect (spell, "set_language",
-                          G_CALLBACK (set_spell_language_cb), doc);
-    }
-    else
-    {
-        g_return_val_if_fail (XED_IS_SPELL_CHECKER (data), NULL);
-        spell = XED_SPELL_CHECKER (data);
-    }
-
-    return spell;
-}
-
-static CheckRange *
-get_check_range (XedDocument *doc)
-{
-    CheckRange *range;
-
-    xed_debug (DEBUG_PLUGINS);
-
-    g_return_val_if_fail (doc != NULL, NULL);
-
-    range = (CheckRange *) g_object_get_qdata (G_OBJECT (doc), check_range_id);
-
-    return range;
-}
-
 static void
-update_current (XedDocument *doc,
-                gint         current)
+language_dialog_response_cb (GtkDialog *dialog,
+                             gint       response_id,
+                             gpointer   user_data)
 {
-    CheckRange *range;
-    GtkTextIter iter;
-    GtkTextIter end_iter;
-
-    xed_debug (DEBUG_PLUGINS);
-
-    g_return_if_fail (doc != NULL);
-    g_return_if_fail (current >= 0);
-
-    range = get_check_range (doc);
-    g_return_if_fail (range != NULL);
-
-    gtk_text_buffer_get_iter_at_offset (GTK_TEXT_BUFFER (doc), &iter, current);
-
-    if (!gtk_text_iter_inside_word (&iter))
+    if (response_id == GTK_RESPONSE_HELP)
     {
-        /* if we're not inside a word,
-         * we must be in some spaces.
-         * skip forward to the beginning of the next word. */
-        if (!gtk_text_iter_is_end (&iter))
-        {
-            gtk_text_iter_forward_word_end (&iter);
-            gtk_text_iter_backward_word_start (&iter);
-        }
-    }
-    else
-    {
-        if (!gtk_text_iter_starts_word (&iter))
-        {
-            gtk_text_iter_backward_word_start (&iter);
-        }
-    }
-
-    gtk_text_buffer_get_iter_at_mark (GTK_TEXT_BUFFER (doc), &end_iter, range->end_mark);
-
-    if (gtk_text_iter_compare (&end_iter, &iter) < 0)
-    {
-        gtk_text_buffer_move_mark (GTK_TEXT_BUFFER (doc), range->current_mark, &end_iter);
-    }
-    else
-    {
-        gtk_text_buffer_move_mark (GTK_TEXT_BUFFER (doc), range->current_mark, &iter);
-    }
-}
-
-static void
-set_check_range (XedDocument *doc,
-                 GtkTextIter *start,
-                 GtkTextIter *end)
-{
-    CheckRange *range;
-    GtkTextIter iter;
-
-    xed_debug (DEBUG_PLUGINS);
-
-    range = get_check_range (doc);
-
-    if (range == NULL)
-    {
-        xed_debug_message (DEBUG_PLUGINS, "There was not a previous check range");
-
-        gtk_text_buffer_get_end_iter (GTK_TEXT_BUFFER (doc), &iter);
-
-        range = g_new0 (CheckRange, 1);
-
-        range->start_mark = gtk_text_buffer_create_mark (GTK_TEXT_BUFFER (doc),
-                                                         "check_range_start_mark", &iter, TRUE);
-
-        range->end_mark = gtk_text_buffer_create_mark (GTK_TEXT_BUFFER (doc),
-                                                       "check_range_end_mark", &iter, FALSE);
-
-        range->current_mark = gtk_text_buffer_create_mark (GTK_TEXT_BUFFER (doc),
-                                                           "check_range_current_mark", &iter, TRUE);
-
-        g_object_set_qdata_full (G_OBJECT (doc), check_range_id, range, (GDestroyNotify)g_free);
-    }
-
-    if (xed_spell_utils_skip_no_spell_check (start, end))
-     {
-        if (!gtk_text_iter_inside_word (end))
-        {
-            /* if we're neither inside a word,
-             * we must be in some spaces.
-             * skip backward to the end of the previous word. */
-            if (!gtk_text_iter_is_end (end))
-            {
-                gtk_text_iter_backward_word_start (end);
-                gtk_text_iter_forward_word_end (end);
-            }
-        }
-        else
-        {
-            if (!gtk_text_iter_ends_word (end))
-            {
-                gtk_text_iter_forward_word_end (end);
-            }
-        }
-    }
-    else
-    {
-        /* no spell checking in the specified range */
-        start = end;
-    }
-
-    gtk_text_buffer_move_mark (GTK_TEXT_BUFFER (doc), range->start_mark, start);
-    gtk_text_buffer_move_mark (GTK_TEXT_BUFFER (doc), range->end_mark, end);
-
-    range->mw_start = -1;
-    range->mw_end = -1;
-
-    update_current (doc, gtk_text_iter_get_offset (start));
-}
-
-static gchar *
-get_current_word (XedDocument *doc,
-                  gint        *start,
-                  gint        *end)
-{
-    const CheckRange *range;
-    GtkTextIter end_iter;
-    GtkTextIter current_iter;
-    gint range_end;
-
-    xed_debug (DEBUG_PLUGINS);
-
-    g_return_val_if_fail (doc != NULL, NULL);
-    g_return_val_if_fail (start != NULL, NULL);
-    g_return_val_if_fail (end != NULL, NULL);
-
-    range = get_check_range (doc);
-    g_return_val_if_fail (range != NULL, NULL);
-
-    gtk_text_buffer_get_iter_at_mark (GTK_TEXT_BUFFER (doc), &end_iter, range->end_mark);
-
-    range_end = gtk_text_iter_get_offset (&end_iter);
-
-    gtk_text_buffer_get_iter_at_mark (GTK_TEXT_BUFFER (doc), &current_iter, range->current_mark);
-
-    end_iter = current_iter;
-
-    if (!gtk_text_iter_is_end (&end_iter))
-    {
-        xed_debug_message (DEBUG_PLUGINS, "Current is not end");
-
-        gtk_text_iter_forward_word_end (&end_iter);
-    }
-
-    *start = gtk_text_iter_get_offset (&current_iter);
-    *end = MIN (gtk_text_iter_get_offset (&end_iter), range_end);
-
-    xed_debug_message (DEBUG_PLUGINS, "Current word extends [%d, %d]", *start, *end);
-
-    if (!(*start < *end))
-    {
-        return NULL;
-    }
-
-    return gtk_text_buffer_get_slice (GTK_TEXT_BUFFER (doc), &current_iter, &end_iter, TRUE);
-}
-
-static gboolean
-goto_next_word (XedDocument *doc)
-{
-    CheckRange *range;
-    GtkTextIter current_iter;
-    GtkTextIter old_current_iter;
-    GtkTextIter end_iter;
-
-    xed_debug (DEBUG_PLUGINS);
-
-    g_return_val_if_fail (doc != NULL, FALSE);
-
-    range = get_check_range (doc);
-    g_return_val_if_fail (range != NULL, FALSE);
-
-    gtk_text_buffer_get_iter_at_mark (GTK_TEXT_BUFFER (doc), &current_iter, range->current_mark);
-    gtk_text_buffer_get_end_iter (GTK_TEXT_BUFFER (doc), &end_iter);
-
-    old_current_iter = current_iter;
-
-    gtk_text_iter_forward_word_ends (&current_iter, 2);
-    gtk_text_iter_backward_word_start (&current_iter);
-
-    if (xed_spell_utils_skip_no_spell_check (&current_iter, &end_iter) &&
-        (gtk_text_iter_compare (&old_current_iter, &current_iter) < 0) &&
-        (gtk_text_iter_compare (&current_iter, &end_iter) < 0))
-    {
-        update_current (doc, gtk_text_iter_get_offset (&current_iter));
-        return TRUE;
-    }
-
-    return FALSE;
-}
-
-static gchar *
-get_next_misspelled_word (XedView *view)
-{
-    XedDocument *doc;
-    CheckRange *range;
-    gint start, end;
-    gchar *word;
-    XedSpellChecker *spell;
-
-    g_return_val_if_fail (view != NULL, NULL);
-
-    doc = XED_DOCUMENT (gtk_text_view_get_buffer (GTK_TEXT_VIEW (view)));
-    g_return_val_if_fail (doc != NULL, NULL);
-
-    range = get_check_range (doc);
-    g_return_val_if_fail (range != NULL, NULL);
-
-    spell = get_spell_checker_from_document (doc);
-    g_return_val_if_fail (spell != NULL, NULL);
-
-    word = get_current_word (doc, &start, &end);
-    if (word == NULL)
-    {
-        return NULL;
-    }
-
-    xed_debug_message (DEBUG_PLUGINS, "Word to check: %s", word);
-
-    while (xed_spell_checker_check_word (spell, word, -1))
-    {
-        g_free (word);
-
-        if (!goto_next_word (doc))
-        {
-            return NULL;
-        }
-
-        /* may return null if we reached the end of the selection */
-        word = get_current_word (doc, &start, &end);
-        if (word == NULL)
-        {
-            return NULL;
-        }
-
-        xed_debug_message (DEBUG_PLUGINS, "Word to check: %s", word);
-    }
-
-    if (!goto_next_word (doc))
-    {
-        update_current (doc, gtk_text_buffer_get_char_count (GTK_TEXT_BUFFER (doc)));
-    }
-
-    if (word != NULL)
-    {
-        GtkTextIter s, e;
-
-        range->mw_start = start;
-        range->mw_end = end;
-
-        xed_debug_message (DEBUG_PLUGINS, "Select [%d, %d]", start, end);
-
-        gtk_text_buffer_get_iter_at_offset (GTK_TEXT_BUFFER (doc), &s, start);
-        gtk_text_buffer_get_iter_at_offset (GTK_TEXT_BUFFER (doc), &e, end);
-
-        gtk_text_buffer_select_range (GTK_TEXT_BUFFER (doc), &s, &e);
-
-        xed_view_scroll_to_cursor (view);
-    }
-    else
-    {
-        range->mw_start = -1;
-        range->mw_end = -1;
-    }
-
-    return word;
-}
-
-static void
-ignore_cb (XedSpellCheckerDialog *dlg,
-           const gchar           *w,
-           XedView               *view)
-{
-    gchar *word = NULL;
-
-    xed_debug (DEBUG_PLUGINS);
-
-    g_return_if_fail (w != NULL);
-    g_return_if_fail (view != NULL);
-
-    word = get_next_misspelled_word (view);
-    if (word == NULL)
-    {
-        xed_spell_checker_dialog_set_completed (dlg);
-
+        xed_app_show_help (XED_APP (g_application_get_default ()),
+                           GTK_WINDOW (dialog),
+                           NULL,
+                           "xed-spellcheck");
         return;
     }
 
-    xed_spell_checker_dialog_set_misspelled_word (XED_SPELL_CHECKER_DIALOG (dlg), word, -1);
-
-    g_free (word);
-}
-
-static void
-change_cb (XedSpellCheckerDialog *dlg,
-           const gchar           *word,
-           const gchar           *change,
-           XedView               *view)
-{
-    XedDocument *doc;
-    CheckRange *range;
-    gchar *w = NULL;
-    GtkTextIter start, end;
-
-    xed_debug (DEBUG_PLUGINS);
-
-    g_return_if_fail (view != NULL);
-    g_return_if_fail (word != NULL);
-    g_return_if_fail (change != NULL);
-
-    doc = XED_DOCUMENT (gtk_text_view_get_buffer (GTK_TEXT_VIEW (view)));
-    g_return_if_fail (doc != NULL);
-
-    range = get_check_range (doc);
-    g_return_if_fail (range != NULL);
-
-    gtk_text_buffer_get_iter_at_offset (GTK_TEXT_BUFFER (doc), &start, range->mw_start);
-    if (range->mw_end < 0)
-    {
-        gtk_text_buffer_get_end_iter (GTK_TEXT_BUFFER (doc), &end);
-    }
-    else
-    {
-        gtk_text_buffer_get_iter_at_offset (GTK_TEXT_BUFFER (doc), &end, range->mw_end);
-    }
-
-    w = gtk_text_buffer_get_slice (GTK_TEXT_BUFFER (doc), &start, &end, TRUE);
-    g_return_if_fail (w != NULL);
-
-    if (strcmp (w, word) != 0)
-    {
-        g_free (w);
-        return;
-    }
-
-    g_free (w);
-
-    gtk_text_buffer_begin_user_action (GTK_TEXT_BUFFER(doc));
-
-    gtk_text_buffer_delete (GTK_TEXT_BUFFER (doc), &start, &end);
-    gtk_text_buffer_insert (GTK_TEXT_BUFFER (doc), &start, change, -1);
-
-    gtk_text_buffer_end_user_action (GTK_TEXT_BUFFER(doc));
-
-    update_current (doc, range->mw_start + g_utf8_strlen (change, -1));
-
-    /* go to next misspelled word */
-    ignore_cb (dlg, word, view);
-}
-
-static void
-change_all_cb (XedSpellCheckerDialog *dlg,
-               const gchar           *word,
-               const gchar           *change,
-               XedView               *view)
-{
-    XedDocument *doc;
-    CheckRange *range;
-    gchar *w = NULL;
-    GtkTextIter start, end;
-    GtkSourceSearchSettings *search_settings;
-    GtkSourceSearchContext *search_context;
-
-    xed_debug (DEBUG_PLUGINS);
-
-    g_return_if_fail (view != NULL);
-    g_return_if_fail (word != NULL);
-    g_return_if_fail (change != NULL);
-
-    doc = XED_DOCUMENT (gtk_text_view_get_buffer (GTK_TEXT_VIEW (view)));
-    g_return_if_fail (doc != NULL);
-
-    range = get_check_range (doc);
-    g_return_if_fail (range != NULL);
-
-    gtk_text_buffer_get_iter_at_offset (GTK_TEXT_BUFFER (doc), &start, range->mw_start);
-    if (range->mw_end < 0)
-    {
-        gtk_text_buffer_get_end_iter (GTK_TEXT_BUFFER (doc), &end);
-    }
-    else
-    {
-        gtk_text_buffer_get_iter_at_offset (GTK_TEXT_BUFFER (doc), &end, range->mw_end);
-    }
-
-    w = gtk_text_buffer_get_slice (GTK_TEXT_BUFFER (doc), &start, &end, TRUE);
-    g_return_if_fail (w != NULL);
-
-    if (strcmp (w, word) != 0)
-    {
-        g_free (w);
-        return;
-    }
-
-    g_free (w);
-
-    search_settings = gtk_source_search_settings_new ();
-    gtk_source_search_settings_set_case_sensitive (search_settings, TRUE);
-    gtk_source_search_settings_set_at_word_boundaries (search_settings, TRUE);
-    gtk_source_search_settings_set_search_text (search_settings, word);
-
-    search_context = gtk_source_search_context_new (GTK_SOURCE_BUFFER (doc), search_settings);
-
-    gtk_source_search_context_set_highlight (search_context, FALSE);
-
-    gtk_source_search_context_replace_all (search_context, change, -1, NULL);
-
-    update_current (doc, range->mw_start + g_utf8_strlen (change, -1));
-
-    /* go to next misspelled word */
-    ignore_cb (dlg, word, view);
-
-    g_object_unref (search_settings);
-    g_object_unref (search_context);
-}
-
-static void
-add_word_cb (XedSpellCheckerDialog *dlg,
-             const gchar           *word,
-             XedView               *view)
-{
-    g_return_if_fail (view != NULL);
-    g_return_if_fail (word != NULL);
-
-    /* go to next misspelled word */
-    ignore_cb (dlg, word, view);
-}
-
-static void
-language_dialog_response (GtkDialog       *dlg,
-                          gint             res_id,
-                          XedSpellChecker *spell)
-{
-    if (res_id == GTK_RESPONSE_OK)
-    {
-        const XedSpellCheckerLanguage *lang;
-
-        lang = xed_spell_language_get_selected_language (XED_SPELL_LANGUAGE_DIALOG (dlg));
-        if (lang != NULL)
-        {
-            xed_spell_checker_set_language (spell, lang);
-        }
-    }
-
-    gtk_widget_destroy (GTK_WIDGET (dlg));
+    gtk_widget_destroy (GTK_WIDGET (dialog));
 }
 
 static void
@@ -899,11 +405,10 @@ set_language_cb (GtkAction      *action,
 {
     XedSpellPluginPrivate *priv;
     XedDocument *doc;
-    XedSpellChecker *spell;
-    const XedSpellCheckerLanguage *lang;
-    GtkWidget *dlg;
-    GtkWindowGroup *wg;
-    gchar *data_dir;
+    GspellChecker *checker;
+    const GspellLanguage *lang;
+    GtkWidget *dialog;
+    GtkWindowGroup *window_group;
 
     xed_debug (DEBUG_PLUGINS);
 
@@ -912,144 +417,37 @@ set_language_cb (GtkAction      *action,
     doc = xed_window_get_active_document (priv->window);
     g_return_if_fail (doc != NULL);
 
-    spell = get_spell_checker_from_document (doc);
-    g_return_if_fail (spell != NULL);
+    checker = get_spell_checker (doc);
+    g_return_if_fail (checker != NULL);
 
-    lang = xed_spell_checker_get_language (spell);
+    lang = gspell_checker_get_language (checker);
 
-    data_dir = peas_extension_base_get_data_dir (PEAS_EXTENSION_BASE (plugin));
-    dlg = xed_spell_language_dialog_new (GTK_WINDOW (priv->window), lang, data_dir);
-    g_free (data_dir);
+    dialog = gspell_language_chooser_dialog_new (GTK_WINDOW (priv->window),
+                                                 lang,
+                                                 GTK_DIALOG_MODAL |
+                                                 GTK_DIALOG_DESTROY_WITH_PARENT);
 
-    wg = xed_window_get_group (priv->window);
+    g_object_bind_property (dialog, "language",
+                            checker, "language",
+                            G_BINDING_DEFAULT);
 
-    gtk_window_group_add_window (wg, GTK_WINDOW (dlg));
+    window_group = xed_window_get_group (priv->window);
 
-    gtk_window_set_modal (GTK_WINDOW (dlg), TRUE);
+    gtk_window_group_add_window (window_group, GTK_WINDOW (dialog));
 
-    g_signal_connect (dlg, "response",
-                      G_CALLBACK (language_dialog_response), spell);
+    gtk_dialog_add_button (GTK_DIALOG (dialog), _("_Help"), GTK_RESPONSE_HELP);
 
-    gtk_widget_show (dlg);
+    g_signal_connect (dialog, "response",
+                      G_CALLBACK (language_dialog_response_cb), NULL);
+
+    gtk_widget_show (dialog);
 }
 
 static void
-spell_cb (GtkAction      *action,
-          XedSpellPlugin *plugin)
+inline_checker_cb (GtkAction      *action,
+                   XedSpellPlugin *plugin)
 {
     XedSpellPluginPrivate *priv;
-    XedView *view;
-    XedDocument *doc;
-    XedSpellChecker *spell;
-    GtkWidget *dlg;
-    GtkTextIter start, end;
-    gchar *word;
-    gchar *data_dir;
-
-    xed_debug (DEBUG_PLUGINS);
-
-    priv = plugin->priv;
-
-    view = xed_window_get_active_view (priv->window);
-    g_return_if_fail (view != NULL);
-
-    doc = XED_DOCUMENT (gtk_text_view_get_buffer (GTK_TEXT_VIEW (view)));
-    g_return_if_fail (doc != NULL);
-
-    spell = get_spell_checker_from_document (doc);
-    g_return_if_fail (spell != NULL);
-
-    if (gtk_text_buffer_get_char_count (GTK_TEXT_BUFFER (doc)) <= 0)
-    {
-        GtkWidget *statusbar;
-
-        statusbar = xed_window_get_statusbar (priv->window);
-        xed_statusbar_flash_message (XED_STATUSBAR (statusbar), priv->message_cid, _("The document is empty."));
-
-        return;
-    }
-
-    if (!gtk_text_buffer_get_selection_bounds (GTK_TEXT_BUFFER (doc), &start, &end))
-    {
-        /* no selection, get the whole doc */
-        gtk_text_buffer_get_bounds (GTK_TEXT_BUFFER (doc), &start, &end);
-    }
-
-    set_check_range (doc, &start, &end);
-
-    word = get_next_misspelled_word (view);
-    if (word == NULL)
-    {
-        GtkWidget *statusbar;
-
-        statusbar = xed_window_get_statusbar (priv->window);
-        xed_statusbar_flash_message (XED_STATUSBAR (statusbar), priv->message_cid, _("No misspelled words"));
-
-        return;
-    }
-
-    data_dir = peas_extension_base_get_data_dir (PEAS_EXTENSION_BASE (plugin));
-    dlg = xed_spell_checker_dialog_new_from_spell_checker (spell, data_dir);
-    g_free (data_dir);
-
-    gtk_window_set_modal (GTK_WINDOW (dlg), TRUE);
-    gtk_window_set_transient_for (GTK_WINDOW (dlg), GTK_WINDOW (priv->window));
-
-    g_signal_connect (dlg, "ignore", G_CALLBACK (ignore_cb), view);
-    g_signal_connect (dlg, "ignore_all", G_CALLBACK (ignore_cb), view);
-
-    g_signal_connect (dlg, "change", G_CALLBACK (change_cb), view);
-    g_signal_connect (dlg, "change_all", G_CALLBACK (change_all_cb), view);
-
-    g_signal_connect (dlg, "add_word_to_personal", G_CALLBACK (add_word_cb), view);
-
-    xed_spell_checker_dialog_set_misspelled_word (XED_SPELL_CHECKER_DIALOG (dlg), word, -1);
-
-    g_free (word);
-
-    gtk_widget_show (dlg);
-}
-
-static void
-set_auto_spell (XedWindow *window,
-                XedView   *view,
-                gboolean   active)
-{
-    XedAutomaticSpellChecker *autospell;
-    XedSpellChecker *spell;
-    XedDocument *doc;
-
-    doc = XED_DOCUMENT (gtk_text_view_get_buffer (GTK_TEXT_VIEW (view)));
-
-    spell = get_spell_checker_from_document (doc);
-    g_return_if_fail (spell != NULL);
-
-    autospell = xed_automatic_spell_checker_get_from_document (doc);
-
-    if (active)
-    {
-        if (autospell == NULL)
-        {
-            autospell = xed_automatic_spell_checker_new (doc, spell);
-            xed_automatic_spell_checker_attach_view (autospell, view);
-            xed_automatic_spell_checker_recheck_all (autospell);
-        }
-    }
-    else
-    {
-        if (autospell != NULL)
-        {
-            xed_automatic_spell_checker_free (autospell);
-        }
-    }
-}
-
-static void
-auto_spell_cb (GtkAction      *action,
-               XedSpellPlugin *plugin)
-{
-    XedSpellPluginPrivate *priv;
-    XedDocument *doc;
     XedView *view;
     gboolean active;
 
@@ -1058,24 +456,27 @@ auto_spell_cb (GtkAction      *action,
     priv = plugin->priv;
     active = gtk_toggle_action_get_active (GTK_TOGGLE_ACTION (action));
 
-    xed_debug_message (DEBUG_PLUGINS, active ? "Auto Spell activated" : "Auto Spell deactivated");
+    xed_debug_message (DEBUG_PLUGINS, active ? "Inline Checker activated" : "Inline Checker deactivated");
 
     view = xed_window_get_active_view (priv->window);
-    if (view == NULL)
+    if (view != NULL)
     {
-        return;
+        XedDocument *doc;
+        GspellTextView *gspell_view;
+
+        doc = XED_DOCUMENT (gtk_text_view_get_buffer (GTK_TEXT_VIEW (view)));
+
+        if (get_autocheck_type (plugin) == AUTOCHECK_DOCUMENT)
+        {
+            xed_document_set_metadata (doc,
+                                       XED_METADATA_ATTRIBUTE_SPELL_ENABLED,
+                                       active ? SPELL_ENABLED_STR : NULL,
+                                       NULL);
+        }
+
+        gspell_view = gspell_text_view_get_from_gtk_text_view (GTK_TEXT_VIEW (view));
+        gspell_text_view_set_inline_spell_checking (gspell_view, active);
     }
-
-    doc = XED_DOCUMENT (gtk_text_view_get_buffer (GTK_TEXT_VIEW (view)));
-
-    if (get_autocheck_type (plugin) == AUTOCHECK_DOCUMENT)
-    {
-        xed_document_set_metadata (doc,
-                                   XED_METADATA_ATTRIBUTE_SPELL_ENABLED,
-                                   active ? "1" : NULL, NULL);
-    }
-
-    set_auto_spell (priv->window, view, active);
 }
 
 static void
@@ -1088,30 +489,33 @@ update_ui (XedSpellPlugin *plugin)
     xed_debug (DEBUG_PLUGINS);
 
     priv = plugin->priv;
+
     view = xed_window_get_active_view (priv->window);
 
     if (view != NULL)
     {
-        XedDocument *doc;
         XedTab *tab;
-        XedTabState state;
-        gboolean autospell;
+        GtkTextBuffer *buffer;
 
-        doc = XED_DOCUMENT (gtk_text_view_get_buffer (GTK_TEXT_VIEW (view)));
         tab = xed_window_get_active_tab (priv->window);
-        state = xed_tab_get_state (tab);
-        autospell = (doc != NULL && xed_automatic_spell_checker_get_from_document (doc) != NULL);
+        g_return_if_fail (xed_tab_get_view (tab) == view);
 
         /* If the document is loading we can't get the metadata so we
            endup with an useless speller */
-        if (state == XED_TAB_STATE_NORMAL)
+        if (xed_tab_get_state (tab) == XED_TAB_STATE_NORMAL)
         {
-            action = gtk_action_group_get_action (priv->action_group, "AutoSpell");
+            GspellTextView *gspell_view;
+            gboolean inline_checking_enabled;
 
-            g_signal_handlers_block_by_func (action, auto_spell_cb, plugin);
-            set_auto_spell (priv->window, view, autospell);
-            gtk_toggle_action_set_active (GTK_TOGGLE_ACTION (action), autospell);
-            g_signal_handlers_unblock_by_func (action, auto_spell_cb, plugin);
+            gspell_view = gspell_text_view_get_from_gtk_text_view (GTK_TEXT_VIEW (view));
+            inline_checking_enabled = gspell_text_view_get_inline_spell_checking (gspell_view);
+
+            action = gtk_action_group_get_action (priv->action_group, "InlineSpellChecker");
+
+            g_signal_handlers_block_by_func (action, inline_checker_cb, plugin);
+            gspell_text_view_set_inline_spell_checking (gspell_view, inline_checking_enabled);
+            gtk_toggle_action_set_active (GTK_TOGGLE_ACTION (action), inline_checking_enabled);
+            g_signal_handlers_unblock_by_func (action, inline_checker_cb, plugin);
         }
     }
 
@@ -1121,63 +525,82 @@ update_ui (XedSpellPlugin *plugin)
 }
 
 static void
-set_auto_spell_from_metadata (XedSpellPlugin *plugin,
-                              XedView        *view,
-                              GtkActionGroup *action_group)
+setup_inline_checker_from_metadata (XedSpellPlugin *plugin,
+                                    XedView        *view)
 {
-    gboolean active = FALSE;
-    gchar *active_str = NULL;
-    XedWindow *window;
+    XedSpellPluginPrivate *priv;
     XedDocument *doc;
-    XedDocument *active_doc;
+    gboolean enabled = FALSE;
+    gchar *enabled_str = NULL;
+    GspellTextView *gspell_view;
+    XedView *active_view;
     XedSpellPluginAutocheckType autocheck_type;
 
-    doc = XED_DOCUMENT (gtk_text_view_get_buffer (GTK_TEXT_VIEW (view)));
+    priv = plugin->priv;
 
     autocheck_type = get_autocheck_type (plugin);
+
+    doc = XED_DOCUMENT (gtk_text_view_get_buffer (GTK_TEXT_VIEW (view)));
 
     switch (autocheck_type)
     {
         case AUTOCHECK_ALWAYS:
         {
-            active = TRUE;
+            enabled = TRUE;
             break;
         }
         case AUTOCHECK_DOCUMENT:
         {
-            active_str = xed_document_get_metadata (doc, XED_METADATA_ATTRIBUTE_SPELL_ENABLED);
+            enabled_str = xed_document_get_metadata (doc, XED_METADATA_ATTRIBUTE_SPELL_ENABLED);
             break;
         }
         case AUTOCHECK_NEVER:
         default:
-            active = FALSE;
+            enabled = FALSE;
             break;
     }
 
-    if (active_str)
+    if (enabled_str != NULL)
     {
-        active = *active_str == '1';
-
-        g_free (active_str);
+        enabled = g_str_equal (enabled_str, SPELL_ENABLED_STR);
+        g_free (enabled_str);
     }
 
-    window = XED_WINDOW (plugin->priv->window);
+    gspell_view = gspell_text_view_get_from_gtk_text_view (GTK_TEXT_VIEW (view));
+    gspell_text_view_set_inline_spell_checking (gspell_view, enabled);
 
-    set_auto_spell (window, view, active);
+    /* In case that the view is the active one we mark the spell action */
+    active_view = xed_window_get_active_view (plugin->priv->window);
 
-    /* In case that the doc is the active one we mark the spell action */
-    active_doc = xed_window_get_active_document (window);
-
-    if (active_doc == doc && action_group != NULL)
+    if (active_view == view && priv->action_group != NULL)
     {
         GtkAction *action;
 
-        action = gtk_action_group_get_action (action_group, "AutoSpell");
+        action = gtk_action_group_get_action (priv->action_group, "InlineSpellChecker");
 
-        g_signal_handlers_block_by_func (action, auto_spell_cb, plugin);
-        gtk_toggle_action_set_active (GTK_TOGGLE_ACTION (action), active);
-        g_signal_handlers_unblock_by_func (action, auto_spell_cb, plugin);
+        g_signal_handlers_block_by_func (action, inline_checker_cb, plugin);
+        gtk_toggle_action_set_active (GTK_TOGGLE_ACTION (action), enabled);
+        g_signal_handlers_unblock_by_func (action, inline_checker_cb, plugin);
     }
+}
+
+static void
+language_notify_cb (GspellChecker *checker,
+                    GParamSpec    *pspec,
+                    XedDocument   *doc)
+{
+    const GspellLanguage *lang;
+    const gchar *language_code;
+
+    g_return_if_fail (XED_IS_DOCUMENT (doc));
+
+    lang = gspell_checker_get_language (checker);
+    g_return_if_fail (lang != NULL);
+
+    language_code = gspell_language_get_code (lang);
+    g_return_if_fail (language_code != NULL);
+
+    xed_document_set_metadata (doc, XED_METADATA_ATTRIBUTE_SPELL_LANGUAGE, language_code, NULL);
 }
 
 static void
@@ -1185,55 +608,148 @@ on_document_loaded (XedDocument    *doc,
                     XedSpellPlugin *plugin)
 {
 
-    XedSpellChecker *spell;
+    GspellChecker *checker;
+    XedTab *tab;
     XedView *view;
 
-    spell = XED_SPELL_CHECKER (g_object_get_qdata (G_OBJECT (doc), spell_checker_id));
-    if (spell != NULL)
+    checker = get_spell_checker (doc);
+
+    if (checker != NULL)
     {
-        set_language_from_metadata (spell, doc);
+        const GspellLanguage *lang;
+
+        lang = get_language_from_metadata (doc);
+
+        if (lang != NULL)
+        {
+            g_signal_handlers_block_by_func (checker, language_notify_cb, doc);
+            gspell_checker_set_language (checker, lang);
+            g_signal_handlers_unblock_by_func (checker, language_notify_cb, doc);
+        }
     }
 
-    view = XED_VIEW (g_object_get_data (G_OBJECT (doc), XED_AUTOMATIC_SPELL_VIEW));
-
-    set_auto_spell_from_metadata (plugin, view, plugin->priv->action_group);
+    tab = xed_tab_get_from_document (doc);
+    view = xed_tab_get_view (tab);
+    setup_inline_checker_from_metadata (plugin, view);
 }
 
 static void
 on_document_saved (XedDocument    *doc,
                    XedSpellPlugin *plugin)
 {
-    XedAutomaticSpellChecker *autospell;
-    XedSpellChecker *spell;
-    const gchar *key;
+    XedTab *tab;
+    XedView *view;
+    GspellChecker *checker;
+    const gchar *language_code = NULL;
+    GspellTextView *gspell_view;
+    gboolean inline_checking_enabled;
 
     /* Make sure to save the metadata here too */
-    autospell = xed_automatic_spell_checker_get_from_document (doc);
-    spell = XED_SPELL_CHECKER (g_object_get_qdata (G_OBJECT (doc), spell_checker_id));
+    checker = get_spell_checker (doc);
 
-    if (spell != NULL)
+    if (checker != NULL)
     {
-        key = xed_spell_checker_language_to_key (xed_spell_checker_get_language (spell));
+        const GspellLanguage *lang;
+
+        lang = gspell_checker_get_language (checker);
+        if (lang != NULL)
+        {
+            language_code = gspell_language_get_code (lang);
+        }
     }
-    else
-    {
-        key = NULL;
-    }
+
+    tab = xed_tab_get_from_document (doc);
+    view = xed_tab_get_view (tab);
+
+    gspell_view = gspell_text_view_get_from_gtk_text_view (GTK_TEXT_VIEW (view));
+    inline_checking_enabled = gspell_text_view_get_inline_spell_checking (gspell_view);
 
     if (get_autocheck_type (plugin) == AUTOCHECK_DOCUMENT)
     {
 
         xed_document_set_metadata (doc,
                                    XED_METADATA_ATTRIBUTE_SPELL_ENABLED,
-                                   autospell != NULL ? "1" : NULL,
+                                   inline_checking_enabled ? SPELL_ENABLED_STR : NULL,
                                    XED_METADATA_ATTRIBUTE_SPELL_LANGUAGE,
-                                   key,
+                                   language_code,
                                    NULL);
     }
     else
     {
-        xed_document_set_metadata (doc, XED_METADATA_ATTRIBUTE_SPELL_LANGUAGE, key, NULL);
+        xed_document_set_metadata (doc, XED_METADATA_ATTRIBUTE_SPELL_LANGUAGE, language_code, NULL);
     }
+}
+
+static void
+activate_spell_checking_in_view (XedSpellPlugin *plugin,
+                                 XedView        *view)
+{
+    XedDocument *doc;
+
+    doc = XED_DOCUMENT (gtk_text_view_get_buffer (GTK_TEXT_VIEW (view)));
+
+    /* It is possible that a GspellChecker has already been set, for example
+     * if a XedTab has moved to another window.
+     */
+    if (get_spell_checker (doc) == NULL)
+    {
+        const GspellLanguage *lang;
+        GspellChecker *checker;
+        GspellTextBuffer *gspell_buffer;
+
+        lang = get_language_from_metadata (doc);
+        checker = gspell_checker_new (lang);
+
+        g_signal_connect_object (checker, "notify::language",
+                                 G_CALLBACK (language_notify_cb), doc, 0);
+
+        gspell_buffer = gspell_text_buffer_get_from_gtk_text_buffer (GTK_TEXT_BUFFER (doc));
+        gspell_text_buffer_set_spell_checker (gspell_buffer, checker);
+        g_object_unref (checker);
+
+        setup_inline_checker_from_metadata (plugin, view);
+    }
+
+    g_signal_connect_object (doc, "loaded",
+                             G_CALLBACK (on_document_loaded), plugin, 0);
+    g_signal_connect_object (doc, "saved",
+                             G_CALLBACK (on_document_saved), plugin, 0);
+}
+
+static void
+disconnect_view (XedSpellPlugin *plugin,
+                 XedView        *view)
+{
+    GtkTextBuffer *buffer;
+
+    buffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (view));
+
+    /* It should still be the same buffer as the one where the signal
+     * handlers were connected. If not, we assume that the old buffer is
+     * finalized. And it is anyway safe to call
+     * g_signal_handlers_disconnect_by_func() if no signal handlers are
+     * found.
+     */
+    g_signal_handlers_disconnect_by_func (buffer, on_document_loaded, plugin);
+    g_signal_handlers_disconnect_by_func (buffer, on_document_saved, plugin);
+}
+
+static void
+deactivate_spell_checking_in_view (XedSpellPlugin *plugin,
+                                   XedView        *view)
+{
+    GtkTextBuffer *gtk_buffer;
+    GspellTextBuffer *gspell_buffer;
+    GspellTextView *gspell_view;
+
+    disconnect_view (plugin, view);
+
+    gtk_buffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (view));
+    gspell_buffer = gspell_text_buffer_get_from_gtk_text_buffer (gtk_buffer);
+    gspell_text_buffer_set_spell_checker (gspell_buffer, NULL);
+
+    gspell_view = gspell_text_view_get_from_gtk_text_view (GTK_TEXT_VIEW (view));
+    gspell_text_view_set_inline_spell_checking (gspell_view, FALSE);
 }
 
 static void
@@ -1241,19 +757,7 @@ tab_added_cb (XedWindow      *window,
               XedTab         *tab,
               XedSpellPlugin *plugin)
 {
-    XedView *view;
-    XedDocument *doc;
-
-    view = xed_tab_get_view (tab);
-    doc = XED_DOCUMENT (gtk_text_view_get_buffer (GTK_TEXT_VIEW (view)));
-
-    g_object_set_data (G_OBJECT (doc), XED_AUTOMATIC_SPELL_VIEW, view);
-
-    g_signal_connect (doc, "loaded",
-                      G_CALLBACK (on_document_loaded), plugin);
-
-    g_signal_connect (doc, "saved",
-                      G_CALLBACK (on_document_saved), plugin);
+    activate_spell_checking_in_view (plugin, xed_tab_get_view (tab));
 }
 
 static void
@@ -1261,25 +765,27 @@ tab_removed_cb (XedWindow      *window,
                 XedTab         *tab,
                 XedSpellPlugin *plugin)
 {
-    XedDocument *doc;
-
-    doc = xed_tab_get_document (tab);
-    g_object_set_data (G_OBJECT (doc), XED_AUTOMATIC_SPELL_VIEW, NULL);
-
-    g_signal_handlers_disconnect_by_func (doc, on_document_loaded, plugin);
-    g_signal_handlers_disconnect_by_func (doc, on_document_saved, plugin);
+    /* Don't deactivate completely the spell checking in @tab, since the tab
+     * can be moved to another window and we don't want to loose the spell
+     * checking settings (they are not saved in metadata for unsaved
+     * documents).
+     */
+    disconnect_view (plugin, xed_tab_get_view (tab));
 }
 
 static void
 xed_spell_plugin_activate (XedWindowActivatable *activatable)
 {
+    XedSpellPlugin *plugin;
     XedSpellPluginPrivate *priv;
     GtkUIManager *manager;
-    GList *views, *l;
+    GList *views;
+    GList *l;
 
     xed_debug (DEBUG_PLUGINS);
 
-    priv = XED_SPELL_PLUGIN (activatable)->priv;
+    plugin = XED_SPELL_PLUGIN (activatable);
+    priv = plugin->priv;
 
     manager = xed_window_get_ui_manager (priv->window);
 
@@ -1298,9 +804,6 @@ xed_spell_plugin_activate (XedWindowActivatable *activatable)
 
     priv->ui_id = gtk_ui_manager_new_merge_id (manager);
 
-    priv->message_cid = gtk_statusbar_get_context_id (GTK_STATUSBAR (xed_window_get_statusbar (priv->window)),
-                                                      "spell_plugin_message");
-
     gtk_ui_manager_add_ui (manager,
                            priv->ui_id,
                            MENU_PATH,
@@ -1312,8 +815,8 @@ xed_spell_plugin_activate (XedWindowActivatable *activatable)
     gtk_ui_manager_add_ui (manager,
                            priv->ui_id,
                            MENU_PATH,
-                           "AutoSpell",
-                           "AutoSpell",
+                           "InlineSpellChecker",
+                           "InlineSpellChecker",
                            GTK_UI_MANAGER_MENUITEM,
                            FALSE);
 
@@ -1328,35 +831,43 @@ xed_spell_plugin_activate (XedWindowActivatable *activatable)
     update_ui (XED_SPELL_PLUGIN (activatable));
 
     views = xed_window_get_views (priv->window);
-    for (l = views; l != NULL; l = g_list_next (l))
+    for (l = views; l != NULL; l = l->next)
     {
-        XedView *view = XED_VIEW (l->data);
-
-        set_auto_spell_from_metadata (XED_SPELL_PLUGIN (activatable), view, priv->action_group);
+        activate_spell_checking_in_view (plugin, XED_VIEW (l->data));
     }
 
-    priv->tab_added_id = g_signal_connect (priv->window, "tab-added",
-                                           G_CALLBACK (tab_added_cb), activatable);
-    priv->tab_removed_id = g_signal_connect (priv->window, "tab-removed",
-                                             G_CALLBACK (tab_removed_cb), activatable);
+    g_signal_connect (priv->window, "tab-added",
+                      G_CALLBACK (tab_added_cb), activatable);
+    g_signal_connect (priv->window, "tab-removed",
+                      G_CALLBACK (tab_removed_cb), activatable);
 }
 
 static void
 xed_spell_plugin_deactivate (XedWindowActivatable *activatable)
 {
+    XedSpellPlugin *plugin;
     XedSpellPluginPrivate *priv;
     GtkUIManager *manager;
+    GList *views;
+    GList *l;
 
     xed_debug (DEBUG_PLUGINS);
 
-    priv = XED_SPELL_PLUGIN (activatable)->priv;
+    plugin = XED_SPELL_PLUGIN (activatable);
+    priv = plugin->priv;
     manager = xed_window_get_ui_manager (priv->window);
 
     gtk_ui_manager_remove_ui (manager, priv->ui_id);
     gtk_ui_manager_remove_action_group (manager, priv->action_group);
 
-    g_signal_handler_disconnect (priv->window, priv->tab_added_id);
-    g_signal_handler_disconnect (priv->window, priv->tab_removed_id);
+    g_signal_handlers_disconnect_by_func (priv->window, tab_added_cb, activatable);
+    g_signal_handlers_disconnect_by_func (priv->window, tab_removed_cb, activatable);
+
+    views = xed_window_get_views (priv->window);
+    for (l = views; l != NULL; l = l->next)
+    {
+        deactivate_spell_checking_in_view (plugin, XED_VIEW (l->data));
+    }
 }
 
 static void
@@ -1375,35 +886,6 @@ xed_spell_plugin_create_configure_widget (PeasGtkConfigurable *configurable)
     widget = get_configure_widget (XED_SPELL_PLUGIN (configurable));
 
     return widget->content;
-}
-
-static void
-xed_spell_plugin_class_init (XedSpellPluginClass *klass)
-{
-    GObjectClass *object_class = G_OBJECT_CLASS (klass);
-
-    object_class->dispose = xed_spell_plugin_dispose;
-    object_class->set_property = xed_spell_plugin_set_property;
-    object_class->get_property = xed_spell_plugin_get_property;
-
-    if (spell_checker_id == 0)
-    {
-        spell_checker_id = g_quark_from_string ("XedSpellCheckerID");
-    }
-
-    if (check_range_id == 0)
-    {
-        check_range_id = g_quark_from_string ("CheckRangeID");
-    }
-
-    g_object_class_override_property (object_class, PROP_WINDOW, "window");
-
-    g_type_class_add_private (object_class, sizeof (XedSpellPluginPrivate));
-}
-
-static void
-xed_spell_plugin_class_finalize (XedSpellPluginClass *klass)
-{
 }
 
 static void

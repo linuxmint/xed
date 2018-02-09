@@ -19,7 +19,7 @@ SUBDIRS = 			\
 	time			\
 	trailsave
 
-if ENABLE_ENCHANT
+if ENABLE_SPELL
 SUBDIRS += spell
 endif
 

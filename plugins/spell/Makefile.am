@@ -4,7 +4,7 @@ plugindir = $(XED_PLUGINS_LIBS_DIR)
 AM_CPPFLAGS = 							\
 	-I$(top_srcdir)						\
 	$(XED_CFLAGS) 					\
-	$(ENCHANT_CFLAGS)					\
+	$(GSPELL_CFLAGS)					\
 	$(WARN_CFLAGS)						\
 	$(DISABLE_DEPRECATED_CFLAGS)
 
@@ -17,25 +17,13 @@ plugin_LTLIBRARIES = libspell.la
 libspell_la_SOURCES = \
 	xed-spell-plugin.c 				\
 	xed-spell-plugin.h 				\
-	xed-spell-checker.c 				\
-	xed-spell-checker.h				\
-	xed-spell-checker-dialog.c			\
-	xed-spell-checker-dialog.h			\
-	xed-spell-checker-language.c			\
-	xed-spell-checker-language.h			\
-	xed-spell-language-dialog.c			\
-	xed-spell-language-dialog.h			\
-	xed-automatic-spell-checker.c			\
-	xed-automatic-spell-checker.h			\
-	xed-spell-utils.c				\
-	xed-spell-utils.h				\
 	$(BUILT_SOURCES)
 
 libspell_la_LDFLAGS = $(PLUGIN_LIBTOOL_FLAGS)
-libspell_la_LIBADD  = $(XED_LIBS) $(ENCHANT_LIBS)
+libspell_la_LIBADD  = $(XED_LIBS) $(GSPELL_LIBS)
 
 uidir = $(XED_PLUGINS_DATA_DIR)/spell
-ui_DATA = spell-checker.ui languages-dialog.ui xed-spell-setup-dialog.ui
+ui_DATA = xed-spell-setup-dialog.ui
 
 xed-spell-marshal.h: xed-spell-marshal.list $(GLIB_GENMARSHAL)
 	$(AM_V_GEN) $(GLIB_GENMARSHAL) $< --header --prefix=xed_marshal > $@
