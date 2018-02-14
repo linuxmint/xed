@@ -293,7 +293,7 @@ language_dialog_response_cb (GtkDialog *dialog,
         xed_app_show_help (XED_APP (g_application_get_default ()),
                            GTK_WINDOW (dialog),
                            NULL,
-                           "xed-spellcheck");
+                           "xed-spell-checker-plugin");
         return;
     }
 
