@@ -95,7 +95,7 @@ xed_wordcompletion_plugin_init (XedWordCompletionPlugin *plugin)
 	plugin->priv = G_TYPE_INSTANCE_GET_PRIVATE (plugin,
 	                                            XED_TYPE_WORDCOMPLETION_PLUGIN,
 	                                            XedWordCompletionPluginPrivate);
-	                                            
+
 	plugin->priv->settings = g_settings_new (WORDCOMPLETION_SETTINGS_BASE);
 }
 
@@ -350,8 +350,7 @@ configure_widget_destroyed (GtkWidget *widget,
 static WordCompletionConfigureWidget *
 get_configure_widget (XedWordCompletionPlugin *plugin)
 {
-	XedWordCompletionPluginPrivate *priv;
-	WordCompletionConfigureWidget *widget = NULL;
+	WordCompletionConfigureWidget *widget;
 	gchar *data_dir;
 	gchar *ui_file;
 	GtkWidget *error_widget;
@@ -359,11 +358,9 @@ get_configure_widget (XedWordCompletionPlugin *plugin)
 
 	xed_debug (DEBUG_PLUGINS);
 
-	priv = plugin->priv;
-  
 	widget = g_slice_new (WordCompletionConfigureWidget);
 	widget->settings = g_object_ref (plugin->priv->settings);
-  
+
 	data_dir = peas_extension_base_get_data_dir (PEAS_EXTENSION_BASE (plugin));
 	ui_file = g_build_filename (data_dir, "xed-wordcompletion-configure.ui", NULL);
 	ret = xed_utils_get_ui_objects (ui_file,
@@ -373,7 +370,7 @@ get_configure_widget (XedWordCompletionPlugin *plugin)
                                   "spin_button_min_word_size", &widget->min_word_size,
                                   "check_button_interactive_completion", &widget->interactive_completion,
 	                                NULL);
-	  
+
 	g_free (data_dir);
 	g_free (ui_file);
 
@@ -381,9 +378,9 @@ get_configure_widget (XedWordCompletionPlugin *plugin)
   {
       return NULL;
   }
-    
+
   gtk_window_set_modal (GTK_WINDOW (widget->dialog), TRUE);
-  
+
 	g_settings_bind (widget->settings, SETTINGS_KEY_INTERACTIVE_COMPLETION,
 			 widget->interactive_completion, "active",
 			 G_SETTINGS_BIND_DEFAULT | G_SETTINGS_BIND_GET_NO_CHANGES);
