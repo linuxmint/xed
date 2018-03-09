@@ -20,6 +20,8 @@
 #include "xed-utils.h"
 #include "xed-commands.h"
 #include "xed-debug.h"
+#include "xed-document.h"
+#include "xed-document-private.h"
 #include "xed-panel.h"
 #include "xed-documents-panel.h"
 #include "xed-plugins-engine.h"
@@ -32,8 +34,6 @@
 #define LANGUAGE_NONE  (const gchar *)"LangNone"
 #define TAB_WIDTH_DATA "XedWindowTabWidthData"
 #define LANGUAGE_DATA  "XedWindowLanguageData"
-
-#define FULLSCREEN_ANIMATION_SPEED 4
 
 #define XED_WINDOW_DEFAULT_WIDTH  650
 #define XED_WINDOW_DEFAULT_HEIGHT 500
@@ -203,18 +203,6 @@ xed_window_dispose (GObject *object)
         peas_engine_garbage_collect (PEAS_ENGINE (xed_plugins_engine_get_default ()));
 
         window->priv->dispose_has_run = TRUE;
-    }
-
-    if (window->priv->fullscreen_animation_timeout_id != 0)
-    {
-        g_source_remove (window->priv->fullscreen_animation_timeout_id);
-        window->priv->fullscreen_animation_timeout_id = 0;
-    }
-
-    if (window->priv->fullscreen_controls != NULL)
-    {
-        gtk_widget_destroy (window->priv->fullscreen_controls);
-        window->priv->fullscreen_controls = NULL;
     }
 
     if (window->priv->recents_handler_id != 0)
@@ -1209,7 +1197,6 @@ create_menu_bar_and_toolbar (XedWindow *window,
     GtkUIManager *manager;
     GtkRecentManager *recent_manager;
     GError *error = NULL;
-    gchar *ui_file;
     GtkWidget *tool_item;
     GtkWidget *tool_box;
     GtkWidget *box;
@@ -2182,7 +2169,7 @@ show_overview_map_changed (GObject    *object,
     map_frame = GTK_FRAME (object);
     action = gtk_action_group_get_action (window->priv->always_sensitive_action_group, "ViewOverviewMap");
 
-    if (gtk_widget_get_visible (map_frame))
+    if (gtk_widget_get_visible (GTK_WIDGET (map_frame)))
     {
         overveiw_map_visible = TRUE;
     }
@@ -2235,7 +2222,7 @@ notebook_switch_page (GtkNotebook *book,
 
         if (window->priv->show_overview_map_id)
         {
-            g_signal_handler_disconnect (xed_view_frame_get_map_frame (_xed_tab_get_view_frame (window->priv->active_tab)), window->priv->show_overview_map_id);
+            g_signal_handler_disconnect (xed_view_frame_get_map_frame (XED_VIEW_FRAME (_xed_tab_get_view_frame (window->priv->active_tab))), window->priv->show_overview_map_id);
             window->priv->show_overview_map_id = 0;
         }
     }
@@ -2265,7 +2252,7 @@ notebook_switch_page (GtkNotebook *book,
     update_languages_menu (window);
 
     view = xed_tab_get_view (tab);
-    map_frame = xed_view_frame_get_map_frame (_xed_tab_get_view_frame (tab));
+    map_frame = xed_view_frame_get_map_frame (XED_VIEW_FRAME (_xed_tab_get_view_frame (tab)));
 
     /* sync the statusbar */
     update_cursor_position_statusbar (GTK_TEXT_BUFFER (xed_tab_get_document (tab)), window);
@@ -2373,15 +2360,6 @@ set_sensitivity_according_to_window_state (XedWindow *window)
 }
 
 static void
-update_tab_autosave (GtkWidget *widget,
-                     gpointer data)
-{
-    XedTab *tab = XED_TAB(widget);
-    gboolean *enabled = (gboolean *) data;
-    xed_tab_set_auto_save_enabled (tab, *enabled);
-}
-
-static void
 analyze_tab_state (XedTab *tab,
                    XedWindow *window)
 {
@@ -2456,7 +2434,7 @@ update_can_close (XedWindow *window)
     GList *l;
     gboolean can_close = TRUE;
 
-    tabs = xed_notebook_get_all_tabs (priv->notebook);
+    tabs = xed_notebook_get_all_tabs (XED_NOTEBOOK (priv->notebook));
 
     for (l = tabs; l != NULL; l = g_list_next (l))
     {
@@ -2634,143 +2612,22 @@ drop_uris_cb (GtkWidget *widget,
     load_uris_from_drop (window, uri_list);
 }
 
-static void
-fullscreen_controls_show (XedWindow *window)
-{
-    GdkScreen *screen;
-    GdkRectangle fs_rect;
-    gint min_h, nat_h;
-
-    screen = gtk_window_get_screen (GTK_WINDOW (window));
-    gdk_screen_get_monitor_geometry (
-                    screen, gdk_screen_get_monitor_at_window (screen, gtk_widget_get_window (GTK_WIDGET(window))),
-                    &fs_rect);
-
-    gtk_widget_get_preferred_height (window->priv->fullscreen_controls_container, &min_h, &nat_h);
-    gtk_window_resize (GTK_WINDOW (window->priv->fullscreen_controls), fs_rect.width, nat_h);
-    gtk_window_move (GTK_WINDOW (window->priv->fullscreen_controls), fs_rect.x, fs_rect.y - nat_h + 1);
-
-    gtk_widget_show_all (window->priv->fullscreen_controls);
-}
-
 static gboolean
-run_fullscreen_animation (gpointer data)
-{
-    XedWindow *window = XED_WINDOW(data);
-    GdkScreen *screen;
-    GdkRectangle fs_rect;
-    gint x, y;
-
-    screen = gtk_window_get_screen (GTK_WINDOW(window));
-    gdk_screen_get_monitor_geometry (screen,
-                    gdk_screen_get_monitor_at_window (screen, gtk_widget_get_window (GTK_WIDGET(window))),
-                    &fs_rect);
-
-    gtk_window_get_position (GTK_WINDOW(window->priv->fullscreen_controls), &x, &y);
-
-    if (window->priv->fullscreen_animation_enter)
-    {
-        if (y == fs_rect.y)
-        {
-            window->priv->fullscreen_animation_timeout_id = 0;
-            return FALSE;
-        }
-        else
-        {
-            gtk_window_move (GTK_WINDOW(window->priv->fullscreen_controls), x, y + 1);
-            return TRUE;
-        }
-    }
-    else
-    {
-        gint w, h;
-        gtk_window_get_size (GTK_WINDOW(window->priv->fullscreen_controls), &w, &h);
-        if (y == fs_rect.y - h + 1)
-        {
-            window->priv->fullscreen_animation_timeout_id = 0;
-            return FALSE;
-        }
-        else
-        {
-            gtk_window_move (GTK_WINDOW(window->priv->fullscreen_controls), x, y - 1);
-            return TRUE;
-        }
-    }
-}
-
-static void
-show_hide_fullscreen_toolbar (XedWindow *window,
-                              gboolean show,
-                              gint height)
-{
-    GtkSettings *settings;
-    gboolean enable_animations;
-
-    settings = gtk_widget_get_settings (GTK_WIDGET(window));
-    g_object_get (G_OBJECT(settings), "gtk-enable-animations", &enable_animations, NULL);
-
-    if (enable_animations)
-    {
-        window->priv->fullscreen_animation_enter = show;
-        if (window->priv->fullscreen_animation_timeout_id == 0)
-        {
-            window->priv->fullscreen_animation_timeout_id = g_timeout_add (FULLSCREEN_ANIMATION_SPEED,
-                                                                    (GSourceFunc) run_fullscreen_animation, window);
-        }
-    }
-    else
-    {
-        GdkRectangle fs_rect;
-        GdkScreen *screen;
-        screen = gtk_window_get_screen (GTK_WINDOW(window));
-        gdk_screen_get_monitor_geometry (screen,
-                    gdk_screen_get_monitor_at_window (screen, gtk_widget_get_window (GTK_WIDGET(window))),
-                    &fs_rect);
-
-        if (show)
-        {
-            gtk_window_move (GTK_WINDOW(window->priv->fullscreen_controls), fs_rect.x, fs_rect.y);
-        }
-        else
-        {
-            gtk_window_move (GTK_WINDOW(window->priv->fullscreen_controls), fs_rect.x, fs_rect.y - height + 1);
-        }
-    }
-
-}
-
-static gboolean
-on_fullscreen_controls_enter_notify_event (GtkWidget *widget,
+on_fullscreen_controls_enter_notify_event (GtkWidget        *widget,
                                            GdkEventCrossing *event,
-                                           XedWindow *window)
+                                           XedWindow        *window)
 {
-    show_hide_fullscreen_toolbar (window, TRUE, 0);
+    gtk_revealer_set_reveal_child (GTK_REVEALER (window->priv->fullscreen_controls), TRUE);
+
     return FALSE;
 }
 
 static gboolean
-on_fullscreen_controls_leave_notify_event (GtkWidget *widget,
+on_fullscreen_controls_leave_notify_event (GtkWidget        *widget,
                                            GdkEventCrossing *event,
-                                           XedWindow *window)
+                                           XedWindow        *window)
 {
-    GdkDisplay *display;
-    GdkScreen *screen;
-    gint w, h;
-    gint x, y;
-
-    display = gdk_display_get_default ();
-    screen = gtk_window_get_screen (GTK_WINDOW(window));
-
-    gtk_window_get_size (GTK_WINDOW(window->priv->fullscreen_controls), &w, &h);
-    gdk_display_get_pointer (display, &screen, &x, &y, NULL);
-
-    /* gtk seems to emit leave notify when clicking on tool items,
-     * work around it by checking the coordinates
-     */
-    if (y >= h)
-    {
-        show_hide_fullscreen_toolbar (window, FALSE, h);
-    }
+    gtk_revealer_set_reveal_child (GTK_REVEALER (window->priv->fullscreen_controls), FALSE);
 
     return FALSE;
 }
@@ -2781,6 +2638,9 @@ fullscreen_controls_build (XedWindow *window)
     XedWindowPrivate *priv = window->priv;
     GtkAction *action;
     GtkWidget *box;
+    GtkWidget *toolbar;
+    GtkWidget *toolitem;
+    GtkWidget *toolbox;
     GtkWidget *fullscreen_btn;
     GtkWidget *separator;
     GtkWidget *button;
@@ -2790,17 +2650,23 @@ fullscreen_controls_build (XedWindow *window)
         return;
     }
 
-    priv->fullscreen_controls = gtk_window_new (GTK_WINDOW_POPUP);
+    priv->fullscreen_controls = gtk_revealer_new ();
+    gtk_widget_set_valign (priv->fullscreen_controls, GTK_ALIGN_START);
+    gtk_container_add (GTK_CONTAINER (priv->fullscreen_eventbox), priv->fullscreen_controls);
 
-    gtk_window_set_transient_for (GTK_WINDOW (priv->fullscreen_controls), GTK_WINDOW (&window->window));
+    toolbar = gtk_toolbar_new ();
+    toolitem = gtk_tool_item_new ();
+    gtk_tool_item_set_expand (GTK_TOOL_ITEM (toolitem), TRUE);
+    gtk_toolbar_insert (GTK_TOOLBAR (toolbar), GTK_TOOL_ITEM (toolitem), 0);
 
-    window->priv->fullscreen_controls_container = gtk_box_new (GTK_ORIENTATION_VERTICAL, 0);
-    gtk_container_set_border_width (GTK_CONTAINER (window->priv->fullscreen_controls_container), 6);
-    gtk_container_add (GTK_CONTAINER (priv->fullscreen_controls), window->priv->fullscreen_controls_container);
+    toolbox = gtk_box_new (GTK_ORIENTATION_VERTICAL, 0);
+    gtk_style_context_add_class (gtk_widget_get_style_context (toolbar), "primary-toolbar");
+    gtk_container_add (GTK_CONTAINER (toolitem), toolbox);
+    gtk_container_add (GTK_CONTAINER (priv->fullscreen_controls), toolbar);
 
     box = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 0);
     gtk_widget_set_vexpand (box, FALSE);
-    gtk_box_pack_start (GTK_BOX (window->priv->fullscreen_controls_container), box, FALSE, FALSE, 0);
+    gtk_box_pack_start (GTK_BOX (toolbox), box, FALSE, FALSE, 0);
 
     action = gtk_action_group_get_action (window->priv->always_sensitive_action_group, "FileNew");
     button = create_toolbar_button (action);
@@ -2856,13 +2722,15 @@ fullscreen_controls_build (XedWindow *window)
     fullscreen_btn = create_toolbar_button (action);
     gtk_box_pack_end (GTK_BOX (box), fullscreen_btn, FALSE, FALSE, 0);
 
-    gtk_widget_show_all (window->priv->fullscreen_controls_container);
+    gtk_widget_show_all (toolbox);
 
-    g_signal_connect(priv->fullscreen_controls, "enter-notify-event",
-                     G_CALLBACK (on_fullscreen_controls_enter_notify_event), window);
+    g_signal_connect (priv->fullscreen_eventbox, "enter-notify-event",
+                      G_CALLBACK (on_fullscreen_controls_enter_notify_event), window);
 
-    g_signal_connect(priv->fullscreen_controls, "leave-notify-event",
-                     G_CALLBACK (on_fullscreen_controls_leave_notify_event), window);
+    g_signal_connect (priv->fullscreen_eventbox, "leave-notify-event",
+                      G_CALLBACK (on_fullscreen_controls_leave_notify_event), window);
+
+    gtk_widget_set_size_request (priv->fullscreen_eventbox, -1, 1);
 }
 
 static void
@@ -3069,7 +2937,7 @@ notebook_tab_removed (XedNotebook *notebook,
     --window->priv->num_tabs;
 
     view = xed_tab_get_view (tab);
-    frame = _xed_tab_get_view_frame (tab);
+    frame = XED_VIEW_FRAME (_xed_tab_get_view_frame (tab));
     doc = xed_tab_get_document (tab);
 
     g_signal_handlers_disconnect_by_func (tab, G_CALLBACK (sync_name), window);
@@ -3272,7 +3140,7 @@ side_panel_size_allocate (GtkWidget *widget,
                           GtkAllocation *allocation,
                           XedWindow *window)
 {
-    if (!xed_paned_get_is_animating (window->priv->hpaned))
+    if (!xed_paned_get_is_animating (XED_PANED (window->priv->hpaned)))
     {
         window->priv->side_panel_size = allocation->width;
     }
@@ -3283,7 +3151,7 @@ bottom_panel_size_allocate (GtkWidget *widget,
                             GtkAllocation *allocation,
                             XedWindow *window)
 {
-    if (!xed_paned_get_is_animating (window->priv->vpaned))
+    if (!xed_paned_get_is_animating (XED_PANED (window->priv->vpaned)))
     {
         window->priv->bottom_panel_size = allocation->height;
     }
@@ -3404,7 +3272,7 @@ bottom_panel_item_removed (XedPanel  *panel,
     {
         GtkAction *action;
 
-        xed_paned_close (window->priv->vpaned, 2);
+        xed_paned_close (XED_PANED (window->priv->vpaned), 2);
         gtk_revealer_set_reveal_child (GTK_REVEALER (window->priv->bottom_pane_button_revealer), FALSE);
         action = gtk_action_group_get_action (window->priv->panes_action_group, "ViewBottomPane");
         gtk_action_set_sensitive (action, FALSE);
@@ -3529,14 +3397,7 @@ check_window_is_active (XedWindow *window,
 {
     if (window->priv->window_state & GDK_WINDOW_STATE_FULLSCREEN)
     {
-        if (gtk_window_is_active (GTK_WINDOW(window)))
-        {
-            gtk_widget_show (window->priv->fullscreen_controls);
-        }
-        else
-        {
-            gtk_widget_hide (window->priv->fullscreen_controls);
-        }
+        gtk_widget_set_visible (window->priv->fullscreen_eventbox, gtk_window_is_active (GTK_WINDOW (window)));
     }
 }
 
@@ -3604,7 +3465,6 @@ xed_window_init (XedWindow *window)
     window->priv->inhibition_cookie = 0;
     window->priv->dispose_has_run = FALSE;
     window->priv->fullscreen_controls = NULL;
-    window->priv->fullscreen_animation_timeout_id = 0;
     window->priv->editor_settings = g_settings_new ("org.x.editor.preferences.editor");
     window->priv->ui_settings = g_settings_new ("org.x.editor.preferences.ui");
 
@@ -3621,8 +3481,15 @@ xed_window_init (XedWindow *window)
     gtk_style_context_add_class (gtk_widget_get_style_context (GTK_WIDGET (window)), "xed-window");
 
     main_box = gtk_box_new (GTK_ORIENTATION_VERTICAL, 0);
-    gtk_container_add (GTK_CONTAINER (window), main_box);
+    window->priv->fullscreen_overlay = gtk_overlay_new ();
+    gtk_container_add (GTK_CONTAINER (window->priv->fullscreen_overlay), main_box);
+    gtk_container_add (GTK_CONTAINER (window), window->priv->fullscreen_overlay);
+    gtk_widget_show (window->priv->fullscreen_overlay);
     gtk_widget_show (main_box);
+
+    window->priv->fullscreen_eventbox = gtk_event_box_new ();
+    gtk_widget_set_valign (window->priv->fullscreen_eventbox, GTK_ALIGN_START);
+    gtk_overlay_add_overlay (GTK_OVERLAY (window->priv->fullscreen_overlay), window->priv->fullscreen_eventbox);
 
     /* Add menu bar and toolbar bar */
     create_menu_bar_and_toolbar (window, main_box);
@@ -4322,7 +4189,8 @@ _xed_window_fullscreen (XedWindow *window)
     gtk_widget_hide (window->priv->statusbar);
 
     fullscreen_controls_build (window);
-    fullscreen_controls_show (window);
+
+    gtk_widget_show_all (window->priv->fullscreen_eventbox);
 }
 
 void
@@ -4359,7 +4227,7 @@ _xed_window_unfullscreen (XedWindow *window)
     }
     g_signal_handlers_unblock_by_func (window->priv->statusbar, statusbar_visibility_changed, window);
 
-    gtk_widget_hide (window->priv->fullscreen_controls);
+    gtk_widget_hide (window->priv->fullscreen_eventbox);
 }
 
 gboolean

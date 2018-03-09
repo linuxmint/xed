@@ -43,6 +43,8 @@
 #include "xed-print-preview.h"
 #include "xed-progress-info-bar.h"
 #include "xed-debug.h"
+#include "xed-document.h"
+#include "xed-document-private.h"
 #include "xed-enum-types.h"
 #include "xed-settings.h"
 #include "xed-view-frame.h"
@@ -1112,39 +1114,39 @@ view_focused_in (GtkWidget     *widget,
                  XedTab        *tab)
 {
     XedDocument *doc;
+    GtkSourceFile *file;
 
     g_return_val_if_fail (XED_IS_TAB (tab), FALSE);
 
     /* we try to detect file changes only in the normal state */
     if (tab->priv->state != XED_TAB_STATE_NORMAL)
     {
-        return FALSE;
+        return GDK_EVENT_PROPAGATE;
     }
 
     /* we already asked, don't bug the user again */
     if (!tab->priv->ask_if_externally_modified)
     {
-        return FALSE;
+        return GDK_EVENT_PROPAGATE;
     }
 
     doc = xed_tab_get_document (tab);
+    file = xed_document_get_file (doc);
 
     /* If file was never saved or is remote we do not check */
-    if (!xed_document_is_local (doc))
+    if (gtk_source_file_is_local (file))
     {
-        return FALSE;
+        gtk_source_file_check_file_on_disk (file);
+
+        if (gtk_source_file_is_externally_modified (file))
+        {
+            xed_tab_set_state (tab, XED_TAB_STATE_EXTERNALLY_MODIFIED_NOTIFICATION);
+
+            display_externally_modified_notification (tab);
+        }
     }
 
-    if (_xed_document_check_externally_modified (doc))
-    {
-        xed_tab_set_state (tab, XED_TAB_STATE_EXTERNALLY_MODIFIED_NOTIFICATION);
-
-        display_externally_modified_notification (tab);
-
-        return FALSE;
-    }
-
-    return FALSE;
+    return GDK_EVENT_PROPAGATE;
 }
 
 static void

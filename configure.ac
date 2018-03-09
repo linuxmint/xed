@@ -94,49 +94,25 @@ dnl ================================================================
 dnl spell plugins checks: enchant and iso-codes
 dnl ================================================================
 
-ENCHANT_REQUIRED=1.2.0
-ISO_CODES_REQUIRED=0.35
+GSPELL_REQUIRED=0.2.5
 
 AC_ARG_ENABLE([spell],
 	AS_HELP_STRING([--disable-spell],[Disable spell plugin (default: enabled)]),
-	[enable_enchant=$enableval],
-	[enable_enchant=yes])
+	[enable_spell=$enableval],
+	[enable_spell=yes])
 
-if test "x$enable_enchant" = "xyes" ; then
+if test "x$enable_spell" = "xyes" ; then
 
-	PKG_CHECK_MODULES(ENCHANT, enchant >= $ENCHANT_REQUIRED, \
-			  have_enchant=yes, have_enchant=no)
+	PKG_CHECK_MODULES(GSPELL, gspell-1 >= $GSPELL_REQUIRED, \
+	                  have_gspell=yes, have_gspell=no)
 
-	if test "x$have_enchant" = "xyes"; then
-
-		PKG_CHECK_EXISTS([iso-codes >= $ISO_CODES_REQUIRED],
-				 [have_iso_codes=yes],[have_iso_codes=no])
-
-		if test "x$have_iso_codes" = "xyes"; then
-			AC_MSG_CHECKING([whether iso-codes has iso-639 and iso-3166 domains])
-			if $PKG_CONFIG --variable=domains iso-codes | grep 639 > /dev/null && \
-			   $PKG_CONFIG --variable=domains iso-codes | grep 3166 > /dev/null ; then
-				result=yes
-			else
-				result=no
-				have_iso_codes=no
-			fi
-			AC_MSG_RESULT([$result])
-		fi
-
-		if test "x$have_iso_codes" = "xyes"; then
-			AC_DEFINE_UNQUOTED([ISO_CODES_PREFIX],["`$PKG_CONFIG --variable=prefix iso-codes`"],[ISO codes prefix])
-			AC_DEFINE([HAVE_ISO_CODES],[1],[Define if you have the iso-codes package])
-		else
-			AC_MSG_ERROR([iso-codes is required to build the spell plugin. Use --disable-spell to build without spell plugin.])
-		fi
-	else
-		enable_enchant=no
-		AC_MSG_ERROR([Enchant library not found or too old. Use --disable-spell to build without spell plugin.])
+	if test "x$have_gspell" = "xno"; then
+		enable_spell=no
+		AC_MSG_ERROR([gspell library not found or too old. Use --disable-spell to build without spell plugin.])
 	fi
 fi
 
-AM_CONDITIONAL(ENABLE_ENCHANT, test x"$enable_enchant" = "xyes")
+AM_CONDITIONAL(ENABLE_SPELL, test x"$enable_spell" = "xyes")
 
 dnl ================================================================
 dnl Start of pkg-config checks
@@ -149,10 +125,11 @@ PKG_CHECK_MODULES(XED, [
 	$GMODULE_ADD
 	gthread-2.0 >= 2.13.0
 	gio-2.0 >= 2.40.0
-	gtk+-3.0 >= 3.18.0
-	gtksourceview-3.0 >= 3.18.0
+	gtk+-3.0 >= 3.19.3
+	gtksourceview-3.0 >= 3.19.0
 	libpeas-1.0 >= 1.12.0
 	libpeas-gtk-1.0 >= 1.12.0
+    xapp
 ])
 
 PKG_CHECK_MODULES(X11, [x11])
@@ -254,7 +231,7 @@ Configuration:
 
 	Source code location:	${srcdir}
 	Compiler:				${CC}
-	Spell Plugin enabled:	$enable_enchant
+	Spell Plugin enabled:	$enable_spell
 	Gvfs metadata enabled:	$enable_gvfs_metadata
 	GObject Introspection:	${enable_introspection}
 "

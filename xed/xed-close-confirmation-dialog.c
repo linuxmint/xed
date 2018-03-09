@@ -32,10 +32,13 @@
 #include <config.h>
 #endif
 
+#include "xed-close-confirmation-dialog.h"
+
 #include <glib/gi18n.h>
 
-#include "xed-close-confirmation-dialog.h"
 #include <xed/xed-app.h>
+#include <xed/xed-document.h>
+#include <xed/xed-document-private.h>
 #include <xed/xed-utils.h>
 #include <xed/xed-window.h>
 

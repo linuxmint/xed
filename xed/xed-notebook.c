@@ -543,6 +543,8 @@ button_release_cb (XedNotebook    *notebook,
                    GdkEventButton *event,
                    gpointer        data)
 {
+    gboolean ret_val = FALSE;
+
     if (notebook->priv->drag_in_progress)
     {
         gint cur_page_num;
@@ -566,11 +568,23 @@ button_release_cb (XedNotebook    *notebook,
         }
         gtk_grab_remove (GTK_WIDGET (notebook));
     }
+    else if ((event->type == GDK_BUTTON_RELEASE) && (event->button == 8))
+    {
+        gtk_notebook_prev_page (GTK_NOTEBOOK (notebook));
+
+        ret_val = TRUE;
+    }
+    else if ((event->type == GDK_BUTTON_RELEASE) && (event->button == 9))
+    {
+        gtk_notebook_next_page (GTK_NOTEBOOK (notebook));
+
+        ret_val = TRUE;
+    }
 
     /* This must be called even if a drag isn't happening */
     drag_stop (notebook);
 
-    return FALSE;
+    return ret_val;
 }
 
 static gboolean
@@ -638,12 +652,12 @@ notebook_scroll_event_cb (XedNotebook    *notebook,
     switch (event->direction)
     {
         case GDK_SCROLL_DOWN:
-        case GDK_SCROLL_RIGHT:
-            gtk_notebook_next_page (GTK_NOTEBOOK (notebook));
-            break;
-        case GDK_SCROLL_UP:
         case GDK_SCROLL_LEFT:
             gtk_notebook_prev_page (GTK_NOTEBOOK (notebook));
+            break;
+        case GDK_SCROLL_UP:
+        case GDK_SCROLL_RIGHT:
+            gtk_notebook_next_page (GTK_NOTEBOOK (notebook));
             break;
         default:
             break;
@@ -714,11 +728,9 @@ xed_notebook_init (XedNotebook *notebook)
     notebook->priv->tab_scrolling_enabled = g_settings_get_boolean (notebook->priv->ui_settings, "enable-tab-scrolling");
 
     gtk_notebook_set_scrollable (GTK_NOTEBOOK (notebook), TRUE);
-
-#if GTK_CHECK_VERSION (3, 20, 0)
-        gtk_notebook_set_show_border (GTK_NOTEBOOK (notebook), FALSE);
-#endif
+    gtk_notebook_set_show_border (GTK_NOTEBOOK (notebook), FALSE);
     gtk_notebook_set_show_tabs (GTK_NOTEBOOK (notebook), FALSE);
+    gtk_container_set_border_width (GTK_CONTAINER (notebook), 0);
 
     g_signal_connect (notebook, "button-press-event",
                       (GCallback)button_press_cb, NULL);

@@ -7,7 +7,6 @@ G_DEFINE_TYPE (XedViewGutterRenderer, xed_view_gutter_renderer, GTK_SOURCE_TYPE_
 static void
 xed_view_gutter_renderer_class_init (XedViewGutterRendererClass *klass)
 {
-  GtkSourceGutterRendererClass *renderer_class = GTK_SOURCE_GUTTER_RENDERER_CLASS (klass);
 }
 
 static void

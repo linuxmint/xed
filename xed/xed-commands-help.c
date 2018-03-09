@@ -46,7 +46,7 @@
 void _xed_cmd_help_contents (GtkAction *action,
                              XedWindow *window)
 {
-    xed_debug(DEBUG_COMMANDS);
+    xed_debug (DEBUG_COMMANDS);
 
     xed_app_show_help (XED_APP (g_application_get_default ()), GTK_WINDOW (window), NULL, NULL);
 }
@@ -66,4 +66,34 @@ void _xed_cmd_help_about (GtkAction *action,
         "version", VERSION,
         "website", "http://github.com/linuxmint/xed",
         NULL);
+}
+
+void
+_xed_cmd_help_keyboard_shortcuts (GtkAction *action,
+                                  XedWindow *window)
+{
+    static GtkWidget *shortcuts_window;
+
+    xed_debug (DEBUG_COMMANDS);
+
+    if (shortcuts_window == NULL)
+    {
+        GtkBuilder *builder;
+
+        builder = gtk_builder_new_from_resource ("/org/x/editor/ui/xed-shortcuts.ui");
+        shortcuts_window = GTK_WIDGET (gtk_builder_get_object (builder, "shortcuts-xed"));
+
+        g_signal_connect (shortcuts_window, "destroy",
+                          G_CALLBACK (gtk_widget_destroyed), &shortcuts_window);
+
+        g_object_unref (builder);
+    }
+
+    if (GTK_WINDOW (window) != gtk_window_get_transient_for (GTK_WINDOW (shortcuts_window)))
+    {
+        gtk_window_set_transient_for (GTK_WINDOW (shortcuts_window), GTK_WINDOW (window));
+    }
+
+    gtk_widget_show_all (shortcuts_window);
+    gtk_window_present (GTK_WINDOW (shortcuts_window));
 }
