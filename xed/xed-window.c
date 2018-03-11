@@ -497,7 +497,7 @@ received_clipboard_contents (GtkClipboard *clipboard,
                              GtkSelectionData *selection_data,
                              XedWindow *window)
 {
-    gboolean sens;
+    gboolean sensitive;
     GtkAction *action;
 
     /* getting clipboard contents is async, so we need to
@@ -507,17 +507,23 @@ received_clipboard_contents (GtkClipboard *clipboard,
     {
         XedTabState state;
         gboolean state_normal;
+
         state = xed_tab_get_state (window->priv->active_tab);
         state_normal = (state == XED_TAB_STATE_NORMAL);
-        sens = state_normal && gtk_selection_data_targets_include_text (selection_data);
+        sensitive = state_normal && gtk_selection_data_targets_include_text (selection_data);
     }
     else
     {
-        sens = FALSE;
+        sensitive = FALSE;
     }
 
     action = gtk_action_group_get_action (window->priv->action_group, "EditPaste");
-    gtk_action_set_sensitive (action, sens);
+
+    if (action != NULL)
+    {
+        gtk_action_set_sensitive (action, sensitive);
+    }
+
     g_object_unref (window);
 }
 
