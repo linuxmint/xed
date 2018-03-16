@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schemalist gettext-domain="xed">
+  <schema id="org.x.editor.plugins.wordcompletion" path="/org/x/editor/plugins/wordcompletion/">
+    <key name="interactive-completion" type="b">
+      <default>true</default>
+      <summary>Interactive Completion</summary>
+      <description>Whether to enable interactive completion.</description>
+    </key>
+    <key name="minimum-word-size" type="u">
+      <range min="2" max="100" />
+      <default>2</default>
+      <summary>Minimum Word Size</summary>
+      <description>The minimum word size to complete.</description>
+    </key>
+  </schema>
+</schemalist>

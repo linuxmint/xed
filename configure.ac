@@ -220,6 +220,8 @@ plugins/textsize/textsize/Makefile
 plugins/time/Makefile
 plugins/time/org.x.editor.plugins.time.gschema.xml
 plugins/trailsave/Makefile
+plugins/wordcompletion/Makefile
+plugins/wordcompletion/org.x.editor.plugins.wordcompletion.gschema.xml
 po/Makefile.in
 ])
 
