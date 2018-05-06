@@ -1,3 +1,50 @@
+xed (1.8.0) tara; urgency=medium
+
+  [ Clement Lefebvre ]
+  * Add CI configuration
+
+  [ Leigh Scott ]
+  * Fix clang compile issue (#209)
+  * Fix Py*DeprecationWarning (#202)
+
+  [ JosephMcc ]
+  * Pull upstream fixes for gtk and gtksourceview changes
+  * preferences-dialog: Complete revamp
+  * xed-window: Rework the fullscreen toolbar
+  * xed-status-combo-box: Remove some deprecated css functionality
+  * xed-view-frame: Fix the css for the minimap frame
+  * xed-notebook: Clean up some gtk3.20+ conditionals
+  * Add a shortcuts window
+  * xed-view: Add shortcuts for change case
+  * debian: Add --enable-silent-rules to debian/rules
+  * css: Add support for Adwaita
+  * xed-searchbar: Fix the size of the searchbar close button
+  * xed-spell-checker.c: Clean up the code formatting
+  * spell-plugin: Update for removal of some deprecated functionality
+  * xed-notebook: Allow changing tabs with mouse back/forward buttons
+  * Fix a couple of issues turned up by Codacy
+  * Clean up a few build warnings
+  * spell-plugin: Port to gspell
+  * spell-plugin: Fix a link to the help file
+
+  [ Nic ]
+  * Add C tags to the taglist plugin (#188)
+
+  [ Clement Lefebvre ]
+  * CI: Don't build for Mint 18
+
+  [ JosephMcc ]
+  * xed-window: Fix a potential crash
+
+  [ Mickael Albertus ]
+  * Creation of plugin Word completion (#199)
+
+  [ Clement Lefebvre ]
+  * Wordcompletion: Fix a few mgsids
+  * l10n: Update POT file
+
+ -- Clement Lefebvre <root@linuxmint.com>  Sun, 06 May 2018 16:43:18 +0100
+
 xed (1.6.3) sylvia; urgency=medium
 
   * l10n: Update translations
