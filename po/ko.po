@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MATE Desktop Environment\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-05-06 16:42+0100\n"
-"PO-Revision-Date: 2018-05-19 16:48+0000\n"
+"POT-Creation-Date: 2018-06-08 12:08+0100\n"
+"PO-Revision-Date: 2018-06-08 16:31+0000\n"
 "Last-Translator: Jung-Kyu Park <bagjunggyu@gmail.com>\n"
 "Language-Team: Korean "
 "(http://www.transifex.com/projects/p/MATE/language/ko/)\n"
@@ -20,8 +20,8 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Launchpad-Export-Date: 2018-05-22 09:22+0000\n"
-"X-Generator: Launchpad (build 18658)\n"
+"X-Launchpad-Export-Date: 2018-06-26 10:13+0000\n"
+"X-Generator: Launchpad (build 18688)\n"
 "Language: ko\n"
 
 #: ../data/org.x.editor.gschema.xml.in.h:1
@@ -496,7 +496,7 @@ msgstr "텍스트 파일을 편집합니다"
 
 #: ../xed/xed-app.c:105
 msgid "Show the application's version"
-msgstr "프로그램 버전을 표시합니다"
+msgstr "애플리케이션 버전 보기"
 
 #: ../xed/xed-app.c:111
 msgid "Display list of possible values for the encoding option"
@@ -789,7 +789,8 @@ msgstr "저장하지 않은 문서 %d"
 msgid "Read-Only"
 msgstr "읽기 전용"
 
-#: ../xed/xed-documents-panel.c:732 ../xed/xed-window.c:3244
+#: ../xed/xed-documents-panel.c:732 ../xed/resources/ui/xed-shortcuts.ui.h:1
+#: ../xed/xed-window.c:3244
 msgid "Documents"
 msgstr "문서"
 
@@ -1339,7 +1340,7 @@ msgstr "오른쪽 여백 표시"
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:8
 msgid "Right margin at column"
-msgstr ""
+msgstr "열의 오른쪽 여백"
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:9
 msgid "4"
@@ -1355,7 +1356,7 @@ msgstr "현재 선을 강조"
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:12
 msgid "Highlight matching brackets"
-msgstr ""
+msgstr "일치하는 괄호 강조 표시"
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:13
 msgid "Indentation"
@@ -1367,7 +1368,7 @@ msgstr "탭 너비"
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:15
 msgid "Use spaces instead of tabs"
-msgstr ""
+msgstr "탭 대신 스페이스 사용"
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:16
 msgid "Automatic indentation"
@@ -1379,7 +1380,7 @@ msgstr "줄 바꿈"
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:18
 msgid "Split words over two lines"
-msgstr ""
+msgstr "두 줄로 단어 나누기"
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:19
 msgid "Tab scrolling"
@@ -1403,7 +1404,7 @@ msgstr "파일 자동 저장"
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:24
 msgid "Minutes between saving"
-msgstr ""
+msgstr "저장 간격 (분)"
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:25
 msgid "Dark theme"
@@ -1530,6 +1531,186 @@ msgstr "전체 단어"
 #: ../xed/resources/ui/xed-searchbar.ui.h:10
 msgid "Wrap"
 msgstr "둘러싸기"
+
+#: ../xed/resources/ui/xed-shortcuts.ui.h:2 ../xed/xed-ui.h:57
+msgid "Create a new document"
+msgstr "새 문서를 만듭니다"
+
+#: ../xed/resources/ui/xed-shortcuts.ui.h:3
+msgid "Open a document"
+msgstr "문서 열기"
+
+#: ../xed/resources/ui/xed-shortcuts.ui.h:4
+msgid "Save the document"
+msgstr "문서 저장"
+
+#: ../xed/resources/ui/xed-shortcuts.ui.h:5
+msgid "Save the document with a new filename"
+msgstr "문서를 다른 파일 이름으로 저장"
+
+#: ../xed/resources/ui/xed-shortcuts.ui.h:6
+msgid "Save all the documents"
+msgstr "모든 문서 저장"
+
+#: ../xed/resources/ui/xed-shortcuts.ui.h:7
+msgid "Close the document"
+msgstr "문서 닫기"
+
+#: ../xed/resources/ui/xed-shortcuts.ui.h:8
+msgid "Close all the documents"
+msgstr "모든 문서 닫기"
+
+#: ../xed/resources/ui/xed-shortcuts.ui.h:9
+msgid "Switch to the next document"
+msgstr "다음 문서로 이동"
+
+#: ../xed/resources/ui/xed-shortcuts.ui.h:10
+msgid "Switch to the previous document"
+msgstr "이전 문서로 이동"
+
+#: ../xed/resources/ui/xed-shortcuts.ui.h:11
+msgid "Switch to the first - ninth document"
+msgstr "1번째 - 9번째 문서로 이동"
+
+#: ../xed/resources/ui/xed-shortcuts.ui.h:12
+msgid "Windows and Panes"
+msgstr "창과 가장자리 창"
+
+#: ../xed/resources/ui/xed-shortcuts.ui.h:13
+msgid "Show side pane"
+msgstr "옆면 창 보기"
+
+#: ../xed/resources/ui/xed-shortcuts.ui.h:14
+msgid "Show bottom pane"
+msgstr "아래 창 보기"
+
+#: ../xed/resources/ui/xed-shortcuts.ui.h:15
+msgid "Fullscreen on / off"
+msgstr "전체 화면 켜기 / 끄기"
+
+#: ../xed/resources/ui/xed-shortcuts.ui.h:16
+msgid "Quit the application"
+msgstr "애플리케이션 끝내기"
+
+#: ../xed/resources/ui/xed-shortcuts.ui.h:17
+msgid "Find and Replace"
+msgstr "찾아서 바꾸기"
+
+#: ../xed/resources/ui/xed-shortcuts.ui.h:18
+msgid "Find"
+msgstr "찾기"
+
+#: ../xed/resources/ui/xed-shortcuts.ui.h:19
+msgid "Find the next match"
+msgstr "다음 일치하는 항목 찾기"
+
+#: ../xed/resources/ui/xed-shortcuts.ui.h:20
+msgid "Find the previous match"
+msgstr "이전 일치하는 항목 찾기"
+
+#: ../xed/resources/ui/xed-shortcuts.ui.h:21
+msgid "Go to line"
+msgstr "줄로 이동"
+
+#: ../xed/resources/ui/xed-shortcuts.ui.h:22
+msgid "Copy and Paste"
+msgstr "복사 및 붙여넣기"
+
+#: ../xed/resources/ui/xed-shortcuts.ui.h:23
+msgid "Copy selected text to clipboard"
+msgstr "선택한 텍스트 클립보드에 복사"
+
+#: ../xed/resources/ui/xed-shortcuts.ui.h:24
+msgid "Cut selected text to clipboard"
+msgstr "선택한 텍스트를 클립보드에 잘라내기"
+
+#: ../xed/resources/ui/xed-shortcuts.ui.h:25
+msgid "Paste text from clipboard"
+msgstr "클립보드의 텍스트 붙여넣기"
+
+#: ../xed/resources/ui/xed-shortcuts.ui.h:26
+msgid "Undo and Redo"
+msgstr "실행 취소 및 다시 실행"
+
+#: ../xed/resources/ui/xed-shortcuts.ui.h:27
+msgid "Undo previous command"
+msgstr "이전 명령 실행 취소"
+
+#: ../xed/resources/ui/xed-shortcuts.ui.h:28
+msgid "Redo previous command"
+msgstr "이전 명령 다시 실행"
+
+#: ../xed/resources/ui/xed-shortcuts.ui.h:29 ../plugins/docinfo/docinfo.ui.h:11
+msgid "Selection"
+msgstr "선택한 부분"
+
+#: ../xed/resources/ui/xed-shortcuts.ui.h:30
+msgid "Select all text"
+msgstr "모든 텍스트 선택"
+
+#: ../xed/resources/ui/xed-shortcuts.ui.h:31
+msgid "Tools"
+msgstr "도구"
+
+#: ../xed/resources/ui/xed-shortcuts.ui.h:32
+msgid "Check spelling"
+msgstr "맞춤법 검사"
+
+#: ../xed/resources/ui/xed-shortcuts.ui.h:33
+msgid "Print the document"
+msgstr "문서 인쇄"
+
+#: ../xed/resources/ui/xed-shortcuts.ui.h:34
+msgid "Editing"
+msgstr "편집"
+
+#: ../xed/resources/ui/xed-shortcuts.ui.h:35
+msgid "Toggle insert / overwrite"
+msgstr "끼워넣기 / 덮어쓰기 토글"
+
+#: ../xed/resources/ui/xed-shortcuts.ui.h:36
+msgid "Delete current line"
+msgstr "현재 줄 삭제"
+
+#: ../xed/resources/ui/xed-shortcuts.ui.h:37
+msgid "Move current line up"
+msgstr "현재 줄 위로 옮기기"
+
+#: ../xed/resources/ui/xed-shortcuts.ui.h:38
+msgid "Move current line down"
+msgstr "현재 줄 아래로 옮기기"
+
+#: ../xed/resources/ui/xed-shortcuts.ui.h:39
+msgid "Move current word left"
+msgstr "현재 단어 왼쪽으로 옮기기"
+
+#: ../xed/resources/ui/xed-shortcuts.ui.h:40
+msgid "Move current word right"
+msgstr "현재 단어 오른쪽으로 옮기기"
+
+#: ../xed/resources/ui/xed-shortcuts.ui.h:41
+msgid "Convert to uppercase"
+msgstr "대문자로 변환"
+
+#: ../xed/resources/ui/xed-shortcuts.ui.h:42
+msgid "Convert to lowercase"
+msgstr "소문자로 변환"
+
+#: ../xed/resources/ui/xed-shortcuts.ui.h:43
+msgid "Convert to title case"
+msgstr "제목 글자로 변환"
+
+#: ../xed/resources/ui/xed-shortcuts.ui.h:44
+msgid "Invert case"
+msgstr "대소문자 뒤바꾸기"
+
+#: ../xed/resources/ui/xed-shortcuts.ui.h:45
+msgid "Increment number at cursor"
+msgstr "커서 위치 숫자 증가"
+
+#: ../xed/resources/ui/xed-shortcuts.ui.h:46
+msgid "Decrement number at cursor"
+msgstr "커서 위치 숫자 감소"
 
 #: ../xed/xed-searchbar.c:95
 #, c-format
@@ -1685,10 +1866,6 @@ msgstr "문서(_D)"
 msgid "_New"
 msgstr "새로 만들기(_N)"
 
-#: ../xed/xed-ui.h:57
-msgid "Create a new document"
-msgstr "새 문서를 만듭니다"
-
 #: ../xed/xed-ui.h:58
 msgid "_Open..."
 msgstr "열기(_O)..."
@@ -1704,7 +1881,7 @@ msgstr "기본 설정(_E)"
 
 #: ../xed/xed-ui.h:63
 msgid "Configure the application"
-msgstr "프로그램을 설정합니다"
+msgstr "애플리케이션 설정"
 
 #. Help menu
 #: ../xed/xed-ui.h:66
@@ -1721,7 +1898,7 @@ msgstr "정보(_A)"
 
 #: ../xed/xed-ui.h:69
 msgid "About this application"
-msgstr "이 프로그램 정보"
+msgstr "애플리케이션 소개"
 
 #: ../xed/xed-ui.h:70
 msgid "_Keyboard Shortcuts"
@@ -2096,10 +2273,6 @@ msgstr "줄"
 #: ../plugins/docinfo/docinfo.ui.h:10
 msgid "Document"
 msgstr "문서"
-
-#: ../plugins/docinfo/docinfo.ui.h:11
-msgid "Selection"
-msgstr "선택한 부분"
 
 #: ../plugins/docinfo/xed-docinfo-plugin.c:382
 msgid "_Document Statistics"
@@ -4209,7 +4382,7 @@ msgstr "단어 완성"
 
 #: ../plugins/wordcompletion/xed-wordcompletion-configure.ui.h:2
 msgid "Use Ctrl+Space to manually trigger word completion."
-msgstr ""
+msgstr "Ctrl + Space로 수동 단어 완성을 시작합니다."
 
 #: ../plugins/wordcompletion/xed-wordcompletion-configure.ui.h:3
 msgid "Automatic completion"
@@ -4217,7 +4390,7 @@ msgstr "자동 완성"
 
 #: ../plugins/wordcompletion/xed-wordcompletion-configure.ui.h:4
 msgid "Minimum word size for auto-completion"
-msgstr ""
+msgstr "자동 완성에 필요한 최소 단어 크기"
 
 #: ../plugins/wordcompletion/xed-wordcompletion-plugin.c:219
 msgid "Word completion"

@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MATE Desktop Environment\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-05-06 16:42+0100\n"
-"PO-Revision-Date: 2018-05-08 03:34+0000\n"
+"POT-Creation-Date: 2018-06-08 12:08+0100\n"
+"PO-Revision-Date: 2018-06-08 13:18+0000\n"
 "Last-Translator: AlephAlpha <alephalpha911@gmail.com>\n"
 "Language-Team: Chinese (China) "
 "(http://www.transifex.com/projects/p/MATE/language/zh_CN/)\n"
@@ -18,8 +18,8 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Launchpad-Export-Date: 2018-05-22 09:22+0000\n"
-"X-Generator: Launchpad (build 18658)\n"
+"X-Launchpad-Export-Date: 2018-06-26 10:14+0000\n"
+"X-Generator: Launchpad (build 18688)\n"
 "Language: zh_CN\n"
 
 #: ../data/org.x.editor.gschema.xml.in.h:1
@@ -61,11 +61,11 @@ msgstr "在允许的情况下，xed是否应该倾向于使用暗色主题。"
 
 #: ../data/org.x.editor.gschema.xml.in.h:8
 msgid "Style Scheme"
-msgstr "风格大纲"
+msgstr "样式大纲"
 
 #: ../data/org.x.editor.gschema.xml.in.h:9
 msgid "The ID of a GtkSourceView Style Scheme used to color the text."
-msgstr "用于文本颜色的 GtkSourceView 样式主题 ID。"
+msgstr "用于文本颜色的 GtkSourceView 样式大纲 ID。"
 
 #: ../data/org.x.editor.gschema.xml.in.h:10
 msgid "Create Backup Copies"
@@ -105,7 +105,7 @@ msgstr "可写入的 VFS 大纲"
 msgid ""
 "List of VFS schemes xed supports in write mode. The 'file' scheme is "
 "writable by default."
-msgstr "Xed 在写入模式下支持以下的 VSD 大纲。其中 file 大纲默认是可写的。"
+msgstr "Xed 在写入模式下支持以下的 VFS 大纲。其中 file 大纲默认是可写的。"
 
 #: ../data/org.x.editor.gschema.xml.in.h:18
 msgid "Maximum Number of Undo Actions"
@@ -183,19 +183,19 @@ msgstr "是否允许xed高亮显示匹配括号。"
 
 #: ../data/org.x.editor.gschema.xml.in.h:34
 msgid "Display Right Margin"
-msgstr "显示右边距"
+msgstr "显示右侧提示线"
 
 #: ../data/org.x.editor.gschema.xml.in.h:35
 msgid "Whether xed should display the right margin in the editing area."
-msgstr "是否允许xed在编辑区域显示右边距。"
+msgstr "是否允许xed在编辑区域显示右侧提示线。"
 
 #: ../data/org.x.editor.gschema.xml.in.h:36
 msgid "Right Margin Position"
-msgstr "右边距位置"
+msgstr "右侧提示线位置"
 
 #: ../data/org.x.editor.gschema.xml.in.h:37
 msgid "Specifies the position of the right margin."
-msgstr "指定右边距的位置。"
+msgstr "指定右侧提示线的位置。"
 
 #: ../data/org.x.editor.gschema.xml.in.h:38
 msgid "Smart Home End"
@@ -777,7 +777,8 @@ msgstr "未保存文档 %d"
 msgid "Read-Only"
 msgstr "只读"
 
-#: ../xed/xed-documents-panel.c:732 ../xed/xed-window.c:3244
+#: ../xed/xed-documents-panel.c:732 ../xed/resources/ui/xed-shortcuts.ui.h:1
+#: ../xed/xed-window.c:3244
 msgid "Documents"
 msgstr "文档"
 
@@ -1153,7 +1154,7 @@ msgstr "如果您强行保存该文件，可能会造成文件损坏。仍然要
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:3
 #, no-c-format
 msgid "Use the system fixed width font (%s)"
-msgstr ""
+msgstr "使用系统等宽字体 (%s)"
 
 #: ../xed/xed-preferences-dialog.c:386
 msgid "Editor"
@@ -1322,11 +1323,11 @@ msgstr "显示概览地图"
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:7
 msgid "Display right margin"
-msgstr "显示右边界"
+msgstr "显示右侧提示线"
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:8
 msgid "Right margin at column"
-msgstr ""
+msgstr "列的右侧提示线"
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:9
 msgid "4"
@@ -1354,11 +1355,11 @@ msgstr "Tab宽度"
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:15
 msgid "Use spaces instead of tabs"
-msgstr ""
+msgstr "以空格代替制表符"
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:16
 msgid "Automatic indentation"
-msgstr ""
+msgstr "自动缩进"
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:17
 msgid "Word wrap"
@@ -1366,11 +1367,11 @@ msgstr "单词换行"
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:18
 msgid "Split words over two lines"
-msgstr ""
+msgstr "将单词分拆到两行"
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:19
 msgid "Tab scrolling"
-msgstr ""
+msgstr "Tab 滚动"
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:20
 msgid "Allow mouse wheel scrolling to change tabs"
@@ -1378,23 +1379,23 @@ msgstr "允许通过滚动鼠标滚轮来切换标签"
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:21
 msgid "File saving"
-msgstr ""
+msgstr "保存文件"
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:22
 msgid "Create a backup copy of files before saving"
-msgstr ""
+msgstr "在保存前创建一个备份副本"
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:23
 msgid "Autosave files"
-msgstr ""
+msgstr "自动保存文件，每隔"
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:24
 msgid "Minutes between saving"
-msgstr ""
+msgstr "分钟"
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:25
 msgid "Dark theme"
-msgstr ""
+msgstr "暗色主题"
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:26
 msgid "Use dark theme variant (if available)"
@@ -1402,15 +1403,15 @@ msgstr "使用主题的暗色变种（假如可使用的话）"
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:27
 msgid "Style scheme"
-msgstr ""
+msgstr "样式大纲"
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:28
 msgid "Install scheme"
-msgstr ""
+msgstr "安装方案"
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:29
 msgid "Remove scheme"
-msgstr ""
+msgstr "移除方案"
 
 #: ../xed/resources/ui/xed-print-preferences.ui.h:1
 msgid "Syntax Highlighting"
@@ -1517,6 +1518,186 @@ msgstr "整个单词"
 #: ../xed/resources/ui/xed-searchbar.ui.h:10
 msgid "Wrap"
 msgstr "循环"
+
+#: ../xed/resources/ui/xed-shortcuts.ui.h:2 ../xed/xed-ui.h:57
+msgid "Create a new document"
+msgstr "新建一个文档"
+
+#: ../xed/resources/ui/xed-shortcuts.ui.h:3
+msgid "Open a document"
+msgstr "打开文档"
+
+#: ../xed/resources/ui/xed-shortcuts.ui.h:4
+msgid "Save the document"
+msgstr "保存文档"
+
+#: ../xed/resources/ui/xed-shortcuts.ui.h:5
+msgid "Save the document with a new filename"
+msgstr "以新文件名保存文档"
+
+#: ../xed/resources/ui/xed-shortcuts.ui.h:6
+msgid "Save all the documents"
+msgstr "保存所有文档"
+
+#: ../xed/resources/ui/xed-shortcuts.ui.h:7
+msgid "Close the document"
+msgstr "关闭文档"
+
+#: ../xed/resources/ui/xed-shortcuts.ui.h:8
+msgid "Close all the documents"
+msgstr "关闭所有文档"
+
+#: ../xed/resources/ui/xed-shortcuts.ui.h:9
+msgid "Switch to the next document"
+msgstr "切换到下一个文档"
+
+#: ../xed/resources/ui/xed-shortcuts.ui.h:10
+msgid "Switch to the previous document"
+msgstr "切换到上一个文档"
+
+#: ../xed/resources/ui/xed-shortcuts.ui.h:11
+msgid "Switch to the first - ninth document"
+msgstr "切换到第 1 到 9 个文档"
+
+#: ../xed/resources/ui/xed-shortcuts.ui.h:12
+msgid "Windows and Panes"
+msgstr "窗口和侧边栏"
+
+#: ../xed/resources/ui/xed-shortcuts.ui.h:13
+msgid "Show side pane"
+msgstr "显示侧边栏"
+
+#: ../xed/resources/ui/xed-shortcuts.ui.h:14
+msgid "Show bottom pane"
+msgstr "显示底部面板"
+
+#: ../xed/resources/ui/xed-shortcuts.ui.h:15
+msgid "Fullscreen on / off"
+msgstr "全屏开/关"
+
+#: ../xed/resources/ui/xed-shortcuts.ui.h:16
+msgid "Quit the application"
+msgstr "退出程序"
+
+#: ../xed/resources/ui/xed-shortcuts.ui.h:17
+msgid "Find and Replace"
+msgstr "查找和替换"
+
+#: ../xed/resources/ui/xed-shortcuts.ui.h:18
+msgid "Find"
+msgstr "查找"
+
+#: ../xed/resources/ui/xed-shortcuts.ui.h:19
+msgid "Find the next match"
+msgstr "查找下一个"
+
+#: ../xed/resources/ui/xed-shortcuts.ui.h:20
+msgid "Find the previous match"
+msgstr "查找上一个"
+
+#: ../xed/resources/ui/xed-shortcuts.ui.h:21
+msgid "Go to line"
+msgstr "跳到行"
+
+#: ../xed/resources/ui/xed-shortcuts.ui.h:22
+msgid "Copy and Paste"
+msgstr "复制和粘贴"
+
+#: ../xed/resources/ui/xed-shortcuts.ui.h:23
+msgid "Copy selected text to clipboard"
+msgstr "将选中文本复制到剪贴板"
+
+#: ../xed/resources/ui/xed-shortcuts.ui.h:24
+msgid "Cut selected text to clipboard"
+msgstr "将选中文本剪切到剪贴板"
+
+#: ../xed/resources/ui/xed-shortcuts.ui.h:25
+msgid "Paste text from clipboard"
+msgstr "粘贴剪贴板上的内容"
+
+#: ../xed/resources/ui/xed-shortcuts.ui.h:26
+msgid "Undo and Redo"
+msgstr "撤销和重做"
+
+#: ../xed/resources/ui/xed-shortcuts.ui.h:27
+msgid "Undo previous command"
+msgstr "撤销上一个命令"
+
+#: ../xed/resources/ui/xed-shortcuts.ui.h:28
+msgid "Redo previous command"
+msgstr "重做上一个命令"
+
+#: ../xed/resources/ui/xed-shortcuts.ui.h:29 ../plugins/docinfo/docinfo.ui.h:11
+msgid "Selection"
+msgstr "选中范围"
+
+#: ../xed/resources/ui/xed-shortcuts.ui.h:30
+msgid "Select all text"
+msgstr "选择全部文本"
+
+#: ../xed/resources/ui/xed-shortcuts.ui.h:31
+msgid "Tools"
+msgstr "工具"
+
+#: ../xed/resources/ui/xed-shortcuts.ui.h:32
+msgid "Check spelling"
+msgstr "拼写检查"
+
+#: ../xed/resources/ui/xed-shortcuts.ui.h:33
+msgid "Print the document"
+msgstr "打印文档"
+
+#: ../xed/resources/ui/xed-shortcuts.ui.h:34
+msgid "Editing"
+msgstr "编辑"
+
+#: ../xed/resources/ui/xed-shortcuts.ui.h:35
+msgid "Toggle insert / overwrite"
+msgstr "切换插入/覆盖"
+
+#: ../xed/resources/ui/xed-shortcuts.ui.h:36
+msgid "Delete current line"
+msgstr "删除当前行"
+
+#: ../xed/resources/ui/xed-shortcuts.ui.h:37
+msgid "Move current line up"
+msgstr "上移当前行"
+
+#: ../xed/resources/ui/xed-shortcuts.ui.h:38
+msgid "Move current line down"
+msgstr "下移当前行"
+
+#: ../xed/resources/ui/xed-shortcuts.ui.h:39
+msgid "Move current word left"
+msgstr "左移当前单词"
+
+#: ../xed/resources/ui/xed-shortcuts.ui.h:40
+msgid "Move current word right"
+msgstr "右移当前单词"
+
+#: ../xed/resources/ui/xed-shortcuts.ui.h:41
+msgid "Convert to uppercase"
+msgstr "转换为大写"
+
+#: ../xed/resources/ui/xed-shortcuts.ui.h:42
+msgid "Convert to lowercase"
+msgstr "转换为小写"
+
+#: ../xed/resources/ui/xed-shortcuts.ui.h:43
+msgid "Convert to title case"
+msgstr "转换为标题大小写"
+
+#: ../xed/resources/ui/xed-shortcuts.ui.h:44
+msgid "Invert case"
+msgstr "反转大小写"
+
+#: ../xed/resources/ui/xed-shortcuts.ui.h:45
+msgid "Increment number at cursor"
+msgstr "递增光标处的数字"
+
+#: ../xed/resources/ui/xed-shortcuts.ui.h:46
+msgid "Decrement number at cursor"
+msgstr "递减光标处的数字"
 
 #: ../xed/xed-searchbar.c:95
 #, c-format
@@ -1672,10 +1853,6 @@ msgstr "文档(_D)"
 msgid "_New"
 msgstr "新建(_N)"
 
-#: ../xed/xed-ui.h:57
-msgid "Create a new document"
-msgstr "新建一个文档"
-
 #: ../xed/xed-ui.h:58
 msgid "_Open..."
 msgstr "打开(_O)..."
@@ -1716,7 +1893,7 @@ msgstr "快捷键(_K)"
 
 #: ../xed/xed-ui.h:71
 msgid "Show the keyboard shortcuts dialog"
-msgstr ""
+msgstr "显示键盘快捷键对话框"
 
 #: ../xed/xed-ui.h:75
 msgid "Leave fullscreen mode"
@@ -2083,10 +2260,6 @@ msgstr "行数"
 #: ../plugins/docinfo/docinfo.ui.h:10
 msgid "Document"
 msgstr "文档"
-
-#: ../plugins/docinfo/docinfo.ui.h:11
-msgid "Selection"
-msgstr "选中范围"
 
 #: ../plugins/docinfo/xed-docinfo-plugin.c:382
 msgid "_Document Statistics"
@@ -4192,15 +4365,15 @@ msgstr "单词补全"
 
 #: ../plugins/wordcompletion/xed-wordcompletion-configure.ui.h:2
 msgid "Use Ctrl+Space to manually trigger word completion."
-msgstr ""
+msgstr "用 Ctrl+Space 来手动触发单词补全"
 
 #: ../plugins/wordcompletion/xed-wordcompletion-configure.ui.h:3
 msgid "Automatic completion"
-msgstr ""
+msgstr "自动补全"
 
 #: ../plugins/wordcompletion/xed-wordcompletion-configure.ui.h:4
 msgid "Minimum word size for auto-completion"
-msgstr ""
+msgstr "自动补全的最小单词大小"
 
 #: ../plugins/wordcompletion/xed-wordcompletion-plugin.c:219
 msgid "Word completion"

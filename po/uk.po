@@ -13,9 +13,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MATE Desktop Environment\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-05-06 16:42+0100\n"
-"PO-Revision-Date: 2017-10-03 13:24+0000\n"
-"Last-Translator: Oliver Star <ewqstar@gmail.com>\n"
+"POT-Creation-Date: 2018-06-08 12:08+0100\n"
+"PO-Revision-Date: 2018-06-17 20:18+0000\n"
+"Last-Translator: Oleg Prykhodko <Unknown>\n"
 "Language-Team: Ukrainian "
 "(http://www.transifex.com/projects/p/MATE/language/uk/)\n"
 "MIME-Version: 1.0\n"
@@ -23,8 +23,8 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Launchpad-Export-Date: 2018-05-22 09:22+0000\n"
-"X-Generator: Launchpad (build 18658)\n"
+"X-Launchpad-Export-Date: 2018-06-26 10:14+0000\n"
+"X-Generator: Launchpad (build 18688)\n"
 "Language: uk\n"
 
 #: ../data/org.x.editor.gschema.xml.in.h:1
@@ -908,7 +908,8 @@ msgstr "Незбережений документ %d"
 msgid "Read-Only"
 msgstr "Лише читання"
 
-#: ../xed/xed-documents-panel.c:732 ../xed/xed-window.c:3244
+#: ../xed/xed-documents-panel.c:732 ../xed/resources/ui/xed-shortcuts.ui.h:1
+#: ../xed/xed-window.c:3244
 msgid "Documents"
 msgstr "Документи"
 
@@ -1328,7 +1329,7 @@ msgstr "Редактор"
 
 #: ../xed/xed-preferences-dialog.c:418
 msgid "Save"
-msgstr ""
+msgstr "Зберегти"
 
 #: ../xed/xed-preferences-dialog.c:531
 #, c-format
@@ -1360,7 +1361,7 @@ msgstr "Не вдається вилучити схему кольорів \"%s\
 
 #: ../xed/xed-preferences-dialog.c:824
 msgid "Theme"
-msgstr ""
+msgstr "Тема"
 
 #: ../xed/xed-preferences-dialog.c:841
 msgid "Plugins"
@@ -1478,7 +1479,7 @@ msgstr "Шрифт"
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:4
 msgid "Display"
-msgstr ""
+msgstr "Дисплей"
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:5
 msgid "Display line numbers"
@@ -1490,7 +1491,7 @@ msgstr "Показати карту огляду"
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:7
 msgid "Display right margin"
-msgstr ""
+msgstr "Показувати праве поле"
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:8
 msgid "Right margin at column"
@@ -1498,7 +1499,7 @@ msgstr ""
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:9
 msgid "4"
-msgstr ""
+msgstr "4"
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:10
 msgid "Highlighting"
@@ -1506,7 +1507,7 @@ msgstr ""
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:11
 msgid "Highlight the current line"
-msgstr ""
+msgstr "Підсвітити поточний рядок"
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:12
 msgid "Highlight matching brackets"
@@ -1526,7 +1527,7 @@ msgstr ""
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:16
 msgid "Automatic indentation"
-msgstr ""
+msgstr "Автоматичний відступ"
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:17
 msgid "Word wrap"
@@ -1562,7 +1563,7 @@ msgstr ""
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:25
 msgid "Dark theme"
-msgstr ""
+msgstr "Темна тема"
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:26
 msgid "Use dark theme variant (if available)"
@@ -1685,6 +1686,186 @@ msgstr "Цілі слова"
 #: ../xed/resources/ui/xed-searchbar.ui.h:10
 msgid "Wrap"
 msgstr "Перенос"
+
+#: ../xed/resources/ui/xed-shortcuts.ui.h:2 ../xed/xed-ui.h:57
+msgid "Create a new document"
+msgstr "Створити новий документ"
+
+#: ../xed/resources/ui/xed-shortcuts.ui.h:3
+msgid "Open a document"
+msgstr ""
+
+#: ../xed/resources/ui/xed-shortcuts.ui.h:4
+msgid "Save the document"
+msgstr ""
+
+#: ../xed/resources/ui/xed-shortcuts.ui.h:5
+msgid "Save the document with a new filename"
+msgstr ""
+
+#: ../xed/resources/ui/xed-shortcuts.ui.h:6
+msgid "Save all the documents"
+msgstr ""
+
+#: ../xed/resources/ui/xed-shortcuts.ui.h:7
+msgid "Close the document"
+msgstr "Закрити документ"
+
+#: ../xed/resources/ui/xed-shortcuts.ui.h:8
+msgid "Close all the documents"
+msgstr "Закрити всі документи"
+
+#: ../xed/resources/ui/xed-shortcuts.ui.h:9
+msgid "Switch to the next document"
+msgstr "Перейти до наступного документа"
+
+#: ../xed/resources/ui/xed-shortcuts.ui.h:10
+msgid "Switch to the previous document"
+msgstr "Перейти до попереднього документа"
+
+#: ../xed/resources/ui/xed-shortcuts.ui.h:11
+msgid "Switch to the first - ninth document"
+msgstr "Перейти до першого-дев'ятого документа"
+
+#: ../xed/resources/ui/xed-shortcuts.ui.h:12
+msgid "Windows and Panes"
+msgstr ""
+
+#: ../xed/resources/ui/xed-shortcuts.ui.h:13
+msgid "Show side pane"
+msgstr ""
+
+#: ../xed/resources/ui/xed-shortcuts.ui.h:14
+msgid "Show bottom pane"
+msgstr ""
+
+#: ../xed/resources/ui/xed-shortcuts.ui.h:15
+msgid "Fullscreen on / off"
+msgstr "Перемкнути на ввесь екран"
+
+#: ../xed/resources/ui/xed-shortcuts.ui.h:16
+msgid "Quit the application"
+msgstr "Вийти з програми"
+
+#: ../xed/resources/ui/xed-shortcuts.ui.h:17
+msgid "Find and Replace"
+msgstr "Знайти та замінити"
+
+#: ../xed/resources/ui/xed-shortcuts.ui.h:18
+msgid "Find"
+msgstr "Знайти"
+
+#: ../xed/resources/ui/xed-shortcuts.ui.h:19
+msgid "Find the next match"
+msgstr "Знайти наступний збіг"
+
+#: ../xed/resources/ui/xed-shortcuts.ui.h:20
+msgid "Find the previous match"
+msgstr "Знайти попередній збіг"
+
+#: ../xed/resources/ui/xed-shortcuts.ui.h:21
+msgid "Go to line"
+msgstr "Перейти до рядка"
+
+#: ../xed/resources/ui/xed-shortcuts.ui.h:22
+msgid "Copy and Paste"
+msgstr ""
+
+#: ../xed/resources/ui/xed-shortcuts.ui.h:23
+msgid "Copy selected text to clipboard"
+msgstr ""
+
+#: ../xed/resources/ui/xed-shortcuts.ui.h:24
+msgid "Cut selected text to clipboard"
+msgstr ""
+
+#: ../xed/resources/ui/xed-shortcuts.ui.h:25
+msgid "Paste text from clipboard"
+msgstr ""
+
+#: ../xed/resources/ui/xed-shortcuts.ui.h:26
+msgid "Undo and Redo"
+msgstr ""
+
+#: ../xed/resources/ui/xed-shortcuts.ui.h:27
+msgid "Undo previous command"
+msgstr ""
+
+#: ../xed/resources/ui/xed-shortcuts.ui.h:28
+msgid "Redo previous command"
+msgstr ""
+
+#: ../xed/resources/ui/xed-shortcuts.ui.h:29 ../plugins/docinfo/docinfo.ui.h:11
+msgid "Selection"
+msgstr "Виділення"
+
+#: ../xed/resources/ui/xed-shortcuts.ui.h:30
+msgid "Select all text"
+msgstr ""
+
+#: ../xed/resources/ui/xed-shortcuts.ui.h:31
+msgid "Tools"
+msgstr ""
+
+#: ../xed/resources/ui/xed-shortcuts.ui.h:32
+msgid "Check spelling"
+msgstr ""
+
+#: ../xed/resources/ui/xed-shortcuts.ui.h:33
+msgid "Print the document"
+msgstr ""
+
+#: ../xed/resources/ui/xed-shortcuts.ui.h:34
+msgid "Editing"
+msgstr ""
+
+#: ../xed/resources/ui/xed-shortcuts.ui.h:35
+msgid "Toggle insert / overwrite"
+msgstr ""
+
+#: ../xed/resources/ui/xed-shortcuts.ui.h:36
+msgid "Delete current line"
+msgstr ""
+
+#: ../xed/resources/ui/xed-shortcuts.ui.h:37
+msgid "Move current line up"
+msgstr ""
+
+#: ../xed/resources/ui/xed-shortcuts.ui.h:38
+msgid "Move current line down"
+msgstr ""
+
+#: ../xed/resources/ui/xed-shortcuts.ui.h:39
+msgid "Move current word left"
+msgstr ""
+
+#: ../xed/resources/ui/xed-shortcuts.ui.h:40
+msgid "Move current word right"
+msgstr ""
+
+#: ../xed/resources/ui/xed-shortcuts.ui.h:41
+msgid "Convert to uppercase"
+msgstr ""
+
+#: ../xed/resources/ui/xed-shortcuts.ui.h:42
+msgid "Convert to lowercase"
+msgstr ""
+
+#: ../xed/resources/ui/xed-shortcuts.ui.h:43
+msgid "Convert to title case"
+msgstr ""
+
+#: ../xed/resources/ui/xed-shortcuts.ui.h:44
+msgid "Invert case"
+msgstr ""
+
+#: ../xed/resources/ui/xed-shortcuts.ui.h:45
+msgid "Increment number at cursor"
+msgstr ""
+
+#: ../xed/resources/ui/xed-shortcuts.ui.h:46
+msgid "Decrement number at cursor"
+msgstr ""
 
 #: ../xed/xed-searchbar.c:95
 #, c-format
@@ -1847,10 +2028,6 @@ msgstr "Д_окументи"
 #: ../xed/xed-ui.h:56
 msgid "_New"
 msgstr "_Новий"
-
-#: ../xed/xed-ui.h:57
-msgid "Create a new document"
-msgstr "Створити новий документ"
 
 #: ../xed/xed-ui.h:58
 msgid "_Open..."
@@ -2261,10 +2438,6 @@ msgstr "Рядки"
 #: ../plugins/docinfo/docinfo.ui.h:10
 msgid "Document"
 msgstr "Документ"
-
-#: ../plugins/docinfo/docinfo.ui.h:11
-msgid "Selection"
-msgstr "Виділення"
 
 #: ../plugins/docinfo/xed-docinfo-plugin.c:382
 msgid "_Document Statistics"
