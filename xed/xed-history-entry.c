@@ -473,6 +473,7 @@ xed_history_entry_new (const gchar *history_id,
              gboolean     enable_completion)
 {
     GtkWidget *ret;
+    GtkEntry *real_entry;
 
     g_return_val_if_fail (history_id != NULL, NULL);
 
@@ -497,6 +498,9 @@ xed_history_entry_new (const gchar *history_id,
     xed_history_entry_load_history (XED_HISTORY_ENTRY (ret));
 
     xed_history_entry_set_enable_completion (XED_HISTORY_ENTRY (ret), enable_completion);
+
+    real_entry = GTK_ENTRY (xed_history_entry_get_entry (XED_HISTORY_ENTRY (ret)));
+    gtk_entry_set_width_chars (real_entry, 6);
 
     return ret;
 }
