@@ -43,6 +43,8 @@ NOINST_H_FILES =						\
 	xed-document-private.h 				\
 	xed-documents-panel.h				\
 	xed-encodings-dialog.h 				\
+	xed-highlight-mode-dialog.h			\
+	xed-highlight-mode-selector.h		\
 	xed-history-entry.h					\
 	xed-io-error-info-bar.h				\
 	xed-metadata-manager.h 				\
@@ -112,6 +114,8 @@ libxed_c_files = 						\
 	xed-encodings-combo-box.c			\
 	xed-encodings-dialog.c 				\
 	xed-file-chooser-dialog.c			\
+	xed-highlight-mode-dialog.c			\
+	xed-highlight-mode-selector.c		\
 	xed-history-entry.c					\
 	xed-io-error-info-bar.c				\
 	xed-message-bus.c					\
