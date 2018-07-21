@@ -51,6 +51,7 @@ void _xed_cmd_view_toggle_overview_map (GtkAction *action, XedWindow *window);
 void _xed_cmd_view_toggle_fullscreen_mode (GtkAction *action, XedWindow *window);
 void _xed_cmd_view_toggle_word_wrap (GtkAction *action, XedWindow *window);
 void _xed_cmd_view_leave_fullscreen_mode (GtkAction *action, XedWindow *window);
+void _xed_cmd_view_change_highlight_mode (GtkAction *action, XedWindow *window);
 
 void _xed_cmd_search_find (GtkAction *action, XedWindow *window);
 

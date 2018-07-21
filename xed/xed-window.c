@@ -1282,14 +1282,6 @@ create_menu_bar_and_toolbar (XedWindow *window,
                                                         window);
     update_recent_files_menu (window);
 
-    /* languages menu */
-    action_group = gtk_action_group_new ("LanguagesActions");
-    gtk_action_group_set_translation_domain (action_group, NULL);
-    window->priv->languages_action_group = action_group;
-    gtk_ui_manager_insert_action_group (manager, action_group, 0);
-    g_object_unref (action_group);
-    create_languages_menu (window);
-
     /* list of open documents menu */
     action_group = gtk_action_group_new ("DocumentsListActions");
     gtk_action_group_set_translation_domain (action_group, NULL);
@@ -2254,9 +2246,6 @@ notebook_switch_page (GtkNotebook *book,
 
     g_free (action_name);
 
-    /* update the syntax menu */
-    update_languages_menu (window);
-
     view = xed_tab_get_view (tab);
     map_frame = xed_view_frame_get_map_frame (XED_VIEW_FRAME (_xed_tab_get_view_frame (tab)));
 
@@ -2846,7 +2835,6 @@ sync_languages_menu (XedDocument *doc,
                      GParamSpec *pspec,
                      XedWindow *window)
 {
-    update_languages_menu (window);
     peas_extension_set_call (window->priv->extensions, "update_state");
 }
 

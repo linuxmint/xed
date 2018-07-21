@@ -42,6 +42,8 @@
 #include "xed-window-private.h"
 #include "xed-paned.h"
 #include "xed-view-frame.h"
+#include "xed-highlight-mode-dialog.h"
+#include "xed-highlight-mode-selector.h"
 
 void
 _xed_cmd_view_show_toolbar (GtkAction *action,
@@ -212,4 +214,42 @@ _xed_cmd_view_leave_fullscreen_mode (GtkAction *action,
     gtk_toggle_action_set_active (GTK_TOGGLE_ACTION (view_action), FALSE);
     _xed_window_unfullscreen (window);
     g_signal_handlers_unblock_by_func (view_action, G_CALLBACK (_xed_cmd_view_toggle_fullscreen_mode), window);
+}
+
+static void
+on_language_selected (XedHighlightModeSelector *sel,
+                      GtkSourceLanguage          *language,
+                      XedWindow                *window)
+{
+    XedDocument *doc;
+
+    doc = xed_window_get_active_document (window);
+    if (doc)
+    {
+        xed_document_set_language (doc, language);
+    }
+}
+
+void
+_xed_cmd_view_change_highlight_mode (GtkAction *action,
+                                     XedWindow *window)
+{
+    GtkWidget *dlg;
+    XedHighlightModeSelector *sel;
+    XedDocument *doc;
+
+    dlg = xed_highlight_mode_dialog_new (GTK_WINDOW (window));
+    sel = xed_highlight_mode_dialog_get_selector (XED_HIGHLIGHT_MODE_DIALOG (dlg));
+
+    doc = xed_window_get_active_document (XED_WINDOW (window));
+    if (doc)
+    {
+        xed_highlight_mode_selector_select_language (sel,
+                                                       xed_document_get_language (doc));
+    }
+
+    g_signal_connect (sel, "language-selected",
+                      G_CALLBACK (on_language_selected), window);
+
+    gtk_widget_show (GTK_WIDGET (dlg));
 }
