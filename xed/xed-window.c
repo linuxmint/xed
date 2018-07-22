@@ -3506,7 +3506,7 @@ xed_window_init (XedWindow *window)
         GtkWidget *root_bar = gtk_info_bar_new ();
         gtk_info_bar_set_message_type (GTK_INFO_BAR (root_bar), GTK_MESSAGE_ERROR);
         GtkWidget *content_area = gtk_info_bar_get_content_area (GTK_INFO_BAR (root_bar));
-        GtkWidget *label = gtk_label_new (_("Elevated Privileges"));
+        GtkWidget *label = gtk_label_new (_("Warning, you are using the root account, you may harm your system."));
         gtk_widget_show (label);
         gtk_container_add (GTK_CONTAINER (content_area), label);
         gtk_box_pack_start (GTK_BOX (main_box), root_bar, FALSE, FALSE, 0);
