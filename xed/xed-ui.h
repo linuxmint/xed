@@ -109,7 +109,7 @@ static const GtkActionEntry xed_menu_entries[] =
 	/* View menu */
 	{ "ViewHighlightMode", NULL, N_("_Highlight Mode"), NULL,
 	  N_("Change syntax hightlight mode"),
-	  G_CALLBACK (_xed_cmd_view_change_highlight_mode), TRUE },
+	  G_CALLBACK (_xed_cmd_view_change_highlight_mode) },
 
 	/* Search menu */
 	{ "SearchFind", "edit-find-symbolic", N_("_Find"), "<control>F",
