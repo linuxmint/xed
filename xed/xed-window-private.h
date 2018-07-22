@@ -55,7 +55,8 @@ struct _XedWindowPrivate
     GtkWidget *hpaned;
     GtkWidget *vpaned;
 
-    GtkWidget *tab_width_combo;
+    GtkWidget *tab_width_button;
+    GtkWidget *tab_width_menu;
     GtkWidget *language_button;
     GtkWidget *language_popover;
     GtkWidget *show_side_pane_button;

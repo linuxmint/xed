@@ -1296,8 +1296,7 @@ statusbar_visibility_changed (GtkWidget *statusbar,
 }
 
 static void
-tab_width_combo_changed (XedStatusComboBox *combo,
-                         GtkMenuItem *item,
+tab_width_button_clicked (GtkMenuItem *item,
                          XedWindow *window)
 {
     XedView *view;
@@ -1317,9 +1316,7 @@ tab_width_combo_changed (XedStatusComboBox *combo,
         return;
     }
 
-    g_signal_handler_block (view, window->priv->tab_width_id);
     gtk_source_view_set_tab_width (GTK_SOURCE_VIEW(view), width_data);
-    g_signal_handler_unblock (view, window->priv->tab_width_id);
 }
 
 static void
@@ -1342,21 +1339,25 @@ typedef struct
 } TabWidthDefinition;
 
 static void
-fill_tab_width_combo (XedWindow *window)
+setup_tab_width_menu (XedWindow *window)
 {
     static TabWidthDefinition defs[] = { { "2", 2 }, { "4", 4 }, { "8", 8 }, { "", 0 }, /* custom size */
     { NULL, 0 } };
 
-    XedStatusComboBox *combo = XED_STATUS_COMBO_BOX(window->priv->tab_width_combo);
     guint i = 0;
     GtkWidget *item;
+
+    window->priv->tab_width_menu = gtk_menu_new ();
 
     while (defs[i].label != NULL)
     {
         item = gtk_menu_item_new_with_label (defs[i].label);
         g_object_set_data (G_OBJECT(item), TAB_WIDTH_DATA, GINT_TO_POINTER(defs[i].width));
 
-        xed_status_combo_box_add_item (combo, GTK_MENU_ITEM(item), defs[i].label);
+        gtk_menu_shell_append (GTK_MENU_SHELL (window->priv->tab_width_menu), item);
+
+        g_signal_connect(G_OBJECT (item), "activate",
+                         G_CALLBACK (tab_width_button_clicked), window);
 
         if (defs[i].width != 0)
         {
@@ -1367,11 +1368,11 @@ fill_tab_width_combo (XedWindow *window)
     }
 
     item = gtk_separator_menu_item_new ();
-    xed_status_combo_box_add_item (combo, GTK_MENU_ITEM(item), NULL);
+    gtk_menu_shell_append (GTK_MENU_SHELL (window->priv->tab_width_menu), item);
     gtk_widget_show (item);
 
     item = gtk_check_menu_item_new_with_label (_("Use Spaces"));
-    xed_status_combo_box_add_item (combo, GTK_MENU_ITEM(item), NULL);
+    gtk_menu_shell_append (GTK_MENU_SHELL (window->priv->tab_width_menu), item);
     gtk_widget_show (item);
 
     g_signal_connect(item, "toggled", G_CALLBACK (use_spaces_toggled), window);
@@ -1431,16 +1432,16 @@ create_statusbar (XedWindow *window,
     gtk_widget_set_margin_start (GTK_WIDGET (window->priv->statusbar), 0);
     gtk_widget_set_margin_end (GTK_WIDGET (window->priv->statusbar), 0);
 
-    window->priv->tab_width_combo = xed_status_combo_box_new (_("Tab Width"));
-    gtk_widget_show (window->priv->tab_width_combo);
-    gtk_box_pack_end (GTK_BOX (window->priv->statusbar), window->priv->tab_width_combo, FALSE, FALSE, 0);
-    gtk_widget_set_margin_bottom (GTK_WIDGET (window->priv->tab_width_combo), 2);
-    gtk_widget_set_margin_top (GTK_WIDGET (window->priv->tab_width_combo), 2);
+    window->priv->tab_width_button = xed_status_menu_button_new ();
+    gtk_widget_show (window->priv->tab_width_button);
+    gtk_box_pack_end (GTK_BOX (window->priv->statusbar), window->priv->tab_width_button, FALSE, FALSE, 0);
+    gtk_widget_set_margin_bottom (GTK_WIDGET (window->priv->tab_width_button), 2);
+    gtk_widget_set_margin_top (GTK_WIDGET (window->priv->tab_width_button), 2);
 
-    fill_tab_width_combo (window);
+    setup_tab_width_menu (window);
 
-    g_signal_connect(G_OBJECT (window->priv->tab_width_combo), "changed",
-                     G_CALLBACK (tab_width_combo_changed), window);
+    gtk_menu_button_set_popup (GTK_MENU_BUTTON (window->priv->tab_width_button),
+                               window->priv->tab_width_menu);
 
     window->priv->language_button = xed_status_menu_button_new ();
     gtk_widget_show (window->priv->language_button);
@@ -1741,9 +1742,9 @@ static void
 set_tab_width_item_blocked (XedWindow *window,
                             GtkMenuItem *item)
 {
-    g_signal_handlers_block_by_func(window->priv->tab_width_combo, tab_width_combo_changed, window);
-    xed_status_combo_box_set_item (XED_STATUS_COMBO_BOX(window->priv->tab_width_combo), item);
-    g_signal_handlers_unblock_by_func(window->priv->tab_width_combo, tab_width_combo_changed, window);
+    g_signal_handlers_block_by_func(item, tab_width_button_clicked, window);
+    gtk_menu_shell_select_item (GTK_MENU_SHELL (window->priv->tab_width_menu), GTK_WIDGET (item));
+    g_signal_handlers_unblock_by_func(item, tab_width_button_clicked, window);
 }
 
 static void
@@ -1753,7 +1754,7 @@ spaces_instead_of_tabs_changed (GObject *object,
 {
     XedView *view = XED_VIEW(object);
     gboolean active = gtk_source_view_get_insert_spaces_instead_of_tabs (GTK_SOURCE_VIEW(view));
-    GList *children = xed_status_combo_box_get_items (XED_STATUS_COMBO_BOX(window->priv->tab_width_combo));
+    GList *children = gtk_container_get_children (GTK_CONTAINER (window->priv->tab_width_menu));
     GtkCheckMenuItem *item;
     item = GTK_CHECK_MENU_ITEM(g_list_last (children)->data);
     gtk_check_menu_item_set_active (item, active);
@@ -1767,11 +1768,11 @@ tab_width_changed (GObject *object,
 {
     GList *items;
     GList *item;
-    XedStatusComboBox *combo = XED_STATUS_COMBO_BOX(window->priv->tab_width_combo);
     guint new_tab_width;
+    gchar *label;
     gboolean found = FALSE;
 
-    items = xed_status_combo_box_get_items (combo);
+    items = gtk_container_get_children (GTK_CONTAINER (window->priv->tab_width_menu));
 
     new_tab_width = gtk_source_view_get_tab_width (GTK_SOURCE_VIEW(object));
 
@@ -1793,8 +1794,7 @@ tab_width_changed (GObject *object,
                 gchar *text;
 
                 text = g_strdup_printf ("%u", new_tab_width);
-                xed_status_combo_box_set_item_text (combo, GTK_MENU_ITEM(item->data), text);
-                gtk_label_set_text (GTK_LABEL(gtk_bin_get_child (GTK_BIN (item->data))), text);
+                gtk_menu_item_set_label (GTK_MENU_ITEM(item->data), text);
 
                 set_tab_width_item_blocked (window, GTK_MENU_ITEM(item->data));
                 gtk_widget_show (GTK_WIDGET(item->data));
@@ -1808,6 +1808,10 @@ tab_width_changed (GObject *object,
         }
     }
 
+    label = g_strdup_printf (_("Tab Width: %u"), new_tab_width);
+    xed_status_menu_button_set_label (XED_STATUS_MENU_BUTTON (window->priv->tab_width_button), label);
+
+    g_free (label);
     g_list_free (items);
 }
 
@@ -1956,7 +1960,7 @@ notebook_switch_page (GtkNotebook *book,
     xed_statusbar_set_overwrite (XED_STATUSBAR (window->priv->statusbar),
                                  gtk_text_view_get_overwrite (GTK_TEXT_VIEW(view)));
 
-    gtk_widget_show (window->priv->tab_width_combo);
+    gtk_widget_show (window->priv->tab_width_button);
     gtk_widget_show (window->priv->language_button);
 
     window->priv->tab_width_id = g_signal_connect(view, "notify::tab-width", G_CALLBACK (tab_width_changed), window);
@@ -2692,7 +2696,7 @@ notebook_tab_removed (XedNotebook *notebook,
         xed_statusbar_clear_overwrite (XED_STATUSBAR(window->priv->statusbar));
 
         /* hide the combos */
-        gtk_widget_hide (window->priv->tab_width_combo);
+        gtk_widget_hide (window->priv->tab_width_button);
         gtk_widget_hide (window->priv->language_button);
     }
 
