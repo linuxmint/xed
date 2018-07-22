@@ -28,7 +28,6 @@
 #include "xed-window-activatable.h"
 #include "xed-enum-types.h"
 #include "xed-dirs.h"
-#include "xed-status-combo-box.h"
 #include "xed-status-menu-button.h"
 #include "xed-highlight-mode-selector.h"
 #include "xed-settings.h"

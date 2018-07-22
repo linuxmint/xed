@@ -54,7 +54,6 @@ NOINST_H_FILES =						\
 	xed-print-job.h						\
 	xed-print-preview.h					\
 	xed-settings.h 						\
-	xed-status-combo-box.h 				\
 	xed-status-menu-button.h			\
 	xed-tab-label.h						\
 	xed-ui.h							\
@@ -134,7 +133,6 @@ libxed_c_files = 						\
 	xed-settings.c 						\
 	xed-searchbar.c						\
 	xed-statusbar.c						\
-	xed-status-combo-box.c				\
 	xed-status-menu-button.c			\
 	xed-tab.c 							\
 	xed-tab-label.c						\
