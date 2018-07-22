@@ -29,6 +29,8 @@
 #include "xed-enum-types.h"
 #include "xed-dirs.h"
 #include "xed-status-combo-box.h"
+#include "xed-status-menu-button.h"
+#include "xed-highlight-mode-selector.h"
 #include "xed-settings.h"
 
 #define LANGUAGE_NONE  (const gchar *)"LangNone"
@@ -1333,28 +1335,6 @@ use_spaces_toggled (GtkCheckMenuItem *item,
     g_signal_handler_unblock (view, window->priv->spaces_instead_of_tabs_id);
 }
 
-static void
-language_combo_changed (XedStatusComboBox *combo,
-                        GtkMenuItem *item,
-                        XedWindow *window)
-{
-    XedDocument *doc;
-    GtkSourceLanguage *language;
-
-    doc = xed_window_get_active_document (window);
-
-    if (!doc)
-    {
-        return;
-    }
-
-    language = GTK_SOURCE_LANGUAGE(g_object_get_data (G_OBJECT (item), LANGUAGE_DATA));
-
-    g_signal_handler_block (doc, window->priv->language_changed_id);
-    xed_document_set_language (doc, language);
-    g_signal_handler_unblock (doc, window->priv->language_changed_id);
-}
-
 typedef struct
 {
     const gchar *label;
@@ -1398,42 +1378,33 @@ fill_tab_width_combo (XedWindow *window)
 }
 
 static void
-fill_language_combo (XedWindow *window)
+on_language_selector_shown (XedHighlightModeSelector *sel,
+                            XedWindow                *window)
 {
-    GtkSourceLanguageManager *lm;
-    const gchar * const *ids;
-    const gchar *name;
-    GtkWidget *menu_item;
-    gint i;
+    XedDocument *doc;
 
-    name = _("Plain Text");
-    menu_item = gtk_menu_item_new_with_label (name);
-    gtk_widget_show (menu_item);
-
-    g_object_set_data (G_OBJECT(menu_item), LANGUAGE_DATA, NULL);
-    xed_status_combo_box_add_item (XED_STATUS_COMBO_BOX (window->priv->language_combo), GTK_MENU_ITEM (menu_item), name);
-
-    lm = gtk_source_language_manager_get_default ();
-    ids = gtk_source_language_manager_get_language_ids (lm);
-
-    for (i = 0; ids[i] != NULL; i++)
+    doc = xed_window_get_active_document (window);
+    if (doc)
     {
-        GtkSourceLanguage *lang;
-
-        lang = gtk_source_language_manager_get_language (lm, ids[i]);
-
-        if (!gtk_source_language_get_hidden (lang))
-        {
-            name = gtk_source_language_get_name (lang);
-            menu_item = gtk_menu_item_new_with_label (name);
-            gtk_widget_show (menu_item);
-
-            g_object_set_data_full (G_OBJECT (menu_item), LANGUAGE_DATA, g_object_ref (lang),
-                                    (GDestroyNotify) g_object_unref);
-            xed_status_combo_box_add_item (XED_STATUS_COMBO_BOX (window->priv->language_combo),
-                                           GTK_MENU_ITEM (menu_item), name);
-        }
+        xed_highlight_mode_selector_select_language (sel,
+                                                     xed_document_get_language (doc));
     }
+}
+
+static void
+on_language_selected (XedHighlightModeSelector *sel,
+                      GtkSourceLanguage        *language,
+                      XedWindow                *window)
+{
+    XedDocument *doc;
+
+    doc = xed_window_get_active_document (window);
+    if (doc)
+    {
+        xed_document_set_language (doc, language);
+    }
+
+    gtk_widget_hide (GTK_WIDGET (window->priv->language_popover));
 }
 
 static void
@@ -1443,6 +1414,7 @@ create_statusbar (XedWindow *window,
     GtkWidget *image;
     GtkWidget *button_box;
     GtkAction *action;
+    XedHighlightModeSelector *sel;
 
     xed_debug (DEBUG_WINDOW);
 
@@ -1470,16 +1442,28 @@ create_statusbar (XedWindow *window,
     g_signal_connect(G_OBJECT (window->priv->tab_width_combo), "changed",
                      G_CALLBACK (tab_width_combo_changed), window);
 
-    window->priv->language_combo = xed_status_combo_box_new (NULL);
-    gtk_widget_show (window->priv->language_combo);
-    gtk_widget_set_margin_bottom (GTK_WIDGET (window->priv->language_combo), 2);
-    gtk_widget_set_margin_top (GTK_WIDGET (window->priv->language_combo), 2);
-    gtk_box_pack_end (GTK_BOX(window->priv->statusbar), window->priv->language_combo, FALSE, FALSE, 0);
+    window->priv->language_button = xed_status_menu_button_new ();
+    gtk_widget_show (window->priv->language_button);
+    gtk_widget_set_margin_bottom (GTK_WIDGET (window->priv->language_button), 2);
+    gtk_widget_set_margin_top (GTK_WIDGET (window->priv->language_button), 2);
+    gtk_box_pack_end (GTK_BOX(window->priv->statusbar), window->priv->language_button, FALSE, FALSE, 0);
 
-    fill_language_combo (window);
+    window->priv->language_popover = gtk_popover_new (window->priv->language_button);
+    gtk_menu_button_set_popover (GTK_MENU_BUTTON (window->priv->language_button),
+                                 window->priv->language_popover);
 
-    g_signal_connect(G_OBJECT (window->priv->language_combo), "changed",
-                     G_CALLBACK (language_combo_changed), window);
+    sel = xed_highlight_mode_selector_new ();
+    g_signal_connect (sel,
+                      "show",
+                      G_CALLBACK (on_language_selector_shown),
+                      window);
+    g_signal_connect (sel,
+                      "language-selected",
+                      G_CALLBACK (on_language_selected),
+                      window);
+
+    gtk_container_add (GTK_CONTAINER (window->priv->language_popover), GTK_WIDGET (sel));
+    gtk_widget_show (GTK_WIDGET (sel));
 
     button_box = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 4);
     gtk_widget_set_margin_top (button_box, 4);
@@ -1832,40 +1816,17 @@ language_changed (GObject *object,
                   GParamSpec *pspec,
                   XedWindow *window)
 {
-    GList *items;
-    GList *item;
-    XedStatusComboBox *combo = XED_STATUS_COMBO_BOX(window->priv->language_combo);
     GtkSourceLanguage *new_language;
-    const gchar *new_id;
+    const gchar *label;
 
-    items = xed_status_combo_box_get_items (combo);
-
-    new_language = gtk_source_buffer_get_language (GTK_SOURCE_BUFFER(object));
+    new_language = gtk_source_buffer_get_language (GTK_SOURCE_BUFFER (object));
 
     if (new_language)
-    {
-        new_id = gtk_source_language_get_id (new_language);
-    }
+        label = gtk_source_language_get_name (new_language);
     else
-    {
-        new_id = NULL;
-    }
+        label = _("Plain Text");
 
-    for (item = items; item; item = item->next)
-    {
-        GtkSourceLanguage *lang = g_object_get_data (G_OBJECT(item->data),
-        LANGUAGE_DATA);
-        if ((new_id == NULL && lang == NULL)
-            || (new_id != NULL && lang != NULL && strcmp (gtk_source_language_get_id (lang), new_id) == 0))
-        {
-            g_signal_handlers_block_by_func(window->priv->language_combo, language_combo_changed, window);
-            xed_status_combo_box_set_item (XED_STATUS_COMBO_BOX(window->priv->language_combo),
-                                           GTK_MENU_ITEM(item->data));
-            g_signal_handlers_unblock_by_func(window->priv->language_combo, language_combo_changed, window);
-        }
-    }
-
-    g_list_free (items);
+    xed_status_menu_button_set_label (XED_STATUS_MENU_BUTTON (window->priv->language_button), label);
 }
 
 static void
@@ -1996,7 +1957,7 @@ notebook_switch_page (GtkNotebook *book,
                                  gtk_text_view_get_overwrite (GTK_TEXT_VIEW(view)));
 
     gtk_widget_show (window->priv->tab_width_combo);
-    gtk_widget_show (window->priv->language_combo);
+    gtk_widget_show (window->priv->language_button);
 
     window->priv->tab_width_id = g_signal_connect(view, "notify::tab-width", G_CALLBACK (tab_width_changed), window);
 
@@ -2732,7 +2693,7 @@ notebook_tab_removed (XedNotebook *notebook,
 
         /* hide the combos */
         gtk_widget_hide (window->priv->tab_width_combo);
-        gtk_widget_hide (window->priv->language_combo);
+        gtk_widget_hide (window->priv->language_button);
     }
 
     if (!window->priv->removing_tabs)
