@@ -1588,15 +1588,33 @@ tab_width_combo_changed (XedStatusComboBox *combo,
 }
 
 static void
+set_tab_spaces_label (XedWindow *window,
+                      gboolean   use_spaces)
+{
+    if (use_spaces)
+    {
+        xed_status_combo_box_set_label (window->priv->tab_width_combo, _("Spaces"));
+    }
+    else
+    {
+        xed_status_combo_box_set_label (window->priv->tab_width_combo, _("Tabs"));
+    }
+}
+
+static void
 use_spaces_toggled (GtkCheckMenuItem *item,
                     XedWindow *window)
 {
     XedView *view;
+    gboolean use_spaces;
 
     view = xed_window_get_active_view (window);
+    use_spaces = gtk_check_menu_item_get_active (item);
+
+    set_tab_spaces_label (window, use_spaces);
 
     g_signal_handler_block (view, window->priv->spaces_instead_of_tabs_id);
-    gtk_source_view_set_insert_spaces_instead_of_tabs (GTK_SOURCE_VIEW(view), gtk_check_menu_item_get_active (item));
+    gtk_source_view_set_insert_spaces_instead_of_tabs (GTK_SOURCE_VIEW (view), use_spaces);
     g_signal_handler_unblock (view, window->priv->spaces_instead_of_tabs_id);
 }
 
@@ -1634,16 +1652,17 @@ fill_tab_width_combo (XedWindow *window)
     static TabWidthDefinition defs[] = { { "2", 2 }, { "4", 4 }, { "8", 8 }, { "", 0 }, /* custom size */
     { NULL, 0 } };
 
-    XedStatusComboBox *combo = XED_STATUS_COMBO_BOX(window->priv->tab_width_combo);
+    XedStatusComboBox *combo = XED_STATUS_COMBO_BOX (window->priv->tab_width_combo);
     guint i = 0;
     GtkWidget *item;
+    gboolean use_spaces;
 
     while (defs[i].label != NULL)
     {
         item = gtk_menu_item_new_with_label (defs[i].label);
-        g_object_set_data (G_OBJECT(item), TAB_WIDTH_DATA, GINT_TO_POINTER(defs[i].width));
+        g_object_set_data (G_OBJECT(item), TAB_WIDTH_DATA, GINT_TO_POINTER (defs[i].width));
 
-        xed_status_combo_box_add_item (combo, GTK_MENU_ITEM(item), defs[i].label);
+        xed_status_combo_box_add_item (combo, GTK_MENU_ITEM (item), defs[i].label);
 
         if (defs[i].width != 0)
         {
@@ -1662,6 +1681,9 @@ fill_tab_width_combo (XedWindow *window)
     gtk_widget_show (item);
 
     g_signal_connect(item, "toggled", G_CALLBACK (use_spaces_toggled), window);
+
+    use_spaces = g_settings_get_boolean (window->priv->editor_settings, "insert-spaces");
+    set_tab_spaces_label (window, use_spaces);
 }
 
 static void
@@ -1726,7 +1748,7 @@ create_statusbar (XedWindow *window,
     gtk_widget_set_margin_start (GTK_WIDGET (window->priv->statusbar), 0);
     gtk_widget_set_margin_end (GTK_WIDGET (window->priv->statusbar), 0);
 
-    window->priv->tab_width_combo = xed_status_combo_box_new (_("Tab Width"));
+    window->priv->tab_width_combo = xed_status_combo_box_new (NULL);
     gtk_widget_show (window->priv->tab_width_combo);
     gtk_box_pack_end (GTK_BOX (window->priv->statusbar), window->priv->tab_width_combo, FALSE, FALSE, 0);
     gtk_widget_set_margin_bottom (GTK_WIDGET (window->priv->tab_width_combo), 2);
