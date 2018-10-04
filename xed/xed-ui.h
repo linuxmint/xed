@@ -67,7 +67,7 @@ static const GtkActionEntry xed_always_sensitive_menu_entries[] =
 	 N_("Open the xed manual"), G_CALLBACK (_xed_cmd_help_contents) },
 	{ "HelpAbout", "help-about-symbolic", N_("_About"), NULL,
 	 N_("About this application"), G_CALLBACK (_xed_cmd_help_about) },
-    { "HelpShortcuts", NULL, N_("_Keyboard Shortcuts"), NULL,
+    { "HelpShortcuts", "preferences-desktop-keyboard-shortcuts-symbolic", N_("_Keyboard Shortcuts"), NULL,
      N_("Show the keyboard shortcuts dialog"), G_CALLBACK (_xed_cmd_help_keyboard_shortcuts) },
 
 	/* Fullscreen toolbar */
