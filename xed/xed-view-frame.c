@@ -20,19 +20,16 @@
  * Boston, MA  02110-1301  USA
  */
 
-#ifdef HAVE_CONFIG_H
 #include <config.h>
-#endif
+#include <gdk/gdkkeysyms.h>
+#include <glib/gi18n.h>
+#include <stdlib.h>
 
 #include "xed-view-frame.h"
 #include "xed-marshal.h"
 #include "xed-debug.h"
 #include "xed-utils.h"
 #include "xed-settings.h"
-
-#include <gdk/gdkkeysyms.h>
-#include <glib/gi18n.h>
-#include <stdlib.h>
 
 #define XED_VIEW_FRAME_SEARCH_DIALOG_TIMEOUT (30*1000) /* 30 seconds */
 

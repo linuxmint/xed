@@ -29,10 +29,7 @@
  * $Id: xed-print.c 6022 2007-12-09 14:38:57Z pborelli $
  */
 
-#ifdef HAVE_CONFIG_H
 #include <config.h>
-#endif
-
 #include <glib/gi18n.h>
 #include <gtksourceview/gtksource.h>
 

@@ -1,7 +1,4 @@
-#ifdef HAVE_CONFIG_H
 #include <config.h>
-#endif
-
 #include <time.h>
 #include <sys/types.h>
 #include <string.h>

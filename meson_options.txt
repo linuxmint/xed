@@ -1,0 +1,23 @@
+option(
+	'enable_spell',
+	type : 'boolean',
+	value : true,
+	description : 'enable gspell'
+)
+option(
+	'enable_gvfs_metadata',
+	type : 'boolean',
+	value : true,
+	description : 'enable gvfs metadata'
+)
+option('docs',
+    type: 'boolean',
+    value: false,
+    description: 'Build the API references (requires gtk-doc)'
+)
+option(
+	'deprecated_warnings',
+    type : 'boolean',
+    value : false,
+    description: 'Show build warnings for deprecations'
+)

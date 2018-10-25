@@ -19,18 +19,15 @@
  * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA.
  */
 
-#ifdef HAVE_CONFIG_H
-#   include <config.h>
-#endif
-
+#include <config.h>
 #include <glib/gi18n-lib.h>
 #include <gmodule.h>
-#include "xed-modeline-plugin.h"
-#include "modeline-parser.h"
-
 #include <xed/xed-debug.h>
 #include <xed/xed-view-activatable.h>
 #include <xed/xed-view.h>
+
+#include "xed-modeline-plugin.h"
+#include "modeline-parser.h"
 
 struct _XedModelinePluginPrivate
 {

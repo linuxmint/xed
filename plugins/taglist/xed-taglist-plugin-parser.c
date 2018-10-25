@@ -30,15 +30,11 @@
 
 /* FIXME: we should rewrite the parser to avoid using DOM */
 
-#ifdef HAVE_CONFIG_H
 #include <config.h>
-#endif
-
 #include <string.h>
 #include <libxml/parser.h>
 #include <glib.h>
 #include <glib/gi18n.h>
-
 #include <xed/xed-debug.h>
 
 #include "xed-taglist-plugin-parser.h"

@@ -30,24 +30,19 @@
  * $Id$
  */
 
-#ifdef HAVE_CONFIG_H
 #include <config.h>
-#endif
-
 #include <errno.h>
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <sys/time.h>
 #include <fcntl.h>
 #include <string.h>
-
 #include <glib.h>
 #include <glib/gi18n.h>
 #include <gio/gio.h>
 #include <gtksourceview/gtksource.h>
 
 #include "xed-utils.h"
-
 #include "xed-document.h"
 #include "xed-debug.h"
 

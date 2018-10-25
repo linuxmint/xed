@@ -31,12 +31,8 @@
 /* TODO: Override set_extra_widget */
 /* TODO: add encoding property */
 
-#ifdef HAVE_CONFIG_H
 #include <config.h>
-#endif
-
 #include <string.h>
-
 #include <glib/gi18n.h>
 
 #include "xed-file-chooser-dialog.h"

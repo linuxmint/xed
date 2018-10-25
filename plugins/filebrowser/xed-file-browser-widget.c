@@ -19,10 +19,7 @@
  * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA.
  */
 
-#ifdef HAVE_CONFIG_H
 #include <config.h>
-#endif
-
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <string.h>
@@ -30,7 +27,6 @@
 #include <glib/gi18n-lib.h>
 #include <gtk/gtk.h>
 #include <gdk/gdkkeysyms.h>
-
 #include <xed/xed-utils.h>
 
 #include "xed-file-browser-utils.h"

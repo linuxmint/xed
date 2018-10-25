@@ -24,22 +24,18 @@
  * See the ChangeLog files for a list of changes.
  */
 
-#ifdef HAVE_CONFIG_H
 #include <config.h>
-#endif
-
 #include <string.h>
-
 #include <glib/gi18n-lib.h>
 #include <glib.h>
 #include <gio/gio.h>
-
 #include <xed/xed-window.h>
 #include <xed/xed-window-activatable.h>
 #include <libpeas-gtk/peas-gtk-configurable.h>
 #include <xed/xed-debug.h>
 #include <xed/xed-utils.h>
 #include <xed/xed-app.h>
+
 #include "xed-time-plugin.h"
 
 #define XED_TIME_PLUGIN_GET_PRIVATE(object)(G_TYPE_INSTANCE_GET_PRIVATE ((object), \

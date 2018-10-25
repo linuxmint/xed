@@ -32,21 +32,17 @@
  * Verbose error reporting for file I/O operations (load, save, revert, create)
  */
 
-#ifdef HAVE_CONFIG_H
 #include <config.h>
-#endif
-
 #include <errno.h>
 #include <string.h>
-
 #include <glib/gi18n.h>
 #include <gio/gio.h>
+#include <xed/xed-encodings-combo-box.h>
 
 #include "xed-settings.h"
 #include "xed-utils.h"
 #include "xed-document.h"
 #include "xed-io-error-info-bar.h"
-#include <xed/xed-encodings-combo-box.h>
 
 #define MAX_URI_IN_DIALOG_LENGTH 50
 

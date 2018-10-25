@@ -5,27 +5,28 @@ DHFLAGS=--parallel
 %:
 	dh $@ $(DHFLAGS) --with gir
 
-override_dh_install:
-	rm -rfv debian/tmp/usr/lib/*/xed/plugins/*.la
-	rm -rfv debian/tmp/usr/lib/*/xed/*.la
-	dh_install --fail-missing
-
 override_dh_auto_configure:
-	# upstream tarball is without configure. autogen.sh will create it
-	NOCONFIGURE=1 ./autogen.sh
-	dh_auto_configure $(DHFLAGS) -- \
-		--enable-silent-rules \
-		--libexecdir=/usr/lib/ \
-		--enable-gtk-doc
+	meson debian/build \
+		--prefix=/usr \
+		--buildtype=plain \
+		-D docs=true \
+		-D deprecated_warnings=false
 
 override_dh_installchangelogs:
 	dh_installchangelogs NEWS
 
 override_dh_auto_test:
-	DEB_BUILD_OPTIONS=nocheck dh_auto_test
+	ninja -C debian/build test
 
 override_dh_strip:
 	dh_strip --dbg-package=xed-dbg
 
 get-orig-source:
 	uscan --noconf --force-download --rename --download-current-version --destdir=..
+
+override_dh_auto_install:
+	DESTDIR=${CURDIR}/debian/tmp \
+	ninja -C debian/build install
+
+override_dh_auto_build:
+	ninja -C debian/build
