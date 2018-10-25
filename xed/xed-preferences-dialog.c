@@ -250,7 +250,7 @@ word_wrap_switch_toggled (GObject    *toggle_switch,
 static void
 setup_editor_page (XedPreferencesDialog *dlg)
 {
-    XedSettings *settings;
+    GObject *settings;
     gchar *system_font = NULL;
     gchar *label_text;
     GtkWrapMode wrap_mode;
@@ -259,7 +259,7 @@ setup_editor_page (XedPreferencesDialog *dlg)
 
     /* Fonts */
     settings = _xed_app_get_settings (XED_APP (g_application_get_default ()));
-    system_font = xed_settings_get_system_font (settings);
+    system_font = xed_settings_get_system_font (XED_SETTINGS (settings));
 
     label_text = g_strdup_printf(_("Use the system fixed width font (%s)"), system_font);
     gtk_label_set_text (GTK_LABEL (dlg->fixed_width_font_label), label_text);

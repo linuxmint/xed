@@ -1012,8 +1012,8 @@ xed_document_get_short_name_for_display (XedDocument *doc)
 
 /**
  * xed_document_set_short_name_for_display:
- * @doc:
- * @short_name: (allow-none):
+ * @doc: a #XedDocument
+ * @short_name: (allow-none): the short name to use
  */
 void
 xed_document_set_short_name_for_display (XedDocument *doc,
@@ -1622,7 +1622,7 @@ xed_document_set_search_context (XedDocument            *doc,
  * xed_document_get_search_context:
  * @doc: a #XedDocument
  *
- * Returns: the current search context of the document,
+ * Returns: (transfer full): the current search context of the document,
  * or NULL if there is no search context
  */
 GtkSourceSearchContext *

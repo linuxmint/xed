@@ -865,6 +865,14 @@ xed_searchbar_get_replace_text (XedSearchbar *searchbar)
     return gtk_entry_get_text (GTK_ENTRY (searchbar->priv->replace_text_entry));
 }
 
+/**
+ * xed_searchbar_get_search_settings:
+ * @searchbar: the #XedSearchbar
+ *
+ * Gets the search settings.
+ *
+ * Returns: (transfer none): #GtkSourceSearchSettings
+ */
 GtkSourceSearchSettings *
 xed_searchbar_get_search_settings (XedSearchbar *searchbar)
 {

@@ -911,7 +911,7 @@ xed_file_bookmarks_store_get_location (XedFileBookmarksStore *model,
     }
     else if (!isfs)
     {
-        file = g_object_ref (obj);
+        file = G_FILE (g_object_ref (obj));
     }
 
     g_object_unref (obj);

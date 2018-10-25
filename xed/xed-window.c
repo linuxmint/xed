@@ -1200,7 +1200,7 @@ create_menu_bar_and_toolbar (XedWindow *window,
     GtkUIManager *manager;
     GtkRecentManager *recent_manager;
     GError *error = NULL;
-    GtkWidget *tool_item;
+    GtkToolItem *tool_item;
     GtkWidget *tool_box;
     GtkWidget *box;
     GtkWidget *separator;
@@ -1302,8 +1302,8 @@ create_menu_bar_and_toolbar (XedWindow *window,
     gtk_box_pack_start (GTK_BOX(main_box), window->priv->toolbar, FALSE, FALSE, 0);
 
     tool_item = gtk_tool_item_new ();
-    gtk_tool_item_set_expand (GTK_TOOL_ITEM (tool_item), TRUE);
-    gtk_toolbar_insert (GTK_TOOLBAR (window->priv->toolbar), GTK_TOOL_ITEM (tool_item), 0);
+    gtk_tool_item_set_expand ((tool_item), TRUE);
+    gtk_toolbar_insert (GTK_TOOLBAR (window->priv->toolbar), (tool_item), 0);
 
     tool_box = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 6);
     gtk_container_add (GTK_CONTAINER (tool_item), tool_box);
@@ -1590,11 +1590,11 @@ set_tab_spaces_label (XedWindow *window,
 {
     if (use_spaces)
     {
-        xed_status_combo_box_set_label (window->priv->tab_width_combo, _("Spaces"));
+        xed_status_combo_box_set_label (XED_STATUS_COMBO_BOX (window->priv->tab_width_combo), _("Spaces"));
     }
     else
     {
-        xed_status_combo_box_set_label (window->priv->tab_width_combo, _("Tabs"));
+        xed_status_combo_box_set_label (XED_STATUS_COMBO_BOX (window->priv->tab_width_combo), _("Tabs"));
     }
 }
 
@@ -2664,7 +2664,7 @@ fullscreen_controls_build (XedWindow *window)
     GtkAction *action;
     GtkWidget *box;
     GtkWidget *toolbar;
-    GtkWidget *toolitem;
+    GtkToolItem *toolitem;
     GtkWidget *toolbox;
     GtkWidget *fullscreen_btn;
     GtkWidget *separator;
@@ -2681,8 +2681,8 @@ fullscreen_controls_build (XedWindow *window)
 
     toolbar = gtk_toolbar_new ();
     toolitem = gtk_tool_item_new ();
-    gtk_tool_item_set_expand (GTK_TOOL_ITEM (toolitem), TRUE);
-    gtk_toolbar_insert (GTK_TOOLBAR (toolbar), GTK_TOOL_ITEM (toolitem), 0);
+    gtk_tool_item_set_expand (toolitem, TRUE);
+    gtk_toolbar_insert (GTK_TOOLBAR (toolbar), toolitem, 0);
 
     toolbox = gtk_box_new (GTK_ORIENTATION_VERTICAL, 0);
     gtk_style_context_add_class (gtk_widget_get_style_context (toolbar), "primary-toolbar");
@@ -3760,6 +3760,16 @@ xed_window_create_tab_from_location (XedWindow               *window,
     return process_create_tab (window, XED_TAB (tab), jump_to);
 }
 
+/**
+ * xed_window_create_tab_from_stream:
+ * @window: a #XedWindow
+ * @stream: the #GInputStream
+ * @encoding: the encoding to use in the stream
+ * @line_pos: the position
+ * @jump_to: whether to jump to the new tab
+ *
+ * Returns: (transfer none): the active #XedTab in the @window.
+ */
 XedTab *
 xed_window_create_tab_from_stream (XedWindow               *window,
                                    GInputStream            *stream,
@@ -4269,7 +4279,7 @@ _xed_window_is_fullscreen (XedWindow *window)
  *
  * Gets the #XedTab that matches with the given @location.
  *
- * Returns: the #XedTab that matches with the given @location.
+ * Returns: (transfer none): the #XedTab that matches with the given @location.
  */
 XedTab *
 xed_window_get_tab_from_location (XedWindow *window,
