@@ -40,8 +40,3 @@ install_data(
     'xed.1',
     install_dir : join_paths(get_option('prefix'), get_option('mandir'), 'man1')
 )
-
-install_data(
-    'xed-bugreport.sh',
-    install_dir: join_paths(prefix, 'lib', 'xed')
-)
