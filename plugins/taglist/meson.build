@@ -56,9 +56,7 @@ foreach tagtype : taglist_in_files
         '@0@gztags'.format(tagtype.format('')),
         input: taglist_xml,
         output: tagtype.format('.gz'),
-        command: [
-            env, 'GZIP=-9',
-            'gzip', '-n', '-f', '@INPUT@'],
+        command: ['gzip', '-9', '-n', '-f', '@INPUT@'],
         install: true,
         install_dir: join_paths(pluginsdatadir, 'taglist')
     )

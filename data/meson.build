@@ -13,7 +13,7 @@ appdata = custom_target(
     output: 'xed.appdata.xml',
     command: [intltool_merge, '-x', '-u', po_dir, '@INPUT@', '@OUTPUT@'],
     install: true,
-    install_dir: join_paths(datadir, 'appdata'),
+    install_dir: join_paths(datadir, 'metainfo'),
 )
 
 schema_conf = configuration_data()
