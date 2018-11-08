@@ -129,6 +129,8 @@ static void
 set_logout_mode (XedCloseConfirmationDialog *dlg,
                  gboolean                    logout_mode)
 {
+    GtkWidget *button;
+
     dlg->priv->logout_mode = logout_mode;
 
     if (logout_mode)
@@ -159,11 +161,15 @@ set_logout_mode (XedCloseConfirmationDialog *dlg,
 
     if (save_as)
     {
-        gtk_dialog_add_button (GTK_DIALOG (dlg), _("_Save As..."), GTK_RESPONSE_YES);
+        button = gtk_dialog_add_button (GTK_DIALOG (dlg), _("_Save As..."), GTK_RESPONSE_YES);
+        gtk_style_context_add_class (gtk_widget_get_style_context (button),
+                                     GTK_STYLE_CLASS_SUGGESTED_ACTION);
     }
     else
     {
-        gtk_dialog_add_button (GTK_DIALOG (dlg), _("_Save"), GTK_RESPONSE_YES);
+        button = gtk_dialog_add_button (GTK_DIALOG (dlg), _("_Save"), GTK_RESPONSE_YES);
+        gtk_style_context_add_class (gtk_widget_get_style_context (button),
+                                     GTK_STYLE_CLASS_SUGGESTED_ACTION);
     }
 
     gtk_dialog_set_default_response (GTK_DIALOG (dlg), GTK_RESPONSE_YES);
