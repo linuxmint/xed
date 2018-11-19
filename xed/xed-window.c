@@ -1321,11 +1321,11 @@ set_tab_spaces_label (XedWindow *window,
 {
     if (use_spaces)
     {
-        xed_status_combo_box_set_label (XED_STATUS_COMBO_BOX (window->priv->tab_width_combo), _("Spaces"));
+        xed_status_menu_button_set_label (XED_STATUS_MENU_BUTTON (window->priv->tab_width_button), _("Spaces"));
     }
     else
     {
-        xed_status_combo_box_set_label (XED_STATUS_COMBO_BOX (window->priv->tab_width_combo), _("Tabs"));
+        xed_status_menu_button_set_label (XED_STATUS_MENU_BUTTON (window->priv->tab_width_button), _("Tabs"));
     }
 }
 
