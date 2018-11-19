@@ -1,3 +1,32 @@
+xed (2.0.0) tessa; urgency=medium
+
+  [ Tomasz Gąsior ]
+  * Import GeditHighlightModeDialog and -Selector from Gedit to Xed.
+  * Use highlight dialog instead submenu in "View" menu.
+  * XedWindow cleanup.
+  * Import GeditStatusMenuButton.
+  * Fix compilation warning.
+  * Use popover with highlight selector instead loooong menu in statusbar.
+  * Use XedStatusMenuButton instead -ComboBox in statusbar, for consistency.
+  * Kill XedStatusComboBox. It's not used now.
+
+  [ JosephMcc ]
+  * xed-window: Indicate if we are currently using spaces or tabs in statusbar (#246)
+
+  [ NikoKrause ]
+  * Use icon for keyboard shortcuts help entry (#255)
+  * Rearrange help entries (xapp consistency) (#256)
+  * close dialog: use "suggested-action" style class (#261)
+
+  [ Stephen Collins ]
+  * Port to meson (#258)
+
+  [ Clement Lefebvre ]
+  * Fix merge issues
+  * l10n: Update POT
+
+ -- Clement Lefebvre <root@linuxmint.com>  Mon, 19 Nov 2018 11:34:46 +0000
+
 xed (1.8.3) tara; urgency=medium
 
   [ Michael Webster ]
