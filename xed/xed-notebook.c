@@ -35,10 +35,7 @@
  *
  */
 
-#ifdef HAVE_CONFIG_H
 #include <config.h>
-#endif
-
 #include <glib-object.h>
 #include <glib/gi18n.h>
 #include <gtk/gtk.h>
@@ -984,6 +981,13 @@ xed_notebook_remove_all_tabs (XedNotebook *nb)
     gtk_container_foreach (GTK_CONTAINER (nb), (GtkCallback)remove_tab, nb);
 }
 
+/**
+ * xed_notebook_get_all_tabs:
+ * @nb: a #XedNotebook
+ *
+ * Gets all #XedTab from @nb.
+ * Returns: (element-type GtkWidget) (transfer container): #GList of all tabs
+ */
 GList *
 xed_notebook_get_all_tabs (XedNotebook *nb)
 {

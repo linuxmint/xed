@@ -19,10 +19,7 @@
  * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA.
  */
 
-#ifdef HAVE_CONFIG_H
 #include <config.h>
-#endif
-
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <string.h>
@@ -30,7 +27,6 @@
 #include <glib/gi18n-lib.h>
 #include <gtk/gtk.h>
 #include <gdk/gdkkeysyms.h>
-
 #include <xed/xed-utils.h>
 
 #include "xed-file-browser-utils.h"
@@ -470,7 +466,7 @@ xed_file_browser_widget_class_init (XedFileBrowserWidgetClass *klass)
                                        confirm_delete),
                       g_signal_accumulator_true_handled,
                       NULL,
-                      xed_file_browser_marshal_BOOL__OBJECT_POINTER,
+                      xed_file_browser_marshal_BOOLEAN__OBJECT_POINTER,
                       G_TYPE_BOOLEAN,
                       2,
                       G_TYPE_OBJECT,
@@ -483,7 +479,7 @@ xed_file_browser_widget_class_init (XedFileBrowserWidgetClass *klass)
                                        confirm_no_trash),
                       g_signal_accumulator_true_handled,
                       NULL,
-                      xed_file_browser_marshal_BOOL__POINTER,
+                      xed_file_browser_marshal_BOOLEAN__POINTER,
                       G_TYPE_BOOLEAN,
                       1,
                       G_TYPE_POINTER);

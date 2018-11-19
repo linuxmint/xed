@@ -29,15 +29,11 @@
  * $Id: xed-encodings-combo-box.c 6112 2008-01-23 08:26:24Z sfre $
  */
 
-#ifdef HAVE_CONFIG_H
 #include <config.h>
-#endif
+#include <glib/gi18n.h>
+#include <xed/xed-encodings-dialog.h>
 
 #include "xed-encodings-combo-box.h"
-
-#include <glib/gi18n.h>
-
-#include <xed/xed-encodings-dialog.h>
 #include "xed-settings.h"
 #include "xed-utils.h"
 

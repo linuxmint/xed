@@ -20,10 +20,7 @@
  */
 
 
-#ifdef HAVE_CONFIG_H
 #include <config.h>
-#endif
-
 #include <string.h>
 #include <glib/gi18n-lib.h>
 #include <gmodule.h>
@@ -111,7 +108,6 @@ G_DEFINE_DYNAMIC_TYPE_EXTENDED (XedFileBrowserPlugin,
                                 G_IMPLEMENT_INTERFACE_DYNAMIC (XED_TYPE_WINDOW_ACTIVATABLE,
                                                                xed_window_activatable_iface_init)    \
                                                                                                \
-                                xed_file_browser_enum_and_flag_register_type (type_module);  \
                                 _xed_file_browser_store_register_type        (type_module);  \
                                 _xed_file_bookmarks_store_register_type      (type_module);  \
                                 _xed_file_browser_view_register_type         (type_module);  \

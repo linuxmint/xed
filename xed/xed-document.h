@@ -76,7 +76,7 @@ gchar *xed_document_get_uri_for_display (XedDocument *doc);
 gchar *xed_document_get_short_name_for_display (XedDocument *doc);
 
 void xed_document_set_short_name_for_display (XedDocument *doc,
-                                              const gchar *name);
+                                              const gchar *short_name);
 
 gchar *xed_document_get_content_type (XedDocument *doc);
 

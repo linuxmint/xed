@@ -20,12 +20,10 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#ifdef HAVE_CONFIG_H
 #include <config.h>
-#endif
-
 #include <glib/gi18n.h>
 #include <gtk/gtk.h>
+
 #include "xed-tab-label.h"
 #include "xed-close-button.h"
 

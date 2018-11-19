@@ -19,16 +19,10 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  */
 
-#ifdef HAVE_CONFIG_H
 #include <config.h>
-#endif
-
-#include "xed-wordcompletion-plugin.h"
-
 #include <glib/gi18n-lib.h>
 #include <glib.h>
 #include <gio/gio.h>
-
 #include <xed/xed-debug.h>
 #include <xed/xed-window.h>
 #include <xed/xed-window-activatable.h>
@@ -38,6 +32,8 @@
 #include <libpeas-gtk/peas-gtk-configurable.h>
 #include <gtksourceview/gtksource.h>
 #include <gtksourceview/completion-providers/words/gtksourcecompletionwords.h>
+
+#include "xed-wordcompletion-plugin.h"
 
 #define WINDOW_PROVIDER "XedWordCompletionPluginProvider"
 

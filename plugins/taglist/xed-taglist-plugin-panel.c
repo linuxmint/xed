@@ -28,21 +28,16 @@
  * $Id$
  */
 
-#ifdef HAVE_CONFIG_H
 #include <config.h>
-#endif
-
 #include <string.h>
-
-#include "xed-taglist-plugin-panel.h"
-#include "xed-taglist-plugin-parser.h"
-
 #include <xed/xed-utils.h>
 #include <xed/xed-debug.h>
-
 #include <gtk/gtk.h>
 #include <gdk/gdkkeysyms.h>
 #include <glib/gi18n.h>
+
+#include "xed-taglist-plugin-panel.h"
+#include "xed-taglist-plugin-parser.h"
 
 #define XED_TAGLIST_PLUGIN_PANEL_GET_PRIVATE(object)(G_TYPE_INSTANCE_GET_PRIVATE ((object), \
 						       XED_TYPE_TAGLIST_PLUGIN_PANEL, \

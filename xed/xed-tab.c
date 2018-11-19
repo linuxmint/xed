@@ -26,10 +26,7 @@
  * See the ChangeLog files for a list of changes.
  */
 
-#ifdef HAVE_CONFIG_H
 #include <config.h>
-#endif
-
 #include <stdlib.h>
 #include <glib/gi18n.h>
 #include <gio/gio.h>

@@ -16,17 +16,13 @@
  * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA.
  */
 
-#ifdef HAVE_CONFIG_H
 #include <config.h>
-#endif
-
 #include <string.h>
-
-#include "xed-trail-save-plugin.h"
-
 #include <xed/xed-window.h>
 #include <xed/xed-window-activatable.h>
 #include <xed/xed-debug.h>
+
+#include "xed-trail-save-plugin.h"
 
 #define XED_TRAIL_SAVE_PLUGIN_GET_PRIVATE(object)(G_TYPE_INSTANCE_GET_PRIVATE ((object), \
                                                   XED_TYPE_TRAIL_SAVE_PLUGIN, \

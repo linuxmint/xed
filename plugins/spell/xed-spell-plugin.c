@@ -19,20 +19,17 @@
  */
 
 #include <config.h>
-
-#include "xed-spell-plugin.h"
-
 #include <string.h> /* For strlen */
-
 #include <glib/gi18n-lib.h>
 #include <libpeas-gtk/peas-gtk-configurable.h>
-
 #include <xed/xed-app.h>
 #include <xed/xed-window.h>
 #include <xed/xed-window-activatable.h>
 #include <xed/xed-debug.h>
 #include <xed/xed-utils.h>
 #include <gspell/gspell.h>
+
+#include "xed-spell-plugin.h"
 
 #define XED_METADATA_ATTRIBUTE_SPELL_LANGUAGE "metadata::xed-spell-language"
 #define XED_METADATA_ATTRIBUTE_SPELL_ENABLED  "metadata::xed-spell-enabled"

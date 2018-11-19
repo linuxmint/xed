@@ -19,14 +19,8 @@
  *
  */
 
-#ifdef HAVE_CONFIG_H
 #include <config.h>
-#endif
-
-#include "xed-docinfo-plugin.h"
-
 #include <string.h> /* For strlen (...) */
-
 #include <glib/gi18n.h>
 #include <pango/pango-break.h>
 #include <gmodule.h>
@@ -35,6 +29,8 @@
 #include <xed/xed-window-activatable.h>
 #include <xed/xed-debug.h>
 #include <xed/xed-utils.h>
+
+#include "xed-docinfo-plugin.h"
 
 #define MENU_PATH "/MenuBar/ToolsMenu/ToolsOps_2"
 

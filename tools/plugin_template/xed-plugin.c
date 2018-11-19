@@ -7,7 +7,7 @@
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
  * any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
@@ -18,167 +18,185 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
  */
 
-#ifdef HAVE_CONFIG_H
 #include <config.h>
-#endif
-
-#include "##(PLUGIN_MODULE)-plugin.h"
-
 #include <glib/gi18n-lib.h>
 #include <xed/xed-debug.h>
 
-#define WINDOW_DATA_KEY	"##(PLUGIN_ID.camel)PluginWindowData"
-
-#define ##(PLUGIN_ID.upper)_PLUGIN_GET_PRIVATE(object)	(G_TYPE_INSTANCE_GET_PRIVATE ((object), TYPE_##(PLUGIN_ID.upper)_PLUGIN, ##(PLUGIN_ID.camel)PluginPrivate))
+#include "##(PLUGIN_MODULE)-plugin.h"
 
 struct _##(PLUGIN_ID.camel)PluginPrivate
 {
-	gpointer dummy;
+    gpointer dummy;
+
+##ifdef WITH_MENU
+    GtkActionGroup *action_group;
+    guint           ui_id;
+##endif
 };
 
-XED_PLUGIN_REGISTER_TYPE (##(PLUGIN_ID.camel)Plugin, ##(PLUGIN_ID.lower)_plugin)
+struct _##(PLUGIN_ID.camel)Plugin
+{
+    PeasExtensionBase;
+};
+
+static void peas_activatable_iface_init (PeasActivatableInterface *iface);
+static void peas_gtk_configurable_iface_init (PeasGtkConfigurableInterface *iface);
+
+G_DEFINE_TYPE_WITH_PRIVATE (##(PLUGIN_ID.camel)Plugin, ##(PLUGIN_ID.lower)_plugin, PeasExtensionBase)
 
 ##ifdef WITH_MENU
 /* UI string. See xed-ui.xml for reference */
-static const gchar ui_str = 
-	"<ui>"
-	"  <menubar name='MenuBar'>"
-	"    <!-- Put your menu entries here -->"
-	"  </menubar>"
-	"</ui>";
+static const gchar ui_str =
+    "<ui>"
+    "  <menubar name='MenuBar'>"
+    "    <!-- Put your menu entries here -->"
+    "  </menubar>"
+    "</ui>";
 
 /* UI actions */
 static const GtkActionEntry action_entries[] =
-	{
-		/* Put your actions here */
-	};
+    {
+        /* Put your actions here */
+    };
 
-typedef struct
-{
-	GtkActionGroup *action_group;
-	guint           ui_id;
-} WindowData;
 ##endif
 
 static void
 ##(PLUGIN_ID.lower)_plugin_init (##(PLUGIN_ID.camel)Plugin *plugin)
 {
-	plugin->priv = ##(PLUGIN_ID.upper)_PLUGIN_GET_PRIVATE (plugin);
+    plugin->priv = ##(PLUGIN_ID.upper)_PLUGIN_GET_PRIVATE (plugin);
 
-	xed_debug_message (DEBUG_PLUGINS,
-			     "##(PLUGIN_ID.camel)Plugin initializing");
+    xed_debug_message (DEBUG_PLUGINS, "##(PLUGIN_ID.camel)Plugin initializing");
 }
 
 static void
 ##(PLUGIN_ID.lower)_plugin_finalize (GObject *object)
 {
-	xed_debug_message (DEBUG_PLUGINS,
-			     "##(PLUGIN_ID.camel)Plugin finalizing");
+    xed_debug_message (DEBUG_PLUGINS, "##(PLUGIN_ID.camel)Plugin finalizing");
 
-	G_OBJECT_CLASS (##(PLUGIN_ID.lower)_plugin_parent_class)->finalize (object);
+    G_OBJECT_CLASS (##(PLUGIN_ID.lower)_plugin_parent_class)->finalize (object);
 }
 
-##ifdef WITH_MENU
 static void
-free_window_data (WindowData *data)
+##(PLUGIN_ID.lower)_plugin_dispose (GObject *object)
 {
-	g_return_if_fail (data != NULL);
+    ##(PLUGIN_ID.camelPlugin *plugin = ##(PLUGIN_ID.upper)_PLUGIN (object);
+    xed_debug_message (DEBUG_PLUGINS, "##(PLUGIN_ID.camel)Plugin disposing");
+    if (plugin->priv->window != NULL)
+    {
+        g_object_unref (plugin->priv->window);
+        plugin->priv->window = NULL;
+    }
+    if (plugin->priv->action_group)
+    {
+        g_object_unref (plugin->priv->action_group);
+        plugin->priv->action_group = NULL;
+    }
 
-	g_object_unref (data->action_group);
-	g_free (data);
+    G_OBJECT_CLASS (##(PLUGIN_ID.lower)_plugin_parent_class)->dispose (object);
 }
+
+static void
+##(PLUGIN_ID.lower)_plugin_activate (PeasActivatable *activatable)
+{
+##ifdef WITH_MENU
+    ##(PLUGIN_ID.camel)Plugin *plugin;
+    ##(PLUGIN_ID.camel)PluginPrivate *data;
+    XedWindow *window;
+    GtkUIManager *manager;
 ##endif
 
-static void
-impl_activate (XedPlugin *plugin,
-	       XedWindow *window)
-{
-##ifdef WITH_MENU
-	GtkUIManager *manager;
-	WindowData *data;
-##endif	
-
-	xed_debug (DEBUG_PLUGINS);
+    xed_debug (DEBUG_PLUGINS);
 
 ##ifdef WITH_MENU
-	data = g_new (WindowData, 1);
-	manager = xed_window_get_ui_manager (window);
+    plugin = ##(PLUGIN_ID.upper)_PLUGIN (activatable);
+    data = plugin->priv;
+    window = XED_WINDOW (data->window);
 
-	data->action_group = gtk_action_group_new ("##(PLUGIN_ID.camel)PluginActions");
-	gtk_action_group_set_translation_domain (data->action_group,
-						 GETTEXT_PACKAGE);
-	gtk_action_group_add_actions (data->action_group,
-				      action_entries,
-				      G_N_ELEMENTS (action_entries),
-				      window);
+    manager = xed_window_get_ui_manager (window);
 
-	gtk_ui_manager_insert_action_group (manager, data->action_group, -1);
+    data->action_group = gtk_action_group_new ("##(PLUGIN_ID.camel)PluginActions");
+    gtk_action_group_set_translation_domain (data->action_group,
+                                             GETTEXT_PACKAGE);
+    gtk_action_group_add_actions (data->action_group,
+                                  action_entries,
+                                  G_N_ELEMENTS (action_entries),
+                                  window);
 
-	data->ui_id = gtk_ui_manager_add_ui_from_string (manager, ui_str,
-							 -1, NULL);
+    gtk_ui_manager_insert_action_group (manager, data->action_group, -1);
 
-	g_object_set_data_full (G_OBJECT (window), 
-				WINDOW_DATA_KEY, 
-				data,
-				(GDestroyNotify) free_window_data);
-##endif	
-}
-
-static void
-impl_deactivate (XedPlugin *plugin,
-		 XedWindow *window)
-{
-##ifdef WITH_MENU
-	GtkUIManager *manager;
-	WindowData *data;
-##endif
-
-	xed_debug (DEBUG_PLUGINS);
-
-##ifdef WITH_MENU
-	manager = xed_window_get_ui_manager (window);
-
-	data = (WindowData *) g_object_get_data (G_OBJECT (window),
-						 WINDOW_DATA_KEY);
-	g_return_if_fail (data != NULL);
-
-	gtk_ui_manager_remove_ui (manager, data->ui_id);
-	gtk_ui_manager_remove_action_group (manager, data->action_group);
-
-	g_object_set_data (G_OBJECT (window), WINDOW_DATA_KEY, NULL);
+    data->ui_id = gtk_ui_manager_add_ui_from_string (manager, ui_str,
+                                                     -1, NULL);
 ##endif
 }
 
 static void
-impl_update_ui (XedPlugin *plugin,
-		XedWindow *window)
+##(PLUGIN_ID.lower)_plugin_deactivate (PeasActivatable *activatable)
 {
-	xed_debug (DEBUG_PLUGINS);
+##ifdef WITH_MENU
+    ##(PLUGIN_ID.camel)PluginPrivate *data;
+    XedWindow *window;
+    GtkUIManager *manager;
+##endif
+
+    xed_debug (DEBUG_PLUGINS);
+
+##ifdef WITH_MENU
+    data = ##(PLUGIN_ID.upper)_PLUGIN (activatable)->priv;
+    window = XED_WINDOW (data->window);
+
+    manager = xed_window_get_ui_manager (window);
+
+    data = (WindowData *) g_object_get_data (G_OBJECT (window),
+                         WINDOW_DATA_KEY);
+    g_return_if_fail (data != NULL);
+
+    gtk_ui_manager_remove_ui (manager, data->ui_id);
+    gtk_ui_manager_remove_action_group (manager, data->action_group);
+##endif
+}
+
+static void
+##(PLUGIN_ID.lower)_plugin_update_state (PeasActivatable *activatable)
+{
+    xed_debug (DEBUG_PLUGINS);
+}
+
+static void
+peas_activatable_iface_init (PeasActivatableInterface *iface)
+{
+    iface->activate = ##(PLUGIN_ID.lower)_plugin_activate;
+    iface->deactivate = ##(PLUGIN_ID.lower)_plugin_deactivate;
+    iface->update_state = ##(PLUGIN_ID.lower)_plugin_update_state;
 }
 
 ##ifdef WITH_CONFIGURE_DIALOG
-static GtkWidget *
-impl_create_configure_dialog (XedPlugin *plugin)
+static void
+peas_gtk_configurable_iface_init (PeasGtkConfigurableInterface *iface)
 {
-	xed_debug (DEBUG_PLUGINS);
+    iface->create_configure_widget = xed_time_plugin_create_configure_widget;
 }
 ##endif
 
 static void
 ##(PLUGIN_ID.lower)_plugin_class_init (##(PLUGIN_ID.camel)PluginClass *klass)
 {
-	GObjectClass *object_class = G_OBJECT_CLASS (klass);
-	XedPluginClass *plugin_class = XED_PLUGIN_CLASS (klass);
+    GObjectClass *object_class = G_OBJECT_CLASS (klass);
+    XedPluginClass *plugin_class = XED_PLUGIN_CLASS (klass);
 
-	object_class->finalize = ##(PLUGIN_ID.lower)_plugin_finalize;
+    object_class->finalize = ##(PLUGIN_ID.lower)_plugin_finalize;
+    object_class->dispose = ##(PLUGIN_ID.lower)_plugin_dispose;
+}
 
-	plugin_class->activate = impl_activate;
-	plugin_class->deactivate = impl_deactivate;
-	plugin_class->update_ui = impl_update_ui;
-##ifdef WITH_CONFIGURE_DIALOG
-	plugin_class->create_configure_dialog = impl_create_configure_dialog;
-##endif
+G_MODULE_EXPORT void
+peas_register_types (PeasObjectModule *module)
+{
+    ##(PLUGIN_ID.lower)_plugin_register_type (G_TYPE_MODULE (module));
+    peas_object_module_register_extension_type (module,
+                                                PEAS_TYPE_ACTIVATABLE,
+                                                ##(PLUGIN_ID.lower)_TYPE_PLUGIN);
 
-	g_type_class_add_private (object_class, 
-				  sizeof (##(PLUGIN_ID.camel)PluginPrivate));
+    peas_object_module_register_extension_type (module,
+                                                PEAS_GTK_TYPE_CONFIGURABLE,
+                                                ##(PLUGIN_ID.lower)_TYPE_PLUGIN);
 }

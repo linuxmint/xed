@@ -21,21 +21,17 @@
  * $Id$
  */
 
-#ifdef HAVE_CONFIG_H
 #include <config.h>
-#endif
-
-#include "xed-sort-plugin.h"
-
 #include <string.h>
 #include <stdlib.h>
 #include <glib/gi18n.h>
-
 #include <xed/xed-window.h>
 #include <xed/xed-window-activatable.h>
 #include <xed/xed-debug.h>
 #include <xed/xed-utils.h>
 #include <xed/xed-app.h>
+
+#include "xed-sort-plugin.h"
 
 #define XED_SORT_PLUGIN_GET_PRIVATE(object)(G_TYPE_INSTANCE_GET_PRIVATE ((object), XED_TYPE_SORT_PLUGIN, XedSortPluginPrivate))
 

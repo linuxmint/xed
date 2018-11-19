@@ -28,15 +28,13 @@
  * $Id$
  */
 
-#ifdef HAVE_CONFIG_H
 #include <config.h>
-#endif
+#include <glib/gi18n.h>
 
 #include "xed-documents-panel.h"
 #include "xed-utils.h"
 #include "xed-notebook.h"
 
-#include <glib/gi18n.h>
 
 #define XED_DOCUMENTS_PANEL_GET_PRIVATE(object)(G_TYPE_INSTANCE_GET_PRIVATE ((object), \
                                                 XED_TYPE_DOCUMENTS_PANEL,            \

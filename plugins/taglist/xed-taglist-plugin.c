@@ -27,19 +27,15 @@
  * $Id$
  */
 
-#ifdef HAVE_CONFIG_H
 #include <config.h>
-#endif
+#include <glib/gi18n-lib.h>
+#include <xed/xed-window.h>
+#include <xed/xed-window-activatable.h>
+#include <xed/xed-debug.h>
 
 #include "xed-taglist-plugin.h"
 #include "xed-taglist-plugin-panel.h"
 #include "xed-taglist-plugin-parser.h"
-
-#include <glib/gi18n-lib.h>
-
-#include <xed/xed-window.h>
-#include <xed/xed-window-activatable.h>
-#include <xed/xed-debug.h>
 
 #define XED_TAGLIST_PLUGIN_GET_PRIVATE(object)(G_TYPE_INSTANCE_GET_PRIVATE ((object), XED_TYPE_TAGLIST_PLUGIN, XedTaglistPluginPrivate))
 

@@ -27,10 +27,7 @@
  * $Id: xed-commands-search.c 5931 2007-09-25 20:05:40Z pborelli $
  */
 
-#ifdef HAVE_CONFIG_H
 #include <config.h>
-#endif
-
 #include <math.h>
 #include <stdlib.h>
 #include <glib/gi18n.h>

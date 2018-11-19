@@ -19,10 +19,7 @@
  * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA.
  */
 
-#ifdef HAVE_CONFIG_H
 #include <config.h>
-#endif
-
 #include <string.h>
 #include <glib/gi18n-lib.h>
 #include <gio/gio.h>
@@ -350,7 +347,7 @@ xed_file_browser_store_class_init (XedFileBrowserStoreClass * klass)
                                      g_param_spec_flags ("filter-mode",
                                                          "Filter Mode",
                                                          "The filter mode",
-                                                         XED_TYPE_FILE_BROWSER_STORE_FILTER_MODE,
+                                                         XED_FILE_BROWSER_TYPE_STORE_FILTER_MODE,
                                                          xed_file_browser_store_filter_mode_get_default (),
                                                          G_PARAM_READWRITE));
 
@@ -384,7 +381,7 @@ xed_file_browser_store_class_init (XedFileBrowserStoreClass * klass)
                       G_SIGNAL_RUN_LAST,
                       G_STRUCT_OFFSET (XedFileBrowserStoreClass,
                                no_trash), g_signal_accumulator_true_handled, NULL,
-                      xed_file_browser_marshal_BOOL__POINTER,
+                      xed_file_browser_marshal_BOOLEAN__POINTER,
                       G_TYPE_BOOLEAN, 1, G_TYPE_POINTER);
     model_signals[RENAME] =
         g_signal_new ("rename",

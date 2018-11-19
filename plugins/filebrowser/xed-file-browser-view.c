@@ -947,7 +947,7 @@ xed_file_browser_view_class_init (XedFileBrowserViewClass *klass)
                                      g_param_spec_enum ("click-policy",
                                                         "Click Policy",
                                                         "The click policy",
-                                                         XED_TYPE_FILE_BROWSER_VIEW_CLICK_POLICY,
+                                                         XED_FILE_BROWSER_TYPE_VIEW_CLICK_POLICY,
                                                          XED_FILE_BROWSER_VIEW_CLICK_POLICY_DOUBLE,
                                                          G_PARAM_READWRITE | G_PARAM_CONSTRUCT));
 

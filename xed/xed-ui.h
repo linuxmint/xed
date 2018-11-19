@@ -31,10 +31,7 @@
 #ifndef __XED_UI_H__
 #define __XED_UI_H__
 
-#ifdef HAVE_CONFIG_H
 #include <config.h>
-#endif
-
 #include <gtk/gtk.h>
 
 #include "xed-commands.h"

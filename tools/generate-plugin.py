@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
 # generate-plugin.py - xed plugin skeletton generator
@@ -18,100 +18,46 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with xed; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin St, Fifth Floor, 
+# Foundation, Inc., 51 Franklin St, Fifth Floor,
 # Boston, MA  02110-1301  USA
 
 import re
 import os
-import sys
-import getopt
+import argparse
 from datetime import date
 import preprocessor
 
-# Default values of command line options
-options = {
-    'language'          : 'c',
-    'description'       : 'Type here a short description of your plugin',
-    'author'            : os.getenv('USERNAME'),
-    'email'             : os.getenv('LOGNAME') + '@email.com',
-    'standalone'        : False,
-    'with-side-pane'    : False,
-    'with-bottom-pane'  : False,
-    'with-menu'         : False,
-    'with-config-dlg'   : False
-}
-
-USAGE = """Usage:
-   %s [OPTIONS...] pluginname
-""" % os.path.basename(sys.argv[0])
-HELP = USAGE + """
-generate skeleton source tree for a new xed plugin.
-
-Options:
-  --author              Set the author name
-  --email               Set the author email
-  --description         Set the description you want for your new plugin
-  --standalone          Is this plugin intended to be distributed as a
-                        standalone package ? (N/A)
-  --language / -l       Set the language (C) [default: %(language)s]
-  --with-$feature       Enable $feature
-  --without-$feature    Disable $feature
-  --help / -h           Show this message and exits
-    
-Features:
-  config-dlg            Plugin configuration dialog
-  menu                  Plugin menu entries
-  side-pane             Side pane item (N/A)
-  bottom-pane           Bottom pane item (N/A)
-""" % options
-
-TEMPLATE_DIR = os.path.join(os.path.dirname(sys.argv[0]), "plugin_template")
+TEMPLATE_DIR = os.path.join(os.path.dirname(__file__), 'plugin_template')
+PLUGIN_DIR = os.path.normpath(os.path.join(os.path.dirname(__file__), '../plugins'))
 
 # Parsing command line options
-try:
-    opts, args = getopt.getopt(sys.argv[1:], 
-                               'l:h',
-                               ['language=',
-                                'description=',
-                                'author=',
-                                'email=',
-                                'standalone',
-                                'with-menu'         , 'without-menu',
-                                'with-side-pane'    , 'without-side-pane',
-                                'with-bottom-pane'  , 'without-bottom-pane',
-                                'with-config-dlg'   , 'without-config-dlg',
-                                'help'])
-except getopt.error, exc:
-    print >>sys.stderr, '%s: %s' % (sys.argv[0], str(exc))
-    print >>sys.stderr, USAGE
-    sys.exit(1)
+parser = argparse.ArgumentParser()
+parser.add_argument('-S', '--standalone', dest='standalone', action='store_true',
+                    help='indicates that this plugin is intended to be distributed as a standalone package')
+parser.add_argument('-s', '--with-side-pane', dest='side_pane', action='store_true',
+                    help='Indicates that this plugin will use a side pane')
+parser.add_argument('-b', '--with-bottom-pane', dest='bottom_pane', action='store_true',
+                    help='Indicates that this plugin will use a bottom pane')
+parser.add_argument('-m', '--with-menu', dest='menu', action='store_true',
+                    help='Indicates that this plugin will use menu entries')
+parser.add_argument('-c', '--with-config', dest='config', action='store_true',
+                    help='Indicates that this plugin will use a configuration dialog')
+parser.add_argument('-d', '--description', dest='description', default='Type here a short description of your plugin', metavar='DESC',
+                    help='Description of the plugin')
+parser.add_argument('-a', '--author', dest='author', default=os.getenv('USERNAME'), metavar='AUTH',
+                    help='Author of the plugin')
+parser.add_argument('-e', '--email', dest='email', default=os.getenv('LOGNAME') + '@email.com', metavar='EMAIL',
+                    help='Email address of the author')
+parser.add_argument('-l', '--language', dest='language', default='c', metavar='LANG',
+                    help='Language of the plugin')
+parser.add_argument('-o', '--output-directory', dest='directory', default=None, metavar='LANG',
+                    help='Language of the plugin')
+parser.add_argument('name', metavar='PLUGIN_NAME',
+                    help='The name of the plugin')
 
-for opt, arg in opts:
-    if opt in ('-h', '--help'):
-        print >>sys.stderr, HELP
-        sys.exit(0)
+args = parser.parse_args()
 
-    elif opt in ('--description', '--author', '--email'):
-        options[opt[2:]] = arg
-
-    elif opt in ('-l', '--language'):
-        options['language'] = arg.lower()
-
-    elif opt == '--standalone':
-        options['standalone'] = True
-
-    elif opt[0:7] == '--with-':
-        options['with-' + opt[7:]] = True
-    
-    elif opt[0:10] == '--without-':
-        options['with-' + opt[10:]] = False
-
-# What's the new plugin name ?
-if len(args) < 1:
-    print >>sys.stderr, USAGE
-    sys.exit(1)
-
-plugin_name = args[0]
+plugin_name = args.name
 plugin_id = re.sub('[^a-z0-9_]', '', plugin_name.lower().replace(' ', '_'))
 plugin_module = plugin_id.replace('_', '-')
 
@@ -119,64 +65,97 @@ directives = {
     'PLUGIN_NAME'       : plugin_name,
     'PLUGIN_MODULE'     : plugin_module,
     'PLUGIN_ID'         : plugin_id,
-    'AUTHOR_FULLNAME'   : options['author'],
-    'AUTHOR_EMAIL'      : options['email'],
+    'AUTHOR_FULLNAME'   : args.author,
+    'AUTHOR_EMAIL'      : args.email,
     'DATE_YEAR'         : date.today().year,
-    'DESCRIPTION'       : options['description'],
+    'DESCRIPTION'       : args.description,
 }
 
 # Files to be generated by the preprocessor, in the form "template : outfile"
 output_files = {
-    'Makefile.am': '%s/Makefile.am' % plugin_module,
-    'xed-plugin.desktop.in': '%s/%s.xed-plugin.desktop.in' % (plugin_module, plugin_module)
+    'meson.build': 'meson.build',
+    'xed-plugin.desktop.in': '%s.plugin.desktop.in' % plugin_module
 }
 
-if options['language'] == 'c':
-    output_files['xed-plugin.c'] = '%s/%s-plugin.c' % (plugin_module, plugin_module)
-    output_files['xed-plugin.h'] = '%s/%s-plugin.h' % (plugin_module, plugin_module)
-else:
-    print >>sys.stderr, 'Value of --language should be C'
-    print >>sys.stderr, USAGE
-    sys.exit(1)
+if args.language == 'c':
+    directives['HAS_C_FILES'] = True
+    output_files['xed-plugin.c'] = 'xed-%s-plugin.c' % plugin_module
+    output_files['xed-plugin.h'] = 'xed-%s-plugin.h' % plugin_module
 
-if options['standalone']:
-    output_files['configure.ac'] = 'configure.ac'
-
-if options['with-side-pane']:
+if args.side_pane:
     directives['WITH_SIDE_PANE'] = True
 
-if options['with-bottom-pane']:
+if args.bottom_pane:
     directives['WITH_BOTTOM_PANE'] = True
 
-if options['with-menu']:
+if args.menu:
     directives['WITH_MENU'] = True
-    
-if options['with-config-dlg']:
+
+if args.config:
     directives['WITH_CONFIGURE_DIALOG'] = True
-    
+
+if args.directory is None:
+    directory = os.getcwd() if args.standalone else PLUGIN_DIR
+elif os.path.isdir(args.directory):
+    directory = args.directory
+else:
+    print('Unable to create plugin: %s does not exist or is not a directory' % args.directory)
+    quit(1)
+
+directory = os.path.join(directory, plugin_module)
+if os.path.exists(directory):
+    print('Unable to create plugin: directory %s already exists' % directory)
+    quit(1)
+else:
+    os.makedirs(directory)
+
+if not args.standalone:
+    with open(os.path.join(PLUGIN_DIR, 'meson.build'), 'r') as f:
+        contents = f.read()
+        lines = contents.split('\n')
+
+        start = False
+        for i in range(len(lines)):
+            line = lines[i].rstrip()
+            print(line)
+            if line.startswith('subdir('):
+                start = True
+            elif start:
+                break
+            else:
+                continue
+
+            if line[8:-2] > plugin_module:
+                break
+
+        lines.insert(i, 'subdir(\'%s\')' % plugin_module)
+
+    with open(os.path.join(PLUGIN_DIR, 'meson.build'), 'w') as f:
+        f.write('\n'.join(lines))
 
 # Generate the plugin base
 for infile, outfile in output_files.iteritems():
-    print 'Processing %s\n' \
-          '      into %s...' % (infile, outfile)
+    print('Generating file %s from template %s...' % (outfile, infile))
+
+    file_directives = directives.copy()
 
     infile = os.path.join(TEMPLATE_DIR, infile)
-    outfile = os.path.join(os.getcwd(), outfile)
+    outfile = os.path.join(directory, outfile)
 
     if not os.path.isfile(infile):
-        print >>sys.stderr, 'Input file does not exist : %s.' % os.path.basename(infile)
+        print('Input file %s does not exist: skipping' % os.path.basename(infile))
         continue
-    
+
     # Make sure the destination directory exists
     if not os.path.isdir(os.path.split(outfile)[0]):
         os.makedirs(os.path.split(outfile)[0])
-   
+
     # Variables relative to the generated file
-    directives['DIRNAME'], directives['FILENAME'] = os.path.split(outfile)
+    file_directives['DIRNAME'], file_directives['FILENAME'] = os.path.split(outfile)
 
     # Generate the file
-    preprocessor.process(infile, outfile, directives.copy())
+    preprocessor.process(infile, outfile, file_directives)
 
-print 'Done.'
+print('Done')
 
 # ex:ts=4:et:
