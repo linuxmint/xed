@@ -287,7 +287,7 @@ on_syntax_highlighting_changed (GSettings   *settings,
                                 const gchar *key,
                                 XedSettings *xs)
 {
-    GList *docs, *windows, *l;
+    GList *docs, *l;
     gboolean enable;
 
     enable = g_settings_get_boolean (settings, key);
@@ -300,22 +300,6 @@ on_syntax_highlighting_changed (GSettings   *settings,
     }
 
     g_list_free (docs);
-
-    /* update the sensitivity of the Higlight Mode menu item */
-    windows = xed_app_get_main_windows (XED_APP (g_application_get_default ()));
-    for (l = windows; l != NULL; l = g_list_next (l))
-    {
-        GtkUIManager *ui;
-        GtkAction *a;
-
-        ui = xed_window_get_ui_manager (XED_WINDOW (l->data));
-
-        a = gtk_ui_manager_get_action (ui, "/MenuBar/ViewMenu/ViewHighlightModeMenu");
-
-        gtk_action_set_sensitive (a, enable);
-    }
-
-    g_list_free (windows);
 }
 
 static void

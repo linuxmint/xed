@@ -55,8 +55,10 @@ struct _XedWindowPrivate
     GtkWidget *hpaned;
     GtkWidget *vpaned;
 
-    GtkWidget *tab_width_combo;
-    GtkWidget *language_combo;
+    GtkWidget *tab_width_button;
+    GtkWidget *tab_width_menu;
+    GtkWidget *language_button;
+    GtkWidget *language_popover;
     GtkWidget *show_side_pane_button;
     GtkWidget *show_bottom_pane_button;
     GtkWidget *bottom_pane_button_revealer;
@@ -88,7 +90,6 @@ struct _XedWindowPrivate
     GtkActionGroup *close_action_group;
     GtkActionGroup *quit_action_group;
     GtkActionGroup *panes_action_group;
-    GtkActionGroup *languages_action_group;
     GtkActionGroup *documents_list_action_group;
     guint           documents_list_menu_ui_id;
     GtkWidget      *toolbar;
