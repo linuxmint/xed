@@ -35,7 +35,7 @@ Installation
 
 Simple install procedure:
 
-  % ./autogen.sh				# run the `configure' script
-  % make					# build xed
+  % meson . build				# run the `configure' script
+  % ninja -v -C build		# build xed
   [ Become root if necessary ]
-  % make install				# install xed
+  % ninja install -v  -C  build	# install xed
