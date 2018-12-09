@@ -104,7 +104,7 @@ static const GtkActionEntry xed_menu_entries[] =
 	  N_("Select the entire document"), G_CALLBACK (_xed_cmd_edit_select_all) },
 
 	/* View menu */
-	{ "ViewHighlightMode", NULL, N_("_Highlight Mode"), NULL,
+	{ "ViewHighlightMode", NULL, N_("_Highlight Mode"), "<shift><control>H",
 	  N_("Change syntax hightlight mode"),
 	  G_CALLBACK (_xed_cmd_view_change_highlight_mode) },
 

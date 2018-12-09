@@ -61,6 +61,13 @@ on_language_selected (XedHighlightModeSelector *sel,
 }
 
 static void
+on_dialog_cancelled (XedHighlightModeSelector *sel,
+                     XedHighlightModeDialog   *dlg)
+{
+    gtk_widget_destroy (GTK_WIDGET (dlg));
+}
+
+static void
 xed_highlight_mode_dialog_class_init (XedHighlightModeDialogClass *klass)
 {
 	GtkWidgetClass *widget_class = GTK_WIDGET_CLASS (klass);
@@ -82,6 +89,9 @@ xed_highlight_mode_dialog_init (XedHighlightModeDialog *dlg)
 
 	dlg->on_language_selected_id = g_signal_connect (dlg->selector, "language-selected",
 	                                                 G_CALLBACK (on_language_selected), dlg);
+
+    g_signal_connect (dlg->selector, "cancelled",
+                      G_CALLBACK (on_dialog_cancelled), dlg);
 }
 
 GtkWidget *

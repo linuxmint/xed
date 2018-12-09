@@ -46,6 +46,7 @@ struct _XedHighlightModeSelector
 enum
 {
 	LANGUAGE_SELECTED,
+    CANCELLED,
 	LAST_SIGNAL
 };
 
@@ -73,6 +74,13 @@ xed_highlight_mode_selector_class_init (XedHighlightModeSelectorClass *klass)
 		                            G_TYPE_NONE,
 		                            1,
 		                            GTK_SOURCE_TYPE_LANGUAGE);
+
+    signals[CANCELLED] =
+        g_signal_new_class_handler ("cancelled",
+                                    G_TYPE_FROM_CLASS (klass),
+                                    G_SIGNAL_RUN_LAST | G_SIGNAL_ACTION,
+                                    NULL, NULL, NULL, NULL,
+                                    G_TYPE_NONE, 0);
 
 	/* Bind class to template */
 	gtk_widget_class_set_template_from_resource (widget_class,
@@ -223,8 +231,20 @@ on_entry_key_press_event (GtkWidget                  *entry,
 	{
 		return move_selection (selector, -5);
 	}
+    else if (event->keyval == GDK_KEY_Escape)
+    {
+        g_signal_emit (G_OBJECT (selector), signals[CANCELLED], 0);
+        return FALSE;
+    }
 
 	return FALSE;
+}
+
+static void
+on_entry_realized (GtkWidget                *entry,
+                   XedHighlightModeSelector *selector)
+{
+    gtk_widget_grab_focus (entry);
 }
 
 static void
@@ -259,6 +279,8 @@ xed_highlight_mode_selector_init (XedHighlightModeSelector *selector)
 	                  G_CALLBACK (on_entry_changed), selector);
 	g_signal_connect (selector->entry, "key-press-event",
 	                  G_CALLBACK (on_entry_key_press_event), selector);
+    g_signal_connect (selector->entry, "realize",
+                      G_CALLBACK (on_entry_realized), selector);
 
 	g_signal_connect (selector->treeview, "row-activated",
 	                  G_CALLBACK (on_row_activated), selector);
