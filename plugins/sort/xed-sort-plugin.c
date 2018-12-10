@@ -165,7 +165,6 @@ buffer_sort_lines (GtkSourceBuffer    *buffer,
     gint end_line;
     gint num_lines;
     SortLine *lines;
-    gchar *last_line = NULL;
     gint i;
 
     g_return_if_fail (GTK_SOURCE_IS_BUFFER (buffer));
@@ -226,8 +225,6 @@ buffer_sort_lines (GtkSourceBuffer    *buffer,
     {
         gtk_text_buffer_insert (text_buffer, start, lines[i].line, -1);
         gtk_text_buffer_insert (text_buffer, start, "\n", -1);
-
-        last_line = lines[i].line;
     }
 
     gtk_text_buffer_end_user_action (text_buffer);
