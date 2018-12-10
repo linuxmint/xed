@@ -492,7 +492,6 @@ update_ui (XedSpellPlugin *plugin)
     if (view != NULL)
     {
         XedTab *tab;
-        GtkTextBuffer *buffer;
 
         tab = xed_window_get_active_tab (priv->window);
         g_return_if_fail (xed_tab_get_view (tab) == view);
