@@ -1,4 +1,4 @@
-project('xed', 'c', version : '2.0.1')
+project('xed', 'c', version : '2.0.2')
 
 gnome = import('gnome')
 i18n = import('i18n')
