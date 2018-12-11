@@ -303,7 +303,6 @@ xed_wordcompletion_view_deactivate (XedViewActivatable *activatable)
 {
     XedWordCompletionPluginPrivate *priv;
     GtkSourceCompletion *completion;
-    GtkSourceCompletionProvider *provider;
     GtkTextBuffer *buf;
 
     xed_debug (DEBUG_PLUGINS);

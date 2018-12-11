@@ -528,8 +528,6 @@ xed_file_browser_plugin_activate (XedWindowActivatable *activatable)
     XedPanel *panel;
     XedFileBrowserStore *store;
     gchar *data_dir;
-    GSettingsSchemaSource *schema_source;
-    GSettingsSchema *schema;
 
     priv = plugin->priv;
 
