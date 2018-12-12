@@ -55,6 +55,7 @@ cc = meson.get_compiler('c')
 math = cc.find_library('m', required: false)
 
 intltool_merge = find_program('intltool-merge')
+itstool = find_program('itstool')
 
 # generate config.h
 config_h_file = configure_file(
