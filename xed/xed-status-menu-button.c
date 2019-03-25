@@ -87,8 +87,7 @@ xed_status_menu_button_class_init (XedStatusMenuButtonClass *klass)
 {
 	static const gchar style[] =
 		"* {\n"
-		  "padding: 1px 8px 2px 4px;\n"
-		  "border: 0;\n"
+		  "padding: 2px;\n"
 		  "outline-width: 0;\n"
 		"}";
 
