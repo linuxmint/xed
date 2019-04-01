@@ -1316,17 +1316,27 @@ tab_width_button_clicked (GtkMenuItem *item,
 }
 
 static void
-set_tab_spaces_label (XedWindow *window,
+set_tab_spaces_label (XedView   *view,
+                      XedWindow *window,
                       gboolean   use_spaces)
 {
+    gchar *label;
+    guint tab_width;
+
+    tab_width = gtk_source_view_get_tab_width (GTK_SOURCE_VIEW (view));
+
     if (use_spaces)
     {
-        xed_status_menu_button_set_label (XED_STATUS_MENU_BUTTON (window->priv->tab_width_button), _("Spaces"));
+        label = g_strdup_printf (_("Spaces: %u"), tab_width);
     }
     else
     {
-        xed_status_menu_button_set_label (XED_STATUS_MENU_BUTTON (window->priv->tab_width_button), _("Tabs"));
+        label = g_strdup_printf (_("Tabs: %u"), tab_width);
     }
+
+    xed_status_menu_button_set_label (XED_STATUS_MENU_BUTTON (window->priv->tab_width_button), label);
+
+    g_free (label);
 }
 
 static void
@@ -1339,7 +1349,7 @@ use_spaces_toggled (GtkCheckMenuItem *item,
     view = xed_window_get_active_view (window);
     use_spaces = gtk_check_menu_item_get_active (item);
 
-    set_tab_spaces_label (window, use_spaces);
+    set_tab_spaces_label (view, window, use_spaces);
 
     g_signal_handler_block (view, window->priv->spaces_instead_of_tabs_id);
     gtk_source_view_set_insert_spaces_instead_of_tabs (GTK_SOURCE_VIEW (view), use_spaces);
@@ -1360,7 +1370,6 @@ setup_tab_width_menu (XedWindow *window)
 
     guint i = 0;
     GtkWidget *item;
-    gboolean use_spaces;
 
     window->priv->tab_width_menu = gtk_menu_new ();
 
@@ -1391,9 +1400,6 @@ setup_tab_width_menu (XedWindow *window)
     gtk_widget_show (item);
 
     g_signal_connect(item, "toggled", G_CALLBACK (use_spaces_toggled), window);
-
-    use_spaces = g_settings_get_boolean (window->priv->editor_settings, "insert-spaces");
-    set_tab_spaces_label (window, use_spaces);
 }
 
 static void
@@ -1787,12 +1793,13 @@ tab_width_changed (GObject *object,
     GList *items;
     GList *item;
     guint new_tab_width;
-    gchar *label;
+    gboolean use_spaces;
     gboolean found = FALSE;
 
     items = gtk_container_get_children (GTK_CONTAINER (window->priv->tab_width_menu));
 
-    new_tab_width = gtk_source_view_get_tab_width (GTK_SOURCE_VIEW(object));
+    new_tab_width = gtk_source_view_get_tab_width (GTK_SOURCE_VIEW (object));
+    use_spaces = gtk_source_view_get_insert_spaces_instead_of_tabs (GTK_SOURCE_VIEW (object));
 
     for (item = items; item; item = item->next)
     {
@@ -1826,10 +1833,8 @@ tab_width_changed (GObject *object,
         }
     }
 
-    label = g_strdup_printf (_("Tab Width: %u"), new_tab_width);
-    xed_status_menu_button_set_label (XED_STATUS_MENU_BUTTON (window->priv->tab_width_button), label);
+    set_tab_spaces_label (XED_VIEW (object), window, use_spaces);
 
-    g_free (label);
     g_list_free (items);
 }
 
