@@ -702,18 +702,6 @@ xed_notebook_switch_page_cb (GtkNotebook *notebook,
     gtk_widget_grab_focus (GTK_WIDGET (view));
 }
 
-/*
- * update_tabs_visibility: Hide tabs if there is only one tab
- */
-static void
-update_tabs_visibility (XedNotebook *notebook)
-{
-    gboolean show_tabs;
-
-    show_tabs = (gtk_notebook_get_n_pages (GTK_NOTEBOOK (notebook)) > 1);
-    gtk_notebook_set_show_tabs (GTK_NOTEBOOK (notebook), show_tabs);
-}
-
 static void
 xed_notebook_init (XedNotebook *notebook)
 {
@@ -726,7 +714,6 @@ xed_notebook_init (XedNotebook *notebook)
 
     gtk_notebook_set_scrollable (GTK_NOTEBOOK (notebook), TRUE);
     gtk_notebook_set_show_border (GTK_NOTEBOOK (notebook), FALSE);
-    gtk_notebook_set_show_tabs (GTK_NOTEBOOK (notebook), FALSE);
     gtk_container_set_border_width (GTK_CONTAINER (notebook), 0);
 
     g_signal_connect (notebook, "button-press-event",
@@ -867,7 +854,6 @@ xed_notebook_add_tab (XedNotebook *nb,
 
     tab_label = create_tab_label (nb, tab);
     gtk_notebook_insert_page (GTK_NOTEBOOK (nb), GTK_WIDGET (tab), tab_label, position);
-    update_tabs_visibility (nb);
 
     g_signal_emit (G_OBJECT (nb), signals[TAB_ADDED], 0, tab);
 
@@ -927,7 +913,6 @@ remove_tab (XedTab      *tab,
 
     remove_tab_label (nb, tab);
     gtk_notebook_remove_page (GTK_NOTEBOOK (nb), position);
-    update_tabs_visibility (nb);
 
     g_signal_emit (G_OBJECT (nb), signals[TAB_REMOVED], 0, tab);
 
