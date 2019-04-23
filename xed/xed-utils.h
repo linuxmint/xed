@@ -97,14 +97,6 @@ gchar *xed_utils_location_get_dirname_for_display (GFile *location);
 
 gchar *xed_utils_replace_home_dir_with_tilde (const gchar *uri);
 
-guint xed_utils_get_current_workspace (GdkScreen *screen);
-
-guint xed_utils_get_window_workspace (GtkWindow *gtkwindow);
-
-void xed_utils_get_current_viewport (GdkScreen    *screen,
-                                     gint         *x,
-                                     gint         *y);
-
 gboolean xed_utils_is_valid_location (GFile *location);
 
 gboolean xed_utils_get_ui_objects (const gchar  *filename,
