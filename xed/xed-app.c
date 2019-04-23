@@ -1164,7 +1164,8 @@ xed_app_show_help (XedApp      *app,
         link = g_strdup_printf ("help:%s", name);
     }
 
-    ret = gtk_show_uri (gtk_widget_get_screen (GTK_WIDGET (parent)), link, GDK_CURRENT_TIME, &error);
+    ret = gtk_show_uri_on_window (GTK_WINDOW (gtk_widget_get_toplevel (GTK_WIDGET (parent))),
+                                  link, GDK_CURRENT_TIME, &error);
 
     g_free (link);
 
