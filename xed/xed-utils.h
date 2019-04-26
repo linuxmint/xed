@@ -48,18 +48,6 @@ G_BEGIN_DECLS
 
 enum { XED_ALL_WORKSPACES = 0xffffffff };
 
-void xed_utils_menu_position_under_widget (GtkMenu  *menu,
-                                           gint     *x,
-                                           gint     *y,
-                                           gboolean *push_in,
-                                           gpointer  user_data);
-
-void xed_utils_menu_position_under_tree_view (GtkMenu  *menu,
-                                              gint     *x,
-                                              gint     *y,
-                                              gboolean *push_in,
-                                              gpointer  user_data);
-
 gchar *xed_gdk_color_to_string (GdkColor color);
 
 gchar *xed_utils_escape_underscores (const gchar *text,

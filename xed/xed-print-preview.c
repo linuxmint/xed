@@ -499,7 +499,7 @@ multi_button_clicked (GtkWidget       *button,
     gtk_menu_attach (GTK_MENU (m), i, 1, 2, 1, 2);
     g_signal_connect (i, "activate", G_CALLBACK (on_2x2_clicked), preview);
 
-    gtk_menu_popup (GTK_MENU (m), NULL, NULL, NULL, preview, 0, GDK_CURRENT_TIME);
+    gtk_menu_popup_at_widget (GTK_MENU (m), button, GDK_GRAVITY_SOUTH_WEST, GDK_GRAVITY_NORTH_WEST, NULL);
 }
 
 static void

@@ -525,20 +525,7 @@ show_popup_menu (XedDocumentsPanel *panel,
     menu = gtk_ui_manager_get_widget (xed_window_get_ui_manager (panel->priv->window), "/NotebookPopup");
     g_return_val_if_fail (menu != NULL, FALSE);
 
-    if (event != NULL)
-    {
-        gtk_menu_popup (GTK_MENU (menu), NULL, NULL,
-                        NULL, NULL,
-                        event->button, event->time);
-    }
-    else
-    {
-        gtk_menu_popup (GTK_MENU (menu), NULL, NULL,
-                        (GtkMenuPositionFunc) menu_position, panel,
-                        0, gtk_get_current_event_time ());
-
-        gtk_menu_shell_select_first (GTK_MENU_SHELL (menu), FALSE);
-    }
+    gtk_menu_popup_at_pointer (GTK_MENU (menu), (GdkEvent *) event);
 
     return TRUE;
 }
