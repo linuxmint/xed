@@ -11,3 +11,14 @@
     min-height: 0;
     min-width: 0;
 }
+
+/*remove a keybinding so that we can use it for toggling comments*/
+@binding-set xed-view-bindings
+{
+    unbind "<Control>slash";
+}
+
+textview
+{
+    -gtk-key-bindings: xed-view-bindings;
+}

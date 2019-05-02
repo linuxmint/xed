@@ -42,6 +42,8 @@ void _xed_cmd_edit_paste (GtkAction *action, XedWindow *window);
 void _xed_cmd_edit_delete (GtkAction *action, XedWindow *window);
 void _xed_cmd_edit_select_all (GtkAction *action, XedWindow *window);
 void _xed_cmd_edit_preferences (GtkAction *action, XedWindow *window);
+void _xed_cmd_edit_toggle_comment (GtkAction *action, XedWindow *window);
+void _xed_cmd_edit_toggle_comment_block (GtkAction *action, XedWindow *window);
 
 void _xed_cmd_view_show_toolbar (GtkAction *action, XedWindow *window);
 void _xed_cmd_view_show_statusbar (GtkAction *action, XedWindow *window);
