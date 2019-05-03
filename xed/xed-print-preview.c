@@ -82,6 +82,9 @@ struct _XedPrintPreviewPrivate
 
 G_DEFINE_TYPE (XedPrintPreview, xed_print_preview, GTK_TYPE_BOX)
 
+static void goto_page (XedPrintPreview *preview,
+                       gint             page);
+
 static void
 xed_print_preview_get_property (GObject    *object,
                                 guint       prop_id,
@@ -173,6 +176,7 @@ set_rows_and_cols (XedPrintPreview *preview,
     preview->priv->rows = rows;
     preview->priv->cols = cols;
     update_layout_size (preview);
+    goto_page (preview, preview->priv->cur_page - (preview->priv->cur_page % (preview->priv->rows * preview->priv->cols)));
 }
 
 /* get the paper size in points: these must be used only
@@ -312,7 +316,7 @@ goto_page (XedPrintPreview *preview,
 
     gtk_widget_set_sensitive (GTK_WIDGET (preview->priv->prev), (page > 0) && (preview->priv->n_pages > 1));
     gtk_widget_set_sensitive (GTK_WIDGET (preview->priv->next),
-                              (page != (preview->priv->n_pages - 1)) &&
+                              (page < (preview->priv->n_pages - preview->priv->rows * preview->priv->cols)) &&
                               (preview->priv->n_pages > 1));
 
     if (page != preview->priv->cur_page)
