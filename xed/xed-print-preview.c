@@ -1124,7 +1124,7 @@ preview_draw (GtkWidget       *widget,
                 break;
             }
 
-            draw_page (cr, j * priv->tile_w, i * priv->tile_h, pg, preview);
+            draw_page (cr, i * priv->tile_w, j * priv->tile_h, pg, preview);
 
             ++pg;
         }
