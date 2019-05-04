@@ -186,13 +186,17 @@ static XedNotebook *
 find_notebook_at_pointer (gint abs_x,
                           gint abs_y)
 {
+    GdkSeat *seat;
+    GdkDevice *device;
     GdkWindow *win_at_pointer;
     GdkWindow *toplevel_win;
     gpointer toplevel = NULL;
     gint x, y;
 
-    /* FIXME multi-head */
-    win_at_pointer = gdk_window_at_pointer (&x, &y);
+    seat = gdk_display_get_default_seat (gdk_display_get_default ());
+    device = gdk_seat_get_pointer (seat);
+    win_at_pointer = gdk_device_get_window_at_position (device, &x, &y);
+
     if (win_at_pointer == NULL)
     {
         /* We are outside all windows of the same application */
