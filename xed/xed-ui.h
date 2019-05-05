@@ -102,6 +102,10 @@ static const GtkActionEntry xed_menu_entries[] =
 	  N_("Delete the selected text"), G_CALLBACK (_xed_cmd_edit_delete) },
 	{ "EditSelectAll", "edit-select-all-symbolic", N_("Select _All"), "<control>A",
 	  N_("Select the entire document"), G_CALLBACK (_xed_cmd_edit_select_all) },
+    { "EditToggleComment", NULL, N_("_Toggle Comment"), "<control>slash",
+      N_("Comment"), G_CALLBACK (_xed_cmd_edit_toggle_comment) },
+    { "EditToggleCommentBlock", NULL, N_("Toggle Comment _Block"), "<shift><control>question",
+      N_("Comment Block"), G_CALLBACK (_xed_cmd_edit_toggle_comment_block) },
 
 	/* View menu */
 	{ "ViewHighlightMode", NULL, N_("_Highlight Mode"), "<shift><control>H",
