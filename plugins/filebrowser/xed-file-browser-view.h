@@ -37,12 +37,6 @@ typedef struct _XedFileBrowserView        XedFileBrowserView;
 typedef struct _XedFileBrowserViewClass   XedFileBrowserViewClass;
 typedef struct _XedFileBrowserViewPrivate XedFileBrowserViewPrivate;
 
-typedef enum
-{
-    XED_FILE_BROWSER_VIEW_CLICK_POLICY_DOUBLE,
-    XED_FILE_BROWSER_VIEW_CLICK_POLICY_SINGLE
-} XedFileBrowserViewClickPolicy;
-
 struct _XedFileBrowserView
 {
     GtkTreeView parent;
@@ -74,8 +68,6 @@ void xed_file_browser_view_set_model (XedFileBrowserView *tree_view,
                                       GtkTreeModel       *model);
 void xed_file_browser_view_start_rename (XedFileBrowserView *tree_view,
                                          GtkTreeIter        *iter);
-void xed_file_browser_view_set_click_policy (XedFileBrowserView            *tree_view,
-                                             XedFileBrowserViewClickPolicy  policy);
 void xed_file_browser_view_set_restore_expand_state (XedFileBrowserView *tree_view,
                                                      gboolean            restore_expand_state);
 

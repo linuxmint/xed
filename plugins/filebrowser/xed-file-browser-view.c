@@ -44,8 +44,6 @@ struct _XedFileBrowserViewPrivate
     GtkTreeModel *model;
     GtkTreeRowReference *editable;
 
-    /* CLick policy */
-    XedFileBrowserViewClickPolicy click_policy;
     GtkTreePath *double_click_path[2]; /* Both clicks in a double click need to be on the same row */
     GtkTreePath *hover_path;
     GdkCursor *hand_cursor;
@@ -64,7 +62,6 @@ enum
 {
     PROP_0,
 
-    PROP_CLICK_POLICY,
     PROP_RESTORE_EXPAND_STATE
 };
 
@@ -227,139 +224,6 @@ row_collapsed (GtkTreeView *tree_view,
     _xed_file_browser_store_iter_collapsed (XED_FILE_BROWSER_STORE (view->priv->model), iter);
 }
 
-static gboolean
-leave_notify_event (GtkWidget        *widget,
-                    GdkEventCrossing *event)
-{
-    XedFileBrowserView *view = XED_FILE_BROWSER_VIEW (widget);
-
-    if (view->priv->click_policy == XED_FILE_BROWSER_VIEW_CLICK_POLICY_SINGLE &&
-        view->priv->hover_path != NULL)
-    {
-        gtk_tree_path_free (view->priv->hover_path);
-        view->priv->hover_path = NULL;
-    }
-
-    // Chainup
-    return GTK_WIDGET_CLASS (xed_file_browser_view_parent_class)->leave_notify_event (widget, event);
-}
-
-static gboolean
-enter_notify_event (GtkWidget        *widget,
-                    GdkEventCrossing *event)
-{
-    XedFileBrowserView *view = XED_FILE_BROWSER_VIEW (widget);
-
-    if (view->priv->click_policy == XED_FILE_BROWSER_VIEW_CLICK_POLICY_SINGLE)
-    {
-        if (view->priv->hover_path != NULL)
-        {
-            gtk_tree_path_free (view->priv->hover_path);
-        }
-
-        gtk_tree_view_get_path_at_pos (GTK_TREE_VIEW (widget),
-                                       event->x, event->y,
-                                       &view->priv->hover_path,
-                                       NULL, NULL, NULL);
-
-        if (view->priv->hover_path != NULL)
-        {
-            gdk_window_set_cursor (gtk_widget_get_window (widget), view->priv->hand_cursor);
-        }
-    }
-
-    // Chainup
-    return GTK_WIDGET_CLASS (xed_file_browser_view_parent_class)->enter_notify_event (widget, event);
-}
-
-static gboolean
-motion_notify_event (GtkWidget      *widget,
-                     GdkEventMotion *event)
-{
-    GtkTreePath *old_hover_path;
-    XedFileBrowserView *view = XED_FILE_BROWSER_VIEW (widget);
-
-    if (view->priv->click_policy == XED_FILE_BROWSER_VIEW_CLICK_POLICY_SINGLE)
-    {
-        old_hover_path = view->priv->hover_path;
-        gtk_tree_view_get_path_at_pos (GTK_TREE_VIEW (widget),
-                                       event->x, event->y,
-                                       &view->priv->hover_path,
-                                       NULL, NULL, NULL);
-
-        if ((old_hover_path != NULL) != (view->priv->hover_path != NULL))
-        {
-            if (view->priv->hover_path != NULL)
-            {
-                gdk_window_set_cursor (gtk_widget_get_window (widget), view->priv->hand_cursor);
-            }
-            else
-            {
-                gdk_window_set_cursor (gtk_widget_get_window (widget), NULL);
-            }
-        }
-
-        if (old_hover_path != NULL)
-        {
-            gtk_tree_path_free (old_hover_path);
-        }
-    }
-
-    // Chainup
-    return GTK_WIDGET_CLASS (xed_file_browser_view_parent_class)->motion_notify_event (widget, event);
-}
-
-static void
-set_click_policy_property (XedFileBrowserView            *obj,
-                           XedFileBrowserViewClickPolicy  click_policy)
-{
-    GtkTreeIter iter;
-    GdkDisplay *display;
-    GdkWindow *win;
-
-    obj->priv->click_policy = click_policy;
-
-    if (click_policy == XED_FILE_BROWSER_VIEW_CLICK_POLICY_SINGLE)
-    {
-        if (obj->priv->hand_cursor == NULL)
-        {
-            obj->priv->hand_cursor = gdk_cursor_new(GDK_HAND2);
-        }
-    }
-    else if (click_policy == XED_FILE_BROWSER_VIEW_CLICK_POLICY_DOUBLE)
-    {
-        if (obj->priv->hover_path != NULL)
-        {
-            if (gtk_tree_model_get_iter (GTK_TREE_MODEL (obj->priv->model), &iter, obj->priv->hover_path))
-            {
-                gtk_tree_model_row_changed (GTK_TREE_MODEL (obj->priv->model), obj->priv->hover_path, &iter);
-            }
-
-            gtk_tree_path_free (obj->priv->hover_path);
-            obj->priv->hover_path = NULL;
-        }
-
-        if (gtk_widget_get_realized (GTK_WIDGET (obj)))
-        {
-            win = gtk_widget_get_window (GTK_WIDGET (obj));
-            gdk_window_set_cursor (win, NULL);
-
-            display = gtk_widget_get_display (GTK_WIDGET (obj));
-
-            if (display != NULL)
-            {
-                gdk_display_flush (display);
-            }
-        }
-
-        if (obj->priv->hand_cursor)
-        {
-            g_object_unref (obj->priv->hand_cursor);
-            obj->priv->hand_cursor = NULL;
-        }
-    }
-}
-
 static void
 directory_activated (XedFileBrowserView *view,
                      GtkTreeIter        *iter)
@@ -503,14 +367,7 @@ did_not_drag (XedFileBrowserView *view,
 
     if (gtk_tree_view_get_path_at_pos (tree_view, event->x, event->y, &path, NULL, NULL, NULL))
     {
-        if ((view->priv->click_policy == XED_FILE_BROWSER_VIEW_CLICK_POLICY_SINGLE)
-            && !button_event_modifies_selection(event)
-            && (event->button == 1 || event->button == 2))
-        {
-                /* Activate all selected items, and leave them selected */
-            activate_selected_items (view);
-        }
-        else if ((event->button == 1 || event->button == 2)
+        if ((event->button == 1 || event->button == 2)
                  && ((event->state & GDK_CONTROL_MASK) != 0 ||
                  (event->state & GDK_SHIFT_MASK) == 0)
                  && view->priv->selected_on_button_down)
@@ -589,12 +446,6 @@ button_press_event (GtkWidget      *widget,
 
     last_click_time = event->time;
 
-    /* Ignore double click if we are in single click mode */
-    if (view->priv->click_policy == XED_FILE_BROWSER_VIEW_CLICK_POLICY_SINGLE && click_count >= 2)
-    {
-        return TRUE;
-    }
-
     view->priv->ignore_release = FALSE;
     call_parent = TRUE;
 
@@ -654,7 +505,7 @@ button_press_event (GtkWidget      *widget,
                 if (selected)
                 {
                     call_parent = on_expander || gtk_tree_selection_count_selected_rows (selection) == 1;
-                    view->priv->ignore_release = call_parent && view->priv->click_policy != XED_FILE_BROWSER_VIEW_CLICK_POLICY_SINGLE;
+                    view->priv->ignore_release = call_parent;
                 }
                 else if  ((event->state & GDK_CONTROL_MASK) != 0)
                 {
@@ -881,9 +732,6 @@ get_property (GObject    *object,
 
     switch (prop_id)
     {
-        case PROP_CLICK_POLICY:
-            g_value_set_enum (value, obj->priv->click_policy);
-            break;
         case PROP_RESTORE_EXPAND_STATE:
             g_value_set_boolean (value, obj->priv->restore_expand_state);
             break;
@@ -903,9 +751,6 @@ set_property (GObject      *object,
 
     switch (prop_id)
     {
-        case PROP_CLICK_POLICY:
-            set_click_policy_property (obj, g_value_get_enum (value));
-            break;
         case PROP_RESTORE_EXPAND_STATE:
             set_restore_expand_state (obj, g_value_get_boolean (value));
             break;
@@ -927,9 +772,6 @@ xed_file_browser_view_class_init (XedFileBrowserViewClass *klass)
     object_class->set_property = set_property;
 
     /* Event handlers */
-    widget_class->motion_notify_event = motion_notify_event;
-    widget_class->enter_notify_event = enter_notify_event;
-    widget_class->leave_notify_event = leave_notify_event;
     widget_class->button_press_event = button_press_event;
     widget_class->button_release_event = button_release_event;
     widget_class->drag_begin = drag_begin;
@@ -942,14 +784,6 @@ xed_file_browser_view_class_init (XedFileBrowserViewClass *klass)
 
     /* Default handlers */
     klass->directory_activated = directory_activated;
-
-    g_object_class_install_property (object_class, PROP_CLICK_POLICY,
-                                     g_param_spec_enum ("click-policy",
-                                                        "Click Policy",
-                                                        "The click policy",
-                                                         XED_FILE_BROWSER_TYPE_VIEW_CLICK_POLICY,
-                                                         XED_FILE_BROWSER_VIEW_CLICK_POLICY_DOUBLE,
-                                                         G_PARAM_READWRITE | G_PARAM_CONSTRUCT));
 
     g_object_class_install_property (object_class, PROP_RESTORE_EXPAND_STATE,
                                      g_param_spec_boolean ("restore-expand-state",
@@ -1012,14 +846,6 @@ cell_data_cb (GtkTreeViewColumn  *tree_column,
     gboolean editable = FALSE;
 
     path = gtk_tree_model_get_path (tree_model, iter);
-
-    if (obj->priv->click_policy == XED_FILE_BROWSER_VIEW_CLICK_POLICY_SINGLE)
-    {
-        if (obj->priv->hover_path != NULL && gtk_tree_path_compare (path, obj->priv->hover_path) == 0)
-        {
-            underline = PANGO_UNDERLINE_SINGLE;
-        }
-    }
 
     if (XED_IS_FILE_BROWSER_STORE (tree_model))
     {
@@ -1198,17 +1024,6 @@ xed_file_browser_view_start_rename (XedFileBrowserView *tree_view,
                                   gtk_tree_row_reference_get_path (tree_view->priv->editable),
                                   tree_view->priv->column,
                                   FALSE, 0.0, 0.0);
-}
-
-void
-xed_file_browser_view_set_click_policy (XedFileBrowserView            *tree_view,
-                                        XedFileBrowserViewClickPolicy  policy)
-{
-    g_return_if_fail (XED_IS_FILE_BROWSER_VIEW (tree_view));
-
-    set_click_policy_property (tree_view, policy);
-
-    g_object_notify (G_OBJECT (tree_view), "click-policy");
 }
 
 void
