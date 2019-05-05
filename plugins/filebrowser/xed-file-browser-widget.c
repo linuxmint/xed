@@ -1247,6 +1247,7 @@ popup_menu (XedFileBrowserWidget *obj,
             GtkTreeModel         *model)
 {
     GtkWidget *menu;
+    GtkTreeView *tree;
 
     if (XED_IS_FILE_BROWSER_STORE (model))
     {
@@ -1263,16 +1264,18 @@ popup_menu (XedFileBrowserWidget *obj,
 
     g_return_val_if_fail (menu != NULL, FALSE);
 
+    tree = GTK_TREE_VIEW (obj->priv->treeview);
+
     if (event != NULL)
     {
         GtkTreeSelection *selection;
-        selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (obj->priv->treeview));
+        selection = gtk_tree_view_get_selection (tree);
 
         if (gtk_tree_selection_count_selected_rows (selection) <= 1)
         {
             GtkTreePath *path;
 
-            if (gtk_tree_view_get_path_at_pos (GTK_TREE_VIEW (obj->priv->treeview),
+            if (gtk_tree_view_get_path_at_pos (tree,
                                                (gint)event->x, (gint)event->y,
                                                &path, NULL, NULL, NULL))
             {
@@ -1282,14 +1285,38 @@ popup_menu (XedFileBrowserWidget *obj,
             }
         }
 
-        gtk_menu_popup (GTK_MENU (menu), NULL, NULL, NULL, NULL, event->button, event->time);
+        gtk_menu_popup_at_pointer (GTK_MENU (menu), (GdkEvent *) event);
     }
     else
     {
-        gtk_menu_popup (GTK_MENU (menu), NULL, NULL,
-                        xed_utils_menu_position_under_tree_view,
-                        obj->priv->treeview, 0,
-                        gtk_get_current_event_time ());
+        GtkTreeModel *model;
+        GtkTreeSelection *selection;
+        GtkTreeIter iter;
+
+        model = gtk_tree_view_get_model (tree);
+        g_return_val_if_fail (model != NULL, FALSE);
+
+        selection = gtk_tree_view_get_selection (tree);
+        g_return_val_if_fail (selection != NULL, FALSE);
+
+        if (gtk_tree_selection_get_selected (selection, NULL, &iter))
+        {
+            GtkTreePath *path;
+            GdkRectangle rect;
+
+            path = gtk_tree_model_get_path (model, &iter);
+            gtk_tree_view_get_cell_area (tree, path, gtk_tree_view_get_column (tree, 0), &rect);
+            gtk_menu_popup_at_rect (GTK_MENU (menu), gtk_widget_get_window (GTK_WIDGET (tree)),
+                                    &rect, GDK_GRAVITY_SOUTH_WEST, GDK_GRAVITY_NORTH_WEST, NULL);
+
+            gtk_tree_path_free (path);
+        }
+        else
+        {
+            gtk_menu_popup_at_widget (GTK_MENU (menu), GTK_WIDGET (obj->priv->treeview),
+                                      GDK_GRAVITY_SOUTH, GDK_GRAVITY_NORTH, NULL);
+        }
+
         gtk_menu_shell_select_first (GTK_MENU_SHELL (menu), FALSE);
     }
 
@@ -2329,7 +2356,8 @@ directory_open (XedFileBrowserWidget *obj,
 
         uri = g_file_get_uri (location);
 
-        if (!gtk_show_uri (gtk_widget_get_screen (GTK_WIDGET (obj)), uri, GDK_CURRENT_TIME, &error))
+        if (!gtk_show_uri_on_window (GTK_WINDOW (gtk_widget_get_toplevel (GTK_WIDGET (obj))),
+                                     uri, GDK_CURRENT_TIME, &error))
         {
             g_signal_emit (obj, signals[ERROR], 0, XED_FILE_BROWSER_ERROR_OPEN_DIRECTORY, error->message);
 

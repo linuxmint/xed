@@ -401,7 +401,7 @@ show_line_numbers_menu (GtkWidget      *view,
     GtkWidget *menu;
 
     menu = create_line_numbers_menu (view);
-    gtk_menu_popup (GTK_MENU(menu), NULL, NULL, NULL, NULL, event->button, event->time);
+    gtk_menu_popup_at_pointer (GTK_MENU(menu), (GdkEvent *) event);
 }
 
 static gboolean

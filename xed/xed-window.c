@@ -2806,20 +2806,20 @@ show_notebook_popup_menu (GtkNotebook *notebook,
 #endif
     if (event != NULL)
     {
-        gtk_menu_popup (GTK_MENU(menu), NULL, NULL, NULL, NULL, event->button, event->time);
+        gtk_menu_popup_at_pointer (GTK_MENU(menu), (GdkEvent *) event);
+
     }
     else
     {
         GtkWidget *tab;
         GtkWidget *tab_label;
 
-        tab = GTK_WIDGET(xed_window_get_active_tab (window));
-        g_return_val_if_fail(tab != NULL, FALSE);
+        tab = GTK_WIDGET (xed_window_get_active_tab (window));
+        g_return_val_if_fail (tab != NULL, FALSE);
 
         tab_label = gtk_notebook_get_tab_label (notebook, tab);
 
-        gtk_menu_popup (GTK_MENU(menu), NULL, NULL, xed_utils_menu_position_under_widget, tab_label, 0,
-                        gtk_get_current_event_time ());
+        gtk_menu_popup_at_widget (GTK_MENU (menu), tab_label, GDK_GRAVITY_SOUTH_WEST, GDK_GRAVITY_NORTH_WEST, NULL);
 
         gtk_menu_shell_select_first (GTK_MENU_SHELL(menu), FALSE);
     }
