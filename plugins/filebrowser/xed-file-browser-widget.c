@@ -1183,7 +1183,7 @@ xed_file_browser_widget_init (XedFileBrowserWidget *obj)
     gtk_box_set_spacing (GTK_BOX (obj), 3);
     gtk_orientable_set_orientation (GTK_ORIENTABLE (obj), GTK_ORIENTATION_VERTICAL);
 
-    obj->priv->busy_cursor = gdk_cursor_new (GDK_WATCH);
+    obj->priv->busy_cursor = gdk_cursor_new_for_display (gdk_display_get_default(), GDK_WATCH);
 }
 
 /* Private */
@@ -1988,11 +1988,7 @@ set_busy (XedFileBrowserWidget *obj,
 
     if (busy)
     {
-        GdkCursor *cursor;
-
-        cursor = gdk_cursor_new (GDK_WATCH);
-        gdk_window_set_cursor (window, cursor);
-        g_object_unref (obj->priv->busy_cursor);
+        gdk_window_set_cursor (window, obj->priv->busy_cursor);
     }
     else
     {
