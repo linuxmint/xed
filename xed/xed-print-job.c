@@ -276,9 +276,9 @@ restore_button_clicked (GtkButton   *button,
     header = g_settings_get_string (job->priv->print_settings, XED_SETTINGS_PRINT_FONT_HEADER_PANGO);
     numbers = g_settings_get_string (job->priv->print_settings, XED_SETTINGS_PRINT_FONT_NUMBERS_PANGO);
 
-    gtk_font_button_set_font_name (GTK_FONT_BUTTON (job->priv->body_fontbutton), body);
-    gtk_font_button_set_font_name (GTK_FONT_BUTTON (job->priv->headers_fontbutton), header);
-    gtk_font_button_set_font_name (GTK_FONT_BUTTON (job->priv->numbers_fontbutton), numbers);
+    gtk_font_chooser_set_font (GTK_FONT_CHOOSER (job->priv->body_fontbutton), body);
+    gtk_font_chooser_set_font (GTK_FONT_CHOOSER (job->priv->headers_fontbutton), header);
+    gtk_font_chooser_set_font (GTK_FONT_CHOOSER (job->priv->numbers_fontbutton), numbers);
 
     g_free (body);
     g_free (header);
@@ -372,13 +372,13 @@ create_custom_widget_cb (GtkPrintOperation *operation,
     gtk_widget_set_sensitive (job->priv->do_not_split_checkbutton, wrap_mode != GTK_WRAP_NONE);
 
     /* Set initial values */
-    gtk_font_button_set_font_name (GTK_FONT_BUTTON (job->priv->body_fontbutton), font_body);
+    gtk_font_chooser_set_font (GTK_FONT_CHOOSER (job->priv->body_fontbutton), font_body);
     g_free (font_body);
 
-    gtk_font_button_set_font_name (GTK_FONT_BUTTON (job->priv->headers_fontbutton), font_header);
+    gtk_font_chooser_set_font (GTK_FONT_CHOOSER (job->priv->headers_fontbutton), font_header);
     g_free (font_header);
 
-    gtk_font_button_set_font_name (GTK_FONT_BUTTON (job->priv->numbers_fontbutton), font_numbers);
+    gtk_font_chooser_set_font (GTK_FONT_CHOOSER (job->priv->numbers_fontbutton), font_numbers);
     g_free (font_numbers);
 
     g_signal_connect (job->priv->line_numbers_checkbutton, "toggled",
@@ -404,9 +404,9 @@ custom_widget_apply_cb (GtkPrintOperation *operation,
 
     syntax = gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (job->priv->syntax_checkbutton));
     page_header = gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (job->priv->page_header_checkbutton));
-    body = gtk_font_button_get_font_name (GTK_FONT_BUTTON (job->priv->body_fontbutton));
-    header = gtk_font_button_get_font_name (GTK_FONT_BUTTON (job->priv->headers_fontbutton));
-    numbers = gtk_font_button_get_font_name (GTK_FONT_BUTTON (job->priv->numbers_fontbutton));
+    body = gtk_font_chooser_get_font (GTK_FONT_CHOOSER (job->priv->body_fontbutton));
+    header = gtk_font_chooser_get_font (GTK_FONT_CHOOSER (job->priv->headers_fontbutton));
+    numbers = gtk_font_chooser_get_font (GTK_FONT_CHOOSER (job->priv->numbers_fontbutton));
 
     g_settings_set_boolean (job->priv->print_settings, XED_SETTINGS_PRINT_SYNTAX_HIGHLIGHTING, syntax);
     g_settings_set_boolean (job->priv->print_settings, XED_SETTINGS_PRINT_HEADER, page_header);
