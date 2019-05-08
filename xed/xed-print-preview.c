@@ -924,9 +924,6 @@ preview_layout_key_press (GtkWidget       *widget,
     {
         gtk_adjustment_set_value (hadj, x);
         gtk_adjustment_set_value (vadj, y);
-
-        gtk_adjustment_value_changed (hadj);
-        gtk_adjustment_value_changed (vadj);
     }
 
     return ret;
