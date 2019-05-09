@@ -708,7 +708,7 @@ fill_combo_model (XedFileBrowserWidget *obj)
     GtkTreeIter iter;
     GdkPixbuf *icon;
 
-    icon = xed_file_browser_utils_pixbuf_from_theme (GTK_STOCK_HOME, GTK_ICON_SIZE_MENU);
+    icon = xed_file_browser_utils_pixbuf_from_theme ("go-home", GTK_ICON_SIZE_MENU);
 
     gtk_tree_store_append (store, &iter, NULL);
     gtk_tree_store_set (store, &iter,
@@ -801,7 +801,7 @@ static const GtkActionEntry tree_actions_sensitive[] =
 
 static const GtkToggleActionEntry tree_actions_toggle[] =
 {
-    {"FilterHidden", GTK_STOCK_DIALOG_AUTHENTICATION, N_("Show _Hidden"), NULL,
+    {"FilterHidden", NULL, N_("Show _Hidden"), NULL,
      N_("Show hidden files and folders"), G_CALLBACK (on_action_filter_hidden), FALSE},
     {"FilterBinary", NULL, N_("Show _Binary"), NULL,
      N_("Show binary files"), G_CALLBACK (on_action_filter_binary), FALSE}
