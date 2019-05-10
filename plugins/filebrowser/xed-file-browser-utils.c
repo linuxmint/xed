@@ -91,7 +91,7 @@ xed_file_browser_utils_pixbuf_from_icon (GIcon       *icon,
     }
 
     ret = gtk_icon_info_load_icon (info, NULL);
-    gtk_icon_info_free (info);
+    g_object_unref (info);
 
     return ret;
 }
