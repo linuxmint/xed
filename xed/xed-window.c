@@ -2351,7 +2351,22 @@ on_fullscreen_controls_leave_notify_event (GtkWidget        *widget,
                                            GdkEventCrossing *event,
                                            XedWindow        *window)
 {
-    gtk_revealer_set_reveal_child (GTK_REVEALER (window->priv->fullscreen_controls), FALSE);
+    GdkWindow *gdk_window;
+    GdkDevice *device;
+    GdkSeat *seat;
+    gint x, y;
+
+    seat = gdk_display_get_default_seat (gdk_display_get_default ());
+    device = gdk_seat_get_pointer (seat);
+    gdk_window = gtk_widget_get_parent_window (widget);
+
+    gdk_window_get_device_position (gdk_window, device, &x, &y, NULL);
+
+    // sometimes the leave event is erroneously triggered when y = 0
+    if (y != 0)
+    {
+        gtk_revealer_set_reveal_child (GTK_REVEALER (window->priv->fullscreen_controls), FALSE);
+    }
 
     return FALSE;
 }
