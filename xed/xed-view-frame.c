@@ -524,7 +524,6 @@ xed_view_frame_init (XedViewFrame *frame)
 {
     XedDocument *doc;
     GtkSourceFile *file;
-    GdkRGBA transparent = {0, 0, 0, 0};
     PangoFontDescription *font_desc;
 
     frame->priv = xed_view_frame_get_instance_private (frame);
@@ -541,8 +540,6 @@ xed_view_frame_init (XedViewFrame *frame)
     font_desc = pango_font_description_from_string ("Monospace 2");
     g_object_set (frame->priv->map, "font-desc", font_desc, NULL);
     pango_font_description_free (font_desc);
-
-    gtk_widget_override_background_color (GTK_WIDGET (frame), 0, &transparent);
 
     doc = xed_view_frame_get_document (frame);
     file = xed_document_get_file (doc);
