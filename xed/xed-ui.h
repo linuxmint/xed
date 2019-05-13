@@ -159,7 +159,7 @@ static const GtkToggleActionEntry xed_always_sensitive_toggle_menu_entries[] =
 	{ "ViewStatusbar", NULL, N_("_Statusbar"), NULL,
 	  N_("Show or hide the statusbar in the current window"),
 	  G_CALLBACK (_xed_cmd_view_show_statusbar), TRUE },
-	{ "ViewFullscreen", GTK_STOCK_FULLSCREEN, NULL, "F11",
+	{ "ViewFullscreen", "view-fullscreen", N_("Fullscreen"), "F11",
 	  N_("Edit text in fullscreen"),
 	  G_CALLBACK (_xed_cmd_view_toggle_fullscreen_mode), FALSE },
     { "ViewWordWrap", NULL, N_("_Word wrap"), NULL,
