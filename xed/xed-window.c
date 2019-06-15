@@ -1363,6 +1363,19 @@ typedef struct
 } TabWidthDefinition;
 
 static void
+tab_width_menu_popped_up (GtkMenu *menu,
+                          gpointer flipped_rect,
+                          gpointer final_rect,
+                          gboolean flipped_x,
+                          gboolean flipped_y,
+                          gpointer user_data)
+{
+    XedWindow *window = XED_WINDOW (user_data);
+
+    gtk_menu_shell_select_item (GTK_MENU_SHELL (window->priv->tab_width_menu), GTK_WIDGET (window->priv->tab_width_item));
+}
+
+static void
 setup_tab_width_menu (XedWindow *window)
 {
     static TabWidthDefinition defs[] = { { "2", 2 }, { "4", 4 }, { "8", 8 }, { "", 0 }, /* custom size */
@@ -1399,7 +1412,9 @@ setup_tab_width_menu (XedWindow *window)
     gtk_menu_shell_append (GTK_MENU_SHELL (window->priv->tab_width_menu), item);
     gtk_widget_show (item);
 
-    g_signal_connect(item, "toggled", G_CALLBACK (use_spaces_toggled), window);
+    g_signal_connect (item, "toggled", G_CALLBACK (use_spaces_toggled), window);
+
+    g_signal_connect (window->priv->tab_width_menu, "popped-up", G_CALLBACK (tab_width_menu_popped_up), window);
 }
 
 static void
@@ -1763,15 +1778,6 @@ set_title (XedWindow *window)
 #undef MAX_TITLE_LENGTH
 
 static void
-set_tab_width_item_blocked (XedWindow *window,
-                            GtkMenuItem *item)
-{
-    g_signal_handlers_block_by_func(item, tab_width_button_clicked, window);
-    gtk_menu_shell_select_item (GTK_MENU_SHELL (window->priv->tab_width_menu), GTK_WIDGET (item));
-    g_signal_handlers_unblock_by_func(item, tab_width_button_clicked, window);
-}
-
-static void
 spaces_instead_of_tabs_changed (GObject *object,
                                 GParamSpec *pspec,
                                 XedWindow *window)
@@ -1807,7 +1813,11 @@ tab_width_changed (GObject *object,
 
         if (tab_width == new_tab_width)
         {
-            set_tab_width_item_blocked (window, GTK_MENU_ITEM(item->data));
+            window->priv->tab_width_item = item->data;
+            if (gtk_widget_get_realized (window->priv->tab_width_menu))
+            {
+                gtk_menu_shell_select_item (GTK_MENU_SHELL (window->priv->tab_width_menu), GTK_WIDGET (item->data));
+            }
             found = TRUE;
         }
 
@@ -1821,7 +1831,11 @@ tab_width_changed (GObject *object,
                 text = g_strdup_printf ("%u", new_tab_width);
                 gtk_menu_item_set_label (GTK_MENU_ITEM(item->data), text);
 
-                set_tab_width_item_blocked (window, GTK_MENU_ITEM(item->data));
+                window->priv->tab_width_item = item->data;
+                if (gtk_widget_get_realized (window->priv->tab_width_menu))
+                {
+                    gtk_menu_shell_select_item (GTK_MENU_SHELL (window->priv->tab_width_menu), GTK_WIDGET (item->data));
+                }
                 gtk_widget_show (GTK_WIDGET(item->data));
             }
             else
