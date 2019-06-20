@@ -269,7 +269,6 @@ xed_tab_dispose (GObject *object)
 {
     XedTab *tab = XED_TAB (object);
 
-    g_clear_object (&tab->priv->editor);
     g_clear_object (&tab->priv->task_saver);
 
     clear_loading (tab);
@@ -281,6 +280,8 @@ static void
 xed_tab_finalize (GObject *object)
 {
     XedTab *tab = XED_TAB (object);
+
+    g_clear_object (&tab->priv->editor);
 
     if (tab->priv->timer != NULL)
     {
