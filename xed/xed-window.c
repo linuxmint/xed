@@ -2752,18 +2752,10 @@ notebook_tab_removed (XedNotebook *notebook,
         gtk_widget_hide (window->priv->language_button);
     }
 
-    if (!window->priv->removing_tabs)
+    if (!window->priv->removing_tabs || window->priv->num_tabs == 0)
     {
         update_documents_list_menu (window);
         update_next_prev_doc_sensitivity_per_window (window);
-    }
-    else
-    {
-        if (window->priv->num_tabs == 0)
-        {
-            update_documents_list_menu (window);
-            update_next_prev_doc_sensitivity_per_window (window);
-        }
     }
 
     update_sensitivity_according_to_open_tabs (window);
