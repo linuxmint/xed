@@ -1,3 +1,51 @@
+xed (2.2.0) tina; urgency=medium
+
+  [ Eli Schwartz ]
+  * meson: require itstool command to be available (#266)
+
+  [ JosephMcc ]
+  * statusbar: Fix the menu button styling (#281)
+  * cleanup: Remove an unused Makefile.am (#280)
+
+  [ Stephen Collins ]
+  * print preview: fix layout drawing for 1X2 and 2X1 layouts (#291)
+  * Filebrowser: Kill the click policy property with fire (#293)
+
+  [ JosephMcc ]
+  * xed-window: Fix the tabs/spaces label in the statusbar (#283)
+  * xed-notebook: Always show the main notebook tabs (#285)
+
+  [ Stephen Collins ]
+  * Fix some deprecation warnings (#289)
+  * print preview: fix logic for forward button sensitivity (#292)
+  * Add toggle comment and toggle comment block actions w/ keybindings (#290)
+
+  [ Clement Lefebvre ]
+  * l10n: Update POT
+
+  [ Stephen Collins ]
+  * print job: replace some deprecated font button functions (#294)
+  * Replace deprecated gdk_cursor_new with gdk_cursor_new_for_display (#295)
+  * Print preview: remove a couple calls to gtk_adjustment_value_changed (#296)
+  * Search: replace a few functions that were deprecated in Gtk 3.22 (#297)
+  * Fix stuttering and disappearing of the toolbar when fullscreen (#300)
+  * Switch deprecated gtk_icon_info_free to g_object_unref (#301)
+  * Remove references to deprecated GTK_STOCK_* (#298)
+  * Remove deprecated call to gtk_widget_override_background_color (#299)
+  * Tab width popup: only select a menu item when the menu is open (#311)
+  * Simplify an if statement. The logic is identical, but easier to read (#314)
+
+  [ Leigh Scott ]
+  * Add minimum required version for xapp (#313)
+
+  [ Stephen Collins ]
+  * Prevent a warning when closing the window while print preview is open (#315)
+
+  [ Clement Lefebvre ]
+  * l10n: Update POT
+
+ -- Clement Lefebvre <root@linuxmint.com>  Sat, 29 Jun 2019 17:23:48 +0200
+
 xed (2.0.2) tessa; urgency=medium
 
   [ Clement Lefebvre ]
