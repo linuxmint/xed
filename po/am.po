@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MATE Desktop Environment\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-12-05 15:16+0000\n"
-"PO-Revision-Date: 2018-12-09 22:35+0000\n"
+"POT-Creation-Date: 2019-06-23 14:24+0200\n"
+"PO-Revision-Date: 2018-12-26 16:33+0000\n"
 "Last-Translator: samson <Unknown>\n"
 "Language-Team: Amharic "
 "(http://www.transifex.com/projects/p/MATE/language/am/)\n"
@@ -17,8 +17,8 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Launchpad-Export-Date: 2018-12-11 11:58+0000\n"
-"X-Generator: Launchpad (build 18837)\n"
+"X-Launchpad-Export-Date: 2019-07-10 08:28+0000\n"
+"X-Generator: Launchpad (build 19007)\n"
 "Language: am\n"
 
 #: ../data/org.x.editor.gschema.xml.in.h:1
@@ -554,12 +554,12 @@ msgstr "xed እንደ ብቸኛ ዘዴ ማስኬጃ"
 msgid "[FILE...] [+LINE]"
 msgstr "[ፋይል...] [+መስመር]"
 
-#: ../xed/xed-app.c:616
+#: ../xed/xed-app.c:529
 #, c-format
 msgid "%s: invalid encoding."
 msgstr "%s: ዋጋ የሌለው መቀየሪያ"
 
-#: ../xed/xed-app.c:1266
+#: ../xed/xed-app.c:1180
 msgid "There was an error displaying the help."
 msgstr "እርዳታ በማሳየት ላይ እንዳለ ስህተት ተፈጥሯል"
 
@@ -714,7 +714,7 @@ msgstr "ይህ ፋይል \"%s\" ለማንበብ-ብቻ ነው"
 msgid "Do you want to try to replace it with the one you are saving?"
 msgstr "እርስዎ በሚያስቀምጡት መቀየር ይፈልጋሉ?"
 
-#: ../xed/xed-commands-file.c:503 ../xed/xed-ui.h:118
+#: ../xed/xed-commands-file.c:503 ../xed/xed-ui.h:122
 msgid "_Replace"
 msgstr "_መቀየሪያ"
 
@@ -812,12 +812,12 @@ msgid "Unsaved Document %d"
 msgstr "ያልተቀመጠ ሰነድ %d"
 
 #: ../xed/xed-documents-panel.c:93 ../xed/xed-documents-panel.c:104
-#: ../xed/xed-window.c:1731 ../xed/xed-window.c:1735
+#: ../xed/xed-window.c:1752 ../xed/xed-window.c:1756
 msgid "Read-Only"
 msgstr "ለንባብ-ብቻ"
 
-#: ../xed/xed-documents-panel.c:730 ../xed/resources/ui/xed-shortcuts.ui.h:1
-#: ../xed/xed-window.c:2956
+#: ../xed/xed-documents-panel.c:717 ../xed/resources/ui/xed-shortcuts.ui.h:1
+#: ../xed/xed-window.c:2982
 msgid "Documents"
 msgstr "ሰነዶች"
 
@@ -883,7 +883,7 @@ msgstr "Mac OS Classic"
 msgid "Windows"
 msgstr "መስኮቶች"
 
-#: ../xed/xed-highlight-mode-selector.c:269 ../xed/xed-window.c:1849
+#: ../xed/xed-highlight-mode-selector.c:291 ../xed/xed-window.c:1868
 msgid "Plain Text"
 msgstr "መደበኛ ጽሁፍ"
 
@@ -1286,71 +1286,71 @@ msgstr "ገጽ %N ከ %Q"
 msgid "Preparing..."
 msgstr "በ ማሰናዳት ላይ"
 
-#: ../xed/xed-print-preview.c:567
+#: ../xed/xed-print-preview.c:571
 msgid "Show the previous page"
 msgstr "ቀደም ያለውን ገጽ ማሳያ"
 
-#: ../xed/xed-print-preview.c:573
+#: ../xed/xed-print-preview.c:577
 msgid "Show the next page"
 msgstr "የሚቀጥለውን ገጽ ማሳያ"
 
-#: ../xed/xed-print-preview.c:587
+#: ../xed/xed-print-preview.c:591
 msgid "Current page (Alt+P)"
 msgstr "የ አሁኑ ገጽ (Alt+P)"
 
 #. gtk_label_set_mnemonic_widget ((GtkLabel *) l, mp->priv->page_entry);
 #. We are displaying 'XXX of XXX'.
 #. Translators: the "of" from "1 of 19" in print preview.
-#: ../xed/xed-print-preview.c:601
+#: ../xed/xed-print-preview.c:605
 msgid "of"
 msgstr "ከ"
 
-#: ../xed/xed-print-preview.c:606
+#: ../xed/xed-print-preview.c:610
 msgid "Page total"
 msgstr "ጠቅላላ ገጽ"
 
-#: ../xed/xed-print-preview.c:607
+#: ../xed/xed-print-preview.c:611
 msgid "The total number of pages in the document"
 msgstr "በ ሰነዱ ውስጥ ያሉት ጠቅላላ ገጾች ቁጥር"
 
-#: ../xed/xed-print-preview.c:627
+#: ../xed/xed-print-preview.c:631
 msgid "Show multiple pages"
 msgstr "በርካታ ገጾች ማሳያ"
 
-#: ../xed/xed-print-preview.c:645
+#: ../xed/xed-print-preview.c:649
 msgid "Zoom 1:1"
 msgstr "ማሳያ 1:1"
 
-#: ../xed/xed-print-preview.c:651
+#: ../xed/xed-print-preview.c:655
 msgid "Zoom to fit the whole page"
 msgstr "ማሳያ በ ገጹ ሙሉ ልክ"
 
-#: ../xed/xed-print-preview.c:657
+#: ../xed/xed-print-preview.c:661
 msgid "Zoom the page in"
 msgstr "ገጽ ማሳያ በ"
 
-#: ../xed/xed-print-preview.c:663
+#: ../xed/xed-print-preview.c:667
 msgid "Zoom the page out"
 msgstr "ገጽ በርቀት ማሳያ"
 
-#: ../xed/xed-print-preview.c:678
+#: ../xed/xed-print-preview.c:682
 msgid "_Close preview"
 msgstr "ቅድመ እይታ መዝጊያ"
 
-#: ../xed/xed-print-preview.c:680
+#: ../xed/xed-print-preview.c:684
 msgid "Close print preview"
 msgstr "የህትመት ቅድመ እይታውን መዝጊያ"
 
-#: ../xed/xed-print-preview.c:758
+#: ../xed/xed-print-preview.c:762
 #, c-format
 msgid "Page %d of %d"
 msgstr "ገጽ %d ከ %d"
 
-#: ../xed/xed-print-preview.c:943
+#: ../xed/xed-print-preview.c:944
 msgid "Page Preview"
 msgstr "የ ገጽ ቅድመ እይታ"
 
-#: ../xed/xed-print-preview.c:944
+#: ../xed/xed-print-preview.c:945
 msgid "The preview of a page in the document to be printed"
 msgstr "የሚታተመው ሰነድ ገጽ ቅድመ እይታ"
 
@@ -1364,7 +1364,7 @@ msgstr "_ይምረጡ"
 
 #: ../xed/resources/ui/xed-highlight-mode-selector.ui.h:1
 msgid "Search highlight mode…"
-msgstr ""
+msgstr "በ ማድመቂያ ዘዴ መፈለጊያ…"
 
 #: ../xed/resources/ui/xed-encodings-dialog.ui.h:1
 msgid "Character encodings"
@@ -1772,6 +1772,14 @@ msgstr "በ መጠቆሚያው ላይ የ መጨመሪያ ቁጥር"
 msgid "Decrement number at cursor"
 msgstr "በ መጠቆሚያው ላይ የ መቀነሻ ቁጥር"
 
+#: ../xed/resources/ui/xed-shortcuts.ui.h:47
+msgid "Toggle comment block"
+msgstr ""
+
+#: ../xed/resources/ui/xed-shortcuts.ui.h:48
+msgid "Toggle comment"
+msgstr ""
+
 #: ../xed/xed-searchbar.c:92
 #, c-format
 msgid "Found and replaced %d occurrence"
@@ -1834,69 +1842,69 @@ msgstr "ሰነድ መዝጊያ"
 
 #. Translators: the first %s is a file name (e.g. test.txt) the second one
 #. is a directory (e.g. ssh://master.gnome.org/home/users/paolo)
-#: ../xed/xed-tab.c:715
+#: ../xed/xed-tab.c:716
 #, c-format
 msgid "Reverting %s from %s"
 msgstr "በ መመለስ ላይ %s ከ %s"
 
-#: ../xed/xed-tab.c:720
+#: ../xed/xed-tab.c:721
 #, c-format
 msgid "Reverting %s"
 msgstr "በ መመለስ ላይ %s"
 
 #. Translators: the first %s is a file name (e.g. test.txt) the second one
 #. is a directory (e.g. ssh://master.gnome.org/home/users/paolo)
-#: ../xed/xed-tab.c:733
+#: ../xed/xed-tab.c:734
 #, c-format
 msgid "Loading %s from %s"
 msgstr "በ መጫን ላይ %s ከ %s"
 
-#: ../xed/xed-tab.c:738
+#: ../xed/xed-tab.c:739
 #, c-format
 msgid "Loading %s"
 msgstr "በመጫን ላይ %s"
 
 #. Translators: the first %s is a file name (e.g. test.txt) the second one
 #. is a directory (e.g. ssh://master.gnome.org/home/users/paolo)
-#: ../xed/xed-tab.c:819
+#: ../xed/xed-tab.c:820
 #, c-format
 msgid "Saving %s to %s"
 msgstr "በማስቀመጥ ላይ %s ወደ %s"
 
-#: ../xed/xed-tab.c:824
+#: ../xed/xed-tab.c:825
 #, c-format
 msgid "Saving %s"
 msgstr "በማስቀመጥ ላይ %s"
 
 #. Read only
-#: ../xed/xed-tab.c:1304
+#: ../xed/xed-tab.c:1305
 msgid "RO"
 msgstr "RO"
 
-#: ../xed/xed-tab.c:1352
+#: ../xed/xed-tab.c:1353
 #, c-format
 msgid "Error opening file %s"
 msgstr "ስህተት ፋይል በ መክፈት ላይ %s"
 
-#: ../xed/xed-tab.c:1356
+#: ../xed/xed-tab.c:1357
 #, c-format
 msgid "Error reverting file %s"
 msgstr "ስህተት ፋይል በ መመለስ ላይ %s"
 
-#: ../xed/xed-tab.c:1360
+#: ../xed/xed-tab.c:1361
 #, c-format
 msgid "Error saving file %s"
 msgstr "ስህተት ፋይል በ ማስቀመጥ ላይ %s"
 
-#: ../xed/xed-tab.c:1393
+#: ../xed/xed-tab.c:1394
 msgid "Name:"
 msgstr "ስም:"
 
-#: ../xed/xed-tab.c:1394
+#: ../xed/xed-tab.c:1395
 msgid "MIME Type:"
 msgstr "MIME አይነት:"
 
-#: ../xed/xed-tab.c:1395
+#: ../xed/xed-tab.c:1396
 msgid "Encoding:"
 msgstr "መቀየሪያ:"
 
@@ -2053,8 +2061,8 @@ msgstr "_መለጠፊያ"
 msgid "Paste the clipboard"
 msgstr "ወደ ቁራጭ ሰሌዳ መለጠፊያ"
 
-#: ../xed/xed-ui.h:101 ../plugins/filebrowser/xed-file-browser-plugin.c:968
-#: ../plugins/filebrowser/xed-file-browser-plugin.c:1003
+#: ../xed/xed-ui.h:101 ../plugins/filebrowser/xed-file-browser-plugin.c:966
+#: ../plugins/filebrowser/xed-file-browser-plugin.c:1001
 #: ../plugins/filebrowser/xed-file-browser-widget.c:760
 msgid "_Delete"
 msgstr "_ማጥፊያ"
@@ -2071,177 +2079,197 @@ msgstr "_ሁሉንም መምረጫ"
 msgid "Select the entire document"
 msgstr "ጠቅላል ሰነዱን መምረጫ"
 
-#. View menu
+#: ../xed/xed-ui.h:105
+msgid "_Toggle Comment"
+msgstr ""
+
+#: ../xed/xed-ui.h:106 ../plugins/taglist/HTML.tags.xml.in.h:41
+msgid "Comment"
+msgstr "አስተያየት"
+
 #: ../xed/xed-ui.h:107
+msgid "Toggle Comment _Block"
+msgstr ""
+
+#: ../xed/xed-ui.h:108
+msgid "Comment Block"
+msgstr ""
+
+#. View menu
+#: ../xed/xed-ui.h:111
 msgid "_Highlight Mode"
 msgstr "_ማድመቂያ ዘዴ"
 
-#: ../xed/xed-ui.h:108
+#: ../xed/xed-ui.h:112
 msgid "Change syntax hightlight mode"
-msgstr ""
+msgstr "የ ማድመቂያ ዘዴ አገባብ መቀየሪያ"
 
 #. Search menu
-#: ../xed/xed-ui.h:112
+#: ../xed/xed-ui.h:116
 msgid "_Find"
 msgstr "_መፈለጊያ"
 
-#: ../xed/xed-ui.h:113
+#: ../xed/xed-ui.h:117
 msgid "Search for text"
 msgstr "ጽሁፍ መፈለጊያ"
 
-#: ../xed/xed-ui.h:114
+#: ../xed/xed-ui.h:118
 msgid "Find Ne_xt"
 msgstr "_የሚቀጥለውን መፈለጊያ"
 
-#: ../xed/xed-ui.h:115
+#: ../xed/xed-ui.h:119
 msgid "Search forwards for the same text"
 msgstr "ተመሳሳይ ጽሁፍ ወደ ፊት መፈለጊያ"
 
-#: ../xed/xed-ui.h:116
+#: ../xed/xed-ui.h:120
 msgid "Find Pre_vious"
 msgstr "ቀደም_ያለውን መፈለጊያ"
 
-#: ../xed/xed-ui.h:117
+#: ../xed/xed-ui.h:121
 msgid "Search backwards for the same text"
 msgstr "ተመሳሳይ ጽሁፍ የ ኋሊዮሽ መፈለጊያ"
 
-#: ../xed/xed-ui.h:119
+#: ../xed/xed-ui.h:123
 msgid "Search for and replace text"
 msgstr "ጽሁፍ መፈለጊያ እና መቀየሪያ"
 
-#: ../xed/xed-ui.h:120
+#: ../xed/xed-ui.h:124
 msgid "Go to _Line..."
 msgstr "መሄጃ ወደ _መስመር..."
 
-#: ../xed/xed-ui.h:121
+#: ../xed/xed-ui.h:125
 msgid "Go to a specific line"
 msgstr "ወደ ተወሰነ መስመር መሄጃ"
 
 #. Documents menu
-#: ../xed/xed-ui.h:124
+#: ../xed/xed-ui.h:128
 msgid "_Save All"
 msgstr "ሁሉንም _ማስቀመጫ"
 
-#: ../xed/xed-ui.h:125
+#: ../xed/xed-ui.h:129
 msgid "Save all open files"
 msgstr "ሁሉንም የተከፈቱ ፋይሎች ማስቀመጫ"
 
-#: ../xed/xed-ui.h:126
+#: ../xed/xed-ui.h:130
 msgid "_Close All"
 msgstr "ሁሉንም _መዝጊያ"
 
-#: ../xed/xed-ui.h:127
+#: ../xed/xed-ui.h:131
 msgid "Close all open files"
 msgstr "ሁሉንም የተከፈቱ ፋይሎች መዝጊያ"
 
-#: ../xed/xed-ui.h:128
+#: ../xed/xed-ui.h:132
 msgid "_Previous Document"
 msgstr "_ያለፈው ሰነድ"
 
-#: ../xed/xed-ui.h:129
+#: ../xed/xed-ui.h:133
 msgid "Activate previous document"
 msgstr "ያለፈውን ሰነድ ማስጀመሪያ"
 
-#: ../xed/xed-ui.h:130
+#: ../xed/xed-ui.h:134
 msgid "_Next Document"
 msgstr "_የሚቀጥለው ሰነድ"
 
-#: ../xed/xed-ui.h:131
+#: ../xed/xed-ui.h:135
 msgid "Activate next document"
 msgstr "የሚቀጥለውን ሰነድ ማስጀመሪያ"
 
-#: ../xed/xed-ui.h:132
+#: ../xed/xed-ui.h:136
 msgid "_Move to New Window"
 msgstr "ወደ አዲስ መስኮት _ማንቀሳቀሻ"
 
-#: ../xed/xed-ui.h:133
+#: ../xed/xed-ui.h:137
 msgid "Move the current document to a new window"
 msgstr "የ አሁኑን ሰነድ ወደ አዲስ መስኮት ማንቀሳቀሻ"
 
-#: ../xed/xed-ui.h:139
+#: ../xed/xed-ui.h:143
 msgid "_Close"
 msgstr "_መዝጊያ"
 
-#: ../xed/xed-ui.h:140
+#: ../xed/xed-ui.h:144
 msgid "Close the current file"
 msgstr "የአሁኑን ፋይል መዝጊያ"
 
-#: ../xed/xed-ui.h:146
+#: ../xed/xed-ui.h:150
 msgid "_Quit"
 msgstr "_ማጥፊያ"
 
-#: ../xed/xed-ui.h:147
+#: ../xed/xed-ui.h:151
 msgid "Quit the program"
 msgstr "ፕሮግራሙን ማጥፊያ"
 
-#: ../xed/xed-ui.h:152
+#: ../xed/xed-ui.h:156
 msgid "_Toolbar"
 msgstr "_እቃ መደርደሪያ"
 
-#: ../xed/xed-ui.h:153
+#: ../xed/xed-ui.h:157
 msgid "Show or hide the toolbar in the current window"
 msgstr "በ አሁኑ መስኮት ውስጥ እቃ መደርደሪያ ማሳያ ወይንም መደበቂያ"
 
-#: ../xed/xed-ui.h:155
+#: ../xed/xed-ui.h:159
 msgid "_Statusbar"
 msgstr "_የሁኔታ መደርደሪያ"
 
-#: ../xed/xed-ui.h:156
+#: ../xed/xed-ui.h:160
 msgid "Show or hide the statusbar in the current window"
 msgstr "በ አሁኑ መስኮት ውስጥ የ ሁኔታዎች መደርደሪያ ማሳያ ወይንም መደበቂያ"
 
-#: ../xed/xed-ui.h:159
+#: ../xed/xed-ui.h:162
+msgid "Fullscreen"
+msgstr ""
+
+#: ../xed/xed-ui.h:163
 msgid "Edit text in fullscreen"
 msgstr "ጽሁፍ በ ሙል መመልከቻ ዘዴ ውስጥ ማረሚያ"
 
-#: ../xed/xed-ui.h:161
+#: ../xed/xed-ui.h:165
 msgid "_Word wrap"
 msgstr "_ቃላት መጠቅለያ"
 
-#: ../xed/xed-ui.h:162
+#: ../xed/xed-ui.h:166
 msgid "Set word wrap for the current document"
 msgstr "ለ አሁኑ ሰነድ የ ቃላት መጠቅለያ ማሰናጃ"
 
-#: ../xed/xed-ui.h:164
+#: ../xed/xed-ui.h:168
 msgid "_Overview Map"
 msgstr "_ባጠቃላይ ካርታ"
 
-#: ../xed/xed-ui.h:165
+#: ../xed/xed-ui.h:169
 msgid "Show or hide the overview map for the current view"
 msgstr "ለ አሁኑ መመልከቻ ባጠቃላይ ካርታ ማሳያ ወይንም መደበቂያ"
 
-#: ../xed/xed-ui.h:172
+#: ../xed/xed-ui.h:176
 msgid "Side _Pane"
 msgstr "የጎን _ክፍል"
 
-#: ../xed/xed-ui.h:173
+#: ../xed/xed-ui.h:177
 msgid "Show or hide the side pane in the current window"
 msgstr "በ አሁኑ መስኮት ውስጥ የ ጎን ክፍል ማሳያ ወይንም መደበቂያ"
 
-#: ../xed/xed-ui.h:175
+#: ../xed/xed-ui.h:179
 msgid "_Bottom Pane"
 msgstr "የ _ታች ክፍል"
 
-#: ../xed/xed-ui.h:176
+#: ../xed/xed-ui.h:180
 msgid "Show or hide the bottom pane in the current window"
 msgstr "በ አሁኑ መስኮት ውስጥ የ ታችኛውን ክፍል ማሳያ ወይንም መደበቂያ"
 
-#: ../xed/xed-utils.c:922
+#: ../xed/xed-utils.c:642
 msgid "Please check your installation."
 msgstr "እባክዎን የ እርስዎን አገጣጠም ይመርምሩ"
 
-#: ../xed/xed-utils.c:990
+#: ../xed/xed-utils.c:710
 #, c-format
 msgid "Unable to open UI file %s. Error: %s"
 msgstr "መክፈት አልተቻለም የ UI ፋይል %s. ስህተት: %s"
 
-#: ../xed/xed-utils.c:1010
+#: ../xed/xed-utils.c:730
 #, c-format
 msgid "Unable to find the object '%s' inside file %s."
 msgstr "እቃውን ማግኘት አልተቻለም '%s' በ ፋይል ውስጥ %s."
 
 #. Translators: '/ on <remote-share>'
-#: ../xed/xed-utils.c:1178
+#: ../xed/xed-utils.c:898
 #, c-format
 msgid "/ on %s"
 msgstr "/ ማብሪያ %s"
@@ -2262,28 +2290,25 @@ msgstr "መክፈቻ '%s'"
 msgid "Activate '%s'"
 msgstr "ማስጀመሪያ '%s'"
 
-#: ../xed/xed-window.c:1324
-msgid "Spaces"
-msgstr "ክፍተት"
+#: ../xed/xed-window.c:1330
+#, c-format
+msgid "Spaces: %u"
+msgstr ""
 
-#: ../xed/xed-window.c:1328
-msgid "Tabs"
-msgstr "ንዑስ መስኮት"
+#: ../xed/xed-window.c:1334
+#, c-format
+msgid "Tabs: %u"
+msgstr ""
 
-#: ../xed/xed-window.c:1389
+#: ../xed/xed-window.c:1411
 msgid "Use Spaces"
 msgstr "ክፍተት ይጠቀሙ"
 
-#: ../xed/xed-window.c:1829
-#, c-format
-msgid "Tab Width: %u"
-msgstr "የ ንዑስ መስኮት ስፋት: %u"
-
-#: ../xed/xed-window.c:2179
+#: ../xed/xed-window.c:2198
 msgid "There are unsaved documents"
 msgstr "ያልተቀመጠ ሰነድ አለ"
 
-#: ../xed/xed-window.c:3221
+#: ../xed/xed-window.c:3247
 msgid "Elevated Privileges"
 msgstr "ያደገው ቅድሚያ"
 
@@ -2462,43 +2487,43 @@ msgstr "ተርሚናል እዚህ _መክፈቻ"
 msgid "Open a terminal at the currently opened directory"
 msgstr "ተርሚናል አሁን በ ተከፈተው ዳይሬክቶሪ ውስጥ መክፈቻ"
 
-#: ../plugins/filebrowser/xed-file-browser-plugin.c:562
+#: ../plugins/filebrowser/xed-file-browser-plugin.c:560
 msgid "File Browser"
 msgstr "ፋይል መቃኛ"
 
-#: ../plugins/filebrowser/xed-file-browser-plugin.c:673
+#: ../plugins/filebrowser/xed-file-browser-plugin.c:671
 msgid "An error occurred while creating a new directory"
 msgstr "አዲስ ዳይሬክቶሪ በ መፍጠር ላይ እንዳለ ስህተት ተፈጥሯል"
 
-#: ../plugins/filebrowser/xed-file-browser-plugin.c:676
+#: ../plugins/filebrowser/xed-file-browser-plugin.c:674
 msgid "An error occurred while creating a new file"
 msgstr "አዲስ ፋይል በ መፍጠር ላይ እንዳለ ስህተት ተፈጥሯል"
 
-#: ../plugins/filebrowser/xed-file-browser-plugin.c:679
+#: ../plugins/filebrowser/xed-file-browser-plugin.c:677
 msgid "An error occurred while renaming a file or directory"
 msgstr "ፋይል ወይንም ዳይሬክቶሪ እንደገና በ መሰየም ላይ እንዳለ ስህተት ተፈጥሯል"
 
-#: ../plugins/filebrowser/xed-file-browser-plugin.c:682
+#: ../plugins/filebrowser/xed-file-browser-plugin.c:680
 msgid "An error occurred while deleting a file or directory"
 msgstr "ፋይል ወይንም ዳይሬክቶሪ በ ማጥፋት ላይ እንዳለ ስህተት ተፈጥሯል"
 
-#: ../plugins/filebrowser/xed-file-browser-plugin.c:685
+#: ../plugins/filebrowser/xed-file-browser-plugin.c:683
 msgid "An error occurred while opening a directory in the file manager"
 msgstr "ዳይሬክቶሪ በ ፋይል አስተዳዳሪ በ መክፈት ላይ እንዳለ ስህተት ተፈጥሯል"
 
-#: ../plugins/filebrowser/xed-file-browser-plugin.c:688
+#: ../plugins/filebrowser/xed-file-browser-plugin.c:686
 msgid "An error occurred while setting a root directory"
 msgstr "የ root ዳይሬክቶሪ በ ማሰናዳት ላይ እንዳለ ስህተት ተፈጥሯል"
 
-#: ../plugins/filebrowser/xed-file-browser-plugin.c:691
+#: ../plugins/filebrowser/xed-file-browser-plugin.c:689
 msgid "An error occurred while loading a directory"
 msgstr "ዳይሬክቶሪ በ መጫን ላይ እንዳለ ስህተት ተፈጥሯል"
 
-#: ../plugins/filebrowser/xed-file-browser-plugin.c:694
+#: ../plugins/filebrowser/xed-file-browser-plugin.c:692
 msgid "An error occurred"
 msgstr "ስህተት ተፋጥሯል"
 
-#: ../plugins/filebrowser/xed-file-browser-plugin.c:951
+#: ../plugins/filebrowser/xed-file-browser-plugin.c:949
 msgid ""
 "Cannot move file to trash, do you\n"
 "want to delete permanently?"
@@ -2506,25 +2531,25 @@ msgstr ""
 "ፋይል ወደ ቆሻሻ ማንቀሳቀስ አልተቻለም: \n"
 "እርስዎ በቋሚነት ማጥፋት ይፈልጋሉ?"
 
-#: ../plugins/filebrowser/xed-file-browser-plugin.c:956
+#: ../plugins/filebrowser/xed-file-browser-plugin.c:954
 #, c-format
 msgid "The file \"%s\" cannot be moved to the trash."
 msgstr "ይህን ፋይል \"%s\" ወደ ቆሻሻ ማንቀሳቀስ አልተቻለም"
 
-#: ../plugins/filebrowser/xed-file-browser-plugin.c:961
+#: ../plugins/filebrowser/xed-file-browser-plugin.c:959
 msgid "The selected files cannot be moved to the trash."
 msgstr "የ ተመረጠውን ፋይል ወደ ቆሻሻ ማንቀሳቀስ አልተቻለም"
 
-#: ../plugins/filebrowser/xed-file-browser-plugin.c:989
+#: ../plugins/filebrowser/xed-file-browser-plugin.c:987
 #, c-format
 msgid "Are you sure you want to permanently delete \"%s\"?"
 msgstr "በ ቋሚነት ማጥፋት ይፈልጋሉ \"%s\"?"
 
-#: ../plugins/filebrowser/xed-file-browser-plugin.c:994
+#: ../plugins/filebrowser/xed-file-browser-plugin.c:992
 msgid "Are you sure you want to permanently delete the selected files?"
 msgstr "የ ተመረጠውን ፋይል በ እርግጥ በ ቋሚነት ማጥፋት ይፈልጋሉ?"
 
-#: ../plugins/filebrowser/xed-file-browser-plugin.c:997
+#: ../plugins/filebrowser/xed-file-browser-plugin.c:995
 msgid "If you delete an item, it is permanently lost."
 msgstr "እርስዎ እቃ ካጠፉ: በቋሚነት ይጠፋል"
 
@@ -2670,17 +2695,17 @@ msgstr "የ binary ፋይሎች ማሳያ"
 msgid "_Match Filename"
 msgstr "የ ፋይል ስም _ማመሳሰያ"
 
-#: ../plugins/filebrowser/xed-file-browser-widget.c:1991
+#: ../plugins/filebrowser/xed-file-browser-widget.c:2014
 #, c-format
 msgid "No mount object for mounted volume: %s"
 msgstr "ምንም የ ተጫኑ እቃ የለም ለ ተጫነው መጠን: %s"
 
-#: ../plugins/filebrowser/xed-file-browser-widget.c:2069
+#: ../plugins/filebrowser/xed-file-browser-widget.c:2092
 #, c-format
 msgid "Could not open media: %s"
 msgstr "መገናኛውን መክፈት አልተቻለም: %s"
 
-#: ../plugins/filebrowser/xed-file-browser-widget.c:2118
+#: ../plugins/filebrowser/xed-file-browser-widget.c:2141
 #, c-format
 msgid "Could not mount volume: %s"
 msgstr "መጠኑን መጫን አልተቻለም: %s"
@@ -2916,10 +2941,6 @@ msgstr "የ አምድ ስፋት"
 #: ../plugins/taglist/HTML.tags.xml.in.h:40
 msgid "Columns"
 msgstr "አምዶች"
-
-#: ../plugins/taglist/HTML.tags.xml.in.h:41
-msgid "Comment"
-msgstr "አስተያየት"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:42
 msgid "Computer code fragment"
@@ -4266,7 +4287,7 @@ msgid "Available Tag Lists"
 msgstr "ዝግጁ የ Tag ዝርዝር"
 
 #: ../plugins/taglist/xed-taglist-plugin-panel.c:706
-#: ../plugins/taglist/xed-taglist-plugin-panel.c:722
+#: ../plugins/taglist/xed-taglist-plugin-panel.c:721
 #: ../plugins/taglist/xed-taglist-plugin.c:113
 msgid "Tags"
 msgstr "ቁራጭ"

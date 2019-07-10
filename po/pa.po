@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MATE Desktop Environment\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-12-05 15:16+0000\n"
+"POT-Creation-Date: 2019-06-23 14:24+0200\n"
 "PO-Revision-Date: 2016-01-26 17:20+0000\n"
 "Last-Translator: Stefano Karapetsas <stefano@karapetsas.com>\n"
 "Language-Team: Panjabi (Punjabi) "
@@ -16,8 +16,8 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2018-12-11 11:58+0000\n"
-"X-Generator: Launchpad (build 18837)\n"
+"X-Launchpad-Export-Date: 2019-07-10 08:28+0000\n"
+"X-Generator: Launchpad (build 19007)\n"
 "Language: pa\n"
 
 #: ../data/org.x.editor.gschema.xml.in.h:1
@@ -524,12 +524,12 @@ msgstr ""
 msgid "[FILE...] [+LINE]"
 msgstr ""
 
-#: ../xed/xed-app.c:616
+#: ../xed/xed-app.c:529
 #, c-format
 msgid "%s: invalid encoding."
 msgstr ""
 
-#: ../xed/xed-app.c:1266
+#: ../xed/xed-app.c:1180
 msgid "There was an error displaying the help."
 msgstr "ਮੱਦਦ ਵੇਖਾਉਣ ਦੌਰਾਨ ਇੱਕ ਗਲਤੀ ਆਈ ਹੈ।"
 
@@ -705,7 +705,7 @@ msgid "Do you want to try to replace it with the one you are saving?"
 msgstr ""
 "ਕੀ ਤੁਸੀ ਇਸ ਨੂੰ ਉਸ ਫਾਇਲ ਨਾਲ ਤਬਦੀਲ ਕਰਨਾ ਚਾਹੋਗੇ, ਜਿਸ ਨੂੰ ਸੰਭਾਲਣ ਜਾ ਰਹੇ ਹੋ?"
 
-#: ../xed/xed-commands-file.c:503 ../xed/xed-ui.h:118
+#: ../xed/xed-commands-file.c:503 ../xed/xed-ui.h:122
 msgid "_Replace"
 msgstr "ਬਦਲੋ(_R)"
 
@@ -821,12 +821,12 @@ msgid "Unsaved Document %d"
 msgstr "ਨਾ ਸਾਂਭਿਆ ਡੌਕੂਮੈਂਟ %d"
 
 #: ../xed/xed-documents-panel.c:93 ../xed/xed-documents-panel.c:104
-#: ../xed/xed-window.c:1731 ../xed/xed-window.c:1735
+#: ../xed/xed-window.c:1752 ../xed/xed-window.c:1756
 msgid "Read-Only"
 msgstr "ਪੜ੍ਹਨ ਲਈ"
 
-#: ../xed/xed-documents-panel.c:730 ../xed/resources/ui/xed-shortcuts.ui.h:1
-#: ../xed/xed-window.c:2956
+#: ../xed/xed-documents-panel.c:717 ../xed/resources/ui/xed-shortcuts.ui.h:1
+#: ../xed/xed-window.c:2982
 msgid "Documents"
 msgstr "ਡੌਕੂਮੈਂਟ"
 
@@ -892,7 +892,7 @@ msgstr "Mac OS ਕਲਾਸਿਕ"
 msgid "Windows"
 msgstr "ਵਿੰਡੋਜ਼"
 
-#: ../xed/xed-highlight-mode-selector.c:269 ../xed/xed-window.c:1849
+#: ../xed/xed-highlight-mode-selector.c:291 ../xed/xed-window.c:1868
 msgid "Plain Text"
 msgstr "ਪਲੇਨ ਟੈਕਸਟ"
 
@@ -1296,71 +1296,71 @@ msgstr "%Q ਵਿੱਚੋਂ %N ਸਫ਼ਾ"
 msgid "Preparing..."
 msgstr "ਤਿਆਰ ਕੀਤਾ ਜਾ ਰਿਹਾ ਹੈ..."
 
-#: ../xed/xed-print-preview.c:567
+#: ../xed/xed-print-preview.c:571
 msgid "Show the previous page"
 msgstr "ਪਿਛਲਾ ਸਫ਼ਾ ਵੇਖੋ"
 
-#: ../xed/xed-print-preview.c:573
+#: ../xed/xed-print-preview.c:577
 msgid "Show the next page"
 msgstr "ਅਗਲਾ ਸਫ਼ਾ ਵੇਖੋ"
 
-#: ../xed/xed-print-preview.c:587
+#: ../xed/xed-print-preview.c:591
 msgid "Current page (Alt+P)"
 msgstr "ਮੌਜਦਾ ਸਫ਼ਾ (Alt+P)"
 
 #. gtk_label_set_mnemonic_widget ((GtkLabel *) l, mp->priv->page_entry);
 #. We are displaying 'XXX of XXX'.
 #. Translators: the "of" from "1 of 19" in print preview.
-#: ../xed/xed-print-preview.c:601
+#: ../xed/xed-print-preview.c:605
 msgid "of"
 msgstr "ਵਿੱਚੋਂ"
 
-#: ../xed/xed-print-preview.c:606
+#: ../xed/xed-print-preview.c:610
 msgid "Page total"
 msgstr "ਸਫ਼ੇ ਕੁੱਲ"
 
-#: ../xed/xed-print-preview.c:607
+#: ../xed/xed-print-preview.c:611
 msgid "The total number of pages in the document"
 msgstr "ਡੌਕੂਮੈਂਟ਼ ਵਿੱਚ ਸਫ਼ਿਆਂ ਦੀ ਕੁੱਲ ਗਿਣਤੀ"
 
-#: ../xed/xed-print-preview.c:627
+#: ../xed/xed-print-preview.c:631
 msgid "Show multiple pages"
 msgstr "ਬਹੁ-ਸਫ਼ੇ ਵੇਖੋ"
 
-#: ../xed/xed-print-preview.c:645
+#: ../xed/xed-print-preview.c:649
 msgid "Zoom 1:1"
 msgstr "ਜ਼ੂਮ ੧:੧"
 
-#: ../xed/xed-print-preview.c:651
+#: ../xed/xed-print-preview.c:655
 msgid "Zoom to fit the whole page"
 msgstr "ਪੂਰਾ ਸਫ਼ਾ ਫਿੱਟ ਕਰੋ"
 
-#: ../xed/xed-print-preview.c:657
+#: ../xed/xed-print-preview.c:661
 msgid "Zoom the page in"
 msgstr "ਸਫ਼ਾ ਜ਼ੂਮ ਅੰਦਰ"
 
-#: ../xed/xed-print-preview.c:663
+#: ../xed/xed-print-preview.c:667
 msgid "Zoom the page out"
 msgstr "ਸਫ਼ਾ ਜ਼ੂਮ ਬਾਹਰ"
 
-#: ../xed/xed-print-preview.c:678
+#: ../xed/xed-print-preview.c:682
 msgid "_Close preview"
 msgstr ""
 
-#: ../xed/xed-print-preview.c:680
+#: ../xed/xed-print-preview.c:684
 msgid "Close print preview"
 msgstr "ਪਰਿੰਟ ਝਲਕ ਬੰਦ ਕਰੋ"
 
-#: ../xed/xed-print-preview.c:758
+#: ../xed/xed-print-preview.c:762
 #, c-format
 msgid "Page %d of %d"
 msgstr "%2$d ਵਿੱਚੋਂ %1$d ਸਫ਼ਾ"
 
-#: ../xed/xed-print-preview.c:943
+#: ../xed/xed-print-preview.c:944
 msgid "Page Preview"
 msgstr "ਸਫ਼ਾ ਝਲਕ"
 
-#: ../xed/xed-print-preview.c:944
+#: ../xed/xed-print-preview.c:945
 msgid "The preview of a page in the document to be printed"
 msgstr "ਡੌਕੂਮੈਂਟ਼ ਵਿੱਚ ਇੱਕ ਸਫ਼ੇ ਦੀ ਝਲਕ ਪਰਿੰਟ ਕੀਤੀ ਜਾਂਦੀ ਹੈ"
 
@@ -1782,6 +1782,14 @@ msgstr ""
 msgid "Decrement number at cursor"
 msgstr ""
 
+#: ../xed/resources/ui/xed-shortcuts.ui.h:47
+msgid "Toggle comment block"
+msgstr ""
+
+#: ../xed/resources/ui/xed-shortcuts.ui.h:48
+msgid "Toggle comment"
+msgstr ""
+
 #: ../xed/xed-searchbar.c:92
 #, c-format
 msgid "Found and replaced %d occurrence"
@@ -1844,69 +1852,69 @@ msgstr "ਡੌਕੂਮੈਂਟ ਬੰਦ ਕਰੋ"
 
 #. Translators: the first %s is a file name (e.g. test.txt) the second one
 #. is a directory (e.g. ssh://master.gnome.org/home/users/paolo)
-#: ../xed/xed-tab.c:715
+#: ../xed/xed-tab.c:716
 #, c-format
 msgid "Reverting %s from %s"
 msgstr "%2$s ਤੋਂ %1$s ਰੀਵਰਟ ਕੀਤਾ ਜਾ ਰਿਹਾ ਹੈ"
 
-#: ../xed/xed-tab.c:720
+#: ../xed/xed-tab.c:721
 #, c-format
 msgid "Reverting %s"
 msgstr "%s ਰੀਵਰਟ ਕੀਤਾ ਜਾ ਰਿਹਾ ਹੈ"
 
 #. Translators: the first %s is a file name (e.g. test.txt) the second one
 #. is a directory (e.g. ssh://master.gnome.org/home/users/paolo)
-#: ../xed/xed-tab.c:733
+#: ../xed/xed-tab.c:734
 #, c-format
 msgid "Loading %s from %s"
 msgstr "%2$s ਵਿੱਚੋਂ %1$s ਨੂੰ ਲੋਡ ਕੀਤਾ ਜਾ ਰਿਹਾ ਹੈ"
 
-#: ../xed/xed-tab.c:738
+#: ../xed/xed-tab.c:739
 #, c-format
 msgid "Loading %s"
 msgstr "%s ਨੂੰ ਲੋਡ ਕੀਤਾ ਜਾ ਰਿਹਾ ਹੈ"
 
 #. Translators: the first %s is a file name (e.g. test.txt) the second one
 #. is a directory (e.g. ssh://master.gnome.org/home/users/paolo)
-#: ../xed/xed-tab.c:819
+#: ../xed/xed-tab.c:820
 #, c-format
 msgid "Saving %s to %s"
 msgstr "%s ਨੂੰ %s ਵਿੱਚ ਸੰਭਾਲਿਆ ਜਾ ਰਿਹਾ ਹੈ"
 
-#: ../xed/xed-tab.c:824
+#: ../xed/xed-tab.c:825
 #, c-format
 msgid "Saving %s"
 msgstr "%s ਸੰਭਾਲਿਆ ਜਾਂਦਾ ਹੈ"
 
 #. Read only
-#: ../xed/xed-tab.c:1304
+#: ../xed/xed-tab.c:1305
 msgid "RO"
 msgstr "RO"
 
-#: ../xed/xed-tab.c:1352
+#: ../xed/xed-tab.c:1353
 #, c-format
 msgid "Error opening file %s"
 msgstr "%s ਫਾਇਲ ਖੋਲ੍ਹਣ ਦੌਰਾਨ ਗਲਤੀ"
 
-#: ../xed/xed-tab.c:1356
+#: ../xed/xed-tab.c:1357
 #, c-format
 msgid "Error reverting file %s"
 msgstr "%s ਫਾਇਲ ਪਰਤਾਉਣ ਦੌਰਾਨ ਗਲਤੀ"
 
-#: ../xed/xed-tab.c:1360
+#: ../xed/xed-tab.c:1361
 #, c-format
 msgid "Error saving file %s"
 msgstr "ਫਾਇਲ %s ਸੰਭਾਲਣ ਦੌਰਾਨ ਗਲਤੀ"
 
-#: ../xed/xed-tab.c:1393
+#: ../xed/xed-tab.c:1394
 msgid "Name:"
 msgstr "ਨਾਂ:"
 
-#: ../xed/xed-tab.c:1394
+#: ../xed/xed-tab.c:1395
 msgid "MIME Type:"
 msgstr "MIME ਕਿਸਮ:"
 
-#: ../xed/xed-tab.c:1395
+#: ../xed/xed-tab.c:1396
 msgid "Encoding:"
 msgstr "ਇੰਕੋਡਿੰਗ:"
 
@@ -2063,8 +2071,8 @@ msgstr ""
 msgid "Paste the clipboard"
 msgstr "ਕਲਿੱਪਬੋਰਡ ਚੇਪੋ"
 
-#: ../xed/xed-ui.h:101 ../plugins/filebrowser/xed-file-browser-plugin.c:968
-#: ../plugins/filebrowser/xed-file-browser-plugin.c:1003
+#: ../xed/xed-ui.h:101 ../plugins/filebrowser/xed-file-browser-plugin.c:966
+#: ../plugins/filebrowser/xed-file-browser-plugin.c:1001
 #: ../plugins/filebrowser/xed-file-browser-widget.c:760
 msgid "_Delete"
 msgstr "ਹਟਾਓ(_D)"
@@ -2081,177 +2089,197 @@ msgstr "ਸਭ ਚੁਣੋ(_A)"
 msgid "Select the entire document"
 msgstr "ਸਾਰਾ ਡੌਕੂਮੈਂਟ ਚੁਣੋ"
 
-#. View menu
+#: ../xed/xed-ui.h:105
+msgid "_Toggle Comment"
+msgstr ""
+
+#: ../xed/xed-ui.h:106 ../plugins/taglist/HTML.tags.xml.in.h:41
+msgid "Comment"
+msgstr "ਟਿੱਪਣੀ"
+
 #: ../xed/xed-ui.h:107
+msgid "Toggle Comment _Block"
+msgstr ""
+
+#: ../xed/xed-ui.h:108
+msgid "Comment Block"
+msgstr ""
+
+#. View menu
+#: ../xed/xed-ui.h:111
 msgid "_Highlight Mode"
 msgstr "ਹਾਈਲਾਈਟ ਢੰਗ(_H)"
 
-#: ../xed/xed-ui.h:108
+#: ../xed/xed-ui.h:112
 msgid "Change syntax hightlight mode"
 msgstr ""
 
 #. Search menu
-#: ../xed/xed-ui.h:112
+#: ../xed/xed-ui.h:116
 msgid "_Find"
 msgstr ""
 
-#: ../xed/xed-ui.h:113
+#: ../xed/xed-ui.h:117
 msgid "Search for text"
 msgstr "ਟੈਕਸਟ ਖੋਜੋ"
 
-#: ../xed/xed-ui.h:114
+#: ../xed/xed-ui.h:118
 msgid "Find Ne_xt"
 msgstr "ਅੱਗੇ ਖੋਜ(_X)"
 
-#: ../xed/xed-ui.h:115
+#: ../xed/xed-ui.h:119
 msgid "Search forwards for the same text"
 msgstr "ਇਸੇ ਟੈਕਸਟ ਲਈ ਅੱਗੇ ਖੋਜ ਕਰੋ"
 
-#: ../xed/xed-ui.h:116
+#: ../xed/xed-ui.h:120
 msgid "Find Pre_vious"
 msgstr "ਪਿੱਛੇ ਖੋਜ(_V)"
 
-#: ../xed/xed-ui.h:117
+#: ../xed/xed-ui.h:121
 msgid "Search backwards for the same text"
 msgstr "ਇਸੇ ਟੈਕਸਟ ਲਈ ਪਿਛਾਂਹ ਨੂੰ ਖੋਜ ਕਰੋ"
 
-#: ../xed/xed-ui.h:119
+#: ../xed/xed-ui.h:123
 msgid "Search for and replace text"
 msgstr "ਟੈਕਸਟ ਦੀ ਖੋਜ ਕਰੋ ਅਤੇ ਬਦਲੋ"
 
-#: ../xed/xed-ui.h:120
+#: ../xed/xed-ui.h:124
 msgid "Go to _Line..."
 msgstr "ਲਾਈਨ ਉੱਤੇ ਜਾਓ(_L)..."
 
-#: ../xed/xed-ui.h:121
+#: ../xed/xed-ui.h:125
 msgid "Go to a specific line"
 msgstr "ਖਾਸ ਲਾਈਨ ਤੇ ਜਾਓ"
 
 #. Documents menu
-#: ../xed/xed-ui.h:124
+#: ../xed/xed-ui.h:128
 msgid "_Save All"
 msgstr "ਸਭ ਸੰਭਾਲੋ(_S)"
 
-#: ../xed/xed-ui.h:125
+#: ../xed/xed-ui.h:129
 msgid "Save all open files"
 msgstr "ਸਭ ਖੁੱਲੀਆਂ ਫਾਇਲਾਂ ਸੰਭਾਲੋ"
 
-#: ../xed/xed-ui.h:126
+#: ../xed/xed-ui.h:130
 msgid "_Close All"
 msgstr "ਸਭ ਬੰਦ ਕਰੋ(_C)"
 
-#: ../xed/xed-ui.h:127
+#: ../xed/xed-ui.h:131
 msgid "Close all open files"
 msgstr "ਸਭ ਖੁੱਲੀਆਂ ਫਾਇਲਾਂ ਬੰਦ ਕਰੋ"
 
-#: ../xed/xed-ui.h:128
+#: ../xed/xed-ui.h:132
 msgid "_Previous Document"
 msgstr "ਪਿੱਛੇ ਡੌਕੂਮੈਂਟ(_P)"
 
-#: ../xed/xed-ui.h:129
+#: ../xed/xed-ui.h:133
 msgid "Activate previous document"
 msgstr "ਪਿਛਲਾ ਡੌਕੂਮੈਂਟ ਸਰਗਰਮ"
 
-#: ../xed/xed-ui.h:130
+#: ../xed/xed-ui.h:134
 msgid "_Next Document"
 msgstr "ਅੱਗੇ ਡੌਕੂਮੈਂਟ(_N)"
 
-#: ../xed/xed-ui.h:131
+#: ../xed/xed-ui.h:135
 msgid "Activate next document"
 msgstr "ਅਗਲਾ ਡੌਕੂਮੈਂਟ ਸਰਗਰਮ"
 
-#: ../xed/xed-ui.h:132
+#: ../xed/xed-ui.h:136
 msgid "_Move to New Window"
 msgstr "ਨਵੀਂ ਵਿੰਡੋ ਵਿਚ ਭੇਜੋ(_M)"
 
-#: ../xed/xed-ui.h:133
+#: ../xed/xed-ui.h:137
 msgid "Move the current document to a new window"
 msgstr "ਮੌਜੂਦਾ ਡੌਕੂਮੈਂਟ ਨੂੰ ਨਵੀਂ ਵਿੰਡੋ ਵਿੱਚ ਭੇਜੋ"
 
-#: ../xed/xed-ui.h:139
+#: ../xed/xed-ui.h:143
 msgid "_Close"
 msgstr ""
 
-#: ../xed/xed-ui.h:140
+#: ../xed/xed-ui.h:144
 msgid "Close the current file"
 msgstr "ਮੌਜੂਦਾ ਫਾਇਲ ਬੰਦ ਕਰੋ"
 
-#: ../xed/xed-ui.h:146
+#: ../xed/xed-ui.h:150
 msgid "_Quit"
 msgstr ""
 
-#: ../xed/xed-ui.h:147
+#: ../xed/xed-ui.h:151
 msgid "Quit the program"
 msgstr "ਪਰੋਗਰਾਮ ਬੰਦ ਕਰ ਦਿਉ"
 
-#: ../xed/xed-ui.h:152
+#: ../xed/xed-ui.h:156
 msgid "_Toolbar"
 msgstr "ਟੂਲਬਾਰ(_T)"
 
-#: ../xed/xed-ui.h:153
+#: ../xed/xed-ui.h:157
 msgid "Show or hide the toolbar in the current window"
 msgstr "ਮੌਜੂਦਾ ਵਿੰਡੋ ਵਿੱਚ ਸੰਦ-ਪੱਟੀ ਵਿੱਚ ਵੇਖੋ ਜਾਂ ਓਹਲੇ"
 
-#: ../xed/xed-ui.h:155
+#: ../xed/xed-ui.h:159
 msgid "_Statusbar"
 msgstr "ਹਾਲਤ-ਪੱਟੀ(_S)"
 
-#: ../xed/xed-ui.h:156
+#: ../xed/xed-ui.h:160
 msgid "Show or hide the statusbar in the current window"
 msgstr "ਮੌਜੂਦਾ ਵਿੰਡੋ ਵਿੱਚ ਹਾਲਤ-ਪੱਟੀ ਵੇਖੋ ਜਾਂ ਓਹਲੇ"
 
-#: ../xed/xed-ui.h:159
+#: ../xed/xed-ui.h:162
+msgid "Fullscreen"
+msgstr ""
+
+#: ../xed/xed-ui.h:163
 msgid "Edit text in fullscreen"
 msgstr "ਟੈਕਸਟ ਪੂਰੀ ਸਕਰੀਨ ਉੱਤੇ ਸੋਧੋ"
 
-#: ../xed/xed-ui.h:161
+#: ../xed/xed-ui.h:165
 msgid "_Word wrap"
 msgstr ""
 
-#: ../xed/xed-ui.h:162
+#: ../xed/xed-ui.h:166
 msgid "Set word wrap for the current document"
 msgstr ""
 
-#: ../xed/xed-ui.h:164
+#: ../xed/xed-ui.h:168
 msgid "_Overview Map"
 msgstr ""
 
-#: ../xed/xed-ui.h:165
+#: ../xed/xed-ui.h:169
 msgid "Show or hide the overview map for the current view"
 msgstr ""
 
-#: ../xed/xed-ui.h:172
+#: ../xed/xed-ui.h:176
 msgid "Side _Pane"
 msgstr "ਬਾਹੀ(_P)"
 
-#: ../xed/xed-ui.h:173
+#: ../xed/xed-ui.h:177
 msgid "Show or hide the side pane in the current window"
 msgstr "ਮੌਜੂਦਾ ਵਿੰਡੋ ਵਿੱਚ ਬਾਹੀ ਵੇਖਾਓ ਜਾਂ ਓਹਲੇ"
 
-#: ../xed/xed-ui.h:175
+#: ../xed/xed-ui.h:179
 msgid "_Bottom Pane"
 msgstr "ਹੇਠਲੀ ਪੱਟੀ(_B)"
 
-#: ../xed/xed-ui.h:176
+#: ../xed/xed-ui.h:180
 msgid "Show or hide the bottom pane in the current window"
 msgstr "ਮੌਜੂਦਾ ਵਿੰਡੋ ਵਿੱਚ ਹੇਠਲੀ ਪੱਟੀ ਵੇਖੋ ਜਾਂ ਓਹਲੇ"
 
-#: ../xed/xed-utils.c:922
+#: ../xed/xed-utils.c:642
 msgid "Please check your installation."
 msgstr "ਆਪਣੀ ਇੰਸਟਾਲੇਸ਼ਨ ਦੀ ਜਾਂਚ ਕਰੋ ਜੀ।"
 
-#: ../xed/xed-utils.c:990
+#: ../xed/xed-utils.c:710
 #, c-format
 msgid "Unable to open UI file %s. Error: %s"
 msgstr "%s UI ਫਾਇਲ ਖੋਲਣ ਲਈ ਅਸਮਰੱਥ ਹੈ: ਗਲਤੀ: %s"
 
-#: ../xed/xed-utils.c:1010
+#: ../xed/xed-utils.c:730
 #, c-format
 msgid "Unable to find the object '%s' inside file %s."
 msgstr "ਫਾਇਲ %2$s ਵਿੱਚ  '%1$s' ਆਬਜੈਕਟ ਲੱਭਣ ਲਈ ਅਸਮਰੱਥ ਹੈ।"
 
 #. Translators: '/ on <remote-share>'
-#: ../xed/xed-utils.c:1178
+#: ../xed/xed-utils.c:898
 #, c-format
 msgid "/ on %s"
 msgstr "%s ਉੱਤੇ /"
@@ -2272,28 +2300,25 @@ msgstr "'%s' ਖੋਲ੍ਹੋ"
 msgid "Activate '%s'"
 msgstr "'%s' ਸਰਗਰਮ"
 
-#: ../xed/xed-window.c:1324
-msgid "Spaces"
+#: ../xed/xed-window.c:1330
+#, c-format
+msgid "Spaces: %u"
 msgstr ""
 
-#: ../xed/xed-window.c:1328
-msgid "Tabs"
+#: ../xed/xed-window.c:1334
+#, c-format
+msgid "Tabs: %u"
 msgstr ""
 
-#: ../xed/xed-window.c:1389
+#: ../xed/xed-window.c:1411
 msgid "Use Spaces"
 msgstr "ਸਪੇਸ ਵਰਤੋਂ"
 
-#: ../xed/xed-window.c:1829
-#, c-format
-msgid "Tab Width: %u"
-msgstr ""
-
-#: ../xed/xed-window.c:2179
+#: ../xed/xed-window.c:2198
 msgid "There are unsaved documents"
 msgstr ""
 
-#: ../xed/xed-window.c:3221
+#: ../xed/xed-window.c:3247
 msgid "Elevated Privileges"
 msgstr ""
 
@@ -2481,43 +2506,43 @@ msgstr "ਇੱਥੇ ਟਰਮੀਨਲ ਖੋਲ੍ਹੋ(_O)"
 msgid "Open a terminal at the currently opened directory"
 msgstr "ਮੌਜੂਦਾ ਖੁੱਲ੍ਹੀ ਡਾਇਰੈਕਟਰੀ ਉੱਤੇ ਇੱਕ ਟਰਮੀਨਲ ਖੋਲ੍ਹੋ"
 
-#: ../plugins/filebrowser/xed-file-browser-plugin.c:562
+#: ../plugins/filebrowser/xed-file-browser-plugin.c:560
 msgid "File Browser"
 msgstr "ਫਾਇਲ ਬਰਾਊਜ਼ਰ"
 
-#: ../plugins/filebrowser/xed-file-browser-plugin.c:673
+#: ../plugins/filebrowser/xed-file-browser-plugin.c:671
 msgid "An error occurred while creating a new directory"
 msgstr "ਇੱਕ ਨਵੀਂ ਡਾਇਰੈਕਟਰੀ ਬਣਾਉਣ ਦੌਰਾਨ ਇੱਕ ਗਲਤੀ ਆਈ ਹੈ"
 
-#: ../plugins/filebrowser/xed-file-browser-plugin.c:676
+#: ../plugins/filebrowser/xed-file-browser-plugin.c:674
 msgid "An error occurred while creating a new file"
 msgstr "ਇੱਕ ਨਵੀਂ ਫਾਇਲ ਬਣਾਉਣ ਦੌਰਾਨ ਇੱਕ ਗਲਤੀ ਆਈ ਹੈ"
 
-#: ../plugins/filebrowser/xed-file-browser-plugin.c:679
+#: ../plugins/filebrowser/xed-file-browser-plugin.c:677
 msgid "An error occurred while renaming a file or directory"
 msgstr "ਇੱਕ ਫਾਇਲ ਜਾਂ ਡਾਇਰੈਕਟਰੀ ਦਾ ਨਾਂ-ਬਦਲਣ ਦੌਰਾਨ ਇੱਕ ਗਲਤੀ ਆਈ ਹੈ"
 
-#: ../plugins/filebrowser/xed-file-browser-plugin.c:682
+#: ../plugins/filebrowser/xed-file-browser-plugin.c:680
 msgid "An error occurred while deleting a file or directory"
 msgstr "ਇੱਕ ਫਾਇਲ ਜਾਂ ਡਾਇਰੈਕਟਰੀ ਹਟਾਉਣ ਦੌਰਾਨ ਇੱਕ ਗਲਤੀ ਆਈ ਹੈ"
 
-#: ../plugins/filebrowser/xed-file-browser-plugin.c:685
+#: ../plugins/filebrowser/xed-file-browser-plugin.c:683
 msgid "An error occurred while opening a directory in the file manager"
 msgstr "ਫਾਇਲ ਮੈਨੇਜਰ ਵਿੱਚ ਇੱਕ ਡਾਇਰੈਕਟਰੀ ਖੋਲ੍ਹਣ ਦੌਰਾਨ ਇੱਕ ਗਲਤੀ ਆਈ ਹੈ"
 
-#: ../plugins/filebrowser/xed-file-browser-plugin.c:688
+#: ../plugins/filebrowser/xed-file-browser-plugin.c:686
 msgid "An error occurred while setting a root directory"
 msgstr "ਇੱਕ ਮੁੱਢਲੀ ਡਾਇਰੈਕਟਰੀ ਬਣਾਉਣ ਦੌਰਾਨ ਇੱਕ ਗਲਤੀ ਆਈ ਹੈ।"
 
-#: ../plugins/filebrowser/xed-file-browser-plugin.c:691
+#: ../plugins/filebrowser/xed-file-browser-plugin.c:689
 msgid "An error occurred while loading a directory"
 msgstr "ਇੱਕ ਡਾਇਰੈਕਟਰੀ ਲੋਡ ਕਰਨ ਦੌਰਾਨ ਇੱਕ ਗਲਤੀ ਆਈ ਹੈ"
 
-#: ../plugins/filebrowser/xed-file-browser-plugin.c:694
+#: ../plugins/filebrowser/xed-file-browser-plugin.c:692
 msgid "An error occurred"
 msgstr "ਇੱਕ ਗਲਤੀ ਆਈ ਹੈ"
 
-#: ../plugins/filebrowser/xed-file-browser-plugin.c:951
+#: ../plugins/filebrowser/xed-file-browser-plugin.c:949
 msgid ""
 "Cannot move file to trash, do you\n"
 "want to delete permanently?"
@@ -2525,25 +2550,25 @@ msgstr ""
 "ਫਾਇਲ ਨੂੰ ਰੱਦੀ 'ਚ ਭੇਜਿਆ ਨਹੀਂ ਜਾ ਸਕਦਾ ਹੈ, ਕੀ\n"
 "ਤੁਸੀਂ ਹਮੇਸ਼ਾਂ ਲਈ ਹਟਾਉਣਾ ਚਾਹੁੰਦੇ ਹੋ?"
 
-#: ../plugins/filebrowser/xed-file-browser-plugin.c:956
+#: ../plugins/filebrowser/xed-file-browser-plugin.c:954
 #, c-format
 msgid "The file \"%s\" cannot be moved to the trash."
 msgstr "ਫਾਇਲ \"%s\" ਨੂੰ ਰੱਦੀ ਵਿੱਚ ਨਹੀਂ ਭੇਜਿਆ ਜਾ ਸਕਦਾ ਹੈ।"
 
-#: ../plugins/filebrowser/xed-file-browser-plugin.c:961
+#: ../plugins/filebrowser/xed-file-browser-plugin.c:959
 msgid "The selected files cannot be moved to the trash."
 msgstr "ਚੁਣੀਆਂ ਫਾਇਲਾਂ ਨੂੰ ਰੱਦੀ 'ਚ ਭੇਜਿਆ ਨਹੀਂ ਜਾ ਸਕਦਾ ਹੈ।"
 
-#: ../plugins/filebrowser/xed-file-browser-plugin.c:989
+#: ../plugins/filebrowser/xed-file-browser-plugin.c:987
 #, c-format
 msgid "Are you sure you want to permanently delete \"%s\"?"
 msgstr "ਕੀ ਤੁਸੀਂ \"%s\" ਪੱਕੇ ਤੌਰ ਉੱਤੇ ਹਟਾਉਣਾ ਚਾਹੁੰਦੇ ਹੋ?"
 
-#: ../plugins/filebrowser/xed-file-browser-plugin.c:994
+#: ../plugins/filebrowser/xed-file-browser-plugin.c:992
 msgid "Are you sure you want to permanently delete the selected files?"
 msgstr "ਕੀ ਤੁਸੀਂ ਚੁਣੀਆਂ ਫਾਇਲਾਂ ਨੂੰ ਪੱਕੇ ਤੌਰ ਉੱਤੇ ਹਟਾਉਣਾ ਚਾਹੁੰਦੇ ਹੋ?"
 
-#: ../plugins/filebrowser/xed-file-browser-plugin.c:997
+#: ../plugins/filebrowser/xed-file-browser-plugin.c:995
 msgid "If you delete an item, it is permanently lost."
 msgstr "ਜੇ ਤੁਸੀਂ ਇੱਕ ਆਈਟਮ ਹਟਾਈ ਤਾਂ ਇਹ ਪੱਕੇ ਤੌਰ ਉੱਤੇ ਖਤਮ ਹੋ ਜਾਵੇਗੀ।"
 
@@ -2695,17 +2720,17 @@ msgstr "ਬਾਈਨਰੀ ਫਾਇਲਾਂ ਵੇਖੋ"
 msgid "_Match Filename"
 msgstr "ਫਾਇਲ ਨਾਂ ਮੇਲ(_M)"
 
-#: ../plugins/filebrowser/xed-file-browser-widget.c:1991
+#: ../plugins/filebrowser/xed-file-browser-widget.c:2014
 #, c-format
 msgid "No mount object for mounted volume: %s"
 msgstr "ਮਾਊਂਟ ਕੀਤੇ ਵਾਲੀਅਮ ਲਈ ਕੋਈ ਮਾਊਂਟ ਆਬਜੈਕਟ ਨਹੀਂ: %s"
 
-#: ../plugins/filebrowser/xed-file-browser-widget.c:2069
+#: ../plugins/filebrowser/xed-file-browser-widget.c:2092
 #, c-format
 msgid "Could not open media: %s"
 msgstr "ਮੀਡਿਆ ਖੋਲ੍ਹਿਆ ਨਹੀਂ ਜਾ ਸਕਿਆ: %s"
 
-#: ../plugins/filebrowser/xed-file-browser-widget.c:2118
+#: ../plugins/filebrowser/xed-file-browser-widget.c:2141
 #, c-format
 msgid "Could not mount volume: %s"
 msgstr "ਵਾਲੀਅਮ ਮਾਊਟ ਨਹੀਂ ਕੀਤਾ ਜਾ ਸਕਿਆ: %s"
@@ -2941,10 +2966,6 @@ msgstr "ਕਾਲਮ ਖਿਲਾਰ"
 #: ../plugins/taglist/HTML.tags.xml.in.h:40
 msgid "Columns"
 msgstr "ਕਾਲਮ"
-
-#: ../plugins/taglist/HTML.tags.xml.in.h:41
-msgid "Comment"
-msgstr "ਟਿੱਪਣੀ"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:42
 msgid "Computer code fragment"
@@ -4292,7 +4313,7 @@ msgid "Available Tag Lists"
 msgstr "ਮੌਜੂਦਾ ਟੈਬ ਲਿਸਟਾਂ"
 
 #: ../plugins/taglist/xed-taglist-plugin-panel.c:706
-#: ../plugins/taglist/xed-taglist-plugin-panel.c:722
+#: ../plugins/taglist/xed-taglist-plugin-panel.c:721
 #: ../plugins/taglist/xed-taglist-plugin.c:113
 msgid "Tags"
 msgstr "ਟੈਗ"

@@ -8,17 +8,17 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MATE Desktop Environment\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-12-05 15:16+0000\n"
-"PO-Revision-Date: 2016-01-26 17:34+0000\n"
-"Last-Translator: Ivar Smolin <okul@linux.ee>\n"
+"POT-Creation-Date: 2019-06-23 14:24+0200\n"
+"PO-Revision-Date: 2019-06-11 03:36+0000\n"
+"Last-Translator: mahfiaz <mahfiaz@gmail.com>\n"
 "Language-Team: Estonian "
 "(http://www.transifex.com/projects/p/MATE/language/et/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2018-12-11 11:58+0000\n"
-"X-Generator: Launchpad (build 18837)\n"
+"X-Launchpad-Export-Date: 2019-07-10 08:28+0000\n"
+"X-Generator: Launchpad (build 19007)\n"
 "Language: et\n"
 
 #: ../data/org.x.editor.gschema.xml.in.h:1
@@ -32,11 +32,14 @@ msgid ""
 "font named in the \"Editor Font\" option will be used instead of the system "
 "font."
 msgstr ""
+"Kas xed-is kasutada süsteemi vaikimisi fikseeritud laiusega fonti või mõnda "
+"muud fonti. Kui see on välja lülitatud, kasutatakse süsteemi fondi asemel "
+"\"Toimeti font\" valikus määratud kirjastiili."
 
 #: ../data/org.x.editor.gschema.xml.in.h:3
 msgctxt "editor-font"
 msgid "'Monospace 12'"
-msgstr ""
+msgstr "'Monospace 12'"
 
 #: ../data/org.x.editor.gschema.xml.in.h:4
 msgid "Editor Font"
@@ -52,13 +55,15 @@ msgstr ""
 
 #: ../data/org.x.editor.gschema.xml.in.h:6
 msgid "Prefer Dark Theme"
-msgstr ""
+msgstr "Tumeda teema eelistamine"
 
 #: ../data/org.x.editor.gschema.xml.in.h:7
 msgid ""
 "Whether xed should prefer the dark variation of the current Gtk theme if "
 "available."
 msgstr ""
+"Kas xed peaks eelistama praeguse Gtk teema tumedat varianti, kui selline on "
+"saadaval."
 
 #: ../data/org.x.editor.gschema.xml.in.h:8
 msgid "Style Scheme"
@@ -77,6 +82,8 @@ msgid ""
 "Whether xed should create backup copies for the files it saves. You can set "
 "the backup file extension with the \"Backup Copy Extension\" option."
 msgstr ""
+"Kas xed peaks looma enne salvestamist failist koopia. Varufaili laiendi saab "
+"määrata \"varufaili laiendi\" abil."
 
 #: ../data/org.x.editor.gschema.xml.in.h:12
 msgid "Autosave"
@@ -87,6 +94,8 @@ msgid ""
 "Whether xed should automatically save modified files after a time interval. "
 "You can set the time interval with the \"Autosave Interval\" option."
 msgstr ""
+"Kas xed peaks muudetud failid pärast mingit aega ise salvestama. Ajavahemiku "
+"saab määrata \"isesalvestuse sagedus\" abil."
 
 #: ../data/org.x.editor.gschema.xml.in.h:14
 msgid "Autosave Interval"
@@ -97,6 +106,8 @@ msgid ""
 "Number of minutes after which xed will automatically save modified files. "
 "This will only take effect if the \"Autosave\" option is turned on."
 msgstr ""
+"Mitme minuti pärast xed ise salvestab muudetud failid. See mõjub ainult "
+"juhul kui \"Isesalvestus\" on sisse lülitatud."
 
 #: ../data/org.x.editor.gschema.xml.in.h:16
 msgid "Writable VFS schemes"
@@ -107,6 +118,8 @@ msgid ""
 "List of VFS schemes xed supports in write mode. The 'file' scheme is "
 "writable by default."
 msgstr ""
+"Kirjutusrežiimis xed-i poolt toetatud VFS skeemide loend. Vaikimisi on "
+"toetatud 'file' nimeline skeem."
 
 #: ../data/org.x.editor.gschema.xml.in.h:18
 msgid "Maximum Number of Undo Actions"
@@ -117,6 +130,8 @@ msgid ""
 "Maximum number of actions that xed will be able to undo or redo. Use \"-1\" "
 "for unlimited number of actions."
 msgstr ""
+"Suurim arv samme, mida xed lubab tagasi võtta või uuesti teha. Piiramatute "
+"sammude jaoks kasuta väärtust \"-1\"."
 
 #: ../data/org.x.editor.gschema.xml.in.h:20
 msgid "Line Wrapping Mode"
@@ -129,6 +144,10 @@ msgid ""
 "wrapping at individual character boundaries. Note that the values are case-"
 "sensitive, so make sure they appear exactly as mentioned here."
 msgstr ""
+"Määrab pikkade ridade murdmise redaktoris. Väärtuse \"none\" korral murdmist "
+"ei toimu, väärtuse \"word\" korral murtakse sõnavahedest ja väärtuse "
+"\"char\" korral murtakse murdmispiiril asuvast märgist. Väärtused on "
+"tõstutundlikud!"
 
 #: ../data/org.x.editor.gschema.xml.in.h:22
 msgid "Tab Size"
@@ -146,7 +165,7 @@ msgstr "Lisa tühikud"
 
 #: ../data/org.x.editor.gschema.xml.in.h:25
 msgid "Whether xed should insert spaces instead of tabs."
-msgstr ""
+msgstr "Kas xed peaks tabulaatori märgi asemel kasutama tühikuid."
 
 #: ../data/org.x.editor.gschema.xml.in.h:26
 msgid "Automatic indent"
@@ -154,7 +173,7 @@ msgstr "Automaatne taandamine"
 
 #: ../data/org.x.editor.gschema.xml.in.h:27
 msgid "Whether xed should enable automatic indentation."
-msgstr ""
+msgstr "Kas xed peaks lubama automaatse taande."
 
 #: ../data/org.x.editor.gschema.xml.in.h:28
 msgid "Display Line Numbers"
@@ -162,7 +181,7 @@ msgstr "Reanumbrite kuvamine"
 
 #: ../data/org.x.editor.gschema.xml.in.h:29
 msgid "Whether xed should display line numbers in the editing area."
-msgstr ""
+msgstr "Kas xed peaks kuvama reanumbreid teksti kõrval."
 
 #: ../data/org.x.editor.gschema.xml.in.h:30
 msgid "Highlight Current Line"
@@ -170,7 +189,7 @@ msgstr "Käesoleva rea esiletõstmine"
 
 #: ../data/org.x.editor.gschema.xml.in.h:31
 msgid "Whether xed should highlight the current line."
-msgstr ""
+msgstr "Kas xed peaks praeguse rea esile tõstma."
 
 #: ../data/org.x.editor.gschema.xml.in.h:32
 msgid "Highlight Matching Bracket"
@@ -178,7 +197,7 @@ msgstr "Vastavuses olevate sulgude esiletõstmine"
 
 #: ../data/org.x.editor.gschema.xml.in.h:33
 msgid "Whether xed should highlight the bracket matching the selected one."
-msgstr ""
+msgstr "Kas xed peaks märgitud suluga paaris oleva sulu esile tõstma."
 
 #: ../data/org.x.editor.gschema.xml.in.h:34
 msgid "Display Right Margin"
@@ -186,7 +205,7 @@ msgstr "Paremveerise kuvamine"
 
 #: ../data/org.x.editor.gschema.xml.in.h:35
 msgid "Whether xed should display the right margin in the editing area."
-msgstr ""
+msgstr "Kas xed peaks kuvama tekstialal paremveerist."
 
 #: ../data/org.x.editor.gschema.xml.in.h:36
 msgid "Right Margin Position"
@@ -210,6 +229,13 @@ msgid ""
 "the start/end of the line and \"always\" to always move to the start/end of "
 "the text instead of the start/end of the line."
 msgstr ""
+"Määrab, kuidas liigub kursor HOME ja END klahvide vajutamisel. Väärtuse "
+"\"disabled\" puhul liigub kursor rea algusesse või lõppu, väärtuse \"after\" "
+"puhul liigub kursor esmavajutusel rea algusesse/lõppu, teistkordsel "
+"vajutusel aga teksti algusesse/lõppu, eirates seal olevaid tühje ridu ja "
+"tühikuid. Väärtuse \"before\" puhul liigub esmavajutuse teksti "
+"algusesse/lõppu, teistkordsel rea algusesse/lõppu, väärtuse \"always\" "
+"korral liigub aga alati lihtsalt teksti algusesse/lõppu."
 
 #: ../data/org.x.editor.gschema.xml.in.h:40
 msgid "Restore Previous Cursor Position"
@@ -219,7 +245,7 @@ msgstr "Kursori eelmise asukoha taastamine"
 msgid ""
 "Whether xed should restore the previous cursor position when a file is "
 "loaded."
-msgstr ""
+msgstr "Kas xed peaks faili avamisel taastama kursori endise asukoha."
 
 #: ../data/org.x.editor.gschema.xml.in.h:42
 msgid "Enable Search Highlighting"
@@ -228,7 +254,7 @@ msgstr "Otsingu esiletõstmise lubamine"
 #: ../data/org.x.editor.gschema.xml.in.h:43
 msgid ""
 "Whether xed should highlight all the occurrences of the searched text."
-msgstr ""
+msgstr "Kas xed peaks esile tõstma kõik otsitud teksti esinemised."
 
 #: ../data/org.x.editor.gschema.xml.in.h:44
 msgid "Enable Syntax Highlighting"
@@ -236,16 +262,16 @@ msgstr "Süntaksi esiletõstmise lubamine"
 
 #: ../data/org.x.editor.gschema.xml.in.h:45
 msgid "Whether xed should enable syntax highlighting."
-msgstr ""
+msgstr "Kas xed'is on süntaksi värvimine lubatud."
 
 #: ../data/org.x.editor.gschema.xml.in.h:46
 msgid "Ensure Trailing Newline"
-msgstr ""
+msgstr "Faili lõpus on alati reavahetus"
 
 #: ../data/org.x.editor.gschema.xml.in.h:47
 msgid ""
 "Whether xed will ensure that documents always end with a trailing newline."
-msgstr ""
+msgstr "Kas xed hoolitseb, et fail lõpeks alati tühja reaga."
 
 #: ../data/org.x.editor.gschema.xml.in.h:48
 msgid "Toolbar is Visible"
@@ -284,19 +310,19 @@ msgstr "Kas redaktoriaknast allpool olev alumine paneel peab olema nähtav."
 
 #: ../data/org.x.editor.gschema.xml.in.h:56
 msgid "Allow changing active tabs by scrolling"
-msgstr ""
+msgstr "Aktiivse kaardi vahetamine hiire kerimisega"
 
 #: ../data/org.x.editor.gschema.xml.in.h:57
 msgid "Whether you can change active tabs by scrolling."
-msgstr ""
+msgstr "Kas kerimisega saab vahetada aktiivset kaarti."
 
 #: ../data/org.x.editor.gschema.xml.in.h:58
 msgid "Minimap is visible"
-msgstr ""
+msgstr "Minikaart on nähtaval"
 
 #: ../data/org.x.editor.gschema.xml.in.h:59
 msgid "Whether the minimap for the document should be visible."
-msgstr ""
+msgstr "Kas dokumendi minikaart peaks olema nähtaval."
 
 #: ../data/org.x.editor.gschema.xml.in.h:60
 msgid "Maximum Recent Files"
@@ -316,7 +342,7 @@ msgstr "Süntaksi esiletõstmine printimisel"
 
 #: ../data/org.x.editor.gschema.xml.in.h:63
 msgid "Whether xed should print syntax highlighting when printing documents."
-msgstr ""
+msgstr "Kas xed peaks dokumentide printimisel tõstma süntaksi esile."
 
 #: ../data/org.x.editor.gschema.xml.in.h:64
 msgid "Print Header"
@@ -324,7 +350,7 @@ msgstr "Prindi päis"
 
 #: ../data/org.x.editor.gschema.xml.in.h:65
 msgid "Whether xed should include a document header when printing documents."
-msgstr ""
+msgstr "Kas xed peaks dokumentide printimisel kaasama dokumendi päised."
 
 #: ../data/org.x.editor.gschema.xml.in.h:66
 msgid "Printing Line Wrapping Mode"
@@ -337,6 +363,10 @@ msgid ""
 "individual character boundaries. Note that the values are case-sensitive, so "
 "make sure they appear exactly as mentioned here."
 msgstr ""
+"Pikkade ridade murdmise määramine printimisel. Väärtuse \"none\" korral "
+"murdmist ei toimu, väärtuse \"word\" korral murtakse sõnavahedest ja "
+"väärtuse \"char\" korral murtakse murdmispiiril asuvast märgist. Väärtused "
+"on tõstutundlikud!"
 
 #: ../data/org.x.editor.gschema.xml.in.h:68
 msgid "Print Line Numbers"
@@ -347,11 +377,13 @@ msgid ""
 "If this value is 0, then no line numbers will be inserted when printing a "
 "document. Otherwise, xed will print line numbers every such number of lines."
 msgstr ""
+"Kui selle väärtus on 0, prinditakse dokument ilma reanumbriteta. Muul juhul "
+"prindib xed määratud arvu rea tagant reanumbri."
 
 #: ../data/org.x.editor.gschema.xml.in.h:70
 msgctxt "print-font-body-pango"
 msgid "'Monospace 9'"
-msgstr ""
+msgstr "'Monospace 9'"
 
 #: ../data/org.x.editor.gschema.xml.in.h:71
 msgid "Body Font for Printing"
@@ -365,7 +397,7 @@ msgstr "Dokumendi sisu printimiseks kasutatav kirjatüüp."
 #: ../data/org.x.editor.gschema.xml.in.h:73
 msgctxt "print-font-header-pango"
 msgid "'Sans 11'"
-msgstr ""
+msgstr "'Sans 11'"
 
 #: ../data/org.x.editor.gschema.xml.in.h:74
 msgid "Header Font for Printing"
@@ -382,7 +414,7 @@ msgstr ""
 #: ../data/org.x.editor.gschema.xml.in.h:76
 msgctxt "print-font-numbers-pango"
 msgid "'Sans 8'"
-msgstr ""
+msgstr "'Sans 8'"
 
 #: ../data/org.x.editor.gschema.xml.in.h:77
 msgid "Line Number Font for Printing"
@@ -399,7 +431,7 @@ msgstr ""
 #: ../data/org.x.editor.gschema.xml.in.h:79
 msgctxt "auto-detected"
 msgid "[ 'UTF-8', 'CURRENT', 'ISO-8859-15', 'UTF-16' ]"
-msgstr ""
+msgstr "[ 'UTF-8', 'CURRENT', 'ISO-8859-14', 'UTF-16' ]"
 
 #: ../data/org.x.editor.gschema.xml.in.h:80
 msgid "Automatically Detected Encodings"
@@ -411,11 +443,14 @@ msgid ""
 "encoding of a file. \"CURRENT\" represents the current locale encoding. Only "
 "recognized encodings are used."
 msgstr ""
+"Järjestatud loend kodeeringutest, mida xed faili kodeeringu tuvastamisel "
+"proovib. \"CURRENT\" tähendab praeguse lokaadi kodeeringut. Kasutatakse "
+"ainult äratuntavaid kodeeringuid."
 
 #: ../data/org.x.editor.gschema.xml.in.h:82
 msgctxt "shown-in-menu"
 msgid "[ 'ISO-8859-15' ]"
-msgstr ""
+msgstr "[ 'ISO-8859-14' ]"
 
 #: ../data/org.x.editor.gschema.xml.in.h:83
 msgid "Encodings shown in menu"
@@ -431,19 +466,19 @@ msgstr ""
 
 #: ../data/org.x.editor.gschema.xml.in.h:85
 msgid "History for \"search for\" entries"
-msgstr ""
+msgstr "\"Otsitav tekst\" variantide ajalugu"
 
 #: ../data/org.x.editor.gschema.xml.in.h:86
 msgid "List of entries in \"search for\" textbox."
-msgstr ""
+msgstr "\"Otsitav tekst\" tekstikasti variantide loend."
 
 #: ../data/org.x.editor.gschema.xml.in.h:87
 msgid "History for \"replace with\" entries"
-msgstr ""
+msgstr "\"Asendada tekstiga\" variantide ajalugu"
 
 #: ../data/org.x.editor.gschema.xml.in.h:88
 msgid "List of entries in \"replace with\" textbox."
-msgstr ""
+msgstr "\"Asendada tekstiga\" tekstikasti variantide loend."
 
 #: ../data/org.x.editor.gschema.xml.in.h:89
 msgid "Active plugins"
@@ -454,10 +489,12 @@ msgid ""
 "List of active plugins. It contains the \"Location\" of the active plugins. "
 "See the .xed-plugin file for obtaining the \"Location\" of a given plugin."
 msgstr ""
+"Aktiivsete pluginate loend. See sisaldab aktiivsete pluginate \"asukohta\". "
+"Antud plugina \"asukoha\" leiad .xed-plugin failist."
 
 #: ../data/xed.appdata.xml.in.h:1
 msgid "A Text Editor"
-msgstr ""
+msgstr "Tekstiredaktor"
 
 #: ../data/xed.appdata.xml.in.h:2
 msgid ""
@@ -469,6 +506,12 @@ msgid ""
 "spell checking, comparing files, viewing CVS ChangeLogs, and adjusting "
 "indentation levels. </p>"
 msgstr ""
+"<p>Xed on väike kuid võimekas tekstitoimeti. See sisaldab enamikku "
+"tavapäraseid võimalusi ning sel on täielik rahvusvahelise Unicode "
+"kodeeringus teksti tugi. Lisavõimalused on süntaksi värvimine ja lähtekoodi "
+"automaatne taane, printimine ja mitme dokumendi kuvamine samas aknas.</p> "
+"<p> Xed on laiendatav pluginate süsteemi abil, toetatud on õigekirja "
+"kontroll, failide võrdlemine, CVS logide kuvamine ja taanete muutmine.</p>"
 
 #: ../data/xed.desktop.in.in.h:1 ../xed/xed-print-job.c:707
 msgid "Text Editor"
@@ -476,7 +519,7 @@ msgstr "Tekstiredaktor"
 
 #: ../data/xed.desktop.in.in.h:2
 msgid "Edit text files"
-msgstr ""
+msgstr "Tekstifailide redigeerimine"
 
 #: ../xed/xed-app.c:102
 msgid "Show the application's version"
@@ -498,38 +541,38 @@ msgstr "KOODITABEL"
 
 #: ../xed/xed-app.c:122
 msgid "Create a new top-level window in an existing instance of xed"
-msgstr ""
+msgstr "Uue ülemakna avamine xed'i olemasolevas instantsis"
 
 #: ../xed/xed-app.c:129
 msgid "Create a new document in an existing instance of xed"
-msgstr ""
+msgstr "Uue dokumendi avamine xed'i olemasolevas instantsis"
 
 #: ../xed/xed-app.c:136
 msgid "Set the size and position of the window (WIDTHxHEIGHT+X+Y)"
-msgstr ""
+msgstr "Akna suuruse ja asukoha määramine (LAIUSxKÕRGUS+X+Y)"
 
 #: ../xed/xed-app.c:137
 msgid "GEOMETRY"
-msgstr ""
+msgstr "GEOMEETRIA"
 
 #: ../xed/xed-app.c:143
 msgid "Open files and block process until files are closed"
-msgstr ""
+msgstr "Failide avamine ja protsessi blokkimine kuni failide sulgemiseni"
 
 #: ../xed/xed-app.c:150
 msgid "Run xed in standalone mode"
-msgstr ""
+msgstr "xed-i käivitamine üksikrežiimis"
 
 #: ../xed/xed-app.c:157
 msgid "[FILE...] [+LINE]"
-msgstr ""
+msgstr "[FAIL...] [+RIDA]"
 
-#: ../xed/xed-app.c:616
+#: ../xed/xed-app.c:529
 #, c-format
 msgid "%s: invalid encoding."
-msgstr ""
+msgstr "%s: vigane kodeering."
 
-#: ../xed/xed-app.c:1266
+#: ../xed/xed-app.c:1180
 msgid "There was an error displaying the help."
 msgstr "Abiteabe kuvamisel tekkis viga."
 
@@ -553,17 +596,17 @@ msgstr "Sulge _ilma salvestamata"
 #: ../xed/resources/ui/xed-highlight-mode-dialog.ui.h:2
 #: ../plugins/filebrowser/xed-file-browser-utils.c:153
 msgid "_Cancel"
-msgstr ""
+msgstr "_Loobu"
 
 #: ../xed/xed-close-confirmation-dialog.c:159
 msgid "_Save As..."
-msgstr ""
+msgstr "Salvesta _kui..."
 
 #. File menu
 #: ../xed/xed-close-confirmation-dialog.c:165 ../xed/xed-commands-file.c:649
 #: ../xed/xed-ui.h:79
 msgid "_Save"
-msgstr ""
+msgstr "_Salvesta"
 
 #: ../xed/xed-close-confirmation-dialog.c:192
 msgid "Question"
@@ -701,7 +744,7 @@ msgstr "Failide avamine"
 #: ../xed/xed-commands-file.c:400
 #: ../plugins/filebrowser/xed-file-browser-widget.c:766
 msgid "_Open"
-msgstr ""
+msgstr "_Ava"
 
 #: ../xed/xed-commands-file.c:494
 #, c-format
@@ -712,7 +755,7 @@ msgstr "Fail \"%s\" on kirjutuskaitsega."
 msgid "Do you want to try to replace it with the one you are saving?"
 msgstr "Kas tahad üritada seda salvestatava failiga asendada?"
 
-#: ../xed/xed-commands-file.c:503 ../xed/xed-ui.h:118
+#: ../xed/xed-commands-file.c:503 ../xed/xed-ui.h:122
 msgid "_Replace"
 msgstr "_Asenda"
 
@@ -824,7 +867,7 @@ msgstr "_Pööra tagasi"
 
 #: ../xed/xed-commands-help.c:55
 msgid "A small and lightweight text editor"
-msgstr ""
+msgstr "Väike ja kerge tekstitoimeti"
 
 #: ../xed/xed-document.c:973 ../xed/xed-document.c:1005
 #, c-format
@@ -832,12 +875,12 @@ msgid "Unsaved Document %d"
 msgstr "Salvestamata dokument %d"
 
 #: ../xed/xed-documents-panel.c:93 ../xed/xed-documents-panel.c:104
-#: ../xed/xed-window.c:1731 ../xed/xed-window.c:1735
+#: ../xed/xed-window.c:1752 ../xed/xed-window.c:1756
 msgid "Read-Only"
 msgstr "Kirjutuskaitsega"
 
-#: ../xed/xed-documents-panel.c:730 ../xed/resources/ui/xed-shortcuts.ui.h:1
-#: ../xed/xed-window.c:2956
+#: ../xed/xed-documents-panel.c:717 ../xed/resources/ui/xed-shortcuts.ui.h:1
+#: ../xed/xed-window.c:2982
 msgid "Documents"
 msgstr "Dokumendid"
 
@@ -856,7 +899,7 @@ msgstr "Lisa või eemalda..."
 
 #: ../xed/xed-encodings-dialog.c:337 ../plugins/time/xed-time-plugin.c:789
 msgid "_OK"
-msgstr ""
+msgstr "_Olgu"
 
 #: ../xed/xed-encodings-dialog.c:338 ../xed/xed-ui.h:50
 #: ../plugins/spell/xed-spell-plugin.c:435
@@ -903,7 +946,7 @@ msgstr "Mac OS Classic"
 msgid "Windows"
 msgstr "Windows"
 
-#: ../xed/xed-highlight-mode-selector.c:269 ../xed/xed-window.c:1849
+#: ../xed/xed-highlight-mode-selector.c:291 ../xed/xed-window.c:1868
 msgid "Plain Text"
 msgstr "Lihttekst"
 
@@ -925,11 +968,11 @@ msgstr "Palun kontrolli, kas sisestasid asukoha õigesti ja proovi uuesti."
 #: ../xed/xed-io-error-info-bar.c:189
 #, c-format
 msgid "xed cannot handle %s locations."
-msgstr ""
+msgstr "xed ei oska kasutada %s tüüpi asukohti."
 
 #: ../xed/xed-io-error-info-bar.c:194
 msgid "xed cannot handle this location."
-msgstr ""
+msgstr "xed ei oska kasutada seda tüüpi asukohta."
 
 #: ../xed/xed-io-error-info-bar.c:201
 msgid "The location of the file cannot be mounted."
@@ -986,7 +1029,7 @@ msgstr "Ootamatu viga: %s"
 
 #: ../xed/xed-io-error-info-bar.c:326
 msgid "xed cannot find the file. Perhaps it has recently been deleted."
-msgstr ""
+msgstr "xed ei suuda faili leida. Võib-olla see just kustutati?"
 
 #: ../xed/xed-io-error-info-bar.c:336
 #, c-format
@@ -1016,7 +1059,7 @@ msgstr "Sul pole piisavalt õiguseid selle faili avamiseks."
 
 #: ../xed/xed-io-error-info-bar.c:499
 msgid "xed has not been able to detect the character encoding."
-msgstr ""
+msgstr "xed ei suuda tuvastada märgikodeeringut."
 
 #: ../xed/xed-io-error-info-bar.c:501 ../xed/xed-io-error-info-bar.c:524
 msgid "Please check that you are not trying to open a binary file."
@@ -1036,6 +1079,8 @@ msgid ""
 "The file you opened has some invalid characters. If you continue editing "
 "this file you could corrupt this document."
 msgstr ""
+"Sinu poolt avatud fail sisaldab vigaseid märke. Jätkates selle faili "
+"redigeerimist, võid selle dokumendi rikkuda."
 
 #: ../xed/xed-io-error-info-bar.c:512
 msgid "You can also choose another character encoding and try again."
@@ -1077,13 +1122,14 @@ msgstr "Ära r_edigeeri"
 #: ../xed/xed-io-error-info-bar.c:673
 #, c-format
 msgid "This file (%s) is already open in another xed window."
-msgstr ""
+msgstr "See fail (%s) on juba avatud teises xed aknas."
 
 #: ../xed/xed-io-error-info-bar.c:687
 msgid ""
 "xed opened this instance of the file in a non-editable way. Do you want to "
 "edit it anyway?"
 msgstr ""
+"xed avas selle faili muudetamatult. Kas tahad sellest hoolimata seda muuta?"
 
 #: ../xed/xed-io-error-info-bar.c:742 ../xed/xed-io-error-info-bar.c:830
 #: ../xed/xed-io-error-info-bar.c:1092
@@ -1127,6 +1173,10 @@ msgid ""
 "You can ignore this warning and save the file anyway, but if an error occurs "
 "while saving, you could lose the old copy of the file. Save anyway?"
 msgstr ""
+"xed ei suutnud enne uue versiooni salvestamist luua varukoopiat vanast "
+"failist. Sa võid seda hoiatust eirata ja ikka salvestada, kuid kui "
+"salvestamisel esineb viga, võid kaotada faili vana versiooni. Kas tahad ikka "
+"salvestada?"
 
 #. Translators: %s is a URI scheme (like for example http:, ftp:, etc.)
 #: ../xed/xed-io-error-info-bar.c:928
@@ -1135,12 +1185,16 @@ msgid ""
 "xed cannot handle %s locations in write mode. Please check that you typed "
 "the location correctly and try again."
 msgstr ""
+"xed ei suuda kirjutusrežiimis kasutada %s liiki asukohti. Palun kontrolli, "
+"kas kirjutasid asukoha õigesti ja proovi uuesti."
 
 #: ../xed/xed-io-error-info-bar.c:936
 msgid ""
 "xed cannot handle this location in write mode. Please check that you typed "
 "the location correctly and try again."
 msgstr ""
+"xed ei suuda kirjutusrežiimis kasutada seda liiki asukohtai Palun kontrolli, "
+"kas kirjutasid asukoha õigesti ja proovi uuesti."
 
 #: ../xed/xed-io-error-info-bar.c:945
 #, c-format
@@ -1226,18 +1280,20 @@ msgstr "Laa_di uuesti"
 #: ../xed/xed-io-error-info-bar.c:1107
 #, c-format
 msgid "Some invalid chars have been detected while saving %s"
-msgstr ""
+msgstr "%s salvestamise käigus tuvastati mõned vigased märgid"
 
 #: ../xed/xed-io-error-info-bar.c:1122
 msgid ""
 "If you continue saving this file you can corrupt the document.  Save anyway?"
 msgstr ""
+"Jätkates selle faili salvestamist võid sa dokumendi rikkuda.  Kas siiski "
+"salvestada?"
 
 #: ../xed/xed-preferences-dialog.c:264
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:3
 #, no-c-format
 msgid "Use the system fixed width font (%s)"
-msgstr ""
+msgstr "Süsteemi fikslaiusega fondi kasutamine (%s)"
 
 #: ../xed/xed-preferences-dialog.c:382
 msgid "Editor"
@@ -1245,7 +1301,7 @@ msgstr "Redaktor"
 
 #: ../xed/xed-preferences-dialog.c:414
 msgid "Save"
-msgstr ""
+msgstr "Salvesta"
 
 #: ../xed/xed-preferences-dialog.c:527
 #, c-format
@@ -1265,7 +1321,7 @@ msgstr "Skeemi lisamine"
 
 #: ../xed/xed-preferences-dialog.c:707 ../xed/xed-progress-info-bar.c:64
 msgid "Cancel"
-msgstr ""
+msgstr "Loobu"
 
 #: ../xed/xed-preferences-dialog.c:716
 msgid "Color Scheme Files"
@@ -1278,7 +1334,7 @@ msgstr "Värviskeemi \"%s\" pole võimalik eemaldada."
 
 #: ../xed/xed-preferences-dialog.c:820
 msgid "Theme"
-msgstr ""
+msgstr "Kujundus"
 
 #: ../xed/xed-preferences-dialog.c:837
 msgid "Plugins"
@@ -1286,16 +1342,16 @@ msgstr "Pluginad"
 
 #: ../xed/xed-preferences-dialog.c:845
 msgid "Help"
-msgstr ""
+msgstr "Abi"
 
 #: ../xed/xed-preferences-dialog.c:850
 #: ../xed/resources/ui/xed-searchbar.ui.h:11
 msgid "Close"
-msgstr ""
+msgstr "Sulge"
 
 #: ../xed/xed-preferences-dialog.c:864
 msgid "Xed Preferences"
-msgstr ""
+msgstr "Xed eelistused"
 
 #: ../xed/xed-print-job.c:494
 #, c-format
@@ -1310,85 +1366,85 @@ msgstr "Lehekülg %N/%Q"
 msgid "Preparing..."
 msgstr "Ettevalmistused..."
 
-#: ../xed/xed-print-preview.c:567
+#: ../xed/xed-print-preview.c:571
 msgid "Show the previous page"
 msgstr "Eelmise lehekülje näitamine"
 
-#: ../xed/xed-print-preview.c:573
+#: ../xed/xed-print-preview.c:577
 msgid "Show the next page"
 msgstr "Järgmise lehekülje näitamine"
 
-#: ../xed/xed-print-preview.c:587
+#: ../xed/xed-print-preview.c:591
 msgid "Current page (Alt+P)"
 msgstr "Käesolev lehekülg (Alt+P)"
 
 #. gtk_label_set_mnemonic_widget ((GtkLabel *) l, mp->priv->page_entry);
 #. We are displaying 'XXX of XXX'.
 #. Translators: the "of" from "1 of 19" in print preview.
-#: ../xed/xed-print-preview.c:601
+#: ../xed/xed-print-preview.c:605
 msgid "of"
 msgstr "/"
 
-#: ../xed/xed-print-preview.c:606
+#: ../xed/xed-print-preview.c:610
 msgid "Page total"
 msgstr "Lehekülgi kokku"
 
-#: ../xed/xed-print-preview.c:607
+#: ../xed/xed-print-preview.c:611
 msgid "The total number of pages in the document"
 msgstr "Selles dokumendis olevate lehekülgede koguarv"
 
-#: ../xed/xed-print-preview.c:627
+#: ../xed/xed-print-preview.c:631
 msgid "Show multiple pages"
 msgstr "Mitme lehekülje näitamine"
 
-#: ../xed/xed-print-preview.c:645
+#: ../xed/xed-print-preview.c:649
 msgid "Zoom 1:1"
 msgstr "Suurendus 1:1"
 
-#: ../xed/xed-print-preview.c:651
+#: ../xed/xed-print-preview.c:655
 msgid "Zoom to fit the whole page"
 msgstr "Suurendus kogu leheküljele sobitamiseks"
 
-#: ../xed/xed-print-preview.c:657
+#: ../xed/xed-print-preview.c:661
 msgid "Zoom the page in"
 msgstr "Lehekülje suurendamine"
 
-#: ../xed/xed-print-preview.c:663
+#: ../xed/xed-print-preview.c:667
 msgid "Zoom the page out"
 msgstr "Lehekülje vähendamine"
 
-#: ../xed/xed-print-preview.c:678
+#: ../xed/xed-print-preview.c:682
 msgid "_Close preview"
-msgstr ""
+msgstr "_Sulge eelvaade"
 
-#: ../xed/xed-print-preview.c:680
+#: ../xed/xed-print-preview.c:684
 msgid "Close print preview"
 msgstr "Printimise eelvaate sulgemine"
 
-#: ../xed/xed-print-preview.c:758
+#: ../xed/xed-print-preview.c:762
 #, c-format
 msgid "Page %d of %d"
 msgstr "Lehekülg %d (%d-st)"
 
-#: ../xed/xed-print-preview.c:943
+#: ../xed/xed-print-preview.c:944
 msgid "Page Preview"
 msgstr "Lehekülje eelvaade"
 
-#: ../xed/xed-print-preview.c:944
+#: ../xed/xed-print-preview.c:945
 msgid "The preview of a page in the document to be printed"
 msgstr "Prinditava dokumendi eelvaade"
 
 #: ../xed/resources/ui/xed-highlight-mode-dialog.ui.h:1
 msgid "Highlight Mode"
-msgstr ""
+msgstr "Esiletõstmise režiim"
 
 #: ../xed/resources/ui/xed-highlight-mode-dialog.ui.h:3
 msgid "_Select"
-msgstr ""
+msgstr "_Vali"
 
 #: ../xed/resources/ui/xed-highlight-mode-selector.ui.h:1
 msgid "Search highlight mode…"
-msgstr ""
+msgstr "Otsingu esiletõstmise viis..."
 
 #: ../xed/resources/ui/xed-encodings-dialog.ui.h:1
 msgid "Character encodings"
@@ -1408,107 +1464,107 @@ msgstr "Kirjatüüp"
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:4
 msgid "Display"
-msgstr ""
+msgstr "Kuva"
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:5
 msgid "Display line numbers"
-msgstr ""
+msgstr "Reanumbrite näitamine"
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:6
 msgid "Display overview map"
-msgstr ""
+msgstr "Ülevaate kaardi näitamine"
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:7
 msgid "Display right margin"
-msgstr ""
+msgstr "Paremveerise näitamine"
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:8
 msgid "Right margin at column"
-msgstr ""
+msgstr "Paremveerise tulp"
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:9
 msgid "4"
-msgstr ""
+msgstr "4"
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:10
 msgid "Highlighting"
-msgstr ""
+msgstr "Esiletõstmine"
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:11
 msgid "Highlight the current line"
-msgstr ""
+msgstr "Aktiivse rea esiletõstmine"
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:12
 msgid "Highlight matching brackets"
-msgstr ""
+msgstr "Sulupaaride esiletõstmine"
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:13
 msgid "Indentation"
-msgstr ""
+msgstr "Treppimine"
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:14
 msgid "Tab width"
-msgstr ""
+msgstr "Tabulaatori laius"
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:15
 msgid "Use spaces instead of tabs"
-msgstr ""
+msgstr "Tühikute kasutamine tabulaatori asemel"
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:16
 msgid "Automatic indentation"
-msgstr ""
+msgstr "Automaatne taane"
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:17
 msgid "Word wrap"
-msgstr ""
+msgstr "Reamurdmine"
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:18
 msgid "Split words over two lines"
-msgstr ""
+msgstr "Sõnade murdmine mitmele reale"
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:19
 msgid "Tab scrolling"
-msgstr ""
+msgstr "Kaartidel kerimine"
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:20
 msgid "Allow mouse wheel scrolling to change tabs"
-msgstr ""
+msgstr "Hiireratta kerimine vahetab kaarte"
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:21
 msgid "File saving"
-msgstr ""
+msgstr "Faili salvestamine"
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:22
 msgid "Create a backup copy of files before saving"
-msgstr ""
+msgstr "Enne salvestamist tee failidest varukoopia"
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:23
 msgid "Autosave files"
-msgstr ""
+msgstr "Failide automaatne salvestamine"
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:24
 msgid "Minutes between saving"
-msgstr ""
+msgstr "Minutit kahe salvestamise vahel"
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:25
 msgid "Dark theme"
-msgstr ""
+msgstr "Tume kujundus"
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:26
 msgid "Use dark theme variant (if available)"
-msgstr ""
+msgstr "Kasutatakse tumedat kujundust (kui saadaval)"
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:27
 msgid "Style scheme"
-msgstr ""
+msgstr "Kujunduse skeem"
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:28
 msgid "Install scheme"
-msgstr ""
+msgstr "Paigalda skeem"
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:29
 msgid "Remove scheme"
-msgstr ""
+msgstr "Eemalda skeem"
 
 #: ../xed/resources/ui/xed-print-preferences.ui.h:1
 msgid "Syntax Highlighting"
@@ -1594,27 +1650,27 @@ msgstr "Asendada _tekstiga: "
 
 #: ../xed/resources/ui/xed-searchbar.ui.h:5
 msgid "Next"
-msgstr ""
+msgstr "Järgmine"
 
 #: ../xed/resources/ui/xed-searchbar.ui.h:6
 msgid "Previous"
-msgstr ""
+msgstr "Eelmine"
 
 #: ../xed/resources/ui/xed-searchbar.ui.h:7
 msgid "Regular expression"
-msgstr ""
+msgstr "Regulaaravaldis"
 
 #: ../xed/resources/ui/xed-searchbar.ui.h:8
 msgid "Case sensitive"
-msgstr ""
+msgstr "Tõstutundlik"
 
 #: ../xed/resources/ui/xed-searchbar.ui.h:9
 msgid "Whole word"
-msgstr ""
+msgstr "Kogu sõna"
 
 #: ../xed/resources/ui/xed-searchbar.ui.h:10
 msgid "Wrap"
-msgstr ""
+msgstr "Reamurdmine"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:2 ../xed/xed-ui.h:54
 msgid "Create a new document"
@@ -1622,107 +1678,107 @@ msgstr "Uue dokumendi loomine"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:3
 msgid "Open a document"
-msgstr ""
+msgstr "Dokumendi avamine"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:4
 msgid "Save the document"
-msgstr ""
+msgstr "Dokumendi salvestamine"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:5
 msgid "Save the document with a new filename"
-msgstr ""
+msgstr "Dokumendi salvestamine uue nimega"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:6
 msgid "Save all the documents"
-msgstr ""
+msgstr "Kõigi dokumentide salvestamine"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:7
 msgid "Close the document"
-msgstr ""
+msgstr "Dokumendi sulgemine"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:8
 msgid "Close all the documents"
-msgstr ""
+msgstr "Kõigi dokumentide sulgemine"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:9
 msgid "Switch to the next document"
-msgstr ""
+msgstr "Järgmisele dokumendile liikumine"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:10
 msgid "Switch to the previous document"
-msgstr ""
+msgstr "Eelmisele dokumendile liikumine"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:11
 msgid "Switch to the first - ninth document"
-msgstr ""
+msgstr "Esimesele kuni üheksandale dokumendile liikumine"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:12
 msgid "Windows and Panes"
-msgstr ""
+msgstr "Aknad ja paneelid"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:13
 msgid "Show side pane"
-msgstr ""
+msgstr "Külgpaneeli kuvamine"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:14
 msgid "Show bottom pane"
-msgstr ""
+msgstr "Alumise paneeli kuvamine"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:15
 msgid "Fullscreen on / off"
-msgstr ""
+msgstr "Täisekraan sees / väljas"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:16
 msgid "Quit the application"
-msgstr ""
+msgstr "Rakenduse sulgemine"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:17
 msgid "Find and Replace"
-msgstr ""
+msgstr "Otsi ja asenda"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:18
 msgid "Find"
-msgstr ""
+msgstr "Otsimine"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:19
 msgid "Find the next match"
-msgstr ""
+msgstr "Järgmise vaste otsimine"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:20
 msgid "Find the previous match"
-msgstr ""
+msgstr "Eelmise vaste otsimine"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:21
 msgid "Go to line"
-msgstr ""
+msgstr "Reale liikumine"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:22
 msgid "Copy and Paste"
-msgstr ""
+msgstr "Kopeerimine ja asetamine"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:23
 msgid "Copy selected text to clipboard"
-msgstr ""
+msgstr "Valitud teksti kopeerimine lõikelauale"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:24
 msgid "Cut selected text to clipboard"
-msgstr ""
+msgstr "Valitud teksti lõikamine lõikelauale"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:25
 msgid "Paste text from clipboard"
-msgstr ""
+msgstr "Teksti asetamine lõikelaualt"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:26
 msgid "Undo and Redo"
-msgstr ""
+msgstr "Tagasivõtmine ja kordamine"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:27
 msgid "Undo previous command"
-msgstr ""
+msgstr "Eelmise käsu tagasivõtmine"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:28
 msgid "Redo previous command"
-msgstr ""
+msgstr "Eelmise käsu uuesti tegemine"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:29 ../plugins/docinfo/docinfo.ui.h:11
 msgid "Selection"
@@ -1730,71 +1786,79 @@ msgstr "Valikus"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:30
 msgid "Select all text"
-msgstr ""
+msgstr "Kogu teksti valimine"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:31
 msgid "Tools"
-msgstr ""
+msgstr "Tööriistad"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:32
 msgid "Check spelling"
-msgstr ""
+msgstr "Õigekirjakontroll"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:33
 msgid "Print the document"
-msgstr ""
+msgstr "Dokumendi trükkimine"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:34
 msgid "Editing"
-msgstr ""
+msgstr "Muutmine"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:35
 msgid "Toggle insert / overwrite"
-msgstr ""
+msgstr "Sisestamise / ülekirjutamise vahetus"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:36
 msgid "Delete current line"
-msgstr ""
+msgstr "Aktiivse rea kustutamine"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:37
 msgid "Move current line up"
-msgstr ""
+msgstr "Aktiivse rea tõstmine üles"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:38
 msgid "Move current line down"
-msgstr ""
+msgstr "Aktiivse rea tõstmine alla"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:39
 msgid "Move current word left"
-msgstr ""
+msgstr "Aktiivse sõna tõstmine vasakule"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:40
 msgid "Move current word right"
-msgstr ""
+msgstr "Aktiivse sõna tõstmine paremale"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:41
 msgid "Convert to uppercase"
-msgstr ""
+msgstr "Teisendamine suurtäheliseks"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:42
 msgid "Convert to lowercase"
-msgstr ""
+msgstr "Teisendamine väiketäheliseks"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:43
 msgid "Convert to title case"
-msgstr ""
+msgstr "Iga sõna algussuurtähega"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:44
 msgid "Invert case"
-msgstr ""
+msgstr "Tähtede tõstu vahetamine"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:45
 msgid "Increment number at cursor"
-msgstr ""
+msgstr "Kursori juures oleva numbri suurendamine"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:46
 msgid "Decrement number at cursor"
-msgstr ""
+msgstr "Kursori juures oleva numbri vähendamine"
+
+#: ../xed/resources/ui/xed-shortcuts.ui.h:47
+msgid "Toggle comment block"
+msgstr "Kommentaari bloki lülitamine"
+
+#: ../xed/resources/ui/xed-shortcuts.ui.h:48
+msgid "Toggle comment"
+msgstr "Kommentaari lülitamine"
 
 #: ../xed/xed-searchbar.c:92
 #, c-format
@@ -1814,21 +1878,21 @@ msgstr "Fraasi \"%s\" ei leitud"
 
 #: ../xed/xed-searchbar.c:302
 msgid "No matches found"
-msgstr ""
+msgstr "Ühtegi vastet ei leitud"
 
 #: ../xed/xed-searchbar.c:310
 #, c-format
 msgid "%d match"
 msgid_plural "%d matches"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d vaste"
+msgstr[1] "%d vastet"
 
 #: ../xed/xed-searchbar.c:316
 #, c-format
 msgid "%d of %d match"
 msgid_plural "%d of %d matches"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d vaste %d-st"
+msgstr[1] "%d vastet %d-st"
 
 #: ../xed/xed-statusbar.c:67 ../xed/xed-statusbar.c:73
 msgid "OVR"
@@ -1858,69 +1922,69 @@ msgstr "Dokumendi sulgemine"
 
 #. Translators: the first %s is a file name (e.g. test.txt) the second one
 #. is a directory (e.g. ssh://master.gnome.org/home/users/paolo)
-#: ../xed/xed-tab.c:715
+#: ../xed/xed-tab.c:716
 #, c-format
 msgid "Reverting %s from %s"
 msgstr "Dokumendi %s taastamine kataloogist %s"
 
-#: ../xed/xed-tab.c:720
+#: ../xed/xed-tab.c:721
 #, c-format
 msgid "Reverting %s"
 msgstr "%s taastamine"
 
 #. Translators: the first %s is a file name (e.g. test.txt) the second one
 #. is a directory (e.g. ssh://master.gnome.org/home/users/paolo)
-#: ../xed/xed-tab.c:733
+#: ../xed/xed-tab.c:734
 #, c-format
 msgid "Loading %s from %s"
 msgstr "Faili %s laadimine kataloogist %s"
 
-#: ../xed/xed-tab.c:738
+#: ../xed/xed-tab.c:739
 #, c-format
 msgid "Loading %s"
 msgstr "%s laadimine"
 
 #. Translators: the first %s is a file name (e.g. test.txt) the second one
 #. is a directory (e.g. ssh://master.gnome.org/home/users/paolo)
-#: ../xed/xed-tab.c:819
+#: ../xed/xed-tab.c:820
 #, c-format
 msgid "Saving %s to %s"
 msgstr "%s salvestamine kataloogi %s"
 
-#: ../xed/xed-tab.c:824
+#: ../xed/xed-tab.c:825
 #, c-format
 msgid "Saving %s"
 msgstr "%s salvestamine"
 
 #. Read only
-#: ../xed/xed-tab.c:1304
+#: ../xed/xed-tab.c:1305
 msgid "RO"
 msgstr "KK"
 
-#: ../xed/xed-tab.c:1352
+#: ../xed/xed-tab.c:1353
 #, c-format
 msgid "Error opening file %s"
 msgstr "Viga faili %s avamisel"
 
-#: ../xed/xed-tab.c:1356
+#: ../xed/xed-tab.c:1357
 #, c-format
 msgid "Error reverting file %s"
 msgstr "Viga faili %s taastamisel"
 
-#: ../xed/xed-tab.c:1360
+#: ../xed/xed-tab.c:1361
 #, c-format
 msgid "Error saving file %s"
 msgstr "Viga faili %s salvestamisel"
 
-#: ../xed/xed-tab.c:1393
+#: ../xed/xed-tab.c:1394
 msgid "Name:"
 msgstr "Nimi:"
 
-#: ../xed/xed-tab.c:1394
+#: ../xed/xed-tab.c:1395
 msgid "MIME Type:"
 msgstr "MIME-liik:"
 
-#: ../xed/xed-tab.c:1395
+#: ../xed/xed-tab.c:1396
 msgid "Encoding:"
 msgstr "Kodeering:"
 
@@ -1952,7 +2016,7 @@ msgstr "_Dokumendid"
 #. File menu
 #: ../xed/xed-ui.h:53
 msgid "_New"
-msgstr ""
+msgstr "_Uus"
 
 #: ../xed/xed-ui.h:55
 msgid "_Open..."
@@ -1978,7 +2042,7 @@ msgstr "_Sisu"
 
 #: ../xed/xed-ui.h:64
 msgid "Open the xed manual"
-msgstr ""
+msgstr "xed käsiraamatu avamine"
 
 #: ../xed/xed-ui.h:65
 msgid "_About"
@@ -1990,11 +2054,11 @@ msgstr "Lähema teabe kuvamine programmi kohta"
 
 #: ../xed/xed-ui.h:67
 msgid "_Keyboard Shortcuts"
-msgstr ""
+msgstr "_Kiirklahvid"
 
 #: ../xed/xed-ui.h:68
 msgid "Show the keyboard shortcuts dialog"
-msgstr ""
+msgstr "Kiirklahvide dialoogi kuvamine"
 
 #: ../xed/xed-ui.h:72
 msgid "Leave fullscreen mode"
@@ -2014,7 +2078,7 @@ msgstr "Käesoleva faili salvestamine teise nime alla"
 
 #: ../xed/xed-ui.h:83
 msgid "Revert"
-msgstr ""
+msgstr "Lähtesta"
 
 #: ../xed/xed-ui.h:84
 msgid "Revert to a saved version of the file"
@@ -2039,7 +2103,7 @@ msgstr "Käesoleva lehekülje printimine"
 #. Edit menu
 #: ../xed/xed-ui.h:91
 msgid "_Undo"
-msgstr ""
+msgstr "_Võta tagasi"
 
 #: ../xed/xed-ui.h:92
 msgid "Undo the last action"
@@ -2047,7 +2111,7 @@ msgstr "Viimase tegevuse unustamine"
 
 #: ../xed/xed-ui.h:93
 msgid "_Redo"
-msgstr ""
+msgstr "_Tee uuesti"
 
 #: ../xed/xed-ui.h:94
 msgid "Redo the last undone action"
@@ -2055,7 +2119,7 @@ msgstr "Unustatud tegevuse uuestitegemine"
 
 #: ../xed/xed-ui.h:95
 msgid "C_ut"
-msgstr ""
+msgstr "_Lõika"
 
 #: ../xed/xed-ui.h:96
 msgid "Cut the selection"
@@ -2063,7 +2127,7 @@ msgstr "Valiku lõikamine"
 
 #: ../xed/xed-ui.h:97
 msgid "_Copy"
-msgstr ""
+msgstr "_Kopeeri"
 
 #: ../xed/xed-ui.h:98
 msgid "Copy the selection"
@@ -2071,14 +2135,14 @@ msgstr "Valiku kopeerimine"
 
 #: ../xed/xed-ui.h:99
 msgid "_Paste"
-msgstr ""
+msgstr "_Aseta"
 
 #: ../xed/xed-ui.h:100
 msgid "Paste the clipboard"
 msgstr "Lõikepuhvri sisu asetamine"
 
-#: ../xed/xed-ui.h:101 ../plugins/filebrowser/xed-file-browser-plugin.c:968
-#: ../plugins/filebrowser/xed-file-browser-plugin.c:1003
+#: ../xed/xed-ui.h:101 ../plugins/filebrowser/xed-file-browser-plugin.c:966
+#: ../plugins/filebrowser/xed-file-browser-plugin.c:1001
 #: ../plugins/filebrowser/xed-file-browser-widget.c:760
 msgid "_Delete"
 msgstr "_Kustuta"
@@ -2095,177 +2159,197 @@ msgstr "Val_i kõik"
 msgid "Select the entire document"
 msgstr "Kogu dokumendi valimine"
 
-#. View menu
+#: ../xed/xed-ui.h:105
+msgid "_Toggle Comment"
+msgstr "_Kommentaari lülitus"
+
+#: ../xed/xed-ui.h:106 ../plugins/taglist/HTML.tags.xml.in.h:41
+msgid "Comment"
+msgstr "Kommentaar"
+
 #: ../xed/xed-ui.h:107
+msgid "Toggle Comment _Block"
+msgstr "Kommentaari _bloki lülitus"
+
+#: ../xed/xed-ui.h:108
+msgid "Comment Block"
+msgstr "Kommentaari blokk"
+
+#. View menu
+#: ../xed/xed-ui.h:111
 msgid "_Highlight Mode"
 msgstr "Esiletõstmise _režiim"
 
-#: ../xed/xed-ui.h:108
+#: ../xed/xed-ui.h:112
 msgid "Change syntax hightlight mode"
-msgstr ""
+msgstr "Süntaksi esiletõstmise režiimi muutmine"
 
 #. Search menu
-#: ../xed/xed-ui.h:112
+#: ../xed/xed-ui.h:116
 msgid "_Find"
-msgstr ""
+msgstr "_Otsi"
 
-#: ../xed/xed-ui.h:113
+#: ../xed/xed-ui.h:117
 msgid "Search for text"
 msgstr "Teksti otsimine"
 
-#: ../xed/xed-ui.h:114
+#: ../xed/xed-ui.h:118
 msgid "Find Ne_xt"
 msgstr "Otsi _uuesti"
 
-#: ../xed/xed-ui.h:115
+#: ../xed/xed-ui.h:119
 msgid "Search forwards for the same text"
 msgstr "Sama teksti uuesti otsimine"
 
-#: ../xed/xed-ui.h:116
+#: ../xed/xed-ui.h:120
 msgid "Find Pre_vious"
 msgstr "Otsi _eelmist"
 
-#: ../xed/xed-ui.h:117
+#: ../xed/xed-ui.h:121
 msgid "Search backwards for the same text"
 msgstr "Sama teksti uuesti otsimine tagurpidisuunas"
 
-#: ../xed/xed-ui.h:119
+#: ../xed/xed-ui.h:123
 msgid "Search for and replace text"
 msgstr "Teksti otsimine ja asendamine"
 
-#: ../xed/xed-ui.h:120
+#: ../xed/xed-ui.h:124
 msgid "Go to _Line..."
 msgstr "Mine _reale..."
 
-#: ../xed/xed-ui.h:121
+#: ../xed/xed-ui.h:125
 msgid "Go to a specific line"
 msgstr "Liikumine määratud reale"
 
 #. Documents menu
-#: ../xed/xed-ui.h:124
+#: ../xed/xed-ui.h:128
 msgid "_Save All"
 msgstr "_Salvesta kõik"
 
-#: ../xed/xed-ui.h:125
+#: ../xed/xed-ui.h:129
 msgid "Save all open files"
 msgstr "Kõigi avatud failide salvestamine"
 
-#: ../xed/xed-ui.h:126
+#: ../xed/xed-ui.h:130
 msgid "_Close All"
 msgstr "Sulge k_õik"
 
-#: ../xed/xed-ui.h:127
+#: ../xed/xed-ui.h:131
 msgid "Close all open files"
 msgstr "Kõikide avatud failide sulgemine"
 
-#: ../xed/xed-ui.h:128
+#: ../xed/xed-ui.h:132
 msgid "_Previous Document"
 msgstr "_Eelmine dokument"
 
-#: ../xed/xed-ui.h:129
+#: ../xed/xed-ui.h:133
 msgid "Activate previous document"
 msgstr "Eelmise dokumendi aktiveerimine"
 
-#: ../xed/xed-ui.h:130
+#: ../xed/xed-ui.h:134
 msgid "_Next Document"
 msgstr "_Järgmine dokument"
 
-#: ../xed/xed-ui.h:131
+#: ../xed/xed-ui.h:135
 msgid "Activate next document"
 msgstr "Järgmise dokumendi aktiveerimine"
 
-#: ../xed/xed-ui.h:132
+#: ../xed/xed-ui.h:136
 msgid "_Move to New Window"
 msgstr "_Tõsta uude aknasse"
 
-#: ../xed/xed-ui.h:133
+#: ../xed/xed-ui.h:137
 msgid "Move the current document to a new window"
 msgstr "Selle dokumendi tõstmine uude aknasse"
 
-#: ../xed/xed-ui.h:139
+#: ../xed/xed-ui.h:143
 msgid "_Close"
-msgstr ""
+msgstr "_Sulge"
 
-#: ../xed/xed-ui.h:140
+#: ../xed/xed-ui.h:144
 msgid "Close the current file"
 msgstr "Käesoleva faili sulgemine"
 
-#: ../xed/xed-ui.h:146
+#: ../xed/xed-ui.h:150
 msgid "_Quit"
-msgstr ""
+msgstr "_Lõpeta"
 
-#: ../xed/xed-ui.h:147
+#: ../xed/xed-ui.h:151
 msgid "Quit the program"
 msgstr "Programmi töö lõpetamine"
 
-#: ../xed/xed-ui.h:152
+#: ../xed/xed-ui.h:156
 msgid "_Toolbar"
 msgstr "_Tööriistariba"
 
-#: ../xed/xed-ui.h:153
+#: ../xed/xed-ui.h:157
 msgid "Show or hide the toolbar in the current window"
 msgstr "Selle akna tööriistariba näitamine või peitmine"
 
-#: ../xed/xed-ui.h:155
+#: ../xed/xed-ui.h:159
 msgid "_Statusbar"
 msgstr "_Olekuriba"
 
-#: ../xed/xed-ui.h:156
+#: ../xed/xed-ui.h:160
 msgid "Show or hide the statusbar in the current window"
 msgstr "Selle akna olekuriba näitamine või peitmine"
 
-#: ../xed/xed-ui.h:159
+#: ../xed/xed-ui.h:162
+msgid "Fullscreen"
+msgstr ""
+
+#: ../xed/xed-ui.h:163
 msgid "Edit text in fullscreen"
 msgstr "Teksti redigeerimine täisekraanil"
 
-#: ../xed/xed-ui.h:161
-msgid "_Word wrap"
-msgstr ""
-
-#: ../xed/xed-ui.h:162
-msgid "Set word wrap for the current document"
-msgstr ""
-
-#: ../xed/xed-ui.h:164
-msgid "_Overview Map"
-msgstr ""
-
 #: ../xed/xed-ui.h:165
-msgid "Show or hide the overview map for the current view"
-msgstr ""
+msgid "_Word wrap"
+msgstr "_Reamurdmine"
 
-#: ../xed/xed-ui.h:172
+#: ../xed/xed-ui.h:166
+msgid "Set word wrap for the current document"
+msgstr "Reamurdmise lubamine selles dokumendis"
+
+#: ../xed/xed-ui.h:168
+msgid "_Overview Map"
+msgstr "Ülevaatlik _kaart"
+
+#: ../xed/xed-ui.h:169
+msgid "Show or hide the overview map for the current view"
+msgstr "Ülevaatliku kaardi näitamine selles vaates"
+
+#: ../xed/xed-ui.h:176
 msgid "Side _Pane"
 msgstr "Külg_paan"
 
-#: ../xed/xed-ui.h:173
+#: ../xed/xed-ui.h:177
 msgid "Show or hide the side pane in the current window"
 msgstr "Selle akna külgpaani näitamine või peitmine"
 
-#: ../xed/xed-ui.h:175
+#: ../xed/xed-ui.h:179
 msgid "_Bottom Pane"
 msgstr "_Alumine paan"
 
-#: ../xed/xed-ui.h:176
+#: ../xed/xed-ui.h:180
 msgid "Show or hide the bottom pane in the current window"
 msgstr "Selle akna alumise paani näitamine või peitmine"
 
-#: ../xed/xed-utils.c:922
+#: ../xed/xed-utils.c:642
 msgid "Please check your installation."
 msgstr "Palun kontrolli oma paigaldust."
 
-#: ../xed/xed-utils.c:990
+#: ../xed/xed-utils.c:710
 #, c-format
 msgid "Unable to open UI file %s. Error: %s"
 msgstr "Kasutajaliidese faili %s pole võimalik avada. Viga: %s"
 
-#: ../xed/xed-utils.c:1010
+#: ../xed/xed-utils.c:730
 #, c-format
 msgid "Unable to find the object '%s' inside file %s."
 msgstr "Objekti '%s' pole võimalik failist %s leida."
 
 #. Translators: '/ on <remote-share>'
-#: ../xed/xed-utils.c:1178
+#: ../xed/xed-utils.c:898
 #, c-format
 msgid "/ on %s"
 msgstr "/ kettal %s"
@@ -2286,30 +2370,27 @@ msgstr "Ava '%s'"
 msgid "Activate '%s'"
 msgstr "'%s' aktiveerimine"
 
-#: ../xed/xed-window.c:1324
-msgid "Spaces"
-msgstr ""
+#: ../xed/xed-window.c:1330
+#, c-format
+msgid "Spaces: %u"
+msgstr "Tühikud: %u"
 
-#: ../xed/xed-window.c:1328
-msgid "Tabs"
-msgstr ""
+#: ../xed/xed-window.c:1334
+#, c-format
+msgid "Tabs: %u"
+msgstr "Tabulaator: %u"
 
-#: ../xed/xed-window.c:1389
+#: ../xed/xed-window.c:1411
 msgid "Use Spaces"
 msgstr "Kasutatakse tühikuid"
 
-#: ../xed/xed-window.c:1829
-#, c-format
-msgid "Tab Width: %u"
-msgstr ""
-
-#: ../xed/xed-window.c:2179
+#: ../xed/xed-window.c:2198
 msgid "There are unsaved documents"
-msgstr ""
+msgstr "Mõned dokumendid on salvestamata"
 
-#: ../xed/xed-window.c:3221
+#: ../xed/xed-window.c:3247
 msgid "Elevated Privileges"
-msgstr ""
+msgstr "Administraatori õigused"
 
 #: ../plugins/docinfo/docinfo.plugin.desktop.in.h:1
 #: ../plugins/docinfo/docinfo.ui.h:1
@@ -2423,11 +2504,12 @@ msgstr ""
 
 #: ../plugins/filebrowser/org.x.editor.plugins.filebrowser.gschema.xml.h:7
 msgid "Terminal Command"
-msgstr ""
+msgstr "Terminali käsk"
 
 #: ../plugins/filebrowser/org.x.editor.plugins.filebrowser.gschema.xml.h:8
 msgid "The terminal command when using the \"Open terminal here\" command."
 msgstr ""
+"Terminalis käivitatav käsk, kui kasutatakse \"Ava terminal siin\" käsku."
 
 #: ../plugins/filebrowser/org.x.editor.plugins.filebrowser.gschema.xml.h:9
 msgid "Open With Tree View"
@@ -2494,43 +2576,43 @@ msgstr "_Ava terminal siin"
 msgid "Open a terminal at the currently opened directory"
 msgstr "Terminali avamine käesolevaga avatud kataloogis"
 
-#: ../plugins/filebrowser/xed-file-browser-plugin.c:562
+#: ../plugins/filebrowser/xed-file-browser-plugin.c:560
 msgid "File Browser"
 msgstr "Failisirvija"
 
-#: ../plugins/filebrowser/xed-file-browser-plugin.c:673
+#: ../plugins/filebrowser/xed-file-browser-plugin.c:671
 msgid "An error occurred while creating a new directory"
 msgstr "Uue kataloogi loomisel tekkis viga"
 
-#: ../plugins/filebrowser/xed-file-browser-plugin.c:676
+#: ../plugins/filebrowser/xed-file-browser-plugin.c:674
 msgid "An error occurred while creating a new file"
 msgstr "Uue faili loomisel tekkis viga"
 
-#: ../plugins/filebrowser/xed-file-browser-plugin.c:679
+#: ../plugins/filebrowser/xed-file-browser-plugin.c:677
 msgid "An error occurred while renaming a file or directory"
 msgstr "Faili või kataloogi nime muutmisel tekkis viga"
 
-#: ../plugins/filebrowser/xed-file-browser-plugin.c:682
+#: ../plugins/filebrowser/xed-file-browser-plugin.c:680
 msgid "An error occurred while deleting a file or directory"
 msgstr "Faili või kataloogi kustutamisel tekkis viga"
 
-#: ../plugins/filebrowser/xed-file-browser-plugin.c:685
+#: ../plugins/filebrowser/xed-file-browser-plugin.c:683
 msgid "An error occurred while opening a directory in the file manager"
 msgstr "Faili või kataloogi avamisel failihalduris tekkis viga"
 
-#: ../plugins/filebrowser/xed-file-browser-plugin.c:688
+#: ../plugins/filebrowser/xed-file-browser-plugin.c:686
 msgid "An error occurred while setting a root directory"
 msgstr "Juurkataloogi seadmisel tekkis viga"
 
-#: ../plugins/filebrowser/xed-file-browser-plugin.c:691
+#: ../plugins/filebrowser/xed-file-browser-plugin.c:689
 msgid "An error occurred while loading a directory"
 msgstr "Kataloogi laadimisel tekkis viga"
 
-#: ../plugins/filebrowser/xed-file-browser-plugin.c:694
+#: ../plugins/filebrowser/xed-file-browser-plugin.c:692
 msgid "An error occurred"
 msgstr "Tekkis viga"
 
-#: ../plugins/filebrowser/xed-file-browser-plugin.c:951
+#: ../plugins/filebrowser/xed-file-browser-plugin.c:949
 msgid ""
 "Cannot move file to trash, do you\n"
 "want to delete permanently?"
@@ -2538,25 +2620,25 @@ msgstr ""
 "Faili pole võimalik prügikasti tõsta.\n"
 "Kas selle faili võib lihtsalt ära kustutada?"
 
-#: ../plugins/filebrowser/xed-file-browser-plugin.c:956
+#: ../plugins/filebrowser/xed-file-browser-plugin.c:954
 #, c-format
 msgid "The file \"%s\" cannot be moved to the trash."
 msgstr "Faili \"%s\" pole võimalik prügikasti tõsta."
 
-#: ../plugins/filebrowser/xed-file-browser-plugin.c:961
+#: ../plugins/filebrowser/xed-file-browser-plugin.c:959
 msgid "The selected files cannot be moved to the trash."
 msgstr "Valitud faile pole võimalik prügikasti tõsta."
 
-#: ../plugins/filebrowser/xed-file-browser-plugin.c:989
+#: ../plugins/filebrowser/xed-file-browser-plugin.c:987
 #, c-format
 msgid "Are you sure you want to permanently delete \"%s\"?"
 msgstr "Kas soovid \"%s\" jäädavalt kustutada?"
 
-#: ../plugins/filebrowser/xed-file-browser-plugin.c:994
+#: ../plugins/filebrowser/xed-file-browser-plugin.c:992
 msgid "Are you sure you want to permanently delete the selected files?"
 msgstr "Kas soovid valitud failid jäädavalt kustutada?"
 
-#: ../plugins/filebrowser/xed-file-browser-plugin.c:997
+#: ../plugins/filebrowser/xed-file-browser-plugin.c:995
 msgid "If you delete an item, it is permanently lost."
 msgstr "Kui sa kirje kustutad, läheb see jäädavalt kaotsi."
 
@@ -2575,7 +2657,7 @@ msgstr ""
 #. Translators: This is the default name of new files created by the file browser pane.
 #: ../plugins/filebrowser/xed-file-browser-store.c:3771
 msgid "Untitled File"
-msgstr ""
+msgstr "Nimetu fail"
 
 #: ../plugins/filebrowser/xed-file-browser-store.c:3799
 msgid ""
@@ -2588,7 +2670,7 @@ msgstr ""
 #. Translators: This is the default name of new directories created by the file browser pane.
 #: ../plugins/filebrowser/xed-file-browser-store.c:3826
 msgid "Untitled Folder"
-msgstr ""
+msgstr "Nimetu kaust"
 
 #: ../plugins/filebrowser/xed-file-browser-store.c:3851
 msgid ""
@@ -2648,7 +2730,7 @@ msgstr "Uue tühja faili lisamine"
 
 #: ../plugins/filebrowser/xed-file-browser-widget.c:786
 msgid "_Rename..."
-msgstr ""
+msgstr "_Muuda nime..."
 
 #: ../plugins/filebrowser/xed-file-browser-widget.c:787
 msgid "Rename selected file or folder"
@@ -2708,17 +2790,17 @@ msgstr "Binaarfailide näitamine"
 msgid "_Match Filename"
 msgstr "Faili_nime sobitus"
 
-#: ../plugins/filebrowser/xed-file-browser-widget.c:1991
+#: ../plugins/filebrowser/xed-file-browser-widget.c:2014
 #, c-format
 msgid "No mount object for mounted volume: %s"
 msgstr "Haagitud ketta jaoks pole haakimisobjekti: %s"
 
-#: ../plugins/filebrowser/xed-file-browser-widget.c:2069
+#: ../plugins/filebrowser/xed-file-browser-widget.c:2092
 #, c-format
 msgid "Could not open media: %s"
 msgstr "Meediumit pole võimalik avada: %s"
 
-#: ../plugins/filebrowser/xed-file-browser-widget.c:2118
+#: ../plugins/filebrowser/xed-file-browser-widget.c:2141
 #, c-format
 msgid "Could not mount volume: %s"
 msgstr "Ketast pole võimalik haakida: %s"
@@ -2730,7 +2812,7 @@ msgstr "Režiimiread"
 
 #: ../plugins/modelines/modelines.plugin.desktop.in.h:2
 msgid "Emacs, Kate and Vim-style modelines support for xed."
-msgstr ""
+msgstr "Emacsi, Kate ja Vim-i moodi režiimiridade tugi xed-s."
 
 #: ../plugins/sort/sort.plugin.desktop.in.h:1
 msgid "Sort"
@@ -2742,7 +2824,7 @@ msgstr "Dokumendi või valitud teksti sortimine."
 
 #: ../plugins/sort/xed-sort-plugin.c:76
 msgid "S_ort lines"
-msgstr ""
+msgstr "Ridade _sortimine"
 
 #: ../plugins/sort/xed-sort-plugin.c:78
 msgid "Sort the current document or selection"
@@ -2750,7 +2832,7 @@ msgstr "Käesoleva dokumendi või valiku sortimine."
 
 #: ../plugins/spell/org.x.editor.plugins.spell.gschema.xml.in.h:1
 msgid "Autocheck Type"
-msgstr ""
+msgstr "Liigi automaatkontroll"
 
 #: ../plugins/spell/spell.plugin.desktop.in.h:1
 msgid "Spell Checker"
@@ -2786,35 +2868,35 @@ msgstr "Käesoleva dokumendi automaatne õigekirjakontroll"
 
 #: ../plugins/spell/xed-spell-setup-dialog.ui.h:1
 msgid "button"
-msgstr ""
+msgstr "nupp"
 
 #: ../plugins/spell/xed-spell-setup-dialog.ui.h:2
 msgid "Autocheck settings"
-msgstr ""
+msgstr "Sätete automaatkontroll"
 
 #: ../plugins/spell/xed-spell-setup-dialog.ui.h:3
 msgid "Never"
-msgstr ""
+msgstr "Mitte kunagi"
 
 #: ../plugins/spell/xed-spell-setup-dialog.ui.h:4
 msgid "Never autocheck spelling on document load"
-msgstr ""
+msgstr "Dokumendi avamisel ei kontrollita kunagi õigekirja"
 
 #: ../plugins/spell/xed-spell-setup-dialog.ui.h:5
 msgid "Remember by document"
-msgstr ""
+msgstr "Jäetakse iga dokumendi jaoks meelde"
 
 #: ../plugins/spell/xed-spell-setup-dialog.ui.h:6
 msgid "Remembers the setting for each  document on load"
-msgstr ""
+msgstr "Jäetakse iga dokumendi jaoks eraldi meelde."
 
 #: ../plugins/spell/xed-spell-setup-dialog.ui.h:7
 msgid "Always"
-msgstr ""
+msgstr "Alati"
 
 #: ../plugins/spell/xed-spell-setup-dialog.ui.h:8
 msgid "Always autocheck on document load"
-msgstr ""
+msgstr "Dokumendi avamisel kontrollitakse alati õigekrja"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:1
 msgid "XHTML 1.0 - Tags"
@@ -2954,10 +3036,6 @@ msgstr "Veeru ulatus"
 #: ../plugins/taglist/HTML.tags.xml.in.h:40
 msgid "Columns"
 msgstr "Veerud"
-
-#: ../plugins/taglist/HTML.tags.xml.in.h:41
-msgid "Comment"
-msgstr "Kommentaar"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:42
 msgid "Computer code fragment"
@@ -4305,7 +4383,7 @@ msgid "Available Tag Lists"
 msgstr "Saadaolevate siltide loetelu"
 
 #: ../plugins/taglist/xed-taglist-plugin-panel.c:706
-#: ../plugins/taglist/xed-taglist-plugin-panel.c:722
+#: ../plugins/taglist/xed-taglist-plugin-panel.c:721
 #: ../plugins/taglist/xed-taglist-plugin.c:113
 msgid "Tags"
 msgstr "Sildid"
@@ -4380,27 +4458,27 @@ msgstr "XUL - sildid"
 
 #: ../plugins/textsize/textsize.plugin.desktop.in.h:1
 msgid "Text Size"
-msgstr ""
+msgstr "Teksti suurus"
 
 #: ../plugins/textsize/textsize.plugin.desktop.in.h:2
 msgid "Allow controlling the zoom levels of the text"
-msgstr ""
+msgstr "Teksti suuruse muutmise lubamine"
 
 #: ../plugins/textsize/textsize/__init__.py:123
 msgid "_Larger Text"
-msgstr ""
+msgstr "_Suurem kiri"
 
 #: ../plugins/textsize/textsize/__init__.py:126
 msgid "S_maller Text"
-msgstr ""
+msgstr "_Väiksem kiri"
 
 #: ../plugins/textsize/textsize/__init__.py:129
 msgid "_Normal size"
-msgstr ""
+msgstr "_Tavasuurus"
 
 #: ../plugins/time/org.x.editor.plugins.time.gschema.xml.in.h:1
 msgid "Prompt type"
-msgstr ""
+msgstr "Käsurea viiba liik"
 
 #: ../plugins/time/org.x.editor.plugins.time.gschema.xml.in.h:2
 msgid "Selected format"
@@ -4475,28 +4553,28 @@ msgstr "_Küsitakse vormingut"
 
 #: ../plugins/trailsave/trailsave.plugin.desktop.in.h:1
 msgid "Save Without Trailing Spaces"
-msgstr ""
+msgstr "Salvestamine realõpu tühikuteta"
 
 #: ../plugins/trailsave/trailsave.plugin.desktop.in.h:2
 msgid "Removes trailing spaces from lines before saving."
-msgstr ""
+msgstr "Realõpu tühikute eemaldamine enne salvestamist."
 
 #: ../plugins/wordcompletion/xed-wordcompletion-configure.ui.h:1
 msgid "Word Completion"
-msgstr ""
+msgstr "Sõnalõpetus"
 
 #: ../plugins/wordcompletion/xed-wordcompletion-configure.ui.h:2
 msgid "Use Ctrl+Space to manually trigger word completion."
-msgstr ""
+msgstr "Käsitsi sõna lõpetamise jaoks vajuta Ctrl+tühik."
 
 #: ../plugins/wordcompletion/xed-wordcompletion-configure.ui.h:3
 msgid "Automatic completion"
-msgstr ""
+msgstr "Automaatne lõpetamine"
 
 #: ../plugins/wordcompletion/xed-wordcompletion-configure.ui.h:4
 msgid "Minimum word size for auto-completion"
-msgstr ""
+msgstr "Automaatlõpetatava sõna vähim pikkus"
 
 #: ../plugins/wordcompletion/xed-wordcompletion-plugin.c:215
 msgid "Word completion"
-msgstr ""
+msgstr "Sõnalõpetus"
