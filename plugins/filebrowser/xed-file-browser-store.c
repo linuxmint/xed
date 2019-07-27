@@ -3589,7 +3589,7 @@ delete_file_finished (GFile        *file,
         /* Process the next file */
         data->iter = data->iter->next;
     }
-    else if (!ok && error != NULL)
+    else if (error != NULL)
     {
         gint code = error->code;
         g_error_free (error);
