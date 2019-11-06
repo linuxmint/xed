@@ -57,6 +57,7 @@ struct _XedPrintPreviewPrivate
     GtkWidget *zoom_fit;
     GtkWidget *zoom_in;
     GtkWidget *zoom_out;
+    GtkWidget *print_now;
 
     /* real size of the page in inches */
     double paper_w;
@@ -535,6 +536,16 @@ zoom_out_button_clicked (GtkWidget       *button,
 }
 
 static void
+print_now_button_clicked (GtkWidget       *button,
+                          XedPrintPreview *preview)
+{
+    GAction *action = g_action_map_lookup_action (G_ACTION_MAP (g_application_get_default ()),
+                                                  "print-now");
+
+    g_action_activate (action, NULL);
+}
+
+static void
 close_button_clicked (GtkWidget       *button,
                       XedPrintPreview *preview)
 {
@@ -667,6 +678,23 @@ create_bar (XedPrintPreview *preview)
     gtk_widget_set_tooltip_text (priv->zoom_out, _("Zoom the page out"));
     g_signal_connect (priv->zoom_out, "clicked",
                       G_CALLBACK (zoom_out_button_clicked), preview);
+
+    gtk_widget_show_all (GTK_WIDGET (i));
+
+    i = gtk_separator_tool_item_new ();
+    gtk_widget_show (GTK_WIDGET (i));
+    gtk_toolbar_insert (GTK_TOOLBAR (toolbar), i, -1);
+
+    i = gtk_tool_item_new ();
+    gtk_toolbar_insert (GTK_TOOLBAR (toolbar), i, -1);
+    box = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 0);
+    gtk_container_add (GTK_CONTAINER (i), box);
+
+    priv->print_now = gtk_button_new_from_icon_name ("document-print-symbolic", GTK_ICON_SIZE_MENU);
+    gtk_box_pack_start (GTK_BOX (box), priv->print_now, FALSE, FALSE, 0);
+    gtk_widget_set_tooltip_text (priv->print_now, _("Print this document"));
+    g_signal_connect (priv->print_now, "clicked",
+                      G_CALLBACK (print_now_button_clicked), preview);
 
     gtk_widget_show_all (GTK_WIDGET (i));
 

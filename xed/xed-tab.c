@@ -273,6 +273,11 @@ xed_tab_dispose (GObject *object)
 
     clear_loading (tab);
 
+    GAction *action = g_action_map_lookup_action (G_ACTION_MAP (g_application_get_default ()),
+                                                  "print-now");
+
+    g_signal_handlers_disconnect_by_data (action, tab);
+
     G_OBJECT_CLASS (xed_tab_parent_class)->dispose (object);
 }
 
@@ -1148,6 +1153,14 @@ view_focused_in (GtkWidget     *widget,
 }
 
 static void
+print_now_action_cb (XedTab   *tab)
+{
+    g_return_if_fail (XED_IS_TAB (tab));
+
+    _xed_tab_print (tab, FALSE);
+}
+
+static void
 xed_tab_init (XedTab *tab)
 {
     gboolean auto_save;
@@ -1198,6 +1211,12 @@ xed_tab_init (XedTab *tab)
                             G_CALLBACK (view_focused_in), tab);
     g_signal_connect_after (view, "realize",
                             G_CALLBACK (view_realized), tab);
+
+    GAction *action = g_action_map_lookup_action (G_ACTION_MAP (g_application_get_default ()),
+                                                  "print-now");
+
+    g_signal_connect_swapped (action, "activate",
+                              G_CALLBACK (print_now_action_cb), tab);
 }
 
 GtkWidget *
@@ -2811,7 +2830,8 @@ xed_tab_print_or_print_preview (XedTab                  *tab,
 }
 
 void
-_xed_tab_print (XedTab *tab)
+_xed_tab_print (XedTab   *tab,
+                gboolean  with_dialog)
 {
     g_return_if_fail (XED_IS_TAB (tab));
 
@@ -2823,7 +2843,14 @@ _xed_tab_print (XedTab *tab)
         gtk_widget_destroy (tab->priv->print_preview);
     }
 
-    xed_tab_print_or_print_preview (tab, GTK_PRINT_OPERATION_ACTION_PRINT_DIALOG);
+    if (with_dialog)
+    {
+        xed_tab_print_or_print_preview (tab, GTK_PRINT_OPERATION_ACTION_PRINT_DIALOG);
+    }
+    else
+    {
+        xed_tab_print_or_print_preview (tab, GTK_PRINT_OPERATION_ACTION_PRINT);
+    }
 }
 
 void

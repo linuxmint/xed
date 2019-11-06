@@ -153,7 +153,7 @@ void _xed_tab_save_as_async (XedTab                   *tab,
                              GAsyncReadyCallback       callback,
                              gpointer                  user_data);
 
-void _xed_tab_print (XedTab *tab);
+void _xed_tab_print (XedTab *tab, gboolean show_dialog);
 void _xed_tab_print_preview (XedTab *tab);
 void _xed_tab_mark_for_closing (XedTab *tab);
 gboolean _xed_tab_get_can_close (XedTab *tab);

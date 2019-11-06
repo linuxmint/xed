@@ -66,6 +66,6 @@ _xed_cmd_file_print (GtkAction   *action,
 	if (tab == NULL)
 		return;
 
-	_xed_tab_print (tab);
+	_xed_tab_print (tab, TRUE);
 }
 

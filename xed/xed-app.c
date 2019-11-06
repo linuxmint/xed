@@ -980,6 +980,17 @@ load_print_settings (XedApp *app)
 }
 
 static void
+setup_actions (XedApp *app)
+{
+    GSimpleAction *action;
+
+    action = g_simple_action_new ("print-now", NULL);
+
+    g_action_map_add_action (G_ACTION_MAP (app), G_ACTION (action));
+    g_object_unref (action);
+}
+
+static void
 xed_app_init (XedApp *app)
 {
     app->priv = XED_APP_GET_PRIVATE (app);
@@ -994,6 +1005,8 @@ xed_app_init (XedApp *app)
 #endif
 
     load_accels ();
+
+    setup_actions (app);
 }
 
 static gboolean
