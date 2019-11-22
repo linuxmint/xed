@@ -18,13 +18,15 @@
 Adds context menu item to open an URI at the pointer position
 '''
 
-from gettext import gettext as _
 from gi.repository import Gtk, Xed, Gio, GObject, GtkSource
+import gettext
 import re
 import sys
 import os
 import subprocess
 import string
+
+gettext.install("xed")
 
 ACCEPTED_SCHEMES = ['file', 'ftp', 'sftp', 'smb', 'dav', 'davs', 'ssh', 'http', 'https']
 RE_DELIM = re.compile(r'[\w#/\?:%@&\=\+\.\\~-]+', re.UNICODE|re.MULTILINE)
@@ -125,29 +127,14 @@ class OpenURIContextMenuPlugin(GObject.Object, Xed.WindowActivatable):
 			browse_to = True
 
 		if browse_to:
-			browse_uri_item = Gtk.ImageMenuItem(_("Browse to '%s'") % (displayed_word))
-			browse_uri_item.set_image(Gtk.Image.new_from_stock(Gtk.STOCK_JUMP_TO,
-			                                                   Gtk.IconSize.MENU))
+			browse_uri_item = Gtk.MenuItem(_("Open '%s'") % (displayed_word))
 			browse_uri_item.connect('activate', self.browse_url, word);
 			browse_uri_item.show();
 
-		displayed_word = displayed_word.replace('file://', '')
-		open_uri_item = Gtk.ImageMenuItem(_("Open '%s'") % (displayed_word))
-		open_uri_item.set_image(Gtk.Image.new_from_stock(Gtk.STOCK_OPEN, Gtk.IconSize.MENU))
-		open_uri_item.connect('activate', self.on_open_uri_activate, word);
-		open_uri_item.show();
-
-		separator = Gtk.SeparatorMenuItem()
-		separator.show();
-		menu.prepend(separator)
-		menu.prepend(open_uri_item)
-
-		if browse_to:
+			separator = Gtk.SeparatorMenuItem()
+			separator.show();
+			menu.prepend(separator)
 			menu.prepend(browse_uri_item)
-		return True
-
-	def on_open_uri_activate(self, menu_item, uri):
-		self.open_uri(uri)
 		return True
 
 	def validate_uri(self, uri):
@@ -189,29 +176,4 @@ class OpenURIContextMenuPlugin(GObject.Object, Xed.WindowActivatable):
 			if os.path.isfile(f):
 				return 'file://' + f
 
-		return False
-
-	def get_document_by_uri(self, uri):
-		docs = self.window.get_documents()
-		for d in docs [:]:
-			if d.get_location() == uri:
-				return d
-		return None
-
-	def open_uri(self, uri):
-		doc = self.get_document_by_uri(uri)
-		if doc != None :
-			tab = Xed.tab_get_from_document(doc)
-			self.window.set_active_tab(tab)
-		else:
-			self.window.create_tab_from_location(Gio.file_new_for_uri(uri),
-			                                     self.encoding, 0, 0, True)
-			status = self.window.get_statusbar()
-			status_id = status.push(status.get_context_id("OpenURIContextMenuPlugin"),
-			                        _("Loading file '%s'...") % (uri))
-			GObject.timeout_add(4000, self.on_statusbar_timeout, status,
-			                    status.get_context_id("OpenURIContextMenuPlugin"), status_id)
-
-	def on_statusbar_timeout(self, status, context_id, status_id):
-		status.remove(context_id, status_id)
 		return False
