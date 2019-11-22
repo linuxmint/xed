@@ -692,7 +692,7 @@ create_bar (XedPrintPreview *preview)
 
     priv->print_now = gtk_button_new_from_icon_name ("document-print-symbolic", GTK_ICON_SIZE_MENU);
     gtk_box_pack_start (GTK_BOX (box), priv->print_now, FALSE, FALSE, 0);
-    gtk_widget_set_tooltip_text (priv->print_now, _("Print this document"));
+    gtk_widget_set_tooltip_text (priv->print_now, _("Print the document"));
     g_signal_connect (priv->print_now, "clicked",
                       G_CALLBACK (print_now_button_clicked), preview);
 
