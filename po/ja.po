@@ -10,16 +10,16 @@ msgstr ""
 "Project-Id-Version: MATE Desktop Environment\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-06-23 14:24+0200\n"
-"PO-Revision-Date: 2017-05-06 12:26+0000\n"
-"Last-Translator: Clement Lefebvre <root@linuxmint.com>\n"
+"PO-Revision-Date: 2019-08-21 14:47+0000\n"
+"Last-Translator: ichro furuya <Unknown>\n"
 "Language-Team: Japanese "
 "(http://www.transifex.com/projects/p/MATE/language/ja/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Launchpad-Export-Date: 2019-07-28 09:34+0000\n"
-"X-Generator: Launchpad (build 19010)\n"
+"X-Launchpad-Export-Date: 2019-11-26 15:59+0000\n"
+"X-Generator: Launchpad (build c597c3229eb023b1e626162d5947141bf7befb13)\n"
 "Language: ja\n"
 
 #: ../data/org.x.editor.gschema.xml.in.h:1
@@ -33,11 +33,13 @@ msgid ""
 "font named in the \"Editor Font\" option will be used instead of the system "
 "font."
 msgstr ""
+"xed固有のフォントではなく、システムのデフォルトの固定幅フォントを使用してテキストを編集するかどうか。このオプションをオフにすると、システムフォントの代"
+"わりに「エディタ-フォント」オプションで指定されたフォントが使用されます。"
 
 #: ../data/org.x.editor.gschema.xml.in.h:3
 msgctxt "editor-font"
 msgid "'Monospace 12'"
-msgstr ""
+msgstr "'Monospace 12'"
 
 #: ../data/org.x.editor.gschema.xml.in.h:4
 msgid "Editor Font"
@@ -52,13 +54,13 @@ msgstr ""
 
 #: ../data/org.x.editor.gschema.xml.in.h:6
 msgid "Prefer Dark Theme"
-msgstr ""
+msgstr "暗いテーマを選択"
 
 #: ../data/org.x.editor.gschema.xml.in.h:7
 msgid ""
 "Whether xed should prefer the dark variation of the current Gtk theme if "
 "available."
-msgstr ""
+msgstr "現在のGtkテーマの暗いバリエーションを利用するかどうか。"
 
 #: ../data/org.x.editor.gschema.xml.in.h:8
 msgid "Style Scheme"
@@ -77,6 +79,7 @@ msgid ""
 "Whether xed should create backup copies for the files it saves. You can set "
 "the backup file extension with the \"Backup Copy Extension\" option."
 msgstr ""
+"保存するファイルのバックアップコピーを作成するかどうか。「バックアップコピーの拡張」オプションを使用して、バックアップファイルの拡張を設定できます。"
 
 #: ../data/org.x.editor.gschema.xml.in.h:12
 msgid "Autosave"
@@ -86,7 +89,7 @@ msgstr "自動保存"
 msgid ""
 "Whether xed should automatically save modified files after a time interval. "
 "You can set the time interval with the \"Autosave Interval\" option."
-msgstr ""
+msgstr "一定時間後に変更されたファイルを自動的に保存するかどうか。「自動保存間隔」オプションで時間間隔を設定できます。"
 
 #: ../data/org.x.editor.gschema.xml.in.h:14
 msgid "Autosave Interval"
@@ -96,7 +99,7 @@ msgstr "自動保存の間隔"
 msgid ""
 "Number of minutes after which xed will automatically save modified files. "
 "This will only take effect if the \"Autosave\" option is turned on."
-msgstr ""
+msgstr "変更されたファイルを自動的に保存するまでの時間（分）。これは「自動保存」オプションがオンになっている場合にのみ有効です。"
 
 #: ../data/org.x.editor.gschema.xml.in.h:16
 msgid "Writable VFS schemes"
@@ -106,7 +109,7 @@ msgstr "書き込み可能な VFS スキーム"
 msgid ""
 "List of VFS schemes xed supports in write mode. The 'file' scheme is "
 "writable by default."
-msgstr ""
+msgstr "書き込みモードでサポートするVFSスキームのリスト。「ファイル」スキームはデフォルトで書き込み可能です。"
 
 #: ../data/org.x.editor.gschema.xml.in.h:18
 msgid "Maximum Number of Undo Actions"
@@ -116,7 +119,7 @@ msgstr "\"元に戻す\" の最大回数"
 msgid ""
 "Maximum number of actions that xed will be able to undo or redo. Use \"-1\" "
 "for unlimited number of actions."
-msgstr ""
+msgstr "元に戻す、またはやり直すことができるアクションの最大数。アクションの数に制限がない場合は「-1」を使用します。"
 
 #: ../data/org.x.editor.gschema.xml.in.h:20
 msgid "Line Wrapping Mode"
@@ -129,6 +132,8 @@ msgid ""
 "wrapping at individual character boundaries. Note that the values are case-"
 "sensitive, so make sure they appear exactly as mentioned here."
 msgstr ""
+"編集領域で長い行を折り返す方法を指定します。折り返しを行わない場合は「none」、単語の境界で折り返す場合は「word」、個々の文字の境界で折り返す場合は"
+"「char」を使用します。値は大文字と小文字が区別されるため、ここで説明したとおりに表示されるようにしてください。"
 
 #: ../data/org.x.editor.gschema.xml.in.h:22
 msgid "Tab Size"
@@ -146,7 +151,7 @@ msgstr "空白の挿入"
 
 #: ../data/org.x.editor.gschema.xml.in.h:25
 msgid "Whether xed should insert spaces instead of tabs."
-msgstr ""
+msgstr "タブの代わりにスペースを挿入するかどうか。"
 
 #: ../data/org.x.editor.gschema.xml.in.h:26
 msgid "Automatic indent"
@@ -154,7 +159,7 @@ msgstr "自動インデント"
 
 #: ../data/org.x.editor.gschema.xml.in.h:27
 msgid "Whether xed should enable automatic indentation."
-msgstr ""
+msgstr "自動インデントを有効にするかどうか。"
 
 #: ../data/org.x.editor.gschema.xml.in.h:28
 msgid "Display Line Numbers"
@@ -162,7 +167,7 @@ msgstr "行番号の表示"
 
 #: ../data/org.x.editor.gschema.xml.in.h:29
 msgid "Whether xed should display line numbers in the editing area."
-msgstr ""
+msgstr "行番号を表示するかどうか。"
 
 #: ../data/org.x.editor.gschema.xml.in.h:30
 msgid "Highlight Current Line"
@@ -170,7 +175,7 @@ msgstr "現在の行の強調表示"
 
 #: ../data/org.x.editor.gschema.xml.in.h:31
 msgid "Whether xed should highlight the current line."
-msgstr ""
+msgstr "現在の行を強調表示するかどうか。"
 
 #: ../data/org.x.editor.gschema.xml.in.h:32
 msgid "Highlight Matching Bracket"
@@ -178,7 +183,7 @@ msgstr "対応するカッコの強調表示"
 
 #: ../data/org.x.editor.gschema.xml.in.h:33
 msgid "Whether xed should highlight the bracket matching the selected one."
-msgstr ""
+msgstr "選択したブラケットに一致するブラケット「()、{}」を強調表示するかどうか。"
 
 #: ../data/org.x.editor.gschema.xml.in.h:34
 msgid "Display Right Margin"
@@ -186,7 +191,7 @@ msgstr "右マージンを表示"
 
 #: ../data/org.x.editor.gschema.xml.in.h:35
 msgid "Whether xed should display the right margin in the editing area."
-msgstr ""
+msgstr "編集領域に右マージン（縦線）を表示するかどうか。"
 
 #: ../data/org.x.editor.gschema.xml.in.h:36
 msgid "Right Margin Position"
@@ -210,6 +215,11 @@ msgid ""
 "the start/end of the line and \"always\" to always move to the start/end of "
 "the text instead of the start/end of the line."
 msgstr ""
+"HOMEキーとENDキーが押されたときのカーソルの動きを指定します。「disabled "
+"無効」を使用すると、常に行の開始/終了にカーソルを移動します。「after "
+"後」を使用すると、最初にキーが押されたときに行の開始/終了にカーソルを移動し、2回目にキーが押されたときには空白を無視してテキストの開始/終了にカーソルを"
+"移動します。「before 前」を使用すると、テキストの開始/終了にカーソルを移動してから行の開始/終了にカーソルを移動します。「always "
+"常に」を使用すると、行の開始/終了ではなく常にテキストの開始/終了にカーソルを移動します。"
 
 #: ../data/org.x.editor.gschema.xml.in.h:40
 msgid "Restore Previous Cursor Position"
@@ -219,7 +229,7 @@ msgstr "以前あったカーソル位置に戻す"
 msgid ""
 "Whether xed should restore the previous cursor position when a file is "
 "loaded."
-msgstr ""
+msgstr "ファイルが読み込まれたときに前のカーソル位置を復元するかどうか。"
 
 #: ../data/org.x.editor.gschema.xml.in.h:42
 msgid "Enable Search Highlighting"
@@ -228,7 +238,7 @@ msgstr "検索時の強調表示を有効にする"
 #: ../data/org.x.editor.gschema.xml.in.h:43
 msgid ""
 "Whether xed should highlight all the occurrences of the searched text."
-msgstr ""
+msgstr "検索されたテキストのすべての部分を強調表示するかどうか。"
 
 #: ../data/org.x.editor.gschema.xml.in.h:44
 msgid "Enable Syntax Highlighting"
@@ -236,16 +246,16 @@ msgstr "構文の強調表示を有効にする"
 
 #: ../data/org.x.editor.gschema.xml.in.h:45
 msgid "Whether xed should enable syntax highlighting."
-msgstr ""
+msgstr "構文の強調表示を有効にするかどうか。"
 
 #: ../data/org.x.editor.gschema.xml.in.h:46
 msgid "Ensure Trailing Newline"
-msgstr ""
+msgstr "ドキュメントの末尾が改行文字かを確認"
 
 #: ../data/org.x.editor.gschema.xml.in.h:47
 msgid ""
 "Whether xed will ensure that documents always end with a trailing newline."
-msgstr ""
+msgstr "ドキュメントの末尾が常に改行で終わることを保証するかどうか。"
 
 #: ../data/org.x.editor.gschema.xml.in.h:48
 msgid "Toolbar is Visible"
@@ -284,19 +294,19 @@ msgstr "編集ウインドウの下側にボトム・ペインを表示するか
 
 #: ../data/org.x.editor.gschema.xml.in.h:56
 msgid "Allow changing active tabs by scrolling"
-msgstr ""
+msgstr "スクロールしてアクティブなタブを変更できるようにします"
 
 #: ../data/org.x.editor.gschema.xml.in.h:57
 msgid "Whether you can change active tabs by scrolling."
-msgstr ""
+msgstr "スクロールしてアクティブなタブを変更できるかどうか。"
 
 #: ../data/org.x.editor.gschema.xml.in.h:58
 msgid "Minimap is visible"
-msgstr ""
+msgstr "ミニマップ(Overview Map)が表示されます"
 
 #: ../data/org.x.editor.gschema.xml.in.h:59
 msgid "Whether the minimap for the document should be visible."
-msgstr ""
+msgstr "ミニマップ(Overview Map)を表示するかどうか。"
 
 #: ../data/org.x.editor.gschema.xml.in.h:60
 msgid "Maximum Recent Files"
@@ -314,7 +324,7 @@ msgstr "強調表示の印刷"
 
 #: ../data/org.x.editor.gschema.xml.in.h:63
 msgid "Whether xed should print syntax highlighting when printing documents."
-msgstr ""
+msgstr "印刷するときに、構文の強調表示を印刷するかどうか。"
 
 #: ../data/org.x.editor.gschema.xml.in.h:64
 msgid "Print Header"
@@ -322,7 +332,7 @@ msgstr "ヘッダの印刷"
 
 #: ../data/org.x.editor.gschema.xml.in.h:65
 msgid "Whether xed should include a document header when printing documents."
-msgstr ""
+msgstr "印刷するときにドキュメントのヘッダーを含めるかどうか。"
 
 #: ../data/org.x.editor.gschema.xml.in.h:66
 msgid "Printing Line Wrapping Mode"
@@ -335,6 +345,8 @@ msgid ""
 "individual character boundaries. Note that the values are case-sensitive, so "
 "make sure they appear exactly as mentioned here."
 msgstr ""
+"印刷のために長い行を折り返す方法を指定します。折り返しを行わない場合は「none」、単語の境界で折り返す場合は「word」、個々の文字の境界で折り返す場合"
+"は「char」を使用します。値は大文字と小文字が区別されるため、ここで説明したとおりに表示されるようにしてください。"
 
 #: ../data/org.x.editor.gschema.xml.in.h:68
 msgid "Print Line Numbers"
@@ -344,12 +356,12 @@ msgstr "行番号の印刷"
 msgid ""
 "If this value is 0, then no line numbers will be inserted when printing a "
 "document. Otherwise, xed will print line numbers every such number of lines."
-msgstr ""
+msgstr "この値が「0」の場合、ドキュメントを印刷するときに行番号は挿入されません。それ以外の値の場合、その行数ごとに行番号を出力します。"
 
 #: ../data/org.x.editor.gschema.xml.in.h:70
 msgctxt "print-font-body-pango"
 msgid "'Monospace 9'"
-msgstr ""
+msgstr "'Monospace 9'"
 
 #: ../data/org.x.editor.gschema.xml.in.h:71
 msgid "Body Font for Printing"
@@ -363,7 +375,7 @@ msgstr "ドキュメントを印刷する際の本文に使用するフォント
 #: ../data/org.x.editor.gschema.xml.in.h:73
 msgctxt "print-font-header-pango"
 msgid "'Sans 11'"
-msgstr ""
+msgstr "'Sans 11'"
 
 #: ../data/org.x.editor.gschema.xml.in.h:74
 msgid "Header Font for Printing"
@@ -379,7 +391,7 @@ msgstr ""
 #: ../data/org.x.editor.gschema.xml.in.h:76
 msgctxt "print-font-numbers-pango"
 msgid "'Sans 8'"
-msgstr ""
+msgstr "'Sans 8'"
 
 #: ../data/org.x.editor.gschema.xml.in.h:77
 msgid "Line Number Font for Printing"
@@ -394,7 +406,7 @@ msgstr "印刷する際の行番号に使用するフォントを指定します
 #: ../data/org.x.editor.gschema.xml.in.h:79
 msgctxt "auto-detected"
 msgid "[ 'UTF-8', 'CURRENT', 'ISO-8859-15', 'UTF-16' ]"
-msgstr ""
+msgstr "「UTF-8、CURRENT、ISO-8859-15、UTF-16」"
 
 #: ../data/org.x.editor.gschema.xml.in.h:80
 msgid "Automatically Detected Encodings"
@@ -406,11 +418,13 @@ msgid ""
 "encoding of a file. \"CURRENT\" represents the current locale encoding. Only "
 "recognized encodings are used."
 msgstr ""
+"ファイルのエンコーディングを自動的に検出するために使用する、エンコーディングのソートされたリストです。「CURRENT」は現在のロケールエンコーディングを"
+"表します。認識されたエンコードのみが使用されます。"
 
 #: ../data/org.x.editor.gschema.xml.in.h:82
 msgctxt "shown-in-menu"
 msgid "[ 'ISO-8859-15' ]"
-msgstr ""
+msgstr "「ISO-8859-15」"
 
 #: ../data/org.x.editor.gschema.xml.in.h:83
 msgid "Encodings shown in menu"
@@ -448,10 +462,12 @@ msgid ""
 "List of active plugins. It contains the \"Location\" of the active plugins. "
 "See the .xed-plugin file for obtaining the \"Location\" of a given plugin."
 msgstr ""
+"アクティブなプラグインのリストです。アクティブなプラグインの「場所」が含まれています。特定のプラグインの「場所」を取得するには、.xed-"
+"pluginファイルを参照してください。"
 
 #: ../data/xed.appdata.xml.in.h:1
 msgid "A Text Editor"
-msgstr ""
+msgstr "テキストエディタ"
 
 #: ../data/xed.appdata.xml.in.h:2
 msgid ""
@@ -463,6 +479,11 @@ msgid ""
 "spell checking, comparing files, viewing CVS ChangeLogs, and adjusting "
 "indentation levels. </p>"
 msgstr ""
+"<p> "
+"Xedは、小さいながらも強力なテキストエディタです。ほとんどの標準テキストエディタ機能があり、Unicodeの国際テキストを完全にサポートしています。高度"
+"な機能には、構文の強調表示とソースコードの自動インデント、1つのウィンドウでの複数のドキュメントの印刷と編集が含まれます。 </p> <p> "
+"Xedは、現在、スペルチェック、ファイルの比較、CVS "
+"ChangeLogの表示、インデントレベルの調整のサポートを含むプラグインシステムを通じて拡張可能です。 </p>"
 
 #: ../data/xed.desktop.in.in.h:1 ../xed/xed-print-job.c:707
 msgid "Text Editor"
@@ -470,7 +491,7 @@ msgstr "テキストエディタ"
 
 #: ../data/xed.desktop.in.in.h:2
 msgid "Edit text files"
-msgstr ""
+msgstr "テキストファイルを編集"
 
 #: ../xed/xed-app.c:102
 msgid "Show the application's version"
@@ -492,36 +513,36 @@ msgstr "ENCODING"
 
 #: ../xed/xed-app.c:122
 msgid "Create a new top-level window in an existing instance of xed"
-msgstr ""
+msgstr "既存のインスタンスに新しいトップレベルウィンドウを作成"
 
 #: ../xed/xed-app.c:129
 msgid "Create a new document in an existing instance of xed"
-msgstr ""
+msgstr "既存のインスタンスに新しいドキュメントを作成"
 
 #: ../xed/xed-app.c:136
 msgid "Set the size and position of the window (WIDTHxHEIGHT+X+Y)"
-msgstr ""
+msgstr "ウィンドウのサイズと位置を設定します（幅 x 高さ + 縦位置 + 横位置）"
 
 #: ../xed/xed-app.c:137
 msgid "GEOMETRY"
-msgstr ""
+msgstr "ジオメトリー"
 
 #: ../xed/xed-app.c:143
 msgid "Open files and block process until files are closed"
-msgstr ""
+msgstr "ファイルを開き、ファイルが閉じるまでプロセスをブロックします"
 
 #: ../xed/xed-app.c:150
 msgid "Run xed in standalone mode"
-msgstr ""
+msgstr "スタンドアロンモードで実行"
 
 #: ../xed/xed-app.c:157
 msgid "[FILE...] [+LINE]"
-msgstr ""
+msgstr "「ファイル...」、「+ 行」"
 
 #: ../xed/xed-app.c:529
 #, c-format
 msgid "%s: invalid encoding."
-msgstr ""
+msgstr "%s: エンコードが無効です。"
 
 #: ../xed/xed-app.c:1180
 msgid "There was an error displaying the help."
@@ -547,17 +568,17 @@ msgstr "保存せずに閉じる(_W)"
 #: ../xed/resources/ui/xed-highlight-mode-dialog.ui.h:2
 #: ../plugins/filebrowser/xed-file-browser-utils.c:153
 msgid "_Cancel"
-msgstr ""
+msgstr "キャンセル(_C)"
 
 #: ../xed/xed-close-confirmation-dialog.c:159
 msgid "_Save As..."
-msgstr ""
+msgstr "名前を付けて保存 (_S) …"
 
 #. File menu
 #: ../xed/xed-close-confirmation-dialog.c:165 ../xed/xed-commands-file.c:649
 #: ../xed/xed-ui.h:79
 msgid "_Save"
-msgstr ""
+msgstr "保存(_S)"
 
 #: ../xed/xed-close-confirmation-dialog.c:192
 msgid "Question"
@@ -660,7 +681,7 @@ msgstr "ファイルを開く"
 #: ../xed/xed-commands-file.c:400
 #: ../plugins/filebrowser/xed-file-browser-widget.c:766
 msgid "_Open"
-msgstr ""
+msgstr "開く(_O)"
 
 #: ../xed/xed-commands-file.c:494
 #, c-format
@@ -788,7 +809,7 @@ msgstr "追加と削除..."
 
 #: ../xed/xed-encodings-dialog.c:337 ../plugins/time/xed-time-plugin.c:789
 msgid "_OK"
-msgstr ""
+msgstr "OK(_O)"
 
 #: ../xed/xed-encodings-dialog.c:338 ../xed/xed-ui.h:50
 #: ../plugins/spell/xed-spell-plugin.c:435
@@ -857,11 +878,11 @@ msgstr "入力した場所が正しいか確認して、もう一度実行して
 #: ../xed/xed-io-error-info-bar.c:189
 #, c-format
 msgid "xed cannot handle %s locations."
-msgstr ""
+msgstr "%s の場所を処理できません。"
 
 #: ../xed/xed-io-error-info-bar.c:194
 msgid "xed cannot handle this location."
-msgstr ""
+msgstr "xedはこの場所を処理できません。"
 
 #: ../xed/xed-io-error-info-bar.c:201
 msgid "The location of the file cannot be mounted."
@@ -914,7 +935,7 @@ msgstr "原因不明のエラー: %s"
 
 #: ../xed/xed-io-error-info-bar.c:326
 msgid "xed cannot find the file. Perhaps it has recently been deleted."
-msgstr ""
+msgstr "ファイルを見つけることができません。 おそらく最近削除されたのでしょう。"
 
 #: ../xed/xed-io-error-info-bar.c:336
 #, c-format
@@ -943,7 +964,7 @@ msgstr "そのファイルを開く権限がありません。"
 
 #: ../xed/xed-io-error-info-bar.c:499
 msgid "xed has not been able to detect the character encoding."
-msgstr ""
+msgstr "文字エンコードを検出できませんでした。"
 
 #: ../xed/xed-io-error-info-bar.c:501 ../xed/xed-io-error-info-bar.c:524
 msgid "Please check that you are not trying to open a binary file."
@@ -962,7 +983,7 @@ msgstr "ファイル %s を開くする際にエラーが発生しました。"
 msgid ""
 "The file you opened has some invalid characters. If you continue editing "
 "this file you could corrupt this document."
-msgstr ""
+msgstr "開いたファイルに無効な文字が含まれています。このファイルの編集を続けると、このドキュメントが破損する可能性があります。"
 
 #: ../xed/xed-io-error-info-bar.c:512
 msgid "You can also choose another character encoding and try again."
@@ -1002,13 +1023,13 @@ msgstr "編集しない(_O)"
 #: ../xed/xed-io-error-info-bar.c:673
 #, c-format
 msgid "This file (%s) is already open in another xed window."
-msgstr ""
+msgstr "このファイル (%s) は別のxedウィンドウで既に開いています。"
 
 #: ../xed/xed-io-error-info-bar.c:687
 msgid ""
 "xed opened this instance of the file in a non-editable way. Do you want to "
 "edit it anyway?"
-msgstr ""
+msgstr "このファイルのインスタンスを編集不可能な方法で開きました。編集しますか？"
 
 #: ../xed/xed-io-error-info-bar.c:742 ../xed/xed-io-error-info-bar.c:830
 #: ../xed/xed-io-error-info-bar.c:1092
@@ -1050,6 +1071,8 @@ msgid ""
 "You can ignore this warning and save the file anyway, but if an error occurs "
 "while saving, you could lose the old copy of the file. Save anyway?"
 msgstr ""
+"新しいファイルを保存する前にファイルの古いコピーをバックアップできませんでした。とにかくこの警告を無視してファイルを保存できますが、保存中にエラーが発生す"
+"ると、ファイルの古いコピーが失われる可能性があります。保存しますか？"
 
 #. Translators: %s is a URI scheme (like for example http:, ftp:, etc.)
 #: ../xed/xed-io-error-info-bar.c:928
@@ -1057,13 +1080,13 @@ msgstr ""
 msgid ""
 "xed cannot handle %s locations in write mode. Please check that you typed "
 "the location correctly and try again."
-msgstr ""
+msgstr "書き込みモードで %s の場所を処理できません。場所を正しく入力したことを確認して、もう一度お試しください。"
 
 #: ../xed/xed-io-error-info-bar.c:936
 msgid ""
 "xed cannot handle this location in write mode. Please check that you typed "
 "the location correctly and try again."
-msgstr ""
+msgstr "書き込みモードでこの場所を処理できません。場所を正しく入力したことを確認して、もう一度お試しください。"
 
 #: ../xed/xed-io-error-info-bar.c:945
 #, c-format
@@ -1136,18 +1159,18 @@ msgstr "再読み込み(_R)"
 #: ../xed/xed-io-error-info-bar.c:1107
 #, c-format
 msgid "Some invalid chars have been detected while saving %s"
-msgstr ""
+msgstr "%s の保存中に無効な文字がいくつか検出されました"
 
 #: ../xed/xed-io-error-info-bar.c:1122
 msgid ""
 "If you continue saving this file you can corrupt the document.  Save anyway?"
-msgstr ""
+msgstr "このファイルの保存を続けると、ドキュメントが破損する可能性があります。保存しますか？"
 
 #: ../xed/xed-preferences-dialog.c:264
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:3
 #, no-c-format
 msgid "Use the system fixed width font (%s)"
-msgstr ""
+msgstr "システムの固定幅フォント (%s) を使用します"
 
 #: ../xed/xed-preferences-dialog.c:382
 msgid "Editor"
@@ -1155,7 +1178,7 @@ msgstr "エディタ"
 
 #: ../xed/xed-preferences-dialog.c:414
 msgid "Save"
-msgstr ""
+msgstr "保存"
 
 #: ../xed/xed-preferences-dialog.c:527
 #, c-format
@@ -1173,7 +1196,7 @@ msgstr "スキームの追加"
 
 #: ../xed/xed-preferences-dialog.c:707 ../xed/xed-progress-info-bar.c:64
 msgid "Cancel"
-msgstr ""
+msgstr "キャンセル"
 
 #: ../xed/xed-preferences-dialog.c:716
 msgid "Color Scheme Files"
@@ -1186,7 +1209,7 @@ msgstr "色のスキーム \"%s\" を削除できませんでした。"
 
 #: ../xed/xed-preferences-dialog.c:820
 msgid "Theme"
-msgstr ""
+msgstr "テーマ"
 
 #: ../xed/xed-preferences-dialog.c:837
 msgid "Plugins"
@@ -1194,16 +1217,16 @@ msgstr "プラグイン"
 
 #: ../xed/xed-preferences-dialog.c:845
 msgid "Help"
-msgstr ""
+msgstr "ヘルプ"
 
 #: ../xed/xed-preferences-dialog.c:850
 #: ../xed/resources/ui/xed-searchbar.ui.h:11
 msgid "Close"
-msgstr ""
+msgstr "閉じる"
 
 #: ../xed/xed-preferences-dialog.c:864
 msgid "Xed Preferences"
-msgstr ""
+msgstr "設定"
 
 #: ../xed/xed-print-job.c:494
 #, c-format
@@ -1267,7 +1290,7 @@ msgstr "この文書を縮小します"
 
 #: ../xed/xed-print-preview.c:682
 msgid "_Close preview"
-msgstr ""
+msgstr "プレビューを閉じる(_C)"
 
 #: ../xed/xed-print-preview.c:684
 msgid "Close print preview"
@@ -1288,15 +1311,15 @@ msgstr "印刷するドキュメントのページをプレビューします"
 
 #: ../xed/resources/ui/xed-highlight-mode-dialog.ui.h:1
 msgid "Highlight Mode"
-msgstr ""
+msgstr "ハイライトモード（強調表示）"
 
 #: ../xed/resources/ui/xed-highlight-mode-dialog.ui.h:3
 msgid "_Select"
-msgstr ""
+msgstr "選択(_S)"
 
 #: ../xed/resources/ui/xed-highlight-mode-selector.ui.h:1
 msgid "Search highlight mode…"
-msgstr ""
+msgstr "ハイライトモードを検索…"
 
 #: ../xed/resources/ui/xed-encodings-dialog.ui.h:1
 msgid "Character encodings"
@@ -1316,107 +1339,107 @@ msgstr "フォント"
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:4
 msgid "Display"
-msgstr ""
+msgstr "ディスプレイ"
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:5
 msgid "Display line numbers"
-msgstr ""
+msgstr "行番号を表示"
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:6
 msgid "Display overview map"
-msgstr ""
+msgstr "ミニマップを表示"
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:7
 msgid "Display right margin"
-msgstr ""
+msgstr "右マージンを表示"
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:8
 msgid "Right margin at column"
-msgstr ""
+msgstr "右マージン（列）"
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:9
 msgid "4"
-msgstr ""
+msgstr "4"
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:10
 msgid "Highlighting"
-msgstr ""
+msgstr "ハイライト（強調表示）"
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:11
 msgid "Highlight the current line"
-msgstr ""
+msgstr "現在の行を強調表示"
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:12
 msgid "Highlight matching brackets"
-msgstr ""
+msgstr "対となる括弧「()、{}」を強調表示"
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:13
 msgid "Indentation"
-msgstr ""
+msgstr "インデント（字下げ）"
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:14
 msgid "Tab width"
-msgstr ""
+msgstr "タブ幅"
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:15
 msgid "Use spaces instead of tabs"
-msgstr ""
+msgstr "タブの代わりにスペースを使用"
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:16
 msgid "Automatic indentation"
-msgstr ""
+msgstr "自動インデント"
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:17
 msgid "Word wrap"
-msgstr ""
+msgstr "ワードラップ"
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:18
 msgid "Split words over two lines"
-msgstr ""
+msgstr "単語を2行に分割"
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:19
 msgid "Tab scrolling"
-msgstr ""
+msgstr "タブスクロール"
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:20
 msgid "Allow mouse wheel scrolling to change tabs"
-msgstr ""
+msgstr "マウスホイールのスクロールを許可してタブを変更します"
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:21
 msgid "File saving"
-msgstr ""
+msgstr "ファイル保存"
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:22
 msgid "Create a backup copy of files before saving"
-msgstr ""
+msgstr "保存する前にファイルのバックアップコピーを作成"
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:23
 msgid "Autosave files"
-msgstr ""
+msgstr "自動保存ファイル"
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:24
 msgid "Minutes between saving"
-msgstr ""
+msgstr "保存の間隔"
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:25
 msgid "Dark theme"
-msgstr ""
+msgstr "暗いテーマ"
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:26
 msgid "Use dark theme variant (if available)"
-msgstr ""
+msgstr "暗いテーマのバリエーションを使用（利用可能な場合）"
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:27
 msgid "Style scheme"
-msgstr ""
+msgstr "スタイルのスキーム"
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:28
 msgid "Install scheme"
-msgstr ""
+msgstr "スキームをインストール"
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:29
 msgid "Remove scheme"
-msgstr ""
+msgstr "スキームを削除"
 
 #: ../xed/resources/ui/xed-print-preferences.ui.h:1
 msgid "Syntax Highlighting"
@@ -1502,27 +1525,27 @@ msgstr "置換後の文字列(_W): "
 
 #: ../xed/resources/ui/xed-searchbar.ui.h:5
 msgid "Next"
-msgstr ""
+msgstr "次へ"
 
 #: ../xed/resources/ui/xed-searchbar.ui.h:6
 msgid "Previous"
-msgstr ""
+msgstr "前へ"
 
 #: ../xed/resources/ui/xed-searchbar.ui.h:7
 msgid "Regular expression"
-msgstr ""
+msgstr "正規表現"
 
 #: ../xed/resources/ui/xed-searchbar.ui.h:8
 msgid "Case sensitive"
-msgstr ""
+msgstr "大文字と小文字を区別"
 
 #: ../xed/resources/ui/xed-searchbar.ui.h:9
 msgid "Whole word"
-msgstr ""
+msgstr "単語全体"
 
 #: ../xed/resources/ui/xed-searchbar.ui.h:10
 msgid "Wrap"
-msgstr ""
+msgstr "折り返す"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:2 ../xed/xed-ui.h:54
 msgid "Create a new document"
@@ -1530,107 +1553,107 @@ msgstr "新しいドキュメントを作成します"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:3
 msgid "Open a document"
-msgstr ""
+msgstr "開く"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:4
 msgid "Save the document"
-msgstr ""
+msgstr "保存"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:5
 msgid "Save the document with a new filename"
-msgstr ""
+msgstr "名前を付けて保存"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:6
 msgid "Save all the documents"
-msgstr ""
+msgstr "すべて保存"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:7
 msgid "Close the document"
-msgstr ""
+msgstr "閉じる"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:8
 msgid "Close all the documents"
-msgstr ""
+msgstr "すべて閉じる"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:9
 msgid "Switch to the next document"
-msgstr ""
+msgstr "次のドキュメント"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:10
 msgid "Switch to the previous document"
-msgstr ""
+msgstr "前のドキュメント"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:11
 msgid "Switch to the first - ninth document"
-msgstr ""
+msgstr "ドキュメントの切り替え(1- 9番目)"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:12
 msgid "Windows and Panes"
-msgstr ""
+msgstr "ウィンドウとペイン"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:13
 msgid "Show side pane"
-msgstr ""
+msgstr "サイドペインを表示"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:14
 msgid "Show bottom pane"
-msgstr ""
+msgstr "下部のペインを表示"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:15
 msgid "Fullscreen on / off"
-msgstr ""
+msgstr "フルスクリーン表示のオン/オフ"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:16
 msgid "Quit the application"
-msgstr ""
+msgstr "アプリケーションを終了"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:17
 msgid "Find and Replace"
-msgstr ""
+msgstr "検索と置換"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:18
 msgid "Find"
-msgstr ""
+msgstr "検索"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:19
 msgid "Find the next match"
-msgstr ""
+msgstr "次の検索へ"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:20
 msgid "Find the previous match"
-msgstr ""
+msgstr "前の検索へ"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:21
 msgid "Go to line"
-msgstr ""
+msgstr "指定行へ"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:22
 msgid "Copy and Paste"
-msgstr ""
+msgstr "コピーと貼り付け"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:23
 msgid "Copy selected text to clipboard"
-msgstr ""
+msgstr "クリップボードにコピー"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:24
 msgid "Cut selected text to clipboard"
-msgstr ""
+msgstr "クリップボードに切り取る"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:25
 msgid "Paste text from clipboard"
-msgstr ""
+msgstr "クリップボードから貼り付け"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:26
 msgid "Undo and Redo"
-msgstr ""
+msgstr "元に戻すとやり直し"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:27
 msgid "Undo previous command"
-msgstr ""
+msgstr "前の操作を元に戻す"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:28
 msgid "Redo previous command"
-msgstr ""
+msgstr "前の操作をやり直し"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:29 ../plugins/docinfo/docinfo.ui.h:11
 msgid "Selection"
@@ -1638,79 +1661,79 @@ msgstr "選択範囲"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:30
 msgid "Select all text"
-msgstr ""
+msgstr "すべてのテキストを選択"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:31
 msgid "Tools"
-msgstr ""
+msgstr "ツール"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:32
 msgid "Check spelling"
-msgstr ""
+msgstr "スペルチェック"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:33
 msgid "Print the document"
-msgstr ""
+msgstr "印刷"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:34
 msgid "Editing"
-msgstr ""
+msgstr "編集"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:35
 msgid "Toggle insert / overwrite"
-msgstr ""
+msgstr "挿入/上書きモードの切り替え"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:36
 msgid "Delete current line"
-msgstr ""
+msgstr "現在行を削除"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:37
 msgid "Move current line up"
-msgstr ""
+msgstr "現在行を上に移動"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:38
 msgid "Move current line down"
-msgstr ""
+msgstr "現在行を下に移動"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:39
 msgid "Move current word left"
-msgstr ""
+msgstr "現在の単語を左に移動"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:40
 msgid "Move current word right"
-msgstr ""
+msgstr "現在の単語を右に移動"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:41
 msgid "Convert to uppercase"
-msgstr ""
+msgstr "大文字に変換"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:42
 msgid "Convert to lowercase"
-msgstr ""
+msgstr "小文字に変換"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:43
 msgid "Convert to title case"
-msgstr ""
+msgstr "タイトルケースに変換（頭文字だけ大文字の単語）"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:44
 msgid "Invert case"
-msgstr ""
+msgstr "大文字/小文字を反転"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:45
 msgid "Increment number at cursor"
-msgstr ""
+msgstr "カーソル位置の数字を加算"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:46
 msgid "Decrement number at cursor"
-msgstr ""
+msgstr "カーソル位置の数字を減算"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:47
 msgid "Toggle comment block"
-msgstr ""
+msgstr "コメントブロックの切り替え"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:48
 msgid "Toggle comment"
-msgstr ""
+msgstr "コメントの切り替え"
 
 #: ../xed/xed-searchbar.c:92
 #, c-format
@@ -1729,21 +1752,19 @@ msgstr "\"%s\" は見つかりませんでした"
 
 #: ../xed/xed-searchbar.c:302
 msgid "No matches found"
-msgstr ""
+msgstr "一致がありませんでした"
 
 #: ../xed/xed-searchbar.c:310
 #, c-format
 msgid "%d match"
 msgid_plural "%d matches"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d 個が一致"
 
 #: ../xed/xed-searchbar.c:316
 #, c-format
 msgid "%d of %d match"
 msgid_plural "%d of %d matches"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d 個が一致（総数 %d 個）"
 
 #: ../xed/xed-statusbar.c:67 ../xed/xed-statusbar.c:73
 msgid "OVR"
@@ -1866,7 +1887,7 @@ msgstr "ドキュメント(_D)"
 #. File menu
 #: ../xed/xed-ui.h:53
 msgid "_New"
-msgstr ""
+msgstr "新規(_N)"
 
 #: ../xed/xed-ui.h:55
 msgid "_Open..."
@@ -1892,7 +1913,7 @@ msgstr "目次(_C)"
 
 #: ../xed/xed-ui.h:64
 msgid "Open the xed manual"
-msgstr ""
+msgstr "マニュアルを開く"
 
 #: ../xed/xed-ui.h:65
 msgid "_About"
@@ -1904,11 +1925,11 @@ msgstr "このアプリケーションの情報を表示します"
 
 #: ../xed/xed-ui.h:67
 msgid "_Keyboard Shortcuts"
-msgstr ""
+msgstr "キーボードショートカット(_K)"
 
 #: ../xed/xed-ui.h:68
 msgid "Show the keyboard shortcuts dialog"
-msgstr ""
+msgstr "キーボードショートカットのダイアログを表示"
 
 #: ../xed/xed-ui.h:72
 msgid "Leave fullscreen mode"
@@ -1928,7 +1949,7 @@ msgstr "このファイルに名前を付けて保存します"
 
 #: ../xed/xed-ui.h:83
 msgid "Revert"
-msgstr ""
+msgstr "元に戻す"
 
 #: ../xed/xed-ui.h:84
 msgid "Revert to a saved version of the file"
@@ -1953,7 +1974,7 @@ msgstr "このドキュメントを印刷します"
 #. Edit menu
 #: ../xed/xed-ui.h:91
 msgid "_Undo"
-msgstr ""
+msgstr "元に戻す(_U)"
 
 #: ../xed/xed-ui.h:92
 msgid "Undo the last action"
@@ -1961,7 +1982,7 @@ msgstr "最後に実行した操作を元に戻します"
 
 #: ../xed/xed-ui.h:93
 msgid "_Redo"
-msgstr ""
+msgstr "やり直し(_R)"
 
 #: ../xed/xed-ui.h:94
 msgid "Redo the last undone action"
@@ -1969,7 +1990,7 @@ msgstr "最後に実行しようとした操作をやり直します"
 
 #: ../xed/xed-ui.h:95
 msgid "C_ut"
-msgstr ""
+msgstr "切り取り(_u)"
 
 #: ../xed/xed-ui.h:96
 msgid "Cut the selection"
@@ -1977,7 +1998,7 @@ msgstr "選択範囲を切り取ります"
 
 #: ../xed/xed-ui.h:97
 msgid "_Copy"
-msgstr ""
+msgstr "コピー(_C)"
 
 #: ../xed/xed-ui.h:98
 msgid "Copy the selection"
@@ -1985,7 +2006,7 @@ msgstr "選択範囲をコピーします"
 
 #: ../xed/xed-ui.h:99
 msgid "_Paste"
-msgstr ""
+msgstr "貼り付け(_P)"
 
 #: ../xed/xed-ui.h:100
 msgid "Paste the clipboard"
@@ -2011,7 +2032,7 @@ msgstr "ドキュメント全体を選択します"
 
 #: ../xed/xed-ui.h:105
 msgid "_Toggle Comment"
-msgstr ""
+msgstr "コメントの切り替え(_T)"
 
 #: ../xed/xed-ui.h:106 ../plugins/taglist/HTML.tags.xml.in.h:41
 msgid "Comment"
@@ -2019,11 +2040,11 @@ msgstr "<!--  -->"
 
 #: ../xed/xed-ui.h:107
 msgid "Toggle Comment _Block"
-msgstr ""
+msgstr "コメントブロックの切り替え(_B)"
 
 #: ../xed/xed-ui.h:108
 msgid "Comment Block"
-msgstr ""
+msgstr "コメントブロック"
 
 #. View menu
 #: ../xed/xed-ui.h:111
@@ -2032,12 +2053,12 @@ msgstr "強調表示モード(_H)"
 
 #: ../xed/xed-ui.h:112
 msgid "Change syntax hightlight mode"
-msgstr ""
+msgstr "構文ハイライトモードを変更"
 
 #. Search menu
 #: ../xed/xed-ui.h:116
 msgid "_Find"
-msgstr ""
+msgstr "検索(_F)"
 
 #: ../xed/xed-ui.h:117
 msgid "Search for text"
@@ -2114,7 +2135,7 @@ msgstr "このドキュメントを新しいウィンドウへ移動します"
 
 #: ../xed/xed-ui.h:143
 msgid "_Close"
-msgstr ""
+msgstr "閉じる(_C)"
 
 #: ../xed/xed-ui.h:144
 msgid "Close the current file"
@@ -2122,7 +2143,7 @@ msgstr "このファイルを閉じます"
 
 #: ../xed/xed-ui.h:150
 msgid "_Quit"
-msgstr ""
+msgstr "終了(_Q)"
 
 #: ../xed/xed-ui.h:151
 msgid "Quit the program"
@@ -2146,7 +2167,7 @@ msgstr "このウィンドウでステータスバーの表示/非表示を切�
 
 #: ../xed/xed-ui.h:162
 msgid "Fullscreen"
-msgstr ""
+msgstr "フルスクリーン表示"
 
 #: ../xed/xed-ui.h:163
 msgid "Edit text in fullscreen"
@@ -2154,19 +2175,19 @@ msgstr "フルスクリーン表示で編集します"
 
 #: ../xed/xed-ui.h:165
 msgid "_Word wrap"
-msgstr ""
+msgstr "ワードラップ(_W)"
 
 #: ../xed/xed-ui.h:166
 msgid "Set word wrap for the current document"
-msgstr ""
+msgstr "ワードラップを設定"
 
 #: ../xed/xed-ui.h:168
 msgid "_Overview Map"
-msgstr ""
+msgstr "ミニマップを表示(_O)"
 
 #: ../xed/xed-ui.h:169
 msgid "Show or hide the overview map for the current view"
-msgstr ""
+msgstr "ミニマップを表示/非表示"
 
 #: ../xed/xed-ui.h:176
 msgid "Side _Pane"
@@ -2223,12 +2244,12 @@ msgstr "'%s' に切り替えます"
 #: ../xed/xed-window.c:1330
 #, c-format
 msgid "Spaces: %u"
-msgstr ""
+msgstr "スペース: %u"
 
 #: ../xed/xed-window.c:1334
 #, c-format
 msgid "Tabs: %u"
-msgstr ""
+msgstr "タブ: %u"
 
 #: ../xed/xed-window.c:1411
 msgid "Use Spaces"
@@ -2236,11 +2257,11 @@ msgstr "空白にする"
 
 #: ../xed/xed-window.c:2198
 msgid "There are unsaved documents"
-msgstr ""
+msgstr "未保存のドキュメントがあります"
 
 #: ../xed/xed-window.c:3247
 msgid "Elevated Privileges"
-msgstr ""
+msgstr "権限の昇格"
 
 #: ../plugins/docinfo/docinfo.plugin.desktop.in.h:1
 #: ../plugins/docinfo/docinfo.ui.h:1
@@ -2348,11 +2369,11 @@ msgstr "ファイル参照ペインでフィルタするパターンです。こ
 
 #: ../plugins/filebrowser/org.x.editor.plugins.filebrowser.gschema.xml.h:7
 msgid "Terminal Command"
-msgstr ""
+msgstr "端末コマンド"
 
 #: ../plugins/filebrowser/org.x.editor.plugins.filebrowser.gschema.xml.h:8
 msgid "The terminal command when using the \"Open terminal here\" command."
-msgstr ""
+msgstr "「ここで端末を開く」で端末コマンドは使えます。"
 
 #: ../plugins/filebrowser/org.x.editor.plugins.filebrowser.gschema.xml.h:9
 msgid "Open With Tree View"
@@ -2494,7 +2515,7 @@ msgstr "新しい名前のファイルはフィルタの機能により表示さ
 #. Translators: This is the default name of new files created by the file browser pane.
 #: ../plugins/filebrowser/xed-file-browser-store.c:3771
 msgid "Untitled File"
-msgstr ""
+msgstr "無題のファイル"
 
 #: ../plugins/filebrowser/xed-file-browser-store.c:3799
 msgid ""
@@ -2505,7 +2526,7 @@ msgstr "新しいファイルはフィルタの機能により表示されてい
 #. Translators: This is the default name of new directories created by the file browser pane.
 #: ../plugins/filebrowser/xed-file-browser-store.c:3826
 msgid "Untitled Folder"
-msgstr ""
+msgstr "無題のフォルダ"
 
 #: ../plugins/filebrowser/xed-file-browser-store.c:3851
 msgid ""
@@ -2563,7 +2584,7 @@ msgstr "新しい空のファイルを追加します"
 
 #: ../plugins/filebrowser/xed-file-browser-widget.c:786
 msgid "_Rename..."
-msgstr ""
+msgstr "名前を変更...(_R)"
 
 #: ../plugins/filebrowser/xed-file-browser-widget.c:787
 msgid "Rename selected file or folder"
@@ -2645,7 +2666,7 @@ msgstr "モードライン"
 
 #: ../plugins/modelines/modelines.plugin.desktop.in.h:2
 msgid "Emacs, Kate and Vim-style modelines support for xed."
-msgstr ""
+msgstr "xedは、Emacs、Kate、およびVimスタイルのモードラインをサポートします。"
 
 #: ../plugins/sort/sort.plugin.desktop.in.h:1
 msgid "Sort"
@@ -2657,7 +2678,7 @@ msgstr "ドキュメントまたは選択した文字列を並べ替えます。
 
 #: ../plugins/sort/xed-sort-plugin.c:76
 msgid "S_ort lines"
-msgstr ""
+msgstr "行の並べ替え(_o)"
 
 #: ../plugins/sort/xed-sort-plugin.c:78
 msgid "Sort the current document or selection"
@@ -2665,7 +2686,7 @@ msgstr "このドキュメントまたは選択範囲を並べ替えます"
 
 #: ../plugins/spell/org.x.editor.plugins.spell.gschema.xml.in.h:1
 msgid "Autocheck Type"
-msgstr ""
+msgstr "自動チェックタイプ"
 
 #: ../plugins/spell/spell.plugin.desktop.in.h:1
 msgid "Spell Checker"
@@ -2701,35 +2722,35 @@ msgstr "このドキュメントを自動的にスペルチェックします"
 
 #: ../plugins/spell/xed-spell-setup-dialog.ui.h:1
 msgid "button"
-msgstr ""
+msgstr "ボタン"
 
 #: ../plugins/spell/xed-spell-setup-dialog.ui.h:2
 msgid "Autocheck settings"
-msgstr ""
+msgstr "自動チェック設定"
 
 #: ../plugins/spell/xed-spell-setup-dialog.ui.h:3
 msgid "Never"
-msgstr ""
+msgstr "しない"
 
 #: ../plugins/spell/xed-spell-setup-dialog.ui.h:4
 msgid "Never autocheck spelling on document load"
-msgstr ""
+msgstr "ドキュメントの読み込み時に自動スペルチェックしない"
 
 #: ../plugins/spell/xed-spell-setup-dialog.ui.h:5
 msgid "Remember by document"
-msgstr ""
+msgstr "ドキュメントごとに記憶"
 
 #: ../plugins/spell/xed-spell-setup-dialog.ui.h:6
 msgid "Remembers the setting for each  document on load"
-msgstr ""
+msgstr "読み込み時に各ドキュメントの設定を記憶"
 
 #: ../plugins/spell/xed-spell-setup-dialog.ui.h:7
 msgid "Always"
-msgstr ""
+msgstr "常に"
 
 #: ../plugins/spell/xed-spell-setup-dialog.ui.h:8
 msgid "Always autocheck on document load"
-msgstr ""
+msgstr "ドキュメントの読み込み時に常に自動チェック"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:1
 msgid "XHTML 1.0 - Tags"
@@ -4289,23 +4310,23 @@ msgstr "XUL - タグ"
 
 #: ../plugins/textsize/textsize.plugin.desktop.in.h:1
 msgid "Text Size"
-msgstr ""
+msgstr "テキストサイズ"
 
 #: ../plugins/textsize/textsize.plugin.desktop.in.h:2
 msgid "Allow controlling the zoom levels of the text"
-msgstr ""
+msgstr "テキストの拡大/縮小の制御を許可"
 
 #: ../plugins/textsize/textsize/__init__.py:123
 msgid "_Larger Text"
-msgstr ""
+msgstr "文字を大きく(_L)"
 
 #: ../plugins/textsize/textsize/__init__.py:126
 msgid "S_maller Text"
-msgstr ""
+msgstr "文字を小さく(_m)"
 
 #: ../plugins/textsize/textsize/__init__.py:129
 msgid "_Normal size"
-msgstr ""
+msgstr "通常の大きさ(_N)"
 
 #: ../plugins/time/org.x.editor.plugins.time.gschema.xml.in.h:1
 msgid "Prompt type"
@@ -4384,28 +4405,28 @@ msgstr "書式を毎回指定する(_P)"
 
 #: ../plugins/trailsave/trailsave.plugin.desktop.in.h:1
 msgid "Save Without Trailing Spaces"
-msgstr ""
+msgstr "末尾のスペースなしで保存"
 
 #: ../plugins/trailsave/trailsave.plugin.desktop.in.h:2
 msgid "Removes trailing spaces from lines before saving."
-msgstr ""
+msgstr "保存する前に行末のスペースを削除します。"
 
 #: ../plugins/wordcompletion/xed-wordcompletion-configure.ui.h:1
 msgid "Word Completion"
-msgstr ""
+msgstr "単語補完"
 
 #: ../plugins/wordcompletion/xed-wordcompletion-configure.ui.h:2
 msgid "Use Ctrl+Space to manually trigger word completion."
-msgstr ""
+msgstr "Ctrl + スペース を使用して、単語補完を手動で行います。"
 
 #: ../plugins/wordcompletion/xed-wordcompletion-configure.ui.h:3
 msgid "Automatic completion"
-msgstr ""
+msgstr "自動補完"
 
 #: ../plugins/wordcompletion/xed-wordcompletion-configure.ui.h:4
 msgid "Minimum word size for auto-completion"
-msgstr ""
+msgstr "自動補完の最小単語サイズ"
 
 #: ../plugins/wordcompletion/xed-wordcompletion-plugin.c:215
 msgid "Word completion"
-msgstr ""
+msgstr "単語補完"
