@@ -251,7 +251,6 @@ xed_tab_label_class_init (XedTabLabelClass *klass)
 static void
 xed_tab_label_init (XedTabLabel *tab_label)
 {
-    GtkWidget *ebox;
     GtkWidget *hbox;
     GtkWidget *close_button;
     GtkWidget *spinner;
@@ -264,13 +263,9 @@ xed_tab_label_init (XedTabLabel *tab_label)
     tab_label->priv->close_button_sensitive = TRUE;
 
     gtk_orientable_set_orientation (GTK_ORIENTABLE (tab_label), GTK_ORIENTATION_HORIZONTAL);
-    ebox = gtk_event_box_new ();
-    gtk_event_box_set_visible_window (GTK_EVENT_BOX (ebox), FALSE);
-    gtk_box_pack_start (GTK_BOX (tab_label), ebox, TRUE, TRUE, 0);
-    tab_label->priv->ebox = ebox;
 
     hbox = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 4);
-    gtk_container_add (GTK_CONTAINER (ebox), hbox);
+    gtk_box_pack_start (GTK_BOX (tab_label), hbox, TRUE, TRUE, 0);
 
     close_button = xed_close_button_new ();
     gtk_widget_set_tooltip_text (close_button, _("Close document"));
@@ -303,7 +298,6 @@ xed_tab_label_init (XedTabLabel *tab_label)
     dummy_label = gtk_label_new ("");
     gtk_box_pack_start (GTK_BOX (hbox), dummy_label, TRUE, TRUE, 0);
 
-    gtk_widget_show (ebox);
     gtk_widget_show (hbox);
     gtk_widget_show (close_button);
     gtk_widget_show (icon);
