@@ -126,10 +126,15 @@ strip_trailing_spaces (GtkTextBuffer *text_buffer)
         }
     }
 
-    /* Strip trailing lines (except for one) */
-    if (empty_lines_start != -1 && empty_lines_start != (line_count - 1))
+    /* Strip trailing lines */
+    if (empty_lines_start != -1)
     {
         gtk_text_buffer_get_iter_at_line (text_buffer, &strip_start, empty_lines_start);
+        // if there's an implicit trailing newline, then we'll end up with 2 trailing lines instead of 1, so lets
+        // remove an extra one in that case
+        if (gtk_source_buffer_get_implicit_trailing_newline (GTK_SOURCE_BUFFER (text_buffer))) {
+            gtk_text_iter_backward_char (&strip_start); // move to the end of the previous line
+        }
         gtk_text_buffer_get_end_iter (text_buffer, &strip_end);
         gtk_text_buffer_delete (text_buffer, &strip_start, &strip_end);
     }
