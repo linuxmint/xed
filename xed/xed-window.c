@@ -1859,13 +1859,33 @@ language_changed (GObject *object,
 {
     GtkSourceLanguage *new_language;
     const gchar *label;
+    GtkAction *action;
 
     new_language = gtk_source_buffer_get_language (GTK_SOURCE_BUFFER (object));
 
     if (new_language)
+    {
         label = gtk_source_language_get_name (new_language);
+
+        action = gtk_action_group_get_action (window->priv->action_group, "EditToggleComment");
+        gtk_action_set_sensitive (action,
+                                  gtk_source_language_get_metadata (new_language, "line-comment-start") != NULL);
+
+        action = gtk_action_group_get_action (window->priv->action_group, "EditToggleCommentBlock");
+        gtk_action_set_sensitive (action,
+                                  (gtk_source_language_get_metadata (new_language, "block-comment-start") != NULL
+                                  && gtk_source_language_get_metadata (new_language, "block-comment-end") != NULL));
+    }
     else
+    {
         label = _("Plain Text");
+
+        action = gtk_action_group_get_action (window->priv->action_group, "EditToggleComment");
+        gtk_action_set_sensitive (action, FALSE);
+
+        action = gtk_action_group_get_action (window->priv->action_group, "EditToggleCommentBlock");
+        gtk_action_set_sensitive (action, FALSE);
+    }
 
     xed_status_menu_button_set_label (XED_STATUS_MENU_BUTTON (window->priv->language_button), label);
 }
