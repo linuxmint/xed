@@ -46,7 +46,7 @@ struct _XedTabLabelPrivate
 {
     XedTab *tab;
 
-    GtkWidget *ebox;
+    GtkWidget *label_box;
     GtkWidget *close_button;
     GtkWidget *spinner;
     GtkWidget *icon;
@@ -121,7 +121,7 @@ sync_tip (XedTab      *tab,
     str = _xed_tab_get_tooltips (tab);
     g_return_if_fail (str != NULL);
 
-    gtk_widget_set_tooltip_markup (tab_label->priv->ebox, str);
+    gtk_widget_set_tooltip_markup (tab_label->priv->label_box, str);
     g_free (str);
 }
 
@@ -285,6 +285,8 @@ xed_tab_label_init (XedTabLabel *tab_label)
     tab_label->priv->icon = icon;
 
     label = gtk_label_new ("");
+
+    tab_label->priv->label_box = hbox;
 
     gtk_widget_set_halign (label, GTK_ALIGN_START);
     gtk_widget_set_margin_start (label, 0);
