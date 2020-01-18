@@ -158,7 +158,7 @@ libxed_dep = declare_dependency(
     include_directories: [include_dirs, include_directories('.')]
 )
 
-executable(
+xed = executable(
     'xed',
     xed_sources,
     dependencies: libxed_dep,

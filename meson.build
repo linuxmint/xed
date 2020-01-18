@@ -8,7 +8,8 @@ version = meson.project_version()
 
 xed_conf = configuration_data()
 xed_conf.set_quoted('VERSION', version)
-xed_conf.set_quoted('GETTEXT_PACKAGE', 'xed')
+#xed_conf.set_quoted('GETTEXT_PACKAGE', 'xed')
+xed_conf.set_quoted('GETTEXT_PACKAGE', meson.project_name())
 
 # directories
 prefix = get_option('prefix')
@@ -92,6 +93,15 @@ subdir('plugins')
 subdir('help')
 if get_option('docs')
     subdir('docs/reference')
+endif
+
+# The tests use an option that doesn't exist in meson before 0.46.
+# Since they aren't strictly necessary, we'll just skip them for earlier versions
+# rather than making 0.46 a hard requirement. This condition can be removed once we
+# no longer need to worry about building on 0.45 or earlier
+meson_version_parts = meson.version().split('.')
+if meson_version_parts[0].to_int() > 0 or meson_version_parts[1].to_int() >= 46
+    subdir('test')
 endif
 
 message('prefix = @0@'.format(prefix))
