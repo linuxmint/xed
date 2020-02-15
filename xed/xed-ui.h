@@ -115,7 +115,7 @@ static const GtkActionEntry xed_menu_entries[] =
 	/* Search menu */
 	{ "SearchFind", "edit-find-symbolic", N_("_Find"), "<control>F",
 	  N_("Search for text"), G_CALLBACK (_xed_cmd_search_find) },
-	{ "SearchFindNext", NULL, N_("Find Ne_xt"), "<control>G",
+	{ "SearchFindNext", NULL, N_("Find Ne_xt"), "F3",
 	  N_("Search forwards for the same text"), G_CALLBACK (_xed_cmd_search_find_next) },
 	{ "SearchFindPrevious", NULL, N_("Find Pre_vious"), "<shift><control>G",
 	  N_("Search backwards for the same text"), G_CALLBACK (_xed_cmd_search_find_prev) },
