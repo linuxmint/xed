@@ -129,9 +129,9 @@ static const GtkActionEntry xed_menu_entries[] =
 	  N_("Save all open files"), G_CALLBACK (_xed_cmd_file_save_all) },
 	{ "FileCloseAll", "window-close-symbolic", N_("_Close All"), "<shift><control>W",
 	  N_("Close all open files"), G_CALLBACK (_xed_cmd_file_close_all) },
-	{ "DocumentsPreviousDocument", NULL, N_("_Previous Document"), "<alt><control>Page_Up",
+	{ "DocumentsPreviousDocument", NULL, N_("_Previous Document"), "<shift><control>Tab",
 	  N_("Activate previous document"), G_CALLBACK (_xed_cmd_documents_previous_document) },
-	{ "DocumentsNextDocument", NULL, N_("_Next Document"), "<alt><control>Page_Down",
+	{ "DocumentsNextDocument", NULL, N_("_Next Document"), "<control>Tab",
 	  N_("Activate next document"), G_CALLBACK (_xed_cmd_documents_next_document) },
 	{ "DocumentsMoveToNewWindow", NULL, N_("_Move to New Window"), NULL,
 	  N_("Move the current document to a new window"), G_CALLBACK (_xed_cmd_documents_move_to_new_window) }

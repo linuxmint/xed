@@ -141,6 +141,19 @@ on_key_pressed (GtkWidget *widget,
         }
     }
 
+    if (event->state & GDK_CONTROL_MASK) {
+        if (event->keyval == GDK_KEY_Tab || event->keyval == GDK_KEY_KP_Tab || event->keyval == GDK_KEY_ISO_Left_Tab)
+        {
+            if (event->state & GDK_SHIFT_MASK)
+            {
+                _xed_cmd_documents_previous_document(event, window);
+            } else {
+                _xed_cmd_documents_next_document(event, window);
+            }
+            return GDK_EVENT_STOP; 
+        }
+    }
+
     return GDK_EVENT_PROPAGATE;
 }
 
