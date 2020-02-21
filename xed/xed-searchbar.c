@@ -645,6 +645,17 @@ on_search_text_entry_activated (GtkEntry     *widget,
 }
 
 static void
+on_search_text_entry_key_press (GtkEntry     *widget,
+                                GdkEventKey  *event,
+                                XedSearchbar *searchbar)
+{
+    if (event->keyval == GDK_KEY_Tab)
+    {
+        gtk_widget_grab_focus (searchbar->priv->replace_text_entry);
+    }
+}
+
+static void
 close_button_clicked_callback (GtkWidget    *button,
                                XedSearchbar *searchbar)
 {
@@ -720,6 +731,9 @@ xed_searchbar_init (XedSearchbar *searchbar)
     gtk_widget_show (GTK_WIDGET (searchbar));
 
     g_object_unref (content);
+
+    g_signal_connect (searchbar->priv->search_text_entry, "key-press-event",
+                      G_CALLBACK (on_search_text_entry_key_press), searchbar);
 
     g_signal_connect (searchbar->priv->search_text_entry, "changed",
                       G_CALLBACK (search_text_entry_changed), searchbar);
