@@ -499,6 +499,9 @@ do_replace_all (XedSearchbar *searchbar)
     const gchar *replace_entry_text;
     gchar *unescaped_replace_text;
     gint count;
+    GtkSourceSearchSettings *search_settings;
+
+    search_settings = xed_searchbar_get_search_settings (searchbar);
 
     doc = xed_window_get_active_document (searchbar->window);
 
@@ -509,9 +512,16 @@ do_replace_all (XedSearchbar *searchbar)
 
     search_context = xed_document_get_search_context (doc);
 
-    if (search_context == NULL)
+    if (search_context == NULL && xed_searchbar_get_search_text (searchbar) == NULL)
     {
         return;
+    }
+
+    if (search_context == NULL && xed_searchbar_get_search_text (searchbar) != NULL)
+    {
+        search_context = gtk_source_search_context_new (GTK_SOURCE_BUFFER (doc), search_settings);
+
+        xed_document_set_search_context (doc, search_context);
     }
 
     /* replace text may be "", we just delete all occurrences */
