@@ -139,7 +139,7 @@ static const GOptionEntry options[] =
 
     /* Wait for closing documents */
     {
-        "wait", 'w', 0, G_OPTION_ARG_NONE, NULL,
+        "wait", 'w', 0, G_OPTION_ARG_FILENAME, NULL,
         N_("Open files and block process until files are closed"),
         NULL
     },
