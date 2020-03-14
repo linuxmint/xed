@@ -244,7 +244,14 @@ static void
 on_entry_realized (GtkWidget                *entry,
                    XedHighlightModeSelector *selector)
 {
-    gtk_widget_grab_focus (entry);
+    if (gtk_widget_is_focus (selector))
+    {
+        gtk_widget_grab_focus (entry);
+    }
+    else
+    {
+        gtk_widget_grab_focus (selector);
+    }
 }
 
 static void
@@ -281,7 +288,6 @@ xed_highlight_mode_selector_init (XedHighlightModeSelector *selector)
 	                  G_CALLBACK (on_entry_key_press_event), selector);
     g_signal_connect (selector->entry, "realize",
                       G_CALLBACK (on_entry_realized), selector);
-
 	g_signal_connect (selector->treeview, "row-activated",
 	                  G_CALLBACK (on_row_activated), selector);
 
