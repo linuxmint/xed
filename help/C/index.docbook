@@ -1191,7 +1191,7 @@
       </variablelist>
     </sect2>
 
-    <sect2 id="xed-prefs-plugins">
+    <sect2 id="xed-prefs-plugins" xreflabel="Plugins Preferences">
       <title>Plugins Preferences</title>
       <para>Plugins add extra features to <application>&app;</application>. For more information on plugins and how to use the built-in plugins, see <xref linkend="xed-plugins-overview"/>.</para>
 
@@ -1246,44 +1246,41 @@
   		<para>You can add extra features to <application>&app;</application> by enabling <firstterm>plugins</firstterm>. A plugin is a supplementary program that enhances the functionality of an application. Plugins add new items to the <application>&app;</application> menus for the new features they provide.
   		</para>
   		<para>Several plugins come built-in with <application>&app;</application>, and you can install more.</para>
-  		<para>To enable and disable plugins, or see which plugins are currently enabled, use the <link linkend="xed-prefs-plugins">Plugins Preferences</link>.</para>
+  		<para>To enable and disable plugins, or see which plugins are currently enabled, use the <xref linkend="xed-prefs-plugins"/>.</para>
   		<para>The following plugins come built-in with <application>&app;</application>:</para>
-  		<!-- Not yet documented:
-  		File browser
-  		-->
   		<itemizedlist>
   		  <listitem>
-  		    <para><link linkend="xed-change-case-plugin"><application>Change Case</application></link> allows you to change the case of the selected text.</para>
+  		    <para><xref linkend="xed-change-case-plugin"/> allows you to change the case of the selected text.</para>
   		  </listitem>
   		  <listitem>
-  		    <para><application><link linkend="xed-document-statistics-plugin">Document Statistics</link></application> shows the number of lines, words, and characters in the document. </para>
+  		    <para><xref linkend="xed-document-statistics-plugin"/> shows the number of lines, words, and characters in the document. </para>
   		  </listitem>
   		  <listitem>
-  		    <para><application><!-- <link linkend="xed-file-browser-plugin">File Browser</link>-->File Browser</application> allows you to browse your files and folders in the side pane.</para>
+  		    <para><xref linkend="xed-file-browser-plugin"/> allows you to browse your files and folders in the side pane.</para>
   		  </listitem>
   		  <listitem>
-  		    <para><application><link linkend="xed-indent-lines-plugin">Indent Lines</link></application> adds or removes indentation from the selected lines.</para>
+  		    <para><xref linkend="xed-indent-lines-plugin"/> adds or removes indentation from the selected lines.</para>
   		  </listitem>
   		  <listitem>
-  		    <para><application><link linkend="xed-insert-date-time-plugin">Insert Date/Time</link></application> adds the current date and time into a document.</para>
+  		    <para><xref linkend="xed-insert-date-time-plugin"/> adds the current date and time into a document.</para>
   		  </listitem>
   		  <listitem>
-  		    <para><application><link linkend="xed-modelines-plugin">Modelines</link></application> allows you to set editing preferences for individual documents, and supports <application>Emacs</application>, <application>Kate</application> and <application>Vim</application>-style modelines.</para>
+  		    <para><xref linkend="xed-modelines-plugin"/> allows you to set editing preferences for individual documents, and supports <application>Emacs</application>, <application>Kate</application> and <application>Vim</application>-style modelines.</para>
   		  </listitem>
   		  <listitem>
-  		    <para><application><link linkend="xed-sort-plugin">Sort</link></application> arranges selected lines of text into alphabetical order.</para>
+  		    <para><xref linkend="xed-sort-plugin"/> arranges selected lines of text into alphabetical order.</para>
   		  </listitem>
   		  <listitem>
-  		    <para><application><link linkend="xed-spell-checker-plugin">Spell Checker</link></application> corrects the spelling in the selected text, or marks errors automatically in the document.</para>
+  		    <para><xref linkend="xed-spell-checker-plugin"/> corrects the spelling in the selected text, or marks errors automatically in the document.</para>
   		  </listitem>
   		  <listitem>
-  		    <para><application><link linkend="xed-tag-list-plugin">Tag List</link></application> lets you insert commonly-used tags for HTML and other languages from a list in the side pane.</para>
+  		    <para><xref linkend="xed-tag-list-plugin"/> lets you insert commonly-used tags for HTML and other languages from a list in the side pane.</para>
   		  </listitem>
   		</itemizedlist>
 
   	</sect2>
 
-<sect2 id="xed-change-case-plugin">
+<sect2 id="xed-change-case-plugin" xreflabel="Change Case">
 <title>Change Case Plugin</title>
 	<para>The <application>Change Case</application> plugin changes the case of the selected text.</para>
 	 <para>The following items are added to the <guimenu>Edit</guimenu> menu when the <application>Change Case</application> plugin is enabled:</para>
@@ -1334,7 +1331,7 @@
 
 </sect2>
 
-<sect2 id="xed-document-statistics-plugin">
+<sect2 id="xed-document-statistics-plugin" xreflabel="Document Statistics">
 <title>Document Statistics Plugin</title>
 	<para>The <application>Document Statistics</application> plugin counts the number of lines, words, characters with spaces, characters without spaces, and bytes in the current file. The plugin displays the results in a <guilabel>Document Statistics</guilabel> dialog. To use the Document Statistics plugin, perform the following steps:</para>
 		<orderedlist>
@@ -1364,7 +1361,7 @@
 		</orderedlist>
 </sect2>
 
-<sect2 id="xed-file-browser-plugin">
+<sect2 id="xed-file-browser-plugin" xreflabel="File Browser">
   <title>File Browser Plugin</title>
   <para>The <application>File Browser</application> Plugin shows your files and folders in the side pane, allowing you to quickly open files.</para>
   <para>To view the File Browser, choose <menuchoice><guimenu>View</guimenu> <guimenuitem>Side Pane</guimenuitem> </menuchoice> and then click on the tab showing the File Browser icon at the bottom of the side pane.</para>
@@ -1385,7 +1382,7 @@
     </sect3>
 </sect2>
 
-<sect2 id="xed-indent-lines-plugin">
+<sect2 id="xed-indent-lines-plugin" xreflabel="Indent Lines">
 <title>Indent Lines Plugin</title>
 	<para>The <application>Indent Lines</application> plugin adds or removes space from the beginning of lines of text.</para>
 	<para>To indent or unindent text, perform the following steps:</para>
@@ -1407,7 +1404,7 @@
 
 </sect2>
 
-<sect2 id="xed-insert-date-time-plugin">
+<sect2 id="xed-insert-date-time-plugin" xreflabel="Insert Date/Time">
 <title>Insert Date/Time Plugin</title>
 	<para>The <application>Insert Date/Time</application> plugin inserts the current date and time into a document. To use the Insert Date/Time plugin, perform the following steps:</para>
 		<orderedlist>
@@ -1455,7 +1452,7 @@
 </sect3>
 </sect2>
 
-<sect2 id="xed-modelines-plugin">
+<sect2 id="xed-modelines-plugin" xreflabel="Modelines">
   <title>Modelines Plugin</title>
     <para>The <application>Modelines</application> plugin allows you to set  preferences for individual documents. A <firstterm>modeline</firstterm> is a line of text at the start or end of the document with settings that <application>&app;</application> recognises.</para>
     <para>Preferences set using modelines take precedence over the ones specified in the preference dialog.</para>
@@ -1483,12 +1480,12 @@
     <sect3 id="xed-modelines-plugin-emacs">
       <title>Emacs Modelines</title>
       <para>The first two lines of a document are scanned for <application>Emacs</application> modelines.</para>
-      <para>The <application>Emacs</application> options for tab-width, indent-offset, indent-tabs-mode and autowrap are supported. For more information, see the <ulink type="http" url="http://www.delorie.com/gnu/docs/emacs/emacs_486.html">GNU Emacs Manual</ulink>.</para>
+      <para>The <application>Emacs</application> options for tab-width, indent-offset, indent-tabs-mode and autowrap are supported. For more information, see the <ulink type="http" url="http://www.gnu.org/software/emacs/manual/html_node/emacs/index.html">GNU Emacs Manual</ulink>.</para>
     </sect3>
     <sect3 id="xed-modelines-plugin-kate">
       <title>Kate Modelines</title>
       <para>The first and last ten lines a document are scanned for <application>Kate</application> modelines.</para>
-      <para>The <application>Kate</application> options for tab-width, indent-width, space-indent, word-wrap and word-wrap-column are supported. For more information, see the <ulink type="http" url="http://www.kate-editor.org/article/katepart_modelines">Kate website</ulink>.</para>
+      <para>The <application>Kate</application> options for tab-width, indent-width, space-indent, word-wrap and word-wrap-column are supported. For more information, see the <ulink type="http" url="http://www.kate-editor.org">Kate website</ulink>.</para>
     </sect3>
     <sect3 id="xed-modelines-plugin-vim">
       <title>Vim Modelines</title>
@@ -1497,7 +1494,7 @@
     </sect3>
 </sect2>
 
-<sect2 id="xed-sort-plugin">
+<sect2 id="xed-sort-plugin" xreflabel="Sort">
 <title>Sort Plugin</title>
 	<para>The <application>Sort</application> plugin arranges selected lines of text into alphabetical order.</para>
 		  <caution><para>You cannot undo the Sort operation, so you should save the file before performing the sort. To revert to the saved version of the file after the sort operation, choose <menuchoice> <guimenu>File</guimenu> <guimenuitem>Revert</guimenuitem> </menuchoice>.
@@ -1534,7 +1531,7 @@
 		</orderedlist>
 </sect2>
 
-<sect2 id="xed-spell-checker-plugin">
+<sect2 id="xed-spell-checker-plugin" xreflabel="Spell Checker">
 <title>Spell Checker Plugin</title>
 	<para>The <application>Spell Checker</application> plugin checks the spelling in the selected text. You can configure <application>&app;</application> to check the spelling automatically, or you can check the spelling manually, in the specified language. The language setting, and the autocheck spelling properties, apply per document. To use the Spell checker plugin, perform the following steps:</para>
 		<orderedlist>
@@ -1589,7 +1586,7 @@
 		</orderedlist>
 </sect2>
 
-<sect2 id="xed-tag-list-plugin">
+<sect2 id="xed-tag-list-plugin" xreflabel="Tag List">
 <title>Tag List Plugin</title>
 	<para>The <application>Tag List</application> plugin allows you to insert common tags from a list in the side pane.</para>
   <para>To use the Tag List plugin, perform the following steps:</para>
