@@ -697,14 +697,6 @@ xed_app_handle_local_options (GApplication *application,
         g_application_set_flags (application, old_flags | G_APPLICATION_NON_UNIQUE);
     }
 
-    if (g_variant_dict_contains (options, "wait"))
-    {
-        GApplicationFlags old_flags;
-
-        old_flags = g_application_get_flags (application);
-        g_application_set_flags (application, old_flags | G_APPLICATION_IS_LAUNCHER);
-    }
-
     return -1;
 }
 
