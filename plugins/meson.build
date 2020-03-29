@@ -3,6 +3,7 @@ pluginslibdir = join_paths(libdir, 'xed', 'plugins')
 
 subdir('docinfo')
 subdir('filebrowser')
+subdir('joinlines')
 subdir('modelines')
 subdir('open-uri-context-menu')
 subdir('sort')
