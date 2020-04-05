@@ -331,6 +331,8 @@ xed_app_startup (GApplication *application)
         g_error_free (error);
     }
 
+    g_object_unref (css_file);
+
     /*
      * We use the default gtksourceview style scheme manager so that plugins
      * can obtain it easily without a xed specific api, but we need to
