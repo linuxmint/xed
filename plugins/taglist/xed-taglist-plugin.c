@@ -110,7 +110,7 @@ xed_taglist_plugin_activate (XedWindowActivatable *activatable)
     priv->taglist_panel = xed_taglist_plugin_panel_new (priv->window, data_dir);
     g_free (data_dir);
 
-    xed_panel_add_item (side_panel, priv->taglist_panel, _("Tags"), "list-add");
+    xed_panel_add_item (side_panel, priv->taglist_panel, _("Tags"), "list-add-symbolic");
 }
 
 static void
