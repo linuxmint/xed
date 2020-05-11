@@ -1,3 +1,57 @@
+xed (2.6.0) ulyana; urgency=medium
+
+  [ Stephen Collins ]
+  * Disable the comments action when not supported to avoid confusion
+  * Trailsave plugin: remove second trailing line
+  * xed-tab-label.c: remove unused event box preventing scroll events
+
+  [ Michael Webster ]
+  * xed-tab-label.c: Apply tab tooltip to the box containing the tab's label and icon, regression from 808e77b052322b8f.
+
+  [ Stephen Collins ]
+  * Add .gitignore file
+
+  [ Clement Lefebvre ]
+  * l10n: Update translations
+
+  [ Stephen Collins ]
+  * Add settings widget to the prefs dialog for the implicit newline setting
+
+  [ icarter09 ]
+  * Created initial test dir. Created File menu test.
+  * Removed override_dh_auto_test so tests are not ran by default when building with dpkg.
+  * Removed link that was not working.
+  * Created new section for the Word Wrap shortcut. Increased height attribute to fit new section so a new page is not created.
+  * Added logic to support using replace all across documents.
+  * Added logic to check if the focus need to be set. Squashed formatting commits.
+
+  [ Clement Lefebvre ]
+  * Packaging: Remove python dependency
+
+  [ Isaac Carter ]
+  * Fixed memory issue found by valgrind (#366)
+
+  [ icarter09 ]
+  * Cleaned up broken links.
+  * Changed shortcut window to be non-model.
+  * Added wait entry to man page. Removed logic that cause wait to open extra tab.
+  * Added screen captures to README. Changed README to README.md and added markdown. Updated README with plugins and debian build instructions.
+
+  [ Isaac Carter ]
+  * Update README.md
+
+  [ icarter09 ]
+  * Added JoinLines plugin. Removed logic to split lines. Moved Join Line shortcut from Layout to Editing section.
+
+  [ JosephMcc ]
+  * taglist: Use a symbolic icon in the notebook sidebar
+
+  [ Clement Lefebvre ]
+  * l10n: Update POT
+  * l10n: Update translations
+
+ -- Clement Lefebvre <root@linuxmint.com>  Mon, 11 May 2020 13:58:58 +0100
+
 xed (2.4.2) tricia; urgency=medium
 
   * l10n: Update translations
