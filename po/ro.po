@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: MATE Desktop Environment\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-06-23 14:24+0200\n"
-"PO-Revision-Date: 2019-11-14 21:33+0000\n"
+"PO-Revision-Date: 2020-02-02 10:33+0000\n"
 "Last-Translator: Flaviu <flaviu@gmx.com>\n"
 "Language-Team: Romanian "
 "(http://www.transifex.com/projects/p/MATE/language/ro/)\n"
@@ -20,8 +20,8 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n == 1 ? 0: (((n % 100 > 19) || ((n % 100 "
 "== 0) && (n != 0))) ? 2: 1));\n"
-"X-Launchpad-Export-Date: 2020-01-06 10:04+0000\n"
-"X-Generator: Launchpad (build bceb5ef013b87ef7aafe0755545ceb689ca7ac60)\n"
+"X-Launchpad-Export-Date: 2020-05-11 10:59+0000\n"
+"X-Generator: Launchpad (build fbdff7602bd10fb883bf7e2ddcc7fd5a16f60398)\n"
 "Language: ro\n"
 
 #: ../data/org.x.editor.gschema.xml.in.h:1
@@ -269,7 +269,7 @@ msgstr "Activează evidențierea la căutare"
 #: ../data/org.x.editor.gschema.xml.in.h:43
 msgid ""
 "Whether xed should highlight all the occurrences of the searched text."
-msgstr ""
+msgstr "Dacă xed trebuie să evidențieze toate aparițiile textului căutat."
 
 #: ../data/org.x.editor.gschema.xml.in.h:44
 msgid "Enable Syntax Highlighting"
@@ -277,7 +277,7 @@ msgstr "Activează evidențierea sintaxei"
 
 #: ../data/org.x.editor.gschema.xml.in.h:45
 msgid "Whether xed should enable syntax highlighting."
-msgstr ""
+msgstr "Dacă xed trebuie să permită evidențierea sintaxei."
 
 #: ../data/org.x.editor.gschema.xml.in.h:46
 msgid "Ensure Trailing Newline"
@@ -287,6 +287,7 @@ msgstr "Asigură linie nouă la închidere"
 msgid ""
 "Whether xed will ensure that documents always end with a trailing newline."
 msgstr ""
+"Dacă xed va asigura că documentele se termină întotdeauna cu o linie nouă."
 
 #: ../data/org.x.editor.gschema.xml.in.h:48
 msgid "Toolbar is Visible"
@@ -337,7 +338,7 @@ msgstr "Se permite modificarea filelor active prin derulare"
 
 #: ../data/org.x.editor.gschema.xml.in.h:57
 msgid "Whether you can change active tabs by scrolling."
-msgstr ""
+msgstr "Dacă poți schimba filele active defilând."
 
 #: ../data/org.x.editor.gschema.xml.in.h:58
 msgid "Minimap is visible"
@@ -345,7 +346,7 @@ msgstr "Mini-harta este vizibilă"
 
 #: ../data/org.x.editor.gschema.xml.in.h:59
 msgid "Whether the minimap for the document should be visible."
-msgstr ""
+msgstr "Dacă minimap-ul pentru document trebuie să fie vizibil."
 
 #: ../data/org.x.editor.gschema.xml.in.h:60
 msgid "Maximum Recent Files"
@@ -366,6 +367,7 @@ msgstr "Tipărește sintaxa evidențiată"
 #: ../data/org.x.editor.gschema.xml.in.h:63
 msgid "Whether xed should print syntax highlighting when printing documents."
 msgstr ""
+"Dacă xed trebuie să imprime evidențierea sintaxei la tipărirea documentelor."
 
 #: ../data/org.x.editor.gschema.xml.in.h:64
 msgid "Print Header"
@@ -374,6 +376,7 @@ msgstr "Tipărește antetul"
 #: ../data/org.x.editor.gschema.xml.in.h:65
 msgid "Whether xed should include a document header when printing documents."
 msgstr ""
+"Dacă xed trebuie să includă un antet de document la tipărirea documentelor."
 
 #: ../data/org.x.editor.gschema.xml.in.h:66
 msgid "Printing Line Wrapping Mode"
@@ -400,6 +403,9 @@ msgid ""
 "If this value is 0, then no line numbers will be inserted when printing a "
 "document. Otherwise, xed will print line numbers every such number of lines."
 msgstr ""
+"Dacă această valoare este 0, atunci nu se vor introduce numere de linie la "
+"imprimarea unui document. În caz contrar, xed va imprima numerele de linie "
+"la fiecare astfel de număr de linii."
 
 #: ../data/org.x.editor.gschema.xml.in.h:70
 msgctxt "print-font-body-pango"
@@ -466,6 +472,9 @@ msgid ""
 "encoding of a file. \"CURRENT\" represents the current locale encoding. Only "
 "recognized encodings are used."
 msgstr ""
+"Lista ordonată de codificări utilizate de xed pentru detectarea automată a "
+"codificării unui fișier. „CURRENT” reprezintă codificarea locală curentă. Se "
+"folosesc numai codificări recunoscute."
 
 #: ../data/org.x.editor.gschema.xml.in.h:82
 msgctxt "shown-in-menu"
@@ -510,6 +519,9 @@ msgid ""
 "List of active plugins. It contains the \"Location\" of the active plugins. "
 "See the .xed-plugin file for obtaining the \"Location\" of a given plugin."
 msgstr ""
+"Lista de plugin-uri active. Conține „Locația” pluginurilor active. "
+"Consultați fișierul .xed-plugin pentru obținerea „Locației” a unui plugin "
+"dat."
 
 #: ../data/xed.appdata.xml.in.h:1
 msgid "A Text Editor"
@@ -525,6 +537,14 @@ msgid ""
 "spell checking, comparing files, viewing CVS ChangeLogs, and adjusting "
 "indentation levels. </p>"
 msgstr ""
+"<p> Xed este un editor de text mic dar puternic. Are cele mai multe funcții "
+"de editor de text standard și acceptă integral textul internațional în "
+"Unicode. Funcțiile avansate includ evidențierea sintaxei și indentarea "
+"automată a codului sursă, imprimarea și editarea mai multor documente într-o "
+"fereastră. </p> <p> Xed este extensibil printr-un sistem de plugin-uri care "
+"include în prezent suport pentru verificarea ortografică, compararea "
+"fișierelor, vizualizarea CVS ChangeLogs și ajustarea nivelurilor de "
+"indentare. </p>"
 
 #: ../data/xed.desktop.in.in.h:1 ../xed/xed-print-job.c:707
 msgid "Text Editor"
@@ -557,10 +577,11 @@ msgstr "CODIFICARE"
 #: ../xed/xed-app.c:122
 msgid "Create a new top-level window in an existing instance of xed"
 msgstr ""
+"Creează o nouă fereastră de nivel superior într-o instanță existentă de xed"
 
 #: ../xed/xed-app.c:129
 msgid "Create a new document in an existing instance of xed"
-msgstr ""
+msgstr "Creează un document nou într-o instanță existentă de xed"
 
 #: ../xed/xed-app.c:136
 msgid "Set the size and position of the window (WIDTHxHEIGHT+X+Y)"
@@ -568,24 +589,25 @@ msgstr "Setează dimensiunea și poziția ferestrei (LĂȚIMExÎNĂLȚIME+X+Y)"
 
 #: ../xed/xed-app.c:137
 msgid "GEOMETRY"
-msgstr ""
+msgstr "GEOMETRIE"
 
 #: ../xed/xed-app.c:143
 msgid "Open files and block process until files are closed"
 msgstr ""
+"Deschideți fișierele și blocați procesul până la închiderea fișierelor"
 
 #: ../xed/xed-app.c:150
 msgid "Run xed in standalone mode"
-msgstr ""
+msgstr "Rulează xed în modul autonom"
 
 #: ../xed/xed-app.c:157
 msgid "[FILE...] [+LINE]"
-msgstr ""
+msgstr "[FIȘIER...] [+LINIE]"
 
 #: ../xed/xed-app.c:529
 #, c-format
 msgid "%s: invalid encoding."
-msgstr ""
+msgstr "%s: codare invalidă."
 
 #: ../xed/xed-app.c:1180
 msgid "There was an error displaying the help."
@@ -611,17 +633,17 @@ msgstr "Închide _fără a salva"
 #: ../xed/resources/ui/xed-highlight-mode-dialog.ui.h:2
 #: ../plugins/filebrowser/xed-file-browser-utils.c:153
 msgid "_Cancel"
-msgstr ""
+msgstr "_Anulează"
 
 #: ../xed/xed-close-confirmation-dialog.c:159
 msgid "_Save As..."
-msgstr ""
+msgstr "_Salvează Ca..."
 
 #. File menu
 #: ../xed/xed-close-confirmation-dialog.c:165 ../xed/xed-commands-file.c:649
 #: ../xed/xed-ui.h:79
 msgid "_Save"
-msgstr ""
+msgstr "_Salvează"
 
 #: ../xed/xed-close-confirmation-dialog.c:192
 msgid "Question"
@@ -772,7 +794,7 @@ msgstr "Deschide fișiere"
 #: ../xed/xed-commands-file.c:400
 #: ../plugins/filebrowser/xed-file-browser-widget.c:766
 msgid "_Open"
-msgstr ""
+msgstr "_Deschide"
 
 #: ../xed/xed-commands-file.c:494
 #, c-format
@@ -940,7 +962,7 @@ msgstr "Adaugă sau elimină..."
 
 #: ../xed/xed-encodings-dialog.c:337 ../plugins/time/xed-time-plugin.c:789
 msgid "_OK"
-msgstr ""
+msgstr "_OK"
 
 #: ../xed/xed-encodings-dialog.c:338 ../xed/xed-ui.h:50
 #: ../plugins/spell/xed-spell-plugin.c:435
@@ -1010,11 +1032,11 @@ msgstr ""
 #: ../xed/xed-io-error-info-bar.c:189
 #, c-format
 msgid "xed cannot handle %s locations."
-msgstr ""
+msgstr "xed nu poate gestiona locații %s."
 
 #: ../xed/xed-io-error-info-bar.c:194
 msgid "xed cannot handle this location."
-msgstr ""
+msgstr "xed nu poate gestiona această locație."
 
 #: ../xed/xed-io-error-info-bar.c:201
 msgid "The location of the file cannot be mounted."
@@ -1071,7 +1093,7 @@ msgstr "Eroare neașteptată: %s"
 
 #: ../xed/xed-io-error-info-bar.c:326
 msgid "xed cannot find the file. Perhaps it has recently been deleted."
-msgstr ""
+msgstr "xed nu poate găsi fișierul. Poate că a fost șters recent."
 
 #: ../xed/xed-io-error-info-bar.c:336
 #, c-format
@@ -1102,7 +1124,7 @@ msgstr "Nu aveți permisiunile necesare pentru a deschide fișierul."
 
 #: ../xed/xed-io-error-info-bar.c:499
 msgid "xed has not been able to detect the character encoding."
-msgstr ""
+msgstr "xed nu a putut detecta codificarea caracterelor."
 
 #: ../xed/xed-io-error-info-bar.c:501 ../xed/xed-io-error-info-bar.c:524
 msgid "Please check that you are not trying to open a binary file."
@@ -1123,6 +1145,8 @@ msgid ""
 "The file you opened has some invalid characters. If you continue editing "
 "this file you could corrupt this document."
 msgstr ""
+"Fișierul pe care l-ai deschis conține caractere nevalide. Dacă vei continua "
+"să editezi acest fișier, riști să corupi documentul."
 
 #: ../xed/xed-io-error-info-bar.c:512
 msgid "You can also choose another character encoding and try again."
@@ -1168,13 +1192,15 @@ msgstr "Nu _modifica"
 #: ../xed/xed-io-error-info-bar.c:673
 #, c-format
 msgid "This file (%s) is already open in another xed window."
-msgstr ""
+msgstr "Acest fișier (%s) este deja deschis într-o altă fereastră xed."
 
 #: ../xed/xed-io-error-info-bar.c:687
 msgid ""
 "xed opened this instance of the file in a non-editable way. Do you want to "
 "edit it anyway?"
 msgstr ""
+"xed a deschis această instanță a fișierului într-un mod ne-editabil. Vrei să "
+"o editezi oricum?"
 
 #: ../xed/xed-io-error-info-bar.c:742 ../xed/xed-io-error-info-bar.c:830
 #: ../xed/xed-io-error-info-bar.c:1092
@@ -1218,6 +1244,10 @@ msgid ""
 "You can ignore this warning and save the file anyway, but if an error occurs "
 "while saving, you could lose the old copy of the file. Save anyway?"
 msgstr ""
+"xed nu a putut face o copie de siguranță a fișierului vechi înainte de a-l "
+"salva pe cel nou. Poți ignora acest avertisment și poți salva fișierul, dar "
+"dacă apare o eroare în timpul salvării, poți pierde copia veche a "
+"fișierului. Salvezi oricum?"
 
 #. Translators: %s is a URI scheme (like for example http:, ftp:, etc.)
 #: ../xed/xed-io-error-info-bar.c:928
@@ -1226,12 +1256,16 @@ msgid ""
 "xed cannot handle %s locations in write mode. Please check that you typed "
 "the location correctly and try again."
 msgstr ""
+"xed nu poate gestiona locațiile %s în modul scriere. Te rog să verifici dacă "
+"ai introdus corect locația și apoi reîncearcă."
 
 #: ../xed/xed-io-error-info-bar.c:936
 msgid ""
 "xed cannot handle this location in write mode. Please check that you typed "
 "the location correctly and try again."
 msgstr ""
+"xed nu poate gestiona această locație în modul scriere. Te rog să verifici "
+"dacă ai introdus corect locația și apoi reîncearcă."
 
 #: ../xed/xed-io-error-info-bar.c:945
 #, c-format
@@ -1318,18 +1352,19 @@ msgstr "R_eîncarcă"
 #: ../xed/xed-io-error-info-bar.c:1107
 #, c-format
 msgid "Some invalid chars have been detected while saving %s"
-msgstr ""
+msgstr "Unele caractere invalide au fost detectate în timp ce se salva %s"
 
 #: ../xed/xed-io-error-info-bar.c:1122
 msgid ""
 "If you continue saving this file you can corrupt the document.  Save anyway?"
 msgstr ""
+"Dacă salvezi acest fișier risti să corupi documentul. Salvezi oricum?"
 
 #: ../xed/xed-preferences-dialog.c:264
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:3
 #, no-c-format
 msgid "Use the system fixed width font (%s)"
-msgstr ""
+msgstr "Folosește fontul cu lățime fixă a sistemului (%s)"
 
 #: ../xed/xed-preferences-dialog.c:382
 msgid "Editor"
@@ -1337,7 +1372,7 @@ msgstr "Editor"
 
 #: ../xed/xed-preferences-dialog.c:414
 msgid "Save"
-msgstr ""
+msgstr "Salvează"
 
 #: ../xed/xed-preferences-dialog.c:527
 #, c-format
@@ -1355,7 +1390,7 @@ msgstr "Adăugare schemă"
 
 #: ../xed/xed-preferences-dialog.c:707 ../xed/xed-progress-info-bar.c:64
 msgid "Cancel"
-msgstr ""
+msgstr "Anulează"
 
 #: ../xed/xed-preferences-dialog.c:716
 msgid "Color Scheme Files"
@@ -1368,7 +1403,7 @@ msgstr "Nu s-a putut șterge schema de culori „%s”."
 
 #: ../xed/xed-preferences-dialog.c:820
 msgid "Theme"
-msgstr ""
+msgstr "Temă"
 
 #: ../xed/xed-preferences-dialog.c:837
 msgid "Plugins"
@@ -1376,16 +1411,16 @@ msgstr "Module"
 
 #: ../xed/xed-preferences-dialog.c:845
 msgid "Help"
-msgstr ""
+msgstr "Ajutor"
 
 #: ../xed/xed-preferences-dialog.c:850
 #: ../xed/resources/ui/xed-searchbar.ui.h:11
 msgid "Close"
-msgstr ""
+msgstr "Închide"
 
 #: ../xed/xed-preferences-dialog.c:864
 msgid "Xed Preferences"
-msgstr ""
+msgstr "Preferințe Xed"
 
 #: ../xed/xed-print-job.c:494
 #, c-format
@@ -1449,7 +1484,7 @@ msgstr "Depărtează pagina"
 
 #: ../xed/xed-print-preview.c:682
 msgid "_Close preview"
-msgstr ""
+msgstr "_Închide previzualizarea"
 
 #: ../xed/xed-print-preview.c:684
 msgid "Close print preview"
@@ -1470,15 +1505,15 @@ msgstr "Previzualizarea pentru tipărire a unei pagini din document"
 
 #: ../xed/resources/ui/xed-highlight-mode-dialog.ui.h:1
 msgid "Highlight Mode"
-msgstr ""
+msgstr "Modul evidențiere"
 
 #: ../xed/resources/ui/xed-highlight-mode-dialog.ui.h:3
 msgid "_Select"
-msgstr ""
+msgstr "_Alege"
 
 #: ../xed/resources/ui/xed-highlight-mode-selector.ui.h:1
 msgid "Search highlight mode…"
-msgstr ""
+msgstr "Caută modul de evidențiere…"
 
 #: ../xed/resources/ui/xed-encodings-dialog.ui.h:1
 msgid "Character encodings"
@@ -1498,107 +1533,107 @@ msgstr "Font"
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:4
 msgid "Display"
-msgstr ""
+msgstr "Afiṣaj"
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:5
 msgid "Display line numbers"
-msgstr ""
+msgstr "Afișează numerele rândurilor"
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:6
 msgid "Display overview map"
-msgstr ""
+msgstr "Afișează harta de ansamblu"
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:7
 msgid "Display right margin"
-msgstr ""
+msgstr "Afișează marginea dreaptă"
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:8
 msgid "Right margin at column"
-msgstr ""
+msgstr "Maginea dreaptă la coloană"
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:9
 msgid "4"
-msgstr ""
+msgstr "4"
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:10
 msgid "Highlighting"
-msgstr ""
+msgstr "Evidențiere"
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:11
 msgid "Highlight the current line"
-msgstr ""
+msgstr "Evidențiază linia curentă"
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:12
 msgid "Highlight matching brackets"
-msgstr ""
+msgstr "Evidențiază parantezele pereche"
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:13
 msgid "Indentation"
-msgstr ""
+msgstr "Indentare"
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:14
 msgid "Tab width"
-msgstr ""
+msgstr "Lățimea tab-ului"
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:15
 msgid "Use spaces instead of tabs"
-msgstr ""
+msgstr "Folosește spații în loc de tab-uri"
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:16
 msgid "Automatic indentation"
-msgstr ""
+msgstr "Indentare automată"
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:17
 msgid "Word wrap"
-msgstr ""
+msgstr "Înfășurare text"
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:18
 msgid "Split words over two lines"
-msgstr ""
+msgstr "Împărte cuvintele pe două linii"
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:19
 msgid "Tab scrolling"
-msgstr ""
+msgstr "Defilare tab"
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:20
 msgid "Allow mouse wheel scrolling to change tabs"
-msgstr ""
+msgstr "Permite derularea rotiței mouse-ului pentru a schimba filele"
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:21
 msgid "File saving"
-msgstr ""
+msgstr "Salvare de fișier"
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:22
 msgid "Create a backup copy of files before saving"
-msgstr ""
+msgstr "Creează o copie de rezervă a fișierelor înainte de salvare"
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:23
 msgid "Autosave files"
-msgstr ""
+msgstr "Autosalvarea fișierelor"
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:24
 msgid "Minutes between saving"
-msgstr ""
+msgstr "Minute între salvare"
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:25
 msgid "Dark theme"
-msgstr ""
+msgstr "Temă întunecată"
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:26
 msgid "Use dark theme variant (if available)"
-msgstr ""
+msgstr "Folosește varianta temei întunecate (dacă este disponibilă)"
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:27
 msgid "Style scheme"
-msgstr ""
+msgstr "Schemă de stil"
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:28
 msgid "Install scheme"
-msgstr ""
+msgstr "Instalează o schemă"
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:29
 msgid "Remove scheme"
-msgstr ""
+msgstr "Șterge schema"
 
 #: ../xed/resources/ui/xed-print-preferences.ui.h:1
 msgid "Syntax Highlighting"
@@ -1684,27 +1719,27 @@ msgstr "Înlocuiește c_u: "
 
 #: ../xed/resources/ui/xed-searchbar.ui.h:5
 msgid "Next"
-msgstr ""
+msgstr "Următorul"
 
 #: ../xed/resources/ui/xed-searchbar.ui.h:6
 msgid "Previous"
-msgstr ""
+msgstr "Anteriorul"
 
 #: ../xed/resources/ui/xed-searchbar.ui.h:7
 msgid "Regular expression"
-msgstr ""
+msgstr "Expresie regulară"
 
 #: ../xed/resources/ui/xed-searchbar.ui.h:8
 msgid "Case sensitive"
-msgstr ""
+msgstr "Caz sensibil"
 
 #: ../xed/resources/ui/xed-searchbar.ui.h:9
 msgid "Whole word"
-msgstr ""
+msgstr "Întreg cuvântul"
 
 #: ../xed/resources/ui/xed-searchbar.ui.h:10
 msgid "Wrap"
-msgstr ""
+msgstr "Încadrează"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:2 ../xed/xed-ui.h:54
 msgid "Create a new document"
@@ -1712,107 +1747,107 @@ msgstr "Creează un document nou"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:3
 msgid "Open a document"
-msgstr ""
+msgstr "Deschide un document"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:4
 msgid "Save the document"
-msgstr ""
+msgstr "Salvează documentul"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:5
 msgid "Save the document with a new filename"
-msgstr ""
+msgstr "Salvează documentul cu un nou nume de fișier"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:6
 msgid "Save all the documents"
-msgstr ""
+msgstr "Salvează toate documentele"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:7
 msgid "Close the document"
-msgstr ""
+msgstr "Închide documentul"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:8
 msgid "Close all the documents"
-msgstr ""
+msgstr "Închide toate documentele"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:9
 msgid "Switch to the next document"
-msgstr ""
+msgstr "Comută la următorul document"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:10
 msgid "Switch to the previous document"
-msgstr ""
+msgstr "Comută la documentul anterior"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:11
 msgid "Switch to the first - ninth document"
-msgstr ""
+msgstr "Comută la primul - al 9-lea document"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:12
 msgid "Windows and Panes"
-msgstr ""
+msgstr "Ferestre și Panouri"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:13
 msgid "Show side pane"
-msgstr ""
+msgstr "Afișează panoul lateral"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:14
 msgid "Show bottom pane"
-msgstr ""
+msgstr "Afișează panoul de jos"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:15
 msgid "Fullscreen on / off"
-msgstr ""
+msgstr "Ecran complet pornit / oprit"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:16
 msgid "Quit the application"
-msgstr ""
+msgstr "Închide aplicația"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:17
 msgid "Find and Replace"
-msgstr ""
+msgstr "Caută și înlocuiește"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:18
 msgid "Find"
-msgstr ""
+msgstr "Caută"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:19
 msgid "Find the next match"
-msgstr ""
+msgstr "Caută potrivirea următoare"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:20
 msgid "Find the previous match"
-msgstr ""
+msgstr "Caută potrivirea anterioară"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:21
 msgid "Go to line"
-msgstr ""
+msgstr "Mergi la linia"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:22
 msgid "Copy and Paste"
-msgstr ""
+msgstr "Copiază și lipește"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:23
 msgid "Copy selected text to clipboard"
-msgstr ""
+msgstr "Copiază textul selectat în clipboard"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:24
 msgid "Cut selected text to clipboard"
-msgstr ""
+msgstr "Taie textul selectat în clipboard"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:25
 msgid "Paste text from clipboard"
-msgstr ""
+msgstr "Lipește textul din clipboard"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:26
 msgid "Undo and Redo"
-msgstr ""
+msgstr "Anulează și refă"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:27
 msgid "Undo previous command"
-msgstr ""
+msgstr "Anulează comanda anterioară"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:28
 msgid "Redo previous command"
-msgstr ""
+msgstr "Refă comanda anterioară"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:29 ../plugins/docinfo/docinfo.ui.h:11
 msgid "Selection"
@@ -1820,79 +1855,79 @@ msgstr "Selecție"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:30
 msgid "Select all text"
-msgstr ""
+msgstr "Selectează tot textul"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:31
 msgid "Tools"
-msgstr ""
+msgstr "Unelte"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:32
 msgid "Check spelling"
-msgstr ""
+msgstr "Verifică ortografia"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:33
 msgid "Print the document"
-msgstr ""
+msgstr "Tipărește documentul"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:34
 msgid "Editing"
-msgstr ""
+msgstr "Se editează"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:35
 msgid "Toggle insert / overwrite"
-msgstr ""
+msgstr "Comută introducere / suprascriere"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:36
 msgid "Delete current line"
-msgstr ""
+msgstr "Șterge linia curentă"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:37
 msgid "Move current line up"
-msgstr ""
+msgstr "Mută linia curentă în sus"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:38
 msgid "Move current line down"
-msgstr ""
+msgstr "Mută linia curentă în jos"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:39
 msgid "Move current word left"
-msgstr ""
+msgstr "Mută cuvântul curent spre stânga"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:40
 msgid "Move current word right"
-msgstr ""
+msgstr "Mută cuvântul curent spre dreapta"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:41
 msgid "Convert to uppercase"
-msgstr ""
+msgstr "Convertește la majuscule"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:42
 msgid "Convert to lowercase"
-msgstr ""
+msgstr "Convertește la minuscule"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:43
 msgid "Convert to title case"
-msgstr ""
+msgstr "Convertește la cazul titlu"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:44
 msgid "Invert case"
-msgstr ""
+msgstr "Inversează cazul"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:45
 msgid "Increment number at cursor"
-msgstr ""
+msgstr "Incrementează numărul la cursor"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:46
 msgid "Decrement number at cursor"
-msgstr ""
+msgstr "Decrementează numărul la cursor"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:47
 msgid "Toggle comment block"
-msgstr ""
+msgstr "Comută blocul de comentarii"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:48
 msgid "Toggle comment"
-msgstr ""
+msgstr "Comută comentariu"
 
 #: ../xed/xed-searchbar.c:92
 #, c-format
@@ -1913,21 +1948,23 @@ msgstr "„%s” nu a fost găsit"
 
 #: ../xed/xed-searchbar.c:302
 msgid "No matches found"
-msgstr ""
+msgstr "Nicio potrivire găsită"
 
 #: ../xed/xed-searchbar.c:310
 #, c-format
 msgid "%d match"
 msgid_plural "%d matches"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d potrivire"
+msgstr[1] "%d potriviri"
+msgstr[2] "%d potriviri"
 
 #: ../xed/xed-searchbar.c:316
 #, c-format
 msgid "%d of %d match"
 msgid_plural "%d of %d matches"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d of %d potrivire"
+msgstr[1] "%d of %d potriviri"
+msgstr[2] "%d of %d potriviri"
 
 #: ../xed/xed-statusbar.c:67 ../xed/xed-statusbar.c:73
 msgid "OVR"
@@ -2052,7 +2089,7 @@ msgstr "_Documente"
 #. File menu
 #: ../xed/xed-ui.h:53
 msgid "_New"
-msgstr ""
+msgstr "_Nou(ă)"
 
 #: ../xed/xed-ui.h:55
 msgid "_Open..."
@@ -2078,7 +2115,7 @@ msgstr "_Conținut"
 
 #: ../xed/xed-ui.h:64
 msgid "Open the xed manual"
-msgstr ""
+msgstr "Deschide manualul xed"
 
 #: ../xed/xed-ui.h:65
 msgid "_About"
@@ -2090,11 +2127,11 @@ msgstr "Despre această aplicație"
 
 #: ../xed/xed-ui.h:67
 msgid "_Keyboard Shortcuts"
-msgstr ""
+msgstr "Scurtături de _tastatură"
 
 #: ../xed/xed-ui.h:68
 msgid "Show the keyboard shortcuts dialog"
-msgstr ""
+msgstr "Afișează dialogul de comenzi rapide de tastatură"
 
 #: ../xed/xed-ui.h:72
 msgid "Leave fullscreen mode"
@@ -2114,7 +2151,7 @@ msgstr "Salvează fișierul curent cu un alt nume"
 
 #: ../xed/xed-ui.h:83
 msgid "Revert"
-msgstr ""
+msgstr "Revenire la starea inițială"
 
 #: ../xed/xed-ui.h:84
 msgid "Revert to a saved version of the file"
@@ -2139,7 +2176,7 @@ msgstr "Tipărește pagina curentă"
 #. Edit menu
 #: ../xed/xed-ui.h:91
 msgid "_Undo"
-msgstr ""
+msgstr "_Anulează"
 
 #: ../xed/xed-ui.h:92
 msgid "Undo the last action"
@@ -2147,7 +2184,7 @@ msgstr "Anulează ultima acțiune"
 
 #: ../xed/xed-ui.h:93
 msgid "_Redo"
-msgstr ""
+msgstr "_Refă"
 
 #: ../xed/xed-ui.h:94
 msgid "Redo the last undone action"
@@ -2155,7 +2192,7 @@ msgstr "Refă ultima acțiune anulată"
 
 #: ../xed/xed-ui.h:95
 msgid "C_ut"
-msgstr ""
+msgstr "_Taie"
 
 #: ../xed/xed-ui.h:96
 msgid "Cut the selection"
@@ -2163,7 +2200,7 @@ msgstr "Taie selecția"
 
 #: ../xed/xed-ui.h:97
 msgid "_Copy"
-msgstr ""
+msgstr "_Copiază"
 
 #: ../xed/xed-ui.h:98
 msgid "Copy the selection"
@@ -2171,7 +2208,7 @@ msgstr "Copiază selecția"
 
 #: ../xed/xed-ui.h:99
 msgid "_Paste"
-msgstr ""
+msgstr "_Lipește"
 
 #: ../xed/xed-ui.h:100
 msgid "Paste the clipboard"
@@ -2197,7 +2234,7 @@ msgstr "Selectează tot documentul"
 
 #: ../xed/xed-ui.h:105
 msgid "_Toggle Comment"
-msgstr ""
+msgstr "_Comută comentariu"
 
 #: ../xed/xed-ui.h:106 ../plugins/taglist/HTML.tags.xml.in.h:41
 msgid "Comment"
@@ -2205,11 +2242,11 @@ msgstr "Comentariu"
 
 #: ../xed/xed-ui.h:107
 msgid "Toggle Comment _Block"
-msgstr ""
+msgstr "Comută _blocul de comentarii"
 
 #: ../xed/xed-ui.h:108
 msgid "Comment Block"
-msgstr ""
+msgstr "Comentează bloc"
 
 #. View menu
 #: ../xed/xed-ui.h:111
@@ -2218,12 +2255,12 @@ msgstr "_Mod evidențiere"
 
 #: ../xed/xed-ui.h:112
 msgid "Change syntax hightlight mode"
-msgstr ""
+msgstr "Schimbă modul de evidențiere a sintaxei"
 
 #. Search menu
 #: ../xed/xed-ui.h:116
 msgid "_Find"
-msgstr ""
+msgstr "_Caută"
 
 #: ../xed/xed-ui.h:117
 msgid "Search for text"
@@ -2300,7 +2337,7 @@ msgstr "Mută documentul curent într-o fereastră nouă"
 
 #: ../xed/xed-ui.h:143
 msgid "_Close"
-msgstr ""
+msgstr "_Închide"
 
 #: ../xed/xed-ui.h:144
 msgid "Close the current file"
@@ -2308,7 +2345,7 @@ msgstr "Închide fișierul curent"
 
 #: ../xed/xed-ui.h:150
 msgid "_Quit"
-msgstr ""
+msgstr "_Închide"
 
 #: ../xed/xed-ui.h:151
 msgid "Quit the program"
@@ -2332,7 +2369,7 @@ msgstr "Arată sau ascunde bara de stare în fereastra curentă"
 
 #: ../xed/xed-ui.h:162
 msgid "Fullscreen"
-msgstr ""
+msgstr "Ecran complet"
 
 #: ../xed/xed-ui.h:163
 msgid "Edit text in fullscreen"
@@ -2340,19 +2377,19 @@ msgstr "Editare text pe tot ecranul"
 
 #: ../xed/xed-ui.h:165
 msgid "_Word wrap"
-msgstr ""
+msgstr "_Înfășurare cuvinte"
 
 #: ../xed/xed-ui.h:166
 msgid "Set word wrap for the current document"
-msgstr ""
+msgstr "Setează modul înfășurare cuvinte în documentul curent"
 
 #: ../xed/xed-ui.h:168
 msgid "_Overview Map"
-msgstr ""
+msgstr "_Hartă de ansamblu"
 
 #: ../xed/xed-ui.h:169
 msgid "Show or hide the overview map for the current view"
-msgstr ""
+msgstr "Afișează sau ascunde harta de ansamblu pentru vizualizarea curentă"
 
 #: ../xed/xed-ui.h:176
 msgid "Side _Pane"
@@ -2410,12 +2447,12 @@ msgstr "Activează „%s”"
 #: ../xed/xed-window.c:1330
 #, c-format
 msgid "Spaces: %u"
-msgstr ""
+msgstr "Spații: %u"
 
 #: ../xed/xed-window.c:1334
 #, c-format
 msgid "Tabs: %u"
-msgstr ""
+msgstr "Tab-uri: %u"
 
 #: ../xed/xed-window.c:1411
 msgid "Use Spaces"
@@ -2423,11 +2460,11 @@ msgstr "Folosește spații"
 
 #: ../xed/xed-window.c:2198
 msgid "There are unsaved documents"
-msgstr ""
+msgstr "Există documente nesalvate"
 
 #: ../xed/xed-window.c:3247
 msgid "Elevated Privileges"
-msgstr ""
+msgstr "Privilegii superioare"
 
 #: ../plugins/docinfo/docinfo.plugin.desktop.in.h:1
 #: ../plugins/docinfo/docinfo.ui.h:1
@@ -2541,11 +2578,12 @@ msgstr ""
 
 #: ../plugins/filebrowser/org.x.editor.plugins.filebrowser.gschema.xml.h:7
 msgid "Terminal Command"
-msgstr ""
+msgstr "Comandă de terminal"
 
 #: ../plugins/filebrowser/org.x.editor.plugins.filebrowser.gschema.xml.h:8
 msgid "The terminal command when using the \"Open terminal here\" command."
 msgstr ""
+"Comanda terminal atunci când folosești comanda „Deschideți terminalul aici”."
 
 #: ../plugins/filebrowser/org.x.editor.plugins.filebrowser.gschema.xml.h:9
 msgid "Open With Tree View"
@@ -2696,7 +2734,7 @@ msgstr ""
 #. Translators: This is the default name of new files created by the file browser pane.
 #: ../plugins/filebrowser/xed-file-browser-store.c:3771
 msgid "Untitled File"
-msgstr ""
+msgstr "Fișier fără titlu"
 
 #: ../plugins/filebrowser/xed-file-browser-store.c:3799
 msgid ""
@@ -2709,7 +2747,7 @@ msgstr ""
 #. Translators: This is the default name of new directories created by the file browser pane.
 #: ../plugins/filebrowser/xed-file-browser-store.c:3826
 msgid "Untitled Folder"
-msgstr ""
+msgstr "Dosar fără titlu"
 
 #: ../plugins/filebrowser/xed-file-browser-store.c:3851
 msgid ""
@@ -2769,7 +2807,7 @@ msgstr "Adaugă un fișier nou gol"
 
 #: ../plugins/filebrowser/xed-file-browser-widget.c:786
 msgid "_Rename..."
-msgstr ""
+msgstr "_Redenumește..."
 
 #: ../plugins/filebrowser/xed-file-browser-widget.c:787
 msgid "Rename selected file or folder"
@@ -2851,7 +2889,7 @@ msgstr "Linii de mod (modelines)"
 
 #: ../plugins/modelines/modelines.plugin.desktop.in.h:2
 msgid "Emacs, Kate and Vim-style modelines support for xed."
-msgstr ""
+msgstr "Suportă în xed modelele de linie Emacs, Kate și Vim."
 
 #: ../plugins/sort/sort.plugin.desktop.in.h:1
 msgid "Sort"
@@ -2863,7 +2901,7 @@ msgstr "Sortează un document sau un text selectat."
 
 #: ../plugins/sort/xed-sort-plugin.c:76
 msgid "S_ort lines"
-msgstr ""
+msgstr "Sortează linii"
 
 #: ../plugins/sort/xed-sort-plugin.c:78
 msgid "Sort the current document or selection"
@@ -2907,35 +2945,35 @@ msgstr "Verifică automat ortografia documentului curent"
 
 #: ../plugins/spell/xed-spell-setup-dialog.ui.h:1
 msgid "button"
-msgstr ""
+msgstr "buton"
 
 #: ../plugins/spell/xed-spell-setup-dialog.ui.h:2
 msgid "Autocheck settings"
-msgstr ""
+msgstr "Configurații autoverificare"
 
 #: ../plugins/spell/xed-spell-setup-dialog.ui.h:3
 msgid "Never"
-msgstr ""
+msgstr "Niciodată"
 
 #: ../plugins/spell/xed-spell-setup-dialog.ui.h:4
 msgid "Never autocheck spelling on document load"
-msgstr ""
+msgstr "Nu autoverifica niciodată ortografia la încărcarea documentului"
 
 #: ../plugins/spell/xed-spell-setup-dialog.ui.h:5
 msgid "Remember by document"
-msgstr ""
+msgstr "Amintește prin document"
 
 #: ../plugins/spell/xed-spell-setup-dialog.ui.h:6
 msgid "Remembers the setting for each  document on load"
-msgstr ""
+msgstr "Amintește configuratia pentru fiecare document la încarcare"
 
 #: ../plugins/spell/xed-spell-setup-dialog.ui.h:7
 msgid "Always"
-msgstr ""
+msgstr "Întotdeauna"
 
 #: ../plugins/spell/xed-spell-setup-dialog.ui.h:8
 msgid "Always autocheck on document load"
-msgstr ""
+msgstr "Verificați întotdeauna autocontrolul pe încărcarea documentului"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:1
 msgid "XHTML 1.0 - Tags"
@@ -4497,23 +4535,23 @@ msgstr "XUL - Taguri"
 
 #: ../plugins/textsize/textsize.plugin.desktop.in.h:1
 msgid "Text Size"
-msgstr ""
+msgstr "Dimensiune text"
 
 #: ../plugins/textsize/textsize.plugin.desktop.in.h:2
 msgid "Allow controlling the zoom levels of the text"
-msgstr ""
+msgstr "Permite controlul nivelurilor de mărire a textului"
 
 #: ../plugins/textsize/textsize/__init__.py:123
 msgid "_Larger Text"
-msgstr ""
+msgstr "Text mai _mare"
 
 #: ../plugins/textsize/textsize/__init__.py:126
 msgid "S_maller Text"
-msgstr ""
+msgstr "Text mai mi_c"
 
 #: ../plugins/textsize/textsize/__init__.py:129
 msgid "_Normal size"
-msgstr ""
+msgstr "Mărime _normală"
 
 #: ../plugins/time/org.x.editor.plugins.time.gschema.xml.in.h:1
 msgid "Prompt type"
@@ -4600,20 +4638,21 @@ msgstr "Elimină spațiile goale de la capătul rândurilor înainte de a salva.
 
 #: ../plugins/wordcompletion/xed-wordcompletion-configure.ui.h:1
 msgid "Word Completion"
-msgstr ""
+msgstr "Completare cuvânt"
 
 #: ../plugins/wordcompletion/xed-wordcompletion-configure.ui.h:2
 msgid "Use Ctrl+Space to manually trigger word completion."
 msgstr ""
+"Folosește Ctrl+Spațiu pentru a declanșa manual completarea cuvintelor."
 
 #: ../plugins/wordcompletion/xed-wordcompletion-configure.ui.h:3
 msgid "Automatic completion"
-msgstr ""
+msgstr "Completare automată"
 
 #: ../plugins/wordcompletion/xed-wordcompletion-configure.ui.h:4
 msgid "Minimum word size for auto-completion"
-msgstr ""
+msgstr "Dimensiunea minimă a cuvântului pentru completarea automată"
 
 #: ../plugins/wordcompletion/xed-wordcompletion-plugin.c:215
 msgid "Word completion"
-msgstr ""
+msgstr "Completare a cuvântului"
