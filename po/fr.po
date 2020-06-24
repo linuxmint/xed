@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MATE Desktop Environment\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-06-23 14:24+0200\n"
-"PO-Revision-Date: 2019-11-22 12:05+0000\n"
+"POT-Creation-Date: 2020-06-21 12:40+0100\n"
+"PO-Revision-Date: 2020-06-21 12:26+0000\n"
 "Last-Translator: Clement Lefebvre <root@linuxmint.com>\n"
 "Language-Team: French "
 "(http://www.transifex.com/projects/p/MATE/language/fr/)\n"
@@ -18,8 +18,8 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Launchpad-Export-Date: 2020-05-11 11:00+0000\n"
-"X-Generator: Launchpad (build fbdff7602bd10fb883bf7e2ddcc7fd5a16f60398)\n"
+"X-Launchpad-Export-Date: 2020-06-24 10:09+0000\n"
+"X-Generator: Launchpad (build 1cbd0aa39df153c901321817f9b57cf3f232b507)\n"
 "Language: fr\n"
 
 #: ../data/org.x.editor.gschema.xml.in.h:1
@@ -286,6 +286,7 @@ msgid "Whether xed should enable syntax highlighting."
 msgstr "Indique s'il faut que xed active  la coloration syntaxique."
 
 #: ../data/org.x.editor.gschema.xml.in.h:46
+#: ../xed/resources/ui/xed-preferences-dialog.ui.h:25
 msgid "Ensure Trailing Newline"
 msgstr "Assurer une nouvelle ligne terminale"
 
@@ -615,12 +616,12 @@ msgstr "Lancer xed en mode autonome"
 msgid "[FILE...] [+LINE]"
 msgstr "[FILE...] [+LINE]"
 
-#: ../xed/xed-app.c:529
+#: ../xed/xed-app.c:614
 #, c-format
 msgid "%s: invalid encoding."
 msgstr "%s : codage non valide."
 
-#: ../xed/xed-app.c:1180
+#: ../xed/xed-app.c:1270
 msgid "There was an error displaying the help."
 msgstr "Une erreur s'est produite lors de l'affichage de l'aide."
 
@@ -934,7 +935,7 @@ msgid "Read-Only"
 msgstr "Lecture seule"
 
 #: ../xed/xed-documents-panel.c:717 ../xed/resources/ui/xed-shortcuts.ui.h:1
-#: ../xed/xed-window.c:2982
+#: ../xed/xed-window.c:3002
 msgid "Documents"
 msgstr "Documents"
 
@@ -972,7 +973,7 @@ msgstr "_Description"
 msgid "_Encoding"
 msgstr "_Codage"
 
-#: ../xed/xed-file-chooser-dialog.c:46 ../xed/xed-preferences-dialog.c:723
+#: ../xed/xed-file-chooser-dialog.c:46 ../xed/xed-preferences-dialog.c:731
 msgid "All Files"
 msgstr "Tous les fichiers"
 
@@ -1000,7 +1001,7 @@ msgstr "Mac OS Classic"
 msgid "Windows"
 msgstr "Windows"
 
-#: ../xed/xed-highlight-mode-selector.c:291 ../xed/xed-window.c:1868
+#: ../xed/xed-highlight-mode-selector.c:297 ../xed/xed-window.c:1881
 msgid "Plain Text"
 msgstr "Texte brut"
 
@@ -1354,66 +1355,66 @@ msgstr ""
 "Si vous poursuivez l'enregistrement du fichier vous pouvez endommager le "
 "document. Voulez-vous l'enregistrer néanmoins ?"
 
-#: ../xed/xed-preferences-dialog.c:264
+#: ../xed/xed-preferences-dialog.c:266
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:3
 #, no-c-format
 msgid "Use the system fixed width font (%s)"
 msgstr "Utiliser la police système à chasse fixe (%s)"
 
-#: ../xed/xed-preferences-dialog.c:382
+#: ../xed/xed-preferences-dialog.c:384
 msgid "Editor"
 msgstr "Éditeur"
 
-#: ../xed/xed-preferences-dialog.c:414
+#: ../xed/xed-preferences-dialog.c:422
 msgid "Save"
 msgstr "Enregistrer"
 
-#: ../xed/xed-preferences-dialog.c:527
+#: ../xed/xed-preferences-dialog.c:535
 #, c-format
 msgid ""
 "Directory '%s' could not be created: g_mkdir_with_parents() failed: %s"
 msgstr ""
 "Impossible de créer le dossier « %s » : g_mkdir_with_parents() a échoué : %s"
 
-#: ../xed/xed-preferences-dialog.c:681
+#: ../xed/xed-preferences-dialog.c:689
 msgid "The selected color scheme cannot be installed."
 msgstr "Le jeu de couleurs sélectionné ne peut pas être installé."
 
-#: ../xed/xed-preferences-dialog.c:704 ../xed/xed-preferences-dialog.c:710
+#: ../xed/xed-preferences-dialog.c:712 ../xed/xed-preferences-dialog.c:718
 msgid "Add Scheme"
 msgstr "Ajout d'un jeu"
 
-#: ../xed/xed-preferences-dialog.c:707 ../xed/xed-progress-info-bar.c:64
+#: ../xed/xed-preferences-dialog.c:715 ../xed/xed-progress-info-bar.c:64
 msgid "Cancel"
 msgstr "Annuler"
 
-#: ../xed/xed-preferences-dialog.c:716
+#: ../xed/xed-preferences-dialog.c:724
 msgid "Color Scheme Files"
 msgstr "Fichiers de jeux de couleurs"
 
-#: ../xed/xed-preferences-dialog.c:788
+#: ../xed/xed-preferences-dialog.c:796
 #, c-format
 msgid "Could not remove color scheme \"%s\"."
 msgstr "Impossible de supprimer le jeu de couleurs « %s »."
 
-#: ../xed/xed-preferences-dialog.c:820
+#: ../xed/xed-preferences-dialog.c:828
 msgid "Theme"
 msgstr "Thème"
 
-#: ../xed/xed-preferences-dialog.c:837
+#: ../xed/xed-preferences-dialog.c:845
 msgid "Plugins"
 msgstr "Greffons"
 
-#: ../xed/xed-preferences-dialog.c:845
+#: ../xed/xed-preferences-dialog.c:853
 msgid "Help"
 msgstr "Aide"
 
-#: ../xed/xed-preferences-dialog.c:850
+#: ../xed/xed-preferences-dialog.c:858
 #: ../xed/resources/ui/xed-searchbar.ui.h:11
 msgid "Close"
 msgstr "Fermer"
 
-#: ../xed/xed-preferences-dialog.c:864
+#: ../xed/xed-preferences-dialog.c:872
 msgid "Xed Preferences"
 msgstr "Préférences de Xed"
 
@@ -1430,71 +1431,75 @@ msgstr "Page %N sur %Q"
 msgid "Preparing..."
 msgstr "Préparation..."
 
-#: ../xed/xed-print-preview.c:571
+#: ../xed/xed-print-preview.c:582
 msgid "Show the previous page"
 msgstr "Afficher la page précédente"
 
-#: ../xed/xed-print-preview.c:577
+#: ../xed/xed-print-preview.c:588
 msgid "Show the next page"
 msgstr "Afficher la page suivante"
 
-#: ../xed/xed-print-preview.c:591
+#: ../xed/xed-print-preview.c:602
 msgid "Current page (Alt+P)"
 msgstr "Page actuelle (Alt+P)"
 
 #. gtk_label_set_mnemonic_widget ((GtkLabel *) l, mp->priv->page_entry);
 #. We are displaying 'XXX of XXX'.
 #. Translators: the "of" from "1 of 19" in print preview.
-#: ../xed/xed-print-preview.c:605
+#: ../xed/xed-print-preview.c:616
 msgid "of"
 msgstr "sur"
 
-#: ../xed/xed-print-preview.c:610
+#: ../xed/xed-print-preview.c:621
 msgid "Page total"
 msgstr "Total de pages"
 
-#: ../xed/xed-print-preview.c:611
+#: ../xed/xed-print-preview.c:622
 msgid "The total number of pages in the document"
 msgstr "Le nombre total de pages dans le document"
 
-#: ../xed/xed-print-preview.c:631
+#: ../xed/xed-print-preview.c:642
 msgid "Show multiple pages"
 msgstr "Afficher les pages multiples"
 
-#: ../xed/xed-print-preview.c:649
+#: ../xed/xed-print-preview.c:660
 msgid "Zoom 1:1"
 msgstr "Zoom 1:1"
 
-#: ../xed/xed-print-preview.c:655
+#: ../xed/xed-print-preview.c:666
 msgid "Zoom to fit the whole page"
 msgstr "Affiche toute la page"
 
-#: ../xed/xed-print-preview.c:661
+#: ../xed/xed-print-preview.c:672
 msgid "Zoom the page in"
 msgstr "Zoom avant sur la page"
 
-#: ../xed/xed-print-preview.c:667
+#: ../xed/xed-print-preview.c:678
 msgid "Zoom the page out"
 msgstr "Zoom arrière sur la page"
 
-#: ../xed/xed-print-preview.c:682
+#: ../xed/xed-print-preview.c:695 ../xed/resources/ui/xed-shortcuts.ui.h:33
+msgid "Print the document"
+msgstr "Imprimer le document"
+
+#: ../xed/xed-print-preview.c:710
 msgid "_Close preview"
 msgstr "_Fermer la prévisualistion"
 
-#: ../xed/xed-print-preview.c:684
+#: ../xed/xed-print-preview.c:712
 msgid "Close print preview"
 msgstr "Fermer l'aperçu avant impression"
 
-#: ../xed/xed-print-preview.c:762
+#: ../xed/xed-print-preview.c:790
 #, c-format
 msgid "Page %d of %d"
 msgstr "Page %d sur %d"
 
-#: ../xed/xed-print-preview.c:944
+#: ../xed/xed-print-preview.c:972
 msgid "Page Preview"
 msgstr "Aperçu de la page"
 
-#: ../xed/xed-print-preview.c:945
+#: ../xed/xed-print-preview.c:973
 msgid "The preview of a page in the document to be printed"
 msgstr "L'aperçu de la page dans le document à imprimer"
 
@@ -1610,23 +1615,23 @@ msgstr "Sauver les fichiers automatiquement"
 msgid "Minutes between saving"
 msgstr "Minutes entre chaque sauvegarde"
 
-#: ../xed/resources/ui/xed-preferences-dialog.ui.h:25
+#: ../xed/resources/ui/xed-preferences-dialog.ui.h:26
 msgid "Dark theme"
 msgstr "Thème sombre"
 
-#: ../xed/resources/ui/xed-preferences-dialog.ui.h:26
+#: ../xed/resources/ui/xed-preferences-dialog.ui.h:27
 msgid "Use dark theme variant (if available)"
 msgstr "Utiliser la variante sombre du thème (si disponible)"
 
-#: ../xed/resources/ui/xed-preferences-dialog.ui.h:27
+#: ../xed/resources/ui/xed-preferences-dialog.ui.h:28
 msgid "Style scheme"
 msgstr "Jeu de style"
 
-#: ../xed/resources/ui/xed-preferences-dialog.ui.h:28
+#: ../xed/resources/ui/xed-preferences-dialog.ui.h:29
 msgid "Install scheme"
 msgstr "Installer un jeu"
 
-#: ../xed/resources/ui/xed-preferences-dialog.ui.h:29
+#: ../xed/resources/ui/xed-preferences-dialog.ui.h:30
 msgid "Remove scheme"
 msgstr "Retirer le jeu"
 
@@ -1860,69 +1865,78 @@ msgstr "Outils"
 msgid "Check spelling"
 msgstr "Vérifier l’orthographe"
 
-#: ../xed/resources/ui/xed-shortcuts.ui.h:33
-msgid "Print the document"
-msgstr "Imprimer le document"
-
 #: ../xed/resources/ui/xed-shortcuts.ui.h:34
+msgid "Layout"
+msgstr "Disposition"
+
+#: ../xed/resources/ui/xed-shortcuts.ui.h:35
+msgid "Toggle Word Wrap"
+msgstr "Activer, désativer le retour à la ligne automatique"
+
+#: ../xed/resources/ui/xed-shortcuts.ui.h:36
 msgid "Editing"
 msgstr "Modification"
 
-#: ../xed/resources/ui/xed-shortcuts.ui.h:35
+#: ../xed/resources/ui/xed-shortcuts.ui.h:37
 msgid "Toggle insert / overwrite"
 msgstr "Basculer insérer/écraser"
 
-#: ../xed/resources/ui/xed-shortcuts.ui.h:36
+#: ../xed/resources/ui/xed-shortcuts.ui.h:38
 msgid "Delete current line"
 msgstr "Supprimer la ligne actuelle"
 
-#: ../xed/resources/ui/xed-shortcuts.ui.h:37
+#: ../xed/resources/ui/xed-shortcuts.ui.h:39
 msgid "Move current line up"
 msgstr "Remonter la ligne actuelle"
 
-#: ../xed/resources/ui/xed-shortcuts.ui.h:38
+#: ../xed/resources/ui/xed-shortcuts.ui.h:40
 msgid "Move current line down"
 msgstr "Descendre la ligne actuelle"
 
-#: ../xed/resources/ui/xed-shortcuts.ui.h:39
+#: ../xed/resources/ui/xed-shortcuts.ui.h:41
 msgid "Move current word left"
 msgstr "Déplacer le mot actuel vers la gauche"
 
-#: ../xed/resources/ui/xed-shortcuts.ui.h:40
+#: ../xed/resources/ui/xed-shortcuts.ui.h:42
 msgid "Move current word right"
 msgstr "Déplacer le mot actuel vers la droite"
 
-#: ../xed/resources/ui/xed-shortcuts.ui.h:41
+#: ../xed/resources/ui/xed-shortcuts.ui.h:43
 msgid "Convert to uppercase"
 msgstr "Convertir en majuscules"
 
-#: ../xed/resources/ui/xed-shortcuts.ui.h:42
+#: ../xed/resources/ui/xed-shortcuts.ui.h:44
 msgid "Convert to lowercase"
 msgstr "Convertir en minuscules"
 
-#: ../xed/resources/ui/xed-shortcuts.ui.h:43
+#: ../xed/resources/ui/xed-shortcuts.ui.h:45
 msgid "Convert to title case"
 msgstr "Convertir en casse de titre"
 
-#: ../xed/resources/ui/xed-shortcuts.ui.h:44
+#: ../xed/resources/ui/xed-shortcuts.ui.h:46
 msgid "Invert case"
 msgstr "Inverser la casse"
 
-#: ../xed/resources/ui/xed-shortcuts.ui.h:45
+#: ../xed/resources/ui/xed-shortcuts.ui.h:47
 msgid "Increment number at cursor"
 msgstr "Incrémenter le nombre au curseur"
 
-#: ../xed/resources/ui/xed-shortcuts.ui.h:46
+#: ../xed/resources/ui/xed-shortcuts.ui.h:48
 msgid "Decrement number at cursor"
 msgstr "Décrémenter le nombre au curseur"
 
-#: ../xed/resources/ui/xed-shortcuts.ui.h:47
+#: ../xed/resources/ui/xed-shortcuts.ui.h:49
 msgid "Toggle comment block"
 msgstr "Commenter/Décommenter le bloc"
 
-#: ../xed/resources/ui/xed-shortcuts.ui.h:48
+#: ../xed/resources/ui/xed-shortcuts.ui.h:50
 msgid "Toggle comment"
 msgstr "Commenter/Décommenter"
+
+#: ../xed/resources/ui/xed-shortcuts.ui.h:51
+#: ../plugins/joinlines/joinlines.plugin.desktop.in.h:1
+msgid "Join Lines"
+msgstr "Joindre les lignes"
 
 #: ../xed/xed-searchbar.c:92
 #, c-format
@@ -1980,75 +1994,75 @@ msgid_plural "There are %d tabs with errors"
 msgstr[0] "Il y a un onglet avec des erreurs"
 msgstr[1] "Il y a %d onglets avec des erreurs"
 
-#: ../xed/xed-tab-label.c:276
+#: ../xed/xed-tab-label.c:271
 msgid "Close document"
 msgstr "Fermer le document"
 
 #. Translators: the first %s is a file name (e.g. test.txt) the second one
 #. is a directory (e.g. ssh://master.gnome.org/home/users/paolo)
-#: ../xed/xed-tab.c:716
+#: ../xed/xed-tab.c:721
 #, c-format
 msgid "Reverting %s from %s"
 msgstr "Rétablissement de %s à partir de %s"
 
-#: ../xed/xed-tab.c:721
+#: ../xed/xed-tab.c:726
 #, c-format
 msgid "Reverting %s"
 msgstr "Rétablir %s"
 
 #. Translators: the first %s is a file name (e.g. test.txt) the second one
 #. is a directory (e.g. ssh://master.gnome.org/home/users/paolo)
-#: ../xed/xed-tab.c:734
+#: ../xed/xed-tab.c:739
 #, c-format
 msgid "Loading %s from %s"
 msgstr "Chargement de %s depuis %s"
 
-#: ../xed/xed-tab.c:739
+#: ../xed/xed-tab.c:744
 #, c-format
 msgid "Loading %s"
 msgstr "Chargement de %s"
 
 #. Translators: the first %s is a file name (e.g. test.txt) the second one
 #. is a directory (e.g. ssh://master.gnome.org/home/users/paolo)
-#: ../xed/xed-tab.c:820
+#: ../xed/xed-tab.c:825
 #, c-format
 msgid "Saving %s to %s"
 msgstr "Enregistrement de %s vers %s"
 
-#: ../xed/xed-tab.c:825
+#: ../xed/xed-tab.c:830
 #, c-format
 msgid "Saving %s"
 msgstr "Enregistrement de %s"
 
 #. Read only
-#: ../xed/xed-tab.c:1305
+#: ../xed/xed-tab.c:1324
 msgid "RO"
 msgstr "RO"
 
-#: ../xed/xed-tab.c:1353
+#: ../xed/xed-tab.c:1372
 #, c-format
 msgid "Error opening file %s"
 msgstr "Erreur lors de l'ouverture du fichier %s"
 
-#: ../xed/xed-tab.c:1357
+#: ../xed/xed-tab.c:1376
 #, c-format
 msgid "Error reverting file %s"
 msgstr "Erreur lors du rétablissement du fichier %s"
 
-#: ../xed/xed-tab.c:1361
+#: ../xed/xed-tab.c:1380
 #, c-format
 msgid "Error saving file %s"
 msgstr "Erreur lors de l'enregistrement du fichier %s"
 
-#: ../xed/xed-tab.c:1394
+#: ../xed/xed-tab.c:1413
 msgid "Name:"
 msgstr "Nom :"
 
-#: ../xed/xed-tab.c:1395
+#: ../xed/xed-tab.c:1414
 msgid "MIME Type:"
 msgstr "Type MIME :"
 
-#: ../xed/xed-tab.c:1396
+#: ../xed/xed-tab.c:1415
 msgid "Encoding:"
 msgstr "Codage :"
 
@@ -2398,22 +2412,22 @@ msgstr "Panneau _inférieur"
 msgid "Show or hide the bottom pane in the current window"
 msgstr "Affiche ou cache le panneau inférieur dans la fenêtre actuelle"
 
-#: ../xed/xed-utils.c:642
+#: ../xed/xed-utils.c:822
 msgid "Please check your installation."
 msgstr "Vérifiez votre installation."
 
-#: ../xed/xed-utils.c:710
+#: ../xed/xed-utils.c:890
 #, c-format
 msgid "Unable to open UI file %s. Error: %s"
 msgstr "Impossible d'ouvrir le fichier d'interface %s. Erreur : %s"
 
-#: ../xed/xed-utils.c:730
+#: ../xed/xed-utils.c:910
 #, c-format
 msgid "Unable to find the object '%s' inside file %s."
 msgstr "Impossible de trouver l'objet « %s » dans le fichier %s."
 
 #. Translators: '/ on <remote-share>'
-#: ../xed/xed-utils.c:898
+#: ../xed/xed-utils.c:1078
 #, c-format
 msgid "/ on %s"
 msgstr "/ sur %s"
@@ -2448,11 +2462,11 @@ msgstr "Tabulations : %u"
 msgid "Use Spaces"
 msgstr "Utiliser des espaces"
 
-#: ../xed/xed-window.c:2198
+#: ../xed/xed-window.c:2218
 msgid "There are unsaved documents"
 msgstr "Il y a des documents non enregistrés"
 
-#: ../xed/xed-window.c:3247
+#: ../xed/xed-window.c:3267
 msgid "Elevated Privileges"
 msgstr "Privilèges élevés"
 
@@ -2874,6 +2888,18 @@ msgstr "Impossible d'ouvrir le média : « %s »"
 #, c-format
 msgid "Could not mount volume: %s"
 msgstr "Impossible de monter le volume « %s »"
+
+#: ../plugins/joinlines/joinlines.plugin.desktop.in.h:2
+msgid "Join several lines"
+msgstr "Fusionner plusieurs lignes"
+
+#: ../plugins/joinlines/joinlines/__init__.py:26
+msgid "_Join Lines"
+msgstr "_Fusionner les lignes"
+
+#: ../plugins/joinlines/joinlines/__init__.py:27
+msgid "Join the selected lines"
+msgstr "Fusionner les lignes sélectionnées"
 
 #. vi:ts=8
 #: ../plugins/modelines/modelines.plugin.desktop.in.h:1

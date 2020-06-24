@@ -7,16 +7,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: linuxmint\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2019-06-23 14:24+0200\n"
-"PO-Revision-Date: 2019-12-20 12:54+0000\n"
+"POT-Creation-Date: 2020-06-21 12:40+0100\n"
+"PO-Revision-Date: 2020-06-13 18:04+0000\n"
 "Last-Translator: Yacine Bouklif <yacinebouklif@gmail.com>\n"
 "Language-Team: Kabyle <kab@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2020-05-11 11:00+0000\n"
-"X-Generator: Launchpad (build fbdff7602bd10fb883bf7e2ddcc7fd5a16f60398)\n"
+"X-Launchpad-Export-Date: 2020-06-24 10:09+0000\n"
+"X-Generator: Launchpad (build 1cbd0aa39df153c901321817f9b57cf3f232b507)\n"
 "Language: kab\n"
 "X-Poedit-Bookmarks: -1,43,-1,-1,-1,-1,-1,-1,-1,-1\n"
 
@@ -269,6 +269,7 @@ msgid "Whether xed should enable syntax highlighting."
 msgstr "Ma yella xed ad isermed asebrureq n tseddast."
 
 #: ../data/org.x.editor.gschema.xml.in.h:46
+#: ../xed/resources/ui/xed-preferences-dialog.ui.h:25
 msgid "Ensure Trailing Newline"
 msgstr "Ḍmen izirig amaynut n tagara"
 
@@ -588,12 +589,12 @@ msgstr "Sekker xed s uskar afulman"
 msgid "[FILE...] [+LINE]"
 msgstr "[AFAYLU...] [+IZIRIG]"
 
-#: ../xed/xed-app.c:529
+#: ../xed/xed-app.c:614
 #, c-format
 msgid "%s: invalid encoding."
 msgstr "%s : asettengel d arameɣtu."
 
-#: ../xed/xed-app.c:1180
+#: ../xed/xed-app.c:1270
 msgid "There was an error displaying the help."
 msgstr "Teḍra-d tuccḍa mi tettwabeqqeḍ n talallt."
 
@@ -875,7 +876,7 @@ msgid "Read-Only"
 msgstr "Taɣuri kan"
 
 #: ../xed/xed-documents-panel.c:717 ../xed/resources/ui/xed-shortcuts.ui.h:1
-#: ../xed/xed-window.c:2982
+#: ../xed/xed-window.c:3002
 msgid "Documents"
 msgstr "Isemliyen"
 
@@ -913,7 +914,7 @@ msgstr "A_glam"
 msgid "_Encoding"
 msgstr "_Asettengel"
 
-#: ../xed/xed-file-chooser-dialog.c:46 ../xed/xed-preferences-dialog.c:723
+#: ../xed/xed-file-chooser-dialog.c:46 ../xed/xed-preferences-dialog.c:731
 msgid "All Files"
 msgstr "Akk ifuyla"
 
@@ -941,7 +942,7 @@ msgstr "Mac OS Classic"
 msgid "Windows"
 msgstr "Windows"
 
-#: ../xed/xed-highlight-mode-selector.c:291 ../xed/xed-window.c:1868
+#: ../xed/xed-highlight-mode-selector.c:297 ../xed/xed-window.c:1881
 msgid "Plain Text"
 msgstr "Aḍris aččuran"
 
@@ -1291,66 +1292,66 @@ msgstr ""
 "Ma tekkemeleḍ asekles n ufaylu-agi tzemreḍ ad tesxesreḍ isemli. Ad tkemmeleḍ "
 "akken yebɣu yili?"
 
-#: ../xed/xed-preferences-dialog.c:264
+#: ../xed/xed-preferences-dialog.c:266
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:3
 #, no-c-format
 msgid "Use the system fixed width font (%s)"
 msgstr "Seqdec tasefsit n unagraw yesɛan tehri tusbiḍt (%s)"
 
-#: ../xed/xed-preferences-dialog.c:382
+#: ../xed/xed-preferences-dialog.c:384
 msgid "Editor"
 msgstr "Amaẓrag"
 
-#: ../xed/xed-preferences-dialog.c:414
+#: ../xed/xed-preferences-dialog.c:422
 msgid "Save"
 msgstr "Sekles"
 
-#: ../xed/xed-preferences-dialog.c:527
+#: ../xed/xed-preferences-dialog.c:535
 #, c-format
 msgid ""
 "Directory '%s' could not be created: g_mkdir_with_parents() failed: %s"
 msgstr ""
 "Akaram '%s' yegguma ad d-yenulfu: g_mkdir_with_parents() ur yeddi ara: %s"
 
-#: ../xed/xed-preferences-dialog.c:681
+#: ../xed/xed-preferences-dialog.c:689
 msgid "The selected color scheme cannot be installed."
 msgstr "Azenziɣ n initen yettwafernen ur yezmir ara ad yebded."
 
-#: ../xed/xed-preferences-dialog.c:704 ../xed/xed-preferences-dialog.c:710
+#: ../xed/xed-preferences-dialog.c:712 ../xed/xed-preferences-dialog.c:718
 msgid "Add Scheme"
 msgstr "Rnu azenziɣ"
 
-#: ../xed/xed-preferences-dialog.c:707 ../xed/xed-progress-info-bar.c:64
+#: ../xed/xed-preferences-dialog.c:715 ../xed/xed-progress-info-bar.c:64
 msgid "Cancel"
 msgstr "Sefsex"
 
-#: ../xed/xed-preferences-dialog.c:716
+#: ../xed/xed-preferences-dialog.c:724
 msgid "Color Scheme Files"
 msgstr "Ifuyla n uzenziq n yiniten"
 
-#: ../xed/xed-preferences-dialog.c:788
+#: ../xed/xed-preferences-dialog.c:796
 #, c-format
 msgid "Could not remove color scheme \"%s\"."
 msgstr "Ur izmir ara ad yekkes azenziɣ n yiniten \"%s\"."
 
-#: ../xed/xed-preferences-dialog.c:820
+#: ../xed/xed-preferences-dialog.c:828
 msgid "Theme"
 msgstr "Asentel"
 
-#: ../xed/xed-preferences-dialog.c:837
+#: ../xed/xed-preferences-dialog.c:845
 msgid "Plugins"
 msgstr "Izegrar"
 
-#: ../xed/xed-preferences-dialog.c:845
+#: ../xed/xed-preferences-dialog.c:853
 msgid "Help"
 msgstr "Tallalt"
 
-#: ../xed/xed-preferences-dialog.c:850
+#: ../xed/xed-preferences-dialog.c:858
 #: ../xed/resources/ui/xed-searchbar.ui.h:11
 msgid "Close"
 msgstr "Mdel"
 
-#: ../xed/xed-preferences-dialog.c:864
+#: ../xed/xed-preferences-dialog.c:872
 msgid "Xed Preferences"
 msgstr "Ismenyifen Xed"
 
@@ -1367,71 +1368,75 @@ msgstr "Asebtar %N ɣef %Q"
 msgid "Preparing..."
 msgstr "Aheggi..."
 
-#: ../xed/xed-print-preview.c:571
+#: ../xed/xed-print-preview.c:582
 msgid "Show the previous page"
 msgstr "Sken asebtar uzwir"
 
-#: ../xed/xed-print-preview.c:577
+#: ../xed/xed-print-preview.c:588
 msgid "Show the next page"
 msgstr "Sken asebtar uḍfir"
 
-#: ../xed/xed-print-preview.c:591
+#: ../xed/xed-print-preview.c:602
 msgid "Current page (Alt+P)"
 msgstr "Asebtar amiran (Alt+P)"
 
 #. gtk_label_set_mnemonic_widget ((GtkLabel *) l, mp->priv->page_entry);
 #. We are displaying 'XXX of XXX'.
 #. Translators: the "of" from "1 of 19" in print preview.
-#: ../xed/xed-print-preview.c:605
+#: ../xed/xed-print-preview.c:616
 msgid "of"
 msgstr "seg"
 
-#: ../xed/xed-print-preview.c:610
+#: ../xed/xed-print-preview.c:621
 msgid "Page total"
 msgstr "Aɣrud n isebtaren"
 
-#: ../xed/xed-print-preview.c:611
+#: ../xed/xed-print-preview.c:622
 msgid "The total number of pages in the document"
 msgstr "Amḍan uɣrid n isebtaren deg yisemli"
 
-#: ../xed/xed-print-preview.c:631
+#: ../xed/xed-print-preview.c:642
 msgid "Show multiple pages"
 msgstr "Sken aṭas n isebtaren"
 
-#: ../xed/xed-print-preview.c:649
+#: ../xed/xed-print-preview.c:660
 msgid "Zoom 1:1"
 msgstr "Zoom 1:1"
 
-#: ../xed/xed-print-preview.c:655
+#: ../xed/xed-print-preview.c:666
 msgid "Zoom to fit the whole page"
 msgstr "Zoom iwakken ad yettusezg sebtar merra"
 
-#: ../xed/xed-print-preview.c:661
+#: ../xed/xed-print-preview.c:672
 msgid "Zoom the page in"
 msgstr "Zoom ɣer sdat ɣef usebtar"
 
-#: ../xed/xed-print-preview.c:667
+#: ../xed/xed-print-preview.c:678
 msgid "Zoom the page out"
 msgstr "Zoom ɣer deffir ɣef usebtar"
 
-#: ../xed/xed-print-preview.c:682
+#: ../xed/xed-print-preview.c:695 ../xed/resources/ui/xed-shortcuts.ui.h:33
+msgid "Print the document"
+msgstr "Siggez isemli"
+
+#: ../xed/xed-print-preview.c:710
 msgid "_Close preview"
 msgstr "_Mdel tamuɣli"
 
-#: ../xed/xed-print-preview.c:684
+#: ../xed/xed-print-preview.c:712
 msgid "Close print preview"
 msgstr "Mdel tamuɣli n usiggez"
 
-#: ../xed/xed-print-preview.c:762
+#: ../xed/xed-print-preview.c:790
 #, c-format
 msgid "Page %d of %d"
 msgstr "Asebtar %d ɣef %d"
 
-#: ../xed/xed-print-preview.c:944
+#: ../xed/xed-print-preview.c:972
 msgid "Page Preview"
 msgstr "Tamuɣli n usebtar"
 
-#: ../xed/xed-print-preview.c:945
+#: ../xed/xed-print-preview.c:973
 msgid "The preview of a page in the document to be printed"
 msgstr "Tamuɣli n usebtar deg yisemli ara yettusiggzen"
 
@@ -1547,23 +1552,23 @@ msgstr "Asekles awurman n ifuyla"
 msgid "Minutes between saving"
 msgstr "Tisdidin gar iḥrazen"
 
-#: ../xed/resources/ui/xed-preferences-dialog.ui.h:25
+#: ../xed/resources/ui/xed-preferences-dialog.ui.h:26
 msgid "Dark theme"
 msgstr "Asentel aberkan"
 
-#: ../xed/resources/ui/xed-preferences-dialog.ui.h:26
+#: ../xed/resources/ui/xed-preferences-dialog.ui.h:27
 msgid "Use dark theme variant (if available)"
 msgstr "Seqdec tasenfelt n usentel aberkan (ma tewjed)"
 
-#: ../xed/resources/ui/xed-preferences-dialog.ui.h:27
+#: ../xed/resources/ui/xed-preferences-dialog.ui.h:28
 msgid "Style scheme"
 msgstr "Azenziɣ n uɣanib"
 
-#: ../xed/resources/ui/xed-preferences-dialog.ui.h:28
+#: ../xed/resources/ui/xed-preferences-dialog.ui.h:29
 msgid "Install scheme"
 msgstr "Sbedd azenziɣ"
 
-#: ../xed/resources/ui/xed-preferences-dialog.ui.h:29
+#: ../xed/resources/ui/xed-preferences-dialog.ui.h:30
 msgid "Remove scheme"
 msgstr "Kkes azenziɣ"
 
@@ -1797,69 +1802,78 @@ msgstr "Ifecka"
 msgid "Check spelling"
 msgstr "Selken Taɣdirawt"
 
-#: ../xed/resources/ui/xed-shortcuts.ui.h:33
-msgid "Print the document"
-msgstr "Siggez isemli"
-
 #: ../xed/resources/ui/xed-shortcuts.ui.h:34
+msgid "Layout"
+msgstr "Taneɣruft"
+
+#: ../xed/resources/ui/xed-shortcuts.ui.h:35
+msgid "Toggle Word Wrap"
+msgstr ""
+
+#: ../xed/resources/ui/xed-shortcuts.ui.h:36
 msgid "Editing"
 msgstr "Asiẓreg"
 
-#: ../xed/resources/ui/xed-shortcuts.ui.h:35
+#: ../xed/resources/ui/xed-shortcuts.ui.h:37
 msgid "Toggle insert / overwrite"
 msgstr "Qluqel ger/sefsex"
 
-#: ../xed/resources/ui/xed-shortcuts.ui.h:36
+#: ../xed/resources/ui/xed-shortcuts.ui.h:38
 msgid "Delete current line"
 msgstr "Kkes izirig amiran"
 
-#: ../xed/resources/ui/xed-shortcuts.ui.h:37
+#: ../xed/resources/ui/xed-shortcuts.ui.h:39
 msgid "Move current line up"
 msgstr "Smutti izirig amiran d asawen"
 
-#: ../xed/resources/ui/xed-shortcuts.ui.h:38
+#: ../xed/resources/ui/xed-shortcuts.ui.h:40
 msgid "Move current line down"
 msgstr "Smutti izirig amiran d akessar"
 
-#: ../xed/resources/ui/xed-shortcuts.ui.h:39
+#: ../xed/resources/ui/xed-shortcuts.ui.h:41
 msgid "Move current word left"
 msgstr "Smutti awal amiran ɣer zelmaḍ"
 
-#: ../xed/resources/ui/xed-shortcuts.ui.h:40
+#: ../xed/resources/ui/xed-shortcuts.ui.h:42
 msgid "Move current word right"
 msgstr "Smutti awal amiran ɣer yefus"
 
-#: ../xed/resources/ui/xed-shortcuts.ui.h:41
+#: ../xed/resources/ui/xed-shortcuts.ui.h:43
 msgid "Convert to uppercase"
 msgstr "Selket s asekkil ameqran"
 
-#: ../xed/resources/ui/xed-shortcuts.ui.h:42
+#: ../xed/resources/ui/xed-shortcuts.ui.h:44
 msgid "Convert to lowercase"
 msgstr "Selket s asekkil amecṭuḥ"
 
-#: ../xed/resources/ui/xed-shortcuts.ui.h:43
+#: ../xed/resources/ui/xed-shortcuts.ui.h:45
 msgid "Convert to title case"
 msgstr "Selket ɣer tejṛut n usekkil n uzwel"
 
-#: ../xed/resources/ui/xed-shortcuts.ui.h:44
+#: ../xed/resources/ui/xed-shortcuts.ui.h:46
 msgid "Invert case"
 msgstr "Tti tajṛut n usekkil"
 
-#: ../xed/resources/ui/xed-shortcuts.ui.h:45
+#: ../xed/resources/ui/xed-shortcuts.ui.h:47
 msgid "Increment number at cursor"
 msgstr "Senteḍ amḍan ɣer teḥnacaḍt"
 
-#: ../xed/resources/ui/xed-shortcuts.ui.h:46
+#: ../xed/resources/ui/xed-shortcuts.ui.h:48
 msgid "Decrement number at cursor"
 msgstr "Kkes amḍan i teḥnacaḍt"
 
-#: ../xed/resources/ui/xed-shortcuts.ui.h:47
+#: ../xed/resources/ui/xed-shortcuts.ui.h:49
 msgid "Toggle comment block"
 msgstr "Rmed/Sens iḥder n uwennit"
 
-#: ../xed/resources/ui/xed-shortcuts.ui.h:48
+#: ../xed/resources/ui/xed-shortcuts.ui.h:50
 msgid "Toggle comment"
 msgstr "Rmed/Sens iwenniten"
+
+#: ../xed/resources/ui/xed-shortcuts.ui.h:51
+#: ../plugins/joinlines/joinlines.plugin.desktop.in.h:1
+msgid "Join Lines"
+msgstr "Semlil izirigen"
 
 #: ../xed/xed-searchbar.c:92
 #, c-format
@@ -1917,75 +1931,75 @@ msgid_plural "There are %d tabs with errors"
 msgstr[0] "Yella yiwen n yiccer s tuccḍiwin"
 msgstr[1] "Llan %d n waccaren s tuccḍiwin"
 
-#: ../xed/xed-tab-label.c:276
+#: ../xed/xed-tab-label.c:271
 msgid "Close document"
 msgstr "Mdel isemli"
 
 #. Translators: the first %s is a file name (e.g. test.txt) the second one
 #. is a directory (e.g. ssh://master.gnome.org/home/users/paolo)
-#: ../xed/xed-tab.c:716
+#: ../xed/xed-tab.c:721
 #, c-format
 msgid "Reverting %s from %s"
 msgstr "Tiririt n %s si %s"
 
-#: ../xed/xed-tab.c:721
+#: ../xed/xed-tab.c:726
 #, c-format
 msgid "Reverting %s"
 msgstr "Err-d %s"
 
 #. Translators: the first %s is a file name (e.g. test.txt) the second one
 #. is a directory (e.g. ssh://master.gnome.org/home/users/paolo)
-#: ../xed/xed-tab.c:734
+#: ../xed/xed-tab.c:739
 #, c-format
 msgid "Loading %s from %s"
 msgstr "Aɛebbi n %s si %s"
 
-#: ../xed/xed-tab.c:739
+#: ../xed/xed-tab.c:744
 #, c-format
 msgid "Loading %s"
 msgstr "Aɛebbi n %s"
 
 #. Translators: the first %s is a file name (e.g. test.txt) the second one
 #. is a directory (e.g. ssh://master.gnome.org/home/users/paolo)
-#: ../xed/xed-tab.c:820
+#: ../xed/xed-tab.c:825
 #, c-format
 msgid "Saving %s to %s"
 msgstr "Asekles n %s di %s"
 
-#: ../xed/xed-tab.c:825
+#: ../xed/xed-tab.c:830
 #, c-format
 msgid "Saving %s"
 msgstr "Asekles n %s"
 
 #. Read only
-#: ../xed/xed-tab.c:1305
+#: ../xed/xed-tab.c:1324
 msgid "RO"
 msgstr "RO"
 
-#: ../xed/xed-tab.c:1353
+#: ../xed/xed-tab.c:1372
 #, c-format
 msgid "Error opening file %s"
 msgstr "Tuccḍa deg welday n ufaylu %s"
 
-#: ../xed/xed-tab.c:1357
+#: ../xed/xed-tab.c:1376
 #, c-format
 msgid "Error reverting file %s"
 msgstr "Tuccḍa di tririt n ufaylu %s"
 
-#: ../xed/xed-tab.c:1361
+#: ../xed/xed-tab.c:1380
 #, c-format
 msgid "Error saving file %s"
 msgstr "Tuccḍa deg wesekles n ufaylu %s"
 
-#: ../xed/xed-tab.c:1394
+#: ../xed/xed-tab.c:1413
 msgid "Name:"
 msgstr "Isem:"
 
-#: ../xed/xed-tab.c:1395
+#: ../xed/xed-tab.c:1414
 msgid "MIME Type:"
 msgstr "Anaw MIME:"
 
-#: ../xed/xed-tab.c:1396
+#: ../xed/xed-tab.c:1415
 msgid "Encoding:"
 msgstr "Asettengel:"
 
@@ -2335,22 +2349,22 @@ msgstr "Agalis a_dday"
 msgid "Show or hide the bottom pane in the current window"
 msgstr "Sken neɣ ffer agalis n wadda deg usfaylu amiran"
 
-#: ../xed/xed-utils.c:642
+#: ../xed/xed-utils.c:822
 msgid "Please check your installation."
 msgstr "Ttxil-k selken asbeddi-inek."
 
-#: ../xed/xed-utils.c:710
+#: ../xed/xed-utils.c:890
 #, c-format
 msgid "Unable to open UI file %s. Error: %s"
 msgstr "D awezɣi alday n ufaylu n ugrudem %s. Tuccḍa: %s"
 
-#: ../xed/xed-utils.c:730
+#: ../xed/xed-utils.c:910
 #, c-format
 msgid "Unable to find the object '%s' inside file %s."
 msgstr "D awezɣi tifin n tɣawsa '%s' deg ufaylu %s."
 
 #. Translators: '/ on <remote-share>'
-#: ../xed/xed-utils.c:898
+#: ../xed/xed-utils.c:1078
 #, c-format
 msgid "/ on %s"
 msgstr "/ di %s"
@@ -2385,11 +2399,11 @@ msgstr "Iccaren: %u"
 msgid "Use Spaces"
 msgstr "Seqdec tallunin"
 
-#: ../xed/xed-window.c:2198
+#: ../xed/xed-window.c:2218
 msgid "There are unsaved documents"
 msgstr "Llan isemliyen ur nettwasekles ara"
 
-#: ../xed/xed-window.c:3247
+#: ../xed/xed-window.c:3267
 msgid "Elevated Privileges"
 msgstr "Tise_glutin yettwarefden"
 
@@ -2804,6 +2818,18 @@ msgstr "D awezɣi alday n umidya: %s"
 #, c-format
 msgid "Could not mount volume: %s"
 msgstr "D awezɣi aserkeb n ubleɣ: %s"
+
+#: ../plugins/joinlines/joinlines.plugin.desktop.in.h:2
+msgid "Join several lines"
+msgstr ""
+
+#: ../plugins/joinlines/joinlines/__init__.py:26
+msgid "_Join Lines"
+msgstr ""
+
+#: ../plugins/joinlines/joinlines/__init__.py:27
+msgid "Join the selected lines"
+msgstr ""
 
 #. vi:ts=8
 #: ../plugins/modelines/modelines.plugin.desktop.in.h:1

@@ -7,17 +7,17 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MATE Desktop Environment\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-06-23 14:24+0200\n"
-"PO-Revision-Date: 2016-01-26 16:49+0000\n"
-"Last-Translator: Stefano Karapetsas <stefano@karapetsas.com>\n"
+"POT-Creation-Date: 2020-06-21 12:40+0100\n"
+"PO-Revision-Date: 2020-06-09 10:23+0000\n"
+"Last-Translator: Shane Griffiths <Unknown>\n"
 "Language-Team: Afrikaans "
 "(http://www.transifex.com/projects/p/MATE/language/af/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2020-05-11 10:59+0000\n"
-"X-Generator: Launchpad (build fbdff7602bd10fb883bf7e2ddcc7fd5a16f60398)\n"
+"X-Launchpad-Export-Date: 2020-06-24 10:08+0000\n"
+"X-Generator: Launchpad (build 1cbd0aa39df153c901321817f9b57cf3f232b507)\n"
 "Language: af\n"
 
 #: ../data/org.x.editor.gschema.xml.in.h:1
@@ -35,7 +35,7 @@ msgstr ""
 #: ../data/org.x.editor.gschema.xml.in.h:3
 msgctxt "editor-font"
 msgid "'Monospace 12'"
-msgstr ""
+msgstr "'Monospace 12'"
 
 #: ../data/org.x.editor.gschema.xml.in.h:4
 msgid "Editor Font"
@@ -52,7 +52,7 @@ msgstr ""
 
 #: ../data/org.x.editor.gschema.xml.in.h:6
 msgid "Prefer Dark Theme"
-msgstr ""
+msgstr "Verkies donker tema"
 
 #: ../data/org.x.editor.gschema.xml.in.h:7
 msgid ""
@@ -67,6 +67,7 @@ msgstr "Stylskema"
 #: ../data/org.x.editor.gschema.xml.in.h:9
 msgid "The ID of a GtkSourceView Style Scheme used to color the text."
 msgstr ""
+"Die ID van 'n GtkSourceView-stylskema wat gebruik word vir die tekskleure."
 
 #: ../data/org.x.editor.gschema.xml.in.h:10
 msgid "Create Backup Copies"
@@ -80,7 +81,7 @@ msgstr ""
 
 #: ../data/org.x.editor.gschema.xml.in.h:12
 msgid "Autosave"
-msgstr ""
+msgstr "Outostoor"
 
 #: ../data/org.x.editor.gschema.xml.in.h:13
 msgid ""
@@ -90,7 +91,7 @@ msgstr ""
 
 #: ../data/org.x.editor.gschema.xml.in.h:14
 msgid "Autosave Interval"
-msgstr ""
+msgstr "Outostoor tussentyd"
 
 #: ../data/org.x.editor.gschema.xml.in.h:15
 msgid ""
@@ -100,7 +101,7 @@ msgstr ""
 
 #: ../data/org.x.editor.gschema.xml.in.h:16
 msgid "Writable VFS schemes"
-msgstr ""
+msgstr "Skryfbare VFS-skemas"
 
 #: ../data/org.x.editor.gschema.xml.in.h:17
 msgid ""
@@ -110,7 +111,7 @@ msgstr ""
 
 #: ../data/org.x.editor.gschema.xml.in.h:18
 msgid "Maximum Number of Undo Actions"
-msgstr ""
+msgstr "Maksimum aantal terugdoen aksies"
 
 #: ../data/org.x.editor.gschema.xml.in.h:19
 msgid ""
@@ -129,6 +130,10 @@ msgid ""
 "wrapping at individual character boundaries. Note that the values are case-"
 "sensitive, so make sure they appear exactly as mentioned here."
 msgstr ""
+"Spesifiseer hoe om lang reëls in die teksarea om te vou. Gebruik \"none\" om "
+"nie om te vou nie, \"word\" om by woordgrense om te vou, \"char\" om by "
+"karaktergrense om te vou. Neem kennis dat waardes kassensitief is, so maak "
+"seker hulle verskyn presies soos hier vertoon."
 
 #: ../data/org.x.editor.gschema.xml.in.h:22
 msgid "Tab Size"
@@ -152,7 +157,7 @@ msgstr ""
 
 #: ../data/org.x.editor.gschema.xml.in.h:26
 msgid "Automatic indent"
-msgstr ""
+msgstr "Outomatiese inkeping"
 
 #: ../data/org.x.editor.gschema.xml.in.h:27
 msgid "Whether xed should enable automatic indentation."
@@ -200,7 +205,7 @@ msgstr "Spesifiseer die posisie van die regterkantlyn."
 
 #: ../data/org.x.editor.gschema.xml.in.h:38
 msgid "Smart Home End"
-msgstr ""
+msgstr "Slim huis einde"
 
 #: ../data/org.x.editor.gschema.xml.in.h:39
 msgid ""
@@ -215,7 +220,7 @@ msgstr ""
 
 #: ../data/org.x.editor.gschema.xml.in.h:40
 msgid "Restore Previous Cursor Position"
-msgstr ""
+msgstr "Stel vorige wyserposisie terug"
 
 #: ../data/org.x.editor.gschema.xml.in.h:41
 msgid ""
@@ -241,8 +246,9 @@ msgid "Whether xed should enable syntax highlighting."
 msgstr ""
 
 #: ../data/org.x.editor.gschema.xml.in.h:46
+#: ../xed/resources/ui/xed-preferences-dialog.ui.h:25
 msgid "Ensure Trailing Newline"
-msgstr ""
+msgstr "Verseker slepende nuwe lyn"
 
 #: ../data/org.x.editor.gschema.xml.in.h:47
 msgid ""
@@ -339,6 +345,10 @@ msgid ""
 "individual character boundaries. Note that the values are case-sensitive, so "
 "make sure they appear exactly as mentioned here."
 msgstr ""
+"Spesifiseer hoe om lang reëls vir druk om te vou. Gebruik \"none\" om nie om "
+"te vou nie, \"word\" om by woordgrense om te vou, \"char\" om by "
+"karaktergrense om te vou. Neem kennis dat waardes kassensitief is, so maak "
+"seker hulle verskyn presies soos hier vertoon."
 
 #: ../data/org.x.editor.gschema.xml.in.h:68
 msgid "Print Line Numbers"
@@ -353,7 +363,7 @@ msgstr ""
 #: ../data/org.x.editor.gschema.xml.in.h:70
 msgctxt "print-font-body-pango"
 msgid "'Monospace 9'"
-msgstr ""
+msgstr "'Monospace 9'"
 
 #: ../data/org.x.editor.gschema.xml.in.h:71
 msgid "Body Font for Printing"
@@ -369,7 +379,7 @@ msgstr ""
 #: ../data/org.x.editor.gschema.xml.in.h:73
 msgctxt "print-font-header-pango"
 msgid "'Sans 11'"
-msgstr ""
+msgstr "'Sans 11'"
 
 #: ../data/org.x.editor.gschema.xml.in.h:74
 msgid "Header Font for Printing"
@@ -386,7 +396,7 @@ msgstr ""
 #: ../data/org.x.editor.gschema.xml.in.h:76
 msgctxt "print-font-numbers-pango"
 msgid "'Sans 8'"
-msgstr ""
+msgstr "'Sans 8'"
 
 #: ../data/org.x.editor.gschema.xml.in.h:77
 msgid "Line Number Font for Printing"
@@ -407,7 +417,7 @@ msgstr ""
 
 #: ../data/org.x.editor.gschema.xml.in.h:80
 msgid "Automatically Detected Encodings"
-msgstr ""
+msgstr "Herken koderings Outomaties"
 
 #: ../data/org.x.editor.gschema.xml.in.h:81
 msgid ""
@@ -419,7 +429,7 @@ msgstr ""
 #: ../data/org.x.editor.gschema.xml.in.h:82
 msgctxt "shown-in-menu"
 msgid "[ 'ISO-8859-15' ]"
-msgstr ""
+msgstr "['ISO-8859-15']"
 
 #: ../data/org.x.editor.gschema.xml.in.h:83
 msgid "Encodings shown in menu"
@@ -430,6 +440,8 @@ msgid ""
 "List of encodings shown in the Character Encoding menu in open/save file "
 "selector. Only recognized encodings are used."
 msgstr ""
+"Lys van koderings wat verskyn tydens seleksie van lêer stoor/laai.  Slegs "
+"geldige koderings word gebruik."
 
 #: ../data/org.x.editor.gschema.xml.in.h:85
 msgid "History for \"search for\" entries"
@@ -478,25 +490,27 @@ msgstr "Teksredigeerder"
 
 #: ../data/xed.desktop.in.in.h:2
 msgid "Edit text files"
-msgstr ""
+msgstr "Redigeer tekslêers"
 
 #: ../xed/xed-app.c:102
 msgid "Show the application's version"
-msgstr ""
+msgstr "Wys die toepassing se weergawe"
 
 #: ../xed/xed-app.c:108
 msgid "Display list of possible values for the encoding option"
-msgstr ""
+msgstr "Vertoon lys van moontlike waardes vir die enkoderingsopsie"
 
 #: ../xed/xed-app.c:115
 msgid ""
 "Set the character encoding to be used to open the files listed on the "
 "command line"
 msgstr ""
+"Bepaal die karakterenkodering wat gebruik sal word om lêers oop te maak wat "
+"in die opdraglyn gelys word"
 
 #: ../xed/xed-app.c:116
 msgid "ENCODING"
-msgstr ""
+msgstr "ENKODERING"
 
 #: ../xed/xed-app.c:122
 msgid "Create a new top-level window in an existing instance of xed"
@@ -512,11 +526,11 @@ msgstr ""
 
 #: ../xed/xed-app.c:137
 msgid "GEOMETRY"
-msgstr ""
+msgstr "VORM"
 
 #: ../xed/xed-app.c:143
 msgid "Open files and block process until files are closed"
-msgstr ""
+msgstr "Maak lêers oop en verbied proses totdat lêers gesluit is"
 
 #: ../xed/xed-app.c:150
 msgid "Run xed in standalone mode"
@@ -526,18 +540,18 @@ msgstr ""
 msgid "[FILE...] [+LINE]"
 msgstr ""
 
-#: ../xed/xed-app.c:529
+#: ../xed/xed-app.c:614
 #, c-format
 msgid "%s: invalid encoding."
-msgstr ""
+msgstr "%s: ongeldige enkodering."
 
-#: ../xed/xed-app.c:1180
+#: ../xed/xed-app.c:1270
 msgid "There was an error displaying the help."
-msgstr ""
+msgstr "Daar was 'n fout met die vertooning van hulp."
 
 #: ../xed/xed-close-confirmation-dialog.c:133
 msgid "Log Out _without Saving"
-msgstr ""
+msgstr "_Meld af sonder om te stoor"
 
 #: ../xed/xed-close-confirmation-dialog.c:134
 msgid "_Cancel Logout"
@@ -555,17 +569,17 @@ msgstr "Sluit _sonder om te stoor"
 #: ../xed/resources/ui/xed-highlight-mode-dialog.ui.h:2
 #: ../plugins/filebrowser/xed-file-browser-utils.c:153
 msgid "_Cancel"
-msgstr ""
+msgstr "_Kanselleer"
 
 #: ../xed/xed-close-confirmation-dialog.c:159
 msgid "_Save As..."
-msgstr ""
+msgstr "_Stoor as..."
 
 #. File menu
 #: ../xed/xed-close-confirmation-dialog.c:165 ../xed/xed-commands-file.c:649
 #: ../xed/xed-ui.h:79
 msgid "_Save"
-msgstr ""
+msgstr "_Stoor"
 
 #: ../xed/xed-close-confirmation-dialog.c:192
 msgid "Question"
@@ -659,7 +673,7 @@ msgstr[1] ""
 #: ../xed/xed-close-confirmation-dialog.c:483
 #, c-format
 msgid "Save changes to document \"%s\" before closing?"
-msgstr ""
+msgstr "Stoor die wysigings aan dokument \"%s\" voor afsluiting?"
 
 #: ../xed/xed-close-confirmation-dialog.c:648
 #, c-format
@@ -703,7 +717,7 @@ msgstr "Open lêers"
 #: ../xed/xed-commands-file.c:400
 #: ../plugins/filebrowser/xed-file-browser-widget.c:766
 msgid "_Open"
-msgstr ""
+msgstr "Maak oop"
 
 #: ../xed/xed-commands-file.c:494
 #, c-format
@@ -837,16 +851,16 @@ msgstr "Ongestoorde dokument %d"
 #: ../xed/xed-documents-panel.c:93 ../xed/xed-documents-panel.c:104
 #: ../xed/xed-window.c:1752 ../xed/xed-window.c:1756
 msgid "Read-Only"
-msgstr ""
+msgstr "Lees-alleenlik"
 
 #: ../xed/xed-documents-panel.c:717 ../xed/resources/ui/xed-shortcuts.ui.h:1
-#: ../xed/xed-window.c:2982
+#: ../xed/xed-window.c:3002
 msgid "Documents"
 msgstr "Dokumente"
 
 #: ../xed/xed-encodings-combo-box.c:264
 msgid "Automatically Detected"
-msgstr ""
+msgstr "Outomaties bespeur"
 
 #: ../xed/xed-encodings-combo-box.c:283 ../xed/xed-encodings-combo-box.c:297
 #, c-format
@@ -855,11 +869,11 @@ msgstr "Huidige lokaliteit (%s)"
 
 #: ../xed/xed-encodings-combo-box.c:344
 msgid "Add or Remove..."
-msgstr ""
+msgstr "Voeg by of verwyder..."
 
 #: ../xed/xed-encodings-dialog.c:337 ../plugins/time/xed-time-plugin.c:789
 msgid "_OK"
-msgstr ""
+msgstr "_OK"
 
 #: ../xed/xed-encodings-dialog.c:338 ../xed/xed-ui.h:50
 #: ../plugins/spell/xed-spell-plugin.c:435
@@ -868,7 +882,7 @@ msgstr "_Hulp"
 
 #: ../xed/xed-encodings-dialog.c:341
 msgid "Character Encodings"
-msgstr ""
+msgstr "Karakterkoderings"
 
 #: ../xed/xed-encodings-dialog.c:374 ../xed/xed-encodings-dialog.c:411
 msgid "_Description"
@@ -878,7 +892,7 @@ msgstr "_Beskrywing"
 msgid "_Encoding"
 msgstr "_Enkodering"
 
-#: ../xed/xed-file-chooser-dialog.c:46 ../xed/xed-preferences-dialog.c:723
+#: ../xed/xed-file-chooser-dialog.c:46 ../xed/xed-preferences-dialog.c:731
 msgid "All Files"
 msgstr "Alle lêers"
 
@@ -888,7 +902,7 @@ msgstr "Alle tekslêers"
 
 #: ../xed/xed-file-chooser-dialog.c:89
 msgid "C_haracter Encoding:"
-msgstr ""
+msgstr "Karakterkodering:"
 
 #: ../xed/xed-file-chooser-dialog.c:145
 msgid "L_ine Ending:"
@@ -896,19 +910,19 @@ msgstr ""
 
 #: ../xed/xed-file-chooser-dialog.c:156
 msgid "Unix/Linux"
-msgstr ""
+msgstr "Unix / Linux"
 
 #: ../xed/xed-file-chooser-dialog.c:157
 msgid "Mac OS Classic"
-msgstr ""
+msgstr "Mac OS Classic"
 
 #: ../xed/xed-file-chooser-dialog.c:158
 msgid "Windows"
-msgstr ""
+msgstr "Windows"
 
-#: ../xed/xed-highlight-mode-selector.c:291 ../xed/xed-window.c:1868
+#: ../xed/xed-highlight-mode-selector.c:297 ../xed/xed-window.c:1881
 msgid "Plain Text"
-msgstr ""
+msgstr "Gewone Teks"
 
 #: ../xed/xed-io-error-info-bar.c:154 ../xed/xed-io-error-info-bar.c:390
 msgid "_Retry"
@@ -936,7 +950,7 @@ msgstr ""
 
 #: ../xed/xed-io-error-info-bar.c:201
 msgid "The location of the file cannot be mounted."
-msgstr ""
+msgstr "Die ligging van die lêer kon nie geheg word nie."
 
 #: ../xed/xed-io-error-info-bar.c:204
 msgid ""
@@ -960,6 +974,8 @@ msgid ""
 "Host %s could not be found. Please check that your proxy settings are "
 "correct and try again."
 msgstr ""
+"Die gasheer \"%s\" kon nie gevind word nie. Maak seker dat die instellings "
+"vir instaanbedieners korrek is, en probeer gerus weer."
 
 #. use the same string as INVALID_HOST
 #: ../xed/xed-io-error-info-bar.c:256
@@ -968,6 +984,8 @@ msgid ""
 "Hostname was invalid. Please check that you typed the location correctly and "
 "try again."
 msgstr ""
+"Gasheernaam was nie geldig nie. Maak asseblief seker dat die ligging korrek "
+"ingetik is en probeer weer."
 
 #: ../xed/xed-io-error-info-bar.c:263
 #, c-format
@@ -994,23 +1012,25 @@ msgstr "Kon nie na die lêer %s terugkeer nie."
 
 #: ../xed/xed-io-error-info-bar.c:359
 msgid "Ch_aracter Encoding:"
-msgstr ""
+msgstr "Karakterkodering:"
 
 #. Translators: the access key chosen for this string should be
 #. different from other main menu access keys (Open, Edit, View...)
 #: ../xed/xed-io-error-info-bar.c:397 ../xed/xed-io-error-info-bar.c:654
 msgid "Edit Any_way"
-msgstr ""
+msgstr "Redigeer in elkgeval"
 
 #: ../xed/xed-io-error-info-bar.c:489
 msgid ""
 "The number of followed links is limited and the actual file could not be "
 "found within this limit."
 msgstr ""
+"Die aantal gevolgde skakels is beperk en die eintlike lêer kon nie binne "
+"hierdie beperking gevind word nie."
 
 #: ../xed/xed-io-error-info-bar.c:493
 msgid "You do not have the permissions necessary to open the file."
-msgstr ""
+msgstr "Jy het nie die nodige toestemming om hierdie lêer oop te maak nie."
 
 #: ../xed/xed-io-error-info-bar.c:499
 msgid "xed has not been able to detect the character encoding."
@@ -1022,31 +1042,33 @@ msgstr "Bepaal of u moontlik 'n binêre lêer probeer oopmaak."
 
 #: ../xed/xed-io-error-info-bar.c:502
 msgid "Select a character encoding from the menu and try again."
-msgstr ""
+msgstr "Kies 'n karakterkodering van die kieslys en probeer weer."
 
 #: ../xed/xed-io-error-info-bar.c:508
 #, c-format
 msgid "There was a problem opening the file %s."
-msgstr ""
+msgstr "Daar was 'n probleem met die oopmaak van die lêer %s."
 
 #: ../xed/xed-io-error-info-bar.c:509
 msgid ""
 "The file you opened has some invalid characters. If you continue editing "
 "this file you could corrupt this document."
 msgstr ""
+"Die lêer wat oopgemaak is, het 'n paar ongeldige karakters. Indien jy "
+"voortgaan met die redigeer van die lêer kan dit die lêer korrupteer."
 
 #: ../xed/xed-io-error-info-bar.c:512
 msgid "You can also choose another character encoding and try again."
-msgstr ""
+msgstr "Jy kan ook 'n ander karakterenkodering kies en weer probeer."
 
 #: ../xed/xed-io-error-info-bar.c:521
 #, c-format
 msgid "Could not open the file %s using the %s character encoding."
-msgstr ""
+msgstr "Kon die lêer %s nie met die karakterenkodering %s oopmaak nie."
 
 #: ../xed/xed-io-error-info-bar.c:525 ../xed/xed-io-error-info-bar.c:594
 msgid "Select a different character encoding from the menu and try again."
-msgstr ""
+msgstr "Kies 'n ander karakterenkodering van die kieslys en probeer weer."
 
 #: ../xed/xed-io-error-info-bar.c:537
 #, c-format
@@ -1056,19 +1078,21 @@ msgstr "Kon nie die lêer %s open nie."
 #: ../xed/xed-io-error-info-bar.c:589
 #, c-format
 msgid "Could not save the file %s using the %s character encoding."
-msgstr ""
+msgstr "Kon die lêer %s met die karakterenkodering %s nie stoor nie."
 
 #: ../xed/xed-io-error-info-bar.c:592
 msgid ""
 "The document contains one or more characters that cannot be encoded using "
 "the specified character encoding."
 msgstr ""
+"Die dokument bevat een of meer karakters wat nie met die gespesifiseerde "
+"kodering geënkodeer kan word nie."
 
 #. Translators: the access key chosen for this string should be
 #. different from other main menu access keys (Open, Edit, View...)
 #: ../xed/xed-io-error-info-bar.c:659
 msgid "D_on't Edit"
-msgstr ""
+msgstr "Moenie redigeer nie"
 
 #: ../xed/xed-io-error-info-bar.c:673
 #, c-format
@@ -1115,7 +1139,7 @@ msgstr "Kon nie 'n rugsteunlêer skep terwyl %s gestoor is nie"
 #: ../xed/xed-io-error-info-bar.c:855
 #, c-format
 msgid "Could not create a temporary backup file while saving %s"
-msgstr ""
+msgstr "Kon nie 'n tydelike rugsteunlêer skep terwyl %s gestoor word nie"
 
 #: ../xed/xed-io-error-info-bar.c:871
 msgid ""
@@ -1144,35 +1168,46 @@ msgid ""
 "%s is not a valid location. Please check that you typed the location "
 "correctly and try again."
 msgstr ""
+"\"%s\" is nie 'n geldige ligging nie. Maak seker dat die ligging reg ingetik "
+"is en probeer weer."
 
 #: ../xed/xed-io-error-info-bar.c:951
 msgid ""
 "You do not have the permissions necessary to save the file. Please check "
 "that you typed the location correctly and try again."
 msgstr ""
+"Jy het nie die nodige toestemming om die lêer te stoor nie. Maak seker dat "
+"die ligging reg ingetik is en probeer weer."
 
 #: ../xed/xed-io-error-info-bar.c:957
 msgid ""
 "There is not enough disk space to save the file. Please free some disk space "
 "and try again."
 msgstr ""
+"Daar is nie voldoende skyfspasie om die lêer te stoor nie. Maak 'n bietjie "
+"spasie beskikbaar en probeer weer."
 
 #: ../xed/xed-io-error-info-bar.c:962
 msgid ""
 "You are trying to save the file on a read-only disk. Please check that you "
 "typed the location correctly and try again."
 msgstr ""
+"Jy probeer om 'n lêer te stoor op 'n lees-alleenlikke skyf. Maak seker dat "
+"die ligging reg ingetik is en probeer weer."
 
 #: ../xed/xed-io-error-info-bar.c:968
 msgid ""
 "A file with the same name already exists. Please use a different name."
 msgstr ""
+"'n Lêer met dieselfde naam bestaan reeds. Kies asseblief 'n ander naam."
 
 #: ../xed/xed-io-error-info-bar.c:973
 msgid ""
 "The disk where you are trying to save the file has a limitation on length of "
 "the file names. Please use a shorter name."
 msgstr ""
+"Die skyf waarheen jy die lêer probeer stoor, het 'n lêernaam lengtebeperking "
+". Gebruik 'n korter lêernaam."
 
 #: ../xed/xed-io-error-info-bar.c:983
 msgid ""
@@ -1180,11 +1215,14 @@ msgid ""
 "sizes. Please try saving a smaller file or saving it to a disk that does not "
 "have this limitation."
 msgstr ""
+"Die skyf waarheen jy die lêer probeer stoor het 'n lêergrootte beperking. "
+"Stoor 'n kleiner lêer, of stoor die lêer op 'n skyf wat hierdie beperking "
+"nie het nie."
 
 #: ../xed/xed-io-error-info-bar.c:996
 #, c-format
 msgid "Could not save the file %s."
-msgstr ""
+msgstr "Kon nie die lêer \"%s\" stoor nie."
 
 #. FIXME: review this message, it's not clear since for the user the "modification"
 #. could be interpreted as the changes he made in the document. beside "reading" is
@@ -1209,72 +1247,75 @@ msgstr "He_rlaai"
 #: ../xed/xed-io-error-info-bar.c:1107
 #, c-format
 msgid "Some invalid chars have been detected while saving %s"
-msgstr ""
+msgstr "Enkele ongeldige karakters is tydens die stoor van %s opgespoor"
 
 #: ../xed/xed-io-error-info-bar.c:1122
 msgid ""
 "If you continue saving this file you can corrupt the document.  Save anyway?"
 msgstr ""
+"Indien jy voortgaan met die stoor van hierdie lêer, kan die dokument dalk "
+"korrupteer. Nogtans stoor?"
 
-#: ../xed/xed-preferences-dialog.c:264
+#: ../xed/xed-preferences-dialog.c:266
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:3
 #, no-c-format
 msgid "Use the system fixed width font (%s)"
 msgstr ""
 
-#: ../xed/xed-preferences-dialog.c:382
+#: ../xed/xed-preferences-dialog.c:384
 msgid "Editor"
 msgstr "Redigeerder"
 
-#: ../xed/xed-preferences-dialog.c:414
+#: ../xed/xed-preferences-dialog.c:422
 msgid "Save"
-msgstr ""
+msgstr "Stoor"
 
-#: ../xed/xed-preferences-dialog.c:527
+#: ../xed/xed-preferences-dialog.c:535
 #, c-format
 msgid ""
 "Directory '%s' could not be created: g_mkdir_with_parents() failed: %s"
 msgstr ""
+"Die gids '%s' kon nie geskep word nie: g_mkdir_with_parents() het misluk: %s"
 
-#: ../xed/xed-preferences-dialog.c:681
+#: ../xed/xed-preferences-dialog.c:689
 msgid "The selected color scheme cannot be installed."
-msgstr ""
+msgstr "Die geselekteerde kleurskema kon nie geïnstalleer word nie."
 
-#: ../xed/xed-preferences-dialog.c:704 ../xed/xed-preferences-dialog.c:710
+#: ../xed/xed-preferences-dialog.c:712 ../xed/xed-preferences-dialog.c:718
 msgid "Add Scheme"
-msgstr ""
+msgstr "Voeg 'n skema by"
 
-#: ../xed/xed-preferences-dialog.c:707 ../xed/xed-progress-info-bar.c:64
+#: ../xed/xed-preferences-dialog.c:715 ../xed/xed-progress-info-bar.c:64
 msgid "Cancel"
-msgstr ""
+msgstr "Kanselleer"
 
-#: ../xed/xed-preferences-dialog.c:716
+#: ../xed/xed-preferences-dialog.c:724
 msgid "Color Scheme Files"
-msgstr ""
+msgstr "Kleurskemalêers"
 
-#: ../xed/xed-preferences-dialog.c:788
+#: ../xed/xed-preferences-dialog.c:796
 #, c-format
 msgid "Could not remove color scheme \"%s\"."
-msgstr ""
+msgstr "Die kleurskema \"%s\" kon nie verwyder word nie."
 
-#: ../xed/xed-preferences-dialog.c:820
+#: ../xed/xed-preferences-dialog.c:828
 msgid "Theme"
-msgstr ""
+msgstr "Tema"
 
-#: ../xed/xed-preferences-dialog.c:837
+#: ../xed/xed-preferences-dialog.c:845
 msgid "Plugins"
 msgstr "Inproppe"
 
-#: ../xed/xed-preferences-dialog.c:845
+#: ../xed/xed-preferences-dialog.c:853
 msgid "Help"
-msgstr ""
+msgstr "Hulp"
 
-#: ../xed/xed-preferences-dialog.c:850
+#: ../xed/xed-preferences-dialog.c:858
 #: ../xed/resources/ui/xed-searchbar.ui.h:11
 msgid "Close"
-msgstr ""
+msgstr "Maak toe"
 
-#: ../xed/xed-preferences-dialog.c:864
+#: ../xed/xed-preferences-dialog.c:872
 msgid "Xed Preferences"
 msgstr ""
 
@@ -1291,89 +1332,93 @@ msgstr "Bladsy %N van %Q"
 msgid "Preparing..."
 msgstr "Berei tans voor..."
 
-#: ../xed/xed-print-preview.c:571
+#: ../xed/xed-print-preview.c:582
 msgid "Show the previous page"
 msgstr "Wys die vorige bladsy"
 
-#: ../xed/xed-print-preview.c:577
+#: ../xed/xed-print-preview.c:588
 msgid "Show the next page"
 msgstr "Wys die volgende bladsy"
 
-#: ../xed/xed-print-preview.c:591
+#: ../xed/xed-print-preview.c:602
 msgid "Current page (Alt+P)"
 msgstr "Huidige bladsy (Alt+P)"
 
 #. gtk_label_set_mnemonic_widget ((GtkLabel *) l, mp->priv->page_entry);
 #. We are displaying 'XXX of XXX'.
 #. Translators: the "of" from "1 of 19" in print preview.
-#: ../xed/xed-print-preview.c:605
+#: ../xed/xed-print-preview.c:616
 msgid "of"
 msgstr "van"
 
-#: ../xed/xed-print-preview.c:610
+#: ../xed/xed-print-preview.c:621
 msgid "Page total"
 msgstr "Bladsytotaal"
 
-#: ../xed/xed-print-preview.c:611
+#: ../xed/xed-print-preview.c:622
 msgid "The total number of pages in the document"
 msgstr "Die totale aantal bladsye in die dokument"
 
-#: ../xed/xed-print-preview.c:631
+#: ../xed/xed-print-preview.c:642
 msgid "Show multiple pages"
 msgstr "Wys veelvuldige bladsye"
 
-#: ../xed/xed-print-preview.c:649
+#: ../xed/xed-print-preview.c:660
 msgid "Zoom 1:1"
 msgstr "Zoem 1:1"
 
-#: ../xed/xed-print-preview.c:655
+#: ../xed/xed-print-preview.c:666
 msgid "Zoom to fit the whole page"
 msgstr "Zoem om die hele blad te laat pas"
 
-#: ../xed/xed-print-preview.c:661
+#: ../xed/xed-print-preview.c:672
 msgid "Zoom the page in"
 msgstr "Zoem die bladsy in"
 
-#: ../xed/xed-print-preview.c:667
+#: ../xed/xed-print-preview.c:678
 msgid "Zoom the page out"
 msgstr "Zoem die bladsy uit"
 
-#: ../xed/xed-print-preview.c:682
+#: ../xed/xed-print-preview.c:695 ../xed/resources/ui/xed-shortcuts.ui.h:33
+msgid "Print the document"
+msgstr "Druk die dokument"
+
+#: ../xed/xed-print-preview.c:710
 msgid "_Close preview"
 msgstr ""
 
-#: ../xed/xed-print-preview.c:684
+#: ../xed/xed-print-preview.c:712
 msgid "Close print preview"
 msgstr "Sluit drukvoorskou"
 
-#: ../xed/xed-print-preview.c:762
+#: ../xed/xed-print-preview.c:790
 #, c-format
 msgid "Page %d of %d"
 msgstr "Bladsy %d van %d"
 
-#: ../xed/xed-print-preview.c:944
+#: ../xed/xed-print-preview.c:972
 msgid "Page Preview"
 msgstr "Bladsyvoorskou"
 
-#: ../xed/xed-print-preview.c:945
+#: ../xed/xed-print-preview.c:973
 msgid "The preview of a page in the document to be printed"
 msgstr "Die voorskou van 'n bladsy in die dokument wat gedruk gaan word"
 
 #: ../xed/resources/ui/xed-highlight-mode-dialog.ui.h:1
 msgid "Highlight Mode"
-msgstr ""
+msgstr "Verligmodus"
 
 #: ../xed/resources/ui/xed-highlight-mode-dialog.ui.h:3
 msgid "_Select"
-msgstr ""
+msgstr "_Kies"
 
 #: ../xed/resources/ui/xed-highlight-mode-selector.ui.h:1
 msgid "Search highlight mode…"
-msgstr ""
+msgstr "Soek verligting-modus…"
 
 #: ../xed/resources/ui/xed-encodings-dialog.ui.h:1
 msgid "Character encodings"
-msgstr ""
+msgstr "Karakterkoderings"
 
 #: ../xed/resources/ui/xed-encodings-dialog.ui.h:2
 msgid "A_vailable encodings:"
@@ -1385,15 +1430,15 @@ msgstr "E_nkoderings in kieslys vertoon:"
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:1
 msgid "Font"
-msgstr ""
+msgstr "Skriftipe"
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:4
 msgid "Display"
-msgstr ""
+msgstr "Vertooning"
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:5
 msgid "Display line numbers"
-msgstr ""
+msgstr "Vertoon reëlnommers"
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:6
 msgid "Display overview map"
@@ -1401,7 +1446,7 @@ msgstr ""
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:7
 msgid "Display right margin"
-msgstr ""
+msgstr "Vertoon regterkantspasie"
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:8
 msgid "Right margin at column"
@@ -1409,11 +1454,11 @@ msgstr ""
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:9
 msgid "4"
-msgstr ""
+msgstr "4"
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:10
 msgid "Highlighting"
-msgstr ""
+msgstr "Verligting"
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:11
 msgid "Highlight the current line"
@@ -1425,7 +1470,7 @@ msgstr ""
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:13
 msgid "Indentation"
-msgstr ""
+msgstr "Inkeping"
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:14
 msgid "Tab width"
@@ -1441,7 +1486,7 @@ msgstr ""
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:17
 msgid "Word wrap"
-msgstr ""
+msgstr "Woord-omslag"
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:18
 msgid "Split words over two lines"
@@ -1471,29 +1516,29 @@ msgstr ""
 msgid "Minutes between saving"
 msgstr ""
 
-#: ../xed/resources/ui/xed-preferences-dialog.ui.h:25
-msgid "Dark theme"
-msgstr ""
-
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:26
+msgid "Dark theme"
+msgstr "Donker tema"
+
+#: ../xed/resources/ui/xed-preferences-dialog.ui.h:27
 msgid "Use dark theme variant (if available)"
 msgstr ""
 
-#: ../xed/resources/ui/xed-preferences-dialog.ui.h:27
+#: ../xed/resources/ui/xed-preferences-dialog.ui.h:28
 msgid "Style scheme"
 msgstr ""
 
-#: ../xed/resources/ui/xed-preferences-dialog.ui.h:28
-msgid "Install scheme"
-msgstr ""
-
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:29
+msgid "Install scheme"
+msgstr "Installeer skema"
+
+#: ../xed/resources/ui/xed-preferences-dialog.ui.h:30
 msgid "Remove scheme"
-msgstr ""
+msgstr "Verwyder skema"
 
 #: ../xed/resources/ui/xed-print-preferences.ui.h:1
 msgid "Syntax Highlighting"
-msgstr ""
+msgstr "Sintaks Verligting"
 
 #: ../xed/resources/ui/xed-print-preferences.ui.h:2
 msgid "Print synta_x highlighting"
@@ -1501,7 +1546,7 @@ msgstr "Druk _sintaksverligting"
 
 #: ../xed/resources/ui/xed-print-preferences.ui.h:3
 msgid "Line Numbers"
-msgstr ""
+msgstr "Reëlnommers"
 
 #: ../xed/resources/ui/xed-print-preferences.ui.h:4
 msgid "Print line nu_mbers"
@@ -1519,7 +1564,7 @@ msgstr "reëls"
 
 #: ../xed/resources/ui/xed-print-preferences.ui.h:9
 msgid "Text Wrapping"
-msgstr ""
+msgstr "Omvou van teks"
 
 #: ../xed/resources/ui/xed-print-preferences.ui.h:10
 msgid "Enable text _wrapping"
@@ -1531,7 +1576,7 @@ msgstr "Moenie woorde oor twee reëls _opbreek nie"
 
 #: ../xed/resources/ui/xed-print-preferences.ui.h:12
 msgid "Page header"
-msgstr ""
+msgstr "Bladsykopreël"
 
 #: ../xed/resources/ui/xed-print-preferences.ui.h:13
 msgid "Print page _headers"
@@ -1539,7 +1584,7 @@ msgstr "Druk bladsy_koppe"
 
 #: ../xed/resources/ui/xed-print-preferences.ui.h:14
 msgid "Fonts"
-msgstr ""
+msgstr "Skriftipes"
 
 #: ../xed/resources/ui/xed-print-preferences.ui.h:15
 msgid "_Body:"
@@ -1575,27 +1620,27 @@ msgstr "Vervang _met: "
 
 #: ../xed/resources/ui/xed-searchbar.ui.h:5
 msgid "Next"
-msgstr ""
+msgstr "Volgende"
 
 #: ../xed/resources/ui/xed-searchbar.ui.h:6
 msgid "Previous"
-msgstr ""
+msgstr "Vorige"
 
 #: ../xed/resources/ui/xed-searchbar.ui.h:7
 msgid "Regular expression"
-msgstr ""
+msgstr "Gewone uitdrukking"
 
 #: ../xed/resources/ui/xed-searchbar.ui.h:8
 msgid "Case sensitive"
-msgstr ""
+msgstr "Kassensitief"
 
 #: ../xed/resources/ui/xed-searchbar.ui.h:9
 msgid "Whole word"
-msgstr ""
+msgstr "Hele woord"
 
 #: ../xed/resources/ui/xed-searchbar.ui.h:10
 msgid "Wrap"
-msgstr ""
+msgstr "Omvou"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:2 ../xed/xed-ui.h:54
 msgid "Create a new document"
@@ -1603,39 +1648,39 @@ msgstr "Skep 'n nuwe dokument"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:3
 msgid "Open a document"
-msgstr ""
+msgstr "Maak 'n dokument oop"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:4
 msgid "Save the document"
-msgstr ""
+msgstr "Stoor die dokument"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:5
 msgid "Save the document with a new filename"
-msgstr ""
+msgstr "Stoor die dokument onder 'n ander naam"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:6
 msgid "Save all the documents"
-msgstr ""
+msgstr "Stoor al die dokumente"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:7
 msgid "Close the document"
-msgstr ""
+msgstr "Sluit die dokument"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:8
 msgid "Close all the documents"
-msgstr ""
+msgstr "Sluit al die dokumente"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:9
 msgid "Switch to the next document"
-msgstr ""
+msgstr "Skakel na die volgende dokument"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:10
 msgid "Switch to the previous document"
-msgstr ""
+msgstr "Skakel na die vorige dokument"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:11
 msgid "Switch to the first - ninth document"
-msgstr ""
+msgstr "Skakel na die eerste - negende dokument"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:12
 msgid "Windows and Panes"
@@ -1651,7 +1696,7 @@ msgstr ""
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:15
 msgid "Fullscreen on / off"
-msgstr ""
+msgstr "Volskerm aan / af"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:16
 msgid "Quit the application"
@@ -1659,51 +1704,51 @@ msgstr ""
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:17
 msgid "Find and Replace"
-msgstr ""
+msgstr "Vind en Vervang"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:18
 msgid "Find"
-msgstr ""
+msgstr "Vind"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:19
 msgid "Find the next match"
-msgstr ""
+msgstr "Vind die volgende resultaat"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:20
 msgid "Find the previous match"
-msgstr ""
+msgstr "Vind die vorige resultaat"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:21
 msgid "Go to line"
-msgstr ""
+msgstr "Gaan na reël"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:22
 msgid "Copy and Paste"
-msgstr ""
+msgstr "Kopieer en Plak"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:23
 msgid "Copy selected text to clipboard"
-msgstr ""
+msgstr "Kopieer gemerkte teks na knipbord"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:24
 msgid "Cut selected text to clipboard"
-msgstr ""
+msgstr "Sny gemerkte teks na knipbord"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:25
 msgid "Paste text from clipboard"
-msgstr ""
+msgstr "Plak teks van knipbord"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:26
 msgid "Undo and Redo"
-msgstr ""
+msgstr "Ontdoen en herdoen"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:27
 msgid "Undo previous command"
-msgstr ""
+msgstr "Ontdoen vorige bevel"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:28
 msgid "Redo previous command"
-msgstr ""
+msgstr "Herdoen vorige bevel"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:29 ../plugins/docinfo/docinfo.ui.h:11
 msgid "Selection"
@@ -1711,79 +1756,88 @@ msgstr "Seleksie"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:30
 msgid "Select all text"
-msgstr ""
+msgstr "Merk alle teks"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:31
 msgid "Tools"
-msgstr ""
+msgstr "Nutsprogramme"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:32
 msgid "Check spelling"
-msgstr ""
-
-#: ../xed/resources/ui/xed-shortcuts.ui.h:33
-msgid "Print the document"
-msgstr ""
+msgstr "Gaan spelling na"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:34
-msgid "Editing"
-msgstr ""
+msgid "Layout"
+msgstr "Uitleg"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:35
-msgid "Toggle insert / overwrite"
+msgid "Toggle Word Wrap"
 msgstr ""
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:36
-msgid "Delete current line"
-msgstr ""
+msgid "Editing"
+msgstr "Redigering"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:37
-msgid "Move current line up"
-msgstr ""
+msgid "Toggle insert / overwrite"
+msgstr "Wissel invoeg / oorskryf"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:38
-msgid "Move current line down"
-msgstr ""
+msgid "Delete current line"
+msgstr "Skrap huidige reël"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:39
-msgid "Move current word left"
-msgstr ""
+msgid "Move current line up"
+msgstr "Skuif huidige reël op"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:40
-msgid "Move current word right"
-msgstr ""
+msgid "Move current line down"
+msgstr "Skuif huidige reël af"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:41
+msgid "Move current word left"
+msgstr "Skuif huidige woord links"
+
+#: ../xed/resources/ui/xed-shortcuts.ui.h:42
+msgid "Move current word right"
+msgstr "Skuif huidige woord regs"
+
+#: ../xed/resources/ui/xed-shortcuts.ui.h:43
 msgid "Convert to uppercase"
 msgstr ""
 
-#: ../xed/resources/ui/xed-shortcuts.ui.h:42
+#: ../xed/resources/ui/xed-shortcuts.ui.h:44
 msgid "Convert to lowercase"
-msgstr ""
+msgstr "Verander na kleinletters"
 
-#: ../xed/resources/ui/xed-shortcuts.ui.h:43
+#: ../xed/resources/ui/xed-shortcuts.ui.h:45
 msgid "Convert to title case"
 msgstr ""
 
-#: ../xed/resources/ui/xed-shortcuts.ui.h:44
-msgid "Invert case"
-msgstr ""
-
-#: ../xed/resources/ui/xed-shortcuts.ui.h:45
-msgid "Increment number at cursor"
-msgstr ""
-
 #: ../xed/resources/ui/xed-shortcuts.ui.h:46
-msgid "Decrement number at cursor"
-msgstr ""
+msgid "Invert case"
+msgstr "Keer letterkas om"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:47
+msgid "Increment number at cursor"
+msgstr "Verhoog nommer by wyser"
+
+#: ../xed/resources/ui/xed-shortcuts.ui.h:48
+msgid "Decrement number at cursor"
+msgstr "Verlaag nommer by wyser"
+
+#: ../xed/resources/ui/xed-shortcuts.ui.h:49
 msgid "Toggle comment block"
 msgstr ""
 
-#: ../xed/resources/ui/xed-shortcuts.ui.h:48
+#: ../xed/resources/ui/xed-shortcuts.ui.h:50
 msgid "Toggle comment"
 msgstr ""
+
+#: ../xed/resources/ui/xed-shortcuts.ui.h:51
+#: ../plugins/joinlines/joinlines.plugin.desktop.in.h:1
+msgid "Join Lines"
+msgstr "Verbind Lyne"
 
 #: ../xed/xed-searchbar.c:92
 #, c-format
@@ -1799,7 +1853,7 @@ msgstr "Een voorkoms gevind en vervang"
 #: ../xed/xed-searchbar.c:124
 #, c-format
 msgid "\"%s\" not found"
-msgstr ""
+msgstr "\"%s\" nie gevind nie"
 
 #: ../xed/xed-searchbar.c:302
 msgid "No matches found"
@@ -1821,11 +1875,11 @@ msgstr[1] ""
 
 #: ../xed/xed-statusbar.c:67 ../xed/xed-statusbar.c:73
 msgid "OVR"
-msgstr ""
+msgstr "OVR"
 
 #: ../xed/xed-statusbar.c:67 ../xed/xed-statusbar.c:73
 msgid "INS"
-msgstr ""
+msgstr "Byvoeg"
 
 #. Translators: "Ln" is an abbreviation for "Line", Col is an abbreviation for "Column". Please,
 #. use abbreviations if possible to avoid space problems.
@@ -1841,75 +1895,75 @@ msgid_plural "There are %d tabs with errors"
 msgstr[0] "Daar is 'n keep met foute"
 msgstr[1] "Daar is %d kepe met foute"
 
-#: ../xed/xed-tab-label.c:276
+#: ../xed/xed-tab-label.c:271
 msgid "Close document"
 msgstr "Sluit dokument"
 
 #. Translators: the first %s is a file name (e.g. test.txt) the second one
 #. is a directory (e.g. ssh://master.gnome.org/home/users/paolo)
-#: ../xed/xed-tab.c:716
-#, c-format
-msgid "Reverting %s from %s"
-msgstr ""
-
 #: ../xed/xed-tab.c:721
 #, c-format
+msgid "Reverting %s from %s"
+msgstr "Stel %s uit %s terug"
+
+#: ../xed/xed-tab.c:726
+#, c-format
 msgid "Reverting %s"
-msgstr ""
+msgstr "Stel %s terug"
 
 #. Translators: the first %s is a file name (e.g. test.txt) the second one
 #. is a directory (e.g. ssh://master.gnome.org/home/users/paolo)
-#: ../xed/xed-tab.c:734
-#, c-format
-msgid "Loading %s from %s"
-msgstr ""
-
 #: ../xed/xed-tab.c:739
 #, c-format
+msgid "Loading %s from %s"
+msgstr "Laai %s vanaf %s"
+
+#: ../xed/xed-tab.c:744
+#, c-format
 msgid "Loading %s"
-msgstr ""
+msgstr "Laai tans %s"
 
 #. Translators: the first %s is a file name (e.g. test.txt) the second one
 #. is a directory (e.g. ssh://master.gnome.org/home/users/paolo)
-#: ../xed/xed-tab.c:820
+#: ../xed/xed-tab.c:825
 #, c-format
 msgid "Saving %s to %s"
-msgstr ""
+msgstr "Stoor %s na %s"
 
-#: ../xed/xed-tab.c:825
+#: ../xed/xed-tab.c:830
 #, c-format
 msgid "Saving %s"
 msgstr "Stoor tans %s"
 
 #. Read only
-#: ../xed/xed-tab.c:1305
+#: ../xed/xed-tab.c:1324
 msgid "RO"
 msgstr "RO"
 
-#: ../xed/xed-tab.c:1353
+#: ../xed/xed-tab.c:1372
 #, c-format
 msgid "Error opening file %s"
 msgstr ""
 
-#: ../xed/xed-tab.c:1357
+#: ../xed/xed-tab.c:1376
 #, c-format
 msgid "Error reverting file %s"
-msgstr ""
+msgstr "Fout met die terugstel van lêer %s"
 
-#: ../xed/xed-tab.c:1361
+#: ../xed/xed-tab.c:1380
 #, c-format
 msgid "Error saving file %s"
-msgstr ""
+msgstr "Kon nie lêer %s stoor nie"
 
-#: ../xed/xed-tab.c:1394
+#: ../xed/xed-tab.c:1413
 msgid "Name:"
 msgstr "Naam:"
 
-#: ../xed/xed-tab.c:1395
+#: ../xed/xed-tab.c:1414
 msgid "MIME Type:"
 msgstr "MIME-soort:"
 
-#: ../xed/xed-tab.c:1396
+#: ../xed/xed-tab.c:1415
 msgid "Encoding:"
 msgstr "Enkodering:"
 
@@ -1941,7 +1995,7 @@ msgstr "_Dokumente"
 #. File menu
 #: ../xed/xed-ui.h:53
 msgid "_New"
-msgstr ""
+msgstr "_Nuwe"
 
 #: ../xed/xed-ui.h:55
 msgid "_Open..."
@@ -1979,7 +2033,7 @@ msgstr "Aangaande dié toepassing"
 
 #: ../xed/xed-ui.h:67
 msgid "_Keyboard Shortcuts"
-msgstr ""
+msgstr "_Sleutelbord Kortpaaie"
 
 #: ../xed/xed-ui.h:68
 msgid "Show the keyboard shortcuts dialog"
@@ -1987,7 +2041,7 @@ msgstr ""
 
 #: ../xed/xed-ui.h:72
 msgid "Leave fullscreen mode"
-msgstr ""
+msgstr "Verlaat volskermmodus"
 
 #: ../xed/xed-ui.h:80
 msgid "Save the current file"
@@ -2003,7 +2057,7 @@ msgstr "Stoor die huidige lêer onder 'n ander naam"
 
 #: ../xed/xed-ui.h:83
 msgid "Revert"
-msgstr ""
+msgstr "Terugval"
 
 #: ../xed/xed-ui.h:84
 msgid "Revert to a saved version of the file"
@@ -2028,7 +2082,7 @@ msgstr "Druk die huidige bladsy"
 #. Edit menu
 #: ../xed/xed-ui.h:91
 msgid "_Undo"
-msgstr ""
+msgstr "_Ontdoen"
 
 #: ../xed/xed-ui.h:92
 msgid "Undo the last action"
@@ -2036,7 +2090,7 @@ msgstr "Ontdoen die jongste aksie"
 
 #: ../xed/xed-ui.h:93
 msgid "_Redo"
-msgstr ""
+msgstr "_Herdoen"
 
 #: ../xed/xed-ui.h:94
 msgid "Redo the last undone action"
@@ -2044,7 +2098,7 @@ msgstr "Herdoen die ongedane aksie"
 
 #: ../xed/xed-ui.h:95
 msgid "C_ut"
-msgstr ""
+msgstr "Knip"
 
 #: ../xed/xed-ui.h:96
 msgid "Cut the selection"
@@ -2052,7 +2106,7 @@ msgstr "Knip die seleksie"
 
 #: ../xed/xed-ui.h:97
 msgid "_Copy"
-msgstr ""
+msgstr "Kopieer"
 
 #: ../xed/xed-ui.h:98
 msgid "Copy the selection"
@@ -2060,7 +2114,7 @@ msgstr "Kopieer die seleksie"
 
 #: ../xed/xed-ui.h:99
 msgid "_Paste"
-msgstr ""
+msgstr "Plak"
 
 #: ../xed/xed-ui.h:100
 msgid "Paste the clipboard"
@@ -2112,7 +2166,7 @@ msgstr ""
 #. Search menu
 #: ../xed/xed-ui.h:116
 msgid "_Find"
-msgstr ""
+msgstr "_Vind"
 
 #: ../xed/xed-ui.h:117
 msgid "Search for text"
@@ -2189,7 +2243,7 @@ msgstr "Verskuif die huidige dokument na 'n nuwe venster"
 
 #: ../xed/xed-ui.h:143
 msgid "_Close"
-msgstr ""
+msgstr "_Sluit"
 
 #: ../xed/xed-ui.h:144
 msgid "Close the current file"
@@ -2197,7 +2251,7 @@ msgstr "Sluit die huidige lêer"
 
 #: ../xed/xed-ui.h:150
 msgid "_Quit"
-msgstr ""
+msgstr "_Eindig"
 
 #: ../xed/xed-ui.h:151
 msgid "Quit the program"
@@ -2221,11 +2275,11 @@ msgstr "Wys of versteek die statusstaaf in die huidige venster"
 
 #: ../xed/xed-ui.h:162
 msgid "Fullscreen"
-msgstr ""
+msgstr "Volskerm"
 
 #: ../xed/xed-ui.h:163
 msgid "Edit text in fullscreen"
-msgstr ""
+msgstr "Redigeer teks in volskermmodus"
 
 #: ../xed/xed-ui.h:165
 msgid "_Word wrap"
@@ -2245,7 +2299,7 @@ msgstr ""
 
 #: ../xed/xed-ui.h:176
 msgid "Side _Pane"
-msgstr ""
+msgstr "Sy_paneel"
 
 #: ../xed/xed-ui.h:177
 msgid "Show or hide the side pane in the current window"
@@ -2259,25 +2313,25 @@ msgstr ""
 msgid "Show or hide the bottom pane in the current window"
 msgstr ""
 
-#: ../xed/xed-utils.c:642
+#: ../xed/xed-utils.c:822
 msgid "Please check your installation."
 msgstr "Gaan asb. u installasie na."
 
-#: ../xed/xed-utils.c:710
+#: ../xed/xed-utils.c:890
 #, c-format
 msgid "Unable to open UI file %s. Error: %s"
 msgstr ""
 
-#: ../xed/xed-utils.c:730
+#: ../xed/xed-utils.c:910
 #, c-format
 msgid "Unable to find the object '%s' inside file %s."
-msgstr ""
+msgstr "Kon die vereiste voorwerp '%s' binne lêer %s nie vind nie."
 
 #. Translators: '/ on <remote-share>'
-#: ../xed/xed-utils.c:898
+#: ../xed/xed-utils.c:1078
 #, c-format
 msgid "/ on %s"
-msgstr ""
+msgstr "/ op %s"
 
 #: ../xed/xed-view.c:380
 msgid "_Display line numbers"
@@ -2307,13 +2361,13 @@ msgstr ""
 
 #: ../xed/xed-window.c:1411
 msgid "Use Spaces"
-msgstr ""
+msgstr "Gebruik spasies"
 
-#: ../xed/xed-window.c:2198
+#: ../xed/xed-window.c:2218
 msgid "There are unsaved documents"
-msgstr ""
+msgstr "Daar is ongestoorde dokumente"
 
-#: ../xed/xed-window.c:3247
+#: ../xed/xed-window.c:3267
 msgid "Elevated Privileges"
 msgstr ""
 
@@ -2336,7 +2390,7 @@ msgstr "_Bywerk"
 
 #: ../plugins/docinfo/docinfo.ui.h:3
 msgid "File Name"
-msgstr ""
+msgstr "Lêer Naam"
 
 #: ../plugins/docinfo/docinfo.ui.h:4 ../plugins/time/xed-time-dialog.ui.h:4
 #: ../plugins/time/xed-time-setup-dialog.ui.h:3
@@ -2373,11 +2427,11 @@ msgstr "_Dokumentstatistiek"
 
 #: ../plugins/docinfo/xed-docinfo-plugin.c:380
 msgid "Get statistical information on the current document"
-msgstr ""
+msgstr "Kry statistiese inligting oor huidige dokument"
 
 #: ../plugins/filebrowser/filebrowser.plugin.desktop.in.h:1
 msgid "File Browser Pane"
-msgstr ""
+msgstr "Lêerblaaierpaneel"
 
 #: ../plugins/filebrowser/filebrowser.plugin.desktop.in.h:2
 msgid "Easy file access from the side pane"
@@ -2385,7 +2439,7 @@ msgstr ""
 
 #: ../plugins/filebrowser/org.x.editor.plugins.filebrowser.gschema.xml.h:1
 msgid "Set Location to First Document"
-msgstr ""
+msgstr "Stel ligging na eerste dokument"
 
 #: ../plugins/filebrowser/org.x.editor.plugins.filebrowser.gschema.xml.h:2
 msgid ""
@@ -2397,7 +2451,7 @@ msgstr ""
 
 #: ../plugins/filebrowser/org.x.editor.plugins.filebrowser.gschema.xml.h:3
 msgid "File Browser Filter Mode"
-msgstr ""
+msgstr "Lêerblaaier se filtermodus"
 
 #: ../plugins/filebrowser/org.x.editor.plugins.filebrowser.gschema.xml.h:4
 msgid ""
@@ -2409,7 +2463,7 @@ msgstr ""
 
 #: ../plugins/filebrowser/org.x.editor.plugins.filebrowser.gschema.xml.h:5
 msgid "File Browser Filter Pattern"
-msgstr ""
+msgstr "Lêerblaaier se filterpatroon"
 
 #: ../plugins/filebrowser/org.x.editor.plugins.filebrowser.gschema.xml.h:6
 msgid ""
@@ -2427,23 +2481,27 @@ msgstr ""
 
 #: ../plugins/filebrowser/org.x.editor.plugins.filebrowser.gschema.xml.h:9
 msgid "Open With Tree View"
-msgstr ""
+msgstr "Maak oop met boomaansig"
 
 #: ../plugins/filebrowser/org.x.editor.plugins.filebrowser.gschema.xml.h:10
 msgid ""
 "Open the tree view when the file browser plugin gets loaded instead of the "
 "bookmarks view"
 msgstr ""
+"Vertoon die boomaansig indien die lêerblaaier-inprop gelaai word in plaas "
+"van boekmerke"
 
 #: ../plugins/filebrowser/org.x.editor.plugins.filebrowser.gschema.xml.h:11
 msgid "File Browser Root Directory"
-msgstr ""
+msgstr "Lêerblaaier se wortelgids"
 
 #: ../plugins/filebrowser/org.x.editor.plugins.filebrowser.gschema.xml.h:12
 msgid ""
 "The file browser root directory to use when loading the file browser plugin "
 "and onload/tree_view is TRUE."
 msgstr ""
+"Die lêerblaaier se wortelgids om te gebruik indien die lêerblaaier-inprop "
+"gelaai word en onload/tree_view WAAR is."
 
 #: ../plugins/filebrowser/org.x.editor.plugins.filebrowser.gschema.xml.h:13
 msgid "File Browser Virtual Root Directory"
@@ -2703,6 +2761,18 @@ msgstr ""
 #: ../plugins/filebrowser/xed-file-browser-widget.c:2141
 #, c-format
 msgid "Could not mount volume: %s"
+msgstr ""
+
+#: ../plugins/joinlines/joinlines.plugin.desktop.in.h:2
+msgid "Join several lines"
+msgstr ""
+
+#: ../plugins/joinlines/joinlines/__init__.py:26
+msgid "_Join Lines"
+msgstr ""
+
+#: ../plugins/joinlines/joinlines/__init__.py:27
+msgid "Join the selected lines"
 msgstr ""
 
 #. vi:ts=8

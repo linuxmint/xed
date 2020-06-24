@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MATE Desktop Environment\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-06-23 14:24+0200\n"
-"PO-Revision-Date: 2016-01-26 17:06+0000\n"
+"POT-Creation-Date: 2020-06-21 12:40+0100\n"
+"PO-Revision-Date: 2020-06-23 21:01+0000\n"
 "Last-Translator: Stefano Karapetsas <stefano@karapetsas.com>\n"
 "Language-Team: Hebrew "
 "(http://www.transifex.com/projects/p/MATE/language/he/)\n"
@@ -17,8 +17,8 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2020-05-11 10:59+0000\n"
-"X-Generator: Launchpad (build fbdff7602bd10fb883bf7e2ddcc7fd5a16f60398)\n"
+"X-Launchpad-Export-Date: 2020-06-24 10:08+0000\n"
+"X-Generator: Launchpad (build 1cbd0aa39df153c901321817f9b57cf3f232b507)\n"
 "Language: he\n"
 
 #: ../data/org.x.editor.gschema.xml.in.h:1
@@ -80,7 +80,7 @@ msgstr ""
 
 #: ../data/org.x.editor.gschema.xml.in.h:12
 msgid "Autosave"
-msgstr "Autosave"
+msgstr "שמירה אוטומטית"
 
 #: ../data/org.x.editor.gschema.xml.in.h:13
 msgid ""
@@ -241,6 +241,7 @@ msgid "Whether xed should enable syntax highlighting."
 msgstr ""
 
 #: ../data/org.x.editor.gschema.xml.in.h:46
+#: ../xed/resources/ui/xed-preferences-dialog.ui.h:25
 msgid "Ensure Trailing Newline"
 msgstr ""
 
@@ -532,12 +533,12 @@ msgstr ""
 msgid "[FILE...] [+LINE]"
 msgstr ""
 
-#: ../xed/xed-app.c:529
+#: ../xed/xed-app.c:614
 #, c-format
 msgid "%s: invalid encoding."
 msgstr ""
 
-#: ../xed/xed-app.c:1180
+#: ../xed/xed-app.c:1270
 msgid "There was an error displaying the help."
 msgstr "ארעה שגיאה בהצגת העזרה."
 
@@ -571,7 +572,7 @@ msgstr ""
 #: ../xed/xed-close-confirmation-dialog.c:165 ../xed/xed-commands-file.c:649
 #: ../xed/xed-ui.h:79
 msgid "_Save"
-msgstr ""
+msgstr "_שמירה"
 
 #: ../xed/xed-close-confirmation-dialog.c:192
 msgid "Question"
@@ -783,7 +784,7 @@ msgstr "_שחזור"
 
 #: ../xed/xed-commands-help.c:55
 msgid "A small and lightweight text editor"
-msgstr ""
+msgstr "עורך טקסט קטן וקל משקל"
 
 #: ../xed/xed-document.c:973 ../xed/xed-document.c:1005
 #, c-format
@@ -796,7 +797,7 @@ msgid "Read-Only"
 msgstr "(קריאה בלבד)"
 
 #: ../xed/xed-documents-panel.c:717 ../xed/resources/ui/xed-shortcuts.ui.h:1
-#: ../xed/xed-window.c:2982
+#: ../xed/xed-window.c:3002
 msgid "Documents"
 msgstr "מסמכים"
 
@@ -834,7 +835,7 @@ msgstr "_תיאור"
 msgid "_Encoding"
 msgstr "_קידוד"
 
-#: ../xed/xed-file-chooser-dialog.c:46 ../xed/xed-preferences-dialog.c:723
+#: ../xed/xed-file-chooser-dialog.c:46 ../xed/xed-preferences-dialog.c:731
 msgid "All Files"
 msgstr "כל הקבצים"
 
@@ -852,7 +853,7 @@ msgstr "_סיום שורה:"
 
 #: ../xed/xed-file-chooser-dialog.c:156
 msgid "Unix/Linux"
-msgstr "Unix/Linux"
+msgstr "לינוקס/יוניקס"
 
 #: ../xed/xed-file-chooser-dialog.c:157
 msgid "Mac OS Classic"
@@ -860,9 +861,9 @@ msgstr "Mac OS קלסי"
 
 #: ../xed/xed-file-chooser-dialog.c:158
 msgid "Windows"
-msgstr "Windows"
+msgstr "ווינדוס"
 
-#: ../xed/xed-highlight-mode-selector.c:291 ../xed/xed-window.c:1868
+#: ../xed/xed-highlight-mode-selector.c:297 ../xed/xed-window.c:1881
 msgid "Plain Text"
 msgstr "טקסט פשוט"
 
@@ -902,7 +903,7 @@ msgstr "לא ניתן לגשת למיקום הקובץ מכיוון שהוא ל�
 #: ../xed/xed-io-error-info-bar.c:207
 #, c-format
 msgid "%s is a directory."
-msgstr "‏%s הוא תיקייה"
+msgstr "%s הוא תיקייה."
 
 #: ../xed/xed-io-error-info-bar.c:212
 #, c-format
@@ -1185,67 +1186,67 @@ msgid ""
 "If you continue saving this file you can corrupt the document.  Save anyway?"
 msgstr ""
 
-#: ../xed/xed-preferences-dialog.c:264
+#: ../xed/xed-preferences-dialog.c:266
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:3
 #, no-c-format
 msgid "Use the system fixed width font (%s)"
-msgstr ""
+msgstr "שימוש בגופן הרוחב הקבוע של המערכת (%s)"
 
-#: ../xed/xed-preferences-dialog.c:382
+#: ../xed/xed-preferences-dialog.c:384
 msgid "Editor"
-msgstr "עורך"
+msgstr "עריכה"
 
-#: ../xed/xed-preferences-dialog.c:414
+#: ../xed/xed-preferences-dialog.c:422
 msgid "Save"
-msgstr ""
+msgstr "שמירה"
 
-#: ../xed/xed-preferences-dialog.c:527
+#: ../xed/xed-preferences-dialog.c:535
 #, c-format
 msgid ""
 "Directory '%s' could not be created: g_mkdir_with_parents() failed: %s"
 msgstr "לא ניתן ליצור את התיקייה '%s'‏:‏ ()g_mkdir_with_parents נכשלה: %s"
 
-#: ../xed/xed-preferences-dialog.c:681
+#: ../xed/xed-preferences-dialog.c:689
 msgid "The selected color scheme cannot be installed."
 msgstr "לא ניתן להתקין את סכימת הצבעים שנבחרה."
 
-#: ../xed/xed-preferences-dialog.c:704 ../xed/xed-preferences-dialog.c:710
+#: ../xed/xed-preferences-dialog.c:712 ../xed/xed-preferences-dialog.c:718
 msgid "Add Scheme"
 msgstr "הוספת סכימה"
 
-#: ../xed/xed-preferences-dialog.c:707 ../xed/xed-progress-info-bar.c:64
+#: ../xed/xed-preferences-dialog.c:715 ../xed/xed-progress-info-bar.c:64
 msgid "Cancel"
 msgstr ""
 
-#: ../xed/xed-preferences-dialog.c:716
+#: ../xed/xed-preferences-dialog.c:724
 msgid "Color Scheme Files"
 msgstr "קובצי סכימת צבעים"
 
-#: ../xed/xed-preferences-dialog.c:788
+#: ../xed/xed-preferences-dialog.c:796
 #, c-format
 msgid "Could not remove color scheme \"%s\"."
 msgstr "לא ניתן להסיר את סכימת הצבעים \"%s\"."
 
-#: ../xed/xed-preferences-dialog.c:820
+#: ../xed/xed-preferences-dialog.c:828
 msgid "Theme"
-msgstr ""
+msgstr "סגנון"
 
-#: ../xed/xed-preferences-dialog.c:837
+#: ../xed/xed-preferences-dialog.c:845
 msgid "Plugins"
 msgstr "תוספים"
 
-#: ../xed/xed-preferences-dialog.c:845
+#: ../xed/xed-preferences-dialog.c:853
 msgid "Help"
-msgstr ""
+msgstr "עזרה"
 
-#: ../xed/xed-preferences-dialog.c:850
+#: ../xed/xed-preferences-dialog.c:858
 #: ../xed/resources/ui/xed-searchbar.ui.h:11
 msgid "Close"
-msgstr ""
+msgstr "סגירה"
 
-#: ../xed/xed-preferences-dialog.c:864
+#: ../xed/xed-preferences-dialog.c:872
 msgid "Xed Preferences"
-msgstr ""
+msgstr "העדפות Xed"
 
 #: ../xed/xed-print-job.c:494
 #, c-format
@@ -1260,71 +1261,75 @@ msgstr "עמוד %N מתוך %Q"
 msgid "Preparing..."
 msgstr "בהכנה..."
 
-#: ../xed/xed-print-preview.c:571
+#: ../xed/xed-print-preview.c:582
 msgid "Show the previous page"
 msgstr "הצגת העמוד הקודם"
 
-#: ../xed/xed-print-preview.c:577
+#: ../xed/xed-print-preview.c:588
 msgid "Show the next page"
 msgstr "הצגת העמוד הבא"
 
-#: ../xed/xed-print-preview.c:591
+#: ../xed/xed-print-preview.c:602
 msgid "Current page (Alt+P)"
 msgstr "עמוד נוכחי (Alt+P)"
 
 #. gtk_label_set_mnemonic_widget ((GtkLabel *) l, mp->priv->page_entry);
 #. We are displaying 'XXX of XXX'.
 #. Translators: the "of" from "1 of 19" in print preview.
-#: ../xed/xed-print-preview.c:605
+#: ../xed/xed-print-preview.c:616
 msgid "of"
 msgstr "מתוך"
 
-#: ../xed/xed-print-preview.c:610
+#: ../xed/xed-print-preview.c:621
 msgid "Page total"
 msgstr "סה\"כ דפים"
 
-#: ../xed/xed-print-preview.c:611
+#: ../xed/xed-print-preview.c:622
 msgid "The total number of pages in the document"
 msgstr "סך כל הדפים במסמך"
 
-#: ../xed/xed-print-preview.c:631
+#: ../xed/xed-print-preview.c:642
 msgid "Show multiple pages"
 msgstr "הצגת מספר עמודים"
 
-#: ../xed/xed-print-preview.c:649
+#: ../xed/xed-print-preview.c:660
 msgid "Zoom 1:1"
 msgstr "תקריב 1:1"
 
-#: ../xed/xed-print-preview.c:655
+#: ../xed/xed-print-preview.c:666
 msgid "Zoom to fit the whole page"
 msgstr "הגדרת התקריב להתאמה לעמוד כולו"
 
-#: ../xed/xed-print-preview.c:661
+#: ../xed/xed-print-preview.c:672
 msgid "Zoom the page in"
 msgstr "התקרבות לעמוד"
 
-#: ../xed/xed-print-preview.c:667
+#: ../xed/xed-print-preview.c:678
 msgid "Zoom the page out"
 msgstr "התרחקות מהעמוד"
 
-#: ../xed/xed-print-preview.c:682
+#: ../xed/xed-print-preview.c:695 ../xed/resources/ui/xed-shortcuts.ui.h:33
+msgid "Print the document"
+msgstr "הדפסת המסמך"
+
+#: ../xed/xed-print-preview.c:710
 msgid "_Close preview"
 msgstr ""
 
-#: ../xed/xed-print-preview.c:684
+#: ../xed/xed-print-preview.c:712
 msgid "Close print preview"
 msgstr "סגירת התצוגה המקדימה"
 
-#: ../xed/xed-print-preview.c:762
+#: ../xed/xed-print-preview.c:790
 #, c-format
 msgid "Page %d of %d"
 msgstr "עמוד %d מתוך %d"
 
-#: ../xed/xed-print-preview.c:944
+#: ../xed/xed-print-preview.c:972
 msgid "Page Preview"
 msgstr "תצוגה מקדימה"
 
-#: ../xed/xed-print-preview.c:945
+#: ../xed/xed-print-preview.c:973
 msgid "The preview of a page in the document to be printed"
 msgstr "תצוגה מקדימה של דף מהמסמך המיועד להדפסה"
 
@@ -1358,55 +1363,55 @@ msgstr "גופן"
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:4
 msgid "Display"
-msgstr ""
+msgstr "תצוגה"
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:5
 msgid "Display line numbers"
-msgstr ""
+msgstr "הצגת מספרי שורות"
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:6
 msgid "Display overview map"
-msgstr ""
+msgstr "הצגת מפת סקירה כללית"
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:7
 msgid "Display right margin"
-msgstr ""
+msgstr "הצגת מרווח ימני"
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:8
 msgid "Right margin at column"
-msgstr ""
+msgstr "מרווח ימני בעמודה"
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:9
 msgid "4"
-msgstr ""
+msgstr "4"
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:10
 msgid "Highlighting"
-msgstr ""
+msgstr "הדגשה"
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:11
 msgid "Highlight the current line"
-msgstr ""
+msgstr "הדגשת השורה הנוכחית"
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:12
 msgid "Highlight matching brackets"
-msgstr ""
+msgstr "הדגשת סוגריים מתאימות"
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:13
 msgid "Indentation"
-msgstr ""
+msgstr "הזחה"
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:14
 msgid "Tab width"
-msgstr ""
+msgstr "רוחב טאב"
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:15
 msgid "Use spaces instead of tabs"
-msgstr ""
+msgstr "שימוש ברווחים במקום בטאבים"
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:16
 msgid "Automatic indentation"
-msgstr ""
+msgstr "הזחה אוטומטית"
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:17
 msgid "Word wrap"
@@ -1414,7 +1419,7 @@ msgstr ""
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:18
 msgid "Split words over two lines"
-msgstr ""
+msgstr "פיצול מילים על פני שתי שורות"
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:19
 msgid "Tab scrolling"
@@ -1426,39 +1431,39 @@ msgstr ""
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:21
 msgid "File saving"
-msgstr ""
+msgstr "שמירת קבצים"
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:22
 msgid "Create a backup copy of files before saving"
-msgstr ""
+msgstr "יצירת גיבוי של קבצים לפני שמירה"
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:23
 msgid "Autosave files"
-msgstr ""
+msgstr "שמירת קבצים אוטומטית"
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:24
 msgid "Minutes between saving"
-msgstr ""
-
-#: ../xed/resources/ui/xed-preferences-dialog.ui.h:25
-msgid "Dark theme"
-msgstr ""
+msgstr "דקות בין שמירות"
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:26
-msgid "Use dark theme variant (if available)"
-msgstr ""
+msgid "Dark theme"
+msgstr "סגנון אפל"
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:27
-msgid "Style scheme"
-msgstr ""
+msgid "Use dark theme variant (if available)"
+msgstr "שימוש בסגנון אפל (אם זמין)"
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:28
-msgid "Install scheme"
-msgstr ""
+msgid "Style scheme"
+msgstr "סכמת סגנון"
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:29
+msgid "Install scheme"
+msgstr "התקנת סכמה"
+
+#: ../xed/resources/ui/xed-preferences-dialog.ui.h:30
 msgid "Remove scheme"
-msgstr ""
+msgstr "הסרת סכמה"
 
 #: ../xed/resources/ui/xed-print-preferences.ui.h:1
 msgid "Syntax Highlighting"
@@ -1544,23 +1549,23 @@ msgstr "החלפה _עם: "
 
 #: ../xed/resources/ui/xed-searchbar.ui.h:5
 msgid "Next"
-msgstr ""
+msgstr "הבא"
 
 #: ../xed/resources/ui/xed-searchbar.ui.h:6
 msgid "Previous"
-msgstr ""
+msgstr "הקודם"
 
 #: ../xed/resources/ui/xed-searchbar.ui.h:7
 msgid "Regular expression"
-msgstr ""
+msgstr "ביטוי רגולרי"
 
 #: ../xed/resources/ui/xed-searchbar.ui.h:8
 msgid "Case sensitive"
-msgstr ""
+msgstr "רגישות לאותיות גדולות/קטנות"
 
 #: ../xed/resources/ui/xed-searchbar.ui.h:9
 msgid "Whole word"
-msgstr ""
+msgstr "מילה שלמה"
 
 #: ../xed/resources/ui/xed-searchbar.ui.h:10
 msgid "Wrap"
@@ -1572,107 +1577,107 @@ msgstr "יצירת מסמך חדש"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:3
 msgid "Open a document"
-msgstr ""
+msgstr "פתיחת מסמך"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:4
 msgid "Save the document"
-msgstr ""
+msgstr "שמירת מסמך"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:5
 msgid "Save the document with a new filename"
-msgstr ""
+msgstr "שמירת המסמך עם שם חדש"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:6
 msgid "Save all the documents"
-msgstr ""
+msgstr "שמירת כל המסמכים"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:7
 msgid "Close the document"
-msgstr ""
+msgstr "סגירת המסמך"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:8
 msgid "Close all the documents"
-msgstr ""
+msgstr "סגירת כל המסמכים"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:9
 msgid "Switch to the next document"
-msgstr ""
+msgstr "החלפה למסמך הבא"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:10
 msgid "Switch to the previous document"
-msgstr ""
+msgstr "החלפה למסמך הקודם"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:11
 msgid "Switch to the first - ninth document"
-msgstr ""
+msgstr "החלפה למסמך הראשון - התשיעי"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:12
 msgid "Windows and Panes"
-msgstr ""
+msgstr "חלונות וחלוניות"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:13
 msgid "Show side pane"
-msgstr ""
+msgstr "הצגת חלונית צד"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:14
 msgid "Show bottom pane"
-msgstr ""
+msgstr "הצגת חלונית תחתונה"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:15
 msgid "Fullscreen on / off"
-msgstr ""
+msgstr "הפעלת / כיבוי מסך מלא"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:16
 msgid "Quit the application"
-msgstr ""
+msgstr "יציאה מהיישום"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:17
 msgid "Find and Replace"
-msgstr ""
+msgstr "חיפוש והחלפה"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:18
 msgid "Find"
-msgstr ""
+msgstr "חיפוש"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:19
 msgid "Find the next match"
-msgstr ""
+msgstr "מציאת ההתאמה הבאה"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:20
 msgid "Find the previous match"
-msgstr ""
+msgstr "מציאת ההתאמה הקודמת"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:21
 msgid "Go to line"
-msgstr ""
+msgstr "מעבר לשורה"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:22
 msgid "Copy and Paste"
-msgstr ""
+msgstr "העתקה והדבקה"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:23
 msgid "Copy selected text to clipboard"
-msgstr ""
+msgstr "העתקת הטקסט הנבחר אל לוח הגזירים"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:24
 msgid "Cut selected text to clipboard"
-msgstr ""
+msgstr "גזירת הטקסט הנבחר אל לוח הגזירים"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:25
 msgid "Paste text from clipboard"
-msgstr ""
+msgstr "הדבקת טקסט מהמקלדת"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:26
 msgid "Undo and Redo"
-msgstr ""
+msgstr "ביטול והחלה מחדש"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:27
 msgid "Undo previous command"
-msgstr ""
+msgstr "ביטול הפקודה האחרונה"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:28
 msgid "Redo previous command"
-msgstr ""
+msgstr "החלקת הפקודה האחרונה מחדש"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:29 ../plugins/docinfo/docinfo.ui.h:11
 msgid "Selection"
@@ -1680,79 +1685,88 @@ msgstr "בחירה"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:30
 msgid "Select all text"
-msgstr ""
+msgstr "בחירת כל הטקסט"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:31
 msgid "Tools"
-msgstr ""
+msgstr "כלים"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:32
 msgid "Check spelling"
-msgstr ""
-
-#: ../xed/resources/ui/xed-shortcuts.ui.h:33
-msgid "Print the document"
-msgstr ""
+msgstr "בדיקת איות"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:34
-msgid "Editing"
-msgstr ""
+msgid "Layout"
+msgstr "פריסה"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:35
-msgid "Toggle insert / overwrite"
+msgid "Toggle Word Wrap"
 msgstr ""
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:36
-msgid "Delete current line"
-msgstr ""
+msgid "Editing"
+msgstr "עריכה"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:37
-msgid "Move current line up"
-msgstr ""
+msgid "Toggle insert / overwrite"
+msgstr "שינוי הוספה/כתיבה-על-קיים (insert)"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:38
-msgid "Move current line down"
-msgstr ""
+msgid "Delete current line"
+msgstr "מחיקת השורה הנוכחית"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:39
-msgid "Move current word left"
-msgstr ""
+msgid "Move current line up"
+msgstr "העברת השורה הנוכחית מעלה"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:40
-msgid "Move current word right"
-msgstr ""
+msgid "Move current line down"
+msgstr "העברת השורה הנוכחית מטה"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:41
-msgid "Convert to uppercase"
-msgstr ""
+msgid "Move current word left"
+msgstr "העברת המילה הנוכחית שמאלה"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:42
-msgid "Convert to lowercase"
-msgstr ""
+msgid "Move current word right"
+msgstr "העברת המילה הנוכחית ימינה"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:43
-msgid "Convert to title case"
-msgstr ""
+msgid "Convert to uppercase"
+msgstr "המרה לאותיות גדולות"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:44
-msgid "Invert case"
-msgstr ""
+msgid "Convert to lowercase"
+msgstr "המרה לאותיות קטנות"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:45
-msgid "Increment number at cursor"
-msgstr ""
+msgid "Convert to title case"
+msgstr "המרה לאותיות כותרת (באותיות לטיניות)"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:46
-msgid "Decrement number at cursor"
-msgstr ""
+msgid "Invert case"
+msgstr "הפיכת אותיות גדולות-קטנות"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:47
-msgid "Toggle comment block"
-msgstr ""
+msgid "Increment number at cursor"
+msgstr "הגדלת המספר בסמן"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:48
+msgid "Decrement number at cursor"
+msgstr "הקטנת המספר בסמן"
+
+#: ../xed/resources/ui/xed-shortcuts.ui.h:49
+msgid "Toggle comment block"
+msgstr "שינוי בלוק הערה"
+
+#: ../xed/resources/ui/xed-shortcuts.ui.h:50
 msgid "Toggle comment"
-msgstr ""
+msgstr "שינוי הערה"
+
+#: ../xed/resources/ui/xed-shortcuts.ui.h:51
+#: ../plugins/joinlines/joinlines.plugin.desktop.in.h:1
+msgid "Join Lines"
+msgstr "חיבור שורות"
 
 #: ../xed/xed-searchbar.c:92
 #, c-format
@@ -1772,21 +1786,21 @@ msgstr "‏\"%s\" לא נמצא"
 
 #: ../xed/xed-searchbar.c:302
 msgid "No matches found"
-msgstr ""
+msgstr "לא נמצאו התאמות"
 
 #: ../xed/xed-searchbar.c:310
 #, c-format
 msgid "%d match"
 msgid_plural "%d matches"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "התאמה %d"
+msgstr[1] "%d התאמות"
 
 #: ../xed/xed-searchbar.c:316
 #, c-format
 msgid "%d of %d match"
 msgid_plural "%d of %d matches"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "התאמה %d מ-%d"
+msgstr[1] "%d מ-%d התאמות"
 
 #: ../xed/xed-statusbar.c:67 ../xed/xed-statusbar.c:73
 msgid "OVR"
@@ -1810,75 +1824,75 @@ msgid_plural "There are %d tabs with errors"
 msgstr[0] "קיימת לשונית עם שגיאות"
 msgstr[1] "קיימות %d לשוניות עם שגיאות"
 
-#: ../xed/xed-tab-label.c:276
+#: ../xed/xed-tab-label.c:271
 msgid "Close document"
 msgstr "סגירת המסמך"
 
 #. Translators: the first %s is a file name (e.g. test.txt) the second one
 #. is a directory (e.g. ssh://master.gnome.org/home/users/paolo)
-#: ../xed/xed-tab.c:716
+#: ../xed/xed-tab.c:721
 #, c-format
 msgid "Reverting %s from %s"
 msgstr "‏%s משוחזר מ־%s"
 
-#: ../xed/xed-tab.c:721
+#: ../xed/xed-tab.c:726
 #, c-format
 msgid "Reverting %s"
 msgstr "‏%s משוחזר"
 
 #. Translators: the first %s is a file name (e.g. test.txt) the second one
 #. is a directory (e.g. ssh://master.gnome.org/home/users/paolo)
-#: ../xed/xed-tab.c:734
+#: ../xed/xed-tab.c:739
 #, c-format
 msgid "Loading %s from %s"
 msgstr "‏%s נטען מ־%s"
 
-#: ../xed/xed-tab.c:739
+#: ../xed/xed-tab.c:744
 #, c-format
 msgid "Loading %s"
 msgstr "‏%s נטען"
 
 #. Translators: the first %s is a file name (e.g. test.txt) the second one
 #. is a directory (e.g. ssh://master.gnome.org/home/users/paolo)
-#: ../xed/xed-tab.c:820
+#: ../xed/xed-tab.c:825
 #, c-format
 msgid "Saving %s to %s"
 msgstr "%s נשמר אל %s"
 
-#: ../xed/xed-tab.c:825
+#: ../xed/xed-tab.c:830
 #, c-format
 msgid "Saving %s"
 msgstr "שומר %s"
 
 #. Read only
-#: ../xed/xed-tab.c:1305
+#: ../xed/xed-tab.c:1324
 msgid "RO"
 msgstr "ק\"ב"
 
-#: ../xed/xed-tab.c:1353
+#: ../xed/xed-tab.c:1372
 #, c-format
 msgid "Error opening file %s"
 msgstr "שגיאה בטעינת הקובץ %s"
 
-#: ../xed/xed-tab.c:1357
+#: ../xed/xed-tab.c:1376
 #, c-format
 msgid "Error reverting file %s"
 msgstr "שגיאה בשחזור הקובץ %s"
 
-#: ../xed/xed-tab.c:1361
+#: ../xed/xed-tab.c:1380
 #, c-format
 msgid "Error saving file %s"
 msgstr "שגיאה בשמירת הקובץ %s"
 
-#: ../xed/xed-tab.c:1394
+#: ../xed/xed-tab.c:1413
 msgid "Name:"
 msgstr "שם:"
 
-#: ../xed/xed-tab.c:1395
+#: ../xed/xed-tab.c:1414
 msgid "MIME Type:"
 msgstr "סוג MIME:"
 
-#: ../xed/xed-tab.c:1396
+#: ../xed/xed-tab.c:1415
 msgid "Encoding:"
 msgstr "קידוד:"
 
@@ -1910,7 +1924,7 @@ msgstr "_מסמכים"
 #. File menu
 #: ../xed/xed-ui.h:53
 msgid "_New"
-msgstr ""
+msgstr "חדש"
 
 #: ../xed/xed-ui.h:55
 msgid "_Open..."
@@ -1936,7 +1950,7 @@ msgstr "_תכנים"
 
 #: ../xed/xed-ui.h:64
 msgid "Open the xed manual"
-msgstr ""
+msgstr "פתיחת המדריך של xed"
 
 #: ../xed/xed-ui.h:65
 msgid "_About"
@@ -1948,11 +1962,11 @@ msgstr "על אודות יישום זה"
 
 #: ../xed/xed-ui.h:67
 msgid "_Keyboard Shortcuts"
-msgstr ""
+msgstr "קיצורי _מקשים"
 
 #: ../xed/xed-ui.h:68
 msgid "Show the keyboard shortcuts dialog"
-msgstr ""
+msgstr "הצגת חלונית קיצורי המקשים"
 
 #: ../xed/xed-ui.h:72
 msgid "Leave fullscreen mode"
@@ -1972,7 +1986,7 @@ msgstr "שמירת הקובץ הנוכחי בשם אחר"
 
 #: ../xed/xed-ui.h:83
 msgid "Revert"
-msgstr ""
+msgstr "שחזור"
 
 #: ../xed/xed-ui.h:84
 msgid "Revert to a saved version of the file"
@@ -1997,7 +2011,7 @@ msgstr "הדפסת הדף הנוכחי"
 #. Edit menu
 #: ../xed/xed-ui.h:91
 msgid "_Undo"
-msgstr ""
+msgstr "_ביטול פעולה"
 
 #: ../xed/xed-ui.h:92
 msgid "Undo the last action"
@@ -2005,7 +2019,7 @@ msgstr "ביטול הפעולה האחרונה"
 
 #: ../xed/xed-ui.h:93
 msgid "_Redo"
-msgstr ""
+msgstr "_שחזור פעולה"
 
 #: ../xed/xed-ui.h:94
 msgid "Redo the last undone action"
@@ -2013,7 +2027,7 @@ msgstr "ביצוע חוזר של הפעולה המבוטלת האחרונה"
 
 #: ../xed/xed-ui.h:95
 msgid "C_ut"
-msgstr ""
+msgstr "_גזירה"
 
 #: ../xed/xed-ui.h:96
 msgid "Cut the selection"
@@ -2021,7 +2035,7 @@ msgstr "גזירת הבחירה"
 
 #: ../xed/xed-ui.h:97
 msgid "_Copy"
-msgstr ""
+msgstr "_העתקה"
 
 #: ../xed/xed-ui.h:98
 msgid "Copy the selection"
@@ -2029,7 +2043,7 @@ msgstr "העתקת הבחירה"
 
 #: ../xed/xed-ui.h:99
 msgid "_Paste"
-msgstr ""
+msgstr "_הדבקה"
 
 #: ../xed/xed-ui.h:100
 msgid "Paste the clipboard"
@@ -2055,19 +2069,19 @@ msgstr "בחירת כל המסמך"
 
 #: ../xed/xed-ui.h:105
 msgid "_Toggle Comment"
-msgstr ""
+msgstr "_שינוי הערה"
 
 #: ../xed/xed-ui.h:106 ../plugins/taglist/HTML.tags.xml.in.h:41
 msgid "Comment"
-msgstr "Comment"
+msgstr "הערה"
 
 #: ../xed/xed-ui.h:107
 msgid "Toggle Comment _Block"
-msgstr ""
+msgstr "שינוי בלוק הערה"
 
 #: ../xed/xed-ui.h:108
 msgid "Comment Block"
-msgstr ""
+msgstr "בלוק הערה"
 
 #. View menu
 #: ../xed/xed-ui.h:111
@@ -2081,7 +2095,7 @@ msgstr ""
 #. Search menu
 #: ../xed/xed-ui.h:116
 msgid "_Find"
-msgstr ""
+msgstr "_חיפוש"
 
 #: ../xed/xed-ui.h:117
 msgid "Search for text"
@@ -2158,7 +2172,7 @@ msgstr "העברת המסמך הנוכחי לחלון חדש"
 
 #: ../xed/xed-ui.h:143
 msgid "_Close"
-msgstr ""
+msgstr "_סגירה"
 
 #: ../xed/xed-ui.h:144
 msgid "Close the current file"
@@ -2166,7 +2180,7 @@ msgstr "סגירת הקובץ הנוכחי"
 
 #: ../xed/xed-ui.h:150
 msgid "_Quit"
-msgstr ""
+msgstr "_יציאה"
 
 #: ../xed/xed-ui.h:151
 msgid "Quit the program"
@@ -2190,7 +2204,7 @@ msgstr "הצגה או הסתרה של שורת המצב בחלון הנוכחי"
 
 #: ../xed/xed-ui.h:162
 msgid "Fullscreen"
-msgstr ""
+msgstr "מסך מלא"
 
 #: ../xed/xed-ui.h:163
 msgid "Edit text in fullscreen"
@@ -2206,11 +2220,11 @@ msgstr ""
 
 #: ../xed/xed-ui.h:168
 msgid "_Overview Map"
-msgstr ""
+msgstr "מפת _סקירה כללית"
 
 #: ../xed/xed-ui.h:169
 msgid "Show or hide the overview map for the current view"
-msgstr ""
+msgstr "הצגת או הסתרת מפת הסקירה הכללית בתצוגה הנוכחית"
 
 #: ../xed/xed-ui.h:176
 msgid "Side _Pane"
@@ -2228,22 +2242,22 @@ msgstr "חלונית _תחתונה"
 msgid "Show or hide the bottom pane in the current window"
 msgstr "הצגה או הסתרה של החלונית התחתונה בחלון הנוכחי"
 
-#: ../xed/xed-utils.c:642
+#: ../xed/xed-utils.c:822
 msgid "Please check your installation."
 msgstr "נא לבדוק את ההתקנה שלך."
 
-#: ../xed/xed-utils.c:710
+#: ../xed/xed-utils.c:890
 #, c-format
 msgid "Unable to open UI file %s. Error: %s"
 msgstr "לא ניתן לפתוח את קובץ המנשק %s. שגיאה: %s"
 
-#: ../xed/xed-utils.c:730
+#: ../xed/xed-utils.c:910
 #, c-format
 msgid "Unable to find the object '%s' inside file %s."
 msgstr "לא ניתן למצוא את הפריט '%s' בתוך הקובץ %s."
 
 #. Translators: '/ on <remote-share>'
-#: ../xed/xed-utils.c:898
+#: ../xed/xed-utils.c:1078
 #, c-format
 msgid "/ on %s"
 msgstr "/ תחת %s"
@@ -2267,29 +2281,29 @@ msgstr "הפעלת '%s'"
 #: ../xed/xed-window.c:1330
 #, c-format
 msgid "Spaces: %u"
-msgstr ""
+msgstr "מרווחים: %u"
 
 #: ../xed/xed-window.c:1334
 #, c-format
 msgid "Tabs: %u"
-msgstr ""
+msgstr "טאבים: %u"
 
 #: ../xed/xed-window.c:1411
 msgid "Use Spaces"
 msgstr "שימוש ברווחים"
 
-#: ../xed/xed-window.c:2198
+#: ../xed/xed-window.c:2218
 msgid "There are unsaved documents"
-msgstr ""
+msgstr "ישנם מסמכים שלא נשמרו"
 
-#: ../xed/xed-window.c:3247
+#: ../xed/xed-window.c:3267
 msgid "Elevated Privileges"
 msgstr ""
 
 #: ../plugins/docinfo/docinfo.plugin.desktop.in.h:1
 #: ../plugins/docinfo/docinfo.ui.h:1
 msgid "Document Statistics"
-msgstr "סטטיסטיקת המסמך"
+msgstr "סטטיסטיקות המסמך"
 
 #: ../plugins/docinfo/docinfo.plugin.desktop.in.h:2
 msgid ""
@@ -2699,6 +2713,18 @@ msgstr "לא ניתן לפתוח את המדיה: %s"
 msgid "Could not mount volume: %s"
 msgstr "לא ניתן לעגון את הכרך: %s"
 
+#: ../plugins/joinlines/joinlines.plugin.desktop.in.h:2
+msgid "Join several lines"
+msgstr ""
+
+#: ../plugins/joinlines/joinlines/__init__.py:26
+msgid "_Join Lines"
+msgstr ""
+
+#: ../plugins/joinlines/joinlines/__init__.py:27
+msgid "Join the selected lines"
+msgstr ""
+
 #. vi:ts=8
 #: ../plugins/modelines/modelines.plugin.desktop.in.h:1
 msgid "Modelines"
@@ -2718,7 +2744,7 @@ msgstr "ממיין מסמך או טקסט מסומן."
 
 #: ../plugins/sort/xed-sort-plugin.c:76
 msgid "S_ort lines"
-msgstr ""
+msgstr "_מיון שורות"
 
 #: ../plugins/sort/xed-sort-plugin.c:78
 msgid "Sort the current document or selection"
@@ -3962,7 +3988,7 @@ msgstr "Non-breaking space"
 
 #: ../plugins/taglist/Latex.tags.xml.in.h:1
 msgid "Latex - Tags"
-msgstr "‏Latex — תגיות"
+msgstr "Latex — תגיות"
 
 #: ../plugins/taglist/Latex.tags.xml.in.h:2
 msgid "Bibliography (cite)"
@@ -4358,15 +4384,15 @@ msgstr ""
 
 #: ../plugins/textsize/textsize/__init__.py:123
 msgid "_Larger Text"
-msgstr ""
+msgstr "טקסט _גדול יותר"
 
 #: ../plugins/textsize/textsize/__init__.py:126
 msgid "S_maller Text"
-msgstr ""
+msgstr "טקסט _קטן יותר"
 
 #: ../plugins/textsize/textsize/__init__.py:129
 msgid "_Normal size"
-msgstr ""
+msgstr "גודל _רגיל"
 
 #: ../plugins/time/org.x.editor.plugins.time.gschema.xml.in.h:1
 msgid "Prompt type"

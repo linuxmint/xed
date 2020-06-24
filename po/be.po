@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MATE Desktop Environment\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-06-23 14:24+0200\n"
+"POT-Creation-Date: 2020-06-21 12:40+0100\n"
 "PO-Revision-Date: 2018-07-07 23:11+0000\n"
 "Last-Translator: Мікалай Валер'евіч Сакалоўскі <nikolice.1@gmail.com>\n"
 "Language-Team: Belarusian "
@@ -18,8 +18,8 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Launchpad-Export-Date: 2020-05-11 10:59+0000\n"
-"X-Generator: Launchpad (build fbdff7602bd10fb883bf7e2ddcc7fd5a16f60398)\n"
+"X-Launchpad-Export-Date: 2020-06-24 10:08+0000\n"
+"X-Generator: Launchpad (build 1cbd0aa39df153c901321817f9b57cf3f232b507)\n"
 "Language: be\n"
 
 #: ../data/org.x.editor.gschema.xml.in.h:1
@@ -280,6 +280,7 @@ msgid "Whether xed should enable syntax highlighting."
 msgstr "Ці павінны «XED» – уключыць сінтаксічную падсветку?"
 
 #: ../data/org.x.editor.gschema.xml.in.h:46
+#: ../xed/resources/ui/xed-preferences-dialog.ui.h:25
 msgid "Ensure Trailing Newline"
 msgstr "Заўсёды ўстаўляць новы радок у канцы дакумента"
 
@@ -597,12 +598,12 @@ msgstr "Запусціць Ксэд у рэжыме «standalone»"
 msgid "[FILE...] [+LINE]"
 msgstr "[ФАЙЛ...] [+РАДОК]"
 
-#: ../xed/xed-app.c:529
+#: ../xed/xed-app.c:614
 #, c-format
 msgid "%s: invalid encoding."
 msgstr "%s: хібнае кадаванне."
 
-#: ../xed/xed-app.c:1180
+#: ../xed/xed-app.c:1270
 msgid "There was an error displaying the help."
 msgstr "Узнікла памылка падчас спробы паказаць даведку."
 
@@ -930,7 +931,7 @@ msgid "Read-Only"
 msgstr "Толькі чытанне"
 
 #: ../xed/xed-documents-panel.c:717 ../xed/resources/ui/xed-shortcuts.ui.h:1
-#: ../xed/xed-window.c:2982
+#: ../xed/xed-window.c:3002
 msgid "Documents"
 msgstr "Дакументы"
 
@@ -968,7 +969,7 @@ msgstr "_Апісанне"
 msgid "_Encoding"
 msgstr "_Кадаванне"
 
-#: ../xed/xed-file-chooser-dialog.c:46 ../xed/xed-preferences-dialog.c:723
+#: ../xed/xed-file-chooser-dialog.c:46 ../xed/xed-preferences-dialog.c:731
 msgid "All Files"
 msgstr "Усе файлы"
 
@@ -996,7 +997,7 @@ msgstr "Mac OS Classic"
 msgid "Windows"
 msgstr "Windows"
 
-#: ../xed/xed-highlight-mode-selector.c:291 ../xed/xed-window.c:1868
+#: ../xed/xed-highlight-mode-selector.c:297 ../xed/xed-window.c:1881
 msgid "Plain Text"
 msgstr "Звычайны тэкст"
 
@@ -1353,66 +1354,66 @@ msgstr ""
 "Калі Вы – працягнеце свае спробы усталявання файла, – Вы – можаце забрудзіць "
 "дакумент… Не адмовіцца – ад сваіх намераў?"
 
-#: ../xed/xed-preferences-dialog.c:264
+#: ../xed/xed-preferences-dialog.c:266
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:3
 #, no-c-format
 msgid "Use the system fixed width font (%s)"
 msgstr "Выкарыстоўваць – сістэмна прызначаны шрыфт нязменнай шырыні («%s»)"
 
-#: ../xed/xed-preferences-dialog.c:382
+#: ../xed/xed-preferences-dialog.c:384
 msgid "Editor"
 msgstr "Рэдактар"
 
-#: ../xed/xed-preferences-dialog.c:414
+#: ../xed/xed-preferences-dialog.c:422
 msgid "Save"
 msgstr "Запісаць"
 
-#: ../xed/xed-preferences-dialog.c:527
+#: ../xed/xed-preferences-dialog.c:535
 #, c-format
 msgid ""
 "Directory '%s' could not be created: g_mkdir_with_parents() failed: %s"
 msgstr ""
 "Каталог '%s' не выходзіць стварыць: g_mkdir_with_parents() даў збой: %s"
 
-#: ../xed/xed-preferences-dialog.c:681
+#: ../xed/xed-preferences-dialog.c:689
 msgid "The selected color scheme cannot be installed."
 msgstr "Выбраная каляровая схема не можа быць усталявана."
 
-#: ../xed/xed-preferences-dialog.c:704 ../xed/xed-preferences-dialog.c:710
+#: ../xed/xed-preferences-dialog.c:712 ../xed/xed-preferences-dialog.c:718
 msgid "Add Scheme"
 msgstr "Дадаць схему"
 
-#: ../xed/xed-preferences-dialog.c:707 ../xed/xed-progress-info-bar.c:64
+#: ../xed/xed-preferences-dialog.c:715 ../xed/xed-progress-info-bar.c:64
 msgid "Cancel"
 msgstr "Адмяніць"
 
-#: ../xed/xed-preferences-dialog.c:716
+#: ../xed/xed-preferences-dialog.c:724
 msgid "Color Scheme Files"
 msgstr "Файлы каляровых схем"
 
-#: ../xed/xed-preferences-dialog.c:788
+#: ../xed/xed-preferences-dialog.c:796
 #, c-format
 msgid "Could not remove color scheme \"%s\"."
 msgstr "Не выйшла выдаліць каляровую схему \"%s\"."
 
-#: ../xed/xed-preferences-dialog.c:820
+#: ../xed/xed-preferences-dialog.c:828
 msgid "Theme"
 msgstr "Афармленне"
 
-#: ../xed/xed-preferences-dialog.c:837
+#: ../xed/xed-preferences-dialog.c:845
 msgid "Plugins"
 msgstr "Убудовы"
 
-#: ../xed/xed-preferences-dialog.c:845
+#: ../xed/xed-preferences-dialog.c:853
 msgid "Help"
 msgstr "Дапамога"
 
-#: ../xed/xed-preferences-dialog.c:850
+#: ../xed/xed-preferences-dialog.c:858
 #: ../xed/resources/ui/xed-searchbar.ui.h:11
 msgid "Close"
 msgstr "Зачыніць"
 
-#: ../xed/xed-preferences-dialog.c:864
+#: ../xed/xed-preferences-dialog.c:872
 msgid "Xed Preferences"
 msgstr "Кседавы асаблівасці"
 
@@ -1429,71 +1430,75 @@ msgstr "Старонка %N з %Q"
 msgid "Preparing..."
 msgstr "Падрыхтоўка..."
 
-#: ../xed/xed-print-preview.c:571
+#: ../xed/xed-print-preview.c:582
 msgid "Show the previous page"
 msgstr "Паказаць папярэднюю старонку"
 
-#: ../xed/xed-print-preview.c:577
+#: ../xed/xed-print-preview.c:588
 msgid "Show the next page"
 msgstr "Паказаць наступную старонку"
 
-#: ../xed/xed-print-preview.c:591
+#: ../xed/xed-print-preview.c:602
 msgid "Current page (Alt+P)"
 msgstr "Дзейная старонка (Alt+P)"
 
 #. gtk_label_set_mnemonic_widget ((GtkLabel *) l, mp->priv->page_entry);
 #. We are displaying 'XXX of XXX'.
 #. Translators: the "of" from "1 of 19" in print preview.
-#: ../xed/xed-print-preview.c:605
+#: ../xed/xed-print-preview.c:616
 msgid "of"
 msgstr "з"
 
-#: ../xed/xed-print-preview.c:610
+#: ../xed/xed-print-preview.c:621
 msgid "Page total"
 msgstr "Усяго старонак"
 
-#: ../xed/xed-print-preview.c:611
+#: ../xed/xed-print-preview.c:622
 msgid "The total number of pages in the document"
 msgstr "Агульная колькасць старонак у дакуменце"
 
-#: ../xed/xed-print-preview.c:631
+#: ../xed/xed-print-preview.c:642
 msgid "Show multiple pages"
 msgstr "Паказваць некалькі старонак"
 
-#: ../xed/xed-print-preview.c:649
+#: ../xed/xed-print-preview.c:660
 msgid "Zoom 1:1"
 msgstr "Маштаб 1:1"
 
-#: ../xed/xed-print-preview.c:655
+#: ../xed/xed-print-preview.c:666
 msgid "Zoom to fit the whole page"
 msgstr "Маштабаваць, каб бачыць усю старонку"
 
-#: ../xed/xed-print-preview.c:661
+#: ../xed/xed-print-preview.c:672
 msgid "Zoom the page in"
 msgstr "Наблізіць"
 
-#: ../xed/xed-print-preview.c:667
+#: ../xed/xed-print-preview.c:678
 msgid "Zoom the page out"
 msgstr "Аддаліць"
 
-#: ../xed/xed-print-preview.c:682
+#: ../xed/xed-print-preview.c:695 ../xed/resources/ui/xed-shortcuts.ui.h:33
+msgid "Print the document"
+msgstr "Друк дакумента"
+
+#: ../xed/xed-print-preview.c:710
 msgid "_Close preview"
 msgstr "_Зачыніць прадагляд"
 
-#: ../xed/xed-print-preview.c:684
+#: ../xed/xed-print-preview.c:712
 msgid "Close print preview"
 msgstr "Закрыць перадпрагляд друку"
 
-#: ../xed/xed-print-preview.c:762
+#: ../xed/xed-print-preview.c:790
 #, c-format
 msgid "Page %d of %d"
 msgstr "Старонка %d з %d"
 
-#: ../xed/xed-print-preview.c:944
+#: ../xed/xed-print-preview.c:972
 msgid "Page Preview"
 msgstr "Перадпрагляд старонкі"
 
-#: ../xed/xed-print-preview.c:945
+#: ../xed/xed-print-preview.c:973
 msgid "The preview of a page in the document to be printed"
 msgstr "Перадпрагляд старонкі дакумента, якую трэба надрукаваць"
 
@@ -1609,23 +1614,23 @@ msgstr "Самастойнае захоўванне файлаў"
 msgid "Minutes between saving"
 msgstr "Хвілін – паміж захоўваннямі"
 
-#: ../xed/resources/ui/xed-preferences-dialog.ui.h:25
+#: ../xed/resources/ui/xed-preferences-dialog.ui.h:26
 msgid "Dark theme"
 msgstr "Цёмная схема"
 
-#: ../xed/resources/ui/xed-preferences-dialog.ui.h:26
+#: ../xed/resources/ui/xed-preferences-dialog.ui.h:27
 msgid "Use dark theme variant (if available)"
 msgstr "Выкарыстоўваць цёмна-схемны варыянт (калі – наяўны)"
 
-#: ../xed/resources/ui/xed-preferences-dialog.ui.h:27
+#: ../xed/resources/ui/xed-preferences-dialog.ui.h:28
 msgid "Style scheme"
 msgstr "Стылевая схема"
 
-#: ../xed/resources/ui/xed-preferences-dialog.ui.h:28
+#: ../xed/resources/ui/xed-preferences-dialog.ui.h:29
 msgid "Install scheme"
 msgstr "Усталяваць – схему"
 
-#: ../xed/resources/ui/xed-preferences-dialog.ui.h:29
+#: ../xed/resources/ui/xed-preferences-dialog.ui.h:30
 msgid "Remove scheme"
 msgstr "Выдаліць схему"
 
@@ -1859,68 +1864,77 @@ msgstr "Прылады"
 msgid "Check spelling"
 msgstr "Праверка правапісу"
 
-#: ../xed/resources/ui/xed-shortcuts.ui.h:33
-msgid "Print the document"
-msgstr "Друк дакумента"
-
 #: ../xed/resources/ui/xed-shortcuts.ui.h:34
+msgid "Layout"
+msgstr ""
+
+#: ../xed/resources/ui/xed-shortcuts.ui.h:35
+msgid "Toggle Word Wrap"
+msgstr ""
+
+#: ../xed/resources/ui/xed-shortcuts.ui.h:36
 msgid "Editing"
 msgstr "Рэдагаванне"
 
-#: ../xed/resources/ui/xed-shortcuts.ui.h:35
+#: ../xed/resources/ui/xed-shortcuts.ui.h:37
 msgid "Toggle insert / overwrite"
 msgstr "Знакі: устаўка – ці замена?"
 
-#: ../xed/resources/ui/xed-shortcuts.ui.h:36
+#: ../xed/resources/ui/xed-shortcuts.ui.h:38
 msgid "Delete current line"
 msgstr "Выдаліць (пазначаны радок)"
 
-#: ../xed/resources/ui/xed-shortcuts.ui.h:37
+#: ../xed/resources/ui/xed-shortcuts.ui.h:39
 msgid "Move current line up"
 msgstr "Перамясціць уверх (пазначаны радок)"
 
-#: ../xed/resources/ui/xed-shortcuts.ui.h:38
+#: ../xed/resources/ui/xed-shortcuts.ui.h:40
 msgid "Move current line down"
 msgstr "Перамясціць уніз (пазначаны радок)"
 
-#: ../xed/resources/ui/xed-shortcuts.ui.h:39
+#: ../xed/resources/ui/xed-shortcuts.ui.h:41
 msgid "Move current word left"
 msgstr "Перамясціць улева (пазначанае слова)"
 
-#: ../xed/resources/ui/xed-shortcuts.ui.h:40
+#: ../xed/resources/ui/xed-shortcuts.ui.h:42
 msgid "Move current word right"
 msgstr "Перамясціць направа (пазначанае слова)"
 
-#: ../xed/resources/ui/xed-shortcuts.ui.h:41
+#: ../xed/resources/ui/xed-shortcuts.ui.h:43
 msgid "Convert to uppercase"
 msgstr "Пераўтварыць – у верхні рэгістр"
 
-#: ../xed/resources/ui/xed-shortcuts.ui.h:42
+#: ../xed/resources/ui/xed-shortcuts.ui.h:44
 msgid "Convert to lowercase"
 msgstr "Пераўтварыць – у ніжні рэгістр"
 
-#: ../xed/resources/ui/xed-shortcuts.ui.h:43
+#: ../xed/resources/ui/xed-shortcuts.ui.h:45
 msgid "Convert to title case"
 msgstr "Пераўтварыць – у тытульны рэгістр"
 
-#: ../xed/resources/ui/xed-shortcuts.ui.h:44
+#: ../xed/resources/ui/xed-shortcuts.ui.h:46
 msgid "Invert case"
 msgstr "Перакульнуць рэгістр"
 
-#: ../xed/resources/ui/xed-shortcuts.ui.h:45
+#: ../xed/resources/ui/xed-shortcuts.ui.h:47
 msgid "Increment number at cursor"
 msgstr "Павялічыць лічбу ля курсора"
 
-#: ../xed/resources/ui/xed-shortcuts.ui.h:46
+#: ../xed/resources/ui/xed-shortcuts.ui.h:48
 msgid "Decrement number at cursor"
 msgstr "Зменшыць лічбу ля курсора"
 
-#: ../xed/resources/ui/xed-shortcuts.ui.h:47
+#: ../xed/resources/ui/xed-shortcuts.ui.h:49
 msgid "Toggle comment block"
 msgstr ""
 
-#: ../xed/resources/ui/xed-shortcuts.ui.h:48
+#: ../xed/resources/ui/xed-shortcuts.ui.h:50
 msgid "Toggle comment"
+msgstr ""
+
+#: ../xed/resources/ui/xed-shortcuts.ui.h:51
+#: ../plugins/joinlines/joinlines.plugin.desktop.in.h:1
+msgid "Join Lines"
 msgstr ""
 
 #: ../xed/xed-searchbar.c:92
@@ -1983,75 +1997,75 @@ msgstr[0] "Ёсць %d картка з памылкамі"
 msgstr[1] "%d карткі з памылкамі"
 msgstr[2] "%d картак з памылкамі"
 
-#: ../xed/xed-tab-label.c:276
+#: ../xed/xed-tab-label.c:271
 msgid "Close document"
 msgstr "Закрыць дакумент"
 
 #. Translators: the first %s is a file name (e.g. test.txt) the second one
 #. is a directory (e.g. ssh://master.gnome.org/home/users/paolo)
-#: ../xed/xed-tab.c:716
+#: ../xed/xed-tab.c:721
 #, c-format
 msgid "Reverting %s from %s"
 msgstr "Вяртанне дакумента %s з %s"
 
-#: ../xed/xed-tab.c:721
+#: ../xed/xed-tab.c:726
 #, c-format
 msgid "Reverting %s"
 msgstr "Вяртанне %s"
 
 #. Translators: the first %s is a file name (e.g. test.txt) the second one
 #. is a directory (e.g. ssh://master.gnome.org/home/users/paolo)
-#: ../xed/xed-tab.c:734
+#: ../xed/xed-tab.c:739
 #, c-format
 msgid "Loading %s from %s"
 msgstr "Загрузка файла %s з %s"
 
-#: ../xed/xed-tab.c:739
+#: ../xed/xed-tab.c:744
 #, c-format
 msgid "Loading %s"
 msgstr "Загрузка %s"
 
 #. Translators: the first %s is a file name (e.g. test.txt) the second one
 #. is a directory (e.g. ssh://master.gnome.org/home/users/paolo)
-#: ../xed/xed-tab.c:820
+#: ../xed/xed-tab.c:825
 #, c-format
 msgid "Saving %s to %s"
 msgstr "Захаванне %s у %s"
 
-#: ../xed/xed-tab.c:825
+#: ../xed/xed-tab.c:830
 #, c-format
 msgid "Saving %s"
 msgstr "Захаванне %s"
 
 #. Read only
-#: ../xed/xed-tab.c:1305
+#: ../xed/xed-tab.c:1324
 msgid "RO"
 msgstr "Чытанне"
 
-#: ../xed/xed-tab.c:1353
+#: ../xed/xed-tab.c:1372
 #, c-format
 msgid "Error opening file %s"
 msgstr "Памылка адкрывання файла %s"
 
-#: ../xed/xed-tab.c:1357
+#: ../xed/xed-tab.c:1376
 #, c-format
 msgid "Error reverting file %s"
 msgstr "Памылка вяртання файла %s"
 
-#: ../xed/xed-tab.c:1361
+#: ../xed/xed-tab.c:1380
 #, c-format
 msgid "Error saving file %s"
 msgstr "Памылка захавання файла %s"
 
-#: ../xed/xed-tab.c:1394
+#: ../xed/xed-tab.c:1413
 msgid "Name:"
 msgstr "Назва:"
 
-#: ../xed/xed-tab.c:1395
+#: ../xed/xed-tab.c:1414
 msgid "MIME Type:"
 msgstr "Тып MIME:"
 
-#: ../xed/xed-tab.c:1396
+#: ../xed/xed-tab.c:1415
 msgid "Encoding:"
 msgstr "Кадаванне:"
 
@@ -2401,22 +2415,22 @@ msgstr "_Ніжняя панэль"
 msgid "Show or hide the bottom pane in the current window"
 msgstr "Паказаць ці схаваць ніжнюю панэль у дзейным акне"
 
-#: ../xed/xed-utils.c:642
+#: ../xed/xed-utils.c:822
 msgid "Please check your installation."
 msgstr "Калі ласка, праверце ўсталяванне."
 
-#: ../xed/xed-utils.c:710
+#: ../xed/xed-utils.c:890
 #, c-format
 msgid "Unable to open UI file %s. Error: %s"
 msgstr "Не выйшла адкрыць UI-файл %s. Памылка: %s"
 
-#: ../xed/xed-utils.c:730
+#: ../xed/xed-utils.c:910
 #, c-format
 msgid "Unable to find the object '%s' inside file %s."
 msgstr "Не выйшла знайсці аб'ект '%s' у файле %s."
 
 #. Translators: '/ on <remote-share>'
-#: ../xed/xed-utils.c:898
+#: ../xed/xed-utils.c:1078
 #, c-format
 msgid "/ on %s"
 msgstr "/ на %s"
@@ -2451,11 +2465,11 @@ msgstr ""
 msgid "Use Spaces"
 msgstr "Выкарыстоўваць прагалы"
 
-#: ../xed/xed-window.c:2198
+#: ../xed/xed-window.c:2218
 msgid "There are unsaved documents"
 msgstr ""
 
-#: ../xed/xed-window.c:3247
+#: ../xed/xed-window.c:3267
 msgid "Elevated Privileges"
 msgstr ""
 
@@ -2847,6 +2861,18 @@ msgstr "Не выйшла адкрыць носьбіт: %s"
 #, c-format
 msgid "Could not mount volume: %s"
 msgstr "Не выйшла прымантаваць том: %s"
+
+#: ../plugins/joinlines/joinlines.plugin.desktop.in.h:2
+msgid "Join several lines"
+msgstr ""
+
+#: ../plugins/joinlines/joinlines/__init__.py:26
+msgid "_Join Lines"
+msgstr ""
+
+#: ../plugins/joinlines/joinlines/__init__.py:27
+msgid "Join the selected lines"
+msgstr ""
 
 #. vi:ts=8
 #: ../plugins/modelines/modelines.plugin.desktop.in.h:1

@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MATE Desktop Environment\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-06-23 14:24+0200\n"
+"POT-Creation-Date: 2020-06-21 12:40+0100\n"
 "PO-Revision-Date: 2019-06-23 16:50+0000\n"
 "Last-Translator: AlephAlpha <alephalpha911@gmail.com>\n"
 "Language-Team: Chinese (China) "
@@ -18,8 +18,8 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Launchpad-Export-Date: 2020-05-11 10:59+0000\n"
-"X-Generator: Launchpad (build fbdff7602bd10fb883bf7e2ddcc7fd5a16f60398)\n"
+"X-Launchpad-Export-Date: 2020-06-24 10:08+0000\n"
+"X-Generator: Launchpad (build 1cbd0aa39df153c901321817f9b57cf3f232b507)\n"
 "Language: zh_CN\n"
 
 #: ../data/org.x.editor.gschema.xml.in.h:1
@@ -245,6 +245,7 @@ msgid "Whether xed should enable syntax highlighting."
 msgstr "是否允许xed开启语法高亮。"
 
 #: ../data/org.x.editor.gschema.xml.in.h:46
+#: ../xed/resources/ui/xed-preferences-dialog.ui.h:25
 msgid "Ensure Trailing Newline"
 msgstr "保证文档以新行结尾"
 
@@ -528,12 +529,12 @@ msgstr "以单机模式运行xed"
 msgid "[FILE...] [+LINE]"
 msgstr "[FILE...] [+LINE]"
 
-#: ../xed/xed-app.c:529
+#: ../xed/xed-app.c:614
 #, c-format
 msgid "%s: invalid encoding."
 msgstr "%s：无效的编码。"
 
-#: ../xed/xed-app.c:1180
+#: ../xed/xed-app.c:1270
 msgid "There was an error displaying the help."
 msgstr "显示帮助出错。"
 
@@ -779,7 +780,7 @@ msgid "Read-Only"
 msgstr "只读"
 
 #: ../xed/xed-documents-panel.c:717 ../xed/resources/ui/xed-shortcuts.ui.h:1
-#: ../xed/xed-window.c:2982
+#: ../xed/xed-window.c:3002
 msgid "Documents"
 msgstr "文档"
 
@@ -817,7 +818,7 @@ msgstr "描述(_D)"
 msgid "_Encoding"
 msgstr "编码(_E)"
 
-#: ../xed/xed-file-chooser-dialog.c:46 ../xed/xed-preferences-dialog.c:723
+#: ../xed/xed-file-chooser-dialog.c:46 ../xed/xed-preferences-dialog.c:731
 msgid "All Files"
 msgstr "全部文件"
 
@@ -845,7 +846,7 @@ msgstr "Mac 操作系统风格"
 msgid "Windows"
 msgstr "Windows"
 
-#: ../xed/xed-highlight-mode-selector.c:291 ../xed/xed-window.c:1868
+#: ../xed/xed-highlight-mode-selector.c:297 ../xed/xed-window.c:1881
 msgid "Plain Text"
 msgstr "纯文本"
 
@@ -1155,65 +1156,65 @@ msgid ""
 "If you continue saving this file you can corrupt the document.  Save anyway?"
 msgstr "如果您强行保存该文件，可能会造成文件损坏。仍然要保存吗？"
 
-#: ../xed/xed-preferences-dialog.c:264
+#: ../xed/xed-preferences-dialog.c:266
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:3
 #, no-c-format
 msgid "Use the system fixed width font (%s)"
 msgstr "使用系统等宽字体 (%s)"
 
-#: ../xed/xed-preferences-dialog.c:382
+#: ../xed/xed-preferences-dialog.c:384
 msgid "Editor"
 msgstr "编辑器"
 
-#: ../xed/xed-preferences-dialog.c:414
+#: ../xed/xed-preferences-dialog.c:422
 msgid "Save"
 msgstr "保存"
 
-#: ../xed/xed-preferences-dialog.c:527
+#: ../xed/xed-preferences-dialog.c:535
 #, c-format
 msgid ""
 "Directory '%s' could not be created: g_mkdir_with_parents() failed: %s"
 msgstr "无法创建目录“%s”：g_mkdir_with_parents() 失败：%s"
 
-#: ../xed/xed-preferences-dialog.c:681
+#: ../xed/xed-preferences-dialog.c:689
 msgid "The selected color scheme cannot be installed."
 msgstr "无法安装选中的配色方案。"
 
-#: ../xed/xed-preferences-dialog.c:704 ../xed/xed-preferences-dialog.c:710
+#: ../xed/xed-preferences-dialog.c:712 ../xed/xed-preferences-dialog.c:718
 msgid "Add Scheme"
 msgstr "添加方案"
 
-#: ../xed/xed-preferences-dialog.c:707 ../xed/xed-progress-info-bar.c:64
+#: ../xed/xed-preferences-dialog.c:715 ../xed/xed-progress-info-bar.c:64
 msgid "Cancel"
 msgstr "取消"
 
-#: ../xed/xed-preferences-dialog.c:716
+#: ../xed/xed-preferences-dialog.c:724
 msgid "Color Scheme Files"
 msgstr "配色方案文件"
 
-#: ../xed/xed-preferences-dialog.c:788
+#: ../xed/xed-preferences-dialog.c:796
 #, c-format
 msgid "Could not remove color scheme \"%s\"."
 msgstr "无法删除配色方案“%s”。"
 
-#: ../xed/xed-preferences-dialog.c:820
+#: ../xed/xed-preferences-dialog.c:828
 msgid "Theme"
 msgstr "主题"
 
-#: ../xed/xed-preferences-dialog.c:837
+#: ../xed/xed-preferences-dialog.c:845
 msgid "Plugins"
 msgstr "插件"
 
-#: ../xed/xed-preferences-dialog.c:845
+#: ../xed/xed-preferences-dialog.c:853
 msgid "Help"
 msgstr "帮助"
 
-#: ../xed/xed-preferences-dialog.c:850
+#: ../xed/xed-preferences-dialog.c:858
 #: ../xed/resources/ui/xed-searchbar.ui.h:11
 msgid "Close"
 msgstr "关闭"
 
-#: ../xed/xed-preferences-dialog.c:864
+#: ../xed/xed-preferences-dialog.c:872
 msgid "Xed Preferences"
 msgstr "Xed首选项"
 
@@ -1230,71 +1231,75 @@ msgstr "第 %N 页共 %Q 页"
 msgid "Preparing..."
 msgstr "正在准备..."
 
-#: ../xed/xed-print-preview.c:571
+#: ../xed/xed-print-preview.c:582
 msgid "Show the previous page"
 msgstr "显示上一页"
 
-#: ../xed/xed-print-preview.c:577
+#: ../xed/xed-print-preview.c:588
 msgid "Show the next page"
 msgstr "显示下一页"
 
-#: ../xed/xed-print-preview.c:591
+#: ../xed/xed-print-preview.c:602
 msgid "Current page (Alt+P)"
 msgstr "当前页面(Alt+P)"
 
 #. gtk_label_set_mnemonic_widget ((GtkLabel *) l, mp->priv->page_entry);
 #. We are displaying 'XXX of XXX'.
 #. Translators: the "of" from "1 of 19" in print preview.
-#: ../xed/xed-print-preview.c:605
+#: ../xed/xed-print-preview.c:616
 msgid "of"
 msgstr "/"
 
-#: ../xed/xed-print-preview.c:610
+#: ../xed/xed-print-preview.c:621
 msgid "Page total"
 msgstr "总计页数"
 
-#: ../xed/xed-print-preview.c:611
+#: ../xed/xed-print-preview.c:622
 msgid "The total number of pages in the document"
 msgstr "文档的总页数"
 
-#: ../xed/xed-print-preview.c:631
+#: ../xed/xed-print-preview.c:642
 msgid "Show multiple pages"
 msgstr "显示多页"
 
-#: ../xed/xed-print-preview.c:649
+#: ../xed/xed-print-preview.c:660
 msgid "Zoom 1:1"
 msgstr "缩放至原大"
 
-#: ../xed/xed-print-preview.c:655
+#: ../xed/xed-print-preview.c:666
 msgid "Zoom to fit the whole page"
 msgstr "缩放至适合整个页面"
 
-#: ../xed/xed-print-preview.c:661
+#: ../xed/xed-print-preview.c:672
 msgid "Zoom the page in"
 msgstr "缩小页面"
 
-#: ../xed/xed-print-preview.c:667
+#: ../xed/xed-print-preview.c:678
 msgid "Zoom the page out"
 msgstr "缩小页面"
 
-#: ../xed/xed-print-preview.c:682
+#: ../xed/xed-print-preview.c:695 ../xed/resources/ui/xed-shortcuts.ui.h:33
+msgid "Print the document"
+msgstr "打印文档"
+
+#: ../xed/xed-print-preview.c:710
 msgid "_Close preview"
 msgstr "关闭预览(_C)"
 
-#: ../xed/xed-print-preview.c:684
+#: ../xed/xed-print-preview.c:712
 msgid "Close print preview"
 msgstr "关闭打印预览"
 
-#: ../xed/xed-print-preview.c:762
+#: ../xed/xed-print-preview.c:790
 #, c-format
 msgid "Page %d of %d"
 msgstr "第 %d 页，共 %d 页"
 
-#: ../xed/xed-print-preview.c:944
+#: ../xed/xed-print-preview.c:972
 msgid "Page Preview"
 msgstr "页面预览"
 
-#: ../xed/xed-print-preview.c:945
+#: ../xed/xed-print-preview.c:973
 msgid "The preview of a page in the document to be printed"
 msgstr "要打印文档中页面的预览"
 
@@ -1410,23 +1415,23 @@ msgstr "自动保存文件，每隔"
 msgid "Minutes between saving"
 msgstr "分钟"
 
-#: ../xed/resources/ui/xed-preferences-dialog.ui.h:25
+#: ../xed/resources/ui/xed-preferences-dialog.ui.h:26
 msgid "Dark theme"
 msgstr "暗色主题"
 
-#: ../xed/resources/ui/xed-preferences-dialog.ui.h:26
+#: ../xed/resources/ui/xed-preferences-dialog.ui.h:27
 msgid "Use dark theme variant (if available)"
 msgstr "使用主题的暗色变种（假如可使用的话）"
 
-#: ../xed/resources/ui/xed-preferences-dialog.ui.h:27
+#: ../xed/resources/ui/xed-preferences-dialog.ui.h:28
 msgid "Style scheme"
 msgstr "样式方案"
 
-#: ../xed/resources/ui/xed-preferences-dialog.ui.h:28
+#: ../xed/resources/ui/xed-preferences-dialog.ui.h:29
 msgid "Install scheme"
 msgstr "安装方案"
 
-#: ../xed/resources/ui/xed-preferences-dialog.ui.h:29
+#: ../xed/resources/ui/xed-preferences-dialog.ui.h:30
 msgid "Remove scheme"
 msgstr "移除方案"
 
@@ -1660,69 +1665,78 @@ msgstr "工具"
 msgid "Check spelling"
 msgstr "拼写检查"
 
-#: ../xed/resources/ui/xed-shortcuts.ui.h:33
-msgid "Print the document"
-msgstr "打印文档"
-
 #: ../xed/resources/ui/xed-shortcuts.ui.h:34
+msgid "Layout"
+msgstr ""
+
+#: ../xed/resources/ui/xed-shortcuts.ui.h:35
+msgid "Toggle Word Wrap"
+msgstr ""
+
+#: ../xed/resources/ui/xed-shortcuts.ui.h:36
 msgid "Editing"
 msgstr "编辑"
 
-#: ../xed/resources/ui/xed-shortcuts.ui.h:35
+#: ../xed/resources/ui/xed-shortcuts.ui.h:37
 msgid "Toggle insert / overwrite"
 msgstr "切换插入/覆盖"
 
-#: ../xed/resources/ui/xed-shortcuts.ui.h:36
+#: ../xed/resources/ui/xed-shortcuts.ui.h:38
 msgid "Delete current line"
 msgstr "删除当前行"
 
-#: ../xed/resources/ui/xed-shortcuts.ui.h:37
+#: ../xed/resources/ui/xed-shortcuts.ui.h:39
 msgid "Move current line up"
 msgstr "上移当前行"
 
-#: ../xed/resources/ui/xed-shortcuts.ui.h:38
+#: ../xed/resources/ui/xed-shortcuts.ui.h:40
 msgid "Move current line down"
 msgstr "下移当前行"
 
-#: ../xed/resources/ui/xed-shortcuts.ui.h:39
+#: ../xed/resources/ui/xed-shortcuts.ui.h:41
 msgid "Move current word left"
 msgstr "左移当前单词"
 
-#: ../xed/resources/ui/xed-shortcuts.ui.h:40
+#: ../xed/resources/ui/xed-shortcuts.ui.h:42
 msgid "Move current word right"
 msgstr "右移当前单词"
 
-#: ../xed/resources/ui/xed-shortcuts.ui.h:41
+#: ../xed/resources/ui/xed-shortcuts.ui.h:43
 msgid "Convert to uppercase"
 msgstr "转换为大写"
 
-#: ../xed/resources/ui/xed-shortcuts.ui.h:42
+#: ../xed/resources/ui/xed-shortcuts.ui.h:44
 msgid "Convert to lowercase"
 msgstr "转换为小写"
 
-#: ../xed/resources/ui/xed-shortcuts.ui.h:43
+#: ../xed/resources/ui/xed-shortcuts.ui.h:45
 msgid "Convert to title case"
 msgstr "转换为标题大小写"
 
-#: ../xed/resources/ui/xed-shortcuts.ui.h:44
+#: ../xed/resources/ui/xed-shortcuts.ui.h:46
 msgid "Invert case"
 msgstr "反转大小写"
 
-#: ../xed/resources/ui/xed-shortcuts.ui.h:45
+#: ../xed/resources/ui/xed-shortcuts.ui.h:47
 msgid "Increment number at cursor"
 msgstr "递增光标处的数字"
 
-#: ../xed/resources/ui/xed-shortcuts.ui.h:46
+#: ../xed/resources/ui/xed-shortcuts.ui.h:48
 msgid "Decrement number at cursor"
 msgstr "递减光标处的数字"
 
-#: ../xed/resources/ui/xed-shortcuts.ui.h:47
+#: ../xed/resources/ui/xed-shortcuts.ui.h:49
 msgid "Toggle comment block"
 msgstr "切换注释块"
 
-#: ../xed/resources/ui/xed-shortcuts.ui.h:48
+#: ../xed/resources/ui/xed-shortcuts.ui.h:50
 msgid "Toggle comment"
 msgstr "切换注释"
+
+#: ../xed/resources/ui/xed-shortcuts.ui.h:51
+#: ../plugins/joinlines/joinlines.plugin.desktop.in.h:1
+msgid "Join Lines"
+msgstr ""
 
 #: ../xed/xed-searchbar.c:92
 #, c-format
@@ -1776,75 +1790,75 @@ msgid "There is a tab with errors"
 msgid_plural "There are %d tabs with errors"
 msgstr[0] "有%d个有错的标签"
 
-#: ../xed/xed-tab-label.c:276
+#: ../xed/xed-tab-label.c:271
 msgid "Close document"
 msgstr "关闭文档"
 
 #. Translators: the first %s is a file name (e.g. test.txt) the second one
 #. is a directory (e.g. ssh://master.gnome.org/home/users/paolo)
-#: ../xed/xed-tab.c:716
+#: ../xed/xed-tab.c:721
 #, c-format
 msgid "Reverting %s from %s"
 msgstr "从 %2$s 还原 %1$s"
 
-#: ../xed/xed-tab.c:721
+#: ../xed/xed-tab.c:726
 #, c-format
 msgid "Reverting %s"
 msgstr "还原 %s"
 
 #. Translators: the first %s is a file name (e.g. test.txt) the second one
 #. is a directory (e.g. ssh://master.gnome.org/home/users/paolo)
-#: ../xed/xed-tab.c:734
+#: ../xed/xed-tab.c:739
 #, c-format
 msgid "Loading %s from %s"
 msgstr "从 %2$s 载入 %1$s"
 
-#: ../xed/xed-tab.c:739
+#: ../xed/xed-tab.c:744
 #, c-format
 msgid "Loading %s"
 msgstr "载入 %s"
 
 #. Translators: the first %s is a file name (e.g. test.txt) the second one
 #. is a directory (e.g. ssh://master.gnome.org/home/users/paolo)
-#: ../xed/xed-tab.c:820
+#: ../xed/xed-tab.c:825
 #, c-format
 msgid "Saving %s to %s"
 msgstr "将 %s 保存到 %s"
 
-#: ../xed/xed-tab.c:825
+#: ../xed/xed-tab.c:830
 #, c-format
 msgid "Saving %s"
 msgstr "保存 %s"
 
 #. Read only
-#: ../xed/xed-tab.c:1305
+#: ../xed/xed-tab.c:1324
 msgid "RO"
 msgstr "只读"
 
-#: ../xed/xed-tab.c:1353
+#: ../xed/xed-tab.c:1372
 #, c-format
 msgid "Error opening file %s"
 msgstr "打开文件 %s 出错"
 
-#: ../xed/xed-tab.c:1357
+#: ../xed/xed-tab.c:1376
 #, c-format
 msgid "Error reverting file %s"
 msgstr "还原文件 %s 出错"
 
-#: ../xed/xed-tab.c:1361
+#: ../xed/xed-tab.c:1380
 #, c-format
 msgid "Error saving file %s"
 msgstr "保存文件 %s 出错"
 
-#: ../xed/xed-tab.c:1394
+#: ../xed/xed-tab.c:1413
 msgid "Name:"
 msgstr "名称："
 
-#: ../xed/xed-tab.c:1395
+#: ../xed/xed-tab.c:1414
 msgid "MIME Type:"
 msgstr "MIME 类型："
 
-#: ../xed/xed-tab.c:1396
+#: ../xed/xed-tab.c:1415
 msgid "Encoding:"
 msgstr "编码："
 
@@ -2194,22 +2208,22 @@ msgstr "底部面板(_B)"
 msgid "Show or hide the bottom pane in the current window"
 msgstr "在当前窗口中显示或隐藏底部面板"
 
-#: ../xed/xed-utils.c:642
+#: ../xed/xed-utils.c:822
 msgid "Please check your installation."
 msgstr "请检查您的安装。"
 
-#: ../xed/xed-utils.c:710
+#: ../xed/xed-utils.c:890
 #, c-format
 msgid "Unable to open UI file %s. Error: %s"
 msgstr "无法打开界面文件 %s。错误：%s"
 
-#: ../xed/xed-utils.c:730
+#: ../xed/xed-utils.c:910
 #, c-format
 msgid "Unable to find the object '%s' inside file %s."
 msgstr "在文件 %s 中找不到所需的对象“%s”。"
 
 #. Translators: '/ on <remote-share>'
-#: ../xed/xed-utils.c:898
+#: ../xed/xed-utils.c:1078
 #, c-format
 msgid "/ on %s"
 msgstr "%s 上的 /"
@@ -2244,11 +2258,11 @@ msgstr "制表符：%u"
 msgid "Use Spaces"
 msgstr "使用空格"
 
-#: ../xed/xed-window.c:2198
+#: ../xed/xed-window.c:2218
 msgid "There are unsaved documents"
 msgstr "有未保存的文档"
 
-#: ../xed/xed-window.c:3247
+#: ../xed/xed-window.c:3267
 msgid "Elevated Privileges"
 msgstr "提升的权限"
 
@@ -2641,6 +2655,18 @@ msgstr "无法打开介质：%s。"
 #, c-format
 msgid "Could not mount volume: %s"
 msgstr "无法挂载卷：%s"
+
+#: ../plugins/joinlines/joinlines.plugin.desktop.in.h:2
+msgid "Join several lines"
+msgstr ""
+
+#: ../plugins/joinlines/joinlines/__init__.py:26
+msgid "_Join Lines"
+msgstr ""
+
+#: ../plugins/joinlines/joinlines/__init__.py:27
+msgid "Join the selected lines"
+msgstr ""
 
 #. vi:ts=8
 #: ../plugins/modelines/modelines.plugin.desktop.in.h:1

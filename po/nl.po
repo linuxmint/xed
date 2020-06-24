@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MATE Desktop Environment\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-06-23 14:24+0200\n"
-"PO-Revision-Date: 2019-06-24 11:59+0000\n"
+"POT-Creation-Date: 2020-06-21 12:40+0100\n"
+"PO-Revision-Date: 2020-06-21 12:40+0000\n"
 "Last-Translator: Pjotr12345 <Unknown>\n"
 "Language-Team: Dutch "
 "(http://www.transifex.com/projects/p/MATE/language/nl/)\n"
@@ -17,8 +17,8 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2020-05-11 10:59+0000\n"
-"X-Generator: Launchpad (build fbdff7602bd10fb883bf7e2ddcc7fd5a16f60398)\n"
+"X-Launchpad-Export-Date: 2020-06-24 10:08+0000\n"
+"X-Generator: Launchpad (build 1cbd0aa39df153c901321817f9b57cf3f232b507)\n"
 "Language: nl\n"
 
 #: ../data/org.x.editor.gschema.xml.in.h:1
@@ -142,7 +142,7 @@ msgstr ""
 
 #: ../data/org.x.editor.gschema.xml.in.h:20
 msgid "Line Wrapping Mode"
-msgstr "Regelafbrekingsmodus"
+msgstr "Regelafbreekmodus"
 
 #: ../data/org.x.editor.gschema.xml.in.h:21
 msgid ""
@@ -153,8 +153,9 @@ msgid ""
 msgstr ""
 "Geeft aan hoe lange regels worden afgebroken tijdens het bewerken. Gebruik "
 "'none' om niet af te breken, 'word' om op woorden af te breken, en 'char' om "
-"op letters af te breken. Let op dat de waarden hoofdlettergevoelig zijn. "
-"Zorg er dus voor dat ze exact zo zijn als hier weergegeven."
+"op individuele tekens af te breken. Let op dat de waarden "
+"hoofdlettergevoelig zijn. Zorg er dus voor dat ze exact zo zijn als hier "
+"weergegeven."
 
 #: ../data/org.x.editor.gschema.xml.in.h:22
 msgid "Tab Size"
@@ -278,6 +279,7 @@ msgid "Whether xed should enable syntax highlighting."
 msgstr "Of Xed het laten oplichten van opmaakcode moet inschakelen."
 
 #: ../data/org.x.editor.gschema.xml.in.h:46
+#: ../xed/resources/ui/xed-preferences-dialog.ui.h:25
 msgid "Ensure Trailing Newline"
 msgstr "Nieuwe regel aan het einde"
 
@@ -386,8 +388,9 @@ msgid ""
 msgstr ""
 "Geeft aan hoe lange regels worden afgebroken bij het afdrukken. Gebruik "
 "'none' om niet af te breken, 'word' om op woorden af te breken, en 'char' om "
-"op letters af te breken. Let op dat de waarden hoofdlettergevoelig zijn. "
-"Zorg er dus voor dat ze exact zo zijn als hier weergegeven."
+"op individuele tekens af te breken. Let op dat de waarden "
+"hoofdlettergevoelig zijn. Zorg er dus voor dat ze exact zo zijn als hier "
+"weergegeven."
 
 #: ../data/org.x.editor.gschema.xml.in.h:68
 msgid "Print Line Numbers"
@@ -600,12 +603,12 @@ msgstr "Draai xed in losstaande modus"
 msgid "[FILE...] [+LINE]"
 msgstr "[FILE...] [+LINE]"
 
-#: ../xed/xed-app.c:529
+#: ../xed/xed-app.c:614
 #, c-format
 msgid "%s: invalid encoding."
 msgstr "%s: ongeldige codering."
 
-#: ../xed/xed-app.c:1180
+#: ../xed/xed-app.c:1270
 msgid "There was an error displaying the help."
 msgstr "Er is een fout opgetreden bij het weergeven van de hulptekst."
 
@@ -916,7 +919,7 @@ msgid "Read-Only"
 msgstr "Alleen-lezen"
 
 #: ../xed/xed-documents-panel.c:717 ../xed/resources/ui/xed-shortcuts.ui.h:1
-#: ../xed/xed-window.c:2982
+#: ../xed/xed-window.c:3002
 msgid "Documents"
 msgstr "Documenten"
 
@@ -954,7 +957,7 @@ msgstr "_Beschrijving"
 msgid "_Encoding"
 msgstr "_Codering"
 
-#: ../xed/xed-file-chooser-dialog.c:46 ../xed/xed-preferences-dialog.c:723
+#: ../xed/xed-file-chooser-dialog.c:46 ../xed/xed-preferences-dialog.c:731
 msgid "All Files"
 msgstr "Alle bestanden"
 
@@ -982,7 +985,7 @@ msgstr "Mac OS Classic"
 msgid "Windows"
 msgstr "Windows"
 
-#: ../xed/xed-highlight-mode-selector.c:291 ../xed/xed-window.c:1868
+#: ../xed/xed-highlight-mode-selector.c:297 ../xed/xed-window.c:1881
 msgid "Plain Text"
 msgstr "Platte tekst"
 
@@ -1107,7 +1110,7 @@ msgstr "Controleer a.u.b. dat u geen binair bestand probeert te openen."
 
 #: ../xed/xed-io-error-info-bar.c:502
 msgid "Select a character encoding from the menu and try again."
-msgstr "Selecteer een tekenset uit het menu en probeer het opnieuw."
+msgstr "Kies een tekenset uit het menu en probeer het opnieuw."
 
 #: ../xed/xed-io-error-info-bar.c:508
 #, c-format
@@ -1133,7 +1136,7 @@ msgstr "Kon het bestand %s niet openen met de %s-tekenset."
 
 #: ../xed/xed-io-error-info-bar.c:525 ../xed/xed-io-error-info-bar.c:594
 msgid "Select a different character encoding from the menu and try again."
-msgstr "Selecteer een andere tekenset uit het menu en probeer het opnieuw."
+msgstr "Kies een andere tekenset uit het menu en probeer het opnieuw."
 
 #: ../xed/xed-io-error-info-bar.c:537
 #, c-format
@@ -1331,66 +1334,66 @@ msgid ""
 msgstr ""
 "Als u doorgaat met opslaan kan dit het document beschadigen. Toch doorgaan?"
 
-#: ../xed/xed-preferences-dialog.c:264
+#: ../xed/xed-preferences-dialog.c:266
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:3
 #, no-c-format
 msgid "Use the system fixed width font (%s)"
 msgstr "Gebruik het vaste-breedte-lettertype van het systeem (%s)"
 
-#: ../xed/xed-preferences-dialog.c:382
+#: ../xed/xed-preferences-dialog.c:384
 msgid "Editor"
 msgstr "Bewerker"
 
-#: ../xed/xed-preferences-dialog.c:414
+#: ../xed/xed-preferences-dialog.c:422
 msgid "Save"
 msgstr "Opslaan"
 
-#: ../xed/xed-preferences-dialog.c:527
+#: ../xed/xed-preferences-dialog.c:535
 #, c-format
 msgid ""
 "Directory '%s' could not be created: g_mkdir_with_parents() failed: %s"
 msgstr ""
 "Map '%s' kon niet worden aangemaakt: g_mkdir_with_parents() mislukt: %s"
 
-#: ../xed/xed-preferences-dialog.c:681
+#: ../xed/xed-preferences-dialog.c:689
 msgid "The selected color scheme cannot be installed."
-msgstr "Het geselecteerde kleurschema kan niet worden geïnstalleerd."
+msgstr "Het gekozen kleurschema kan niet worden geïnstalleerd."
 
-#: ../xed/xed-preferences-dialog.c:704 ../xed/xed-preferences-dialog.c:710
+#: ../xed/xed-preferences-dialog.c:712 ../xed/xed-preferences-dialog.c:718
 msgid "Add Scheme"
 msgstr "Schema toevoegen"
 
-#: ../xed/xed-preferences-dialog.c:707 ../xed/xed-progress-info-bar.c:64
+#: ../xed/xed-preferences-dialog.c:715 ../xed/xed-progress-info-bar.c:64
 msgid "Cancel"
 msgstr "Afbreken"
 
-#: ../xed/xed-preferences-dialog.c:716
+#: ../xed/xed-preferences-dialog.c:724
 msgid "Color Scheme Files"
 msgstr "Kleurschema-bestanden"
 
-#: ../xed/xed-preferences-dialog.c:788
+#: ../xed/xed-preferences-dialog.c:796
 #, c-format
 msgid "Could not remove color scheme \"%s\"."
 msgstr "Het kleurenschema '%s' kon niet worden verwijderd"
 
-#: ../xed/xed-preferences-dialog.c:820
+#: ../xed/xed-preferences-dialog.c:828
 msgid "Theme"
 msgstr "Thema"
 
-#: ../xed/xed-preferences-dialog.c:837
+#: ../xed/xed-preferences-dialog.c:845
 msgid "Plugins"
 msgstr "Invoegsels"
 
-#: ../xed/xed-preferences-dialog.c:845
+#: ../xed/xed-preferences-dialog.c:853
 msgid "Help"
 msgstr "Hulp"
 
-#: ../xed/xed-preferences-dialog.c:850
+#: ../xed/xed-preferences-dialog.c:858
 #: ../xed/resources/ui/xed-searchbar.ui.h:11
 msgid "Close"
 msgstr "Sluiten"
 
-#: ../xed/xed-preferences-dialog.c:864
+#: ../xed/xed-preferences-dialog.c:872
 msgid "Xed Preferences"
 msgstr "Voorkeuren van Xed"
 
@@ -1407,71 +1410,75 @@ msgstr "Pagina %N van %Q"
 msgid "Preparing..."
 msgstr "Voorbereiden…"
 
-#: ../xed/xed-print-preview.c:571
+#: ../xed/xed-print-preview.c:582
 msgid "Show the previous page"
 msgstr "Vorige pagina tonen"
 
-#: ../xed/xed-print-preview.c:577
+#: ../xed/xed-print-preview.c:588
 msgid "Show the next page"
 msgstr "Volgende pagina tonen"
 
-#: ../xed/xed-print-preview.c:591
+#: ../xed/xed-print-preview.c:602
 msgid "Current page (Alt+P)"
 msgstr "Huidige pagina (Alt+P)"
 
 #. gtk_label_set_mnemonic_widget ((GtkLabel *) l, mp->priv->page_entry);
 #. We are displaying 'XXX of XXX'.
 #. Translators: the "of" from "1 of 19" in print preview.
-#: ../xed/xed-print-preview.c:605
+#: ../xed/xed-print-preview.c:616
 msgid "of"
 msgstr "van"
 
-#: ../xed/xed-print-preview.c:610
+#: ../xed/xed-print-preview.c:621
 msgid "Page total"
 msgstr "Totaal aantal pagina's"
 
-#: ../xed/xed-print-preview.c:611
+#: ../xed/xed-print-preview.c:622
 msgid "The total number of pages in the document"
 msgstr "Het totale aantal pagina's in het document"
 
-#: ../xed/xed-print-preview.c:631
+#: ../xed/xed-print-preview.c:642
 msgid "Show multiple pages"
 msgstr "Meerdere pagina's tonen"
 
-#: ../xed/xed-print-preview.c:649
+#: ../xed/xed-print-preview.c:660
 msgid "Zoom 1:1"
 msgstr "Vergrotingsfactor 1:1"
 
-#: ../xed/xed-print-preview.c:655
+#: ../xed/xed-print-preview.c:666
 msgid "Zoom to fit the whole page"
 msgstr "Vergroten zodat het op de hele pagina past"
 
-#: ../xed/xed-print-preview.c:661
+#: ../xed/xed-print-preview.c:672
 msgid "Zoom the page in"
 msgstr "Pagina vergroten"
 
-#: ../xed/xed-print-preview.c:667
+#: ../xed/xed-print-preview.c:678
 msgid "Zoom the page out"
 msgstr "Pagina verkleinen"
 
-#: ../xed/xed-print-preview.c:682
+#: ../xed/xed-print-preview.c:695 ../xed/resources/ui/xed-shortcuts.ui.h:33
+msgid "Print the document"
+msgstr "Het document afdrukken"
+
+#: ../xed/xed-print-preview.c:710
 msgid "_Close preview"
 msgstr "Sluit voorbeeldweergave"
 
-#: ../xed/xed-print-preview.c:684
+#: ../xed/xed-print-preview.c:712
 msgid "Close print preview"
 msgstr "Afdrukvoorbeeld sluiten"
 
-#: ../xed/xed-print-preview.c:762
+#: ../xed/xed-print-preview.c:790
 #, c-format
 msgid "Page %d of %d"
 msgstr "Pagina %d van %d"
 
-#: ../xed/xed-print-preview.c:944
+#: ../xed/xed-print-preview.c:972
 msgid "Page Preview"
 msgstr "Paginavoorbeeld"
 
-#: ../xed/xed-print-preview.c:945
+#: ../xed/xed-print-preview.c:973
 msgid "The preview of a page in the document to be printed"
 msgstr "Een voorproefje van een pagina in het af te drukken document"
 
@@ -1481,7 +1488,7 @@ msgstr "Markeermodus"
 
 #: ../xed/resources/ui/xed-highlight-mode-dialog.ui.h:3
 msgid "_Select"
-msgstr "_Selecteren"
+msgstr "_Kiezen"
 
 #: ../xed/resources/ui/xed-highlight-mode-selector.ui.h:1
 msgid "Search highlight mode…"
@@ -1587,23 +1594,23 @@ msgstr "Bestanden automatisch opslaan"
 msgid "Minutes between saving"
 msgstr "Minuten tussen opslaan"
 
-#: ../xed/resources/ui/xed-preferences-dialog.ui.h:25
+#: ../xed/resources/ui/xed-preferences-dialog.ui.h:26
 msgid "Dark theme"
 msgstr "Donker thema"
 
-#: ../xed/resources/ui/xed-preferences-dialog.ui.h:26
+#: ../xed/resources/ui/xed-preferences-dialog.ui.h:27
 msgid "Use dark theme variant (if available)"
 msgstr "Gebruik donkere themavariant (indien beschikbaar)"
 
-#: ../xed/resources/ui/xed-preferences-dialog.ui.h:27
+#: ../xed/resources/ui/xed-preferences-dialog.ui.h:28
 msgid "Style scheme"
 msgstr "Stijlschema"
 
-#: ../xed/resources/ui/xed-preferences-dialog.ui.h:28
+#: ../xed/resources/ui/xed-preferences-dialog.ui.h:29
 msgid "Install scheme"
 msgstr "Schema installeren"
 
-#: ../xed/resources/ui/xed-preferences-dialog.ui.h:29
+#: ../xed/resources/ui/xed-preferences-dialog.ui.h:30
 msgid "Remove scheme"
 msgstr "Schema verwijderen"
 
@@ -1635,11 +1642,11 @@ msgstr "regels"
 
 #: ../xed/resources/ui/xed-print-preferences.ui.h:9
 msgid "Text Wrapping"
-msgstr "Regelafbreking"
+msgstr "Tekstafbreking"
 
 #: ../xed/resources/ui/xed-print-preferences.ui.h:10
 msgid "Enable text _wrapping"
-msgstr "Re_gelafbreking inschakelen"
+msgstr "Tekstafbreking inschakelen"
 
 #: ../xed/resources/ui/xed-print-preferences.ui.h:11
 msgid "Do not _split words over two lines"
@@ -1711,7 +1718,7 @@ msgstr "Heel woord"
 
 #: ../xed/resources/ui/xed-searchbar.ui.h:10
 msgid "Wrap"
-msgstr "Terugloop"
+msgstr "Afbreken"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:2 ../xed/xed-ui.h:54
 msgid "Create a new document"
@@ -1799,11 +1806,11 @@ msgstr "Kopiëren en plakken"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:23
 msgid "Copy selected text to clipboard"
-msgstr "Kopieer geselecteerde tekst naar klembord"
+msgstr "Kopieer gekozen tekst naar klembord"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:24
 msgid "Cut selected text to clipboard"
-msgstr "Knip geselecteerde tekst naar klembord"
+msgstr "Knip gekozen tekst naar klembord"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:25
 msgid "Paste text from clipboard"
@@ -1827,7 +1834,7 @@ msgstr "Selectie"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:30
 msgid "Select all text"
-msgstr "Alle tekst selecteren"
+msgstr "Alle tekst kiezen"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:31
 msgid "Tools"
@@ -1837,69 +1844,78 @@ msgstr "Gereedschap"
 msgid "Check spelling"
 msgstr "Spelling controleren"
 
-#: ../xed/resources/ui/xed-shortcuts.ui.h:33
-msgid "Print the document"
-msgstr "Het document afdrukken"
-
 #: ../xed/resources/ui/xed-shortcuts.ui.h:34
+msgid "Layout"
+msgstr "Opmaak"
+
+#: ../xed/resources/ui/xed-shortcuts.ui.h:35
+msgid "Toggle Word Wrap"
+msgstr "Regelafbreking omschakelen"
+
+#: ../xed/resources/ui/xed-shortcuts.ui.h:36
 msgid "Editing"
 msgstr "Bewerken"
 
-#: ../xed/resources/ui/xed-shortcuts.ui.h:35
+#: ../xed/resources/ui/xed-shortcuts.ui.h:37
 msgid "Toggle insert / overwrite"
 msgstr "Invoegen/overschrijven omschakelen"
 
-#: ../xed/resources/ui/xed-shortcuts.ui.h:36
+#: ../xed/resources/ui/xed-shortcuts.ui.h:38
 msgid "Delete current line"
 msgstr "Huidige regel verwijderen"
 
-#: ../xed/resources/ui/xed-shortcuts.ui.h:37
+#: ../xed/resources/ui/xed-shortcuts.ui.h:39
 msgid "Move current line up"
 msgstr "Huidige regel omhoog verplaatsen"
 
-#: ../xed/resources/ui/xed-shortcuts.ui.h:38
+#: ../xed/resources/ui/xed-shortcuts.ui.h:40
 msgid "Move current line down"
 msgstr "Huidige regel omlaag verplaatsen"
 
-#: ../xed/resources/ui/xed-shortcuts.ui.h:39
+#: ../xed/resources/ui/xed-shortcuts.ui.h:41
 msgid "Move current word left"
 msgstr "Huidig woord naar links verplaatsen"
 
-#: ../xed/resources/ui/xed-shortcuts.ui.h:40
+#: ../xed/resources/ui/xed-shortcuts.ui.h:42
 msgid "Move current word right"
 msgstr "Huidig woord naar rechts verplaatsen"
 
-#: ../xed/resources/ui/xed-shortcuts.ui.h:41
+#: ../xed/resources/ui/xed-shortcuts.ui.h:43
 msgid "Convert to uppercase"
 msgstr "Omzetten naar hoofdletters"
 
-#: ../xed/resources/ui/xed-shortcuts.ui.h:42
+#: ../xed/resources/ui/xed-shortcuts.ui.h:44
 msgid "Convert to lowercase"
 msgstr "Omzetten naar kleine letters"
 
-#: ../xed/resources/ui/xed-shortcuts.ui.h:43
+#: ../xed/resources/ui/xed-shortcuts.ui.h:45
 msgid "Convert to title case"
 msgstr "Omzetten naar titelgrootte"
 
-#: ../xed/resources/ui/xed-shortcuts.ui.h:44
+#: ../xed/resources/ui/xed-shortcuts.ui.h:46
 msgid "Invert case"
 msgstr "Hoofdlettergebruik omkeren"
 
-#: ../xed/resources/ui/xed-shortcuts.ui.h:45
+#: ../xed/resources/ui/xed-shortcuts.ui.h:47
 msgid "Increment number at cursor"
 msgstr "Nummer bij muisaanwijzer verhogen"
 
-#: ../xed/resources/ui/xed-shortcuts.ui.h:46
+#: ../xed/resources/ui/xed-shortcuts.ui.h:48
 msgid "Decrement number at cursor"
 msgstr "Nummer bij muisaanwijzer verlagen"
 
-#: ../xed/resources/ui/xed-shortcuts.ui.h:47
+#: ../xed/resources/ui/xed-shortcuts.ui.h:49
 msgid "Toggle comment block"
 msgstr "Commentaarblok omschakelen"
 
-#: ../xed/resources/ui/xed-shortcuts.ui.h:48
+#: ../xed/resources/ui/xed-shortcuts.ui.h:50
 msgid "Toggle comment"
 msgstr "Commentaar omschakelen"
+
+#: ../xed/resources/ui/xed-shortcuts.ui.h:51
+#: ../plugins/joinlines/joinlines.plugin.desktop.in.h:1
+msgid "Join Lines"
+msgstr "Regels samenvoegen"
 
 #: ../xed/xed-searchbar.c:92
 #, c-format
@@ -1957,75 +1973,75 @@ msgid_plural "There are %d tabs with errors"
 msgstr[0] "Er is een tabblad met fouten"
 msgstr[1] "Er zijn %d tabbladen met fouten"
 
-#: ../xed/xed-tab-label.c:276
+#: ../xed/xed-tab-label.c:271
 msgid "Close document"
 msgstr "Document sluiten"
 
 #. Translators: the first %s is a file name (e.g. test.txt) the second one
 #. is a directory (e.g. ssh://master.gnome.org/home/users/paolo)
-#: ../xed/xed-tab.c:716
+#: ../xed/xed-tab.c:721
 #, c-format
 msgid "Reverting %s from %s"
 msgstr "%s terugzetten vanaf %s"
 
-#: ../xed/xed-tab.c:721
+#: ../xed/xed-tab.c:726
 #, c-format
 msgid "Reverting %s"
 msgstr "Terugdraaien van %s"
 
 #. Translators: the first %s is a file name (e.g. test.txt) the second one
 #. is a directory (e.g. ssh://master.gnome.org/home/users/paolo)
-#: ../xed/xed-tab.c:734
+#: ../xed/xed-tab.c:739
 #, c-format
 msgid "Loading %s from %s"
 msgstr "%s laden vanaf %s"
 
-#: ../xed/xed-tab.c:739
+#: ../xed/xed-tab.c:744
 #, c-format
 msgid "Loading %s"
 msgstr "Laden van %s"
 
 #. Translators: the first %s is a file name (e.g. test.txt) the second one
 #. is a directory (e.g. ssh://master.gnome.org/home/users/paolo)
-#: ../xed/xed-tab.c:820
+#: ../xed/xed-tab.c:825
 #, c-format
 msgid "Saving %s to %s"
 msgstr "%s opslaan naar %s"
 
-#: ../xed/xed-tab.c:825
+#: ../xed/xed-tab.c:830
 #, c-format
 msgid "Saving %s"
 msgstr "%s opslaan"
 
 #. Read only
-#: ../xed/xed-tab.c:1305
+#: ../xed/xed-tab.c:1324
 msgid "RO"
 msgstr "AL"
 
-#: ../xed/xed-tab.c:1353
+#: ../xed/xed-tab.c:1372
 #, c-format
 msgid "Error opening file %s"
 msgstr "Er is een fout opgetreden bij het laden van bestand %s."
 
-#: ../xed/xed-tab.c:1357
+#: ../xed/xed-tab.c:1376
 #, c-format
 msgid "Error reverting file %s"
 msgstr "Er is een fout opgetreden bij het terugdraaien van het document %s."
 
-#: ../xed/xed-tab.c:1361
+#: ../xed/xed-tab.c:1380
 #, c-format
 msgid "Error saving file %s"
 msgstr "Er is een fout opgetreden bij het opslaan van bestand %s."
 
-#: ../xed/xed-tab.c:1394
+#: ../xed/xed-tab.c:1413
 msgid "Name:"
 msgstr "Naam:"
 
-#: ../xed/xed-tab.c:1395
+#: ../xed/xed-tab.c:1414
 msgid "MIME Type:"
 msgstr "MIME-type:"
 
-#: ../xed/xed-tab.c:1396
+#: ../xed/xed-tab.c:1415
 msgid "Encoding:"
 msgstr "Tekenset:"
 
@@ -2190,15 +2206,15 @@ msgstr "_Verwijderen"
 
 #: ../xed/xed-ui.h:102
 msgid "Delete the selected text"
-msgstr "Geselecteerde tekst verwijderen"
+msgstr "Gekozen tekst verwijderen"
 
 #: ../xed/xed-ui.h:103
 msgid "Select _All"
-msgstr "_Alles selecteren"
+msgstr "_Alles kiezen"
 
 #: ../xed/xed-ui.h:104
 msgid "Select the entire document"
-msgstr "Het gehele document selecteren"
+msgstr "Het gehele document kiezen"
 
 #: ../xed/xed-ui.h:105
 msgid "_Toggle Comment"
@@ -2345,11 +2361,11 @@ msgstr "Tekst bewerken in volledig scherm"
 
 #: ../xed/xed-ui.h:165
 msgid "_Word wrap"
-msgstr "Woordafbreking"
+msgstr "Regelafbreking"
 
 #: ../xed/xed-ui.h:166
 msgid "Set word wrap for the current document"
-msgstr "Stel woordafbreking in voor het huidige document"
+msgstr "Stel regelafbreking in voor het huidige document"
 
 #: ../xed/xed-ui.h:168
 msgid "_Overview Map"
@@ -2375,22 +2391,22 @@ msgstr "_Onderpaneel"
 msgid "Show or hide the bottom pane in the current window"
 msgstr "Het onderpaneel in het huidige venster tonen of verbergen"
 
-#: ../xed/xed-utils.c:642
+#: ../xed/xed-utils.c:822
 msgid "Please check your installation."
 msgstr "Controleer a.u.b. uw installatie."
 
-#: ../xed/xed-utils.c:710
+#: ../xed/xed-utils.c:890
 #, c-format
 msgid "Unable to open UI file %s. Error: %s"
 msgstr "Kon UI-bestand '%s' niet openen. Fout: %s"
 
-#: ../xed/xed-utils.c:730
+#: ../xed/xed-utils.c:910
 #, c-format
 msgid "Unable to find the object '%s' inside file %s."
 msgstr "Kon object '%s' in het bestand '%s' niet vinden."
 
 #. Translators: '/ on <remote-share>'
-#: ../xed/xed-utils.c:898
+#: ../xed/xed-utils.c:1078
 #, c-format
 msgid "/ on %s"
 msgstr "/ op %s"
@@ -2425,11 +2441,11 @@ msgstr "Tabs: %u"
 msgid "Use Spaces"
 msgstr "Spaties gebruiken"
 
-#: ../xed/xed-window.c:2198
+#: ../xed/xed-window.c:2218
 msgid "There are unsaved documents"
 msgstr "Er zijn niet-opgeslagen documenten"
 
-#: ../xed/xed-window.c:3247
+#: ../xed/xed-window.c:3267
 msgid "Elevated Privileges"
 msgstr "Extra rechten"
 
@@ -2675,7 +2691,7 @@ msgstr "Het bestand '%s' kan niet naar de prullenbak worden verplaatst."
 #: ../plugins/filebrowser/xed-file-browser-plugin.c:959
 msgid "The selected files cannot be moved to the trash."
 msgstr ""
-"De geselecteerde bestanden kunnen niet naar de prullenbak worden verplaatst."
+"De gekozen bestanden kunnen niet naar de prullenbak worden verplaatst."
 
 #: ../plugins/filebrowser/xed-file-browser-plugin.c:987
 #, c-format
@@ -2684,8 +2700,7 @@ msgstr "Weet u zeker dat u '%s' definitief wilt verwijderen?"
 
 #: ../plugins/filebrowser/xed-file-browser-plugin.c:992
 msgid "Are you sure you want to permanently delete the selected files?"
-msgstr ""
-"Weet u zeker dat u de geselecteerde bestanden definitief wilt verwijderen?"
+msgstr "Weet u zeker dat u de gekozen bestanden blijvend wilt verwijderen?"
 
 #: ../plugins/filebrowser/xed-file-browser-plugin.c:995
 msgid "If you delete an item, it is permanently lost."
@@ -2743,15 +2758,15 @@ msgstr "Naar prullenbak _verplaatsen"
 
 #: ../plugins/filebrowser/xed-file-browser-widget.c:759
 msgid "Move selected file or folder to trash"
-msgstr "Het geselecteerde bestand of map naar de prullenbak verplaatsen"
+msgstr "Gekozen bestand of map naar de prullenbak verplaatsen"
 
 #: ../plugins/filebrowser/xed-file-browser-widget.c:761
 msgid "Delete selected file or folder"
-msgstr "Geselecteerd bestand of map verwijderen"
+msgstr "Gekozen bestand of map verwijderen"
 
 #: ../plugins/filebrowser/xed-file-browser-widget.c:767
 msgid "Open selected file"
-msgstr "Geselecteerd bestand openen"
+msgstr "Gekozen bestand openen"
 
 #: ../plugins/filebrowser/xed-file-browser-widget.c:772
 msgid "Up"
@@ -2783,7 +2798,7 @@ msgstr "_Hernoemen…"
 
 #: ../plugins/filebrowser/xed-file-browser-widget.c:787
 msgid "Rename selected file or folder"
-msgstr "Het bestand of de map een andere naam geven"
+msgstr "Gekozen bestand of map hernoemen"
 
 #: ../plugins/filebrowser/xed-file-browser-widget.c:792
 msgid "_Previous Location"
@@ -2854,6 +2869,18 @@ msgstr "Kon media niet openen: %s"
 msgid "Could not mount volume: %s"
 msgstr "Kon volumen niet aankoppelen: %s"
 
+#: ../plugins/joinlines/joinlines.plugin.desktop.in.h:2
+msgid "Join several lines"
+msgstr "Verschillende regels samenvoegen"
+
+#: ../plugins/joinlines/joinlines/__init__.py:26
+msgid "_Join Lines"
+msgstr "Regels samenvoegen"
+
+#: ../plugins/joinlines/joinlines/__init__.py:27
+msgid "Join the selected lines"
+msgstr "Voeg de gekozen regels samen"
+
 #. vi:ts=8
 #: ../plugins/modelines/modelines.plugin.desktop.in.h:1
 msgid "Modelines"
@@ -2870,7 +2897,7 @@ msgstr "Sorteren"
 
 #: ../plugins/sort/sort.plugin.desktop.in.h:2
 msgid "Sorts a document or selected text."
-msgstr "Sorteert een document of de geselecteerde tekst."
+msgstr "Sorteert een document of de gekozen tekst."
 
 #: ../plugins/sort/xed-sort-plugin.c:76
 msgid "S_ort lines"
@@ -3077,7 +3104,7 @@ msgstr "Code inhoudstype"
 #. Deprecated since HTML 4.01, not supported in XHTML 1.0 Strict DTD.
 #: ../plugins/taglist/HTML.tags.xml.in.h:38
 msgid "Color of selected links (deprecated)"
-msgstr "Kleur van geselecteerde koppelingen (achterhaald)"
+msgstr "Kleur van gekozen koppelingen (achterhaald)"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:39
 msgid "Column span"
@@ -3484,7 +3511,7 @@ msgstr "Geen URI"
 #. Deprecated since HTML 4.01, not supported in XHTML 1.0 Strict DTD.
 #: ../plugins/taglist/HTML.tags.xml.in.h:154
 msgid "No word wrap (deprecated)"
-msgstr "Geen regelterugloop (achterhaald)"
+msgstr "Geen regelafbreking (achterhaald)"
 
 #. Deprecated since HTML 4.01, not supported in XHTML 1.0 Strict DTD.
 #: ../plugins/taglist/HTML.tags.xml.in.h:156
@@ -3655,7 +3682,7 @@ msgstr "Selecteerbare optie"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:199
 msgid "Selected"
-msgstr "Geselecteerd"
+msgstr "Gekozen"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:200
 msgid "Server-side image map"
@@ -3898,7 +3925,7 @@ msgstr "Aangekruist (status)"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:265
 msgid "Color of selected links"
-msgstr "Kleur van geselecteerde koppelingen"
+msgstr "Kleur van gekozen koppelingen"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:266
 msgid "Content scheme"
@@ -4010,7 +4037,7 @@ msgstr "Geen schaduw"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:293
 msgid "No word wrap"
-msgstr "Geen regelterugloop"
+msgstr "Geen regelafbreking"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:294
 msgid "Note"
@@ -4532,7 +4559,7 @@ msgstr "Prompttype"
 
 #: ../plugins/time/org.x.editor.plugins.time.gschema.xml.in.h:2
 msgid "Selected format"
-msgstr "Geselecteerde indeling"
+msgstr "Gekozen indeling"
 
 #: ../plugins/time/org.x.editor.plugins.time.gschema.xml.in.h:3
 msgid "Custom format"
@@ -4557,7 +4584,7 @@ msgstr "_Invoegen"
 #: ../plugins/time/xed-time-dialog.ui.h:3
 #: ../plugins/time/xed-time-setup-dialog.ui.h:5
 msgid "Use the _selected format"
-msgstr "Ge_selecteerde opmaak gebruiken"
+msgstr "Ge_kozen opmaak gebruiken"
 
 #: ../plugins/time/xed-time-dialog.ui.h:5
 #: ../plugins/time/xed-time-setup-dialog.ui.h:6
