@@ -136,7 +136,7 @@ forward_search_finished (GtkSourceSearchContext *search_context,
     GtkTextIter match_start;
     GtkTextIter match_end;
 
-    found = gtk_source_search_context_forward_finish2 (search_context, result, &match_start, &match_end, NULL, NULL);
+    found = gtk_source_search_context_forward_finish (search_context, result, &match_start, &match_end, NULL, NULL);
     buffer = gtk_source_search_context_get_buffer (search_context);
 
     if (found)
@@ -210,7 +210,7 @@ backward_search_finished (GtkSourceSearchContext *search_context,
     GtkTextIter match_end;
     GtkSourceBuffer *buffer;
 
-    found = gtk_source_search_context_backward_finish2 (search_context, result, &match_start, &match_end, NULL, NULL);
+    found = gtk_source_search_context_backward_finish (search_context, result, &match_start, &match_end, NULL, NULL);
     buffer = gtk_source_search_context_get_buffer (search_context);
 
     if (found)
@@ -479,12 +479,12 @@ do_replace (XedSearchbar *searchbar)
     gtk_text_buffer_get_selection_bounds (GTK_TEXT_BUFFER (doc), &start, &end);
     searchbar->priv->search_mode = XED_SEARCH_MODE_REPLACE;
 
-    gtk_source_search_context_replace2 (search_context,
-                                        &start,
-                                        &end,
-                                        unescaped_replace_text,
-                                        -1,
-                                        NULL);
+    gtk_source_search_context_replace (search_context,
+                                       &start,
+                                       &end,
+                                       unescaped_replace_text,
+                                       -1,
+                                       NULL);
 
     g_free (unescaped_replace_text);
 
