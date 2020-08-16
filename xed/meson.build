@@ -173,7 +173,7 @@ gir = gnome.generate_gir(
     sources: public_headers + libxed_sources + xed_enums + xed_marshal,
     identifier_prefix: 'Xed',
     symbol_prefix: 'xed',
-    includes: ['Gtk-3.0', 'GtkSource-3.0'],
+    includes: ['Gtk-3.0', 'GtkSource-4'],
     install: true,
     install_dir_typelib: join_paths(libdir, 'xed', 'girepository-1.0'),
     install_dir_gir: join_paths(datadir, 'xed', 'gir-1.0')
@@ -186,7 +186,7 @@ pkgconfig.generate(
     version: meson.project_version(),
     libraries: libxed,
     requires: [
-        'gtksourceview-3.0',
+        'gtksourceview-4',
         'libpeas-1.0',
         'libpeas-gtk-1.0'
     ],
