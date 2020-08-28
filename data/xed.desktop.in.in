@@ -10,3 +10,8 @@ Icon=accessories-text-editor
 Categories=GTK;Utility;TextEditor;
 Keywords=text;editor;tabs;highlighting;code;multiple;files;pluggable;notepad;
 X-MATE-DocPath=xed/xed.xml
+Actions=new-window;
+
+[Desktop Action new-window]
+Name=New Window
+Exec=xed --new-window %U
