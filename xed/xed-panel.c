@@ -41,8 +41,6 @@
 
 #define PANEL_ITEM_KEY "XedPanelItemKey"
 
-#define XED_PANEL_GET_PRIVATE(object)(G_TYPE_INSTANCE_GET_PRIVATE ((object), XED_TYPE_PANEL, XedPanelPrivate))
-
 struct _XedPanelPrivate
 {
     GtkOrientation orientation;
@@ -83,7 +81,7 @@ static GObject *xed_panel_constructor (GType                  type,
                                        GObjectConstructParam *construct_properties);
 
 
-G_DEFINE_TYPE (XedPanel, xed_panel, GTK_TYPE_BIN)
+G_DEFINE_TYPE_WITH_PRIVATE (XedPanel, xed_panel, GTK_TYPE_BIN)
 
 static void
 xed_panel_finalize (GObject *obj)
@@ -239,8 +237,6 @@ xed_panel_class_init (XedPanelClass *klass)
     GObjectClass *object_class = G_OBJECT_CLASS (klass);
     GtkWidgetClass *widget_class = GTK_WIDGET_CLASS (klass);
 
-    g_type_class_add_private (klass, sizeof (XedPanelPrivate));
-
     object_class->constructor = xed_panel_constructor;
     object_class->finalize = xed_panel_finalize;
     object_class->get_property = xed_panel_get_property;
@@ -319,7 +315,7 @@ xed_panel_class_init (XedPanelClass *klass)
 static void
 xed_panel_init (XedPanel *panel)
 {
-    panel->priv = XED_PANEL_GET_PRIVATE (panel);
+    panel->priv = xed_panel_get_instance_private (panel);
 
     panel->priv->main_box = gtk_box_new (GTK_ORIENTATION_VERTICAL, 0);
     gtk_widget_show (panel->priv->main_box);

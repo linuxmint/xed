@@ -39,10 +39,6 @@
 #include "xed-dirs.h"
 #include "xed-settings.h"
 
-#define XED_ENCODINGS_DIALOG_GET_PRIVATE(object)(G_TYPE_INSTANCE_GET_PRIVATE ((object), \
-                                                 XED_TYPE_ENCODINGS_DIALOG,           \
-                                                 XedEncodingsDialogPrivate))
-
 struct _XedEncodingsDialogPrivate
 {
     GSettings *enc_settings;
@@ -58,7 +54,7 @@ struct _XedEncodingsDialogPrivate
     GSList       *show_in_menu_list;
 };
 
-G_DEFINE_TYPE(XedEncodingsDialog, xed_encodings_dialog, GTK_TYPE_DIALOG)
+G_DEFINE_TYPE_WITH_PRIVATE (XedEncodingsDialog, xed_encodings_dialog, GTK_TYPE_DIALOG)
 
 static void
 xed_encodings_dialog_finalize (GObject *object)
@@ -87,8 +83,6 @@ xed_encodings_dialog_class_init (XedEncodingsDialogClass *klass)
 
     object_class->finalize = xed_encodings_dialog_finalize;
     object_class->dispose = xed_encodings_dialog_dispose;
-
-    g_type_class_add_private (object_class, sizeof (XedEncodingsDialogPrivate));
 }
 
 enum
@@ -329,7 +323,7 @@ xed_encodings_dialog_init (XedEncodingsDialog *dlg)
         NULL
     };
 
-    dlg->priv = XED_ENCODINGS_DIALOG_GET_PRIVATE (dlg);
+    dlg->priv = xed_encodings_dialog_get_instance_private (dlg);
     dlg->priv->enc_settings = g_settings_new ("org.x.editor.preferences.encodings");
 
     gtk_dialog_add_buttons (GTK_DIALOG (dlg),

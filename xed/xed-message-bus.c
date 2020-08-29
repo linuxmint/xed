@@ -90,8 +90,6 @@
  * </example>
  */
 
-#define XED_MESSAGE_BUS_GET_PRIVATE(object)(G_TYPE_INSTANCE_GET_PRIVATE((object), XED_TYPE_MESSAGE_BUS, XedMessageBusPrivate))
-
 typedef struct
 {
     gchar *object_path;
@@ -143,7 +141,7 @@ static guint message_bus_signals[LAST_SIGNAL] = { 0 };
 static void xed_message_bus_dispatch_real (XedMessageBus *bus,
                                            XedMessage    *message);
 
-G_DEFINE_TYPE (XedMessageBus, xed_message_bus, G_TYPE_OBJECT)
+G_DEFINE_TYPE_WITH_PRIVATE (XedMessageBus, xed_message_bus, G_TYPE_OBJECT)
 
 static void
 listener_free (Listener *listener)
@@ -264,8 +262,6 @@ xed_message_bus_class_init (XedMessageBusClass *klass)
                       G_TYPE_NONE,
                       1,
                       XED_TYPE_MESSAGE_TYPE);
-
-    g_type_class_add_private (object_class, sizeof(XedMessageBusPrivate));
 }
 
 static Message *
@@ -506,7 +502,7 @@ process_by_match (XedMessageBus      *bus,
 static void
 xed_message_bus_init (XedMessageBus *self)
 {
-    self->priv = XED_MESSAGE_BUS_GET_PRIVATE (self);
+    self->priv = xed_message_bus_get_instance_private (self);
 
     self->priv->messages = g_hash_table_new_full (g_str_hash,
                                                   g_str_equal,

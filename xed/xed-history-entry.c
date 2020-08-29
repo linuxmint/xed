@@ -47,10 +47,6 @@ enum
 
 #define XED_HISTORY_ENTRY_HISTORY_LENGTH_DEFAULT 10
 
-#define XED_HISTORY_ENTRY_GET_PRIVATE(object)(G_TYPE_INSTANCE_GET_PRIVATE ((object), \
-                                              XED_TYPE_HISTORY_ENTRY, \
-                                              XedHistoryEntryPrivate))
-
 struct _XedHistoryEntryPrivate
 {
     gchar *history_id;
@@ -59,7 +55,7 @@ struct _XedHistoryEntryPrivate
     GSettings *settings;
 };
 
-G_DEFINE_TYPE(XedHistoryEntry, xed_history_entry, GTK_TYPE_COMBO_BOX_TEXT)
+G_DEFINE_TYPE_WITH_PRIVATE (XedHistoryEntry, xed_history_entry, GTK_TYPE_COMBO_BOX_TEXT)
 
 static void
 xed_history_entry_set_property (GObject      *object,
@@ -167,8 +163,6 @@ xed_history_entry_class_init (XedHistoryEntryClass *klass)
                                                 G_PARAM_STATIC_STRINGS));
 
     /* TODO: Add enable-completion property */
-
-    g_type_class_add_private (object_class, sizeof(XedHistoryEntryPrivate));
 }
 
 static GtkListStore *
@@ -384,7 +378,7 @@ xed_history_entry_init (XedHistoryEntry *entry)
 {
     XedHistoryEntryPrivate *priv;
 
-    priv = XED_HISTORY_ENTRY_GET_PRIVATE (entry);
+    priv = xed_history_entry_get_instance_private (entry);
     entry->priv = priv;
 
     priv->history_id = NULL;

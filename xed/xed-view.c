@@ -18,8 +18,6 @@
 
 #define XED_VIEW_SCROLL_MARGIN 0.02
 
-#define XED_VIEW_GET_PRIVATE(object)(G_TYPE_INSTANCE_GET_PRIVATE ((object), XED_TYPE_VIEW, XedViewPrivate))
-
 enum
 {
     TARGET_URI_LIST = 100
@@ -34,7 +32,7 @@ struct _XedViewPrivate
     guint view_realized : 1;
 };
 
-G_DEFINE_TYPE (XedView, xed_view, GTK_SOURCE_TYPE_VIEW)
+G_DEFINE_TYPE_WITH_PRIVATE (XedView, xed_view, GTK_SOURCE_TYPE_VIEW)
 
 /* Signals */
 enum
@@ -111,7 +109,7 @@ xed_view_init (XedView *view)
 
     xed_debug (DEBUG_VIEW);
 
-    view->priv = XED_VIEW_GET_PRIVATE (view);
+    view->priv = xed_view_get_instance_private (view);
 
     view->priv->editor_settings = g_settings_new ("org.x.editor.preferences.editor");
 
@@ -599,8 +597,6 @@ xed_view_class_init (XedViewClass *klass)
                       NULL, NULL,
                       g_cclosure_marshal_VOID__BOXED,
                       G_TYPE_NONE, 1, G_TYPE_STRV);
-
-    g_type_class_add_private (klass, sizeof (XedViewPrivate));
 
     binding_set = gtk_binding_set_by_class (klass);
 

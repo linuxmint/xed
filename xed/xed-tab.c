@@ -46,8 +46,6 @@
 #include "xed-settings.h"
 #include "xed-view-frame.h"
 
-#define XED_TAB_GET_PRIVATE(object)(G_TYPE_INSTANCE_GET_PRIVATE ((object), XED_TYPE_TAB, XedTabPrivate))
-
 #define XED_TAB_KEY "XED_TAB_KEY"
 
 struct _XedTabPrivate
@@ -114,7 +112,7 @@ struct _SaverData
     guint force_no_backup : 1;
 };
 
-G_DEFINE_TYPE(XedTab, xed_tab, GTK_TYPE_BOX)
+G_DEFINE_TYPE_WITH_PRIVATE (XedTab, xed_tab, GTK_TYPE_BOX)
 
 enum
 {
@@ -361,8 +359,6 @@ xed_tab_class_init (XedTabClass *klass)
                                                            TRUE,
                                                            G_PARAM_READABLE |
                                                            G_PARAM_STATIC_STRINGS));
-
-    g_type_class_add_private (object_class, sizeof (XedTabPrivate));
 }
 
 /**
@@ -1169,7 +1165,7 @@ xed_tab_init (XedTab *tab)
     XedView *view;
     GtkSourceFile *file;
 
-    tab->priv = XED_TAB_GET_PRIVATE (tab);
+    tab->priv = xed_tab_get_instance_private (tab);
 
     tab->priv->editor = g_settings_new ("org.x.editor.preferences.editor");
     tab->priv->state = XED_TAB_STATE_NORMAL;

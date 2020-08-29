@@ -40,12 +40,12 @@
 #include "xed-settings.h"
 #include "xed-utils.h"
 
-G_DEFINE_TYPE (XedPluginsEngine, xed_plugins_engine, PEAS_TYPE_ENGINE)
-
 struct _XedPluginsEnginePrivate
 {
     GSettings *plugin_settings;
 };
+
+G_DEFINE_TYPE_WITH_PRIVATE (XedPluginsEngine, xed_plugins_engine, PEAS_TYPE_ENGINE)
 
 XedPluginsEngine *default_engine = NULL;
 
@@ -58,7 +58,7 @@ xed_plugins_engine_init (XedPluginsEngine *engine)
 
     xed_debug (DEBUG_PLUGINS);
 
-    engine->priv = G_TYPE_INSTANCE_GET_PRIVATE (engine, XED_TYPE_PLUGINS_ENGINE, XedPluginsEnginePrivate);
+    engine->priv = xed_plugins_engine_get_instance_private (engine);
 
     engine->priv->plugin_settings = g_settings_new ("org.x.editor.plugins");
 
@@ -142,8 +142,6 @@ xed_plugins_engine_class_init (XedPluginsEngineClass *klass)
     GObjectClass *object_class = G_OBJECT_CLASS (klass);
 
     object_class->dispose = xed_plugins_engine_dispose;
-
-    g_type_class_add_private (klass, sizeof (XedPluginsEnginePrivate));
 }
 
 XedPluginsEngine *

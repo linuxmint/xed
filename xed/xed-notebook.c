@@ -49,8 +49,6 @@
 #define AFTER_ALL_TABS -1
 #define NOT_IN_APP_WINDOWS -2
 
-#define XED_NOTEBOOK_GET_PRIVATE(object)(G_TYPE_INSTANCE_GET_PRIVATE ((object), XED_TYPE_NOTEBOOK, XedNotebookPrivate))
-
 struct _XedNotebookPrivate
 {
     GSettings *ui_settings;
@@ -65,7 +63,7 @@ struct _XedNotebookPrivate
     guint destroy_has_run : 1;
 };
 
-G_DEFINE_TYPE(XedNotebook, xed_notebook, GTK_TYPE_NOTEBOOK)
+G_DEFINE_TYPE_WITH_PRIVATE (XedNotebook, xed_notebook, GTK_TYPE_NOTEBOOK)
 
 static void xed_notebook_finalize (GObject *object);
 
@@ -178,8 +176,6 @@ xed_notebook_class_init (XedNotebookClass *klass)
                       G_TYPE_NONE,
                       1,
                       XED_TYPE_TAB);
-
-    g_type_class_add_private (object_class, sizeof(XedNotebookPrivate));
 }
 
 static XedNotebook *
@@ -709,7 +705,7 @@ xed_notebook_switch_page_cb (GtkNotebook *notebook,
 static void
 xed_notebook_init (XedNotebook *notebook)
 {
-    notebook->priv = XED_NOTEBOOK_GET_PRIVATE (notebook);
+    notebook->priv = xed_notebook_get_instance_private (notebook);
 
     notebook->priv->close_buttons_sensitive = TRUE;
     notebook->priv->tab_drag_and_drop_enabled = TRUE;

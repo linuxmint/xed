@@ -43,9 +43,6 @@ enum
     PROP_HAS_CANCEL_BUTTON
 };
 
-
-#define XED_PROGRESS_INFO_BAR_GET_PRIVATE(object)(G_TYPE_INSTANCE_GET_PRIVATE ((object), XED_TYPE_PROGRESS_INFO_BAR, XedProgressInfoBarPrivate))
-
 struct _XedProgressInfoBarPrivate
 {
     GtkWidget *image;
@@ -53,7 +50,7 @@ struct _XedProgressInfoBarPrivate
     GtkWidget *progress;
 };
 
-G_DEFINE_TYPE(XedProgressInfoBar, xed_progress_info_bar, GTK_TYPE_INFO_BAR)
+G_DEFINE_TYPE_WITH_PRIVATE (XedProgressInfoBar, xed_progress_info_bar, GTK_TYPE_INFO_BAR)
 
 static void
 xed_progress_info_bar_set_has_cancel_button (XedProgressInfoBar *bar,
@@ -119,8 +116,6 @@ xed_progress_info_bar_class_init (XedProgressInfoBarClass *klass)
                                                            G_PARAM_WRITABLE |
                                                            G_PARAM_CONSTRUCT_ONLY |
                                                            G_PARAM_STATIC_STRINGS));
-
-    g_type_class_add_private (gobject_class, sizeof (XedProgressInfoBarPrivate));
 }
 
 static void
@@ -130,7 +125,7 @@ xed_progress_info_bar_init (XedProgressInfoBar *bar)
     GtkWidget *hbox;
     GtkWidget *content;
 
-    bar->priv = XED_PROGRESS_INFO_BAR_GET_PRIVATE (bar);
+    bar->priv = xed_progress_info_bar_get_instance_private (bar);
 
     vbox = gtk_box_new (GTK_ORIENTATION_VERTICAL, 6);
     gtk_widget_show (vbox);

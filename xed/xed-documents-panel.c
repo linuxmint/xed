@@ -35,11 +35,6 @@
 #include "xed-utils.h"
 #include "xed-notebook.h"
 
-
-#define XED_DOCUMENTS_PANEL_GET_PRIVATE(object)(G_TYPE_INSTANCE_GET_PRIVATE ((object), \
-                                                XED_TYPE_DOCUMENTS_PANEL,            \
-                                                XedDocumentsPanelPrivate))
-
 struct _XedDocumentsPanelPrivate
 {
     XedWindow  *window;
@@ -51,7 +46,7 @@ struct _XedDocumentsPanelPrivate
     guint         is_reodering : 1;
 };
 
-G_DEFINE_TYPE (XedDocumentsPanel, xed_documents_panel, GTK_TYPE_BOX)
+G_DEFINE_TYPE_WITH_PRIVATE (XedDocumentsPanel, xed_documents_panel, GTK_TYPE_BOX)
 
 enum
 {
@@ -401,7 +396,7 @@ xed_documents_panel_get_property (GObject    *object,
     switch (prop_id)
     {
         case PROP_WINDOW:
-            g_value_set_object (value, XED_DOCUMENTS_PANEL_GET_PRIVATE (panel)->window);
+            g_value_set_object (value, panel->priv->window);
             break;
         default:
             G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
@@ -452,8 +447,6 @@ xed_documents_panel_class_init (XedDocumentsPanelClass *klass)
                                                           G_PARAM_READWRITE |
                                                           G_PARAM_CONSTRUCT_ONLY |
                                                           G_PARAM_STATIC_STRINGS));
-
-    g_type_class_add_private (object_class, sizeof (XedDocumentsPanelPrivate));
 }
 
 static GtkTreePath *
@@ -673,7 +666,7 @@ xed_documents_panel_init (XedDocumentsPanel *panel)
     GtkCellRenderer *cell;
     GtkTreeSelection *selection;
 
-    panel->priv = XED_DOCUMENTS_PANEL_GET_PRIVATE (panel);
+    panel->priv = xed_documents_panel_get_instance_private (panel);
 
     panel->priv->adding_tab = FALSE;
     panel->priv->is_reodering = FALSE;

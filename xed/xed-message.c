@@ -18,7 +18,6 @@
  * who is the sender and who is the receiver. There is no explicit distinction
  * between methods and signals.
  */
-#define XED_MESSAGE_GET_PRIVATE(object)(G_TYPE_INSTANCE_GET_PRIVATE((object), XED_TYPE_MESSAGE, XedMessagePrivate))
 
 enum {
 	PROP_0,
@@ -36,7 +35,7 @@ struct _XedMessagePrivate
 	GHashTable *values;
 };
 
-G_DEFINE_TYPE (XedMessage, xed_message, G_TYPE_OBJECT)
+G_DEFINE_TYPE_WITH_PRIVATE (XedMessage, xed_message, G_TYPE_OBJECT)
 
 static void
 xed_message_finalize (GObject *object)
@@ -163,8 +162,6 @@ xed_message_class_init (XedMessageClass *klass)
 					 		     G_PARAM_READWRITE |
 					 		     G_PARAM_CONSTRUCT_ONLY |
 					 		     G_PARAM_STATIC_STRINGS));
-
-	g_type_class_add_private (object_class, sizeof(XedMessagePrivate));
 }
 
 static void
@@ -177,7 +174,7 @@ destroy_value (GValue *value)
 static void
 xed_message_init (XedMessage *self)
 {
-	self->priv = XED_MESSAGE_GET_PRIVATE (self);
+	self->priv = xed_message_get_instance_private (self);
 
 	self->priv->values = g_hash_table_new_full (g_str_hash,
 						    g_str_equal,
