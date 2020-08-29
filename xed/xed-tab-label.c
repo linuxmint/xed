@@ -27,8 +27,6 @@
 #include "xed-tab-label.h"
 #include "xed-close-button.h"
 
-#define XED_TAB_LABEL_GET_PRIVATE(object)(G_TYPE_INSTANCE_GET_PRIVATE((object), XED_TYPE_TAB_LABEL, XedTabLabelPrivate))
-
 /* Signals */
 enum
 {
@@ -57,7 +55,7 @@ struct _XedTabLabelPrivate
 
 static guint signals[LAST_SIGNAL] = { 0 };
 
-G_DEFINE_TYPE (XedTabLabel, xed_tab_label, GTK_TYPE_BOX)
+G_DEFINE_TYPE_WITH_PRIVATE (XedTabLabel, xed_tab_label, GTK_TYPE_BOX)
 
 static void
 xed_tab_label_finalize (GObject *object)
@@ -244,8 +242,6 @@ xed_tab_label_class_init (XedTabLabelClass *klass)
                                                           XED_TYPE_TAB,
                                                           G_PARAM_READWRITE |
                                                           G_PARAM_CONSTRUCT_ONLY));
-
-    g_type_class_add_private (object_class, sizeof(XedTabLabelPrivate));
 }
 
 static void
@@ -258,7 +254,7 @@ xed_tab_label_init (XedTabLabel *tab_label)
     GtkWidget *label;
     GtkWidget *dummy_label;
 
-    tab_label->priv = XED_TAB_LABEL_GET_PRIVATE (tab_label);
+    tab_label->priv = xed_tab_label_get_instance_private (tab_label);
 
     tab_label->priv->close_button_sensitive = TRUE;
 

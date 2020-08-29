@@ -60,8 +60,6 @@
 #define XED_PAGE_SETUP_FILE     "xed-page-setup"
 #define XED_PRINT_SETTINGS_FILE "xed-print-settings"
 
-#define XED_APP_GET_PRIVATE(object)(G_TYPE_INSTANCE_GET_PRIVATE ((object), XED_TYPE_APP, XedAppPrivate))
-
 /* Properties */
 enum
 {
@@ -92,7 +90,7 @@ struct _XedAppPrivate
     GApplicationCommandLine *command_line;
 };
 
-G_DEFINE_TYPE (XedApp, xed_app, GTK_TYPE_APPLICATION)
+G_DEFINE_TYPE_WITH_PRIVATE (XedApp, xed_app, GTK_TYPE_APPLICATION)
 
 static const GOptionEntry options[] =
 {
@@ -893,8 +891,6 @@ xed_app_class_init (XedAppClass *klass)
     app_class->handle_local_options = xed_app_handle_local_options;
     app_class->open = xed_app_open;
     app_class->shutdown = xed_app_shutdown;
-
-    g_type_class_add_private (object_class, sizeof (XedAppPrivate));
 }
 
 static void
@@ -987,7 +983,7 @@ setup_actions (XedApp *app)
 static void
 xed_app_init (XedApp *app)
 {
-    app->priv = XED_APP_GET_PRIVATE (app);
+    app->priv = xed_app_get_instance_private (app);
 
     g_set_application_name ("xed");
     gtk_window_set_default_icon_name ("accessories-text-editor");

@@ -81,7 +81,7 @@ struct _XedPrintPreviewPrivate
     guint cur_page;
 };
 
-G_DEFINE_TYPE (XedPrintPreview, xed_print_preview, GTK_TYPE_BOX)
+G_DEFINE_TYPE_WITH_PRIVATE (XedPrintPreview, xed_print_preview, GTK_TYPE_BOX)
 
 static void goto_page (XedPrintPreview *preview,
                        gint             page);
@@ -150,8 +150,6 @@ xed_print_preview_class_init (XedPrintPreviewClass *klass)
     object_class->finalize = xed_print_preview_finalize;
 
     widget_class->grab_focus = xed_print_preview_grab_focus;
-
-    g_type_class_add_private (object_class, sizeof(XedPrintPreviewPrivate));
 }
 
 static void
@@ -1003,7 +1001,7 @@ xed_print_preview_init (XedPrintPreview *preview)
 {
     XedPrintPreviewPrivate *priv;
 
-    priv = G_TYPE_INSTANCE_GET_PRIVATE (preview, XED_TYPE_PRINT_PREVIEW, XedPrintPreviewPrivate);
+    priv = xed_print_preview_get_instance_private (preview);
 
     preview->priv = priv;
 

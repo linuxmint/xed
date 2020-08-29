@@ -35,10 +35,6 @@
 
 #include "xed-statusbar.h"
 
-#define XED_STATUSBAR_GET_PRIVATE(object)(G_TYPE_INSTANCE_GET_PRIVATE ((object),\
-                                          XED_TYPE_STATUSBAR,\
-                                          XedStatusbarPrivate))
-
 struct _XedStatusbarPrivate
 {
     GtkWidget *overwrite_mode_label;
@@ -58,7 +54,7 @@ struct _XedStatusbarPrivate
     guint flash_message_id;
 };
 
-G_DEFINE_TYPE(XedStatusbar, xed_statusbar, GTK_TYPE_STATUSBAR)
+G_DEFINE_TYPE_WITH_PRIVATE (XedStatusbar, xed_statusbar, GTK_TYPE_STATUSBAR)
 
 
 static gchar *
@@ -93,8 +89,6 @@ xed_statusbar_class_init (XedStatusbarClass *klass)
     GObjectClass *object_class = G_OBJECT_CLASS (klass);
 
     object_class->dispose = xed_statusbar_dispose;
-
-    g_type_class_add_private (object_class, sizeof (XedStatusbarPrivate));
 }
 
 #define CURSOR_POSITION_LABEL_WIDTH_CHARS 18
@@ -105,7 +99,7 @@ xed_statusbar_init (XedStatusbar *statusbar)
     GtkWidget *hbox;
     GtkWidget *error_image;
 
-    statusbar->priv = XED_STATUSBAR_GET_PRIVATE (statusbar);
+    statusbar->priv = xed_statusbar_get_instance_private (statusbar);
 
     gtk_widget_set_margin_top (GTK_WIDGET (statusbar), 0);
     gtk_widget_set_margin_bottom (GTK_WIDGET (statusbar), 0);

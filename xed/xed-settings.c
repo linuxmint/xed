@@ -38,8 +38,6 @@
 
 #define XED_SETTINGS_SYSTEM_FONT "monospace-font-name"
 
-#define XED_SETTINGS_GET_PRIVATE(object)(G_TYPE_INSTANCE_GET_PRIVATE((object), XED_TYPE_SETTINGS, XedSettingsPrivate))
-
 struct _XedSettingsPrivate
 {
     GSettings *interface;
@@ -49,7 +47,7 @@ struct _XedSettingsPrivate
     gchar *old_scheme;
 };
 
-G_DEFINE_TYPE (XedSettings, xed_settings, G_TYPE_OBJECT)
+G_DEFINE_TYPE_WITH_PRIVATE (XedSettings, xed_settings, G_TYPE_OBJECT)
 
 static void
 xed_settings_finalize (GObject *object)
@@ -336,7 +334,7 @@ on_max_recents_changed (GSettings   *settings,
 static void
 xed_settings_init (XedSettings *xs)
 {
-    xs->priv = XED_SETTINGS_GET_PRIVATE (xs);
+    xs->priv = xed_settings_get_instance_private (xs);
 
     xs->priv->old_scheme = NULL;
     xs->priv->editor = g_settings_new ("org.x.editor.preferences.editor");
@@ -378,8 +376,6 @@ xed_settings_class_init (XedSettingsClass *klass)
 
     object_class->finalize = xed_settings_finalize;
     object_class->dispose = xed_settings_dispose;
-
-    g_type_class_add_private (object_class, sizeof (XedSettingsPrivate));
 }
 
 GObject *

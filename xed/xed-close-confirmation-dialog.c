@@ -70,15 +70,11 @@ struct _XedCloseConfirmationDialogPrivate
     GtkTreeModel *list_store;
 };
 
-#define XED_CLOSE_CONFIRMATION_DIALOG_GET_PRIVATE(o) (G_TYPE_INSTANCE_GET_PRIVATE ((o), \
-                                                      XED_TYPE_CLOSE_CONFIRMATION_DIALOG, \
-                                                      XedCloseConfirmationDialogPrivate))
-
 #define GET_MODE(priv) (((priv->unsaved_documents != NULL) && \
                         (priv->unsaved_documents->next == NULL)) ? \
                         SINGLE_DOC_MODE : MULTIPLE_DOCS_MODE)
 
-G_DEFINE_TYPE(XedCloseConfirmationDialog, xed_close_confirmation_dialog, GTK_TYPE_DIALOG)
+G_DEFINE_TYPE_WITH_PRIVATE (XedCloseConfirmationDialog, xed_close_confirmation_dialog, GTK_TYPE_DIALOG)
 
 static void  set_unsaved_document (XedCloseConfirmationDialog *dlg,
                                    const GList                *list);
@@ -175,7 +171,7 @@ xed_close_confirmation_dialog_init (XedCloseConfirmationDialog *dlg)
 {
     AtkObject *atk_obj;
 
-    dlg->priv = XED_CLOSE_CONFIRMATION_DIALOG_GET_PRIVATE (dlg);
+    dlg->priv = xed_close_confirmation_dialog_get_instance_private (dlg);
 
     gtk_container_set_border_width (GTK_CONTAINER (dlg), 5);
     gtk_box_set_spacing (GTK_BOX (gtk_dialog_get_content_area (GTK_DIALOG (dlg))), 14);
@@ -275,8 +271,6 @@ xed_close_confirmation_dialog_class_init (XedCloseConfirmationDialogClass *klass
     gobject_class->set_property = xed_close_confirmation_dialog_set_property;
     gobject_class->get_property = xed_close_confirmation_dialog_get_property;
     gobject_class->finalize = xed_close_confirmation_dialog_finalize;
-
-    g_type_class_add_private (klass, sizeof (XedCloseConfirmationDialogPrivate));
 
     g_object_class_install_property (gobject_class,
                                      PROP_UNSAVED_DOCUMENTS,

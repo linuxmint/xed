@@ -36,8 +36,6 @@
 #define XED_WINDOW_DEFAULT_WIDTH  650
 #define XED_WINDOW_DEFAULT_HEIGHT 500
 
-#define XED_WINDOW_GET_PRIVATE(object)(G_TYPE_INSTANCE_GET_PRIVATE ((object), XED_TYPE_WINDOW, XedWindowPrivate))
-
 /* Signals */
 enum
 {
@@ -62,7 +60,7 @@ enum
     TARGET_URI_LIST = 100
 };
 
-G_DEFINE_TYPE(XedWindow, xed_window, GTK_TYPE_APPLICATION_WINDOW)
+G_DEFINE_TYPE_WITH_PRIVATE (XedWindow, xed_window, GTK_TYPE_APPLICATION_WINDOW)
 
 static void recent_manager_changed (GtkRecentManager *manager, XedWindow *window);
 
@@ -353,8 +351,6 @@ xed_window_class_init (XedWindowClass *klass)
                                                                     XED_TYPE_WINDOW_STATE,
                                                                     XED_WINDOW_STATE_NORMAL,
                                                                     G_PARAM_READABLE | G_PARAM_STATIC_STRINGS));
-
-    g_type_class_add_private (object_class, sizeof(XedWindowPrivate));
 }
 
 static void
@@ -3221,7 +3217,7 @@ xed_window_init (XedWindow *window)
 
     xed_debug (DEBUG_WINDOW);
 
-    window->priv = XED_WINDOW_GET_PRIVATE (window);
+    window->priv = xed_window_get_instance_private (window);
     window->priv->active_tab = NULL;
     window->priv->num_tabs = 0;
     window->priv->removing_tabs = FALSE;

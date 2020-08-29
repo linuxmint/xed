@@ -13,8 +13,6 @@
 #include "xed-commands.h"
 #include "xed-window-private.h"
 
-#define XED_SEARCHBAR_GET_PRIVATE(object)(G_TYPE_INSTANCE_GET_PRIVATE ((object), XED_TYPE_SEARCHBAR, XedSearchbarPrivate))
-
 enum
 {
     SHOW_REPLACE,
@@ -49,7 +47,7 @@ struct _XedSearchbarPrivate
     guint update_occurrence_count_id;
 };
 
-G_DEFINE_TYPE(XedSearchbar, xed_searchbar, GTK_TYPE_BOX)
+G_DEFINE_TYPE_WITH_PRIVATE (XedSearchbar, xed_searchbar, GTK_TYPE_BOX)
 
 static void
 xed_searchbar_dispose (GObject *object)
@@ -73,8 +71,6 @@ xed_searchbar_class_init (XedSearchbarClass *klass)
     GObjectClass *object_class = G_OBJECT_CLASS (klass);
 
     object_class->dispose = xed_searchbar_dispose;
-
-    g_type_class_add_private (object_class, sizeof(XedSearchbarPrivate));
 }
 
 #define XED_SEARCHBAR_KEY "xed-searchbar-key"
@@ -669,7 +665,7 @@ xed_searchbar_init (XedSearchbar *searchbar)
     GtkBuilder *builder;
     gchar *root_objects[] = { "searchbar_content", NULL };
 
-    searchbar->priv = XED_SEARCHBAR_GET_PRIVATE (searchbar);
+    searchbar->priv = xed_searchbar_get_instance_private (searchbar);
 
     builder = gtk_builder_new ();
     gtk_builder_add_objects_from_resource (builder, "/org/x/editor/ui/xed-searchbar.ui", root_objects, NULL);

@@ -41,8 +41,6 @@
 #include "xed-enum-types.h"
 #include "xed-settings.h"
 
-#define XED_FILE_CHOOSER_DIALOG_GET_PRIVATE(object)(G_TYPE_INSTANCE_GET_PRIVATE ((object), XED_TYPE_FILE_CHOOSER_DIALOG, XedFileChooserDialogPrivate))
-
 #define ALL_FILES _("All Files")
 #define ALL_TEXT_FILES _("All Text Files")
 
@@ -58,7 +56,7 @@ struct _XedFileChooserDialogPrivate
     GtkListStore *newline_store;
 };
 
-G_DEFINE_TYPE(XedFileChooserDialog, xed_file_chooser_dialog, GTK_TYPE_FILE_CHOOSER_DIALOG)
+G_DEFINE_TYPE_WITH_PRIVATE (XedFileChooserDialog, xed_file_chooser_dialog, GTK_TYPE_FILE_CHOOSER_DIALOG)
 
 static void
 xed_file_chooser_dialog_dispose (GObject *object)
@@ -76,8 +74,6 @@ xed_file_chooser_dialog_class_init (XedFileChooserDialogClass *klass)
     GObjectClass *object_class = G_OBJECT_CLASS (klass);
 
     object_class->dispose = xed_file_chooser_dialog_dispose;
-
-    g_type_class_add_private (object_class, sizeof(XedFileChooserDialogPrivate));
 }
 
 static void
@@ -324,7 +320,7 @@ all_text_files_filter (const GtkFileFilterInfo *filter_info,
 static void
 xed_file_chooser_dialog_init (XedFileChooserDialog *dialog)
 {
-    dialog->priv = XED_FILE_CHOOSER_DIALOG_GET_PRIVATE (dialog);
+    dialog->priv = xed_file_chooser_dialog_get_instance_private (dialog);
 
     dialog->priv->filter_settings = g_settings_new ("org.x.editor.state.file-filter");
 }

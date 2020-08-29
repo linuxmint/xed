@@ -41,11 +41,6 @@
 #include "xed-dirs.h"
 #include "xed-settings.h"
 
-
-#define XED_PRINT_JOB_GET_PRIVATE(object)(G_TYPE_INSTANCE_GET_PRIVATE ((object), \
-                                          XED_TYPE_PRINT_JOB, \
-                                          XedPrintJobPrivate))
-
 struct _XedPrintJobPrivate
 {
     GSettings *print_settings;
@@ -103,7 +98,7 @@ enum
 
 static guint print_job_signals[LAST_SIGNAL] = { 0 };
 
-G_DEFINE_TYPE (XedPrintJob, xed_print_job, G_TYPE_OBJECT)
+G_DEFINE_TYPE_WITH_PRIVATE (XedPrintJob, xed_print_job, G_TYPE_OBJECT)
 
 static void
 set_view (XedPrintJob *job,
@@ -236,8 +231,6 @@ xed_print_job_class_init (XedPrintJobClass *klass)
                       2,
                       G_TYPE_UINT,
                       G_TYPE_POINTER);
-
-    g_type_class_add_private (object_class, sizeof (XedPrintJobPrivate));
 }
 
 static void
@@ -731,7 +724,7 @@ xed_print_job_print (XedPrintJob              *job,
 static void
 xed_print_job_init (XedPrintJob *job)
 {
-    job->priv = XED_PRINT_JOB_GET_PRIVATE (job);
+    job->priv = xed_print_job_get_instance_private (job);
 
     job->priv->print_settings = g_settings_new ("org.x.editor.preferences.print");
 

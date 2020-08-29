@@ -37,10 +37,6 @@
 #include "xed-settings.h"
 #include "xed-utils.h"
 
-#define XED_ENCODINGS_COMBO_BOX_GET_PRIVATE(object)(G_TYPE_INSTANCE_GET_PRIVATE ((object),  \
-                                                    XED_TYPE_ENCODINGS_COMBO_BOX,   \
-                                                    XedEncodingsComboBoxPrivate))
-
 struct _XedEncodingsComboBoxPrivate
 {
     GSettings *enc_settings;
@@ -69,7 +65,7 @@ enum
 };
 
 
-G_DEFINE_TYPE(XedEncodingsComboBox, xed_encodings_combo_box, GTK_TYPE_COMBO_BOX)
+G_DEFINE_TYPE_WITH_PRIVATE (XedEncodingsComboBox, xed_encodings_combo_box, GTK_TYPE_COMBO_BOX)
 
 static void update_menu (XedEncodingsComboBox *combo_box);
 
@@ -147,8 +143,6 @@ xed_encodings_combo_box_class_init (XedEncodingsComboBoxClass *klass)
                                                            G_PARAM_READWRITE |
                                                            G_PARAM_CONSTRUCT |
                                                            G_PARAM_STATIC_STRINGS));
-
-    g_type_class_add_private (object_class, sizeof (XedEncodingsComboBoxPrivate));
 }
 
 static void
@@ -358,7 +352,7 @@ xed_encodings_combo_box_init (XedEncodingsComboBox *menu)
 {
     GtkCellRenderer *text_renderer;
 
-    menu->priv = XED_ENCODINGS_COMBO_BOX_GET_PRIVATE (menu);
+    menu->priv = xed_encodings_combo_box_get_instance_private (menu);
 
     menu->priv->enc_settings = g_settings_new ("org.x.editor.preferences.encodings");
     menu->priv->store = gtk_list_store_new (N_COLUMNS, G_TYPE_STRING, G_TYPE_POINTER, G_TYPE_BOOLEAN);
