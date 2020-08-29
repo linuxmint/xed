@@ -244,13 +244,13 @@ static void
 on_entry_realized (GtkWidget                *entry,
                    XedHighlightModeSelector *selector)
 {
-    if (gtk_widget_is_focus (selector))
+    if (gtk_widget_is_focus (GTK_WIDGET (selector)))
     {
         gtk_widget_grab_focus (entry);
     }
     else
     {
-        gtk_widget_grab_focus (selector);
+        gtk_widget_grab_focus (GTK_WIDGET (selector));
     }
 }
 
