@@ -27,10 +27,6 @@
 #include "xed-file-bookmarks-store.h"
 #include "xed-file-browser-utils.h"
 
-#define XED_FILE_BOOKMARKS_STORE_GET_PRIVATE(object)( \
-        G_TYPE_INSTANCE_GET_PRIVATE((object), XED_TYPE_FILE_BOOKMARKS_STORE, \
-        XedFileBookmarksStorePrivate))
-
 struct _XedFileBookmarksStorePrivate
 {
     GVolumeMonitor * volume_monitor;
@@ -55,7 +51,11 @@ static gboolean find_with_flags       (GtkTreeModel * model,
                                        guint flags,
                                        guint notflags);
 
-G_DEFINE_DYNAMIC_TYPE (XedFileBookmarksStore, xed_file_bookmarks_store, GTK_TYPE_TREE_STORE)
+G_DEFINE_DYNAMIC_TYPE_EXTENDED (XedFileBookmarksStore,
+                                xed_file_bookmarks_store,
+                                GTK_TYPE_TREE_STORE,
+                                0,
+                                G_ADD_PRIVATE_DYNAMIC (XedFileBookmarksStore))
 
 static void
 xed_file_bookmarks_store_dispose (GObject * object)
@@ -92,8 +92,6 @@ xed_file_bookmarks_store_class_init (XedFileBookmarksStoreClass *klass)
 
     object_class->dispose = xed_file_bookmarks_store_dispose;
     object_class->finalize = xed_file_bookmarks_store_finalize;
-
-    g_type_class_add_private (object_class, sizeof (XedFileBookmarksStorePrivate));
 }
 
 static void
@@ -105,7 +103,7 @@ xed_file_bookmarks_store_class_finalize  (XedFileBookmarksStoreClass *klass)
 static void
 xed_file_bookmarks_store_init (XedFileBookmarksStore * obj)
 {
-    obj->priv = XED_FILE_BOOKMARKS_STORE_GET_PRIVATE (obj);
+    obj->priv = xed_file_bookmarks_store_get_instance_private (obj);
 }
 
 /* Private */

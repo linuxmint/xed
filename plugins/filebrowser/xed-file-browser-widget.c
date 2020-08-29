@@ -38,10 +38,6 @@
 #include "xed-file-browser-marshal.h"
 #include "xed-file-browser-enum-types.h"
 
-#define XED_FILE_BROWSER_WIDGET_GET_PRIVATE(object)(G_TYPE_INSTANCE_GET_PRIVATE((object), \
-                                                    XED_TYPE_FILE_BROWSER_WIDGET, \
-                                                    XedFileBrowserWidgetPrivate))
-
 #define XML_UI_FILE "xed-file-browser-widget-ui.xml"
 #define LOCATION_DATA_KEY "xed-file-browser-widget-location"
 
@@ -225,7 +221,11 @@ static void on_action_filter_binary (GtkAction            *action,
 static void on_action_bookmark_open (GtkAction            *action,
                                      XedFileBrowserWidget *obj);
 
-G_DEFINE_DYNAMIC_TYPE (XedFileBrowserWidget, xed_file_browser_widget, GTK_TYPE_BOX)
+G_DEFINE_DYNAMIC_TYPE_EXTENDED (XedFileBrowserWidget,
+                                xed_file_browser_widget,
+                                GTK_TYPE_BOX,
+                                0,
+                                G_ADD_PRIVATE_DYNAMIC (XedFileBrowserWidget))
 
 static void
 free_name_icon (gpointer data)
@@ -483,8 +483,6 @@ xed_file_browser_widget_class_init (XedFileBrowserWidgetClass *klass)
                       G_TYPE_BOOLEAN,
                       1,
                       G_TYPE_POINTER);
-
-    g_type_class_add_private (object_class, sizeof (XedFileBrowserWidgetPrivate));
 }
 
 static void
@@ -1173,7 +1171,7 @@ create_filter (XedFileBrowserWidget *obj)
 static void
 xed_file_browser_widget_init (XedFileBrowserWidget *obj)
 {
-    obj->priv = XED_FILE_BROWSER_WIDGET_GET_PRIVATE (obj);
+    obj->priv = xed_file_browser_widget_get_instance_private (obj);
 
     obj->priv->bookmarks_hash = g_hash_table_new_full (g_file_hash,
                                                        (GEqualFunc)g_file_equal,

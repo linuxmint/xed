@@ -38,10 +38,6 @@
 
 #include "xed-time-plugin.h"
 
-#define XED_TIME_PLUGIN_GET_PRIVATE(object)(G_TYPE_INSTANCE_GET_PRIVATE ((object), \
-                                            XED_TYPE_TIME_PLUGIN, \
-                                            XedTimePluginPrivate))
-
 #define MENU_PATH "/MenuBar/EditMenu/EditOps_4"
 
 /* GSettings keys */
@@ -166,7 +162,8 @@ G_DEFINE_DYNAMIC_TYPE_EXTENDED (XedTimePlugin,
                                 G_IMPLEMENT_INTERFACE_DYNAMIC (XED_TYPE_WINDOW_ACTIVATABLE,
                                                                xed_window_activatable_iface_init)
                                 G_IMPLEMENT_INTERFACE_DYNAMIC (PEAS_GTK_TYPE_CONFIGURABLE,
-                                                               peas_gtk_configurable_iface_init))
+                                                               peas_gtk_configurable_iface_init)
+                                G_ADD_PRIVATE_DYNAMIC (XedTimePlugin))
 
 static void time_cb (GtkAction     *action,
                      XedTimePlugin *plugin);
@@ -188,7 +185,7 @@ xed_time_plugin_init (XedTimePlugin *plugin)
 {
     xed_debug_message (DEBUG_PLUGINS, "XedTimePlugin initializing");
 
-    plugin->priv = XED_TIME_PLUGIN_GET_PRIVATE (plugin);
+    plugin->priv = xed_time_plugin_get_instance_private (plugin);
 
     plugin->priv->settings = g_settings_new (TIME_SCHEMA);
 }
@@ -1034,8 +1031,6 @@ xed_time_plugin_class_init (XedTimePluginClass *klass)
     object_class->get_property = xed_time_plugin_get_property;
 
     g_object_class_override_property (object_class, PROP_WINDOW, "window");
-
-    g_type_class_add_private (object_class, sizeof (XedTimePluginPrivate));
 }
 
 static void

@@ -42,8 +42,6 @@
 #define FILE_BROWSER_SCHEMA         "org.x.editor.plugins.filebrowser"
 #define FILE_BROWSER_ONLOAD_SCHEMA  "org.x.editor.plugins.filebrowser.on-load"
 
-#define XED_FILE_BROWSER_PLUGIN_GET_PRIVATE(object) (G_TYPE_INSTANCE_GET_PRIVATE ((object), XED_TYPE_FILE_BROWSER_PLUGIN, XedFileBrowserPluginPrivate))
-
 struct _XedFileBrowserPluginPrivate
 {
     XedWindow *window;
@@ -106,8 +104,8 @@ G_DEFINE_DYNAMIC_TYPE_EXTENDED (XedFileBrowserPlugin,
                                 PEAS_TYPE_EXTENSION_BASE,
                                 0,
                                 G_IMPLEMENT_INTERFACE_DYNAMIC (XED_TYPE_WINDOW_ACTIVATABLE,
-                                                               xed_window_activatable_iface_init)    \
-                                                                                               \
+                                                               xed_window_activatable_iface_init)
+                                G_ADD_PRIVATE_DYNAMIC (XedFileBrowserPlugin)
                                 _xed_file_browser_store_register_type        (type_module);  \
                                 _xed_file_bookmarks_store_register_type      (type_module);  \
                                 _xed_file_browser_view_register_type         (type_module);  \
@@ -118,7 +116,7 @@ G_DEFINE_DYNAMIC_TYPE_EXTENDED (XedFileBrowserPlugin,
 static void
 xed_file_browser_plugin_init (XedFileBrowserPlugin *plugin)
 {
-    plugin->priv = XED_FILE_BROWSER_PLUGIN_GET_PRIVATE (plugin);
+    plugin->priv = xed_file_browser_plugin_get_instance_private (plugin);
 }
 
 static void
@@ -620,8 +618,6 @@ xed_file_browser_plugin_class_init (XedFileBrowserPluginClass * klass)
     object_class->get_property = xed_file_browser_plugin_get_property;
 
     g_object_class_override_property (object_class, PROP_WINDOW, "window");
-
-    g_type_class_add_private (object_class, sizeof (XedFileBrowserPluginPrivate));
 }
 
 static void

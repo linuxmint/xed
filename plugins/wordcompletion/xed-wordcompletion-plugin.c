@@ -45,17 +45,6 @@ static void xed_window_activatable_iface_init (XedWindowActivatableInterface *if
 static void xed_view_activatable_iface_init (XedViewActivatableInterface *iface);
 static void peas_gtk_configurable_iface_init (PeasGtkConfigurableInterface *iface);
 
-G_DEFINE_DYNAMIC_TYPE_EXTENDED (XedWordCompletionPlugin,
-                                xed_wordcompletion_plugin,
-                                PEAS_TYPE_EXTENSION_BASE,
-                                0,
-                                G_IMPLEMENT_INTERFACE_DYNAMIC (XED_TYPE_WINDOW_ACTIVATABLE,
-                                                               xed_window_activatable_iface_init)
-                                G_IMPLEMENT_INTERFACE_DYNAMIC (XED_TYPE_VIEW_ACTIVATABLE,
-                                                               xed_view_activatable_iface_init)
-                                G_IMPLEMENT_INTERFACE_DYNAMIC (PEAS_GTK_TYPE_CONFIGURABLE,
-                                                               peas_gtk_configurable_iface_init))
-
 struct _XedWordCompletionPluginPrivate
 {
     GtkWidget *window;
@@ -83,14 +72,24 @@ struct _WordCompletionConfigureWidget
     GSettings *settings;
 };
 
+G_DEFINE_DYNAMIC_TYPE_EXTENDED (XedWordCompletionPlugin,
+                                xed_wordcompletion_plugin,
+                                PEAS_TYPE_EXTENSION_BASE,
+                                0,
+                                G_IMPLEMENT_INTERFACE_DYNAMIC (XED_TYPE_WINDOW_ACTIVATABLE,
+                                                               xed_window_activatable_iface_init)
+                                G_IMPLEMENT_INTERFACE_DYNAMIC (XED_TYPE_VIEW_ACTIVATABLE,
+                                                               xed_view_activatable_iface_init)
+                                G_IMPLEMENT_INTERFACE_DYNAMIC (PEAS_GTK_TYPE_CONFIGURABLE,
+                                                               peas_gtk_configurable_iface_init)
+                                G_ADD_PRIVATE_DYNAMIC (XedWordCompletionPlugin))
+
 static void
 xed_wordcompletion_plugin_init (XedWordCompletionPlugin *plugin)
 {
     xed_debug_message (DEBUG_PLUGINS, "XedWordCompletionPlugin initializing");
 
-    plugin->priv = G_TYPE_INSTANCE_GET_PRIVATE (plugin,
-                                                XED_TYPE_WORDCOMPLETION_PLUGIN,
-                                                XedWordCompletionPluginPrivate);
+    plugin->priv = xed_wordcompletion_plugin_get_instance_private (plugin);
 
     plugin->priv->settings = g_settings_new (WORDCOMPLETION_SETTINGS_BASE);
 }
@@ -417,8 +416,6 @@ xed_wordcompletion_plugin_class_init (XedWordCompletionPluginClass *klass)
 
     g_object_class_override_property (object_class, PROP_WINDOW, "window");
     g_object_class_override_property (object_class, PROP_VIEW, "view");
-
-    g_type_class_add_private (klass, sizeof (XedWordCompletionPluginPrivate));
 }
 
 static void

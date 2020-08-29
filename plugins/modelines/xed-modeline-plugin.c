@@ -50,7 +50,8 @@ G_DEFINE_DYNAMIC_TYPE_EXTENDED (XedModelinePlugin,
                                 PEAS_TYPE_EXTENSION_BASE,
                                 0,
                                 G_IMPLEMENT_INTERFACE_DYNAMIC (XED_TYPE_VIEW_ACTIVATABLE,
-                                                               xed_view_activatable_iface_init))
+                                                               xed_view_activatable_iface_init)
+                                G_ADD_PRIVATE_DYNAMIC (XedModelinePlugin))
 
 static void
 xed_modeline_plugin_constructed (GObject *object)
@@ -71,9 +72,7 @@ xed_modeline_plugin_init (XedModelinePlugin *plugin)
 {
     xed_debug_message (DEBUG_PLUGINS, "XedModelinePlugin initializing");
 
-    plugin->priv = G_TYPE_INSTANCE_GET_PRIVATE (plugin,
-                                                XED_TYPE_MODELINE_PLUGIN,
-                                                XedModelinePluginPrivate);
+    plugin->priv = xed_modeline_plugin_get_instance_private (plugin);
 }
 
 static void
@@ -193,8 +192,6 @@ xed_modeline_plugin_class_init (XedModelinePluginClass *klass)
     object_class->get_property = xed_modeline_plugin_get_property;
 
     g_object_class_override_property (object_class, PROP_VIEW, "view");
-
-    g_type_class_add_private (klass, sizeof (XedModelinePluginPrivate));
 }
 
 static void

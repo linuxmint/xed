@@ -37,8 +37,6 @@
 #include "xed-taglist-plugin-panel.h"
 #include "xed-taglist-plugin-parser.h"
 
-#define XED_TAGLIST_PLUGIN_GET_PRIVATE(object)(G_TYPE_INSTANCE_GET_PRIVATE ((object), XED_TYPE_TAGLIST_PLUGIN, XedTaglistPluginPrivate))
-
 struct _XedTaglistPluginPrivate
 {
     XedWindow *window;
@@ -48,26 +46,25 @@ struct _XedTaglistPluginPrivate
 
 static void xed_window_activatable_iface_init (XedWindowActivatableInterface *iface);
 
-G_DEFINE_DYNAMIC_TYPE_EXTENDED (XedTaglistPlugin,
-                                xed_taglist_plugin,
-                                PEAS_TYPE_EXTENSION_BASE,
-                                0,
-                                G_IMPLEMENT_INTERFACE_DYNAMIC (XED_TYPE_WINDOW_ACTIVATABLE,
-                                                               xed_window_activatable_iface_init) \
-                                                                                                  \
-                                _xed_taglist_plugin_panel_register_type (type_module);            \
-)
-
 enum
 {
     PROP_0,
     PROP_WINDOW
 };
 
+G_DEFINE_DYNAMIC_TYPE_EXTENDED (XedTaglistPlugin,
+                                xed_taglist_plugin,
+                                PEAS_TYPE_EXTENSION_BASE,
+                                0,
+                                G_IMPLEMENT_INTERFACE_DYNAMIC (XED_TYPE_WINDOW_ACTIVATABLE,
+                                                               xed_window_activatable_iface_init)
+                                G_ADD_PRIVATE_DYNAMIC (XedTaglistPlugin)
+                                _xed_taglist_plugin_panel_register_type (type_module))
+
 static void
 xed_taglist_plugin_init (XedTaglistPlugin *plugin)
 {
-    plugin->priv = XED_TAGLIST_PLUGIN_GET_PRIVATE (plugin);
+    plugin->priv = xed_taglist_plugin_get_instance_private (plugin);
 
     xed_debug_message (DEBUG_PLUGINS, "XedTaglistPlugin initializing");
 }
@@ -192,8 +189,6 @@ xed_taglist_plugin_class_init (XedTaglistPluginClass *klass)
     object_class->get_property = xed_taglist_plugin_get_property;
 
     g_object_class_override_property (object_class, PROP_WINDOW, "window");
-
-    g_type_class_add_private (object_class, sizeof (XedTaglistPluginPrivate));
 }
 
 static void
