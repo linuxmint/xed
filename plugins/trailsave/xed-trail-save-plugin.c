@@ -24,18 +24,7 @@
 
 #include "xed-trail-save-plugin.h"
 
-#define XED_TRAIL_SAVE_PLUGIN_GET_PRIVATE(object)(G_TYPE_INSTANCE_GET_PRIVATE ((object), \
-                                                  XED_TYPE_TRAIL_SAVE_PLUGIN, \
-                                                  XedTrailSavePluginPrivate))
-
 static void xed_window_activatable_iface_init (XedWindowActivatableInterface *iface);
-
-G_DEFINE_DYNAMIC_TYPE_EXTENDED (XedTrailSavePlugin,
-                                xed_trail_save_plugin,
-                                PEAS_TYPE_EXTENSION_BASE,
-                                0,
-                                G_IMPLEMENT_INTERFACE_DYNAMIC (XED_TYPE_WINDOW_ACTIVATABLE,
-                                                               xed_window_activatable_iface_init))
 
 struct _XedTrailSavePluginPrivate
 {
@@ -47,6 +36,14 @@ enum
    PROP_0,
    PROP_WINDOW
 };
+
+G_DEFINE_DYNAMIC_TYPE_EXTENDED (XedTrailSavePlugin,
+                                xed_trail_save_plugin,
+                                PEAS_TYPE_EXTENSION_BASE,
+                                0,
+                                G_IMPLEMENT_INTERFACE_DYNAMIC (XED_TYPE_WINDOW_ACTIVATABLE,
+                                                               xed_window_activatable_iface_init)
+                                G_ADD_PRIVATE_DYNAMIC (XedTrailSavePlugin))
 
 static void
 strip_trailing_spaces (GtkTextBuffer *text_buffer)
@@ -235,7 +232,7 @@ xed_trail_save_plugin_init (XedTrailSavePlugin *plugin)
 {
     xed_debug_message (DEBUG_PLUGINS, "XedTrailSavePlugin initializing");
 
-    plugin->priv = G_TYPE_INSTANCE_GET_PRIVATE (plugin, XED_TYPE_TRAIL_SAVE_PLUGIN, XedTrailSavePluginPrivate);
+    plugin->priv = xed_trail_save_plugin_get_instance_private (plugin);
 }
 
 static void
@@ -298,8 +295,6 @@ xed_trail_save_plugin_class_init (XedTrailSavePluginClass *klass)
     object_class->get_property = xed_trail_save_plugin_get_property;
 
     g_object_class_override_property (object_class, PROP_WINDOW, "window");
-
-    g_type_class_add_private (object_class, sizeof (XedTrailSavePluginPrivate));
 }
 
 static void

@@ -31,10 +31,6 @@
 #include "xed-file-browser-error.h"
 #include "xed-file-browser-utils.h"
 
-#define XED_FILE_BROWSER_STORE_GET_PRIVATE(object)(G_TYPE_INSTANCE_GET_PRIVATE((object), \
-                             XED_TYPE_FILE_BROWSER_STORE, \
-                             XedFileBrowserStorePrivate))
-
 #define NODE_IS_DIR(node)      (FILE_IS_DIR((node)->flags))
 #define NODE_IS_HIDDEN(node)   (FILE_IS_HIDDEN((node)->flags))
 #define NODE_IS_TEXT(node)     (FILE_IS_TEXT((node)->flags))
@@ -193,14 +189,6 @@ static void next_files_async (GFileEnumerator *enumerator,
 
 static void delete_files (AsyncData *data);
 
-G_DEFINE_DYNAMIC_TYPE_EXTENDED (XedFileBrowserStore, xed_file_browser_store,
-                                G_TYPE_OBJECT,
-                                0,
-                                G_IMPLEMENT_INTERFACE_DYNAMIC (GTK_TYPE_TREE_MODEL,
-                                                               xed_file_browser_store_iface_init)
-                                G_IMPLEMENT_INTERFACE_DYNAMIC (GTK_TYPE_TREE_DRAG_SOURCE,
-                                                               xed_file_browser_store_drag_source_init))
-
 /* Properties */
 enum {
     PROP_0,
@@ -223,6 +211,15 @@ enum
     UNLOAD,
     NUM_SIGNALS
 };
+
+G_DEFINE_DYNAMIC_TYPE_EXTENDED (XedFileBrowserStore, xed_file_browser_store,
+                                G_TYPE_OBJECT,
+                                0,
+                                G_IMPLEMENT_INTERFACE_DYNAMIC (GTK_TYPE_TREE_MODEL,
+                                                               xed_file_browser_store_iface_init)
+                                G_IMPLEMENT_INTERFACE_DYNAMIC (GTK_TYPE_TREE_DRAG_SOURCE,
+                                                               xed_file_browser_store_drag_source_init)
+                                G_ADD_PRIVATE_DYNAMIC (XedFileBrowserStore))
 
 static guint model_signals[NUM_SIGNALS] = { 0 };
 
@@ -418,8 +415,6 @@ xed_file_browser_store_class_init (XedFileBrowserStoreClass * klass)
                       g_cclosure_marshal_VOID__OBJECT,
                       G_TYPE_NONE, 1,
                       G_TYPE_FILE);
-
-    g_type_class_add_private (object_class, sizeof (XedFileBrowserStorePrivate));
 }
 
 static void
@@ -457,7 +452,7 @@ xed_file_browser_store_drag_source_init (GtkTreeDragSourceIface * iface)
 static void
 xed_file_browser_store_init (XedFileBrowserStore * obj)
 {
-    obj->priv = XED_FILE_BROWSER_STORE_GET_PRIVATE (obj);
+    obj->priv = xed_file_browser_store_get_instance_private (obj);
 
     obj->priv->column_types[XED_FILE_BROWSER_STORE_COLUMN_LOCATION] = G_TYPE_FILE;
     obj->priv->column_types[XED_FILE_BROWSER_STORE_COLUMN_NAME] = G_TYPE_STRING;

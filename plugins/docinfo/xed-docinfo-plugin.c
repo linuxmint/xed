@@ -69,7 +69,8 @@ G_DEFINE_DYNAMIC_TYPE_EXTENDED (XedDocInfoPlugin,
                                 PEAS_TYPE_EXTENSION_BASE,
                                 0,
                                 G_IMPLEMENT_INTERFACE_DYNAMIC (XED_TYPE_WINDOW_ACTIVATABLE,
-                                                               xed_window_activatable_iface_init))
+                                                               xed_window_activatable_iface_init)
+                                G_ADD_PRIVATE_DYNAMIC (XedDocInfoPlugin))
 
 static void
 calculate_info (XedDocument *doc,
@@ -385,7 +386,7 @@ static void
 xed_docinfo_plugin_init (XedDocInfoPlugin *plugin)
 {
     xed_debug_message (DEBUG_PLUGINS, "XedDocInfoPlugin initializing");
-    plugin->priv = G_TYPE_INSTANCE_GET_PRIVATE (plugin, XED_TYPE_DOCINFO_PLUGIN, XedDocInfoPluginPrivate);
+    plugin->priv = xed_docinfo_plugin_get_instance_private (plugin);
 }
 
 static void
@@ -531,8 +532,6 @@ xed_docinfo_plugin_class_init (XedDocInfoPluginClass *klass)
     object_class->get_property = xed_docinfo_plugin_get_property;
 
     g_object_class_override_property (object_class, PROP_WINDOW, "window");
-
-    g_type_class_add_private (klass, sizeof (XedDocInfoPluginPrivate));
 }
 
 static void

@@ -39,10 +39,6 @@
 #include "xed-taglist-plugin-panel.h"
 #include "xed-taglist-plugin-parser.h"
 
-#define XED_TAGLIST_PLUGIN_PANEL_GET_PRIVATE(object)(G_TYPE_INSTANCE_GET_PRIVATE ((object), \
-						       XED_TYPE_TAGLIST_PLUGIN_PANEL, \
-						       XedTaglistPluginPanelPrivate))
-
 enum
 {
 	COLUMN_TAG_NAME,
@@ -63,7 +59,11 @@ struct _XedTaglistPluginPanelPrivate
 	gchar *data_dir;
 };
 
-G_DEFINE_DYNAMIC_TYPE (XedTaglistPluginPanel, xed_taglist_plugin_panel, GTK_TYPE_BOX)
+G_DEFINE_DYNAMIC_TYPE_EXTENDED (XedTaglistPluginPanel,
+								xed_taglist_plugin_panel,
+								GTK_TYPE_BOX,
+								0,
+								G_ADD_PRIVATE_DYNAMIC (XedTaglistPluginPanel))
 
 enum
 {
@@ -114,8 +114,7 @@ xed_taglist_plugin_panel_get_property (GObject    *object,
 	switch (prop_id)
 	{
 		case PROP_WINDOW:
-			g_value_set_object (value,
-					    XED_TAGLIST_PLUGIN_PANEL_GET_PRIVATE (panel)->window);
+			g_value_set_object (value, panel->priv->window);
 			break;
 		default:
 			G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
@@ -150,8 +149,6 @@ xed_taglist_plugin_panel_class_init (XedTaglistPluginPanelClass *klass)
 							 XED_TYPE_WINDOW,
 							 G_PARAM_READWRITE |
 							 G_PARAM_CONSTRUCT_ONLY));
-
-	g_type_class_add_private (object_class, sizeof(XedTaglistPluginPanelPrivate));
 }
 
 static void
@@ -668,7 +665,7 @@ xed_taglist_plugin_panel_init (XedTaglistPluginPanel *panel)
 
 	xed_debug (DEBUG_PLUGINS);
 
-	panel->priv = XED_TAGLIST_PLUGIN_PANEL_GET_PRIVATE (panel);
+	panel->priv = xed_taglist_plugin_panel_get_instance_private (panel);
 	panel->priv->data_dir = NULL;
 
 	gtk_orientable_set_orientation (GTK_ORIENTABLE (panel),

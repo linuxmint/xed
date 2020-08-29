@@ -33,18 +33,9 @@
 
 #include "xed-sort-plugin.h"
 
-#define XED_SORT_PLUGIN_GET_PRIVATE(object)(G_TYPE_INSTANCE_GET_PRIVATE ((object), XED_TYPE_SORT_PLUGIN, XedSortPluginPrivate))
-
 #define MENU_PATH "/MenuBar/EditMenu/EditOps_6"
 
 static void xed_window_activatable_iface_init (XedWindowActivatableInterface *iface);
-
-G_DEFINE_DYNAMIC_TYPE_EXTENDED (XedSortPlugin,
-                                xed_sort_plugin,
-                                PEAS_TYPE_EXTENSION_BASE,
-                                0,
-                                G_IMPLEMENT_INTERFACE_DYNAMIC (XED_TYPE_WINDOW_ACTIVATABLE,
-                                                               xed_window_activatable_iface_init))
 
 struct _XedSortPluginPrivate
 {
@@ -61,6 +52,14 @@ enum
     PROP_0,
     PROP_WINDOW
 };
+
+G_DEFINE_DYNAMIC_TYPE_EXTENDED (XedSortPlugin,
+                                xed_sort_plugin,
+                                PEAS_TYPE_EXTENSION_BASE,
+                                0,
+                                G_IMPLEMENT_INTERFACE_DYNAMIC (XED_TYPE_WINDOW_ACTIVATABLE,
+                                                               xed_window_activatable_iface_init)
+                                G_ADD_PRIVATE_DYNAMIC (XedSortPlugin))
 
 static void sort_cb (GtkAction     *action,
                      XedSortPlugin *plugin);
@@ -310,7 +309,7 @@ xed_sort_plugin_init (XedSortPlugin *plugin)
 {
     xed_debug_message (DEBUG_PLUGINS, "XedSortPlugin initializing");
 
-    plugin->priv = G_TYPE_INSTANCE_GET_PRIVATE (plugin, XED_TYPE_SORT_PLUGIN, XedSortPluginPrivate);
+    plugin->priv = xed_sort_plugin_get_instance_private (plugin);
 }
 
 static void
@@ -383,8 +382,6 @@ xed_sort_plugin_class_init (XedSortPluginClass *klass)
     object_class->get_property = xed_sort_plugin_get_property;
 
     g_object_class_override_property (object_class, PROP_WINDOW, "window");
-
-    g_type_class_add_private (klass, sizeof (XedSortPluginPrivate));
 }
 
 static void

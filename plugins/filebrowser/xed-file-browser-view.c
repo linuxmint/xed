@@ -31,10 +31,6 @@
 #include "xed-file-browser-marshal.h"
 #include "xed-file-browser-enum-types.h"
 
-#define XED_FILE_BROWSER_VIEW_GET_PRIVATE(object)( \
-        G_TYPE_INSTANCE_GET_PRIVATE((object), \
-        XED_TYPE_FILE_BROWSER_VIEW, XedFileBrowserViewPrivate))
-
 struct _XedFileBrowserViewPrivate
 {
     GtkTreeViewColumn *column;
@@ -81,7 +77,11 @@ static const GtkTargetEntry drag_source_targets[] = {
     { "text/uri-list", 0, 0 }
 };
 
-G_DEFINE_DYNAMIC_TYPE (XedFileBrowserView, xed_file_browser_view, GTK_TYPE_TREE_VIEW)
+G_DEFINE_DYNAMIC_TYPE_EXTENDED (XedFileBrowserView,
+                                xed_file_browser_view,
+                                GTK_TYPE_TREE_VIEW,
+                                0,
+                                G_ADD_PRIVATE_DYNAMIC (XedFileBrowserView))
 
 static void on_cell_edited (GtkCellRendererText *cell,
                             gchar               *path,
@@ -824,8 +824,6 @@ xed_file_browser_view_class_init (XedFileBrowserViewClass *klass)
                                bookmark_activated), NULL, NULL,
                       g_cclosure_marshal_VOID__BOXED,
                       G_TYPE_NONE, 1, GTK_TYPE_TREE_ITER);
-
-    g_type_class_add_private (object_class, sizeof (XedFileBrowserViewPrivate));
 }
 
 static void
@@ -864,7 +862,7 @@ cell_data_cb (GtkTreeViewColumn  *tree_column,
 static void
 xed_file_browser_view_init (XedFileBrowserView *obj)
 {
-    obj->priv = XED_FILE_BROWSER_VIEW_GET_PRIVATE (obj);
+    obj->priv = xed_file_browser_view_get_instance_private (obj);
 
     obj->priv->column = gtk_tree_view_column_new ();
 
