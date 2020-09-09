@@ -50,7 +50,7 @@ struct _XedWordCompletionPluginPrivate
     GtkWidget *window;
     XedView *view;
     GtkSourceCompletionProvider *provider;
-  GSettings *settings;
+    GSettings *settings;
 };
 
 enum
@@ -135,9 +135,9 @@ xed_wordcompletion_plugin_dispose (GObject *object)
 
 static void
 xed_wordcompletion_plugin_set_property (GObject      *object,
-                                           guint         prop_id,
-                                           const GValue *value,
-                                           GParamSpec   *pspec)
+                                        guint         prop_id,
+                                        const GValue *value,
+                                        GParamSpec   *pspec)
 {
     XedWordCompletionPlugin *plugin = XED_WORDCOMPLETION_PLUGIN (object);
 
@@ -216,16 +216,16 @@ create_provider (void)
     settings = g_settings_new (WORDCOMPLETION_SETTINGS_BASE);
 
     g_settings_bind (settings, SETTINGS_KEY_MINIMUM_WORD_SIZE,
-             provider, "minimum-word-size",
-             G_SETTINGS_BIND_GET);
+                     provider, "minimum-word-size",
+                     G_SETTINGS_BIND_GET);
 
     update_activation (provider, settings);
 
     g_signal_connect_object (settings,
-                 "changed::" SETTINGS_KEY_INTERACTIVE_COMPLETION,
-                 G_CALLBACK (on_interactive_completion_changed_cb),
-                 provider,
-                 0);
+                             "changed::" SETTINGS_KEY_INTERACTIVE_COMPLETION,
+                             G_CALLBACK (on_interactive_completion_changed_cb),
+                             provider,
+                             0);
 
     g_object_unref (settings);
 
@@ -293,8 +293,7 @@ xed_wordcompletion_view_activate (XedViewActivatable *activatable)
     priv->provider = g_object_ref (provider);
 
     gtk_source_completion_add_provider (completion, provider, NULL);
-    gtk_source_completion_words_register (GTK_SOURCE_COMPLETION_WORDS (provider),
-                                          buf);
+    gtk_source_completion_words_register (GTK_SOURCE_COMPLETION_WORDS (provider), buf);
 }
 
 static void
@@ -315,14 +314,13 @@ xed_wordcompletion_view_deactivate (XedViewActivatable *activatable)
                                            priv->provider,
                                            NULL);
 
-    gtk_source_completion_words_unregister (GTK_SOURCE_COMPLETION_WORDS (priv->provider),
-                                            buf);
+    gtk_source_completion_words_unregister (GTK_SOURCE_COMPLETION_WORDS (priv->provider), buf);
 }
 
 static void
-dialog_response_cb (GtkWidget          *widget,
-                    gint                response,
-                    gpointer                         data)
+dialog_response_cb (GtkWidget *widget,
+                    gint       response,
+                    gpointer   data)
 {
     gtk_widget_destroy (widget);
 }
@@ -358,37 +356,37 @@ get_configure_widget (XedWordCompletionPlugin *plugin)
     data_dir = peas_extension_base_get_data_dir (PEAS_EXTENSION_BASE (plugin));
     ui_file = g_build_filename (data_dir, "xed-wordcompletion-configure.ui", NULL);
     ret = xed_utils_get_ui_objects (ui_file,
-                                  NULL,
-                                  &error_widget,
-                                  "configure_dialog", &widget->dialog,
-                                  "spin_button_min_word_size", &widget->min_word_size,
-                                  "check_button_interactive_completion", &widget->interactive_completion,
+                                    NULL,
+                                    &error_widget,
+                                    "configure_dialog", &widget->dialog,
+                                    "spin_button_min_word_size", &widget->min_word_size,
+                                    "check_button_interactive_completion", &widget->interactive_completion,
                                     NULL);
 
     g_free (data_dir);
     g_free (ui_file);
 
     if (!ret)
-  {
-      return NULL;
-  }
+    {
+        return NULL;
+    }
 
-  gtk_window_set_modal (GTK_WINDOW (widget->dialog), TRUE);
+    gtk_window_set_modal (GTK_WINDOW (widget->dialog), TRUE);
 
     g_settings_bind (widget->settings, SETTINGS_KEY_INTERACTIVE_COMPLETION,
-             widget->interactive_completion, "active",
-             G_SETTINGS_BIND_DEFAULT | G_SETTINGS_BIND_GET_NO_CHANGES);
+                     widget->interactive_completion, "active",
+                     G_SETTINGS_BIND_DEFAULT | G_SETTINGS_BIND_GET_NO_CHANGES);
 
     g_settings_bind (widget->settings, SETTINGS_KEY_MINIMUM_WORD_SIZE,
-             widget->min_word_size, "value",
-             G_SETTINGS_BIND_DEFAULT | G_SETTINGS_BIND_GET_NO_CHANGES);
+                     widget->min_word_size, "value",
+                     G_SETTINGS_BIND_DEFAULT | G_SETTINGS_BIND_GET_NO_CHANGES);
 
-     g_signal_connect (widget->dialog, "destroy",
+    g_signal_connect (widget->dialog, "destroy",
                       G_CALLBACK (configure_widget_destroyed), widget);
 
     gtk_widget_show (GTK_WIDGET (widget->dialog));
     g_signal_connect (widget->dialog, "response",
-                              G_CALLBACK (dialog_response_cb), widget);
+                      G_CALLBACK (dialog_response_cb), widget);
 
     return widget;
 }
