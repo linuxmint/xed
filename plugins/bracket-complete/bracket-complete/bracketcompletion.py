@@ -19,10 +19,9 @@
 #  Boston, MA 02110-1301, USA.
 
 import gi
-gi.require_version('Gtk', '3.0')
 gi.require_version('Peas', '1.0')
 #gi.require_version('Xed', '3.0')
-from gi.repository import GObject, Gtk, Gdk, Xed
+from gi.repository import GObject, Gdk, Xed
 
 common_brackets = {
     '(' : ')',
@@ -210,10 +209,10 @@ class BracketCompletionPlugin(GObject.Object, Xed.ViewActivatable):
             if self._last_iter == None:
                 return False
 
-            iter = self._doc.get_iter_at_mark(self._doc.get_insert())
-            iter.backward_char()
+            iter1 = self._doc.get_iter_at_mark(self._doc.get_insert())
+            iter1.backward_char()
             self._doc.begin_user_action()
-            self._doc.delete(iter, self._last_iter)
+            self._doc.delete(iter1, self._last_iter)
             self._doc.end_user_action()
             self._last_iter = None
             return True
@@ -224,20 +223,20 @@ class BracketCompletionPlugin(GObject.Object, Xed.ViewActivatable):
             # Note: it might break IM!
 
             mark = self._doc.get_insert()
-            iter = self._doc.get_iter_at_mark(mark)
+            iter1 = self._doc.get_iter_at_mark(mark)
 
-            indent = self.compute_indentation(iter)
+            indent = self.compute_indentation(iter1)
             indent = "\n" + indent
 
             # Insert new line and auto-indent.
             self._doc.begin_user_action()
-            self._doc.insert(iter, indent)
-            self._doc.insert(iter, indent)
+            self._doc.insert(iter1, indent)
+            self._doc.insert(iter1, indent)
             self._doc.end_user_action()
 
             # Leave the cursor where we want it to be
-            iter.backward_chars(len(indent))
-            self._doc.place_cursor(iter)
+            iter1.backward_chars(len(indent))
+            self._doc.place_cursor(iter1)
             self.view.scroll_mark_onscreen(mark)
 
             self._last_iter = None
@@ -287,7 +286,7 @@ class BracketCompletionPlugin(GObject.Object, Xed.ViewActivatable):
         else:
             bracket2 = close_brackets[word]
 
-        word2, start2, end2 = self.get_next_token()
+        word2, end2 = self.get_next_token()
 
         # Check to skip the closing bracket
         # Example: word = ) and word2 = )
