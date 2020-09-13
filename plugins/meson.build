@@ -1,6 +1,7 @@
 pluginsdatadir = join_paths(datadir, 'xed', 'plugins')
 pluginslibdir = join_paths(libdir, 'xed', 'plugins')
 
+subdir('bracket-complete')
 subdir('docinfo')
 subdir('filebrowser')
 subdir('joinlines')
