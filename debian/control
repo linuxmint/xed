@@ -12,7 +12,7 @@ Build-Depends: debhelper (>= 9),
                libgtk-3-dev,
                libgtksourceview-4-dev,
                libpeas-dev,
-               libxapp-dev,
+               libxapp-dev (>= 1.9),
                libsm-dev,
                libx11-dev,
                libxml2-dev,
@@ -32,7 +32,7 @@ Depends: iso-codes,
          ${shlibs:Depends},
          python3,
          python3-gi,
-         xapps-common,
+         xapps-common (>= 1.9.0),
          zenity
 XB-Python-Version: ${python:Versions}
 Description: Text editor

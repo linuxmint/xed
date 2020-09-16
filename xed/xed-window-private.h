@@ -32,6 +32,7 @@
 #define __XED_WINDOW_PRIVATE_H__
 
 #include <libpeas/peas-extension-set.h>
+#include <libxapp/xapp-favorites.h>
 
 #include "xed/xed-window.h"
 #include "xed-message-bus.h"
@@ -100,6 +101,10 @@ struct _XedWindowPrivate
     GtkActionGroup *recents_action_group;
     guint           recents_menu_ui_id;
     gulong          recents_handler_id;
+
+    GtkActionGroup *favorites_action_group;
+    guint           favorites_menu_ui_id;
+    gulong          favorites_handler_id;
 
     XedTab *active_tab;
     gint    num_tabs;
