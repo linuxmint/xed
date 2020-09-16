@@ -16,9 +16,15 @@
       <placeholder name="FileOps_5"/>
       <menuitem name="FilePrintPreviewMenu" action="FilePrintPreview"/>
       <menuitem name="FilePrintMenu" action="FilePrint"/>
-      <placeholder name="FileRecentsPlaceholder">
-        <separator/>
-      </placeholder>
+      <separator/>
+      <menu name="XAppFavoritesMenu" action="XAppFavoritesMenu">
+        <placeholder name="XAppFavorites">
+        </placeholder>
+      </menu>
+      <menu name="FileRecentsMenu" action="FileRecentsMenu">
+        <placeholder name="FileRecentsPlaceholder">
+        </placeholder>
+      </menu>
       <separator/>
       <menuitem name="FileCloseMenu" action="FileClose"/>
       <menuitem name="FileQuitMenu" action="FileQuit"/>

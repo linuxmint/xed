@@ -209,6 +209,14 @@ xed_window_dispose (GObject *object)
         window->priv->recents_handler_id = 0;
     }
 
+    if (window->priv->favorites_handler_id != 0)
+    {
+        XAppFavorites *favorites;
+        favorites = xapp_favorites_get ();
+        g_signal_handler_disconnect (favorites, window->priv->favorites_handler_id);
+        window->priv->favorites_handler_id = 0;
+    }
+
     g_clear_object (&window->priv->manager);
     g_clear_object (&window->priv->message_bus);
     g_clear_object (&window->priv->window_group);
@@ -878,7 +886,7 @@ update_recent_files_menu (XedWindow *window)
         gtk_action_group_add_action (p->recents_action_group, action);
         g_object_unref (action);
 
-        gtk_ui_manager_add_ui (p->manager, p->recents_menu_ui_id, "/MenuBar/FileMenu/FileRecentsPlaceholder",
+        gtk_ui_manager_add_ui (p->manager, p->recents_menu_ui_id, "/MenuBar/FileMenu/FileRecentsMenu/FileRecentsPlaceholder",
                                action_name, action_name, GTK_UI_MANAGER_MENUITEM, FALSE);
 
         g_free (action_name);
@@ -909,6 +917,65 @@ toolbar_visibility_changed (GtkWidget *toolbar,
     {
         gtk_toggle_action_set_active (GTK_TOGGLE_ACTION(action), visible);
     }
+}
+
+static void
+favorite_activated (GtkAction     *action,
+                    gpointer       user_data)
+{
+    GFile *location;
+
+    location = g_file_new_for_uri (gtk_action_get_name (action));
+    xed_commands_load_location (XED_WINDOW (user_data), location, NULL, 0);
+
+    g_object_unref (location);
+}
+
+static void
+update_favorites_menu (XedWindow *window)
+{
+    XedWindowPrivate *p = window->priv;
+    XAppFavorites *favorites;
+    GList *actions, *l;
+    GList *items = NULL;
+    guint i;
+
+    xed_debug (DEBUG_WINDOW);
+
+    g_return_if_fail (p->favorites_action_group != NULL);
+
+    if (p->favorites_menu_ui_id != 0)
+    {
+        gtk_ui_manager_remove_ui (p->manager, p->favorites_menu_ui_id);
+    }
+
+    actions = gtk_action_group_list_actions (p->favorites_action_group);
+    for (l = actions; l != NULL; l = l->next)
+    {
+        g_signal_handlers_disconnect_by_func(GTK_ACTION (l->data), G_CALLBACK (favorite_activated), window);
+        gtk_action_group_remove_action (p->favorites_action_group, GTK_ACTION(l->data));
+    }
+    g_list_free (actions);
+
+    p->favorites_menu_ui_id = gtk_ui_manager_new_merge_id (p->manager);
+
+    favorites = xapp_favorites_get ();
+    items = xapp_favorites_create_actions (favorites, "text/*");
+
+    for (l = items; l != NULL; l = l->next)
+    {
+        GtkAction *action = GTK_ACTION (l->data);
+        const gchar *name = gtk_action_get_name (action);
+
+        g_signal_connect (action, "activate", G_CALLBACK (favorite_activated), window);
+
+        gtk_action_group_add_action (p->favorites_action_group, action);
+
+        gtk_ui_manager_add_ui (p->manager, p->favorites_menu_ui_id, "/MenuBar/FileMenu/XAppFavoritesMenu/XAppFavorites",
+                               name, name, GTK_UI_MANAGER_MENUITEM, FALSE);
+    }
+
+    g_list_free_full (items, g_object_unref);
 }
 
 static GtkWidget *
@@ -943,6 +1010,7 @@ create_menu_bar_and_toolbar (XedWindow *window,
     GtkWidget *box;
     GtkWidget *separator;
     GtkWidget *button;
+    XAppFavorites *favorites;
 
     xed_debug (DEBUG_WINDOW);
 
@@ -1016,6 +1084,19 @@ create_menu_bar_and_toolbar (XedWindow *window,
     window->priv->recents_handler_id = g_signal_connect(recent_manager, "changed", G_CALLBACK (recent_manager_changed),
                                                         window);
     update_recent_files_menu (window);
+
+    action_group = gtk_action_group_new ("FavoriteFilesActions");
+    gtk_action_group_set_translation_domain (action_group, NULL);
+    window->priv->favorites_action_group = action_group;
+    gtk_ui_manager_insert_action_group (manager, action_group, 0);
+    g_object_unref (action_group);
+
+    favorites = xapp_favorites_get ();
+    window->priv->favorites_handler_id = g_signal_connect_swapped (favorites,
+                                                                   "changed", G_CALLBACK (update_favorites_menu),
+                                                                   window);
+
+    update_favorites_menu (window);
 
     /* list of open documents menu */
     action_group = gtk_action_group_new ("DocumentsListActions");
