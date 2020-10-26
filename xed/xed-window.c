@@ -212,7 +212,7 @@ xed_window_dispose (GObject *object)
     if (window->priv->favorites_handler_id != 0)
     {
         XAppFavorites *favorites;
-        favorites = xapp_favorites_get ();
+        favorites = xapp_favorites_get_default ();
         g_signal_handler_disconnect (favorites, window->priv->favorites_handler_id);
         window->priv->favorites_handler_id = 0;
     }
@@ -959,8 +959,14 @@ update_favorites_menu (XedWindow *window)
 
     p->favorites_menu_ui_id = gtk_ui_manager_new_merge_id (p->manager);
 
-    favorites = xapp_favorites_get ();
-    items = xapp_favorites_create_actions (favorites, "text/*");
+    favorites = xapp_favorites_get_default ();
+
+    const gchar *supported_mimetypes[2] = {
+        "text/plain",
+        NULL
+    };
+
+    items = xapp_favorites_create_actions (favorites, supported_mimetypes);
 
     for (l = items; l != NULL; l = l->next)
     {
@@ -1091,7 +1097,7 @@ create_menu_bar_and_toolbar (XedWindow *window,
     gtk_ui_manager_insert_action_group (manager, action_group, 0);
     g_object_unref (action_group);
 
-    favorites = xapp_favorites_get ();
+    favorites = xapp_favorites_get_default ();
     window->priv->favorites_handler_id = g_signal_connect_swapped (favorites,
                                                                    "changed", G_CALLBACK (update_favorites_menu),
                                                                    window);
