@@ -464,51 +464,6 @@ get_current_path (XedDocumentsPanel *panel)
     return path;
 }
 
-static void
-menu_position (GtkMenu           *menu,
-               gint              *x,
-               gint              *y,
-               gboolean          *push_in,
-               XedDocumentsPanel *panel)
-{
-    GtkTreePath *path;
-    GdkRectangle rect;
-    gint wy;
-    GtkAllocation allocation;
-    GtkRequisition requisition;
-    GtkWidget *w;
-
-    w = panel->priv->treeview;
-
-    gtk_widget_get_allocation(w, &allocation);
-
-    path = get_current_path (panel);
-
-    gtk_tree_view_get_cell_area (GTK_TREE_VIEW (w), path, NULL, &rect);
-
-    wy = rect.y;
-
-    gdk_window_get_origin (gtk_widget_get_window (w), x, y);
-
-    gtk_widget_get_preferred_size (GTK_WIDGET (menu), NULL, &requisition);
-
-    if (gtk_widget_get_direction (w) == GTK_TEXT_DIR_RTL)
-    {
-        *x += allocation.x + allocation.width - requisition.width - 10;
-    }
-    else
-    {
-        *x += allocation.x + 10;
-    }
-
-    wy = MAX (*y + 5, *y + wy + 5);
-    wy = MIN (wy, *y + allocation.height - requisition.height - 5);
-
-    *y = wy;
-
-    *push_in = TRUE;
-}
-
 static gboolean
 show_popup_menu (XedDocumentsPanel *panel,
                  GdkEventButton    *event)
