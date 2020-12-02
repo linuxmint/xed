@@ -938,7 +938,6 @@ update_favorites_menu (XedWindow *window)
     XAppFavorites *favorites;
     GList *actions, *l;
     GList *items = NULL;
-    guint i;
 
     xed_debug (DEBUG_WINDOW);
 
