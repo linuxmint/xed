@@ -449,21 +449,6 @@ xed_documents_panel_class_init (XedDocumentsPanelClass *klass)
                                                           G_PARAM_STATIC_STRINGS));
 }
 
-static GtkTreePath *
-get_current_path (XedDocumentsPanel *panel)
-{
-    gint num;
-    GtkWidget *nb;
-    GtkTreePath *path;
-
-    nb = _xed_window_get_notebook (panel->priv->window);
-    num = gtk_notebook_get_current_page (GTK_NOTEBOOK (nb));
-
-    path = gtk_tree_path_new_from_indices (num, -1);
-
-    return path;
-}
-
 static gboolean
 show_popup_menu (XedDocumentsPanel *panel,
                  GdkEventButton    *event)
