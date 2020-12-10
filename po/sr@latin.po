@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MATE Desktop Environment\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-06-21 12:40+0100\n"
-"PO-Revision-Date: 2018-09-05 09:54+0000\n"
-"Last-Translator: Knez <Unknown>\n"
+"POT-Creation-Date: 2020-11-30 11:24+0000\n"
+"PO-Revision-Date: 2020-11-30 20:35+0000\n"
+"Last-Translator: Saša Marjanović <Unknown>\n"
 "Language-Team: Serbian (Latin) "
 "(http://www.transifex.com/projects/p/MATE/language/sr@latin/)\n"
 "MIME-Version: 1.0\n"
@@ -17,8 +17,8 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Launchpad-Export-Date: 2020-06-24 10:09+0000\n"
-"X-Generator: Launchpad (build 1cbd0aa39df153c901321817f9b57cf3f232b507)\n"
+"X-Launchpad-Export-Date: 2020-12-10 10:28+0000\n"
+"X-Generator: Launchpad (build 4853cb86c14c5a9e513816c8a61121c639b30835)\n"
 "Language: sr@latin\n"
 
 #: ../data/org.x.editor.gschema.xml.in.h:1
@@ -32,10 +32,10 @@ msgid ""
 "font named in the \"Editor Font\" option will be used instead of the system "
 "font."
 msgstr ""
-"Treba li koristiti standardna sistemska slova nepromenjive širine za "
-"uređivanje teksta umesto slova određenih za xed. Ako je ova mogućnost "
-"isključena, onda će se umesto slova sistema koristiti slova imenovana u "
-"mogućnosti \"Uređivač slova\"."
+"Dа li dа koristite sistemski podrаzumevаni font fiksne širine zа uređivаnje "
+"tekstа umesto fontа koji je specifičаn zа xed.  Ako je ovа opcijа "
+"isključenа, umesto sistemskog fontа koristiće se font označen u "
+"odgovarajućoj opciji „Uređivača fontova“."
 
 #: ../data/org.x.editor.gschema.xml.in.h:3
 msgctxt "editor-font"
@@ -44,7 +44,7 @@ msgstr "'Monospace 12'"
 
 #: ../data/org.x.editor.gschema.xml.in.h:4
 msgid "Editor Font"
-msgstr "Font uređivača"
+msgstr "Uređivač fontova"
 
 #: ../data/org.x.editor.gschema.xml.in.h:5
 msgid ""
@@ -63,69 +63,82 @@ msgid ""
 "Whether xed should prefer the dark variation of the current Gtk theme if "
 "available."
 msgstr ""
-"Trebalo bi da xed preferira tamnu verziju trenutne Gtk teme ako je dostupna."
+"Da li da xed preferira tamnu varijantu trenutne Gtk teme, ukoliko je "
+"dostupna."
 
 #: ../data/org.x.editor.gschema.xml.in.h:8
 msgid "Style Scheme"
-msgstr "Postavke stila"
+msgstr "Šema stila"
 
 #: ../data/org.x.editor.gschema.xml.in.h:9
 msgid "The ID of a GtkSourceView Style Scheme used to color the text."
-msgstr "ID postavke GtkSourceView stila koji se koristi za bojenje teksta."
+msgstr "ID GtkSourceView šeme stila koja se koristi za bojenje teksta"
 
 #: ../data/org.x.editor.gschema.xml.in.h:10
 msgid "Create Backup Copies"
-msgstr "Pravi rezervne primerke"
+msgstr "Napravi rezervne kopije"
 
 #: ../data/org.x.editor.gschema.xml.in.h:11
 msgid ""
 "Whether xed should create backup copies for the files it saves. You can set "
 "the backup file extension with the \"Backup Copy Extension\" option."
 msgstr ""
+"Da li xed treba da napravi rezervne kopije datoteka koje čuva. Možete da "
+"postavite ekstenziju rezervne datoteke opcijom \"Ekstenzija rezervne "
+"kopije\" (``Backup Copy Extension``)"
 
 #: ../data/org.x.editor.gschema.xml.in.h:12
 msgid "Autosave"
-msgstr "Čuvaj u periodičnim razmacima"
+msgstr "Automatsko čuvanje"
 
 #: ../data/org.x.editor.gschema.xml.in.h:13
 msgid ""
 "Whether xed should automatically save modified files after a time interval. "
 "You can set the time interval with the \"Autosave Interval\" option."
 msgstr ""
+"Da li da xed automatski čuva izmenjene datoteke posle određenog vremenskog "
+"perioda. Vremenski period možete odrediti opcijom \"Interval automatskog "
+"čuvanja\""
 
 #: ../data/org.x.editor.gschema.xml.in.h:14
 msgid "Autosave Interval"
-msgstr "Vremenski razmak za periodično čuvanje"
+msgstr "Interval automatskog čuvanja"
 
 #: ../data/org.x.editor.gschema.xml.in.h:15
 msgid ""
 "Number of minutes after which xed will automatically save modified files. "
 "This will only take effect if the \"Autosave\" option is turned on."
 msgstr ""
+"Broj minuta posle čega će xed automatski čuvati izmenjene datoteke. Ovo će "
+"imati efekta jedino ako je uključena opcija \"Automatsko čuvanje\""
 
 #: ../data/org.x.editor.gschema.xml.in.h:16
 msgid "Writable VFS schemes"
-msgstr "Mogućnosti upisa na virtualne sisteme datoteka"
+msgstr "Upisive VFS šeme"
 
 #: ../data/org.x.editor.gschema.xml.in.h:17
 msgid ""
 "List of VFS schemes xed supports in write mode. The 'file' scheme is "
 "writable by default."
 msgstr ""
+"Spisak VFS šema koje xed podržava u režimu upisivanja. Šema 'datoteka' je "
+"podrazumevano upisiva."
 
 #: ../data/org.x.editor.gschema.xml.in.h:18
 msgid "Maximum Number of Undo Actions"
-msgstr "Najveći broj opozvanih akcija"
+msgstr "Najveći broj opozvanih radnji"
 
 #: ../data/org.x.editor.gschema.xml.in.h:19
 msgid ""
 "Maximum number of actions that xed will be able to undo or redo. Use \"-1\" "
 "for unlimited number of actions."
 msgstr ""
+"Najveći broj radnji koje će xed moći da opozove ili ponovi. Koristite  \"-"
+"1\" za neograničen broj radnji."
 
 #: ../data/org.x.editor.gschema.xml.in.h:20
 msgid "Line Wrapping Mode"
-msgstr "Način preloma linije"
+msgstr "Režim preloma reda"
 
 #: ../data/org.x.editor.gschema.xml.in.h:21
 msgid ""
@@ -134,6 +147,11 @@ msgid ""
 "wrapping at individual character boundaries. Note that the values are case-"
 "sensitive, so make sure they appear exactly as mentioned here."
 msgstr ""
+"Određuje način preloma dugih redova u oblasti za uređivanje. Koristite "
+"„none“ za isključivanje preloma, „word“ za prelom na kraju reči, i „char“ za "
+"prelom između znakova. Obratite pažnju da su vrednosti osetljive na velika "
+"ili mala slova, pa se uverite da ih koristite na isti način kao što su ovde "
+"navedene."
 
 #: ../data/org.x.editor.gschema.xml.in.h:22
 msgid "Tab Size"
@@ -143,7 +161,8 @@ msgstr "Veličina tabulatora"
 msgid ""
 "Specifies the number of spaces that should be displayed instead of Tab "
 "characters."
-msgstr "Podešava broj razmaka koji će biti prikazan umesto znaka tabulatora."
+msgstr ""
+"Određuje broj razmaka koji će biti prikazani umesto znaka tabulatora."
 
 #: ../data/org.x.editor.gschema.xml.in.h:24
 msgid "Insert spaces"
@@ -151,23 +170,25 @@ msgstr "Umetni razmake"
 
 #: ../data/org.x.editor.gschema.xml.in.h:25
 msgid "Whether xed should insert spaces instead of tabs."
-msgstr ""
+msgstr "Da li bi xed trebao da umetne razmake umesto tabulatora."
 
 #: ../data/org.x.editor.gschema.xml.in.h:26
 msgid "Automatic indent"
-msgstr "Uvlači u radu"
+msgstr "Automatsko uvlačenje prvog reda"
 
 #: ../data/org.x.editor.gschema.xml.in.h:27
 msgid "Whether xed should enable automatic indentation."
-msgstr ""
+msgstr "Da li bi xed trebao da omogući automatsko uvlačenje prvog reda"
 
 #: ../data/org.x.editor.gschema.xml.in.h:28
 msgid "Display Line Numbers"
-msgstr "Prikaži brojeve linija"
+msgstr "Prikaži brojeva redova"
 
 #: ../data/org.x.editor.gschema.xml.in.h:29
 msgid "Whether xed should display line numbers in the editing area."
 msgstr ""
+"Da li bi xed trebao da prikaže brojeve redova u prostoru za uređivanje "
+"teksta."
 
 #: ../data/org.x.editor.gschema.xml.in.h:30
 msgid "Highlight Current Line"
@@ -175,7 +196,7 @@ msgstr "Istakni tekući red"
 
 #: ../data/org.x.editor.gschema.xml.in.h:31
 msgid "Whether xed should highlight the current line."
-msgstr ""
+msgstr "Da li bi xed trebao da istakne tekući red."
 
 #: ../data/org.x.editor.gschema.xml.in.h:32
 msgid "Highlight Matching Bracket"
@@ -184,6 +205,7 @@ msgstr "Istakni uparenu zagradu"
 #: ../data/org.x.editor.gschema.xml.in.h:33
 msgid "Whether xed should highlight the bracket matching the selected one."
 msgstr ""
+"Da li bi xed trebao da istakne zagradu koja je uparena sa označenom zagradom."
 
 #: ../data/org.x.editor.gschema.xml.in.h:34
 msgid "Display Right Margin"
@@ -192,6 +214,7 @@ msgstr "Prikaži desnu marginu"
 #: ../data/org.x.editor.gschema.xml.in.h:35
 msgid "Whether xed should display the right margin in the editing area."
 msgstr ""
+"Da li bi xed trebao da prikaže desnu marginu u prostoru za uređivanje teksta."
 
 #: ../data/org.x.editor.gschema.xml.in.h:36
 msgid "Right Margin Position"
@@ -215,6 +238,12 @@ msgid ""
 "the start/end of the line and \"always\" to always move to the start/end of "
 "the text instead of the start/end of the line."
 msgstr ""
+"Određuje kako se kursor pomera kada se pritisnu tipke HOME i END. Koristite "
+"„disabled“ za stalno vraćanje na početak/kraj linije, „after“ za pomeranje "
+"na početak/kraj linije po prvom pritisku i na početak/kraj teksta "
+"zanemarijući razmake po drugom pritisku, „before“ za pomeranje na "
+"početak/kraj teksta pre pomeranja na početak/kraj linije i „always“ za "
+"pomeranje na početak/kraj teksta umesto na početak/kraj linije."
 
 #: ../data/org.x.editor.gschema.xml.in.h:40
 msgid "Restore Previous Cursor Position"
@@ -225,15 +254,19 @@ msgid ""
 "Whether xed should restore the previous cursor position when a file is "
 "loaded."
 msgstr ""
+"Da li bi xed trebao da vrati prethodni položaj kursora prilikom učitavanja "
+"datoteke."
 
 #: ../data/org.x.editor.gschema.xml.in.h:42
 msgid "Enable Search Highlighting"
-msgstr "Uključi isticanje pronađenog teksta"
+msgstr "Omogući isticanje pretrаženog teksta"
 
 #: ../data/org.x.editor.gschema.xml.in.h:43
 msgid ""
 "Whether xed should highlight all the occurrences of the searched text."
 msgstr ""
+"Da li bi xed trebao da istakne sva mesta na kojima se pretraženi tekst "
+"pojavljuje."
 
 #: ../data/org.x.editor.gschema.xml.in.h:44
 msgid "Enable Syntax Highlighting"
@@ -241,45 +274,49 @@ msgstr "Uključi isticanje sintakse"
 
 #: ../data/org.x.editor.gschema.xml.in.h:45
 msgid "Whether xed should enable syntax highlighting."
-msgstr ""
+msgstr "Da li bi xed trebao da omogući isticanje sintakse"
 
 #: ../data/org.x.editor.gschema.xml.in.h:46
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:25
 msgid "Ensure Trailing Newline"
-msgstr ""
+msgstr "Osigurava praćenje novog reda"
 
 #: ../data/org.x.editor.gschema.xml.in.h:47
 msgid ""
 "Whether xed will ensure that documents always end with a trailing newline."
 msgstr ""
+"Da li xed treba da osigura da se dokumenti uvek završavaju pratećim novim "
+"redom."
 
 #: ../data/org.x.editor.gschema.xml.in.h:48
 msgid "Toolbar is Visible"
-msgstr "Paleta sa alatima je vidljiva"
+msgstr "Traka alata je vidljiva"
 
 #: ../data/org.x.editor.gschema.xml.in.h:49
 msgid "Whether the toolbar should be visible in editing windows."
-msgstr "Da li da linija sa alatima bude vidljiva."
+msgstr "Da li traka alata treba da bude vidljiva."
 
 #: ../data/org.x.editor.gschema.xml.in.h:50
 msgid "Status Bar is Visible"
-msgstr "Prikaži statusnu liniju"
+msgstr "Traka stanja je vidljiva"
 
 #: ../data/org.x.editor.gschema.xml.in.h:51
 msgid ""
 "Whether the status bar at the bottom of editing windows should be visible."
 msgstr ""
-"Da li da linija stanja u dnu prostora za izmenu teksta bude vidljiva."
+"Da li traka stanja na dnu prozora za uređivanje teksta treba da bude "
+"vidljiva."
 
 #: ../data/org.x.editor.gschema.xml.in.h:52
 msgid "Side Pane is Visible"
-msgstr "Bočna oblast je vidljiva"
+msgstr "Bočno okno je vidljivo"
 
 #: ../data/org.x.editor.gschema.xml.in.h:53
 msgid ""
 "Whether the side pane at the left of editing windows should be visible."
 msgstr ""
-"Da li bočni panel u levom delu oblasti za unos teksta treba da bude vidljiv."
+"Da li bočni panel na levoj strani prozora za uređivanje teksta treba da bude "
+"vidljiv."
 
 #: ../data/org.x.editor.gschema.xml.in.h:54
 msgid "Bottom Panel is Visible"
@@ -288,35 +325,36 @@ msgstr "Panel na dnu je vidljiv"
 #: ../data/org.x.editor.gschema.xml.in.h:55
 msgid ""
 "Whether the bottom panel at the bottom of editing windows should be visible."
-msgstr "Da li panel na dnu prostora za unos teksta treba da bude vidljiv."
+msgstr ""
+"Da li panel na dnu prozora za uređivanje teksta treba da bude vidljiv."
 
 #: ../data/org.x.editor.gschema.xml.in.h:56
 msgid "Allow changing active tabs by scrolling"
-msgstr ""
+msgstr "Dozvoli promenu aktivnog jezička skrolovanjem"
 
 #: ../data/org.x.editor.gschema.xml.in.h:57
 msgid "Whether you can change active tabs by scrolling."
-msgstr ""
+msgstr "Da li možete da promenite aktivni jezičak skrolovanjem."
 
 #: ../data/org.x.editor.gschema.xml.in.h:58
 msgid "Minimap is visible"
-msgstr ""
+msgstr "Minijaturni pregled koda je vidljiv"
 
 #: ../data/org.x.editor.gschema.xml.in.h:59
 msgid "Whether the minimap for the document should be visible."
-msgstr ""
+msgstr "Da li minijaturni pregled koda za dokument treba da bude vidljiv."
 
 #: ../data/org.x.editor.gschema.xml.in.h:60
 msgid "Maximum Recent Files"
-msgstr "Maksimum skoro otvaranih datoteka"
+msgstr "Najveći broj skoro otvaranih datoteka"
 
 #: ../data/org.x.editor.gschema.xml.in.h:61
 msgid ""
 "Specifies the maximum number of recently opened files that will be displayed "
 "in the \"Recent Files\" submenu."
 msgstr ""
-"Podešava maksimalan broj skoro otvorenih datoteka koje će biti prikazane u "
-"„Skoro otvorene datoteke“ podmeniju."
+"Određuje najveći broj skoro otvorenih datoteka koje će biti prikazane u "
+"podmeniju „Skoro otvorene datoteke“."
 
 #: ../data/org.x.editor.gschema.xml.in.h:62
 msgid "Print Syntax Highlighting"
@@ -324,7 +362,7 @@ msgstr "Štampaj isticanje sintakse"
 
 #: ../data/org.x.editor.gschema.xml.in.h:63
 msgid "Whether xed should print syntax highlighting when printing documents."
-msgstr ""
+msgstr "Da li xed trebao da ističe sintaksu prilikom štampanja dokumenata."
 
 #: ../data/org.x.editor.gschema.xml.in.h:64
 msgid "Print Header"
@@ -333,10 +371,11 @@ msgstr "Štampaj zaglavlje"
 #: ../data/org.x.editor.gschema.xml.in.h:65
 msgid "Whether xed should include a document header when printing documents."
 msgstr ""
+"Da li bi xed trebao da uključi zaglavlje dokumenta prilikom štampanja."
 
 #: ../data/org.x.editor.gschema.xml.in.h:66
 msgid "Printing Line Wrapping Mode"
-msgstr "Način preloma štampane linije"
+msgstr "Način preloma štampanog reda"
 
 #: ../data/org.x.editor.gschema.xml.in.h:67
 msgid ""
@@ -345,21 +384,27 @@ msgid ""
 "individual character boundaries. Note that the values are case-sensitive, so "
 "make sure they appear exactly as mentioned here."
 msgstr ""
+"Određuje način prelamanja dugih redova za štampanje. Koristite „none“ za "
+"isključivanje preloma, „word“ za prelom na kraju reči, i „char“ za prelom "
+"između znakova. Obratite pažnju da su vrednosti osetljive na velika ili mala "
+"slova, pa se uverite da ih koristite na isti način kao što su ovde navedene."
 
 #: ../data/org.x.editor.gschema.xml.in.h:68
 msgid "Print Line Numbers"
-msgstr "Štampaj brojeve linija"
+msgstr "Štampaj brojeve redova"
 
 #: ../data/org.x.editor.gschema.xml.in.h:69
 msgid ""
 "If this value is 0, then no line numbers will be inserted when printing a "
 "document. Otherwise, xed will print line numbers every such number of lines."
 msgstr ""
+"Ukoliko je vrednost 0, program neće umetati brojeve redova prilikom "
+"štampanja dokumenta. U suprotnom, xed će štampati broj reda za svaki red."
 
 #: ../data/org.x.editor.gschema.xml.in.h:70
 msgctxt "print-font-body-pango"
 msgid "'Monospace 9'"
-msgstr ""
+msgstr "'Monospace 9'"
 
 #: ../data/org.x.editor.gschema.xml.in.h:71
 msgid "Body Font for Printing"
@@ -369,12 +414,12 @@ msgstr "Font za štampanje tela teksta"
 msgid ""
 "Specifies the font to use for a document's body when printing documents."
 msgstr ""
-"Podešava koji će font biti korišćen za telo dokumenta prilikom štampanja."
+"Određuje koji će font biti korišćen za telo dokumenta prilikom štampanja."
 
 #: ../data/org.x.editor.gschema.xml.in.h:73
 msgctxt "print-font-header-pango"
 msgid "'Sans 11'"
-msgstr ""
+msgstr "'Sans 11'"
 
 #: ../data/org.x.editor.gschema.xml.in.h:74
 msgid "Header Font for Printing"
@@ -385,31 +430,31 @@ msgid ""
 "Specifies the font to use for page headers when printing a document. This "
 "will only take effect if the \"Print Header\" option is turned on."
 msgstr ""
-"Podešava koji će font biti korišćen za štampanje zaglavlja stranice. Ovo će "
-"jedino imati efekta ako je uključena opcija „Štampaj zaglavlje“."
+"Određuje koji će font biti korišćen za štampanje zaglavlja stranice. Ovo će "
+"jedino imati efekta ako je uključena opcija „Štampanje zaglavlja“."
 
 #: ../data/org.x.editor.gschema.xml.in.h:76
 msgctxt "print-font-numbers-pango"
 msgid "'Sans 8'"
-msgstr ""
+msgstr "'Sans 8'"
 
 #: ../data/org.x.editor.gschema.xml.in.h:77
 msgid "Line Number Font for Printing"
-msgstr "Font za štampanje broja linije"
+msgstr "Font za štampanje broja reda"
 
 #: ../data/org.x.editor.gschema.xml.in.h:78
 msgid ""
 "Specifies the font to use for line numbers when printing. This will only "
 "take effect if the \"Print Line Numbers\" option is non-zero."
 msgstr ""
-"Podešava koji će font biti korišćen za štampanje brojeva linija. Ovo će "
-"jedino imati efekta ukoliko opcija „Štampaj brojeve linija“ nije postavljena "
-"na 0."
+"Određuje koji će font biti korišćen za štampanje brojeva redova. Ovo će "
+"jedino imati efekta ukoliko opcija „Štampanje brojeva redova“ nije "
+"postavljena na 0."
 
 #: ../data/org.x.editor.gschema.xml.in.h:79
 msgctxt "auto-detected"
 msgid "[ 'UTF-8', 'CURRENT', 'ISO-8859-15', 'UTF-16' ]"
-msgstr ""
+msgstr "[ 'UTF-8', 'CURRENT', 'ISO-8859-15', 'UTF-16' ]"
 
 #: ../data/org.x.editor.gschema.xml.in.h:80
 msgid "Automatically Detected Encodings"
@@ -421,11 +466,14 @@ msgid ""
 "encoding of a file. \"CURRENT\" represents the current locale encoding. Only "
 "recognized encodings are used."
 msgstr ""
+"Uređeni spisak kodnih rasporeda koje xed koristi za samoprepoznavanje kodnog "
+"rasporeda datoteke. \"CURRENT\" označava tekući lokalni kodni raspored. "
+"Koriste se jedino prepoznati kodni rasporedi."
 
 #: ../data/org.x.editor.gschema.xml.in.h:82
 msgctxt "shown-in-menu"
 msgid "[ 'ISO-8859-15' ]"
-msgstr ""
+msgstr "[ 'ISO-8859-15' ]"
 
 #: ../data/org.x.editor.gschema.xml.in.h:83
 msgid "Encodings shown in menu"
@@ -436,38 +484,40 @@ msgid ""
 "List of encodings shown in the Character Encoding menu in open/save file "
 "selector. Only recognized encodings are used."
 msgstr ""
-"Spisak kodiranja prikazanih u meniju za kodiranje znakova pri izboru "
-"datoteka. Koriste se samo prepoznati kodni rasporedi."
+"Spisak kodnih rasporeda prikazanih u meniju za kodiranje znakova pri izboru "
+"za otvaranje/čuvanje datoteka. Koriste se samo prepoznati kodni rasporedi."
 
 #: ../data/org.x.editor.gschema.xml.in.h:85
 msgid "History for \"search for\" entries"
-msgstr ""
+msgstr "Istorija za unose tipa \"potraži\""
 
 #: ../data/org.x.editor.gschema.xml.in.h:86
 msgid "List of entries in \"search for\" textbox."
-msgstr ""
+msgstr "Spisak unosa u polju za tekst \"potraži\""
 
 #: ../data/org.x.editor.gschema.xml.in.h:87
 msgid "History for \"replace with\" entries"
-msgstr ""
+msgstr "Istorija za unose tipa \"zameni sa\""
 
 #: ../data/org.x.editor.gschema.xml.in.h:88
 msgid "List of entries in \"replace with\" textbox."
-msgstr ""
+msgstr "Spisak unosa u polju za tekst \"zameni sa\""
 
 #: ../data/org.x.editor.gschema.xml.in.h:89
 msgid "Active plugins"
-msgstr "Pokrenuti dodaci"
+msgstr "Aktivni priključci"
 
 #: ../data/org.x.editor.gschema.xml.in.h:90
 msgid ""
 "List of active plugins. It contains the \"Location\" of the active plugins. "
 "See the .xed-plugin file for obtaining the \"Location\" of a given plugin."
 msgstr ""
+"Spisak aktivnih priključaka. Sadrži \"lokaciju“ aktivnih priključaka. "
+"Pogledajte datoteku .xed-plugin da saznate \"lokaciju\" datog priključka."
 
 #: ../data/xed.appdata.xml.in.h:1
 msgid "A Text Editor"
-msgstr ""
+msgstr "Uređivač teksta"
 
 #: ../data/xed.appdata.xml.in.h:2
 msgid ""
@@ -479,109 +529,117 @@ msgid ""
 "spell checking, comparing files, viewing CVS ChangeLogs, and adjusting "
 "indentation levels. </p>"
 msgstr ""
+"<p> Xed je mali, ali moćan uređivač teksta. Sadrži većinu standardnih "
+"funkcija uređivača teksta i u potpunosti podržava međunarodni tekst u "
+"Unikodu. Napredne funkcije uključuju isticanje sintakse i automatsko "
+"uravnanje izvornog koda, štampanje i uređivanje više dokumenata u jednom "
+"prozoru. </p> <p> Xed je proširiv sistemom priključaka, koji trenutno "
+"uključuje podršku za proveru pravopisa, poređenje datoteka, pregled dnevnika "
+"izmena CVS datoteka i prilagođavanje nivoa uvlačenja teksta. </p>"
 
-#: ../data/xed.desktop.in.in.h:1 ../xed/xed-print-job.c:707
+#: ../data/xed.desktop.in.in.h:1 ../xed/xed-print-job.c:700
 msgid "Text Editor"
-msgstr "Vilenjakova beležnica"
+msgstr "Uređivač teksta"
 
 #: ../data/xed.desktop.in.in.h:2
 msgid "Edit text files"
-msgstr ""
+msgstr "Uredi tekstualne datoteke"
 
-#: ../xed/xed-app.c:102
+#: ../xed/xed-app.c:100
 msgid "Show the application's version"
-msgstr "Prikazuje izdanje programa"
+msgstr "Prikaži verziju programa"
 
-#: ../xed/xed-app.c:108
+#: ../xed/xed-app.c:106
 msgid "Display list of possible values for the encoding option"
-msgstr "Prikazuje spisak mogućih vrednosti za kodiranje"
+msgstr "Prikaži spisak mogućih vrednosti za kodne rasporede"
 
-#: ../xed/xed-app.c:115
+#: ../xed/xed-app.c:113
 msgid ""
 "Set the character encoding to be used to open the files listed on the "
 "command line"
 msgstr ""
-"Postavlja kodiranje znakova koje se koristi pri otvaranju datoteka datih u "
-"naredbi"
+"Postavi kodne rasporede znakova koji se koristi pri otvaranju datoteka datih "
+"u komandnoj liniji"
 
-#: ../xed/xed-app.c:116
+#: ../xed/xed-app.c:114
 msgid "ENCODING"
 msgstr "KODNI RASPORED"
 
-#: ../xed/xed-app.c:122
+#: ../xed/xed-app.c:120
 msgid "Create a new top-level window in an existing instance of xed"
 msgstr ""
+"Kreiraj novi nadređeni prozor najvišeg nivoa u postojećoj instanci xeda"
 
-#: ../xed/xed-app.c:129
+#: ../xed/xed-app.c:127
 msgid "Create a new document in an existing instance of xed"
-msgstr ""
+msgstr "Kreiraj novi dokument u postojećoj instanci xeda"
 
-#: ../xed/xed-app.c:136
+#: ../xed/xed-app.c:134
 msgid "Set the size and position of the window (WIDTHxHEIGHT+X+Y)"
-msgstr ""
+msgstr "Podesi veličinu i položaj prozora (ŠIRINAxVISINA+X+Y)"
 
-#: ../xed/xed-app.c:137
+#: ../xed/xed-app.c:135
 msgid "GEOMETRY"
-msgstr ""
+msgstr "GEOMETRIJA"
 
-#: ../xed/xed-app.c:143
+#: ../xed/xed-app.c:141
 msgid "Open files and block process until files are closed"
-msgstr ""
+msgstr "Otvori datoteke i blokiraj proces sve dok se datoteke ne zatvore"
 
-#: ../xed/xed-app.c:150
+#: ../xed/xed-app.c:148
 msgid "Run xed in standalone mode"
-msgstr ""
+msgstr "Pokreni xed u samostalnom režimu"
 
-#: ../xed/xed-app.c:157
+#: ../xed/xed-app.c:155
 msgid "[FILE...] [+LINE]"
-msgstr ""
+msgstr "[FILE...] [+LINE]"
 
-#: ../xed/xed-app.c:614
+#: ../xed/xed-app.c:612
 #, c-format
 msgid "%s: invalid encoding."
-msgstr ""
+msgstr "%s: neispravan kodni raspored."
 
-#: ../xed/xed-app.c:1270
+#: ../xed/xed-app.c:1266
 msgid "There was an error displaying the help."
-msgstr "Došlo je do greške pri prikazivanju pomoći."
+msgstr "Došlo je do greške prilikom prikazivanja pomoći."
 
-#: ../xed/xed-close-confirmation-dialog.c:133
+#: ../xed/xed-close-confirmation-dialog.c:129
 msgid "Log Out _without Saving"
-msgstr "Od_javi se bez čuvanja rada"
+msgstr "Zatvori _bez čuvanja"
+
+#: ../xed/xed-close-confirmation-dialog.c:130
+msgid "_Cancel Logout"
+msgstr "Otkaži _odjavu"
 
 #: ../xed/xed-close-confirmation-dialog.c:134
-msgid "_Cancel Logout"
-msgstr "Poniš_ti odjavu"
-
-#: ../xed/xed-close-confirmation-dialog.c:138
 msgid "Close _without Saving"
-msgstr "Zatvori _bez snimanja"
+msgstr "Zatvori _bez čuvanja"
 
-#: ../xed/xed-close-confirmation-dialog.c:139 ../xed/xed-commands-file.c:399
+#: ../xed/xed-close-confirmation-dialog.c:135 ../xed/xed-commands-file.c:399
 #: ../xed/xed-commands-file.c:502 ../xed/xed-commands-file.c:648
-#: ../xed/xed-commands-file.c:1333 ../xed/xed-encodings-dialog.c:336
+#: ../xed/xed-commands-file.c:1333 ../xed/xed-encodings-dialog.c:330
 #: ../xed/xed-io-error-info-bar.c:147 ../xed/xed-io-error-info-bar.c:406
 #: ../xed/xed-io-error-info-bar.c:1051
 #: ../xed/resources/ui/xed-highlight-mode-dialog.ui.h:2
 #: ../plugins/filebrowser/xed-file-browser-utils.c:153
 msgid "_Cancel"
-msgstr ""
+msgstr "Ot_kaži"
 
-#: ../xed/xed-close-confirmation-dialog.c:159
+#: ../xed/xed-close-confirmation-dialog.c:155
 msgid "_Save As..."
-msgstr ""
+msgstr "_Sačuvaj kao..."
 
 #. File menu
-#: ../xed/xed-close-confirmation-dialog.c:165 ../xed/xed-commands-file.c:649
-#: ../xed/xed-ui.h:79
+#: ../xed/xed-close-confirmation-dialog.c:161 ../xed/xed-commands-file.c:649
+#: ../xed/xed-ui.h:81
 msgid "_Save"
-msgstr ""
+msgstr "_Sačuvaj"
 
-#: ../xed/xed-close-confirmation-dialog.c:192
+#: ../xed/xed-close-confirmation-dialog.c:188
 msgid "Question"
 msgstr "Pitanje"
 
-#: ../xed/xed-close-confirmation-dialog.c:385
+#: ../xed/xed-close-confirmation-dialog.c:379
 #, c-format
 msgid ""
 "If you don't save, changes from the last %ld second will be permanently lost."
@@ -589,15 +647,23 @@ msgid_plural ""
 "If you don't save, changes from the last %ld seconds will be permanently "
 "lost."
 msgstr[0] ""
+"Ukoliko ih ne sačuvate, izmene za proteklu %ld sekundu biće trajno "
+"izgubljene."
 msgstr[1] ""
+"Ukoliko ih ne sačuvate, izmene za protekle %ld sekunde biće trajno "
+"izgubljene."
+msgstr[2] ""
+"Ukoliko ih ne sačuvate, izmene za proteklih  %ld sekundi biće trajno "
+"izgubljene."
 
-#: ../xed/xed-close-confirmation-dialog.c:394
+#: ../xed/xed-close-confirmation-dialog.c:388
 msgid ""
 "If you don't save, changes from the last minute will be permanently lost."
 msgstr ""
-"Izmene u poslednjem minutu će biti trajno odbačene ukoliko ne sačuvate."
+"Ukoliko ih ne sačuvate, izmene nastale u poslednjem minutu biće trajno "
+"izgubljene."
 
-#: ../xed/xed-close-confirmation-dialog.c:399
+#: ../xed/xed-close-confirmation-dialog.c:393
 #, c-format
 msgid ""
 "If you don't save, changes from the last minute and %ld second will be "
@@ -606,9 +672,16 @@ msgid_plural ""
 "If you don't save, changes from the last minute and %ld seconds will be "
 "permanently lost."
 msgstr[0] ""
+"Ukoliko ih ne sačuvate, izmene nastale u proteklih minut i %ld sekundu biće "
+"trajno izgubljene."
 msgstr[1] ""
+"Ukoliko ih ne sačuvate, izmene nastale u proteklom minutu i %ld sekunde biće "
+"trajno izgubljene."
+msgstr[2] ""
+"Ukoliko ih ne sačuvate, izmene nastale u proteklom minutu i %ld sekundi biće "
+"trajno izgubljene."
 
-#: ../xed/xed-close-confirmation-dialog.c:408
+#: ../xed/xed-close-confirmation-dialog.c:402
 #, c-format
 msgid ""
 "If you don't save, changes from the last %ld minute will be permanently lost."
@@ -616,15 +689,23 @@ msgid_plural ""
 "If you don't save, changes from the last %ld minutes will be permanently "
 "lost."
 msgstr[0] ""
+"Ukoliko ih ne sačuvate, izmene nastale u proteklom %ld minutu biće trajno "
+"izgubljene."
 msgstr[1] ""
+"Ukoliko ih ne sačuvate, izmene nastale u protekla %ld minuta biće trajno "
+"izgubljene."
+msgstr[2] ""
+"Ukoliko ih ne sačuvate, izmene nastale u proteklih %ld minuta biće trajno "
+"izgubljene."
 
-#: ../xed/xed-close-confirmation-dialog.c:423
+#: ../xed/xed-close-confirmation-dialog.c:417
 msgid ""
 "If you don't save, changes from the last hour will be permanently lost."
 msgstr ""
-"Izmene tokom poslednjeg časa će biti trajno odbačene ukoliko ne sačuvate."
+"Ukoliko ih ne sačuvate, izmene nastale u proteklom satu biće trajno "
+"izgubljene."
 
-#: ../xed/xed-close-confirmation-dialog.c:428
+#: ../xed/xed-close-confirmation-dialog.c:422
 #, c-format
 msgid ""
 "If you don't save, changes from the last hour and %d minute will be "
@@ -633,51 +714,70 @@ msgid_plural ""
 "If you don't save, changes from the last hour and %d minutes will be "
 "permanently lost."
 msgstr[0] ""
+"Ukoliko ih ne sačuvate, izmene nastale u proteklom satu i %d minutu biće "
+"trajno izgubljene."
 msgstr[1] ""
+"Ukoliko ih ne sačuvate, izmene nastale u proteklom satu i %d minuta biće "
+"trajno izgubljene."
+msgstr[2] ""
+"Ukoliko ih ne sačuvate, izmene nastale u proteklom satu i %d minuta biće "
+"trajno izgubljene."
 
-#: ../xed/xed-close-confirmation-dialog.c:442
+#: ../xed/xed-close-confirmation-dialog.c:436
 #, c-format
 msgid ""
 "If you don't save, changes from the last %d hour will be permanently lost."
 msgid_plural ""
 "If you don't save, changes from the last %d hours will be permanently lost."
 msgstr[0] ""
+"Ukoliko ih ne sačuvate, izmene nastale u proteklom  %d satu biće trajno "
+"izgubljene."
 msgstr[1] ""
+"Ukoliko ih ne sačuvate, izmene nastale u protekla  %d sata biće trajno "
+"izgubljene."
+msgstr[2] ""
+"Ukoliko ih ne sačuvate, izmene nastale u proteklih  %d sati biće trajno "
+"izgubljene."
 
-#: ../xed/xed-close-confirmation-dialog.c:483
+#: ../xed/xed-close-confirmation-dialog.c:477
 #, c-format
 msgid "Save changes to document \"%s\" before closing?"
-msgstr "Da sačuvam izmene u dokumentu „%s“ pre zatvaranja?"
+msgstr "Da sačuvam izmene u dokumentu \"%s\" pre zatvaranja?"
 
-#: ../xed/xed-close-confirmation-dialog.c:648
+#: ../xed/xed-close-confirmation-dialog.c:642
 #, c-format
 msgid ""
 "There is %d document with unsaved changes. Save changes before closing?"
 msgid_plural ""
 "There are %d documents with unsaved changes. Save changes before closing?"
 msgstr[0] ""
+"%d dokument ima nesačuvane izmene. Da sačuvam izmene pre zatvaranja?"
 msgstr[1] ""
+"%d dokumenta imaju nesačuvane izmene. Da sačuvam izmene pre zatvaranja?"
+msgstr[2] ""
+"%d dokumenata ima nesačuvane izmene. Da sačuvam izmene pre zatvaranja?"
 
-#: ../xed/xed-close-confirmation-dialog.c:665
+#: ../xed/xed-close-confirmation-dialog.c:659
 msgid "S_elect the documents you want to save:"
 msgstr "Izaberite _dokumente koje želite da sačuvate:"
 
 #. Secondary label
-#: ../xed/xed-close-confirmation-dialog.c:681
+#: ../xed/xed-close-confirmation-dialog.c:675
 msgid "If you don't save, all your changes will be permanently lost."
-msgstr "Ukoliko ne sačuvate, sve vaše izmene će biti trajno odbačene."
+msgstr "Ukoliko ih ne sačuvate, sve izmene će biti trajno izgubljene."
 
 #: ../xed/xed-commands-file.c:229
 #, c-format
 msgid "Loading file '%s'…"
-msgstr "Učitavam datoteku „%s“…"
+msgstr "Učitavam datoteku '%s'…"
 
 #: ../xed/xed-commands-file.c:238
 #, c-format
 msgid "Loading %d file…"
 msgid_plural "Loading %d files…"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Učitavam %d datoteku…"
+msgstr[1] "Učitavam %d datoteke…"
+msgstr[2] "Učitavam %d datoteka…"
 
 #. Translators: "Open Files" is the title of the file chooser window
 #: ../xed/xed-commands-file.c:395
@@ -685,27 +785,27 @@ msgid "Open Files"
 msgstr "Otvori datoteke"
 
 #: ../xed/xed-commands-file.c:400
-#: ../plugins/filebrowser/xed-file-browser-widget.c:766
+#: ../plugins/filebrowser/xed-file-browser-widget.c:764
 msgid "_Open"
-msgstr ""
+msgstr "_Otvori"
 
 #: ../xed/xed-commands-file.c:494
 #, c-format
 msgid "The file \"%s\" is read-only."
-msgstr "Datoteka „%s“ je samo za čitanje."
+msgstr "Datoteka \"%s\" je samo za čitanje."
 
 #: ../xed/xed-commands-file.c:499
 msgid "Do you want to try to replace it with the one you are saving?"
 msgstr "Da li želite da pokušate da je zamenite onom koju snimate?"
 
-#: ../xed/xed-commands-file.c:503 ../xed/xed-ui.h:122
+#: ../xed/xed-commands-file.c:503 ../xed/xed-ui.h:124
 msgid "_Replace"
 msgstr "_Zameni"
 
 #: ../xed/xed-commands-file.c:564 ../xed/xed-commands-file.c:801
 #, c-format
 msgid "Saving file '%s'…"
-msgstr "Čuvam datoteku „%s“…"
+msgstr "Čuvam datoteku '%s'…"
 
 #: ../xed/xed-commands-file.c:644
 msgid "Save As…"
@@ -714,12 +814,12 @@ msgstr "Sačuvaj kao…"
 #: ../xed/xed-commands-file.c:1202
 #, c-format
 msgid "Reverting the document '%s'…"
-msgstr "Vršim povraćaj dokumenta „%s“…"
+msgstr "Vraćam dokument '%s'..."
 
 #: ../xed/xed-commands-file.c:1249
 #, c-format
 msgid "Revert unsaved changes to document '%s'?"
-msgstr "Povratiti nesačuvane izmene u dokumentu „%s“?"
+msgstr "Da vratim nesačuvane izmene u dokumentu '%s'?"
 
 #: ../xed/xed-commands-file.c:1256
 #, c-format
@@ -729,13 +829,20 @@ msgid_plural ""
 "Changes made to the document in the last %ld seconds will be permanently "
 "lost."
 msgstr[0] ""
+"Izmene načinjene u dokumentu u poslednjoj %ld sekundi će biti trajno "
+"izgubljene."
 msgstr[1] ""
+"Izmene načinjene u dokumentu u poslednje %ld sekunde će biti trajno "
+"izgubljene."
+msgstr[2] ""
+"Izmene načinjene u dokumentu u poslednihj %ld sekundi će biti trajno "
+"izgubljene."
 
 #: ../xed/xed-commands-file.c:1265
 msgid ""
 "Changes made to the document in the last minute will be permanently lost."
 msgstr ""
-"Izmene učinjene u dokumentu u poslednjem minutu će biti trajno odbačene."
+"Izmene načinjene u dokumentu u poslednjem minutu će biti trajno izgubljene."
 
 #: ../xed/xed-commands-file.c:1270
 #, c-format
@@ -746,7 +853,14 @@ msgid_plural ""
 "Changes made to the document in the last minute and %ld seconds will be "
 "permanently lost."
 msgstr[0] ""
+"Izmene načinjene u dokumentu u poslednjem minutu i %ld sekunde će biti "
+"trajno izgubljene."
 msgstr[1] ""
+"Izmene načinjene u dokumentu u poslednjem minutu i %ld sekunde će biti "
+"trajno izgubljene."
+msgstr[2] ""
+"Izmene načinjene u dokumentu u poslednjem minutu i %ld sekundi će biti "
+"trajno izgubljene."
 
 #: ../xed/xed-commands-file.c:1279
 #, c-format
@@ -756,13 +870,20 @@ msgid_plural ""
 "Changes made to the document in the last %ld minutes will be permanently "
 "lost."
 msgstr[0] ""
+"Izmene načinjene u dokumentu u poslednjem %ld minutu će biti trajno "
+"izgubljene."
 msgstr[1] ""
+"Izmene načinjene u dokumentu u poslednja %ld minuta će biti trajno "
+"izgubljene."
+msgstr[2] ""
+"Izmene načinjene u dokumentu u poslednjih %ld minuta će biti trajno "
+"izgubljene."
 
 #: ../xed/xed-commands-file.c:1294
 msgid ""
 "Changes made to the document in the last hour will be permanently lost."
 msgstr ""
-"Izmene učinjene u dokumentu tokom poslednjeg časa će biti trajno odbačene."
+"Izmene načinjene u dokumentu tokom poslednjeg časa će biti trajno izgubljene."
 
 #: ../xed/xed-commands-file.c:1299
 #, c-format
@@ -773,7 +894,14 @@ msgid_plural ""
 "Changes made to the document in the last hour and %d minutes will be "
 "permanently lost."
 msgstr[0] ""
+"Izmene načinjene u dokumentu tokom poslednjeg časa i %d minuta će biti "
+"trajno izgubljene."
 msgstr[1] ""
+"Izmene načinjene u dokumentu tokom poslednjeg časa i %d minuta će biti "
+"trajno izgubljene."
+msgstr[2] ""
+"Izmene načinjene u dokumentu tokom poslednjeg časa i %d minuta će biti "
+"trajno izgubljene."
 
 #: ../xed/xed-commands-file.c:1313
 #, c-format
@@ -782,7 +910,14 @@ msgid ""
 msgid_plural ""
 "Changes made to the document in the last %d hours will be permanently lost."
 msgstr[0] ""
+"Izmene načinjene u dokumentu tokom poslednjeg &d časa će biti trajno "
+"izgubljene."
 msgstr[1] ""
+"Izmene načinjene u dokumentu tokom poslednja &d časa će biti trajno "
+"izgubljene."
+msgstr[2] ""
+"Izmene načinjene u dokumentu tokom poslednjih &d časova će biti trajno "
+"izgubljene."
 
 #: ../xed/xed-commands-file.c:1334
 msgid "_Revert"
@@ -790,112 +925,113 @@ msgstr "Pov_rati"
 
 #: ../xed/xed-commands-help.c:55
 msgid "A small and lightweight text editor"
-msgstr ""
+msgstr "Mali i lagani uređivač teksta"
 
 #: ../xed/xed-document.c:973 ../xed/xed-document.c:1005
 #, c-format
 msgid "Unsaved Document %d"
 msgstr "Nesačuvan dokument %d"
 
-#: ../xed/xed-documents-panel.c:93 ../xed/xed-documents-panel.c:104
-#: ../xed/xed-window.c:1752 ../xed/xed-window.c:1756
+#: ../xed/xed-documents-panel.c:88 ../xed/xed-documents-panel.c:99
+#: ../xed/xed-window.c:1835 ../xed/xed-window.c:1839
 msgid "Read-Only"
 msgstr "Samo čitanje"
 
-#: ../xed/xed-documents-panel.c:717 ../xed/resources/ui/xed-shortcuts.ui.h:1
-#: ../xed/xed-window.c:3002
+#: ../xed/xed-documents-panel.c:710 ../xed/resources/ui/xed-shortcuts.ui.h:1
+#: ../xed/xed-window.c:3085
 msgid "Documents"
 msgstr "Dokumenti"
 
-#: ../xed/xed-encodings-combo-box.c:264
+#: ../xed/xed-encodings-combo-box.c:258
 msgid "Automatically Detected"
-msgstr "Samo-prepoznat"
+msgstr "Automatski prepoznat"
 
-#: ../xed/xed-encodings-combo-box.c:283 ../xed/xed-encodings-combo-box.c:297
+#: ../xed/xed-encodings-combo-box.c:277 ../xed/xed-encodings-combo-box.c:291
 #, c-format
 msgid "Current Locale (%s)"
 msgstr "Tekući lokalitet (%s)"
 
-#: ../xed/xed-encodings-combo-box.c:344
+#: ../xed/xed-encodings-combo-box.c:338
 msgid "Add or Remove..."
-msgstr "Dodaj ili u_kloni..."
+msgstr "Dodaj ili ukloni..."
 
-#: ../xed/xed-encodings-dialog.c:337 ../plugins/time/xed-time-plugin.c:789
+#: ../xed/xed-encodings-dialog.c:331 ../plugins/time/xed-time-plugin.c:786
 msgid "_OK"
-msgstr ""
+msgstr "_OK"
 
-#: ../xed/xed-encodings-dialog.c:338 ../xed/xed-ui.h:50
+#: ../xed/xed-encodings-dialog.c:332 ../xed/xed-ui.h:50
 #: ../plugins/spell/xed-spell-plugin.c:435
 msgid "_Help"
 msgstr "_Pomoć"
 
-#: ../xed/xed-encodings-dialog.c:341
+#: ../xed/xed-encodings-dialog.c:335
 msgid "Character Encodings"
-msgstr "Kodiranja znakova"
+msgstr "Kodni rasporedi znakova"
 
-#: ../xed/xed-encodings-dialog.c:374 ../xed/xed-encodings-dialog.c:411
+#: ../xed/xed-encodings-dialog.c:368 ../xed/xed-encodings-dialog.c:405
 msgid "_Description"
 msgstr "O_pis"
 
-#: ../xed/xed-encodings-dialog.c:382 ../xed/xed-encodings-dialog.c:419
+#: ../xed/xed-encodings-dialog.c:376 ../xed/xed-encodings-dialog.c:413
 msgid "_Encoding"
 msgstr "_Kodni raspored"
 
-#: ../xed/xed-file-chooser-dialog.c:46 ../xed/xed-preferences-dialog.c:731
+#: ../xed/xed-file-chooser-dialog.c:44 ../xed/xed-preferences-dialog.c:731
 msgid "All Files"
 msgstr "Sve datoteke"
 
-#: ../xed/xed-file-chooser-dialog.c:47
+#: ../xed/xed-file-chooser-dialog.c:45
 msgid "All Text Files"
 msgstr "Sve tekstualne datoteke"
 
-#: ../xed/xed-file-chooser-dialog.c:89
+#: ../xed/xed-file-chooser-dialog.c:85
 msgid "C_haracter Encoding:"
 msgstr "Kodiranje zn_akova:"
 
-#: ../xed/xed-file-chooser-dialog.c:145
+#: ../xed/xed-file-chooser-dialog.c:141
 msgid "L_ine Ending:"
-msgstr "Završetak linije:"
+msgstr "Za_vršetak reda:"
 
-#: ../xed/xed-file-chooser-dialog.c:156
+#: ../xed/xed-file-chooser-dialog.c:152
 msgid "Unix/Linux"
 msgstr "Uniks/Linuks"
 
-#: ../xed/xed-file-chooser-dialog.c:157
+#: ../xed/xed-file-chooser-dialog.c:153
 msgid "Mac OS Classic"
-msgstr "Mac OS Classic"
+msgstr "Mek OS klasični"
 
-#: ../xed/xed-file-chooser-dialog.c:158
+#: ../xed/xed-file-chooser-dialog.c:154
 msgid "Windows"
 msgstr "Windows"
 
-#: ../xed/xed-highlight-mode-selector.c:297 ../xed/xed-window.c:1881
+#: ../xed/xed-highlight-mode-selector.c:297 ../xed/xed-window.c:1964
 msgid "Plain Text"
 msgstr "Običan tekst"
 
 #: ../xed/xed-io-error-info-bar.c:154 ../xed/xed-io-error-info-bar.c:390
 msgid "_Retry"
-msgstr "Pon_ovi"
+msgstr "P_okušaj ponovo"
 
 #: ../xed/xed-io-error-info-bar.c:173
 #, c-format
 msgid "Could not find the file %s."
-msgstr "Ne mogu da nađem datoteku %s."
+msgstr "Nisam mogao da nađem datoteku %s."
 
 #: ../xed/xed-io-error-info-bar.c:174 ../xed/xed-io-error-info-bar.c:208
 #: ../xed/xed-io-error-info-bar.c:213
 msgid "Please check that you typed the location correctly and try again."
-msgstr "Proverite da li ste tačno naveli putanju (mesto) i pokušajte ponovo."
+msgstr ""
+"Proverite da li ste tačno naveli lokaciju (putanju) i pokušajte ponovo."
 
 #. Translators: %s is a URI scheme (like for example http:, ftp:, etc.)
 #: ../xed/xed-io-error-info-bar.c:189
 #, c-format
 msgid "xed cannot handle %s locations."
-msgstr ""
+msgstr "xed ne može da upravlja %s lokacijama (putanjama)."
 
 #: ../xed/xed-io-error-info-bar.c:194
 msgid "xed cannot handle this location."
-msgstr ""
+msgstr "xed ne može da upravlja ovom lokacijom."
 
 #: ../xed/xed-io-error-info-bar.c:201
 msgid "The location of the file cannot be mounted."
@@ -909,12 +1045,12 @@ msgstr "Ne mogu da pristupim putanji datoteke jer nije montirana."
 #: ../xed/xed-io-error-info-bar.c:207
 #, c-format
 msgid "%s is a directory."
-msgstr "%s je fascikla."
+msgstr "%s je direktorijum."
 
 #: ../xed/xed-io-error-info-bar.c:212
 #, c-format
 msgid "%s is not a valid location."
-msgstr "%s ne predstavlja ispravnu putanju."
+msgstr "%s nije ispravna lokacija (putanja)."
 
 #. Translators: %s is a host name
 #: ../xed/xed-io-error-info-bar.c:242
@@ -933,7 +1069,7 @@ msgid ""
 "Hostname was invalid. Please check that you typed the location correctly and "
 "try again."
 msgstr ""
-"Ime računara nije ispravno. Proverite da li ste uneli ispravnu adresu i "
+"Naziv računara nije ispravan. Proverite da li ste uneli ispravnu adresu i "
 "pokušajte ponovo."
 
 #: ../xed/xed-io-error-info-bar.c:263
@@ -943,7 +1079,7 @@ msgstr "%s nije obična datoteka."
 
 #: ../xed/xed-io-error-info-bar.c:266
 msgid "Connection timed out. Please try again."
-msgstr "Vreme za uspostavljanje veze je isteklo. Pokušaj ponovo."
+msgstr "Vreme za uspostavljanje veze je isteklo. Pokušajte ponovo."
 
 #: ../xed/xed-io-error-info-bar.c:293
 #, c-format
@@ -952,7 +1088,7 @@ msgstr "Neočekivana greška: %s"
 
 #: ../xed/xed-io-error-info-bar.c:326
 msgid "xed cannot find the file. Perhaps it has recently been deleted."
-msgstr ""
+msgstr "xed ne može da pronađe datoteku. Možda je nedavno obrisana."
 
 #: ../xed/xed-io-error-info-bar.c:336
 #, c-format
@@ -982,11 +1118,11 @@ msgstr "Nemate neophodne dozvole za otvaranje datoteke."
 
 #: ../xed/xed-io-error-info-bar.c:499
 msgid "xed has not been able to detect the character encoding."
-msgstr ""
+msgstr "xed nije bio u stanju da prepozna kodiranje znakova."
 
 #: ../xed/xed-io-error-info-bar.c:501 ../xed/xed-io-error-info-bar.c:524
 msgid "Please check that you are not trying to open a binary file."
-msgstr "Proverite da ono nije binarna datoteka."
+msgstr "Proverite da ne pokušavate da otvorite izvršnu datoteku."
 
 #: ../xed/xed-io-error-info-bar.c:502
 msgid "Select a character encoding from the menu and try again."
@@ -1002,15 +1138,19 @@ msgid ""
 "The file you opened has some invalid characters. If you continue editing "
 "this file you could corrupt this document."
 msgstr ""
+"Datoteka koju ste otvorili ima neke neispravne znakove. Ako nastavite da "
+"uređujete ovu datoteku, možete da je oštetite."
 
 #: ../xed/xed-io-error-info-bar.c:512
 msgid "You can also choose another character encoding and try again."
-msgstr "Izaberite kodiranje znakova iz menija i pokušajte ponovo."
+msgstr ""
+"Takođe, možete da izaberete drugi kodni raspored znakova i pokušate ponovo."
 
 #: ../xed/xed-io-error-info-bar.c:521
 #, c-format
 msgid "Could not open the file %s using the %s character encoding."
-msgstr "Ne mogu da otvorim datoteku %s pomoću kodiranja znakova %s."
+msgstr ""
+"Nisam mogao da otvorim datoteku %s pomoću kodnog rasporeda znakova %s."
 
 #: ../xed/xed-io-error-info-bar.c:525 ../xed/xed-io-error-info-bar.c:594
 msgid "Select a different character encoding from the menu and try again."
@@ -1019,20 +1159,21 @@ msgstr "Izaberite neko drugo kodiranje znakova iz menija i pokušajte ponovo."
 #: ../xed/xed-io-error-info-bar.c:537
 #, c-format
 msgid "Could not open the file %s."
-msgstr "Ne mogu da otvorim datoteku %s."
+msgstr "Nisam mogao da otvorim datoteku %s."
 
 #: ../xed/xed-io-error-info-bar.c:589
 #, c-format
 msgid "Could not save the file %s using the %s character encoding."
-msgstr "Ne mogu da sačuvam datoteku %s koristeći %s kodiranje znakova."
+msgstr ""
+"Nisam mogao da sačuvam datoteku %s pomoću kodnog rasporeda znakova %s."
 
 #: ../xed/xed-io-error-info-bar.c:592
 msgid ""
 "The document contains one or more characters that cannot be encoded using "
 "the specified character encoding."
 msgstr ""
-"Dokument sadrži jedan ili više znakova koji ne mogu biti pretvoreni "
-"korišćenjem zadatog kodnog zapisa znakova."
+"Dokument sadrži jedan ili više znakova koji ne mogu biti kodirani "
+"korišćenjem zadatog kodnog rasporeda znakova."
 
 #. Translators: the access key chosen for this string should be
 #. different from other main menu access keys (Open, Edit, View...)
@@ -1043,23 +1184,25 @@ msgstr "_Ne menjaj"
 #: ../xed/xed-io-error-info-bar.c:673
 #, c-format
 msgid "This file (%s) is already open in another xed window."
-msgstr ""
+msgstr "Ova datoteka (%s) je već otvorena u drugom prozoru xeda."
 
 #: ../xed/xed-io-error-info-bar.c:687
 msgid ""
 "xed opened this instance of the file in a non-editable way. Do you want to "
 "edit it anyway?"
 msgstr ""
+"xed je otvorio ovu instancu datoteke na način da se ne može uređivati. Da li "
+"ipak želite da je uredite?"
 
 #: ../xed/xed-io-error-info-bar.c:742 ../xed/xed-io-error-info-bar.c:830
 #: ../xed/xed-io-error-info-bar.c:1092
 msgid "S_ave Anyway"
-msgstr "S_ačuvaj i pored toga"
+msgstr "Ipak s_ačuvaj"
 
 #: ../xed/xed-io-error-info-bar.c:743 ../xed/xed-io-error-info-bar.c:831
 #: ../xed/xed-io-error-info-bar.c:1094
 msgid "D_on't Save"
-msgstr "_Nemoj sačuvati"
+msgstr "N_emoj sačuvati"
 
 #. FIXME: review this message, it's not clear since for the user the "modification"
 #. * could be interpreted as the changes he made in the document. beside "reading" is
@@ -1068,14 +1211,13 @@ msgstr "_Nemoj sačuvati"
 #: ../xed/xed-io-error-info-bar.c:760
 #, c-format
 msgid "The file %s has been modified since reading it."
-msgstr "Datoteka %s je izmenjena nakon vremena kada ste je učitali."
+msgstr "Datoteka %s je izmenjena nakon što ste je učitali."
 
 #: ../xed/xed-io-error-info-bar.c:774
 msgid ""
 "If you save it, all the external changes could be lost. Save it anyway?"
 msgstr ""
-"Ako je sačuvate, sve spoljne izmene mogu biti izgubljene. Sačuvaćete je i "
-"pored toga?"
+"Ako je sačuvate, sve spoljne izmene mogu biti izgubljene. Da je ipak sačuvam?"
 
 #: ../xed/xed-io-error-info-bar.c:851
 #, c-format
@@ -1095,6 +1237,10 @@ msgid ""
 "You can ignore this warning and save the file anyway, but if an error occurs "
 "while saving, you could lose the old copy of the file. Save anyway?"
 msgstr ""
+"xed nije mogao da napravi rezervnu kopiju starog primerka datoteke pre "
+"snimanja novog. Možete da zanemarite ovo upozorenje i ipak sačuvate "
+"datoteku, ali ukoliko dođe do greške prilikom snimanja, postoji mogućnost da "
+"izgubite stari primerak datoteke. Da je ipak sačuvam?"
 
 #. Translators: %s is a URI scheme (like for example http:, ftp:, etc.)
 #: ../xed/xed-io-error-info-bar.c:928
@@ -1103,12 +1249,16 @@ msgid ""
 "xed cannot handle %s locations in write mode. Please check that you typed "
 "the location correctly and try again."
 msgstr ""
+"xed ne može da upravlja %s lokacijama (putanjama) u režimu upisa. Proverite "
+"da li ste uneli ispravnu putanju i pokušajte ponovo."
 
 #: ../xed/xed-io-error-info-bar.c:936
 msgid ""
 "xed cannot handle this location in write mode. Please check that you typed "
 "the location correctly and try again."
 msgstr ""
+"xed ne može da upravlja ovom lokacijom (putanjom) u režimu upisa. Proverite "
+"da li ste uneli ispravnu putanju i pokušajte ponovo."
 
 #: ../xed/xed-io-error-info-bar.c:945
 #, c-format
@@ -1116,8 +1266,8 @@ msgid ""
 "%s is not a valid location. Please check that you typed the location "
 "correctly and try again."
 msgstr ""
-"%s nije ispravno mesto. Proverite da li ste uneli ispravnu adresu i "
-"pokušajte ponovo."
+"%s nije ispravna lokacija (putanja). Proverite da li ste ispravno uneli "
+"putanju i pokušajte ponovo."
 
 #: ../xed/xed-io-error-info-bar.c:951
 msgid ""
@@ -1125,7 +1275,7 @@ msgid ""
 "that you typed the location correctly and try again."
 msgstr ""
 "Nemate neophodne dozvole da sačuvate datoteku. Proverite da li ste uneli "
-"ispravnu putanju i pokušajte ponovo."
+"ispravnu lokaciju (putanju) i pokušajte ponovo."
 
 #: ../xed/xed-io-error-info-bar.c:957
 msgid ""
@@ -1141,13 +1291,13 @@ msgid ""
 "typed the location correctly and try again."
 msgstr ""
 "Pokušavate da sačuvate datoteku na disku na kojem upis nije dozvoljen. "
-"Proverite da li ste putanju ukucali ispravno i pokušajte ponovo."
+"Proverite da li ste lokaciju (putanju) ukucali ispravno i pokušajte ponovo."
 
 #: ../xed/xed-io-error-info-bar.c:968
 msgid ""
 "A file with the same name already exists. Please use a different name."
 msgstr ""
-"Postoji još jedna datoteka sa istim imenom. Iskoristite neko drugo ime."
+"Postoji još jedna datoteka sa istim nazivom. Koristite neki drugi naziv."
 
 #: ../xed/xed-io-error-info-bar.c:973
 msgid ""
@@ -1163,14 +1313,14 @@ msgid ""
 "sizes. Please try saving a smaller file or saving it to a disk that does not "
 "have this limitation."
 msgstr ""
-"Disk na koji pokušavate da sačuvate datoteku ograničava određenu veličinu "
-"datoteke. Sačuvajte manju datoteku ili je sačuvate na neki drugi disk koji "
-"nema ovo ograničenje."
+"Disk na koji pokušavate da sačuvate datoteku ima ograničenje na veličinu "
+"datoteke. Pokušajte da sačuvate manju datoteku ili je sačuvate na neki drugi "
+"disk koji nema ovo ograničenje."
 
 #: ../xed/xed-io-error-info-bar.c:996
 #, c-format
 msgid "Could not save the file %s."
-msgstr "Ne može da sačuva datoteku %s."
+msgstr "Nisam mogao da sačuvam datoteku %s."
 
 #. FIXME: review this message, it's not clear since for the user the "modification"
 #. could be interpreted as the changes he made in the document. beside "reading" is
@@ -1178,15 +1328,15 @@ msgstr "Ne može da sačuva datoteku %s."
 #: ../xed/xed-io-error-info-bar.c:1036
 #, c-format
 msgid "The file %s changed on disk."
-msgstr "Sadržaj datoteke „%s“ se promenio mimo programa."
+msgstr "Sadržaj datoteke %s je izmenjen na disku."
 
 #: ../xed/xed-io-error-info-bar.c:1041
 msgid "Do you want to drop your changes and reload the file?"
-msgstr "Da li želiš da odbaciš izmene i ponovo učitaš datoteku?"
+msgstr "Da li želite da odbacite izmene i da ponovo učitate datoteku?"
 
 #: ../xed/xed-io-error-info-bar.c:1045
 msgid "Do you want to reload the file?"
-msgstr "Da li želite da ponovo učitate datoteku sa diska?"
+msgstr "Da li želite da ponovo učitate datoteku?"
 
 #: ../xed/xed-io-error-info-bar.c:1050
 msgid "_Reload"
@@ -1195,18 +1345,20 @@ msgstr "_Ponovo učitaj"
 #: ../xed/xed-io-error-info-bar.c:1107
 #, c-format
 msgid "Some invalid chars have been detected while saving %s"
-msgstr ""
+msgstr "Neki neispravni znakovi su otkriveni prilikom čuvanja %s"
 
 #: ../xed/xed-io-error-info-bar.c:1122
 msgid ""
 "If you continue saving this file you can corrupt the document.  Save anyway?"
 msgstr ""
+"Ukoliko nastavite sa čuvanjem ove datoteke možete da oštetite dokument. Da "
+"je ipak sačuvam?"
 
 #: ../xed/xed-preferences-dialog.c:266
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:3
 #, no-c-format
 msgid "Use the system fixed width font (%s)"
-msgstr ""
+msgstr "Koristi sistemski font fiksne širine (%s)"
 
 #: ../xed/xed-preferences-dialog.c:384
 msgid "Editor"
@@ -1214,158 +1366,158 @@ msgstr "Uređivač"
 
 #: ../xed/xed-preferences-dialog.c:422
 msgid "Save"
-msgstr ""
+msgstr "Sačuvaj"
 
 #: ../xed/xed-preferences-dialog.c:535
 #, c-format
 msgid ""
 "Directory '%s' could not be created: g_mkdir_with_parents() failed: %s"
 msgstr ""
-"Ne mogu da napravim fasciklu „%s“: g_mkdir_with_parents() poziv nije uspeo: "
-"%s"
+"Nisam mogao da napravim direktorijum '%s': g_mkdir_with_parents() poziv nije "
+"uspeo: %s"
 
 #: ../xed/xed-preferences-dialog.c:689
 msgid "The selected color scheme cannot be installed."
-msgstr "Odabrana postavka boja ne može biti postavljena."
+msgstr "Izabrana šema boja ne može biti instalirana."
 
 #: ../xed/xed-preferences-dialog.c:712 ../xed/xed-preferences-dialog.c:718
 msgid "Add Scheme"
-msgstr "Dodaj postavku boja"
+msgstr "Dodaj šemu"
 
-#: ../xed/xed-preferences-dialog.c:715 ../xed/xed-progress-info-bar.c:64
+#: ../xed/xed-preferences-dialog.c:715 ../xed/xed-progress-info-bar.c:61
 msgid "Cancel"
-msgstr ""
+msgstr "Otkaži"
 
 #: ../xed/xed-preferences-dialog.c:724
 msgid "Color Scheme Files"
-msgstr "Datoteke sa postavkama boja"
+msgstr "Datoteke sa šemama boja"
 
 #: ../xed/xed-preferences-dialog.c:796
 #, c-format
 msgid "Could not remove color scheme \"%s\"."
-msgstr "Ne mogu da uklonim postavku boja „%s“."
+msgstr "Nisam mogao da uklonim šemu boja \"%s\"."
 
 #: ../xed/xed-preferences-dialog.c:828
 msgid "Theme"
-msgstr ""
+msgstr "Tema"
 
 #: ../xed/xed-preferences-dialog.c:845
 msgid "Plugins"
-msgstr "Dodaci"
+msgstr "Priključci"
 
 #: ../xed/xed-preferences-dialog.c:853
 msgid "Help"
-msgstr ""
+msgstr "Pomoć"
 
 #: ../xed/xed-preferences-dialog.c:858
 #: ../xed/resources/ui/xed-searchbar.ui.h:11
 msgid "Close"
-msgstr ""
+msgstr "Zatvori"
 
 #: ../xed/xed-preferences-dialog.c:872
 msgid "Xed Preferences"
-msgstr ""
+msgstr "Preferencije za Xed"
 
-#: ../xed/xed-print-job.c:494
+#: ../xed/xed-print-job.c:487
 #, c-format
 msgid "File: %s"
 msgstr "Datoteka: %s"
 
-#: ../xed/xed-print-job.c:503
+#: ../xed/xed-print-job.c:496
 msgid "Page %N of %Q"
 msgstr "Stranica %N od %Q"
 
-#: ../xed/xed-print-job.c:740
+#: ../xed/xed-print-job.c:733
 msgid "Preparing..."
 msgstr "Pripremam..."
 
-#: ../xed/xed-print-preview.c:582
+#: ../xed/xed-print-preview.c:580
 msgid "Show the previous page"
 msgstr "Prikaži prethodnu stranu"
 
-#: ../xed/xed-print-preview.c:588
+#: ../xed/xed-print-preview.c:586
 msgid "Show the next page"
 msgstr "Prikaži sledeću stranu"
 
-#: ../xed/xed-print-preview.c:602
+#: ../xed/xed-print-preview.c:600
 msgid "Current page (Alt+P)"
-msgstr "Tekuća strana (Alt+P)"
+msgstr "Trenutna strana (Alt+P)"
 
 #. gtk_label_set_mnemonic_widget ((GtkLabel *) l, mp->priv->page_entry);
 #. We are displaying 'XXX of XXX'.
 #. Translators: the "of" from "1 of 19" in print preview.
-#: ../xed/xed-print-preview.c:616
+#: ../xed/xed-print-preview.c:614
 msgid "of"
 msgstr "od"
 
-#: ../xed/xed-print-preview.c:621
+#: ../xed/xed-print-preview.c:619
 msgid "Page total"
-msgstr "Ukupan broj strana"
+msgstr "Ukupno strana"
 
-#: ../xed/xed-print-preview.c:622
+#: ../xed/xed-print-preview.c:620
 msgid "The total number of pages in the document"
 msgstr "Ukupan broj strana u dokumentu"
 
-#: ../xed/xed-print-preview.c:642
+#: ../xed/xed-print-preview.c:640
 msgid "Show multiple pages"
 msgstr "Prikaži više strana odjednom"
 
-#: ../xed/xed-print-preview.c:660
+#: ../xed/xed-print-preview.c:658
 msgid "Zoom 1:1"
 msgstr "Uvećanje 1:1"
 
-#: ../xed/xed-print-preview.c:666
+#: ../xed/xed-print-preview.c:664
 msgid "Zoom to fit the whole page"
 msgstr "Uvećaj da stane cela strana"
 
-#: ../xed/xed-print-preview.c:672
+#: ../xed/xed-print-preview.c:670
 msgid "Zoom the page in"
-msgstr "Primakni stranu"
+msgstr "Uvećaj stranu"
 
-#: ../xed/xed-print-preview.c:678
+#: ../xed/xed-print-preview.c:676
 msgid "Zoom the page out"
-msgstr "Odmakni se od strane"
+msgstr "Umanji stranu"
 
-#: ../xed/xed-print-preview.c:695 ../xed/resources/ui/xed-shortcuts.ui.h:33
+#: ../xed/xed-print-preview.c:693 ../xed/resources/ui/xed-shortcuts.ui.h:33
 msgid "Print the document"
-msgstr ""
+msgstr "Štampaj dokument"
+
+#: ../xed/xed-print-preview.c:708
+msgid "_Close preview"
+msgstr "_Zatvori pregled štampe"
 
 #: ../xed/xed-print-preview.c:710
-msgid "_Close preview"
-msgstr ""
-
-#: ../xed/xed-print-preview.c:712
 msgid "Close print preview"
 msgstr "Zatvori pregled pred štampu"
 
-#: ../xed/xed-print-preview.c:790
+#: ../xed/xed-print-preview.c:788
 #, c-format
 msgid "Page %d of %d"
-msgstr "Stranica %d od %d"
+msgstr "Strana %d od %d"
 
-#: ../xed/xed-print-preview.c:972
+#: ../xed/xed-print-preview.c:970
 msgid "Page Preview"
 msgstr "Pregled pred štampu"
 
-#: ../xed/xed-print-preview.c:973
+#: ../xed/xed-print-preview.c:971
 msgid "The preview of a page in the document to be printed"
-msgstr "Pregled strane dokumenta pred štampu"
+msgstr "Pregled stranice dokumenta koja će biti odštampana"
 
 #: ../xed/resources/ui/xed-highlight-mode-dialog.ui.h:1
 msgid "Highlight Mode"
-msgstr ""
+msgstr "Režim isticanja"
 
 #: ../xed/resources/ui/xed-highlight-mode-dialog.ui.h:3
 msgid "_Select"
-msgstr ""
+msgstr "Iza_beri"
 
 #: ../xed/resources/ui/xed-highlight-mode-selector.ui.h:1
 msgid "Search highlight mode…"
-msgstr ""
+msgstr "Režim isticanja pretrage…"
 
 #: ../xed/resources/ui/xed-encodings-dialog.ui.h:1
 msgid "Character encodings"
-msgstr "Kodiranja znakova"
+msgstr "Kodni rasporedi znakova"
 
 #: ../xed/resources/ui/xed-encodings-dialog.ui.h:2
 msgid "A_vailable encodings:"
@@ -1381,107 +1533,107 @@ msgstr "Font"
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:4
 msgid "Display"
-msgstr ""
+msgstr "Prikaži"
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:5
 msgid "Display line numbers"
-msgstr ""
+msgstr "Prikaži brojeve redova"
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:6
 msgid "Display overview map"
-msgstr ""
+msgstr "Prikaži minijaturni pregled koda"
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:7
 msgid "Display right margin"
-msgstr ""
+msgstr "Prikaži desnu marginu"
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:8
 msgid "Right margin at column"
-msgstr ""
+msgstr "Desna margina u koloni"
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:9
 msgid "4"
-msgstr ""
+msgstr "4"
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:10
 msgid "Highlighting"
-msgstr ""
+msgstr "Isticanje"
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:11
 msgid "Highlight the current line"
-msgstr ""
+msgstr "Istakni trenutni red"
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:12
 msgid "Highlight matching brackets"
-msgstr ""
+msgstr "Istakni uparene zagrade"
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:13
 msgid "Indentation"
-msgstr ""
+msgstr "Uvlačenje"
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:14
 msgid "Tab width"
-msgstr ""
+msgstr "Širina tabulatora"
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:15
 msgid "Use spaces instead of tabs"
-msgstr ""
+msgstr "Koristi razmake umesto tabulatora"
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:16
 msgid "Automatic indentation"
-msgstr ""
+msgstr "Automatsko uvlačenje"
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:17
 msgid "Word wrap"
-msgstr ""
+msgstr "Prelom reči"
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:18
 msgid "Split words over two lines"
-msgstr ""
+msgstr "Prelomi reči u dva reda"
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:19
 msgid "Tab scrolling"
-msgstr ""
+msgstr "Skrolovanje tabulatora"
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:20
 msgid "Allow mouse wheel scrolling to change tabs"
-msgstr ""
+msgstr "Dozvoli točkiću miša da skrolovanjem menja jezičke"
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:21
 msgid "File saving"
-msgstr ""
+msgstr "Čuvanje datoteka"
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:22
 msgid "Create a backup copy of files before saving"
-msgstr ""
+msgstr "Napravi rezervnu kopiju datoteka pre čuvanja"
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:23
 msgid "Autosave files"
-msgstr ""
+msgstr "Automatsko čuvanje datoteka"
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:24
 msgid "Minutes between saving"
-msgstr ""
+msgstr "Minuta između čuvanja"
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:26
 msgid "Dark theme"
-msgstr ""
+msgstr "Tamna tema"
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:27
 msgid "Use dark theme variant (if available)"
-msgstr ""
+msgstr "Koristi tamnu verziju teme (ukoliko je dostupna)"
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:28
 msgid "Style scheme"
-msgstr ""
+msgstr "Šema stila"
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:29
 msgid "Install scheme"
-msgstr ""
+msgstr "Instaliraj šemu"
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:30
 msgid "Remove scheme"
-msgstr ""
+msgstr "Ukloni šemu"
 
 #: ../xed/resources/ui/xed-print-preferences.ui.h:1
 msgid "Syntax Highlighting"
@@ -1493,11 +1645,11 @@ msgstr "Štampaj isticanje sinta_kse"
 
 #: ../xed/resources/ui/xed-print-preferences.ui.h:3
 msgid "Line Numbers"
-msgstr "Brojevi linija:"
+msgstr "Brojevi redova"
 
 #: ../xed/resources/ui/xed-print-preferences.ui.h:4
 msgid "Print line nu_mbers"
-msgstr "Štampaj brojeve _linija"
+msgstr "Štampaj brojeve _redova"
 
 #. 
 #: ../xed/resources/ui/xed-print-preferences.ui.h:6
@@ -1507,7 +1659,7 @@ msgstr "Ispiši _broj svakih"
 #. 
 #: ../xed/resources/ui/xed-print-preferences.ui.h:8
 msgid "lines"
-msgstr "linije"
+msgstr "redova"
 
 #: ../xed/resources/ui/xed-print-preferences.ui.h:9
 msgid "Text Wrapping"
@@ -1519,7 +1671,7 @@ msgstr "Omogući _prelom teksta"
 
 #: ../xed/resources/ui/xed-print-preferences.ui.h:11
 msgid "Do not _split words over two lines"
-msgstr "Ne deli re_č u dve linije"
+msgstr "Ne d_eli reč u dve linije"
 
 #: ../xed/resources/ui/xed-print-preferences.ui.h:12
 msgid "Page header"
@@ -1539,7 +1691,7 @@ msgstr "Te_lo:"
 
 #: ../xed/resources/ui/xed-print-preferences.ui.h:16
 msgid "_Line numbers:"
-msgstr "Brojevi _linija:"
+msgstr "Brojevi _redova:"
 
 #: ../xed/resources/ui/xed-print-preferences.ui.h:17
 msgid "He_aders and footers:"
@@ -1547,7 +1699,7 @@ msgstr "Za_glavlja i podnožja:"
 
 #: ../xed/resources/ui/xed-print-preferences.ui.h:18
 msgid "_Restore Default Fonts"
-msgstr "Pov_rati podrazumevane slovne likove"
+msgstr "Pov_rati podrazumevane fontove"
 
 #: ../xed/resources/ui/xed-searchbar.ui.h:1
 msgid "Replace All"
@@ -1559,7 +1711,7 @@ msgstr "Zameni"
 
 #: ../xed/resources/ui/xed-searchbar.ui.h:3
 msgid "_Search for: "
-msgstr "_Traži: "
+msgstr "_Potraži: "
 
 #: ../xed/resources/ui/xed-searchbar.ui.h:4
 msgid "Replace _with: "
@@ -1567,350 +1719,354 @@ msgstr "_Zameni sa: "
 
 #: ../xed/resources/ui/xed-searchbar.ui.h:5
 msgid "Next"
-msgstr ""
+msgstr "Sledeće"
 
 #: ../xed/resources/ui/xed-searchbar.ui.h:6
 msgid "Previous"
-msgstr ""
+msgstr "Prethodno"
 
 #: ../xed/resources/ui/xed-searchbar.ui.h:7
 msgid "Regular expression"
-msgstr ""
+msgstr "Regularni izraz"
 
 #: ../xed/resources/ui/xed-searchbar.ui.h:8
 msgid "Case sensitive"
-msgstr ""
+msgstr "Razlikuje mala i velika slova"
 
 #: ../xed/resources/ui/xed-searchbar.ui.h:9
 msgid "Whole word"
-msgstr ""
+msgstr "Cela reč"
 
 #: ../xed/resources/ui/xed-searchbar.ui.h:10
 msgid "Wrap"
-msgstr ""
+msgstr "Prelomi"
 
-#: ../xed/resources/ui/xed-shortcuts.ui.h:2 ../xed/xed-ui.h:54
+#: ../xed/resources/ui/xed-shortcuts.ui.h:2 ../xed/xed-ui.h:56
 msgid "Create a new document"
 msgstr "Napravi novi dokument"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:3
 msgid "Open a document"
-msgstr ""
+msgstr "Otvori dokument"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:4
 msgid "Save the document"
-msgstr ""
+msgstr "Sačuvaj dokument"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:5
 msgid "Save the document with a new filename"
-msgstr ""
+msgstr "Sačuvaj dokument pod novim imenom datoteke"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:6
 msgid "Save all the documents"
-msgstr ""
+msgstr "Sačuvaj sve dokumente"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:7
 msgid "Close the document"
-msgstr ""
+msgstr "Zatvori dokument"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:8
 msgid "Close all the documents"
-msgstr ""
+msgstr "Zatvori sve dokumente"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:9
 msgid "Switch to the next document"
-msgstr ""
+msgstr "Prebaci se na sledeći dokument"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:10
 msgid "Switch to the previous document"
-msgstr ""
+msgstr "Prebaci se na prethodni dokument"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:11
 msgid "Switch to the first - ninth document"
-msgstr ""
+msgstr "Prebaci se na prvi – deveti dokument"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:12
 msgid "Windows and Panes"
-msgstr ""
+msgstr "Prozori i okna"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:13
 msgid "Show side pane"
-msgstr ""
+msgstr "Prikaži bočno okno"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:14
 msgid "Show bottom pane"
-msgstr ""
+msgstr "Prikaži okno na dnu"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:15
 msgid "Fullscreen on / off"
-msgstr ""
+msgstr "Uključi ili isključi prikaz preko celog ekrana"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:16
 msgid "Quit the application"
-msgstr ""
+msgstr "Izađi iz programa"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:17
 msgid "Find and Replace"
-msgstr ""
+msgstr "Nađi i zameni"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:18
 msgid "Find"
-msgstr ""
+msgstr "Pronađi"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:19
 msgid "Find the next match"
-msgstr ""
+msgstr "Pronađi sledeće podudaranje"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:20
 msgid "Find the previous match"
-msgstr ""
+msgstr "Nađi prethodno podudaranje"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:21
 msgid "Go to line"
-msgstr ""
+msgstr "Idi na red"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:22
 msgid "Copy and Paste"
-msgstr ""
+msgstr "Kopiraj i nalepi"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:23
 msgid "Copy selected text to clipboard"
-msgstr ""
+msgstr "Kopiraj izabrani tekst u klipbord"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:24
 msgid "Cut selected text to clipboard"
-msgstr ""
+msgstr "Iseci izabrani tekst u klipbord"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:25
 msgid "Paste text from clipboard"
-msgstr ""
+msgstr "Nalepi tekst iz klipborda"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:26
 msgid "Undo and Redo"
-msgstr ""
+msgstr "Opozovi i ponovi"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:27
 msgid "Undo previous command"
-msgstr ""
+msgstr "Opozovi prethodnu naredbu"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:28
 msgid "Redo previous command"
-msgstr ""
+msgstr "Ponovi prethodnu naredbu"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:29 ../plugins/docinfo/docinfo.ui.h:11
 msgid "Selection"
-msgstr "Označena oblast"
+msgstr "Izbor"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:30
 msgid "Select all text"
-msgstr ""
+msgstr "Izaberi sav tekst"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:31
 msgid "Tools"
-msgstr ""
+msgstr "Alati"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:32
 msgid "Check spelling"
-msgstr ""
+msgstr "Proveri pravopis"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:34
 msgid "Layout"
-msgstr ""
+msgstr "Raspored"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:35
 msgid "Toggle Word Wrap"
-msgstr ""
+msgstr "Uključi/isključi prelom reči"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:36
 msgid "Editing"
-msgstr ""
+msgstr "Uređivanje"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:37
 msgid "Toggle insert / overwrite"
-msgstr ""
+msgstr "Uključi/isključi umetanje ili prepisivanje"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:38
 msgid "Delete current line"
-msgstr ""
+msgstr "Obriši trenutni red"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:39
 msgid "Move current line up"
-msgstr ""
+msgstr "Pomeri trenutni red na gore"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:40
 msgid "Move current line down"
-msgstr ""
+msgstr "Pomeri trenutni red na dole"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:41
 msgid "Move current word left"
-msgstr ""
+msgstr "Pomeri trenutnu reč ulevo"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:42
 msgid "Move current word right"
-msgstr ""
+msgstr "Pomeri trenutnu reč udesno"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:43
 msgid "Convert to uppercase"
-msgstr ""
+msgstr "Pretvori u velika slova"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:44
 msgid "Convert to lowercase"
-msgstr ""
+msgstr "Pretvori u mala slova"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:45
 msgid "Convert to title case"
-msgstr ""
+msgstr "Pretvori u velika početna slova svake reči"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:46
 msgid "Invert case"
-msgstr ""
+msgstr "Obrni veličinu slova"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:47
 msgid "Increment number at cursor"
-msgstr ""
+msgstr "Povećaj broj na pokazivaču"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:48
 msgid "Decrement number at cursor"
-msgstr ""
+msgstr "Smanji broj na pokazivaču"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:49
 msgid "Toggle comment block"
-msgstr ""
+msgstr "Uključi/isključi blok komentara"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:50
 msgid "Toggle comment"
-msgstr ""
+msgstr "Uključi/isključi komentar"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:51
 #: ../plugins/joinlines/joinlines.plugin.desktop.in.h:1
 msgid "Join Lines"
-msgstr ""
+msgstr "Spoji redove"
 
-#: ../xed/xed-searchbar.c:92
+#: ../xed/xed-searchbar.c:88
 #, c-format
 msgid "Found and replaced %d occurrence"
 msgid_plural "Found and replaced %d occurrences"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Pronašao sam i zamenio %d pojavu"
+msgstr[1] "Pronašao sam i zamenio %d pojave"
+msgstr[2] "Pronašao sam i zamenio %d pojava"
 
-#: ../xed/xed-searchbar.c:102
+#: ../xed/xed-searchbar.c:98
 msgid "Found and replaced one occurrence"
 msgstr "Pronašao sam i zamenio jednu pojavu"
 
-#: ../xed/xed-searchbar.c:124
+#: ../xed/xed-searchbar.c:120
 #, c-format
 msgid "\"%s\" not found"
 msgstr "„%s“ nije pronađeno"
 
-#: ../xed/xed-searchbar.c:302
+#: ../xed/xed-searchbar.c:298
 msgid "No matches found"
-msgstr ""
+msgstr "Nisam pronašao poklapanja"
 
-#: ../xed/xed-searchbar.c:310
+#: ../xed/xed-searchbar.c:306
 #, c-format
 msgid "%d match"
 msgid_plural "%d matches"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d poklapanje"
+msgstr[1] "%d poklapanja"
+msgstr[2] "%d poklapanja"
 
-#: ../xed/xed-searchbar.c:316
+#: ../xed/xed-searchbar.c:312
 #, c-format
 msgid "%d of %d match"
 msgid_plural "%d of %d matches"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d od %d poklapanja"
+msgstr[1] "%d od %d poklapanja"
+msgstr[2] "%d od %d poklapanja"
 
-#: ../xed/xed-statusbar.c:67 ../xed/xed-statusbar.c:73
+#: ../xed/xed-statusbar.c:63 ../xed/xed-statusbar.c:69
 msgid "OVR"
-msgstr "OVR"
+msgstr "PREP"
 
-#: ../xed/xed-statusbar.c:67 ../xed/xed-statusbar.c:73
+#: ../xed/xed-statusbar.c:63 ../xed/xed-statusbar.c:69
 msgid "INS"
-msgstr "INS"
+msgstr "UMET"
 
 #. Translators: "Ln" is an abbreviation for "Line", Col is an abbreviation for "Column". Please,
 #. use abbreviations if possible to avoid space problems.
-#: ../xed/xed-statusbar.c:228
+#: ../xed/xed-statusbar.c:222
 #, c-format
 msgid "  Ln %d, Col %d"
-msgstr "  lin %d, kol %d"
+msgstr "  red %d, kol %d"
 
-#: ../xed/xed-statusbar.c:327
+#: ../xed/xed-statusbar.c:321
 #, c-format
 msgid "There is a tab with errors"
 msgid_plural "There are %d tabs with errors"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Postoje greške u %d jezičku"
+msgstr[1] "Postoje greške u %d jezička"
+msgstr[2] "Postoje greške u %d jezičaka"
 
-#: ../xed/xed-tab-label.c:271
+#: ../xed/xed-tab-label.c:267
 msgid "Close document"
 msgstr "Zatvori dokument"
 
 #. Translators: the first %s is a file name (e.g. test.txt) the second one
 #. is a directory (e.g. ssh://master.gnome.org/home/users/paolo)
-#: ../xed/xed-tab.c:721
+#: ../xed/xed-tab.c:717
 #, c-format
 msgid "Reverting %s from %s"
-msgstr "Vršim povraćaj dokumenta %s iz fascikle %s"
+msgstr "Vraćam %s iz %s"
 
-#: ../xed/xed-tab.c:726
+#: ../xed/xed-tab.c:722
 #, c-format
 msgid "Reverting %s"
-msgstr "Vraćam dokument %s"
+msgstr "Vraćam %s"
 
 #. Translators: the first %s is a file name (e.g. test.txt) the second one
 #. is a directory (e.g. ssh://master.gnome.org/home/users/paolo)
-#: ../xed/xed-tab.c:739
+#: ../xed/xed-tab.c:735
 #, c-format
 msgid "Loading %s from %s"
-msgstr "Učitavam dokument %s iz fascikle %s"
+msgstr "Učitavam %s iz %s"
 
-#: ../xed/xed-tab.c:744
+#: ../xed/xed-tab.c:740
 #, c-format
 msgid "Loading %s"
 msgstr "Učitavam %s"
 
 #. Translators: the first %s is a file name (e.g. test.txt) the second one
 #. is a directory (e.g. ssh://master.gnome.org/home/users/paolo)
-#: ../xed/xed-tab.c:825
+#: ../xed/xed-tab.c:821
 #, c-format
 msgid "Saving %s to %s"
-msgstr "Čuvam dokument %s u facikli %s"
+msgstr "Čuvam %s u %s"
 
-#: ../xed/xed-tab.c:830
+#: ../xed/xed-tab.c:826
 #, c-format
 msgid "Saving %s"
 msgstr "Čuvam %s"
 
 #. Read only
-#: ../xed/xed-tab.c:1324
+#: ../xed/xed-tab.c:1320
 msgid "RO"
 msgstr "SČ"
 
-#: ../xed/xed-tab.c:1372
+#: ../xed/xed-tab.c:1368
 #, c-format
 msgid "Error opening file %s"
 msgstr "Greška pri otvaranju datoteke %s"
 
-#: ../xed/xed-tab.c:1376
+#: ../xed/xed-tab.c:1372
 #, c-format
 msgid "Error reverting file %s"
 msgstr "Ne mogu da povratim dokument %s"
 
-#: ../xed/xed-tab.c:1380
+#: ../xed/xed-tab.c:1376
 #, c-format
 msgid "Error saving file %s"
-msgstr "Greška prilikom pokušaja čuvanja datoteke %s"
+msgstr "Greška prilikom čuvanja datoteke %s"
 
-#: ../xed/xed-tab.c:1413
+#: ../xed/xed-tab.c:1409
 msgid "Name:"
-msgstr "Ime:"
+msgstr "Naziv:"
 
-#: ../xed/xed-tab.c:1414
+#: ../xed/xed-tab.c:1410
 msgid "MIME Type:"
-msgstr "MIME vrsta:"
+msgstr "MIME tip:"
 
-#: ../xed/xed-tab.c:1415
+#: ../xed/xed-tab.c:1411
 msgid "Encoding:"
 msgstr "Kodiranje:"
 
@@ -1921,7 +2077,7 @@ msgstr "_Datoteka"
 
 #: ../xed/xed-ui.h:45
 msgid "_Edit"
-msgstr "_Uređivanje"
+msgstr "_Uredi"
 
 #: ../xed/xed-ui.h:46
 msgid "_View"
@@ -1929,336 +2085,344 @@ msgstr "P_regled"
 
 #: ../xed/xed-ui.h:47
 msgid "_Search"
-msgstr "Pret_raga"
+msgstr "_Pretraži"
 
 #: ../xed/xed-ui.h:48
 msgid "_Tools"
-msgstr "Ala_ti"
+msgstr "_Alati"
 
 #: ../xed/xed-ui.h:49
 msgid "_Documents"
-msgstr "Do_kumenti"
+msgstr "_Dokumenti"
+
+#: ../xed/xed-ui.h:51
+msgid "Favorites"
+msgstr "Omiljeno"
+
+#: ../xed/xed-ui.h:52
+msgid "Recents"
+msgstr "Skorašnje"
 
 #. File menu
-#: ../xed/xed-ui.h:53
-msgid "_New"
-msgstr ""
-
 #: ../xed/xed-ui.h:55
+msgid "_New"
+msgstr "_Novi"
+
+#: ../xed/xed-ui.h:57
 msgid "_Open..."
 msgstr "_Otvori..."
 
-#: ../xed/xed-ui.h:56
+#: ../xed/xed-ui.h:58
 msgid "Open a file"
 msgstr "Otvori datoteku"
 
 #. Edit menu
-#: ../xed/xed-ui.h:59
+#: ../xed/xed-ui.h:61
 msgid "Pr_eferences"
-msgstr "_Postavke"
+msgstr "Pr_eferencije"
 
-#: ../xed/xed-ui.h:60
+#: ../xed/xed-ui.h:62
 msgid "Configure the application"
-msgstr "Podesite program"
+msgstr "Podesi program"
 
 #. Help menu
-#: ../xed/xed-ui.h:63
-msgid "_Contents"
-msgstr "Sadr_žaj"
-
-#: ../xed/xed-ui.h:64
-msgid "Open the xed manual"
-msgstr ""
-
 #: ../xed/xed-ui.h:65
+msgid "_Contents"
+msgstr "Sad_ržaj"
+
+#: ../xed/xed-ui.h:66
+msgid "Open the xed manual"
+msgstr "Otvori priručnik za xed"
+
+#: ../xed/xed-ui.h:67
 msgid "_About"
 msgstr "_O programu"
 
-#: ../xed/xed-ui.h:66
+#: ../xed/xed-ui.h:68
 msgid "About this application"
 msgstr "O ovom programu"
 
-#: ../xed/xed-ui.h:67
+#: ../xed/xed-ui.h:69
 msgid "_Keyboard Shortcuts"
-msgstr ""
+msgstr "Prečice na _Tastaturi"
 
-#: ../xed/xed-ui.h:68
+#: ../xed/xed-ui.h:70
 msgid "Show the keyboard shortcuts dialog"
-msgstr ""
+msgstr "Prikaži dijalog za prečice na tastaturi"
 
-#: ../xed/xed-ui.h:72
+#: ../xed/xed-ui.h:74
 msgid "Leave fullscreen mode"
-msgstr "Napusti ceo ekran"
+msgstr "Napusti režim prikaza preko celog ekrana"
 
-#: ../xed/xed-ui.h:80
+#: ../xed/xed-ui.h:82
 msgid "Save the current file"
 msgstr "Sačuvaj trenutnu datoteku"
 
-#: ../xed/xed-ui.h:81
+#: ../xed/xed-ui.h:83
 msgid "Save _As..."
 msgstr "Sačuvaj _kao..."
 
-#: ../xed/xed-ui.h:82
-msgid "Save the current file with a different name"
-msgstr "Sačuvaj trenutnu datoteku pod drugim imenom"
-
-#: ../xed/xed-ui.h:83
-msgid "Revert"
-msgstr ""
-
 #: ../xed/xed-ui.h:84
-msgid "Revert to a saved version of the file"
-msgstr "Vrati sačuvanu verziju datoteke"
+msgid "Save the current file with a different name"
+msgstr "Sačuvaj tekuću datoteku pod drugim nazivom"
 
 #: ../xed/xed-ui.h:85
+msgid "Revert"
+msgstr "Vrati na prethodno"
+
+#: ../xed/xed-ui.h:86
+msgid "Revert to a saved version of the file"
+msgstr "Vrati na snimljenu verziju datoteke"
+
+#: ../xed/xed-ui.h:87
 msgid "Print Previe_w"
 msgstr "Pregled pre_d štampu"
 
-#: ../xed/xed-ui.h:86
+#: ../xed/xed-ui.h:88
 msgid "Print preview"
 msgstr "Pregled pred štampu"
 
-#: ../xed/xed-ui.h:87
+#: ../xed/xed-ui.h:89
 msgid "_Print..."
 msgstr "_Štampaj..."
 
-#: ../xed/xed-ui.h:88
+#: ../xed/xed-ui.h:90
 msgid "Print the current page"
 msgstr "Odštampaj tekuću stranu"
 
 #. Edit menu
-#: ../xed/xed-ui.h:91
+#: ../xed/xed-ui.h:93
 msgid "_Undo"
-msgstr ""
+msgstr "_Opozovi"
 
-#: ../xed/xed-ui.h:92
+#: ../xed/xed-ui.h:94
 msgid "Undo the last action"
 msgstr "Opozovi poslednju radnju"
 
-#: ../xed/xed-ui.h:93
+#: ../xed/xed-ui.h:95
 msgid "_Redo"
-msgstr ""
+msgstr "_Ponovi"
 
-#: ../xed/xed-ui.h:94
+#: ../xed/xed-ui.h:96
 msgid "Redo the last undone action"
 msgstr "Ponovi poslednju opozvanu radnju"
 
-#: ../xed/xed-ui.h:95
+#: ../xed/xed-ui.h:97
 msgid "C_ut"
-msgstr ""
+msgstr "_Iseci"
 
-#: ../xed/xed-ui.h:96
+#: ../xed/xed-ui.h:98
 msgid "Cut the selection"
 msgstr "Iseci označeno"
 
-#: ../xed/xed-ui.h:97
+#: ../xed/xed-ui.h:99
 msgid "_Copy"
-msgstr ""
+msgstr "_Kopiraj"
 
-#: ../xed/xed-ui.h:98
+#: ../xed/xed-ui.h:100
 msgid "Copy the selection"
 msgstr "Umnoži označeno"
 
-#: ../xed/xed-ui.h:99
+#: ../xed/xed-ui.h:101
 msgid "_Paste"
-msgstr ""
-
-#: ../xed/xed-ui.h:100
-msgid "Paste the clipboard"
-msgstr "Ubaci iz spiska isečaka"
-
-#: ../xed/xed-ui.h:101 ../plugins/filebrowser/xed-file-browser-plugin.c:966
-#: ../plugins/filebrowser/xed-file-browser-plugin.c:1001
-#: ../plugins/filebrowser/xed-file-browser-widget.c:760
-msgid "_Delete"
-msgstr "O_briši"
+msgstr "_Nalepi"
 
 #: ../xed/xed-ui.h:102
+msgid "Paste the clipboard"
+msgstr "Ubaci iz klipborda"
+
+#: ../xed/xed-ui.h:103 ../plugins/filebrowser/xed-file-browser-plugin.c:962
+#: ../plugins/filebrowser/xed-file-browser-plugin.c:997
+#: ../plugins/filebrowser/xed-file-browser-widget.c:758
+msgid "_Delete"
+msgstr "_Obriši"
+
+#: ../xed/xed-ui.h:104
 msgid "Delete the selected text"
 msgstr "Obriši označen tekst"
 
-#: ../xed/xed-ui.h:103
-msgid "Select _All"
-msgstr "Izaberi _sve"
-
-#: ../xed/xed-ui.h:104
-msgid "Select the entire document"
-msgstr "Označi ceo dokument"
-
 #: ../xed/xed-ui.h:105
-msgid "_Toggle Comment"
-msgstr ""
+msgid "Select _All"
+msgstr "Izaberi s_ve"
 
-#: ../xed/xed-ui.h:106 ../plugins/taglist/HTML.tags.xml.in.h:41
-msgid "Comment"
-msgstr "Primedba"
+#: ../xed/xed-ui.h:106
+msgid "Select the entire document"
+msgstr "Izaberi ceo dokument"
 
 #: ../xed/xed-ui.h:107
-msgid "Toggle Comment _Block"
-msgstr ""
+msgid "_Toggle Comment"
+msgstr "Uključi/isključi _komentar"
 
-#: ../xed/xed-ui.h:108
+#: ../xed/xed-ui.h:108 ../plugins/taglist/HTML.tags.xml.in.h:41
+msgid "Comment"
+msgstr "Komentar"
+
+#: ../xed/xed-ui.h:109
+msgid "Toggle Comment _Block"
+msgstr "Uključi/isključi _blok komentara"
+
+#: ../xed/xed-ui.h:110
 msgid "Comment Block"
-msgstr ""
+msgstr "Blok komentara"
 
 #. View menu
-#: ../xed/xed-ui.h:111
+#: ../xed/xed-ui.h:113
 msgid "_Highlight Mode"
 msgstr "_Režim isticanja"
 
-#: ../xed/xed-ui.h:112
+#: ../xed/xed-ui.h:114
 msgid "Change syntax hightlight mode"
-msgstr ""
+msgstr "Promeni režim isticanja sintakse"
 
 #. Search menu
-#: ../xed/xed-ui.h:116
-msgid "_Find"
-msgstr ""
-
-#: ../xed/xed-ui.h:117
-msgid "Search for text"
-msgstr "Traži tekst"
-
 #: ../xed/xed-ui.h:118
-msgid "Find Ne_xt"
-msgstr "Traži _sledeće"
+msgid "_Find"
+msgstr "_Pronađi"
 
 #: ../xed/xed-ui.h:119
-msgid "Search forwards for the same text"
-msgstr "Traži isti tekst unapred"
+msgid "Search for text"
+msgstr "Pronađi tekst"
 
 #: ../xed/xed-ui.h:120
-msgid "Find Pre_vious"
-msgstr "Traži pret_hodno"
+msgid "Find Ne_xt"
+msgstr "Pronađi _sledeće"
 
 #: ../xed/xed-ui.h:121
-msgid "Search backwards for the same text"
-msgstr "Traži isti tekst unazad"
+msgid "Search forwards for the same text"
+msgstr "Potraži isti tekst unapred"
+
+#: ../xed/xed-ui.h:122
+msgid "Find Pre_vious"
+msgstr "Pronađi _prethodno"
 
 #: ../xed/xed-ui.h:123
-msgid "Search for and replace text"
-msgstr "Traži i menja željeni tekst"
-
-#: ../xed/xed-ui.h:124
-msgid "Go to _Line..."
-msgstr "Idi u _red..."
+msgid "Search backwards for the same text"
+msgstr "Potražite isti tekst unazad"
 
 #: ../xed/xed-ui.h:125
+msgid "Search for and replace text"
+msgstr "Potraži i zameni tekst"
+
+#: ../xed/xed-ui.h:126
+msgid "Go to _Line..."
+msgstr "_Idi na red..."
+
+#: ../xed/xed-ui.h:127
 msgid "Go to a specific line"
-msgstr "Vodi vas u izabrani red unutar dokementa"
+msgstr "Idi na određeni red"
 
 #. Documents menu
-#: ../xed/xed-ui.h:128
+#: ../xed/xed-ui.h:130
 msgid "_Save All"
 msgstr "_Sačuvaj sve"
 
-#: ../xed/xed-ui.h:129
+#: ../xed/xed-ui.h:131
 msgid "Save all open files"
-msgstr "Čuva sve otvorene datoteke"
+msgstr "Sačuvaj sve otvorene datoteke"
 
-#: ../xed/xed-ui.h:130
+#: ../xed/xed-ui.h:132
 msgid "_Close All"
 msgstr "Zat_vori sve"
 
-#: ../xed/xed-ui.h:131
+#: ../xed/xed-ui.h:133
 msgid "Close all open files"
-msgstr "Zatvara sve otvorene datoteke"
+msgstr "Zatvori sve otvorene datoteke"
 
-#: ../xed/xed-ui.h:132
+#: ../xed/xed-ui.h:134
 msgid "_Previous Document"
 msgstr "_Prethodni dokument"
 
-#: ../xed/xed-ui.h:133
+#: ../xed/xed-ui.h:135
 msgid "Activate previous document"
-msgstr "Prikazuje prethodni dokument"
+msgstr "Aktiviraj prethodni dokument"
 
-#: ../xed/xed-ui.h:134
+#: ../xed/xed-ui.h:136
 msgid "_Next Document"
 msgstr "_Naredni dokument"
 
-#: ../xed/xed-ui.h:135
+#: ../xed/xed-ui.h:137
 msgid "Activate next document"
-msgstr "Prikazuje naredni dokument"
+msgstr "Aktiviraj naredni dokument"
 
-#: ../xed/xed-ui.h:136
+#: ../xed/xed-ui.h:138
 msgid "_Move to New Window"
 msgstr "Pre_mesti u novi prozor"
 
-#: ../xed/xed-ui.h:137
+#: ../xed/xed-ui.h:139
 msgid "Move the current document to a new window"
-msgstr "Premešta trenutni dokument u novi prozor"
+msgstr "Premesti trenutni dokument u novi prozor"
 
-#: ../xed/xed-ui.h:143
+#: ../xed/xed-ui.h:145
 msgid "_Close"
-msgstr ""
+msgstr "_Zatvori"
 
-#: ../xed/xed-ui.h:144
+#: ../xed/xed-ui.h:146
 msgid "Close the current file"
 msgstr "Zatvori trenutnu datoteku"
 
-#: ../xed/xed-ui.h:150
+#: ../xed/xed-ui.h:152
 msgid "_Quit"
-msgstr ""
+msgstr "_Izađi"
 
-#: ../xed/xed-ui.h:151
+#: ../xed/xed-ui.h:153
 msgid "Quit the program"
-msgstr "Zatvori program"
+msgstr "Izađi iz programa"
 
-#: ../xed/xed-ui.h:156
+#: ../xed/xed-ui.h:158
 msgid "_Toolbar"
-msgstr "Paleta _alata"
-
-#: ../xed/xed-ui.h:157
-msgid "Show or hide the toolbar in the current window"
-msgstr "Menja vidljivost palete sa alatima u trenutnom prozoru"
+msgstr "Traka _alata"
 
 #: ../xed/xed-ui.h:159
-msgid "_Statusbar"
-msgstr "Linija sa _stanjem"
+msgid "Show or hide the toolbar in the current window"
+msgstr "Prikaži ili sakrij traku alata u trenutnom prozoru"
 
-#: ../xed/xed-ui.h:160
-msgid "Show or hide the statusbar in the current window"
-msgstr "Menja vidljivost linije sa stanjem u trenutnom prozoru"
+#: ../xed/xed-ui.h:161
+msgid "_Statusbar"
+msgstr "Traka _stanja"
 
 #: ../xed/xed-ui.h:162
-msgid "Fullscreen"
-msgstr ""
+msgid "Show or hide the statusbar in the current window"
+msgstr "Prikaži ili sakrij traku stanja u trenutnom prozoru"
 
-#: ../xed/xed-ui.h:163
+#: ../xed/xed-ui.h:164
+msgid "Fullscreen"
+msgstr "Preko celog ekrana"
+
+#: ../xed/xed-ui.h:165
 msgid "Edit text in fullscreen"
 msgstr "Uređuj tekst preko celog ekrana"
 
-#: ../xed/xed-ui.h:165
+#: ../xed/xed-ui.h:167
 msgid "_Word wrap"
-msgstr ""
-
-#: ../xed/xed-ui.h:166
-msgid "Set word wrap for the current document"
-msgstr ""
+msgstr "Pre_lom reči"
 
 #: ../xed/xed-ui.h:168
+msgid "Set word wrap for the current document"
+msgstr "Postavi podešavanja za prelom reči u trenutnom dokumentu"
+
+#: ../xed/xed-ui.h:170
 msgid "_Overview Map"
-msgstr ""
+msgstr "Mini_jaturni pregled koda"
 
-#: ../xed/xed-ui.h:169
+#: ../xed/xed-ui.h:171
 msgid "Show or hide the overview map for the current view"
-msgstr ""
+msgstr "Prikaži ili sakrij minijaturni pregled koda za trenutni pregled"
 
-#: ../xed/xed-ui.h:176
+#: ../xed/xed-ui.h:178
 msgid "Side _Pane"
-msgstr "_Bočna oblast"
-
-#: ../xed/xed-ui.h:177
-msgid "Show or hide the side pane in the current window"
-msgstr "Prikazuje ili skriva bočnu oblast u trenutnom prozoru"
+msgstr "_Bočno okno"
 
 #: ../xed/xed-ui.h:179
-msgid "_Bottom Pane"
-msgstr "Oblast _na dnu"
+msgid "Show or hide the side pane in the current window"
+msgstr "Prikaži ili sakrij bočno okno u trenutnom prozoru"
 
-#: ../xed/xed-ui.h:180
+#: ../xed/xed-ui.h:181
+msgid "_Bottom Pane"
+msgstr "_Okno na dnu"
+
+#: ../xed/xed-ui.h:182
 msgid "Show or hide the bottom pane in the current window"
-msgstr "Promeni vidljivost oblasti na dnu u trenutnom prozoru"
+msgstr "Prikaži ili sakrij bočno okno na dnu"
 
 #: ../xed/xed-utils.c:822
 msgid "Please check your installation."
@@ -2267,12 +2431,12 @@ msgstr "Proverite vašu instalaciju."
 #: ../xed/xed-utils.c:890
 #, c-format
 msgid "Unable to open UI file %s. Error: %s"
-msgstr "Ne mogu da otvorim UI datoteku %s. Greška: %s"
+msgstr "Ne mogu da otvorim datoteku korisničkog interfejsa %s. Greška: %s"
 
 #: ../xed/xed-utils.c:910
 #, c-format
 msgid "Unable to find the object '%s' inside file %s."
-msgstr "Ne mogu da pronađem objekat „%s“ unutar datoteke %s.."
+msgstr "Ne mogu da pronađem objekat '%s' unutar datoteke %s."
 
 #. Translators: '/ on <remote-share>'
 #: ../xed/xed-utils.c:1078
@@ -2280,43 +2444,43 @@ msgstr "Ne mogu da pronađem objekat „%s“ unutar datoteke %s.."
 msgid "/ on %s"
 msgstr "/ na %s"
 
-#: ../xed/xed-view.c:380
+#: ../xed/xed-view.c:378
 msgid "_Display line numbers"
-msgstr "Prika_ži brojeve linija"
+msgstr "Prikaži brojeve re_dova"
 
 #. Translators: %s is a URI
-#: ../xed/xed-window.c:872
+#: ../xed/xed-window.c:876
 #, c-format
 msgid "Open '%s'"
-msgstr "Otvori „%s“"
+msgstr "Otvori '%s'"
 
 #. Translators: %s is a URI
-#: ../xed/xed-window.c:1142
+#: ../xed/xed-window.c:1225
 #, c-format
 msgid "Activate '%s'"
-msgstr "Aktiviraj „%s“"
+msgstr "Aktiviraj '%s'"
 
-#: ../xed/xed-window.c:1330
+#: ../xed/xed-window.c:1413
 #, c-format
 msgid "Spaces: %u"
-msgstr ""
+msgstr "Razmaci: %u"
 
-#: ../xed/xed-window.c:1334
+#: ../xed/xed-window.c:1417
 #, c-format
 msgid "Tabs: %u"
-msgstr ""
+msgstr "Tabulatori: %u"
 
-#: ../xed/xed-window.c:1411
+#: ../xed/xed-window.c:1494
 msgid "Use Spaces"
 msgstr "Koristi razmake"
 
-#: ../xed/xed-window.c:2218
+#: ../xed/xed-window.c:2301
 msgid "There are unsaved documents"
-msgstr ""
+msgstr "Ima nesačuvanih dokumenata"
 
-#: ../xed/xed-window.c:3267
+#: ../xed/xed-window.c:3350
 msgid "Elevated Privileges"
-msgstr ""
+msgstr "Povišene privilegije"
 
 #: ../plugins/docinfo/docinfo.plugin.desktop.in.h:1
 #: ../plugins/docinfo/docinfo.ui.h:1
@@ -2333,11 +2497,11 @@ msgstr ""
 
 #: ../plugins/docinfo/docinfo.ui.h:2
 msgid "_Update"
-msgstr "_Osveži"
+msgstr "_Ažuriraj"
 
 #: ../plugins/docinfo/docinfo.ui.h:3
 msgid "File Name"
-msgstr "Ime datoteke"
+msgstr "Naziv datoteke"
 
 #: ../plugins/docinfo/docinfo.ui.h:4 ../plugins/time/xed-time-dialog.ui.h:4
 #: ../plugins/time/xed-time-setup-dialog.ui.h:3
@@ -2346,47 +2510,47 @@ msgstr "    "
 
 #: ../plugins/docinfo/docinfo.ui.h:5
 msgid "Bytes"
-msgstr "Bajtova"
+msgstr "bajtova"
 
 #: ../plugins/docinfo/docinfo.ui.h:6
 msgid "Characters (no spaces)"
-msgstr "Znakova (bez razmaka)"
+msgstr "znakova (bez razmaka)"
 
 #: ../plugins/docinfo/docinfo.ui.h:7
 msgid "Characters (with spaces)"
-msgstr "Znakova (sa razmacima)"
+msgstr "znakova (sa razmacima)"
 
 #: ../plugins/docinfo/docinfo.ui.h:8
 msgid "Words"
-msgstr "Reči"
+msgstr "reči"
 
 #: ../plugins/docinfo/docinfo.ui.h:9
 msgid "Lines"
-msgstr "Linije"
+msgstr "redova"
 
 #: ../plugins/docinfo/docinfo.ui.h:10
 msgid "Document"
 msgstr "Dokument"
 
-#: ../plugins/docinfo/xed-docinfo-plugin.c:378
+#: ../plugins/docinfo/xed-docinfo-plugin.c:379
 msgid "_Document Statistics"
 msgstr "Statistika _dokumenta"
 
-#: ../plugins/docinfo/xed-docinfo-plugin.c:380
+#: ../plugins/docinfo/xed-docinfo-plugin.c:381
 msgid "Get statistical information on the current document"
-msgstr "Uzmi statističke podatke o trenutnom dokumentu"
+msgstr "Dobavi statističke podatke o trenutnom dokumentu"
 
 #: ../plugins/filebrowser/filebrowser.plugin.desktop.in.h:1
 msgid "File Browser Pane"
-msgstr "Oblast sa preglednikom datoteka"
+msgstr "Okno pretraživača datoteka"
 
 #: ../plugins/filebrowser/filebrowser.plugin.desktop.in.h:2
 msgid "Easy file access from the side pane"
-msgstr "Lak pristup datotekama iz bočne oblasti"
+msgstr "Lak pristup datotekama iz bočnog okna"
 
 #: ../plugins/filebrowser/org.x.editor.plugins.filebrowser.gschema.xml.h:1
 msgid "Set Location to First Document"
-msgstr "Postavi početak na prvi dokument"
+msgstr "Postavi lokaciju na prvi dokument"
 
 #: ../plugins/filebrowser/org.x.editor.plugins.filebrowser.gschema.xml.h:2
 msgid ""
@@ -2395,14 +2559,14 @@ msgid ""
 "generally applies to opening a document from the command line or opening it "
 "with Caja, etc.)"
 msgstr ""
-"Ako je postavljeno na „TRUE“ (tačno), dodatak za razgledanje datoteka će "
-"prikazati fasciklu dokumenta koji je prvi otvoren, ukoliko razgledač nije "
-"već korišćen. Ovo obično vredi kada se dokument otvara iz komandne linije, "
-"Cajaa, itd."
+"Ako je postavljeno na \"TRUE\" (tačno), priključak za pretraživanje datoteka "
+"će prikazati direktorijum dokumenta koji je prvi otvoren, jer pregledač nije "
+"prethodno korišćen. (Ovo se obično primenjuje prilikom otvaranja dokumenta "
+"iz linije naredbi, ili otvaranja u Caji, itd.)"
 
 #: ../plugins/filebrowser/org.x.editor.plugins.filebrowser.gschema.xml.h:3
 msgid "File Browser Filter Mode"
-msgstr "Režim filtriranja u pregledniku datoteka"
+msgstr "Režim filtriranja u pretraživaču datoteka"
 
 #: ../plugins/filebrowser/org.x.editor.plugins.filebrowser.gschema.xml.h:4
 msgid ""
@@ -2411,58 +2575,59 @@ msgid ""
 "(filter binary files) and hidden_and_binary (filter both hidden and binary "
 "files)."
 msgstr ""
-"Vrednost određuje koje datoteke će biti filtrirane iz pregledniku datoteka. "
-"Podržane vrednosti su: none (bez filtriranja), hidden (filtriraj skrivene "
-"datoteke), binary (filtriraj binarne datoteke) i hidden_and_binary "
-"(filtriraj skrivene i binarne datoteke)."
+"Ova vrednost određuje koje datoteke će biti filtrirane iz pretraživača "
+"datoteka. Ispravne vrednosti su: none (bez filtriranja), hidden (filtriraj "
+"skrivene datoteke), binary (filtriraj izvršne datoteke) i hidden_and_binary "
+"(filtriraj skrivene i izvršne datoteke)."
 
 #: ../plugins/filebrowser/org.x.editor.plugins.filebrowser.gschema.xml.h:5
 msgid "File Browser Filter Pattern"
-msgstr "Maska filtera u pregledniku datoteka"
+msgstr "Maska filtera u pretraživaču datoteka"
 
 #: ../plugins/filebrowser/org.x.editor.plugins.filebrowser.gschema.xml.h:6
 msgid ""
 "The filter pattern to filter the file browser with. This filter works on top "
 "of the filter_mode."
 msgstr ""
-"Maska filtera za primenu u pregledniku datoteka. Filter radi po režimu iz "
-"filter_mode."
+"Maska filtera za primenu u pretraživaču datoteka. Filter radi preko režima "
+"za filter_mode."
 
 #: ../plugins/filebrowser/org.x.editor.plugins.filebrowser.gschema.xml.h:7
 msgid "Terminal Command"
-msgstr ""
+msgstr "Komаndа terminаlа"
 
 #: ../plugins/filebrowser/org.x.editor.plugins.filebrowser.gschema.xml.h:8
 msgid "The terminal command when using the \"Open terminal here\" command."
-msgstr ""
+msgstr "Komаndа terminаlа kada se koristi komanda \"Otvori terminal ovde\"."
 
 #: ../plugins/filebrowser/org.x.editor.plugins.filebrowser.gschema.xml.h:9
 msgid "Open With Tree View"
-msgstr "Otvori kao stablo"
+msgstr "Otvori u pregledu stablom"
 
 #: ../plugins/filebrowser/org.x.editor.plugins.filebrowser.gschema.xml.h:10
 msgid ""
 "Open the tree view when the file browser plugin gets loaded instead of the "
 "bookmarks view"
 msgstr ""
-"Prikazuje stablo kada se preglednik datoteka učita umesto pregleda "
-"obeleživača"
+"Prikazuje pregled stablom kada se učita priključak za pretraživanje datoteka "
+"umesto pregleda obeleživača"
 
 #: ../plugins/filebrowser/org.x.editor.plugins.filebrowser.gschema.xml.h:11
 msgid "File Browser Root Directory"
-msgstr "Korenska fascikla u pregledniku datoteka"
+msgstr "Korenski direktorijum u pretraživaču datoteka"
 
 #: ../plugins/filebrowser/org.x.editor.plugins.filebrowser.gschema.xml.h:12
 msgid ""
 "The file browser root directory to use when loading the file browser plugin "
 "and onload/tree_view is TRUE."
 msgstr ""
-"Šta treba biti korenska fascikla pri učitavanju preglednika datoteka kada je "
-"onload/tree_view omogućeno (TRUE)."
+"Korenski direktorijum pretraživača datoteka koji će biti korišćen prilikom "
+"učitavanja priključka za pretraživanje datoteka i kada je onload/tree_view "
+"postavljen na vrednost ISTINA (TRUE)."
 
 #: ../plugins/filebrowser/org.x.editor.plugins.filebrowser.gschema.xml.h:13
 msgid "File Browser Virtual Root Directory"
-msgstr "Zamišljeni korenska fascikla u pregledniku datoteka"
+msgstr "Virtuelni korenski direktorijum u pretraživaču datoteka"
 
 #: ../plugins/filebrowser/org.x.editor.plugins.filebrowser.gschema.xml.h:14
 msgid ""
@@ -2470,109 +2635,111 @@ msgid ""
 "plugin when onload/tree_view is TRUE. The virtual root must always be below "
 "the actual root."
 msgstr ""
-"Šta treba biti zamišljena korenska fascikla pri učitavanju preglednika "
-"datoteka kada je onload/tree_view omogućeno (TRUE). Zamišljena fascikla mora "
-"biti unutar stvarne korenske fascikle."
+"Virtuelni korenski direktorijum pretraživača datoteka koji će biti korišćen "
+"prilikom učitavanja priključka za pretraživanje datoteka i kada je "
+"onload/tree_view postavljen na vrednost ISTINA (TRUE). Virtuelni korenski "
+"direktorijum mora uvek biti unutar stvarnog korenskog direktorijuma."
 
 #: ../plugins/filebrowser/org.x.editor.plugins.filebrowser.gschema.xml.h:15
 msgid "Enable Restore of Remote Locations"
-msgstr "Omogući obnavljanje udaljenih lokacija"
+msgstr "Omogući vraćanje udaljenih putanja (lokacija)"
 
 #: ../plugins/filebrowser/org.x.editor.plugins.filebrowser.gschema.xml.h:16
 msgid "Sets whether to enable restoring of remote locations."
-msgstr "Da li treba omogućiti obnavljanje udaljenih lokacija."
+msgstr ""
+"Postavlja vrednost da li da se omogući vraćanje udaljenih putanja (lokacija)."
 
-#: ../plugins/filebrowser/xed-file-bookmarks-store.c:256
+#: ../plugins/filebrowser/xed-file-bookmarks-store.c:254
 msgid "File System"
 msgstr "Sistem datoteka"
 
-#: ../plugins/filebrowser/xed-file-browser-plugin.c:441
+#: ../plugins/filebrowser/xed-file-browser-plugin.c:439
 msgid "_Set root to active document"
-msgstr "Postavi koren na tekući dokument"
+msgstr "_Postavi koren na aktivni dokument"
 
-#: ../plugins/filebrowser/xed-file-browser-plugin.c:443
+#: ../plugins/filebrowser/xed-file-browser-plugin.c:441
 msgid "Set the root to the active document location"
-msgstr "Postavi koren na mesto tekućeg dokumenta"
+msgstr "Postavi koren na lokaciju (putanju) tekućeg dokumenta"
+
+#: ../plugins/filebrowser/xed-file-browser-plugin.c:446
+msgid "_Open terminal here"
+msgstr "_Otvori terminal ovde"
 
 #: ../plugins/filebrowser/xed-file-browser-plugin.c:448
-msgid "_Open terminal here"
-msgstr "_Ovde otvori komandnu liniju"
-
-#: ../plugins/filebrowser/xed-file-browser-plugin.c:450
 msgid "Open a terminal at the currently opened directory"
-msgstr "Otvori komandnu liniju sa početkom u otvorenoj fascikli"
+msgstr "Otvori terminal u trenutno otvorenom direktorijumu"
 
-#: ../plugins/filebrowser/xed-file-browser-plugin.c:560
+#: ../plugins/filebrowser/xed-file-browser-plugin.c:558
 msgid "File Browser"
-msgstr "Preglednik datoteka"
+msgstr "Pretraživač datoteka"
 
-#: ../plugins/filebrowser/xed-file-browser-plugin.c:671
+#: ../plugins/filebrowser/xed-file-browser-plugin.c:667
 msgid "An error occurred while creating a new directory"
-msgstr "Dogodila se greška pri pravljenju nove fascikle"
+msgstr "Došlo je do greške pri pravljenju novog direktorijuma"
 
-#: ../plugins/filebrowser/xed-file-browser-plugin.c:674
+#: ../plugins/filebrowser/xed-file-browser-plugin.c:670
 msgid "An error occurred while creating a new file"
-msgstr "Dogodila se greška pri pravljenju nove datoteke"
+msgstr "Došlo je do greške pri pravljenju nove datoteke"
 
-#: ../plugins/filebrowser/xed-file-browser-plugin.c:677
+#: ../plugins/filebrowser/xed-file-browser-plugin.c:673
 msgid "An error occurred while renaming a file or directory"
-msgstr "Dogodila se greška pri preimenovanju datoteke ili fascikle"
+msgstr "Došlo je do greške pri preimenovanju datoteke ili direktorijuma"
 
-#: ../plugins/filebrowser/xed-file-browser-plugin.c:680
+#: ../plugins/filebrowser/xed-file-browser-plugin.c:676
 msgid "An error occurred while deleting a file or directory"
-msgstr "Dogodila se greška pri brisanju datoteke ili fascikle"
+msgstr "Došlo je do greške pri brisanju datoteke ili direktorijuma"
 
-#: ../plugins/filebrowser/xed-file-browser-plugin.c:683
+#: ../plugins/filebrowser/xed-file-browser-plugin.c:679
 msgid "An error occurred while opening a directory in the file manager"
-msgstr "Dogodila se greška pri otvaranju fascikle u pregledniku"
+msgstr "Došlo je do greške pri otvaranju direktorijuma u menadžeru datoteka"
 
-#: ../plugins/filebrowser/xed-file-browser-plugin.c:686
+#: ../plugins/filebrowser/xed-file-browser-plugin.c:682
 msgid "An error occurred while setting a root directory"
-msgstr "Dogodila se greška pri postavljanju korenske fascikle"
+msgstr "Došlo je do greške pri postavljanju korenskog direktorijuma"
 
-#: ../plugins/filebrowser/xed-file-browser-plugin.c:689
+#: ../plugins/filebrowser/xed-file-browser-plugin.c:685
 msgid "An error occurred while loading a directory"
-msgstr "Dogodila se greška tokom učitavanja fascikle"
+msgstr "Došlo je do greške tokom učitavanja direktorijuma"
 
-#: ../plugins/filebrowser/xed-file-browser-plugin.c:692
+#: ../plugins/filebrowser/xed-file-browser-plugin.c:688
 msgid "An error occurred"
-msgstr "Dogodila se greška"
+msgstr "Došlo je do greške"
 
-#: ../plugins/filebrowser/xed-file-browser-plugin.c:949
+#: ../plugins/filebrowser/xed-file-browser-plugin.c:945
 msgid ""
 "Cannot move file to trash, do you\n"
 "want to delete permanently?"
 msgstr ""
-"Ne mogu da premestim datoteku u smeće. Da li\n"
-"želite da je odmah trajno obrišete?"
+"Ne mogu da premestim datoteku u smeće.\n"
+"Da li želite da je obrišete trajno?"
 
-#: ../plugins/filebrowser/xed-file-browser-plugin.c:954
+#: ../plugins/filebrowser/xed-file-browser-plugin.c:950
 #, c-format
 msgid "The file \"%s\" cannot be moved to the trash."
-msgstr "Datoteka %s ne može biti premeštena u smeće."
+msgstr "Datoteka \"%s\" ne može biti premeštena u smeće."
 
-#: ../plugins/filebrowser/xed-file-browser-plugin.c:959
+#: ../plugins/filebrowser/xed-file-browser-plugin.c:955
 msgid "The selected files cannot be moved to the trash."
 msgstr "Odabrana datoteka ne može biti premeštena u smeće."
 
-#: ../plugins/filebrowser/xed-file-browser-plugin.c:987
+#: ../plugins/filebrowser/xed-file-browser-plugin.c:983
 #, c-format
 msgid "Are you sure you want to permanently delete \"%s\"?"
-msgstr "Da li sigurno želiš da trajno obrišeš „%s“?"
+msgstr "Da li ste sigurni da želite trajno da obrišete \"%s\"?"
 
-#: ../plugins/filebrowser/xed-file-browser-plugin.c:992
+#: ../plugins/filebrowser/xed-file-browser-plugin.c:988
 msgid "Are you sure you want to permanently delete the selected files?"
-msgstr "Da li sigurno želiš da trajno obrišeš odabrane datoteke?"
+msgstr "Da li ste sigurni da želite trajno da obrišete izabrane datoteke?"
 
-#: ../plugins/filebrowser/xed-file-browser-plugin.c:995
+#: ../plugins/filebrowser/xed-file-browser-plugin.c:991
 msgid "If you delete an item, it is permanently lost."
-msgstr "Ukoliko nešto obrišeš, biće zauvek izgubljeno."
+msgstr "Ukoliko obrišete ovu stavku biće trajno izgubljena."
 
-#: ../plugins/filebrowser/xed-file-browser-store.c:1815
+#: ../plugins/filebrowser/xed-file-browser-store.c:1810
 msgid "(Empty)"
 msgstr "(Prazno)"
 
-#: ../plugins/filebrowser/xed-file-browser-store.c:3505
+#: ../plugins/filebrowser/xed-file-browser-store.c:3500
 msgid ""
 "The renamed file is currently filtered out. You need to adjust your filter "
 "settings to make the file visible"
@@ -2581,11 +2748,11 @@ msgstr ""
 "podešavanja filtriranja kako biste je učinili vidljivom"
 
 #. Translators: This is the default name of new files created by the file browser pane.
-#: ../plugins/filebrowser/xed-file-browser-store.c:3771
+#: ../plugins/filebrowser/xed-file-browser-store.c:3766
 msgid "Untitled File"
-msgstr ""
+msgstr "Neimenovana datoteka"
 
-#: ../plugins/filebrowser/xed-file-browser-store.c:3799
+#: ../plugins/filebrowser/xed-file-browser-store.c:3794
 msgid ""
 "The new file is currently filtered out. You need to adjust your filter "
 "settings to make the file visible"
@@ -2594,154 +2761,154 @@ msgstr ""
 "filtriranja kako biste je učinili vidljivom"
 
 #. Translators: This is the default name of new directories created by the file browser pane.
-#: ../plugins/filebrowser/xed-file-browser-store.c:3826
+#: ../plugins/filebrowser/xed-file-browser-store.c:3821
 msgid "Untitled Folder"
-msgstr ""
+msgstr "Neimenovani direktorijum"
 
-#: ../plugins/filebrowser/xed-file-browser-store.c:3851
+#: ../plugins/filebrowser/xed-file-browser-store.c:3846
 msgid ""
 "The new directory is currently filtered out. You need to adjust your filter "
 "settings to make the directory visible"
 msgstr ""
-"Nova datoteka je odstranjena filterom. Morate prilagoditi podešavanja "
-"filtriranja kako biste je učinili vidljivom"
+"Novi direktorijum je odstranjen filterom. Morate prilagoditi podešavanja "
+"filtriranja kako biste ga učinili vidljivim."
 
-#: ../plugins/filebrowser/xed-file-browser-widget.c:716
+#: ../plugins/filebrowser/xed-file-browser-widget.c:714
 msgid "Bookmarks"
 msgstr "Obeleživači"
 
-#: ../plugins/filebrowser/xed-file-browser-widget.c:753
+#: ../plugins/filebrowser/xed-file-browser-widget.c:751
 msgid "_Filter"
 msgstr "_Filter"
 
-#: ../plugins/filebrowser/xed-file-browser-widget.c:758
+#: ../plugins/filebrowser/xed-file-browser-widget.c:756
 msgid "_Move to Trash"
 msgstr "Pre_mesti u smeće"
 
-#: ../plugins/filebrowser/xed-file-browser-widget.c:759
+#: ../plugins/filebrowser/xed-file-browser-widget.c:757
 msgid "Move selected file or folder to trash"
-msgstr "Premesti odabranu datoteku ili fasciklu u smeće"
+msgstr "Premesti izabranu datoteku ili direktorijum u smeće"
 
-#: ../plugins/filebrowser/xed-file-browser-widget.c:761
+#: ../plugins/filebrowser/xed-file-browser-widget.c:759
 msgid "Delete selected file or folder"
-msgstr "Obriši označenu datoteku ili fasciklu"
+msgstr "Obriši izabranu datoteku ili direktorijum"
 
-#: ../plugins/filebrowser/xed-file-browser-widget.c:767
+#: ../plugins/filebrowser/xed-file-browser-widget.c:765
 msgid "Open selected file"
-msgstr "Otvori označenu datoteku"
+msgstr "Otvori izabranu datoteku"
 
-#: ../plugins/filebrowser/xed-file-browser-widget.c:772
+#: ../plugins/filebrowser/xed-file-browser-widget.c:770
 msgid "Up"
 msgstr "Gore"
 
-#: ../plugins/filebrowser/xed-file-browser-widget.c:773
+#: ../plugins/filebrowser/xed-file-browser-widget.c:771
 msgid "Open the parent folder"
-msgstr "Otvori nadfasciklu"
+msgstr "Otvori naddirektorijum"
+
+#: ../plugins/filebrowser/xed-file-browser-widget.c:776
+msgid "_New Folder"
+msgstr "_Novi direktorijum"
+
+#: ../plugins/filebrowser/xed-file-browser-widget.c:777
+msgid "Add new empty folder"
+msgstr "Dodaj novi prazan direktorijum"
 
 #: ../plugins/filebrowser/xed-file-browser-widget.c:778
-msgid "_New Folder"
-msgstr "_Nova fascikla"
+msgid "New F_ile"
+msgstr "Nova _datoteka"
 
 #: ../plugins/filebrowser/xed-file-browser-widget.c:779
-msgid "Add new empty folder"
-msgstr "Dodaj novu praznu fasciklu"
-
-#: ../plugins/filebrowser/xed-file-browser-widget.c:780
-msgid "New F_ile"
-msgstr "Nova datoteka"
-
-#: ../plugins/filebrowser/xed-file-browser-widget.c:781
 msgid "Add new empty file"
 msgstr "Dodaj novu praznu datoteku"
 
-#: ../plugins/filebrowser/xed-file-browser-widget.c:786
+#: ../plugins/filebrowser/xed-file-browser-widget.c:784
 msgid "_Rename..."
-msgstr ""
+msgstr "Preimenu_j..."
 
-#: ../plugins/filebrowser/xed-file-browser-widget.c:787
+#: ../plugins/filebrowser/xed-file-browser-widget.c:785
 msgid "Rename selected file or folder"
-msgstr "Preimenujte odabranu datoteku ili fasciklu"
+msgstr "Preimenuj izabranu datoteku ili direktorijum"
+
+#: ../plugins/filebrowser/xed-file-browser-widget.c:790
+msgid "_Previous Location"
+msgstr "_Prethodna lokacija"
+
+#: ../plugins/filebrowser/xed-file-browser-widget.c:791
+msgid "Go to the previous visited location"
+msgstr "Idi na prethodno posećenu lokaciju"
 
 #: ../plugins/filebrowser/xed-file-browser-widget.c:792
-msgid "_Previous Location"
-msgstr "_Prethodno mesto"
+msgid "_Next Location"
+msgstr "_Naredna lokacija"
 
 #: ../plugins/filebrowser/xed-file-browser-widget.c:793
-msgid "Go to the previous visited location"
-msgstr "Idi na prethodno posećeno mesto"
+msgid "Go to the next visited location"
+msgstr "Idi na sledeće posećenu lokaciju"
 
 #: ../plugins/filebrowser/xed-file-browser-widget.c:794
-msgid "_Next Location"
-msgstr "_Naredno mesto"
+msgid "Re_fresh View"
+msgstr "_Osveži pregled"
 
 #: ../plugins/filebrowser/xed-file-browser-widget.c:795
-msgid "Go to the next visited location"
-msgstr "Idi na sledeće posećeno mesto"
+msgid "Refresh the view"
+msgstr "Osveži pregled"
 
 #: ../plugins/filebrowser/xed-file-browser-widget.c:796
-msgid "Re_fresh View"
-msgstr "_Osveži pogled"
+#: ../plugins/filebrowser/xed-file-browser-widget.c:810
+msgid "_View Folder"
+msgstr "_Prikaži direktorijum"
 
 #: ../plugins/filebrowser/xed-file-browser-widget.c:797
-msgid "Refresh the view"
-msgstr "Osveži pogled"
-
-#: ../plugins/filebrowser/xed-file-browser-widget.c:798
-#: ../plugins/filebrowser/xed-file-browser-widget.c:812
-msgid "_View Folder"
-msgstr "_Prikaži fasciklu"
-
-#: ../plugins/filebrowser/xed-file-browser-widget.c:799
-#: ../plugins/filebrowser/xed-file-browser-widget.c:813
+#: ../plugins/filebrowser/xed-file-browser-widget.c:811
 msgid "View folder in file manager"
-msgstr "Prikaži fasciklu u pregledniku datoteka"
+msgstr "Prikaži direktorijum u menadžeru datoteka"
+
+#: ../plugins/filebrowser/xed-file-browser-widget.c:802
+msgid "Show _Hidden"
+msgstr "Prikaži s_krivene"
+
+#: ../plugins/filebrowser/xed-file-browser-widget.c:803
+msgid "Show hidden files and folders"
+msgstr "Prikaži sakrivene datoteke i direktorijume"
 
 #: ../plugins/filebrowser/xed-file-browser-widget.c:804
-msgid "Show _Hidden"
-msgstr "Prikaži sa_krivene"
+msgid "Show _Binary"
+msgstr "Prikaži _izvršne"
 
 #: ../plugins/filebrowser/xed-file-browser-widget.c:805
-msgid "Show hidden files and folders"
-msgstr "Prikaži sakrivene datoteke i fascikle"
-
-#: ../plugins/filebrowser/xed-file-browser-widget.c:806
-msgid "Show _Binary"
-msgstr "Prikaži _binarne"
-
-#: ../plugins/filebrowser/xed-file-browser-widget.c:807
 msgid "Show binary files"
-msgstr "Prikaži binarne datoteke"
+msgstr "Prikaži izvršne datoteke"
 
-#: ../plugins/filebrowser/xed-file-browser-widget.c:1150
+#: ../plugins/filebrowser/xed-file-browser-widget.c:1148
 msgid "_Match Filename"
-msgstr "_Filtriraj po imenu"
+msgstr "_Poklapanje naziva datoteka"
 
-#: ../plugins/filebrowser/xed-file-browser-widget.c:2014
+#: ../plugins/filebrowser/xed-file-browser-widget.c:2012
 #, c-format
 msgid "No mount object for mounted volume: %s"
 msgstr "Ne postoji objekat montiranja za montirani disk: %s"
 
-#: ../plugins/filebrowser/xed-file-browser-widget.c:2092
+#: ../plugins/filebrowser/xed-file-browser-widget.c:2090
 #, c-format
 msgid "Could not open media: %s"
 msgstr "Ne mogu da otvorim medijum: %s"
 
-#: ../plugins/filebrowser/xed-file-browser-widget.c:2141
+#: ../plugins/filebrowser/xed-file-browser-widget.c:2139
 #, c-format
 msgid "Could not mount volume: %s"
 msgstr "Ne mogu da montiram disk: %s"
 
 #: ../plugins/joinlines/joinlines.plugin.desktop.in.h:2
 msgid "Join several lines"
-msgstr ""
+msgstr "Spoji nekoliko redova"
 
 #: ../plugins/joinlines/joinlines/__init__.py:26
 msgid "_Join Lines"
-msgstr ""
+msgstr "Spoji redo_ve"
 
 #: ../plugins/joinlines/joinlines/__init__.py:27
 msgid "Join the selected lines"
-msgstr ""
+msgstr "Spoji izabrane redove"
 
 #. vi:ts=8
 #: ../plugins/modelines/modelines.plugin.desktop.in.h:1
@@ -2750,7 +2917,7 @@ msgstr "Linije režima"
 
 #: ../plugins/modelines/modelines.plugin.desktop.in.h:2
 msgid "Emacs, Kate and Vim-style modelines support for xed."
-msgstr ""
+msgstr "Podrška za linije režima u stilu Emacsa, Katea i Vima u xedu"
 
 #: ../plugins/sort/sort.plugin.desktop.in.h:1
 msgid "Sort"
@@ -2760,17 +2927,17 @@ msgstr "Poređaj"
 msgid "Sorts a document or selected text."
 msgstr "Ređa dokument ili izabrani tekst."
 
-#: ../plugins/sort/xed-sort-plugin.c:76
+#: ../plugins/sort/xed-sort-plugin.c:75
 msgid "S_ort lines"
-msgstr ""
+msgstr "Ra_zvrstaj redove"
 
-#: ../plugins/sort/xed-sort-plugin.c:78
+#: ../plugins/sort/xed-sort-plugin.c:77
 msgid "Sort the current document or selection"
 msgstr "Poređaj tekući dokument ili označeni deo"
 
 #: ../plugins/spell/org.x.editor.plugins.spell.gschema.xml.in.h:1
 msgid "Autocheck Type"
-msgstr ""
+msgstr "Tip аutomаtske provere"
 
 #: ../plugins/spell/spell.plugin.desktop.in.h:1
 msgid "Spell Checker"
@@ -2782,7 +2949,7 @@ msgstr "Proveri pisanje u trenutnom dokumentu."
 
 #: ../plugins/spell/xed-spell-plugin.c:86
 msgid "_Check Spelling..."
-msgstr "Proveri pi_sanje..."
+msgstr "Proveri pravopi_s..."
 
 #: ../plugins/spell/xed-spell-plugin.c:88
 msgid "Check the current document for incorrect spelling"
@@ -2794,7 +2961,7 @@ msgstr "Postavi _jezik..."
 
 #: ../plugins/spell/xed-spell-plugin.c:96
 msgid "Set the language of the current document"
-msgstr "Podesi jezik za trenutni dokument"
+msgstr "Postavi jezik za trenutni dokument"
 
 #: ../plugins/spell/xed-spell-plugin.c:105
 msgid "_Autocheck Spelling"
@@ -2806,39 +2973,40 @@ msgstr "Automatski proveravaj pisanje u trenutnom dokumentu"
 
 #: ../plugins/spell/xed-spell-setup-dialog.ui.h:1
 msgid "button"
-msgstr ""
+msgstr "dugme"
 
 #: ../plugins/spell/xed-spell-setup-dialog.ui.h:2
 msgid "Autocheck settings"
-msgstr ""
+msgstr "Postavke automatske provere"
 
 #: ../plugins/spell/xed-spell-setup-dialog.ui.h:3
 msgid "Never"
-msgstr ""
+msgstr "Nikada"
 
 #: ../plugins/spell/xed-spell-setup-dialog.ui.h:4
 msgid "Never autocheck spelling on document load"
 msgstr ""
+"Nikada ne proveravaj automatski pravopis prilikom učitavanja dokumenta"
 
 #: ../plugins/spell/xed-spell-setup-dialog.ui.h:5
 msgid "Remember by document"
-msgstr ""
+msgstr "Zapamti za svaki dokument zasebno"
 
 #: ../plugins/spell/xed-spell-setup-dialog.ui.h:6
 msgid "Remembers the setting for each  document on load"
-msgstr ""
+msgstr "Pamti postavke za svaki dokument prilikom učitavanja"
 
 #: ../plugins/spell/xed-spell-setup-dialog.ui.h:7
 msgid "Always"
-msgstr ""
+msgstr "Uvek"
 
 #: ../plugins/spell/xed-spell-setup-dialog.ui.h:8
 msgid "Always autocheck on document load"
-msgstr ""
+msgstr "Uvek izvrši automatsku proveru prilikom učitavanja dokumenta"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:1
 msgid "XHTML 1.0 - Tags"
-msgstr "XHTML 1.0 — Oznake"
+msgstr "XHTML 1.0 - Oznake"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:2
 msgid "Abbreviated form"
@@ -2870,16 +3038,16 @@ msgstr "Alternativno"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:9
 msgid "Anchor URI"
-msgstr "Adresa veze"
+msgstr "Polazna URI adresa"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:10
 msgid "Anchor"
-msgstr "Veza"
+msgstr "Polazna"
 
 #. Deprecated since HTML 4.01, not supported in XHTML 1.0 Strict DTD.
 #: ../plugins/taglist/HTML.tags.xml.in.h:12
 msgid "Applet class file code (deprecated)"
-msgstr "Kod za aplete (prevaziđeno)"
+msgstr "Kod dаtoteke аplet klаse (zаstаreli)"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:13
 msgid "Associated information"
@@ -2910,11 +3078,11 @@ msgstr "Osnovni font (prevaziđeno)"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:22
 msgid "Base URI"
-msgstr "Osnovna adresa"
+msgstr "Osnovna URI adresa"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:23
 msgid "Bold"
-msgstr "Zacrnjena"
+msgstr "Podebljano"
 
 #. Deprecated since HTML 4.01, not supported in XHTML 1.0 Strict DTD.
 #: ../plugins/taglist/HTML.tags.xml.in.h:25
@@ -3032,7 +3200,7 @@ msgstr "Usmerivost (prevaziđeno)"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:61
 msgid "Disabled"
-msgstr "Isključeno"
+msgstr "Onemogućeno"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:62
 msgid "DIV container"
@@ -3202,7 +3370,7 @@ msgstr "Visina"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:104
 msgid "Horizontal rule"
-msgstr "Vodoravna linija"
+msgstr "Vodoravni lenjir"
 
 #. Deprecated since HTML 4.01, not supported in XHTML 1.0 Strict DTD.
 #: ../plugins/taglist/HTML.tags.xml.in.h:106
@@ -3251,7 +3419,7 @@ msgstr "Umetnuti tekst"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:117
 msgid "Instance definition"
-msgstr "Jedna definicija"
+msgstr "Definicija instance"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:118
 msgid "Italic text"
@@ -3260,7 +3428,7 @@ msgstr "Kurzivni tekst"
 #. Deprecated since HTML 4.01, not supported in XHTML 1.0 Strict DTD.
 #: ../plugins/taglist/HTML.tags.xml.in.h:120
 msgid "Java applet (deprecated)"
-msgstr "Java programče (prevaziđeno)"
+msgstr "Java aplet (prevaziđeno)"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:121
 msgid "Label"
@@ -3285,7 +3453,7 @@ msgstr "Stavka spiska"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:127
 msgid "List of MIME types for file upload"
-msgstr "Spisak MIME vrsti za nabacivanje datoteke"
+msgstr "Spisak MIME tipova za otpremanje datoteke"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:128
 msgid "List of supported character sets"
@@ -3293,7 +3461,7 @@ msgstr "Spisak podržanih skupova znakova"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:129
 msgid "Local change to font"
-msgstr "Lokalna izmena slovnog lika"
+msgstr "Lokalna izmena fonta"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:130
 msgid "Long description link"
@@ -3330,7 +3498,7 @@ msgstr "Veza nezavisna od medija"
 #. Deprecated since HTML 4.01, not supported in XHTML 1.0 Strict DTD.
 #: ../plugins/taglist/HTML.tags.xml.in.h:142
 msgid "Menu list (deprecated)"
-msgstr "Spisak kao meni (prevaziđeno)"
+msgstr "Spisak menija (prevaziđeno)"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:143
 msgid "Multi-line text field"
@@ -3338,7 +3506,7 @@ msgstr "Višeredno tekstualno polje"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:144
 msgid "Multiple"
-msgstr "Višestruki izbor"
+msgstr "Višestruko"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:145
 msgid "Name"
@@ -3367,7 +3535,7 @@ msgstr "Bez senčenja (prevaziđeno)"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:152
 msgid "No URI"
-msgstr "Bez adrese"
+msgstr "Bez URI adrese"
 
 #. Deprecated since HTML 4.01, not supported in XHTML 1.0 Strict DTD.
 #: ../plugins/taglist/HTML.tags.xml.in.h:154
@@ -3377,7 +3545,7 @@ msgstr "Bez preloma reda (prevaziđeno)"
 #. Deprecated since HTML 4.01, not supported in XHTML 1.0 Strict DTD.
 #: ../plugins/taglist/HTML.tags.xml.in.h:156
 msgid "Object applet file (deprecated)"
-msgstr "Datoteka objekta programčeta (prevaziđeno)"
+msgstr "Datoteka objekta apleta (prevaziđeno)"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:157
 msgid "Object data reference"
@@ -3485,7 +3653,7 @@ msgstr "Pasus"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:183
 msgid "Preformatted text"
-msgstr "Preoblikovani tekst"
+msgstr "Predformatirani tekst"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:184
 msgid "Profile metainfo dictionary"
@@ -3493,7 +3661,7 @@ msgstr "Rečnik profila sa metapodacima"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:185
 msgid "Push button"
-msgstr "Dugme"
+msgstr "Taster"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:186
 msgid "ReadOnly text and password"
@@ -3514,7 +3682,7 @@ msgstr "Redovi"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:191
 msgid "Rulings between rows and columns"
-msgstr "Linije između redova i stubaca"
+msgstr "Lenjir između redova i stubaca"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:192
 msgid "Sample program output, scripts"
@@ -3522,12 +3690,12 @@ msgstr "Primer ispisa programa, skripti"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:193
 msgid "Scope covered by header cells"
-msgstr "Opseg koji pokrivaju polja zaglavlja"
+msgstr "Opseg koji pokrivaju ćelije zaglavlja"
 
 #. Deprecated since HTML 4.01, not supported in XHTML 1.0 Strict DTD.
 #: ../plugins/taglist/HTML.tags.xml.in.h:195
 msgid "Script language name"
-msgstr "Ime skript jezika"
+msgstr "Naziv skript jezika"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:196
 msgid "Script statements"
@@ -3535,7 +3703,7 @@ msgstr "Naredbe skripte"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:197
 msgid "Scrollbar"
-msgstr "Klizač"
+msgstr "Traka klizača"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:198
 msgid "Selectable option"
@@ -3576,15 +3744,15 @@ msgstr "Razmakom razdvojen spisak arhiva"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:208
 msgid "Spacing between cells"
-msgstr "Razmak među poljima"
+msgstr "Razmak između ćelija"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:209
 msgid "Spacing within cells"
-msgstr "Razmak u poljima"
+msgstr "Razmak unutar ćelija"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:210
 msgid "Span"
-msgstr "Obuhvatanje"
+msgstr "Obuhvat"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:211
 msgid "Standby load message"
@@ -3619,7 +3787,7 @@ msgstr "Indeks"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:221
 msgid "Superscript"
-msgstr "Stepen"
+msgstr "Eksponent"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:222
 msgid "Table body"
@@ -3639,7 +3807,7 @@ msgstr "Osobine stupca tabele"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:226
 msgid "Table data cell"
-msgstr "Polje tabele sa podacima"
+msgstr "Ćelija tabele sa podacima"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:227
 msgid "Table footer"
@@ -3667,19 +3835,19 @@ msgstr "Tabela"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:233
 msgid "Target - Blank"
-msgstr "Odredište — prazno"
+msgstr "Odredište - prazno"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:234
 msgid "Target - Parent"
-msgstr "Odredište — sadržalac"
+msgstr "Odredište - sadržalac"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:235
 msgid "Target - Self"
-msgstr "Odredište — isti"
+msgstr "Odredište - isti"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:236
 msgid "Target - Top"
-msgstr "Odredište — glavni"
+msgstr "Odredište - glavni"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:237
 msgid "Teletype or monospace text style"
@@ -3692,7 +3860,7 @@ msgstr "Boja teksta (prevaziđeno)"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:240
 msgid "Text entered by user"
-msgstr "Tekst koji unosi korisnik"
+msgstr "Tekst uneo korisnik"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:241
 msgid "Title"
@@ -3742,7 +3910,7 @@ msgstr "Širina"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:254
 msgid "HTML - Tags"
-msgstr "HTML — Oznake"
+msgstr "HTML - Oznake"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:255
 msgid "Above"
@@ -3750,7 +3918,7 @@ msgstr "Iznad"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:256
 msgid "Applet class file code"
-msgstr "Kod za aplete"
+msgstr "Kod za datoteku klase apleta"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:257
 msgid "Array"
@@ -3802,11 +3970,11 @@ msgstr "Smer"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:269
 msgid "Directory list"
-msgstr "Spisak fascikli"
+msgstr "Spisak direktorijuma"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:270
 msgid "HTML version"
-msgstr "Izdanje HTML-a"
+msgstr "Verzija HTML-a"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:271
 msgid "Embedded object"
@@ -3818,7 +3986,7 @@ msgstr "Slika"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:273
 msgid "Font face"
-msgstr "Font"
+msgstr "Slovni lik"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:274
 msgid "Frameborder"
@@ -3846,7 +4014,7 @@ msgstr "Sloj u tekstu"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:280
 msgid "Java applet"
-msgstr "Java programče"
+msgstr "Java aplet"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:281
 msgid "Layer"
@@ -3866,15 +4034,15 @@ msgstr "Veza za poštu"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:285
 msgid "Marquee"
-msgstr "Reklamna poruka"
+msgstr "Markiranje"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:286
 msgid "Menu list"
-msgstr "Spisak kao meni"
+msgstr "Spisak menija"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:287
 msgid "Multicolumn"
-msgstr "Višestubaca"
+msgstr "Više stubaca"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:288
 msgid "Next ID"
@@ -3898,19 +4066,19 @@ msgstr "Bez senčenja"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:293
 msgid "No word wrap"
-msgstr "Bez preloma reda"
+msgstr "Bez preloma reći"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:294
 msgid "Note"
-msgstr "Beleška"
+msgstr "Napomena"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:295
 msgid "Object applet file"
-msgstr "Datoteka objekta programčeta"
+msgstr "Datoteka objekta apleta"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:296
 msgid "Preformatted listing"
-msgstr "Preoblikovani ispis"
+msgstr "Preformatirani spisak"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:297
 msgid "Prompt message"
@@ -3986,7 +4154,7 @@ msgstr "Gornja margina u pikselima"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:315
 msgid "URL"
-msgstr "Adresa"
+msgstr "URL adresa"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:316
 msgid "Vertical space"
@@ -3998,7 +4166,7 @@ msgstr "Boja posećenih veza"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:318
 msgid "HTML - Special Characters"
-msgstr "HTML — naročiti znaci"
+msgstr "HTML - posebni znaci"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:319
 msgid "Non-breaking space"
@@ -4006,7 +4174,7 @@ msgstr "Razmak bez preloma reda"
 
 #: ../plugins/taglist/Latex.tags.xml.in.h:1
 msgid "Latex - Tags"
-msgstr "LaTeH — Oznake"
+msgstr "Latex - oznake"
 
 #: ../plugins/taglist/Latex.tags.xml.in.h:2
 msgid "Bibliography (cite)"
@@ -4022,7 +4190,7 @@ msgstr "Bibliografija (kratak citat)"
 
 #: ../plugins/taglist/Latex.tags.xml.in.h:5
 msgid "Bibliography (thebibliography)"
-msgstr "Bibliografija (thebibliography)"
+msgstr "Bibliografija (bibliografija )"
 
 #: ../plugins/taglist/Latex.tags.xml.in.h:6
 msgid "Brackets ()"
@@ -4042,7 +4210,7 @@ msgstr "Zagrade <>"
 
 #: ../plugins/taglist/Latex.tags.xml.in.h:10
 msgid "File input"
-msgstr "Uključenje datoteke"
+msgstr "Ulaz datoteke"
 
 #: ../plugins/taglist/Latex.tags.xml.in.h:11
 msgid "Function cosine"
@@ -4098,43 +4266,43 @@ msgstr "Grčko tau"
 
 #: ../plugins/taglist/Latex.tags.xml.in.h:24
 msgid "Header 0 (chapter)"
-msgstr "Zaglavlje 0 (chapter)"
+msgstr "Zaglavlje 0 (poglavlje)"
 
 #: ../plugins/taglist/Latex.tags.xml.in.h:25
 msgid "Header 0 (chapter*)"
-msgstr "Zaglavlje 0 (chapter*)"
+msgstr "Zaglavlje 0 (poglavlje*)"
 
 #: ../plugins/taglist/Latex.tags.xml.in.h:26
 msgid "Header 1 (section)"
-msgstr "Zaglavlje 1 (section)"
+msgstr "Zaglavlje 1 (odeljak)"
 
 #: ../plugins/taglist/Latex.tags.xml.in.h:27
 msgid "Header 1 (section*)"
-msgstr "Zaglavlje 1 (section*)"
+msgstr "Zaglavlje 1 (odeljak*)"
 
 #: ../plugins/taglist/Latex.tags.xml.in.h:28
 msgid "Header 2 (subsection)"
-msgstr "Zaglavlje 2 (subsection)"
+msgstr "Zaglavlje 2 (pododeljak)"
 
 #: ../plugins/taglist/Latex.tags.xml.in.h:29
 msgid "Header 2 (subsection*)"
-msgstr "Zaglavlje 2 (subsection*)"
+msgstr "Zaglavlje 2 (pododeljak*)"
 
 #: ../plugins/taglist/Latex.tags.xml.in.h:30
 msgid "Header 3 (subsubsection)"
-msgstr "Zaglavlje 3 (subsubsection)"
+msgstr "Zaglavlje 3 (pododeljak)"
 
 #: ../plugins/taglist/Latex.tags.xml.in.h:31
 msgid "Header 3 (subsubsection*)"
-msgstr "Zaglavlje 3 (subsubsection*)"
+msgstr "Zaglavlje 3 (pododeljak*)"
 
 #: ../plugins/taglist/Latex.tags.xml.in.h:32
 msgid "Header 4 (paragraph)"
-msgstr "Zaglavlje 4 (paragraph)"
+msgstr "Zaglavlje 4 (paragraf)"
 
 #: ../plugins/taglist/Latex.tags.xml.in.h:33
 msgid "Header appendix"
-msgstr "Zaglavlje dodatka"
+msgstr "Dodatak zaglavlja"
 
 #: ../plugins/taglist/Latex.tags.xml.in.h:34
 msgid "List description"
@@ -4194,7 +4362,7 @@ msgstr "Referenca ref"
 
 #: ../plugins/taglist/Latex.tags.xml.in.h:48
 msgid "Symbol <<"
-msgstr "Simbol <"
+msgstr "Simbol <<"
 
 #: ../plugins/taglist/Latex.tags.xml.in.h:49
 msgid "Symbol <="
@@ -4274,19 +4442,19 @@ msgstr "Simbol zvezda"
 
 #: ../plugins/taglist/Latex.tags.xml.in.h:68
 msgid "Typeface bold"
-msgstr "Masni font"
+msgstr "Podebljani slovni lik"
 
 #: ../plugins/taglist/Latex.tags.xml.in.h:69
 msgid "Typeface type"
-msgstr "Vrsta fonta"
+msgstr "Vrsta slovnog lika"
 
 #: ../plugins/taglist/Latex.tags.xml.in.h:70
 msgid "Typeface italic"
-msgstr "Kurzivni font"
+msgstr "Kurzivni slovni lik"
 
 #: ../plugins/taglist/Latex.tags.xml.in.h:71
 msgid "Typeface slanted"
-msgstr "Iskošeni font"
+msgstr "Iskošeni slovni lik"
 
 #: ../plugins/taglist/Latex.tags.xml.in.h:73
 msgid "Unbreakable text"
@@ -4298,45 +4466,45 @@ msgstr "Fusnota"
 
 #: ../plugins/taglist/taglist.plugin.desktop.in.h:1
 msgid "Tag list"
-msgstr "Spisak elemenata"
+msgstr "Spisak oznaka"
 
 #: ../plugins/taglist/taglist.plugin.desktop.in.h:2
 msgid ""
 "Provides a method to easily insert commonly used tags/strings into a "
 "document without having to type them."
 msgstr ""
-"Obezbeđuje način lakog umetanja često korišćenih elemenata/niski u dokument "
+"Obezbeđuje način lakog umetanja često korišćenih oznaka/nizova u dokument "
 "bez potrebe da ih kucate."
 
-#: ../plugins/taglist/xed-taglist-plugin-panel.c:608
+#: ../plugins/taglist/xed-taglist-plugin-panel.c:605
 msgid "Select the group of tags you want to use"
-msgstr "Izaberite grupu elemenata koje želite da koristite"
+msgstr "Izaberite grupu oznaka koje želite da koristite"
 
-#: ../plugins/taglist/xed-taglist-plugin-panel.c:627
+#: ../plugins/taglist/xed-taglist-plugin-panel.c:624
 msgid "_Preview"
-msgstr "_Pregled pred štampu"
+msgstr "_Pregled"
+
+#: ../plugins/taglist/xed-taglist-plugin-panel.c:700
+msgid "Available Tag Lists"
+msgstr "Dostupni spiskovi oznaka"
 
 #: ../plugins/taglist/xed-taglist-plugin-panel.c:703
-msgid "Available Tag Lists"
-msgstr "Dostupni spiskovi elemenata"
-
-#: ../plugins/taglist/xed-taglist-plugin-panel.c:706
-#: ../plugins/taglist/xed-taglist-plugin-panel.c:721
-#: ../plugins/taglist/xed-taglist-plugin.c:113
+#: ../plugins/taglist/xed-taglist-plugin-panel.c:718
+#: ../plugins/taglist/xed-taglist-plugin.c:110
 msgid "Tags"
-msgstr "Elementi"
+msgstr "Oznake"
 
 #: ../plugins/taglist/XSLT.tags.xml.in.h:1
 msgid "XSLT - Elements"
-msgstr "XSLT — Elementi"
+msgstr "XSLT - Elementi"
 
 #: ../plugins/taglist/XSLT.tags.xml.in.h:2
 msgid "XSLT - Functions"
-msgstr "XSLT — Funkcije"
+msgstr "XSLT - Funkcije"
 
 #: ../plugins/taglist/XSLT.tags.xml.in.h:3
 msgid "XSLT - Axes"
-msgstr "XSLT — Ose"
+msgstr "XSLT - Ose"
 
 #: ../plugins/taglist/XSLT.tags.xml.in.h:4
 msgid "ancestor"
@@ -4372,7 +4540,7 @@ msgstr "naredni-slični"
 
 #: ../plugins/taglist/XSLT.tags.xml.in.h:12
 msgid "namespace"
-msgstr "prostor imena"
+msgstr "imenski prostor"
 
 #: ../plugins/taglist/XSLT.tags.xml.in.h:13
 msgid "parent"
@@ -4392,39 +4560,39 @@ msgstr "isti"
 
 #: ../plugins/taglist/XUL.tags.xml.in.h:1
 msgid "XUL - Tags"
-msgstr "XUL — Oznake"
+msgstr "XUL - Oznake"
 
 #: ../plugins/textsize/textsize.plugin.desktop.in.h:1
 msgid "Text Size"
-msgstr ""
+msgstr "Veličina teksta"
 
 #: ../plugins/textsize/textsize.plugin.desktop.in.h:2
 msgid "Allow controlling the zoom levels of the text"
-msgstr ""
+msgstr "Dozvoli kontrolisanje nivoa uvećanja teksta"
 
 #: ../plugins/textsize/textsize/__init__.py:123
 msgid "_Larger Text"
-msgstr ""
+msgstr "_Veći tekst"
 
 #: ../plugins/textsize/textsize/__init__.py:126
 msgid "S_maller Text"
-msgstr ""
+msgstr "_Manji tekst"
 
 #: ../plugins/textsize/textsize/__init__.py:129
 msgid "_Normal size"
-msgstr ""
+msgstr "_Normalne veličine"
 
 #: ../plugins/time/org.x.editor.plugins.time.gschema.xml.in.h:1
 msgid "Prompt type"
-msgstr ""
+msgstr "Vrsta upitne poruke"
 
 #: ../plugins/time/org.x.editor.plugins.time.gschema.xml.in.h:2
 msgid "Selected format"
-msgstr ""
+msgstr "Izabrani format"
 
 #: ../plugins/time/org.x.editor.plugins.time.gschema.xml.in.h:3
 msgid "Custom format"
-msgstr ""
+msgstr "Prilagođeni format"
 
 #: ../plugins/time/time.plugin.desktop.in.h:1
 msgid "Insert Date/Time"
@@ -4445,41 +4613,41 @@ msgstr "U_metni"
 #: ../plugins/time/xed-time-dialog.ui.h:3
 #: ../plugins/time/xed-time-setup-dialog.ui.h:5
 msgid "Use the _selected format"
-msgstr "Koristi odabrani fo_rmat"
+msgstr "Koristi izabrani fo_rmat"
 
 #: ../plugins/time/xed-time-dialog.ui.h:5
 #: ../plugins/time/xed-time-setup-dialog.ui.h:6
 msgid "_Use custom format"
-msgstr "Kori_sti poseban format"
+msgstr "Kori_sti prilagođeni format"
 
 #. Translators: Use the more common date format in your locale
 #: ../plugins/time/xed-time-dialog.ui.h:7
 #: ../plugins/time/xed-time-setup-dialog.ui.h:9
 #, no-c-format
 msgid "%d/%m/%Y %H:%M:%S"
-msgstr "%d.%m.%Y %H:%M:%S"
+msgstr "%d.%m.%Y. %H:%M:%S"
 
 #. Translators: This example should follow the date format defined in the entry above
 #: ../plugins/time/xed-time-dialog.ui.h:8
 #: ../plugins/time/xed-time-setup-dialog.ui.h:11
 msgid "01/11/2009 17:52:00"
-msgstr "01.11.2009 17:52:00"
+msgstr "01.11.2009. 17:52:00"
 
-#: ../plugins/time/xed-time-plugin.c:179
+#: ../plugins/time/xed-time-plugin.c:176
 msgid "In_sert Date and Time..."
 msgstr "Umetni datum i _vreme..."
 
-#: ../plugins/time/xed-time-plugin.c:181
+#: ../plugins/time/xed-time-plugin.c:178
 msgid "Insert current date and time at the cursor position"
 msgstr "Umetni trenutni datum i vreme na poziciju kursora"
 
-#: ../plugins/time/xed-time-plugin.c:457
+#: ../plugins/time/xed-time-plugin.c:454
 msgid "Available formats"
 msgstr "Dostupni formati"
 
 #: ../plugins/time/xed-time-setup-dialog.ui.h:1
 msgid "Configure date/time plugin"
-msgstr "Podesi dodatak za datum/vreme"
+msgstr "Podesi priključak za datum/vreme"
 
 #: ../plugins/time/xed-time-setup-dialog.ui.h:2
 msgid "When inserting date/time..."
@@ -4491,28 +4659,29 @@ msgstr "U_pitaj za format"
 
 #: ../plugins/trailsave/trailsave.plugin.desktop.in.h:1
 msgid "Save Without Trailing Spaces"
-msgstr ""
+msgstr "Sačuvaj bez završnih razmaka"
 
 #: ../plugins/trailsave/trailsave.plugin.desktop.in.h:2
 msgid "Removes trailing spaces from lines before saving."
 msgstr ""
+"Ukloni beskorisne razmake i praznine na kraju reda pre čuvanja datoteke."
 
 #: ../plugins/wordcompletion/xed-wordcompletion-configure.ui.h:1
 msgid "Word Completion"
-msgstr ""
+msgstr "Dovršavanje reči"
 
 #: ../plugins/wordcompletion/xed-wordcompletion-configure.ui.h:2
 msgid "Use Ctrl+Space to manually trigger word completion."
-msgstr ""
+msgstr "Koristi Ctrl+rаzmаk za ručno pokretanje dovršаvаnja reči."
 
 #: ../plugins/wordcompletion/xed-wordcompletion-configure.ui.h:3
 msgid "Automatic completion"
-msgstr ""
+msgstr "Automatsko dovršavanje reči"
 
 #: ../plugins/wordcompletion/xed-wordcompletion-configure.ui.h:4
 msgid "Minimum word size for auto-completion"
-msgstr ""
+msgstr "Minimalna dužina reči za automatsko dovršavanje"
 
-#: ../plugins/wordcompletion/xed-wordcompletion-plugin.c:215
+#: ../plugins/wordcompletion/xed-wordcompletion-plugin.c:214
 msgid "Word completion"
-msgstr ""
+msgstr "Dovršavanje reči"
