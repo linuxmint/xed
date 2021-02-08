@@ -292,7 +292,7 @@
 		</listitem>
 		</orderedlist>
 		<para>Valid types of <replaceable>URI</replaceable> include <literal>http:</literal>, <literal>ftp:</literal>, <literal>file:</literal>, and all of the methods supported by <literal>gvfs</literal>.</para>
-		<para>Files from some types of URI are opened as read-only, and any changes you make must be saved to a different location. HTTP only allows files to be read. Files opened from FTP are read-only because because not all FTP servers may correctly work with saving remote files.</para>
+		<para>Files from some types of URI are opened as read-only, and any changes you make must be saved to a different location. HTTP only allows files to be read. Files opened from FTP are read-only because not all FTP servers may correctly work with saving remote files.</para>
 	 </sect2>
 
 <!-- ============= Working with tabs ======================== -->
@@ -350,7 +350,7 @@
 		  </listitem>
 		  <listitem><para>Type the string that you want to find in the <guilabel>Search for</guilabel> field. You can include special characters such as a new line or tab: see <xref linkend="xed-find-escapes"/>.</para>
 		  </listitem>
-		  <listitem><para>Click <guibutton>Find</guibutton> to search the file for the first occurrence of the string after your current cursor position. If <application>&app;</application> finds the string, the application selects first occurrence of the string. Other occurrences of the string are highlighted.</para>
+		  <listitem><para>Click <guibutton>Find</guibutton> to search the file for the first occurrence of the string after your current cursor position. If <application>&app;</application> finds the string, the application selects the first occurrence of the string. Other occurrences of the string are highlighted.</para>
 		  </listitem>
 		  <listitem><para>To find the next occurrence of the string, click <guibutton>Find</guibutton> or choose <menuchoice> <guimenu>Search</guimenu> <guimenuitem>Find Next</guimenuitem> </menuchoice>. To find the previous occurrence of the text, choose <menuchoice> <guimenu>Search</guimenu> <guimenuitem>Find Previous</guimenuitem> </menuchoice>.</para>
 		  </listitem>
@@ -1400,7 +1400,7 @@
 		    </itemizedlist>
 		  </listitem>
 		</orderedlist>
-	<para>The amount of space used, and whether tab character or space characters are used, depends on the <guilabel>Tab Stops</guilabel> settings in the Editor Preferences: see <xref linkend="xed-prefs-editor"/>.</para>
+	<para>The amount of space used, and whether tab characters or space characters are used, depends on the <guilabel>Tab Stops</guilabel> settings in the Editor Preferences: see <xref linkend="xed-prefs-editor"/>.</para>
 
 </sect2>
 
@@ -1484,12 +1484,12 @@
     </sect3>
     <sect3 id="xed-modelines-plugin-kate">
       <title>Kate Modelines</title>
-      <para>The first and last ten lines a document are scanned for <application>Kate</application> modelines.</para>
+      <para>The first and last ten lines of a document are scanned for <application>Kate</application> modelines.</para>
       <para>The <application>Kate</application> options for tab-width, indent-width, space-indent, word-wrap and word-wrap-column are supported. For more information, see the <ulink type="http" url="http://www.kate-editor.org">Kate website</ulink>.</para>
     </sect3>
     <sect3 id="xed-modelines-plugin-vim">
       <title>Vim Modelines</title>
-      <para>The first and last three lines a document are scanned for <application>Vim</application> modelines.</para>
+      <para>The first and last three lines of a document are scanned for <application>Vim</application> modelines.</para>
       <para>The <application>Vim</application> options for et, expandtab, ts, tabstop, sw, shiftwidth, wrap, and textwidth are supported. For more information, see the <ulink type="http" url="http://vimdoc.sourceforge.net/htmldoc/options.html#modeline">Vim website</ulink>.</para>
     </sect3>
 </sect2>
