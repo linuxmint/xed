@@ -115,7 +115,7 @@ save_panes_state (XedWindow *window)
     g_settings_apply (window->priv->window_settings);
 }
 
-static gint
+static gboolean
 on_key_pressed (GtkWidget *widget,
                 GdkEventKey *event,
                 XedWindow *window)
@@ -126,17 +126,19 @@ on_key_pressed (GtkWidget *widget,
         XedViewFrame *frame;
 
         tab = xed_window_get_active_tab (window);
-        frame = XED_VIEW_FRAME (_xed_tab_get_view_frame (tab));
 
-        if (xed_view_frame_get_search_popup_visible (frame))
+        if (tab != NULL)
         {
-            return GDK_EVENT_PROPAGATE;
+            frame = XED_VIEW_FRAME (_xed_tab_get_view_frame (tab));
+
+            if (xed_view_frame_get_search_popup_visible (frame))
+            {
+                return GDK_EVENT_PROPAGATE;
+            }
         }
-        else
-        {
-            xed_searchbar_hide (XED_SEARCHBAR (window->priv->searchbar));
-            return GDK_EVENT_STOP;
-        }
+
+        xed_searchbar_hide (XED_SEARCHBAR (window->priv->searchbar));
+        return GDK_EVENT_STOP;
     }
 
     return GDK_EVENT_PROPAGATE;
