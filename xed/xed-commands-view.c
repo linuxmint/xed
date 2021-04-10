@@ -155,6 +155,12 @@ _xed_cmd_view_toggle_overview_map (GtkAction *action,
     xed_debug (DEBUG_COMMANDS);
 
     tab = xed_window_get_active_tab (window);
+
+    if (tab == NULL)
+    {
+        return;
+    }
+
     frame = XED_VIEW_FRAME (_xed_tab_get_view_frame (tab));
     map_frame = xed_view_frame_get_map_frame (frame);
     visible = gtk_toggle_action_get_active (GTK_TOGGLE_ACTION (action));

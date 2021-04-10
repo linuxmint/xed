@@ -3001,5 +3001,7 @@ xed_tab_set_info_bar (XedTab    *tab,
 GtkWidget *
 _xed_tab_get_view_frame (XedTab *tab)
 {
+    g_return_val_if_fail (XED_IS_TAB (tab), NULL);
+
     return GTK_WIDGET (tab->priv->frame);
 }
