@@ -99,6 +99,14 @@ struct _XedPreferencesDialog
     GtkWidget *right_margin_spin;
     GtkWidget *right_margin_revealer;
 
+    /* Draw whitespace */
+    GtkWidget *draw_whitespace_switch;
+    GtkWidget *draw_whitespace_revealer;
+    GtkWidget *draw_whitespace_leading_switch;
+    GtkWidget *draw_whitespace_trailing_switch;
+    GtkWidget *draw_whitespace_inside_switch;
+    GtkWidget *draw_whitespace_newline_switch;
+
     /* Highlight current line */
     GtkWidget *highlight_current_line_switch;
 
@@ -169,6 +177,12 @@ xed_preferences_dialog_class_init (XedPreferencesDialogClass *klass)
     gtk_widget_class_bind_template_child (widget_class, XedPreferencesDialog, display_right_margin_switch);
     gtk_widget_class_bind_template_child (widget_class, XedPreferencesDialog, right_margin_spin);
     gtk_widget_class_bind_template_child (widget_class, XedPreferencesDialog, right_margin_revealer);
+    gtk_widget_class_bind_template_child (widget_class, XedPreferencesDialog, draw_whitespace_switch);
+    gtk_widget_class_bind_template_child (widget_class, XedPreferencesDialog, draw_whitespace_revealer);
+    gtk_widget_class_bind_template_child (widget_class, XedPreferencesDialog, draw_whitespace_leading_switch);
+    gtk_widget_class_bind_template_child (widget_class, XedPreferencesDialog, draw_whitespace_trailing_switch);
+    gtk_widget_class_bind_template_child (widget_class, XedPreferencesDialog, draw_whitespace_inside_switch);
+    gtk_widget_class_bind_template_child (widget_class, XedPreferencesDialog, draw_whitespace_newline_switch);
     gtk_widget_class_bind_template_child (widget_class, XedPreferencesDialog, highlight_current_line_switch);
     gtk_widget_class_bind_template_child (widget_class, XedPreferencesDialog, highlight_matching_bracket_switch);
     gtk_widget_class_bind_template_child (widget_class, XedPreferencesDialog, tab_width_spin);
@@ -315,6 +329,44 @@ setup_editor_page (XedPreferencesDialog *dlg)
                      XED_SETTINGS_RIGHT_MARGIN_POSITION,
                      dlg->right_margin_spin,
                      "value",
+                     G_SETTINGS_BIND_GET | G_SETTINGS_BIND_SET);
+
+    /* whitespace */
+
+    g_settings_bind (dlg->editor_settings,
+                     XED_SETTINGS_DRAW_WHITESPACE,
+                     dlg->draw_whitespace_switch,
+                     "active",
+                     G_SETTINGS_BIND_GET | G_SETTINGS_BIND_SET);
+
+    g_object_bind_property (dlg->draw_whitespace_switch,
+                            "active",
+                            dlg->draw_whitespace_revealer,
+                            "reveal-child",
+                            G_BINDING_SYNC_CREATE | G_BINDING_DEFAULT);
+
+    g_settings_bind (dlg->editor_settings,
+                     XED_SETTINGS_DRAW_WHITESPACE_LEADING,
+                     dlg->draw_whitespace_leading_switch,
+                     "active",
+                     G_SETTINGS_BIND_GET | G_SETTINGS_BIND_SET);
+
+    g_settings_bind (dlg->editor_settings,
+                     XED_SETTINGS_DRAW_WHITESPACE_TRAILING,
+                     dlg->draw_whitespace_trailing_switch,
+                     "active",
+                     G_SETTINGS_BIND_GET | G_SETTINGS_BIND_SET);
+
+    g_settings_bind (dlg->editor_settings,
+                     XED_SETTINGS_DRAW_WHITESPACE_INSIDE,
+                     dlg->draw_whitespace_inside_switch,
+                     "active",
+                     G_SETTINGS_BIND_GET | G_SETTINGS_BIND_SET);
+
+    g_settings_bind (dlg->editor_settings,
+                     XED_SETTINGS_DRAW_WHITESPACE_NEWLINE,
+                     dlg->draw_whitespace_newline_switch,
+                     "active",
                      G_SETTINGS_BIND_GET | G_SETTINGS_BIND_SET);
 
     /* Highlighting */
