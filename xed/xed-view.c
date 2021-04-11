@@ -162,6 +162,7 @@ xed_view_constructed (GObject *object)
     XedViewPrivate *priv;
     gboolean use_default_font;
     GtkSourceGutter *gutter;
+    gboolean draw_whitespace;
 
     view = XED_VIEW (object);
     priv = view->priv;
@@ -240,6 +241,15 @@ xed_view_constructed (GObject *object)
                      view,
                      "smart-home-end",
                      G_SETTINGS_BIND_GET);
+
+    draw_whitespace = g_settings_get_boolean (priv->editor_settings, XED_SETTINGS_DRAW_WHITESPACE);
+
+    if (draw_whitespace)
+    {
+        xed_view_set_draw_whitespace (view, draw_whitespace);
+    }
+
+    xed_view_update_draw_whitespace_locations_and_types (view);
 
     g_object_set (G_OBJECT (view),
                   "indent_on_tab", TRUE,
@@ -829,4 +839,80 @@ xed_view_set_font (XedView     *view,
     g_return_if_fail (font_desc != NULL);
     gtk_widget_modify_font (GTK_WIDGET (view), font_desc);
     pango_font_description_free (font_desc);
+}
+
+static guint
+xed_view_get_draw_whitespace_locations_from_settings (GSettings* settings)
+{
+    guint locations;
+
+    locations = 0;
+
+    locations |= g_settings_get_boolean (settings, XED_SETTINGS_DRAW_WHITESPACE_LEADING)
+                                ? GTK_SOURCE_SPACE_LOCATION_LEADING : 0;
+    locations |= g_settings_get_boolean (settings, XED_SETTINGS_DRAW_WHITESPACE_INSIDE)
+                                ? GTK_SOURCE_SPACE_LOCATION_INSIDE_TEXT : 0;
+    locations |= g_settings_get_boolean (settings, XED_SETTINGS_DRAW_WHITESPACE_TRAILING)
+                                ? GTK_SOURCE_SPACE_LOCATION_TRAILING : 0;
+
+    return locations;
+}
+
+static guint
+xed_view_get_draw_whitespace_types_from_settings (GSettings* settings)
+{
+    if (!g_settings_get_boolean (settings, XED_SETTINGS_DRAW_WHITESPACE_NEWLINE))
+    {
+        return GTK_SOURCE_SPACE_TYPE_ALL & ~GTK_SOURCE_SPACE_TYPE_NEWLINE;
+    }
+
+    return GTK_SOURCE_SPACE_TYPE_ALL;
+}
+
+/**
+ * xed_view_set_draw_whitespace:
+ * @view: a #XedView
+ * @enable: whether whitespace should be drawn
+ *
+ * Enables or disables rendering of any whitespace.
+ * The locations and types of whitespace to render is set by
+ * xed_view_update_draw_whitespace_locations_and_types()
+ *
+ **/
+
+void
+xed_view_set_draw_whitespace (XedView *view, gboolean enable)
+{
+    GtkSourceSpaceDrawer *spacedrawer;
+
+    spacedrawer = gtk_source_view_get_space_drawer (GTK_SOURCE_VIEW (view));
+    gtk_source_space_drawer_set_enable_matrix (spacedrawer, enable);
+}
+
+
+/**
+ * xed_view_update_draw_whitespace_locations_and_types:
+ * @view: a #XedView
+ *
+ * Updates the view to render whitespace at the locations and for types
+ * set in the preferences
+ *
+ **/
+
+void
+xed_view_update_draw_whitespace_locations_and_types (XedView *view)
+{
+    GtkSourceSpaceDrawer *spacedrawer;
+    guint locations, types;
+
+    spacedrawer = gtk_source_view_get_space_drawer (GTK_SOURCE_VIEW (view));
+    locations = xed_view_get_draw_whitespace_locations_from_settings (view->priv->editor_settings);
+    types = xed_view_get_draw_whitespace_types_from_settings (view->priv->editor_settings);
+
+    // disable other locations
+    gtk_source_space_drawer_set_types_for_locations (spacedrawer,
+                                                     GTK_SOURCE_SPACE_LOCATION_ALL & ~locations,
+                                                     GTK_SOURCE_SPACE_TYPE_NONE);
+    // enable chosen locations and types
+    gtk_source_space_drawer_set_types_for_locations (spacedrawer, locations, types);
 }

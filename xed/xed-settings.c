@@ -332,6 +332,32 @@ on_max_recents_changed (GSettings   *settings,
 }
 
 static void
+on_draw_whitespace_changed (GSettings  *settings,
+                            const gchar *key,
+                            XedSettings *xs)
+{
+    GList *views;
+    gboolean draw_whitespace;
+
+    views = xed_app_get_views (XED_APP (g_application_get_default ()));
+    draw_whitespace = g_settings_get_boolean (settings, key);
+
+    g_list_foreach (views, (GFunc)xed_view_set_draw_whitespace, GINT_TO_POINTER (draw_whitespace));
+}
+
+static void
+on_draw_whitespace_locations_or_types_changed (GSettings  *settings,
+                                               const gchar *key,
+                                               XedSettings *xs)
+{
+    GList *views;
+
+    views = xed_app_get_views (XED_APP (g_application_get_default ()));
+
+    g_list_foreach (views, (GFunc)xed_view_update_draw_whitespace_locations_and_types, NULL);
+}
+
+static void
 xed_settings_init (XedSettings *xs)
 {
     xs->priv = xed_settings_get_instance_private (xs);
@@ -361,10 +387,20 @@ xed_settings_init (XedSettings *xs)
                       G_CALLBACK (on_auto_save_interval_changed), xs);
     g_signal_connect (xs->priv->editor, "changed::syntax-highlighting",
                       G_CALLBACK (on_syntax_highlighting_changed), xs);
-    g_signal_connect (xs->priv->ui, "changed::enable-tab-scrolling",
-                      G_CALLBACK (on_enable_tab_scrolling_changed), xs);
+    g_signal_connect (xs->priv->editor, "changed::draw-whitespace",
+                      G_CALLBACK (on_draw_whitespace_changed), xs);
+    g_signal_connect (xs->priv->editor, "changed::draw-whitespace-leading",
+                      G_CALLBACK (on_draw_whitespace_locations_or_types_changed), xs);
+    g_signal_connect (xs->priv->editor, "changed::draw-whitespace-trailing",
+                      G_CALLBACK (on_draw_whitespace_locations_or_types_changed), xs);
+    g_signal_connect (xs->priv->editor, "changed::draw-whitespace-inside",
+                      G_CALLBACK (on_draw_whitespace_locations_or_types_changed), xs);
+    g_signal_connect (xs->priv->editor, "changed::draw-whitespace-newline",
+                      G_CALLBACK (on_draw_whitespace_locations_or_types_changed), xs);
 
     /* ui changes */
+    g_signal_connect (xs->priv->ui, "changed::enable-tab-scrolling",
+                      G_CALLBACK (on_enable_tab_scrolling_changed), xs);
     g_signal_connect (xs->priv->ui, "changed::max-recents",
                       G_CALLBACK (on_max_recents_changed), xs);
 }
