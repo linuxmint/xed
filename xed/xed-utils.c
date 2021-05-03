@@ -61,6 +61,13 @@ xed_gdk_color_to_string (GdkColor color)
     return g_strdup_printf ("#%04x%04x%04x", color.red, color.green, color.blue);
 }
 
+gint
+xed_string_to_clamped_gint (const gchar *text)
+{
+    long int long_line = strtol (text, NULL, 10);
+    return MAX(MIN(long_line, INT_MAX), INT_MIN);
+}
+
 /*
  * n: len of the string in bytes
  */
