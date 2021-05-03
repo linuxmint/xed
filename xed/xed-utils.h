@@ -50,6 +50,8 @@ enum { XED_ALL_WORKSPACES = 0xffffffff };
 
 gchar *xed_gdk_color_to_string (GdkColor color);
 
+gint xed_string_to_clamped_gint (const gchar *text);
+
 gchar *xed_utils_escape_underscores (const gchar *text,
                                      gssize       length);
 

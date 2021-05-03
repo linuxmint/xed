@@ -315,7 +315,7 @@ search_init (GtkWidget      *entry,
 
             if (*(text + 1) != '\0')
             {
-                offset_line = MAX (atoi (text + 1), 0);
+                offset_line = MAX (xed_string_to_clamped_gint (text + 1), 0);
             }
 
             line = MAX (cur_line - offset_line, 0);
@@ -326,19 +326,19 @@ search_init (GtkWidget      *entry,
 
             if (*(text + 1) != '\0')
             {
-                offset_line = MAX (atoi (text + 1), 0);
+                offset_line = MAX (xed_string_to_clamped_gint (text + 1), 0);
             }
 
             line = cur_line + offset_line;
         }
         else
         {
-            line = MAX (atoi (text) - 1, 0);
+            line = MAX (xed_string_to_clamped_gint (text) - 1, 0);
         }
 
         if (split_text[1] != NULL)
         {
-            line_offset = atoi (split_text[1]);
+            line_offset = xed_string_to_clamped_gint (split_text[1]);
         }
 
         g_strfreev (split_text);
