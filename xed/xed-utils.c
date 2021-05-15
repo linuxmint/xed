@@ -65,7 +65,7 @@ gint
 xed_string_to_clamped_gint (const gchar *text)
 {
     long int long_line = strtol (text, NULL, 10);
-    return MAX(MIN(long_line, INT_MAX), INT_MIN);
+    return CLAMP (long_line, INT_MIN, INT_MAX);
 }
 
 /*
