@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MATE Desktop Environment\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-11-30 11:24+0000\n"
+"POT-Creation-Date: 2021-06-01 12:55+0100\n"
 "PO-Revision-Date: 2020-12-05 18:23+0000\n"
 "Last-Translator: KAMI <kami911@gmail.com>\n"
 "Language-Team: Hungarian <kde-i18n-doc@kde.org>\n"
@@ -17,494 +17,10 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2021-01-02 14:14+0000\n"
-"X-Generator: Launchpad (build 34b3ffd45c9543b7f7aa5aa313925241e9e7ca3f)\n"
+"X-Launchpad-Export-Date: 2021-06-09 14:18+0000\n"
+"X-Generator: Launchpad (build b45bdbe3a00b6b668fa7f2069bd545c35c41f7f4)\n"
 "Language: hu\n"
 "(http: //www.transifex.com/projects/p/MATE/language/hu/)\n"
-
-#: ../data/org.x.editor.gschema.xml.in.h:1
-msgid "Use Default Font"
-msgstr "Alapértelmezett betűkészlet használata"
-
-#: ../data/org.x.editor.gschema.xml.in.h:2
-msgid ""
-"Whether to use the system's default fixed width font for editing text "
-"instead of a font specific to xed. If this option is turned off, then the "
-"font named in the \"Editor Font\" option will be used instead of the system "
-"font."
-msgstr ""
-"A rendszer alapértelmezett rögzített szélességű betűkészletének használata "
-"szövegszerkesztésre az Xed szövegszerkesztőben beállított betűkészlet "
-"helyett. Ha ez a beállítás ki van kapcsolva, a „Szerkesztő betűkészlete” "
-"beállítás lesz felhasználva a rendszer betűkészlete helyett."
-
-#: ../data/org.x.editor.gschema.xml.in.h:3
-msgctxt "editor-font"
-msgid "'Monospace 12'"
-msgstr "'Monospace 12'"
-
-#: ../data/org.x.editor.gschema.xml.in.h:4
-msgid "Editor Font"
-msgstr "Szerkesztő betűkészlete"
-
-#: ../data/org.x.editor.gschema.xml.in.h:5
-msgid ""
-"A custom font that will be used for the editing area. This will only take "
-"effect if the \"Use Default Font\" option is turned off."
-msgstr ""
-"A szerkesztőterülethez használt egyéni betűkészlet. Ez csak akkor lép "
-"érvénybe, ha az „Alapértelmezett betűkészlet használata” ki van kapcsolva."
-
-#: ../data/org.x.editor.gschema.xml.in.h:6
-msgid "Prefer Dark Theme"
-msgstr "Sötét téma használata"
-
-#: ../data/org.x.editor.gschema.xml.in.h:7
-msgid ""
-"Whether xed should prefer the dark variation of the current Gtk theme if "
-"available."
-msgstr ""
-"A Xed az aktuális GTK téma sötét változatát próbálja használni, amennyiben "
-"az elérhető."
-
-#: ../data/org.x.editor.gschema.xml.in.h:8
-msgid "Style Scheme"
-msgstr "Stílusséma"
-
-#: ../data/org.x.editor.gschema.xml.in.h:9
-msgid "The ID of a GtkSourceView Style Scheme used to color the text."
-msgstr "A szöveg színezésére használt GtkSourceView stílusséma azonosítója."
-
-#: ../data/org.x.editor.gschema.xml.in.h:10
-msgid "Create Backup Copies"
-msgstr "Biztonsági mentések létrehozása"
-
-#: ../data/org.x.editor.gschema.xml.in.h:11
-msgid ""
-"Whether xed should create backup copies for the files it saves. You can set "
-"the backup file extension with the \"Backup Copy Extension\" option."
-msgstr ""
-"A biztonsági mentések ki- és bekapcsolása. A biztonsági mentés "
-"kiterjesztését beállíthatja a „Biztonsági mentés kiterjesztése” beállításnál."
-
-#: ../data/org.x.editor.gschema.xml.in.h:12
-msgid "Autosave"
-msgstr "Automatikus mentés"
-
-#: ../data/org.x.editor.gschema.xml.in.h:13
-msgid ""
-"Whether xed should automatically save modified files after a time interval. "
-"You can set the time interval with the \"Autosave Interval\" option."
-msgstr ""
-"A módosított fájlok automatikus mentésének ki- és bekapcsolása. Az "
-"automatikus mentés időközét beállíthatja az „Automatikus mentés időköze” "
-"beállítással."
-
-#: ../data/org.x.editor.gschema.xml.in.h:14
-msgid "Autosave Interval"
-msgstr "Automatikus mentés időköze"
-
-#: ../data/org.x.editor.gschema.xml.in.h:15
-msgid ""
-"Number of minutes after which xed will automatically save modified files. "
-"This will only take effect if the \"Autosave\" option is turned on."
-msgstr ""
-"Az automatikus mentés időközének megadása (percekben). Csak akkor lép "
-"érvénybe ha az „Automatikus mentés” beállítás be van kapcsolva."
-
-#: ../data/org.x.editor.gschema.xml.in.h:16
-msgid "Writable VFS schemes"
-msgstr "Írható VFS sémák"
-
-#: ../data/org.x.editor.gschema.xml.in.h:17
-msgid ""
-"List of VFS schemes xed supports in write mode. The 'file' scheme is "
-"writable by default."
-msgstr ""
-"Az Xed szövegszerkesztő által írás módban támogatott VFS sémák felsorolása. "
-"A „file” séma alapértelmezetten írható."
-
-#: ../data/org.x.editor.gschema.xml.in.h:18
-msgid "Maximum Number of Undo Actions"
-msgstr "Visszavonási műveletek maximális száma"
-
-#: ../data/org.x.editor.gschema.xml.in.h:19
-msgid ""
-"Maximum number of actions that xed will be able to undo or redo. Use \"-1\" "
-"for unlimited number of actions."
-msgstr ""
-"Az xed szövegszerkesztő által visszavonható/mégis elvégezhető műveletek "
-"maximális száma. Végtelen műveletszám engedélyezéséhez használja a „-1” "
-"értéket."
-
-#: ../data/org.x.editor.gschema.xml.in.h:20
-msgid "Line Wrapping Mode"
-msgstr "Sortörési mód"
-
-#: ../data/org.x.editor.gschema.xml.in.h:21
-msgid ""
-"Specifies how to wrap long lines in the editing area. Use \"none\" for no "
-"wrapping, \"word\" for wrapping at word boundaries, and \"char\" for "
-"wrapping at individual character boundaries. Note that the values are case-"
-"sensitive, so make sure they appear exactly as mentioned here."
-msgstr ""
-"Meghatározza a hosszú sorok törését a szerkesztőterületen. Használja a "
-"„none” értéket, ha ne legyen törés, a „word” értéket a szóhatároknál történő "
-"töréshez és a „char” értéket az egyes karaktereknél történő töréshez. "
-"Megjegyzés: ezek az értékek kisbetű és nagybetű érzékenyek, pontosan úgy "
-"használja őket, ahogy itt vannak."
-
-#: ../data/org.x.editor.gschema.xml.in.h:22
-msgid "Tab Size"
-msgstr "Tabulátor mérete"
-
-#: ../data/org.x.editor.gschema.xml.in.h:23
-msgid ""
-"Specifies the number of spaces that should be displayed instead of Tab "
-"characters."
-msgstr "Meghatározza a tabulátor karakter helyett használt szóközök számát."
-
-#: ../data/org.x.editor.gschema.xml.in.h:24
-msgid "Insert spaces"
-msgstr "Szóközök beszúrása"
-
-#: ../data/org.x.editor.gschema.xml.in.h:25
-msgid "Whether xed should insert spaces instead of tabs."
-msgstr "Tabulátor helyett szóköz használatának ki- és bekapcsolása."
-
-#: ../data/org.x.editor.gschema.xml.in.h:26
-msgid "Automatic indent"
-msgstr "Automatikus behúzás"
-
-#: ../data/org.x.editor.gschema.xml.in.h:27
-msgid "Whether xed should enable automatic indentation."
-msgstr "Automatikus behúzás engedélyezése."
-
-#: ../data/org.x.editor.gschema.xml.in.h:28
-msgid "Display Line Numbers"
-msgstr "Sorok számának megjelenítése"
-
-#: ../data/org.x.editor.gschema.xml.in.h:29
-msgid "Whether xed should display line numbers in the editing area."
-msgstr ""
-"Ezt engedélyezvén, az Xed szövegszerkesztő megjeleníti sorok számát a "
-"szerkesztő területen."
-
-#: ../data/org.x.editor.gschema.xml.in.h:30
-msgid "Highlight Current Line"
-msgstr "Jelenlegi sor kiemelése"
-
-#: ../data/org.x.editor.gschema.xml.in.h:31
-msgid "Whether xed should highlight the current line."
-msgstr "Ezt engedélyezvén, az Xed szövegszerkesztő kiemeli a jelenlegi sort."
-
-#: ../data/org.x.editor.gschema.xml.in.h:32
-msgid "Highlight Matching Bracket"
-msgstr "Zárójel párjának kiemelése"
-
-#: ../data/org.x.editor.gschema.xml.in.h:33
-msgid "Whether xed should highlight the bracket matching the selected one."
-msgstr ""
-"Ezt engedélyezvén, az Xed szövegszerkesztő kiemeli a kijelölt zárójel párját."
-
-#: ../data/org.x.editor.gschema.xml.in.h:34
-msgid "Display Right Margin"
-msgstr "Jobb oldali margó megjelenítése"
-
-#: ../data/org.x.editor.gschema.xml.in.h:35
-msgid "Whether xed should display the right margin in the editing area."
-msgstr "A jobb oldali margó megjelenítése a szerkesztő területen."
-
-#: ../data/org.x.editor.gschema.xml.in.h:36
-msgid "Right Margin Position"
-msgstr "Jobb oldali margó pozíciója"
-
-#: ../data/org.x.editor.gschema.xml.in.h:37
-msgid "Specifies the position of the right margin."
-msgstr "Jobb oldali margó pozíciójának megadása."
-
-#: ../data/org.x.editor.gschema.xml.in.h:38
-msgid "Smart Home End"
-msgstr "Intelligens Home/End"
-
-#: ../data/org.x.editor.gschema.xml.in.h:39
-msgid ""
-"Specifies how the cursor moves when the HOME and END keys are pressed. Use "
-"\"disabled\" to always move at the start/end of the line, \"after\" to move "
-"to the start/end of the line the first time the keys are pressed and to the "
-"start/end of the text ignoring whitespaces the second time the keys are "
-"pressed, \"before\" to move to the start/end of the text before moving to "
-"the start/end of the line and \"always\" to always move to the start/end of "
-"the text instead of the start/end of the line."
-msgstr ""
-"Megadja a kurzor mozgásának módját a Home és End billentyűk lenyomásakor. A "
-"„disabled” használatakor mindig a sor elejére/végére mozognak, az „after” "
-"esetén az első lenyomásukkor a sor elejére/végére és második alkalommal "
-"szöveg elejére/végére az üres hely karakterek kihagyásával, a „before” "
-"esetén a szöveg elejére/végére a sor elejére/végére mozgás előtt, és "
-"„always” esetén mindig a szöveg elejére/végére mozognak a sor elejére/végére "
-"mozgás helyett."
-
-#: ../data/org.x.editor.gschema.xml.in.h:40
-msgid "Restore Previous Cursor Position"
-msgstr "Kurzor előző helyének helyreállítása"
-
-#: ../data/org.x.editor.gschema.xml.in.h:41
-msgid ""
-"Whether xed should restore the previous cursor position when a file is "
-"loaded."
-msgstr "Az utolsó kurzorpozíció visszaállítás egy fájl betöltésekor."
-
-#: ../data/org.x.editor.gschema.xml.in.h:42
-msgid "Enable Search Highlighting"
-msgstr "Találatok kiemelésének engedélyezése"
-
-#: ../data/org.x.editor.gschema.xml.in.h:43
-msgid ""
-"Whether xed should highlight all the occurrences of the searched text."
-msgstr ""
-"Az Xed szövegszerkesztő kiemelje-e a keresett szöveg összes előfordulását."
-
-#: ../data/org.x.editor.gschema.xml.in.h:44
-msgid "Enable Syntax Highlighting"
-msgstr "Szintaxiskiemelés engedélyezése"
-
-#: ../data/org.x.editor.gschema.xml.in.h:45
-msgid "Whether xed should enable syntax highlighting."
-msgstr "Szintaxiskiemelés engedélyezésének ki/bekapcsolása."
-
-#: ../data/org.x.editor.gschema.xml.in.h:46
-#: ../xed/resources/ui/xed-preferences-dialog.ui.h:25
-msgid "Ensure Trailing Newline"
-msgstr "Záró új sor biztosítása"
-
-#: ../data/org.x.editor.gschema.xml.in.h:47
-msgid ""
-"Whether xed will ensure that documents always end with a trailing newline."
-msgstr ""
-"Az Xed biztosítja, hogy a dokumentum mindig egy üres sorral végződjön."
-
-#: ../data/org.x.editor.gschema.xml.in.h:48
-msgid "Toolbar is Visible"
-msgstr "Eszköztár látható"
-
-#: ../data/org.x.editor.gschema.xml.in.h:49
-msgid "Whether the toolbar should be visible in editing windows."
-msgstr ""
-"Az eszköztár megjelenítésének ki/bekapcsolása a szerkesztőablakokban."
-
-#: ../data/org.x.editor.gschema.xml.in.h:50
-msgid "Status Bar is Visible"
-msgstr "Státuszsor látható"
-
-#: ../data/org.x.editor.gschema.xml.in.h:51
-msgid ""
-"Whether the status bar at the bottom of editing windows should be visible."
-msgstr "A szerkesztőablak alján található állapotsor ki/bekapcsolása."
-
-#: ../data/org.x.editor.gschema.xml.in.h:52
-msgid "Side Pane is Visible"
-msgstr "Az oldalsó ablaktábla látható"
-
-#: ../data/org.x.editor.gschema.xml.in.h:53
-msgid ""
-"Whether the side pane at the left of editing windows should be visible."
-msgstr "Megjelenjen-e a szerkesztőablakok bal oldalán az oldalsó ablaktábla."
-
-#: ../data/org.x.editor.gschema.xml.in.h:54
-msgid "Bottom Panel is Visible"
-msgstr "Az alsó ablaktábla látható"
-
-#: ../data/org.x.editor.gschema.xml.in.h:55
-msgid ""
-"Whether the bottom panel at the bottom of editing windows should be visible."
-msgstr "Megjelenjen-e a szerkesztőablak alján az alsó ablaktábla."
-
-#: ../data/org.x.editor.gschema.xml.in.h:56
-msgid "Allow changing active tabs by scrolling"
-msgstr "Aktív lap megváltoztatása görgetéssel"
-
-#: ../data/org.x.editor.gschema.xml.in.h:57
-msgid "Whether you can change active tabs by scrolling."
-msgstr "Az aktív lap megváltoztatása az egérgörgő használatával."
-
-#: ../data/org.x.editor.gschema.xml.in.h:58
-msgid "Minimap is visible"
-msgstr "A dokumentumtérkép látható"
-
-#: ../data/org.x.editor.gschema.xml.in.h:59
-msgid "Whether the minimap for the document should be visible."
-msgstr "A dokumentumtérkép láthatóságának bekapcsolása."
-
-#: ../data/org.x.editor.gschema.xml.in.h:60
-msgid "Maximum Recent Files"
-msgstr "Legutóbbi fájlok maximális értéke"
-
-#: ../data/org.x.editor.gschema.xml.in.h:61
-msgid ""
-"Specifies the maximum number of recently opened files that will be displayed "
-"in the \"Recent Files\" submenu."
-msgstr ""
-"Meghatározza a „Legutóbbi fájlok” almenüben megjelenített fájlok számát."
-
-#: ../data/org.x.editor.gschema.xml.in.h:62
-msgid "Print Syntax Highlighting"
-msgstr "Szintaxiskiemelés nyomtatása"
-
-#: ../data/org.x.editor.gschema.xml.in.h:63
-msgid "Whether xed should print syntax highlighting when printing documents."
-msgstr "Nyomtatáskor a szintaxiskiemelés ki- és bekapcsolása."
-
-#: ../data/org.x.editor.gschema.xml.in.h:64
-msgid "Print Header"
-msgstr "Fejléc nyomtatása"
-
-#: ../data/org.x.editor.gschema.xml.in.h:65
-msgid "Whether xed should include a document header when printing documents."
-msgstr "Nyomtatáskor a dokumentumok fejlécének ki- és bekapcsolása."
-
-#: ../data/org.x.editor.gschema.xml.in.h:66
-msgid "Printing Line Wrapping Mode"
-msgstr "Sortörési mód nyomtatáskor"
-
-#: ../data/org.x.editor.gschema.xml.in.h:67
-msgid ""
-"Specifies how to wrap long lines for printing. Use \"none\" for no wrapping, "
-"\"word\" for wrapping at word boundaries, and \"char\" for wrapping at "
-"individual character boundaries. Note that the values are case-sensitive, so "
-"make sure they appear exactly as mentioned here."
-msgstr ""
-"Meghatározza a hosszú sorok törését a nyomtatásnál. Használja a „none” "
-"értéket, ha ne legyen törés, a „word” értéket a szóhatároknál történő "
-"töréshez és a „char” értéket az egyes karaktereknél történő töréshez. "
-"Megjegyzés: ezek az értékek kisbetű/nagybetű érzékenyek, pontosan úgy "
-"használja őket, ahogy itt vannak."
-
-#: ../data/org.x.editor.gschema.xml.in.h:68
-msgid "Print Line Numbers"
-msgstr "Sorszámok nyomtatása"
-
-#: ../data/org.x.editor.gschema.xml.in.h:69
-msgid ""
-"If this value is 0, then no line numbers will be inserted when printing a "
-"document. Otherwise, xed will print line numbers every such number of lines."
-msgstr ""
-"Ha ez az érték 0, a sorok száma nem kerül beillesztésre nyomtatáskor. Egyéb "
-"esetben az Xed szövegszerkesztő ennyi soronként nyomtatja a sorok számát."
-
-#: ../data/org.x.editor.gschema.xml.in.h:70
-msgctxt "print-font-body-pango"
-msgid "'Monospace 9'"
-msgstr "'Monospace 9'"
-
-#: ../data/org.x.editor.gschema.xml.in.h:71
-msgid "Body Font for Printing"
-msgstr "Törzs betűkészlete nyomtatáskor"
-
-#: ../data/org.x.editor.gschema.xml.in.h:72
-msgid ""
-"Specifies the font to use for a document's body when printing documents."
-msgstr ""
-"Meghatározza nyomtatáskor a dokumentum törzséhez használt betűkészletet."
-
-#: ../data/org.x.editor.gschema.xml.in.h:73
-msgctxt "print-font-header-pango"
-msgid "'Sans 11'"
-msgstr "'Sans 11'"
-
-#: ../data/org.x.editor.gschema.xml.in.h:74
-msgid "Header Font for Printing"
-msgstr "Fejléc betűkészlete nyomtatáskor"
-
-#: ../data/org.x.editor.gschema.xml.in.h:75
-msgid ""
-"Specifies the font to use for page headers when printing a document. This "
-"will only take effect if the \"Print Header\" option is turned on."
-msgstr ""
-"Meghatározza nyomtatáskor az oldal fejlécéhez használt betűkészletet. Csak "
-"akkor lép érvénybe, ha a „Nyomtatási fejléc” be van kapcsolva."
-
-#: ../data/org.x.editor.gschema.xml.in.h:76
-msgctxt "print-font-numbers-pango"
-msgid "'Sans 8'"
-msgstr "'Sans 8'"
-
-#: ../data/org.x.editor.gschema.xml.in.h:77
-msgid "Line Number Font for Printing"
-msgstr "Sorok számának betűkészlete nyomtatáskor"
-
-#: ../data/org.x.editor.gschema.xml.in.h:78
-msgid ""
-"Specifies the font to use for line numbers when printing. This will only "
-"take effect if the \"Print Line Numbers\" option is non-zero."
-msgstr ""
-"Meghatározza nyomtatáskor a sorok számához használt betűkészletet. Csak "
-"akkor lép érvénybe, ha a „Sorok számának kiírása” be van állítva."
-
-#: ../data/org.x.editor.gschema.xml.in.h:79
-msgctxt "auto-detected"
-msgid "[ 'UTF-8', 'CURRENT', 'ISO-8859-15', 'UTF-16' ]"
-msgstr "[ 'UTF-8', 'CURRENT', 'ISO-8859-2', 'UTF-16' ]"
-
-#: ../data/org.x.editor.gschema.xml.in.h:80
-msgid "Automatically Detected Encodings"
-msgstr "Automatikusan felismert kódolások"
-
-#: ../data/org.x.editor.gschema.xml.in.h:81
-msgid ""
-"Sorted list of encodings used by xed for automatically detecting the "
-"encoding of a file. \"CURRENT\" represents the current locale encoding. Only "
-"recognized encodings are used."
-msgstr ""
-"Az Xed szövegszerkesztő által fájlok kódolásának automatikus felismerésére "
-"használt kódolások rendezett listája. A „CURRENT” jelenti a jelenlegi locale "
-"kódolását. Csak a felismert kódolások kerülnek felhasználásra."
-
-#: ../data/org.x.editor.gschema.xml.in.h:82
-msgctxt "shown-in-menu"
-msgid "[ 'ISO-8859-15' ]"
-msgstr "[ 'ISO-8859-2' ]"
-
-#: ../data/org.x.editor.gschema.xml.in.h:83
-msgid "Encodings shown in menu"
-msgstr "Menüben megjelenített kódolások"
-
-#: ../data/org.x.editor.gschema.xml.in.h:84
-msgid ""
-"List of encodings shown in the Character Encoding menu in open/save file "
-"selector. Only recognized encodings are used."
-msgstr ""
-"A „Fájl megnyitása/mentése” fájlválasztó ablakokban megjelenő kódolások "
-"listája. Kizárólag az ismert kódolások használhatók."
-
-#: ../data/org.x.editor.gschema.xml.in.h:85
-msgid "History for \"search for\" entries"
-msgstr "Keresési előzmények"
-
-#: ../data/org.x.editor.gschema.xml.in.h:86
-msgid "List of entries in \"search for\" textbox."
-msgstr "A korábbi keresések listája."
-
-#: ../data/org.x.editor.gschema.xml.in.h:87
-msgid "History for \"replace with\" entries"
-msgstr "Csere előzmények"
-
-#: ../data/org.x.editor.gschema.xml.in.h:88
-msgid "List of entries in \"replace with\" textbox."
-msgstr "A korábbi szövegcserék listája."
-
-#: ../data/org.x.editor.gschema.xml.in.h:89
-msgid "Active plugins"
-msgstr "Aktív bővítmények"
-
-#: ../data/org.x.editor.gschema.xml.in.h:90
-msgid ""
-"List of active plugins. It contains the \"Location\" of the active plugins. "
-"See the .xed-plugin file for obtaining the \"Location\" of a given plugin."
-msgstr ""
-"Az aktív bővítmények listája. Az aktív bővítmények helyét („Location”) "
-"tartalmazza. Lásd a .xed-plugin fájlt az adott bővítményhez tartozó "
-"„Location” értékért."
 
 #: ../data/xed.appdata.xml.in.h:1
 msgid "A Text Editor"
@@ -886,12 +402,12 @@ msgid "Unsaved Document %d"
 msgstr "%d. mentetlen dokumentum"
 
 #: ../xed/xed-documents-panel.c:88 ../xed/xed-documents-panel.c:99
-#: ../xed/xed-window.c:1835 ../xed/xed-window.c:1839
+#: ../xed/xed-window.c:1836 ../xed/xed-window.c:1840
 msgid "Read-Only"
 msgstr "Csak olvasható"
 
-#: ../xed/xed-documents-panel.c:710 ../xed/resources/ui/xed-shortcuts.ui.h:1
-#: ../xed/xed-window.c:3085
+#: ../xed/xed-documents-panel.c:650 ../xed/resources/ui/xed-shortcuts.ui.h:1
+#: ../xed/xed-window.c:3086
 msgid "Documents"
 msgstr "Dokumentumok"
 
@@ -929,7 +445,7 @@ msgstr "_Leírás"
 msgid "_Encoding"
 msgstr "_Kódolás"
 
-#: ../xed/xed-file-chooser-dialog.c:44 ../xed/xed-preferences-dialog.c:731
+#: ../xed/xed-file-chooser-dialog.c:44 ../xed/xed-preferences-dialog.c:783
 msgid "All Files"
 msgstr "Minden fájl"
 
@@ -957,7 +473,7 @@ msgstr "Mac OS klasszikus"
 msgid "Windows"
 msgstr "Windows"
 
-#: ../xed/xed-highlight-mode-selector.c:297 ../xed/xed-window.c:1964
+#: ../xed/xed-highlight-mode-selector.c:297 ../xed/xed-window.c:1965
 msgid "Plain Text"
 msgstr "Egyszerű szöveg"
 
@@ -1306,21 +822,21 @@ msgstr ""
 "Ha folytatja a fájl mentését, azzal kárt okozhat a dokumentumban. Mindenképp "
 "menti a dokumentumot?"
 
-#: ../xed/xed-preferences-dialog.c:266
+#: ../xed/xed-preferences-dialog.c:280
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:3
 #, no-c-format
 msgid "Use the system fixed width font (%s)"
 msgstr "A _rendszer rögzített szélességű betűkészletének használata (%s)"
 
-#: ../xed/xed-preferences-dialog.c:384
+#: ../xed/xed-preferences-dialog.c:436
 msgid "Editor"
 msgstr "Szerkesztő"
 
-#: ../xed/xed-preferences-dialog.c:422
+#: ../xed/xed-preferences-dialog.c:474
 msgid "Save"
 msgstr "Mentés"
 
-#: ../xed/xed-preferences-dialog.c:535
+#: ../xed/xed-preferences-dialog.c:587
 #, c-format
 msgid ""
 "Directory '%s' could not be created: g_mkdir_with_parents() failed: %s"
@@ -1328,45 +844,45 @@ msgstr ""
 "A(z) „%s” könyvtár nem hozható létre: a g_mkdir_with_parents() hívás "
 "meghiúsult: %s"
 
-#: ../xed/xed-preferences-dialog.c:689
+#: ../xed/xed-preferences-dialog.c:741
 msgid "The selected color scheme cannot be installed."
 msgstr "A kijelölt színséma nem telepíthető."
 
-#: ../xed/xed-preferences-dialog.c:712 ../xed/xed-preferences-dialog.c:718
+#: ../xed/xed-preferences-dialog.c:764 ../xed/xed-preferences-dialog.c:770
 msgid "Add Scheme"
 msgstr "Séma hozzáadása"
 
-#: ../xed/xed-preferences-dialog.c:715 ../xed/xed-progress-info-bar.c:61
+#: ../xed/xed-preferences-dialog.c:767 ../xed/xed-progress-info-bar.c:61
 msgid "Cancel"
 msgstr "Mégse"
 
-#: ../xed/xed-preferences-dialog.c:724
+#: ../xed/xed-preferences-dialog.c:776
 msgid "Color Scheme Files"
 msgstr "Színsémafájlok"
 
-#: ../xed/xed-preferences-dialog.c:796
+#: ../xed/xed-preferences-dialog.c:848
 #, c-format
 msgid "Could not remove color scheme \"%s\"."
 msgstr "Nem távolítható el a(z) „%s” színséma."
 
-#: ../xed/xed-preferences-dialog.c:828
+#: ../xed/xed-preferences-dialog.c:880
 msgid "Theme"
 msgstr "Téma"
 
-#: ../xed/xed-preferences-dialog.c:845
+#: ../xed/xed-preferences-dialog.c:897
 msgid "Plugins"
 msgstr "Bővítmények"
 
-#: ../xed/xed-preferences-dialog.c:853
+#: ../xed/xed-preferences-dialog.c:905
 msgid "Help"
 msgstr "Súgó"
 
-#: ../xed/xed-preferences-dialog.c:858
+#: ../xed/xed-preferences-dialog.c:910
 #: ../xed/resources/ui/xed-searchbar.ui.h:11
 msgid "Close"
 msgstr "Bezár"
 
-#: ../xed/xed-preferences-dialog.c:872
+#: ../xed/xed-preferences-dialog.c:924
 msgid "Xed Preferences"
 msgstr "Beállítások"
 
@@ -1508,82 +1024,106 @@ msgid "4"
 msgstr "4"
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:10
+msgid "Draw whitespace"
+msgstr ""
+
+#: ../xed/resources/ui/xed-preferences-dialog.ui.h:11
+msgid "Leading whitespace"
+msgstr ""
+
+#: ../xed/resources/ui/xed-preferences-dialog.ui.h:12
+msgid "Trailing whitespace"
+msgstr ""
+
+#: ../xed/resources/ui/xed-preferences-dialog.ui.h:13
+msgid "Whitespace inside of text"
+msgstr ""
+
+#: ../xed/resources/ui/xed-preferences-dialog.ui.h:14
+msgid "Newline character"
+msgstr ""
+
+#: ../xed/resources/ui/xed-preferences-dialog.ui.h:15
 msgid "Highlighting"
 msgstr "Kiemelés"
 
-#: ../xed/resources/ui/xed-preferences-dialog.ui.h:11
+#: ../xed/resources/ui/xed-preferences-dialog.ui.h:16
 msgid "Highlight the current line"
 msgstr "Aktuális sor kiemelése"
 
-#: ../xed/resources/ui/xed-preferences-dialog.ui.h:12
+#: ../xed/resources/ui/xed-preferences-dialog.ui.h:17
 msgid "Highlight matching brackets"
 msgstr "Zárójelpárok kiemelése"
 
-#: ../xed/resources/ui/xed-preferences-dialog.ui.h:13
+#: ../xed/resources/ui/xed-preferences-dialog.ui.h:18
 msgid "Indentation"
 msgstr "Behúzás"
 
-#: ../xed/resources/ui/xed-preferences-dialog.ui.h:14
+#: ../xed/resources/ui/xed-preferences-dialog.ui.h:19
 msgid "Tab width"
 msgstr "Tabulátor-szélesség"
 
-#: ../xed/resources/ui/xed-preferences-dialog.ui.h:15
+#: ../xed/resources/ui/xed-preferences-dialog.ui.h:20
 msgid "Use spaces instead of tabs"
 msgstr "Tabulátorok helyett szóközök használata"
 
-#: ../xed/resources/ui/xed-preferences-dialog.ui.h:16
+#: ../xed/resources/ui/xed-preferences-dialog.ui.h:21
 msgid "Automatic indentation"
 msgstr "Automatikus behúzás"
 
-#: ../xed/resources/ui/xed-preferences-dialog.ui.h:17
+#: ../xed/resources/ui/xed-preferences-dialog.ui.h:22
 msgid "Word wrap"
 msgstr "Sortördelés engedélyezése"
 
-#: ../xed/resources/ui/xed-preferences-dialog.ui.h:18
+#: ../xed/resources/ui/xed-preferences-dialog.ui.h:23
 msgid "Split words over two lines"
 msgstr "Ne törje a szavakat két sorba"
 
-#: ../xed/resources/ui/xed-preferences-dialog.ui.h:19
+#: ../xed/resources/ui/xed-preferences-dialog.ui.h:24
 msgid "Tab scrolling"
 msgstr "Lapok görgetése"
 
-#: ../xed/resources/ui/xed-preferences-dialog.ui.h:20
+#: ../xed/resources/ui/xed-preferences-dialog.ui.h:25
 msgid "Allow mouse wheel scrolling to change tabs"
 msgstr "Váltás a lapok között egérgörgővel"
 
-#: ../xed/resources/ui/xed-preferences-dialog.ui.h:21
+#: ../xed/resources/ui/xed-preferences-dialog.ui.h:26
 msgid "File saving"
 msgstr "Fájlmentés"
 
-#: ../xed/resources/ui/xed-preferences-dialog.ui.h:22
+#: ../xed/resources/ui/xed-preferences-dialog.ui.h:27
 msgid "Create a backup copy of files before saving"
 msgstr "Biztonsági másolatok létrehozása mentés előtt"
 
-#: ../xed/resources/ui/xed-preferences-dialog.ui.h:23
+#: ../xed/resources/ui/xed-preferences-dialog.ui.h:28
 msgid "Autosave files"
 msgstr "Fájlok automatikus mentése"
 
-#: ../xed/resources/ui/xed-preferences-dialog.ui.h:24
+#: ../xed/resources/ui/xed-preferences-dialog.ui.h:29
 msgid "Minutes between saving"
 msgstr "percenként"
 
-#: ../xed/resources/ui/xed-preferences-dialog.ui.h:26
+#: ../xed/resources/ui/xed-preferences-dialog.ui.h:30
+msgid "Ensure Trailing Newline"
+msgstr "Záró új sor biztosítása"
+
+#: ../xed/resources/ui/xed-preferences-dialog.ui.h:31
 msgid "Dark theme"
 msgstr "Sötét téma"
 
-#: ../xed/resources/ui/xed-preferences-dialog.ui.h:27
+#: ../xed/resources/ui/xed-preferences-dialog.ui.h:32
 msgid "Use dark theme variant (if available)"
 msgstr "Sötét téma használata (amennyiben elérhető)"
 
-#: ../xed/resources/ui/xed-preferences-dialog.ui.h:28
+#: ../xed/resources/ui/xed-preferences-dialog.ui.h:33
 msgid "Style scheme"
 msgstr "Stílusséma"
 
-#: ../xed/resources/ui/xed-preferences-dialog.ui.h:29
+#: ../xed/resources/ui/xed-preferences-dialog.ui.h:34
 msgid "Install scheme"
 msgstr "Séma telepítése"
 
-#: ../xed/resources/ui/xed-preferences-dialog.ui.h:30
+#: ../xed/resources/ui/xed-preferences-dialog.ui.h:35
 msgid "Remove scheme"
 msgstr "Séma eltávolítása"
 
@@ -2372,61 +1912,61 @@ msgstr "_Alsó ablaktábla"
 msgid "Show or hide the bottom pane in the current window"
 msgstr "Alsó ablaktábla megjelenítése vagy rejtése a jelenlegi ablakban"
 
-#: ../xed/xed-utils.c:822
+#: ../xed/xed-utils.c:829
 msgid "Please check your installation."
 msgstr "Ellenőrizze a telepítést."
 
-#: ../xed/xed-utils.c:890
+#: ../xed/xed-utils.c:897
 #, c-format
 msgid "Unable to open UI file %s. Error: %s"
 msgstr "Nem nyitható meg a(z) „%s” felületfájl. Hiba: %s"
 
-#: ../xed/xed-utils.c:910
+#: ../xed/xed-utils.c:917
 #, c-format
 msgid "Unable to find the object '%s' inside file %s."
 msgstr "Az objektum („%s”) nem található meg a(z) %s fájlban."
 
 #. Translators: '/ on <remote-share>'
-#: ../xed/xed-utils.c:1078
+#: ../xed/xed-utils.c:1085
 #, c-format
 msgid "/ on %s"
 msgstr "/ ezen: %s"
 
-#: ../xed/xed-view.c:378
+#: ../xed/xed-view.c:388
 msgid "_Display line numbers"
 msgstr "Sorok számának _megjelenítése"
 
 #. Translators: %s is a URI
-#: ../xed/xed-window.c:876
+#: ../xed/xed-window.c:878
 #, c-format
 msgid "Open '%s'"
 msgstr "„%s” megnyitása"
 
 #. Translators: %s is a URI
-#: ../xed/xed-window.c:1225
+#: ../xed/xed-window.c:1226
 #, c-format
 msgid "Activate '%s'"
 msgstr "„%s” aktiválása"
 
-#: ../xed/xed-window.c:1413
+#: ../xed/xed-window.c:1414
 #, c-format
 msgid "Spaces: %u"
 msgstr "Szóközök: %u"
 
-#: ../xed/xed-window.c:1417
+#: ../xed/xed-window.c:1418
 #, c-format
 msgid "Tabs: %u"
 msgstr "Tabulátorok: %u"
 
-#: ../xed/xed-window.c:1494
+#: ../xed/xed-window.c:1495
 msgid "Use Spaces"
 msgstr "Szóközök használata"
 
-#: ../xed/xed-window.c:2301
+#: ../xed/xed-window.c:2302
 msgid "There are unsaved documents"
 msgstr "Mentetlen dokumentumok találhatók"
 
-#: ../xed/xed-window.c:3350
+#: ../xed/xed-window.c:3351
 msgid "Elevated Privileges"
 msgstr "Emelt szintű jogosultság"
 

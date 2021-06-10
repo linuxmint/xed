@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MATE Desktop Environment\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-11-30 11:24+0000\n"
-"PO-Revision-Date: 2020-11-30 15:08+0000\n"
+"POT-Creation-Date: 2021-06-01 12:55+0100\n"
+"PO-Revision-Date: 2021-06-03 18:19+0000\n"
 "Last-Translator: Alan Mortensen <alanmortensen.am@gmail.com>\n"
 "Language-Team: Danish "
 "(http://www.transifex.com/projects/p/MATE/language/da/)\n"
@@ -17,491 +17,9 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2021-01-02 14:15+0000\n"
-"X-Generator: Launchpad (build 34b3ffd45c9543b7f7aa5aa313925241e9e7ca3f)\n"
+"X-Launchpad-Export-Date: 2021-06-09 14:18+0000\n"
+"X-Generator: Launchpad (build b45bdbe3a00b6b668fa7f2069bd545c35c41f7f4)\n"
 "Language: da\n"
-
-#: ../data/org.x.editor.gschema.xml.in.h:1
-msgid "Use Default Font"
-msgstr "Benyt standardskrifttype"
-
-#: ../data/org.x.editor.gschema.xml.in.h:2
-msgid ""
-"Whether to use the system's default fixed width font for editing text "
-"instead of a font specific to xed. If this option is turned off, then the "
-"font named in the \"Editor Font\" option will be used instead of the system "
-"font."
-msgstr ""
-"Om systemets standard fastbredde-skrifttype skal anvendes ved "
-"tekstredigering i stedet for en skrifttype, der er specifik for xed. Hvis "
-"denne indstilling er fravalgt, vil skrifttypen under "
-"\"Redigeringsskrifttype\" blive anvendt i stedet for systemskrifttypen."
-
-#: ../data/org.x.editor.gschema.xml.in.h:3
-msgctxt "editor-font"
-msgid "'Monospace 12'"
-msgstr "\"Monospace 12\""
-
-#: ../data/org.x.editor.gschema.xml.in.h:4
-msgid "Editor Font"
-msgstr "Redigeringsskrifttype"
-
-#: ../data/org.x.editor.gschema.xml.in.h:5
-msgid ""
-"A custom font that will be used for the editing area. This will only take "
-"effect if the \"Use Default Font\" option is turned off."
-msgstr ""
-"Skrifttype der bruges til redigeringsområdet. Benyttes kun, hvis \"Benyt "
-"standardskrifttype\" er slået fra."
-
-#: ../data/org.x.editor.gschema.xml.in.h:6
-msgid "Prefer Dark Theme"
-msgstr "Foretræk mørkt tema"
-
-#: ../data/org.x.editor.gschema.xml.in.h:7
-msgid ""
-"Whether xed should prefer the dark variation of the current Gtk theme if "
-"available."
-msgstr ""
-"Om xed, hvis tilgængeligt, skal foretrække den mørke variant af det aktuelle "
-"Gtk-tema."
-
-#: ../data/org.x.editor.gschema.xml.in.h:8
-msgid "Style Scheme"
-msgstr "Stilskema"
-
-#: ../data/org.x.editor.gschema.xml.in.h:9
-msgid "The ID of a GtkSourceView Style Scheme used to color the text."
-msgstr "Id for GtkSourceView-stilskemaet der bruges til at farve teksten."
-
-#: ../data/org.x.editor.gschema.xml.in.h:10
-msgid "Create Backup Copies"
-msgstr "Opret sikkerhedskopier"
-
-#: ../data/org.x.editor.gschema.xml.in.h:11
-msgid ""
-"Whether xed should create backup copies for the files it saves. You can set "
-"the backup file extension with the \"Backup Copy Extension\" option."
-msgstr ""
-"Om xed skal oprette sikkerhedskopier af filer, der gemmes. Du kan angive "
-"sikkerhedskopiens filtypenavn med indstillingen \"Filtypenavn for "
-"sikkerhedskopi\"."
-
-#: ../data/org.x.editor.gschema.xml.in.h:12
-msgid "Autosave"
-msgstr "Gem automatisk"
-
-#: ../data/org.x.editor.gschema.xml.in.h:13
-msgid ""
-"Whether xed should automatically save modified files after a time interval. "
-"You can set the time interval with the \"Autosave Interval\" option."
-msgstr ""
-"Om xed automatisk skal gemme ændrede filer efter et givent tidsinterval. Du "
-"kan angive tidsintervallet med indstillingen \"Interval for at gemme "
-"automatisk\"."
-
-#: ../data/org.x.editor.gschema.xml.in.h:14
-msgid "Autosave Interval"
-msgstr "Interval for at gemme automatisk"
-
-#: ../data/org.x.editor.gschema.xml.in.h:15
-msgid ""
-"Number of minutes after which xed will automatically save modified files. "
-"This will only take effect if the \"Autosave\" option is turned on."
-msgstr ""
-"Antal minutter efter hvilket xed automatisk vil gemme ændrede filer. Dette "
-"vil kun ske, hvis indstillingen \"Gem automatisk\" er valgt."
-
-#: ../data/org.x.editor.gschema.xml.in.h:16
-msgid "Writable VFS schemes"
-msgstr "Skrivbare VFS-skemaer"
-
-#: ../data/org.x.editor.gschema.xml.in.h:17
-msgid ""
-"List of VFS schemes xed supports in write mode. The 'file' scheme is "
-"writable by default."
-msgstr ""
-"Oversigt over VFS-skemaer som xed understøtter i skrivetilstand. Filskemaet "
-"er som standard skrivbart."
-
-#: ../data/org.x.editor.gschema.xml.in.h:18
-msgid "Maximum Number of Undo Actions"
-msgstr "Maksimalt antal fortrydelser"
-
-#: ../data/org.x.editor.gschema.xml.in.h:19
-msgid ""
-"Maximum number of actions that xed will be able to undo or redo. Use \"-1\" "
-"for unlimited number of actions."
-msgstr ""
-"Maksimalt antal handlinger som xed er i stand til at fortryde eller gøre "
-"igen. Anvend \"-1\" for uendeligt antal handlinger."
-
-#: ../data/org.x.editor.gschema.xml.in.h:20
-msgid "Line Wrapping Mode"
-msgstr "Linjeombrydning"
-
-#: ../data/org.x.editor.gschema.xml.in.h:21
-msgid ""
-"Specifies how to wrap long lines in the editing area. Use \"none\" for no "
-"wrapping, \"word\" for wrapping at word boundaries, and \"char\" for "
-"wrapping at individual character boundaries. Note that the values are case-"
-"sensitive, so make sure they appear exactly as mentioned here."
-msgstr ""
-"Angiver hvordan lange linjer skal ombrydes under redigering. Benyt \"none\" "
-"for ingen ombrydning, \"word\" for ombrydning ved mellemrum mellem ord og "
-"\"char\" for ombrydning ved enkelte tegn. Bemærk at der skelnes mellem store "
-"og små bogstaver, så sørg for at de skrives nøjagtig som her."
-
-#: ../data/org.x.editor.gschema.xml.in.h:22
-msgid "Tab Size"
-msgstr "Tabulatorstørrelse"
-
-#: ../data/org.x.editor.gschema.xml.in.h:23
-msgid ""
-"Specifies the number of spaces that should be displayed instead of Tab "
-"characters."
-msgstr ""
-"Angiver antallet af mellemrum, der skal vises i stedet for tabulatortegn."
-
-#: ../data/org.x.editor.gschema.xml.in.h:24
-msgid "Insert spaces"
-msgstr "Indsæt mellemrum"
-
-#: ../data/org.x.editor.gschema.xml.in.h:25
-msgid "Whether xed should insert spaces instead of tabs."
-msgstr "Om xed skal indsætte mellemrum i stedet for tabulator."
-
-#: ../data/org.x.editor.gschema.xml.in.h:26
-msgid "Automatic indent"
-msgstr "Automatisk indrykning"
-
-#: ../data/org.x.editor.gschema.xml.in.h:27
-msgid "Whether xed should enable automatic indentation."
-msgstr "Om xed skal aktivere automatisk indrykning."
-
-#: ../data/org.x.editor.gschema.xml.in.h:28
-msgid "Display Line Numbers"
-msgstr "Vis linjenumre"
-
-#: ../data/org.x.editor.gschema.xml.in.h:29
-msgid "Whether xed should display line numbers in the editing area."
-msgstr "Om xed skal vise linjenumre i redigeringsområdet."
-
-#: ../data/org.x.editor.gschema.xml.in.h:30
-msgid "Highlight Current Line"
-msgstr "Fremhæv aktuel linje"
-
-#: ../data/org.x.editor.gschema.xml.in.h:31
-msgid "Whether xed should highlight the current line."
-msgstr "Om xed skal fremhæve den aktuelle linje."
-
-#: ../data/org.x.editor.gschema.xml.in.h:32
-msgid "Highlight Matching Bracket"
-msgstr "Fremhæv modsvarende parentes"
-
-#: ../data/org.x.editor.gschema.xml.in.h:33
-msgid "Whether xed should highlight the bracket matching the selected one."
-msgstr "Om xed skal fremhæve parantesen modsvarende den valgte."
-
-#: ../data/org.x.editor.gschema.xml.in.h:34
-msgid "Display Right Margin"
-msgstr "Vis højre margen"
-
-#: ../data/org.x.editor.gschema.xml.in.h:35
-msgid "Whether xed should display the right margin in the editing area."
-msgstr "Om xed skal vise højre margen i redigeringsområdet."
-
-#: ../data/org.x.editor.gschema.xml.in.h:36
-msgid "Right Margin Position"
-msgstr "Højre margens position"
-
-#: ../data/org.x.editor.gschema.xml.in.h:37
-msgid "Specifies the position of the right margin."
-msgstr "Angiver positionen af den højre margen."
-
-#: ../data/org.x.editor.gschema.xml.in.h:38
-msgid "Smart Home End"
-msgstr "Smart Home End"
-
-#: ../data/org.x.editor.gschema.xml.in.h:39
-msgid ""
-"Specifies how the cursor moves when the HOME and END keys are pressed. Use "
-"\"disabled\" to always move at the start/end of the line, \"after\" to move "
-"to the start/end of the line the first time the keys are pressed and to the "
-"start/end of the text ignoring whitespaces the second time the keys are "
-"pressed, \"before\" to move to the start/end of the text before moving to "
-"the start/end of the line and \"always\" to always move to the start/end of "
-"the text instead of the start/end of the line."
-msgstr ""
-"Angiver hvordan markøren flyttes, når HOME- og END-tasterne trykkes. Brug "
-"\"disabled\" for altid at flytte til start/slut på linjen, \"after\" til at "
-"flytte til start/slut på linjen når tasterne trykkes første gang og "
-"start/slut af teksten (idet mellemrum, linjeskift mv. ignoreres) anden gang "
-"tasterne trykkes, \"before\" for at flytte til start/slut på teksten før der "
-"flyttes til start/slut på linjen og \"always\" for altid at flytte til "
-"start/slut på teksten fremfor start/slut på linjen."
-
-#: ../data/org.x.editor.gschema.xml.in.h:40
-msgid "Restore Previous Cursor Position"
-msgstr "Gendan tidligere markørposition"
-
-#: ../data/org.x.editor.gschema.xml.in.h:41
-msgid ""
-"Whether xed should restore the previous cursor position when a file is "
-"loaded."
-msgstr "Om xed skal gendanne den tidligere markørposition, når en fil åbnes."
-
-#: ../data/org.x.editor.gschema.xml.in.h:42
-msgid "Enable Search Highlighting"
-msgstr "Aktivér søgefremhævning"
-
-#: ../data/org.x.editor.gschema.xml.in.h:43
-msgid ""
-"Whether xed should highlight all the occurrences of the searched text."
-msgstr "Om xed skal fremhæve alle forekomster af den søgte tekst."
-
-#: ../data/org.x.editor.gschema.xml.in.h:44
-msgid "Enable Syntax Highlighting"
-msgstr "Aktivér syntaksfremhævning"
-
-#: ../data/org.x.editor.gschema.xml.in.h:45
-msgid "Whether xed should enable syntax highlighting."
-msgstr "Om xed skal aktivere syntaksfremhævning."
-
-#: ../data/org.x.editor.gschema.xml.in.h:46
-#: ../xed/resources/ui/xed-preferences-dialog.ui.h:25
-msgid "Ensure Trailing Newline"
-msgstr "Sikr efterstillet linjeskift"
-
-#: ../data/org.x.editor.gschema.xml.in.h:47
-msgid ""
-"Whether xed will ensure that documents always end with a trailing newline."
-msgstr ""
-"Om xed vil sikre, at dokumenter altid slutter med et efterstillet linjeskift."
-
-#: ../data/org.x.editor.gschema.xml.in.h:48
-msgid "Toolbar is Visible"
-msgstr "Vis værktøjslinje"
-
-#: ../data/org.x.editor.gschema.xml.in.h:49
-msgid "Whether the toolbar should be visible in editing windows."
-msgstr "Om værktøjslinjen skal vises i redigeringsvinduer."
-
-#: ../data/org.x.editor.gschema.xml.in.h:50
-msgid "Status Bar is Visible"
-msgstr "Vis statuslinje"
-
-#: ../data/org.x.editor.gschema.xml.in.h:51
-msgid ""
-"Whether the status bar at the bottom of editing windows should be visible."
-msgstr "Om statuslinjen nederst i redigeringsvinduer vises."
-
-#: ../data/org.x.editor.gschema.xml.in.h:52
-msgid "Side Pane is Visible"
-msgstr "Sideruden er synlig"
-
-#: ../data/org.x.editor.gschema.xml.in.h:53
-msgid ""
-"Whether the side pane at the left of editing windows should be visible."
-msgstr "Om sideruden til venstre i redigeringsvinduer vises."
-
-#: ../data/org.x.editor.gschema.xml.in.h:54
-msgid "Bottom Panel is Visible"
-msgstr "Bundpanel er synligt"
-
-#: ../data/org.x.editor.gschema.xml.in.h:55
-msgid ""
-"Whether the bottom panel at the bottom of editing windows should be visible."
-msgstr "Om bundpanelet nederst i redigeringsvinduer vises."
-
-#: ../data/org.x.editor.gschema.xml.in.h:56
-msgid "Allow changing active tabs by scrolling"
-msgstr "Tillad skift af aktivt faneblad ved rulning"
-
-#: ../data/org.x.editor.gschema.xml.in.h:57
-msgid "Whether you can change active tabs by scrolling."
-msgstr "Om du kan skifte aktivt faneblad ved rulning."
-
-#: ../data/org.x.editor.gschema.xml.in.h:58
-msgid "Minimap is visible"
-msgstr "Minikort er synligt"
-
-#: ../data/org.x.editor.gschema.xml.in.h:59
-msgid "Whether the minimap for the document should be visible."
-msgstr "Om dokumentets minikort skal være synligt."
-
-#: ../data/org.x.editor.gschema.xml.in.h:60
-msgid "Maximum Recent Files"
-msgstr "Maksimalt antal seneste filer"
-
-#: ../data/org.x.editor.gschema.xml.in.h:61
-msgid ""
-"Specifies the maximum number of recently opened files that will be displayed "
-"in the \"Recent Files\" submenu."
-msgstr ""
-"Angiver det maksimale antal af nyligt åbnede filer, der vises i undermenuen "
-"\"Seneste filer\"."
-
-#: ../data/org.x.editor.gschema.xml.in.h:62
-msgid "Print Syntax Highlighting"
-msgstr "Udskriv syntaksfremhævning"
-
-#: ../data/org.x.editor.gschema.xml.in.h:63
-msgid "Whether xed should print syntax highlighting when printing documents."
-msgstr ""
-"Om xed skal udskrive syntaksfremhævning ved udskrivning af dokumenter."
-
-#: ../data/org.x.editor.gschema.xml.in.h:64
-msgid "Print Header"
-msgstr "Udskriv sidehoveder"
-
-#: ../data/org.x.editor.gschema.xml.in.h:65
-msgid "Whether xed should include a document header when printing documents."
-msgstr "Om xed skal inkludere sidehoved ved udskrivning af dokumenter."
-
-#: ../data/org.x.editor.gschema.xml.in.h:66
-msgid "Printing Line Wrapping Mode"
-msgstr "Linjeombrydning ved udskrivning"
-
-#: ../data/org.x.editor.gschema.xml.in.h:67
-msgid ""
-"Specifies how to wrap long lines for printing. Use \"none\" for no wrapping, "
-"\"word\" for wrapping at word boundaries, and \"char\" for wrapping at "
-"individual character boundaries. Note that the values are case-sensitive, so "
-"make sure they appear exactly as mentioned here."
-msgstr ""
-"Angiver hvordan lange linjer skal ombrydes ved udskrivning. Benyt \"none\" "
-"for ingen ombrydning, \"word\" for ombrydning ved mellemrum mellem ord og "
-"\"char\" for ombrydning ved enkelte tegn. Bemærk at der skelnes mellem store "
-"og små bogstaver, så sørg for at de skrives nøjagtig som her."
-
-#: ../data/org.x.editor.gschema.xml.in.h:68
-msgid "Print Line Numbers"
-msgstr "Udskriv linjenumre"
-
-#: ../data/org.x.editor.gschema.xml.in.h:69
-msgid ""
-"If this value is 0, then no line numbers will be inserted when printing a "
-"document. Otherwise, xed will print line numbers every such number of lines."
-msgstr ""
-"Hvis værdien er 0, vil der ikke blive indsat linjenumre ved udskrivning af "
-"dokumentet. Ellers vil xed udskrive linjenumre for hvert angivne antal "
-"linjer."
-
-#: ../data/org.x.editor.gschema.xml.in.h:70
-msgctxt "print-font-body-pango"
-msgid "'Monospace 9'"
-msgstr "\"Monospace 9\""
-
-#: ../data/org.x.editor.gschema.xml.in.h:71
-msgid "Body Font for Printing"
-msgstr "Brødtekstskrifttype ved udskrivning"
-
-#: ../data/org.x.editor.gschema.xml.in.h:72
-msgid ""
-"Specifies the font to use for a document's body when printing documents."
-msgstr ""
-"Angiver den skrifttype, der benyttes for et dokuments brødtekst ved "
-"udskrivning."
-
-#: ../data/org.x.editor.gschema.xml.in.h:73
-msgctxt "print-font-header-pango"
-msgid "'Sans 11'"
-msgstr "\"Sans 11\""
-
-#: ../data/org.x.editor.gschema.xml.in.h:74
-msgid "Header Font for Printing"
-msgstr "Sidehovedskrifttype ved udskrivning"
-
-#: ../data/org.x.editor.gschema.xml.in.h:75
-msgid ""
-"Specifies the font to use for page headers when printing a document. This "
-"will only take effect if the \"Print Header\" option is turned on."
-msgstr ""
-"Angiver den skrifttype, der benyttes til sidehoveder ved udskrivning. Dette "
-"træder kun i kraft, hvis \"Udskriv sidehoveder\" er slået til."
-
-#: ../data/org.x.editor.gschema.xml.in.h:76
-msgctxt "print-font-numbers-pango"
-msgid "'Sans 8'"
-msgstr "\"Sans 8\""
-
-#: ../data/org.x.editor.gschema.xml.in.h:77
-msgid "Line Number Font for Printing"
-msgstr "Linjenummerskrifttype ved udskrivning"
-
-#: ../data/org.x.editor.gschema.xml.in.h:78
-msgid ""
-"Specifies the font to use for line numbers when printing. This will only "
-"take effect if the \"Print Line Numbers\" option is non-zero."
-msgstr ""
-"Angiver den skrifttype, der benyttes for linjenumre ved udskrivning. Dette "
-"træder kun i kraft, hvis \"Udskriv linjenumre\" er sat til en værdi "
-"forskellig fra nul."
-
-#: ../data/org.x.editor.gschema.xml.in.h:79
-msgctxt "auto-detected"
-msgid "[ 'UTF-8', 'CURRENT', 'ISO-8859-15', 'UTF-16' ]"
-msgstr "[ \"UTF-8\", \"AKTUEL\", \"ISO-8859-15\", \"UTF-16\" ]"
-
-#: ../data/org.x.editor.gschema.xml.in.h:80
-msgid "Automatically Detected Encodings"
-msgstr "Automatisk bestemte kodninger"
-
-#: ../data/org.x.editor.gschema.xml.in.h:81
-msgid ""
-"Sorted list of encodings used by xed for automatically detecting the "
-"encoding of a file. \"CURRENT\" represents the current locale encoding. Only "
-"recognized encodings are used."
-msgstr ""
-"Sorteret liste over kodninger anvendt af xed til automatisk at bestemme en "
-"fils kodning. \"AKTUEL\" repræsenterer den aktuelle regions kodning. Kun "
-"genkendte kodninger anvendes."
-
-#: ../data/org.x.editor.gschema.xml.in.h:82
-msgctxt "shown-in-menu"
-msgid "[ 'ISO-8859-15' ]"
-msgstr "[ \"ISO-8859-15\"]"
-
-#: ../data/org.x.editor.gschema.xml.in.h:83
-msgid "Encodings shown in menu"
-msgstr "Kodninger vist i menu"
-
-#: ../data/org.x.editor.gschema.xml.in.h:84
-msgid ""
-"List of encodings shown in the Character Encoding menu in open/save file "
-"selector. Only recognized encodings are used."
-msgstr ""
-"Liste af kodninger der vises i tegnkodningsmenuen i åbn/gem-filvælgeren. Kun "
-"genkendte kodninger benyttes."
-
-#: ../data/org.x.editor.gschema.xml.in.h:85
-msgid "History for \"search for\" entries"
-msgstr "Historik for poster i \"Søg efter\""
-
-#: ../data/org.x.editor.gschema.xml.in.h:86
-msgid "List of entries in \"search for\" textbox."
-msgstr "Liste over poster i tekstboksen \"Søg efter\"."
-
-#: ../data/org.x.editor.gschema.xml.in.h:87
-msgid "History for \"replace with\" entries"
-msgstr "Historik for posterne \"Erstat med\""
-
-#: ../data/org.x.editor.gschema.xml.in.h:88
-msgid "List of entries in \"replace with\" textbox."
-msgstr "Liste over poster i tekstboksen \"Erstat med\"."
-
-#: ../data/org.x.editor.gschema.xml.in.h:89
-msgid "Active plugins"
-msgstr "Aktive plugins"
-
-#: ../data/org.x.editor.gschema.xml.in.h:90
-msgid ""
-"List of active plugins. It contains the \"Location\" of the active plugins. "
-"See the .xed-plugin file for obtaining the \"Location\" of a given plugin."
-msgstr ""
-"Oversigt over aktive plugins. Den indeholder de aktive plugins' "
-"\"placering\". Se filen .xed-plugin for at få en given plugins placering."
 
 #: ../data/xed.appdata.xml.in.h:1
 msgid "A Text Editor"
@@ -871,12 +389,12 @@ msgid "Unsaved Document %d"
 msgstr "Ikke gemt dokument %d"
 
 #: ../xed/xed-documents-panel.c:88 ../xed/xed-documents-panel.c:99
-#: ../xed/xed-window.c:1835 ../xed/xed-window.c:1839
+#: ../xed/xed-window.c:1836 ../xed/xed-window.c:1840
 msgid "Read-Only"
 msgstr "Skrivebeskyttet"
 
-#: ../xed/xed-documents-panel.c:710 ../xed/resources/ui/xed-shortcuts.ui.h:1
-#: ../xed/xed-window.c:3085
+#: ../xed/xed-documents-panel.c:650 ../xed/resources/ui/xed-shortcuts.ui.h:1
+#: ../xed/xed-window.c:3086
 msgid "Documents"
 msgstr "Dokumenter"
 
@@ -914,7 +432,7 @@ msgstr "_Beskrivelse"
 msgid "_Encoding"
 msgstr "_Kodning"
 
-#: ../xed/xed-file-chooser-dialog.c:44 ../xed/xed-preferences-dialog.c:731
+#: ../xed/xed-file-chooser-dialog.c:44 ../xed/xed-preferences-dialog.c:783
 msgid "All Files"
 msgstr "Alle filer"
 
@@ -942,7 +460,7 @@ msgstr "Klassisk Mac OS"
 msgid "Windows"
 msgstr "Windows"
 
-#: ../xed/xed-highlight-mode-selector.c:297 ../xed/xed-window.c:1964
+#: ../xed/xed-highlight-mode-selector.c:297 ../xed/xed-window.c:1965
 msgid "Plain Text"
 msgstr "Almindelig tekst"
 
@@ -1288,66 +806,66 @@ msgstr ""
 "Hvis du fortsætter med at gemme denne fil, kan du ødelægge dokumentet.  Gem "
 "alligevel?"
 
-#: ../xed/xed-preferences-dialog.c:266
+#: ../xed/xed-preferences-dialog.c:280
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:3
 #, no-c-format
 msgid "Use the system fixed width font (%s)"
 msgstr "Anvend systemets fastbredde-skrifttype (%s)"
 
-#: ../xed/xed-preferences-dialog.c:384
+#: ../xed/xed-preferences-dialog.c:436
 msgid "Editor"
 msgstr "Redigering"
 
-#: ../xed/xed-preferences-dialog.c:422
+#: ../xed/xed-preferences-dialog.c:474
 msgid "Save"
 msgstr "Gem"
 
-#: ../xed/xed-preferences-dialog.c:535
+#: ../xed/xed-preferences-dialog.c:587
 #, c-format
 msgid ""
 "Directory '%s' could not be created: g_mkdir_with_parents() failed: %s"
 msgstr ""
 "Mappen \"%s\" kunne ikke blive oprettet: g_mkdir_with_parents() fejlede: %s"
 
-#: ../xed/xed-preferences-dialog.c:689
+#: ../xed/xed-preferences-dialog.c:741
 msgid "The selected color scheme cannot be installed."
 msgstr "Det valgte farveskema kan ikke installeres."
 
-#: ../xed/xed-preferences-dialog.c:712 ../xed/xed-preferences-dialog.c:718
+#: ../xed/xed-preferences-dialog.c:764 ../xed/xed-preferences-dialog.c:770
 msgid "Add Scheme"
 msgstr "Tilføj skema"
 
-#: ../xed/xed-preferences-dialog.c:715 ../xed/xed-progress-info-bar.c:61
+#: ../xed/xed-preferences-dialog.c:767 ../xed/xed-progress-info-bar.c:61
 msgid "Cancel"
 msgstr "Annullér"
 
-#: ../xed/xed-preferences-dialog.c:724
+#: ../xed/xed-preferences-dialog.c:776
 msgid "Color Scheme Files"
 msgstr "Farveskemafiler"
 
-#: ../xed/xed-preferences-dialog.c:796
+#: ../xed/xed-preferences-dialog.c:848
 #, c-format
 msgid "Could not remove color scheme \"%s\"."
 msgstr "Kunne ikke fjerne farveskemaet \"%s\"."
 
-#: ../xed/xed-preferences-dialog.c:828
+#: ../xed/xed-preferences-dialog.c:880
 msgid "Theme"
 msgstr "Tema"
 
-#: ../xed/xed-preferences-dialog.c:845
+#: ../xed/xed-preferences-dialog.c:897
 msgid "Plugins"
 msgstr "Plugins"
 
-#: ../xed/xed-preferences-dialog.c:853
+#: ../xed/xed-preferences-dialog.c:905
 msgid "Help"
 msgstr "Hjælp"
 
-#: ../xed/xed-preferences-dialog.c:858
+#: ../xed/xed-preferences-dialog.c:910
 #: ../xed/resources/ui/xed-searchbar.ui.h:11
 msgid "Close"
 msgstr "Luk"
 
-#: ../xed/xed-preferences-dialog.c:872
+#: ../xed/xed-preferences-dialog.c:924
 msgid "Xed Preferences"
 msgstr "Xed-indstillinger"
 
@@ -1489,82 +1007,106 @@ msgid "4"
 msgstr "4"
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:10
+msgid "Draw whitespace"
+msgstr "Tegn mellemrum"
+
+#: ../xed/resources/ui/xed-preferences-dialog.ui.h:11
+msgid "Leading whitespace"
+msgstr "Foranstillet mellemrum"
+
+#: ../xed/resources/ui/xed-preferences-dialog.ui.h:12
+msgid "Trailing whitespace"
+msgstr "Efterstillet mellemrum"
+
+#: ../xed/resources/ui/xed-preferences-dialog.ui.h:13
+msgid "Whitespace inside of text"
+msgstr "Mellemrum inden i tekst"
+
+#: ../xed/resources/ui/xed-preferences-dialog.ui.h:14
+msgid "Newline character"
+msgstr "Linjeskiftstegn"
+
+#: ../xed/resources/ui/xed-preferences-dialog.ui.h:15
 msgid "Highlighting"
 msgstr "Fremhævning"
 
-#: ../xed/resources/ui/xed-preferences-dialog.ui.h:11
+#: ../xed/resources/ui/xed-preferences-dialog.ui.h:16
 msgid "Highlight the current line"
 msgstr "Fremhæv den aktuelle linje"
 
-#: ../xed/resources/ui/xed-preferences-dialog.ui.h:12
+#: ../xed/resources/ui/xed-preferences-dialog.ui.h:17
 msgid "Highlight matching brackets"
 msgstr "Fremhæv samhørende parenteser"
 
-#: ../xed/resources/ui/xed-preferences-dialog.ui.h:13
+#: ../xed/resources/ui/xed-preferences-dialog.ui.h:18
 msgid "Indentation"
 msgstr "Indrykning"
 
-#: ../xed/resources/ui/xed-preferences-dialog.ui.h:14
+#: ../xed/resources/ui/xed-preferences-dialog.ui.h:19
 msgid "Tab width"
 msgstr "Tabulatorbredde"
 
-#: ../xed/resources/ui/xed-preferences-dialog.ui.h:15
+#: ../xed/resources/ui/xed-preferences-dialog.ui.h:20
 msgid "Use spaces instead of tabs"
 msgstr "Brug mellemrum i stedet for tabulatorstop"
 
-#: ../xed/resources/ui/xed-preferences-dialog.ui.h:16
+#: ../xed/resources/ui/xed-preferences-dialog.ui.h:21
 msgid "Automatic indentation"
 msgstr "Automatisk indrykning"
 
-#: ../xed/resources/ui/xed-preferences-dialog.ui.h:17
+#: ../xed/resources/ui/xed-preferences-dialog.ui.h:22
 msgid "Word wrap"
 msgstr "Ordombrydning"
 
-#: ../xed/resources/ui/xed-preferences-dialog.ui.h:18
+#: ../xed/resources/ui/xed-preferences-dialog.ui.h:23
 msgid "Split words over two lines"
 msgstr "Del ord over to linjer"
 
-#: ../xed/resources/ui/xed-preferences-dialog.ui.h:19
+#: ../xed/resources/ui/xed-preferences-dialog.ui.h:24
 msgid "Tab scrolling"
 msgstr "Tabulatorrulning"
 
-#: ../xed/resources/ui/xed-preferences-dialog.ui.h:20
+#: ../xed/resources/ui/xed-preferences-dialog.ui.h:25
 msgid "Allow mouse wheel scrolling to change tabs"
 msgstr "Tillad rulning med musehjul for at skifte faneblad"
 
-#: ../xed/resources/ui/xed-preferences-dialog.ui.h:21
+#: ../xed/resources/ui/xed-preferences-dialog.ui.h:26
 msgid "File saving"
 msgstr "Gemme filer"
 
-#: ../xed/resources/ui/xed-preferences-dialog.ui.h:22
+#: ../xed/resources/ui/xed-preferences-dialog.ui.h:27
 msgid "Create a backup copy of files before saving"
 msgstr "Opret en sikkerhedskopi af filer, før de gemmes"
 
-#: ../xed/resources/ui/xed-preferences-dialog.ui.h:23
+#: ../xed/resources/ui/xed-preferences-dialog.ui.h:28
 msgid "Autosave files"
 msgstr "Gem filer automatisk"
 
-#: ../xed/resources/ui/xed-preferences-dialog.ui.h:24
+#: ../xed/resources/ui/xed-preferences-dialog.ui.h:29
 msgid "Minutes between saving"
 msgstr "Minutter før der gemmes"
 
-#: ../xed/resources/ui/xed-preferences-dialog.ui.h:26
+#: ../xed/resources/ui/xed-preferences-dialog.ui.h:30
+msgid "Ensure Trailing Newline"
+msgstr "Sikr efterstillet linjeskift"
+
+#: ../xed/resources/ui/xed-preferences-dialog.ui.h:31
 msgid "Dark theme"
 msgstr "Mørkt tema"
 
-#: ../xed/resources/ui/xed-preferences-dialog.ui.h:27
+#: ../xed/resources/ui/xed-preferences-dialog.ui.h:32
 msgid "Use dark theme variant (if available)"
 msgstr "Anvend mørk temavariant (hvis tilgængelig)"
 
-#: ../xed/resources/ui/xed-preferences-dialog.ui.h:28
+#: ../xed/resources/ui/xed-preferences-dialog.ui.h:33
 msgid "Style scheme"
 msgstr "Stilskema"
 
-#: ../xed/resources/ui/xed-preferences-dialog.ui.h:29
+#: ../xed/resources/ui/xed-preferences-dialog.ui.h:34
 msgid "Install scheme"
 msgstr "Installér skema"
 
-#: ../xed/resources/ui/xed-preferences-dialog.ui.h:30
+#: ../xed/resources/ui/xed-preferences-dialog.ui.h:35
 msgid "Remove scheme"
 msgstr "Fjern skema"
 
@@ -2353,61 +1895,61 @@ msgstr "_Bundrude"
 msgid "Show or hide the bottom pane in the current window"
 msgstr "Vis eller skjul bundruden i det aktuelle vindue"
 
-#: ../xed/xed-utils.c:822
+#: ../xed/xed-utils.c:829
 msgid "Please check your installation."
 msgstr "Kontrollér venligst din installation."
 
-#: ../xed/xed-utils.c:890
+#: ../xed/xed-utils.c:897
 #, c-format
 msgid "Unable to open UI file %s. Error: %s"
 msgstr "Kunne ikke åbne brugergrænsefladefil %s. Fejl: %s"
 
-#: ../xed/xed-utils.c:910
+#: ../xed/xed-utils.c:917
 #, c-format
 msgid "Unable to find the object '%s' inside file %s."
 msgstr "Kan ikke finde objektet \"%s\" i filen %s."
 
 #. Translators: '/ on <remote-share>'
-#: ../xed/xed-utils.c:1078
+#: ../xed/xed-utils.c:1085
 #, c-format
 msgid "/ on %s"
 msgstr "/ på %s"
 
-#: ../xed/xed-view.c:378
+#: ../xed/xed-view.c:388
 msgid "_Display line numbers"
 msgstr "Vis linje_numre"
 
 #. Translators: %s is a URI
-#: ../xed/xed-window.c:876
+#: ../xed/xed-window.c:878
 #, c-format
 msgid "Open '%s'"
 msgstr "Åbn \"%s\""
 
 #. Translators: %s is a URI
-#: ../xed/xed-window.c:1225
+#: ../xed/xed-window.c:1226
 #, c-format
 msgid "Activate '%s'"
 msgstr "Aktivér \"%s\""
 
-#: ../xed/xed-window.c:1413
+#: ../xed/xed-window.c:1414
 #, c-format
 msgid "Spaces: %u"
 msgstr "Mellemrum: %u"
 
-#: ../xed/xed-window.c:1417
+#: ../xed/xed-window.c:1418
 #, c-format
 msgid "Tabs: %u"
 msgstr "Tabulatorstop: %u"
 
-#: ../xed/xed-window.c:1494
+#: ../xed/xed-window.c:1495
 msgid "Use Spaces"
 msgstr "Brug mellemrum"
 
-#: ../xed/xed-window.c:2301
+#: ../xed/xed-window.c:2302
 msgid "There are unsaved documents"
 msgstr "Dokumenter er ikke gemt"
 
-#: ../xed/xed-window.c:3350
+#: ../xed/xed-window.c:3351
 msgid "Elevated Privileges"
 msgstr "Forhøjede rettigheder"
 

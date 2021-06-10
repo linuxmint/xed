@@ -8,9 +8,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MATE Desktop Environment\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-11-30 11:24+0000\n"
-"PO-Revision-Date: 2018-07-07 23:11+0000\n"
-"Last-Translator: Мікалай Валер'евіч Сакалоўскі <nikolice.1@gmail.com>\n"
+"POT-Creation-Date: 2021-06-01 12:55+0100\n"
+"PO-Revision-Date: 2021-06-04 13:07+0000\n"
+"Last-Translator: Anton Hryb <Unknown>\n"
 "Language-Team: Belarusian "
 "(http://www.transifex.com/projects/p/MATE/language/be/)\n"
 "MIME-Version: 1.0\n"
@@ -18,506 +18,9 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Launchpad-Export-Date: 2021-01-02 14:15+0000\n"
-"X-Generator: Launchpad (build 34b3ffd45c9543b7f7aa5aa313925241e9e7ca3f)\n"
+"X-Launchpad-Export-Date: 2021-06-09 14:18+0000\n"
+"X-Generator: Launchpad (build b45bdbe3a00b6b668fa7f2069bd545c35c41f7f4)\n"
 "Language: be\n"
-
-#: ../data/org.x.editor.gschema.xml.in.h:1
-msgid "Use Default Font"
-msgstr "Ужываць стандартны шрыфт"
-
-#: ../data/org.x.editor.gschema.xml.in.h:2
-msgid ""
-"Whether to use the system's default fixed width font for editing text "
-"instead of a font specific to xed. If this option is turned off, then the "
-"font named in the \"Editor Font\" option will be used instead of the system "
-"font."
-msgstr ""
-"Ці трэба выкарыстоўваць сістэмны (абраны на большасць выпадкаў) шрыфт "
-"замацаванай шырыні, для рэдагавання тэкстаў, – замест шрыфта, які пазначаны "
-"праз «XED»?… Калі гэтае патрабаванне адключана, – тады – той шрыфт, што "
-"прызначаны як «Шрыфт рэдагавання» – будзе выкарыстаны, замест сістэмна-"
-"прапанаванага шрыфта."
-
-#: ../data/org.x.editor.gschema.xml.in.h:3
-msgctxt "editor-font"
-msgid "'Monospace 12'"
-msgstr "'Monospace 12'"
-
-#: ../data/org.x.editor.gschema.xml.in.h:4
-msgid "Editor Font"
-msgstr "Шрыфт рэдактара"
-
-#: ../data/org.x.editor.gschema.xml.in.h:5
-msgid ""
-"A custom font that will be used for the editing area. This will only take "
-"effect if the \"Use Default Font\" option is turned off."
-msgstr ""
-"Адмысловы шрыфт для прасторы рэдагавання. Гэта будзе мець эфект, калі "
-"параметр \"Ужываць стандартны шрыфт\" адключаны."
-
-#: ../data/org.x.editor.gschema.xml.in.h:6
-msgid "Prefer Dark Theme"
-msgstr "Аддаваць перавагу – цёмным афарбаванням"
-
-#: ../data/org.x.editor.gschema.xml.in.h:7
-msgid ""
-"Whether xed should prefer the dark variation of the current Gtk theme if "
-"available."
-msgstr ""
-"Ці трэба, каб «XED» — аддаваў перавагу *цёмнаму* варыянту дадзенай "
-"«Gtk»–тэмы? (Пры яго наяўнасці.)"
-
-#: ../data/org.x.editor.gschema.xml.in.h:8
-msgid "Style Scheme"
-msgstr "Схема стылю"
-
-#: ../data/org.x.editor.gschema.xml.in.h:9
-msgid "The ID of a GtkSourceView Style Scheme used to color the text."
-msgstr "Ідэнтыфікатар схемы афармлення GtkSourceView для афарбоўкі тэксту."
-
-#: ../data/org.x.editor.gschema.xml.in.h:10
-msgid "Create Backup Copies"
-msgstr "Ствараць рэзэрвовыя копіі"
-
-#: ../data/org.x.editor.gschema.xml.in.h:11
-msgid ""
-"Whether xed should create backup copies for the files it saves. You can set "
-"the backup file extension with the \"Backup Copy Extension\" option."
-msgstr ""
-"Ці трэба, каб «XED» – ствараў запасныя копіі, – для файлаў, што "
-"захоўваюцца?… (Вы – можаце усталяваць запасаючае файлы пашырэнне: цераз "
-"прыкладна так жа званую вопцыю.)"
-
-#: ../data/org.x.editor.gschema.xml.in.h:12
-msgid "Autosave"
-msgstr "Аўтазахаванне"
-
-#: ../data/org.x.editor.gschema.xml.in.h:13
-msgid ""
-"Whether xed should automatically save modified files after a time interval. "
-"You can set the time interval with the \"Autosave Interval\" option."
-msgstr ""
-"Ці павінны «XED» – сам захоўваць зменныя Вамі файлы: цераз аднолькавыя "
-"часовыя прамежкі, пазначанай даўжыні?… Вы – можаце пазначыць *даўжыню* "
-"(такіх прамежкаў): як вопцыю, якая – завецца «Час – між сама-захаваннямі»."
-
-#: ../data/org.x.editor.gschema.xml.in.h:14
-msgid "Autosave Interval"
-msgstr "Інтэрвал аўтазахавання"
-
-#: ../data/org.x.editor.gschema.xml.in.h:15
-msgid ""
-"Number of minutes after which xed will automatically save modified files. "
-"This will only take effect if the \"Autosave\" option is turned on."
-msgstr ""
-"Лік мінут, праз якія – «XED» будзе (сам) захоўваць змененыя файлы… Гэта – "
-"будзе толькі тады дзейнічаць, калі «Сама-захаванне» (як опцыя) – уключанае."
-
-#: ../data/org.x.editor.gschema.xml.in.h:16
-msgid "Writable VFS schemes"
-msgstr "Схемы запісу VFS"
-
-#: ../data/org.x.editor.gschema.xml.in.h:17
-msgid ""
-"List of VFS schemes xed supports in write mode. The 'file' scheme is "
-"writable by default."
-msgstr ""
-"Спіс VFS схем, якія «XED» падтрымлівае ў пісьменніцкім рэжыме… Схема «файл» "
-"– можа выкарыстоўвацца для запісаў, калі не пазначана іншае."
-
-#: ../data/org.x.editor.gschema.xml.in.h:18
-msgid "Maximum Number of Undo Actions"
-msgstr "Колькі разоў можна адрабляць дзеянні"
-
-#: ../data/org.x.editor.gschema.xml.in.h:19
-msgid ""
-"Maximum number of actions that xed will be able to undo or redo. Use \"-1\" "
-"for unlimited number of actions."
-msgstr ""
-"Найбольшы лік – дзеянняў, – якія «XED» – будзе здольны адмяніць (ці – "
-"правесці зноў)… Выкарыстоўвайце значэнне «-1» – для не-абмежаванага ліку, "
-"такіх дзеянняў."
-
-#: ../data/org.x.editor.gschema.xml.in.h:20
-msgid "Line Wrapping Mode"
-msgstr "Рэжым згортвання радкоў"
-
-#: ../data/org.x.editor.gschema.xml.in.h:21
-msgid ""
-"Specifies how to wrap long lines in the editing area. Use \"none\" for no "
-"wrapping, \"word\" for wrapping at word boundaries, and \"char\" for "
-"wrapping at individual character boundaries. Note that the values are case-"
-"sensitive, so make sure they appear exactly as mentioned here."
-msgstr ""
-"Вызначае – спосаб згортвання *занадта* доўгіх радкоў: тых, якія – могуць "
-"*не* змясціцца (цалкам) у адну страку, – без неабходнасці гартаць акенца па "
-"шырыні, у абшары рэдагавання… Выкарыстоўвайце значэнні: «none» – каб "
-"адключыць згортванне; «word» – каб атрымаць па-слоўнае згортванне; і «char» "
-"– каб атрымаць па-знакавае згортванне… Звярніце увагу – на тое, што: гэтыя "
-"значэнні – адчувальныя, да рэгістру літар; і таму – спраўдзіце, каб яны – "
-"былі напісаныя так жа, як і тут."
-
-#: ../data/org.x.editor.gschema.xml.in.h:22
-msgid "Tab Size"
-msgstr "Памер табуляцыі"
-
-#: ../data/org.x.editor.gschema.xml.in.h:23
-msgid ""
-"Specifies the number of spaces that should be displayed instead of Tab "
-"characters."
-msgstr ""
-"Вызначае колькасць прагалаў, якія будуць паказвацца замест знакаў табуляцыі."
-
-#: ../data/org.x.editor.gschema.xml.in.h:24
-msgid "Insert spaces"
-msgstr "Уставіць прагалы"
-
-#: ../data/org.x.editor.gschema.xml.in.h:25
-msgid "Whether xed should insert spaces instead of tabs."
-msgstr "Ці павінны «XED» – ставіць прагалы, замест табуляцый?"
-
-#: ../data/org.x.editor.gschema.xml.in.h:26
-msgid "Automatic indent"
-msgstr "Аўтаводступы"
-
-#: ../data/org.x.editor.gschema.xml.in.h:27
-msgid "Whether xed should enable automatic indentation."
-msgstr ""
-"Ці павінны «XED» – уключаць самастойную аддзялянку, для новых радкоў?"
-
-#: ../data/org.x.editor.gschema.xml.in.h:28
-msgid "Display Line Numbers"
-msgstr "Паказваць нумары радкоў"
-
-#: ../data/org.x.editor.gschema.xml.in.h:29
-msgid "Whether xed should display line numbers in the editing area."
-msgstr ""
-"Ці павінны «XED» – адлюстроўваць лініям іх лікі, у абшары рэдагавання?"
-
-#: ../data/org.x.editor.gschema.xml.in.h:30
-msgid "Highlight Current Line"
-msgstr "Падсвятляць дзейны радок"
-
-#: ../data/org.x.editor.gschema.xml.in.h:31
-msgid "Whether xed should highlight the current line."
-msgstr "Ці павінны «XED» – высвятляць цякучую лінію?"
-
-#: ../data/org.x.editor.gschema.xml.in.h:32
-msgid "Highlight Matching Bracket"
-msgstr "Падсвятляць адпаведныя дужкі"
-
-#: ../data/org.x.editor.gschema.xml.in.h:33
-msgid "Whether xed should highlight the bracket matching the selected one."
-msgstr ""
-"Ці павінны «XED» – высвятляць дужку, якая – суадносіцца да абранай дужкі?"
-
-#: ../data/org.x.editor.gschema.xml.in.h:34
-msgid "Display Right Margin"
-msgstr "Паказваць правае поле"
-
-#: ../data/org.x.editor.gschema.xml.in.h:35
-msgid "Whether xed should display the right margin in the editing area."
-msgstr "Ці павінны «XED» – весці правую мяжу, у абшары рэдагавання?"
-
-#: ../data/org.x.editor.gschema.xml.in.h:36
-msgid "Right Margin Position"
-msgstr "Размяшчэнне правага поля"
-
-#: ../data/org.x.editor.gschema.xml.in.h:37
-msgid "Specifies the position of the right margin."
-msgstr "Вызначае размяшчэнне правага поля."
-
-#: ../data/org.x.editor.gschema.xml.in.h:38
-msgid "Smart Home End"
-msgstr "Разумныя Home і End"
-
-#: ../data/org.x.editor.gschema.xml.in.h:39
-msgid ""
-"Specifies how the cursor moves when the HOME and END keys are pressed. Use "
-"\"disabled\" to always move at the start/end of the line, \"after\" to move "
-"to the start/end of the line the first time the keys are pressed and to the "
-"start/end of the text ignoring whitespaces the second time the keys are "
-"pressed, \"before\" to move to the start/end of the text before moving to "
-"the start/end of the line and \"always\" to always move to the start/end of "
-"the text instead of the start/end of the line."
-msgstr ""
-"Вызначае: як курсор – змяшчаецца, пры націску клавіш «Да дому» і «У канец»… "
-"Выкарыстоўвайце значэнні: «disabled» – каб той заўсёды змяшчаўся ў "
-"пачатак/канец радка; «after» – каб той змяшчаўся ў пачатак/канец радка пры "
-"першым націску – і ў пачатак/канец тэксту (без уліку прабелаў) пры другім "
-"націску; «before» – каб той змяшчаўся спачатку ў пачатак/канец тэксту, а "
-"потым – у пачатак/канец радка; і «always» – каб той заўсёды змяшчаўся "
-"*толькі* у пачатак/канец тэксту, а не радка."
-
-#: ../data/org.x.editor.gschema.xml.in.h:40
-msgid "Restore Previous Cursor Position"
-msgstr "Аднавіць папярэдняе размяшчэнне курсора"
-
-#: ../data/org.x.editor.gschema.xml.in.h:41
-msgid ""
-"Whether xed should restore the previous cursor position when a file is "
-"loaded."
-msgstr ""
-"Ці павінны «XED» – узнімаць паказальнік у тое ж папярэдняе яго размяшчэнне "
-"(калі файл – загружаны), якое – той – займаў раней: пры захаванні файла?"
-
-#: ../data/org.x.editor.gschema.xml.in.h:42
-msgid "Enable Search Highlighting"
-msgstr "Уключыць падсвятленне пошуку"
-
-#: ../data/org.x.editor.gschema.xml.in.h:43
-msgid ""
-"Whether xed should highlight all the occurrences of the searched text."
-msgstr "Ці павінны «XED» – высвятляць ўсе супадзенні дадзенага тэксту?"
-
-#: ../data/org.x.editor.gschema.xml.in.h:44
-msgid "Enable Syntax Highlighting"
-msgstr "Уключыць падсвятленне сінтаксу"
-
-#: ../data/org.x.editor.gschema.xml.in.h:45
-msgid "Whether xed should enable syntax highlighting."
-msgstr "Ці павінны «XED» – уключыць сінтаксічную падсветку?"
-
-#: ../data/org.x.editor.gschema.xml.in.h:46
-#: ../xed/resources/ui/xed-preferences-dialog.ui.h:25
-msgid "Ensure Trailing Newline"
-msgstr "Заўсёды ўстаўляць новы радок у канцы дакумента"
-
-#: ../data/org.x.editor.gschema.xml.in.h:47
-msgid ""
-"Whether xed will ensure that documents always end with a trailing newline."
-msgstr ""
-"Ці будзе «XED» забяспечваць, што дакументы – заўсёды (у канцы) маюць пусты "
-"радок?"
-
-#: ../data/org.x.editor.gschema.xml.in.h:48
-msgid "Toolbar is Visible"
-msgstr "Панэль начыння бачная"
-
-#: ../data/org.x.editor.gschema.xml.in.h:49
-msgid "Whether the toolbar should be visible in editing windows."
-msgstr "Ці бачная панэль начыння ў акне рэдагавання."
-
-#: ../data/org.x.editor.gschema.xml.in.h:50
-msgid "Status Bar is Visible"
-msgstr "Радок стану бачны"
-
-#: ../data/org.x.editor.gschema.xml.in.h:51
-msgid ""
-"Whether the status bar at the bottom of editing windows should be visible."
-msgstr "Ці бачны радок стану ўнізе акна рэдагавання."
-
-#: ../data/org.x.editor.gschema.xml.in.h:52
-msgid "Side Pane is Visible"
-msgstr "Бакавая панэль бачная"
-
-#: ../data/org.x.editor.gschema.xml.in.h:53
-msgid ""
-"Whether the side pane at the left of editing windows should be visible."
-msgstr "Ці бачна бакавая панэль злева ад акна рэдагавання."
-
-#: ../data/org.x.editor.gschema.xml.in.h:54
-msgid "Bottom Panel is Visible"
-msgstr "Ніжняя панэль бачная"
-
-#: ../data/org.x.editor.gschema.xml.in.h:55
-msgid ""
-"Whether the bottom panel at the bottom of editing windows should be visible."
-msgstr "Ці бачная ніжняя панэль унізе акна рэдагавання."
-
-#: ../data/org.x.editor.gschema.xml.in.h:56
-msgid "Allow changing active tabs by scrolling"
-msgstr "Дазволіць змену дзейнай укладкі – цераз пракрутку"
-
-#: ../data/org.x.editor.gschema.xml.in.h:57
-msgid "Whether you can change active tabs by scrolling."
-msgstr ""
-"Ці Вы будзеце здольныя: змяняць дзейную ўкладку – пракручваннем? (Напрыклад: "
-"колам мышы – пасля навядзення паказальніка.)"
-
-#: ../data/org.x.editor.gschema.xml.in.h:58
-msgid "Minimap is visible"
-msgstr "Маленькая карта – бачная"
-
-#: ../data/org.x.editor.gschema.xml.in.h:59
-msgid "Whether the minimap for the document should be visible."
-msgstr "Ці павінна маленькая карта (для дакумента) – быць бачнай?"
-
-#: ../data/org.x.editor.gschema.xml.in.h:60
-msgid "Maximum Recent Files"
-msgstr "Найбольшая колькасць ранейшых файлаў"
-
-#: ../data/org.x.editor.gschema.xml.in.h:61
-msgid ""
-"Specifies the maximum number of recently opened files that will be displayed "
-"in the \"Recent Files\" submenu."
-msgstr ""
-"Вызначае найбольшую колькасць ранейшых файлаў, якія будуць паказвацца ў "
-"падменю \"Ранейшыя файлы\"."
-
-#: ../data/org.x.editor.gschema.xml.in.h:62
-msgid "Print Syntax Highlighting"
-msgstr "Друкаваць падсвятленне сінтаксу"
-
-#: ../data/org.x.editor.gschema.xml.in.h:63
-msgid "Whether xed should print syntax highlighting when printing documents."
-msgstr ""
-"Ці трэба, каб «XED» – друкаваў сінтаксічную асвету (калі – друкуе дакументы)?"
-
-#: ../data/org.x.editor.gschema.xml.in.h:64
-msgid "Print Header"
-msgstr "Друкаваць загаловак"
-
-#: ../data/org.x.editor.gschema.xml.in.h:65
-msgid "Whether xed should include a document header when printing documents."
-msgstr ""
-"Ці трэба, каб «XED» – друкаваў дакументальны загаловак (калі – друкуе "
-"дакументы)?"
-
-#: ../data/org.x.editor.gschema.xml.in.h:66
-msgid "Printing Line Wrapping Mode"
-msgstr "Рэжым друку згортвання радкоў"
-
-#: ../data/org.x.editor.gschema.xml.in.h:67
-msgid ""
-"Specifies how to wrap long lines for printing. Use \"none\" for no wrapping, "
-"\"word\" for wrapping at word boundaries, and \"char\" for wrapping at "
-"individual character boundaries. Note that the values are case-sensitive, so "
-"make sure they appear exactly as mentioned here."
-msgstr ""
-"Вызначае: як – згортваць *занадта* доўгія радкі, пры друку… Выкарыстоўвайце: "
-"«none» – каб без згортвання; «word» – для згортвання на слоўных межах; і "
-"«char» – для згортвання на асабістых сімвальных межах… Звярніце увагу – на "
-"тое, што гэтыя значэнні – адчувальныя: да *рэгістра* літар; таму – "
-"спраўдзіце, каб яны – былі напісаныя дакладна: так жа, як і тут!"
-
-#: ../data/org.x.editor.gschema.xml.in.h:68
-msgid "Print Line Numbers"
-msgstr "Друкаваць нумары радкоў"
-
-#: ../data/org.x.editor.gschema.xml.in.h:69
-msgid ""
-"If this value is 0, then no line numbers will be inserted when printing a "
-"document. Otherwise, xed will print line numbers every such number of lines."
-msgstr ""
-"Калі гэтая лічба – «0», – тады – радковыя лікі – не будуць устаўлены, пры "
-"друку… А інакш – «XED» – будзе друкаваць радковыя лікі (пры сустрэчы – з "
-"кожным такім лікам радкоў)."
-
-#: ../data/org.x.editor.gschema.xml.in.h:70
-msgctxt "print-font-body-pango"
-msgid "'Monospace 9'"
-msgstr "'Monospace 9'"
-
-#: ../data/org.x.editor.gschema.xml.in.h:71
-msgid "Body Font for Printing"
-msgstr "Друкарскі шрыфт"
-
-#: ../data/org.x.editor.gschema.xml.in.h:72
-msgid ""
-"Specifies the font to use for a document's body when printing documents."
-msgstr "Вызначае друкарскі шрыфт цела дакументаў."
-
-#: ../data/org.x.editor.gschema.xml.in.h:73
-msgctxt "print-font-header-pango"
-msgid "'Sans 11'"
-msgstr "'Sans 11'"
-
-#: ../data/org.x.editor.gschema.xml.in.h:74
-msgid "Header Font for Printing"
-msgstr "Друкарскі шрыфт загалоўка"
-
-#: ../data/org.x.editor.gschema.xml.in.h:75
-msgid ""
-"Specifies the font to use for page headers when printing a document. This "
-"will only take effect if the \"Print Header\" option is turned on."
-msgstr ""
-"Вызначае друкарскі шрыфт для загалоўка. Гэта будзе мець эфект, толькі калі "
-"ўключаны параметр \"Друкаваць загаловак\"."
-
-#: ../data/org.x.editor.gschema.xml.in.h:76
-msgctxt "print-font-numbers-pango"
-msgid "'Sans 8'"
-msgstr "'Sans 8'"
-
-#: ../data/org.x.editor.gschema.xml.in.h:77
-msgid "Line Number Font for Printing"
-msgstr "Друкарскі шрыфт нумаравання радкоў"
-
-#: ../data/org.x.editor.gschema.xml.in.h:78
-msgid ""
-"Specifies the font to use for line numbers when printing. This will only "
-"take effect if the \"Print Line Numbers\" option is non-zero."
-msgstr ""
-"Вызначае друкарскі шрыфт нумаравання радкоў. Гэта будзе мець эфект, толькі "
-"калі параметр \"Паказваць нумары радкоў\" не роўны нулю."
-
-#: ../data/org.x.editor.gschema.xml.in.h:79
-msgctxt "auto-detected"
-msgid "[ 'UTF-8', 'CURRENT', 'ISO-8859-15', 'UTF-16' ]"
-msgstr "[ 'UTF-8', 'CURRENT', 'ISO-8859-15', 'UTF-16' ]"
-
-#: ../data/org.x.editor.gschema.xml.in.h:80
-msgid "Automatically Detected Encodings"
-msgstr "Аўтавызначэнне кадавання"
-
-#: ../data/org.x.editor.gschema.xml.in.h:81
-msgid ""
-"Sorted list of encodings used by xed for automatically detecting the "
-"encoding of a file. \"CURRENT\" represents the current locale encoding. Only "
-"recognized encodings are used."
-msgstr ""
-"Адсартаваны спіс – шляхоў расшыфроўкі, – якія – Ксэд – выкарыстоўвае: для "
-"самастойнага вызначэння шляху расшыфроўкі файла… \"CURRENT\" – азначае "
-"пэўную мясцовасць: яе шыфры... Толькі вядомыя шыфры – могуць быць "
-"выкарыстаныя."
-
-#: ../data/org.x.editor.gschema.xml.in.h:82
-msgctxt "shown-in-menu"
-msgid "[ 'ISO-8859-15' ]"
-msgstr "[ 'ISO-8859-15' ]"
-
-#: ../data/org.x.editor.gschema.xml.in.h:83
-msgid "Encodings shown in menu"
-msgstr "Кадаванні, бачныя ў меню"
-
-#: ../data/org.x.editor.gschema.xml.in.h:84
-msgid ""
-"List of encodings shown in the Character Encoding menu in open/save file "
-"selector. Only recognized encodings are used."
-msgstr ""
-"Спіс кадаванняў, які паказваецца ў меню \"Кадаванне знакаў\" у акенцы "
-"адкрыцця/захавання файлаў. Выкарыстоўваюцца толькі пазнаныя кадаванні."
-
-#: ../data/org.x.editor.gschema.xml.in.h:85
-msgid "History for \"search for\" entries"
-msgstr "Гісторыя запісаў у \"Шукаць\""
-
-#: ../data/org.x.editor.gschema.xml.in.h:86
-msgid "List of entries in \"search for\" textbox."
-msgstr "Спіс запісаў у тэкставым полі \"Шукаць\"."
-
-#: ../data/org.x.editor.gschema.xml.in.h:87
-msgid "History for \"replace with\" entries"
-msgstr "Гісторыя запісаў у \"Замяніць на\""
-
-#: ../data/org.x.editor.gschema.xml.in.h:88
-msgid "List of entries in \"replace with\" textbox."
-msgstr "Спіс запісаў у тэкставым полі \"Замяніць на\"."
-
-#: ../data/org.x.editor.gschema.xml.in.h:89
-msgid "Active plugins"
-msgstr "Актыўныя плагіны"
-
-#: ../data/org.x.editor.gschema.xml.in.h:90
-msgid ""
-"List of active plugins. It contains the \"Location\" of the active plugins. "
-"See the .xed-plugin file for obtaining the \"Location\" of a given plugin."
-msgstr ""
-"Спіс – дзейных дапаўненняў (да Ксэда)… Ён – змяшчае «Месца знаходжання» "
-"дзейных дапаўненняў; файл «.xed-plugin» – мае звесткі аб «Месцы знаходжання» "
-"дадзенага дапаўнення."
 
 #: ../data/xed.appdata.xml.in.h:1
 msgid "A Text Editor"
@@ -533,14 +36,13 @@ msgid ""
 "spell checking, comparing files, viewing CVS ChangeLogs, and adjusting "
 "indentation levels. </p>"
 msgstr ""
-"<p> Ксэд – невялічкі, але – магутны пісьменнік. Ён – мае: добрыя магчымасці "
-"для пісьменства, усе-агульную падтрымку міжнародных зносін (праз Юні-Код)... "
-"Дадаткова – асвятляе сінтакс і аздабляе прагалы крыніц кода, друкуе і "
-"апрацоўвае мноства дакументаў цераз адно акенца. </p>\r\n"
-"<p> Ксэд – можна пашыраць: праз сістэму дапаўненняў, – якія – цяпер: "
-"правяраюць правапіс, параўноўваюць файлы, праглядаюць апісанні хода змен "
-"паміж рознымі версіямі (CVS ChangeLogs), і абіраюць колькасць прагалаў у "
-"аздабленнях. </p>"
+"<p> Xed – невялікі, але магутны тэкставы рэдактар. Ён мае большасць "
+"стандартных функцый рэдагавання тэкста і цалкам падтрымлівае мовы ў "
+"кадзіроўцы Unicode. Прасунутыя функцыі ўключаюць выдзяленне сінтаксісу і "
+"аўтаматычнае апазнаванне кода, набор і рэдагаванне некалькіх дакументаў у "
+"адным акне. </p> <p> Xed можна пашырыць праз сістэму ўбудоў, якія цяпер "
+"падтрымліваюць праверку правапісу, параўнанне файлаў, прагляд CVS ChangeLogs "
+"і рэгуляванне водступаў. </p>"
 
 #: ../data/xed.desktop.in.in.h:1 ../xed/xed-print-job.c:700
 msgid "Text Editor"
@@ -548,7 +50,7 @@ msgstr "Тэкставы рэдактар"
 
 #: ../data/xed.desktop.in.in.h:2
 msgid "Edit text files"
-msgstr ""
+msgstr "Рэдагаваць тэкставыя файлы"
 
 #: ../xed/xed-app.c:100
 msgid "Show the application's version"
@@ -556,31 +58,30 @@ msgstr "Паказаць версію праграмы"
 
 #: ../xed/xed-app.c:106
 msgid "Display list of possible values for the encoding option"
-msgstr "Паказаць спіс магчымых значэнняў – для расшыфроўкі"
+msgstr "Паказаць спіс магчымых значэнняў для варыянту кадзіравання"
 
 #: ../xed/xed-app.c:113
 msgid ""
 "Set the character encoding to be used to open the files listed on the "
 "command line"
 msgstr ""
-"Задаць кадаванне знакаў для файлаў, якія будуць адкрывацца праз загадны радок"
+"Усталяваць кадзіроўку для файлаў, якія будуць адкрывацца праз камандны радок"
 
 #: ../xed/xed-app.c:114
 msgid "ENCODING"
-msgstr "КАДАВАННЕ"
+msgstr "КАДЗІРОЎКА"
 
 #: ../xed/xed-app.c:120
 msgid "Create a new top-level window in an existing instance of xed"
-msgstr ""
-"Узняць новае вакенца верхняга узроўня – унутры існуючай інстанцыі Ксэда"
+msgstr "Стварыць новае акно вышэйшага ўзроўню ўнутры існуючага асобніка"
 
 #: ../xed/xed-app.c:127
 msgid "Create a new document in an existing instance of xed"
-msgstr "Пачаць новы дакумент – унутры існуючай інстанцыі Ксэда"
+msgstr "Стварыць новы дакумент унутры існуючага асобніка"
 
 #: ../xed/xed-app.c:134
 msgid "Set the size and position of the window (WIDTHxHEIGHT+X+Y)"
-msgstr "Вызначыць: памеры і размяшчэнне акна (ШЫРЫНЯxВЫШЫНЯ+X+Y)"
+msgstr "Вызначыць памеры і размяшчэнне акна (ШЫРЫНЯxВЫШЫНЯ+X+Y)"
 
 #: ../xed/xed-app.c:135
 msgid "GEOMETRY"
@@ -592,7 +93,7 @@ msgstr "Адкрыць файлы і заблакіраваць працэс д�
 
 #: ../xed/xed-app.c:148
 msgid "Run xed in standalone mode"
-msgstr "Запусціць Ксэд у рэжыме «standalone»"
+msgstr "Запусціць Xed у рэжыме «standalone»"
 
 #: ../xed/xed-app.c:155
 msgid "[FILE...] [+LINE]"
@@ -601,11 +102,11 @@ msgstr "[ФАЙЛ...] [+РАДОК]"
 #: ../xed/xed-app.c:612
 #, c-format
 msgid "%s: invalid encoding."
-msgstr "%s: хібнае кадаванне."
+msgstr "%s: няправільная кадзіроўка."
 
 #: ../xed/xed-app.c:1266
 msgid "There was an error displaying the help."
-msgstr "Узнікла памылка падчас спробы паказаць даведку."
+msgstr "Узнікла памылка паказу дапамогі."
 
 #: ../xed/xed-close-confirmation-dialog.c:129
 msgid "Log Out _without Saving"
@@ -735,7 +236,7 @@ msgstr[2] ""
 #: ../xed/xed-close-confirmation-dialog.c:477
 #, c-format
 msgid "Save changes to document \"%s\" before closing?"
-msgstr "Захаваць змены ў дакуменце \"%s\" перад закрываннем?"
+msgstr "Захаваць змены ў дакуменце \"%s\" перад закрыццём?"
 
 #: ../xed/xed-close-confirmation-dialog.c:642
 #, c-format
@@ -744,20 +245,20 @@ msgid ""
 msgid_plural ""
 "There are %d documents with unsaved changes. Save changes before closing?"
 msgstr[0] ""
-"Ёсць %d дакумент з незахаванымі зменамі. Захаваць змены перад закрываннем?"
+"Ёсць %d дакумент з незахаванымі зменамі. Захаваць змены перад закрыццём?"
 msgstr[1] ""
-"Ёсць %d дакументы з незахаванымі зменамі. Захаваць змены перад закрываннем?"
+"Ёсць %d дакументы з незахаванымі зменамі. Захаваць змены перад закрыццём?"
 msgstr[2] ""
-"Ёсць %d дакументаў з незахаванымі зменамі. Захаваць змены перад закрываннем?"
+"Ёсць %d дакументаў з незахаванымі зменамі. Захаваць змены перад закрыццём?"
 
 #: ../xed/xed-close-confirmation-dialog.c:659
 msgid "S_elect the documents you want to save:"
-msgstr "Вылучыце _дакументы, якія трэба захаваць:"
+msgstr "_Выберыце дакументы, якія жадаеце захаваць:"
 
 #. Secondary label
 #: ../xed/xed-close-confirmation-dialog.c:675
 msgid "If you don't save, all your changes will be permanently lost."
-msgstr "Калі не захаваць, усе змены страцяцца."
+msgstr "Калі не захаваеце, усе змены будуць страчаны."
 
 #: ../xed/xed-commands-file.c:229
 #, c-format
@@ -793,12 +294,12 @@ msgstr "Жадаеце паспрабаваць замяніць яго тым �
 
 #: ../xed/xed-commands-file.c:503 ../xed/xed-ui.h:124
 msgid "_Replace"
-msgstr "За_мяніць"
+msgstr "_Замяніць"
 
 #: ../xed/xed-commands-file.c:564 ../xed/xed-commands-file.c:801
 #, c-format
 msgid "Saving file '%s'…"
-msgstr "Захаванне файла \"%s\"…"
+msgstr "Захаванне файла '%s'…"
 
 #: ../xed/xed-commands-file.c:644
 msgid "Save As…"
@@ -807,12 +308,12 @@ msgstr "Захаваць як…"
 #: ../xed/xed-commands-file.c:1202
 #, c-format
 msgid "Reverting the document '%s'…"
-msgstr "Вяртанне дакумента \"%s\"…"
+msgstr "Вяртанне дакумента '%s'…"
 
 #: ../xed/xed-commands-file.c:1249
 #, c-format
 msgid "Revert unsaved changes to document '%s'?"
-msgstr "Вярнуць усе незахаваныя змены ў дакумент \"%s\"?"
+msgstr "Вярнуць усе незахаваныя змены ў дакумент '%s'?"
 
 #: ../xed/xed-commands-file.c:1256
 #, c-format
@@ -822,20 +323,20 @@ msgid_plural ""
 "Changes made to the document in the last %ld seconds will be permanently "
 "lost."
 msgstr[0] ""
-"Змены (зробленыя ў дакуменце) за апошнюю %ld секунду – будуць назаўжды "
-"згубленыя."
+"Змены, зробленыя ў дакуменце за апошнюю %ld секунду, будуць незваротна "
+"страчаныя."
 msgstr[1] ""
-"Змены (зробленыя ў дакуменце) за апошнія %ld секунды – будуць назаўжды "
-"згубленыя."
+"Змены, зробленыя ў дакуменце за апошнія %ld секунды, будуць незваротна "
+"страчаныя."
 msgstr[2] ""
-"Змены (зробленыя ў дакуменце) за апошнія %ld секунд – будуць назаўжды "
-"згубленыя."
+"Змены, зробленыя ў дакуменце за апошнія %ld секунд, будуць незваротна "
+"страчаныя."
 
 #: ../xed/xed-commands-file.c:1265
 msgid ""
 "Changes made to the document in the last minute will be permanently lost."
 msgstr ""
-"Змены, зробленыя ў дакуменце за апошнюю хвіліну, будуць страчаныя назаўсёды."
+"Змены, зробленыя ў дакуменце за апошнюю хвіліну, будуць незваротна страчаныя."
 
 #: ../xed/xed-commands-file.c:1270
 #, c-format
@@ -846,14 +347,14 @@ msgid_plural ""
 "Changes made to the document in the last minute and %ld seconds will be "
 "permanently lost."
 msgstr[0] ""
-"Змены (зробленыя ў дакуменце) за апошнюю хвіліну і %ld секунду – будуць "
-"назаўжды згубленыя."
+"Змены, зробленыя ў дакуменце за апошнюю хвіліну і %ld секунду, будуць "
+"незваротна страчаныя."
 msgstr[1] ""
-"Змены (зробленыя ў дакуменце) за апошнюю хвіліну і %ld секунды – будуць "
-"назаўжды згубленыя."
+"Змены, зробленыя ў дакуменце за апошнюю хвіліну і %ld секунды, будуць "
+"незваротна страчаныя."
 msgstr[2] ""
-"Змены (зробленыя ў дакуменце) за апошнюю хвіліну і %ld секунд – будуць "
-"назаўжды згубленыя."
+"Змены, зробленыя ў дакуменце за апошнюю хвіліну і %ld секунд, будуць "
+"незваротна страчаныя."
 
 #: ../xed/xed-commands-file.c:1279
 #, c-format
@@ -863,20 +364,20 @@ msgid_plural ""
 "Changes made to the document in the last %ld minutes will be permanently "
 "lost."
 msgstr[0] ""
-"Змены (зробленыя ў дакуменце) за апошнюю %ld хвіліну – будуць назаўжды "
-"згубленыя."
+"Змены, зробленыя ў дакуменце за апошнюю %ld хвіліну, будуць незваротна "
+"страчаныя."
 msgstr[1] ""
-"Змены (зробленыя ў дакуменце) за апошнія %ld хвіліны – будуць назаўжды "
-"згубленыя."
+"Змены, зробленыя ў дакуменце за апошнія %ld хвіліны, будуць незваротна "
+"страчаныя."
 msgstr[2] ""
-"Змены (зробленыя ў дакуменце) за апошнія %ld хвілін – будуць назаўжды "
-"згубленыя."
+"Змены, зробленыя ў дакуменце за апошнія %ld хвілін, будуць незваротна "
+"страчаныя."
 
 #: ../xed/xed-commands-file.c:1294
 msgid ""
 "Changes made to the document in the last hour will be permanently lost."
 msgstr ""
-"Змены (зробленыя ў дакуменце) за апошнюю гадзіну – будуць назаўжды згубленыя."
+"Змены, зробленыя ў дакуменце за апошнюю гадзіну, будуць незваротна страчаныя."
 
 #: ../xed/xed-commands-file.c:1299
 #, c-format
@@ -887,14 +388,14 @@ msgid_plural ""
 "Changes made to the document in the last hour and %d minutes will be "
 "permanently lost."
 msgstr[0] ""
-"Змены (зробленыя ў дакуменце) за апошнюю гадзіну і %d хвіліну – будуць "
-"назаўжды згубленыя."
+"Змены, зробленыя ў дакуменце за апошнюю гадзіну і %d хвіліну, будуць "
+"незваротна страчаныя."
 msgstr[1] ""
-"Змены (зробленыя ў дакуменце) за апошнюю гадзіну і %d хвіліны – будуць "
-"назаўжды згубленыя."
+"Змены, зробленыя ў дакуменце за апошнюю гадзіну і %d хвіліны, будуць "
+"незваротна страчаныя."
 msgstr[2] ""
-"Змены (зробленыя ў дакуменце) за апошнюю гадзіну і %d хвілін – будуць "
-"назаўжды згубленыя."
+"Змены, зробленыя ў дакуменце за апошнюю гадзіну і %d хвілін, будуць "
+"незваротна страчаныя."
 
 #: ../xed/xed-commands-file.c:1313
 #, c-format
@@ -903,14 +404,14 @@ msgid ""
 msgid_plural ""
 "Changes made to the document in the last %d hours will be permanently lost."
 msgstr[0] ""
-"Змены (зробленыя ў дакуменце) за апошнюю %d гадзіну – будуць назаўжды "
-"згубленыя."
+"Змены, зробленыя ў дакуменце за апошнюю %d гадзіну, будуць незваротна "
+"страчаныя."
 msgstr[1] ""
-"Змены (зробленыя ў дакуменце) за апошнія %d гадзіны – будуць назаўжды "
-"згубленыя."
+"Змены, зробленыя ў дакуменце за апошнія %d гадзіны, будуць незваротна "
+"страчаныя."
 msgstr[2] ""
-"Змены (зробленыя ў дакуменце) за апошнія %d гадзін – будуць назаўжды "
-"згубленыя."
+"Змены, зробленыя ў дакуменце за апошнія %d гадзін, будуць незваротна "
+"страчаныя."
 
 #: ../xed/xed-commands-file.c:1334
 msgid "_Revert"
@@ -918,7 +419,7 @@ msgstr "_Вярнуць"
 
 #: ../xed/xed-commands-help.c:55
 msgid "A small and lightweight text editor"
-msgstr "Невялічкі і лёгкі пісьменнік"
+msgstr "Невялікі і лёгкавесны тэкставы рэдактар"
 
 #: ../xed/xed-document.c:973 ../xed/xed-document.c:1005
 #, c-format
@@ -926,12 +427,12 @@ msgid "Unsaved Document %d"
 msgstr "Незахаваны дакумент %d"
 
 #: ../xed/xed-documents-panel.c:88 ../xed/xed-documents-panel.c:99
-#: ../xed/xed-window.c:1835 ../xed/xed-window.c:1839
+#: ../xed/xed-window.c:1836 ../xed/xed-window.c:1840
 msgid "Read-Only"
 msgstr "Толькі чытанне"
 
-#: ../xed/xed-documents-panel.c:710 ../xed/resources/ui/xed-shortcuts.ui.h:1
-#: ../xed/xed-window.c:3085
+#: ../xed/xed-documents-panel.c:650 ../xed/resources/ui/xed-shortcuts.ui.h:1
+#: ../xed/xed-window.c:3086
 msgid "Documents"
 msgstr "Дакументы"
 
@@ -942,24 +443,24 @@ msgstr "Аўтаматычна вызначаны"
 #: ../xed/xed-encodings-combo-box.c:277 ../xed/xed-encodings-combo-box.c:291
 #, c-format
 msgid "Current Locale (%s)"
-msgstr "Цяперашняя мясцовасць (%s)"
+msgstr "Дзейная лакальнасць (%s)"
 
 #: ../xed/xed-encodings-combo-box.c:338
 msgid "Add or Remove..."
-msgstr "Дадаць ці выдаліць"
+msgstr "Дадаць ці выдаліць..."
 
 #: ../xed/xed-encodings-dialog.c:331 ../plugins/time/xed-time-plugin.c:786
 msgid "_OK"
-msgstr "_Так"
+msgstr "_Добра"
 
 #: ../xed/xed-encodings-dialog.c:332 ../xed/xed-ui.h:50
 #: ../plugins/spell/xed-spell-plugin.c:435
 msgid "_Help"
-msgstr "_Даведка"
+msgstr "_Дапамога"
 
 #: ../xed/xed-encodings-dialog.c:335
 msgid "Character Encodings"
-msgstr "Кадаванні знакаў"
+msgstr "Кадзіроўкі знакаў"
 
 #: ../xed/xed-encodings-dialog.c:368 ../xed/xed-encodings-dialog.c:405
 msgid "_Description"
@@ -967,9 +468,9 @@ msgstr "_Апісанне"
 
 #: ../xed/xed-encodings-dialog.c:376 ../xed/xed-encodings-dialog.c:413
 msgid "_Encoding"
-msgstr "_Кадаванне"
+msgstr "_Кадзіроўка"
 
-#: ../xed/xed-file-chooser-dialog.c:44 ../xed/xed-preferences-dialog.c:731
+#: ../xed/xed-file-chooser-dialog.c:44 ../xed/xed-preferences-dialog.c:783
 msgid "All Files"
 msgstr "Усе файлы"
 
@@ -979,11 +480,11 @@ msgstr "Усе тэкставыя файлы"
 
 #: ../xed/xed-file-chooser-dialog.c:85
 msgid "C_haracter Encoding:"
-msgstr "К_адаванне знакаў:"
+msgstr "К_адзіроўка знакаў:"
 
 #: ../xed/xed-file-chooser-dialog.c:141
 msgid "L_ine Ending:"
-msgstr "Канец радкоў:"
+msgstr "_Знак канца радка:"
 
 #: ../xed/xed-file-chooser-dialog.c:152
 msgid "Unix/Linux"
@@ -997,34 +498,33 @@ msgstr "Mac OS Classic"
 msgid "Windows"
 msgstr "Windows"
 
-#: ../xed/xed-highlight-mode-selector.c:297 ../xed/xed-window.c:1964
+#: ../xed/xed-highlight-mode-selector.c:297 ../xed/xed-window.c:1965
 msgid "Plain Text"
 msgstr "Звычайны тэкст"
 
 #: ../xed/xed-io-error-info-bar.c:154 ../xed/xed-io-error-info-bar.c:390
 msgid "_Retry"
-msgstr "Па_спрабаваць ізноў"
+msgstr "_Паўтарыць"
 
 #: ../xed/xed-io-error-info-bar.c:173
 #, c-format
 msgid "Could not find the file %s."
-msgstr "Не знойдзены файл %s."
+msgstr "Немагчыма знайсці файл %s."
 
 #: ../xed/xed-io-error-info-bar.c:174 ../xed/xed-io-error-info-bar.c:208
 #: ../xed/xed-io-error-info-bar.c:213
 msgid "Please check that you typed the location correctly and try again."
-msgstr ""
-"Праверце правільнасць напісання месца знаходжання – і паспрабуйце зноў."
+msgstr "Праверце правільнасць напісання адрасу і паўтарыце спробу."
 
 #. Translators: %s is a URI scheme (like for example http:, ftp:, etc.)
 #: ../xed/xed-io-error-info-bar.c:189
 #, c-format
 msgid "xed cannot handle %s locations."
-msgstr "Ксэд – не можа мець справу з размяшканнем праз  %s."
+msgstr "xed не можа кіраваць адрасамі %s."
 
 #: ../xed/xed-io-error-info-bar.c:194
 msgid "xed cannot handle this location."
-msgstr "Ксэд – не можа мець справу з гэтым размяшканнем."
+msgstr "xed не можа кіраваць гэтым адрасам"
 
 #: ../xed/xed-io-error-info-bar.c:201
 msgid "The location of the file cannot be mounted."
@@ -1043,7 +543,7 @@ msgstr "%s з'яўляецца каталогам."
 #: ../xed/xed-io-error-info-bar.c:212
 #, c-format
 msgid "%s is not a valid location."
-msgstr "%s - нядзейснае знаходжанне.."
+msgstr "%s - няправільнае месцазнаходжанне."
 
 #. Translators: %s is a host name
 #: ../xed/xed-io-error-info-bar.c:242
@@ -1052,8 +552,8 @@ msgid ""
 "Host %s could not be found. Please check that your proxy settings are "
 "correct and try again."
 msgstr ""
-"Гаспадар «%s» – не здолеў быць знойдзены! … Калі ласка, праверце: ці "
-"правільныя – прадстаўніцкія наладкі? (І – паспрабуйце зноў.)"
+"Не ўдалося адшукаць камп'ютар %s. Праверце налады проксі-сервера і паўтарыце "
+"спробу."
 
 #. use the same string as INVALID_HOST
 #: ../xed/xed-io-error-info-bar.c:256
@@ -1062,8 +562,8 @@ msgid ""
 "Hostname was invalid. Please check that you typed the location correctly and "
 "try again."
 msgstr ""
-"Імя гаспадара – было пазначана не верагодна… Калі ласка, праверце: ці "
-"правільна (Вамі) пазначаны шлях пошуку? – і – паспрабуйце яшчэ раз; зноў."
+"Хібная назва хоста. Праверце правільнасць напісання адрасу і паўтарыце "
+"спробу."
 
 #: ../xed/xed-io-error-info-bar.c:263
 #, c-format
@@ -1081,7 +581,7 @@ msgstr "Нечаканая памылка: %s"
 
 #: ../xed/xed-io-error-info-bar.c:326
 msgid "xed cannot find the file. Perhaps it has recently been deleted."
-msgstr "Ксэд – не знайшоў файл… Мабыць, той – быў (не даўна?) знішчаны?"
+msgstr "xed не можа знасці файл. Магчыма, ён быў нядаўна выдалены."
 
 #: ../xed/xed-io-error-info-bar.c:336
 #, c-format
@@ -1090,21 +590,21 @@ msgstr "Немагчыма вярнуць файл %s."
 
 #: ../xed/xed-io-error-info-bar.c:359
 msgid "Ch_aracter Encoding:"
-msgstr "Ка_даванне знакаў:"
+msgstr "_Кадзіроўка знакаў:"
 
 #. Translators: the access key chosen for this string should be
 #. different from other main menu access keys (Open, Edit, View...)
 #: ../xed/xed-io-error-info-bar.c:397 ../xed/xed-io-error-info-bar.c:654
 msgid "Edit Any_way"
-msgstr "Рэдагаваць ўсё _адно"
+msgstr "_Усё роўна рэдагаваць"
 
 #: ../xed/xed-io-error-info-bar.c:489
 msgid ""
 "The number of followed links is limited and the actual file could not be "
 "found within this limit."
 msgstr ""
-"Лік паслядоўных спасылак – абмежаваны; і дзейны файл – не можа быць "
-"знойдзены, у такіх межах."
+"Колькасць пераходаў па спасылках абмежавана, і яна была дасягнута, хоць файл "
+"так і не быў знойдзены."
 
 #: ../xed/xed-io-error-info-bar.c:493
 msgid "You do not have the permissions necessary to open the file."
@@ -1112,91 +612,88 @@ msgstr "Вам не дазволена адкрываць гэты файл."
 
 #: ../xed/xed-io-error-info-bar.c:499
 msgid "xed has not been able to detect the character encoding."
-msgstr "Ксэд – кажа: не быў здольны вызначыць знакавую шыфроўку."
+msgstr "xed няздольны вызначыць кадзіроўку."
 
 #: ../xed/xed-io-error-info-bar.c:501 ../xed/xed-io-error-info-bar.c:524
 msgid "Please check that you are not trying to open a binary file."
-msgstr "Калі ласка, праверце, ці не спрабуеце вы адкрыць двайковы файл."
+msgstr "Калі ласка, праверце, ці не спрабуеце вы адкрыць бінарны файл."
 
 #: ../xed/xed-io-error-info-bar.c:502
 msgid "Select a character encoding from the menu and try again."
-msgstr "Абярыце знакавую шыфроўку – і – паспрабуйце зноў!"
+msgstr "Выберыце кадзіроўку знакаў з меню і паўтарыце спробу."
 
 #: ../xed/xed-io-error-info-bar.c:508
 #, c-format
 msgid "There was a problem opening the file %s."
-msgstr "Паўстала праблема пры адкрыванні файла %s."
+msgstr "Узнікла праблема пры адкрыцці файла %s."
 
 #: ../xed/xed-io-error-info-bar.c:509
 msgid ""
 "The file you opened has some invalid characters. If you continue editing "
 "this file you could corrupt this document."
 msgstr ""
-"Гэты файл (што Вы – адкрылі), – мае (некаторыя?) незразумелыя знакі! … Калі "
-"Вы – прадоўжыце (да **далейшага** змянення, гэтага файла), – Вы – можаце "
-"*забрудзіць,* гэты дакумент!"
+"Адкрыты вамі файл мае няправільныя знакі. Далейшае рэдагаванне гэтага файла "
+"можа пашкодзіць дакумент."
 
 #: ../xed/xed-io-error-info-bar.c:512
 msgid "You can also choose another character encoding and try again."
-msgstr ""
-"Вы – можаце (так жа сама) абраць *іншы* знакавы «шыфр» (і – па-спрабаваць "
-"*зноў*)."
+msgstr "Вы можаце выбраць іншую кадзіроўку і паўтарыць спробу."
 
 #: ../xed/xed-io-error-info-bar.c:521
 #, c-format
 msgid "Could not open the file %s using the %s character encoding."
-msgstr "Шыфр (файла «%s») –  не «%s»."
+msgstr "Не ўдалося адкрыць файл %s пры дапамозе кадзіроўкі %s."
 
 #: ../xed/xed-io-error-info-bar.c:525 ../xed/xed-io-error-info-bar.c:594
 msgid "Select a different character encoding from the menu and try again."
-msgstr "Паспрабуйце іншы ключ."
+msgstr "Выберыце іншую кадзіроўку ў меню і паўтарыць спробу."
 
 #: ../xed/xed-io-error-info-bar.c:537
 #, c-format
 msgid "Could not open the file %s."
-msgstr "Немагчыма адкрыць файл %s."
+msgstr "Не ўдалося адкрыць файл \"%s\"."
 
 #: ../xed/xed-io-error-info-bar.c:589
 #, c-format
 msgid "Could not save the file %s using the %s character encoding."
-msgstr "Нельга – зашыфраваць (файл: «%s») праз «%s»."
+msgstr "Не ўдалося захаваць файл %s з выкарыстаннем кадзіроўкі %s."
 
 #: ../xed/xed-io-error-info-bar.c:592
 msgid ""
 "The document contains one or more characters that cannot be encoded using "
 "the specified character encoding."
 msgstr ""
-"Гэты дакумент змяшчае адзін ці больш знакаў, якія немагчыма закадаваць "
-"дадзеным кадаваннем."
+"Гэты дакумент змяшчае адзін ці больш знакаў, якія немагчыма закадзіраваць "
+"дадзенай кадзіроўкай."
 
 #. Translators: the access key chosen for this string should be
 #. different from other main menu access keys (Open, Edit, View...)
 #: ../xed/xed-io-error-info-bar.c:659
 msgid "D_on't Edit"
-msgstr "Н_е рэдагаваць"
+msgstr "_Не рэдагаваць"
 
 #: ../xed/xed-io-error-info-bar.c:673
 #, c-format
 msgid "This file (%s) is already open in another xed window."
-msgstr "Гэты файл («%s») – ужо адкрыты! – у іншым акне Кседа…"
+msgstr "Гэты файл (%s) ужо адкрыты у іншым акне xed…"
 
 #: ../xed/xed-io-error-info-bar.c:687
 msgid ""
 "xed opened this instance of the file in a non-editable way. Do you want to "
 "edit it anyway?"
 msgstr ""
-"Ксед – адкрыў гэта (адзінку файла) у нязменным шляху… Ці хочаце Вы – змяніць "
-"гэта, на ўсіх шляхах?"
+"xed адкрыў гэты асобнік файла ў рэжыме без рэдагавання. Усё роўна жадаеце "
+"рэдагаваць?"
 
 #: ../xed/xed-io-error-info-bar.c:742 ../xed/xed-io-error-info-bar.c:830
 #: ../xed/xed-io-error-info-bar.c:1092
 msgid "S_ave Anyway"
-msgstr "З_ахаваць усё адно"
+msgstr "Усё роўна _захаваць"
 
 #: ../xed/xed-io-error-info-bar.c:743 ../xed/xed-io-error-info-bar.c:831
 #: ../xed/xed-io-error-info-bar.c:1094
 msgid "D_on't Save"
-msgstr "Н_е захоўваць"
+msgstr "_Не захоўваць"
 
 #. FIXME: review this message, it's not clear since for the user the "modification"
 #. * could be interpreted as the changes he made in the document. beside "reading" is
@@ -1230,13 +727,10 @@ msgid ""
 "You can ignore this warning and save the file anyway, but if an error occurs "
 "while saving, you could lose the old copy of the file. Save anyway?"
 msgstr ""
-"Ксед – *не здолеў* узняць старую «копію» файла; і (пакуль, яшчэ) – не пачаў "
-"размяшчэнне *новай* «адзінкі»… Вы – можаце не клапаціцца (аб гэтай "
-"«засцярозе») – і – захаваць файл: *туды ж* (усё – да тым жа шляхам)! … Але: "
-"калі апынецца *памылка* (пры захаванні), – Вы (верагодна) – страціце і "
-"*старую* копію файла (ці – ягоную частку).\r\n"
-"\r\n"
-"— Захаваць? … Туды ж? … Так, як атрымаецца? … :-)"
+"xed не змог аднавіць старую копію файла перад захаваннем новай. Вы можаце "
+"праігнараваць гэта папярэджанне і ўсё роўна захаваць, але калі здарыцца "
+"памылка падчас захавання, вы можаце страціць старую версію файла. Усё роўна "
+"захаваць?"
 
 #. Translators: %s is a URI scheme (like for example http:, ftp:, etc.)
 #: ../xed/xed-io-error-info-bar.c:928
@@ -1245,18 +739,16 @@ msgid ""
 "xed cannot handle %s locations in write mode. Please check that you typed "
 "the location correctly and try again."
 msgstr ""
-"Ксед – *не можа* працаваць (з мясцінамі – «падобнымі» «%s») – як пісьменнік… "
-"Калі ласка; праверце, што – Вы – пазначылі, як мясціну: ці няма там памылкі? "
-"… І (потым) – паспрабуйце зноў!"
+"xed не можа кіраваць адрасамі %s у рэжыме пісьма. Праверце, што вы ўвялі "
+"адрас правільна і паўтарыце спробу."
 
 #: ../xed/xed-io-error-info-bar.c:936
 msgid ""
 "xed cannot handle this location in write mode. Please check that you typed "
 "the location correctly and try again."
 msgstr ""
-"Ксед – не можа працаваць там, – як пісьменнік… Калі ласка; – праверце: ці "
-"маглі *Вы* – зрабіць памылку, – калі – прызначалі мясціну (мабыць, – памылка "
-"– там?)… І тады (мабыць?) – Вам – пашанцуе; у наступны раз!"
+"xed не можа кіраваць адрасамі правільна ў рэжыме пісьма. Праверце, што вы "
+"ўвялі адрас правільна і паўтарыце спробу."
 
 #: ../xed/xed-io-error-info-bar.c:945
 #, c-format
@@ -1264,16 +756,16 @@ msgid ""
 "%s is not a valid location. Please check that you typed the location "
 "correctly and try again."
 msgstr ""
-"«%s» – няўдалы паказальнік на мясціну… Трэба – праверыць «правільнасць» "
-"задання мясціны; і (потым) – паспрабаваць зноў…"
+"%s не з'яўляецца правільным адрасам. Праверце правільнасць напісання адрасу "
+"і паўтарыце спробу."
 
 #: ../xed/xed-io-error-info-bar.c:951
 msgid ""
 "You do not have the permissions necessary to save the file. Please check "
 "that you typed the location correctly and try again."
 msgstr ""
-"Вам – нельга рабіць запіс; у той файл… Калі ласка: праверце: ці *правільна* "
-"Вы – пазначылі месца? … І (потым) – паспрабуйце зноў. :-)"
+"Вы не маеце патрэбных дазволаў для захавання файла. Праверце правільнасць "
+"напісання адрасу і паўтарыце спробу."
 
 #: ../xed/xed-io-error-info-bar.c:957
 msgid ""
@@ -1310,10 +802,9 @@ msgid ""
 "sizes. Please try saving a smaller file or saving it to a disk that does not "
 "have this limitation."
 msgstr ""
-"Дыск (на які – Вы – імкнецеся запісаць файл) – мае абмежаванні для памеру "
-"файлаў; мабыць, файл – празмерна «вялікі»?… Раім Вам – зрабіць спробу "
-"змяншэння файла для запісу; альбо – спробу запісу на дыск, які – не мае "
-"такіх абмежаванняў!"
+"Дыск, на якім вы спрабуеце захаваць файл, мае абмежаванне на памер файлаў. "
+"Паспрабуйце захаваць файл меншага памеру або на іншым дыску, які б не меў "
+"такога абмежавання."
 
 #: ../xed/xed-io-error-info-bar.c:996
 #, c-format
@@ -1343,79 +834,77 @@ msgstr "_Перачытаць"
 #: ../xed/xed-io-error-info-bar.c:1107
 #, c-format
 msgid "Some invalid chars have been detected while saving %s"
-msgstr ""
-"У час захавання «%s» – былі прыкмечаны невядомыя знакі. [Гэта – можа мець "
-"нежаданыя наступствы!]"
+msgstr "Падчас захавання %s выяўлены няправільныя знакі"
 
 #: ../xed/xed-io-error-info-bar.c:1122
 msgid ""
 "If you continue saving this file you can corrupt the document.  Save anyway?"
 msgstr ""
-"Калі Вы – працягнеце свае спробы усталявання файла, – Вы – можаце забрудзіць "
-"дакумент… Не адмовіцца – ад сваіх намераў?"
+"Калі вы працягніце захаванне файла, вы можаце пашкодзіць дакумент. Усё роўна "
+"захаваць?"
 
-#: ../xed/xed-preferences-dialog.c:266
+#: ../xed/xed-preferences-dialog.c:280
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:3
 #, no-c-format
 msgid "Use the system fixed width font (%s)"
-msgstr "Выкарыстоўваць – сістэмна прызначаны шрыфт нязменнай шырыні («%s»)"
+msgstr "Выкарыстоўваць сістэмна-фіксаваны шрыфт (%s)"
 
-#: ../xed/xed-preferences-dialog.c:384
+#: ../xed/xed-preferences-dialog.c:436
 msgid "Editor"
 msgstr "Рэдактар"
 
-#: ../xed/xed-preferences-dialog.c:422
+#: ../xed/xed-preferences-dialog.c:474
 msgid "Save"
-msgstr "Запісаць"
+msgstr "Захаваць"
 
-#: ../xed/xed-preferences-dialog.c:535
+#: ../xed/xed-preferences-dialog.c:587
 #, c-format
 msgid ""
 "Directory '%s' could not be created: g_mkdir_with_parents() failed: %s"
 msgstr ""
 "Каталог '%s' не выходзіць стварыць: g_mkdir_with_parents() даў збой: %s"
 
-#: ../xed/xed-preferences-dialog.c:689
+#: ../xed/xed-preferences-dialog.c:741
 msgid "The selected color scheme cannot be installed."
 msgstr "Выбраная каляровая схема не можа быць усталявана."
 
-#: ../xed/xed-preferences-dialog.c:712 ../xed/xed-preferences-dialog.c:718
+#: ../xed/xed-preferences-dialog.c:764 ../xed/xed-preferences-dialog.c:770
 msgid "Add Scheme"
 msgstr "Дадаць схему"
 
-#: ../xed/xed-preferences-dialog.c:715 ../xed/xed-progress-info-bar.c:61
+#: ../xed/xed-preferences-dialog.c:767 ../xed/xed-progress-info-bar.c:61
 msgid "Cancel"
-msgstr "Адмяніць"
+msgstr "Скасаваць"
 
-#: ../xed/xed-preferences-dialog.c:724
+#: ../xed/xed-preferences-dialog.c:776
 msgid "Color Scheme Files"
 msgstr "Файлы каляровых схем"
 
-#: ../xed/xed-preferences-dialog.c:796
+#: ../xed/xed-preferences-dialog.c:848
 #, c-format
 msgid "Could not remove color scheme \"%s\"."
 msgstr "Не выйшла выдаліць каляровую схему \"%s\"."
 
-#: ../xed/xed-preferences-dialog.c:828
+#: ../xed/xed-preferences-dialog.c:880
 msgid "Theme"
-msgstr "Афармленне"
+msgstr "Тэма"
 
-#: ../xed/xed-preferences-dialog.c:845
+#: ../xed/xed-preferences-dialog.c:897
 msgid "Plugins"
 msgstr "Убудовы"
 
-#: ../xed/xed-preferences-dialog.c:853
+#: ../xed/xed-preferences-dialog.c:905
 msgid "Help"
 msgstr "Дапамога"
 
-#: ../xed/xed-preferences-dialog.c:858
+#: ../xed/xed-preferences-dialog.c:910
 #: ../xed/resources/ui/xed-searchbar.ui.h:11
 msgid "Close"
-msgstr "Зачыніць"
+msgstr "Закрыць"
 
-#: ../xed/xed-preferences-dialog.c:872
+#: ../xed/xed-preferences-dialog.c:924
 msgid "Xed Preferences"
-msgstr "Кседавы асаблівасці"
+msgstr "Налады Xed"
 
 #: ../xed/xed-print-job.c:487
 #, c-format
@@ -1440,7 +929,7 @@ msgstr "Паказаць наступную старонку"
 
 #: ../xed/xed-print-preview.c:600
 msgid "Current page (Alt+P)"
-msgstr "Дзейная старонка (Alt+P)"
+msgstr "Бягучая старонка (Alt+P)"
 
 #. gtk_label_set_mnemonic_widget ((GtkLabel *) l, mp->priv->page_entry);
 #. We are displaying 'XXX of XXX'.
@@ -1479,11 +968,11 @@ msgstr "Аддаліць"
 
 #: ../xed/xed-print-preview.c:693 ../xed/resources/ui/xed-shortcuts.ui.h:33
 msgid "Print the document"
-msgstr "Друк дакумента"
+msgstr "Друкаваць дакумент"
 
 #: ../xed/xed-print-preview.c:708
 msgid "_Close preview"
-msgstr "_Зачыніць прадагляд"
+msgstr "_Закрыць перадпрагляд"
 
 #: ../xed/xed-print-preview.c:710
 msgid "Close print preview"
@@ -1504,27 +993,27 @@ msgstr "Перадпрагляд старонкі дакумента, якую �
 
 #: ../xed/resources/ui/xed-highlight-mode-dialog.ui.h:1
 msgid "Highlight Mode"
-msgstr ""
+msgstr "Рэжым падсветкі"
 
 #: ../xed/resources/ui/xed-highlight-mode-dialog.ui.h:3
 msgid "_Select"
-msgstr ""
+msgstr "_Вылучыць"
 
 #: ../xed/resources/ui/xed-highlight-mode-selector.ui.h:1
 msgid "Search highlight mode…"
-msgstr ""
+msgstr "Пошук рэжыму падсветкі…"
 
 #: ../xed/resources/ui/xed-encodings-dialog.ui.h:1
 msgid "Character encodings"
-msgstr "Кадаванні знакаў"
+msgstr "Кадзіроўкі знакаў"
 
 #: ../xed/resources/ui/xed-encodings-dialog.ui.h:2
 msgid "A_vailable encodings:"
-msgstr "Д_аступныя кадаванні:"
+msgstr "Д_аступныя кадзіроўкі:"
 
 #: ../xed/resources/ui/xed-encodings-dialog.ui.h:3
 msgid "E_ncodings shown in menu:"
-msgstr "К_адаванні, бачныя ў меню:"
+msgstr "К_адзіроўкі, бачныя ў меню:"
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:1
 msgid "Font"
@@ -1532,115 +1021,139 @@ msgstr "Шрыфт"
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:4
 msgid "Display"
-msgstr "Адлюстраванне"
+msgstr "Пакаваць"
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:5
 msgid "Display line numbers"
-msgstr "Адлюстроўваць лікі радкоў"
+msgstr "Паказваць нумарацыю радкоў"
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:6
 msgid "Display overview map"
-msgstr "Адлюстроўваць усе-агульную карту"
+msgstr "Паказваць усеагульную карту"
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:7
 msgid "Display right margin"
-msgstr "Адлюстроўваць правую мяжу"
+msgstr "Паказваць правую мяжу"
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:8
 msgid "Right margin at column"
-msgstr "Правая мяжа – ля калонкі"
+msgstr "Правая мяжа ля калонкі"
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:9
 msgid "4"
 msgstr "4"
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:10
-msgid "Highlighting"
-msgstr "Асвета"
+msgid "Draw whitespace"
+msgstr "Намаляваць прабел"
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:11
-msgid "Highlight the current line"
-msgstr "Асветніцтва дадзенай лініі"
+msgid "Leading whitespace"
+msgstr "Пачатковы прабел"
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:12
-msgid "Highlight matching brackets"
-msgstr "Асветніцтва суадносных дужак"
+msgid "Trailing whitespace"
+msgstr "Канчатковы прабел"
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:13
-msgid "Indentation"
-msgstr "Аздабленне"
+msgid "Whitespace inside of text"
+msgstr "Прабел усярэдзіне тэкста"
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:14
-msgid "Tab width"
-msgstr "Табуляцыйная шырыня"
+msgid "Newline character"
+msgstr "Сімвал новага радка"
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:15
-msgid "Use spaces instead of tabs"
-msgstr "Выкарыстоўваць прагалы – замест табуляцый"
+msgid "Highlighting"
+msgstr "Падсветка"
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:16
-msgid "Automatic indentation"
-msgstr "Самастойнае аздабленне"
+msgid "Highlight the current line"
+msgstr "Падсвяціць бягучую лінію"
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:17
-msgid "Word wrap"
-msgstr "Слоўнае згортванне"
+msgid "Highlight matching brackets"
+msgstr "Падсвяціць адпаведныя дужкі"
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:18
-msgid "Split words over two lines"
-msgstr "Разносіць словы – па двум радкам"
+msgid "Indentation"
+msgstr "Водступ"
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:19
-msgid "Tab scrolling"
-msgstr "Укладачнае прагортванне"
+msgid "Tab width"
+msgstr "Шырыня табуляцыі"
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:20
-msgid "Allow mouse wheel scrolling to change tabs"
-msgstr "Дазволіць мышавы колавы прагортвальнік – для змены укладак"
+msgid "Use spaces instead of tabs"
+msgstr "Выкарыстоўваць прабелы замест табуляцыі"
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:21
+msgid "Automatic indentation"
+msgstr "Аўтаматычны водступ"
+
+#: ../xed/resources/ui/xed-preferences-dialog.ui.h:22
+msgid "Word wrap"
+msgstr "Перанос словаў"
+
+#: ../xed/resources/ui/xed-preferences-dialog.ui.h:23
+msgid "Split words over two lines"
+msgstr "Разбіваць словы на два радкі"
+
+#: ../xed/resources/ui/xed-preferences-dialog.ui.h:24
+msgid "Tab scrolling"
+msgstr "Прагортванне ўкладак"
+
+#: ../xed/resources/ui/xed-preferences-dialog.ui.h:25
+msgid "Allow mouse wheel scrolling to change tabs"
+msgstr "Дазволіць прагортваць кола мышы для змены ўкладак"
+
+#: ../xed/resources/ui/xed-preferences-dialog.ui.h:26
 msgid "File saving"
 msgstr "Захаванне файлаў"
 
-#: ../xed/resources/ui/xed-preferences-dialog.ui.h:22
-msgid "Create a backup copy of files before saving"
-msgstr "Пачынаць запасную копію файлаў – перад захаваннем новай"
-
-#: ../xed/resources/ui/xed-preferences-dialog.ui.h:23
-msgid "Autosave files"
-msgstr "Самастойнае захоўванне файлаў"
-
-#: ../xed/resources/ui/xed-preferences-dialog.ui.h:24
-msgid "Minutes between saving"
-msgstr "Хвілін – паміж захоўваннямі"
-
-#: ../xed/resources/ui/xed-preferences-dialog.ui.h:26
-msgid "Dark theme"
-msgstr "Цёмная схема"
-
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:27
-msgid "Use dark theme variant (if available)"
-msgstr "Выкарыстоўваць цёмна-схемны варыянт (калі – наяўны)"
+msgid "Create a backup copy of files before saving"
+msgstr "Ствараць рэзервовую копію файлаў перад захаваннем"
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:28
-msgid "Style scheme"
-msgstr "Стылевая схема"
+msgid "Autosave files"
+msgstr "Аўтаматычнае захоўванне файлаў"
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:29
-msgid "Install scheme"
-msgstr "Усталяваць – схему"
+msgid "Minutes between saving"
+msgstr "Хвілін паміж захаваннямі"
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:30
+msgid "Ensure Trailing Newline"
+msgstr "Устаўляць новы радок у канцы дакумента"
+
+#: ../xed/resources/ui/xed-preferences-dialog.ui.h:31
+msgid "Dark theme"
+msgstr "Цёмная тэма"
+
+#: ../xed/resources/ui/xed-preferences-dialog.ui.h:32
+msgid "Use dark theme variant (if available)"
+msgstr "Выкарыстоўваць цёмную тыму (калі даступна)"
+
+#: ../xed/resources/ui/xed-preferences-dialog.ui.h:33
+msgid "Style scheme"
+msgstr "Схема стылю"
+
+#: ../xed/resources/ui/xed-preferences-dialog.ui.h:34
+msgid "Install scheme"
+msgstr "Усталяваць схему"
+
+#: ../xed/resources/ui/xed-preferences-dialog.ui.h:35
 msgid "Remove scheme"
 msgstr "Выдаліць схему"
 
 #: ../xed/resources/ui/xed-print-preferences.ui.h:1
 msgid "Syntax Highlighting"
-msgstr "Падсвятленне сінтаксісу"
+msgstr "Падсветка сінтаксісу"
 
 #: ../xed/resources/ui/xed-print-preferences.ui.h:2
 msgid "Print synta_x highlighting"
-msgstr "Друкаваць падсвятленне сінтаксісу"
+msgstr "_Друкаваць падсветку сінтаксісу"
 
 #: ../xed/resources/ui/xed-print-preferences.ui.h:3
 msgid "Line Numbers"
@@ -1648,12 +1161,12 @@ msgstr "Нумары радкоў"
 
 #: ../xed/resources/ui/xed-print-preferences.ui.h:4
 msgid "Print line nu_mbers"
-msgstr "Друкаваць нумары радкоў"
+msgstr "Друкаваць ну_мары радкоў"
 
 #. 
 #: ../xed/resources/ui/xed-print-preferences.ui.h:6
 msgid "_Number every"
-msgstr "_Нумараваць кожныя"
+msgstr "_Нумараваць кожны"
 
 #. 
 #: ../xed/resources/ui/xed-print-preferences.ui.h:8
@@ -1670,7 +1183,7 @@ msgstr "Уключыць _згортванне тэксту"
 
 #: ../xed/resources/ui/xed-print-preferences.ui.h:11
 msgid "Do not _split words over two lines"
-msgstr "Не па_дзяляць словы на два радкі"
+msgstr "_Не дзяліць словы на два радкі"
 
 #: ../xed/resources/ui/xed-print-preferences.ui.h:12
 msgid "Page header"
@@ -1702,7 +1215,7 @@ msgstr "Вярнуць _стандартныя шрыфты"
 
 #: ../xed/resources/ui/xed-searchbar.ui.h:1
 msgid "Replace All"
-msgstr "Замяніць _усё"
+msgstr "Замяніць усё"
 
 #: ../xed/resources/ui/xed-searchbar.ui.h:2
 msgid "Replace"
@@ -1738,7 +1251,7 @@ msgstr "Усё слова"
 
 #: ../xed/resources/ui/xed-searchbar.ui.h:10
 msgid "Wrap"
-msgstr "Загортванне"
+msgstr "Перанос"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:2 ../xed/xed-ui.h:56
 msgid "Create a new document"
@@ -1786,7 +1299,7 @@ msgstr "Вокны і панэлі"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:13
 msgid "Show side pane"
-msgstr "Паказаць бакавінную панэль"
+msgstr "Паказаць бакавую панэль"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:14
 msgid "Show bottom pane"
@@ -1794,27 +1307,27 @@ msgstr "Паказаць ніжнюю панэль"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:15
 msgid "Fullscreen on / off"
-msgstr "На ўвесь экран: включыць / выключыць"
+msgstr "На ўвесь экран"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:16
 msgid "Quit the application"
-msgstr "Выйсці з дастасаваньня"
+msgstr "Выйсці з праграмы"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:17
 msgid "Find and Replace"
-msgstr "Пошук і замена"
+msgstr "Знайсці і замяніць"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:18
 msgid "Find"
-msgstr "Шукаць"
+msgstr "Знайсці"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:19
 msgid "Find the next match"
-msgstr "Шукаць наступнае супадзенне"
+msgstr "Знайсці наступнае супадзенне"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:20
 msgid "Find the previous match"
-msgstr "Шукаць папярэдняе супадзенне"
+msgstr "Знайсці папярэдняе супадзенне"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:21
 msgid "Go to line"
@@ -1822,15 +1335,15 @@ msgstr "Перайсці ў радок"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:22
 msgid "Copy and Paste"
-msgstr "Капіраванне і ўстаўка"
+msgstr "Капіяваць і ўставіць"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:23
 msgid "Copy selected text to clipboard"
-msgstr "Капіраваць выбраны тэкст у буфер абмену"
+msgstr "Капіяваць вылучаны тэкст у буфер абмену"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:24
 msgid "Cut selected text to clipboard"
-msgstr "Выразаць выбраны тэкст у буфер абмену"
+msgstr "Выразаць вылучаны тэкст у буфер абмену"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:25
 msgid "Paste text from clipboard"
@@ -1838,15 +1351,15 @@ msgstr "Уставіць тэкст з буфера абмену"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:26
 msgid "Undo and Redo"
-msgstr "Адмена і узнаўленне – дзеянняў"
+msgstr "Адрабіць і паўтарыць"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:27
 msgid "Undo previous command"
-msgstr "Адмяніць – папярэднюю каманду"
+msgstr "Адрабіць папярэднюю каманду"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:28
 msgid "Redo previous command"
-msgstr "Аднавіць – папярэднюю каманду"
+msgstr "Паўтарыць папярэднюю каманду"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:29 ../plugins/docinfo/docinfo.ui.h:11
 msgid "Selection"
@@ -1862,59 +1375,59 @@ msgstr "Прылады"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:32
 msgid "Check spelling"
-msgstr "Праверка правапісу"
+msgstr "Праверыць правапіс"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:34
 msgid "Layout"
-msgstr ""
+msgstr "Раскладка"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:35
 msgid "Toggle Word Wrap"
-msgstr ""
+msgstr "Пераключыць перанос слоў"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:36
 msgid "Editing"
-msgstr "Рэдагаванне"
+msgstr "Праўка"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:37
 msgid "Toggle insert / overwrite"
-msgstr "Знакі: устаўка – ці замена?"
+msgstr "Пераключыць паміж устаўкай і заменай"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:38
 msgid "Delete current line"
-msgstr "Выдаліць (пазначаны радок)"
+msgstr "Выдаліць бягучы радок"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:39
 msgid "Move current line up"
-msgstr "Перамясціць уверх (пазначаны радок)"
+msgstr "Перамясціць бягучы радок уверх"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:40
 msgid "Move current line down"
-msgstr "Перамясціць уніз (пазначаны радок)"
+msgstr "Перамясціць бягучы радок уніз"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:41
 msgid "Move current word left"
-msgstr "Перамясціць улева (пазначанае слова)"
+msgstr "Перамясціць бягучае слова налева"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:42
 msgid "Move current word right"
-msgstr "Перамясціць направа (пазначанае слова)"
+msgstr "Перамясціць бягучае слова направа"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:43
 msgid "Convert to uppercase"
-msgstr "Пераўтварыць – у верхні рэгістр"
+msgstr "Пераўтварыць у верхні рэгістр"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:44
 msgid "Convert to lowercase"
-msgstr "Пераўтварыць – у ніжні рэгістр"
+msgstr "Пераўтварыць у ніжні рэгістр"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:45
 msgid "Convert to title case"
-msgstr "Пераўтварыць – у тытульны рэгістр"
+msgstr "Пераўтварыць у тытульны рэгістр"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:46
 msgid "Invert case"
-msgstr "Перакульнуць рэгістр"
+msgstr "Інвертаваць рэгістр"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:47
 msgid "Increment number at cursor"
@@ -1926,16 +1439,16 @@ msgstr "Зменшыць лічбу ля курсора"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:49
 msgid "Toggle comment block"
-msgstr ""
+msgstr "Пераключыць блок каментара"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:50
 msgid "Toggle comment"
-msgstr ""
+msgstr "Пераключыць каментар"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:51
 #: ../plugins/joinlines/joinlines.plugin.desktop.in.h:1
 msgid "Join Lines"
-msgstr ""
+msgstr "Злучыць радкі"
 
 #: ../xed/xed-searchbar.c:88
 #, c-format
@@ -1956,7 +1469,7 @@ msgstr "\"%s\" не знойдзены"
 
 #: ../xed/xed-searchbar.c:298
 msgid "No matches found"
-msgstr "Супадзенні – не знойдзены"
+msgstr "Супадзенні не знойдзены"
 
 #: ../xed/xed-searchbar.c:306
 #, c-format
@@ -1970,9 +1483,9 @@ msgstr[2] "%d супадзенняў"
 #, c-format
 msgid "%d of %d match"
 msgid_plural "%d of %d matches"
-msgstr[0] "Супадзенне – № %d; усяго – %d супадзенне"
-msgstr[1] "Супадзенне – № %d; усяго – %d супадзенні"
-msgstr[2] "Супадзенне – № %d; усяго – %d супадзенняў"
+msgstr[0] "%d супадзенне з %d"
+msgstr[1] "%d супадзенні з %d"
+msgstr[2] "%d супадзенняў з %d"
 
 #: ../xed/xed-statusbar.c:63 ../xed/xed-statusbar.c:69
 msgid "OVR"
@@ -1987,15 +1500,15 @@ msgstr "INS"
 #: ../xed/xed-statusbar.c:222
 #, c-format
 msgid "  Ln %d, Col %d"
-msgstr "  стар. %d, слуп. %d"
+msgstr "  рад. %d, слуп. %d"
 
 #: ../xed/xed-statusbar.c:321
 #, c-format
 msgid "There is a tab with errors"
 msgid_plural "There are %d tabs with errors"
-msgstr[0] "Ёсць %d картка з памылкамі"
-msgstr[1] "%d карткі з памылкамі"
-msgstr[2] "%d картак з памылкамі"
+msgstr[0] "Укладка з памылкамі"
+msgstr[1] "%d укладкі з памылкамі"
+msgstr[2] "%d укладак з памылкамі"
 
 #: ../xed/xed-tab-label.c:267
 msgid "Close document"
@@ -2018,7 +1531,7 @@ msgstr "Вяртанне %s"
 #: ../xed/xed-tab.c:735
 #, c-format
 msgid "Loading %s from %s"
-msgstr "Загрузка файла %s з %s"
+msgstr "Загрузка %s з %s"
 
 #: ../xed/xed-tab.c:740
 #, c-format
@@ -2045,7 +1558,7 @@ msgstr "Чытанне"
 #: ../xed/xed-tab.c:1368
 #, c-format
 msgid "Error opening file %s"
-msgstr "Памылка адкрывання файла %s"
+msgstr "Памылка адкрыцця файла %s"
 
 #: ../xed/xed-tab.c:1372
 #, c-format
@@ -2067,7 +1580,7 @@ msgstr "Тып MIME:"
 
 #: ../xed/xed-tab.c:1411
 msgid "Encoding:"
-msgstr "Кадаванне:"
+msgstr "Кадзіроўка:"
 
 #. Toplevel
 #: ../xed/xed-ui.h:44
@@ -2080,15 +1593,15 @@ msgstr "_Змяніць"
 
 #: ../xed/xed-ui.h:46
 msgid "_View"
-msgstr "_Выгляд"
+msgstr "_Праглядзець"
 
 #: ../xed/xed-ui.h:47
 msgid "_Search"
-msgstr "По_шук"
+msgstr "_Шукаць"
 
 #: ../xed/xed-ui.h:48
 msgid "_Tools"
-msgstr "_Начынне"
+msgstr "_Прылады"
 
 #: ../xed/xed-ui.h:49
 msgid "_Documents"
@@ -2096,16 +1609,16 @@ msgstr "_Дакументы"
 
 #: ../xed/xed-ui.h:51
 msgid "Favorites"
-msgstr ""
+msgstr "Абраныя"
 
 #: ../xed/xed-ui.h:52
 msgid "Recents"
-msgstr ""
+msgstr "Нядаўнія"
 
 #. File menu
 #: ../xed/xed-ui.h:55
 msgid "_New"
-msgstr "_Зноў"
+msgstr "_Стварыць"
 
 #: ../xed/xed-ui.h:57
 msgid "_Open..."
@@ -2118,11 +1631,11 @@ msgstr "Адкрыць файл"
 #. Edit menu
 #: ../xed/xed-ui.h:61
 msgid "Pr_eferences"
-msgstr "На_стáўленні"
+msgstr "_Налады"
 
 #: ../xed/xed-ui.h:62
 msgid "Configure the application"
-msgstr "Наставіць праграму"
+msgstr "Наладзіць праграму"
 
 #. Help menu
 #: ../xed/xed-ui.h:65
@@ -2131,31 +1644,31 @@ msgstr "_Змест"
 
 #: ../xed/xed-ui.h:66
 msgid "Open the xed manual"
-msgstr "Адкрыць Кседавы мануал"
+msgstr "Дапаможнік па xed"
 
 #: ../xed/xed-ui.h:67
 msgid "_About"
-msgstr "_Пра"
+msgstr "_Аб праграме"
 
 #: ../xed/xed-ui.h:68
 msgid "About this application"
-msgstr "Пра праграму"
+msgstr "Аб праграме"
 
 #: ../xed/xed-ui.h:69
 msgid "_Keyboard Shortcuts"
-msgstr "_Клавіятурныя спалучэнні"
+msgstr "_Спалучэнні клавіш"
 
 #: ../xed/xed-ui.h:70
 msgid "Show the keyboard shortcuts dialog"
-msgstr "Паказаць дыялог выбару клавіятурных спалучэнняў"
+msgstr "Паказаць выбар спалучэнняў клавіш"
 
 #: ../xed/xed-ui.h:74
 msgid "Leave fullscreen mode"
-msgstr "Пакінуць рэжым усяго экрану"
+msgstr "Выйсці з поўнаэкраннага рэжыму"
 
 #: ../xed/xed-ui.h:82
 msgid "Save the current file"
-msgstr "Захаваць дзейны файл"
+msgstr "Захаваць бягучы файл"
 
 #: ../xed/xed-ui.h:83
 msgid "Save _As..."
@@ -2163,7 +1676,7 @@ msgstr "Захаваць _як..."
 
 #: ../xed/xed-ui.h:84
 msgid "Save the current file with a different name"
-msgstr "Захаваць дзейны файл з іншай назвай"
+msgstr "Захаваць бягучы файл пад іншай назвай"
 
 #: ../xed/xed-ui.h:85
 msgid "Revert"
@@ -2187,28 +1700,28 @@ msgstr "_Друкаваць..."
 
 #: ../xed/xed-ui.h:90
 msgid "Print the current page"
-msgstr "Друкаваць дзейную старонку"
+msgstr "Друкаваць бягучую старонку"
 
 #. Edit menu
 #: ../xed/xed-ui.h:93
 msgid "_Undo"
-msgstr "_Адрабіць назад"
+msgstr "_Адрабіць"
 
 #: ../xed/xed-ui.h:94
 msgid "Undo the last action"
-msgstr "Скасаваць апошняе дзеянне"
+msgstr "Адрабіць апошняе дзеянне"
 
 #: ../xed/xed-ui.h:95
 msgid "_Redo"
-msgstr "_Вярнуць дзеянне"
+msgstr "_Узнавіць"
 
 #: ../xed/xed-ui.h:96
 msgid "Redo the last undone action"
-msgstr "Вярнуць апошнія змены"
+msgstr "Вярнуць апошняе адробленае дзеянне"
 
 #: ../xed/xed-ui.h:97
 msgid "C_ut"
-msgstr ""
+msgstr "Вы_разаць"
 
 #: ../xed/xed-ui.h:98
 msgid "Cut the selection"
@@ -2216,7 +1729,7 @@ msgstr "Выразаць вылучанае"
 
 #: ../xed/xed-ui.h:99
 msgid "_Copy"
-msgstr ""
+msgstr "_Капіяваць"
 
 #: ../xed/xed-ui.h:100
 msgid "Copy the selection"
@@ -2224,11 +1737,11 @@ msgstr "Скапіяваць вылучанае"
 
 #: ../xed/xed-ui.h:101
 msgid "_Paste"
-msgstr ""
+msgstr "_Уставіць"
 
 #: ../xed/xed-ui.h:102
 msgid "Paste the clipboard"
-msgstr "Уставіць з буферу абмену"
+msgstr "Уставіць з буфера абмену"
 
 #: ../xed/xed-ui.h:103 ../plugins/filebrowser/xed-file-browser-plugin.c:962
 #: ../plugins/filebrowser/xed-file-browser-plugin.c:997
@@ -2250,41 +1763,41 @@ msgstr "Вылучыць увесь дакумент"
 
 #: ../xed/xed-ui.h:107
 msgid "_Toggle Comment"
-msgstr ""
+msgstr "_Пераключыць каментар"
 
 #: ../xed/xed-ui.h:108 ../plugins/taglist/HTML.tags.xml.in.h:41
 msgid "Comment"
-msgstr "Заўвага"
+msgstr "Каментар"
 
 #: ../xed/xed-ui.h:109
 msgid "Toggle Comment _Block"
-msgstr ""
+msgstr "Пераключыць блок _каментароў"
 
 #: ../xed/xed-ui.h:110
 msgid "Comment Block"
-msgstr ""
+msgstr "Блок каментароў"
 
 #. View menu
 #: ../xed/xed-ui.h:113
 msgid "_Highlight Mode"
-msgstr "Рэжым пад_святлення"
+msgstr "_Рэжым падсветкі"
 
 #: ../xed/xed-ui.h:114
 msgid "Change syntax hightlight mode"
-msgstr ""
+msgstr "Змяніць рэжым падсветкі сінтаксіса"
 
 #. Search menu
 #: ../xed/xed-ui.h:118
 msgid "_Find"
-msgstr ""
+msgstr "З_найсці"
 
 #: ../xed/xed-ui.h:119
 msgid "Search for text"
-msgstr "Пошук тэксту"
+msgstr "Шукаць тэкст"
 
 #: ../xed/xed-ui.h:120
 msgid "Find Ne_xt"
-msgstr "Шукаць далей"
+msgstr "Знайсці на_ступнае"
 
 #: ../xed/xed-ui.h:121
 msgid "Search forwards for the same text"
@@ -2292,7 +1805,7 @@ msgstr "Шукаць далей гэты ж самы тэкст"
 
 #: ../xed/xed-ui.h:122
 msgid "Find Pre_vious"
-msgstr "Шукаць _раней"
+msgstr "Знайсці пап_ярэдняе"
 
 #: ../xed/xed-ui.h:123
 msgid "Search backwards for the same text"
@@ -2313,7 +1826,7 @@ msgstr "Пераход да вызначанага радка"
 #. Documents menu
 #: ../xed/xed-ui.h:130
 msgid "_Save All"
-msgstr "_Захаваць усё"
+msgstr "_Захаваць усе"
 
 #: ../xed/xed-ui.h:131
 msgid "Save all open files"
@@ -2321,7 +1834,7 @@ msgstr "Захаваць усе адкрытыя файлы"
 
 #: ../xed/xed-ui.h:132
 msgid "_Close All"
-msgstr "_Закрыць усё"
+msgstr "_Закрыць усе"
 
 #: ../xed/xed-ui.h:133
 msgid "Close all open files"
@@ -2349,19 +1862,19 @@ msgstr "_Перанесці ў новае акно"
 
 #: ../xed/xed-ui.h:139
 msgid "Move the current document to a new window"
-msgstr "Перанесці дзейны дакумент у новае акно"
+msgstr "Перанесці бягучы дакумэнт у новае акно"
 
 #: ../xed/xed-ui.h:145
 msgid "_Close"
-msgstr ""
+msgstr "_Закрыць"
 
 #: ../xed/xed-ui.h:146
 msgid "Close the current file"
-msgstr "Закрыць дзейны файл"
+msgstr "Закрыць бягучы файл"
 
 #: ../xed/xed-ui.h:152
 msgid "_Quit"
-msgstr ""
+msgstr "_Выйсці"
 
 #: ../xed/xed-ui.h:153
 msgid "Quit the program"
@@ -2369,11 +1882,11 @@ msgstr "Выйсці з праграмы"
 
 #: ../xed/xed-ui.h:158
 msgid "_Toolbar"
-msgstr "_Панэль начыння"
+msgstr "_Панэль прылад"
 
 #: ../xed/xed-ui.h:159
 msgid "Show or hide the toolbar in the current window"
-msgstr "Паказаць ці схаваць панэль начыння ў дзейным акне"
+msgstr "Паказаць ці схаваць панэль прылад у бягучым акне"
 
 #: ../xed/xed-ui.h:161
 msgid "_Statusbar"
@@ -2381,31 +1894,31 @@ msgstr "Радок _стану"
 
 #: ../xed/xed-ui.h:162
 msgid "Show or hide the statusbar in the current window"
-msgstr "Паказаць ці схаваць радок стану ў дзейным акне"
+msgstr "Паказаць ці схаваць радок стану ў бягучым акне"
 
 #: ../xed/xed-ui.h:164
 msgid "Fullscreen"
-msgstr ""
+msgstr "На ўвесь экран"
 
 #: ../xed/xed-ui.h:165
 msgid "Edit text in fullscreen"
-msgstr "Рэдагаваць тэкст на ўвесь экран"
+msgstr "Рэдагаваць тэкст у поўнаэкранным рэжыме"
 
 #: ../xed/xed-ui.h:167
 msgid "_Word wrap"
-msgstr ""
+msgstr "_Перанос словаў"
 
 #: ../xed/xed-ui.h:168
 msgid "Set word wrap for the current document"
-msgstr ""
+msgstr "Задаць перанос словаў у бягучым дакуменце"
 
 #: ../xed/xed-ui.h:170
 msgid "_Overview Map"
-msgstr ""
+msgstr "_Аглядная мапа"
 
 #: ../xed/xed-ui.h:171
 msgid "Show or hide the overview map for the current view"
-msgstr ""
+msgstr "Паказаць ці схаваць аглядную мапу для бягучага выгляду"
 
 #: ../xed/xed-ui.h:178
 msgid "Side _Pane"
@@ -2413,7 +1926,7 @@ msgstr "_Бакавая панэль"
 
 #: ../xed/xed-ui.h:179
 msgid "Show or hide the side pane in the current window"
-msgstr "Паказаць ці схаваць бакавую панэль у дзейным акне"
+msgstr "Паказаць ці схаваць бакавую панэль у бягучым акне"
 
 #: ../xed/xed-ui.h:181
 msgid "_Bottom Pane"
@@ -2421,65 +1934,65 @@ msgstr "_Ніжняя панэль"
 
 #: ../xed/xed-ui.h:182
 msgid "Show or hide the bottom pane in the current window"
-msgstr "Паказаць ці схаваць ніжнюю панэль у дзейным акне"
+msgstr "Паказаць ці схаваць ніжнюю панэль у бягучым акне"
 
-#: ../xed/xed-utils.c:822
+#: ../xed/xed-utils.c:829
 msgid "Please check your installation."
-msgstr "Калі ласка, праверце ўсталяванне."
+msgstr "Праверце правільнасць усталёўкі."
 
-#: ../xed/xed-utils.c:890
+#: ../xed/xed-utils.c:897
 #, c-format
 msgid "Unable to open UI file %s. Error: %s"
 msgstr "Не выйшла адкрыць UI-файл %s. Памылка: %s"
 
-#: ../xed/xed-utils.c:910
+#: ../xed/xed-utils.c:917
 #, c-format
 msgid "Unable to find the object '%s' inside file %s."
 msgstr "Не выйшла знайсці аб'ект '%s' у файле %s."
 
 #. Translators: '/ on <remote-share>'
-#: ../xed/xed-utils.c:1078
+#: ../xed/xed-utils.c:1085
 #, c-format
 msgid "/ on %s"
 msgstr "/ на %s"
 
-#: ../xed/xed-view.c:378
+#: ../xed/xed-view.c:388
 msgid "_Display line numbers"
 msgstr "Па_казваць нумары радкоў"
 
 #. Translators: %s is a URI
-#: ../xed/xed-window.c:876
+#: ../xed/xed-window.c:878
 #, c-format
 msgid "Open '%s'"
 msgstr "Адкрыць '%s'"
 
 #. Translators: %s is a URI
-#: ../xed/xed-window.c:1225
+#: ../xed/xed-window.c:1226
 #, c-format
 msgid "Activate '%s'"
 msgstr "Задзейнічаць '%s'"
 
-#: ../xed/xed-window.c:1413
+#: ../xed/xed-window.c:1414
 #, c-format
 msgid "Spaces: %u"
-msgstr ""
+msgstr "Прабелы: %u"
 
-#: ../xed/xed-window.c:1417
+#: ../xed/xed-window.c:1418
 #, c-format
 msgid "Tabs: %u"
-msgstr ""
+msgstr "Укладкі: %u"
 
-#: ../xed/xed-window.c:1494
+#: ../xed/xed-window.c:1495
 msgid "Use Spaces"
-msgstr "Выкарыстоўваць прагалы"
+msgstr "Ужыць прабелы"
 
-#: ../xed/xed-window.c:2301
+#: ../xed/xed-window.c:2302
 msgid "There are unsaved documents"
-msgstr ""
+msgstr "Ёсць незахаваныя дакументы"
 
-#: ../xed/xed-window.c:3350
+#: ../xed/xed-window.c:3351
 msgid "Elevated Privileges"
-msgstr ""
+msgstr "Павышаныя правы"
 
 #: ../plugins/docinfo/docinfo.plugin.desktop.in.h:1
 #: ../plugins/docinfo/docinfo.ui.h:1
@@ -2491,7 +2004,8 @@ msgid ""
 "Analyzes the current document and reports the number of words, lines, "
 "characters and non-space characters in it."
 msgstr ""
-"Паведамляе колькасць слоў, радкоў, знакаў і непрагальных знакаў у дакуменце."
+"Паведамляе колькасць слоў, радкоў, знакаў і знакаў без прабелаў у бягучым "
+"дакуменце."
 
 #: ../plugins/docinfo/docinfo.ui.h:2
 msgid "_Update"
@@ -2512,11 +2026,11 @@ msgstr "Байтаў"
 
 #: ../plugins/docinfo/docinfo.ui.h:6
 msgid "Characters (no spaces)"
-msgstr "Знакаў (без прагалаў)"
+msgstr "Знакаў (без прабелаў)"
 
 #: ../plugins/docinfo/docinfo.ui.h:7
 msgid "Characters (with spaces)"
-msgstr "Знакаў (з прагаламі)"
+msgstr "Знакаў (з прабеламі)"
 
 #: ../plugins/docinfo/docinfo.ui.h:8
 msgid "Words"
@@ -2532,11 +2046,11 @@ msgstr "Дакумент"
 
 #: ../plugins/docinfo/xed-docinfo-plugin.c:379
 msgid "_Document Statistics"
-msgstr "Статыстыка _дакумента"
+msgstr "_Статыстыка дакумента"
 
 #: ../plugins/docinfo/xed-docinfo-plugin.c:381
 msgid "Get statistical information on the current document"
-msgstr "Атрымаць статыстычную інфармацыю па дзейным дакуменце"
+msgstr "Атрымаць статыстычную інфармацыю аб дакуменце"
 
 #: ../plugins/filebrowser/filebrowser.plugin.desktop.in.h:1
 msgid "File Browser Pane"
@@ -2557,10 +2071,14 @@ msgid ""
 "generally applies to opening a document from the command line or opening it "
 "with Caja, etc.)"
 msgstr ""
+"Калі TRUE - ўбудова аглядальніка файлаў будзе паказваць каталог першага "
+"адкрытага дакумента, калі аглядальнік файлаў яшчэ не выкарыстоўваўся. (Такім "
+"чынам, гэта тычыцца адкрыцця дакумента з каманднага радка ці з дапамогай "
+"Caja і інш.)"
 
 #: ../plugins/filebrowser/org.x.editor.plugins.filebrowser.gschema.xml.h:3
 msgid "File Browser Filter Mode"
-msgstr ""
+msgstr "Рэжым фільтра пры аглядзе файлаў"
 
 #: ../plugins/filebrowser/org.x.editor.plugins.filebrowser.gschema.xml.h:4
 msgid ""
@@ -2569,48 +2087,59 @@ msgid ""
 "(filter binary files) and hidden_and_binary (filter both hidden and binary "
 "files)."
 msgstr ""
+"Параметр вызначае, якія файлы фільтруюцца ў аглядальніку файлаў. Параметры "
+"могуць быць: none (нічога), hidden (схаваныя файлы), binary (бінарныя файлы) "
+"і hidden_and_binary (фільтраваць схаваныя і бінарныя файлы)."
 
 #: ../plugins/filebrowser/org.x.editor.plugins.filebrowser.gschema.xml.h:5
 msgid "File Browser Filter Pattern"
-msgstr ""
+msgstr "Шаблон фільтра пры аглядзе файлаў"
 
 #: ../plugins/filebrowser/org.x.editor.plugins.filebrowser.gschema.xml.h:6
 msgid ""
 "The filter pattern to filter the file browser with. This filter works on top "
 "of the filter_mode."
 msgstr ""
+"Шаблон для фільтравання назваў пры аглядзе файлаў. Гэты фільтр працуе "
+"адносна дзейнага рэжыму фільтрацыі filter_mode."
 
 #: ../plugins/filebrowser/org.x.editor.plugins.filebrowser.gschema.xml.h:7
 msgid "Terminal Command"
-msgstr ""
+msgstr "Каманда тэрмінала"
 
 #: ../plugins/filebrowser/org.x.editor.plugins.filebrowser.gschema.xml.h:8
 msgid "The terminal command when using the \"Open terminal here\" command."
 msgstr ""
+"Каманда тэрмінала, калі выкарыстоўваецца каманда \"Адкрыць тэрмінал тут\" "
+"command."
 
 #: ../plugins/filebrowser/org.x.editor.plugins.filebrowser.gschema.xml.h:9
 msgid "Open With Tree View"
-msgstr ""
+msgstr "Адкрыць у выглядзе дрэва"
 
 #: ../plugins/filebrowser/org.x.editor.plugins.filebrowser.gschema.xml.h:10
 msgid ""
 "Open the tree view when the file browser plugin gets loaded instead of the "
 "bookmarks view"
 msgstr ""
+"Адкрыць выгляд дрэва, у якім убудова аглядальніка файлаў паказвае "
+"запампаваныя замест закладак"
 
 #: ../plugins/filebrowser/org.x.editor.plugins.filebrowser.gschema.xml.h:11
 msgid "File Browser Root Directory"
-msgstr ""
+msgstr "Каранёвы каталог пры аглядзе файлаў"
 
 #: ../plugins/filebrowser/org.x.editor.plugins.filebrowser.gschema.xml.h:12
 msgid ""
 "The file browser root directory to use when loading the file browser plugin "
 "and onload/tree_view is TRUE."
 msgstr ""
+"Каранёвы каталог пры аглядзе файлаў, які выкарыстоўваецца пры загрузцы "
+"ўбудовы і калі ўключана опцыя нагрузка/выгляд дрэва."
 
 #: ../plugins/filebrowser/org.x.editor.plugins.filebrowser.gschema.xml.h:13
 msgid "File Browser Virtual Root Directory"
-msgstr ""
+msgstr "Віртуальны каранёвы каталог пры аглядзе файлаў"
 
 #: ../plugins/filebrowser/org.x.editor.plugins.filebrowser.gschema.xml.h:14
 msgid ""
@@ -2618,14 +2147,17 @@ msgid ""
 "plugin when onload/tree_view is TRUE. The virtual root must always be below "
 "the actual root."
 msgstr ""
+"Віртуальны каранёвы каталог пры аглядзе файлаў, які выкарыстоўваецца пры "
+"загрузцы ўбудовы і калі ўключана опцыя нагрузка/выгляд дрэва. Віртуальны "
+"каранёвы каталог заўсёды павінен быць ніжэй за сапраўдны корань."
 
 #: ../plugins/filebrowser/org.x.editor.plugins.filebrowser.gschema.xml.h:15
 msgid "Enable Restore of Remote Locations"
-msgstr ""
+msgstr "Дазволіць аднаўленне для аддаленых месцаў"
 
 #: ../plugins/filebrowser/org.x.editor.plugins.filebrowser.gschema.xml.h:16
 msgid "Sets whether to enable restoring of remote locations."
-msgstr ""
+msgstr "Ці трэба дазволіць аднаўленне файлаў для аддаленых месцаў."
 
 #: ../plugins/filebrowser/xed-file-bookmarks-store.c:254
 msgid "File System"
@@ -2633,19 +2165,19 @@ msgstr "Файлавая сістэма"
 
 #: ../plugins/filebrowser/xed-file-browser-plugin.c:439
 msgid "_Set root to active document"
-msgstr ""
+msgstr "_Зрабіць адрас актыўнага дакумента каранёвай папкай"
 
 #: ../plugins/filebrowser/xed-file-browser-plugin.c:441
 msgid "Set the root to the active document location"
-msgstr ""
+msgstr "Зрабіць адрас актыўнага дакумента каранёвай папкай"
 
 #: ../plugins/filebrowser/xed-file-browser-plugin.c:446
 msgid "_Open terminal here"
-msgstr "_Адкрыць тут тэрмінал"
+msgstr "_Адкрыць тэрмінал тут"
 
 #: ../plugins/filebrowser/xed-file-browser-plugin.c:448
 msgid "Open a terminal at the currently opened directory"
-msgstr ""
+msgstr "Адкрыць тэрмінал у адкрытым каталозе"
 
 #: ../plugins/filebrowser/xed-file-browser-plugin.c:558
 msgid "File Browser"
@@ -2669,7 +2201,7 @@ msgstr "Памылка падчас выдалення файла ці ката�
 
 #: ../plugins/filebrowser/xed-file-browser-plugin.c:679
 msgid "An error occurred while opening a directory in the file manager"
-msgstr "Памылка падчас адкрывання каталога ў файлавым кіраўніку"
+msgstr "Памылка падчас адкрывання каталога ў файлавым менеджары"
 
 #: ../plugins/filebrowser/xed-file-browser-plugin.c:682
 msgid "An error occurred while setting a root directory"
@@ -2677,7 +2209,7 @@ msgstr "Памылка падчас усталявання каранёвага 
 
 #: ../plugins/filebrowser/xed-file-browser-plugin.c:685
 msgid "An error occurred while loading a directory"
-msgstr "Памылка падчас чытання каталога"
+msgstr "Памылка падчас загрузкі каталога"
 
 #: ../plugins/filebrowser/xed-file-browser-plugin.c:688
 msgid "An error occurred"
@@ -2688,17 +2220,17 @@ msgid ""
 "Cannot move file to trash, do you\n"
 "want to delete permanently?"
 msgstr ""
-"Не выйшла перанесці файл у сметніцу,\n"
-"выдаліць яго назаўсёды?"
+"Не ўдалося выкінуць файл у сметніцу.\n"
+"Жадаеце выдаліць назаўсёды?"
 
 #: ../plugins/filebrowser/xed-file-browser-plugin.c:950
 #, c-format
 msgid "The file \"%s\" cannot be moved to the trash."
-msgstr "Файл \"%s\" немагчыма перанесці ў сметніцу."
+msgstr "Не ўдалося выкінуць файл \"%s\" у сметніцу."
 
 #: ../plugins/filebrowser/xed-file-browser-plugin.c:955
 msgid "The selected files cannot be moved to the trash."
-msgstr "Вылучаныя файлы не выйшла перанесці ў сметніцу."
+msgstr "Не ўдалося выкінуць вылучаныя файлы ў сметніцу."
 
 #: ../plugins/filebrowser/xed-file-browser-plugin.c:983
 #, c-format
@@ -2722,28 +2254,29 @@ msgid ""
 "The renamed file is currently filtered out. You need to adjust your filter "
 "settings to make the file visible"
 msgstr ""
+"Пераназваны файл адфільтраваны. Каб убачыць яго, трэба падстроіць фільтр"
 
 #. Translators: This is the default name of new files created by the file browser pane.
 #: ../plugins/filebrowser/xed-file-browser-store.c:3766
 msgid "Untitled File"
-msgstr ""
+msgstr "Новы файл"
 
 #: ../plugins/filebrowser/xed-file-browser-store.c:3794
 msgid ""
 "The new file is currently filtered out. You need to adjust your filter "
 "settings to make the file visible"
-msgstr ""
+msgstr "Новы файл адфільтраваны. Каб убачыць яго, трэба падстроіць фільтр"
 
 #. Translators: This is the default name of new directories created by the file browser pane.
 #: ../plugins/filebrowser/xed-file-browser-store.c:3821
 msgid "Untitled Folder"
-msgstr ""
+msgstr "Новая папка"
 
 #: ../plugins/filebrowser/xed-file-browser-store.c:3846
 msgid ""
 "The new directory is currently filtered out. You need to adjust your filter "
 "settings to make the directory visible"
-msgstr ""
+msgstr "Новы каталог адфільтраваны. Каб убачыць яго, трэба падстроіць фільтр"
 
 #: ../plugins/filebrowser/xed-file-browser-widget.c:714
 msgid "Bookmarks"
@@ -2775,15 +2308,15 @@ msgstr "Вышэй"
 
 #: ../plugins/filebrowser/xed-file-browser-widget.c:771
 msgid "Open the parent folder"
-msgstr "Адкрыць бацькоўскі каталог"
+msgstr "Адкрыць бацькоўскую папку"
 
 #: ../plugins/filebrowser/xed-file-browser-widget.c:776
 msgid "_New Folder"
-msgstr "_Новы каталог"
+msgstr "_Новая папка"
 
 #: ../plugins/filebrowser/xed-file-browser-widget.c:777
 msgid "Add new empty folder"
-msgstr "Дадаць новы пусты каталог"
+msgstr "Дадаць новую пустую папку"
 
 #: ../plugins/filebrowser/xed-file-browser-widget.c:778
 msgid "New F_ile"
@@ -2795,7 +2328,7 @@ msgstr "Дадаць новы пусты файл"
 
 #: ../plugins/filebrowser/xed-file-browser-widget.c:784
 msgid "_Rename..."
-msgstr ""
+msgstr "_Пераназваць..."
 
 #: ../plugins/filebrowser/xed-file-browser-widget.c:785
 msgid "Rename selected file or folder"
@@ -2819,21 +2352,21 @@ msgstr "_Перайсці да наступнага месца"
 
 #: ../plugins/filebrowser/xed-file-browser-widget.c:794
 msgid "Re_fresh View"
-msgstr "Аб_навіць"
+msgstr "_Абнавіць выгляд"
 
 #: ../plugins/filebrowser/xed-file-browser-widget.c:795
 msgid "Refresh the view"
-msgstr "Абнавіць від"
+msgstr "Абнавіць выгляд"
 
 #: ../plugins/filebrowser/xed-file-browser-widget.c:796
 #: ../plugins/filebrowser/xed-file-browser-widget.c:810
 msgid "_View Folder"
-msgstr "_Праглядзець каталог"
+msgstr "Па_глядзець папку"
 
 #: ../plugins/filebrowser/xed-file-browser-widget.c:797
 #: ../plugins/filebrowser/xed-file-browser-widget.c:811
 msgid "View folder in file manager"
-msgstr "_Праглядзець каталог у файлавым кіраўніку"
+msgstr "Паглядзець папку ў файлавым менеджары"
 
 #: ../plugins/filebrowser/xed-file-browser-widget.c:802
 msgid "Show _Hidden"
@@ -2841,7 +2374,7 @@ msgstr "Паказваць _схаваныя"
 
 #: ../plugins/filebrowser/xed-file-browser-widget.c:803
 msgid "Show hidden files and folders"
-msgstr "Паказваць схаваныя файлы і каталогі"
+msgstr "Паказваць схаваныя файлы і папкі"
 
 #: ../plugins/filebrowser/xed-file-browser-widget.c:804
 msgid "Show _Binary"
@@ -2863,24 +2396,24 @@ msgstr "Няма аб'екта мантавання для тома: %s"
 #: ../plugins/filebrowser/xed-file-browser-widget.c:2090
 #, c-format
 msgid "Could not open media: %s"
-msgstr "Не выйшла адкрыць носьбіт: %s"
+msgstr "Не ўдалося адкрыць носьбіт: %s"
 
 #: ../plugins/filebrowser/xed-file-browser-widget.c:2139
 #, c-format
 msgid "Could not mount volume: %s"
-msgstr "Не выйшла прымантаваць том: %s"
+msgstr "Не ўдалося прымнтаваць дыскавы том: %s"
 
 #: ../plugins/joinlines/joinlines.plugin.desktop.in.h:2
 msgid "Join several lines"
-msgstr ""
+msgstr "Аб'яднаць некалькі радкоў"
 
 #: ../plugins/joinlines/joinlines/__init__.py:26
 msgid "_Join Lines"
-msgstr ""
+msgstr "_Аб'яднаць радкі"
 
 #: ../plugins/joinlines/joinlines/__init__.py:27
 msgid "Join the selected lines"
-msgstr ""
+msgstr "Аб'яднаць вылучаныя радкі"
 
 #. vi:ts=8
 #: ../plugins/modelines/modelines.plugin.desktop.in.h:1
@@ -2889,11 +2422,11 @@ msgstr "Рэжымы радкоў"
 
 #: ../plugins/modelines/modelines.plugin.desktop.in.h:2
 msgid "Emacs, Kate and Vim-style modelines support for xed."
-msgstr ""
+msgstr "Падтрымка рэжыма радкоў для xed у стылі Emacs, Kate і Vim."
 
 #: ../plugins/sort/sort.plugin.desktop.in.h:1
 msgid "Sort"
-msgstr "Упарадкаваць"
+msgstr "Сартаваць"
 
 #: ../plugins/sort/sort.plugin.desktop.in.h:2
 msgid "Sorts a document or selected text."
@@ -2901,15 +2434,15 @@ msgstr "Упарадкуе дакумент ці вылучаны тэкст."
 
 #: ../plugins/sort/xed-sort-plugin.c:75
 msgid "S_ort lines"
-msgstr ""
+msgstr "_Сартаваць радкі"
 
 #: ../plugins/sort/xed-sort-plugin.c:77
 msgid "Sort the current document or selection"
-msgstr "Упарадкаваць дзейны дакумент ці вылучэнне"
+msgstr "Упарадкаваць бягучы дакумэнт ці вылучанае"
 
 #: ../plugins/spell/org.x.editor.plugins.spell.gschema.xml.in.h:1
 msgid "Autocheck Type"
-msgstr ""
+msgstr "Тып аўтаматычнай праверкі"
 
 #: ../plugins/spell/spell.plugin.desktop.in.h:1
 msgid "Spell Checker"
@@ -2917,7 +2450,7 @@ msgstr "Праверка правапісу"
 
 #: ../plugins/spell/spell.plugin.desktop.in.h:2
 msgid "Checks the spelling of the current document."
-msgstr "Правярае правапіс дзейнага дакумента."
+msgstr "Правярае правапіс бягучага дакумента."
 
 #: ../plugins/spell/xed-spell-plugin.c:86
 msgid "_Check Spelling..."
@@ -2925,15 +2458,15 @@ msgstr "_Праверка правапісу..."
 
 #: ../plugins/spell/xed-spell-plugin.c:88
 msgid "Check the current document for incorrect spelling"
-msgstr "Праверыць дзейны дакумент на пісьменнасць"
+msgstr "Праверыць бягучы дакумент на правільнасць правапісу"
 
 #: ../plugins/spell/xed-spell-plugin.c:94
 msgid "Set _Language..."
-msgstr "Выставіць _мову..."
+msgstr "Вызначыць _мову..."
 
 #: ../plugins/spell/xed-spell-plugin.c:96
 msgid "Set the language of the current document"
-msgstr "Усталяваць мову дзейнага дакумента"
+msgstr "Вызначыць мову для адкрытага дакумента"
 
 #: ../plugins/spell/xed-spell-plugin.c:105
 msgid "_Autocheck Spelling"
@@ -2941,51 +2474,51 @@ msgstr "_Аўтаматычна правяраць правапіс"
 
 #: ../plugins/spell/xed-spell-plugin.c:107
 msgid "Automatically spell-check the current document"
-msgstr "Аўтаматычна правяраць правапіс у дзейным дакуменце"
+msgstr "Аўтаматычна правяраць правапіс у бягучым дакуменце"
 
 #: ../plugins/spell/xed-spell-setup-dialog.ui.h:1
 msgid "button"
-msgstr ""
+msgstr "кнопка"
 
 #: ../plugins/spell/xed-spell-setup-dialog.ui.h:2
 msgid "Autocheck settings"
-msgstr ""
+msgstr "Налады аўтаматычнай праверкі"
 
 #: ../plugins/spell/xed-spell-setup-dialog.ui.h:3
 msgid "Never"
-msgstr ""
+msgstr "Ніколі"
 
 #: ../plugins/spell/xed-spell-setup-dialog.ui.h:4
 msgid "Never autocheck spelling on document load"
-msgstr ""
+msgstr "Ніколі не правяраць правапіс пры адкрыцці дакумента"
 
 #: ../plugins/spell/xed-spell-setup-dialog.ui.h:5
 msgid "Remember by document"
-msgstr ""
+msgstr "Запомніць для дакумента"
 
 #: ../plugins/spell/xed-spell-setup-dialog.ui.h:6
 msgid "Remembers the setting for each  document on load"
-msgstr ""
+msgstr "Запомніць наладу для кожнага дакумента пры адкрыцці"
 
 #: ../plugins/spell/xed-spell-setup-dialog.ui.h:7
 msgid "Always"
-msgstr ""
+msgstr "Заўсёды"
 
 #: ../plugins/spell/xed-spell-setup-dialog.ui.h:8
 msgid "Always autocheck on document load"
-msgstr ""
+msgstr "Заўсёды правяраць пры адкрыцці дакумента"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:1
 msgid "XHTML 1.0 - Tags"
-msgstr ""
+msgstr "XHTML 1.0 - тэгі"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:2
 msgid "Abbreviated form"
-msgstr "Абрэвіятурная форма"
+msgstr "Скарочаная форма"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:3
 msgid "Abbreviation"
-msgstr "Абрэвіятура"
+msgstr "Скарот"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:4
 msgid "Accessibility key character"
@@ -2997,11 +2530,11 @@ msgstr "Акронім"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:6
 msgid "Align"
-msgstr "Шыхтаванне"
+msgstr "Выраўнаваць"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:7
 msgid "Alignment character"
-msgstr "Знак шыхтавання"
+msgstr "Знак выраўноўвання"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:8
 msgid "Alternative"
@@ -3009,7 +2542,7 @@ msgstr "Альтэрнатыўны"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:9
 msgid "Anchor URI"
-msgstr "URI якара"
+msgstr "Якарны URI"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:10
 msgid "Anchor"
@@ -3018,7 +2551,7 @@ msgstr "Якар"
 #. Deprecated since HTML 4.01, not supported in XHTML 1.0 Strict DTD.
 #: ../plugins/taglist/HTML.tags.xml.in.h:12
 msgid "Applet class file code (deprecated)"
-msgstr ""
+msgstr "Код файла класа аплета (састарэла)"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:13
 msgid "Associated information"
@@ -3035,17 +2568,17 @@ msgstr "Загалоўкі восяў"
 #. Deprecated since HTML 4.01, not supported in XHTML 1.0 Strict DTD.
 #: ../plugins/taglist/HTML.tags.xml.in.h:17
 msgid "Background color (deprecated)"
-msgstr ""
+msgstr "Колер фона (састарэла)"
 
 #. Deprecated since HTML 4.01, not supported in XHTML 1.0 Strict DTD.
 #: ../plugins/taglist/HTML.tags.xml.in.h:19
 msgid "Background texture tile (deprecated)"
-msgstr ""
+msgstr "Тайл тэкстур фона (састарэла)"
 
 #. Deprecated since HTML 4.01, not supported in XHTML 1.0 Strict DTD.
 #: ../plugins/taglist/HTML.tags.xml.in.h:21
 msgid "Base font (deprecated)"
-msgstr ""
+msgstr "Асноўны шрыфт (састарэла)"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:22
 msgid "Base URI"
@@ -3053,12 +2586,12 @@ msgstr "Базавы URI"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:23
 msgid "Bold"
-msgstr "Тоўсты"
+msgstr "Тлусты"
 
 #. Deprecated since HTML 4.01, not supported in XHTML 1.0 Strict DTD.
 #: ../plugins/taglist/HTML.tags.xml.in.h:25
 msgid "Border (deprecated)"
-msgstr ""
+msgstr "Мяжа (састарэла)"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:26
 msgid "Cell rowspan"
@@ -3067,15 +2600,15 @@ msgstr "Дыяпазон клетак у радку"
 #. Deprecated since HTML 4.01, not supported in XHTML 1.0 Strict DTD.
 #: ../plugins/taglist/HTML.tags.xml.in.h:28
 msgid "Center (deprecated)"
-msgstr ""
+msgstr "Цэнтр (састарэла)"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:29
 msgid "Character encoding of linked resource"
-msgstr "Кадаванне знакаў злучанага рэсурса"
+msgstr "Кадзіраванне знакаў злучанага рэсурса"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:30
 msgid "Checked state"
-msgstr ""
+msgstr "Правераны статус"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:31
 msgid "Citation"
@@ -3104,7 +2637,7 @@ msgstr "Тып зместу коду"
 #. Deprecated since HTML 4.01, not supported in XHTML 1.0 Strict DTD.
 #: ../plugins/taglist/HTML.tags.xml.in.h:38
 msgid "Color of selected links (deprecated)"
-msgstr ""
+msgstr "Колер вылучанай спасылкі (састарэла)"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:39
 msgid "Column span"
@@ -3122,7 +2655,7 @@ msgstr "Фрагмент камп'ютарнага коду"
 #. since HTML 4.01, not supported in XHTML 1.0 Strict DTD.
 #: ../plugins/taglist/HTML.tags.xml.in.h:45
 msgid "Content type (deprecated)"
-msgstr ""
+msgstr "Тып кантэнту (састарэла)"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:46
 msgid "Coordinates"
@@ -3217,7 +2750,7 @@ msgstr "Тып кадавання"
 #. Deprecated since HTML 4.01, not supported in XHTML 1.0 Strict DTD.
 #: ../plugins/taglist/HTML.tags.xml.in.h:73
 msgid "Font face (deprecated)"
-msgstr ""
+msgstr "Напісанне шрыфта (састарэла)"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:74
 msgid "For label"
@@ -3277,7 +2810,7 @@ msgstr "Фрэйм"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:88
 msgid "Frame border"
-msgstr ""
+msgstr "Мяжа фрэйма"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:89
 msgid "Frameset columns"
@@ -3293,7 +2826,7 @@ msgstr "Збор фрэймаў"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:92
 msgid "Frame spacing"
-msgstr ""
+msgstr "Інтэрвал фрэймаў"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:93
 msgid "Generic embedded object"
@@ -3309,7 +2842,7 @@ msgstr "Звычайны інтэрвал"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:96
 msgid "Header cell IDs"
-msgstr ""
+msgstr "Ідэнтыфікатары загалоўка клеткі"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:97
 msgid "Heading 1"
@@ -3346,7 +2879,7 @@ msgstr "Гарызантальная лінейка"
 #. Deprecated since HTML 4.01, not supported in XHTML 1.0 Strict DTD.
 #: ../plugins/taglist/HTML.tags.xml.in.h:106
 msgid "Horizontal space (deprecated)"
-msgstr ""
+msgstr "Гарызантальная прастора (састарэла)"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:107
 msgid "HREF URI"
@@ -3362,7 +2895,7 @@ msgstr "Назва загалоўка HTTP"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:110
 msgid "I18N BiDi override"
-msgstr ""
+msgstr "Перавызначыць I18N BiDi"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:111
 msgid "Image map area"
@@ -3394,12 +2927,12 @@ msgstr "Вызначэнне становішча"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:118
 msgid "Italic text"
-msgstr "Нахілены тэкст"
+msgstr "Курсіў"
 
 #. Deprecated since HTML 4.01, not supported in XHTML 1.0 Strict DTD.
 #: ../plugins/taglist/HTML.tags.xml.in.h:120
 msgid "Java applet (deprecated)"
-msgstr ""
+msgstr "Аплет Java (састарэла)"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:121
 msgid "Label"
@@ -3424,7 +2957,7 @@ msgstr "Элемент спісу"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:127
 msgid "List of MIME types for file upload"
-msgstr "Спіс MIME-тыпаў для зацягвання файлаў"
+msgstr "Спіс MIME-тыпаў для запампоўкі файлаў"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:128
 msgid "List of supported character sets"
@@ -3445,12 +2978,12 @@ msgstr "Доўгае цытаванне"
 #. Supported in XHTML 1.0 Frameset DTD only.
 #: ../plugins/taglist/HTML.tags.xml.in.h:133
 msgid "Margin pixel height"
-msgstr "Вышыня піксэля памежжа"
+msgstr "Вышыня мяжы ў пікселях"
 
 #. Supported in XHTML 1.0 Frameset DTD only.
 #: ../plugins/taglist/HTML.tags.xml.in.h:135
 msgid "Margin pixel width"
-msgstr "Шырыня мяжы ў піксэлях"
+msgstr "Шырыня мяжы ў пікселях"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:136
 msgid "Maximum length of text field"
@@ -3469,7 +3002,7 @@ msgstr "Спасылка, незалежная ад медыі"
 #. Deprecated since HTML 4.01, not supported in XHTML 1.0 Strict DTD.
 #: ../plugins/taglist/HTML.tags.xml.in.h:142
 msgid "Menu list (deprecated)"
-msgstr ""
+msgstr "Спіс меню (састарэла)"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:143
 msgid "Multi-line text field"
@@ -3502,7 +3035,7 @@ msgstr "Няма сцэнараў"
 #. Deprecated since HTML 4.01, not supported in XHTML 1.0 Strict DTD.
 #: ../plugins/taglist/HTML.tags.xml.in.h:151
 msgid "No shade (deprecated)"
-msgstr ""
+msgstr "Без ценю (састарэла)"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:152
 msgid "No URI"
@@ -3511,12 +3044,12 @@ msgstr "Няма URI"
 #. Deprecated since HTML 4.01, not supported in XHTML 1.0 Strict DTD.
 #: ../plugins/taglist/HTML.tags.xml.in.h:154
 msgid "No word wrap (deprecated)"
-msgstr ""
+msgstr "Без пераносу слоў (састарэла)"
 
 #. Deprecated since HTML 4.01, not supported in XHTML 1.0 Strict DTD.
 #: ../plugins/taglist/HTML.tags.xml.in.h:156
 msgid "Object applet file (deprecated)"
-msgstr ""
+msgstr "Файл аб'ектнага аплета (састарэла)"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:157
 msgid "Object data reference"
@@ -3632,7 +3165,7 @@ msgstr "Слоўнік метазвестак пра профілі"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:185
 msgid "Push button"
-msgstr "Кнопка націску"
+msgstr "Кнопка"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:186
 msgid "ReadOnly text and password"
@@ -3641,7 +3174,7 @@ msgstr "Тэкст і пароль толькі для чытання"
 #. Deprecated since HTML 4.01, not supported in XHTML 1.0 Strict DTD.
 #: ../plugins/taglist/HTML.tags.xml.in.h:188
 msgid "Reduced spacing (deprecated)"
-msgstr ""
+msgstr "Паменшаны інтэрвал (састарэла)"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:189
 msgid "Reverse link"
@@ -3670,11 +3203,11 @@ msgstr "Назва мовы сцэнара"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:196
 msgid "Script statements"
-msgstr ""
+msgstr "Аператары сцэнарыя"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:197
 msgid "Scrollbar"
-msgstr "Панэль пракруткі"
+msgstr "Панэль прагорткі"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:198
 msgid "Selectable option"
@@ -3711,15 +3244,15 @@ msgstr "Крыніца"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:207
 msgid "Space-separated archive list"
-msgstr ""
+msgstr "Падзелены прабеламі архіўны спіс"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:208
 msgid "Spacing between cells"
-msgstr "Прагал між клеткамі"
+msgstr "Інтэрвал між клеткамі"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:209
 msgid "Spacing within cells"
-msgstr "Прагал у клетках"
+msgstr "Інтэрвал у клетках"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:210
 msgid "Span"
@@ -3727,22 +3260,22 @@ msgstr "Дыяпазон"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:211
 msgid "Standby load message"
-msgstr ""
+msgstr "Загрузачнае паведамленне ў рэжыме чакання"
 
 #. Deprecated since HTML 4.01, not supported in XHTML 1.0 Strict DTD.
 #: ../plugins/taglist/HTML.tags.xml.in.h:213
 msgid "Starting sequence number (deprecated)"
-msgstr ""
+msgstr "Пачатковы парадкавы нумар (састарэла)"
 
 #. Deprecated since HTML 4.01, not supported in XHTML 1.0 Strict DTD.
 #: ../plugins/taglist/HTML.tags.xml.in.h:215
 msgid "Strike-through text style (deprecated)"
-msgstr ""
+msgstr "Закрэслены стыль тэксту (састарэла)"
 
 #. Deprecated since HTML 4.01, not supported in XHTML 1.0 Strict DTD.
 #: ../plugins/taglist/HTML.tags.xml.in.h:217
 msgid "Strike-through text (deprecated)"
-msgstr ""
+msgstr "Закрэслены тэкст (састарэла)"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:218
 msgid "Strong emphasis"
@@ -3810,7 +3343,7 @@ msgstr "Мэта - Пуста"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:234
 msgid "Target - Parent"
-msgstr "Мэта - Бацкоўскі"
+msgstr "Мэта - Бацькоўскі"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:235
 msgid "Target - Self"
@@ -3835,7 +3368,7 @@ msgstr "Тэкст, уведзены карыстальнікам"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:241
 msgid "Title"
-msgstr "Назва"
+msgstr "Загаловак"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:242
 msgid "Underlined text style"
@@ -3859,7 +3392,7 @@ msgstr "Значэнне"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:247
 msgid "Variable or program argument"
-msgstr "Аргумент зменнай ці праграмы"
+msgstr "Аргумент пераменнай ці праграмы"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:248
 msgid "Vertical cell alignment"
@@ -3868,12 +3401,12 @@ msgstr "Вэртыкальнае размяшчэнне клеткі"
 #. Deprecated since HTML 4.01, not supported in XHTML 1.0 Strict DTD.
 #: ../plugins/taglist/HTML.tags.xml.in.h:250
 msgid "Vertical space (deprecated)"
-msgstr ""
+msgstr "Вертыкальная прастора (састарэла)"
 
 #. Deprecated since HTML 4.01, not supported in XHTML 1.0 Strict DTD.
 #: ../plugins/taglist/HTML.tags.xml.in.h:252
 msgid "Visited link color (deprecated)"
-msgstr ""
+msgstr "Колер наведанай спасылкі (састарэла)"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:253
 msgid "Width"
@@ -3881,7 +3414,7 @@ msgstr "Шырыня"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:254
 msgid "HTML - Tags"
-msgstr "HTML - Меткі"
+msgstr "HTML - Тэгі"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:255
 msgid "Above"
@@ -3893,7 +3426,7 @@ msgstr "Код файла класа аплетаў"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:257
 msgid "Array"
-msgstr "Табліца"
+msgstr "Масіў"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:258
 msgid "Background color"
@@ -3909,15 +3442,15 @@ msgstr "Базавы шрыфт"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:261
 msgid "Border color"
-msgstr "Колер поля"
+msgstr "Колер мяжы"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:262
 msgid "Border"
-msgstr "Поле"
+msgstr "Мяжа"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:263
 msgid "Center"
-msgstr "Сярэдзіна"
+msgstr "Цэнтр"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:264
 msgid "Checked (state)"
@@ -3957,15 +3490,15 @@ msgstr "Фігура"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:273
 msgid "Font face"
-msgstr "Твар шрыфта"
+msgstr "Напісанне шрыфта"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:274
 msgid "Frameborder"
-msgstr "Поле фрэйма"
+msgstr "Мяжа фрэйма"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:275
 msgid "Framespacing"
-msgstr "Пропуск фрэймаў"
+msgstr "Інтэрвал фрэймаў"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:276
 msgid "Heading"
@@ -3973,11 +3506,11 @@ msgstr "Загаловак"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:277
 msgid "Horizontal space"
-msgstr "Гарызантальны прагал"
+msgstr "Гарызантальны інтэрвал"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:278
 msgid "Image source"
-msgstr "Крыніца відарыса"
+msgstr "Крыніца выявы"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:279
 msgid "Inline layer"
@@ -4049,7 +3582,7 @@ msgstr "Файл аб'ектнага аплета"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:296
 msgid "Preformatted listing"
-msgstr "Фараматаваны спіс"
+msgstr "Адфарматаваны вывад кода"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:297
 msgid "Prompt message"
@@ -4065,7 +3598,7 @@ msgstr "Дыяпазон"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:300
 msgid "Reduced spacing"
-msgstr "Зменшаныя прагалы"
+msgstr "Зменшаныя інтэрвалы"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:301
 msgid "Root"
@@ -4089,7 +3622,7 @@ msgstr "Гук"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:306
 msgid "Spacer"
-msgstr "Прагальнік"
+msgstr "Прамежак"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:307
 msgid "Square root"
@@ -4097,7 +3630,7 @@ msgstr "Квадратны корань"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:308
 msgid "Starting sequence number"
-msgstr "Пачатковы нумар паслядоўнасці"
+msgstr "Пачатковы парадкавы нумар"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:309
 msgid "Strike-through text style"
@@ -4121,7 +3654,7 @@ msgstr "Тэкст"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:314
 msgid "Top margin in pixels"
-msgstr ""
+msgstr "Верхняе поле ў пікселях"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:315
 msgid "URL"
@@ -4129,7 +3662,7 @@ msgstr "URL"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:316
 msgid "Vertical space"
-msgstr "Вертыкальны прагал"
+msgstr "Вертыкальны інтэрвал"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:317
 msgid "Visited link color"
@@ -4141,7 +3674,7 @@ msgstr "HTML - спецыяльныя знакі"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:319
 msgid "Non-breaking space"
-msgstr ""
+msgstr "Непадзельная прастора"
 
 #: ../plugins/taglist/Latex.tags.xml.in.h:1
 msgid "Latex - Tags"
@@ -4185,7 +3718,7 @@ msgstr "Увод з файла"
 
 #: ../plugins/taglist/Latex.tags.xml.in.h:11
 msgid "Function cosine"
-msgstr ""
+msgstr "Функцыя косінус"
 
 #: ../plugins/taglist/Latex.tags.xml.in.h:12
 msgid "Function e^"
@@ -4205,7 +3738,7 @@ msgstr "Функцыя log10"
 
 #: ../plugins/taglist/Latex.tags.xml.in.h:16
 msgid "Function sine"
-msgstr "Функцыя sine"
+msgstr "Функцыя сінус"
 
 #: ../plugins/taglist/Latex.tags.xml.in.h:17
 msgid "Greek alpha"
@@ -4237,39 +3770,39 @@ msgstr "Грэцкая таў"
 
 #: ../plugins/taglist/Latex.tags.xml.in.h:24
 msgid "Header 0 (chapter)"
-msgstr "Загаловак 0 (chapter)"
+msgstr "Загаловак 0 (раздзел)"
 
 #: ../plugins/taglist/Latex.tags.xml.in.h:25
 msgid "Header 0 (chapter*)"
-msgstr "Загаловак 0 (chapter*)"
+msgstr "Загаловак 0 (раздзел*)"
 
 #: ../plugins/taglist/Latex.tags.xml.in.h:26
 msgid "Header 1 (section)"
-msgstr "Загаловак 1 (section)"
+msgstr "Загаловак 1 (секцыя)"
 
 #: ../plugins/taglist/Latex.tags.xml.in.h:27
 msgid "Header 1 (section*)"
-msgstr "Загаловак 1 (section*)"
+msgstr "Загаловак 1 (секцыя*)"
 
 #: ../plugins/taglist/Latex.tags.xml.in.h:28
 msgid "Header 2 (subsection)"
-msgstr "Загаловак 2 (subsection)"
+msgstr "Загаловак 2 (падсекцыя)"
 
 #: ../plugins/taglist/Latex.tags.xml.in.h:29
 msgid "Header 2 (subsection*)"
-msgstr "Загаловак 2 (subsection*)"
+msgstr "Загаловак 2 (падсекцыя*)"
 
 #: ../plugins/taglist/Latex.tags.xml.in.h:30
 msgid "Header 3 (subsubsection)"
-msgstr "Загаловак 3 (subsubsection)"
+msgstr "Загаловак 3 (падпадсекцыя)"
 
 #: ../plugins/taglist/Latex.tags.xml.in.h:31
 msgid "Header 3 (subsubsection*)"
-msgstr "Загаловак 3 (subsubsection*)"
+msgstr "Загаловак 3 (падпадсекцыя*)"
 
 #: ../plugins/taglist/Latex.tags.xml.in.h:32
 msgid "Header 4 (paragraph)"
-msgstr "Загаловак 4 (paragraph)"
+msgstr "Загаловак 4 (параграф)"
 
 #: ../plugins/taglist/Latex.tags.xml.in.h:33
 msgid "Header appendix"
@@ -4377,11 +3910,11 @@ msgstr "Знак equiv"
 
 #: ../plugins/taglist/Latex.tags.xml.in.h:59
 msgid "Symbol en-dash --"
-msgstr ""
+msgstr "Знак en-dash --"
 
 #: ../plugins/taglist/Latex.tags.xml.in.h:60
 msgid "Symbol em-dash ---"
-msgstr ""
+msgstr "Знак em-dash ---"
 
 #: ../plugins/taglist/Latex.tags.xml.in.h:61
 msgid "Symbol infinity"
@@ -4413,19 +3946,19 @@ msgstr "Знак star"
 
 #: ../plugins/taglist/Latex.tags.xml.in.h:68
 msgid "Typeface bold"
-msgstr "Typeface bold"
+msgstr "Тлустае напісанне"
 
 #: ../plugins/taglist/Latex.tags.xml.in.h:69
 msgid "Typeface type"
-msgstr "Typeface type"
+msgstr "Тып напісання"
 
 #: ../plugins/taglist/Latex.tags.xml.in.h:70
 msgid "Typeface italic"
-msgstr "Typeface italic"
+msgstr "Курсіўнае напісанне"
 
 #: ../plugins/taglist/Latex.tags.xml.in.h:71
 msgid "Typeface slanted"
-msgstr "Typeface slanted"
+msgstr "Нахіленае напісанне"
 
 #: ../plugins/taglist/Latex.tags.xml.in.h:73
 msgid "Unbreakable text"
@@ -4449,7 +3982,7 @@ msgstr ""
 
 #: ../plugins/taglist/xed-taglist-plugin-panel.c:605
 msgid "Select the group of tags you want to use"
-msgstr "Вылучыце групу цэтлікаў, якую вы хочаце выкарыстаць"
+msgstr "Выберыце групу тэгаў, якую вы жадаеце выкарыстоўваць"
 
 #: ../plugins/taglist/xed-taglist-plugin-panel.c:624
 msgid "_Preview"
@@ -4457,13 +3990,13 @@ msgstr "_Перадпрагляд"
 
 #: ../plugins/taglist/xed-taglist-plugin-panel.c:700
 msgid "Available Tag Lists"
-msgstr "Спіс наяўных цэтлікаў"
+msgstr "Спіс наяўных тэгаў"
 
 #: ../plugins/taglist/xed-taglist-plugin-panel.c:703
 #: ../plugins/taglist/xed-taglist-plugin-panel.c:718
 #: ../plugins/taglist/xed-taglist-plugin.c:110
 msgid "Tags"
-msgstr "Цэтлікі"
+msgstr "Тэгі"
 
 #: ../plugins/taglist/XSLT.tags.xml.in.h:1
 msgid "XSLT - Elements"
@@ -4535,27 +4068,27 @@ msgstr "XUL - Тэгі"
 
 #: ../plugins/textsize/textsize.plugin.desktop.in.h:1
 msgid "Text Size"
-msgstr ""
+msgstr "Памер тэксту"
 
 #: ../plugins/textsize/textsize.plugin.desktop.in.h:2
 msgid "Allow controlling the zoom levels of the text"
-msgstr ""
+msgstr "Дазволіць кантраляваць узровень набліжэння тэкста"
 
 #: ../plugins/textsize/textsize/__init__.py:123
 msgid "_Larger Text"
-msgstr ""
+msgstr "_Большы тэкст"
 
 #: ../plugins/textsize/textsize/__init__.py:126
 msgid "S_maller Text"
-msgstr ""
+msgstr "_Меншы тэкст"
 
 #: ../plugins/textsize/textsize/__init__.py:129
 msgid "_Normal size"
-msgstr ""
+msgstr "_Звычайны памер"
 
 #: ../plugins/time/org.x.editor.plugins.time.gschema.xml.in.h:1
 msgid "Prompt type"
-msgstr ""
+msgstr "Тып падказкі"
 
 #: ../plugins/time/org.x.editor.plugins.time.gschema.xml.in.h:2
 msgid "Selected format"
@@ -4571,7 +4104,7 @@ msgstr "Уставіць дату/час"
 
 #: ../plugins/time/time.plugin.desktop.in.h:2
 msgid "Inserts current date and time at the cursor position."
-msgstr "Устаўляе дзейную дату і час у пазіцыю курсора."
+msgstr "Устаўляе бягучую дату і час у пазіцыю курсора."
 
 #: ../plugins/time/xed-time-dialog.ui.h:1
 msgid "Insert Date and Time"
@@ -4584,12 +4117,12 @@ msgstr "Устав_іць"
 #: ../plugins/time/xed-time-dialog.ui.h:3
 #: ../plugins/time/xed-time-setup-dialog.ui.h:5
 msgid "Use the _selected format"
-msgstr "Выкарыстаць _вылучаны фармат"
+msgstr "Ужыць _выбраны фармат"
 
 #: ../plugins/time/xed-time-dialog.ui.h:5
 #: ../plugins/time/xed-time-setup-dialog.ui.h:6
 msgid "_Use custom format"
-msgstr "_Выкарыстаць адмысловы фармат"
+msgstr "У_жыць уласны фармат"
 
 #. Translators: Use the more common date format in your locale
 #: ../plugins/time/xed-time-dialog.ui.h:7
@@ -4610,7 +4143,7 @@ msgstr "У_ставіць дату і час..."
 
 #: ../plugins/time/xed-time-plugin.c:178
 msgid "Insert current date and time at the cursor position"
-msgstr "Уставіць дзейную дату і час у пазіцыю курсора"
+msgstr "Уставіць бягучую дату і час у месцы размяшчэння курсора"
 
 #: ../plugins/time/xed-time-plugin.c:454
 msgid "Available formats"
@@ -4618,11 +4151,11 @@ msgstr "Даступныя фарматы"
 
 #: ../plugins/time/xed-time-setup-dialog.ui.h:1
 msgid "Configure date/time plugin"
-msgstr "Наставіць убудову даты/часу"
+msgstr "Наладзіць убудову даты/часу"
 
 #: ../plugins/time/xed-time-setup-dialog.ui.h:2
 msgid "When inserting date/time..."
-msgstr "Як устаўляецца дата/час..."
+msgstr "Пры ўстаўцы даты/часу..."
 
 #: ../plugins/time/xed-time-setup-dialog.ui.h:4
 msgid "_Prompt for a format"
@@ -4630,28 +4163,28 @@ msgstr "_Запытаць фармат"
 
 #: ../plugins/trailsave/trailsave.plugin.desktop.in.h:1
 msgid "Save Without Trailing Spaces"
-msgstr ""
+msgstr "Захоўваць без канцавых прабелаў"
 
 #: ../plugins/trailsave/trailsave.plugin.desktop.in.h:2
 msgid "Removes trailing spaces from lines before saving."
-msgstr ""
+msgstr "Выдаляе канцавыя прабелы з радкоў перад захоўваннем."
 
 #: ../plugins/wordcompletion/xed-wordcompletion-configure.ui.h:1
 msgid "Word Completion"
-msgstr ""
+msgstr "Заканчэнне словаў"
 
 #: ../plugins/wordcompletion/xed-wordcompletion-configure.ui.h:2
 msgid "Use Ctrl+Space to manually trigger word completion."
-msgstr ""
+msgstr "Выкарыстоўваць Ctrl+Space, каб уручную выклікаць заканчэнне слова."
 
 #: ../plugins/wordcompletion/xed-wordcompletion-configure.ui.h:3
 msgid "Automatic completion"
-msgstr ""
+msgstr "Аўтаматычнае заканчэнне"
 
 #: ../plugins/wordcompletion/xed-wordcompletion-configure.ui.h:4
 msgid "Minimum word size for auto-completion"
-msgstr ""
+msgstr "Найменшы памер слова для аўтаматычнага заканчэння"
 
 #: ../plugins/wordcompletion/xed-wordcompletion-plugin.c:214
 msgid "Word completion"
-msgstr ""
+msgstr "Заканчэнне словаў"

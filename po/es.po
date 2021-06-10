@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MATE Desktop Environment\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-11-30 11:24+0000\n"
-"PO-Revision-Date: 2020-12-24 12:23+0000\n"
+"POT-Creation-Date: 2021-06-01 12:55+0100\n"
+"PO-Revision-Date: 2021-06-06 07:46+0000\n"
 "Last-Translator: Toni Estevez <toni.estevez@gmail.com>\n"
 "Language-Team: Spanish "
 "(http://www.transifex.com/projects/p/MATE/language/es/)\n"
@@ -19,508 +19,9 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2021-01-02 14:15+0000\n"
-"X-Generator: Launchpad (build 34b3ffd45c9543b7f7aa5aa313925241e9e7ca3f)\n"
+"X-Launchpad-Export-Date: 2021-06-09 14:18+0000\n"
+"X-Generator: Launchpad (build b45bdbe3a00b6b668fa7f2069bd545c35c41f7f4)\n"
 "Language: es\n"
-
-#: ../data/org.x.editor.gschema.xml.in.h:1
-msgid "Use Default Font"
-msgstr "Usar la tipografía predeterminada"
-
-#: ../data/org.x.editor.gschema.xml.in.h:2
-msgid ""
-"Whether to use the system's default fixed width font for editing text "
-"instead of a font specific to xed. If this option is turned off, then the "
-"font named in the \"Editor Font\" option will be used instead of the system "
-"font."
-msgstr ""
-"Indica si se debe usar, para la edición de texto, la tipografía de ancho "
-"fijo predeterminada del sistema en lugar de una tipografía específica de "
-"Xed. Si se desactiva esta opción, se usará la tipografía indicada en la "
-"opción «Tipografía del editor» en lugar de la tipografía del sistema."
-
-#: ../data/org.x.editor.gschema.xml.in.h:3
-msgctxt "editor-font"
-msgid "'Monospace 12'"
-msgstr "«Monoespaciada 12»"
-
-#: ../data/org.x.editor.gschema.xml.in.h:4
-msgid "Editor Font"
-msgstr "Tipografía del editor"
-
-#: ../data/org.x.editor.gschema.xml.in.h:5
-msgid ""
-"A custom font that will be used for the editing area. This will only take "
-"effect if the \"Use Default Font\" option is turned off."
-msgstr ""
-"Una tipografía personalizada para el área de edición. Solo tiene efecto si "
-"la opción «Usar la tipografía predeterminada» se encuentra desactivada."
-
-#: ../data/org.x.editor.gschema.xml.in.h:6
-msgid "Prefer Dark Theme"
-msgstr "Preferir el tema oscuro"
-
-#: ../data/org.x.editor.gschema.xml.in.h:7
-msgid ""
-"Whether xed should prefer the dark variation of the current Gtk theme if "
-"available."
-msgstr ""
-"Indica si Xed preferirá la variante oscura del tema Gtk actual si está "
-"disponible."
-
-#: ../data/org.x.editor.gschema.xml.in.h:8
-msgid "Style Scheme"
-msgstr "Estilo"
-
-#: ../data/org.x.editor.gschema.xml.in.h:9
-msgid "The ID of a GtkSourceView Style Scheme used to color the text."
-msgstr ""
-"El identificador de un estilo GtkSourceView usado para colorear el texto."
-
-#: ../data/org.x.editor.gschema.xml.in.h:10
-msgid "Create Backup Copies"
-msgstr "Crear copias de seguridad"
-
-#: ../data/org.x.editor.gschema.xml.in.h:11
-msgid ""
-"Whether xed should create backup copies for the files it saves. You can set "
-"the backup file extension with the \"Backup Copy Extension\" option."
-msgstr ""
-"Indica si Xed debe crear copias de seguridad de los archivos que guarda. Se "
-"puede indicar la extensión del archivo en la opción «Extensión de la copia "
-"de seguridad»."
-
-#: ../data/org.x.editor.gschema.xml.in.h:12
-msgid "Autosave"
-msgstr "Guardar automáticamente"
-
-#: ../data/org.x.editor.gschema.xml.in.h:13
-msgid ""
-"Whether xed should automatically save modified files after a time interval. "
-"You can set the time interval with the \"Autosave Interval\" option."
-msgstr ""
-"Indica si Xed debe guardar automáticamente los archivos modificados tras un "
-"intervalo de tiempo. Puede configurar este intervalo con la opción "
-"«Intervalo de guardado automático»."
-
-#: ../data/org.x.editor.gschema.xml.in.h:14
-msgid "Autosave Interval"
-msgstr "Intervalo de guardado automático"
-
-#: ../data/org.x.editor.gschema.xml.in.h:15
-msgid ""
-"Number of minutes after which xed will automatically save modified files. "
-"This will only take effect if the \"Autosave\" option is turned on."
-msgstr ""
-"Número de minutos tras los cuales Xed guardará automáticamente los archivos "
-"modificados. Solo tiene efecto si se ha activado la opción «Guardar "
-"automáticamente»."
-
-#: ../data/org.x.editor.gschema.xml.in.h:16
-msgid "Writable VFS schemes"
-msgstr "Esquemas VFS escribibles"
-
-#: ../data/org.x.editor.gschema.xml.in.h:17
-msgid ""
-"List of VFS schemes xed supports in write mode. The 'file' scheme is "
-"writable by default."
-msgstr ""
-"Lista de esquemas VFS que admite Xed en modo de escritura. El esquema "
-"«archivo» es escribible por defecto."
-
-#: ../data/org.x.editor.gschema.xml.in.h:18
-msgid "Maximum Number of Undo Actions"
-msgstr "Número máximo de acciones para deshacer"
-
-#: ../data/org.x.editor.gschema.xml.in.h:19
-msgid ""
-"Maximum number of actions that xed will be able to undo or redo. Use \"-1\" "
-"for unlimited number of actions."
-msgstr ""
-"Número máximo de acciones que Xed puede deshacer o rehacer. Use «-1» para "
-"indicar número ilimitado de acciones."
-
-#: ../data/org.x.editor.gschema.xml.in.h:20
-msgid "Line Wrapping Mode"
-msgstr "Modo de ajuste de línea"
-
-#: ../data/org.x.editor.gschema.xml.in.h:21
-msgid ""
-"Specifies how to wrap long lines in the editing area. Use \"none\" for no "
-"wrapping, \"word\" for wrapping at word boundaries, and \"char\" for "
-"wrapping at individual character boundaries. Note that the values are case-"
-"sensitive, so make sure they appear exactly as mentioned here."
-msgstr ""
-"Especifica cómo deben ajustarse las líneas demasiado largas en el área de "
-"edición. Use «none» para no ajustar las líneas, «word» para ajustar en los "
-"límites de las palabras y «char» para ajustar de acuerdo a caracteres "
-"individuales. Tenga en cuenta que los valores son sensibles a mayúsculas y "
-"minúsculas, por lo que deben ponerse exactamente como se indican aquí."
-
-#: ../data/org.x.editor.gschema.xml.in.h:22
-msgid "Tab Size"
-msgstr "Tamaño del tabulador"
-
-#: ../data/org.x.editor.gschema.xml.in.h:23
-msgid ""
-"Specifies the number of spaces that should be displayed instead of Tab "
-"characters."
-msgstr ""
-"Especifica el número de espacios que se muestran en vez de caracteres "
-"tabuladores."
-
-#: ../data/org.x.editor.gschema.xml.in.h:24
-msgid "Insert spaces"
-msgstr "Insertar espacios"
-
-#: ../data/org.x.editor.gschema.xml.in.h:25
-msgid "Whether xed should insert spaces instead of tabs."
-msgstr "Indica si Xed debe insertar espacios en lugar de tabuladores."
-
-#: ../data/org.x.editor.gschema.xml.in.h:26
-msgid "Automatic indent"
-msgstr "Sangría automática"
-
-#: ../data/org.x.editor.gschema.xml.in.h:27
-msgid "Whether xed should enable automatic indentation."
-msgstr "Indica si Xed debe activar la sangría automática."
-
-#: ../data/org.x.editor.gschema.xml.in.h:28
-msgid "Display Line Numbers"
-msgstr "Mostrar los números de línea"
-
-#: ../data/org.x.editor.gschema.xml.in.h:29
-msgid "Whether xed should display line numbers in the editing area."
-msgstr "Indica si Xed debe mostrar números de línea en el área de edición."
-
-#: ../data/org.x.editor.gschema.xml.in.h:30
-msgid "Highlight Current Line"
-msgstr "Resaltar la línea actual"
-
-#: ../data/org.x.editor.gschema.xml.in.h:31
-msgid "Whether xed should highlight the current line."
-msgstr "Indica si Xed debe destacar la línea actual."
-
-#: ../data/org.x.editor.gschema.xml.in.h:32
-msgid "Highlight Matching Bracket"
-msgstr "Resaltar el corchete correspondiente"
-
-#: ../data/org.x.editor.gschema.xml.in.h:33
-msgid "Whether xed should highlight the bracket matching the selected one."
-msgstr ""
-"Indica si Xed debe destacar el corchete correspondiente al seleccionado."
-
-#: ../data/org.x.editor.gschema.xml.in.h:34
-msgid "Display Right Margin"
-msgstr "Mostrar el margen derecho"
-
-#: ../data/org.x.editor.gschema.xml.in.h:35
-msgid "Whether xed should display the right margin in the editing area."
-msgstr "Indica si Xed debe mostrar el margen derecho en el área de edición."
-
-#: ../data/org.x.editor.gschema.xml.in.h:36
-msgid "Right Margin Position"
-msgstr "Posición del margen derecho"
-
-#: ../data/org.x.editor.gschema.xml.in.h:37
-msgid "Specifies the position of the right margin."
-msgstr "Especifica la posición del margen derecho."
-
-#: ../data/org.x.editor.gschema.xml.in.h:38
-msgid "Smart Home End"
-msgstr "Inicio Fin inteligentes"
-
-#: ../data/org.x.editor.gschema.xml.in.h:39
-msgid ""
-"Specifies how the cursor moves when the HOME and END keys are pressed. Use "
-"\"disabled\" to always move at the start/end of the line, \"after\" to move "
-"to the start/end of the line the first time the keys are pressed and to the "
-"start/end of the text ignoring whitespaces the second time the keys are "
-"pressed, \"before\" to move to the start/end of the text before moving to "
-"the start/end of the line and \"always\" to always move to the start/end of "
-"the text instead of the start/end of the line."
-msgstr ""
-"Especifica cómo se mueve el cursor cuando se pulsan las teclas «INICIO» y "
-"«FIN». Use «disabled» para moverse siempre al inicio/final de la línea, "
-"«after» para moverse al inicio/final de la línea la primera vez que se "
-"pulsan las teclas y al inicio/final del texto, ignorando los espacios en "
-"blanco, la segunda vez que se pulsan, «before» para moverse al inicio/final "
-"del texto antes de moverse al inicio/final de la línea y «always» para "
-"moverse siempre al inicio/final del texto en lugar del inicio/final de la "
-"línea."
-
-#: ../data/org.x.editor.gschema.xml.in.h:40
-msgid "Restore Previous Cursor Position"
-msgstr "Restaurar la posición anterior del cursor"
-
-#: ../data/org.x.editor.gschema.xml.in.h:41
-msgid ""
-"Whether xed should restore the previous cursor position when a file is "
-"loaded."
-msgstr ""
-"Indica si Xed debe restaurar la posición anterior del cursor al cargar un "
-"archivo."
-
-#: ../data/org.x.editor.gschema.xml.in.h:42
-msgid "Enable Search Highlighting"
-msgstr "Activar el resaltado de la búsqueda"
-
-#: ../data/org.x.editor.gschema.xml.in.h:43
-msgid ""
-"Whether xed should highlight all the occurrences of the searched text."
-msgstr "Indica si Xed debe destacar todas las apariciones del texto buscado."
-
-#: ../data/org.x.editor.gschema.xml.in.h:44
-msgid "Enable Syntax Highlighting"
-msgstr "Activar el resaltado de la sintaxis"
-
-#: ../data/org.x.editor.gschema.xml.in.h:45
-msgid "Whether xed should enable syntax highlighting."
-msgstr "Indica si Xed debe activar el resaltado de la sintaxis."
-
-#: ../data/org.x.editor.gschema.xml.in.h:46
-#: ../xed/resources/ui/xed-preferences-dialog.ui.h:25
-msgid "Ensure Trailing Newline"
-msgstr "Asegurar un salto de línea al final"
-
-#: ../data/org.x.editor.gschema.xml.in.h:47
-msgid ""
-"Whether xed will ensure that documents always end with a trailing newline."
-msgstr ""
-"Indica si Xed debe hacer que los documentos acaben siempre con un salto de "
-"línea."
-
-#: ../data/org.x.editor.gschema.xml.in.h:48
-msgid "Toolbar is Visible"
-msgstr "La barra de herramientas es visible"
-
-#: ../data/org.x.editor.gschema.xml.in.h:49
-msgid "Whether the toolbar should be visible in editing windows."
-msgstr ""
-"Indica si debe ser visible la barra de herramientas en las ventanas de "
-"edición."
-
-#: ../data/org.x.editor.gschema.xml.in.h:50
-msgid "Status Bar is Visible"
-msgstr "La barra de estado es visible"
-
-#: ../data/org.x.editor.gschema.xml.in.h:51
-msgid ""
-"Whether the status bar at the bottom of editing windows should be visible."
-msgstr ""
-"Indica si debe ser visible la barra de estado de la parte inferior de las "
-"ventanas de edición."
-
-#: ../data/org.x.editor.gschema.xml.in.h:52
-msgid "Side Pane is Visible"
-msgstr "El panel lateral es visible"
-
-#: ../data/org.x.editor.gschema.xml.in.h:53
-msgid ""
-"Whether the side pane at the left of editing windows should be visible."
-msgstr ""
-"Indica si debe ser visible el panel lateral a la izquierda de las ventanas "
-"de edición."
-
-#: ../data/org.x.editor.gschema.xml.in.h:54
-msgid "Bottom Panel is Visible"
-msgstr "El panel inferior es visible"
-
-#: ../data/org.x.editor.gschema.xml.in.h:55
-msgid ""
-"Whether the bottom panel at the bottom of editing windows should be visible."
-msgstr ""
-"Indica si debe ser visible el panel inferior en las ventanas de edición."
-
-#: ../data/org.x.editor.gschema.xml.in.h:56
-msgid "Allow changing active tabs by scrolling"
-msgstr "Cambiar la pestaña activa con la rueda del ratón"
-
-#: ../data/org.x.editor.gschema.xml.in.h:57
-msgid "Whether you can change active tabs by scrolling."
-msgstr "Indica si se puede cambiar la pestaña activa con la rueda del ratón"
-
-#: ../data/org.x.editor.gschema.xml.in.h:58
-msgid "Minimap is visible"
-msgstr "Minimapa visible"
-
-#: ../data/org.x.editor.gschema.xml.in.h:59
-msgid "Whether the minimap for the document should be visible."
-msgstr "Indica si el minimapa del documento debe estar visible."
-
-#: ../data/org.x.editor.gschema.xml.in.h:60
-msgid "Maximum Recent Files"
-msgstr "Máximo de archivos recientes"
-
-#: ../data/org.x.editor.gschema.xml.in.h:61
-msgid ""
-"Specifies the maximum number of recently opened files that will be displayed "
-"in the \"Recent Files\" submenu."
-msgstr ""
-"Especifica el número máximo de archivos recientemente abiertos que se "
-"muestra en el submenú «Archivos recientes»."
-
-#: ../data/org.x.editor.gschema.xml.in.h:62
-msgid "Print Syntax Highlighting"
-msgstr "Imprimir el resaltado de la sintaxis"
-
-#: ../data/org.x.editor.gschema.xml.in.h:63
-msgid "Whether xed should print syntax highlighting when printing documents."
-msgstr ""
-"Indica si Xed debe imprimir los documentos con el resaltado de la sintaxis."
-
-#: ../data/org.x.editor.gschema.xml.in.h:64
-msgid "Print Header"
-msgstr "Imprimir la cabecera"
-
-#: ../data/org.x.editor.gschema.xml.in.h:65
-msgid "Whether xed should include a document header when printing documents."
-msgstr "Indica si Xed debe incluir una cabecera al imprimir documentos."
-
-#: ../data/org.x.editor.gschema.xml.in.h:66
-msgid "Printing Line Wrapping Mode"
-msgstr "Impresión del modo de ajuste de línea"
-
-#: ../data/org.x.editor.gschema.xml.in.h:67
-msgid ""
-"Specifies how to wrap long lines for printing. Use \"none\" for no wrapping, "
-"\"word\" for wrapping at word boundaries, and \"char\" for wrapping at "
-"individual character boundaries. Note that the values are case-sensitive, so "
-"make sure they appear exactly as mentioned here."
-msgstr ""
-"Especifica cómo ajustar las líneas demasiado largas al imprimir. Use «none» "
-"para no ajustar las líneas, «word» para ajustarlas al final de palabra y "
-"«char» para ajustarlas al final de cualquier carácter. Tenga en cuenta que "
-"los valores son sensibles a mayúsculas y minúsculas, así que asegúrese de "
-"que aparecen exactamente como se mencionan aquí."
-
-#: ../data/org.x.editor.gschema.xml.in.h:68
-msgid "Print Line Numbers"
-msgstr "Imprimir números de línea"
-
-#: ../data/org.x.editor.gschema.xml.in.h:69
-msgid ""
-"If this value is 0, then no line numbers will be inserted when printing a "
-"document. Otherwise, xed will print line numbers every such number of lines."
-msgstr ""
-"Si este valor es 0, no se insertarán números de línea al imprimir un "
-"documento. En caso contrario, Xed imprimirá el número de línea cada X "
-"líneas, donde X es el valor indicado."
-
-#: ../data/org.x.editor.gschema.xml.in.h:70
-msgctxt "print-font-body-pango"
-msgid "'Monospace 9'"
-msgstr "«Monoespaciada 9»"
-
-#: ../data/org.x.editor.gschema.xml.in.h:71
-msgid "Body Font for Printing"
-msgstr "Tipografía para imprimir el cuerpo"
-
-#: ../data/org.x.editor.gschema.xml.in.h:72
-msgid ""
-"Specifies the font to use for a document's body when printing documents."
-msgstr ""
-"Especifica la tipografía que se usará para imprimir el cuerpo del documento."
-
-#: ../data/org.x.editor.gschema.xml.in.h:73
-msgctxt "print-font-header-pango"
-msgid "'Sans 11'"
-msgstr "«Sans 11»"
-
-#: ../data/org.x.editor.gschema.xml.in.h:74
-msgid "Header Font for Printing"
-msgstr "Tipografía para imprimir la cabecera"
-
-#: ../data/org.x.editor.gschema.xml.in.h:75
-msgid ""
-"Specifies the font to use for page headers when printing a document. This "
-"will only take effect if the \"Print Header\" option is turned on."
-msgstr ""
-"Especifica la tipografía que se usará para imprimir la cabecera de las "
-"páginas. Solo tiene efecto si se activa la opción «Imprimir la cabecera»."
-
-#: ../data/org.x.editor.gschema.xml.in.h:76
-msgctxt "print-font-numbers-pango"
-msgid "'Sans 8'"
-msgstr "«Sans 8»"
-
-#: ../data/org.x.editor.gschema.xml.in.h:77
-msgid "Line Number Font for Printing"
-msgstr "Tipografía para imprimir los números de línea"
-
-#: ../data/org.x.editor.gschema.xml.in.h:78
-msgid ""
-"Specifies the font to use for line numbers when printing. This will only "
-"take effect if the \"Print Line Numbers\" option is non-zero."
-msgstr ""
-"Especifica la tipografía que se usará para imprimir los números de línea. "
-"Solo tiene efecto si se activa la opción «Imprimir números de línea»."
-
-#: ../data/org.x.editor.gschema.xml.in.h:79
-msgctxt "auto-detected"
-msgid "[ 'UTF-8', 'CURRENT', 'ISO-8859-15', 'UTF-16' ]"
-msgstr "[ 'UTF-8', 'CURRENT', 'ISO-8859-15', 'UTF-16' ]"
-
-#: ../data/org.x.editor.gschema.xml.in.h:80
-msgid "Automatically Detected Encodings"
-msgstr "Codificaciones detectadas automáticamente"
-
-#: ../data/org.x.editor.gschema.xml.in.h:81
-msgid ""
-"Sorted list of encodings used by xed for automatically detecting the "
-"encoding of a file. \"CURRENT\" represents the current locale encoding. Only "
-"recognized encodings are used."
-msgstr ""
-"Lista ordenada de las codificaciones usadas por Xed para detectar "
-"automáticamente la codificación de un archivo. «CURRENT» representa la "
-"codificación regional actual. Solo se usan las codificaciones reconocidas."
-
-#: ../data/org.x.editor.gschema.xml.in.h:82
-msgctxt "shown-in-menu"
-msgid "[ 'ISO-8859-15' ]"
-msgstr "[ 'ISO-8859-15' ]"
-
-#: ../data/org.x.editor.gschema.xml.in.h:83
-msgid "Encodings shown in menu"
-msgstr "Codificaciones mostradas en el menú"
-
-#: ../data/org.x.editor.gschema.xml.in.h:84
-msgid ""
-"List of encodings shown in the Character Encoding menu in open/save file "
-"selector. Only recognized encodings are used."
-msgstr ""
-"Lista de las codificaciones que se muestran en el menú de codificación de "
-"caracteres del selector de archivos. Solo se usan las codificaciones "
-"reconocidas."
-
-#: ../data/org.x.editor.gschema.xml.in.h:85
-msgid "History for \"search for\" entries"
-msgstr "Historia de entradas \"búsqueda de\""
-
-#: ../data/org.x.editor.gschema.xml.in.h:86
-msgid "List of entries in \"search for\" textbox."
-msgstr "Lista de entradas en el cuadro de texto «Buscar»"
-
-#: ../data/org.x.editor.gschema.xml.in.h:87
-msgid "History for \"replace with\" entries"
-msgstr "Historial para las entradas «Reemplazar con»."
-
-#: ../data/org.x.editor.gschema.xml.in.h:88
-msgid "List of entries in \"replace with\" textbox."
-msgstr "Lista de entradas del cuadro de texto  «Reemplazar con»."
-
-#: ../data/org.x.editor.gschema.xml.in.h:89
-msgid "Active plugins"
-msgstr "Complementos activos"
-
-#: ../data/org.x.editor.gschema.xml.in.h:90
-msgid ""
-"List of active plugins. It contains the \"Location\" of the active plugins. "
-"See the .xed-plugin file for obtaining the \"Location\" of a given plugin."
-msgstr ""
-"Lista de complementos activos. Contiene la ubicación de los complementos "
-"activos. Consulte el archivo .xed-plugin para obtener la ubicación de un "
-"complemento determinado."
 
 #: ../data/xed.appdata.xml.in.h:1
 msgid "A Text Editor"
@@ -620,7 +121,7 @@ msgstr "Cerrar sesión _sin guardar"
 
 #: ../xed/xed-close-confirmation-dialog.c:130
 msgid "_Cancel Logout"
-msgstr "_Cancelar salida"
+msgstr "_Cancelar el cierre de sesión"
 
 #: ../xed/xed-close-confirmation-dialog.c:134
 msgid "Close _without Saving"
@@ -658,9 +159,9 @@ msgid_plural ""
 "If you don't save, changes from the last %ld seconds will be permanently "
 "lost."
 msgstr[0] ""
-"Si no guarda, los cambios desde el último segundo se perderán para siempre."
+"Si no guarda, los cambios del último segundo se perderán para siempre."
 msgstr[1] ""
-"Si no guarda, los cambios desde los últimos %ld segundos se perderán para "
+"Si no guarda, los cambios de los últimos %ld segundos se perderán para "
 "siempre."
 
 #: ../xed/xed-close-confirmation-dialog.c:388
@@ -818,17 +319,17 @@ msgid_plural ""
 "Changes made to the document in the last %ld seconds will be permanently "
 "lost."
 msgstr[0] ""
-"Los cambios realizados al documento en el último segundo se perderán para "
+"Los cambios realizados en el documento en el último segundo se perderán para "
 "siempre."
 msgstr[1] ""
-"Los cambios realizados al documento en los últimos %ld segundos se perderán "
-"para siempre."
+"Los cambios realizados en el documento en los últimos %ld segundos se "
+"perderán para siempre."
 
 #: ../xed/xed-commands-file.c:1265
 msgid ""
 "Changes made to the document in the last minute will be permanently lost."
 msgstr ""
-"Los cambios realizados al documento en el último minuto se perderán para "
+"Los cambios realizados en el documento en el último minuto se perderán para "
 "siempre."
 
 #: ../xed/xed-commands-file.c:1270
@@ -840,10 +341,10 @@ msgid_plural ""
 "Changes made to the document in the last minute and %ld seconds will be "
 "permanently lost."
 msgstr[0] ""
-"Los cambios realizados al documento en el último minuto y segundo se "
+"Los cambios realizados en el documento en el último minuto y segundo se "
 "perderán para siempre."
 msgstr[1] ""
-"Los cambios realizados al documento en el último minuto y %ld se perderán "
+"Los cambios realizados en el documento en el último minuto y %ld se perderán "
 "para siempre."
 
 #: ../xed/xed-commands-file.c:1279
@@ -854,18 +355,18 @@ msgid_plural ""
 "Changes made to the document in the last %ld minutes will be permanently "
 "lost."
 msgstr[0] ""
-"Los cambios realizados al documento en el último minuto se perderán para "
+"Los cambios realizados en el documento en el último minuto se perderán para "
 "siempre."
 msgstr[1] ""
-"Los cambios realizados al documento en los últimos %ld minutos se perderán "
-"para siempre."
+"Los cambios realizados en el documento en los últimos %ld minutos se "
+"perderán para siempre."
 
 #: ../xed/xed-commands-file.c:1294
 msgid ""
 "Changes made to the document in the last hour will be permanently lost."
 msgstr ""
-"Los cambios realizados al documento en la última hora se perderán para "
-"siempre."
+"Los cambios realizados en el documento en la última hora se perderán "
+"permanentemente."
 
 #: ../xed/xed-commands-file.c:1299
 #, c-format
@@ -876,10 +377,10 @@ msgid_plural ""
 "Changes made to the document in the last hour and %d minutes will be "
 "permanently lost."
 msgstr[0] ""
-"Los cambios realizados al documento en la última hora y minuto se perderán "
-"para siempre."
+"Los cambios realizados en el documento en la última hora y %d minuto se "
+"perderán permanentemente."
 msgstr[1] ""
-"Los cambios realizados al documento en la última hora y %d minutos se "
+"Los cambios realizados en el documento en la última hora y %d minutos se "
 "perderán para siempre."
 
 #: ../xed/xed-commands-file.c:1313
@@ -889,7 +390,7 @@ msgid ""
 msgid_plural ""
 "Changes made to the document in the last %d hours will be permanently lost."
 msgstr[0] ""
-"Los cambios realizados al documento en las última hora se perderán para "
+"Los cambios realizados en el documento en las última hora se perderán para "
 "siempre."
 msgstr[1] ""
 "Los cambios realizados en el documento en las últimas %d horas se perderán "
@@ -909,12 +410,12 @@ msgid "Unsaved Document %d"
 msgstr "Documento no guardado %d"
 
 #: ../xed/xed-documents-panel.c:88 ../xed/xed-documents-panel.c:99
-#: ../xed/xed-window.c:1835 ../xed/xed-window.c:1839
+#: ../xed/xed-window.c:1836 ../xed/xed-window.c:1840
 msgid "Read-Only"
 msgstr "Solo lectura"
 
-#: ../xed/xed-documents-panel.c:710 ../xed/resources/ui/xed-shortcuts.ui.h:1
-#: ../xed/xed-window.c:3085
+#: ../xed/xed-documents-panel.c:650 ../xed/resources/ui/xed-shortcuts.ui.h:1
+#: ../xed/xed-window.c:3086
 msgid "Documents"
 msgstr "Documentos"
 
@@ -952,7 +453,7 @@ msgstr "_Descripción"
 msgid "_Encoding"
 msgstr "_Codificación"
 
-#: ../xed/xed-file-chooser-dialog.c:44 ../xed/xed-preferences-dialog.c:731
+#: ../xed/xed-file-chooser-dialog.c:44 ../xed/xed-preferences-dialog.c:783
 msgid "All Files"
 msgstr "Todos los archivos"
 
@@ -980,7 +481,7 @@ msgstr "Mac OS clásico"
 msgid "Windows"
 msgstr "Windows"
 
-#: ../xed/xed-highlight-mode-selector.c:297 ../xed/xed-window.c:1964
+#: ../xed/xed-highlight-mode-selector.c:297 ../xed/xed-window.c:1965
 msgid "Plain Text"
 msgstr "Texto sin formato"
 
@@ -1052,7 +553,7 @@ msgstr ""
 #: ../xed/xed-io-error-info-bar.c:263
 #, c-format
 msgid "%s is not a regular file."
-msgstr "%s no es un archivo regular."
+msgstr "%s no es un archivo  válido."
 
 #: ../xed/xed-io-error-info-bar.c:266
 msgid "Connection timed out. Please try again."
@@ -1336,66 +837,66 @@ msgstr ""
 "Si guarda este archivo puede corromper el documento. ¿Quiere guardarlo de "
 "todos modos?"
 
-#: ../xed/xed-preferences-dialog.c:266
+#: ../xed/xed-preferences-dialog.c:280
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:3
 #, no-c-format
 msgid "Use the system fixed width font (%s)"
 msgstr "Usar la tipografía de ancho fijo del sistema (%s)"
 
-#: ../xed/xed-preferences-dialog.c:384
+#: ../xed/xed-preferences-dialog.c:436
 msgid "Editor"
 msgstr "Editor"
 
-#: ../xed/xed-preferences-dialog.c:422
+#: ../xed/xed-preferences-dialog.c:474
 msgid "Save"
 msgstr "Guardar"
 
-#: ../xed/xed-preferences-dialog.c:535
+#: ../xed/xed-preferences-dialog.c:587
 #, c-format
 msgid ""
 "Directory '%s' could not be created: g_mkdir_with_parents() failed: %s"
 msgstr ""
 "No se ha podido crear la carpeta «%s»: ha fallado g_mkdir_with_parents(): %s"
 
-#: ../xed/xed-preferences-dialog.c:689
+#: ../xed/xed-preferences-dialog.c:741
 msgid "The selected color scheme cannot be installed."
 msgstr "No se puede instalar el estilo seleccionado."
 
-#: ../xed/xed-preferences-dialog.c:712 ../xed/xed-preferences-dialog.c:718
+#: ../xed/xed-preferences-dialog.c:764 ../xed/xed-preferences-dialog.c:770
 msgid "Add Scheme"
 msgstr "Añadir un estilo"
 
-#: ../xed/xed-preferences-dialog.c:715 ../xed/xed-progress-info-bar.c:61
+#: ../xed/xed-preferences-dialog.c:767 ../xed/xed-progress-info-bar.c:61
 msgid "Cancel"
 msgstr "Cancelar"
 
-#: ../xed/xed-preferences-dialog.c:724
+#: ../xed/xed-preferences-dialog.c:776
 msgid "Color Scheme Files"
 msgstr "Archivos de estilo"
 
-#: ../xed/xed-preferences-dialog.c:796
+#: ../xed/xed-preferences-dialog.c:848
 #, c-format
 msgid "Could not remove color scheme \"%s\"."
 msgstr "No se ha podido eliminar el estilo «%s»."
 
-#: ../xed/xed-preferences-dialog.c:828
+#: ../xed/xed-preferences-dialog.c:880
 msgid "Theme"
 msgstr "Tema"
 
-#: ../xed/xed-preferences-dialog.c:845
+#: ../xed/xed-preferences-dialog.c:897
 msgid "Plugins"
 msgstr "Complementos"
 
-#: ../xed/xed-preferences-dialog.c:853
+#: ../xed/xed-preferences-dialog.c:905
 msgid "Help"
 msgstr "Ayuda"
 
-#: ../xed/xed-preferences-dialog.c:858
+#: ../xed/xed-preferences-dialog.c:910
 #: ../xed/resources/ui/xed-searchbar.ui.h:11
 msgid "Close"
 msgstr "Cerrar"
 
-#: ../xed/xed-preferences-dialog.c:872
+#: ../xed/xed-preferences-dialog.c:924
 msgid "Xed Preferences"
 msgstr "Preferencias de Xed"
 
@@ -1410,7 +911,7 @@ msgstr "Página %N de %Q"
 
 #: ../xed/xed-print-job.c:733
 msgid "Preparing..."
-msgstr "Preparándose…"
+msgstr "Preparando…"
 
 #: ../xed/xed-print-preview.c:580
 msgid "Show the previous page"
@@ -1537,82 +1038,106 @@ msgid "4"
 msgstr "4"
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:10
+msgid "Draw whitespace"
+msgstr "Mostrar los espacios en blanco"
+
+#: ../xed/resources/ui/xed-preferences-dialog.ui.h:11
+msgid "Leading whitespace"
+msgstr "Espacios en blanco iniciales"
+
+#: ../xed/resources/ui/xed-preferences-dialog.ui.h:12
+msgid "Trailing whitespace"
+msgstr "Espacios en blanco finales"
+
+#: ../xed/resources/ui/xed-preferences-dialog.ui.h:13
+msgid "Whitespace inside of text"
+msgstr "Espacios en blanco dentro del texto"
+
+#: ../xed/resources/ui/xed-preferences-dialog.ui.h:14
+msgid "Newline character"
+msgstr "Saltos de línea"
+
+#: ../xed/resources/ui/xed-preferences-dialog.ui.h:15
 msgid "Highlighting"
 msgstr "Resaltado"
 
-#: ../xed/resources/ui/xed-preferences-dialog.ui.h:11
+#: ../xed/resources/ui/xed-preferences-dialog.ui.h:16
 msgid "Highlight the current line"
 msgstr "Resaltar la línea actual"
 
-#: ../xed/resources/ui/xed-preferences-dialog.ui.h:12
+#: ../xed/resources/ui/xed-preferences-dialog.ui.h:17
 msgid "Highlight matching brackets"
 msgstr "Resaltar los corchetes correspondientes"
 
-#: ../xed/resources/ui/xed-preferences-dialog.ui.h:13
+#: ../xed/resources/ui/xed-preferences-dialog.ui.h:18
 msgid "Indentation"
 msgstr "Sangría"
 
-#: ../xed/resources/ui/xed-preferences-dialog.ui.h:14
+#: ../xed/resources/ui/xed-preferences-dialog.ui.h:19
 msgid "Tab width"
 msgstr "Anchura del tabulador"
 
-#: ../xed/resources/ui/xed-preferences-dialog.ui.h:15
+#: ../xed/resources/ui/xed-preferences-dialog.ui.h:20
 msgid "Use spaces instead of tabs"
 msgstr "Usar espacios en lugar de tabuladores"
 
-#: ../xed/resources/ui/xed-preferences-dialog.ui.h:16
+#: ../xed/resources/ui/xed-preferences-dialog.ui.h:21
 msgid "Automatic indentation"
 msgstr "Sangría automática"
 
-#: ../xed/resources/ui/xed-preferences-dialog.ui.h:17
+#: ../xed/resources/ui/xed-preferences-dialog.ui.h:22
 msgid "Word wrap"
 msgstr "Ajuste de línea"
 
-#: ../xed/resources/ui/xed-preferences-dialog.ui.h:18
+#: ../xed/resources/ui/xed-preferences-dialog.ui.h:23
 msgid "Split words over two lines"
 msgstr "Dividir palabras en dos líneas"
 
-#: ../xed/resources/ui/xed-preferences-dialog.ui.h:19
+#: ../xed/resources/ui/xed-preferences-dialog.ui.h:24
 msgid "Tab scrolling"
 msgstr "Desplazamiento de pestañas"
 
-#: ../xed/resources/ui/xed-preferences-dialog.ui.h:20
+#: ../xed/resources/ui/xed-preferences-dialog.ui.h:25
 msgid "Allow mouse wheel scrolling to change tabs"
 msgstr "Cambiar de pestaña con la rueda del ratón"
 
-#: ../xed/resources/ui/xed-preferences-dialog.ui.h:21
+#: ../xed/resources/ui/xed-preferences-dialog.ui.h:26
 msgid "File saving"
 msgstr "Guardado de archivos"
 
-#: ../xed/resources/ui/xed-preferences-dialog.ui.h:22
+#: ../xed/resources/ui/xed-preferences-dialog.ui.h:27
 msgid "Create a backup copy of files before saving"
 msgstr "Crear una copia de seguridad de los archivos antes de guardarlos"
 
-#: ../xed/resources/ui/xed-preferences-dialog.ui.h:23
+#: ../xed/resources/ui/xed-preferences-dialog.ui.h:28
 msgid "Autosave files"
 msgstr "Guardar automáticamente los archivos"
 
-#: ../xed/resources/ui/xed-preferences-dialog.ui.h:24
+#: ../xed/resources/ui/xed-preferences-dialog.ui.h:29
 msgid "Minutes between saving"
 msgstr "Minutos entre cada copia de seguridad"
 
-#: ../xed/resources/ui/xed-preferences-dialog.ui.h:26
+#: ../xed/resources/ui/xed-preferences-dialog.ui.h:30
+msgid "Ensure Trailing Newline"
+msgstr "Asegurar un salto de línea al final"
+
+#: ../xed/resources/ui/xed-preferences-dialog.ui.h:31
 msgid "Dark theme"
 msgstr "Tema oscuro"
 
-#: ../xed/resources/ui/xed-preferences-dialog.ui.h:27
+#: ../xed/resources/ui/xed-preferences-dialog.ui.h:32
 msgid "Use dark theme variant (if available)"
 msgstr "Usar la variante oscura del tema (si la hay)"
 
-#: ../xed/resources/ui/xed-preferences-dialog.ui.h:28
+#: ../xed/resources/ui/xed-preferences-dialog.ui.h:33
 msgid "Style scheme"
 msgstr "Estilo"
 
-#: ../xed/resources/ui/xed-preferences-dialog.ui.h:29
+#: ../xed/resources/ui/xed-preferences-dialog.ui.h:34
 msgid "Install scheme"
 msgstr "Instalar un estilo"
 
-#: ../xed/resources/ui/xed-preferences-dialog.ui.h:30
+#: ../xed/resources/ui/xed-preferences-dialog.ui.h:35
 msgid "Remove scheme"
 msgstr "Eliminar el estilo"
 
@@ -1652,7 +1177,7 @@ msgstr "Activar el a_juste de línea"
 
 #: ../xed/resources/ui/xed-print-preferences.ui.h:11
 msgid "Do not _split words over two lines"
-msgstr "No _dividir palabras en dos líneas"
+msgstr "No _dividir las palabras sobre dos líneas"
 
 #: ../xed/resources/ui/xed-print-preferences.ui.h:12
 msgid "Page header"
@@ -1760,7 +1285,7 @@ msgstr "Ir al documento anterior"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:11
 msgid "Switch to the first - ninth document"
-msgstr "Cambiar al primer - noveno documento"
+msgstr "Cambiar al primer-noveno documento"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:12
 msgid "Windows and Panes"
@@ -2401,62 +1926,62 @@ msgstr "Panel _inferior"
 msgid "Show or hide the bottom pane in the current window"
 msgstr "Mostrar u ocultar el panel inferior en la ventana actual"
 
-#: ../xed/xed-utils.c:822
+#: ../xed/xed-utils.c:829
 msgid "Please check your installation."
 msgstr "Compruebe su instalación."
 
-#: ../xed/xed-utils.c:890
+#: ../xed/xed-utils.c:897
 #, c-format
 msgid "Unable to open UI file %s. Error: %s"
 msgstr ""
 "No se ha podido abrir el archivo de interfaz de usuario %s. Error: %s"
 
-#: ../xed/xed-utils.c:910
+#: ../xed/xed-utils.c:917
 #, c-format
 msgid "Unable to find the object '%s' inside file %s."
 msgstr "No se ha podido encontrar el objeto «%s» en el archivo %s."
 
 #. Translators: '/ on <remote-share>'
-#: ../xed/xed-utils.c:1078
+#: ../xed/xed-utils.c:1085
 #, c-format
 msgid "/ on %s"
 msgstr "/ en %s"
 
-#: ../xed/xed-view.c:378
+#: ../xed/xed-view.c:388
 msgid "_Display line numbers"
-msgstr "_Mostrar números de línea"
+msgstr "_Mostrar los números de línea"
 
 #. Translators: %s is a URI
-#: ../xed/xed-window.c:876
+#: ../xed/xed-window.c:878
 #, c-format
 msgid "Open '%s'"
 msgstr "Abrir «%s»"
 
 #. Translators: %s is a URI
-#: ../xed/xed-window.c:1225
+#: ../xed/xed-window.c:1226
 #, c-format
 msgid "Activate '%s'"
 msgstr "Activar «%s»"
 
-#: ../xed/xed-window.c:1413
+#: ../xed/xed-window.c:1414
 #, c-format
 msgid "Spaces: %u"
 msgstr "Espacios: %u"
 
-#: ../xed/xed-window.c:1417
+#: ../xed/xed-window.c:1418
 #, c-format
 msgid "Tabs: %u"
 msgstr "Tabuladores: %u"
 
-#: ../xed/xed-window.c:1494
+#: ../xed/xed-window.c:1495
 msgid "Use Spaces"
 msgstr "Usar espacios"
 
-#: ../xed/xed-window.c:2301
+#: ../xed/xed-window.c:2302
 msgid "There are unsaved documents"
 msgstr "Hay documentos sin guardar"
 
-#: ../xed/xed-window.c:3350
+#: ../xed/xed-window.c:3351
 msgid "Elevated Privileges"
 msgstr "Privilegios elevados"
 
@@ -2634,7 +2159,7 @@ msgstr "Carpeta _raíz del documento activo"
 
 #: ../plugins/filebrowser/xed-file-browser-plugin.c:441
 msgid "Set the root to the active document location"
-msgstr "Establece la raíz en el lugar del documento activo"
+msgstr "Configura la raíz en la ubicación del documento activo"
 
 #: ../plugins/filebrowser/xed-file-browser-plugin.c:446
 msgid "_Open terminal here"
@@ -2765,11 +2290,11 @@ msgstr "_Mover a la papelera"
 
 #: ../plugins/filebrowser/xed-file-browser-widget.c:757
 msgid "Move selected file or folder to trash"
-msgstr "Mover el archivo o carpeta seleccionado a la papelera"
+msgstr "Mover la carpeta o el archivo seleccionado a la papelera"
 
 #: ../plugins/filebrowser/xed-file-browser-widget.c:759
 msgid "Delete selected file or folder"
-msgstr "Elimina el archivo o carpeta seleccionado"
+msgstr "Eliminar la carpeta o el archivo seleccionado"
 
 #: ../plugins/filebrowser/xed-file-browser-widget.c:765
 msgid "Open selected file"
@@ -2797,7 +2322,7 @@ msgstr "Archivo n_uevo"
 
 #: ../plugins/filebrowser/xed-file-browser-widget.c:779
 msgid "Add new empty file"
-msgstr "Añade un archivo nuevo vacío"
+msgstr "Añadir un archivo nuevo vacío"
 
 #: ../plugins/filebrowser/xed-file-browser-widget.c:784
 msgid "_Rename..."
@@ -2805,7 +2330,7 @@ msgstr "Re_nombrar..."
 
 #: ../plugins/filebrowser/xed-file-browser-widget.c:785
 msgid "Rename selected file or folder"
-msgstr "Renombra el archivo o carpeta seleccionada"
+msgstr "Renombrar la carpeta o el archivo seleccionado"
 
 #: ../plugins/filebrowser/xed-file-browser-widget.c:790
 msgid "_Previous Location"
@@ -2813,7 +2338,7 @@ msgstr "Ubicación _anterior"
 
 #: ../plugins/filebrowser/xed-file-browser-widget.c:791
 msgid "Go to the previous visited location"
-msgstr "Ir a la ubicación visitada anterior"
+msgstr "Ir a la anterior ubicación visitada"
 
 #: ../plugins/filebrowser/xed-file-browser-widget.c:792
 msgid "_Next Location"
@@ -2821,7 +2346,7 @@ msgstr "Ubicación _siguiente"
 
 #: ../plugins/filebrowser/xed-file-browser-widget.c:793
 msgid "Go to the next visited location"
-msgstr "Ir a la ubicación visitada siguiente"
+msgstr "Ir a la siguiente ubicación visitada"
 
 #: ../plugins/filebrowser/xed-file-browser-widget.c:794
 msgid "Re_fresh View"
@@ -2829,7 +2354,7 @@ msgstr "Recargar la _vista"
 
 #: ../plugins/filebrowser/xed-file-browser-widget.c:795
 msgid "Refresh the view"
-msgstr "Refresca la vista"
+msgstr "Recargar la vista"
 
 #: ../plugins/filebrowser/xed-file-browser-widget.c:796
 #: ../plugins/filebrowser/xed-file-browser-widget.c:810
@@ -2839,7 +2364,7 @@ msgstr "E_xaminar la carpeta"
 #: ../plugins/filebrowser/xed-file-browser-widget.c:797
 #: ../plugins/filebrowser/xed-file-browser-widget.c:811
 msgid "View folder in file manager"
-msgstr "Ver la carpeta en el gestor de archivos"
+msgstr "Mostrar la carpeta en el gestor de archivos"
 
 #: ../plugins/filebrowser/xed-file-browser-widget.c:802
 msgid "Show _Hidden"
@@ -2864,7 +2389,7 @@ msgstr "_Patrón de nombre de archivo"
 #: ../plugins/filebrowser/xed-file-browser-widget.c:2012
 #, c-format
 msgid "No mount object for mounted volume: %s"
-msgstr "No existe el objeto montado para el volumen montado: %s"
+msgstr "No hay ningún objeto montado en el volumen montado: %s"
 
 #: ../plugins/filebrowser/xed-file-browser-widget.c:2090
 #, c-format
@@ -2908,11 +2433,11 @@ msgstr "Ordena un documento o el texto seleccionado."
 
 #: ../plugins/sort/xed-sort-plugin.c:75
 msgid "S_ort lines"
-msgstr "_Ordenar las líneas"
+msgstr "_Ordenar líneas"
 
 #: ../plugins/sort/xed-sort-plugin.c:77
 msgid "Sort the current document or selection"
-msgstr "Ordena el documento actual o la selección"
+msgstr "Ordenar el documento actual o la selección"
 
 #: ../plugins/spell/org.x.editor.plugins.spell.gschema.xml.in.h:1
 msgid "Autocheck Type"
@@ -2940,7 +2465,7 @@ msgstr "_Configurar el idioma…"
 
 #: ../plugins/spell/xed-spell-plugin.c:96
 msgid "Set the language of the current document"
-msgstr "Configura el idioma del documento actual"
+msgstr "Configurar el idioma del documento actual"
 
 #: ../plugins/spell/xed-spell-plugin.c:105
 msgid "_Autocheck Spelling"
@@ -2948,7 +2473,7 @@ msgstr "Comprobar la ortografía _automáticamente"
 
 #: ../plugins/spell/xed-spell-plugin.c:107
 msgid "Automatically spell-check the current document"
-msgstr "Verificar automáticamente la ortografía del documento actual"
+msgstr "Comprobar automáticamente la ortografía del documento actual"
 
 #: ../plugins/spell/xed-spell-setup-dialog.ui.h:1
 msgid "button"
@@ -2964,7 +2489,7 @@ msgstr "Nunca"
 
 #: ../plugins/spell/xed-spell-setup-dialog.ui.h:4
 msgid "Never autocheck spelling on document load"
-msgstr "No comprobar nunca automáticamente al cargar un documento"
+msgstr "No comprobar la ortografía al cargar un documento"
 
 #: ../plugins/spell/xed-spell-setup-dialog.ui.h:5
 msgid "Remember by document"
@@ -2980,7 +2505,7 @@ msgstr "Siempre"
 
 #: ../plugins/spell/xed-spell-setup-dialog.ui.h:8
 msgid "Always autocheck on document load"
-msgstr "Comprobar siempre automáticamente al cargar un documento"
+msgstr "Comprobar la ortografía al cargar un documento"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:1
 msgid "XHTML 1.0 - Tags"
@@ -2988,7 +2513,7 @@ msgstr "XHTML 1.0: etiquetas"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:2
 msgid "Abbreviated form"
-msgstr "Formulario abreviado"
+msgstr "Forma abreviada"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:3
 msgid "Abbreviation"
@@ -3025,7 +2550,7 @@ msgstr "Anclaje"
 #. Deprecated since HTML 4.01, not supported in XHTML 1.0 Strict DTD.
 #: ../plugins/taglist/HTML.tags.xml.in.h:12
 msgid "Applet class file code (deprecated)"
-msgstr "Código de clase de miniaplicación (obsoleto)"
+msgstr "Código de la clase de miniaplicación (obsoleta)"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:13
 msgid "Associated information"
@@ -3042,17 +2567,17 @@ msgstr "Cabeceras relacionadas con el eje"
 #. Deprecated since HTML 4.01, not supported in XHTML 1.0 Strict DTD.
 #: ../plugins/taglist/HTML.tags.xml.in.h:17
 msgid "Background color (deprecated)"
-msgstr "Color de fondo (obsoleto)"
+msgstr "Color de fondo (obsoleta)"
 
 #. Deprecated since HTML 4.01, not supported in XHTML 1.0 Strict DTD.
 #: ../plugins/taglist/HTML.tags.xml.in.h:19
 msgid "Background texture tile (deprecated)"
-msgstr "Textura de enlosado del fondo (obsoleto)"
+msgstr "Textura del mosaico de fondo (obsoleta)"
 
 #. Deprecated since HTML 4.01, not supported in XHTML 1.0 Strict DTD.
 #: ../plugins/taglist/HTML.tags.xml.in.h:21
 msgid "Base font (deprecated)"
-msgstr "Tipografía base (obsoleto)"
+msgstr "Tipografía base (obsoleta)"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:22
 msgid "Base URI"
@@ -3065,16 +2590,16 @@ msgstr "Negrita"
 #. Deprecated since HTML 4.01, not supported in XHTML 1.0 Strict DTD.
 #: ../plugins/taglist/HTML.tags.xml.in.h:25
 msgid "Border (deprecated)"
-msgstr "Borde (obsoleto)"
+msgstr "Borde (obsoleta)"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:26
 msgid "Cell rowspan"
-msgstr "Expansión de filas de la celda"
+msgstr "Expansión en columnas de la celda"
 
 #. Deprecated since HTML 4.01, not supported in XHTML 1.0 Strict DTD.
 #: ../plugins/taglist/HTML.tags.xml.in.h:28
 msgid "Center (deprecated)"
-msgstr "Centro (obsoleto)"
+msgstr "Centrar (obsoleta)"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:29
 msgid "Character encoding of linked resource"
@@ -3111,7 +2636,7 @@ msgstr "Tipo de contenido del código"
 #. Deprecated since HTML 4.01, not supported in XHTML 1.0 Strict DTD.
 #: ../plugins/taglist/HTML.tags.xml.in.h:38
 msgid "Color of selected links (deprecated)"
-msgstr "Color de los enlaces seleccionados (obsoleto)"
+msgstr "Color de los enlaces seleccionados (obsoleta)"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:39
 msgid "Column span"
@@ -3129,7 +2654,7 @@ msgstr "Fragmento de código fuente"
 #. since HTML 4.01, not supported in XHTML 1.0 Strict DTD.
 #: ../plugins/taglist/HTML.tags.xml.in.h:45
 msgid "Content type (deprecated)"
-msgstr "Tipo de contenido (obsoleto)"
+msgstr "Tipo de contenido (obsoleta)"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:46
 msgid "Coordinates"
@@ -3149,11 +2674,11 @@ msgstr "Marca de declaración"
 #. content. The browser can continue parsing and drawing the page.
 #: ../plugins/taglist/HTML.tags.xml.in.h:53
 msgid "Defer attribute"
-msgstr "Diferir atributo"
+msgstr "Atributo de aplazamiento"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:54
 msgid "Definition description"
-msgstr "Descripción de definición"
+msgstr "Descripción de la definición"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:55
 msgid "Definition list"
@@ -3174,7 +2699,7 @@ msgstr "Direccionalidad"
 #. Deprecated since HTML 4.01, not supported in XHTML 1.0 Strict DTD.
 #: ../plugins/taglist/HTML.tags.xml.in.h:60
 msgid "Directionality (deprecated)"
-msgstr "Direccionalidad (obsoleto)"
+msgstr "Direccionalidad (obsoleta)"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:61
 msgid "Disabled"
@@ -3190,7 +2715,7 @@ msgstr "Contenedor de estilo DIV"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:64
 msgid "Document base"
-msgstr "Documento base"
+msgstr "Base del documento"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:65
 msgid "Document body"
@@ -3202,7 +2727,7 @@ msgstr "Cabecera del documento"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:67
 msgid "Element ID"
-msgstr "ID de elementos"
+msgstr "ID del elemento"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:68
 msgid "Document title"
@@ -3224,11 +2749,11 @@ msgstr "Tipo de codificación"
 #. Deprecated since HTML 4.01, not supported in XHTML 1.0 Strict DTD.
 #: ../plugins/taglist/HTML.tags.xml.in.h:73
 msgid "Font face (deprecated)"
-msgstr "Tipografía (obsoleto)"
+msgstr "Tipografía (obsoleta)"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:74
 msgid "For label"
-msgstr "Para la etiqueta"
+msgstr "Etiqueta para"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:75
 msgid "Forced line break"
@@ -3248,11 +2773,11 @@ msgstr "Texto de la etiqueta del campo del formulario"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:79
 msgid "Form input type"
-msgstr "Tipo de formulario de entrada"
+msgstr "Tipo de entrada del formulario"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:80
 msgid "Form input"
-msgstr "Formulario de entrada"
+msgstr "Entrada del formulario"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:81
 msgid "Form method"
@@ -3264,15 +2789,15 @@ msgstr "Formulario"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:83
 msgid "Forward link"
-msgstr "Reenviar enlace"
+msgstr "Enlace de reenvío"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:84
 msgid "Frame render parts"
-msgstr "El marco renderiza partes"
+msgstr "Partes de la representación del marco"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:85
 msgid "Frame source"
-msgstr "Origen del marco"
+msgstr "Fuente del marco"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:86
 msgid "Frame target"
@@ -3304,7 +2829,7 @@ msgstr "Espaciado de los marcos"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:93
 msgid "Generic embedded object"
-msgstr "Objeto genérico incrustado"
+msgstr "Objeto incrustado genérico"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:94
 msgid "Generic metainformation"
@@ -3316,7 +2841,7 @@ msgstr "Expansión genérica"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:96
 msgid "Header cell IDs"
-msgstr "ID de celdas de cabecera"
+msgstr "ID de las celdas de cabecera"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:97
 msgid "Heading 1"
@@ -3353,7 +2878,7 @@ msgstr "Regla horizontal"
 #. Deprecated since HTML 4.01, not supported in XHTML 1.0 Strict DTD.
 #: ../plugins/taglist/HTML.tags.xml.in.h:106
 msgid "Horizontal space (deprecated)"
-msgstr "Espacio horizontal (obsoleto)"
+msgstr "Espacio horizontal (obsoleta)"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:107
 msgid "HREF URI"
@@ -3369,7 +2894,7 @@ msgstr "Nombre de cabecera HTTP"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:110
 msgid "I18N BiDi override"
-msgstr "Prevalecer sobre i18n BiDi"
+msgstr "Anulación de BiDi i18n"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:111
 msgid "Image map area"
@@ -3397,7 +2922,7 @@ msgstr "Texto insertado"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:117
 msgid "Instance definition"
-msgstr "Definición de instancia"
+msgstr "Definición de la instancia"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:118
 msgid "Italic text"
@@ -3406,7 +2931,7 @@ msgstr "Texto en cursiva"
 #. Deprecated since HTML 4.01, not supported in XHTML 1.0 Strict DTD.
 #: ../plugins/taglist/HTML.tags.xml.in.h:120
 msgid "Java applet (deprecated)"
-msgstr "Miniaplicación de Java (obsoleto)"
+msgstr "Miniaplicación Java (obsoleta)"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:121
 msgid "Label"
@@ -3423,7 +2948,7 @@ msgstr "Estilo de texto grande"
 #. Deprecated since HTML 4.01, not supported in XHTML 1.0 Strict DTD.
 #: ../plugins/taglist/HTML.tags.xml.in.h:125
 msgid "Link color (deprecated)"
-msgstr "Color del enlace (obsoleto)"
+msgstr "Color del enlace (obsoleta)"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:126
 msgid "List item"
@@ -3435,7 +2960,7 @@ msgstr "Lista de tipos MIME para la subida del archivo"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:128
 msgid "List of supported character sets"
-msgstr "Lista de conjuntos de caracteres soportados"
+msgstr "Lista de los  juegos de caracteres compatibles"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:129
 msgid "Local change to font"
@@ -3447,7 +2972,7 @@ msgstr "Descripción larga del enlace"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:131
 msgid "Long quotation"
-msgstr "Entrecomillado largo"
+msgstr "Cita larga"
 
 #. Supported in XHTML 1.0 Frameset DTD only.
 #: ../plugins/taglist/HTML.tags.xml.in.h:133
@@ -3476,7 +3001,7 @@ msgstr "Enlace independiente del soporte"
 #. Deprecated since HTML 4.01, not supported in XHTML 1.0 Strict DTD.
 #: ../plugins/taglist/HTML.tags.xml.in.h:142
 msgid "Menu list (deprecated)"
-msgstr "Lista del menú (obsoleto)"
+msgstr "Lista del menú (obsoleta)"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:143
 msgid "Multi-line text field"
@@ -3492,7 +3017,7 @@ msgstr "Nombre"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:146
 msgid "Named property value"
-msgstr "Valor de propiedad con nombre"
+msgstr "Valor de la propiedad con nombre"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:147
 msgid "No frames"
@@ -3509,7 +3034,7 @@ msgstr "Sin script"
 #. Deprecated since HTML 4.01, not supported in XHTML 1.0 Strict DTD.
 #: ../plugins/taglist/HTML.tags.xml.in.h:151
 msgid "No shade (deprecated)"
-msgstr "Sin sombra (obsoleto)"
+msgstr "Sin sombra (obsoleta)"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:152
 msgid "No URI"
@@ -3518,12 +3043,12 @@ msgstr "Sin URI"
 #. Deprecated since HTML 4.01, not supported in XHTML 1.0 Strict DTD.
 #: ../plugins/taglist/HTML.tags.xml.in.h:154
 msgid "No word wrap (deprecated)"
-msgstr "Sin ajuste de línea (obsoleto)"
+msgstr "Sin ajuste de línea (obsoleta)"
 
 #. Deprecated since HTML 4.01, not supported in XHTML 1.0 Strict DTD.
 #: ../plugins/taglist/HTML.tags.xml.in.h:156
 msgid "Object applet file (deprecated)"
-msgstr "Archivo objeto de miniaplicación (obsoleto)"
+msgstr "Archivo objeto de la miniaplicación (obsoleta)"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:157
 msgid "Object data reference"
@@ -3648,7 +3173,7 @@ msgstr "Texto y contraseña de solo lectura"
 #. Deprecated since HTML 4.01, not supported in XHTML 1.0 Strict DTD.
 #: ../plugins/taglist/HTML.tags.xml.in.h:188
 msgid "Reduced spacing (deprecated)"
-msgstr "Espaciado reducido (obsoleto)"
+msgstr "Espaciado reducido (obsoleta)"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:189
 msgid "Reverse link"
@@ -3660,11 +3185,11 @@ msgstr "Filas"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:191
 msgid "Rulings between rows and columns"
-msgstr "Reglas entre las filas y columnas"
+msgstr "Reglas entre filas y columnas"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:192
 msgid "Sample program output, scripts"
-msgstr "Salida de programa de ejemplo, scripts"
+msgstr "Salida de programas de ejemplo, scripts"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:193
 msgid "Scope covered by header cells"
@@ -3693,7 +3218,7 @@ msgstr "Seleccionado"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:200
 msgid "Server-side image map"
-msgstr "Mapa de imagen en el lado del servidor"
+msgstr "Mapa de imágenes en el lado del servidor"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:201
 msgid "Shape"
@@ -3701,12 +3226,12 @@ msgstr "Forma"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:202
 msgid "Short inline quotation"
-msgstr "Ordenar entrecomillado en línea"
+msgstr "Cita corta en línea"
 
 #. Deprecated since HTML 4.01, not supported in XHTML 1.0 Strict DTD.
 #: ../plugins/taglist/HTML.tags.xml.in.h:204
 msgid "Size (deprecated)"
-msgstr "Tamaño (obsoleto)"
+msgstr "Tamaño (obsoleta)"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:205
 msgid "Small text style"
@@ -3718,7 +3243,7 @@ msgstr "Fuente"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:207
 msgid "Space-separated archive list"
-msgstr "Lista de archivos separada por espacios"
+msgstr "Lista de archivos separados por espacios"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:208
 msgid "Spacing between cells"
@@ -3730,7 +3255,7 @@ msgstr "Espaciado dentro de las celdas"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:210
 msgid "Span"
-msgstr "Expandir"
+msgstr "Expansión"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:211
 msgid "Standby load message"
@@ -3739,17 +3264,17 @@ msgstr "Mensaje de espera durante la carga"
 #. Deprecated since HTML 4.01, not supported in XHTML 1.0 Strict DTD.
 #: ../plugins/taglist/HTML.tags.xml.in.h:213
 msgid "Starting sequence number (deprecated)"
-msgstr "Número de secuencia de inicio (obsoleto)"
+msgstr "Número de la secuencia de inicio (obsoleta)"
 
 #. Deprecated since HTML 4.01, not supported in XHTML 1.0 Strict DTD.
 #: ../plugins/taglist/HTML.tags.xml.in.h:215
 msgid "Strike-through text style (deprecated)"
-msgstr "Estilo de texto tachado (obsoleto)"
+msgstr "Estilo de texto tachado (obsoleta)"
 
 #. Deprecated since HTML 4.01, not supported in XHTML 1.0 Strict DTD.
 #: ../plugins/taglist/HTML.tags.xml.in.h:217
 msgid "Strike-through text (deprecated)"
-msgstr "Estilo de texto tachado (obsoleto)"
+msgstr "Estilo de texto tachado (obsoleta)"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:218
 msgid "Strong emphasis"
@@ -3777,11 +3302,11 @@ msgstr "Descripción de la tabla"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:224
 msgid "Table column group properties"
-msgstr "Propiedades de grupos de columnas en las tablas"
+msgstr "Propiedades del grupo de columnas de la tabla"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:225
 msgid "Table column properties"
-msgstr "Propiedades de columnas de la tabla"
+msgstr "Propiedades de las columnas de la tabla"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:226
 msgid "Table data cell"
@@ -3793,7 +3318,7 @@ msgstr "Pie de la tabla"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:228
 msgid "Table header cell"
-msgstr "Celda de cabecera de tabla"
+msgstr "Celda de cabecera de la tabla"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:229
 msgid "Table header"
@@ -3813,19 +3338,19 @@ msgstr "Tabla"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:233
 msgid "Target - Blank"
-msgstr "Destino - Vacío"
+msgstr "Destino: nuevo"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:234
 msgid "Target - Parent"
-msgstr "Destino - Padre"
+msgstr "Destino: principal"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:235
 msgid "Target - Self"
-msgstr "Destino - Sí mismo"
+msgstr "Destino: actual"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:236
 msgid "Target - Top"
-msgstr "Destino - Encima"
+msgstr "Destino: superior"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:237
 msgid "Teletype or monospace text style"
@@ -3834,7 +3359,7 @@ msgstr "Estilo de texto monoespaciado o teletipo"
 #. Deprecated since HTML 4.01, not supported in XHTML 1.0 Strict DTD.
 #: ../plugins/taglist/HTML.tags.xml.in.h:239
 msgid "Text color (deprecated)"
-msgstr "Color del texto (obsoleto)"
+msgstr "Color del texto (obsoleta)"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:240
 msgid "Text entered by user"
@@ -3854,7 +3379,7 @@ msgstr "Lista desordenada"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:244
 msgid "Use image map"
-msgstr "Usar mapa de imagen"
+msgstr "Usar un mapa de la imagen"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:245
 msgid "Value interpretation"
@@ -3866,7 +3391,7 @@ msgstr "Valor"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:247
 msgid "Variable or program argument"
-msgstr "Variable o argumento de programa"
+msgstr "Variable o argumento de un programa"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:248
 msgid "Vertical cell alignment"
@@ -3875,12 +3400,12 @@ msgstr "Alineamiento vertical de la celda"
 #. Deprecated since HTML 4.01, not supported in XHTML 1.0 Strict DTD.
 #: ../plugins/taglist/HTML.tags.xml.in.h:250
 msgid "Vertical space (deprecated)"
-msgstr "Espacio vertical (obsoleto)"
+msgstr "Espacio vertical (obsoleta)"
 
 #. Deprecated since HTML 4.01, not supported in XHTML 1.0 Strict DTD.
 #: ../plugins/taglist/HTML.tags.xml.in.h:252
 msgid "Visited link color (deprecated)"
-msgstr "Color del enlace visitado (obsoleto)"
+msgstr "Color del enlace visitado (obsoleta)"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:253
 msgid "Width"
@@ -3896,11 +3421,11 @@ msgstr "Encima"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:256
 msgid "Applet class file code"
-msgstr "Código de archivo de clase de la miniaplicación"
+msgstr "Código fuente de la clase de la miniaplicación"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:257
 msgid "Array"
-msgstr "Array"
+msgstr "Matriz"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:258
 msgid "Background color"
@@ -3908,7 +3433,7 @@ msgstr "Color de fondo"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:259
 msgid "Background texture tile"
-msgstr "Textura de enlosado del fondo"
+msgstr "Mosaico de la textura del fondo"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:260
 msgid "Base font"
@@ -3924,7 +3449,7 @@ msgstr "Borde"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:263
 msgid "Center"
-msgstr "Centro"
+msgstr "Centrar"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:264
 msgid "Checked (state)"
@@ -3972,11 +3497,11 @@ msgstr "Borde del marco"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:275
 msgid "Framespacing"
-msgstr "Espaciado del conjunto de marcos"
+msgstr "Espaciado entre marcos"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:276
 msgid "Heading"
-msgstr "Titular"
+msgstr "Cabecera"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:277
 msgid "Horizontal space"
@@ -4012,7 +3537,7 @@ msgstr "Enlace de correo"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:285
 msgid "Marquee"
-msgstr "Marquilla"
+msgstr "Marquesina"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:286
 msgid "Menu list"
@@ -4052,7 +3577,7 @@ msgstr "Nota"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:295
 msgid "Object applet file"
-msgstr "Archivo objeto de miniaplicación"
+msgstr "Archivo objeto de la miniaplicación"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:296
 msgid "Preformatted listing"
@@ -4088,7 +3613,7 @@ msgstr "Tamaño"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:304
 msgid "Soft line break"
-msgstr "Salto de línea suave"
+msgstr "Salto de línea blando"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:305
 msgid "Sound"
@@ -4168,7 +3693,7 @@ msgstr "Bibliografía (cita breve)"
 
 #: ../plugins/taglist/Latex.tags.xml.in.h:5
 msgid "Bibliography (thebibliography)"
-msgstr "Bibliografía (la bibliografía)"
+msgstr "Bibliografía (thebibliography)"
 
 #: ../plugins/taglist/Latex.tags.xml.in.h:6
 msgid "Brackets ()"
@@ -4356,7 +3881,7 @@ msgstr "Símbolo >>"
 
 #: ../plugins/taglist/Latex.tags.xml.in.h:52
 msgid "Symbol and"
-msgstr "Símbolo and"
+msgstr "Símbolo y"
 
 #: ../plugins/taglist/Latex.tags.xml.in.h:53
 msgid "Symbol const"
@@ -4376,7 +3901,7 @@ msgstr "Símbolo derivada"
 
 #: ../plugins/taglist/Latex.tags.xml.in.h:57
 msgid "Symbol d-by-dt-partial"
-msgstr "Símbolo de derivada parcial"
+msgstr "Símbolo derivada parcial"
 
 #: ../plugins/taglist/Latex.tags.xml.in.h:58
 msgid "Symbol equiv"
@@ -4424,7 +3949,7 @@ msgstr "Tipografía negrita"
 
 #: ../plugins/taglist/Latex.tags.xml.in.h:69
 msgid "Typeface type"
-msgstr "Tipo de tipografía"
+msgstr "Tipografía monoespaciada"
 
 #: ../plugins/taglist/Latex.tags.xml.in.h:70
 msgid "Typeface italic"
@@ -4518,7 +4043,7 @@ msgstr "hermano-siguiente"
 
 #: ../plugins/taglist/XSLT.tags.xml.in.h:12
 msgid "namespace"
-msgstr "nombre de espacio"
+msgstr "espacio de nombres"
 
 #: ../plugins/taglist/XSLT.tags.xml.in.h:13
 msgid "parent"

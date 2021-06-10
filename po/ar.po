@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MATE Desktop Environment\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-11-30 11:24+0000\n"
+"POT-Creation-Date: 2021-06-01 12:55+0100\n"
 "PO-Revision-Date: 2018-04-10 15:34+0000\n"
 "Last-Translator: انور الاسكندرانى <Unknown>\n"
 "Language-Team: anwar AL_iskandrany <anwareleskndrany13@gmail.com>\n"
@@ -17,487 +17,9 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n % 100 >= "
 "3 && n % 100 <= 10 ? 3 : n % 100 >= 11 && n % 100 <= 99 ? 4 : 5;\n"
-"X-Launchpad-Export-Date: 2021-01-02 14:15+0000\n"
-"X-Generator: Launchpad (build 34b3ffd45c9543b7f7aa5aa313925241e9e7ca3f)\n"
+"X-Launchpad-Export-Date: 2021-06-09 14:18+0000\n"
+"X-Generator: Launchpad (build b45bdbe3a00b6b668fa7f2069bd545c35c41f7f4)\n"
 "Language: ar_EG\n"
-
-#: ../data/org.x.editor.gschema.xml.in.h:1
-msgid "Use Default Font"
-msgstr "استخدم الخط الافتراضي"
-
-#: ../data/org.x.editor.gschema.xml.in.h:2
-msgid ""
-"Whether to use the system's default fixed width font for editing text "
-"instead of a font specific to xed. If this option is turned off, then the "
-"font named in the \"Editor Font\" option will be used instead of the system "
-"font."
-msgstr ""
-"تحديد ما إذا كنت ستستخدم خط العرض الافتراضي الثابت الخاص بالنظام لتحرير النص "
-"بدلاً من الخط الخاص بـxed. إذا تم إيقاف تشغيل هذا الخيار، فسيتم استخدام الخط "
-"المسمى في خيار \"محرر الخط\" بدلاً من خط النظام."
-
-#: ../data/org.x.editor.gschema.xml.in.h:3
-msgctxt "editor-font"
-msgid "'Monospace 12'"
-msgstr "'Monospace 12'"
-
-#: ../data/org.x.editor.gschema.xml.in.h:4
-msgid "Editor Font"
-msgstr "خط المحرر"
-
-#: ../data/org.x.editor.gschema.xml.in.h:5
-msgid ""
-"A custom font that will be used for the editing area. This will only take "
-"effect if the \"Use Default Font\" option is turned off."
-msgstr ""
-"خط مخصص سيتم استخدامه لمنطقة التحرير. سيصبح هذا سارياً فقط في حالة إيقاف "
-"تشغيل الخيار \"استخدام الخط الافتراضي\"."
-
-#: ../data/org.x.editor.gschema.xml.in.h:6
-msgid "Prefer Dark Theme"
-msgstr "يفضل ثيم داكن"
-
-#: ../data/org.x.editor.gschema.xml.in.h:7
-msgid ""
-"Whether xed should prefer the dark variation of the current Gtk theme if "
-"available."
-msgstr ""
-"تحديد ما إذا كان xed يجب أن يفضل تغيير الثيم الداكن الحالي لـGtk إذا كان "
-"متاحاً."
-
-#: ../data/org.x.editor.gschema.xml.in.h:8
-msgid "Style Scheme"
-msgstr "مخطط النمط"
-
-#: ../data/org.x.editor.gschema.xml.in.h:9
-msgid "The ID of a GtkSourceView Style Scheme used to color the text."
-msgstr "يتم استخدام معرف مخطط النمط GtkSourceView لتلوين النص."
-
-#: ../data/org.x.editor.gschema.xml.in.h:10
-msgid "Create Backup Copies"
-msgstr "إنشاء نسخ احتياطية"
-
-#: ../data/org.x.editor.gschema.xml.in.h:11
-msgid ""
-"Whether xed should create backup copies for the files it saves. You can set "
-"the backup file extension with the \"Backup Copy Extension\" option."
-msgstr ""
-"تحديد ما إذا كان يجب إنشاء نسخ احتياطيه للملفات التي تحفظها. يمكنك تعيين "
-"ملحق ملف النسخ الاحتياطي مع الخيار \"ملحق نسخه النسخ الاحتياطي\"."
-
-#: ../data/org.x.editor.gschema.xml.in.h:12
-msgid "Autosave"
-msgstr "الحفظ التلقائي"
-
-#: ../data/org.x.editor.gschema.xml.in.h:13
-msgid ""
-"Whether xed should automatically save modified files after a time interval. "
-"You can set the time interval with the \"Autosave Interval\" option."
-msgstr ""
-"تحديد ما إذا كان xed يجب أن يحفظ الملفات المعدلة تلقائياً بعد فاصل زمني. "
-"يمكنك ضبط الفاصل الزمني مع خيار \"فاصل الحفظ التلقائي\"."
-
-#: ../data/org.x.editor.gschema.xml.in.h:14
-msgid "Autosave Interval"
-msgstr "فاصل الحفظ التلقائي"
-
-#: ../data/org.x.editor.gschema.xml.in.h:15
-msgid ""
-"Number of minutes after which xed will automatically save modified files. "
-"This will only take effect if the \"Autosave\" option is turned on."
-msgstr ""
-"عدد الدقائق التي بعدها يقوم xed بحفظ الملفات المعدلة تلقائياً. سيصبح هذا "
-"سارياً فقط إذا كان خيار \"الحفظ التلقائي\" قيد التشغيل."
-
-#: ../data/org.x.editor.gschema.xml.in.h:16
-msgid "Writable VFS schemes"
-msgstr "مخططات VFS القابلة للكتابة"
-
-#: ../data/org.x.editor.gschema.xml.in.h:17
-msgid ""
-"List of VFS schemes xed supports in write mode. The 'file' scheme is "
-"writable by default."
-msgstr ""
-"قائمة مخططات VFS التى تدعم VFS في وضع الكتابة. مخطط 'الملف' القابل للكتابة "
-"بشكل افتراضي."
-
-#: ../data/org.x.editor.gschema.xml.in.h:18
-msgid "Maximum Number of Undo Actions"
-msgstr "أقصى عدد لإجراءات التراجع"
-
-#: ../data/org.x.editor.gschema.xml.in.h:19
-msgid ""
-"Maximum number of actions that xed will be able to undo or redo. Use \"-1\" "
-"for unlimited number of actions."
-msgstr ""
-"الحد الأقصى لعدد الإجراءات التي يمكن لـxed التراجع عنها أو إعادتها. استخدم "
-"\"-1\" لعدد غير محدود من الإجراءات."
-
-#: ../data/org.x.editor.gschema.xml.in.h:20
-msgid "Line Wrapping Mode"
-msgstr "وضع التفاف السطر"
-
-#: ../data/org.x.editor.gschema.xml.in.h:21
-msgid ""
-"Specifies how to wrap long lines in the editing area. Use \"none\" for no "
-"wrapping, \"word\" for wrapping at word boundaries, and \"char\" for "
-"wrapping at individual character boundaries. Note that the values are case-"
-"sensitive, so make sure they appear exactly as mentioned here."
-msgstr ""
-"يحدد كيفية التفاف السطور الطويلة في منطقة التحرير. استخدم \"لا شيء\" لعدم "
-"وجود التفاف، \"الكلمة\" للالتفاف عند حدود الكلمات، و \"الحرف\" للالتفاف عند "
-"حدود الأحرف الفردية. لاحظ أن القيم حساسة لحالة الأحرف، لذلك تأكد من أنها "
-"تظهر تماماً كما هو مذكور هنا."
-
-#: ../data/org.x.editor.gschema.xml.in.h:22
-msgid "Tab Size"
-msgstr "حجم التبويب"
-
-#: ../data/org.x.editor.gschema.xml.in.h:23
-msgid ""
-"Specifies the number of spaces that should be displayed instead of Tab "
-"characters."
-msgstr "تحديد عدد المسافات التي يجب عرضها بدلا من أحرف التبويب."
-
-#: ../data/org.x.editor.gschema.xml.in.h:24
-msgid "Insert spaces"
-msgstr "إدراج مسافة"
-
-#: ../data/org.x.editor.gschema.xml.in.h:25
-msgid "Whether xed should insert spaces instead of tabs."
-msgstr "تحديد ما إذا كان يجب على xed إدخال مسافات بدلاً من علامات التبويب."
-
-#: ../data/org.x.editor.gschema.xml.in.h:26
-msgid "Automatic indent"
-msgstr "المسافة البادئة التلقائية"
-
-#: ../data/org.x.editor.gschema.xml.in.h:27
-msgid "Whether xed should enable automatic indentation."
-msgstr "تحديد ما إذا كان يجب على xed تمكين المسافة البادئة التلقائية."
-
-#: ../data/org.x.editor.gschema.xml.in.h:28
-msgid "Display Line Numbers"
-msgstr "عرض أرقام السطر"
-
-#: ../data/org.x.editor.gschema.xml.in.h:29
-msgid "Whether xed should display line numbers in the editing area."
-msgstr "تحديد ما إذا كان يجب على xed عرض أرقام الأسطر في منطقة التحرير."
-
-#: ../data/org.x.editor.gschema.xml.in.h:30
-msgid "Highlight Current Line"
-msgstr "تمييز السطر الحالي"
-
-#: ../data/org.x.editor.gschema.xml.in.h:31
-msgid "Whether xed should highlight the current line."
-msgstr "تحديد ما إذا كان يجب على xed تمييز السطر الحالي."
-
-#: ../data/org.x.editor.gschema.xml.in.h:32
-msgid "Highlight Matching Bracket"
-msgstr "تمييز القوس المطابق"
-
-#: ../data/org.x.editor.gschema.xml.in.h:33
-msgid "Whether xed should highlight the bracket matching the selected one."
-msgstr "تحديد ما إذا كان يجب على xed تمييز القوس الذي يطابق المحدد."
-
-#: ../data/org.x.editor.gschema.xml.in.h:34
-msgid "Display Right Margin"
-msgstr "عرض الهامش الأيمن"
-
-#: ../data/org.x.editor.gschema.xml.in.h:35
-msgid "Whether xed should display the right margin in the editing area."
-msgstr "تحديد ما إذا كان يجب على xed أن يعرض الهامش الأيمن في منطقة التحرير."
-
-#: ../data/org.x.editor.gschema.xml.in.h:36
-msgid "Right Margin Position"
-msgstr "موضع الهامش الأيمن"
-
-#: ../data/org.x.editor.gschema.xml.in.h:37
-msgid "Specifies the position of the right margin."
-msgstr "يحدد موضع الهامش الأيمن."
-
-#: ../data/org.x.editor.gschema.xml.in.h:38
-msgid "Smart Home End"
-msgstr "مفاتيح Home End الذكية"
-
-#: ../data/org.x.editor.gschema.xml.in.h:39
-msgid ""
-"Specifies how the cursor moves when the HOME and END keys are pressed. Use "
-"\"disabled\" to always move at the start/end of the line, \"after\" to move "
-"to the start/end of the line the first time the keys are pressed and to the "
-"start/end of the text ignoring whitespaces the second time the keys are "
-"pressed, \"before\" to move to the start/end of the text before moving to "
-"the start/end of the line and \"always\" to always move to the start/end of "
-"the text instead of the start/end of the line."
-msgstr ""
-"لتحديد كيفية تحرك المؤشر عند الضغط على مفتاحي HOME و END. استخدم \"تعطيل\" "
-"للتحرك دائمًا عند بداية / نهاية السطر و\"بعد\" للانتقال إلى بداية / نهاية "
-"السطر في أول مرة يتم فيها الضغط على المفاتيح وإلى بداية / نهاية النص "
-"متجاهلاً المسافات البيضاء في المرة الثانية يتم الضغط على المفاتيح و\"قبل\" "
-"للانتقال إلى بداية / نهاية النص قبل الانتقال إلى بداية / نهاية السطر و "
-"\"دائماً\" للانتقال دائماً إلى بداية / نهاية النص بدلاً من بداية / نهاية "
-"السطر."
-
-#: ../data/org.x.editor.gschema.xml.in.h:40
-msgid "Restore Previous Cursor Position"
-msgstr "استعادة موضع المؤشر السابق"
-
-#: ../data/org.x.editor.gschema.xml.in.h:41
-msgid ""
-"Whether xed should restore the previous cursor position when a file is "
-"loaded."
-msgstr ""
-"تحديد ما إذا كان يجب على xed استعادة موضع المؤشر السابق عند تحميل الملف."
-
-#: ../data/org.x.editor.gschema.xml.in.h:42
-msgid "Enable Search Highlighting"
-msgstr "تمكين تمييز البحث"
-
-#: ../data/org.x.editor.gschema.xml.in.h:43
-msgid ""
-"Whether xed should highlight all the occurrences of the searched text."
-msgstr ""
-"تحديد ما إذا كان يجب على xed تمييز جميع تكرارات النص الذي تم البحث عنه."
-
-#: ../data/org.x.editor.gschema.xml.in.h:44
-msgid "Enable Syntax Highlighting"
-msgstr "تمكين تمييز بناء الجملة"
-
-#: ../data/org.x.editor.gschema.xml.in.h:45
-msgid "Whether xed should enable syntax highlighting."
-msgstr "تحديد ما إذا كان يجب على xed تمييز بناء الجملة."
-
-#: ../data/org.x.editor.gschema.xml.in.h:46
-#: ../xed/resources/ui/xed-preferences-dialog.ui.h:25
-msgid "Ensure Trailing Newline"
-msgstr "ضمان السطر الجديد الزائد"
-
-#: ../data/org.x.editor.gschema.xml.in.h:47
-msgid ""
-"Whether xed will ensure that documents always end with a trailing newline."
-msgstr "تحديد ما إذا كان xed سيضمن ان تنتهي المستندات دائما بسطر جديد زائد."
-
-#: ../data/org.x.editor.gschema.xml.in.h:48
-msgid "Toolbar is Visible"
-msgstr "شريط الأدوات مرئي"
-
-#: ../data/org.x.editor.gschema.xml.in.h:49
-msgid "Whether the toolbar should be visible in editing windows."
-msgstr "تحديد ما إذا كان يجب أن يكون شريط الأدوات مرئياً في نوافذ التحرير."
-
-#: ../data/org.x.editor.gschema.xml.in.h:50
-msgid "Status Bar is Visible"
-msgstr "شريط الحالة مرئي"
-
-#: ../data/org.x.editor.gschema.xml.in.h:51
-msgid ""
-"Whether the status bar at the bottom of editing windows should be visible."
-msgstr ""
-"تحديد ما إذا كان شريط الحالة الموجود أسفل نوافذ التحرير سيكون مرئياً أم لا."
-
-#: ../data/org.x.editor.gschema.xml.in.h:52
-msgid "Side Pane is Visible"
-msgstr "الجزء الجانبي المرئي"
-
-#: ../data/org.x.editor.gschema.xml.in.h:53
-msgid ""
-"Whether the side pane at the left of editing windows should be visible."
-msgstr ""
-"تحديد ما إذا كان الجزء الجانبي الموجود على يسار نوافذ التحرير مرئياً أم لا."
-
-#: ../data/org.x.editor.gschema.xml.in.h:54
-msgid "Bottom Panel is Visible"
-msgstr "الشريط السفلي مرئي"
-
-#: ../data/org.x.editor.gschema.xml.in.h:55
-msgid ""
-"Whether the bottom panel at the bottom of editing windows should be visible."
-msgstr ""
-"تحديد ما إذا كان يجب أن يكون الشريط السفلي في أسفل نوافذ التحرير مرئياً."
-
-#: ../data/org.x.editor.gschema.xml.in.h:56
-msgid "Allow changing active tabs by scrolling"
-msgstr "السماح بتغيير علامات التبويب النشطة عن طريق التمرير"
-
-#: ../data/org.x.editor.gschema.xml.in.h:57
-msgid "Whether you can change active tabs by scrolling."
-msgstr "تحديد ما إذا كنت تستطيع تغيير علامات التبويب النشطة عن طريق التمرير."
-
-#: ../data/org.x.editor.gschema.xml.in.h:58
-msgid "Minimap is visible"
-msgstr "الخريطة المصغرة مرئية"
-
-#: ../data/org.x.editor.gschema.xml.in.h:59
-msgid "Whether the minimap for the document should be visible."
-msgstr "تحديد ما إذا كان يجب أن تكون الخريطة المصغرة للمستند مرئية."
-
-#: ../data/org.x.editor.gschema.xml.in.h:60
-msgid "Maximum Recent Files"
-msgstr "الحد الأقصى للملفات الاخيره"
-
-#: ../data/org.x.editor.gschema.xml.in.h:61
-msgid ""
-"Specifies the maximum number of recently opened files that will be displayed "
-"in the \"Recent Files\" submenu."
-msgstr ""
-"يحدد الحد الأقصى لعدد الملفات المفتوحة حديثاً التي سيتم عرضها في القائمة "
-"الفرعية \"الملفات الأخيرة\"."
-
-#: ../data/org.x.editor.gschema.xml.in.h:62
-msgid "Print Syntax Highlighting"
-msgstr "تمييز بناء جمله الطباعة"
-
-#: ../data/org.x.editor.gschema.xml.in.h:63
-msgid "Whether xed should print syntax highlighting when printing documents."
-msgstr ""
-"تحديد ما إذا كان يجب على xed تمييز بناء جملة الطباعة عند طباعة المستندات."
-
-#: ../data/org.x.editor.gschema.xml.in.h:64
-msgid "Print Header"
-msgstr "رأس الطباعة"
-
-#: ../data/org.x.editor.gschema.xml.in.h:65
-msgid "Whether xed should include a document header when printing documents."
-msgstr "تحديد ما إذا كان يجب على xed تضمين رأس المستند عند طباعة المستندات."
-
-#: ../data/org.x.editor.gschema.xml.in.h:66
-msgid "Printing Line Wrapping Mode"
-msgstr "طباعة وضع التفاف السطر"
-
-#: ../data/org.x.editor.gschema.xml.in.h:67
-msgid ""
-"Specifies how to wrap long lines for printing. Use \"none\" for no wrapping, "
-"\"word\" for wrapping at word boundaries, and \"char\" for wrapping at "
-"individual character boundaries. Note that the values are case-sensitive, so "
-"make sure they appear exactly as mentioned here."
-msgstr ""
-"يحدد كيفية التفاف السطور الطويلة في الطباعة. استخدم \"لا شيء\" لعدم وجود "
-"التفاف، \"الكلمة\" للالتفاف عند حدود الكلمات، و \"الحرف\" للالتفاف عند حدود "
-"الأحرف الفردية. لاحظ أن القيم حساسة لحالة الأحرف، لذلك تأكد من أنها تظهر "
-"تماماً كما هو مذكور هنا."
-
-#: ../data/org.x.editor.gschema.xml.in.h:68
-msgid "Print Line Numbers"
-msgstr "طباعه أرقام السطر"
-
-#: ../data/org.x.editor.gschema.xml.in.h:69
-msgid ""
-"If this value is 0, then no line numbers will be inserted when printing a "
-"document. Otherwise, xed will print line numbers every such number of lines."
-msgstr ""
-"إذا كانت هذه القيمة 0، فلن يتم إدراج أي أرقام للسطر عند طباعة المستند. خلاف "
-"ذلك، سيقوم xed بطباعة أرقام السطر لكل عدد تلك الأسطر."
-
-#: ../data/org.x.editor.gschema.xml.in.h:70
-msgctxt "print-font-body-pango"
-msgid "'Monospace 9'"
-msgstr "'Monospace 9'"
-
-#: ../data/org.x.editor.gschema.xml.in.h:71
-msgid "Body Font for Printing"
-msgstr "هيئة الخط للطباعة"
-
-#: ../data/org.x.editor.gschema.xml.in.h:72
-msgid ""
-"Specifies the font to use for a document's body when printing documents."
-msgstr "تحديد الخط المستخدم لهيئة المستند عند طباعة المستندات."
-
-#: ../data/org.x.editor.gschema.xml.in.h:73
-msgctxt "print-font-header-pango"
-msgid "'Sans 11'"
-msgstr "'Sans 11'"
-
-#: ../data/org.x.editor.gschema.xml.in.h:74
-msgid "Header Font for Printing"
-msgstr "خط الرأس للطباعة"
-
-#: ../data/org.x.editor.gschema.xml.in.h:75
-msgid ""
-"Specifies the font to use for page headers when printing a document. This "
-"will only take effect if the \"Print Header\" option is turned on."
-msgstr ""
-"يحدد الخط الذي سيتم استخدامه لرؤوس الصفحات عند طباعة المستند. سيصبح هذا "
-"سارياً فقط في حالة تشغيل خيار \"رأس الطباعة\"."
-
-#: ../data/org.x.editor.gschema.xml.in.h:76
-msgctxt "print-font-numbers-pango"
-msgid "'Sans 8'"
-msgstr "'Sans 8'"
-
-#: ../data/org.x.editor.gschema.xml.in.h:77
-msgid "Line Number Font for Printing"
-msgstr "خط رقم السطر للطباعة"
-
-#: ../data/org.x.editor.gschema.xml.in.h:78
-msgid ""
-"Specifies the font to use for line numbers when printing. This will only "
-"take effect if the \"Print Line Numbers\" option is non-zero."
-msgstr ""
-"يحدد الخط المستخدم لأرقام الأسطر عند الطباعة. سيصبح هذا سارياً فقط إذا كان "
-"خيار \"طباعه أرقام الأسطر\" غير صفري."
-
-#: ../data/org.x.editor.gschema.xml.in.h:79
-msgctxt "auto-detected"
-msgid "[ 'UTF-8', 'CURRENT', 'ISO-8859-15', 'UTF-16' ]"
-msgstr "[ 'UTF-8'، 'الحالي'، 'ISO-8859-15', 'UTF-16' ]"
-
-#: ../data/org.x.editor.gschema.xml.in.h:80
-msgid "Automatically Detected Encodings"
-msgstr "الكشف عن الترميزات تلقائيا"
-
-#: ../data/org.x.editor.gschema.xml.in.h:81
-msgid ""
-"Sorted list of encodings used by xed for automatically detecting the "
-"encoding of a file. \"CURRENT\" represents the current locale encoding. Only "
-"recognized encodings are used."
-msgstr ""
-"قائمة مرتبة من الترميزات المستخدمة بواسطة xed للكشف تلقائياً عن ترميز أحد "
-"الملفات. \"الحالي\" يمثل الترميز المحلي الحالي. يتم استخدام الترميزات "
-"المعترف بها فقط."
-
-#: ../data/org.x.editor.gschema.xml.in.h:82
-msgctxt "shown-in-menu"
-msgid "[ 'ISO-8859-15' ]"
-msgstr "[ 'ISO-8859-15' ]"
-
-#: ../data/org.x.editor.gschema.xml.in.h:83
-msgid "Encodings shown in menu"
-msgstr "الترميزات المعروضة في القائمة"
-
-#: ../data/org.x.editor.gschema.xml.in.h:84
-msgid ""
-"List of encodings shown in the Character Encoding menu in open/save file "
-"selector. Only recognized encodings are used."
-msgstr ""
-"قائمة الترميزات المعروضة في قائمة ترميز الأحرف في فتح/حفظ ملف محدد. يتم "
-"استخدام الترميزات المعترف بها فقط."
-
-#: ../data/org.x.editor.gschema.xml.in.h:85
-msgid "History for \"search for\" entries"
-msgstr "سجل محفوظات لإدخالات \"بحث\""
-
-#: ../data/org.x.editor.gschema.xml.in.h:86
-msgid "List of entries in \"search for\" textbox."
-msgstr "قائمة الإدخالات في مربع النص \"بحث\"."
-
-#: ../data/org.x.editor.gschema.xml.in.h:87
-msgid "History for \"replace with\" entries"
-msgstr "سجل محفوظات لإدخالات \"استبدال مع\""
-
-#: ../data/org.x.editor.gschema.xml.in.h:88
-msgid "List of entries in \"replace with\" textbox."
-msgstr "قائمة الإدخالات في مربع النص \"استبدال مع\"."
-
-#: ../data/org.x.editor.gschema.xml.in.h:89
-msgid "Active plugins"
-msgstr "الإضافات النشطة"
-
-#: ../data/org.x.editor.gschema.xml.in.h:90
-msgid ""
-"List of active plugins. It contains the \"Location\" of the active plugins. "
-"See the .xed-plugin file for obtaining the \"Location\" of a given plugin."
-msgstr ""
-"قائمة الإضافات النشطة. يحتوي على \"موقع\" المكونات الإضافية النشطة. راجع ملف "
-".xed-plugin للحصول على \"موقع\" المكون الإضافي المحدد."
 
 #: ../data/xed.appdata.xml.in.h:1
 msgid "A Text Editor"
@@ -961,12 +483,12 @@ msgid "Unsaved Document %d"
 msgstr "مستند غير محفوظ %d"
 
 #: ../xed/xed-documents-panel.c:88 ../xed/xed-documents-panel.c:99
-#: ../xed/xed-window.c:1835 ../xed/xed-window.c:1839
+#: ../xed/xed-window.c:1836 ../xed/xed-window.c:1840
 msgid "Read-Only"
 msgstr "للقراءة فقط"
 
-#: ../xed/xed-documents-panel.c:710 ../xed/resources/ui/xed-shortcuts.ui.h:1
-#: ../xed/xed-window.c:3085
+#: ../xed/xed-documents-panel.c:650 ../xed/resources/ui/xed-shortcuts.ui.h:1
+#: ../xed/xed-window.c:3086
 msgid "Documents"
 msgstr "مستندات"
 
@@ -1004,7 +526,7 @@ msgstr "_الوصف"
 msgid "_Encoding"
 msgstr "_الترميز"
 
-#: ../xed/xed-file-chooser-dialog.c:44 ../xed/xed-preferences-dialog.c:731
+#: ../xed/xed-file-chooser-dialog.c:44 ../xed/xed-preferences-dialog.c:783
 msgid "All Files"
 msgstr "كل الملفات"
 
@@ -1032,7 +554,7 @@ msgstr "Mac OS Classic"
 msgid "Windows"
 msgstr "Windows"
 
-#: ../xed/xed-highlight-mode-selector.c:297 ../xed/xed-window.c:1964
+#: ../xed/xed-highlight-mode-selector.c:297 ../xed/xed-window.c:1965
 msgid "Plain Text"
 msgstr "نص عادي"
 
@@ -1369,65 +891,65 @@ msgid ""
 "If you continue saving this file you can corrupt the document.  Save anyway?"
 msgstr "إذا تابعت حفظ هذا الملف، فيمكنك إتلاف المستند. حفظ على أي حال؟"
 
-#: ../xed/xed-preferences-dialog.c:266
+#: ../xed/xed-preferences-dialog.c:280
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:3
 #, no-c-format
 msgid "Use the system fixed width font (%s)"
 msgstr ""
 
-#: ../xed/xed-preferences-dialog.c:384
+#: ../xed/xed-preferences-dialog.c:436
 msgid "Editor"
 msgstr "المحرر"
 
-#: ../xed/xed-preferences-dialog.c:422
+#: ../xed/xed-preferences-dialog.c:474
 msgid "Save"
 msgstr ""
 
-#: ../xed/xed-preferences-dialog.c:535
+#: ../xed/xed-preferences-dialog.c:587
 #, c-format
 msgid ""
 "Directory '%s' could not be created: g_mkdir_with_parents() failed: %s"
 msgstr "الدليل '%s' لا يمكن إنشاؤه: ()g_mkdir_with_parents فشل: %s"
 
-#: ../xed/xed-preferences-dialog.c:689
+#: ../xed/xed-preferences-dialog.c:741
 msgid "The selected color scheme cannot be installed."
 msgstr "لا يمكن تثبيت نظام الألوان المحدد."
 
-#: ../xed/xed-preferences-dialog.c:712 ../xed/xed-preferences-dialog.c:718
+#: ../xed/xed-preferences-dialog.c:764 ../xed/xed-preferences-dialog.c:770
 msgid "Add Scheme"
 msgstr "إضافة مخطط"
 
-#: ../xed/xed-preferences-dialog.c:715 ../xed/xed-progress-info-bar.c:61
+#: ../xed/xed-preferences-dialog.c:767 ../xed/xed-progress-info-bar.c:61
 msgid "Cancel"
 msgstr "إلغاء"
 
-#: ../xed/xed-preferences-dialog.c:724
+#: ../xed/xed-preferences-dialog.c:776
 msgid "Color Scheme Files"
 msgstr "ملفات مخطط الألوان"
 
-#: ../xed/xed-preferences-dialog.c:796
+#: ../xed/xed-preferences-dialog.c:848
 #, c-format
 msgid "Could not remove color scheme \"%s\"."
 msgstr "لا يمكن إزالة مخطط الألوان \"%s\"."
 
-#: ../xed/xed-preferences-dialog.c:828
+#: ../xed/xed-preferences-dialog.c:880
 msgid "Theme"
 msgstr ""
 
-#: ../xed/xed-preferences-dialog.c:845
+#: ../xed/xed-preferences-dialog.c:897
 msgid "Plugins"
 msgstr "الإضافات"
 
-#: ../xed/xed-preferences-dialog.c:853
+#: ../xed/xed-preferences-dialog.c:905
 msgid "Help"
 msgstr "مساعدة"
 
-#: ../xed/xed-preferences-dialog.c:858
+#: ../xed/xed-preferences-dialog.c:910
 #: ../xed/resources/ui/xed-searchbar.ui.h:11
 msgid "Close"
 msgstr "إغلاق"
 
-#: ../xed/xed-preferences-dialog.c:872
+#: ../xed/xed-preferences-dialog.c:924
 msgid "Xed Preferences"
 msgstr "تفضيلات Xed"
 
@@ -1569,82 +1091,106 @@ msgid "4"
 msgstr ""
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:10
-msgid "Highlighting"
+msgid "Draw whitespace"
 msgstr ""
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:11
-msgid "Highlight the current line"
+msgid "Leading whitespace"
 msgstr ""
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:12
-msgid "Highlight matching brackets"
+msgid "Trailing whitespace"
 msgstr ""
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:13
-msgid "Indentation"
+msgid "Whitespace inside of text"
 msgstr ""
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:14
-msgid "Tab width"
+msgid "Newline character"
 msgstr ""
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:15
-msgid "Use spaces instead of tabs"
+msgid "Highlighting"
 msgstr ""
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:16
-msgid "Automatic indentation"
+msgid "Highlight the current line"
 msgstr ""
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:17
-msgid "Word wrap"
+msgid "Highlight matching brackets"
 msgstr ""
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:18
-msgid "Split words over two lines"
+msgid "Indentation"
 msgstr ""
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:19
-msgid "Tab scrolling"
+msgid "Tab width"
 msgstr ""
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:20
-msgid "Allow mouse wheel scrolling to change tabs"
-msgstr "السماح بتمرير عجلة الماوس لتغيير علامات التبويب"
+msgid "Use spaces instead of tabs"
+msgstr ""
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:21
-msgid "File saving"
+msgid "Automatic indentation"
 msgstr ""
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:22
-msgid "Create a backup copy of files before saving"
+msgid "Word wrap"
 msgstr ""
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:23
-msgid "Autosave files"
+msgid "Split words over two lines"
 msgstr ""
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:24
-msgid "Minutes between saving"
+msgid "Tab scrolling"
 msgstr ""
 
+#: ../xed/resources/ui/xed-preferences-dialog.ui.h:25
+msgid "Allow mouse wheel scrolling to change tabs"
+msgstr "السماح بتمرير عجلة الماوس لتغيير علامات التبويب"
+
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:26
-msgid "Dark theme"
+msgid "File saving"
 msgstr ""
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:27
-msgid "Use dark theme variant (if available)"
-msgstr "استخدم ثيم داكن مختلف (إذا كان متاحاً)"
+msgid "Create a backup copy of files before saving"
+msgstr ""
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:28
-msgid "Style scheme"
+msgid "Autosave files"
 msgstr ""
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:29
-msgid "Install scheme"
+msgid "Minutes between saving"
 msgstr ""
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:30
+msgid "Ensure Trailing Newline"
+msgstr "ضمان السطر الجديد الزائد"
+
+#: ../xed/resources/ui/xed-preferences-dialog.ui.h:31
+msgid "Dark theme"
+msgstr ""
+
+#: ../xed/resources/ui/xed-preferences-dialog.ui.h:32
+msgid "Use dark theme variant (if available)"
+msgstr "استخدم ثيم داكن مختلف (إذا كان متاحاً)"
+
+#: ../xed/resources/ui/xed-preferences-dialog.ui.h:33
+msgid "Style scheme"
+msgstr ""
+
+#: ../xed/resources/ui/xed-preferences-dialog.ui.h:34
+msgid "Install scheme"
+msgstr ""
+
+#: ../xed/resources/ui/xed-preferences-dialog.ui.h:35
 msgid "Remove scheme"
 msgstr ""
 
@@ -2449,61 +1995,61 @@ msgstr "_الجزء السفلي"
 msgid "Show or hide the bottom pane in the current window"
 msgstr "عرض أو إخفاء الجزء السفلي في النافذة الحالية"
 
-#: ../xed/xed-utils.c:822
+#: ../xed/xed-utils.c:829
 msgid "Please check your installation."
 msgstr "يرجى التحقق من التثبيت الخاص بك."
 
-#: ../xed/xed-utils.c:890
+#: ../xed/xed-utils.c:897
 #, c-format
 msgid "Unable to open UI file %s. Error: %s"
 msgstr "غير قادر على فتح ملف واجهة المستخدم %s. الخطأ: %s"
 
-#: ../xed/xed-utils.c:910
+#: ../xed/xed-utils.c:917
 #, c-format
 msgid "Unable to find the object '%s' inside file %s."
 msgstr "يتعذر العثور على الكائن '%s' داخل الملف %s."
 
 #. Translators: '/ on <remote-share>'
-#: ../xed/xed-utils.c:1078
+#: ../xed/xed-utils.c:1085
 #, c-format
 msgid "/ on %s"
 msgstr "/ في %s"
 
-#: ../xed/xed-view.c:378
+#: ../xed/xed-view.c:388
 msgid "_Display line numbers"
 msgstr "_عرض أرقام السطر"
 
 #. Translators: %s is a URI
-#: ../xed/xed-window.c:876
+#: ../xed/xed-window.c:878
 #, c-format
 msgid "Open '%s'"
 msgstr "فتح '%s'"
 
 #. Translators: %s is a URI
-#: ../xed/xed-window.c:1225
+#: ../xed/xed-window.c:1226
 #, c-format
 msgid "Activate '%s'"
 msgstr "تنشيط '%s'"
 
-#: ../xed/xed-window.c:1413
+#: ../xed/xed-window.c:1414
 #, c-format
 msgid "Spaces: %u"
 msgstr ""
 
-#: ../xed/xed-window.c:1417
+#: ../xed/xed-window.c:1418
 #, c-format
 msgid "Tabs: %u"
 msgstr ""
 
-#: ../xed/xed-window.c:1494
+#: ../xed/xed-window.c:1495
 msgid "Use Spaces"
 msgstr "استخدم المسافات"
 
-#: ../xed/xed-window.c:2301
+#: ../xed/xed-window.c:2302
 msgid "There are unsaved documents"
 msgstr "هناك مستندات غير محفوظة"
 
-#: ../xed/xed-window.c:3350
+#: ../xed/xed-window.c:3351
 msgid "Elevated Privileges"
 msgstr "امتيازات مرتفعة"
 
