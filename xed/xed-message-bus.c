@@ -789,7 +789,7 @@ foreach_type (const gchar    *key,
 
 /**
  * xed_message_bus_foreach:
- * @bus: the #XedMessagebus
+ * @bus: the #XedMessageBus
  * @func: (scope call): the callback function
  * @userdata: the user data to supply to the callback function
  *
@@ -915,7 +915,7 @@ xed_message_bus_block (XedMessageBus *bus,
  * @userdata: the userdata with which the callback was connected
  *
  * Blocks evoking the callback that matches provided @callback and @userdata.
- * Unblock the callback using xed_message_unblock_by_func().
+ * Unblock the callback using xed_message_bus_unblock_by_func().
  *
  */
 void

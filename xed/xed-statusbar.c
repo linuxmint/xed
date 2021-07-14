@@ -245,6 +245,7 @@ remove_message_timeout (XedStatusbar *statusbar)
  * @statusbar: a #XedStatusbar
  * @context_id: message context_id
  * @format: message to flash on the statusbar
+ * @...: format arguments
  *
  * Flash a temporary message on the statusbar.
  */

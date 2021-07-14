@@ -1647,7 +1647,7 @@ xed_document_get_search_context (XedDocument *doc)
  * maintains an internal state. If you use in a plugin a file loader or saver on
  * the returned #GtkSourceFile, the internal state of xed won't be updated.
  *
- * If you want to save the #GeditDocument to a secondary file, you can create a
+ * If you want to save the #XedDocument to a secondary file, you can create a
  * new #GtkSourceFile and use a #GtkSourceFileSaver.
  *
  * Returns: (transfer none): the associated #GtkSourceFile.
