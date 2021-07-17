@@ -61,6 +61,8 @@ void       xed_view_delete_selection (XedView *view);
 void       xed_view_select_all (XedView *view);
 void       xed_view_scroll_to_cursor (XedView *view);
 void       xed_view_set_font (XedView *view, gboolean def, const gchar *font_name);
+void       xed_view_set_draw_whitespace (XedView *view, gboolean enable);
+void       xed_view_update_draw_whitespace_locations_and_types (XedView *view);
 
 G_END_DECLS
 

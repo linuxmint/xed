@@ -35,7 +35,9 @@ Installation
 
 Simple install procedure:
 
-  % meson . build				# run the `configure' script
-  % ninja -v -C build		# build xed
+  % meson --prefix=/usr/local build	# run the `configure' script
+  % ninja -v -C build			# build xed
   [ Become root if necessary ]
-  % ninja install -v  -C  build	# install xed
+  % sudo ninja install -v  -C  build	# install xed
+
+    see linuxmint/xed#265 if you see GLib-GIO-ERROR
