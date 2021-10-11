@@ -63,6 +63,28 @@ _xed_cmd_view_show_toolbar (GtkAction *action,
 }
 
 void
+_xed_cmd_view_show_menubar (GtkAction *action,
+                            XedWindow *window)
+{
+    gboolean visible;
+
+    xed_debug (DEBUG_COMMANDS);
+
+    visible = gtk_toggle_action_get_active (GTK_TOGGLE_ACTION (action));
+
+    if (visible)
+    {
+        gtk_widget_show (window->priv->menubar);
+        g_settings_set_boolean (window->priv->ui_settings, XED_SETTINGS_MENUBAR_VISIBLE, TRUE);
+    }
+    else
+    {
+        gtk_widget_hide (window->priv->menubar);
+        g_settings_set_boolean (window->priv->ui_settings, XED_SETTINGS_MENUBAR_VISIBLE, FALSE);
+    }
+}
+
+void
 _xed_cmd_view_show_statusbar (GtkAction *action,
                               XedWindow *window)
 {

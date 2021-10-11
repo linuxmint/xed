@@ -100,6 +100,7 @@ void xed_settings_set_list (GSettings    *settings,
 #define XED_SETTINGS_SEARCH_HIGHLIGHTING        "search-highlighting"
 #define XED_SETTINGS_ENABLE_TAB_SCROLLING       "enable-tab-scrolling"
 #define XED_SETTINGS_TOOLBAR_VISIBLE            "toolbar-visible"
+#define XED_SETTINGS_MENUBAR_VISIBLE            "menubar-visible"
 #define XED_SETTINGS_STATUSBAR_VISIBLE          "statusbar-visible"
 #define XED_SETTINGS_SIDE_PANEL_VISIBLE         "side-panel-visible"
 #define XED_SETTINGS_BOTTOM_PANEL_VISIBLE       "bottom-panel-visible"

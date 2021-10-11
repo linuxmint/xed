@@ -46,6 +46,7 @@ void _xed_cmd_edit_toggle_comment (GtkAction *action, XedWindow *window);
 void _xed_cmd_edit_toggle_comment_block (GtkAction *action, XedWindow *window);
 
 void _xed_cmd_view_show_toolbar (GtkAction *action, XedWindow *window);
+void _xed_cmd_view_show_menubar (GtkAction *action, XedWindow *window);
 void _xed_cmd_view_show_statusbar (GtkAction *action, XedWindow *window);
 void _xed_cmd_view_show_side_pane (GtkAction *action, XedWindow *window);
 void _xed_cmd_view_show_bottom_pane (GtkAction *action, XedWindow *window);

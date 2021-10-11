@@ -140,6 +140,20 @@ on_key_pressed (GtkWidget *widget,
         xed_searchbar_hide (XED_SEARCHBAR (window->priv->searchbar));
         return GDK_EVENT_STOP;
     }
+    else if (event->keyval == GDK_KEY_Alt_L)
+    {
+        if (gtk_widget_is_visible (window->priv->menubar)) {
+            if (!g_settings_get_boolean (window->priv->ui_settings, XED_SETTINGS_MENUBAR_VISIBLE)) {
+                gtk_widget_hide (window->priv->menubar);
+            }
+        }
+        else {
+            if (!_xed_window_is_fullscreen (window)) {
+                gtk_widget_show (window->priv->menubar);
+            }
+        }
+        return GDK_EVENT_STOP;
+    }
 
     return GDK_EVENT_PROPAGATE;
 }
@@ -446,6 +460,42 @@ set_toolbar_style (XedWindow *window,
     if (gtk_toggle_action_get_active (GTK_TOGGLE_ACTION (action)) != visible)
     {
         gtk_toggle_action_set_active (GTK_TOGGLE_ACTION (action), visible);
+    }
+
+    return visible;
+}
+
+/* Returns TRUE if menu bar is visible */
+static gboolean
+set_menubar_style (XedWindow *window,
+                     XedWindow *origin)
+{
+    GtkAction *action;
+    gboolean visible;
+
+    if (origin == NULL)
+    {
+        visible = g_settings_get_boolean (window->priv->ui_settings, XED_SETTINGS_MENUBAR_VISIBLE);
+    }
+    else
+    {
+        visible = gtk_widget_get_visible (origin->priv->menubar);
+    }
+
+    if (visible)
+    {
+        gtk_widget_show (window->priv->menubar);
+    }
+    else
+    {
+        gtk_widget_hide (window->priv->menubar);
+    }
+
+    action = gtk_action_group_get_action (window->priv->always_sensitive_action_group, "ViewMenubar");
+
+    if (gtk_toggle_action_get_active (GTK_TOGGLE_ACTION(action)) != visible)
+    {
+        gtk_toggle_action_set_active (GTK_TOGGLE_ACTION(action), visible);
     }
 
     return visible;
@@ -921,6 +971,8 @@ toolbar_visibility_changed (GtkWidget *toolbar,
     }
 }
 
+
+
 static void
 favorite_activated (GtkAction     *action,
                     gpointer       user_data)
@@ -1190,6 +1242,7 @@ create_menu_bar_and_toolbar (XedWindow *window,
     gtk_widget_show_all (GTK_WIDGET (window->priv->toolbar));
 
     set_toolbar_style (window, NULL);
+    set_menubar_style (window, NULL);
 
     g_signal_connect_after(G_OBJECT (window->priv->toolbar), "show", G_CALLBACK (toolbar_visibility_changed), window);
     g_signal_connect_after(G_OBJECT (window->priv->toolbar), "hide", G_CALLBACK (toolbar_visibility_changed), window);
@@ -1699,6 +1752,7 @@ clone_window (XedWindow *origin)
         gtk_widget_hide (window->priv->bottom_panel);
     }
 
+    set_menubar_style (window, origin);
     set_statusbar_style (window, origin);
     set_toolbar_style (window, origin);
 
@@ -4067,7 +4121,6 @@ _xed_window_unfullscreen (XedWindow *window)
     /* Unfullscreen and show bars */
     gtk_window_unfullscreen (GTK_WINDOW (&window->window));
     g_signal_handlers_disconnect_by_func (window->priv->notebook, hide_notebook_tabs_on_fullscreen, window);
-    gtk_widget_show (window->priv->menubar);
 
     action = gtk_action_group_get_action (window->priv->always_sensitive_action_group, "ViewToolbar");
     visible = gtk_toggle_action_get_active (GTK_TOGGLE_ACTION (action));
@@ -4076,6 +4129,13 @@ _xed_window_unfullscreen (XedWindow *window)
         gtk_widget_show (window->priv->toolbar);
     }
     g_signal_handlers_unblock_by_func (window->priv->toolbar, toolbar_visibility_changed, window);
+
+    action = gtk_action_group_get_action (window->priv->always_sensitive_action_group, "ViewMenubar");
+    visible = gtk_toggle_action_get_active (GTK_TOGGLE_ACTION (action));
+    if (visible)
+    {
+        gtk_widget_show (window->priv->menubar);
+    }
 
     action = gtk_action_group_get_action (window->priv->always_sensitive_action_group, "ViewStatusbar");
     visible = gtk_toggle_action_get_active (GTK_TOGGLE_ACTION (action));
