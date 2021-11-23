@@ -392,6 +392,7 @@ xed_utils_make_valid_utf8 (const char *name)
 
 /**
  * xed_utils_uri_get_dirname:
+ * @uri: the URI to extract the dirname from
  *
  * Note: this function replace home dir with ~
  */
@@ -603,7 +604,7 @@ xed_utils_get_current_viewport (GdkScreen    *screen,
 
 /**
  * xed_utils_location_get_dirname_for_display
- * @file: the location
+ * @location: the location
  *
  * Returns a string suitable to be displayed in the UI indicating
  * the name of the directory where the file is located.

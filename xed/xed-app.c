@@ -1137,9 +1137,9 @@ _xed_app_restore_window (XedApp *app,
 
 /**
  * xed_app_get_main_windows:
- * @app: the #GeditApp
+ * @app: the #XedApp
  *
- * Returns all #XedWindows currently open in #XedApp.
+ * Returns all #XedWindow currently open in #XedApp.
  * This differs from gtk_application_get_windows() since it does not
  * include the preferences dialog and other auxiliary windows.
  *
