@@ -10,9 +10,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MATE Desktop Environment\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-06-01 12:55+0100\n"
-"PO-Revision-Date: 2020-12-20 10:46+0000\n"
-"Last-Translator: Dorian Baciu <Unknown>\n"
+"POT-Creation-Date: 2021-10-11 13:43+0100\n"
+"PO-Revision-Date: 2021-06-27 20:50+0000\n"
+"Last-Translator: Nicolae Crefelean <Unknown>\n"
 "Language-Team: Romanian "
 "(http://www.transifex.com/projects/p/MATE/language/ro/)\n"
 "MIME-Version: 1.0\n"
@@ -20,8 +20,8 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n == 1 ? 0: (((n % 100 > 19) || ((n % 100 "
 "== 0) && (n != 0))) ? 2: 1));\n"
-"X-Launchpad-Export-Date: 2021-06-25 10:39+0000\n"
-"X-Generator: Launchpad (build 40cc6dba4163ba9ca785b26ad91f43c87d70ba4d)\n"
+"X-Launchpad-Export-Date: 2021-12-06 15:03+0000\n"
+"X-Generator: Launchpad (build f92b6e0bb2624f8a9125e3f45b7621c6e230c5ff)\n"
 "Language: ro\n"
 
 #: ../data/xed.appdata.xml.in.h:1
@@ -439,12 +439,12 @@ msgid "Unsaved Document %d"
 msgstr "Document nesalvat %d"
 
 #: ../xed/xed-documents-panel.c:88 ../xed/xed-documents-panel.c:99
-#: ../xed/xed-window.c:1836 ../xed/xed-window.c:1840
+#: ../xed/xed-window.c:1890 ../xed/xed-window.c:1894
 msgid "Read-Only"
 msgstr "Doar citire"
 
 #: ../xed/xed-documents-panel.c:650 ../xed/resources/ui/xed-shortcuts.ui.h:1
-#: ../xed/xed-window.c:3086
+#: ../xed/xed-window.c:3140
 msgid "Documents"
 msgstr "Documente"
 
@@ -510,7 +510,7 @@ msgstr "SO Mac clasic"
 msgid "Windows"
 msgstr "Windows"
 
-#: ../xed/xed-highlight-mode-selector.c:297 ../xed/xed-window.c:1965
+#: ../xed/xed-highlight-mode-selector.c:297 ../xed/xed-window.c:2019
 msgid "Plain Text"
 msgstr "Text simplu"
 
@@ -1062,23 +1062,23 @@ msgstr "4"
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:10
 msgid "Draw whitespace"
-msgstr ""
+msgstr "Marchează blancurile"
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:11
 msgid "Leading whitespace"
-msgstr ""
+msgstr "Blancuri inițiale"
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:12
 msgid "Trailing whitespace"
-msgstr ""
+msgstr "Blancuri finale"
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:13
 msgid "Whitespace inside of text"
-msgstr ""
+msgstr "Blancuri în text"
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:14
 msgid "Newline character"
-msgstr ""
+msgstr "Caracter newline"
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:15
 msgid "Highlighting"
@@ -1906,50 +1906,58 @@ msgid "Show or hide the toolbar in the current window"
 msgstr "Arată sau ascunde bara de unelte în fereastra curentă"
 
 #: ../xed/xed-ui.h:161
+msgid "_Menubar"
+msgstr ""
+
+#: ../xed/xed-ui.h:162
+msgid "Show or hide the menubar in the current window"
+msgstr ""
+
+#: ../xed/xed-ui.h:164
 msgid "_Statusbar"
 msgstr "Bara de _stare"
 
-#: ../xed/xed-ui.h:162
+#: ../xed/xed-ui.h:165
 msgid "Show or hide the statusbar in the current window"
 msgstr "Arată sau ascunde bara de stare în fereastra curentă"
 
-#: ../xed/xed-ui.h:164
+#: ../xed/xed-ui.h:167
 msgid "Fullscreen"
 msgstr "Ecran complet"
 
-#: ../xed/xed-ui.h:165
+#: ../xed/xed-ui.h:168
 msgid "Edit text in fullscreen"
 msgstr "Editare text pe tot ecranul"
 
-#: ../xed/xed-ui.h:167
+#: ../xed/xed-ui.h:170
 msgid "_Word wrap"
 msgstr "_Înfășurare cuvinte"
 
-#: ../xed/xed-ui.h:168
+#: ../xed/xed-ui.h:171
 msgid "Set word wrap for the current document"
 msgstr "Setează modul înfășurare cuvinte în documentul curent"
 
-#: ../xed/xed-ui.h:170
+#: ../xed/xed-ui.h:173
 msgid "_Overview Map"
 msgstr "_Hartă de ansamblu"
 
-#: ../xed/xed-ui.h:171
+#: ../xed/xed-ui.h:174
 msgid "Show or hide the overview map for the current view"
 msgstr "Afișează sau ascunde harta de ansamblu pentru vizualizarea curentă"
 
-#: ../xed/xed-ui.h:178
+#: ../xed/xed-ui.h:181
 msgid "Side _Pane"
 msgstr "_Panou lateral"
 
-#: ../xed/xed-ui.h:179
+#: ../xed/xed-ui.h:182
 msgid "Show or hide the side pane in the current window"
 msgstr "Arată sau ascunde panoul lateral în fereastra curentă"
 
-#: ../xed/xed-ui.h:181
+#: ../xed/xed-ui.h:184
 msgid "_Bottom Pane"
 msgstr "Panou _inferior"
 
-#: ../xed/xed-ui.h:182
+#: ../xed/xed-ui.h:185
 msgid "Show or hide the bottom pane in the current window"
 msgstr "Arată sau ascunde panoul inferior în fereastra curentă"
 
@@ -1979,36 +1987,36 @@ msgid "_Display line numbers"
 msgstr "Afișează _numerotarea rândurilor"
 
 #. Translators: %s is a URI
-#: ../xed/xed-window.c:878
+#: ../xed/xed-window.c:928
 #, c-format
 msgid "Open '%s'"
 msgstr "Deschide „%s”"
 
 #. Translators: %s is a URI
-#: ../xed/xed-window.c:1226
+#: ../xed/xed-window.c:1279
 #, c-format
 msgid "Activate '%s'"
 msgstr "Activează „%s”"
 
-#: ../xed/xed-window.c:1414
+#: ../xed/xed-window.c:1467
 #, c-format
 msgid "Spaces: %u"
 msgstr "Spații: %u"
 
-#: ../xed/xed-window.c:1418
+#: ../xed/xed-window.c:1471
 #, c-format
 msgid "Tabs: %u"
 msgstr "Tab-uri: %u"
 
-#: ../xed/xed-window.c:1495
+#: ../xed/xed-window.c:1548
 msgid "Use Spaces"
 msgstr "Folosește spații"
 
-#: ../xed/xed-window.c:2302
+#: ../xed/xed-window.c:2356
 msgid "There are unsaved documents"
 msgstr "Există documente nesalvate"
 
-#: ../xed/xed-window.c:3351
+#: ../xed/xed-window.c:3405
 msgid "Elevated Privileges"
 msgstr "Privilegii superioare"
 

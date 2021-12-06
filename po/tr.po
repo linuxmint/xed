@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MATE Desktop Environment\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-06-01 12:55+0100\n"
-"PO-Revision-Date: 2021-06-07 13:51+0000\n"
+"POT-Creation-Date: 2021-10-11 13:43+0100\n"
+"PO-Revision-Date: 2021-10-11 13:25+0000\n"
 "Last-Translator: Butterfly <Unknown>\n"
 "Language-Team: Turkish "
 "(http://www.transifex.com/projects/p/MATE/language/tr/)\n"
@@ -20,8 +20,8 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2021-06-25 10:39+0000\n"
-"X-Generator: Launchpad (build 40cc6dba4163ba9ca785b26ad91f43c87d70ba4d)\n"
+"X-Launchpad-Export-Date: 2021-12-06 15:03+0000\n"
+"X-Generator: Launchpad (build f92b6e0bb2624f8a9125e3f45b7621c6e230c5ff)\n"
 "Language: tr\n"
 
 #: ../data/xed.appdata.xml.in.h:1
@@ -406,12 +406,12 @@ msgid "Unsaved Document %d"
 msgstr "Kaydedilmemiş Belge %d"
 
 #: ../xed/xed-documents-panel.c:88 ../xed/xed-documents-panel.c:99
-#: ../xed/xed-window.c:1836 ../xed/xed-window.c:1840
+#: ../xed/xed-window.c:1890 ../xed/xed-window.c:1894
 msgid "Read-Only"
 msgstr "Salt-Okunur"
 
 #: ../xed/xed-documents-panel.c:650 ../xed/resources/ui/xed-shortcuts.ui.h:1
-#: ../xed/xed-window.c:3086
+#: ../xed/xed-window.c:3140
 msgid "Documents"
 msgstr "Belgeler"
 
@@ -477,7 +477,7 @@ msgstr "Mac OS Classic"
 msgid "Windows"
 msgstr "Windows"
 
-#: ../xed/xed-highlight-mode-selector.c:297 ../xed/xed-window.c:1965
+#: ../xed/xed-highlight-mode-selector.c:297 ../xed/xed-window.c:2019
 msgid "Plain Text"
 msgstr "Düz Metin"
 
@@ -1864,50 +1864,58 @@ msgid "Show or hide the toolbar in the current window"
 msgstr "Geçerli penceredeki araç çubuğunu göster ya da gizle"
 
 #: ../xed/xed-ui.h:161
+msgid "_Menubar"
+msgstr "_Menü çubuğu"
+
+#: ../xed/xed-ui.h:162
+msgid "Show or hide the menubar in the current window"
+msgstr "Mevcut penceredeki menü çubuğunu göster ya da gizle"
+
+#: ../xed/xed-ui.h:164
 msgid "_Statusbar"
 msgstr "_Durum çubuğu"
 
-#: ../xed/xed-ui.h:162
+#: ../xed/xed-ui.h:165
 msgid "Show or hide the statusbar in the current window"
 msgstr "Geçerli penceredeki durum çubuğunu göster ya da gizle"
 
-#: ../xed/xed-ui.h:164
+#: ../xed/xed-ui.h:167
 msgid "Fullscreen"
 msgstr "Tam ekran"
 
-#: ../xed/xed-ui.h:165
+#: ../xed/xed-ui.h:168
 msgid "Edit text in fullscreen"
 msgstr "Metni tam ekranda düzenleyin"
 
-#: ../xed/xed-ui.h:167
+#: ../xed/xed-ui.h:170
 msgid "_Word wrap"
 msgstr "_Sözcük kaydırma"
 
-#: ../xed/xed-ui.h:168
+#: ../xed/xed-ui.h:171
 msgid "Set word wrap for the current document"
 msgstr "Mevcut döküman için sözcük kaydırmayı ayarla"
 
-#: ../xed/xed-ui.h:170
+#: ../xed/xed-ui.h:173
 msgid "_Overview Map"
 msgstr "_Genel Bakış Haritası"
 
-#: ../xed/xed-ui.h:171
+#: ../xed/xed-ui.h:174
 msgid "Show or hide the overview map for the current view"
 msgstr "Mevcut görünüm için genel bakış haritasını gösterir ya da gizler"
 
-#: ../xed/xed-ui.h:178
+#: ../xed/xed-ui.h:181
 msgid "Side _Pane"
 msgstr "_Kenar Paneli"
 
-#: ../xed/xed-ui.h:179
+#: ../xed/xed-ui.h:182
 msgid "Show or hide the side pane in the current window"
 msgstr "Geçerli penceredeki kenar panelini göster ya da gizle"
 
-#: ../xed/xed-ui.h:181
+#: ../xed/xed-ui.h:184
 msgid "_Bottom Pane"
 msgstr "_Alt Panel"
 
-#: ../xed/xed-ui.h:182
+#: ../xed/xed-ui.h:185
 msgid "Show or hide the bottom pane in the current window"
 msgstr "Geçerli penceredeki alt paneli göster ya da gizle"
 
@@ -1936,36 +1944,36 @@ msgid "_Display line numbers"
 msgstr "Satır sayılarını _göster"
 
 #. Translators: %s is a URI
-#: ../xed/xed-window.c:878
+#: ../xed/xed-window.c:928
 #, c-format
 msgid "Open '%s'"
 msgstr "'%s' adresini aç"
 
 #. Translators: %s is a URI
-#: ../xed/xed-window.c:1226
+#: ../xed/xed-window.c:1279
 #, c-format
 msgid "Activate '%s'"
 msgstr "'%s' etkinleştir"
 
-#: ../xed/xed-window.c:1414
+#: ../xed/xed-window.c:1467
 #, c-format
 msgid "Spaces: %u"
 msgstr "Boşluklar: %u"
 
-#: ../xed/xed-window.c:1418
+#: ../xed/xed-window.c:1471
 #, c-format
 msgid "Tabs: %u"
 msgstr "Sekmeler: %u"
 
-#: ../xed/xed-window.c:1495
+#: ../xed/xed-window.c:1548
 msgid "Use Spaces"
 msgstr "Boşlukları Kullan"
 
-#: ../xed/xed-window.c:2302
+#: ../xed/xed-window.c:2356
 msgid "There are unsaved documents"
 msgstr "Kaydedilmemiş belgeler var"
 
-#: ../xed/xed-window.c:3351
+#: ../xed/xed-window.c:3405
 msgid "Elevated Privileges"
 msgstr "Yükseltilmiş Ayrıcalıklarla Çalışıyor"
 
