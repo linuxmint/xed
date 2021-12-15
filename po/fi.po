@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MATE Desktop Environment\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-10-11 13:43+0100\n"
-"PO-Revision-Date: 2021-10-11 20:52+0000\n"
+"POT-Creation-Date: 2021-06-01 12:55+0100\n"
+"PO-Revision-Date: 2021-06-02 20:53+0000\n"
 "Last-Translator: Kimmo Kujansuu <Unknown>\n"
 "Language-Team: Finnish "
 "(http://www.transifex.com/projects/p/MATE/language/fi/)\n"
@@ -17,8 +17,8 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2021-12-06 15:03+0000\n"
-"X-Generator: Launchpad (build f92b6e0bb2624f8a9125e3f45b7621c6e230c5ff)\n"
+"X-Launchpad-Export-Date: 2021-06-25 10:39+0000\n"
+"X-Generator: Launchpad (build 40cc6dba4163ba9ca785b26ad91f43c87d70ba4d)\n"
 "Language: fi\n"
 
 #: ../data/xed.appdata.xml.in.h:1
@@ -409,12 +409,12 @@ msgid "Unsaved Document %d"
 msgstr "Tallentamaton asiakirja %d"
 
 #: ../xed/xed-documents-panel.c:88 ../xed/xed-documents-panel.c:99
-#: ../xed/xed-window.c:1890 ../xed/xed-window.c:1894
+#: ../xed/xed-window.c:1836 ../xed/xed-window.c:1840
 msgid "Read-Only"
 msgstr "Vain luku"
 
 #: ../xed/xed-documents-panel.c:650 ../xed/resources/ui/xed-shortcuts.ui.h:1
-#: ../xed/xed-window.c:3140
+#: ../xed/xed-window.c:3086
 msgid "Documents"
 msgstr "Asiakirjat"
 
@@ -480,7 +480,7 @@ msgstr "Mac OS Classic"
 msgid "Windows"
 msgstr "Windows"
 
-#: ../xed/xed-highlight-mode-selector.c:297 ../xed/xed-window.c:2019
+#: ../xed/xed-highlight-mode-selector.c:297 ../xed/xed-window.c:1965
 msgid "Plain Text"
 msgstr "Raakateksti"
 
@@ -680,7 +680,7 @@ msgstr "Älä Ta_llenna"
 #. FIXME: review this message, it's not clear since for the user the "modification"
 #. * could be interpreted as the changes he made in the document. beside "reading" is
 #. * not accurate (since last load/save)
-#. 
+#.
 #: ../xed/xed-io-error-info-bar.c:760
 #, c-format
 msgid "The file %s has been modified since reading it."
@@ -1147,12 +1147,12 @@ msgstr "Rivinumerot"
 msgid "Print line nu_mbers"
 msgstr "Tu_losta rivinumerot"
 
-#. 
+#.
 #: ../xed/resources/ui/xed-print-preferences.ui.h:6
 msgid "_Number every"
 msgstr "_Numeroinnin rivitystiheys:"
 
-#. 
+#.
 #: ../xed/resources/ui/xed-print-preferences.ui.h:8
 msgid "lines"
 msgstr "rivin välein"
@@ -1869,58 +1869,50 @@ msgid "Show or hide the toolbar in the current window"
 msgstr "Näytä tai piilota työkalupalkki tässä ikkunassa"
 
 #: ../xed/xed-ui.h:161
-msgid "_Menubar"
-msgstr "_Valikkopalkki"
-
-#: ../xed/xed-ui.h:162
-msgid "Show or hide the menubar in the current window"
-msgstr "Näytä tai piilota valikkopalkki nykyisessä ikkunassa"
-
-#: ../xed/xed-ui.h:164
 msgid "_Statusbar"
 msgstr "T_ilarivi"
 
-#: ../xed/xed-ui.h:165
+#: ../xed/xed-ui.h:162
 msgid "Show or hide the statusbar in the current window"
 msgstr "Näytä tai piilota tilarivi tässä ikkunassa"
 
-#: ../xed/xed-ui.h:167
+#: ../xed/xed-ui.h:164
 msgid "Fullscreen"
 msgstr "Koko näyttö"
 
-#: ../xed/xed-ui.h:168
+#: ../xed/xed-ui.h:165
 msgid "Edit text in fullscreen"
 msgstr "Muokkaa tekstiä kokoruututilassa"
 
-#: ../xed/xed-ui.h:170
+#: ../xed/xed-ui.h:167
 msgid "_Word wrap"
 msgstr "_Rivitys"
 
-#: ../xed/xed-ui.h:171
+#: ../xed/xed-ui.h:168
 msgid "Set word wrap for the current document"
 msgstr "Aseta rivitys nykyiselle asiakirjalle"
 
-#: ../xed/xed-ui.h:173
+#: ../xed/xed-ui.h:170
 msgid "_Overview Map"
 msgstr "_Yleiskuvakartta"
 
-#: ../xed/xed-ui.h:174
+#: ../xed/xed-ui.h:171
 msgid "Show or hide the overview map for the current view"
 msgstr "Näytä tai piilota yleiskuvakartta nykyisestä näkymästä"
 
-#: ../xed/xed-ui.h:181
+#: ../xed/xed-ui.h:178
 msgid "Side _Pane"
 msgstr "Sivu_paneeli"
 
-#: ../xed/xed-ui.h:182
+#: ../xed/xed-ui.h:179
 msgid "Show or hide the side pane in the current window"
 msgstr "Näytä tai piilot sivupaneeli nykyisessä ikkunassa"
 
-#: ../xed/xed-ui.h:184
+#: ../xed/xed-ui.h:181
 msgid "_Bottom Pane"
 msgstr "_Alapaneeli"
 
-#: ../xed/xed-ui.h:185
+#: ../xed/xed-ui.h:182
 msgid "Show or hide the bottom pane in the current window"
 msgstr "Näytä tai piilota alapaneeli nykyisessä ikkunassa"
 
@@ -1949,36 +1941,36 @@ msgid "_Display line numbers"
 msgstr "Näytä rivi_numerot"
 
 #. Translators: %s is a URI
-#: ../xed/xed-window.c:928
+#: ../xed/xed-window.c:878
 #, c-format
 msgid "Open '%s'"
 msgstr "Avaa ”%s”"
 
 #. Translators: %s is a URI
-#: ../xed/xed-window.c:1279
+#: ../xed/xed-window.c:1226
 #, c-format
 msgid "Activate '%s'"
 msgstr "Avaa ”%s”"
 
-#: ../xed/xed-window.c:1467
+#: ../xed/xed-window.c:1414
 #, c-format
 msgid "Spaces: %u"
 msgstr "Välit: %u"
 
-#: ../xed/xed-window.c:1471
+#: ../xed/xed-window.c:1418
 #, c-format
 msgid "Tabs: %u"
 msgstr "Sarkaimet: %u"
 
-#: ../xed/xed-window.c:1548
+#: ../xed/xed-window.c:1495
 msgid "Use Spaces"
 msgstr "Käytä välilyöntejä"
 
-#: ../xed/xed-window.c:2356
+#: ../xed/xed-window.c:2302
 msgid "There are unsaved documents"
 msgstr "Tallentamattomia asiakirjoja on avoinna"
 
-#: ../xed/xed-window.c:3405
+#: ../xed/xed-window.c:3351
 msgid "Elevated Privileges"
 msgstr "Korotetut oikeudet"
 
@@ -2414,6 +2406,22 @@ msgstr "Tilarivit"
 #: ../plugins/modelines/modelines.plugin.desktop.in.h:2
 msgid "Emacs, Kate and Vim-style modelines support for xed."
 msgstr "Emacs,- Kate- ja Vim-tyylisten tilarivien tuki xedille."
+
+#: ../plugins/rsort/rsort.plugin.desktop.in.h:1
+msgid "RSort"
+msgstr ""
+
+#: ../plugins/rsort/rsort.plugin.desktop.in.h:2
+msgid "Reverse sorts a document or selected text."
+msgstr ""
+
+#: ../plugins/rsort/xed-rsort-plugin.c:78
+msgid "_RSort lines"
+msgstr ""
+
+#: ../plugins/rsort/xed-rsort-plugin.c:80
+msgid "Reverse Sort the current document or selection"
+msgstr ""
 
 #: ../plugins/sort/sort.plugin.desktop.in.h:1
 msgid "Sort"
