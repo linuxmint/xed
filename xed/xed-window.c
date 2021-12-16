@@ -123,13 +123,16 @@ on_key_pressed (GtkWidget *widget,
     if (event->state & GDK_CONTROL_MASK &&
          (event->keyval == GDK_KEY_KP_Tab ||
           event->keyval == GDK_KEY_Tab ||
-          event->keyval == GDK_KEY_ISO_Left_Tab)) {
-        int current_page = gtk_notebook_get_current_page (window->priv->notebook);
-        int num_pages = gtk_notebook_get_n_pages (window->priv->notebook);
+          event->keyval == GDK_KEY_ISO_Left_Tab))
+    {
+        GtkNotebook* notebook = GTK_NOTEBOOK (window->priv->notebook);
+        int current_page = gtk_notebook_get_current_page (notebook);
+        int num_pages = gtk_notebook_get_n_pages (notebook);
+
         if (event->state & GDK_SHIFT_MASK)
-            gtk_notebook_set_current_page (window->priv->notebook, (current_page - 1) % num_pages);
+            gtk_notebook_set_current_page (notebook, (current_page - 1) % num_pages);
         else
-            gtk_notebook_set_current_page (window->priv->notebook, (current_page + 1) % num_pages);
+            gtk_notebook_set_current_page (notebook, (current_page + 1) % num_pages);
         return GDK_EVENT_STOP;
     }
     else if (event->keyval == GDK_KEY_Escape)
