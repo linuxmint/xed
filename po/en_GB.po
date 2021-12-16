@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MATE Desktop Environment\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-10-11 13:43+0100\n"
+"POT-Creation-Date: 2021-06-01 12:55+0100\n"
 "PO-Revision-Date: 2021-01-05 15:05+0000\n"
 "Last-Translator: Stephan Woidowski <swoidowski@t-online.de>\n"
 "Language-Team: English (United Kingdom) "
@@ -18,8 +18,8 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2021-12-06 15:03+0000\n"
-"X-Generator: Launchpad (build f92b6e0bb2624f8a9125e3f45b7621c6e230c5ff)\n"
+"X-Launchpad-Export-Date: 2021-06-25 10:39+0000\n"
+"X-Generator: Launchpad (build 40cc6dba4163ba9ca785b26ad91f43c87d70ba4d)\n"
 "Language: en_GB\n"
 
 #: ../data/xed.appdata.xml.in.h:1
@@ -396,12 +396,12 @@ msgid "Unsaved Document %d"
 msgstr "Unsaved Document %d"
 
 #: ../xed/xed-documents-panel.c:88 ../xed/xed-documents-panel.c:99
-#: ../xed/xed-window.c:1890 ../xed/xed-window.c:1894
+#: ../xed/xed-window.c:1836 ../xed/xed-window.c:1840
 msgid "Read-Only"
 msgstr "Read-Only"
 
 #: ../xed/xed-documents-panel.c:650 ../xed/resources/ui/xed-shortcuts.ui.h:1
-#: ../xed/xed-window.c:3140
+#: ../xed/xed-window.c:3086
 msgid "Documents"
 msgstr "Documents"
 
@@ -467,7 +467,7 @@ msgstr "Mac OS Classic"
 msgid "Windows"
 msgstr "Windows"
 
-#: ../xed/xed-highlight-mode-selector.c:297 ../xed/xed-window.c:2019
+#: ../xed/xed-highlight-mode-selector.c:297 ../xed/xed-window.c:1965
 msgid "Plain Text"
 msgstr "Plain Text"
 
@@ -668,7 +668,7 @@ msgstr "D_on't Save"
 #. FIXME: review this message, it's not clear since for the user the "modification"
 #. * could be interpreted as the changes he made in the document. beside "reading" is
 #. * not accurate (since last load/save)
-#. 
+#.
 #: ../xed/xed-io-error-info-bar.c:760
 #, c-format
 msgid "The file %s has been modified since reading it."
@@ -1132,12 +1132,12 @@ msgstr "Line Numbers"
 msgid "Print line nu_mbers"
 msgstr "Print line nu_mbers"
 
-#. 
+#.
 #: ../xed/resources/ui/xed-print-preferences.ui.h:6
 msgid "_Number every"
 msgstr "_Number every"
 
-#. 
+#.
 #: ../xed/resources/ui/xed-print-preferences.ui.h:8
 msgid "lines"
 msgstr "lines"
@@ -1854,58 +1854,50 @@ msgid "Show or hide the toolbar in the current window"
 msgstr "Show or hide the toolbar in the current window"
 
 #: ../xed/xed-ui.h:161
-msgid "_Menubar"
-msgstr ""
-
-#: ../xed/xed-ui.h:162
-msgid "Show or hide the menubar in the current window"
-msgstr ""
-
-#: ../xed/xed-ui.h:164
 msgid "_Statusbar"
 msgstr "_Statusbar"
 
-#: ../xed/xed-ui.h:165
+#: ../xed/xed-ui.h:162
 msgid "Show or hide the statusbar in the current window"
 msgstr "Show or hide the statusbar in the current window"
 
-#: ../xed/xed-ui.h:167
+#: ../xed/xed-ui.h:164
 msgid "Fullscreen"
 msgstr "Fullscreen"
 
-#: ../xed/xed-ui.h:168
+#: ../xed/xed-ui.h:165
 msgid "Edit text in fullscreen"
 msgstr "Edit text in fullscreen"
 
-#: ../xed/xed-ui.h:170
+#: ../xed/xed-ui.h:167
 msgid "_Word wrap"
 msgstr "_Word wrap"
 
-#: ../xed/xed-ui.h:171
+#: ../xed/xed-ui.h:168
 msgid "Set word wrap for the current document"
 msgstr "Set word wrap for the current document"
 
-#: ../xed/xed-ui.h:173
+#: ../xed/xed-ui.h:170
 msgid "_Overview Map"
 msgstr "_Overview Map"
 
-#: ../xed/xed-ui.h:174
+#: ../xed/xed-ui.h:171
 msgid "Show or hide the overview map for the current view"
 msgstr "Show or hide the overview map for the current view"
 
-#: ../xed/xed-ui.h:181
+#: ../xed/xed-ui.h:178
 msgid "Side _Pane"
 msgstr "Side _Pane"
 
-#: ../xed/xed-ui.h:182
+#: ../xed/xed-ui.h:179
 msgid "Show or hide the side pane in the current window"
 msgstr "Show or hide the side pane in the current window"
 
-#: ../xed/xed-ui.h:184
+#: ../xed/xed-ui.h:181
 msgid "_Bottom Pane"
 msgstr "_Bottom Pane"
 
-#: ../xed/xed-ui.h:185
+#: ../xed/xed-ui.h:182
 msgid "Show or hide the bottom pane in the current window"
 msgstr "Show or hide the bottom pane in the current window"
 
@@ -1934,36 +1926,36 @@ msgid "_Display line numbers"
 msgstr "_Display line numbers"
 
 #. Translators: %s is a URI
-#: ../xed/xed-window.c:928
+#: ../xed/xed-window.c:878
 #, c-format
 msgid "Open '%s'"
 msgstr "Open '%s'"
 
 #. Translators: %s is a URI
-#: ../xed/xed-window.c:1279
+#: ../xed/xed-window.c:1226
 #, c-format
 msgid "Activate '%s'"
 msgstr "Activate '%s'"
 
-#: ../xed/xed-window.c:1467
+#: ../xed/xed-window.c:1414
 #, c-format
 msgid "Spaces: %u"
 msgstr "Spaces: %u"
 
-#: ../xed/xed-window.c:1471
+#: ../xed/xed-window.c:1418
 #, c-format
 msgid "Tabs: %u"
 msgstr "Tabs: %u"
 
-#: ../xed/xed-window.c:1548
+#: ../xed/xed-window.c:1495
 msgid "Use Spaces"
 msgstr "Use Spaces"
 
-#: ../xed/xed-window.c:2356
+#: ../xed/xed-window.c:2302
 msgid "There are unsaved documents"
 msgstr "There are unsaved documents"
 
-#: ../xed/xed-window.c:3405
+#: ../xed/xed-window.c:3351
 msgid "Elevated Privileges"
 msgstr "Elevated Privileges"
 
@@ -2400,6 +2392,22 @@ msgstr "Modelines"
 #: ../plugins/modelines/modelines.plugin.desktop.in.h:2
 msgid "Emacs, Kate and Vim-style modelines support for xed."
 msgstr "Emacs, Kate and Vim-style modelines support for xed."
+
+#: ../plugins/rsort/rsort.plugin.desktop.in.h:1
+msgid "RSort"
+msgstr "RSort"
+
+#: ../plugins/rsort/rsort.plugin.desktop.in.h:2
+msgid "Reverse sorts a document or selected text."
+msgstr "Reverse sorts a document or selected text."
+
+#: ../plugins/rsort/xed-rsort-plugin.c:78
+msgid "_RSort lines"
+msgstr "_RSort lines"
+
+#: ../plugins/rsort/xed-rsort-plugin.c:80
+msgid "Reverse Sort the current document or selection"
+msgstr "Reverse Sort the current document or selection"
 
 #: ../plugins/sort/sort.plugin.desktop.in.h:1
 msgid "Sort"
