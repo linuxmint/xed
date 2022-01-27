@@ -1,9 +1,9 @@
 <?xml version="1.0"?>
 <!DOCTYPE article PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
 "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd" [
-  <!ENTITY appversion "1.10">
-  <!ENTITY manrevision "3.0">
-  <!ENTITY date "July 2015">
+  <!ENTITY appversion "3.2.2">
+  <!ENTITY manrevision "3.1">
+  <!ENTITY date "January 2022">
   <!ENTITY app "xed">
 ]>
 
@@ -97,7 +97,7 @@
 		</revision>
    	<revision>
 		  <revnumber>&app; Manual V2.8</revnumber>
-		  <date>&date;</date>
+		  <date>Unknown 200x</date>
 		  <revdescription>
 			 <para role="author">Sun Java Desktop System Documentation Team</para>
 			 <para role="publisher">GNOME Documentation Project</para>
@@ -112,11 +112,19 @@
 		  </revdescription>
 		</revision>
    		<revision>
-		  <revnumber>&app; Manual V&manrevision;</revnumber>
-		  <date>&date;</date>
+		  <revnumber>&app; Manual V3.0;</revnumber>
+		  <date>July 2015</date>
 		  <revdescription>
 			 <para role="author">MATE Documentation Team</para>
 			 <para role="publisher">MATE Documentation Project</para>
+		  </revdescription>
+		</revision>
+   		<revision>
+		  <revnumber>&app; Manual V&manrevision;</revnumber>
+		  <date>&date;</date>
+		  <revdescription>
+			 <para role="author">Garod Vindal <email>mandospring@gmail.com</email></para>
+			 <para role="publisher">GNOME Documentation Project</para>
 		  </revdescription>
 		</revision>
 	 </revhistory>
@@ -159,7 +167,7 @@
     		<para>Execute the following command: <command>xed</command></para>
     		</listitem>
     		</varlistentry>
-    		</variablelist>
+    	</variablelist>
     <para>By default, when you open a text document in the file manager, xed will start, and display the document.</para>
 	</sect2>
 
@@ -218,11 +226,6 @@
 				<para>By default the side pane is not shown. To show it, choose <menuchoice><guimenu>View</guimenu><guimenuitem>Side Pane</guimenuitem></menuchoice>.</para>
 			 </listitem>
 		  </varlistentry>
-		  <varlistentry> <term>Bottom Pane</term>
-			 <listitem>
-				<para>By default the bottom pane is not shown. To show it, choose <menuchoice><guimenu>View</guimenu><guimenuitem>Bottom Pane</guimenuitem></menuchoice>.</para>
-			 </listitem>
-		  </varlistentry>
 		</variablelist>
 		<para>When you right-click in the <application>&app;</application> window, the application displays a popup menu. The popup menu contains the most common text editing commands. </para>
 
@@ -252,7 +255,7 @@
 		<title>Opening a File</title>
 		<para>To open a file, choose <menuchoice><guimenu>File</guimenu><guimenuitem>Open</guimenuitem></menuchoice> to display the <guilabel>Open File</guilabel> dialog. Select the file that you want to open, then click <guibutton>Open</guibutton>. The file is displayed in the <application>&app;</application> window. </para>
 
-		<para>The application records the paths and filenames of the five most recent files that you edited and displays the files as menu items on the <menuchoice><guimenu>File</guimenu></menuchoice> menu. You can also click on the <inlinemediaobject><imageobject><imagedata fileref="figures/xed_recent_files_menu_icon.png" format="PNG"/></imageobject><textobject><phrase>Shows Recent Files menu icon.</phrase></textobject></inlinemediaobject>  icon on the toolbar to display the list of recent files.  </para>
+		<para>The application records the paths and filenames of the five most recent files that you edited and displays the files as sub-menu items under the <menuchoice><guimenu>File</guimenu><guimenuitem>Recents</guimenuitem></menuchoice> menu choice.</para>
 
 		<note><para>You can open multiple files in <application>&app;</application>. The application adds a tab for each open file to the window. For more on this see <xref linkend="xed-tabs"/>.</para></note>
 
@@ -273,27 +276,6 @@
 		<para>To close all of the files that are currently open in <application>&app;</application>, choose <menuchoice> <guimenu>Documents</guimenu> <guimenuitem>Close All</guimenuitem> </menuchoice>.</para>
 	 </sect2>
 
-<!-- ============= To Open a File from a URI ======================= -->
-	 <sect2 id="xed-open-from-uri">
-		<title>Opening a File from a URI</title>
-		<para>To open a file from a Uniform Resource Identifier (URI), perform the following steps:</para>
-		<orderedlist>
-		<listitem>
-		<para>Choose <menuchoice> <guimenu>File</guimenu> <guimenuitem>Open Location</guimenuitem> </menuchoice> to display the <guilabel>Open Location</guilabel> dialog. </para>
-		</listitem>
-		<listitem>
-		<para>Enter the URI of the file that you want to open.</para>
-		</listitem>
-		<listitem>
-		<para>Use the <guilabel>Character coding</guilabel> drop-down list to select the appropriate character coding. </para>
-		</listitem>
-		<listitem>
-		<para>Click <guibutton>Open</guibutton>.</para>
-		</listitem>
-		</orderedlist>
-		<para>Valid types of <replaceable>URI</replaceable> include <literal>http:</literal>, <literal>ftp:</literal>, <literal>file:</literal>, and all of the methods supported by <literal>gvfs</literal>.</para>
-		<para>Files from some types of URI are opened as read-only, and any changes you make must be saved to a different location. HTTP only allows files to be read. Files opened from FTP are read-only because not all FTP servers may correctly work with saving remote files.</para>
-	 </sect2>
 
 <!-- ============= Working with tabs ======================== -->
 	 <sect2 id="xed-tabs">
@@ -338,15 +320,12 @@
 	<sect1 id="xed-find">
 		<title>Finding and Replacing</title>
 
-		<para>In <application>&app;</application>, there are two ways of searching for text. You can use the <guilabel>Find</guilabel> dialog to search for a specific piece of text, or <guilabel>Incremental Search</guilabel> to highlight matching text as you type it.
-		</para>
-
 <!-- ============= To Find Text ================================ -->
 	 <sect2 id="xed-find-text">
 		<title>Finding Text</title>
 		<para>To search a file for a string of text, perform the following steps:</para>
 		<orderedlist>
-		  <listitem><para>Choose <menuchoice> <guimenu>Search</guimenu> <guimenuitem>Find</guimenuitem> </menuchoice> to display the <guilabel>Find</guilabel> dialog.</para>
+		  <listitem><para>Choose <menuchoice> <guimenu>Search</guimenu> <guimenuitem>Find</guimenuitem> </menuchoice>. The <guilabel>Find</guilabel> pane will open at the bottom of the &app; window.</para>
 		  </listitem>
 		  <listitem><para>Type the string that you want to find in the <guilabel>Search for</guilabel> field. You can include special characters such as a new line or tab: see <xref linkend="xed-find-escapes"/>.</para>
 		  </listitem>
@@ -356,17 +335,6 @@
 		  </listitem>
 		</orderedlist>
 		<para>After you have closed the <guilabel>Find</guilabel> dialog, you can still move the selection to other occurrences of the text by choosing  <menuchoice> <guimenu>Search</guimenu> <guimenuitem>Find Next</guimenuitem> </menuchoice> and  <menuchoice> <guimenu>Search</guimenu> <guimenuitem>Find Previous</guimenuitem> </menuchoice>.</para>
-		<para>To remove the highlighting from the text, choose  <menuchoice> <guimenu>Search</guimenu> <guimenuitem>Clear Highlight</guimenuitem> </menuchoice>.</para>
-	 </sect2>
-
-	 <sect2 id="xed-find-incremental">
-	   <title>Incremental Search</title>
-
-	   <para>Incremental search highlights matching text in the document as you type it letter by letter. (This is similar to the search feature in several web browsers.)</para>
-	   <para>To start an incremental search, choose <menuchoice> <guimenu>Search</guimenu> <guimenuitem>Incremental Search</guimenuitem> </menuchoice>. The search box appears at the top of the display area. </para>
-	   <para>Begin typing, and text that matches will be highlighted in the document. The first instance after the cursor position is also selected.</para>
-	   <para>To advance the selection to the next match while keeping the incremental search box open, press <keycombo><keycap>Ctrl</keycap><keycap>G</keycap></keycombo>. Press <keycombo><keycap>Ctrl</keycap><keycap>Shift</keycap><keycap>G</keycap></keycombo> to go back to the previous match.</para>
-	   <tip><para>You can also use the up and down arrow keys or the mouse wheel to move the selection between matches.</para></tip>
 	 </sect2>
 
 <!-- ============= To Find and Replace Text =================== -->
@@ -375,27 +343,30 @@
 
 		<para>To search a file for a string, and replace the string with an alternative string, perform the following steps:</para>
 		<orderedlist>
-		  <listitem><para>Choose <menuchoice> <guimenu>Search</guimenu> <guimenuitem>Replace</guimenuitem> </menuchoice> to display the <guilabel>Replace</guilabel> dialog.</para>
+		  <listitem><para>Choose <menuchoice> <guimenu>Search</guimenu> <guimenuitem>Replace</guimenuitem> </menuchoice> to display the <guilabel>Replace</guilabel> pane at the bottom of the &app; window.</para>
 		  </listitem>
 		  <listitem><para>Type the string that you want to find, in the <guilabel>Search for</guilabel> field. You can include special characters such as a new line or tab: see <xref linkend="xed-find-escapes"/>.</para></listitem>
 		  <listitem><para>Type the string that you want to use to replace the string that you find, in the <guilabel>Replace with</guilabel> field.</para>
 		  </listitem>
 		</orderedlist>
 
-		<para>To examine each occurrence of the string before replacing it, click <guibutton>Find</guibutton>. If <application>&app;</application> finds the string, the application selects the string. Click <guibutton>Replace</guibutton> to replace the selected occurrence of the string. To find the next occurrence of the string, click <guibutton>Find</guibutton> again.</para>
+		<para>If <application>&app;</application> finds the string, the application selects the string. Click <guibutton>Replace</guibutton> to replace the selected occurrence of the string. The selected text will be replaced and the next match to the search string will be selected. To find the next occurrence of the string without changing the current selection, click <guibutton>Next</guibutton>(or <guibutton>Previous</guibutton>).</para>
 		<para>To replace all occurrences of the string throughout the document, click <guibutton>Replace All</guibutton>.</para>
 	 </sect2>
 
 <!-- ============= Find and Replace Options ============================ -->
   <sect2 id="xed-find-options">
 		<title>Find and Replace Options</title>
-		<para>The <guilabel>Find</guilabel> dialog and the <guilabel>Replace</guilabel> dialog both have the following options:</para>
+		<para>Four buttons on the left side the <guilabel>Find</guilabel> or <guilabel>Replace</guilabel> pane control the following options respectively: Regular expression search, Match case, Match whole word, and Wrap search. Each option can be toggled by clicking on its button.</para>
+		<imageobject>
+		  <imagedata fileref="figures/xed_search_pane_buttons.png" format="PNG"/>
+		</imageobject>
 		<itemizedlist>
+		  <listitem><para>Select the <guilabel>Regular Expression</guilabel> option to search using regular expressions.  For some basics on the use of regular expressions for searching see: <ulink url="man:grep" type="man"><citerefentry><refentrytitle>grep</refentrytitle><manvolnum>1</manvolnum></citerefentry></ulink></para>
+		  </listitem>
 		  <listitem><para>Select the <guilabel>Match case</guilabel> option to only find occurrences of the string that match the case of the text that you type. For example, with <guilabel>Match case</guilabel> selected, "TEXT" will not match "text".</para>
 		  </listitem>
 		  <listitem><para>Select the <guilabel>Match entire word only</guilabel> option to only find occurrences of the string that match the entire words of the text that you type. For example, with <guilabel>Match entire word only</guilabel> selected, "text" will not match "texture". <!-- translators, please make up your own example ;) --></para>
-		  </listitem>
-		  <listitem><para>Select the <guilabel>Search backwards</guilabel> option to search backwards towards the beginning of the document. </para>
 		  </listitem>
 		  <listitem><para>Select the <guilabel>Wrap around</guilabel> option to search to one end of the document and then continue the search from the other end of the file. </para>
 		  </listitem>
@@ -449,271 +420,63 @@
 
   </sect1>
 
+<!-- ============= To Print a File ============================ -->
   <sect1 id="xed-printing">
     <title>Printing</title>
+        <para>Two printing options appear under the <guimenu>File</guimenu>menu choice:  <guimenuitem>Print</guimenuitem> which opens a print dialog box allowing the setting of options before printing, and <guimenuitem>Print Preview</guimenuitem> which opens a view of the printed document on the screen in place of editor view.</para>
 
-<!-- ============= To Set the Page Options ============================ -->
-	 <sect2 id="xed-page-setup">
-		<title>Setting the Page Options</title>
+<!-- ============= Print Dialog ============================ -->
+    <sect2 id="xed-file-print">
+        <title>File Print Dialog</title>
+        <para>The dialog allows selection of the printer, setting of the print options and finally printing.</para>
+        <sect3 id="xed-file-print-general">
+            <title>General Tab</title>
+            <para>The print dialog opens on the <guilabel>General</guilabel> Tab by default.  On this tab, the printer can be selected--including "Print to File"--as well the pages and number of copies.  If print to file is selected additional options appear to selecting the format (PDF, Postscript or SVG), and the output file name.  Clicking on the output filename button opens a file selection dialog.</para>
+        </sect3>
 
-		<para>To set the page options, choose <menuchoice> <guimenu>File</guimenu> <guimenuitem>Page Setup</guimenuitem> </menuchoice> to display the <guilabel>Page Setup</guilabel> dialog.</para>
+        <sect3 id="xed-print-page-setup">
+            <title>Page Setup Tab</title>
+            <para>Use this tab to select printer-specific options such as: page size, page source, orientation, scale, etc.</para>
+        </sect3>
 
-		<para>The <guilabel>Page Setup</guilabel> dialog enables you to specify the following print options:</para>
+        <sect3 id="xed-print-text-editor">
+            <title>Text Editor Tab</title>
+			<para>Use the settings in this tab to control for the printed output the following things:</para>
+			<itemizedlist>
+				<listitem>Syntax highlighting</listitem>
+				<listitem>Line numbers</listitem>
+				<listitem>Text Wrapping</listitem>
+				<listitem>Page header</listitem>
+				<listitem>Fonts</listitem>
+			</itemizedlist>
+        </sect3>
+    </sect2>
 
-		<sect3 id="xed-page-setup-general">
-		<title>General Tabbed Section</title>
-	 	<variablelist>
-		  <varlistentry> <term><guilabel>Print syntax highlighting</guilabel> </term>
-			 <listitem>
-				<para>Select this option to print syntax highlighting. For more information about syntax highlighting, see <xref linkend="xed-set-highlightmode"/>.  </para>
-			 </listitem>
-		  </varlistentry>
-		  <varlistentry> <term><guilabel>Print page headers</guilabel> </term>
-			 <listitem>
-				<para>Select this option to include a header on each page that you print. You cannot configure the header. </para>
-			 </listitem>
-		  </varlistentry>
-		  <varlistentry> <term><guilabel>Line Numbers</guilabel>
-			 </term>
-			 <listitem>
-				<para>Select the <guilabel>Print line numbers</guilabel> option to include line numbers when you print a file. </para>
-				<para>Use the <guilabel>Number every ... lines </guilabel> spin box to specify how often to print the line numbers, for example every 5 lines, every 10 lines, and so on. </para>
-			 </listitem>
-		  </varlistentry>
-		  <varlistentry> <term><guilabel>Text Wrapping</guilabel> </term>
-			 <listitem>
-                            <para>Select the <guilabel>Enable text wrapping</guilabel> option to wrap text onto the next line, at a character level, when you print a file. The application counts wrapped lines as one line for line numbering purposes.
-				  </para>
-				<para>Select the <guilabel>Do not split words over two lines</guilabel> option to wrap text onto the next line, at a word level, when you print a file.
-				  </para>
-			 </listitem>
-		  </varlistentry>
-		</variablelist>
-		</sect3>
-
-		<sect3 id="xed-page-setup-fonts">
-	 		<title>Fonts</title>
-	 	<variablelist>
-		  <varlistentry> <term><guilabel>Body</guilabel> </term>
-			 <listitem>
-				<para>Click on this button to select the font to use to print the body text of a file.</para>
-			 </listitem>
-		  </varlistentry>
-		  <varlistentry> <term><guilabel>Line numbers</guilabel>
-			 </term>
-			 <listitem>
-				<para>Click on this button to select the font to use to print line numbers.</para>
-			 </listitem>
-		  </varlistentry>
-		  <varlistentry> <term><guilabel>Headers and footers</guilabel> </term>
-			 <listitem>
-				<para>Click on this button to select the font to use to print the headers and footers in a file.  </para>
-			 </listitem>
-		  </varlistentry>
-		</variablelist>
-		<para>To reset the fonts to the default fonts for printing a file from <application>&app;</application>, click <guibutton>Restore Default Fonts</guibutton>.</para>
-		</sect3>
-
-	 </sect2>
-
-<!-- ============= To Print a File ============================ -->
-	 <sect2 id="xed-print-file">
-		<title>Printing a Document</title>
-		<para>You can use <application>&app;</application> to perform the following print operations:</para>
-		<itemizedlist>
-		  <listitem><para>Print a document to a printer. </para>
-		  </listitem>
-		  <listitem><para>Print the output of the print command to a file.</para>
-		  </listitem>
-		</itemizedlist>
-		<para>If you print to a file, <application>&app;</application> sends the output of the file to a pre-press format file. The most common pre-press formats are PostScript and Portable Document Format (PDF).</para>
-
-		<para>To preview the pages that you want to print, choose <menuchoice> <guimenu>File</guimenu> <guimenuitem>Print Preview</guimenuitem> </menuchoice>.</para>
-
-		<para>To print the current file to a printer or a file, choose <menuchoice> <guimenu>File</guimenu> <guimenuitem>Print</guimenuitem> </menuchoice> to display the <guilabel>Print</guilabel> dialog.</para>
-
-		<para>The <guilabel>Print</guilabel> dialog enables you to specify the following print options:</para>
-
-		<sect3 id="print-dialog-job">
-		<title>Job Tabbed Section</title>
-		<variablelist>
-	 		<varlistentry> <term><guilabel>Print range</guilabel> </term>
-			 <listitem>
-				<para>Select one of the following options to determine how many pages to print:</para>
-				<itemizedlist>
-				<listitem>
-				<para><guilabel>All</guilabel></para>
-				<para>Select this option to print all of the pages in the file.</para>
-				</listitem>
-				<listitem>
-				<para><guilabel>Lines</guilabel></para>
-				<para>Select this option to print the specified lines only. Use the <guilabel>From</guilabel> and <guilabel>To</guilabel> spin boxes to specify the line range.</para>
-				</listitem>
-				<listitem>
-				<para><guilabel>Selection</guilabel></para>
-				<para>Select this option to print the selected text only. This option is only available if you select text.</para>
-				</listitem>
-
-				</itemizedlist>
-			 </listitem>
-		  	</varlistentry>
-		  	<varlistentry> <term><guilabel>Copies</guilabel> </term>
-			 <listitem>
-				<para>Use the <guilabel>Number of copies</guilabel> spin box to specify the number of copies of the file that you want to print.</para>
-				<para>If you print multiple copies of the file, select the <guilabel>Collate</guilabel> option to collate the printed copies.</para>
-			 </listitem>
-		  	</varlistentry>
-			</variablelist>
-		</sect3>
-
-		<sect3 id="print-dialog-printer">
-		<title>Printer Tabbed Section</title>
-	<variablelist>
-	  <varlistentry> <term><guilabel>Printer</guilabel> </term>
-	    <listitem>
-	      <para>Use this drop-down list to select the printer to which you want to print the file.</para>
-	    </listitem>
-	  </varlistentry>
-	  <varlistentry> <term><guilabel>Settings</guilabel> </term>
-	    <listitem>
-	      <para>Use this drop-down list to select the printer settings.
-              </para>
-	      <para>To configure the printer, click <guibutton>Configure</guibutton>. For example, you can enable or disable duplex printing, or schedule delayed printing, if this functionality is supported by the printer.
-              </para>
-	    </listitem>
-	  </varlistentry>
-	  <varlistentry> <term><guilabel>Location</guilabel> </term>
-	    <listitem>
-	      <para>
-                Use this drop-down list to select one of the following print destinations:
-	      </para>
-	      <variablelist>
-	        <varlistentry>
-	          <term><guilabel>CUPS</guilabel></term>
-	          <listitem>
-	            <para>
-                      Print the file to a CUPS printer.
-	            </para>
-	            <note>
-	              <para>
-                        If the selected printer is a CUPS printer, <guilabel>CUPS</guilabel> is the only entry in this drop-down list.
-	              </para>
-	            </note>
-	          </listitem>
-	        </varlistentry>
-	        <varlistentry>
-	          <term><guilabel>lpr</guilabel></term>
-	          <listitem>
-	            <para>
-                      Print the file to a printer.
-	            </para>
-	          </listitem>
-	        </varlistentry>
-	        <varlistentry>
-	          <term><guilabel>File</guilabel></term>
-	          <listitem>
-	            <para>
-                      Print the file to a PostScript file.
-	            </para>
-	            <para>
-                      Click <guibutton>Save As</guibutton> to display a dialog where you specify the name and location of the PostScript file.
-	            </para>
-	          </listitem>
-	        </varlistentry>
-	        <varlistentry>
-	          <term><guilabel>Custom</guilabel></term>
-	          <listitem>
-	            <para>
-                      Use the specified command to print the file.
-	            </para>
-	            <para>
-                      Type the name of the command in the text box. Include all command-line arguments.
-	            </para>
-	          </listitem>
-	        </varlistentry>
-	      </variablelist>
-            </listitem>
-	  </varlistentry>
-	  <varlistentry> <term><guilabel>State</guilabel> </term>
-	    <listitem>
-	      <para>This functionality is not supported in this version of &app;.
-              </para>
-	    </listitem>
-	  </varlistentry>
-	  <varlistentry> <term><guilabel>Type</guilabel> </term>
-	    <listitem>
-	      <para>This functionality is not supported in this version of &app;.
-              </para>
-	    </listitem>
-	  </varlistentry>
-	  <varlistentry> <term><guilabel>Comment</guilabel> </term>
-	    <listitem>
-	      <para>This functionality is not supported in this version of &app;.
-              </para>
-	    </listitem>
-	  </varlistentry>
-	</variablelist>
-	</sect3>
-
-		<sect3 id="print-dialog-paper">
-		<title>Paper Tabbed Section</title>
-		<variablelist>
-	 		<varlistentry> <term><guilabel>Paper size</guilabel> </term>
-			 <listitem>
-				<para>Use this drop-down list to select the size of the paper to which you want to print the file.</para>
-			 </listitem>
-		  	</varlistentry>
-		  	<varlistentry> <term><guilabel>Width</guilabel> </term>
-			 <listitem>
-				<para>Use this spin box to specify the width of the paper. Use the adjacent drop-down list to change the measurement unit.</para>
-			 </listitem>
-		  	</varlistentry>
-		  	<varlistentry> <term><guilabel>Height</guilabel> </term>
-			 <listitem>
-				<para>Use this spin box to specify the height of the paper.</para>
-			 </listitem>
-		  	</varlistentry>
-		  	<varlistentry> <term><guilabel>Feed orientation</guilabel> </term>
-			 <listitem>
-				<para>Use this drop-down list to select the orientation of the paper in the printer.</para>
-			 </listitem>
-		  	</varlistentry>
-		  	<varlistentry> <term><guilabel>Page orientation</guilabel> </term>
-			 <listitem>
-				<para>Use this drop-down list to select the page orientation.</para>
-			 </listitem>
-		  	</varlistentry>
-		  	<varlistentry> <term><guilabel>Layout</guilabel> </term>
-			 <listitem>
-				<para>Use this drop-down list to select the page layout. A preview of each layout that you select is displayed in the <guilabel>Preview</guilabel> area.</para>
-			 </listitem>
-		  	</varlistentry>
-          <varlistentry> <term><guilabel>Paper tray</guilabel> </term>
-            <listitem>
-              <para>Use this drop-down list to select the paper tray.
-              </para>             </listitem>
-          </varlistentry>
-		</variablelist>
-		</sect3>
-
-	 </sect2>
+	<sect2 id="xed-file-print-preview">
+		<title>Print Preview</title>
+        <para>The print preview has several buttons with icon labels for navigating around the printed output, zooming in and out, and finally print the output if satisfied with the way it looks.  Rolling over a button will expose a tool tip showing its purpose. </para>
+        <tip>If you click the print button <guibutton><imageobject>
+				  <imagedata fileref="figures/xed_print_button.png" format="PNG"/>
+					 </imageobject></guibutton>
+ the file will be immediately printed without entering any print dialog.  So make sure desired options have been set using the <menuchoice><guimenu>File</guimenu><guimenuitem> Print...</guimenuitem></menuchoice> dialog.</tip>
+    </sect2>
 
   </sect1>
 
   <sect1 id="xed-programming-features">
 	  <title>Programming Features</title>
 
-	  <para>Several of <application>&app;</application>'s features for programming are provided with plugins. For example, the Tag List plugin provides a list of commonly-used tags for different markup languages: see <xref linkend="xed-tag-list-plugin"/>.</para>
+	  <para>Several of <application>&app;</application>'s features for programming are provided with plugins. For example, the Tag List plugin provides a list of commonly-used tags for different markup languages: see <xref linkend="xed-tag-list-plugin"/>.  Several other plugins exist.  See <xref linkend="xed-plugins"/>.</para>  
 
 <!-- ============= Syntax Highlighting =================== -->
 	 <sect2 id="xed-set-highlightmode">
 	 <title>Syntax Highlighting</title>
 	 <para>Syntax highlighting makes source code easier to read by showing different parts of the text in different colors.</para>
 
-	 <para><application>&app;</application> chooses an appropriate syntax highlighting mode based on a document's type. To override the syntax highlighting mode, choose <menuchoice> <guimenu>View</guimenu> <guimenuitem>Highlight Mode</guimenuitem> </menuchoice>, then choose one of the following menu items:</para>
+	 <para><application>&app;</application> chooses an appropriate syntax highlighting mode based on a document's type. To override the syntax highlighting mode, choose <menuchoice> <guimenu>View</guimenu> <guimenuitem>Highlight Mode</guimenuitem> </menuchoice>, then choose one of a large list of text file formats falling into the rough categories below:</para>
 		  <variablelist>
 		    <varlistentry>
-		      <term><guimenuitem>Normal</guimenuitem></term>
+		      <term><guimenuitem>Plain Text</guimenuitem></term>
 		      <listitem>
 		        <para>Do not display any syntax highlighting.</para>
 		      </listitem>
@@ -721,38 +484,31 @@
 		    <varlistentry>
 		      <term><guisubmenu>Sources</guisubmenu></term>
 		      <listitem>
-		        <para>Display syntax highlighting to edit source code. Use the <guisubmenu>Sources</guisubmenu> submenu to select the source code type.</para>
+		        <para>Source code for a number of programming languages.</para>
 		      </listitem>
 		    </varlistentry>
 		    <varlistentry>
 		      <term><guisubmenu>Markup</guisubmenu></term>
 		      <listitem>
-		        <para>Display syntax highlighting to edit markup code. Use the <guisubmenu>Markup</guisubmenu> submenu to select the markup code type.</para>
+		        <para>Markup code such as HTML, XML, Markdown and others.</para>
 		      </listitem>
 		    </varlistentry>
 		    <varlistentry>
 		      <term><guisubmenu>Scripts</guisubmenu></term>
 		      <listitem>
-		        <para>Display syntax highlighting to edit script code. Use the <guisubmenu>Scripts</guisubmenu> submenu to select the script code type.</para>
+		        <para>Script code (Bash, sh, etc.). </para>
 		      </listitem>
 		    </varlistentry>
 		    <varlistentry>
 		      <term><guisubmenu>Others</guisubmenu></term>
 		      <listitem>
-		        <para>Display syntax highlighting to edit other types of code. Use the <guisubmenu>Others</guisubmenu> submenu to select the code type.</para>
+		        <para>Other types of code (e.g. makefiles, awk, sed, etc.).</para>
 		      </listitem>
 		    </varlistentry>
 		  </variablelist>
+     <para>A search box at the top of the combo box facilitates finding of the desired format by typing in some the letters.</para>
 	 </sect2>
-
-<!-- ============= To Pipe the Output of a Command to a File ======= -->
-	 <sect2 id="xed-pipe-output">
-		<title>Piping the Output of a Command to a File</title>
-		<para>You can use <application>&app;</application> to pipe the output of a command to a text file. For example, to pipe the output of an <command>ls</command> command to a text file, type <command>ls | xed</command>, then press <keycap>Return</keycap>.</para>
-		<para>The output of the <command>ls</command> command is displayed in a new text file in the <application>&app;</application> window.</para>
-		<para>Alternatively, you can use the <application>External tools</application> plugin to pipe command output to the current file. <!-- fixme: xref needed! --></para>
-	 </sect2>
-  </sect1>
+</sect1>
 
 <!-- ================ Shortcut Keys ============================= -->
 <sect1 id="xed-shortcutkeys">
@@ -761,7 +517,7 @@
 
   <!-- ============= Tabs ======================== -->
 	<bridgehead>Tabs</bridgehead>
-	<para>Shortcuts for tabs:</para>
+	<para>Shortcuts for notebook tabs:</para>
   <informaltable frame="all">
     <tgroup cols="2" colsep="1" rowsep="1">
       <colspec colname="COLSPEC0" colwidth="50*"/>
@@ -776,11 +532,11 @@
       </thead>
       <tbody>
         <row valign="top">
-          <entry><para>Ctrl + Alt + PageUp</para></entry>
+          <entry><para>Ctrl + Alt + PageUp</para><para>or Ctrl + Tab</para></entry>
           <entry><para>Switches to the next tab to the left.</para></entry>
         </row>
         <row valign="top">
-          <entry><para>Ctrl + Alt + PageDown</para></entry>
+          <entry><para>Ctrl + Alt + PageDown</para><para> or Ctrl + Shift + Tab</para></entry>
           <entry><para>Switches to the next tab to the right.</para></entry>
         </row>
         <row valign="top">
@@ -828,10 +584,6 @@
                         <entry><para>Open a document.</para></entry>
                       </row>
                       <row valign="top">
-                        <entry><para>Ctrl + L</para></entry>
-                        <entry><para>Open a location.</para></entry>
-                      </row>
-                      <row valign="top">
                         <entry><para>Ctrl + S</para></entry>
                         <entry><para>Save the current document to disk.</para></entry>
                       </row>
@@ -849,7 +601,7 @@
                       </row>
                       <row valign="top">
                         <entry><para>Ctrl + W</para></entry>
-                        <entry><para>Close the current document.</para></entry>
+                        <entry><para>Close the current document (if only on tab open).</para></entry>
                       </row>
                       <row valign="top">
                         <entry><para>Ctrl + Q</para></entry>
@@ -911,37 +663,127 @@
                         <entry><para>Alt + Down</para></entry>
                         <entry><para>Move the selected line down one line.</para></entry>
                       </row>
+                      <row valign="top">
+                        <entry><para>Alt + Right</para></entry>
+                        <entry><para>Move the selected word one word to the right.</para></entry>
+                      </row>
+                      <row valign="top">
+                        <entry><para>Alt + Left</para></entry>
+                        <entry><para>Move the selected word one word to the left.</para></entry>
+                      </row>
+                      <row valign="top">
+                        <entry><para>Ctrl + U</para></entry>
+                        <entry><para>Change case to all upper.</para></entry>
+                      </row>
+                      <row valign="top">
+                        <entry><para>Ctrl + L</para></entry>
+                        <entry><para>Change case to all lower.</para></entry>
+                      </row>
+                      <row valign="top">
+                        <entry><para>Ctrl + T</para></entry>
+                        <entry><para>Change case to Title Case.</para></entry>
+                      </row>
+                      <row valign="top">
+                        <entry><para>Ctrl + Shift + A</para></entry>
+                        <entry><para>Increment number at cursor.</para></entry>
+                      </row>
+                      <row valign="top">
+                        <entry><para>Ctrl + Shift + X</para></entry>
+                        <entry><para>Decrement number at cursor.</para></entry>
+                      </row>
+                      <row valign="top">
+                        <entry><para>Ctrl + J</para></entry>
+                        <entry><para>Join lines.</para></entry>
+                      </row>
                     </tbody>
                   </tgroup>
                 </informaltable>
 
-  <!-- ============= Panes ======================= -->
-	<bridgehead>Panes</bridgehead>
+  <!-- ============= View ======================= -->
+	<bridgehead>View</bridgehead>
 	<para>Shortcuts for showing and hiding panes:</para>
 	  <informaltable frame="all">
-                  <tgroup cols="2" colsep="1" rowsep="1">
-                    <colspec colname="COLSPEC0" colwidth="50*"/>
-                    <colspec colname="COLSPEC1" colwidth="50*"/>
-                    <thead>
-                      <row valign="top">
-                        <entry colname="COLSPEC0">
-                          <para>Shortcut Key</para></entry>
-                        <entry colname="COLSPEC1" align="left">
-                          <para>Command</para></entry>
-                      </row>
-                    </thead>
-                    <tbody>
-                      <row valign="top">
-                        <entry><para>F9</para></entry>
-                        <entry><para>Show/hide the side pane.</para></entry>
-                      </row>
-                      <row valign="top">
-                        <entry><para>Ctrl + F9</para></entry>
-                        <entry><para>Show/hide the bottom pane.</para></entry>
-                      </row>
-                    </tbody>
-                  </tgroup>
-                </informaltable>
+          <tgroup cols="2" colsep="1" rowsep="1">
+            <colspec colname="COLSPEC0" colwidth="50*"/>
+            <colspec colname="COLSPEC1" colwidth="50*"/>
+            <thead>
+              <row valign="top">
+                <entry colname="COLSPEC0">
+                  <para>Shortcut Key</para></entry>
+                <entry colname="COLSPEC1" align="left">
+                  <para>Command</para></entry>
+              </row>
+            </thead>
+            <tbody>
+              <row valign="top">
+                <entry><para>F9</para></entry>
+                <entry><para>Show/hide the side pane.</para></entry>
+              </row>
+              <row valign="top">
+                <entry><para>Ctrl + F9</para></entry>
+                <entry><para>Show/hide the bottom pane.</para></entry>
+              </row>
+              <row valign="top">
+                <entry><para>Alt + F</para></entry>
+                <entry><para>Open the <guilabel>File</guilabel> menu.</para></entry>
+              </row>
+              <row valign="top">
+                <entry><para>Alt + E</para></entry>
+                <entry><para>Open the <guilabel>Edit</guilabel> menu.</para></entry>
+              </row>
+              <row valign="top">
+                <entry><para>Alt + V</para></entry>
+                <entry><para>Open the <guilabel>View</guilabel> menu.</para></entry>
+              </row>
+              <row valign="top">
+                <entry><para>Alt + S</para></entry>
+                <entry><para>Open the <guilabel>Search</guilabel> menu.</para></entry>
+              </row>
+              <row valign="top">
+                <entry><para>Alt + T</para></entry>
+                <entry><para>Open the <guilabel>Tools</guilabel> menu.</para></entry>
+              </row>
+              <row valign="top">
+                <entry><para>Alt + D</para></entry>
+                <entry><para>Open the <guilabel>Documents</guilabel> menu.</para></entry>
+              </row>
+              <row valign="top">
+                <entry><para>Alt + H</para></entry>
+                <entry><para>Open the <guilabel>Help</guilabel> menu.</para></entry>
+              </row>
+            </tbody>
+          </tgroup>
+      </informaltable>
+
+	<para>Shortcuts for Adjusting text size:</para>
+	  <informaltable frame="all">
+          <tgroup cols="2" colsep="1" rowsep="1">
+            <colspec colname="COLSPEC0" colwidth="50*"/>
+            <colspec colname="COLSPEC1" colwidth="50*"/>
+            <thead>
+              <row valign="top">
+                <entry colname="COLSPEC0">
+                  <para>Shortcut Key</para></entry>
+                <entry colname="COLSPEC1" align="left">
+                  <para>Command</para></entry>
+              </row>
+            </thead>
+            <tbody>
+              <row valign="top">
+                <entry><para>Ctrl + =</para></entry>
+                <entry><para>Increase text size.</para></entry>
+              </row>
+              <row valign="top">
+                <entry><para>Ctrl + -</para></entry>
+                <entry><para>Decrease text size.</para></entry>
+              </row>
+              <row valign="top">
+                <entry><para>Ctrl + 0</para></entry>
+                <entry><para>Default text size.</para></entry>
+              </row>
+            </tbody>
+          </tgroup>
+      </informaltable>
 
   <!-- ============= Search ======================= -->
 	<bridgehead>Search</bridgehead>
@@ -980,10 +822,6 @@
                         <entry><para>Search and replace.</para></entry>
                       </row>
                       <row valign="top">
-                        <entry><para>Ctrl + Shift + K</para></entry>
-                        <entry><para>Clear highlight.</para></entry>
-                      </row>
-                      <row valign="top">
                         <entry><para>Ctrl + I</para></entry>
                         <entry><para>Goto line.</para></entry>
                       </row>
@@ -1015,22 +853,22 @@
                         <entry><para>Remove trailing spaces (with plugin).</para></entry>
                       </row>
                       <row valign="top">
-                        <entry><para>Ctrl + T</para></entry>
-                        <entry><para>Indent (with plugin).</para></entry>
+                        <entry><para>Tab</para></entry>
+                        <entry><para>Indent (if block including newline selected).</para></entry>
                       </row>
                       <row valign="top">
-                        <entry><para>Ctrl + Shift + T</para></entry>
-                        <entry><para>Remove Indent (with plugin).</para></entry>
+                        <entry><para>Shift + Tab</para></entry>
+                        <entry><para>Remove Indent (if block including newline selected).</para></entry>
                       </row>
                       <row valign="top">
                         <entry><para>F8</para></entry>
                         <entry><para>Run "make" in current directory (with plugin).</para></entry>
                       </row>
                       <row valign="top">
-                        <entry><para>Ctrl + Shift + D</para></entry>
-                        <entry><para>Directory listing (with plugin).</para></entry>
+                        <entry><para>F10</para></entry>
+                        <entry><para>Sort all of the lines.</para></entry>
                       </row>
-                    </tbody>
+                   </tbody>
                   </tgroup>
                 </informaltable>
   <!-- ============= Help ======================= -->
@@ -1051,7 +889,7 @@
       <tbody>
         <row valign="top">
           <entry><para>F1</para></entry>
-          <entry><para>Open <application>&app;</application>'s user manual.</para></entry>
+          <entry><para>Open <application>&app;</application>'s user manual (this help).</para></entry>
         </row>
       </tbody>
     </tgroup>
@@ -1065,92 +903,140 @@
   <sect1 id="xed-prefs">
     <title>Preferences</title>
 
-    <para>To configure <application>&app;</application>, choose <menuchoice> <guimenu>Edit</guimenu> <guimenuitem>Preferences</guimenuitem> </menuchoice>. The <guilabel>Preferences</guilabel> dialog contains the following categories:</para>
-    <itemizedlist>
-      <listitem><para><xref linkend="xed-prefs-view"/></para></listitem>
-      <listitem><para><xref linkend="xed-prefs-editor"/></para></listitem>
-      <listitem><para><xref linkend="xed-prefs-fontsandcolors"/></para></listitem>
-      <listitem><para><xref linkend="xed-prefs-plugins"/></para></listitem>
-    </itemizedlist>
-
-    <sect2 id="xed-prefs-view">
-      <title>View Preferences</title>
-      <variablelist>
-        <varlistentry>
-          <term><guilabel>Text Wrapping</guilabel> </term>
-          <listitem>
-            <para>Select the <guilabel>Enable text wrapping</guilabel> option to have long lines of text flow into paragraphs instead of running off the edge of the text window. This avoids having to scroll horizontally</para>
-            <para>Select the <guilabel>Do not split words over two lines</guilabel> option to have the text wrapping option preserve whole words when flowing text to the next line. This makes text easier to read.</para>
-          </listitem>
-        </varlistentry>
-        <varlistentry>
-          <term><guilabel>Line Numbers</guilabel></term>
-          <listitem>
-            <para>Select the <guilabel>Display line numbers</guilabel> option to display line numbers on the left side of the <application>&app;</application> window. </para>
-          </listitem>
-        </varlistentry>
-        <varlistentry>
-          <term><guilabel>Current Line</guilabel></term>
-          <listitem>
-            <para>Select the <guilabel>Highlight current line</guilabel> option to highlight the line where the cursor is placed. </para>
-          </listitem>
-        </varlistentry>
-        <varlistentry>
-          <term><guilabel>Right Margin</guilabel></term>
-          <listitem>
-            <para>Select the <guilabel>Display right margin</guilabel> option to display a vertical line that indicates the right margin. </para>
-            <para>Use the <guilabel>Right margin at column</guilabel> spin box to specify the location of the vertical line. </para>
-          </listitem>
-        </varlistentry>
-        <varlistentry>
-          <term><guilabel>Bracket Matching</guilabel></term>
-          <listitem>
-            <para>Select the <guilabel>Highlight matching bracket</guilabel> option to highlight the corresponding bracket when the cursor is positioned on a bracket character. </para>
-          </listitem>
-        </varlistentry>
-
-      </variablelist>
-    </sect2>
+    <para>To configure <application>&app;</application>, choose <menuchoice> <guimenu>Edit</guimenu> <guimenuitem>Preferences</guimenuitem> </menuchoice>. The <guilabel>Preferences</guilabel> dialog contains four categories:</para>
 
     <sect2 id="xed-prefs-editor">
-      <title>Editor Preferences</title>
+      <title>Editor General Preferences</title>
+      <para>The settings visible under this tab are organized into the categories: Font, Display, Highlighing, Indentation, Wrapping, and Tab scrolling.  Details on each are given below:</para>
+
+      <sect3 id="xed-prefs-font">
+        <title>Font</title>
+        <para>If the user chooses not to use the system fixed width font, a button appears showing the currently selected font and size.  Clicking on the button opens a dialog box where a diffent font and size can be selected.</para>
+      </sect3>
+
+      <sect3 id="xed-prefs-disp">
+        <title>Display</title>
+        <para>Several options control viewing of the file being edited.  These options do not affect the content of the file being edited, only the way that the file is viewed.</para>
+        <variablelist>
+          <varlistentry>
+            <term><guilabel>Display line numbers</guilabel></term>
+            <listitem>
+              <para>Select the <guilabel>Display line numbers</guilabel> option to display line numbers on the left side of the document viewing window. </para>
+            </listitem>
+          </varlistentry>
+          <varlistentry>
+            <term><guilabel>Display overview map</guilabel></term>
+            <listitem>
+              <para>Controls the option to display an overview map (bird's eye view) of the document in a pane on the right side of the <application>&app;</application> window. </para>
+            </listitem>
+          </varlistentry>
+          <varlistentry>
+            <term><guilabel>Display right margin</guilabel></term>
+            <listitem>
+              <para>If this is selected a numeric selection box appears for entering the column number of the right margin, and if the document viewing window is widened horizontally beyond the right margin, the background shading changes to help the user avoid typing lines that are too long.</para>
+            </listitem>
+          </varlistentry>
+          <varlistentry>
+            <term><guilabel>Draw whitespace</guilabel></term>
+            <listitem>
+              <para>This Controls the visibility of whitespace. If enabled, four additional lines appear for setting the type of whitespace that is visible: Leading whitespace, Trailing whitespace, Whitespace inside of text, and The Newline character.</para>
+            </listitem>
+          </varlistentry>
+        </variablelist>
+      </sect3>
+
+      <sect3 id="xed-prefs-highlighting">
+        <title>Highlighting</title>
+        <note><para>This preference option is for types of highlighting other than syntax highlighting, which is covered elsewhere.</para></note>
+        <variablelist>
+          <varlistentry>
+            <term><guilabel>High current line</guilabel></term>
+            <listitem>
+              <para>Changes the background color of the line the cursor is on.</para>
+            </listitem>
+          </varlistentry>
+          <varlistentry>
+            <term><guilabel>Highlight matching brackets</guilabel></term>
+            <listitem>
+              <para>When enabled and the cursor is on a bracket, (e.g. (), {}, [], &lt;&gt;) the background color of that bracket and its matching bracket are changed to aid in matching bracket pairs.</para>
+            </listitem>
+          </varlistentry>
+        </variablelist>
+      </sect3>
+
+      <sect3 id="xef-prefs-indent">
+      <title>Indentation</title>
+      <para>Three lines control the use of tabs in the text:</para>
       <variablelist>
         <varlistentry>
-          <term><guilabel>Tabs</guilabel> </term>
+          <term><guilabel>Tab width</guilabel></term>
           <listitem>
-            <para>Use the <guilabel>Tab width</guilabel> spin box to specify the width of the space that <application> &app;</application> inserts when you press the <keycap>Tab</keycap> key. </para>
-            <para>Select the <guilabel>Insert spaces instead of tabs</guilabel> option to specify that <application> &app;</application> inserts spaces instead of a tab character when you press the <keycap>Tab</keycap> key. </para>
+            <para>Sets the tab width.</para>
           </listitem>
         </varlistentry>
         <varlistentry>
-          <term><guilabel>Auto Indentation</guilabel> </term>
+          <term><guilabel>Use Spaces instead of tabs</guilabel></term>
           <listitem>
-            <para>Select the <guilabel>Enable auto indentation</guilabel> option to specify that the next line starts at the indentation level of the current line.  </para>
+            <para>When enabled, <application>&app;</application> inserts the number of spaces from <guilabel>Tab width</guilabel> in place of the tab character, when the <keycap>Tab</keycap> key is typed. </para>
           </listitem>
         </varlistentry>
         <varlistentry>
-          <term><guilabel>File Saving</guilabel> </term>
+          <term><guilabel>Automatic indentation</guilabel></term>
           <listitem>
-            <para>Select the <guilabel>Create a backup copy of files before saving</guilabel> option to create a backup copy of a file each time you save the file. The backup copy of the file contains a ~ at the end of the filename.</para>
-            <para>Select the <guilabel>Autosave files every ... minutes</guilabel> option to automatically save the current file at regular intervals. Use the spin box to specify how often you want to save the file.</para>
+            <para>If enabled, <application>&app;</application> will automatically indent the next line the same amount as the current line when the newline (<keycap>Enter</keycap>) key is typed. </para>
           </listitem>
         </varlistentry>
       </variablelist>
+      </sect3>
+
+      <sect3 id="xed-prefs-wrap">
+        <title>Word wrap</title>
+        <para>Word wrapping does not effect the contents of the text file, only the way it is viewed in the editing window. If word wrapping is not enabled, a horizontal scroll bar appears at the bottom of the editing window when a line a text exceeds the window boundaries.  If <guilabel>Word wrap</guilabel> is enabled an additional option, "<guilabel>Split words over two lines</guilabel>" appears, allowing the editor to break up words to facilitate wrapping.</para>
+      </sect3>
+
+      <sect3 id="xed-prefs-tabscroll">
+        <title>Tab scrolling</title>
+        <para>This refers to the tabs at the top of the window for selecting the document being edited. If this option is enabled, and the mouse point is over the document tab area, rolling the mouse wheel will cycle through the different document tabs.</para>
+      </sect3>
+
     </sect2>
 
-    <sect2 id="xed-prefs-fontsandcolors">
-      <title>Font &amp; Colors Preferences</title>
-      <variablelist>
-        <varlistentry>
-          <term><guilabel>Font</guilabel> </term>
-          <listitem>
-            <para>Select the <guilabel>Use default theme font</guilabel> option to use the default system font for the text in the <application>&app;</application> text window. </para>
-            <para>The <guilabel>Editor font</guilabel> field displays the font that <application>&app;</application> uses to display text. Click on the button to specify the font type, style, and size to use for text. </para>
-          </listitem>
-        </varlistentry>
-        <varlistentry>
-          <term><guilabel>Color Scheme</guilabel></term>
-          <listitem>
+    <sect2 id="xed-prefs-save">
+      <title>Save Preferences </title>
+      
+      <sect3 id="xed-prefs-filesave">
+        <title>File saving</title>
+        <variablelist>
+          <varlistentry>
+            <term><guilabel>File Saving</guilabel> </term>
+            <listitem>
+              <para>Select the <guilabel>Create a backup copy of files before saving</guilabel> option to create a backup copy of a file each time you save the file. The backup copy of the file contains a ~ at the end of the filename.</para>
+             </listitem>
+          </varlistentry>
+          <varlistentry>
+            <term><guilabel>Auto Saving</guilabel> </term>
+            <listitem>
+             <para>Select the <guilabel>Autosave files</guilabel> option to automatically save the current file at regular intervals. Use the spin box to specify how often you want to save the file.</para>
+            </listitem>
+          </varlistentry>
+          <varlistentry>
+            <term><guilabel>Ensure Trailing Newline</guilabel> </term>
+            <listitem>
+             <para>If enabled <application>&app;</application> will add a newline at the end of the file if one does not already exist.</para>
+            </listitem>
+          </varlistentry>
+        </variablelist>
+      </sect3>
+    </sect2>
+
+    <sect2 id="xed-prefs-theme">
+      <title>Color Themes</title>
+      <sect3 id="xed-dark-theme">
+          <title><guilabel>Dark Theme</guilabel></title>
+            <para>Some schemes may come in both dark and light varients.  Enable this option to select the dark varient in case the scheme comes in both variants.</para>
+      </sect3>
+      <sect3 id="xed-style-scheme">
+          <title><guilabel>Style Scheme</guilabel></title>
             <para>You can choose a color scheme from the list of color schemes. By default, the following color schemes are installed:</para>
             <variablelist>
               <varlistentry>
@@ -1178,6 +1064,12 @@
                 </listitem>
               </varlistentry>
               <varlistentry>
+                <term><guilabel>Solarized Dark</guilabel></term>
+                <listitem>
+                  <para>Another Dark color scheme.</para>
+                </listitem>
+              </varlistentry>
+              <varlistentry>
                 <term><guilabel>Tango</guilabel></term>
                 <listitem>
                   <para>Color scheme using the Tango color scheme.</para>
@@ -1186,9 +1078,7 @@
             </variablelist>
             <para>You can add a new color scheme by clicking on <guilabel>Add...</guilabel>, and selecting a color scheme file</para>
             <para>You can remove the selected color scheme by clicking on <guilabel>Remove</guilabel></para>
-          </listitem>
-        </varlistentry>
-      </variablelist>
+      </sect3>
     </sect2>
 
     <sect2 id="xed-prefs-plugins" xreflabel="Plugins Preferences">
@@ -1246,11 +1136,14 @@
   		<para>You can add extra features to <application>&app;</application> by enabling <firstterm>plugins</firstterm>. A plugin is a supplementary program that enhances the functionality of an application. Plugins add new items to the <application>&app;</application> menus for the new features they provide.
   		</para>
   		<para>Several plugins come built-in with <application>&app;</application>, and you can install more.</para>
-  		<para>To enable and disable plugins, or see which plugins are currently enabled, use the <xref linkend="xed-prefs-plugins"/>.</para>
+  		<para>To enable and disable plugins, or see which plugins are currently enabled, and/or available use the <xref linkend="xed-prefs-plugins"/>.</para>
   		<para>The following plugins come built-in with <application>&app;</application>:</para>
   		<itemizedlist>
   		  <listitem>
-  		    <para><xref linkend="xed-change-case-plugin"/> allows you to change the case of the selected text.</para>
+  		    <para><xref linkend="xed-bracket-completion-plugin"/> for enclosing bracket characters,  automatically adds closing bracket if opening bracket is typed. </para>
+  		  </listitem>
+  		  <listitem>
+  		    <para><xref linkend="xed-change-case-plugin"/> allows you to change the case of the selected text. (NOTE: This plug-in doesn't appear in th <guilabel>Preferences -> Plugins</guilabel> dialog because it is always enabled.)</para>
   		  </listitem>
   		  <listitem>
   		    <para><xref linkend="xed-document-statistics-plugin"/> shows the number of lines, words, and characters in the document. </para>
@@ -1259,16 +1152,16 @@
   		    <para><xref linkend="xed-file-browser-plugin"/> allows you to browse your files and folders in the side pane.</para>
   		  </listitem>
   		  <listitem>
-  		    <para><xref linkend="xed-indent-lines-plugin"/> adds or removes indentation from the selected lines.</para>
-  		  </listitem>
-  		  <listitem>
   		    <para><xref linkend="xed-insert-date-time-plugin"/> adds the current date and time into a document.</para>
   		  </listitem>
   		  <listitem>
   		    <para><xref linkend="xed-modelines-plugin"/> allows you to set editing preferences for individual documents, and supports <application>Emacs</application>, <application>Kate</application> and <application>Vim</application>-style modelines.</para>
   		  </listitem>
   		  <listitem>
-  		    <para><xref linkend="xed-sort-plugin"/> arranges selected lines of text into alphabetical order.</para>
+  		    <para><xref linkend="xed-trailers-plugin"/> eliminates any trailing spaces on each line when document is saved.</para>
+  		  </listitem>
+  		  <listitem>
+  		    <para><xref linkend="xed-sort-plugin"/> arranges selected lines of text into alphabetical order. (NOTE: Plug-in doesn't appear in preferences; always enabled.)</para>
   		  </listitem>
   		  <listitem>
   		    <para><xref linkend="xed-spell-checker-plugin"/> corrects the spelling in the selected text, or marks errors automatically in the document.</para>
@@ -1276,14 +1169,16 @@
   		  <listitem>
   		    <para><xref linkend="xed-tag-list-plugin"/> lets you insert commonly-used tags for HTML and other languages from a list in the side pane.</para>
   		  </listitem>
+  		  <listitem>
+  		    <para><xref linkend="xed-word-complete-plugin"/> trys to predict the rest of the word after a few characters have been typed.</para>
+  		  </listitem>
   		</itemizedlist>
-
-  	</sect2>
+  	  </sect2>
 
 <sect2 id="xed-change-case-plugin" xreflabel="Change Case">
 <title>Change Case Plugin</title>
 	<para>The <application>Change Case</application> plugin changes the case of the selected text.</para>
-	 <para>The following items are added to the <guimenu>Edit</guimenu> menu when the <application>Change Case</application> plugin is enabled:</para>
+	 <para>The change case selection is available in the context (right click) menu when some text is selected:</para>
 
   <informaltable frame="all">
     <tgroup cols="3" colsep="1" rowsep="1">
@@ -1302,25 +1197,25 @@
       </thead>
       <tbody>
         <row valign="top">
-          <entry><para><menuchoice><guimenu>Edit</guimenu>
+          <entry><para><menuchoice><guimenu>Right Click</guimenu>
 <guisubmenu>Change Case</guisubmenu><guimenuitem>All Upper Case</guimenuitem></menuchoice></para></entry>
           <entry><para>Change each character to uppercase. </para></entry>
           <entry><para><literal>This text</literal> becomes <literal>THIS TEXT</literal> </para></entry>
         </row>
         <row valign="top">
-          <entry><para><menuchoice><guimenu>Edit</guimenu>
+          <entry><para><menuchoice><guimenu>Right Click</guimenu>
 <guisubmenu>Change Case</guisubmenu><guimenuitem>All Lower Case</guimenuitem></menuchoice></para></entry>
           <entry><para>Change each character to lowercase. </para></entry>
           <entry><para><literal>This Text</literal> becomes <literal>this text</literal> </para></entry>
         </row>
         <row valign="top">
-          <entry><para><menuchoice><guimenu>Edit</guimenu>
+          <entry><para><menuchoice><guimenu>Right Click</guimenu>
 <guisubmenu>Change Case</guisubmenu><guimenuitem>Invert Case</guimenuitem></menuchoice></para></entry>
           <entry><para>Change each lowercase character to uppercase, and change each uppercase character to lowercase. </para></entry>
           <entry><para><literal>This Text</literal> becomes <literal>tHIS tEXT</literal> </para></entry>
         </row>
         <row valign="top">
-          <entry><para><menuchoice><guimenu>Edit</guimenu>
+          <entry><para><menuchoice><guimenu>Right Click</guimenu>
 <guisubmenu>Change Case</guisubmenu><guimenuitem>Title Case</guimenuitem></menuchoice></para></entry>
           <entry><para>Change the first character of each word to uppercase. </para></entry>
           <entry><para><literal>this text</literal> becomes <literal>This Text</literal> </para></entry>
@@ -1328,7 +1223,6 @@
       </tbody>
     </tgroup>
   </informaltable>
-
 </sect2>
 
 <sect2 id="xed-document-statistics-plugin" xreflabel="Document Statistics">
@@ -1364,7 +1258,7 @@
 <sect2 id="xed-file-browser-plugin" xreflabel="File Browser">
   <title>File Browser Plugin</title>
   <para>The <application>File Browser</application> Plugin shows your files and folders in the side pane, allowing you to quickly open files.</para>
-  <para>To view the File Browser, choose <menuchoice><guimenu>View</guimenu> <guimenuitem>Side Pane</guimenuitem> </menuchoice> and then click on the tab showing the File Browser icon at the bottom of the side pane.</para>
+  <para>To view the File Browser, choose <menuchoice><guimenu>View</guimenu> <guimenuitem>Side Pane</guimenuitem> </menuchoice> and then click on the tab showing the File Browser icon at the top of the side pane.</para>
   <sect3 id="xed-file-browser-plugin-browsing">
     <title>Browsing your Files</title>
     <para>The File Browser tab initially shows your file manager bookmarks. To browse the contents of any item, double-click it.</para>
@@ -1382,26 +1276,10 @@
     </sect3>
 </sect2>
 
-<sect2 id="xed-indent-lines-plugin" xreflabel="Indent Lines">
-<title>Indent Lines Plugin</title>
-	<para>The <application>Indent Lines</application> plugin adds or removes space from the beginning of lines of text.</para>
-	<para>To indent or unindent text, perform the following steps:</para>
-  	<orderedlist>
-		  <listitem><para>Select the lines that you want to indent. To indent or unindent a single line, place the cursor anywhere on that line.</para>
-		  </listitem>
-		  <listitem>
-		    <itemizedlist>
-		      <listitem>
-		        <para>To indent the text, choose <menuchoice> <guimenu>Edit</guimenu> <guimenuitem>Indent</guimenuitem> </menuchoice>.</para>
-		      </listitem>
-		      <listitem>
-		        <para>To remove the indentation, choose <menuchoice> <guimenu>Edit</guimenu> <guimenuitem>Unindent</guimenuitem> </menuchoice>.</para>
-		      </listitem>
-		    </itemizedlist>
-		  </listitem>
-		</orderedlist>
-	<para>The amount of space used, and whether tab characters or space characters are used, depends on the <guilabel>Tab Stops</guilabel> settings in the Editor Preferences: see <xref linkend="xed-prefs-editor"/>.</para>
-
+<sect2 id="xed-bracket-completion-plugin" xreflabel="Bracket Completion">
+<title>Bracket Completion Plugin</title>
+	<para>The <application>Bracket Completion</application> plugin automatically adds closing bracket if opening bracket is typed.  The list of enclosing character types (depending on the language) may include: </para>
+	<para><textobject> ()  {}  []  ""  ''  &lt;&gt; `` </textobject> </para>
 </sect2>
 
 <sect2 id="xed-insert-date-time-plugin" xreflabel="Insert Date/Time">
@@ -1494,39 +1372,22 @@
     </sect3>
 </sect2>
 
+<sect2 id="xed-trailers-plugin" xreflabel="Remove Trailing Spaces">
+<title>Remove Trailing Spaces</title>
+  <para>This plug-in eliminates any trailing spaces from lines of the document.  Trailing spaces would be considered extraneous in almost all cases.  The elimination occurs upon any saving of the document.</para>
+</sect2>
+
 <sect2 id="xed-sort-plugin" xreflabel="Sort">
 <title>Sort Plugin</title>
 	<para>The <application>Sort</application> plugin arranges selected lines of text into alphabetical order.</para>
-		  <caution><para>You cannot undo the Sort operation, so you should save the file before performing the sort. To revert to the saved version of the file after the sort operation, choose <menuchoice> <guimenu>File</guimenu> <guimenuitem>Revert</guimenuitem> </menuchoice>.
-				</para>
-		  </caution>
               <para>To use the Sort plugin, perform the following steps:</para>
 		<orderedlist>
 		  <listitem>
 		    <para>Select the lines of text you want to sort.</para>
 		  </listitem>
-		  <listitem><para>Choose <menuchoice> <guimenu>Edit</guimenu> <guimenuitem>Sort</guimenuitem> </menuchoice>. The <guilabel>Sort</guilabel> dialog opens.
+		  <listitem><para>Choose <menuchoice> <guimenu>Edit</guimenu> <guimenuitem>Sort</guimenuitem> </menuchoice>.
 				</para>
-		  </listitem>
-		  <listitem><para>Choose the options you want for the sort:</para>
-		    <itemizedlist>
-    		  <listitem>
-    		    <para>To arrange the text in reverse order, select <guilabel>Reverse order</guilabel>.
-    				</para>
-    		  </listitem>
-    		  <listitem><para>To delete duplicate lines, select <guilabel>Remove duplicates</guilabel>.
-    				</para>
-    		  </listitem>
-    		  <listitem><para>To ignore case sensitivity, select <guilabel>Ignore case</guilabel>.
-    				</para>
-    		  </listitem>
-    		  <listitem><para>To have the sort ignore the characters at the start of the lines, set the first character that should be used for sorting in the <guilabel>Start at column</guilabel> spin box.
-    				</para>
-    		  </listitem>
-		    </itemizedlist>
-		  </listitem>
-		  <listitem><para>To perform the sort operation, click <guibutton>Sort</guibutton>.
-				</para>
+				<note>If no lines are selected, the entire document will be sorted.</note>
 		  </listitem>
 		</orderedlist>
 </sect2>
@@ -1588,14 +1449,14 @@
 
 <sect2 id="xed-tag-list-plugin" xreflabel="Tag List">
 <title>Tag List Plugin</title>
-	<para>The <application>Tag List</application> plugin allows you to insert common tags from a list in the side pane.</para>
+	<para>The <application>Tag List</application> plugin allows you to insert common tags  (i.e. pieces of text) from a list in the side pane. This is most useful probably for XML or HTML types of files where sets of tags are used to identify formatting for different sections of text.  Such tags are typing intensive.   A number of standard tag lists come by default with &app;, and other tag lists can be configured.  Configuration is done by creating a file in the user's configuration directory (~/.config/xed/taglist/).  The file suffix is ".tags". The format of this type of XML file is beyond the scope of this help document, but example tag list files can be found in the installation files (e.g. .../share/xed/plugins/taglist/*)</para>
   <para>To use the Tag List plugin, perform the following steps:</para>
 		<orderedlist>
 		  <listitem><para>Choose <menuchoice> <guimenu>View</guimenu> <guimenuitem>Side Pane</guimenuitem> </menuchoice>.
 				</para>
 		  </listitem>
 		  <listitem>
-		    <para>By default, the side pane shows a tab containing a list of open documents. Click on the tab showing a + icon at the bottom of the side pane to show the tag list tab.</para>
+		    <para>By default, the side pane shows a tab containing a list of open documents. Click on the tab showing a + icon at the top of the side pane to show the tag list tab.</para>
 		  </listitem>
 		  <listitem><para>Select the appropriate tag category from the drop-down list. For example, <guilabel>HTML - Tags</guilabel>.
 				</para>
@@ -1614,6 +1475,11 @@
 		    </itemizedlist>
 		  </listitem>
 		</orderedlist>
+</sect2>
+
+<sect2 id="xed-word-complete-plugin" xreflabel="Word Completion">
+<title>Word Completion Plugin</title>
+  <para>This will try to guess the remainder of a word after the first few characters have been typed. A drop-down box will appear with the word choices.  Select the desired word using the a mouse click, or arrow keys.</para>
 </sect2>
 
 </sect1>
