@@ -4,11 +4,8 @@ help_sources = [
 ]
 
 help_media = [
-    'figures/xed_format_bold.png',
-    'figures/xed_format_italic.png',
-    'figures/xed_format_strikethrough.png',
-    'figures/xed_format_underline.png',
-    'figures/xed_recent_files_menu_icon.png',
+    'figures/xed_print_button.png',
+    'figures/xed_search_pane_buttons.png',
     'figures/xed_window.png'
 ]
 
