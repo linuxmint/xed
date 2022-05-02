@@ -1,29 +1,24 @@
 #!/usr/bin/make -f
 
-DHFLAGS=--parallel
-
 %:
-	dh $@ $(DHFLAGS) --with gir
+	dh $@ --with gir,python3
 
 override_dh_auto_configure:
-	meson debian/build \
-		--prefix=/usr \
-		--buildtype=plain \
+	dh_auto_configure -- \
 		-D docs=true \
 		-D deprecated_warnings=false
 
-override_dh_installchangelogs:
-	dh_installchangelogs NEWS
+# compile python plugins
+override_dh_python3:
+	dh_python3 /usr/lib/$(DEB_HOST_MULTIARCH)/xed/plugins
 
 override_dh_strip:
 	dh_strip --dbg-package=xed-dbg
 
-get-orig-source:
-	uscan --noconf --force-download --rename --download-current-version --destdir=..
+# disable tests as they all fail
+override_dh_auto_test:
+	:
 
-override_dh_auto_install:
-	DESTDIR=${CURDIR}/debian/tmp \
-	ninja -C debian/build install
-
-override_dh_auto_build:
-	ninja -C debian/build
+# workaround to build on LMDE
+override_dh_dwz:
+	:

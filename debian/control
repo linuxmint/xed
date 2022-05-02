@@ -2,7 +2,8 @@ Source: xed
 Section: x11
 Priority: optional
 Maintainer: Linux Mint <root@linuxmint.com>
-Build-Depends: debhelper (>= 9),
+Build-Depends: debhelper-compat (= 12),
+               dh-python,
                gobject-introspection,
                gtk-doc-tools,
                intltool,
@@ -13,28 +14,24 @@ Build-Depends: debhelper (>= 9),
                libgtksourceview-4-dev,
                libpeas-dev,
                libxapp-dev (>= 1.9),
-               libsm-dev,
                libx11-dev,
                libxml2-dev,
-               gnome-common,
                python3,
-               python3-gi,
                yelp-tools,
                meson
-Standards-Version: 3.9.6
+Standards-Version: 4.5.0
 
 Package: xed
 Architecture: any
 Depends: iso-codes,
          xed-common (= ${source:Version}),
          ${misc:Depends},
-         ${python:Depends},
+         ${python3:Depends},
          ${shlibs:Depends},
          python3,
          python3-gi,
          gir1.2-gtksource-4,
          xapps-common (>= 1.9.0)
-XB-Python-Version: ${python:Versions}
 Description: Text editor
  Xed is a text editor which supports most standard editor features,
  extending this basic functionality with other features not usually
@@ -53,7 +50,7 @@ Description: Text editor
 
 Package: xed-common
 Architecture: all
-Depends: ${misc:Depends},
+Depends: ${misc:Depends}
 Description: Text editor (common files)
  Xed is a text editor which supports most standard editor features,
  extending this basic functionality with other features not usually
@@ -97,7 +94,7 @@ Description: Text editor (development files)
 
 Package: xed-dbg
 Section: debug
-Priority: extra
+Priority: optional
 Architecture: any
 Depends: xed (= ${binary:Version}),
          ${misc:Depends},
