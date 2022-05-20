@@ -94,6 +94,7 @@ subdir('help')
 if get_option('docs')
     subdir('docs/reference')
 endif
+subdir('install-scripts')
 
 # The tests use an option that doesn't exist in meson before 0.46.
 # Since they aren't strictly necessary, we'll just skip them for earlier versions
