@@ -11,17 +11,17 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MATE Desktop Environment\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-10-11 13:43+0100\n"
-"PO-Revision-Date: 2021-06-08 07:51+0000\n"
-"Last-Translator: Vendelín Slezák <Unknown>\n"
+"POT-Creation-Date: 2022-06-11 13:15+0200\n"
+"PO-Revision-Date: 2022-06-25 23:23+0000\n"
+"Last-Translator: menom <Unknown>\n"
 "Language-Team: Slovak "
 "(http://www.transifex.com/projects/p/MATE/language/sk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 1 : (n>=2 && n<=4) ? 2 : 0;\n"
-"X-Launchpad-Export-Date: 2021-12-31 12:22+0000\n"
-"X-Generator: Launchpad (build adb364d6a74a28e7b95d51cd30446ec16160de6c)\n"
+"X-Launchpad-Export-Date: 2022-06-26 11:25+0000\n"
+"X-Generator: Launchpad (build 51a2e4fa2e9b8e45f00904ad7f53546f45ac48a5)\n"
 "Language: sk\n"
 
 #: ../data/xed.appdata.xml.in.h:1
@@ -294,7 +294,8 @@ msgstr "Súbor „%s“ je iba na čítanie."
 msgid "Do you want to try to replace it with the one you are saving?"
 msgstr "Chcete sa pokúsiť ho nahradiť tým, ktorý ukladáte?"
 
-#: ../xed/xed-commands-file.c:503 ../xed/xed-ui.h:124
+#: ../xed/xed-commands-file.c:503 ../xed/resources/ui/xed-searchbar.ui.h:2
+#: ../xed/xed-ui.h:124
 msgid "_Replace"
 msgstr "Na_hradiť"
 
@@ -415,12 +416,12 @@ msgid "Unsaved Document %d"
 msgstr "Neuložený dokument %d"
 
 #: ../xed/xed-documents-panel.c:88 ../xed/xed-documents-panel.c:99
-#: ../xed/xed-window.c:1890 ../xed/xed-window.c:1894
+#: ../xed/xed-window.c:1906 ../xed/xed-window.c:1910
 msgid "Read-Only"
 msgstr "Iba na čítanie"
 
 #: ../xed/xed-documents-panel.c:650 ../xed/resources/ui/xed-shortcuts.ui.h:1
-#: ../xed/xed-window.c:3140
+#: ../xed/xed-window.c:3156
 msgid "Documents"
 msgstr "Dokumenty"
 
@@ -486,7 +487,7 @@ msgstr "Mac OS Classic"
 msgid "Windows"
 msgstr "Windows"
 
-#: ../xed/xed-highlight-mode-selector.c:297 ../xed/xed-window.c:2019
+#: ../xed/xed-highlight-mode-selector.c:297 ../xed/xed-window.c:2035
 msgid "Plain Text"
 msgstr "Čistý text"
 
@@ -1031,23 +1032,23 @@ msgstr "4"
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:10
 msgid "Draw whitespace"
-msgstr ""
+msgstr "Zvýrazniť prázdne znaky"
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:11
 msgid "Leading whitespace"
-msgstr ""
+msgstr "Medzera pred"
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:12
 msgid "Trailing whitespace"
-msgstr ""
+msgstr "Medzera za"
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:13
 msgid "Whitespace inside of text"
-msgstr ""
+msgstr "Medzera v texte"
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:14
 msgid "Newline character"
-msgstr ""
+msgstr "Značka pre nový riadok"
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:15
 msgid "Highlighting"
@@ -1200,12 +1201,8 @@ msgid "_Restore Default Fonts"
 msgstr "_Obnoviť predvolené písma"
 
 #: ../xed/resources/ui/xed-searchbar.ui.h:1
-msgid "Replace All"
-msgstr "Nahradiť všetko"
-
-#: ../xed/resources/ui/xed-searchbar.ui.h:2
-msgid "Replace"
-msgstr "Nahradiť"
+msgid "Replace _All"
+msgstr "Nahradiť _všetko"
 
 #: ../xed/resources/ui/xed-searchbar.ui.h:3
 msgid "_Search for: "
@@ -1369,7 +1366,7 @@ msgstr "Vzhľad"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:35
 msgid "Toggle Word Wrap"
-msgstr ""
+msgstr "Vypnúť/zapnúť zalamovanie slov"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:36
 msgid "Editing"
@@ -1425,11 +1422,11 @@ msgstr "Znížiť číslo kurzoru"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:49
 msgid "Toggle comment block"
-msgstr ""
+msgstr "Vypnúť/zapnúť blok komentárov"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:50
 msgid "Toggle comment"
-msgstr ""
+msgstr "Prepnúť komentár"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:51
 #: ../plugins/joinlines/joinlines.plugin.desktop.in.h:1
@@ -1488,7 +1485,7 @@ msgstr "INS"
 msgid "  Ln %d, Col %d"
 msgstr "  Rad %d, Stĺ %d"
 
-#: ../xed/xed-statusbar.c:321
+#: ../xed/xed-statusbar.c:322
 #, c-format
 msgid "There is a tab with errors"
 msgid_plural "There are %d tabs with errors"
@@ -1749,7 +1746,7 @@ msgstr "Vybrať celý dokument"
 
 #: ../xed/xed-ui.h:107
 msgid "_Toggle Comment"
-msgstr ""
+msgstr "Prepnúť komentár"
 
 #: ../xed/xed-ui.h:108 ../plugins/taglist/HTML.tags.xml.in.h:41
 msgid "Comment"
@@ -1757,7 +1754,7 @@ msgstr "Komentár"
 
 #: ../xed/xed-ui.h:109
 msgid "Toggle Comment _Block"
-msgstr ""
+msgstr "Vypnúť/zapnúť  Kom_entár"
 
 #: ../xed/xed-ui.h:110
 msgid "Comment Block"
@@ -1876,11 +1873,11 @@ msgstr "Zobraziť alebo skryť panel nástrojov v aktuálnom okne"
 
 #: ../xed/xed-ui.h:161
 msgid "_Menubar"
-msgstr ""
+msgstr "Panel s _ponukou"
 
 #: ../xed/xed-ui.h:162
 msgid "Show or hide the menubar in the current window"
-msgstr ""
+msgstr "Ukáž alebo skry menu v tomto okne"
 
 #: ../xed/xed-ui.h:164
 msgid "_Statusbar"
@@ -1930,22 +1927,22 @@ msgstr "_Spodný panel"
 msgid "Show or hide the bottom pane in the current window"
 msgstr "Zobraziť alebo skryť spodný panel v aktuálnom okne"
 
-#: ../xed/xed-utils.c:829
+#: ../xed/xed-utils.c:830
 msgid "Please check your installation."
 msgstr "Prosím, skontrolujte svoju inštaláciu."
 
-#: ../xed/xed-utils.c:897
+#: ../xed/xed-utils.c:898
 #, c-format
 msgid "Unable to open UI file %s. Error: %s"
 msgstr "Nepodarilo sa otvoriť súbor s používateľským rozhraním %s. Chyba: %s"
 
-#: ../xed/xed-utils.c:917
+#: ../xed/xed-utils.c:918
 #, c-format
 msgid "Unable to find the object '%s' inside file %s."
 msgstr "Nepodarilo sa v súbore %s nájsť objekt „%s“."
 
 #. Translators: '/ on <remote-share>'
-#: ../xed/xed-utils.c:1085
+#: ../xed/xed-utils.c:1086
 #, c-format
 msgid "/ on %s"
 msgstr "/ na %s"
@@ -1955,36 +1952,36 @@ msgid "_Display line numbers"
 msgstr "Zobraziť čísla ria_dkov"
 
 #. Translators: %s is a URI
-#: ../xed/xed-window.c:928
+#: ../xed/xed-window.c:944
 #, c-format
 msgid "Open '%s'"
 msgstr "Otvoriť „%s“"
 
 #. Translators: %s is a URI
-#: ../xed/xed-window.c:1279
+#: ../xed/xed-window.c:1295
 #, c-format
 msgid "Activate '%s'"
 msgstr "Aktivovať „%s“"
 
-#: ../xed/xed-window.c:1467
+#: ../xed/xed-window.c:1483
 #, c-format
 msgid "Spaces: %u"
 msgstr "Medzery: %u"
 
-#: ../xed/xed-window.c:1471
+#: ../xed/xed-window.c:1487
 #, c-format
 msgid "Tabs: %u"
-msgstr ""
+msgstr "Karty: %u"
 
-#: ../xed/xed-window.c:1548
+#: ../xed/xed-window.c:1564
 msgid "Use Spaces"
 msgstr "Použiť medzery"
 
-#: ../xed/xed-window.c:2356
+#: ../xed/xed-window.c:2372
 msgid "There are unsaved documents"
 msgstr "Máte neuložené dokumenty"
 
-#: ../xed/xed-window.c:3405
+#: ../xed/xed-window.c:3421
 msgid "Elevated Privileges"
 msgstr "Privilégiá správcu"
 
@@ -2411,7 +2408,7 @@ msgstr "_Spojiť riadky"
 
 #: ../plugins/joinlines/joinlines/__init__.py:27
 msgid "Join the selected lines"
-msgstr ""
+msgstr "Spojiť vybrané riadky"
 
 #. vi:ts=8
 #: ../plugins/modelines/modelines.plugin.desktop.in.h:1

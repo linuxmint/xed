@@ -7,17 +7,17 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MATE Desktop Environment\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-10-11 13:43+0100\n"
-"PO-Revision-Date: 2016-01-26 16:54+0000\n"
-"Last-Translator: Stefano Karapetsas <stefano@karapetsas.com>\n"
+"POT-Creation-Date: 2022-06-11 13:15+0200\n"
+"PO-Revision-Date: 2022-05-03 09:09+0000\n"
+"Last-Translator: MohammadSaleh Kamyab <Unknown>\n"
 "Language-Team: Persian "
 "(http://www.transifex.com/projects/p/MATE/language/fa/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Launchpad-Export-Date: 2021-12-31 12:22+0000\n"
-"X-Generator: Launchpad (build adb364d6a74a28e7b95d51cd30446ec16160de6c)\n"
+"X-Launchpad-Export-Date: 2022-06-26 11:25+0000\n"
+"X-Generator: Launchpad (build 51a2e4fa2e9b8e45f00904ad7f53546f45ac48a5)\n"
 "Language: fa\n"
 
 #: ../data/xed.appdata.xml.in.h:1
@@ -41,7 +41,7 @@ msgstr "ویرایشگر متن"
 
 #: ../data/xed.desktop.in.in.h:2
 msgid "Edit text files"
-msgstr ""
+msgstr "ویرایش پرونده‌های متنی"
 
 #: ../xed/xed-app.c:100
 msgid "Show the application's version"
@@ -49,7 +49,7 @@ msgstr ""
 
 #: ../xed/xed-app.c:106
 msgid "Display list of possible values for the encoding option"
-msgstr ""
+msgstr "نمایش فهرست مقادیر ممکن برای گزینه رمزگزاری"
 
 #: ../xed/xed-app.c:113
 msgid ""
@@ -61,7 +61,7 @@ msgstr ""
 
 #: ../xed/xed-app.c:114
 msgid "ENCODING"
-msgstr ""
+msgstr "ENCODING"
 
 #: ../xed/xed-app.c:120
 msgid "Create a new top-level window in an existing instance of xed"
@@ -82,6 +82,7 @@ msgstr ""
 #: ../xed/xed-app.c:141
 msgid "Open files and block process until files are closed"
 msgstr ""
+"پرونده‌ها را باز کن و فرآیندها را مسدود کن تا زمانی که پرونده‌ها بسته شوند"
 
 #: ../xed/xed-app.c:148
 msgid "Run xed in standalone mode"
@@ -94,11 +95,11 @@ msgstr ""
 #: ../xed/xed-app.c:612
 #, c-format
 msgid "%s: invalid encoding."
-msgstr ""
+msgstr "%s: رمزگزاری نامعتبر."
 
 #: ../xed/xed-app.c:1266
 msgid "There was an error displaying the help."
-msgstr ""
+msgstr "در نمایش راهنما خطایی رخ داد."
 
 #: ../xed/xed-close-confirmation-dialog.c:129
 msgid "Log Out _without Saving"
@@ -120,7 +121,7 @@ msgstr "بد_ون ذخیره‌سازی بسته شود"
 #: ../xed/resources/ui/xed-highlight-mode-dialog.ui.h:2
 #: ../plugins/filebrowser/xed-file-browser-utils.c:153
 msgid "_Cancel"
-msgstr ""
+msgstr "_لغو"
 
 #: ../xed/xed-close-confirmation-dialog.c:155
 msgid "_Save As..."
@@ -130,7 +131,7 @@ msgstr ""
 #: ../xed/xed-close-confirmation-dialog.c:161 ../xed/xed-commands-file.c:649
 #: ../xed/xed-ui.h:81
 msgid "_Save"
-msgstr ""
+msgstr "_ذخیره"
 
 #: ../xed/xed-close-confirmation-dialog.c:188
 msgid "Question"
@@ -233,18 +234,17 @@ msgstr ""
 #, c-format
 msgid "Loading %d file…"
 msgid_plural "Loading %d files…"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "بار کردن %Id پرونده…"
 
 #. Translators: "Open Files" is the title of the file chooser window
 #: ../xed/xed-commands-file.c:395
 msgid "Open Files"
-msgstr ""
+msgstr "گشودن پرونده‌ها"
 
 #: ../xed/xed-commands-file.c:400
 #: ../plugins/filebrowser/xed-file-browser-widget.c:764
 msgid "_Open"
-msgstr ""
+msgstr "گشودن"
 
 #: ../xed/xed-commands-file.c:494
 #, c-format
@@ -256,7 +256,8 @@ msgid "Do you want to try to replace it with the one you are saving?"
 msgstr ""
 "آیا می‌خواهید پرونده‌ای را که در حال ذخیره کردن آن هستید، جای‌گزین آن کنید؟"
 
-#: ../xed/xed-commands-file.c:503 ../xed/xed-ui.h:124
+#: ../xed/xed-commands-file.c:503 ../xed/resources/ui/xed-searchbar.ui.h:2
+#: ../xed/xed-ui.h:124
 msgid "_Replace"
 msgstr "_جای‌گزین شود"
 
@@ -323,6 +324,7 @@ msgstr[0] ""
 msgid ""
 "Changes made to the document in the last hour will be permanently lost."
 msgstr ""
+"تغییرات اعمال شده روی سند در ساعت گذشته برای همیشه از دست خواهند رفت."
 
 #: ../xed/xed-commands-file.c:1299
 #, c-format
@@ -343,7 +345,7 @@ msgid ""
 msgid_plural ""
 "Changes made to the document in the last %d hours will be permanently lost."
 msgstr[0] ""
-msgstr[1] ""
+"تغییرات اعمال شده روی سند در %Id ساعت گذشته برای همیشه از دست خواهند رفت."
 
 #: ../xed/xed-commands-file.c:1334
 msgid "_Revert"
@@ -359,18 +361,18 @@ msgid "Unsaved Document %d"
 msgstr ""
 
 #: ../xed/xed-documents-panel.c:88 ../xed/xed-documents-panel.c:99
-#: ../xed/xed-window.c:1890 ../xed/xed-window.c:1894
+#: ../xed/xed-window.c:1906 ../xed/xed-window.c:1910
 msgid "Read-Only"
-msgstr ""
+msgstr "فقط خواندنی"
 
 #: ../xed/xed-documents-panel.c:650 ../xed/resources/ui/xed-shortcuts.ui.h:1
-#: ../xed/xed-window.c:3140
+#: ../xed/xed-window.c:3156
 msgid "Documents"
-msgstr ""
+msgstr "سندها"
 
 #: ../xed/xed-encodings-combo-box.c:258
 msgid "Automatically Detected"
-msgstr ""
+msgstr "تشخیص خودکار"
 
 #: ../xed/xed-encodings-combo-box.c:277 ../xed/xed-encodings-combo-box.c:291
 #, c-format
@@ -392,7 +394,7 @@ msgstr "_راهنما"
 
 #: ../xed/xed-encodings-dialog.c:335
 msgid "Character Encodings"
-msgstr ""
+msgstr "رمزگزاری‌های نویسه‌ها"
 
 #: ../xed/xed-encodings-dialog.c:368 ../xed/xed-encodings-dialog.c:405
 msgid "_Description"
@@ -412,31 +414,31 @@ msgstr "همه‌ی پرونده‌های متنی"
 
 #: ../xed/xed-file-chooser-dialog.c:85
 msgid "C_haracter Encoding:"
-msgstr ""
+msgstr "کدگذاری _نویسه:"
 
 #: ../xed/xed-file-chooser-dialog.c:141
 msgid "L_ine Ending:"
-msgstr ""
+msgstr "_پایان دادن خط:"
 
 #: ../xed/xed-file-chooser-dialog.c:152
 msgid "Unix/Linux"
-msgstr ""
+msgstr "یونیکس/لینوکس"
 
 #: ../xed/xed-file-chooser-dialog.c:153
 msgid "Mac OS Classic"
-msgstr ""
+msgstr "سامانه عامل کلاسیک مک"
 
 #: ../xed/xed-file-chooser-dialog.c:154
 msgid "Windows"
-msgstr ""
+msgstr "ویندوز"
 
-#: ../xed/xed-highlight-mode-selector.c:297 ../xed/xed-window.c:2019
+#: ../xed/xed-highlight-mode-selector.c:297 ../xed/xed-window.c:2035
 msgid "Plain Text"
-msgstr ""
+msgstr "متن ساده"
 
 #: ../xed/xed-io-error-info-bar.c:154 ../xed/xed-io-error-info-bar.c:390
 msgid "_Retry"
-msgstr ""
+msgstr "_سعی مجدد"
 
 #: ../xed/xed-io-error-info-bar.c:173
 #, c-format
@@ -447,6 +449,7 @@ msgstr ""
 #: ../xed/xed-io-error-info-bar.c:213
 msgid "Please check that you typed the location correctly and try again."
 msgstr ""
+"لطفاً مطمئن شوید که مکان را درست وارد کرده‌اید و یک بار دیگر امتحان کنید."
 
 #. Translators: %s is a URI scheme (like for example http:, ftp:, etc.)
 #: ../xed/xed-io-error-info-bar.c:189
@@ -492,6 +495,8 @@ msgid ""
 "Hostname was invalid. Please check that you typed the location correctly and "
 "try again."
 msgstr ""
+"نام میزبان معتبر نبود. لطفا اطمینان حاصل کنید که مکان را درست وارد کرده‌اید "
+"و یک بار دیگر امتحان کنید."
 
 #: ../xed/xed-io-error-info-bar.c:263
 #, c-format
@@ -500,12 +505,12 @@ msgstr ""
 
 #: ../xed/xed-io-error-info-bar.c:266
 msgid "Connection timed out. Please try again."
-msgstr ""
+msgstr "زمان تلاش برای اتصال به پایان رسید. لطفا مجددا تلاش کنید."
 
 #: ../xed/xed-io-error-info-bar.c:293
 #, c-format
 msgid "Unexpected error: %s"
-msgstr ""
+msgstr "خطا ناشناخته: %s"
 
 #: ../xed/xed-io-error-info-bar.c:326
 msgid "xed cannot find the file. Perhaps it has recently been deleted."
@@ -518,23 +523,25 @@ msgstr ""
 
 #: ../xed/xed-io-error-info-bar.c:359
 msgid "Ch_aracter Encoding:"
-msgstr ""
+msgstr "رمزگزاری _نویسه:"
 
 #. Translators: the access key chosen for this string should be
 #. different from other main menu access keys (Open, Edit, View...)
 #: ../xed/xed-io-error-info-bar.c:397 ../xed/xed-io-error-info-bar.c:654
 msgid "Edit Any_way"
-msgstr ""
+msgstr "به هر _حال ویرایش کن"
 
 #: ../xed/xed-io-error-info-bar.c:489
 msgid ""
 "The number of followed links is limited and the actual file could not be "
 "found within this limit."
 msgstr ""
+"تعداد پیونده‌های پیوست محدود است و پرونده حقیقی از طریق این محدودیت قابل "
+"یافت نیست."
 
 #: ../xed/xed-io-error-info-bar.c:493
 msgid "You do not have the permissions necessary to open the file."
-msgstr ""
+msgstr "شما اجازه‌های لازم جهت گشودن این پرونده را ندارید."
 
 #: ../xed/xed-io-error-info-bar.c:499
 msgid "xed has not been able to detect the character encoding."
@@ -542,11 +549,11 @@ msgstr ""
 
 #: ../xed/xed-io-error-info-bar.c:501 ../xed/xed-io-error-info-bar.c:524
 msgid "Please check that you are not trying to open a binary file."
-msgstr ""
+msgstr "لطفا بررسی کنید که سعی در گشودن پرونده باینری ندارید."
 
 #: ../xed/xed-io-error-info-bar.c:502
 msgid "Select a character encoding from the menu and try again."
-msgstr ""
+msgstr "یک رمزگزاری دیگر از طریق فهرست انتخاب کنید و مجددا تلاش کنید."
 
 #: ../xed/xed-io-error-info-bar.c:508
 #, c-format
@@ -558,10 +565,12 @@ msgid ""
 "The file you opened has some invalid characters. If you continue editing "
 "this file you could corrupt this document."
 msgstr ""
+"پرونده‌ای که باز کرده‌اید شامل تعدادی از نویسه‌های نامعتبر است. اگر ویرایش "
+"این پرونده را ادامه دهید ممکن است به این سند صدمه بزنید."
 
 #: ../xed/xed-io-error-info-bar.c:512
 msgid "You can also choose another character encoding and try again."
-msgstr ""
+msgstr "شما همچنین می‌توانید یک رمزگزاری دیگر انتخاب کنید . مجددا تلاش کنید."
 
 #: ../xed/xed-io-error-info-bar.c:521
 #, c-format
@@ -570,7 +579,7 @@ msgstr ""
 
 #: ../xed/xed-io-error-info-bar.c:525 ../xed/xed-io-error-info-bar.c:594
 msgid "Select a different character encoding from the menu and try again."
-msgstr ""
+msgstr "یک رمزگزاری دیگر از فهرست انتخاب کنید و مجددا تلاش کنید."
 
 #: ../xed/xed-io-error-info-bar.c:537
 #, c-format
@@ -587,6 +596,8 @@ msgid ""
 "The document contains one or more characters that cannot be encoded using "
 "the specified character encoding."
 msgstr ""
+"سند شامل یک یا تعداد بیشتر از نویسه‌هایی است که نمی‌توان از طریق رمزگزاری "
+"انتخاب شده کدگشایی شود."
 
 #. Translators: the access key chosen for this string should be
 #. different from other main menu access keys (Open, Edit, View...)
@@ -608,7 +619,7 @@ msgstr ""
 #: ../xed/xed-io-error-info-bar.c:742 ../xed/xed-io-error-info-bar.c:830
 #: ../xed/xed-io-error-info-bar.c:1092
 msgid "S_ave Anyway"
-msgstr ""
+msgstr "به هر حال ذ_خیره کن"
 
 #: ../xed/xed-io-error-info-bar.c:743 ../xed/xed-io-error-info-bar.c:831
 #: ../xed/xed-io-error-info-bar.c:1094
@@ -628,6 +639,7 @@ msgstr ""
 msgid ""
 "If you save it, all the external changes could be lost. Save it anyway?"
 msgstr ""
+"اگر ذخیره کنید، تغییرات بیرونی ممکن است از دست برود. به هر حال ذخیره شود؟"
 
 #: ../xed/xed-io-error-info-bar.c:851
 #, c-format
@@ -672,29 +684,38 @@ msgid ""
 "You do not have the permissions necessary to save the file. Please check "
 "that you typed the location correctly and try again."
 msgstr ""
+"شما اجازه لازم برای ذخیره این پرونده را ندارید. لطفا بررسی کنید که محل را به "
+"درستی تایپ کرده‌اید و دوباره امتحان کنید."
 
 #: ../xed/xed-io-error-info-bar.c:957
 msgid ""
 "There is not enough disk space to save the file. Please free some disk space "
 "and try again."
 msgstr ""
+"برای ذخیرهٔ پرونده روی دیسک به قدر کافی فضا موجود نیست. لطفاً کمی فضا روی "
+"دیسک آزاد کنید و یک بار دیگر امتحان کنید."
 
 #: ../xed/xed-io-error-info-bar.c:962
 msgid ""
 "You are trying to save the file on a read-only disk. Please check that you "
 "typed the location correctly and try again."
 msgstr ""
+"شما سعی در ذخیرهٔ پرونده روی دیسکی فقط-خواندنی دارید. لطفاً بررسی کنید که "
+"موقعیت را به درستی نوشته و دوباره بیازمایید."
 
 #: ../xed/xed-io-error-info-bar.c:968
 msgid ""
 "A file with the same name already exists. Please use a different name."
 msgstr ""
+"یک پرونده با همین نام از قبل وجود دارد. لطفا از یک نام دیگر استفاده کنید."
 
 #: ../xed/xed-io-error-info-bar.c:973
 msgid ""
 "The disk where you are trying to save the file has a limitation on length of "
 "the file names. Please use a shorter name."
 msgstr ""
+"دیسکی که می‌خواهید پرونده را روی آن ذخیره کنید محدودیت طول نام پرونده دارد. "
+"لطفاً از یک نام کوتاه‌تر استفاده کنید."
 
 #: ../xed/xed-io-error-info-bar.c:983
 msgid ""
@@ -702,6 +723,9 @@ msgid ""
 "sizes. Please try saving a smaller file or saving it to a disk that does not "
 "have this limitation."
 msgstr ""
+"دیسکی که می‌خواهید پرونده را روی آن ذخیره کنید محدودیت اندازهٔ پرونده دارد. "
+"لطفاً سعی کنید پروندهٔ کوچک‌تر ذخیره کنید یا آن را روی دیسکی ذخیره کنید که "
+"این محدودیت را ندارد."
 
 #: ../xed/xed-io-error-info-bar.c:996
 #, c-format
@@ -726,7 +750,7 @@ msgstr ""
 
 #: ../xed/xed-io-error-info-bar.c:1050
 msgid "_Reload"
-msgstr ""
+msgstr "_بار کردن مجدد"
 
 #: ../xed/xed-io-error-info-bar.c:1107
 #, c-format
@@ -737,6 +761,8 @@ msgstr ""
 msgid ""
 "If you continue saving this file you can corrupt the document.  Save anyway?"
 msgstr ""
+"اگر به ذخیره این پرونده ادامه دهید می‌توانید پرونده را خراب کنید.  به هر حال "
+"ذخیره شود؟"
 
 #: ../xed/xed-preferences-dialog.c:280
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:3
@@ -750,7 +776,7 @@ msgstr "ویرایش‌گر"
 
 #: ../xed/xed-preferences-dialog.c:474
 msgid "Save"
-msgstr ""
+msgstr "ذخیره"
 
 #: ../xed/xed-preferences-dialog.c:587
 #, c-format
@@ -760,11 +786,11 @@ msgstr ""
 
 #: ../xed/xed-preferences-dialog.c:741
 msgid "The selected color scheme cannot be installed."
-msgstr ""
+msgstr "شمای رنگی انتخاب شده قابل نصب نیست."
 
 #: ../xed/xed-preferences-dialog.c:764 ../xed/xed-preferences-dialog.c:770
 msgid "Add Scheme"
-msgstr ""
+msgstr "افزودن شِما"
 
 #: ../xed/xed-preferences-dialog.c:767 ../xed/xed-progress-info-bar.c:61
 msgid "Cancel"
@@ -772,7 +798,7 @@ msgstr ""
 
 #: ../xed/xed-preferences-dialog.c:776
 msgid "Color Scheme Files"
-msgstr ""
+msgstr "پرونده‌های شمای رنگی"
 
 #: ../xed/xed-preferences-dialog.c:848
 #, c-format
@@ -815,15 +841,15 @@ msgstr ""
 
 #: ../xed/xed-print-preview.c:580
 msgid "Show the previous page"
-msgstr ""
+msgstr "نمایش صفحه قبلی"
 
 #: ../xed/xed-print-preview.c:586
 msgid "Show the next page"
-msgstr ""
+msgstr "نمایش صفحه بعدی"
 
 #: ../xed/xed-print-preview.c:600
 msgid "Current page (Alt+P)"
-msgstr ""
+msgstr "صفحه فعلی (Alt+P)"
 
 #. gtk_label_set_mnemonic_widget ((GtkLabel *) l, mp->priv->page_entry);
 #. We are displaying 'XXX of XXX'.
@@ -834,35 +860,35 @@ msgstr ""
 
 #: ../xed/xed-print-preview.c:619
 msgid "Page total"
-msgstr ""
+msgstr "کل صفحه"
 
 #: ../xed/xed-print-preview.c:620
 msgid "The total number of pages in the document"
-msgstr ""
+msgstr "تعداد تمام صفحه‌ها در سند"
 
 #: ../xed/xed-print-preview.c:640
 msgid "Show multiple pages"
-msgstr ""
+msgstr "نمایش چندتایی صفحه‌ها"
 
 #: ../xed/xed-print-preview.c:658
 msgid "Zoom 1:1"
-msgstr ""
+msgstr "زوم ۱:۱"
 
 #: ../xed/xed-print-preview.c:664
 msgid "Zoom to fit the whole page"
-msgstr ""
+msgstr "زوم تا جایی که در کل صفحه جا شود"
 
 #: ../xed/xed-print-preview.c:670
 msgid "Zoom the page in"
-msgstr ""
+msgstr "زوم به داخل"
 
 #: ../xed/xed-print-preview.c:676
 msgid "Zoom the page out"
-msgstr ""
+msgstr "زوم به خارج"
 
 #: ../xed/xed-print-preview.c:693 ../xed/resources/ui/xed-shortcuts.ui.h:33
 msgid "Print the document"
-msgstr ""
+msgstr "چاپ سند"
 
 #: ../xed/xed-print-preview.c:708
 msgid "_Close preview"
@@ -870,32 +896,32 @@ msgstr ""
 
 #: ../xed/xed-print-preview.c:710
 msgid "Close print preview"
-msgstr ""
+msgstr "خروج از پیش‌نمایش چاپ"
 
 #: ../xed/xed-print-preview.c:788
 #, c-format
 msgid "Page %d of %d"
-msgstr ""
+msgstr "صفحهٔ %Id از %Id"
 
 #: ../xed/xed-print-preview.c:970
 msgid "Page Preview"
-msgstr ""
+msgstr "پیش‌نمایش صفحه"
 
 #: ../xed/xed-print-preview.c:971
 msgid "The preview of a page in the document to be printed"
-msgstr ""
+msgstr "پیش‌نمایش یک صفحه در سند برای چاپ"
 
 #: ../xed/resources/ui/xed-highlight-mode-dialog.ui.h:1
 msgid "Highlight Mode"
-msgstr ""
+msgstr "حالت پررنگ"
 
 #: ../xed/resources/ui/xed-highlight-mode-dialog.ui.h:3
 msgid "_Select"
-msgstr ""
+msgstr "ا_نتخاب"
 
 #: ../xed/resources/ui/xed-highlight-mode-selector.ui.h:1
 msgid "Search highlight mode…"
-msgstr ""
+msgstr "حالت نشانه‌گذاری جست‌وجو…"
 
 #: ../xed/resources/ui/xed-encodings-dialog.ui.h:1
 msgid "Character encodings"
@@ -911,7 +937,7 @@ msgstr "کد_گذاری‌هایی که در منو نمایش داده می‌�
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:1
 msgid "Font"
-msgstr ""
+msgstr "قلم"
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:4
 msgid "Display"
@@ -919,7 +945,7 @@ msgstr ""
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:5
 msgid "Display line numbers"
-msgstr ""
+msgstr "نمایش شماره خط‌ها"
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:6
 msgid "Display overview map"
@@ -927,7 +953,7 @@ msgstr ""
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:7
 msgid "Display right margin"
-msgstr ""
+msgstr "نمایش حاشیهٔ راست"
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:8
 msgid "Right margin at column"
@@ -959,7 +985,7 @@ msgstr ""
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:15
 msgid "Highlighting"
-msgstr ""
+msgstr "درحال نشانه‌گذاری"
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:16
 msgid "Highlight the current line"
@@ -1019,7 +1045,7 @@ msgstr ""
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:30
 msgid "Ensure Trailing Newline"
-msgstr ""
+msgstr "اطمینان از دنباله خطوطِ جدید"
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:31
 msgid "Dark theme"
@@ -1035,7 +1061,7 @@ msgstr ""
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:34
 msgid "Install scheme"
-msgstr ""
+msgstr "نصب شِما"
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:35
 msgid "Remove scheme"
@@ -1047,15 +1073,15 @@ msgstr "پررنگ‌سازی نحوی"
 
 #: ../xed/resources/ui/xed-print-preferences.ui.h:2
 msgid "Print synta_x highlighting"
-msgstr ""
+msgstr "چاپ پُررنگ‌سازی _نحوی"
 
 #: ../xed/resources/ui/xed-print-preferences.ui.h:3
 msgid "Line Numbers"
-msgstr ""
+msgstr "شمارهٔ خط‌ها"
 
 #: ../xed/resources/ui/xed-print-preferences.ui.h:4
 msgid "Print line nu_mbers"
-msgstr ""
+msgstr "چاپ شمارهٔ _خط‌ها"
 
 #. 
 #: ../xed/resources/ui/xed-print-preferences.ui.h:6
@@ -1069,7 +1095,7 @@ msgstr "سطر شماره‌گذاری شود"
 
 #: ../xed/resources/ui/xed-print-preferences.ui.h:9
 msgid "Text Wrapping"
-msgstr ""
+msgstr "شکاندن متن"
 
 #: ../xed/resources/ui/xed-print-preferences.ui.h:10
 msgid "Enable text _wrapping"
@@ -1081,11 +1107,11 @@ msgstr "کلمات بین دو سطر _شکسته نشوند"
 
 #: ../xed/resources/ui/xed-print-preferences.ui.h:12
 msgid "Page header"
-msgstr ""
+msgstr "سرصفحه"
 
 #: ../xed/resources/ui/xed-print-preferences.ui.h:13
 msgid "Print page _headers"
-msgstr ""
+msgstr "چاپ _سرصفحه‌ها"
 
 #: ../xed/resources/ui/xed-print-preferences.ui.h:14
 msgid "Fonts"
@@ -1108,12 +1134,8 @@ msgid "_Restore Default Fonts"
 msgstr "_قلم‌های پیش‌فرض بازیابی شوند"
 
 #: ../xed/resources/ui/xed-searchbar.ui.h:1
-msgid "Replace All"
-msgstr "جای‌گزینی همه"
-
-#: ../xed/resources/ui/xed-searchbar.ui.h:2
-msgid "Replace"
-msgstr "جای‌گزینی"
+msgid "Replace _All"
+msgstr ""
 
 #: ../xed/resources/ui/xed-searchbar.ui.h:3
 msgid "_Search for: "
@@ -1153,35 +1175,35 @@ msgstr "ایجاد نوشتار جدید"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:3
 msgid "Open a document"
-msgstr ""
+msgstr "گشودن یک سند"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:4
 msgid "Save the document"
-msgstr ""
+msgstr "ذخیره سند"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:5
 msgid "Save the document with a new filename"
-msgstr ""
+msgstr "ذخیره سند با یک نام جدید"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:6
 msgid "Save all the documents"
-msgstr ""
+msgstr "ذخیره تمام سندها"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:7
 msgid "Close the document"
-msgstr ""
+msgstr "بستن سند"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:8
 msgid "Close all the documents"
-msgstr ""
+msgstr "بستن تمام سندها"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:9
 msgid "Switch to the next document"
-msgstr ""
+msgstr "انتقال به سند بعدی"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:10
 msgid "Switch to the previous document"
-msgstr ""
+msgstr "انتقال به سند قبلی"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:11
 msgid "Switch to the first - ninth document"
@@ -1201,75 +1223,75 @@ msgstr ""
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:15
 msgid "Fullscreen on / off"
-msgstr ""
+msgstr "روشن / خاموش تمام‌صفحه"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:16
 msgid "Quit the application"
-msgstr ""
+msgstr "خروج از برنامه"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:17
 msgid "Find and Replace"
-msgstr ""
+msgstr "جست‌وجو و جایگزینی"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:18
 msgid "Find"
-msgstr ""
+msgstr "یافتن"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:19
 msgid "Find the next match"
-msgstr ""
+msgstr "یافتن مورد منطبق بعدی"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:20
 msgid "Find the previous match"
-msgstr ""
+msgstr "یافتن مورد منطبق بعدی"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:21
 msgid "Go to line"
-msgstr ""
+msgstr "رفتن به خط"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:22
 msgid "Copy and Paste"
-msgstr ""
+msgstr "رونوشت و جای‌گذاری"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:23
 msgid "Copy selected text to clipboard"
-msgstr ""
+msgstr "رونوشت متن انتخاب شده به تخته‌گیره"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:24
 msgid "Cut selected text to clipboard"
-msgstr ""
+msgstr "برش متن انتخاب شده به تخته‌گیره"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:25
 msgid "Paste text from clipboard"
-msgstr ""
+msgstr "جای‌گذاری متن از تخته‌گیره"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:26
 msgid "Undo and Redo"
-msgstr ""
+msgstr "برگردان و انجام دوباره"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:27
 msgid "Undo previous command"
-msgstr ""
+msgstr "برگردان فرمان قبلی"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:28
 msgid "Redo previous command"
-msgstr ""
+msgstr "انجام مجدد فرمان قبلی"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:29 ../plugins/docinfo/docinfo.ui.h:11
 msgid "Selection"
-msgstr ""
+msgstr "انتخاب"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:30
 msgid "Select all text"
-msgstr ""
+msgstr "انتخاب همه متن"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:31
 msgid "Tools"
-msgstr ""
+msgstr "ابزارها"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:32
 msgid "Check spelling"
-msgstr ""
+msgstr "غلط‌یابی املایی"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:34
 msgid "Layout"
@@ -1281,39 +1303,39 @@ msgstr ""
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:36
 msgid "Editing"
-msgstr ""
+msgstr "ویرایش"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:37
 msgid "Toggle insert / overwrite"
-msgstr ""
+msgstr "تغییر وضعیت ورود/رونویسی"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:38
 msgid "Delete current line"
-msgstr ""
+msgstr "حذف خط فعلی"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:39
 msgid "Move current line up"
-msgstr ""
+msgstr "انتقال خط فعلی به بالا"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:40
 msgid "Move current line down"
-msgstr ""
+msgstr "انتقال خط فعلی به پایین"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:41
 msgid "Move current word left"
-msgstr ""
+msgstr "انتقال کلمه فعلی به پایین"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:42
 msgid "Move current word right"
-msgstr ""
+msgstr "انتقال کلمه فعلی به راست"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:43
 msgid "Convert to uppercase"
-msgstr ""
+msgstr "تبدیل به حروف بزرگ"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:44
 msgid "Convert to lowercase"
-msgstr ""
+msgstr "تبدیل به حروف کوچک"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:45
 msgid "Convert to title case"
@@ -1321,15 +1343,15 @@ msgstr ""
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:46
 msgid "Invert case"
-msgstr ""
+msgstr "معکوس کردن کوچکی و بزرگی حروف"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:47
 msgid "Increment number at cursor"
-msgstr ""
+msgstr "افزایش عدد زیر مکان‌نما"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:48
 msgid "Decrement number at cursor"
-msgstr ""
+msgstr "کاهش عدد زیر مکان‌نما"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:49
 msgid "Toggle comment block"
@@ -1348,12 +1370,11 @@ msgstr ""
 #, c-format
 msgid "Found and replaced %d occurrence"
 msgid_plural "Found and replaced %d occurrences"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%Id مورد یافته و جایگزین شد"
 
 #: ../xed/xed-searchbar.c:98
 msgid "Found and replaced one occurrence"
-msgstr ""
+msgstr "یک مورد یافته و جایگزین شد"
 
 #: ../xed/xed-searchbar.c:120
 #, c-format
@@ -1380,11 +1401,11 @@ msgstr[1] ""
 
 #: ../xed/xed-statusbar.c:63 ../xed/xed-statusbar.c:69
 msgid "OVR"
-msgstr ""
+msgstr "OVR"
 
 #: ../xed/xed-statusbar.c:63 ../xed/xed-statusbar.c:69
 msgid "INS"
-msgstr ""
+msgstr "INS"
 
 #. Translators: "Ln" is an abbreviation for "Line", Col is an abbreviation for "Column". Please,
 #. use abbreviations if possible to avoid space problems.
@@ -1393,12 +1414,11 @@ msgstr ""
 msgid "  Ln %d, Col %d"
 msgstr "  سطر %Id، ستون %Id"
 
-#: ../xed/xed-statusbar.c:321
+#: ../xed/xed-statusbar.c:322
 #, c-format
 msgid "There is a tab with errors"
 msgid_plural "There are %d tabs with errors"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d زبانه با خطا وجود دارد"
 
 #: ../xed/xed-tab-label.c:267
 msgid "Close document"
@@ -1409,36 +1429,36 @@ msgstr ""
 #: ../xed/xed-tab.c:717
 #, c-format
 msgid "Reverting %s from %s"
-msgstr ""
+msgstr "در حال بازگرداندن %s از %s"
 
 #: ../xed/xed-tab.c:722
 #, c-format
 msgid "Reverting %s"
-msgstr ""
+msgstr "در حال بازگرداندن %s"
 
 #. Translators: the first %s is a file name (e.g. test.txt) the second one
 #. is a directory (e.g. ssh://master.gnome.org/home/users/paolo)
 #: ../xed/xed-tab.c:735
 #, c-format
 msgid "Loading %s from %s"
-msgstr ""
+msgstr "در حال بار کردن %s از %s"
 
 #: ../xed/xed-tab.c:740
 #, c-format
 msgid "Loading %s"
-msgstr ""
+msgstr "در حال بار کردن %s"
 
 #. Translators: the first %s is a file name (e.g. test.txt) the second one
 #. is a directory (e.g. ssh://master.gnome.org/home/users/paolo)
 #: ../xed/xed-tab.c:821
 #, c-format
 msgid "Saving %s to %s"
-msgstr ""
+msgstr "درحال ذخیرهٔ %s در %s"
 
 #: ../xed/xed-tab.c:826
 #, c-format
 msgid "Saving %s"
-msgstr ""
+msgstr "در حال ذخیرهٔ %s"
 
 #. Read only
 #: ../xed/xed-tab.c:1320
@@ -1448,17 +1468,17 @@ msgstr "ف‌خ"
 #: ../xed/xed-tab.c:1368
 #, c-format
 msgid "Error opening file %s"
-msgstr ""
+msgstr "خطا در گشودن پرونده %s"
 
 #: ../xed/xed-tab.c:1372
 #, c-format
 msgid "Error reverting file %s"
-msgstr ""
+msgstr "خطا در باز گرداندن پرونده %s"
 
 #: ../xed/xed-tab.c:1376
 #, c-format
 msgid "Error saving file %s"
-msgstr ""
+msgstr "خطا در ذخیرهٔ پرونده %s"
 
 #: ../xed/xed-tab.c:1409
 msgid "Name:"
@@ -1508,7 +1528,7 @@ msgstr ""
 #. File menu
 #: ../xed/xed-ui.h:55
 msgid "_New"
-msgstr ""
+msgstr "_جدید"
 
 #: ../xed/xed-ui.h:57
 msgid "_Open..."
@@ -1546,7 +1566,7 @@ msgstr "درباره‌ی این برنامه"
 
 #: ../xed/xed-ui.h:69
 msgid "_Keyboard Shortcuts"
-msgstr ""
+msgstr "میانبرهای _صفحه‌کلید"
 
 #: ../xed/xed-ui.h:70
 msgid "Show the keyboard shortcuts dialog"
@@ -1595,7 +1615,7 @@ msgstr ""
 #. Edit menu
 #: ../xed/xed-ui.h:93
 msgid "_Undo"
-msgstr ""
+msgstr "برگردان"
 
 #: ../xed/xed-ui.h:94
 msgid "Undo the last action"
@@ -1603,7 +1623,7 @@ msgstr "برگرداندن عمل قبلی"
 
 #: ../xed/xed-ui.h:95
 msgid "_Redo"
-msgstr ""
+msgstr "_دوباره"
 
 #: ../xed/xed-ui.h:96
 msgid "Redo the last undone action"
@@ -1611,7 +1631,7 @@ msgstr ""
 
 #: ../xed/xed-ui.h:97
 msgid "C_ut"
-msgstr ""
+msgstr "_برش"
 
 #: ../xed/xed-ui.h:98
 msgid "Cut the selection"
@@ -1619,7 +1639,7 @@ msgstr "بریدن انتخاب شده‌ها"
 
 #: ../xed/xed-ui.h:99
 msgid "_Copy"
-msgstr ""
+msgstr "_رونوشت"
 
 #: ../xed/xed-ui.h:100
 msgid "Copy the selection"
@@ -1627,7 +1647,7 @@ msgstr "نسخه برداری از انتخاب شده‌ها"
 
 #: ../xed/xed-ui.h:101
 msgid "_Paste"
-msgstr ""
+msgstr "_جای‌گذاری"
 
 #: ../xed/xed-ui.h:102
 msgid "Paste the clipboard"
@@ -1679,7 +1699,7 @@ msgstr ""
 #. Search menu
 #: ../xed/xed-ui.h:118
 msgid "_Find"
-msgstr ""
+msgstr "_یافتن"
 
 #: ../xed/xed-ui.h:119
 msgid "Search for text"
@@ -1732,7 +1752,7 @@ msgstr "بستن همه‌ی پرونده‌های باز"
 
 #: ../xed/xed-ui.h:134
 msgid "_Previous Document"
-msgstr ""
+msgstr "سند _قبلی"
 
 #: ../xed/xed-ui.h:135
 msgid "Activate previous document"
@@ -1756,7 +1776,7 @@ msgstr "انتقال نوشتار جاری به یک پنجره‌ی جدید"
 
 #: ../xed/xed-ui.h:145
 msgid "_Close"
-msgstr ""
+msgstr "_بستن"
 
 #: ../xed/xed-ui.h:146
 msgid "Close the current file"
@@ -1764,7 +1784,7 @@ msgstr "بستن پرونده‌ی جاری"
 
 #: ../xed/xed-ui.h:152
 msgid "_Quit"
-msgstr ""
+msgstr "_ترک"
 
 #: ../xed/xed-ui.h:153
 msgid "Quit the program"
@@ -1834,61 +1854,61 @@ msgstr ""
 msgid "Show or hide the bottom pane in the current window"
 msgstr ""
 
-#: ../xed/xed-utils.c:829
+#: ../xed/xed-utils.c:830
 msgid "Please check your installation."
 msgstr ""
 
-#: ../xed/xed-utils.c:897
+#: ../xed/xed-utils.c:898
 #, c-format
 msgid "Unable to open UI file %s. Error: %s"
 msgstr ""
 
-#: ../xed/xed-utils.c:917
+#: ../xed/xed-utils.c:918
 #, c-format
 msgid "Unable to find the object '%s' inside file %s."
 msgstr ""
 
 #. Translators: '/ on <remote-share>'
-#: ../xed/xed-utils.c:1085
+#: ../xed/xed-utils.c:1086
 #, c-format
 msgid "/ on %s"
-msgstr ""
+msgstr "/ روی %s"
 
 #: ../xed/xed-view.c:388
 msgid "_Display line numbers"
 msgstr "نمایش _شماره سطرها"
 
 #. Translators: %s is a URI
-#: ../xed/xed-window.c:928
+#: ../xed/xed-window.c:944
 #, c-format
 msgid "Open '%s'"
 msgstr "باز کردن «‎%s‎»"
 
 #. Translators: %s is a URI
-#: ../xed/xed-window.c:1279
+#: ../xed/xed-window.c:1295
 #, c-format
 msgid "Activate '%s'"
 msgstr ""
 
-#: ../xed/xed-window.c:1467
+#: ../xed/xed-window.c:1483
 #, c-format
 msgid "Spaces: %u"
 msgstr ""
 
-#: ../xed/xed-window.c:1471
+#: ../xed/xed-window.c:1487
 #, c-format
 msgid "Tabs: %u"
 msgstr ""
 
-#: ../xed/xed-window.c:1548
+#: ../xed/xed-window.c:1564
 msgid "Use Spaces"
-msgstr ""
+msgstr "استفاده از فاصله"
 
-#: ../xed/xed-window.c:2356
+#: ../xed/xed-window.c:2372
 msgid "There are unsaved documents"
-msgstr ""
+msgstr "سندهای ذخیره نشده‌ای وجود دارند"
 
-#: ../xed/xed-window.c:3405
+#: ../xed/xed-window.c:3421
 msgid "Elevated Privileges"
 msgstr ""
 
@@ -1940,7 +1960,7 @@ msgstr "سطر"
 
 #: ../plugins/docinfo/docinfo.ui.h:10
 msgid "Document"
-msgstr ""
+msgstr "سند"
 
 #: ../plugins/docinfo/xed-docinfo-plugin.c:379
 msgid "_Document Statistics"
@@ -1960,7 +1980,7 @@ msgstr ""
 
 #: ../plugins/filebrowser/org.x.editor.plugins.filebrowser.gschema.xml.h:1
 msgid "Set Location to First Document"
-msgstr ""
+msgstr "تنظیم مکان به اولین سند"
 
 #: ../plugins/filebrowser/org.x.editor.plugins.filebrowser.gschema.xml.h:2
 msgid ""
@@ -1972,7 +1992,7 @@ msgstr ""
 
 #: ../plugins/filebrowser/org.x.editor.plugins.filebrowser.gschema.xml.h:3
 msgid "File Browser Filter Mode"
-msgstr ""
+msgstr "حالت فیلتر مرورگر پرونده"
 
 #: ../plugins/filebrowser/org.x.editor.plugins.filebrowser.gschema.xml.h:4
 msgid ""
@@ -1984,13 +2004,15 @@ msgstr ""
 
 #: ../plugins/filebrowser/org.x.editor.plugins.filebrowser.gschema.xml.h:5
 msgid "File Browser Filter Pattern"
-msgstr ""
+msgstr "الگو فیلتر مرورگر پرونده"
 
 #: ../plugins/filebrowser/org.x.editor.plugins.filebrowser.gschema.xml.h:6
 msgid ""
 "The filter pattern to filter the file browser with. This filter works on top "
 "of the filter_mode."
 msgstr ""
+"الگوی پالایش برای پالودن مرورگر پرونده با آن. پالایش از طریق filter_mode "
+"اجرا می‌شود."
 
 #: ../plugins/filebrowser/org.x.editor.plugins.filebrowser.gschema.xml.h:7
 msgid "Terminal Command"
@@ -2002,27 +2024,31 @@ msgstr ""
 
 #: ../plugins/filebrowser/org.x.editor.plugins.filebrowser.gschema.xml.h:9
 msgid "Open With Tree View"
-msgstr ""
+msgstr "گشودن ما نما درختی"
 
 #: ../plugins/filebrowser/org.x.editor.plugins.filebrowser.gschema.xml.h:10
 msgid ""
 "Open the tree view when the file browser plugin gets loaded instead of the "
 "bookmarks view"
 msgstr ""
+"نما درختی را باز کن زمانی که افزونه مرورگر پرونده بجای نما نشانک‌ها بار "
+"می‌شود"
 
 #: ../plugins/filebrowser/org.x.editor.plugins.filebrowser.gschema.xml.h:11
 msgid "File Browser Root Directory"
-msgstr ""
+msgstr "شاخه ریشه مرورگر پرونده"
 
 #: ../plugins/filebrowser/org.x.editor.plugins.filebrowser.gschema.xml.h:12
 msgid ""
 "The file browser root directory to use when loading the file browser plugin "
 "and onload/tree_view is TRUE."
 msgstr ""
+"شاخه ریشه جهت استفاده هنگامی که افزونه مرورگر پرونده بار می‌شود و "
+"onload/tree_view روی درست تنظیم شده است."
 
 #: ../plugins/filebrowser/org.x.editor.plugins.filebrowser.gschema.xml.h:13
 msgid "File Browser Virtual Root Directory"
-msgstr ""
+msgstr "شاخه ریشه مجازی مرورگر پرونده"
 
 #: ../plugins/filebrowser/org.x.editor.plugins.filebrowser.gschema.xml.h:14
 msgid ""
@@ -2030,18 +2056,21 @@ msgid ""
 "plugin when onload/tree_view is TRUE. The virtual root must always be below "
 "the actual root."
 msgstr ""
+"شاخه ریشه مجازی جهت استفاده هنگامی که افزونه مرورگر پرونده بار می‌شود و "
+"onload/tree_view روی درست تنظیم شده است. ریشه مجازی همیشه باید زیر ریشه "
+"حقیقی باشد."
 
 #: ../plugins/filebrowser/org.x.editor.plugins.filebrowser.gschema.xml.h:15
 msgid "Enable Restore of Remote Locations"
-msgstr ""
+msgstr "به کار گیری بازیابی موقعیت‌های دوردست"
 
 #: ../plugins/filebrowser/org.x.editor.plugins.filebrowser.gschema.xml.h:16
 msgid "Sets whether to enable restoring of remote locations."
-msgstr ""
+msgstr "تنظیم اینکه آیا بازنشانی محل‌های دورست فعال شود یا خیر."
 
 #: ../plugins/filebrowser/xed-file-bookmarks-store.c:254
 msgid "File System"
-msgstr ""
+msgstr "سامانه پرونده‌ها"
 
 #: ../plugins/filebrowser/xed-file-browser-plugin.c:439
 msgid "_Set root to active document"
@@ -2061,45 +2090,47 @@ msgstr ""
 
 #: ../plugins/filebrowser/xed-file-browser-plugin.c:558
 msgid "File Browser"
-msgstr ""
+msgstr "مرورگر پرونده"
 
 #: ../plugins/filebrowser/xed-file-browser-plugin.c:667
 msgid "An error occurred while creating a new directory"
-msgstr ""
+msgstr "در حین ایجاد یک شاخه جدید خطایی رُخ داد"
 
 #: ../plugins/filebrowser/xed-file-browser-plugin.c:670
 msgid "An error occurred while creating a new file"
-msgstr ""
+msgstr "در حین ساخت یک پرونده جدید خطایی رُخ داد"
 
 #: ../plugins/filebrowser/xed-file-browser-plugin.c:673
 msgid "An error occurred while renaming a file or directory"
-msgstr ""
+msgstr "در حین تغییر نام یک پرونده یا شاخه خطایی رُخ داد"
 
 #: ../plugins/filebrowser/xed-file-browser-plugin.c:676
 msgid "An error occurred while deleting a file or directory"
-msgstr ""
+msgstr "در حین حذف یک پرونده یا شاخه خطایی رُخ داد"
 
 #: ../plugins/filebrowser/xed-file-browser-plugin.c:679
 msgid "An error occurred while opening a directory in the file manager"
-msgstr ""
+msgstr "در حین گشودن یک شاخه در مدیر پرونده خطایی رُخ داد"
 
 #: ../plugins/filebrowser/xed-file-browser-plugin.c:682
 msgid "An error occurred while setting a root directory"
-msgstr ""
+msgstr "هنگام تنظیم یک شاخهٔ ریشه، خطایی رخ داد"
 
 #: ../plugins/filebrowser/xed-file-browser-plugin.c:685
 msgid "An error occurred while loading a directory"
-msgstr ""
+msgstr "در حین بار کردن یک شاخه خطایی رُخ داد"
 
 #: ../plugins/filebrowser/xed-file-browser-plugin.c:688
 msgid "An error occurred"
-msgstr ""
+msgstr "یک خطا رخ داد"
 
 #: ../plugins/filebrowser/xed-file-browser-plugin.c:945
 msgid ""
 "Cannot move file to trash, do you\n"
 "want to delete permanently?"
 msgstr ""
+"نمی‌توان پرونده را به زباله‌دان منتقل کرد، آیا\n"
+"می‌خواهید آن را برای همیشه پاک کنید؟"
 
 #: ../plugins/filebrowser/xed-file-browser-plugin.c:950
 #, c-format
@@ -2108,7 +2139,7 @@ msgstr ""
 
 #: ../plugins/filebrowser/xed-file-browser-plugin.c:955
 msgid "The selected files cannot be moved to the trash."
-msgstr ""
+msgstr "پرونده‌های انتخاب شده قابل ارسال به سطل‌زباله نیست."
 
 #: ../plugins/filebrowser/xed-file-browser-plugin.c:983
 #, c-format
@@ -2118,54 +2149,61 @@ msgstr ""
 #: ../plugins/filebrowser/xed-file-browser-plugin.c:988
 msgid "Are you sure you want to permanently delete the selected files?"
 msgstr ""
+"آیا مطئمنید که می‌خواهید پرونده‌های انتخاب شده را برای همیشه پاک کنید؟"
 
 #: ../plugins/filebrowser/xed-file-browser-plugin.c:991
 msgid "If you delete an item, it is permanently lost."
-msgstr ""
+msgstr "اگر موردی را ذخیره نکنید، برای همیشه از بین رفته."
 
 #: ../plugins/filebrowser/xed-file-browser-store.c:1810
 msgid "(Empty)"
-msgstr ""
+msgstr "(خالی)"
 
 #: ../plugins/filebrowser/xed-file-browser-store.c:3500
 msgid ""
 "The renamed file is currently filtered out. You need to adjust your filter "
 "settings to make the file visible"
 msgstr ""
+"پروندهٔ تغییر نام داده شده در حال حاضر پالوده شده است. باید تنظیمات "
+"پالایه‌تان را برای نمایان کردنش ویرایش کنید"
 
 #. Translators: This is the default name of new files created by the file browser pane.
 #: ../plugins/filebrowser/xed-file-browser-store.c:3766
 msgid "Untitled File"
-msgstr ""
+msgstr "پروندهٔ بی‌نام"
 
 #: ../plugins/filebrowser/xed-file-browser-store.c:3794
 msgid ""
 "The new file is currently filtered out. You need to adjust your filter "
 "settings to make the file visible"
 msgstr ""
+"پروندهٔ جدید نام داده شده در حال حاضر پالوده شده است. باید تنظیمات "
+"پالایه‌تان را برای نمایان کردنش ویرایش کنید"
 
 #. Translators: This is the default name of new directories created by the file browser pane.
 #: ../plugins/filebrowser/xed-file-browser-store.c:3821
 msgid "Untitled Folder"
-msgstr ""
+msgstr "شاخهٔ بی‌نام"
 
 #: ../plugins/filebrowser/xed-file-browser-store.c:3846
 msgid ""
 "The new directory is currently filtered out. You need to adjust your filter "
 "settings to make the directory visible"
 msgstr ""
+"شاخهٔ جدید نام داده شده در حال حاضر پالوده شده است. باید تنظیمات پالایه‌تان "
+"را برای نمایان کردنش ویرایش کنید"
 
 #: ../plugins/filebrowser/xed-file-browser-widget.c:714
 msgid "Bookmarks"
-msgstr ""
+msgstr "نشانک‌ها"
 
 #: ../plugins/filebrowser/xed-file-browser-widget.c:751
 msgid "_Filter"
-msgstr ""
+msgstr "_فیلتر"
 
 #: ../plugins/filebrowser/xed-file-browser-widget.c:756
 msgid "_Move to Trash"
-msgstr ""
+msgstr "ا_نتقال به زباله‌دان"
 
 #: ../plugins/filebrowser/xed-file-browser-widget.c:757
 msgid "Move selected file or folder to trash"
@@ -2189,7 +2227,7 @@ msgstr ""
 
 #: ../plugins/filebrowser/xed-file-browser-widget.c:776
 msgid "_New Folder"
-msgstr ""
+msgstr "شاخه _جدید"
 
 #: ../plugins/filebrowser/xed-file-browser-widget.c:777
 msgid "Add new empty folder"
@@ -2197,7 +2235,7 @@ msgstr ""
 
 #: ../plugins/filebrowser/xed-file-browser-widget.c:778
 msgid "New F_ile"
-msgstr ""
+msgstr "_پرونده جدید"
 
 #: ../plugins/filebrowser/xed-file-browser-widget.c:779
 msgid "Add new empty file"
@@ -2229,7 +2267,7 @@ msgstr ""
 
 #: ../plugins/filebrowser/xed-file-browser-widget.c:794
 msgid "Re_fresh View"
-msgstr ""
+msgstr "_نوسازی نما"
 
 #: ../plugins/filebrowser/xed-file-browser-widget.c:795
 msgid "Refresh the view"
@@ -2238,7 +2276,7 @@ msgstr ""
 #: ../plugins/filebrowser/xed-file-browser-widget.c:796
 #: ../plugins/filebrowser/xed-file-browser-widget.c:810
 msgid "_View Folder"
-msgstr ""
+msgstr "_نمایش شاخه"
 
 #: ../plugins/filebrowser/xed-file-browser-widget.c:797
 #: ../plugins/filebrowser/xed-file-browser-widget.c:811
@@ -2247,7 +2285,7 @@ msgstr ""
 
 #: ../plugins/filebrowser/xed-file-browser-widget.c:802
 msgid "Show _Hidden"
-msgstr ""
+msgstr "نمایش _پنهان"
 
 #: ../plugins/filebrowser/xed-file-browser-widget.c:803
 msgid "Show hidden files and folders"
@@ -2255,7 +2293,7 @@ msgstr ""
 
 #: ../plugins/filebrowser/xed-file-browser-widget.c:804
 msgid "Show _Binary"
-msgstr ""
+msgstr "نمایش _باینری"
 
 #: ../plugins/filebrowser/xed-file-browser-widget.c:805
 msgid "Show binary files"
@@ -2268,17 +2306,17 @@ msgstr ""
 #: ../plugins/filebrowser/xed-file-browser-widget.c:2012
 #, c-format
 msgid "No mount object for mounted volume: %s"
-msgstr ""
+msgstr "هیچ شیٔ‌ای برای سوار کردن حجم نیست: %s"
 
 #: ../plugins/filebrowser/xed-file-browser-widget.c:2090
 #, c-format
 msgid "Could not open media: %s"
-msgstr ""
+msgstr "نمی‌توان رسانه را گشود: %s"
 
 #: ../plugins/filebrowser/xed-file-browser-widget.c:2139
 #, c-format
 msgid "Could not mount volume: %s"
-msgstr ""
+msgstr "نمی‌توان حجم را سوار کرد: %s"
 
 #: ../plugins/joinlines/joinlines.plugin.desktop.in.h:2
 msgid "Join several lines"
@@ -2295,7 +2333,7 @@ msgstr ""
 #. vi:ts=8
 #: ../plugins/modelines/modelines.plugin.desktop.in.h:1
 msgid "Modelines"
-msgstr ""
+msgstr "حالت خطوط"
 
 #: ../plugins/modelines/modelines.plugin.desktop.in.h:2
 msgid "Emacs, Kate and Vim-style modelines support for xed."
@@ -2323,7 +2361,7 @@ msgstr ""
 
 #: ../plugins/spell/spell.plugin.desktop.in.h:1
 msgid "Spell Checker"
-msgstr ""
+msgstr "غلط‌یاب املایی"
 
 #: ../plugins/spell/spell.plugin.desktop.in.h:2
 msgid "Checks the spelling of the current document."
@@ -4004,13 +4042,13 @@ msgstr "_استفاده از قالب سفارشی"
 #: ../plugins/time/xed-time-setup-dialog.ui.h:9
 #, no-c-format
 msgid "%d/%m/%Y %H:%M:%S"
-msgstr ""
+msgstr "%Od/%Om/%OY %OH:%OM:%OS"
 
 #. Translators: This example should follow the date format defined in the entry above
 #: ../plugins/time/xed-time-dialog.ui.h:8
 #: ../plugins/time/xed-time-setup-dialog.ui.h:11
 msgid "01/11/2009 17:52:00"
-msgstr ""
+msgstr "۰۱/۱۱/۲۰۰۹ ۱۷:۵۲:۰۰"
 
 #: ../plugins/time/xed-time-plugin.c:176
 msgid "In_sert Date and Time..."

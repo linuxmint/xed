@@ -11,17 +11,17 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MATE Desktop Environment\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-10-11 13:43+0100\n"
-"PO-Revision-Date: 2021-10-12 17:12+0000\n"
-"Last-Translator: Oliver Kästner <Unknown>\n"
+"POT-Creation-Date: 2022-06-11 13:15+0200\n"
+"PO-Revision-Date: 2022-06-11 12:26+0000\n"
+"Last-Translator: Tobias Bannert <tobannert@gmail.com>\n"
 "Language-Team: German "
 "(http://www.transifex.com/projects/p/MATE/language/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2021-12-31 12:22+0000\n"
-"X-Generator: Launchpad (build adb364d6a74a28e7b95d51cd30446ec16160de6c)\n"
+"X-Launchpad-Export-Date: 2022-06-26 11:25+0000\n"
+"X-Generator: Launchpad (build 51a2e4fa2e9b8e45f00904ad7f53546f45ac48a5)\n"
 "Language: de\n"
 
 #: ../data/xed.appdata.xml.in.h:1
@@ -297,7 +297,8 @@ msgstr ""
 "Soll versucht werden, sie durch diejenige zu ersetzen, die Sie gerade "
 "speichern?"
 
-#: ../xed/xed-commands-file.c:503 ../xed/xed-ui.h:124
+#: ../xed/xed-commands-file.c:503 ../xed/resources/ui/xed-searchbar.ui.h:2
+#: ../xed/xed-ui.h:124
 msgid "_Replace"
 msgstr "_Ersetzen"
 
@@ -421,12 +422,12 @@ msgid "Unsaved Document %d"
 msgstr "Nicht gespeichertes Dokument %d"
 
 #: ../xed/xed-documents-panel.c:88 ../xed/xed-documents-panel.c:99
-#: ../xed/xed-window.c:1890 ../xed/xed-window.c:1894
+#: ../xed/xed-window.c:1906 ../xed/xed-window.c:1910
 msgid "Read-Only"
 msgstr "Schreibgeschützt"
 
 #: ../xed/xed-documents-panel.c:650 ../xed/resources/ui/xed-shortcuts.ui.h:1
-#: ../xed/xed-window.c:3140
+#: ../xed/xed-window.c:3156
 msgid "Documents"
 msgstr "Dokumente"
 
@@ -492,7 +493,7 @@ msgstr "Mac OS (klassisch)"
 msgid "Windows"
 msgstr "Windows"
 
-#: ../xed/xed-highlight-mode-selector.c:297 ../xed/xed-window.c:2019
+#: ../xed/xed-highlight-mode-selector.c:297 ../xed/xed-window.c:2035
 msgid "Plain Text"
 msgstr "Einfacher Text"
 
@@ -1231,12 +1232,8 @@ msgid "_Restore Default Fonts"
 msgstr "Auf Vorgabeschriften _zurücksetzen"
 
 #: ../xed/resources/ui/xed-searchbar.ui.h:1
-msgid "Replace All"
-msgstr "Alle ersetzen"
-
-#: ../xed/resources/ui/xed-searchbar.ui.h:2
-msgid "Replace"
-msgstr "Ersetzen"
+msgid "Replace _All"
+msgstr "Alle _ersetzen"
 
 #: ../xed/resources/ui/xed-searchbar.ui.h:3
 msgid "_Search for: "
@@ -1244,7 +1241,7 @@ msgstr "Suchen _nach: "
 
 #: ../xed/resources/ui/xed-searchbar.ui.h:4
 msgid "Replace _with: "
-msgstr "Ersetzen _durch: "
+msgstr "Ersetzen d_urch: "
 
 #: ../xed/resources/ui/xed-searchbar.ui.h:5
 msgid "Next"
@@ -1516,7 +1513,7 @@ msgstr "EINF"
 msgid "  Ln %d, Col %d"
 msgstr "  Z. %d, Sp. %d"
 
-#: ../xed/xed-statusbar.c:321
+#: ../xed/xed-statusbar.c:322
 #, c-format
 msgid "There is a tab with errors"
 msgid_plural "There are %d tabs with errors"
@@ -1958,22 +1955,22 @@ msgstr "_Fußleiste"
 msgid "Show or hide the bottom pane in the current window"
 msgstr "Die Fußleiste in diesem Fenster anzeigen/verbergen"
 
-#: ../xed/xed-utils.c:829
+#: ../xed/xed-utils.c:830
 msgid "Please check your installation."
 msgstr "Bitte überprüfen Sie Ihre Installation."
 
-#: ../xed/xed-utils.c:897
+#: ../xed/xed-utils.c:898
 #, c-format
 msgid "Unable to open UI file %s. Error: %s"
 msgstr "Die UI-Datei »%s« kann nicht geöffnet werden. Fehlermeldung: »%s«"
 
-#: ../xed/xed-utils.c:917
+#: ../xed/xed-utils.c:918
 #, c-format
 msgid "Unable to find the object '%s' inside file %s."
 msgstr "Das Objekt »%s« kann nicht in der Datei »%s« gefunden werden."
 
 #. Translators: '/ on <remote-share>'
-#: ../xed/xed-utils.c:1085
+#: ../xed/xed-utils.c:1086
 #, c-format
 msgid "/ on %s"
 msgstr "/ auf %s"
@@ -1983,36 +1980,36 @@ msgid "_Display line numbers"
 msgstr "_Zeilennummern anzeigen"
 
 #. Translators: %s is a URI
-#: ../xed/xed-window.c:928
+#: ../xed/xed-window.c:944
 #, c-format
 msgid "Open '%s'"
 msgstr "»%s« öffnen"
 
 #. Translators: %s is a URI
-#: ../xed/xed-window.c:1279
+#: ../xed/xed-window.c:1295
 #, c-format
 msgid "Activate '%s'"
 msgstr "%s aktivieren"
 
-#: ../xed/xed-window.c:1467
+#: ../xed/xed-window.c:1483
 #, c-format
 msgid "Spaces: %u"
 msgstr "Leerzeichen: %u"
 
-#: ../xed/xed-window.c:1471
+#: ../xed/xed-window.c:1487
 #, c-format
 msgid "Tabs: %u"
 msgstr "Reiter: %u"
 
-#: ../xed/xed-window.c:1548
+#: ../xed/xed-window.c:1564
 msgid "Use Spaces"
 msgstr "Leerzeichen verwenden"
 
-#: ../xed/xed-window.c:2356
+#: ../xed/xed-window.c:2372
 msgid "There are unsaved documents"
 msgstr "Es gibt ungespeicherte Dokumente"
 
-#: ../xed/xed-window.c:3405
+#: ../xed/xed-window.c:3421
 msgid "Elevated Privileges"
 msgstr "Erhöhte Berechtigungen"
 

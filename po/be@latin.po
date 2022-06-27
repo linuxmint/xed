@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mate-menus\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-10-11 13:43+0100\n"
+"POT-Creation-Date: 2022-06-11 13:15+0200\n"
 "PO-Revision-Date: 2016-01-26 17:35+0000\n"
 "Last-Translator: Aleksander Navicki <zolak@lacinka.org>\n"
 "Language-Team: Belarusian Latin <i18n@mova.org>\n"
@@ -16,8 +16,8 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Launchpad-Export-Date: 2021-12-31 12:23+0000\n"
-"X-Generator: Launchpad (build adb364d6a74a28e7b95d51cd30446ec16160de6c)\n"
+"X-Launchpad-Export-Date: 2022-06-26 11:26+0000\n"
+"X-Generator: Launchpad (build 51a2e4fa2e9b8e45f00904ad7f53546f45ac48a5)\n"
 "X-Poedit-Language: Belarsian Latin\n"
 
 #: ../data/xed.appdata.xml.in.h:1
@@ -298,7 +298,8 @@ msgstr "Fajł \"%s\" tolki dla čytańnia."
 msgid "Do you want to try to replace it with the one you are saving?"
 msgstr "Ci chočaš pasprabavać zamianić jaho zapisvanym ciapier fajłam?"
 
-#: ../xed/xed-commands-file.c:503 ../xed/xed-ui.h:124
+#: ../xed/xed-commands-file.c:503 ../xed/resources/ui/xed-searchbar.ui.h:2
+#: ../xed/xed-ui.h:124
 msgid "_Replace"
 msgstr "Z_amiani"
 
@@ -427,12 +428,12 @@ msgid "Unsaved Document %d"
 msgstr "Niezapisany dakument %d"
 
 #: ../xed/xed-documents-panel.c:88 ../xed/xed-documents-panel.c:99
-#: ../xed/xed-window.c:1890 ../xed/xed-window.c:1894
+#: ../xed/xed-window.c:1906 ../xed/xed-window.c:1910
 msgid "Read-Only"
 msgstr ""
 
 #: ../xed/xed-documents-panel.c:650 ../xed/resources/ui/xed-shortcuts.ui.h:1
-#: ../xed/xed-window.c:3140
+#: ../xed/xed-window.c:3156
 msgid "Documents"
 msgstr "Dakumenty"
 
@@ -498,7 +499,7 @@ msgstr ""
 msgid "Windows"
 msgstr ""
 
-#: ../xed/xed-highlight-mode-selector.c:297 ../xed/xed-window.c:2019
+#: ../xed/xed-highlight-mode-selector.c:297 ../xed/xed-window.c:2035
 msgid "Plain Text"
 msgstr "Prosty tekst"
 
@@ -1196,12 +1197,8 @@ msgid "_Restore Default Fonts"
 msgstr "_Viarni zmoŭčanyja šryfty"
 
 #: ../xed/resources/ui/xed-searchbar.ui.h:1
-msgid "Replace All"
-msgstr "Zamiani ŭsie"
-
-#: ../xed/resources/ui/xed-searchbar.ui.h:2
-msgid "Replace"
-msgstr "Zamiani"
+msgid "Replace _All"
+msgstr ""
 
 #: ../xed/resources/ui/xed-searchbar.ui.h:3
 msgid "_Search for: "
@@ -1482,7 +1479,7 @@ msgstr "UST"
 msgid "  Ln %d, Col %d"
 msgstr "  Rad %d, Kal %d"
 
-#: ../xed/xed-statusbar.c:321
+#: ../xed/xed-statusbar.c:322
 #, c-format
 msgid "There is a tab with errors"
 msgid_plural "There are %d tabs with errors"
@@ -1924,22 +1921,22 @@ msgstr "Nižniaja _panel"
 msgid "Show or hide the bottom pane in the current window"
 msgstr "Pakažy albo schavaj nižniuju panel u dziejnym vaknie"
 
-#: ../xed/xed-utils.c:829
+#: ../xed/xed-utils.c:830
 msgid "Please check your installation."
 msgstr "Pravier, ci pravilna ŭsio zainstalavana."
 
-#: ../xed/xed-utils.c:897
+#: ../xed/xed-utils.c:898
 #, c-format
 msgid "Unable to open UI file %s. Error: %s"
 msgstr ""
 
-#: ../xed/xed-utils.c:917
+#: ../xed/xed-utils.c:918
 #, c-format
 msgid "Unable to find the object '%s' inside file %s."
 msgstr "Nie ŭdałosia znajści abjekt \"%s\" u fajle %s."
 
 #. Translators: '/ on <remote-share>'
-#: ../xed/xed-utils.c:1085
+#: ../xed/xed-utils.c:1086
 #, c-format
 msgid "/ on %s"
 msgstr "/ na %s"
@@ -1949,36 +1946,36 @@ msgid "_Display line numbers"
 msgstr "Pakazvaj _numary radkoŭ"
 
 #. Translators: %s is a URI
-#: ../xed/xed-window.c:928
+#: ../xed/xed-window.c:944
 #, c-format
 msgid "Open '%s'"
 msgstr "Adčyni \"%s\""
 
 #. Translators: %s is a URI
-#: ../xed/xed-window.c:1279
+#: ../xed/xed-window.c:1295
 #, c-format
 msgid "Activate '%s'"
 msgstr "Aktyvizuj \"%s\""
 
-#: ../xed/xed-window.c:1467
+#: ../xed/xed-window.c:1483
 #, c-format
 msgid "Spaces: %u"
 msgstr ""
 
-#: ../xed/xed-window.c:1471
+#: ../xed/xed-window.c:1487
 #, c-format
 msgid "Tabs: %u"
 msgstr ""
 
-#: ../xed/xed-window.c:1548
+#: ../xed/xed-window.c:1564
 msgid "Use Spaces"
 msgstr "Užyj prabieły"
 
-#: ../xed/xed-window.c:2356
+#: ../xed/xed-window.c:2372
 msgid "There are unsaved documents"
 msgstr ""
 
-#: ../xed/xed-window.c:3405
+#: ../xed/xed-window.c:3421
 msgid "Elevated Privileges"
 msgstr ""
 

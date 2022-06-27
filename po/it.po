@@ -9,17 +9,17 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MATE Desktop Environment\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-10-11 13:43+0100\n"
-"PO-Revision-Date: 2021-10-11 18:34+0000\n"
-"Last-Translator: Dragone2 <Unknown>\n"
+"POT-Creation-Date: 2022-06-11 13:15+0200\n"
+"PO-Revision-Date: 2022-06-13 07:05+0000\n"
+"Last-Translator: Fs00 <Unknown>\n"
 "Language-Team: Italian "
 "(http://www.transifex.com/projects/p/MATE/language/it/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2021-12-31 12:22+0000\n"
-"X-Generator: Launchpad (build adb364d6a74a28e7b95d51cd30446ec16160de6c)\n"
+"X-Launchpad-Export-Date: 2022-06-26 11:25+0000\n"
+"X-Generator: Launchpad (build 51a2e4fa2e9b8e45f00904ad7f53546f45ac48a5)\n"
 "Language: it\n"
 
 #: ../data/xed.appdata.xml.in.h:1
@@ -36,14 +36,14 @@ msgid ""
 "spell checking, comparing files, viewing CVS ChangeLogs, and adjusting "
 "indentation levels. </p>"
 msgstr ""
-"<p> Xed è un piccolo ma potente editor di testo. Possiede la maggior parte "
+"<p> Xed è un editor di testo piccolo ma potente. Possiede la maggior parte "
 "delle funzioni standard degli editor di testo e supporta completamente testi "
 "internazionali in Unicode. Tra le caratteristiche avanzate sono comprese "
 "l'evidenziazione della sintassi e l'indentazione automatica del codice "
 "sorgente, la stampa e la modifica di più documenti in un'unica finestra. "
 "</p> <p> Xed è estendibile grazie a un sistema di plugin che attualmente "
-"comprendono il supporto per il controllo della digitazione, il raffronto dei "
-"file, la visione dei ChangeLog CVS e l'aggiustamento dei livelli di "
+"comprendono il supporto per il controllo della digitazione, il confronto dei "
+"file, la visualizzazione dei changelog CVS e la regolazione dei livelli di "
 "indentazione. </p>"
 
 #: ../data/xed.desktop.in.in.h:1 ../xed/xed-print-job.c:700
@@ -292,7 +292,8 @@ msgstr "Il file «%s» è in modalità sola lettura."
 msgid "Do you want to try to replace it with the one you are saving?"
 msgstr "Tentare di sostituirlo con quello che si sta per salvare?"
 
-#: ../xed/xed-commands-file.c:503 ../xed/xed-ui.h:124
+#: ../xed/xed-commands-file.c:503 ../xed/resources/ui/xed-searchbar.ui.h:2
+#: ../xed/xed-ui.h:124
 msgid "_Replace"
 msgstr "Sostit_uisci"
 
@@ -414,12 +415,12 @@ msgid "Unsaved Document %d"
 msgstr "Documento %d non salvato"
 
 #: ../xed/xed-documents-panel.c:88 ../xed/xed-documents-panel.c:99
-#: ../xed/xed-window.c:1890 ../xed/xed-window.c:1894
+#: ../xed/xed-window.c:1906 ../xed/xed-window.c:1910
 msgid "Read-Only"
 msgstr "Sola lettura"
 
 #: ../xed/xed-documents-panel.c:650 ../xed/resources/ui/xed-shortcuts.ui.h:1
-#: ../xed/xed-window.c:3140
+#: ../xed/xed-window.c:3156
 msgid "Documents"
 msgstr "Documenti"
 
@@ -485,7 +486,7 @@ msgstr "Mac OS Classic"
 msgid "Windows"
 msgstr "Windows"
 
-#: ../xed/xed-highlight-mode-selector.c:297 ../xed/xed-window.c:2019
+#: ../xed/xed-highlight-mode-selector.c:297 ../xed/xed-window.c:2035
 msgid "Plain Text"
 msgstr "Testo semplice"
 
@@ -853,7 +854,7 @@ msgstr "Editor"
 
 #: ../xed/xed-preferences-dialog.c:474
 msgid "Save"
-msgstr "Salva"
+msgstr "Salvataggio"
 
 #: ../xed/xed-preferences-dialog.c:587
 #, c-format
@@ -1044,19 +1045,19 @@ msgstr "4"
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:10
 msgid "Draw whitespace"
-msgstr "Disegna spazio vuoto"
+msgstr "Mostra spazi vuoti"
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:11
 msgid "Leading whitespace"
-msgstr "Spazio vuoto iniziale"
+msgstr "Spazi vuoti iniziali"
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:12
 msgid "Trailing whitespace"
-msgstr "Spazio vuoto finale"
+msgstr "Spazi vuoti finali"
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:13
 msgid "Whitespace inside of text"
-msgstr "Spazio vuoto all'interno del testo"
+msgstr "Spazi vuoti all'interno del testo"
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:14
 msgid "Newline character"
@@ -1068,7 +1069,7 @@ msgstr "Evidenziazione"
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:16
 msgid "Highlight the current line"
-msgstr "Evidenzia la linea corrente"
+msgstr "Evidenzia la riga corrente"
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:17
 msgid "Highlight matching brackets"
@@ -1084,7 +1085,7 @@ msgstr "Larghezza della tabulazione"
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:20
 msgid "Use spaces instead of tabs"
-msgstr "Usa spazi al posto dei tab"
+msgstr "Usa spazi al posto del carattere tab"
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:21
 msgid "Automatic indentation"
@@ -1092,7 +1093,7 @@ msgstr "Rientro automatico"
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:22
 msgid "Word wrap"
-msgstr "A capo automatico"
+msgstr "Ritorno a capo automatico"
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:23
 msgid "Split words over two lines"
@@ -1100,11 +1101,11 @@ msgstr "Dividi le parole su due righe"
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:24
 msgid "Tab scrolling"
-msgstr "Scorrimento Tab"
+msgstr "Scorrimento delle schede"
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:25
 msgid "Allow mouse wheel scrolling to change tabs"
-msgstr "Permetti cambio scheda attiva con la rotella del mouse"
+msgstr "Permetti il cambio della scheda attiva con la rotella del mouse"
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:26
 msgid "File saving"
@@ -1124,7 +1125,7 @@ msgstr "Minuti fra i salvataggi"
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:30
 msgid "Ensure Trailing Newline"
-msgstr "Assicura l'a capo finale"
+msgstr "Assicura la presenza della riga finale"
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:31
 msgid "Dark theme"
@@ -1174,11 +1175,11 @@ msgstr "righe"
 
 #: ../xed/resources/ui/xed-print-preferences.ui.h:9
 msgid "Text Wrapping"
-msgstr "A capo automatico"
+msgstr "Disposizione del testo"
 
 #: ../xed/resources/ui/xed-print-preferences.ui.h:10
 msgid "Enable text _wrapping"
-msgstr "_Attivare a capo automatico"
+msgstr "_Attivare il ritorno a capo automatico"
 
 #: ../xed/resources/ui/xed-print-preferences.ui.h:11
 msgid "Do not _split words over two lines"
@@ -1213,12 +1214,8 @@ msgid "_Restore Default Fonts"
 msgstr "_Ripristina caratteri predefiniti"
 
 #: ../xed/resources/ui/xed-searchbar.ui.h:1
-msgid "Replace All"
-msgstr "Sostituisci tutti"
-
-#: ../xed/resources/ui/xed-searchbar.ui.h:2
-msgid "Replace"
-msgstr "Sostituisci"
+msgid "Replace _All"
+msgstr "Sostituisci _tutti"
 
 #: ../xed/resources/ui/xed-searchbar.ui.h:3
 msgid "_Search for: "
@@ -1294,7 +1291,7 @@ msgstr "Passa al primo n-esimo documento"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:12
 msgid "Windows and Panes"
-msgstr "Finestre e Pannelli"
+msgstr "Finestre e pannelli"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:13
 msgid "Show side pane"
@@ -1350,7 +1347,7 @@ msgstr "Incolla il testo dagli appunti"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:26
 msgid "Undo and Redo"
-msgstr "Annulla e Ripristina"
+msgstr "Annulla e ripristina"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:27
 msgid "Undo previous command"
@@ -1438,11 +1435,11 @@ msgstr "Riduce il numero sul cursore"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:49
 msgid "Toggle comment block"
-msgstr "Alterna blocco di commento"
+msgstr "Inserisci/rimuovi blocco di commento"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:50
 msgid "Toggle comment"
-msgstr "Alterna commento"
+msgstr "Inserisci/rimuovi commento"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:51
 #: ../plugins/joinlines/joinlines.plugin.desktop.in.h:1
@@ -1498,7 +1495,7 @@ msgstr "INS"
 msgid "  Ln %d, Col %d"
 msgstr "  Rg %d, Col %d"
 
-#: ../xed/xed-statusbar.c:321
+#: ../xed/xed-statusbar.c:322
 #, c-format
 msgid "There is a tab with errors"
 msgid_plural "There are %d tabs with errors"
@@ -1758,7 +1755,7 @@ msgstr "Seleziona tutto il documento"
 
 #: ../xed/xed-ui.h:107
 msgid "_Toggle Comment"
-msgstr "Al_terna Commento"
+msgstr "Inserisci/rimuovi co_mmento"
 
 #: ../xed/xed-ui.h:108 ../plugins/taglist/HTML.tags.xml.in.h:41
 msgid "Comment"
@@ -1766,11 +1763,11 @@ msgstr "Commento"
 
 #: ../xed/xed-ui.h:109
 msgid "Toggle Comment _Block"
-msgstr "Alterna _Blocco di Commento"
+msgstr "Inserisci/rimuovi _blocco di commento"
 
 #: ../xed/xed-ui.h:110
 msgid "Comment Block"
-msgstr "Blocco di Commento"
+msgstr "Blocco di commento"
 
 #. View menu
 #: ../xed/xed-ui.h:113
@@ -1909,7 +1906,7 @@ msgstr "Modifica testo a schermo intero"
 
 #: ../xed/xed-ui.h:170
 msgid "_Word wrap"
-msgstr "Andata a _Capo"
+msgstr "Ritorno a _capo automatico"
 
 #: ../xed/xed-ui.h:171
 msgid "Set word wrap for the current document"
@@ -1917,11 +1914,11 @@ msgstr "Imposta il ritorno a capo automatico per il documento corrente"
 
 #: ../xed/xed-ui.h:173
 msgid "_Overview Map"
-msgstr "Mappa Pan_oramica"
+msgstr "Mappa pan_oramica"
 
 #: ../xed/xed-ui.h:174
 msgid "Show or hide the overview map for the current view"
-msgstr "Mostra o nascondi la mappa laterale per la vista corrente"
+msgstr "Mostra o nascondi la mappa panoramica per la vista corrente"
 
 #: ../xed/xed-ui.h:181
 msgid "Side _Pane"
@@ -1939,22 +1936,22 @@ msgstr "_Riquadro inferiore"
 msgid "Show or hide the bottom pane in the current window"
 msgstr "Mostra o nasconde il riquadro inferiore nella finestra corrente"
 
-#: ../xed/xed-utils.c:829
+#: ../xed/xed-utils.c:830
 msgid "Please check your installation."
 msgstr "Controllare la propria installazione."
 
-#: ../xed/xed-utils.c:897
+#: ../xed/xed-utils.c:898
 #, c-format
 msgid "Unable to open UI file %s. Error: %s"
 msgstr "Impossibile aprire il file %s. Errore: %s"
 
-#: ../xed/xed-utils.c:917
+#: ../xed/xed-utils.c:918
 #, c-format
 msgid "Unable to find the object '%s' inside file %s."
 msgstr "Impossibile trovare l'oggetto «%s» all'interno del file «%s»."
 
 #. Translators: '/ on <remote-share>'
-#: ../xed/xed-utils.c:1085
+#: ../xed/xed-utils.c:1086
 #, c-format
 msgid "/ on %s"
 msgstr "/ su %s"
@@ -1964,36 +1961,36 @@ msgid "_Display line numbers"
 msgstr "Mostrare i numeri di _riga"
 
 #. Translators: %s is a URI
-#: ../xed/xed-window.c:928
+#: ../xed/xed-window.c:944
 #, c-format
 msgid "Open '%s'"
 msgstr "Apri «%s»"
 
 #. Translators: %s is a URI
-#: ../xed/xed-window.c:1279
+#: ../xed/xed-window.c:1295
 #, c-format
 msgid "Activate '%s'"
 msgstr "Attiva «%s»"
 
-#: ../xed/xed-window.c:1467
+#: ../xed/xed-window.c:1483
 #, c-format
 msgid "Spaces: %u"
 msgstr "Spazi: %u"
 
-#: ../xed/xed-window.c:1471
+#: ../xed/xed-window.c:1487
 #, c-format
 msgid "Tabs: %u"
 msgstr "Tab: %u"
 
-#: ../xed/xed-window.c:1548
+#: ../xed/xed-window.c:1564
 msgid "Use Spaces"
 msgstr "Usare spazi"
 
-#: ../xed/xed-window.c:2356
+#: ../xed/xed-window.c:2372
 msgid "There are unsaved documents"
 msgstr "Sono presenti documenti non salvati"
 
-#: ../xed/xed-window.c:3405
+#: ../xed/xed-window.c:3421
 msgid "Elevated Privileges"
 msgstr "Privilegi elevati"
 
@@ -2416,7 +2413,7 @@ msgstr "Unisci svariate righe"
 
 #: ../plugins/joinlines/joinlines/__init__.py:26
 msgid "_Join Lines"
-msgstr "_Unisci Righe"
+msgstr "_Unisci righe"
 
 #: ../plugins/joinlines/joinlines/__init__.py:27
 msgid "Join the selected lines"
@@ -2441,7 +2438,7 @@ msgstr "Ordina un documento o il testo selezionato"
 
 #: ../plugins/sort/xed-sort-plugin.c:75
 msgid "S_ort lines"
-msgstr "_Ordina linee"
+msgstr "_Ordina righe"
 
 #: ../plugins/sort/xed-sort-plugin.c:77
 msgid "Sort the current document or selection"
@@ -4076,7 +4073,7 @@ msgstr "XUL - Tag"
 
 #: ../plugins/textsize/textsize.plugin.desktop.in.h:1
 msgid "Text Size"
-msgstr "Dimensione Testo"
+msgstr "Dimensione del testo"
 
 #: ../plugins/textsize/textsize.plugin.desktop.in.h:2
 msgid "Allow controlling the zoom levels of the text"
@@ -4179,7 +4176,7 @@ msgstr "Toglie gli spazi in coda alle righe prima di salvare."
 
 #: ../plugins/wordcompletion/xed-wordcompletion-configure.ui.h:1
 msgid "Word Completion"
-msgstr "Completamento Parole"
+msgstr "Completamento parole"
 
 #: ../plugins/wordcompletion/xed-wordcompletion-configure.ui.h:2
 msgid "Use Ctrl+Space to manually trigger word completion."
@@ -4191,7 +4188,7 @@ msgstr "Completamento automatico"
 
 #: ../plugins/wordcompletion/xed-wordcompletion-configure.ui.h:4
 msgid "Minimum word size for auto-completion"
-msgstr "Dimensione minima parole per il completamento automatico"
+msgstr "Dimensione minima delle parole per il completamento automatico"
 
 #: ../plugins/wordcompletion/xed-wordcompletion-plugin.c:214
 msgid "Word completion"

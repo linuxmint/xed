@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MATE Desktop Environment\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-10-11 13:43+0100\n"
+"POT-Creation-Date: 2022-06-11 13:15+0200\n"
 "PO-Revision-Date: 2020-05-11 10:18+0000\n"
 "Last-Translator: Clement Lefebvre <root@linuxmint.com>\n"
 "Language-Team: Maithili "
@@ -16,8 +16,8 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Launchpad-Export-Date: 2021-12-31 12:23+0000\n"
-"X-Generator: Launchpad (build adb364d6a74a28e7b95d51cd30446ec16160de6c)\n"
+"X-Launchpad-Export-Date: 2022-06-26 11:26+0000\n"
+"X-Generator: Launchpad (build 51a2e4fa2e9b8e45f00904ad7f53546f45ac48a5)\n"
 "Language: mai\n"
 
 #: ../data/xed.appdata.xml.in.h:1
@@ -259,7 +259,8 @@ msgstr "फाइल \"%s\" सिर्फ-पढ़बा-योग्य अ�
 msgid "Do you want to try to replace it with the one you are saving?"
 msgstr "की अहाँ एकरा सहेजल जाएबला फाइल सँ एकरा बदलनाइ चाहैत छी ?"
 
-#: ../xed/xed-commands-file.c:503 ../xed/xed-ui.h:124
+#: ../xed/xed-commands-file.c:503 ../xed/resources/ui/xed-searchbar.ui.h:2
+#: ../xed/xed-ui.h:124
 msgid "_Replace"
 msgstr "बदलू (_R)"
 
@@ -357,12 +358,12 @@ msgid "Unsaved Document %d"
 msgstr "बिनु सहेजल दस्ताबेज़ %d"
 
 #: ../xed/xed-documents-panel.c:88 ../xed/xed-documents-panel.c:99
-#: ../xed/xed-window.c:1890 ../xed/xed-window.c:1894
+#: ../xed/xed-window.c:1906 ../xed/xed-window.c:1910
 msgid "Read-Only"
 msgstr ""
 
 #: ../xed/xed-documents-panel.c:650 ../xed/resources/ui/xed-shortcuts.ui.h:1
-#: ../xed/xed-window.c:3140
+#: ../xed/xed-window.c:3156
 msgid "Documents"
 msgstr "दस्ताबेजसभ"
 
@@ -428,7 +429,7 @@ msgstr ""
 msgid "Windows"
 msgstr ""
 
-#: ../xed/xed-highlight-mode-selector.c:297 ../xed/xed-window.c:2019
+#: ../xed/xed-highlight-mode-selector.c:297 ../xed/xed-window.c:2035
 msgid "Plain Text"
 msgstr "सादा पाठ"
 
@@ -1126,12 +1127,8 @@ msgid "_Restore Default Fonts"
 msgstr "डिफ़ॉल्ट फाँट पुनर्स्थापित करू (_R)"
 
 #: ../xed/resources/ui/xed-searchbar.ui.h:1
-msgid "Replace All"
-msgstr "सबहि बदलू"
-
-#: ../xed/resources/ui/xed-searchbar.ui.h:2
-msgid "Replace"
-msgstr "बदलू"
+msgid "Replace _All"
+msgstr ""
 
 #: ../xed/resources/ui/xed-searchbar.ui.h:3
 msgid "_Search for: "
@@ -1410,7 +1407,7 @@ msgstr "प्रविष्ट"
 msgid "  Ln %d, Col %d"
 msgstr "  पं. %d, स्त. %d"
 
-#: ../xed/xed-statusbar.c:321
+#: ../xed/xed-statusbar.c:322
 #, c-format
 msgid "There is a tab with errors"
 msgid_plural "There are %d tabs with errors"
@@ -1850,22 +1847,22 @@ msgstr "तलवर्ती पैन (_B)"
 msgid "Show or hide the bottom pane in the current window"
 msgstr "वर्तमान विंडोमे तलवर्ती-पट्टी क' दृश्यता देखाबू अथवा नुकाबू"
 
-#: ../xed/xed-utils.c:829
+#: ../xed/xed-utils.c:830
 msgid "Please check your installation."
 msgstr "अपन संस्थापन जाँचू"
 
-#: ../xed/xed-utils.c:897
+#: ../xed/xed-utils.c:898
 #, c-format
 msgid "Unable to open UI file %s. Error: %s"
 msgstr ""
 
-#: ../xed/xed-utils.c:917
+#: ../xed/xed-utils.c:918
 #, c-format
 msgid "Unable to find the object '%s' inside file %s."
 msgstr "वस्तु '%s' को फाइल %s कए अंदर ताकब मे असमर्थ."
 
 #. Translators: '/ on <remote-share>'
-#: ../xed/xed-utils.c:1085
+#: ../xed/xed-utils.c:1086
 #, c-format
 msgid "/ on %s"
 msgstr "/ %s पर"
@@ -1875,36 +1872,36 @@ msgid "_Display line numbers"
 msgstr "पँक्ति सँख्या प्रदर्शित करू(_D)"
 
 #. Translators: %s is a URI
-#: ../xed/xed-window.c:928
+#: ../xed/xed-window.c:944
 #, c-format
 msgid "Open '%s'"
 msgstr "खोलू '%s'"
 
 #. Translators: %s is a URI
-#: ../xed/xed-window.c:1279
+#: ../xed/xed-window.c:1295
 #, c-format
 msgid "Activate '%s'"
 msgstr "'%s' सक्रिय करू"
 
-#: ../xed/xed-window.c:1467
+#: ../xed/xed-window.c:1483
 #, c-format
 msgid "Spaces: %u"
 msgstr ""
 
-#: ../xed/xed-window.c:1471
+#: ../xed/xed-window.c:1487
 #, c-format
 msgid "Tabs: %u"
 msgstr ""
 
-#: ../xed/xed-window.c:1548
+#: ../xed/xed-window.c:1564
 msgid "Use Spaces"
 msgstr "खाली स्थानक प्रयोग करू"
 
-#: ../xed/xed-window.c:2356
+#: ../xed/xed-window.c:2372
 msgid "There are unsaved documents"
 msgstr ""
 
-#: ../xed/xed-window.c:3405
+#: ../xed/xed-window.c:3421
 msgid "Elevated Privileges"
 msgstr ""
 

@@ -1,21 +1,21 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 #
-# Sveinn í Felli <sv1@fellsnet.is>, 2016, 2017, 2018, 2019, 2020.
+# Sveinn í Felli <sv1@fellsnet.is>, 2016, 2017, 2018, 2019, 2020, 2022.
 msgid ""
 msgstr ""
 "Project-Id-Version: xedit\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-10-11 13:43+0100\n"
-"PO-Revision-Date: 2021-09-24 15:49+0000\n"
+"POT-Creation-Date: 2022-06-11 13:15+0200\n"
+"PO-Revision-Date: 2022-06-24 11:28+0000\n"
 "Last-Translator: Sveinn í Felli <sv1@fellsnet.is>\n"
-"Language-Team: Icelandic <translation-team-is@lists.sourceforge.net>\n"
+"Language-Team: Icelandic\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2021-12-31 12:22+0000\n"
-"X-Generator: Launchpad (build adb364d6a74a28e7b95d51cd30446ec16160de6c)\n"
+"X-Launchpad-Export-Date: 2022-06-26 11:25+0000\n"
+"X-Generator: Launchpad (build 51a2e4fa2e9b8e45f00904ad7f53546f45ac48a5)\n"
 "Language: is\n"
 
 #: ../data/xed.appdata.xml.in.h:1
@@ -272,7 +272,8 @@ msgstr "Skráin \"%s\" er aðeins til lestrar."
 msgid "Do you want to try to replace it with the one you are saving?"
 msgstr "Viltu reyna að skipta henni út fyrir þá sem þú vilt vista?"
 
-#: ../xed/xed-commands-file.c:503 ../xed/xed-ui.h:124
+#: ../xed/xed-commands-file.c:503 ../xed/resources/ui/xed-searchbar.ui.h:2
+#: ../xed/xed-ui.h:124
 msgid "_Replace"
 msgstr "_Skipta út"
 
@@ -393,12 +394,12 @@ msgid "Unsaved Document %d"
 msgstr "Óvistað skjal %d"
 
 #: ../xed/xed-documents-panel.c:88 ../xed/xed-documents-panel.c:99
-#: ../xed/xed-window.c:1890 ../xed/xed-window.c:1894
+#: ../xed/xed-window.c:1906 ../xed/xed-window.c:1910
 msgid "Read-Only"
 msgstr "Skrifvarið"
 
 #: ../xed/xed-documents-panel.c:650 ../xed/resources/ui/xed-shortcuts.ui.h:1
-#: ../xed/xed-window.c:3140
+#: ../xed/xed-window.c:3156
 msgid "Documents"
 msgstr "Skjöl"
 
@@ -464,7 +465,7 @@ msgstr "Mac OS Classic"
 msgid "Windows"
 msgstr "Windows"
 
-#: ../xed/xed-highlight-mode-selector.c:297 ../xed/xed-window.c:2019
+#: ../xed/xed-highlight-mode-selector.c:297 ../xed/xed-window.c:2035
 msgid "Plain Text"
 msgstr "Hreinn texti"
 
@@ -1026,7 +1027,7 @@ msgstr ""
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:14
 msgid "Newline character"
-msgstr ""
+msgstr "Nýlínumerki"
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:15
 msgid "Highlighting"
@@ -1179,12 +1180,8 @@ msgid "_Restore Default Fonts"
 msgstr "Endu_rvekja sjálgefna leturgerð"
 
 #: ../xed/resources/ui/xed-searchbar.ui.h:1
-msgid "Replace All"
-msgstr "Skipta út öllu"
-
-#: ../xed/resources/ui/xed-searchbar.ui.h:2
-msgid "Replace"
-msgstr "Skipta út"
+msgid "Replace _All"
+msgstr "Skipt_a út öllu"
 
 #: ../xed/resources/ui/xed-searchbar.ui.h:3
 msgid "_Search for: "
@@ -1464,7 +1461,7 @@ msgstr "INS"
 msgid "  Ln %d, Col %d"
 msgstr "  Lín %d, Dál %d"
 
-#: ../xed/xed-statusbar.c:321
+#: ../xed/xed-statusbar.c:322
 #, c-format
 msgid "There is a tab with errors"
 msgid_plural "There are %d tabs with errors"
@@ -1851,11 +1848,11 @@ msgstr "Sýna eða fela verkfærastikuna í þessum glugga"
 
 #: ../xed/xed-ui.h:161
 msgid "_Menubar"
-msgstr ""
+msgstr "Val_myndarstika"
 
 #: ../xed/xed-ui.h:162
 msgid "Show or hide the menubar in the current window"
-msgstr ""
+msgstr "Sýna eða fela valmyndastikuna í þessum glugga"
 
 #: ../xed/xed-ui.h:164
 msgid "_Statusbar"
@@ -1905,22 +1902,22 @@ msgstr "Un_dirstika"
 msgid "Show or hide the bottom pane in the current window"
 msgstr "Sýna eða fela undirstikuna í þessum glugga"
 
-#: ../xed/xed-utils.c:829
+#: ../xed/xed-utils.c:830
 msgid "Please check your installation."
 msgstr "Athugaðu uppsetninguna þína."
 
-#: ../xed/xed-utils.c:897
+#: ../xed/xed-utils.c:898
 #, c-format
 msgid "Unable to open UI file %s. Error: %s"
 msgstr "Tókst ekki að opna UI-skrána %s. Villa: %s"
 
-#: ../xed/xed-utils.c:917
+#: ../xed/xed-utils.c:918
 #, c-format
 msgid "Unable to find the object '%s' inside file %s."
 msgstr "Gat ekki fundið hlutinn '%s' innan í skránni %s."
 
 #. Translators: '/ on <remote-share>'
-#: ../xed/xed-utils.c:1085
+#: ../xed/xed-utils.c:1086
 #, c-format
 msgid "/ on %s"
 msgstr "/ á %s"
@@ -1931,36 +1928,36 @@ msgstr "Birta _línunúmer"
 
 #  Translators: %s is a URI
 #. Translators: %s is a URI
-#: ../xed/xed-window.c:928
+#: ../xed/xed-window.c:944
 #, c-format
 msgid "Open '%s'"
 msgstr "Opna '%s'"
 
 #. Translators: %s is a URI
-#: ../xed/xed-window.c:1279
+#: ../xed/xed-window.c:1295
 #, c-format
 msgid "Activate '%s'"
 msgstr "Virkja ‚%s‘"
 
-#: ../xed/xed-window.c:1467
+#: ../xed/xed-window.c:1483
 #, c-format
 msgid "Spaces: %u"
 msgstr "Bil: %u"
 
-#: ../xed/xed-window.c:1471
+#: ../xed/xed-window.c:1487
 #, c-format
 msgid "Tabs: %u"
 msgstr "Inndráttur: %u"
 
-#: ../xed/xed-window.c:1548
+#: ../xed/xed-window.c:1564
 msgid "Use Spaces"
 msgstr "Nota bil"
 
-#: ../xed/xed-window.c:2356
+#: ../xed/xed-window.c:2372
 msgid "There are unsaved documents"
 msgstr "Það eru óvistuð skjöl"
 
-#: ../xed/xed-window.c:3405
+#: ../xed/xed-window.c:3421
 msgid "Elevated Privileges"
 msgstr "Auknar heimildir"
 

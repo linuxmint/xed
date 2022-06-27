@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MATE Desktop Environment\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-10-11 13:43+0100\n"
+"POT-Creation-Date: 2022-06-11 13:15+0200\n"
 "PO-Revision-Date: 2016-01-26 17:20+0000\n"
 "Last-Translator: Stefano Karapetsas <stefano@karapetsas.com>\n"
 "Language-Team: Panjabi (Punjabi) "
@@ -16,8 +16,8 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2021-12-31 12:23+0000\n"
-"X-Generator: Launchpad (build adb364d6a74a28e7b95d51cd30446ec16160de6c)\n"
+"X-Launchpad-Export-Date: 2022-06-26 11:26+0000\n"
+"X-Generator: Launchpad (build 51a2e4fa2e9b8e45f00904ad7f53546f45ac48a5)\n"
 "Language: pa\n"
 
 #: ../data/xed.appdata.xml.in.h:1
@@ -270,7 +270,8 @@ msgid "Do you want to try to replace it with the one you are saving?"
 msgstr ""
 "ਕੀ ਤੁਸੀ ਇਸ ਨੂੰ ਉਸ ਫਾਇਲ ਨਾਲ ਤਬਦੀਲ ਕਰਨਾ ਚਾਹੋਗੇ, ਜਿਸ ਨੂੰ ਸੰਭਾਲਣ ਜਾ ਰਹੇ ਹੋ?"
 
-#: ../xed/xed-commands-file.c:503 ../xed/xed-ui.h:124
+#: ../xed/xed-commands-file.c:503 ../xed/resources/ui/xed-searchbar.ui.h:2
+#: ../xed/xed-ui.h:124
 msgid "_Replace"
 msgstr "ਬਦਲੋ(_R)"
 
@@ -386,12 +387,12 @@ msgid "Unsaved Document %d"
 msgstr "ਨਾ ਸਾਂਭਿਆ ਡੌਕੂਮੈਂਟ %d"
 
 #: ../xed/xed-documents-panel.c:88 ../xed/xed-documents-panel.c:99
-#: ../xed/xed-window.c:1890 ../xed/xed-window.c:1894
+#: ../xed/xed-window.c:1906 ../xed/xed-window.c:1910
 msgid "Read-Only"
 msgstr "ਪੜ੍ਹਨ ਲਈ"
 
 #: ../xed/xed-documents-panel.c:650 ../xed/resources/ui/xed-shortcuts.ui.h:1
-#: ../xed/xed-window.c:3140
+#: ../xed/xed-window.c:3156
 msgid "Documents"
 msgstr "ਡੌਕੂਮੈਂਟ"
 
@@ -457,7 +458,7 @@ msgstr "Mac OS ਕਲਾਸਿਕ"
 msgid "Windows"
 msgstr "ਵਿੰਡੋਜ਼"
 
-#: ../xed/xed-highlight-mode-selector.c:297 ../xed/xed-window.c:2019
+#: ../xed/xed-highlight-mode-selector.c:297 ../xed/xed-window.c:2035
 msgid "Plain Text"
 msgstr "ਪਲੇਨ ਟੈਕਸਟ"
 
@@ -1156,12 +1157,8 @@ msgid "_Restore Default Fonts"
 msgstr "ਡਿਫਾਲਟ ਫੋਂਟ ਮੁੜ-ਸਟੋਰ(_R)"
 
 #: ../xed/resources/ui/xed-searchbar.ui.h:1
-msgid "Replace All"
-msgstr "ਸਭ ਬਦਲੋ"
-
-#: ../xed/resources/ui/xed-searchbar.ui.h:2
-msgid "Replace"
-msgstr "ਬਦਲੋ"
+msgid "Replace _All"
+msgstr ""
 
 #: ../xed/resources/ui/xed-searchbar.ui.h:3
 msgid "_Search for: "
@@ -1441,7 +1438,7 @@ msgstr "ਸ਼ਾਮਲ"
 msgid "  Ln %d, Col %d"
 msgstr "  ਲਾਈਨ %d, ਕਾਲਮ %d"
 
-#: ../xed/xed-statusbar.c:321
+#: ../xed/xed-statusbar.c:322
 #, c-format
 msgid "There is a tab with errors"
 msgid_plural "There are %d tabs with errors"
@@ -1882,22 +1879,22 @@ msgstr "ਹੇਠਲੀ ਪੱਟੀ(_B)"
 msgid "Show or hide the bottom pane in the current window"
 msgstr "ਮੌਜੂਦਾ ਵਿੰਡੋ ਵਿੱਚ ਹੇਠਲੀ ਪੱਟੀ ਵੇਖੋ ਜਾਂ ਓਹਲੇ"
 
-#: ../xed/xed-utils.c:829
+#: ../xed/xed-utils.c:830
 msgid "Please check your installation."
 msgstr "ਆਪਣੀ ਇੰਸਟਾਲੇਸ਼ਨ ਦੀ ਜਾਂਚ ਕਰੋ ਜੀ।"
 
-#: ../xed/xed-utils.c:897
+#: ../xed/xed-utils.c:898
 #, c-format
 msgid "Unable to open UI file %s. Error: %s"
 msgstr "%s UI ਫਾਇਲ ਖੋਲਣ ਲਈ ਅਸਮਰੱਥ ਹੈ: ਗਲਤੀ: %s"
 
-#: ../xed/xed-utils.c:917
+#: ../xed/xed-utils.c:918
 #, c-format
 msgid "Unable to find the object '%s' inside file %s."
 msgstr "ਫਾਇਲ %2$s ਵਿੱਚ  '%1$s' ਆਬਜੈਕਟ ਲੱਭਣ ਲਈ ਅਸਮਰੱਥ ਹੈ।"
 
 #. Translators: '/ on <remote-share>'
-#: ../xed/xed-utils.c:1085
+#: ../xed/xed-utils.c:1086
 #, c-format
 msgid "/ on %s"
 msgstr "%s ਉੱਤੇ /"
@@ -1907,36 +1904,36 @@ msgid "_Display line numbers"
 msgstr "ਲਾਈਨ ਨੰਬਰ ਵੇਖੋ(_D)"
 
 #. Translators: %s is a URI
-#: ../xed/xed-window.c:928
+#: ../xed/xed-window.c:944
 #, c-format
 msgid "Open '%s'"
 msgstr "'%s' ਖੋਲ੍ਹੋ"
 
 #. Translators: %s is a URI
-#: ../xed/xed-window.c:1279
+#: ../xed/xed-window.c:1295
 #, c-format
 msgid "Activate '%s'"
 msgstr "'%s' ਸਰਗਰਮ"
 
-#: ../xed/xed-window.c:1467
+#: ../xed/xed-window.c:1483
 #, c-format
 msgid "Spaces: %u"
 msgstr ""
 
-#: ../xed/xed-window.c:1471
+#: ../xed/xed-window.c:1487
 #, c-format
 msgid "Tabs: %u"
 msgstr ""
 
-#: ../xed/xed-window.c:1548
+#: ../xed/xed-window.c:1564
 msgid "Use Spaces"
 msgstr "ਸਪੇਸ ਵਰਤੋਂ"
 
-#: ../xed/xed-window.c:2356
+#: ../xed/xed-window.c:2372
 msgid "There are unsaved documents"
 msgstr ""
 
-#: ../xed/xed-window.c:3405
+#: ../xed/xed-window.c:3421
 msgid "Elevated Privileges"
 msgstr ""
 
