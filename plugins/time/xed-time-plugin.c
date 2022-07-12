@@ -174,7 +174,7 @@ static const GtkActionEntry action_entries[] =
         "InsertDateAndTime",
         NULL,
         N_("In_sert Date and Time..."),
-        NULL,
+        "F5",
         N_("Insert current date and time at the cursor position"),
         G_CALLBACK (time_cb)
     },
