@@ -61,7 +61,7 @@ class TextSizePlugin(GObject.Object, Xed.WindowActivatable):
             'NormalSizeAction': self.on_normal_size_accel
         }
 
-        self._proxy_mapping = {}
+        self._proxy_mappings = []
         self._init_proxy_accels()
         self._accel_map_handler_id = Gtk.AccelMap.get().connect('changed', self.on_accel_map_changed)
 
@@ -78,22 +78,22 @@ class TextSizePlugin(GObject.Object, Xed.WindowActivatable):
             return
 
         mapping = {
-            Gdk.KEY_equal: Gdk.KEY_KP_Equal,
-            Gdk.KEY_KP_Equal: Gdk.KEY_equal,
-            Gdk.KEY_minus: Gdk.KEY_KP_Subtract,
+            Gdk.KEY_KP_Equal:    Gdk.KEY_equal,
+            Gdk.KEY_plus:        Gdk.KEY_equal,
+            Gdk.KEY_KP_Add:      Gdk.KEY_equal,
             Gdk.KEY_KP_Subtract: Gdk.KEY_minus,
-            Gdk.KEY_0: Gdk.KEY_KP_0,
-            Gdk.KEY_KP_0: Gdk.KEY_0
+            Gdk.KEY_KP_0:        Gdk.KEY_0,
         }
 
-        if entry[0] in mapping:
-            key = mapping[entry[0]]
-            mod = entry[1]
+        for extra_accel in mapping.keys():
+            if mapping[extra_accel] == entry[1].accel_key:
+                key = extra_accel
+                mod = entry[1].accel_mods
 
-            callback = self._proxy_callback_map[action.get_name()]
+                callback = self._proxy_callback_map[action.get_name()]
 
-            self._accel_group.connect_group(key, mod, Gtk.ACCEL_LOCKED, callback)
-            self._proxy_mapping[action] = (key, mod)
+                self._accel_group.connect(key, mod, Gtk.AccelFlags.LOCKED, callback)
+                self._proxy_mappings.append((key, mod))
 
     def _init_proxy_accels(self):
         self._install_proxy('LargerTextAction')
@@ -222,9 +222,7 @@ class TextSizePlugin(GObject.Object, Xed.WindowActivatable):
 
     def _remap_proxy(self, action):
         # Remove previous proxy
-
-        if action in self._proxy_mapping:
-            item = self._proxy_mapping[action]
+        if item in self._proxy_mappings:
             self._accel_group.disconnect_key(item[0], item[1])
 
         self._install_proxy(action)
