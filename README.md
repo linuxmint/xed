@@ -1,4 +1,5 @@
 # Xed Text Editor
+![build](https://github.com/linuxmint/xed/actions/workflows/build.yml/badge.svg)
 
 xed is a small and lightweight text editor.
 
