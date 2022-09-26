@@ -519,12 +519,29 @@ view_frame_mount_operation_factory (GtkSourceFile *file,
     return gtk_mount_operation_new (GTK_WINDOW (window));
 }
 
+static gboolean
+update_minimap_width (GValue *value,
+                      GVariant *variant,
+                      gpointer user_data)
+{
+    PangoFontDescription *font_desc;
+    gint size = g_variant_get_boolean (variant) ? 2 : 1;
+
+    gchar *desc = g_strdup_printf ("Monospace Bold %d", size);
+    font_desc = pango_font_description_from_string (desc);
+    g_free (desc);
+
+    g_value_set_boxed (value, font_desc);
+
+    pango_font_description_free (font_desc);
+    return TRUE;
+}
+
 static void
 xed_view_frame_init (XedViewFrame *frame)
 {
     XedDocument *doc;
     GtkSourceFile *file;
-    PangoFontDescription *font_desc;
 
     frame->priv = xed_view_frame_get_instance_private (frame);
 
@@ -537,9 +554,13 @@ xed_view_frame_init (XedViewFrame *frame)
                      "visible",
                      G_SETTINGS_BIND_GET | G_SETTINGS_BIND_NO_SENSITIVITY);
 
-    font_desc = pango_font_description_from_string ("Monospace 2");
-    g_object_set (frame->priv->map, "font-desc", font_desc, NULL);
-    pango_font_description_free (font_desc);
+    g_settings_bind_with_mapping (frame->priv->ui_settings,
+                                  XED_SETTINGS_MINIMAP_WIDER,
+                                  frame->priv->map,
+                                  "font-desc",
+                                  G_SETTINGS_BIND_GET,
+                                  update_minimap_width, NULL,
+                                  frame, NULL);
 
     doc = xed_view_frame_get_document (frame);
     file = xed_document_get_file (doc);

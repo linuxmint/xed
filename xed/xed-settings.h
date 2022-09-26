@@ -105,6 +105,7 @@ void xed_settings_set_list (GSettings    *settings,
 #define XED_SETTINGS_SIDE_PANEL_VISIBLE         "side-panel-visible"
 #define XED_SETTINGS_BOTTOM_PANEL_VISIBLE       "bottom-panel-visible"
 #define XED_SETTINGS_MINIMAP_VISIBLE            "minimap-visible"
+#define XED_SETTINGS_MINIMAP_WIDER              "minimap-wider"
 #define XED_SETTINGS_MAX_RECENTS                "max-recents"
 #define XED_SETTINGS_PRINT_SYNTAX_HIGHLIGHTING  "print-syntax-highlighting"
 #define XED_SETTINGS_PRINT_HEADER               "print-header"
