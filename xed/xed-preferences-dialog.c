@@ -81,6 +81,7 @@ struct _XedPreferencesDialog
     GtkWidget *auto_save_spin;
     GtkWidget *auto_save_revealer;
     GtkWidget *ensure_newline_switch;
+    GtkWidget *max_recent_spin;
 
     /* Font */
     GtkWidget *fixed_width_font_label;
@@ -199,6 +200,7 @@ xed_preferences_dialog_class_init (XedPreferencesDialogClass *klass)
     gtk_widget_class_bind_template_child (widget_class, XedPreferencesDialog, auto_save_spin);
     gtk_widget_class_bind_template_child (widget_class, XedPreferencesDialog, auto_save_revealer);
     gtk_widget_class_bind_template_child (widget_class, XedPreferencesDialog, ensure_newline_switch);
+    gtk_widget_class_bind_template_child (widget_class, XedPreferencesDialog, max_recent_spin);
 
     /* Theme page widgets */
     gtk_widget_class_bind_template_child (widget_class, XedPreferencesDialog, prefer_dark_theme_switch);
@@ -469,6 +471,12 @@ setup_save_page (XedPreferencesDialog *dlg)
                      XED_SETTINGS_ENSURE_TRAILING_NEWLINE,
                      dlg->ensure_newline_switch,
                      "active",
+                     G_SETTINGS_BIND_GET | G_SETTINGS_BIND_SET);
+
+    g_settings_bind (dlg->ui_settings,
+                     XED_SETTINGS_MAX_RECENTS,
+                     dlg->max_recent_spin,
+                     "value",
                      G_SETTINGS_BIND_GET | G_SETTINGS_BIND_SET);
 
     xapp_preferences_window_add_page (XAPP_PREFERENCES_WINDOW (dlg), dlg->save_page, "save", _("Save"));
