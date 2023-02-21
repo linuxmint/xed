@@ -182,12 +182,7 @@ save_window_state (GtkWidget *widget)
     if ((window->priv->window_state &
         (GDK_WINDOW_STATE_MAXIMIZED | GDK_WINDOW_STATE_FULLSCREEN)) == 0)
     {
-        GtkAllocation allocation;
-
-        gtk_widget_get_allocation (widget, &allocation);
-
-        window->priv->width = allocation.width;
-        window->priv->height = allocation.height;
+        gtk_window_get_size(GTK_WINDOW(widget), &window->priv->width, &window->priv->height);
 
         g_settings_set (window->priv->window_settings, XED_SETTINGS_WINDOW_SIZE,
                         "(ii)", window->priv->width, window->priv->height);
