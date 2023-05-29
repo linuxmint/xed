@@ -127,7 +127,6 @@ struct _XedPreferencesDialog
     GtkWidget *tab_scrolling_switch;
 
     /* Style scheme */
-    GtkWidget *prefer_dark_theme_switch;
     GtkWidget *schemes_list;
     GtkWidget *install_scheme_button;
     GtkWidget *uninstall_scheme_button;
@@ -201,7 +200,6 @@ xed_preferences_dialog_class_init (XedPreferencesDialogClass *klass)
     gtk_widget_class_bind_template_child (widget_class, XedPreferencesDialog, ensure_newline_switch);
 
     /* Theme page widgets */
-    gtk_widget_class_bind_template_child (widget_class, XedPreferencesDialog, prefer_dark_theme_switch);
     gtk_widget_class_bind_template_child (widget_class, XedPreferencesDialog, schemes_list);
     gtk_widget_class_bind_template_child (widget_class, XedPreferencesDialog, install_scheme_button);
     gtk_widget_class_bind_template_child (widget_class, XedPreferencesDialog, uninstall_scheme_button);
@@ -856,13 +854,6 @@ setup_theme_page (XedPreferencesDialog *dlg)
     GtkSourceStyleScheme *scheme;
 
     xed_debug (DEBUG_PREFS);
-
-    /* Prefer dark theme */
-    g_settings_bind (dlg->editor_settings,
-                     XED_SETTINGS_PREFER_DARK_THEME,
-                     dlg->prefer_dark_theme_switch,
-                     "active",
-                     G_SETTINGS_BIND_GET | G_SETTINGS_BIND_SET);
 
     /* Style scheme */
     scheme = get_default_color_scheme (dlg);

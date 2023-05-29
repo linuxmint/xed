@@ -72,7 +72,6 @@ void xed_settings_set_list (GSettings    *settings,
 /* key constants */
 #define XED_SETTINGS_USE_DEFAULT_FONT           "use-default-font"
 #define XED_SETTINGS_EDITOR_FONT                "editor-font"
-#define XED_SETTINGS_PREFER_DARK_THEME          "prefer-dark-theme"
 #define XED_SETTINGS_SCHEME                     "scheme"
 #define XED_SETTINGS_CREATE_BACKUP_COPY         "create-backup-copy"
 #define XED_SETTINGS_AUTO_SAVE                  "auto-save"

@@ -76,6 +76,7 @@ struct _XedAppPrivate
     GObject *settings;
     GSettings *window_settings;
     GSettings *editor_settings;
+    XAppDarkModeManager *dark_mode_manager;
 
     PeasExtensionSet *extensions;
 
@@ -165,6 +166,7 @@ xed_app_dispose (GObject *object)
 
     g_clear_object (&app->priv->window_settings);
     g_clear_object (&app->priv->editor_settings);
+    g_clear_object (&dark_mode_manager);
     g_clear_object (&app->priv->settings);
     g_clear_object (&app->priv->page_setup);
     g_clear_object (&app->priv->print_settings);
@@ -204,18 +206,6 @@ extension_removed (PeasExtensionSet *extensions,
                    XedApp           *app)
 {
     peas_extension_call (exten, "deactivate");
-}
-
-static void
-set_initial_theme_style (XedApp *app)
-{
-    if (g_settings_get_boolean (app->priv->editor_settings, XED_SETTINGS_PREFER_DARK_THEME))
-    {
-        GtkSettings *gtk_settings;
-
-        gtk_settings = gtk_settings_get_default ();
-        g_object_set (G_OBJECT (gtk_settings), "gtk-application-prefer-dark-theme", TRUE, NULL);
-    }
 }
 
 static void
@@ -311,8 +301,7 @@ xed_app_startup (GApplication *application)
     app->priv->settings = xed_settings_new ();
     app->priv->window_settings = g_settings_new ("org.x.editor.state.window");
     app->priv->editor_settings = g_settings_new ("org.x.editor.preferences.editor");
-
-    set_initial_theme_style (app);
+    app->priv->dark_mode_manager = xapp_dark_mode_manager_new (FALSE);
 
     /* Load custom css */
     css_file = g_file_new_for_uri ("resource:///org/x/editor/css/xed-style.css");
