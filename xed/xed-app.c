@@ -36,6 +36,7 @@
 #include <glib/gi18n.h>
 #include <libpeas/peas-extension-set.h>
 #include <gtksourceview/gtksource.h>
+#include <libxapp/xapp-dark-mode-manager.h>
 
 #ifdef ENABLE_INTROSPECTION
 #include <girepository.h>
@@ -166,7 +167,7 @@ xed_app_dispose (GObject *object)
 
     g_clear_object (&app->priv->window_settings);
     g_clear_object (&app->priv->editor_settings);
-    g_clear_object (&dark_mode_manager);
+    g_clear_object (&app->priv->dark_mode_manager);
     g_clear_object (&app->priv->settings);
     g_clear_object (&app->priv->page_setup);
     g_clear_object (&app->priv->print_settings);
