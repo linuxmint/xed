@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MATE Desktop Environment\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-06-11 13:15+0200\n"
-"PO-Revision-Date: 2022-06-12 22:50+0000\n"
+"POT-Creation-Date: 2023-05-30 14:20+0100\n"
+"PO-Revision-Date: 2022-09-03 11:45+0000\n"
 "Last-Translator: gogo <trebelnik2@gmail.com>\n"
 "Language-Team: Croatian "
 "(http://www.transifex.com/projects/p/MATE/language/hr/)\n"
@@ -19,8 +19,8 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Launchpad-Export-Date: 2022-07-24 09:39+0000\n"
-"X-Generator: Launchpad (build 025a39fd866a641b6ae33074cda0d02a2c712d38)\n"
+"X-Launchpad-Export-Date: 2023-06-08 10:20+0000\n"
+"X-Generator: Launchpad (build 620cd5280e3a973662e263ebf9346837ed657a46)\n"
 "Language: hr\n"
 
 #: ../data/xed.appdata.xml.in.h:1
@@ -39,7 +39,7 @@ msgid ""
 msgstr ""
 "<p> Xed je mali, ali moćan uređivač teksta. Ima većinu standardnih funkcija "
 "uređivača teksta i u potpunosti podržava međunarodni tekst u Unikôdu. "
-"Napredne značajke uključuju isticanje sintaksa i automatsko poravnavanje "
+"Napredne značajke uključuju isticanje sintaksa i automatsko uvlačenje "
 "izvornog kôda, ispisivanje i uređivanje više dokumenata u jednom prozoru. "
 "</p> <p> Xed je proširiv putem sustava priključka, koji trenutno uključuje "
 "podršku za provjeru pravopisa, uspoređivanje datoteka, pregledavanje CVS "
@@ -53,15 +53,15 @@ msgstr "Uređivač teksta"
 msgid "Edit text files"
 msgstr "Uređivanje tekstovnih datoteka"
 
-#: ../xed/xed-app.c:100
+#: ../xed/xed-app.c:102
 msgid "Show the application's version"
 msgstr "Prikaži inačicu aplikacije"
 
-#: ../xed/xed-app.c:106
+#: ../xed/xed-app.c:108
 msgid "Display list of possible values for the encoding option"
 msgstr "Prikaži popis mogućih vrijednosti za mogućnosti kôdiranja"
 
-#: ../xed/xed-app.c:113
+#: ../xed/xed-app.c:115
 msgid ""
 "Set the character encoding to be used to open the files listed on the "
 "command line"
@@ -69,44 +69,44 @@ msgstr ""
 "Kôdna stranica koja će se koristiti za otvaranje datoteka popisanih u "
 "naredbenom retku"
 
-#: ../xed/xed-app.c:114
+#: ../xed/xed-app.c:116
 msgid "ENCODING"
 msgstr "KÔDIRANJE"
 
-#: ../xed/xed-app.c:120
+#: ../xed/xed-app.c:122
 msgid "Create a new top-level window in an existing instance of xed"
 msgstr "Stvori novi sadržajni prozor u postojećem xed primjerku"
 
-#: ../xed/xed-app.c:127
+#: ../xed/xed-app.c:129
 msgid "Create a new document in an existing instance of xed"
 msgstr "Stvori novi dokument u postojećem xed primjerku"
 
-#: ../xed/xed-app.c:134
+#: ../xed/xed-app.c:136
 msgid "Set the size and position of the window (WIDTHxHEIGHT+X+Y)"
 msgstr "Postavi veličinu i položaj prozora (ŠIRINAxVISINA+X+Y)"
 
-#: ../xed/xed-app.c:135
+#: ../xed/xed-app.c:137
 msgid "GEOMETRY"
 msgstr "GEOMETRIJA"
 
-#: ../xed/xed-app.c:141
+#: ../xed/xed-app.c:143
 msgid "Open files and block process until files are closed"
 msgstr "Otvori datoteke i blokiraj procese dok se datoteke ne zatvore"
 
-#: ../xed/xed-app.c:148
+#: ../xed/xed-app.c:150
 msgid "Run xed in standalone mode"
 msgstr "Pokreni xed u samostalnom načinu rada"
 
-#: ../xed/xed-app.c:155
+#: ../xed/xed-app.c:157
 msgid "[FILE...] [+LINE]"
 msgstr "[DATOTEKA...] [+REDAK]"
 
-#: ../xed/xed-app.c:612
+#: ../xed/xed-app.c:602
 #, c-format
 msgid "%s: invalid encoding."
 msgstr "%s: pogrešno kôdiranje."
 
-#: ../xed/xed-app.c:1266
+#: ../xed/xed-app.c:1256
 msgid "There was an error displaying the help."
 msgstr "Došlo je do greške pri prikazivanju pomoći."
 
@@ -268,7 +268,7 @@ msgstr "Ako ne spremite, sve vaše promjene će biti zauvijek izgubljene."
 #: ../xed/xed-commands-file.c:229
 #, c-format
 msgid "Loading file '%s'…"
-msgstr "Učitavanje datoteke '%s'..."
+msgstr "Učitavanje datoteke '%s'…"
 
 #: ../xed/xed-commands-file.c:238
 #, c-format
@@ -305,16 +305,16 @@ msgstr "_Zamijeni"
 #: ../xed/xed-commands-file.c:564 ../xed/xed-commands-file.c:801
 #, c-format
 msgid "Saving file '%s'…"
-msgstr "Spremanje datoteke \"%s\"..."
+msgstr "Spremanje datoteke '%s'…"
 
 #: ../xed/xed-commands-file.c:644
 msgid "Save As…"
-msgstr "Spremi kao..."
+msgstr "Spremi kao…"
 
 #: ../xed/xed-commands-file.c:1202
 #, c-format
 msgid "Reverting the document '%s'…"
-msgstr "Vraćanje dokumenta \"%s\" u izvorno stanje..."
+msgstr "Vraćanje dokumenta \"%s\" u izvorno stanje…"
 
 #: ../xed/xed-commands-file.c:1249
 #, c-format
@@ -431,12 +431,12 @@ msgid "Unsaved Document %d"
 msgstr "Nespremljeni dokument %d"
 
 #: ../xed/xed-documents-panel.c:88 ../xed/xed-documents-panel.c:99
-#: ../xed/xed-window.c:1906 ../xed/xed-window.c:1910
+#: ../xed/xed-window.c:1901 ../xed/xed-window.c:1905
 msgid "Read-Only"
 msgstr "Samo za čitanje"
 
 #: ../xed/xed-documents-panel.c:650 ../xed/resources/ui/xed-shortcuts.ui.h:1
-#: ../xed/xed-window.c:3156
+#: ../xed/xed-window.c:3151
 msgid "Documents"
 msgstr "Dokumenti"
 
@@ -474,7 +474,7 @@ msgstr "_Opis"
 msgid "_Encoding"
 msgstr "_Kôdne stranice"
 
-#: ../xed/xed-file-chooser-dialog.c:44 ../xed/xed-preferences-dialog.c:783
+#: ../xed/xed-file-chooser-dialog.c:44 ../xed/xed-preferences-dialog.c:781
 msgid "All Files"
 msgstr "Sve datoteke"
 
@@ -502,7 +502,7 @@ msgstr "Mac OS Classic"
 msgid "Windows"
 msgstr "Windows"
 
-#: ../xed/xed-highlight-mode-selector.c:297 ../xed/xed-window.c:2035
+#: ../xed/xed-highlight-mode-selector.c:297 ../xed/xed-window.c:2030
 msgid "Plain Text"
 msgstr "Običan tekst"
 
@@ -849,65 +849,65 @@ msgstr ""
 "Ako nastavite sa spremanjem ove datoteke možete oštetiti dokument. Želite li "
 "svejedno spremiti?"
 
-#: ../xed/xed-preferences-dialog.c:280
+#: ../xed/xed-preferences-dialog.c:278
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:3
 #, no-c-format
 msgid "Use the system fixed width font (%s)"
 msgstr "Koristi nepromjenjivu širinu slova sustava (%s)"
 
-#: ../xed/xed-preferences-dialog.c:436
+#: ../xed/xed-preferences-dialog.c:434
 msgid "Editor"
 msgstr "Uređivač"
 
-#: ../xed/xed-preferences-dialog.c:474
+#: ../xed/xed-preferences-dialog.c:472
 msgid "Save"
 msgstr "Spremanje"
 
-#: ../xed/xed-preferences-dialog.c:587
+#: ../xed/xed-preferences-dialog.c:585
 #, c-format
 msgid ""
 "Directory '%s' could not be created: g_mkdir_with_parents() failed: %s"
 msgstr "Direktorij '%s' nije stvoren: g_mkdir_with_parents() neuspjelo:%s"
 
-#: ../xed/xed-preferences-dialog.c:741
+#: ../xed/xed-preferences-dialog.c:739
 msgid "The selected color scheme cannot be installed."
 msgstr "Odabrana shema boja se ne može instalirati."
 
-#: ../xed/xed-preferences-dialog.c:764 ../xed/xed-preferences-dialog.c:770
+#: ../xed/xed-preferences-dialog.c:762 ../xed/xed-preferences-dialog.c:768
 msgid "Add Scheme"
 msgstr "Dodaj shemu"
 
-#: ../xed/xed-preferences-dialog.c:767 ../xed/xed-progress-info-bar.c:61
+#: ../xed/xed-preferences-dialog.c:765 ../xed/xed-progress-info-bar.c:61
 msgid "Cancel"
 msgstr "Odustani"
 
-#: ../xed/xed-preferences-dialog.c:776
+#: ../xed/xed-preferences-dialog.c:774
 msgid "Color Scheme Files"
 msgstr "Datoteke shema boja"
 
-#: ../xed/xed-preferences-dialog.c:848
+#: ../xed/xed-preferences-dialog.c:846
 #, c-format
 msgid "Could not remove color scheme \"%s\"."
 msgstr "Shemu boja \"%s\" nije moguće ukloniti."
 
-#: ../xed/xed-preferences-dialog.c:880
+#: ../xed/xed-preferences-dialog.c:871
 msgid "Theme"
 msgstr "Tema"
 
-#: ../xed/xed-preferences-dialog.c:897
+#: ../xed/xed-preferences-dialog.c:888
 msgid "Plugins"
 msgstr "Priključci"
 
-#: ../xed/xed-preferences-dialog.c:905
+#: ../xed/xed-preferences-dialog.c:896
 msgid "Help"
 msgstr "Priručnik"
 
-#: ../xed/xed-preferences-dialog.c:910
+#: ../xed/xed-preferences-dialog.c:901
 #: ../xed/resources/ui/xed-searchbar.ui.h:11
 msgid "Close"
 msgstr "Zatvori"
 
-#: ../xed/xed-preferences-dialog.c:924
+#: ../xed/xed-preferences-dialog.c:915
 msgid "Xed Preferences"
 msgstr "Xed osobitosti"
 
@@ -1006,7 +1006,7 @@ msgstr "_Odaberi"
 
 #: ../xed/resources/ui/xed-highlight-mode-selector.ui.h:1
 msgid "Search highlight mode…"
-msgstr "Pretraži način isticanja..."
+msgstr "Pretraži način isticanja…"
 
 #: ../xed/resources/ui/xed-encodings-dialog.ui.h:1
 msgid "Character encodings"
@@ -1082,19 +1082,19 @@ msgstr "Istakni odgovarajuće zagrade"
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:18
 msgid "Indentation"
-msgstr "Poravnanje"
+msgstr "Uvlačenje"
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:19
 msgid "Tab width"
-msgstr "Tab širina"
+msgstr "Širina tabulatora"
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:20
 msgid "Use spaces instead of tabs"
-msgstr "Umetni razmake umjesto Tabova"
+msgstr "Umetni razmake umjesto tabulatora"
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:21
 msgid "Automatic indentation"
-msgstr "Automatsko poravnavanje"
+msgstr "Automatsko uvlačenje"
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:22
 msgid "Word wrap"
@@ -1133,22 +1133,14 @@ msgid "Ensure Trailing Newline"
 msgstr "Osiguraj novi redak na kraju"
 
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:31
-msgid "Dark theme"
-msgstr "Tamna tema"
-
-#: ../xed/resources/ui/xed-preferences-dialog.ui.h:32
-msgid "Use dark theme variant (if available)"
-msgstr "Koristi tamnu inačicu teme (ako je dostupna)"
-
-#: ../xed/resources/ui/xed-preferences-dialog.ui.h:33
 msgid "Style scheme"
 msgstr "Shema izgleda"
 
-#: ../xed/resources/ui/xed-preferences-dialog.ui.h:34
+#: ../xed/resources/ui/xed-preferences-dialog.ui.h:32
 msgid "Install scheme"
 msgstr "Instaliraj shemu"
 
-#: ../xed/resources/ui/xed-preferences-dialog.ui.h:35
+#: ../xed/resources/ui/xed-preferences-dialog.ui.h:33
 msgid "Remove scheme"
 msgstr "Ukloni shemu"
 
@@ -1308,7 +1300,7 @@ msgstr "Prikaži donji panel"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:15
 msgid "Fullscreen on / off"
-msgstr "Cjelozaslonski prikaz uklj. / isklj."
+msgstr "Cjelozaslonski prikaz uklj/isklj"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:16
 msgid "Quit the application"
@@ -1923,11 +1915,11 @@ msgstr "Postavi prijelom oko riječi za trenutni dokument"
 
 #: ../xed/xed-ui.h:173
 msgid "_Overview Map"
-msgstr "_Mapa pregleda"
+msgstr "_Panel pregleda"
 
 #: ../xed/xed-ui.h:174
 msgid "Show or hide the overview map for the current view"
-msgstr "Prikaži ili sakrij mapu pregleda za trenutni pogled"
+msgstr "Prikaži ili sakrij panel pregleda za trenutni pogled"
 
 #: ../xed/xed-ui.h:181
 msgid "Side _Pane"
@@ -1970,36 +1962,36 @@ msgid "_Display line numbers"
 msgstr "_Prikaži brojeve redaka"
 
 #. Translators: %s is a URI
-#: ../xed/xed-window.c:944
+#: ../xed/xed-window.c:939
 #, c-format
 msgid "Open '%s'"
 msgstr "Otvori '%s'"
 
 #. Translators: %s is a URI
-#: ../xed/xed-window.c:1295
+#: ../xed/xed-window.c:1290
 #, c-format
 msgid "Activate '%s'"
 msgstr "Aktiviraj '%s'"
 
-#: ../xed/xed-window.c:1483
+#: ../xed/xed-window.c:1478
 #, c-format
 msgid "Spaces: %u"
 msgstr "Razmak: %u"
 
-#: ../xed/xed-window.c:1487
+#: ../xed/xed-window.c:1482
 #, c-format
 msgid "Tabs: %u"
 msgstr "Tab: %u"
 
-#: ../xed/xed-window.c:1564
+#: ../xed/xed-window.c:1559
 msgid "Use Spaces"
 msgstr "Koristi razmake"
 
-#: ../xed/xed-window.c:2372
+#: ../xed/xed-window.c:2367
 msgid "There are unsaved documents"
 msgstr "Postoje nespremljeni dokumenti"
 
-#: ../xed/xed-window.c:3421
+#: ../xed/xed-window.c:3416
 msgid "Elevated Privileges"
 msgstr "Administratorske ovlasti!!!"
 
@@ -2545,7 +2537,7 @@ msgstr "Akronim"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:6
 msgid "Align"
-msgstr "Poravnanje"
+msgstr "Uvlačenje"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:7
 msgid "Alignment character"
@@ -4190,7 +4182,7 @@ msgstr "Dovršavanje riječi"
 
 #: ../plugins/wordcompletion/xed-wordcompletion-configure.ui.h:2
 msgid "Use Ctrl+Space to manually trigger word completion."
-msgstr "Koristite Ctrl+Space za ručno pokretanje dovršavanja riječi"
+msgstr "Koristite Ctrl+Space za ručno pokretanje dovršavanja riječi."
 
 #: ../plugins/wordcompletion/xed-wordcompletion-configure.ui.h:3
 msgid "Automatic completion"
