@@ -175,6 +175,20 @@ on_editor_font_changed (GSettings   *settings,
 }
 
 static void
+on_prefer_dark_theme_changed (GSettings   *settings,
+                              const gchar *key,
+                              XedSettings *xs)
+{
+    GtkSettings *gtk_settings;
+    gboolean prefer_dark_theme;
+
+    prefer_dark_theme = g_settings_get_boolean (xs->priv->editor, XED_SETTINGS_PREFER_DARK_THEME);
+    gtk_settings = gtk_settings_get_default ();
+
+    g_object_set (G_OBJECT (gtk_settings), "gtk-application-prefer-dark-theme", prefer_dark_theme, NULL);
+}
+
+static void
 on_scheme_changed (GSettings   *settings,
                    const gchar *key,
                    XedSettings *xs)
@@ -363,6 +377,8 @@ xed_settings_init (XedSettings *xs)
                       G_CALLBACK (on_use_default_font_changed), xs);
     g_signal_connect (xs->priv->editor, "changed::editor-font",
                       G_CALLBACK (on_editor_font_changed), xs);
+    g_signal_connect (xs->priv->editor, "changed::prefer-dark-theme",
+                      G_CALLBACK (on_prefer_dark_theme_changed), xs);
     g_signal_connect (xs->priv->editor, "changed::scheme",
                       G_CALLBACK (on_scheme_changed), xs);
     g_signal_connect (xs->priv->editor, "changed::auto-save",
