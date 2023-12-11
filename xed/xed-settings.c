@@ -323,6 +323,25 @@ on_enable_tab_scrolling_changed (GSettings   *settings,
 }
 
 static void
+on_auto_close_changed (GSettings   *settings,
+                                 const gchar *key,
+                                 XedSettings *xs)
+{
+    const GList *windows;
+    gboolean enable;
+
+    enable = g_settings_get_boolean (settings, key);
+    windows = xed_app_get_main_windows (XED_APP (g_application_get_default ()));
+
+    while (windows != NULL)
+    {
+        xed_window_set_auto_close (windows->data, enable);
+
+        windows = g_list_next (windows);
+    }
+}
+
+static void
 on_max_recents_changed (GSettings   *settings,
                         const gchar *key,
                         XedSettings *xs)
@@ -397,6 +416,8 @@ xed_settings_init (XedSettings *xs)
                       G_CALLBACK (on_draw_whitespace_locations_or_types_changed), xs);
     g_signal_connect (xs->priv->editor, "changed::draw-whitespace-newline",
                       G_CALLBACK (on_draw_whitespace_locations_or_types_changed), xs);
+    g_signal_connect (xs->priv->editor, "changed::auto-close",
+                      G_CALLBACK (on_auto_close_changed), xs);
 
     /* ui changes */
     g_signal_connect (xs->priv->ui, "changed::enable-tab-scrolling",

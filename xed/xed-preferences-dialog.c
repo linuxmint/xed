@@ -126,6 +126,9 @@ struct _XedPreferencesDialog
     /* Tab scrolling */
     GtkWidget *tab_scrolling_switch;
 
+    /* Auto close*/
+    GtkWidget *auto_close_switch;
+
     /* Style scheme */
     GtkWidget *prefer_dark_theme_switch;
     GtkWidget *schemes_list;
@@ -192,6 +195,7 @@ xed_preferences_dialog_class_init (XedPreferencesDialogClass *klass)
     gtk_widget_class_bind_template_child (widget_class, XedPreferencesDialog, split_words_revealer);
     gtk_widget_class_bind_template_child (widget_class, XedPreferencesDialog, split_words_switch);
     gtk_widget_class_bind_template_child (widget_class, XedPreferencesDialog, tab_scrolling_switch);
+    gtk_widget_class_bind_template_child (widget_class, XedPreferencesDialog, auto_close_switch);
 
     /* Save page widgets */
     gtk_widget_class_bind_template_child (widget_class, XedPreferencesDialog, backup_copy_switch);
@@ -430,6 +434,13 @@ setup_editor_page (XedPreferencesDialog *dlg)
     g_settings_bind (dlg->ui_settings,
                      XED_SETTINGS_ENABLE_TAB_SCROLLING,
                      dlg->tab_scrolling_switch,
+                     "active",
+                     G_SETTINGS_BIND_GET | G_SETTINGS_BIND_SET);
+
+    /* Auto close */
+    g_settings_bind (dlg->editor_settings,
+                     XED_SETTINGS_AUTO_CLOSE,
+                     dlg->auto_close_switch,
                      "active",
                      G_SETTINGS_BIND_GET | G_SETTINGS_BIND_SET);
 

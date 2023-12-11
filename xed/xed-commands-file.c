@@ -1716,6 +1716,21 @@ _xed_cmd_file_close_tab (XedTab    *tab,
     {
         xed_window_close_tab (window, tab);
     }
+
+    if (window->priv->num_tabs == 0)
+    {
+        gboolean enable_auto_close;
+
+        enable_auto_close =
+            g_settings_get_boolean (window->priv->editor_settings, XED_SETTINGS_AUTO_CLOSE);
+
+        if (!enable_auto_close)
+        {
+            return;
+        }
+
+        gtk_widget_destroy (GTK_WIDGET (window));
+    }
 }
 
 void

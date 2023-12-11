@@ -63,6 +63,7 @@ void    xed_window_close_all_tabs (XedWindow *window);
 void    xed_window_close_tabs (XedWindow *window, const GList *tabs);
 XedTab *xed_window_get_active_tab (XedWindow *window);
 void    xed_window_set_active_tab (XedWindow *window, XedTab *tab);
+void    xed_window_set_auto_close (XedWindow *window, gboolean enable);
 
 /* Helper functions */
 XedView     *xed_window_get_active_view (XedWindow *window);
