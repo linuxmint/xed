@@ -102,6 +102,8 @@ static const GtkActionEntry xed_menu_entries[] =
 	  N_("Paste the clipboard"), G_CALLBACK (_xed_cmd_edit_paste) },
 	{ "EditDelete", "edit-delete-symbolic", N_("_Delete"), NULL,
 	  N_("Delete the selected text"), G_CALLBACK (_xed_cmd_edit_delete) },
+	{ "EditDuplicate", "edit-duplicate-symbolic", N_("_Duplicate"),	"<control><shift>D",
+	  N_("Duplicate the selected text"), G_CALLBACK (_xed_cmd_edit_duplicate) },
 	{ "EditSelectAll", "edit-select-all-symbolic", N_("Select _All"), "<control>A",
 	  N_("Select the entire document"), G_CALLBACK (_xed_cmd_edit_select_all) },
     { "EditToggleComment", NULL, N_("_Toggle Comment"), "<control>slash",

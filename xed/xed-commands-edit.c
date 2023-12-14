@@ -146,6 +146,22 @@ _xed_cmd_edit_delete (GtkAction   *action,
 }
 
 void
+_xed_cmd_edit_duplicate (GtkAction   *action,
+		     XedWindow *window)
+{
+	XedView *active_view;
+
+	xed_debug (DEBUG_COMMANDS);
+
+	active_view = xed_window_get_active_view (window);
+	g_return_if_fail (active_view);
+
+	xed_view_duplicate (active_view);
+
+	gtk_widget_grab_focus (GTK_WIDGET (active_view));
+}
+
+void
 _xed_cmd_edit_select_all (GtkAction   *action,
 			   XedWindow *window)
 {

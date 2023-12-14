@@ -755,6 +755,45 @@ xed_view_delete_selection (XedView *view)
 }
 
 /**
+ * xed_view_duplicate:
+ * @view: a #XedView
+ *
+ * Duplicates the text currently selected in the #GtkTextBuffer
+ * or duplicates the current line if nothing is selected
+ **/
+void
+xed_view_duplicate (XedView *view)
+{
+    GtkTextIter start;
+    GtkTextIter end;
+    GtkTextBuffer *buffer = NULL;
+    gchar *text;
+    size_t length;
+
+    xed_debug (DEBUG_VIEW);
+
+    g_return_if_fail (XED_IS_VIEW (view));
+
+    buffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW(view));
+    g_return_if_fail (buffer != NULL);
+
+    if (!gtk_text_buffer_get_selection_bounds (buffer, &start, &end))
+    {
+        gtk_text_iter_set_line_index (&start, 0);
+        gtk_text_iter_forward_to_line_end (&end);
+    }
+
+    gtk_text_iter_order (&start, &end);
+    text = gtk_text_buffer_get_text (buffer, &start, &end, TRUE);
+
+    if ((length = strlen(text)) > 0)
+    {
+        gtk_text_buffer_insert (buffer, &end, "\n", 1);
+        gtk_text_buffer_insert (buffer, &end, text, length);
+    }
+}
+
+/**
  * xed_view_select_all:
  * @view: a #XedView
  *
