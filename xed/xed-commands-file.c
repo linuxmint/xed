@@ -51,6 +51,7 @@
 #define XED_IS_CLOSING_ALL            "xed-is-closing-all"
 #define XED_IS_QUITTING             "xed-is-quitting"
 #define XED_IS_QUITTING_ALL     "xed-is-quitting-all"
+#define XED_SESSION_FILE_NAME   ".xed_session"
 
 static void tab_state_changed_while_saving (XedTab    *tab,
                                             GParamSpec  *pspec,
@@ -1378,6 +1379,69 @@ _xed_cmd_file_revert (GtkAction   *action,
 }
 
 static void
+export_active_docs (XedWindow *window)
+{
+    gchar *file_name = NULL;
+    GFile *session_file = NULL;
+    GFileIOStream* iostream = NULL;
+    GList *docs = NULL;
+    XedDocument *doc = NULL;
+    GtkSourceFile *source_file = NULL;
+    GFile *docfile = NULL;
+    gchar *doc_file_path = NULL;
+
+    g_print ("export\n");
+    g_return_if_fail (XED_IS_WINDOW (window));
+
+    file_name = g_strconcat (g_get_home_dir(), "/", XED_SESSION_FILE_NAME, NULL);
+    session_file = g_file_new_for_path (file_name);
+
+    if (g_file_query_exists (session_file, NULL))
+    {
+        iostream = g_file_open_readwrite (session_file, NULL, NULL);
+    }
+    else
+    {
+        iostream = g_file_create_readwrite (session_file, G_FILE_CREATE_NONE, NULL, NULL);
+    }
+
+    if (iostream == NULL)
+    {
+        return;
+    }
+
+    docs = xed_window_get_documents (window);
+
+    g_print ("has docs: %d\n", docs != NULL);
+
+    while (docs != NULL)
+    {
+        doc = XED_DOCUMENT (docs->data);
+        source_file = xed_document_get_file (doc);
+        docfile = gtk_source_file_get_location (source_file);
+        doc_file_path = g_file_get_path (docfile);
+
+        // separate into smaller functions
+        // check if file exists
+        // check if null
+        // error when saving with warning pop up before closing
+        // use l variable instead of docs to free it later
+        // free if not null
+
+        if (doc_file_path)
+        {
+            g_print("%s\n", doc_file_path);
+        }
+
+        docs = g_list_next (docs);
+    }
+
+    g_free (file_name);
+    g_object_unref (session_file);
+    g_object_unref (iostream);
+}
+
+static void
 tab_state_changed_while_saving (XedTab     *tab,
                                 GParamSpec *pspec,
                                 XedWindow  *window)
@@ -1821,6 +1885,9 @@ _xed_cmd_file_quit (GtkAction *action,
                         (XED_WINDOW_STATE_SAVING |
                          XED_WINDOW_STATE_PRINTING |
                          XED_WINDOW_STATE_SAVING_SESSION)));
+
+    g_print ("file_quit\n");
+    export_active_docs(window);
 
     file_close_all (window, TRUE);
 }
