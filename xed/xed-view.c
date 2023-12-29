@@ -791,6 +791,8 @@ xed_view_duplicate (XedView *view)
         gtk_text_buffer_insert (buffer, &end, "\n", 1);
         gtk_text_buffer_insert (buffer, &end, text, length);
     }
+
+    g_free (text);
 }
 
 /**
