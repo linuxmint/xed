@@ -40,6 +40,7 @@ void _xed_cmd_edit_cut (GtkAction *action, XedWindow *window);
 void _xed_cmd_edit_copy (GtkAction *action, XedWindow *window);
 void _xed_cmd_edit_paste (GtkAction *action, XedWindow *window);
 void _xed_cmd_edit_delete (GtkAction *action, XedWindow *window);
+void _xed_cmd_edit_duplicate (GtkAction *action, XedWindow *window);
 void _xed_cmd_edit_select_all (GtkAction *action, XedWindow *window);
 void _xed_cmd_edit_preferences (GtkAction *action, XedWindow *window);
 void _xed_cmd_edit_toggle_comment (GtkAction *action, XedWindow *window);
