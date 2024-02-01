@@ -712,7 +712,6 @@ real_insert_time (GtkTextBuffer *buffer,
     gtk_text_buffer_begin_user_action (buffer);
 
     gtk_text_buffer_insert_at_cursor (buffer, the_time, -1);
-    gtk_text_buffer_insert_at_cursor (buffer, " ", -1);
 
     gtk_text_buffer_end_user_action (buffer);
 }
