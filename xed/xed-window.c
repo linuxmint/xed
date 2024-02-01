@@ -4218,28 +4218,6 @@ xed_window_get_tab_from_location (XedWindow *window,
 }
 
 /**
- * xed_window_set_auto_close:
- * @window: a #XedWindow
- * @gboolean: a #gboolean
- *
- * Sets the auto_close switch.
- * If the switch is set to true,
- * the window closes once the last tab is closed.
- *
- * Return value: none
- */
-void
-xed_window_set_auto_close (XedWindow *window,
-                gboolean enable)
-{
-    g_return_if_fail (XED_IS_WINDOW(window));
-
-    xed_debug (DEBUG_WINDOW);
-
-    g_settings_set_boolean (window->priv->editor_settings, XED_SETTINGS_AUTO_CLOSE, enable);
-}
-
-/**
  * xed_window_get_message_bus:
  * @window: a #XedWindow
  *
