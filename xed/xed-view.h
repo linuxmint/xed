@@ -58,6 +58,7 @@ void       xed_view_cut_clipboard (XedView *view);
 void       xed_view_copy_clipboard (XedView *view);
 void       xed_view_paste_clipboard (XedView *view);
 void       xed_view_delete_selection (XedView *view);
+void       xed_view_duplicate (XedView *view);
 void       xed_view_select_all (XedView *view);
 void       xed_view_scroll_to_cursor (XedView *view);
 void       xed_view_set_font (XedView *view, gboolean def, const gchar *font_name);

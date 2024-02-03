@@ -1283,10 +1283,17 @@ _xed_document_needs_saving (XedDocument *doc)
     XedDocumentPrivate *priv;
     gboolean externally_modified = FALSE;
     gboolean deleted = FALSE;
+    gint len = 0;
 
     g_return_val_if_fail (XED_IS_DOCUMENT (doc), FALSE);
 
     priv = xed_document_get_instance_private (doc);
+    len = gtk_text_buffer_get_char_count (GTK_TEXT_BUFFER (doc));
+
+    if (len <= 0)
+    {
+        return FALSE;
+    }
 
     if (gtk_text_buffer_get_modified (GTK_TEXT_BUFFER (doc)))
     {
