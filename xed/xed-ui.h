@@ -172,7 +172,7 @@ static const GtkToggleActionEntry xed_always_sensitive_toggle_menu_entries[] =
     { "ViewWordWrap", NULL, N_("_Word wrap"), "<control>R",
       N_("Set word wrap for the current document"),
       G_CALLBACK (_xed_cmd_view_toggle_word_wrap), FALSE },
-    { "ViewOverviewMap", NULL, N_("_Overview Map"), NULL,
+    { "ViewOverviewMap", NULL, N_("_Overview Map"), "F7",
       N_("Show or hide the overview map for the current view"),
       G_CALLBACK (_xed_cmd_view_toggle_overview_map), FALSE }
 };
