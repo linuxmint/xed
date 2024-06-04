@@ -898,7 +898,6 @@ update_recent_files_menu (XedWindow *window)
     {
         gchar *action_name;
         const gchar *display_name;
-        gchar *escaped;
         gchar *label;
         gchar *uri;
         gchar *ruri;
@@ -918,14 +917,7 @@ update_recent_files_menu (XedWindow *window)
         action_name = g_strdup_printf ("recent-info-%d", i);
 
         display_name = gtk_recent_info_get_display_name (info);
-        escaped = xed_utils_escape_underscores (display_name, -1);
-        if (i >= 10)
-        {
-            label = g_strdup_printf ("%d.  %s", i, escaped);
-        }
-        else
-            label = g_strdup_printf ("_%d.  %s", i, escaped);
-        g_free (escaped);
+        label = xed_utils_escape_underscores (display_name, -1);
 
         /* gtk_recent_info_get_uri_display (info) is buggy and
          * works only for local files */
