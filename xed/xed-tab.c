@@ -1995,6 +1995,15 @@ _xed_tab_load (XedTab                  *tab,
 }
 
 void
+_xed_tab_cancel_load (XedTab *tab)
+{
+    g_return_if_fail (XED_IS_PROGRESS_INFO_BAR (tab->priv->info_bar));
+    g_return_if_fail (G_IS_CANCELLABLE (tab->priv->cancellable));
+
+    g_cancellable_cancel (tab->priv->cancellable);
+}
+
+void
 _xed_tab_load_stream (XedTab                  *tab,
                       GInputStream            *stream,
                       const GtkSourceEncoding *encoding,
