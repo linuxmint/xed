@@ -30,7 +30,7 @@ gettext.install("xed")
 
 ACCEPTED_SCHEMES = ['file', 'ftp', 'sftp', 'smb', 'dav', 'davs', 'ssh', 'http', 'https']
 RE_DELIM = re.compile(r'[\w#/\?:%@&\=\+\.\\~-]+', re.UNICODE|re.MULTILINE)
-RE_URI_RFC2396 = re.compile("((([a-zA-Z][0-9a-zA-Z+\\-\\.]*):)?/{0,2}([0-9a-zA-Z;:,/\?@&=\+\$\.\-_!~\*'\(\)%]+))?(#[0-9a-zA-Z;,/\?:@&\=+$\.\\-_!~\*'\(\)%]+)?")
+RE_URI_RFC2396 = re.compile(r"((([a-zA-Z][0-9a-zA-Z+\-\.]*):)?/{0,2}([0-9a-zA-Z;:,/\?@&=\+\$\.\-_!~\*'\(\)%]+))?(#[0-9a-zA-Z;,/\?:@&\=+$\.\\-_!~\*'\(\)%]+)?")
 
 class OpenURIContextMenuPlugin(GObject.Object, Xed.WindowActivatable):
 	__gtype_name__ = "OpenURIContextMenuPlugin"
