@@ -129,6 +129,8 @@ void _xed_tab_load (XedTab                  *tab,
                     gint                     line_pos,
                     gboolean                 create);
 
+void _xed_tab_cancel_load (XedTab *tab);
+
 void _xed_tab_load_stream     (XedTab                  *tab,
                                GInputStream            *location,
                                const GtkSourceEncoding *encoding,

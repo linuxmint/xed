@@ -902,6 +902,12 @@ static void
 remove_tab (XedTab      *tab,
             XedNotebook *nb)
 {
+    /* First cancel any loading */
+    if (xed_tab_get_state (tab) == XED_TAB_STATE_LOADING)
+    {
+        _xed_tab_cancel_load (tab);
+    }
+
     gint position;
 
     position = gtk_notebook_page_num (GTK_NOTEBOOK (nb), GTK_WIDGET (tab));
