@@ -40,3 +40,8 @@ install_data(
     'xed.1',
     install_dir : join_paths(get_option('prefix'), get_option('mandir'), 'man1')
 )
+
+install_data(
+    'xed.xml',
+    install_dir: join_paths(datadir, 'gtksourceview-4', 'styles')
+)
