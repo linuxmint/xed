@@ -93,27 +93,25 @@ class DocumentHelper(Signals):
         state = event.state & Gtk.accelerator_get_default_mod_mask()
 
         if state != Gdk.ModifierType.CONTROL_MASK:
-            return False
+            return Gdk.EVENT_PROPAGATE
 
         if event.direction == Gdk.ScrollDirection.UP:
             self.larger_text()
-            return True
         elif event.direction == Gdk.ScrollDirection.DOWN:
             self.smaller_text()
-            return True
         elif event.direction == Gdk.ScrollDirection.SMOOTH:
             if event.delta_y > 0:
                 self.smaller_text()
             elif event.delta_y < 0:
                 self.larger_text()
 
-        return False
+        return Gdk.EVENT_STOP
 
     def on_button_press_event(self, view, event):
         state = event.state & Gtk.accelerator_get_default_mod_mask()
 
         if state == Gdk.ModifierType.CONTROL_MASK and event.button == 2:
             self.normal_size()
-            return True
+            return Gdk.EVENT_STOP
         else:
-            return False
+            return Gdk.EVENT_PROPAGATE
