@@ -1,7 +1,7 @@
 desktop = custom_target(
     'desktop',
-    input: 'xed.desktop.in.in',
-    output: 'xed.desktop',
+    input: 'org.x.editor.desktop.in.in',
+    output: 'org.x.editor.desktop',
     command: [intltool_merge, '-d', '-u', po_dir, '@INPUT@', '@OUTPUT@'],
     install: true,
     install_dir: desktopdir,
