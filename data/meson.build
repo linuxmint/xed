@@ -9,8 +9,8 @@ desktop = custom_target(
 
 appdata = custom_target(
     'appdata',
-    input: 'xed.appdata.xml.in',
-    output: 'xed.appdata.xml',
+    input: 'org.x.editor.metainfo.xml.in',
+    output: 'org.x.editor.metainfo.xml',
     command: [intltool_merge, '-x', '-u', po_dir, '@INPUT@', '@OUTPUT@'],
     install: true,
     install_dir: join_paths(datadir, 'metainfo'),
