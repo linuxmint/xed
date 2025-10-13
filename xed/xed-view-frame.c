@@ -400,7 +400,7 @@ setup_search_widget (XedViewFrame *frame)
     // frame->priv->search_entry = gtk_entry_new ();
     // gtk_widget_set_tooltip_text (frame->priv->search_entry, _("Line you want to move the cursor to"));
     // gtk_entry_set_icon_from_icon_name (GTK_ENTRY (frame->priv->search_entry),
-    //                                    GTK_ENTRY_ICON_PRIMARY, "go-jump-symbolic");
+    //                                    GTK_ENTRY_ICON_PRIMARY, "xapp-go-jump-symbolic");
     // gtk_widget_show (frame->priv->search_entry);
 
     g_signal_connect (frame->priv->search_entry, "activate",

@@ -436,7 +436,7 @@ on_selection_changed_cb (GtkTreeSelection     *selection,
 
 static GtkActionEntry extra_actions[] =
 {
-    {"SetActiveRoot", "go-jump-symbolic", N_("_Set root to active document"),
+    {"SetActiveRoot", "xapp-go-jump-symbolic", N_("_Set root to active document"),
      NULL,
      N_("Set the root to the active document location"),
      G_CALLBACK (on_action_set_active_root)}
