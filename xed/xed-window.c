@@ -1652,7 +1652,7 @@ create_statusbar (XedWindow *window,
     gtk_box_pack_start (GTK_BOX (window->priv->statusbar), button_box, FALSE, FALSE, 0);
 
     window->priv->show_side_pane_button = gtk_toggle_button_new ();
-    image = gtk_image_new_from_icon_name ("xapp-view-left-pane-symbolic", GTK_ICON_SIZE_INVALID);
+    image = gtk_image_new_from_icon_name ("xsi-view-left-pane-symbolic", GTK_ICON_SIZE_INVALID);
     gtk_image_set_pixel_size (GTK_IMAGE (image), 12);
     gtk_container_add (GTK_CONTAINER (window->priv->show_side_pane_button), image);
     gtk_box_pack_start (GTK_BOX (button_box), window->priv->show_side_pane_button, FALSE, FALSE, 0);
@@ -1667,7 +1667,7 @@ create_statusbar (XedWindow *window,
     gtk_box_pack_start (GTK_BOX (button_box), window->priv->bottom_pane_button_revealer, FALSE, FALSE, 0);
 
     window->priv->show_bottom_pane_button = gtk_toggle_button_new ();
-    image = gtk_image_new_from_icon_name ("xapp-view-bottom-pane-symbolic", GTK_ICON_SIZE_INVALID);
+    image = gtk_image_new_from_icon_name ("xsi-view-bottom-pane-symbolic", GTK_ICON_SIZE_INVALID);
     gtk_image_set_pixel_size (GTK_IMAGE (image), 12);
     gtk_container_add (GTK_CONTAINER (window->priv->show_bottom_pane_button), image);
     gtk_container_add (GTK_CONTAINER (window->priv->bottom_pane_button_revealer), window->priv->show_bottom_pane_button);

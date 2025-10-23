@@ -722,7 +722,7 @@ show_loading_info_bar (XedTab *tab)
             msg = g_strdup_printf (_("Reverting %s"), name_markup);
         }
 
-        bar = xed_progress_info_bar_new ("xapp-document-revert-symbolic", msg, TRUE);
+        bar = xed_progress_info_bar_new ("xsi-document-revert-symbolic", msg, TRUE);
     }
     else
     {
@@ -740,7 +740,7 @@ show_loading_info_bar (XedTab *tab)
             msg = g_strdup_printf (_("Loading %s"), name_markup);
         }
 
-        bar = xed_progress_info_bar_new ("xapp-document-open-symbolic", msg, TRUE);
+        bar = xed_progress_info_bar_new ("xsi-document-open-symbolic", msg, TRUE);
     }
 
     g_signal_connect (bar, "response",
@@ -826,7 +826,7 @@ show_saving_info_bar (XedTab *tab)
         msg = g_strdup_printf (_("Saving %s"), from_markup);
     }
 
-    bar = xed_progress_info_bar_new ("xapp-document-save-symbolic", msg, FALSE);
+    bar = xed_progress_info_bar_new ("xsi-document-save-symbolic", msg, FALSE);
 
     gtk_widget_show (bar);
 
@@ -1497,35 +1497,35 @@ _xed_tab_get_icon (XedTab *tab)
     switch (tab->priv->state)
     {
         case XED_TAB_STATE_LOADING:
-            icon_name = "xapp-document-open-symbolic";
+            icon_name = "xsi-document-open-symbolic";
             break;
 
         case XED_TAB_STATE_REVERTING:
-            icon_name = "xapp-document-revert-symbolic";
+            icon_name = "xsi-document-revert-symbolic";
             break;
 
         case XED_TAB_STATE_SAVING:
-            icon_name = "xapp-document-save-symbolic";
+            icon_name = "xsi-document-save-symbolic";
             break;
 
         case XED_TAB_STATE_PRINTING:
-            icon_name = "xapp-printer-printing-symbolic";
+            icon_name = "xsi-printer-printing-symbolic";
             break;
 
         case XED_TAB_STATE_PRINT_PREVIEWING:
         case XED_TAB_STATE_SHOWING_PRINT_PREVIEW:
-            icon_name = "xapp-printer-symbolic";
+            icon_name = "xsi-printer-symbolic";
             break;
 
         case XED_TAB_STATE_LOADING_ERROR:
         case XED_TAB_STATE_REVERTING_ERROR:
         case XED_TAB_STATE_SAVING_ERROR:
         case XED_TAB_STATE_GENERIC_ERROR:
-            icon_name = "xapp-dialog-error-symbolic";
+            icon_name = "xsi-dialog-error-symbolic";
             break;
 
         case XED_TAB_STATE_EXTERNALLY_MODIFIED_NOTIFICATION:
-            icon_name = "xapp-dialog-warning-symbolic";
+            icon_name = "xsi-dialog-warning-symbolic";
             break;
 
         default:
@@ -2761,11 +2761,11 @@ show_printing_info_bar (XedTab   *tab,
 
     if (preview)
     {
-        area = xed_progress_info_bar_new ("xapp-document-print-preview-symbolic", "", TRUE);
+        area = xed_progress_info_bar_new ("xsi-document-print-preview-symbolic", "", TRUE);
     }
     else
     {
-        area = xed_progress_info_bar_new ("xapp-document-print-symbolic", "", TRUE);
+        area = xed_progress_info_bar_new ("xsi-document-print-symbolic", "", TRUE);
     }
 
     g_signal_connect (area, "response",

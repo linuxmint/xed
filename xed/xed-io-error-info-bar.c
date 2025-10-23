@@ -147,7 +147,7 @@ create_io_loading_error_info_bar (const gchar *primary_text,
     info_bar = gtk_info_bar_new_with_buttons (_("_Cancel"), GTK_RESPONSE_CANCEL, NULL);
     gtk_info_bar_set_message_type (GTK_INFO_BAR (info_bar), GTK_MESSAGE_ERROR);
 
-    set_info_bar_text_and_icon (info_bar, "xapp-dialog-error-symbolic", primary_text, secondary_text);
+    set_info_bar_text_and_icon (info_bar, "xsi-dialog-error-symbolic", primary_text, secondary_text);
 
     if (recoverable_error)
     {
@@ -407,7 +407,7 @@ create_conversion_error_info_bar (const gchar *primary_text,
 
     hbox_content = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 8);
 
-    image = gtk_image_new_from_icon_name ("xapp-dialog-error-symbolic", GTK_ICON_SIZE_DIALOG);
+    image = gtk_image_new_from_icon_name ("xsi-dialog-error-symbolic", GTK_ICON_SIZE_DIALOG);
     gtk_box_pack_start (GTK_BOX (hbox_content), image, FALSE, FALSE, 0);
     gtk_widget_set_halign (image, GTK_ALIGN_CENTER);
     gtk_widget_set_valign (image, GTK_ALIGN_START);
@@ -662,7 +662,7 @@ xed_file_already_open_warning_info_bar_new (GFile *location)
 
     hbox_content = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 8);
 
-    image = gtk_image_new_from_icon_name ("xapp-dialog-warning-symbolic", GTK_ICON_SIZE_DIALOG);
+    image = gtk_image_new_from_icon_name ("xsi-dialog-warning-symbolic", GTK_ICON_SIZE_DIALOG);
     gtk_box_pack_start (GTK_BOX (hbox_content), image, FALSE, FALSE, 0);
     gtk_widget_set_halign (image, GTK_ALIGN_CENTER);
     gtk_widget_set_valign (image, GTK_ALIGN_START);
@@ -745,7 +745,7 @@ xed_externally_modified_saving_error_info_bar_new (GFile        *location,
 
     hbox_content = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 8);
 
-    image = gtk_image_new_from_icon_name ("xapp-dialog-warning-symbolic", GTK_ICON_SIZE_DIALOG);
+    image = gtk_image_new_from_icon_name ("xsi-dialog-warning-symbolic", GTK_ICON_SIZE_DIALOG);
     gtk_box_pack_start (GTK_BOX (hbox_content), image, FALSE, FALSE, 0);
     gtk_widget_set_halign (image, GTK_ALIGN_CENTER);
     gtk_widget_set_valign (image, GTK_ALIGN_START);
@@ -833,7 +833,7 @@ xed_no_backup_saving_error_info_bar_new (GFile        *location,
 
     hbox_content = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 8);
 
-    image = gtk_image_new_from_icon_name ("xapp-dialog-warning-symbolic", GTK_ICON_SIZE_DIALOG);
+    image = gtk_image_new_from_icon_name ("xsi-dialog-warning-symbolic", GTK_ICON_SIZE_DIALOG);
     gtk_box_pack_start (GTK_BOX (hbox_content), image, FALSE, FALSE, 0);
     gtk_widget_set_halign (image, GTK_ALIGN_CENTER);
     gtk_widget_set_valign (image, GTK_ALIGN_START);
@@ -1051,7 +1051,7 @@ xed_externally_modified_info_bar_new (GFile    *location,
     gtk_info_bar_add_button (GTK_INFO_BAR (info_bar), _("_Cancel"), GTK_RESPONSE_CANCEL);
     gtk_info_bar_set_message_type (GTK_INFO_BAR (info_bar), GTK_MESSAGE_WARNING);
 
-    set_info_bar_text_and_icon (info_bar, "xapp-dialog-warning-symbolic", primary_text, secondary_text);
+    set_info_bar_text_and_icon (info_bar, "xsi-dialog-warning-symbolic", primary_text, secondary_text);
 
     return info_bar;
 }
@@ -1097,7 +1097,7 @@ xed_invalid_character_info_bar_new (GFile *location)
 
     hbox_content = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 8);
 
-    image = gtk_image_new_from_icon_name ("xapp-dialog-warning-symbolic", GTK_ICON_SIZE_DIALOG);
+    image = gtk_image_new_from_icon_name ("xsi-dialog-warning-symbolic", GTK_ICON_SIZE_DIALOG);
     gtk_box_pack_start (GTK_BOX (hbox_content), image, FALSE, FALSE, 0);
     gtk_widget_set_valign (image, GTK_ALIGN_START);
 

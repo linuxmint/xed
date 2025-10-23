@@ -575,13 +575,13 @@ create_bar (XedPrintPreview *preview)
     gtk_style_context_add_class (gtk_widget_get_style_context (box), "linked");
     gtk_container_add (GTK_CONTAINER (i), box);
 
-    priv->prev = gtk_button_new_from_icon_name ("xapp-go-previous-symbolic", GTK_ICON_SIZE_MENU);
+    priv->prev = gtk_button_new_from_icon_name ("xsi-go-previous-symbolic", GTK_ICON_SIZE_MENU);
     gtk_box_pack_start (GTK_BOX (box), priv->prev, FALSE, FALSE, 0);
     gtk_widget_set_tooltip_text (priv->prev, _("Show the previous page"));
     g_signal_connect (priv->prev, "clicked",
                       G_CALLBACK (prev_button_clicked), preview);
 
-    priv->next = gtk_button_new_from_icon_name ("xapp-go-next-symbolic", GTK_ICON_SIZE_MENU);
+    priv->next = gtk_button_new_from_icon_name ("xsi-go-next-symbolic", GTK_ICON_SIZE_MENU);
     gtk_box_pack_start (GTK_BOX (box), priv->next, FALSE, FALSE, 0);
     gtk_widget_set_tooltip_text (priv->next, _("Show the next page"));
     g_signal_connect (priv->next, "clicked",
@@ -635,7 +635,7 @@ create_bar (XedPrintPreview *preview)
     box = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 0);
     gtk_container_add (GTK_CONTAINER (i), box);
 
-    priv->multi = gtk_button_new_from_icon_name ("xapp-view-grid-symbolic", GTK_ICON_SIZE_MENU);
+    priv->multi = gtk_button_new_from_icon_name ("xsi-view-grid-symbolic", GTK_ICON_SIZE_MENU);
     gtk_box_pack_start (GTK_BOX (box), priv->multi, FALSE, FALSE, 0);
     gtk_widget_set_tooltip_text (priv->multi, _("Show multiple pages"));
     g_signal_connect (priv->multi, "clicked",
@@ -653,25 +653,25 @@ create_bar (XedPrintPreview *preview)
     gtk_style_context_add_class (gtk_widget_get_style_context (box), "linked");
     gtk_container_add (GTK_CONTAINER (i), box);
 
-    priv->zoom_one = gtk_button_new_from_icon_name ("xapp-zoom-original-symbolic", GTK_ICON_SIZE_MENU);
+    priv->zoom_one = gtk_button_new_from_icon_name ("xsi-zoom-original-symbolic", GTK_ICON_SIZE_MENU);
     gtk_box_pack_start (GTK_BOX (box), priv->zoom_one, FALSE, FALSE, 0);
     gtk_widget_set_tooltip_text (priv->zoom_one, _("Zoom 1:1"));
     g_signal_connect (priv->zoom_one, "clicked",
                       G_CALLBACK (zoom_one_button_clicked), preview);
 
-    priv->zoom_fit = gtk_button_new_from_icon_name ("xapp-zoom-fit-best-symbolic", GTK_ICON_SIZE_MENU);
+    priv->zoom_fit = gtk_button_new_from_icon_name ("xsi-zoom-fit-best-symbolic", GTK_ICON_SIZE_MENU);
     gtk_box_pack_start (GTK_BOX (box), priv->zoom_fit, FALSE, FALSE, 0);
     gtk_widget_set_tooltip_text (priv->zoom_fit, _("Zoom to fit the whole page"));
     g_signal_connect (priv->zoom_fit, "clicked",
                       G_CALLBACK (zoom_fit_button_clicked), preview);
 
-    priv->zoom_in = gtk_button_new_from_icon_name ("xapp-zoom-in-symbolic", GTK_ICON_SIZE_MENU);
+    priv->zoom_in = gtk_button_new_from_icon_name ("xsi-zoom-in-symbolic", GTK_ICON_SIZE_MENU);
     gtk_box_pack_start (GTK_BOX (box), priv->zoom_in, FALSE, FALSE, 0);
     gtk_widget_set_tooltip_text (priv->zoom_in, _("Zoom the page in"));
     g_signal_connect (priv->zoom_in, "clicked",
                       G_CALLBACK (zoom_in_button_clicked), preview);
 
-    priv->zoom_out = gtk_button_new_from_icon_name ("xapp-zoom-out-symbolic", GTK_ICON_SIZE_MENU);
+    priv->zoom_out = gtk_button_new_from_icon_name ("xsi-zoom-out-symbolic", GTK_ICON_SIZE_MENU);
     gtk_box_pack_start (GTK_BOX (box), priv->zoom_out, FALSE, FALSE, 0);
     gtk_widget_set_tooltip_text (priv->zoom_out, _("Zoom the page out"));
     g_signal_connect (priv->zoom_out, "clicked",
@@ -688,7 +688,7 @@ create_bar (XedPrintPreview *preview)
     box = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 0);
     gtk_container_add (GTK_CONTAINER (i), box);
 
-    priv->print_now = gtk_button_new_from_icon_name ("xapp-document-print-symbolic", GTK_ICON_SIZE_MENU);
+    priv->print_now = gtk_button_new_from_icon_name ("xsi-document-print-symbolic", GTK_ICON_SIZE_MENU);
     gtk_box_pack_start (GTK_BOX (box), priv->print_now, FALSE, FALSE, 0);
     gtk_widget_set_tooltip_text (priv->print_now, _("Print the document"));
     g_signal_connect (priv->print_now, "clicked",

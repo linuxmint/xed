@@ -121,9 +121,9 @@ xed_statusbar_init (XedStatusbar *statusbar)
     hbox = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 0);
     gtk_container_add (GTK_CONTAINER (statusbar->priv->state_frame), hbox);
 
-    statusbar->priv->load_image = gtk_image_new_from_icon_name ("xapp-document-open-symbolic", GTK_ICON_SIZE_MENU);
-    statusbar->priv->save_image = gtk_image_new_from_icon_name ("xapp-document-save-symbolic", GTK_ICON_SIZE_MENU);
-    statusbar->priv->print_image = gtk_image_new_from_icon_name ("xapp-printer-symbolic", GTK_ICON_SIZE_MENU);
+    statusbar->priv->load_image = gtk_image_new_from_icon_name ("xsi-document-open-symbolic", GTK_ICON_SIZE_MENU);
+    statusbar->priv->save_image = gtk_image_new_from_icon_name ("xsi-document-save-symbolic", GTK_ICON_SIZE_MENU);
+    statusbar->priv->print_image = gtk_image_new_from_icon_name ("xsi-printer-symbolic", GTK_ICON_SIZE_MENU);
 
     gtk_widget_show (hbox);
 

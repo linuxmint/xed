@@ -82,7 +82,7 @@ static void inline_checker_cb (GtkAction      *action,
 static const GtkActionEntry action_entries[] =
 {
     { "CheckSpell",
-      "xapp-check-spelling-symbolic",
+      "xsi-check-spelling-symbolic",
       N_("_Check Spelling..."),
       "<shift>F7",
       N_("Check the current document for incorrect spelling"),

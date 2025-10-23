@@ -49,7 +49,7 @@ xed_close_button_init (XedCloseButton *button)
 {
 	GtkWidget *image;
 
-	image = gtk_image_new_from_icon_name ("xapp-window-close-symbolic", GTK_ICON_SIZE_MENU);
+	image = gtk_image_new_from_icon_name ("xsi-window-close-symbolic", GTK_ICON_SIZE_MENU);
 	gtk_widget_show (image);
 
 	gtk_container_add (GTK_CONTAINER (button), image);

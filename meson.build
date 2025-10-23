@@ -34,7 +34,7 @@ libpeas = dependency('libpeas-1.0', version: '>= 1.12.0')
 libpeas_gtk = dependency('libpeas-gtk-1.0', version: '>= 1.12.0')
 gir_dep = dependency('gobject-introspection-1.0', version: '>= 1.42.0', required: false)
 gmodule = dependency('gmodule-2.0')
-xapp = dependency('xapp', version: '>= 3.0.0')
+xapp = dependency('xapp', version: '>= 1.9.0')
 X11 = dependency('x11')
 pango = dependency('pango')
 

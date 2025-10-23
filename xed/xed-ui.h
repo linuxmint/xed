@@ -52,25 +52,25 @@ static const GtkActionEntry xed_always_sensitive_menu_entries[] =
     { "FileRecentsMenu", NULL, N_("Recents")},
 
 	/* File menu */
-	{ "FileNew", "xapp-document-new-symbolic", N_("_New"), "<control>N",
+	{ "FileNew", "xsi-document-new-symbolic", N_("_New"), "<control>N",
 	  N_("Create a new document"), G_CALLBACK (_xed_cmd_file_new) },
-	{ "FileOpen", "xapp-document-open-symbolic", N_("_Open..."), "<control>O",
+	{ "FileOpen", "xsi-document-open-symbolic", N_("_Open..."), "<control>O",
 	  N_("Open a file"), G_CALLBACK (_xed_cmd_file_open) },
 
 	/* Edit menu */
-	{ "EditPreferences", "xapp-toolbox-symbolic", N_("Pr_eferences"), NULL,
+	{ "EditPreferences", "xsi-toolbox-symbolic", N_("Pr_eferences"), NULL,
 	  N_("Configure the application"), G_CALLBACK (_xed_cmd_edit_preferences) },
 
 	/* Help menu */
-	{"HelpContents", "xapp-help-contents-symbolic", N_("_Contents"), "F1",
+	{"HelpContents", "xsi-help-contents-symbolic", N_("_Contents"), "F1",
 	 N_("Open the xed manual"), G_CALLBACK (_xed_cmd_help_contents) },
-	{ "HelpAbout", "xapp-help-about-symbolic", N_("_About"), NULL,
+	{ "HelpAbout", "xsi-help-about-symbolic", N_("_About"), NULL,
 	 N_("About this application"), G_CALLBACK (_xed_cmd_help_about) },
-    { "HelpShortcuts", "xapp-keyboard-shortcuts-symbolic", N_("_Keyboard Shortcuts"), NULL,
+    { "HelpShortcuts", "xsi-keyboard-shortcuts-symbolic", N_("_Keyboard Shortcuts"), NULL,
      N_("Show the keyboard shortcuts dialog"), G_CALLBACK (_xed_cmd_help_keyboard_shortcuts) },
 
 	/* Fullscreen toolbar */
-	{ "LeaveFullscreen", "xapp-view-restore-symbolic", NULL,
+	{ "LeaveFullscreen", "xsi-view-restore-symbolic", NULL,
 	  NULL, N_("Leave fullscreen mode"),
 	  G_CALLBACK (_xed_cmd_view_leave_fullscreen_mode) }
 };
@@ -78,33 +78,33 @@ static const GtkActionEntry xed_always_sensitive_menu_entries[] =
 static const GtkActionEntry xed_menu_entries[] =
 {
 	/* File menu */
-	{ "FileSave", "xapp-document-save-symbolic", N_("_Save"), "<control>S",
+	{ "FileSave", "xsi-document-save-symbolic", N_("_Save"), "<control>S",
 	  N_("Save the current file"), G_CALLBACK (_xed_cmd_file_save) },
-	{ "FileSaveAs", "xapp-document-save-as-symbolic", N_("Save _As..."), "<shift><control>S",
+	{ "FileSaveAs", "xsi-document-save-as-symbolic", N_("Save _As..."), "<shift><control>S",
 	  N_("Save the current file with a different name"), G_CALLBACK (_xed_cmd_file_save_as) },
-	{ "FileRevert", "xapp-document-revert-symbolic", N_("Revert"), NULL,
+	{ "FileRevert", "xsi-document-revert-symbolic", N_("Revert"), NULL,
 	  N_("Revert to a saved version of the file"), G_CALLBACK (_xed_cmd_file_revert) },
-	{ "FilePrintPreview", "xapp-document-print-preview-symbolic", N_("Print Previe_w"),"<control><shift>P",
+	{ "FilePrintPreview", "xsi-document-print-preview-symbolic", N_("Print Previe_w"),"<control><shift>P",
 	  N_("Print preview"), G_CALLBACK (_xed_cmd_file_print_preview) },
-	 { "FilePrint", "xapp-document-print-symbolic", N_("_Print..."), "<control>P",
+	 { "FilePrint", "xsi-document-print-symbolic", N_("_Print..."), "<control>P",
 	  N_("Print the current page"), G_CALLBACK (_xed_cmd_file_print) },
 
 	/* Edit menu */
-	{ "EditUndo", "xapp-edit-undo-symbolic", N_("_Undo"), "<control>Z",
+	{ "EditUndo", "xsi-edit-undo-symbolic", N_("_Undo"), "<control>Z",
 	  N_("Undo the last action"), G_CALLBACK (_xed_cmd_edit_undo) },
-	{ "EditRedo", "xapp-edit-redo-symbolic", N_("_Redo"), "<control>Y",
+	{ "EditRedo", "xsi-edit-redo-symbolic", N_("_Redo"), "<control>Y",
 	  N_("Redo the last undone action"), G_CALLBACK (_xed_cmd_edit_redo) },
-	{ "EditCut", "xapp-edit-cut-symbolic", N_("C_ut"), "<control>X",
+	{ "EditCut", "xsi-edit-cut-symbolic", N_("C_ut"), "<control>X",
 	  N_("Cut the selection"), G_CALLBACK (_xed_cmd_edit_cut) },
-	{ "EditCopy", "xapp-edit-copy-symbolic", N_("_Copy"), "<control>C",
+	{ "EditCopy", "xsi-edit-copy-symbolic", N_("_Copy"), "<control>C",
 	  N_("Copy the selection"), G_CALLBACK (_xed_cmd_edit_copy) },
-	{ "EditPaste", "xapp-edit-paste-symbolic", N_("_Paste"), "<control>V",
+	{ "EditPaste", "xsi-edit-paste-symbolic", N_("_Paste"), "<control>V",
 	  N_("Paste the clipboard"), G_CALLBACK (_xed_cmd_edit_paste) },
-	{ "EditDelete", "xapp-edit-delete-symbolic", N_("_Delete"), NULL,
+	{ "EditDelete", "xsi-edit-delete-symbolic", N_("_Delete"), NULL,
 	  N_("Delete the selected text"), G_CALLBACK (_xed_cmd_edit_delete) },
 	{ "EditDuplicate", "edit-duplicate-symbolic", N_("_Duplicate"),	"<control><shift>D",
 	  N_("Duplicate the selected text"), G_CALLBACK (_xed_cmd_edit_duplicate) },
-	{ "EditSelectAll", "xapp-edit-select-all-symbolic", N_("Select _All"), "<control>A",
+	{ "EditSelectAll", "xsi-edit-select-all-symbolic", N_("Select _All"), "<control>A",
 	  N_("Select the entire document"), G_CALLBACK (_xed_cmd_edit_select_all) },
     { "EditToggleComment", NULL, N_("_Toggle Comment"), "<control>slash",
       N_("Comment"), G_CALLBACK (_xed_cmd_edit_toggle_comment) },
@@ -117,21 +117,21 @@ static const GtkActionEntry xed_menu_entries[] =
 	  G_CALLBACK (_xed_cmd_view_change_highlight_mode) },
 
 	/* Search menu */
-	{ "SearchFind", "xapp-edit-find-symbolic", N_("_Find"), "<control>F",
+	{ "SearchFind", "xsi-edit-find-symbolic", N_("_Find"), "<control>F",
 	  N_("Search for text"), G_CALLBACK (_xed_cmd_search_find) },
 	{ "SearchFindNext", NULL, N_("Find Ne_xt"), "<control>G",
 	  N_("Search forwards for the same text"), G_CALLBACK (_xed_cmd_search_find_next) },
 	{ "SearchFindPrevious", NULL, N_("Find Pre_vious"), "<shift><control>G",
 	  N_("Search backwards for the same text"), G_CALLBACK (_xed_cmd_search_find_prev) },
-	{ "SearchReplace", "xapp-edit-find-replace-symbolic", N_("_Replace"), "<control>H",
+	{ "SearchReplace", "xsi-edit-find-replace-symbolic", N_("_Replace"), "<control>H",
 	  N_("Search for and replace text"), G_CALLBACK (_xed_cmd_search_replace) },
-	{ "SearchGoToLine", "xapp-go-jump-symbolic", N_("Go to _Line..."), "<control>I",
+	{ "SearchGoToLine", "xsi-go-jump-symbolic", N_("Go to _Line..."), "<control>I",
 	  N_("Go to a specific line"), G_CALLBACK (_xed_cmd_search_goto_line) },
 
 	/* Documents menu */
-	{ "FileSaveAll", "xapp-document-save-symbolic", N_("_Save All"), "<shift><control>L",
+	{ "FileSaveAll", "xsi-document-save-symbolic", N_("_Save All"), "<shift><control>L",
 	  N_("Save all open files"), G_CALLBACK (_xed_cmd_file_save_all) },
-	{ "FileCloseAll", "xapp-window-close-symbolic", N_("_Close All"), "<shift><control>W",
+	{ "FileCloseAll", "xsi-window-close-symbolic", N_("_Close All"), "<shift><control>W",
 	  N_("Close all open files"), G_CALLBACK (_xed_cmd_file_close_all) },
 	{ "DocumentsPreviousDocument", NULL, N_("_Previous Document"), "<alt><control>Page_Up",
 	  N_("Activate previous document"), G_CALLBACK (_xed_cmd_documents_previous_document) },
@@ -144,14 +144,14 @@ static const GtkActionEntry xed_menu_entries[] =
 /* separate group, needs to be sensitive on OS X even when there are no tabs */
 static const GtkActionEntry xed_close_menu_entries[] =
 {
-	{ "FileClose", "xapp-window-close-symbolic", N_("_Close"), "<control>W",
+	{ "FileClose", "xsi-window-close-symbolic", N_("_Close"), "<control>W",
 	  N_("Close the current file"), G_CALLBACK (_xed_cmd_file_close) }
 };
 
 /* separate group, should be sensitive even when there are no tabs */
 static const GtkActionEntry xed_quit_menu_entries[] =
 {
-	{ "FileQuit", "xapp-exit-symbolic", N_("_Quit"), "<control>Q",
+	{ "FileQuit", "xsi-exit-symbolic", N_("_Quit"), "<control>Q",
 	  N_("Quit the program"), G_CALLBACK (_xed_cmd_file_quit) }
 };
 
