@@ -267,6 +267,20 @@ setup_theme_extensions (void)
 }
 
 static void
+load_accels (void)
+{
+    gchar *filename;
+
+    filename = g_build_filename (xed_dirs_get_user_config_dir (), "accels", NULL);
+    if (filename != NULL)
+    {
+        xed_debug_message (DEBUG_APP, "Loading keybindings from %s\n", filename);
+        gtk_accel_map_load (filename);
+        g_free (filename);
+    }
+}
+
+static void
 xed_app_startup (GApplication *application)
 {
     XedApp *app = XED_APP (application);
@@ -282,6 +296,7 @@ xed_app_startup (GApplication *application)
     GtkCssProvider *provider;
 
     G_APPLICATION_CLASS (xed_app_parent_class)->startup (application);
+    load_accels ();
 
     /* Setup debugging */
     xed_debug_init ();
@@ -894,20 +909,6 @@ xed_app_class_init (XedAppClass *klass)
 }
 
 static void
-load_accels (void)
-{
-    gchar *filename;
-
-    filename = g_build_filename (xed_dirs_get_user_config_dir (), "accels", NULL);
-    if (filename != NULL)
-    {
-        xed_debug_message (DEBUG_APP, "Loading keybindings from %s\n", filename);
-        gtk_accel_map_load (filename);
-        g_free (filename);
-    }
-}
-
-static void
 load_page_setup (XedApp *app)
 {
     gchar *filename;
@@ -993,8 +994,6 @@ xed_app_init (XedApp *app)
 #ifdef ENABLE_INTROSPECTION
     g_application_add_option_group (G_APPLICATION (app), g_irepository_get_option_group ());
 #endif
-
-    load_accels ();
 
     setup_actions (app);
 }
