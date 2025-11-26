@@ -38,7 +38,11 @@
 #include <gtksourceview/gtksource.h>
 
 #ifdef ENABLE_INTROSPECTION
+#if PYGOBJECT_MAJOR_VERSION > 3 || (PYGOBJECT_MAJOR_VERSION == 3 && PYGOBJECT_MINOR_VERSION > 50)
+#include <girepository/girepository.h>
+#else
 #include <girepository.h>
+#endif
 #endif
 
 #include "xed-app.h"
@@ -992,7 +996,11 @@ xed_app_init (XedApp *app)
     g_application_add_main_option_entries (G_APPLICATION (app), options);
 
 #ifdef ENABLE_INTROSPECTION
+#if PYGOBJECT_MAJOR_VERSION > 3 || (PYGOBJECT_MAJOR_VERSION == 3 && PYGOBJECT_MINOR_VERSION > 50)
+    g_application_add_option_group (G_APPLICATION (app), gi_repository_get_option_group ());
+#else
     g_application_add_option_group (G_APPLICATION (app), g_irepository_get_option_group ());
+#endif
 #endif
 
     setup_actions (app);
