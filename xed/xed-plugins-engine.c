@@ -31,7 +31,11 @@
 #include <config.h>
 #include <string.h>
 #include <glib/gi18n.h>
+#if PYGOBJECT_MAJOR_VERSION > 3 || (PYGOBJECT_MAJOR_VERSION == 3 && PYGOBJECT_MINOR_VERSION > 50)
+#include <girepository/girepository.h>
+#else
 #include <girepository.h>
+#endif
 
 #include "xed-plugins-engine.h"
 #include "xed-debug.h"
@@ -66,7 +70,11 @@ xed_plugins_engine_init (XedPluginsEngine *engine)
 
     typelib_dir = g_build_filename (xed_dirs_get_xed_lib_dir (), "girepository-1.0", NULL);
 
+#if PYGOBJECT_MAJOR_VERSION > 3 || (PYGOBJECT_MAJOR_VERSION == 3 && PYGOBJECT_MINOR_VERSION > 50)
+    if (!gi_repository_require_private (gi_repository_dup_default (), typelib_dir, "Xed", "1.0", 0, &error))
+#else
     if (!g_irepository_require_private (g_irepository_get_default (), typelib_dir, "Xed", "1.0", 0, &error))
+#endif
     {
         g_warning ("Could not load Xed repository: %s", error->message);
         g_error_free (error);
@@ -76,14 +84,22 @@ xed_plugins_engine_init (XedPluginsEngine *engine)
     g_free (typelib_dir);
 
     /* This should be moved to libpeas */
+#if PYGOBJECT_MAJOR_VERSION > 3 || (PYGOBJECT_MAJOR_VERSION == 3 && PYGOBJECT_MINOR_VERSION > 50)
+    if (!gi_repository_require (gi_repository_dup_default (), "Peas", "1.0", 0, &error))
+#else
     if (!g_irepository_require (g_irepository_get_default (), "Peas", "1.0", 0, &error))
+#endif
     {
         g_warning ("Could not load Peas repository: %s", error->message);
         g_error_free (error);
         error = NULL;
     }
 
+#if PYGOBJECT_MAJOR_VERSION > 3 || (PYGOBJECT_MAJOR_VERSION == 3 && PYGOBJECT_MINOR_VERSION > 50)
+    if (!gi_repository_require (gi_repository_dup_default (), "PeasGtk", "1.0", 0, &error))
+#else
     if (!g_irepository_require (g_irepository_get_default (), "PeasGtk", "1.0", 0, &error))
+#endif
     {
         g_warning ("Could not load PeasGtk repository: %s", error->message);
         g_error_free (error);

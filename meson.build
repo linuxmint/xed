@@ -40,6 +40,10 @@ pango = dependency('pango')
 
 if gir_dep.found()
     xed_conf.set('ENABLE_INTROSPECTION', 1)
+    pygobject_dep = dependency('pygobject-3.0')
+    pygobject_version = pygobject_dep.version().split('.')
+    xed_conf.set('PYGOBJECT_MAJOR_VERSION', pygobject_version[0])
+    xed_conf.set('PYGOBJECT_MINOR_VERSION', pygobject_version[1])
 endif
 
 enable_spell = get_option('enable_spell')
