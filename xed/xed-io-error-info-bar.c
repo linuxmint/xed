@@ -1136,3 +1136,61 @@ xed_invalid_character_info_bar_new (GFile *location)
 
     return info_bar;
 }
+
+GtkWidget *
+xed_binary_file_warning_info_bar_new (GFile       *location,
+                                      const gchar *content_type)
+{
+    GtkWidget *info_bar;
+    gchar *full_formatted_uri;
+    gchar *temp_uri_for_display;
+    gchar *uri_for_display;
+    gchar *primary_text;
+    gchar *secondary_text;
+
+    g_return_val_if_fail (G_IS_FILE (location), NULL);
+
+    full_formatted_uri = g_file_get_parse_name (location);
+    temp_uri_for_display = xed_utils_str_middle_truncate (full_formatted_uri, MAX_URI_IN_DIALOG_LENGTH);
+    g_free (full_formatted_uri);
+
+    uri_for_display = g_markup_printf_escaped ("<i>%s</i>", temp_uri_for_display);
+    g_free (temp_uri_for_display);
+
+    info_bar = gtk_info_bar_new ();
+
+    gtk_info_bar_add_button (GTK_INFO_BAR (info_bar),
+                             _("Open Any_way"),
+                             GTK_RESPONSE_YES);
+    gtk_info_bar_add_button (GTK_INFO_BAR (info_bar),
+                             _("D_on't Open"),
+                             GTK_RESPONSE_CANCEL);
+    gtk_info_bar_set_message_type (GTK_INFO_BAR (info_bar), GTK_MESSAGE_WARNING);
+
+    primary_text = g_strdup_printf (_("The file %s appears to be a binary file."), uri_for_display);
+    g_free (uri_for_display);
+
+    if (content_type != NULL)
+    {
+        gchar *desc = g_content_type_get_description (content_type);
+
+        secondary_text = g_strdup_printf (
+            _("The file type is \"%s\". Opening binary files in a text editor "
+              "can cause the application to become unresponsive."),
+            desc);
+        g_free (desc);
+    }
+    else
+    {
+        secondary_text = g_strdup (
+            _("Opening binary files in a text editor can cause the application "
+              "to become unresponsive."));
+    }
+
+    set_info_bar_text_and_icon (info_bar, "xsi-dialog-warning-symbolic",
+                                primary_text, secondary_text);
+    g_free (primary_text);
+    g_free (secondary_text);
+
+    return info_bar;
+}

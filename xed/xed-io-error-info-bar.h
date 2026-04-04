@@ -64,6 +64,9 @@ GtkWidget *xed_externally_modified_info_bar_new (GFile    *location,
 
 GtkWidget *xed_invalid_character_info_bar_new (GFile *location);
 
+GtkWidget *xed_binary_file_warning_info_bar_new (GFile       *location,
+                                                  const gchar *content_type);
+
 G_END_DECLS
 
 #endif  /* __XED_IO_ERROR_INFO_BAR_H__  */

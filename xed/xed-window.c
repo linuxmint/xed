@@ -1791,18 +1791,30 @@ update_cursor_position_statusbar (GtkTextBuffer *buffer,
 
     tab_size = gtk_source_view_get_tab_width (GTK_SOURCE_VIEW(view));
 
-    while (!gtk_text_iter_equal (&start, &iter))
+    /* For very long lines (e.g. binary files opened as text), the
+     * character-by-character iteration below becomes extremely slow
+     * and can freeze the UI. Use the offset directly if the line is
+     * too long for the O(n) scan to be practical.
+     */
+    if (gtk_text_iter_get_chars_in_line (&start) > 10000)
     {
-        /* FIXME: Are we Unicode compliant here? */
-        if (gtk_text_iter_get_char (&start) == '\t')
+        col = gtk_text_iter_get_line_offset (&iter);
+    }
+    else
+    {
+        while (!gtk_text_iter_equal (&start, &iter))
         {
-            col += (tab_size - (col % tab_size));
+            /* FIXME: Are we Unicode compliant here? */
+            if (gtk_text_iter_get_char (&start) == '\t')
+            {
+                col += (tab_size - (col % tab_size));
+            }
+            else
+            {
+                ++col;
+            }
+            gtk_text_iter_forward_char (&start);
         }
-        else
-        {
-            ++col;
-        }
-        gtk_text_iter_forward_char (&start);
     }
 
     xed_statusbar_set_cursor_position (XED_STATUSBAR(window->priv->statusbar), row + 1, col + 1);
