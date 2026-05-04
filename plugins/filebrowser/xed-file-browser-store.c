@@ -2119,7 +2119,8 @@ file_browser_node_set_from_info (XedFileBrowserStore *model,
 
         if (!content ||
             g_content_type_is_unknown (content) ||
-            g_content_type_is_a (content, "text/plain"))
+            g_content_type_is_a (content, "text/plain")) ||
+            g_file_info_get_size (info) == 0
         {
             node->flags |= XED_FILE_BROWSER_STORE_FLAG_IS_TEXT;
         }
