@@ -1,6 +1,19 @@
-install_subdir(
+textsize_sources = files(
+    'textsize.c'
+)
+
+textsize_deps = [
+    dependency('xed'),
+    dependency('gtk+-3.0'),
+    dependency('libpeas-1.0'),
+]
+
+library(
     'textsize',
-    install_dir: pluginslibdir
+    textsize_sources,
+    dependencies: textsize_deps,
+    install: true,
+    install_dir: join_paths(libdir, 'xed', 'plugins')
 )
 
 textsize_desktop = custom_target(

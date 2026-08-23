@@ -1,9 +1,22 @@
-install_subdir(
-    'joinlines',
-    install_dir: pluginslibdir
+joinlines_sources = files(
+    'joinlines.c'
 )
 
-textsize_desktop = custom_target(
+joinlines_deps = [
+    dependency('xed'),
+    dependency('gtk+-3.0'),
+    dependency('libpeas-1.0'),
+]
+
+library(
+    'joinlines',
+    joinlines_sources,
+    dependencies: joinlines_deps,
+    install: true,
+    install_dir: join_paths(libdir, 'xed', 'plugins')
+)
+
+joinlines_desktop = custom_target(
     'joinlines_desktop',
     input: 'joinlines.plugin.desktop.in',
     output: 'joinlines.plugin',
