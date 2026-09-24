@@ -54,10 +54,9 @@ struct _XedViewClass
  */
 GType      xed_view_get_type (void) G_GNUC_CONST;
 GtkWidget *xed_view_new (XedDocument *doc);
-void       xed_view_cut_clipboard (XedView *view);
-void       xed_view_copy_clipboard (XedView *view);
-void       xed_view_paste_clipboard (XedView *view);
-void       xed_view_delete_selection (XedView *view);
+void       xed_view_cut_clipboard (GtkTextView *text_view);
+void       xed_view_copy_clipboard (GtkTextView *text_view);
+void       xed_view_delete_selection (GtkTextView *text_view);
 void       xed_view_duplicate (XedView *view);
 void       xed_view_select_all (XedView *view);
 void       xed_view_scroll_to_cursor (XedView *view);

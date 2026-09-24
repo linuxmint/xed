@@ -92,7 +92,7 @@ _xed_cmd_edit_cut (GtkAction   *action,
 	active_view = xed_window_get_active_view (window);
 	g_return_if_fail (active_view);
 
-	xed_view_cut_clipboard (active_view);
+	xed_view_cut_clipboard (GTK_TEXT_VIEW (active_view));
 
 	gtk_widget_grab_focus (GTK_WIDGET (active_view));
 }
@@ -108,7 +108,7 @@ _xed_cmd_edit_copy (GtkAction   *action,
 	active_view = xed_window_get_active_view (window);
 	g_return_if_fail (active_view);
 
-	xed_view_copy_clipboard (active_view);
+	xed_view_copy_clipboard (GTK_TEXT_VIEW (active_view));
 
 	gtk_widget_grab_focus (GTK_WIDGET (active_view));
 }
@@ -124,7 +124,7 @@ _xed_cmd_edit_paste (GtkAction   *action,
 	active_view = xed_window_get_active_view (window);
 	g_return_if_fail (active_view);
 
-	xed_view_paste_clipboard (active_view);
+    g_signal_emit_by_name(GTK_TEXT_VIEW (active_view), "paste-clipboard");
 
 	gtk_widget_grab_focus (GTK_WIDGET (active_view));
 }
@@ -140,7 +140,7 @@ _xed_cmd_edit_delete (GtkAction   *action,
 	active_view = xed_window_get_active_view (window);
 	g_return_if_fail (active_view);
 
-	xed_view_delete_selection (active_view);
+	xed_view_delete_selection (GTK_TEXT_VIEW (active_view));
 
 	gtk_widget_grab_focus (GTK_WIDGET (active_view));
 }

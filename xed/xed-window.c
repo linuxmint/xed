@@ -688,13 +688,11 @@ set_sensitivity_according_to_tab (XedWindow *window,
     gtk_action_set_sensitive (action, state_normal && gtk_source_buffer_can_redo (GTK_SOURCE_BUFFER(doc)));
 
     action = gtk_action_group_get_action (window->priv->action_group, "EditCut");
-    gtk_action_set_sensitive (action,
-                    state_normal && editable && gtk_text_buffer_get_has_selection (GTK_TEXT_BUFFER(doc)));
+    gtk_action_set_sensitive (action, state_normal && editable);
 
     action = gtk_action_group_get_action (window->priv->action_group, "EditCopy");
     gtk_action_set_sensitive (action,
-                    (state_normal || state == XED_TAB_STATE_EXTERNALLY_MODIFIED_NOTIFICATION)
-                    && gtk_text_buffer_get_has_selection (GTK_TEXT_BUFFER(doc)));
+                    (state_normal || state == XED_TAB_STATE_EXTERNALLY_MODIFIED_NOTIFICATION));
 
     action = gtk_action_group_get_action (window->priv->action_group, "EditPaste");
     if (state_normal && editable)
@@ -707,8 +705,7 @@ set_sensitivity_according_to_tab (XedWindow *window,
     }
 
     action = gtk_action_group_get_action (window->priv->action_group, "EditDelete");
-    gtk_action_set_sensitive (action,
-                    state_normal && editable && gtk_text_buffer_get_has_selection (GTK_TEXT_BUFFER(doc)));
+    gtk_action_set_sensitive (action, state_normal && editable);
 
     action = gtk_action_group_get_action (window->priv->action_group, "SearchFind");
     gtk_action_set_sensitive (action, (state_normal || state == XED_TAB_STATE_EXTERNALLY_MODIFIED_NOTIFICATION));
@@ -2712,40 +2709,10 @@ selection_changed (XedDocument *doc,
                    GParamSpec *pspec,
                    XedWindow *window)
 {
-    XedTab *tab;
-    XedView *view;
-    GtkAction *action;
-    XedTabState state;
-    gboolean state_normal;
-    gboolean editable;
-
-    xed_debug (DEBUG_WINDOW);
-
     if (doc != xed_window_get_active_document (window))
     {
         return;
     }
-
-    tab = xed_tab_get_from_document (doc);
-    state = xed_tab_get_state (tab);
-    state_normal = (state == XED_TAB_STATE_NORMAL);
-
-    view = xed_tab_get_view (tab);
-    editable = gtk_text_view_get_editable (GTK_TEXT_VIEW(view));
-
-    action = gtk_action_group_get_action (window->priv->action_group, "EditCut");
-    gtk_action_set_sensitive (action,
-                    state_normal && editable && gtk_text_buffer_get_has_selection (GTK_TEXT_BUFFER(doc)));
-
-    action = gtk_action_group_get_action (window->priv->action_group, "EditCopy");
-    gtk_action_set_sensitive (action,
-                    (state_normal || state == XED_TAB_STATE_EXTERNALLY_MODIFIED_NOTIFICATION)
-                    && gtk_text_buffer_get_has_selection (GTK_TEXT_BUFFER(doc)));
-
-    action = gtk_action_group_get_action (window->priv->action_group, "EditDelete");
-    gtk_action_set_sensitive (action,
-                    state_normal && editable && gtk_text_buffer_get_has_selection (GTK_TEXT_BUFFER(doc)));
-
     peas_extension_set_call (window->priv->extensions, "update_state");
 }
 

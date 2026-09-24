@@ -442,40 +442,23 @@ xed_view_realize (GtkWidget *widget)
 }
 
 static void
-delete_line (GtkTextView *text_view,
-             gint         count)
+copy_cut_delete (GtkTextView *text_view,
+                 const gboolean copy,
+                 const gboolean delete)
 {
+    GtkTextBuffer *buffer;
     GtkTextIter start;
     GtkTextIter end;
-    GtkTextBuffer *buffer;
+
+    xed_debug (DEBUG_VIEW);
 
     buffer = gtk_text_view_get_buffer (text_view);
+    g_return_if_fail(buffer != NULL);
 
-    gtk_text_view_reset_im_context (text_view);
-
-    /* If there is a selection delete the selected lines and
-     * ignore count */
-    if (gtk_text_buffer_get_selection_bounds (buffer, &start, &end))
+    if (!gtk_text_buffer_get_selection_bounds (buffer, &start, &end))
     {
-        gtk_text_iter_order (&start, &end);
-        if (gtk_text_iter_starts_line (&end))
-        {
-            /* Do no delete the line with the cursor if the cursor
-             * is at the beginning of the line */
-            count = 0;
-        }
-        else
-        {
-            count = 1;
-        }
-    }
-
-    gtk_text_iter_set_line_offset (&start, 0);
-
-    if (count > 0)
-    {
-        gtk_text_iter_forward_lines (&end, count);
-        if (gtk_text_iter_is_end (&end))
+        gtk_text_iter_set_line_offset (&start, 0);
+        if (!gtk_text_iter_forward_line (&end))
         {
             if (gtk_text_iter_backward_line (&start) && !gtk_text_iter_ends_line (&start))
             {
@@ -483,48 +466,25 @@ delete_line (GtkTextView *text_view,
             }
         }
     }
-    else if (count < 0)
+
+    if (gtk_text_iter_equal (&start, &end))
+        return;
+
+    if (copy)
     {
-        if (!gtk_text_iter_ends_line (&end))
-        {
-            gtk_text_iter_forward_to_line_end (&end);
-        }
+        GtkClipboard *clipboard = gtk_widget_get_clipboard (GTK_WIDGET(text_view), GDK_SELECTION_CLIPBOARD);
 
-        while (count < 0)
-        {
-            if (!gtk_text_iter_backward_line (&start))
-            {
-                break;
-            }
-            ++count;
-        }
-
-        if (count == 0)
-        {
-            if (!gtk_text_iter_ends_line (&start))
-            {
-                gtk_text_iter_forward_to_line_end (&start);
-            }
-        }
-        else
-        {
-            gtk_text_iter_forward_line (&end);
-        }
+        gchar *str = gtk_text_iter_get_visible_text (&start, &end);
+        gtk_clipboard_set_text (clipboard, str, -1);
+        gtk_clipboard_set_can_store (clipboard, NULL, 0);
+        g_free (str);
     }
 
-    if (!gtk_text_iter_equal (&start, &end))
+    if (delete)
     {
-        GtkTextIter cur = start;
-        gtk_text_iter_set_line_offset (&cur, 0);
-        gtk_text_buffer_begin_user_action (buffer);
-        gtk_text_buffer_place_cursor (buffer, &cur);
-        gtk_text_buffer_delete_interactive (buffer, &start, &end, gtk_text_view_get_editable (text_view));
-        gtk_text_buffer_end_user_action (buffer);
+        const gboolean default_editable = gtk_text_view_get_editable (text_view);
+        gtk_text_buffer_delete_interactive (buffer, &start, &end, default_editable);
         gtk_text_view_scroll_mark_onscreen (text_view, gtk_text_buffer_get_insert (buffer));
-    }
-    else
-    {
-        gtk_widget_error_bell (GTK_WIDGET(text_view));
     }
 }
 
@@ -540,7 +500,7 @@ xed_view_delete_from_cursor (GtkTextView  *text_view,
     switch (type)
     {
         case GTK_DELETE_PARAGRAPHS:
-            delete_line (text_view, count);
+            copy_cut_delete(text_view, FALSE, TRUE);
             break;
         default:
             GTK_TEXT_VIEW_CLASS (xed_view_parent_class)->delete_from_cursor (text_view, type, count);
@@ -589,6 +549,8 @@ xed_view_class_init (XedViewClass *klass)
 
     text_view_class->delete_from_cursor = xed_view_delete_from_cursor;
     text_view_class->create_buffer = xed_view_create_buffer;
+    text_view_class->cut_clipboard = xed_view_cut_clipboard;
+    text_view_class->copy_clipboard = xed_view_copy_clipboard;
 
     /* A new signal DROP_URIS has been added to allow plugins to intercept
      * the default dnd behaviour of 'text/uri-list'. XedView now handles
@@ -670,88 +632,21 @@ xed_view_new (XedDocument *doc)
 }
 
 void
-xed_view_cut_clipboard (XedView *view)
+xed_view_cut_clipboard (GtkTextView *text_view)
 {
-    GtkTextBuffer *buffer;
-    GtkClipboard *clipboard;
-
-    xed_debug (DEBUG_VIEW);
-    g_return_if_fail(XED_IS_VIEW (view));
-
-    buffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW(view));
-    g_return_if_fail(buffer != NULL);
-
-    clipboard = gtk_widget_get_clipboard (GTK_WIDGET(view), GDK_SELECTION_CLIPBOARD);
-
-    /* FIXME: what is default editability of a buffer? */
-    gtk_text_buffer_cut_clipboard (buffer, clipboard, !xed_document_get_readonly (XED_DOCUMENT(buffer)));
-
-    gtk_text_view_scroll_to_mark (GTK_TEXT_VIEW(view), gtk_text_buffer_get_insert (buffer), XED_VIEW_SCROLL_MARGIN,
-                                  FALSE, 0.0, 0.0);
+    copy_cut_delete(text_view, TRUE, TRUE);
 }
 
 void
-xed_view_copy_clipboard (XedView *view)
+xed_view_copy_clipboard (GtkTextView *text_view)
 {
-    GtkTextBuffer *buffer;
-    GtkClipboard *clipboard;
-
-    xed_debug (DEBUG_VIEW);
-    g_return_if_fail(XED_IS_VIEW (view));
-
-    buffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW(view));
-    g_return_if_fail(buffer != NULL);
-
-    clipboard = gtk_widget_get_clipboard (GTK_WIDGET(view), GDK_SELECTION_CLIPBOARD);
-    gtk_text_buffer_copy_clipboard (buffer, clipboard);
+    copy_cut_delete(text_view, TRUE, FALSE);
 }
 
 void
-xed_view_paste_clipboard (XedView *view)
+xed_view_delete_selection (GtkTextView *text_view)
 {
-    GtkTextBuffer *buffer;
-    GtkClipboard *clipboard;
-
-    xed_debug (DEBUG_VIEW);
-
-    g_return_if_fail(XED_IS_VIEW (view));
-
-    buffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW(view));
-    g_return_if_fail(buffer != NULL);
-
-    clipboard = gtk_widget_get_clipboard (GTK_WIDGET(view), GDK_SELECTION_CLIPBOARD);
-
-    /* FIXME: what is default editability of a buffer? */
-    gtk_text_buffer_paste_clipboard (buffer, clipboard, NULL, !xed_document_get_readonly (XED_DOCUMENT(buffer)));
-
-    gtk_text_view_scroll_to_mark (GTK_TEXT_VIEW(view), gtk_text_buffer_get_insert (buffer), XED_VIEW_SCROLL_MARGIN,
-                                  FALSE, 0.0, 0.0);
-}
-
-/**
- * xed_view_delete_selection:
- * @view: a #XedView
- *
- * Deletes the text currently selected in the #GtkTextBuffer associated
- * to the view and scroll to the cursor position.
- **/
-void
-xed_view_delete_selection (XedView *view)
-{
-    GtkTextBuffer *buffer = NULL;
-
-    xed_debug (DEBUG_VIEW);
-
-    g_return_if_fail(XED_IS_VIEW (view));
-
-    buffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW(view));
-    g_return_if_fail(buffer != NULL);
-
-    /* FIXME: what is default editability of a buffer? */
-    gtk_text_buffer_delete_selection (buffer, TRUE, !xed_document_get_readonly (XED_DOCUMENT(buffer)));
-
-    gtk_text_view_scroll_to_mark (GTK_TEXT_VIEW(view), gtk_text_buffer_get_insert (buffer), XED_VIEW_SCROLL_MARGIN,
-                                  FALSE, 0.0, 0.0);
+    copy_cut_delete(text_view, FALSE, TRUE);
 }
 
 /**
