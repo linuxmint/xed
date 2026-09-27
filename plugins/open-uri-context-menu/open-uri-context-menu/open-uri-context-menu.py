@@ -18,6 +18,10 @@
 Adds context menu item to open an URI at the pointer position
 '''
 
+import gi
+gi.require_version('Gtk', '3.0')
+gi.require_version('GtkSource', '4')
+gi.require_version('Xed', '1.0')
 from gi.repository import Gtk, Xed, Gio, GObject, GtkSource
 import gettext
 import re

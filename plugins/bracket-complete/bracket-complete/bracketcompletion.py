@@ -19,9 +19,11 @@
 #  Boston, MA 02110-1301, USA.
 
 import gi
+gi.require_version('Gtk', '3.0')
+gi.require_version('Gdk', '3.0')
 gi.require_version('Peas', '1.0')
-#gi.require_version('Xed', '3.0')
-from gi.repository import GObject, Gdk, Xed
+gi.require_version('Xed', '1.0')
+from gi.repository import GObject, Gtk, Gdk, Xed
 
 common_brackets = {
     '(' : ')',

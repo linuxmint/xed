@@ -1,3 +1,6 @@
+import gi
+gi.require_version('Gtk', '3.0')
+gi.require_version('Xed', '1.0')
 from gi.repository import GObject, Gtk, Xed
 
 import gettext
