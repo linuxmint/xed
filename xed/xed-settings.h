@@ -98,6 +98,7 @@ void xed_settings_set_list (GSettings    *settings,
 #define XED_SETTINGS_RESTORE_CURSOR_POSITION    "restore-cursor-position"
 #define XED_SETTINGS_SYNTAX_HIGHLIGHTING        "syntax-highlighting"
 #define XED_SETTINGS_SEARCH_HIGHLIGHTING        "search-highlighting"
+#define XED_SETTINGS_MAX_FILE_SIZE_FOR_HIGHLIGHTING "max-file-size-for-highlighting"
 #define XED_SETTINGS_ENABLE_TAB_SCROLLING       "enable-tab-scrolling"
 #define XED_SETTINGS_AUTO_CLOSE                 "auto-close"
 #define XED_SETTINGS_TOOLBAR_VISIBLE            "toolbar-visible"

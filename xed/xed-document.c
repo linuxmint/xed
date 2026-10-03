@@ -1118,11 +1118,36 @@ loaded_query_info_cb (GFile        *location,
     g_object_unref (doc);
 }
 
+/* Returns the file size limit (in characters) above which highlighting is
+ * disabled for performance reasons, or -1 if there is no limit. The limit
+ * is user-configurable via the "max-file-size-for-highlighting" setting
+ * (expressed in MB there; 0 means "no limit").
+ */
+static gint64
+get_max_char_count_for_highlighting (XedDocument *doc)
+{
+    XedDocumentPrivate *priv;
+    guint max_size_mb;
+
+    priv = xed_document_get_instance_private (doc);
+
+    max_size_mb = g_settings_get_uint (priv->editor_settings, XED_SETTINGS_MAX_FILE_SIZE_FOR_HIGHLIGHTING);
+
+    if (max_size_mb == 0)
+    {
+        return -1;
+    }
+
+    return (gint64) max_size_mb * 1000000;
+}
+
 static void
 xed_document_loaded_real (XedDocument *doc)
 {
     XedDocumentPrivate *priv;
     GFile *location;
+    gint64 max_chars;
+    gint char_count;
 
     priv = xed_document_get_instance_private (doc);
 
@@ -1134,6 +1159,21 @@ xed_document_loaded_real (XedDocument *doc)
                            language != NULL ? gtk_source_language_get_name (language) : "None");
 
         set_language (doc, language, FALSE);
+    }
+
+    max_chars = get_max_char_count_for_highlighting (doc);
+    char_count = gtk_text_buffer_get_char_count (GTK_TEXT_BUFFER (doc));
+
+    if (gtk_source_buffer_get_highlight_syntax (GTK_SOURCE_BUFFER (doc)) &&
+        max_chars >= 0 && char_count > max_chars)
+    {
+        xed_debug_message (DEBUG_DOCUMENT,
+                           "File has %d characters, above the %" G_GINT64_FORMAT
+                           "-character limit (see the max-file-size-for-highlighting setting): "
+                           "disabling syntax highlighting for performance",
+                           char_count, max_chars);
+
+        gtk_source_buffer_set_highlight_syntax (GTK_SOURCE_BUFFER (doc), FALSE);
     }
 
     g_get_current_time (&priv->time_of_last_save_or_load);
@@ -1618,6 +1658,22 @@ xed_document_set_search_context (XedDocument            *doc,
     if (search_context != NULL)
     {
         gboolean highlight = g_settings_get_boolean (priv->editor_settings, XED_SETTINGS_SEARCH_HIGHLIGHTING);
+
+        if (highlight)
+        {
+            gint64 max_chars = get_max_char_count_for_highlighting (doc);
+            gint char_count = gtk_text_buffer_get_char_count (GTK_TEXT_BUFFER (doc));
+
+            if (max_chars >= 0 && char_count > max_chars)
+            {
+                xed_debug_message (DEBUG_DOCUMENT,
+                                   "File has %d characters, above the %" G_GINT64_FORMAT
+                                   "-character limit (see the max-file-size-for-highlighting setting): "
+                                   "disabling search highlighting for performance",
+                                   char_count, max_chars);
+                highlight = FALSE;
+            }
+        }
 
         gtk_source_search_context_set_highlight (search_context, highlight);
 
