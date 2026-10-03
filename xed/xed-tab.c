@@ -1961,6 +1961,86 @@ load (XedTab                  *tab,
                                        tab);
 }
 
+/* Reading this many bytes is enough to reliably tell binary content from
+ * text, and is fast even on a slow connection, unlike actually trying to
+ * load and decode the whole file as text.
+ */
+#define BINARY_SNIFF_SIZE 8192
+
+static gboolean
+looks_like_binary_file (GFile *location)
+{
+    GFileInputStream *stream;
+    guchar buffer[BINARY_SNIFF_SIZE];
+    gssize bytes_read;
+    gboolean is_binary = FALSE;
+
+    stream = g_file_read (location, NULL, NULL);
+    if (stream == NULL)
+    {
+        return FALSE;
+    }
+
+    bytes_read = g_input_stream_read (G_INPUT_STREAM (stream), buffer, sizeof (buffer), NULL, NULL);
+
+    if (bytes_read > 0)
+    {
+        gssize i;
+
+        for (i = 0; i < bytes_read; i++)
+        {
+            if (buffer[i] == '\0')
+            {
+                is_binary = TRUE;
+                break;
+            }
+        }
+    }
+
+    g_input_stream_close (G_INPUT_STREAM (stream), NULL, NULL);
+    g_object_unref (stream);
+
+    return is_binary;
+}
+
+static gboolean
+confirm_open_binary_file (XedTab *tab,
+                          GFile  *location)
+{
+    GtkWidget *toplevel;
+    GtkWidget *dialog;
+    gchar *basename;
+    gint response;
+
+    toplevel = gtk_widget_get_toplevel (GTK_WIDGET (tab));
+    basename = g_file_get_basename (location);
+
+    dialog = gtk_message_dialog_new (GTK_IS_WINDOW (toplevel) ? GTK_WINDOW (toplevel) : NULL,
+                                     GTK_DIALOG_MODAL,
+                                     GTK_MESSAGE_WARNING,
+                                     GTK_BUTTONS_NONE,
+                                     _("“%s” does not look like a text file."),
+                                     basename);
+
+    gtk_message_dialog_format_secondary_text (GTK_MESSAGE_DIALOG (dialog),
+                                              _("Opening it as text can be very slow and will show unreadable "
+                                                "content. Are you sure you want to open it?"));
+
+    gtk_dialog_add_buttons (GTK_DIALOG (dialog),
+                           _("_Cancel"), GTK_RESPONSE_CANCEL,
+                           _("_Open Anyway"), GTK_RESPONSE_ACCEPT,
+                           NULL);
+
+    gtk_dialog_set_default_response (GTK_DIALOG (dialog), GTK_RESPONSE_CANCEL);
+
+    response = gtk_dialog_run (GTK_DIALOG (dialog));
+
+    gtk_widget_destroy (dialog);
+    g_free (basename);
+
+    return response == GTK_RESPONSE_ACCEPT;
+}
+
 void
 _xed_tab_load (XedTab                  *tab,
                GFile                   *location,
@@ -1974,6 +2054,11 @@ _xed_tab_load (XedTab                  *tab,
     g_return_if_fail (XED_IS_TAB (tab));
     g_return_if_fail (G_IS_FILE (location));
     g_return_if_fail (tab->priv->state == XED_TAB_STATE_NORMAL);
+
+    if (looks_like_binary_file (location) && !confirm_open_binary_file (tab, location))
+    {
+        return;
+    }
 
     xed_tab_set_state (tab, XED_TAB_STATE_LOADING);
 
