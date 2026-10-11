@@ -83,6 +83,9 @@ struct _XedTabPrivate
 
     /*tmp data for loading */
     guint user_requested_encoding : 1;
+
+    /* Set after user confirms opening a binary file */
+    guint binary_check_done : 1;
 };
 
 typedef struct _SaverData SaverData;
@@ -1961,6 +1964,106 @@ load (XedTab                  *tab,
                                        tab);
 }
 
+/* Check if a file appears to be binary by reading the first chunk and
+ * looking for NUL bytes, which are almost never present in text files.
+ * Also checks the content type via GIO.
+ * Returns the content type string (caller must free) or NULL if text.
+ */
+static gchar *
+check_file_is_binary (GFile *location)
+{
+    GFileInfo *info;
+    const gchar *content_type;
+    GFileInputStream *stream;
+    guchar buf[8192];
+    gssize bytes_read;
+    gssize i;
+
+    info = g_file_query_info (location,
+                              G_FILE_ATTRIBUTE_STANDARD_CONTENT_TYPE,
+                              G_FILE_QUERY_INFO_NONE,
+                              NULL,
+                              NULL);
+
+    if (info != NULL)
+    {
+        content_type = g_file_info_get_content_type (info);
+
+        if (content_type != NULL &&
+            !g_content_type_is_unknown (content_type) &&
+            !g_content_type_is_a (content_type, "text/plain") &&
+            !g_content_type_equals (content_type, "application/xml") &&
+            !g_content_type_is_a (content_type, "application/xml") &&
+            !g_content_type_equals (content_type, "application/json") &&
+            !g_content_type_equals (content_type, "application/javascript") &&
+            !g_content_type_equals (content_type, "image/svg+xml"))
+        {
+            gchar *ret = g_strdup (content_type);
+            g_object_unref (info);
+            return ret;
+        }
+
+        g_object_unref (info);
+    }
+
+    /* Fallback: read the first 8KB and check for NUL bytes */
+    stream = g_file_read (location, NULL, NULL);
+
+    if (stream == NULL)
+    {
+        return NULL;
+    }
+
+    bytes_read = g_input_stream_read (G_INPUT_STREAM (stream),
+                                      buf,
+                                      sizeof (buf),
+                                      NULL,
+                                      NULL);
+    g_object_unref (stream);
+
+    if (bytes_read <= 0)
+    {
+        return NULL;
+    }
+
+    for (i = 0; i < bytes_read; i++)
+    {
+        if (buf[i] == '\0')
+        {
+            return g_strdup ("application/octet-stream");
+        }
+    }
+
+    return NULL;
+}
+
+static void
+binary_file_warning_info_bar_response (GtkWidget *info_bar,
+                                       gint       response_id,
+                                       XedTab    *tab)
+{
+    GFile *location;
+    GtkSourceFile *file;
+    XedDocument *doc;
+
+    doc = xed_tab_get_document (tab);
+    file = xed_document_get_file (doc);
+    location = gtk_source_file_get_location (file);
+
+    set_info_bar (tab, NULL);
+
+    if (response_id == GTK_RESPONSE_YES)
+    {
+        /* User chose "Open Anyway" — skip binary check and load */
+        tab->priv->binary_check_done = TRUE;
+        _xed_tab_load (tab, location, NULL, 0, FALSE);
+    }
+    else
+    {
+        remove_tab (tab);
+    }
+}
+
 void
 _xed_tab_load (XedTab                  *tab,
                GFile                   *location,
@@ -1974,6 +2077,33 @@ _xed_tab_load (XedTab                  *tab,
     g_return_if_fail (XED_IS_TAB (tab));
     g_return_if_fail (G_IS_FILE (location));
     g_return_if_fail (tab->priv->state == XED_TAB_STATE_NORMAL);
+
+    /* Check for binary files before loading to prevent UI freeze.
+     * Binary files without line breaks cause Pango text shaping to
+     * block the main thread indefinitely (see issue #491, #591).
+     */
+    if (!tab->priv->binary_check_done && !create)
+    {
+        gchar *binary_type = check_file_is_binary (location);
+
+        if (binary_type != NULL)
+        {
+            GtkWidget *info_bar;
+
+            info_bar = xed_binary_file_warning_info_bar_new (location, binary_type);
+            g_free (binary_type);
+
+            g_signal_connect (info_bar, "response",
+                              G_CALLBACK (binary_file_warning_info_bar_response), tab);
+
+            set_info_bar (tab, info_bar);
+            gtk_info_bar_set_default_response (GTK_INFO_BAR (info_bar), GTK_RESPONSE_CANCEL);
+            gtk_widget_show (info_bar);
+            return;
+        }
+    }
+
+    tab->priv->binary_check_done = FALSE;
 
     xed_tab_set_state (tab, XED_TAB_STATE_LOADING);
 
