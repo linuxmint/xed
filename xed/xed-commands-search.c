@@ -51,15 +51,20 @@ _xed_cmd_search_find_prev (GtkAction *action,
 void
 _xed_cmd_search_clear_highlight (XedWindow *window)
 {
-    XedDocument *doc;
+    GList *docs;
+    GList *l;
 
     xed_debug (DEBUG_COMMANDS);
 
-    doc = xed_window_get_active_document (window);
-    if (doc != NULL)
+    docs = xed_window_get_documents (window);
+
+    for (l = docs; l != NULL; l = l->next)
     {
+        XedDocument *doc = XED_DOCUMENT (l->data);
         xed_document_set_search_context (doc, NULL);
     }
+
+    g_list_free (docs);
 }
 
 void
