@@ -548,6 +548,34 @@ xed_view_delete_from_cursor (GtkTextView  *text_view,
     }
 }
 
+static gboolean
+xed_view_extend_selection (GtkTextView            *text_view,
+                           GtkTextExtendSelection  granularity,
+                           const GtkTextIter      *location,
+                           GtkTextIter            *start,
+                           GtkTextIter            *end)
+{
+    /* Override the triple-click so the entire line, not just the displayed
+     * line is selected.
+     */
+    if (granularity == GTK_TEXT_EXTEND_SELECTION_LINE)
+    {
+        *start = *location;
+        *end = *location;
+
+        gtk_text_iter_set_line_offset (start, 0);
+
+        if (!gtk_text_iter_ends_line (end))
+        {
+            gtk_text_iter_forward_to_line_end (end);
+        }
+
+        return GDK_EVENT_STOP;
+    }
+
+    return GTK_TEXT_VIEW_CLASS (xed_view_parent_class)->extend_selection (text_view, granularity, location, start, end);
+}
+
 static GtkTextBuffer *
 xed_view_create_buffer (GtkTextView *text_view)
 {
@@ -589,6 +617,7 @@ xed_view_class_init (XedViewClass *klass)
 
     text_view_class->delete_from_cursor = xed_view_delete_from_cursor;
     text_view_class->create_buffer = xed_view_create_buffer;
+    text_view_class->extend_selection = xed_view_extend_selection;
 
     /* A new signal DROP_URIS has been added to allow plugins to intercept
      * the default dnd behaviour of 'text/uri-list'. XedView now handles
