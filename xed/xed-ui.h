@@ -49,7 +49,7 @@ static const GtkActionEntry xed_always_sensitive_menu_entries[] =
 	{ "Documents", NULL, N_("_Documents") },
 	{ "Help", NULL, N_("_Help") },
     { "XAppFavoritesMenu", NULL, N_("Favorites")},
-    { "FileRecentsMenu", NULL, N_("Recents")},
+    { "FileRecentsMenu", NULL, N_("_Recents")},
 
 	/* File menu */
 	{ "FileNew", "xsi-document-new-symbolic", N_("_New"), "<control>N",
