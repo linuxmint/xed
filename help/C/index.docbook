@@ -1159,6 +1159,9 @@
   		    <para><xref linkend="xed-insert-date-time-plugin"/> adds the current date and time into a document.</para>
   		  </listitem>
   		  <listitem>
+  		    <para><xref linkend="xed-json-formatter-plugin"/> verifies, formats and minifies JSON documents.</para>
+  		  </listitem>
+  		  <listitem>
   		    <para><xref linkend="xed-modelines-plugin"/> allows you to set editing preferences for individual documents, and supports <application>Emacs</application>, <application>Kate</application> and <application>Vim</application>-style modelines.</para>
   		  </listitem>
   		  <listitem>
@@ -1284,6 +1287,17 @@
 <title>Bracket Completion Plugin</title>
 	<para>The <application>Bracket Completion</application> plugin automatically adds closing bracket if opening bracket is typed.  The list of enclosing character types (depending on the language) may include: </para>
 	<para><textobject> ()  {}  []  ""  ''  &lt;&gt; `` </textobject> </para>
+</sect2>
+
+<sect2 id="xed-json-formatter-plugin" xreflabel="JSON Formatter">
+<title>JSON Formatter Plugin</title>
+	<para>The <application>JSON Formatter</application> plugin verifies, formats and minifies JSON documents. The actions are available in the <guimenu>Tools</guimenu> menu:</para>
+	<itemizedlist>
+	  <listitem><para><guimenuitem>Verify JSON</guimenuitem> checks that the active document is valid JSON and reports the result in the status bar.</para></listitem>
+	  <listitem><para><guimenuitem>Format JSON</guimenuitem> pretty-prints the active document with an indentation of four spaces.</para></listitem>
+	  <listitem><para><guimenuitem>Minify JSON</guimenuitem> removes all insignificant whitespace from the active document.</para></listitem>
+	</itemizedlist>
+	<para>If the document is not valid JSON, the plugin reports the error in the status bar and leaves the document unchanged.</para>
 </sect2>
 
 <sect2 id="xed-insert-date-time-plugin" xreflabel="Insert Date/Time">
