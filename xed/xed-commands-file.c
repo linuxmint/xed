@@ -923,11 +923,31 @@ quit_if_needed (XedWindow *window)
     }
 }
 
+static void
+close_window_if_needed (XedWindow *window)
+{
+    gboolean enable_auto_close;
+
+    if (window->priv->num_tabs != 0)
+    {
+        return;
+    }
+
+    enable_auto_close =
+        g_settings_get_boolean (window->priv->editor_settings, XED_SETTINGS_AUTO_CLOSE);
+
+    if (enable_auto_close)
+    {
+        gtk_widget_destroy (GTK_WIDGET (window));
+    }
+}
+
 static gboolean
 really_close_tab (XedTab *tab)
 {
     GtkWidget *toplevel;
     XedWindow *window;
+    gboolean is_closing_all;
 
     xed_debug (DEBUG_COMMANDS);
 
@@ -938,11 +958,18 @@ really_close_tab (XedTab *tab)
 
     window = XED_WINDOW (toplevel);
 
+    is_closing_all = GPOINTER_TO_BOOLEAN (g_object_get_data (G_OBJECT (window), XED_IS_CLOSING_ALL));
+
     xed_window_close_tab (window, tab);
 
     if (xed_window_get_active_tab (window) == NULL)
     {
         quit_if_needed (window);
+
+        if (!is_closing_all)
+        {
+            close_window_if_needed (window);
+        }
     }
 
     return FALSE;
@@ -1578,6 +1605,8 @@ close_document (XedWindow   *window,
     g_return_if_fail (tab != NULL);
 
     xed_window_close_tab (window, tab);
+
+    close_window_if_needed (window);
 }
 
 static void
@@ -1644,11 +1673,20 @@ close_confirmation_dialog_response_handler (XedCloseConfirmationDialog *dlg,
             else
             {
                 const GList *unsaved_documents;
+                XedDocument *doc;
 
                 unsaved_documents = xed_close_confirmation_dialog_get_unsaved_documents (dlg);
                 g_return_if_fail (unsaved_documents->next == NULL);
 
-                close_document (window, XED_DOCUMENT (unsaved_documents->data));
+                doc = XED_DOCUMENT (unsaved_documents->data);
+
+                /* We call gtk_widget_destroy before close_document
+                 * because close_document could destroy the xed window */
+                gtk_widget_destroy (GTK_WIDGET (dlg));
+
+                close_document (window, doc);
+
+                return;
             }
 
             break;
@@ -1717,20 +1755,7 @@ _xed_cmd_file_close_tab (XedTab    *tab,
         xed_window_close_tab (window, tab);
     }
 
-    if (window->priv->num_tabs == 0)
-    {
-        gboolean enable_auto_close;
-
-        enable_auto_close =
-            g_settings_get_boolean (window->priv->editor_settings, XED_SETTINGS_AUTO_CLOSE);
-
-        if (!enable_auto_close)
-        {
-            return;
-        }
-
-        gtk_widget_destroy (GTK_WIDGET (window));
-    }
+    close_window_if_needed (window);
 }
 
 void
