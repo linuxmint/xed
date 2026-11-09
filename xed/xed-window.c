@@ -120,6 +120,11 @@ on_key_pressed (GtkWidget *widget,
                 GdkEventKey *event,
                 XedWindow *window)
 {
+    gboolean after_alt_l;
+
+    after_alt_l = window->priv->alt_l_pressed_alone;
+    window->priv->alt_l_pressed_alone = (event->keyval == GDK_KEY_Alt_L);
+
     if (event->state & GDK_CONTROL_MASK &&
          (event->keyval == GDK_KEY_KP_Tab ||
           event->keyval == GDK_KEY_Tab ||
@@ -157,6 +162,30 @@ on_key_pressed (GtkWidget *widget,
     }
     else if (event->keyval == GDK_KEY_Alt_L)
     {
+        return GDK_EVENT_STOP;
+    }
+    else if (after_alt_l && !event->is_modifier &&
+             !gtk_widget_is_visible (window->priv->menubar) &&
+             !_xed_window_is_fullscreen (window))
+    {
+        /* Alt+key, show the hidden menubar so that its mnemonics still work */
+        gtk_widget_show (window->priv->menubar);
+    }
+
+    return GDK_EVENT_PROPAGATE;
+}
+
+static gboolean
+on_key_released (GtkWidget *widget,
+                 GdkEventKey *event,
+                 XedWindow *window)
+{
+    /* Toggle the menubar only when Alt_L was pressed and released on its own,
+     * so that Alt+Tab and other Alt shortcuts leave it alone */
+    if (event->keyval == GDK_KEY_Alt_L && window->priv->alt_l_pressed_alone)
+    {
+        window->priv->alt_l_pressed_alone = FALSE;
+
         if (gtk_widget_is_visible (window->priv->menubar)) {
             if (!g_settings_get_boolean (window->priv->ui_settings, XED_SETTINGS_MENUBAR_VISIBLE)) {
                 gtk_widget_hide (window->priv->menubar);
@@ -167,9 +196,17 @@ on_key_pressed (GtkWidget *widget,
                 gtk_widget_show (window->priv->menubar);
             }
         }
-
-        return GDK_EVENT_STOP;
     }
+
+    return GDK_EVENT_PROPAGATE;
+}
+
+static gboolean
+on_focus_out (GtkWidget *widget,
+              GdkEventFocus *event,
+              XedWindow *window)
+{
+    window->priv->alt_l_pressed_alone = FALSE;
 
     return GDK_EVENT_PROPAGATE;
 }
@@ -3478,6 +3515,8 @@ xed_window_init (XedWindow *window)
     g_signal_connect (window, "notify::is-active", G_CALLBACK (check_window_is_active), NULL);
 
     g_signal_connect (GTK_WIDGET (window), "key-press-event", G_CALLBACK (on_key_pressed), window);
+    g_signal_connect (GTK_WIDGET (window), "key-release-event", G_CALLBACK (on_key_released), window);
+    g_signal_connect (GTK_WIDGET (window), "focus-out-event", G_CALLBACK (on_focus_out), window);
 
     xed_debug_message (DEBUG_WINDOW, "Update plugins ui");
 

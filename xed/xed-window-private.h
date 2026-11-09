@@ -130,6 +130,7 @@ struct _XedWindowPrivate
 
     gboolean removing_tabs : 1;
     gboolean dispose_has_run : 1;
+    gboolean alt_l_pressed_alone : 1;
 };
 
 G_END_DECLS
