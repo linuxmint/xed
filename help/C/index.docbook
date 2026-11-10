@@ -345,7 +345,7 @@
 		<orderedlist>
 		  <listitem><para>Choose <menuchoice> <guimenu>Search</guimenu> <guimenuitem>Replace</guimenuitem> </menuchoice> to display the <guilabel>Replace</guilabel> pane at the bottom of the &app; window.</para>
 		  </listitem>
-		  <listitem><para>Type the string that you want to find, in the <guilabel>Search for</guilabel> field. You can include special characters such as a new line or tab: see <xref linkend="xed-find-escapes"/>.</para></listitem>
+		  <listitem><para>Type the string that you want to find in the <guilabel>Search for</guilabel> field. You can include special characters such as a new line or tab: see <xref linkend="xed-find-escapes"/>.</para></listitem>
 		  <listitem><para>Type the string that you want to use to replace the string that you find, in the <guilabel>Replace with</guilabel> field.</para>
 		  </listitem>
 		</orderedlist>
@@ -357,7 +357,7 @@
 <!-- ============= Find and Replace Options ============================ -->
   <sect2 id="xed-find-options">
 		<title>Find and Replace Options</title>
-		<para>Four buttons on the left side the <guilabel>Find</guilabel> or <guilabel>Replace</guilabel> pane control the following options respectively: Regular expression search, Match case, Match whole word, and Wrap search. Each option can be toggled by clicking on its button.</para>
+		<para>Four buttons on the left side of the <guilabel>Find</guilabel> or <guilabel>Replace</guilabel> pane control the following options respectively: Regular expression search, Match case, Match whole word, and Wrap search. Each option can be toggled by clicking on its button.</para>
 		<imageobject>
 		  <imagedata fileref="figures/xed_search_pane_buttons.png" format="PNG"/>
 		</imageobject>
@@ -423,15 +423,15 @@
 <!-- ============= To Print a File ============================ -->
   <sect1 id="xed-printing">
     <title>Printing</title>
-        <para>Two printing options appear under the <guimenu>File</guimenu>menu choice:  <guimenuitem>Print</guimenuitem> which opens a print dialog box allowing the setting of options before printing, and <guimenuitem>Print Preview</guimenuitem> which opens a view of the printed document on the screen in place of editor view.</para>
+        <para>Two printing options appear under the <guimenu>File</guimenu>menu choice. The first option, <guimenuitem>Print</guimenuitem>, opens a print dialog box allowing options to be set before printing. The second option, <guimenuitem>Print Preview</guimenuitem>, opens a view of the printed document on the screen in place of the editor view.</para>
 
 <!-- ============= Print Dialog ============================ -->
     <sect2 id="xed-file-print">
         <title>File Print Dialog</title>
-        <para>The dialog allows selection of the printer, setting of the print options and finally printing.</para>
+        <para>The print dialog allows for printer selection, changing print options and printing files.</para>
         <sect3 id="xed-file-print-general">
             <title>General Tab</title>
-            <para>The print dialog opens on the <guilabel>General</guilabel> Tab by default.  On this tab, the printer can be selected--including "Print to File"--as well the pages and number of copies.  If print to file is selected additional options appear to selecting the format (PDF, Postscript or SVG), and the output file name.  Clicking on the output filename button opens a file selection dialog.</para>
+            <para>The print dialog opens on the <guilabel>General</guilabel> Tab by default.  On this tab, you can either select a printer to print the document with or select <guimenuitem>Print to File</guimenuitem>. If Print to File is selected, additional options to select the format (PDF, Postscript or SVG) and the output filename will appear.  Clicking on the output filename button opens a file selection dialog.</para>
         </sect3>
 
         <sect3 id="xed-print-page-setup">
@@ -441,7 +441,7 @@
 
         <sect3 id="xed-print-text-editor">
             <title>Text Editor Tab</title>
-			<para>Use the settings in this tab to control for the printed output the following things:</para>
+			<para>Use the settings in this tab to modify the following print options:</para>
 			<itemizedlist>
 				<listitem>Syntax highlighting</listitem>
 				<listitem>Line numbers</listitem>
@@ -454,11 +454,11 @@
 
 	<sect2 id="xed-file-print-preview">
 		<title>Print Preview</title>
-        <para>The print preview has several buttons with icon labels for navigating around the printed output, zooming in and out, and finally print the output if satisfied with the way it looks.  Rolling over a button will expose a tool tip showing its purpose. </para>
+        <para>The print preview has several buttons with icon labels for navigating around the printed output, zooming in and out, and printing the output if you are satisfied with the way it looks.  Rolling over a button will expose a tool tip showing its purpose. </para>
         <tip>If you click the print button <guibutton><imageobject>
 				  <imagedata fileref="figures/xed_print_button.png" format="PNG"/>
 					 </imageobject></guibutton>
- the file will be immediately printed without entering any print dialog.  So make sure desired options have been set using the <menuchoice><guimenu>File</guimenu><guimenuitem> Print...</guimenuitem></menuchoice> dialog.</tip>
+ the file will be immediately printed without entering any print dialog.  Make sure the desired options have been set using the <menuchoice><guimenu>File</guimenu><guimenuitem> Print...</guimenuitem></menuchoice> dialog before clicking this button.</tip>
     </sect2>
 
   </sect1>
@@ -933,13 +933,13 @@
           <varlistentry>
             <term><guilabel>Display right margin</guilabel></term>
             <listitem>
-              <para>If this is selected a numeric selection box appears for entering the column number of the right margin, and if the document viewing window is widened horizontally beyond the right margin, the background shading changes to help the user avoid typing lines that are too long.</para>
+              <para>If this is selected, a numeric selection box appears for entering the column number of the right margin, and if the document viewing window is widened horizontally beyond the right margin, the background shading changes to help the user avoid typing lines that are too long.</para>
             </listitem>
           </varlistentry>
           <varlistentry>
             <term><guilabel>Draw whitespace</guilabel></term>
             <listitem>
-              <para>This Controls the visibility of whitespace. If enabled, four additional lines appear for setting the type of whitespace that is visible: Leading whitespace, Trailing whitespace, Whitespace inside of text, and The Newline character.</para>
+              <para>This controls the visibility of whitespace. If enabled, four additional lines appear for setting the type of whitespace that is visible: Leading whitespace, Trailing whitespace, Whitespace inside of text, and the Newline character.</para>
             </listitem>
           </varlistentry>
         </variablelist>
@@ -950,7 +950,7 @@
         <note><para>This preference option is for types of highlighting other than syntax highlighting, which is covered elsewhere.</para></note>
         <variablelist>
           <varlistentry>
-            <term><guilabel>High current line</guilabel></term>
+            <term><guilabel>Highlight current line</guilabel></term>
             <listitem>
               <para>Changes the background color of the line the cursor is on.</para>
             </listitem>
@@ -977,7 +977,7 @@
         <varlistentry>
           <term><guilabel>Use Spaces instead of tabs</guilabel></term>
           <listitem>
-            <para>When enabled, <application>&app;</application> inserts the number of spaces from <guilabel>Tab width</guilabel> in place of the tab character, when the <keycap>Tab</keycap> key is typed. </para>
+            <para>When enabled, <application>&app;</application> inserts the number of spaces equivalent to a <guilabel>Tab width</guilabel> in place of the tab character when the <keycap>Tab</keycap> key is typed. </para>
           </listitem>
         </varlistentry>
         <varlistentry>
@@ -991,17 +991,17 @@
 
       <sect3 id="xed-prefs-wrap">
         <title>Word wrap</title>
-        <para>Word wrapping does not effect the contents of the text file, only the way it is viewed in the editing window. If word wrapping is not enabled, a horizontal scroll bar appears at the bottom of the editing window when a line a text exceeds the window boundaries.  If <guilabel>Word wrap</guilabel> is enabled an additional option, "<guilabel>Split words over two lines</guilabel>" appears, allowing the editor to break up words to facilitate wrapping.</para>
+        <para>Word wrapping does not affect the contents of the text file, only the way it is viewed in the editing window. If word wrapping is not enabled, a horizontal scroll bar appears at the bottom of the editing window when a line of text exceeds the window boundaries.  If <guilabel>Word wrap</guilabel> is enabled, an additional option, "<guilabel>Split words over two lines</guilabel>" appears, allowing the editor to break up words to facilitate wrapping.</para>
       </sect3>
 
       <sect3 id="xed-prefs-tabscroll">
         <title>Tab scrolling</title>
-        <para>This refers to the tabs at the top of the window for selecting the document being edited. If this option is enabled, and the mouse point is over the document tab area, rolling the mouse wheel will cycle through the different document tabs.</para>
+        <para>This refers to the tabs at the top of the window for selecting the document being edited. If this option is enabled, scrolling the mouse wheel while the mouse cursor is over the document tab area will cycle through the different document tabs.</para>
       </sect3>
 
       <sect3 id="xed-prefs-autoclose">
         <title>Auto close</title>
-        <para>If this option is enabled, once the last tab is closed, the window will close.</para>
+        <para>If this option is enabled, closing the last tab will cause the window to close.</para>
       </sect3>
     </sect2>
 
@@ -1037,7 +1037,7 @@
       <title>Color Themes</title>
       <sect3 id="xed-dark-theme">
           <title><guilabel>Dark Theme</guilabel></title>
-            <para>Some schemes may come in both dark and light varients.  Enable this option to select the dark varient in case the scheme comes in both variants.</para>
+            <para>Some schemes may come in both dark and light variants.  Enable this option to select the dark variant in case the scheme comes in both variants.</para>
       </sect3>
       <sect3 id="xed-style-scheme">
           <title><guilabel>Style Scheme</guilabel></title>
@@ -1147,7 +1147,7 @@
   		    <para><xref linkend="xed-bracket-completion-plugin"/> for enclosing bracket characters,  automatically adds closing bracket if opening bracket is typed. </para>
   		  </listitem>
   		  <listitem>
-  		    <para><xref linkend="xed-change-case-plugin"/> allows you to change the case of the selected text. (NOTE: This plug-in doesn't appear in th <guilabel>Preferences -> Plugins</guilabel> dialog because it is always enabled.)</para>
+  		    <para><xref linkend="xed-change-case-plugin"/> allows you to change the case of the selected text. (NOTE: This plug-in doesn't appear in the <guilabel>Preferences -> Plugins</guilabel> dialog because it is always enabled.)</para>
   		  </listitem>
   		  <listitem>
   		    <para><xref linkend="xed-document-statistics-plugin"/> shows the number of lines, words, and characters in the document. </para>
@@ -1162,7 +1162,7 @@
   		    <para><xref linkend="xed-modelines-plugin"/> allows you to set editing preferences for individual documents, and supports <application>Emacs</application>, <application>Kate</application> and <application>Vim</application>-style modelines.</para>
   		  </listitem>
   		  <listitem>
-  		    <para><xref linkend="xed-trailers-plugin"/> eliminates any trailing spaces on each line when document is saved.</para>
+  		    <para><xref linkend="xed-trailers-plugin"/> eliminates any trailing spaces on each line when a document is saved.</para>
   		  </listitem>
   		  <listitem>
   		    <para><xref linkend="xed-sort-plugin"/> arranges selected lines of text into alphabetical order. (NOTE: Plug-in doesn't appear in preferences; always enabled.)</para>
@@ -1282,7 +1282,7 @@
 
 <sect2 id="xed-bracket-completion-plugin" xreflabel="Bracket Completion">
 <title>Bracket Completion Plugin</title>
-	<para>The <application>Bracket Completion</application> plugin automatically adds closing bracket if opening bracket is typed.  The list of enclosing character types (depending on the language) may include: </para>
+	<para>The <application>Bracket Completion</application> plugin automatically adds a closing bracket if an opening bracket is typed.  The list of enclosing character types (depending on the language) may include: </para>
 	<para><textobject> ()  {}  []  ""  ''  &lt;&gt; `` </textobject> </para>
 </sect2>
 
@@ -1483,7 +1483,7 @@
 
 <sect2 id="xed-word-complete-plugin" xreflabel="Word Completion">
 <title>Word Completion Plugin</title>
-  <para>This will try to guess the remainder of a word after the first few characters have been typed. A drop-down box will appear with the word choices.  Select the desired word using the a mouse click, or arrow keys.</para>
+  <para>This will try to guess the remainder of a word after the first few characters have been typed. A drop-down box will appear with the word choices.  Select the desired word using the mouse or arrow keys.</para>
 </sect2>
 
 </sect1>
