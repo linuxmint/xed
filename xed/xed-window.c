@@ -1771,6 +1771,8 @@ update_cursor_position_statusbar (GtkTextBuffer *buffer,
     GtkTextIter start;
     guint tab_size;
     XedView *view;
+    gchar *line_start_text;
+    const gchar *p;
 
     xed_debug (DEBUG_WINDOW);
 
@@ -1791,10 +1793,15 @@ update_cursor_position_statusbar (GtkTextBuffer *buffer,
 
     tab_size = gtk_source_view_get_tab_width (GTK_SOURCE_VIEW(view));
 
-    while (!gtk_text_iter_equal (&start, &iter))
+    /* Walk a plain C string instead of stepping a GtkTextIter one character
+     * at a time: each GtkTextIter call re-validates the iterator and does a
+     * BTree lookup, which gets very slow on long lines (e.g. minified code).
+     */
+    line_start_text = gtk_text_iter_get_slice (&start, &iter);
+
+    for (p = line_start_text; *p != '\0'; p = g_utf8_next_char (p))
     {
-        /* FIXME: Are we Unicode compliant here? */
-        if (gtk_text_iter_get_char (&start) == '\t')
+        if (g_utf8_get_char (p) == '\t')
         {
             col += (tab_size - (col % tab_size));
         }
@@ -1802,8 +1809,9 @@ update_cursor_position_statusbar (GtkTextBuffer *buffer,
         {
             ++col;
         }
-        gtk_text_iter_forward_char (&start);
     }
+
+    g_free (line_start_text);
 
     xed_statusbar_set_cursor_position (XED_STATUSBAR(window->priv->statusbar), row + 1, col + 1);
 }
