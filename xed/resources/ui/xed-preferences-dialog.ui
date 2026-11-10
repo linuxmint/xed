@@ -17,6 +17,13 @@
     <property name="step_increment">1</property>
     <property name="page_increment">10</property>
   </object>
+  <object class="GtkAdjustment" id="adjustment4">
+    <property name="lower">0</property>
+    <property name="upper">1000</property>
+    <property name="value">4</property>
+    <property name="step_increment">1</property>
+    <property name="page_increment">10</property>
+  </object>
   <object class="GtkBox" id="editor_page">
     <property name="visible">True</property>
     <property name="can_focus">False</property>
@@ -615,6 +622,45 @@
                         <property name="expand">False</property>
                         <property name="fill">True</property>
                         <property name="position">1</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkBox" id="box31">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <child>
+                          <object class="GtkLabel" id="label30">
+                            <property name="visible">True</property>
+                            <property name="can_focus">False</property>
+                            <property name="label" translatable="yes">Disable syntax highlighting for files larger than (MB, 0 = no limit)</property>
+                            <property name="xalign">0</property>
+                          </object>
+                          <packing>
+                            <property name="expand">False</property>
+                            <property name="fill">True</property>
+                            <property name="position">0</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkSpinButton" id="max_file_size_for_highlighting_spin">
+                            <property name="visible">True</property>
+                            <property name="can_focus">True</property>
+                            <property name="text" translatable="yes">4</property>
+                            <property name="adjustment">adjustment4</property>
+                            <property name="value">4</property>
+                          </object>
+                          <packing>
+                            <property name="expand">False</property>
+                            <property name="fill">True</property>
+                            <property name="pack_type">end</property>
+                            <property name="position">1</property>
+                          </packing>
+                        </child>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="fill">True</property>
+                        <property name="position">2</property>
                       </packing>
                     </child>
                   </object>

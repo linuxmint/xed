@@ -113,6 +113,9 @@ struct _XedPreferencesDialog
     /* Highlight matching bracket */
     GtkWidget *highlight_matching_bracket_switch;
 
+    /* Max file size for highlighting */
+    GtkWidget *max_file_size_for_highlighting_spin;
+
     /* Tabs */
     GtkWidget *tab_width_spin;
     GtkWidget *use_spaces_switch;
@@ -188,6 +191,7 @@ xed_preferences_dialog_class_init (XedPreferencesDialogClass *klass)
     gtk_widget_class_bind_template_child (widget_class, XedPreferencesDialog, draw_whitespace_newline_switch);
     gtk_widget_class_bind_template_child (widget_class, XedPreferencesDialog, highlight_current_line_switch);
     gtk_widget_class_bind_template_child (widget_class, XedPreferencesDialog, highlight_matching_bracket_switch);
+    gtk_widget_class_bind_template_child (widget_class, XedPreferencesDialog, max_file_size_for_highlighting_spin);
     gtk_widget_class_bind_template_child (widget_class, XedPreferencesDialog, tab_width_spin);
     gtk_widget_class_bind_template_child (widget_class, XedPreferencesDialog, use_spaces_switch);
     gtk_widget_class_bind_template_child (widget_class, XedPreferencesDialog, automatic_indentation_switch);
@@ -384,6 +388,12 @@ setup_editor_page (XedPreferencesDialog *dlg)
                      XED_SETTINGS_BRACKET_MATCHING,
                      dlg->highlight_matching_bracket_switch,
                      "active",
+                     G_SETTINGS_BIND_GET | G_SETTINGS_BIND_SET);
+
+    g_settings_bind (dlg->editor_settings,
+                     XED_SETTINGS_MAX_FILE_SIZE_FOR_HIGHLIGHTING,
+                     dlg->max_file_size_for_highlighting_spin,
+                     "value",
                      G_SETTINGS_BIND_GET | G_SETTINGS_BIND_SET);
 
     /* Indentation */
