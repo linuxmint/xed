@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-06-05 12:46+0100\n"
+"POT-Creation-Date: 2026-11-10 13:49+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,11 +18,19 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 
-#: ../data/xed.appdata.xml.in.h:1
+#: ../data/org.x.editor.desktop.in.in.h:1 ../xed/xed-print-job.c:700
+msgid "Text Editor"
+msgstr ""
+
+#: ../data/org.x.editor.desktop.in.in.h:2
+msgid "Edit text files"
+msgstr ""
+
+#: ../data/org.x.editor.metainfo.xml.in.h:1
 msgid "A Text Editor"
 msgstr ""
 
-#: ../data/xed.appdata.xml.in.h:2
+#: ../data/org.x.editor.metainfo.xml.in.h:2
 msgid ""
 "<p> Xed is a small, but powerful text editor. It has most standard text "
 "editor functions and fully supports international text in Unicode. Advanced "
@@ -33,66 +41,58 @@ msgid ""
 "indentation levels. </p>"
 msgstr ""
 
-#: ../data/xed.desktop.in.in.h:1 ../xed/xed-print-job.c:700
-msgid "Text Editor"
-msgstr ""
-
-#: ../data/xed.desktop.in.in.h:2
-msgid "Edit text files"
-msgstr ""
-
-#: ../xed/xed-app.c:100
+#: ../xed/xed-app.c:104
 msgid "Show the application's version"
 msgstr ""
 
-#: ../xed/xed-app.c:106
+#: ../xed/xed-app.c:110
 msgid "Display list of possible values for the encoding option"
 msgstr ""
 
-#: ../xed/xed-app.c:113
+#: ../xed/xed-app.c:117
 msgid ""
 "Set the character encoding to be used to open the files listed on the "
 "command line"
 msgstr ""
 
-#: ../xed/xed-app.c:114
+#: ../xed/xed-app.c:118
 msgid "ENCODING"
 msgstr ""
 
-#: ../xed/xed-app.c:120
+#: ../xed/xed-app.c:124
 msgid "Create a new top-level window in an existing instance of xed"
 msgstr ""
 
-#: ../xed/xed-app.c:127
+#: ../xed/xed-app.c:131
 msgid "Create a new document in an existing instance of xed"
 msgstr ""
 
-#: ../xed/xed-app.c:134
+#: ../xed/xed-app.c:138
 msgid "Set the size and position of the window (WIDTHxHEIGHT+X+Y)"
 msgstr ""
 
-#: ../xed/xed-app.c:135
+#: ../xed/xed-app.c:139
 msgid "GEOMETRY"
 msgstr ""
 
-#: ../xed/xed-app.c:141
+#: ../xed/xed-app.c:145
 msgid "Open files and block process until files are closed"
 msgstr ""
 
-#: ../xed/xed-app.c:148
+#: ../xed/xed-app.c:152
 msgid "Run xed in standalone mode"
 msgstr ""
 
-#: ../xed/xed-app.c:155
+#: ../xed/xed-app.c:159
 msgid "[FILE...] [+LINE]"
 msgstr ""
 
-#: ../xed/xed-app.c:612
+#: ../xed/xed-app.c:631
 #, c-format
 msgid "%s: invalid encoding."
 msgstr ""
 
-#: ../xed/xed-app.c:1266
+#: ../xed/xed-app.c:1273
 msgid "There was an error displaying the help."
 msgstr ""
 
@@ -343,12 +343,12 @@ msgid "Unsaved Document %d"
 msgstr ""
 
 #: ../xed/xed-documents-panel.c:88 ../xed/xed-documents-panel.c:99
-#: ../xed/xed-window.c:1893 ../xed/xed-window.c:1897
+#: ../xed/xed-window.c:1901 ../xed/xed-window.c:1905
 msgid "Read-Only"
 msgstr ""
 
 #: ../xed/xed-documents-panel.c:650 ../xed/resources/ui/xed-shortcuts.ui.h:1
-#: ../xed/xed-window.c:3143
+#: ../xed/xed-window.c:3151
 msgid "Documents"
 msgstr ""
 
@@ -414,7 +414,7 @@ msgstr ""
 msgid "Windows"
 msgstr ""
 
-#: ../xed/xed-highlight-mode-selector.c:297 ../xed/xed-window.c:2022
+#: ../xed/xed-highlight-mode-selector.c:297 ../xed/xed-window.c:2030
 msgid "Plain Text"
 msgstr ""
 
@@ -1494,7 +1494,7 @@ msgid "Favorites"
 msgstr ""
 
 #: ../xed/xed-ui.h:52
-msgid "Recents"
+msgid "_Recents"
 msgstr ""
 
 #. File menu
@@ -1880,11 +1880,11 @@ msgstr ""
 msgid "Use Spaces"
 msgstr ""
 
-#: ../xed/xed-window.c:2359
+#: ../xed/xed-window.c:2367
 msgid "There are unsaved documents"
 msgstr ""
 
-#: ../xed/xed-window.c:3408
+#: ../xed/xed-window.c:3416
 msgid "Elevated Privileges"
 msgstr ""
 
