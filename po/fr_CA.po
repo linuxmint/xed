@@ -10,15 +10,15 @@ msgstr ""
 "Project-Id-Version: MATE Desktop Environment\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-06-05 12:46+0100\n"
-"PO-Revision-Date: 2025-09-09 22:47+0000\n"
+"PO-Revision-Date: 2026-11-15 00:42+0000\n"
 "Last-Translator: AO <Unknown>\n"
 "Language-Team: French (Canada) <fr_CA@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Launchpad-Export-Date: 2026-01-08 15:40+0000\n"
-"X-Generator: Launchpad (build 99c00f518760bdd50fc6e353e7736d2fff8fba4a)\n"
+"X-Launchpad-Export-Date: 2026-11-16 11:57+0000\n"
+"X-Generator: Launchpad (build 72ba15af7e009b17d4aa1467977127ac8392a4de)\n"
 "Language: fr_CA\n"
 
 #: ../data/xed.appdata.xml.in.h:1
@@ -156,8 +156,8 @@ msgid_plural ""
 "If you don't save, changes from the last %ld seconds will be permanently "
 "lost."
 msgstr[0] ""
-"Si vous ne les enregistrez pas, les modifications de la dernière seconde "
-"seront perdues irrémédiablement."
+"Si vous ne les enregistrez pas, les modifications apportées pendant "
+"%ld seconde seront perdues irrémédiablement."
 msgstr[1] ""
 "Si vous ne les enregistrez pas, les modifications des %ld dernières secondes "
 "seront perdues irrémédiablement."
@@ -178,8 +178,8 @@ msgid_plural ""
 "If you don't save, changes from the last minute and %ld seconds will be "
 "permanently lost."
 msgstr[0] ""
-"Si vous ne les enregistrez pas, les modifications de la dernière minute et "
-"seconde seront perdues irrémédiablement."
+"Si vous ne les enregistrez pas, les modifications apportées pendant 1 minute "
+"et %ld seconde seront perdues irrémédiablement."
 msgstr[1] ""
 "Si vous ne les enregistrez pas, les modifications de la dernière minute et "
 "%ld secondes seront perdues irrémédiablement."
@@ -192,8 +192,8 @@ msgid_plural ""
 "If you don't save, changes from the last %ld minutes will be permanently "
 "lost."
 msgstr[0] ""
-"Si vous ne les enregistrez pas, les modifications de la dernière minute "
-"seront perdues irrémédiablement."
+"Si vous ne les enregistrez pas, les modifications apportées pendant "
+"%ld minute seront perdues irrémédiablement."
 msgstr[1] ""
 "Si vous ne les enregistrez pas, les modifications des %ld minutes seront "
 "perdues irrémédiablement."
@@ -214,11 +214,11 @@ msgid_plural ""
 "If you don't save, changes from the last hour and %d minutes will be "
 "permanently lost."
 msgstr[0] ""
-"Si vous ne les enregistrez pas, les modifications de la dernière heure et "
-"minute seront perdues irrémédiablement."
+"Si vous ne les enregistrez pas, les modifications apportées pendant 1 heure "
+"et %d minute seront perdues irrémédiablement."
 msgstr[1] ""
 "Si vous ne les enregistrez pas, les modifications de la dernière heure et "
-"%d minute seront perdues irrémédiablement."
+"%d minutes seront perdues irrémédiablement."
 
 #: ../xed/xed-close-confirmation-dialog.c:436
 #, c-format
@@ -227,7 +227,7 @@ msgid ""
 msgid_plural ""
 "If you don't save, changes from the last %d hours will be permanently lost."
 msgstr[0] ""
-"Si vous ne les enregistrez pas, les modifications de la dernière heure "
+"Si vous ne les enregistrez pas, les modifications apportées pendant %d heure "
 "seront perdues irrémédiablement."
 msgstr[1] ""
 "Si vous ne les enregistrez pas, les modifications des dernières %d heures "
@@ -236,8 +236,7 @@ msgstr[1] ""
 #: ../xed/xed-close-confirmation-dialog.c:477
 #, c-format
 msgid "Save changes to document \"%s\" before closing?"
-msgstr ""
-"Enregistrer les modifications du document « %s » avant de le fermer ?"
+msgstr "Enregistrer les modifications du document « %s » avant de le fermer?"
 
 #: ../xed/xed-close-confirmation-dialog.c:642
 #, c-format
@@ -246,11 +245,11 @@ msgid ""
 msgid_plural ""
 "There are %d documents with unsaved changes. Save changes before closing?"
 msgstr[0] ""
-"Des modifications ne sont pas enregistrées dans %d  document. Les "
-"enregistrer avant de le fermer ?"
+"Des modifications ne sont pas enregistrées dans %d document. Les enregistrer "
+"avant de le fermer?"
 msgstr[1] ""
-"Des modifications ne sont pas enregistrées dans %d  documents. Les "
-"enregistrer avant de les fermer ?"
+"Des modifications ne sont pas enregistrées dans %d documents. Les "
+"enregistrer avant de les fermer?"
 
 #: ../xed/xed-close-confirmation-dialog.c:659
 msgid "S_elect the documents you want to save:"
@@ -272,7 +271,7 @@ msgstr "Chargement du fichier « %s »…"
 #, c-format
 msgid "Loading %d file…"
 msgid_plural "Loading %d files…"
-msgstr[0] "Chargement d’%d fichier…"
+msgstr[0] "Chargement de %d fichier…"
 msgstr[1] "Chargement de %d fichiers…"
 
 #. Translators: "Open Files" is the title of the file chooser window
@@ -292,7 +291,7 @@ msgstr "Le fichier « %s » est en lecture seule."
 
 #: ../xed/xed-commands-file.c:499
 msgid "Do you want to try to replace it with the one you are saving?"
-msgstr "Voulez-vous tenter de le remplacer par celui que vous enregistrez ?"
+msgstr "Voulez-vous tenter de le remplacer par celui que vous enregistrez?"
 
 #: ../xed/xed-commands-file.c:503 ../xed/resources/ui/xed-searchbar.ui.h:2
 #: ../xed/xed-ui.h:126
@@ -316,7 +315,7 @@ msgstr "Rétablissement du document « %s »…"
 #: ../xed/xed-commands-file.c:1249
 #, c-format
 msgid "Revert unsaved changes to document '%s'?"
-msgstr "Rétablir les modifications non enregistrées du document « %s » ?"
+msgstr "Rétablir les modifications non enregistrées du document « %s »?"
 
 #: ../xed/xed-commands-file.c:1256
 #, c-format
@@ -326,7 +325,8 @@ msgid_plural ""
 "Changes made to the document in the last %ld seconds will be permanently "
 "lost."
 msgstr[0] ""
-"Les modifications de la dernière seconde seront perdues irrémédiablement."
+"Les modifications apportées au document pendant %ld seconde seront perdues "
+"irrémédiablement."
 msgstr[1] ""
 "Les modifications des %ld dernières secondes seront perdues irrémédiablement."
 
@@ -345,8 +345,8 @@ msgid_plural ""
 "Changes made to the document in the last minute and %ld seconds will be "
 "permanently lost."
 msgstr[0] ""
-"Les modifications de la dernière minute et seconde seront perdues "
-"irrémédiablement."
+"Les modifications apportées au document pendant 1 minute et %ld seconde "
+"seront perdues irrémédiablement."
 msgstr[1] ""
 "Les modifications de la dernière minute et %ld secondes seront perdues "
 "irrémédiablement."
@@ -359,7 +359,8 @@ msgid_plural ""
 "Changes made to the document in the last %ld minutes will be permanently "
 "lost."
 msgstr[0] ""
-"Les modifications de la dernière minute seront perdues irrémédiablement."
+"Les modifications apportées au document pendant %ld minute seront perdues "
+"irrémédiablement."
 msgstr[1] ""
 "Les modifications des %ld dernières minutes seront perdues irrémédiablement."
 
@@ -378,8 +379,8 @@ msgid_plural ""
 "Changes made to the document in the last hour and %d minutes will be "
 "permanently lost."
 msgstr[0] ""
-"Les modifications du document de la dernière heure et minute seront perdues "
-"irrémédiablement."
+"Les modifications apportées au document pendant 1 heure et %d minute seront "
+"perdues irrémédiablement."
 msgstr[1] ""
 "Les modifications du document de la dernière heure et %d minutes seront "
 "perdues irrémédiablement."
@@ -391,7 +392,7 @@ msgid ""
 msgid_plural ""
 "Changes made to the document in the last %d hours will be permanently lost."
 msgstr[0] ""
-"Les modifications du document de la dernière heure seront perdues "
+"Les modifications apportées au document pendant %d heure seront perdues "
 "irrémédiablement."
 msgstr[1] ""
 "Les modifications du document des %d dernières heures seront perdues "
@@ -672,7 +673,7 @@ msgid ""
 "edit it anyway?"
 msgstr ""
 "La façon dont xed a ouvert cette instance du fichier ne permet pas de le "
-"modifier. Voulez-vous le modifier quand même ?"
+"modifier. Voulez-vous le modifier quand même?"
 
 #: ../xed/xed-io-error-info-bar.c:742 ../xed/xed-io-error-info-bar.c:830
 #: ../xed/xed-io-error-info-bar.c:1092
@@ -698,7 +699,7 @@ msgid ""
 "If you save it, all the external changes could be lost. Save it anyway?"
 msgstr ""
 "Si vous l’enregistrez, toutes les modifications externes pourraient être "
-"perdues. L’enregistrer quand même ?"
+"perdues. L’enregistrer quand même?"
 
 #: ../xed/xed-io-error-info-bar.c:851
 #, c-format
@@ -722,7 +723,7 @@ msgstr ""
 "xed n’a pas pu sauvegarder l’ancienne copie du fichier avant d’enregistrer "
 "la nouvelle. Vous pouvez ignorer cet avertissement et enregistrer le fichier "
 "quand même. Cependant, si une erreur survient lors de l’enregistrement, vous "
-"risquez de perdre l’ancienne copie du fichier. L’enregistrer quand même ?"
+"risquez de perdre l’ancienne copie du fichier. L’enregistrer quand même?"
 
 #. Translators: %s is a URI scheme (like for example http:, ftp:, etc.)
 #: ../xed/xed-io-error-info-bar.c:928
@@ -813,11 +814,11 @@ msgstr "Le fichier %s a changé sur le disque."
 
 #: ../xed/xed-io-error-info-bar.c:1041
 msgid "Do you want to drop your changes and reload the file?"
-msgstr "Voulez-vous abandonner vos modifications et recharger le fichier ?"
+msgstr "Voulez-vous abandonner vos modifications et recharger le fichier?"
 
 #: ../xed/xed-io-error-info-bar.c:1045
 msgid "Do you want to reload the file?"
-msgstr "Voulez-vous recharger le fichier ?"
+msgstr "Voulez-vous recharger le fichier?"
 
 #: ../xed/xed-io-error-info-bar.c:1050
 msgid "_Reload"
@@ -834,7 +835,7 @@ msgid ""
 "If you continue saving this file you can corrupt the document.  Save anyway?"
 msgstr ""
 "Si vous poursuivez l’enregistrement de ce fichier, vous risquez de corrompre "
-"le document. L’enregistrer quand même ?"
+"le document. L’enregistrer quand même?"
 
 #: ../xed/xed-preferences-dialog.c:284
 #: ../xed/resources/ui/xed-preferences-dialog.ui.h:3
@@ -1252,7 +1253,7 @@ msgstr "Recherche en boucle"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:2 ../xed/xed-ui.h:56
 msgid "Create a new document"
-msgstr "Crée un nouveau document"
+msgstr "Créer un nouveau document"
 
 #: ../xed/resources/ui/xed-shortcuts.ui.h:3
 msgid "Open a document"
@@ -2238,7 +2239,7 @@ msgid ""
 "want to delete permanently?"
 msgstr ""
 "Impossible de déplacer le fichier dans la corbeille,\n"
-"voulez-vous le supprimer définitivement ?"
+"voulez-vous le supprimer définitivement?"
 
 #: ../plugins/filebrowser/xed-file-browser-plugin.c:950
 #, c-format
@@ -2247,17 +2248,16 @@ msgstr "Le fichier « %s » ne peut pas déplacé dans la corbeille."
 
 #: ../plugins/filebrowser/xed-file-browser-plugin.c:955
 msgid "The selected files cannot be moved to the trash."
-msgstr ""
-"Les fichiers sélectionnés ne peuvent pas être déplacés dans la corbeille."
+msgstr "Les fichiers choisis ne peuvent pas être déplacés dans la corbeille."
 
 #: ../plugins/filebrowser/xed-file-browser-plugin.c:983
 #, c-format
 msgid "Are you sure you want to permanently delete \"%s\"?"
-msgstr "Voulez-vous supprimer « %s » irrémédiablement ?"
+msgstr "Voulez-vous supprimer « %s » irrémédiablement?"
 
 #: ../plugins/filebrowser/xed-file-browser-plugin.c:988
 msgid "Are you sure you want to permanently delete the selected files?"
-msgstr "Voulez-vous supprimer les fichiers sélectionnés irrémédiablement ?"
+msgstr "Voulez-vous supprimer irrémédiablement les fichiers choisis?"
 
 #: ../plugins/filebrowser/xed-file-browser-plugin.c:991
 msgid "If you delete an item, it is permanently lost."
@@ -2315,15 +2315,15 @@ msgstr "_Déplacer dans la corbeille"
 
 #: ../plugins/filebrowser/xed-file-browser-widget.c:757
 msgid "Move selected file or folder to trash"
-msgstr "Déplacer le fichier ou dossier sélectionné dans la corbeille"
+msgstr "Déplacer le fichier ou dossier choisi dans la corbeille"
 
 #: ../plugins/filebrowser/xed-file-browser-widget.c:759
 msgid "Delete selected file or folder"
-msgstr "Supprimer le fichier ou dossier sélectionné"
+msgstr "Supprimer le fichier ou dossier choisi"
 
 #: ../plugins/filebrowser/xed-file-browser-widget.c:765
 msgid "Open selected file"
-msgstr "Ouvrir le fichier sélectionné"
+msgstr "Ouvrir le fichier choisi"
 
 #: ../plugins/filebrowser/xed-file-browser-widget.c:770
 msgid "Up"
@@ -2355,7 +2355,7 @@ msgstr "_Renommer…"
 
 #: ../plugins/filebrowser/xed-file-browser-widget.c:785
 msgid "Rename selected file or folder"
-msgstr "Renommer le fichier ou dossier sélectionné"
+msgstr "Renommer le fichier ou dossier choisi"
 
 #: ../plugins/filebrowser/xed-file-browser-widget.c:790
 msgid "_Previous Location"
@@ -3669,7 +3669,7 @@ msgstr "Texte barré"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:311
 msgid "Tab order position"
-msgstr "Position de l'ordre des onglets"
+msgstr "Position de l’ordre des onglets"
 
 #: ../plugins/taglist/HTML.tags.xml.in.h:312
 msgid "Text color"
