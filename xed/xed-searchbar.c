@@ -45,6 +45,7 @@ struct _XedSearchbarPrivate
     XedSearchMode search_mode;
 
     guint update_occurrence_count_id;
+    gboolean skip_jump_to_match;
 };
 
 G_DEFINE_TYPE_WITH_PRIVATE (XedSearchbar, xed_searchbar, GTK_TYPE_BOX)
@@ -379,7 +380,11 @@ do_find (XedSearchbar *searchbar,
         g_object_unref (search_context);
     }
 
-    if (search_backwards)
+    if (searchbar->priv->skip_jump_to_match)
+    {
+        searchbar->priv->skip_jump_to_match = FALSE;
+    }
+    else if (search_backwards)
     {
         run_backward_search (searchbar->window);
     }
@@ -812,6 +817,7 @@ xed_searchbar_show (XedSearchbar  *searchbar,
             escaped_find_text = gtk_source_utils_escape_search_text (find_text);
         }
 
+        searchbar->priv->skip_jump_to_match = TRUE;
         xed_searchbar_set_search_text (XED_SEARCHBAR (searchbar), escaped_find_text);
 
         g_free (escaped_find_text);
