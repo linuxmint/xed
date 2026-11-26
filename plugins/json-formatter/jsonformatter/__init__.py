@@ -1,0 +1,1 @@
+from .json_formatter_window_activatable import JsonFormatterWindowActivatable
